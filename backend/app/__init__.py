@@ -36,12 +36,22 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.craft import craft_bp
     from app.routes.ref import ref_bp
     from app.routes.profile import profile_bp
+    from app.routes.simulate import simulate_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
     app.register_blueprint(craft_bp, url_prefix="/api/craft")
     app.register_blueprint(ref_bp, url_prefix="/api/ref")
     app.register_blueprint(profile_bp, url_prefix="/api/profile")
+    app.register_blueprint(simulate_bp, url_prefix="/api/simulate")
+
+    # Global error handler for domain exceptions
+    from app.utils.exceptions import ForgeError
+
+    @app.errorhandler(ForgeError)
+    def handle_forge_error(exc):
+        from app.utils.responses import error as error_response
+        return error_response(exc.message, status=exc.status_code)
 
     # Register CLI commands
     from app.utils.cli import register_commands

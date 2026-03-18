@@ -115,8 +115,8 @@ Detailed technical documentation can be found in the docs folder.
 
 ## Core Documentation
 
-* docs/system_architecture.md
-* docs/intelligence_engine.md
+* docs/system_overview.md
+* docs/development_roadmap.md
 * docs/data_models.md
 * docs/engine_architecture.md
 * docs/simulation_design.md

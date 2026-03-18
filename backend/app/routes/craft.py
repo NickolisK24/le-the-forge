@@ -97,6 +97,13 @@ def get_session(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
         return not_found("Craft session")
+
+    # If session has an owner, only the owner can view it
+    if session.user_id:
+        user = get_current_user()
+        if not user or session.user_id != user.id:
+            return forbidden()
+
     return ok(data=session_schema.dump(session))
 
 
@@ -105,6 +112,12 @@ def apply_action(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
         return not_found("Craft session")
+
+    # If session has an owner, only the owner can modify it
+    if session.user_id:
+        user = get_current_user()
+        if not user or session.user_id != user.id:
+            return forbidden()
 
     try:
         data = action_schema.load(request.get_json() or {})
@@ -117,9 +130,6 @@ def apply_action(slug: str):
         affix_name=data.get("affix_name"),
         target_tier=data.get("target_tier"),
     )
-
-    if not result.get("success") and "error" in result:
-        return error(result["error"])
 
     return ok(data=result)
 

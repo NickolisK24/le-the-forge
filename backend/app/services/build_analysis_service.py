@@ -8,6 +8,7 @@ Extracted from build_service.py so the orchestration layer is separate from CRUD
 
 from app.models import Build
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
+from app.utils.exceptions import BuildValidationError
 
 
 def analyze_build(build: Build) -> dict:
@@ -23,8 +24,19 @@ def analyze_build(build: Build) -> dict:
             defense,        # DefenseResult incl. EHP, dodge, ward sustainability
             stat_upgrades,  # top 5 StatUpgrade ranked by DPS gain
         }
+
+    Raises:
+        BuildValidationError: if the build is missing required data.
     """
     from app.models import PassiveNode
+
+    if not build.character_class or not build.mastery:
+        raise BuildValidationError("Build is missing character class or mastery.")
+
+    if not build.skills or len(build.skills) == 0:
+        raise BuildValidationError(
+            "Build has no skills assigned. Add at least one skill to simulate."
+        )
 
     # Load passive nodes for the build's class
     db_nodes = PassiveNode.query.filter_by(character_class=build.character_class).all()

@@ -17,6 +17,7 @@ from app.services.craft_service import (
     apply_action,
     get_session_summary,
 )
+from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialError
 
 
 # ---------------------------------------------------------------------------
@@ -216,9 +217,8 @@ class TestCraftSession:
             "forge_potential": 0,
             "affixes": [],
         })
-        result = apply_action(session, "add_affix", affix_name="Health")
-        assert result["success"] is False
-        assert "Forge Potential" in result["error"]
+        with pytest.raises(InsufficientForgePotentialError):
+            apply_action(session, "add_affix", affix_name="Health")
 
     def test_fractured_session_rejects_actions(self, db):
         session = create_session({
@@ -229,9 +229,8 @@ class TestCraftSession:
         })
         session.is_fractured = True
         db.session.commit()
-        result = apply_action(session, "add_affix", affix_name="Health")
-        assert result["success"] is False
-        assert "fractured" in result["error"].lower()
+        with pytest.raises(ItemFracturedError):
+            apply_action(session, "add_affix", affix_name="Health")
 
     def test_successful_craft_adds_step(self, db):
         session = create_session({

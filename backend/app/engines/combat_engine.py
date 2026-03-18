@@ -139,6 +139,11 @@ SKILL_STATS: dict = {
     "Falcon Strikes":         SkillStatDef(90,  0.11, 2.0, ["minion_damage_pct", "physical_damage_pct"]),
     "Aerial Assault":         SkillStatDef(130, 0.13, 0.6, ["minion_damage_pct", "physical_damage_pct"]),
     "Dive Bomb":              SkillStatDef(200, 0.15, 0.4, ["minion_damage_pct", "physical_damage_pct"]),
+    # --- Cross-class / missing skills ---
+    "Scorpion Aspect":        SkillStatDef(95,  0.11, 1.6, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
+    "Ring of Shields":        SkillStatDef(60,  0.09, 0.4, ["physical_damage_pct"]),
+    "Healing Hands":          SkillStatDef(40,  0.08, 0.8, ["spell_damage_pct"], is_spell=True),
+    "Smoke Bomb":             SkillStatDef(45,  0.08, 0.5, ["physical_damage_pct", "poison_damage_pct"]),
 }
 
 

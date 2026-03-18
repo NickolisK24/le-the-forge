@@ -77,7 +77,7 @@ class TestGetStatUpgrades:
     def test_crit_multiplier_ranks_high_for_crit_build(self):
         """A build with high crit chance should rank crit multiplier highly."""
         crit_stats = aggregate_stats("Mage", "Sorcerer", [], [],
-                                     [{"name": "Critical Strike Chance", "tier": 1}] * 3)
+                                     [{"name": "Critical Strike Chance", "tier": 5}] * 3)
         upgrades = get_stat_upgrades(crit_stats, "Fireball", 20, top_n=5)
         top_stats = [u.stat for u in upgrades[:3]]
         assert "crit_multiplier_pct" in top_stats

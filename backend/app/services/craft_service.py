@@ -22,6 +22,7 @@ from app.engines.craft_engine import (
     PERFECT_ROLL_THRESHOLD,
     FP_COSTS,
 )
+from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialError
 
 import random
 
@@ -53,11 +54,11 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     and appends a CraftStep log entry.
     """
     if session.is_fractured:
-        return {"success": False, "error": "Item is fractured. Start a new session."}
+        raise ItemFracturedError()
 
     cost = fp_cost(action)
     if session.forge_potential < cost:
-        return {"success": False, "error": f"Insufficient Forge Potential. Need {cost}, have {session.forge_potential}."}
+        raise InsufficientForgePotentialError(needed=cost, available=session.forge_potential)
 
     sealed_count = sum(1 for a in session.affixes if a.get("sealed"))
     risk = fracture_risk(session.instability, sealed_count)

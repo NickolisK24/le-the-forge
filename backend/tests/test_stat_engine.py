@@ -127,7 +127,8 @@ class TestGearAffixes:
         affix_t5 = [{"name": "Fire Damage", "tier": 5}]
         stats_t1 = aggregate_stats("Acolyte", "Lich", [], [], affix_t1)
         stats_t5 = aggregate_stats("Acolyte", "Lich", [], [], affix_t5)
-        assert stats_t1.fire_damage_pct > stats_t5.fire_damage_pct
+        # T5 is now the best tier, T1 is lowest
+        assert stats_t5.fire_damage_pct > stats_t1.fire_damage_pct
 
     def test_resistance_affix_stacks(self):
         affixes = [
@@ -169,7 +170,7 @@ class TestAttributeScaling:
 class TestGetAffixValue:
     def test_t1_health_midpoint(self):
         val = get_affix_value("Health", 1)
-        assert val == 130  # (111+150)//2 rounded
+        assert val == 27  # T1 is lowest tier
 
     def test_unknown_affix_returns_zero(self):
         assert get_affix_value("Completely Fake Affix", 1) == 0
