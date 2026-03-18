@@ -49,29 +49,46 @@ def _skills() -> dict:
 
 
 # ------------------------------------------------------------------
-# Derived affix lookups — built once from the v2.0 affixes.json
+# Derived affix lookups — built once from the v3.0 affixes.json
 # ------------------------------------------------------------------
 
 @lru_cache(maxsize=1)
-def _build_affix_lookups() -> tuple[dict, dict]:
-    """Build tier-midpoints and stat-keys dicts from the v2.0 affix list."""
+def _build_affix_lookups() -> tuple[dict, dict, dict]:
+    """Build tier-midpoints, stat-keys, and type dicts from affix list.
+
+    Returns:
+        (midpoints, stat_keys, affix_types)
+        midpoints: {name: {"T1": val, "T2": val, ...}}
+        stat_keys: {name: "stat_field_name"}
+        affix_types: {name: "flat" | "increased" | "more"}
+    """
     raw = _affixes_raw()
     affix_list = raw.get("affixes", [])
 
     midpoints: dict[str, dict[str, float]] = {}
     stat_keys: dict[str, str] = {}
+    affix_types: dict[str, str] = {}
 
     for affix in affix_list:
         name = affix["name"]
-        stat_keys[name] = affix["stat_key"]
-        tiers = affix.get("tiers", {})
+        # v3.0 uses "stat", v2.0 used "stat_key" — support both
+        stat_keys[name] = affix.get("stat", affix.get("stat_key", ""))
+        affix_types[name] = affix.get("type", "flat")
+        tiers = affix.get("tiers", [])
         mp: dict[str, float] = {}
-        for tier_key, bounds in tiers.items():
-            lo, hi = bounds
-            mp[f"T{tier_key}"] = math.floor((lo + hi) / 2)
+        if isinstance(tiers, list):
+            # v3.0 format: [{"tier": 1, "value": 10, "min": 5, "max": 15}, ...]
+            for entry in tiers:
+                tier_num = entry["tier"]
+                mp[f"T{tier_num}"] = entry.get("value", math.floor((entry.get("min", 0) + entry.get("max", 0)) / 2))
+        else:
+            # v2.0 fallback: {"1": [lo, hi], ...}
+            for tier_key, bounds in tiers.items():
+                lo, hi = bounds
+                mp[f"T{tier_key}"] = math.floor((lo + hi) / 2)
         midpoints[name] = mp
 
-    return midpoints, stat_keys
+    return midpoints, stat_keys, affix_types
 
 
 def get_affix_tier_midpoints() -> dict:
@@ -82,6 +99,11 @@ def get_affix_tier_midpoints() -> dict:
 def get_affix_stat_keys() -> dict:
     """Returns affix display name → BuildStats field name mapping."""
     return _build_affix_lookups()[1]
+
+
+def get_affix_types() -> dict:
+    """Returns affix display name → modifier type (flat/increased/more) mapping."""
+    return _build_affix_lookups()[2]
 
 
 def get_all_affixes() -> list[dict]:

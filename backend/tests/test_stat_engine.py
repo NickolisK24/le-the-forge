@@ -196,3 +196,88 @@ class TestPercentageHealth:
         boosted = aggregate_stats("Sentinel", "Paladin", [], [],
                                   [{"name": "Hybrid Health", "tier": 3}])
         assert boosted.max_health > base.max_health
+
+
+class TestStatPool:
+    def test_stat_pool_flat_accumulates(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_flat("max_health", 100)
+        pool.add_flat("max_health", 50)
+        assert pool.flat["max_health"] == 150
+
+    def test_stat_pool_increased_accumulates(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_increased("spell_damage_pct", 20)
+        pool.add_increased("spell_damage_pct", 30)
+        assert pool.increased["spell_damage_pct"] == 50
+
+    def test_stat_pool_more_multiplies(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_more("damage", 20)  # 1.20
+        pool.add_more("damage", 50)  # * 1.50
+        assert pool.more["damage"] == pytest.approx(1.2 * 1.5)
+
+    def test_stat_pool_resolve_flat(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_flat("max_health", 100)
+        stats = BuildStats()
+        stats.max_health = 500
+        pool.resolve_to(stats)
+        assert stats.max_health == 600
+
+    def test_stat_pool_resolve_increased(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_increased("spell_damage_pct", 40)
+        stats = BuildStats()
+        pool.resolve_to(stats)
+        assert stats.spell_damage_pct == 40
+
+    def test_stat_pool_resolve_more(self):
+        from app.engines.stat_engine import StatPool
+        pool = StatPool()
+        pool.add_more("damage", 30)
+        stats = BuildStats()
+        pool.resolve_to(stats)
+        assert stats.more_damage_multiplier == pytest.approx(1.3)
+
+
+class TestApplyAffix:
+    def test_apply_flat_affix(self):
+        from app.engines.stat_engine import StatPool, apply_affix
+        pool = StatPool()
+        apply_affix(pool, "Health", 1)
+        assert "max_health" in pool.flat
+        assert pool.flat["max_health"] > 0
+
+    def test_apply_increased_affix(self):
+        from app.engines.stat_engine import StatPool, apply_affix
+        pool = StatPool()
+        apply_affix(pool, "Spell Damage", 1)
+        assert "spell_damage_pct" in pool.increased
+        assert pool.increased["spell_damage_pct"] > 0
+
+    def test_apply_unknown_affix_does_nothing(self):
+        from app.engines.stat_engine import StatPool, apply_affix
+        pool = StatPool()
+        apply_affix(pool, "Nonexistent Affix XYZ", 1)
+        assert len(pool.flat) == 0
+        assert len(pool.increased) == 0
+        assert len(pool.more) == 0
+
+    def test_apply_affix_routes_correctly(self):
+        """Flat affixes go to flat bucket, increased go to increased."""
+        from app.engines.stat_engine import StatPool, apply_affix
+        pool = StatPool()
+        apply_affix(pool, "Health", 3)          # flat
+        apply_affix(pool, "Spell Damage", 3)    # increased
+        apply_affix(pool, "Fire Resistance", 3) # flat
+        assert "max_health" in pool.flat
+        assert "fire_res" in pool.flat
+        assert "spell_damage_pct" in pool.increased
+        assert "max_health" not in pool.increased
+        assert "spell_damage_pct" not in pool.flat
