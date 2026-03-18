@@ -33,6 +33,8 @@ class SkillStatDef:
     scaling_stats: list     # list of BuildStats field names for % damage bonus
     is_spell: bool = False
     is_melee: bool = False
+    is_throwing: bool = False
+    is_bow: bool = False
 
 
 SKILL_STATS: dict = {
@@ -107,12 +109,12 @@ SKILL_STATS: dict = {
     "Rive":                   SkillStatDef(100, 0.12, 1.8, ["physical_damage_pct"], is_melee=True),
     "Warpath":                SkillStatDef(85,  0.11, 1.5, ["physical_damage_pct"], is_melee=True),
     "Shield Rush":            SkillStatDef(70,  0.10, 0.7, ["physical_damage_pct"], is_melee=True),
-    "Javelin":                SkillStatDef(130, 0.12, 1.4, ["physical_damage_pct", "lightning_damage_pct"]),
+    "Javelin":                SkillStatDef(130, 0.12, 1.4, ["physical_damage_pct", "lightning_damage_pct"], is_throwing=True),
     "Smite":                  SkillStatDef(120, 0.13, 1.2, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True, is_melee=True),
     "Smelter's Wrath":        SkillStatDef(110, 0.12, 1.2, ["fire_damage_pct"], is_melee=True),
     "Manifest Armor":         SkillStatDef(80,  0.10, 0.8, ["minion_damage_pct"]),
     "Forge Strike":           SkillStatDef(140, 0.13, 1.0, ["fire_damage_pct", "physical_damage_pct"], is_melee=True),
-    "Shield Throw":           SkillStatDef(110, 0.12, 1.5, ["physical_damage_pct"]),
+    "Shield Throw":           SkillStatDef(110, 0.12, 1.5, ["physical_damage_pct"], is_throwing=True),
     "Volatile Reversal":      SkillStatDef(100, 0.12, 0.6, ["void_damage_pct"], is_spell=True),
     "Judgement":              SkillStatDef(200, 0.15, 0.6, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True),
     "Anomaly":                SkillStatDef(160, 0.14, 0.5, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
@@ -123,19 +125,19 @@ SKILL_STATS: dict = {
     "Shift":                  SkillStatDef(50,  0.08, 0.5, ["physical_damage_pct"], is_spell=True),
     "Flurry":                 SkillStatDef(65,  0.10, 3.0, ["physical_damage_pct"], is_melee=True),
     "Puncture":               SkillStatDef(80,  0.11, 2.0, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
-    "Acid Flask":             SkillStatDef(35,  0.07, 0.6, ["poison_damage_pct"]),
-    "Arrow Barrage":          SkillStatDef(70,  0.10, 2.5, ["physical_damage_pct"]),
-    "Detonating Arrow":       SkillStatDef(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"]),
+    "Acid Flask":             SkillStatDef(35,  0.07, 0.6, ["poison_damage_pct"], is_throwing=True),
+    "Arrow Barrage":          SkillStatDef(70,  0.10, 2.5, ["physical_damage_pct"], is_bow=True),
+    "Detonating Arrow":       SkillStatDef(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"], is_bow=True),
     "Explosive Trap":         SkillStatDef(120, 0.12, 0.5, ["fire_damage_pct"]),
-    "Shurikens":              SkillStatDef(55,  0.09, 3.5, ["physical_damage_pct"]),
+    "Shurikens":              SkillStatDef(55,  0.09, 3.5, ["physical_damage_pct"], is_throwing=True),
     "Shadow Cascade":         SkillStatDef(120, 0.13, 1.6, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
     "Dancing Strikes":        SkillStatDef(90,  0.11, 2.5, ["physical_damage_pct"], is_melee=True),
     "Blade Flurry":           SkillStatDef(100, 0.12, 2.2, ["physical_damage_pct"], is_melee=True),
     "Synchronized Strike":    SkillStatDef(150, 0.13, 0.8, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
-    "Multishot":              SkillStatDef(85,  0.11, 1.8, ["physical_damage_pct"]),
-    "Ballista":               SkillStatDef(70,  0.10, 2.0, ["minion_damage_pct", "physical_damage_pct"]),
-    "Rain of Arrows":         SkillStatDef(45,  0.08, 0.8, ["physical_damage_pct"]),
-    "Hail of Arrows":         SkillStatDef(60,  0.09, 1.0, ["physical_damage_pct", "cold_damage_pct"]),
+    "Multishot":              SkillStatDef(85,  0.11, 1.8, ["physical_damage_pct"], is_bow=True),
+    "Ballista":               SkillStatDef(70,  0.10, 2.0, ["minion_damage_pct", "physical_damage_pct"], is_bow=True),
+    "Rain of Arrows":         SkillStatDef(45,  0.08, 0.8, ["physical_damage_pct"], is_bow=True),
+    "Hail of Arrows":         SkillStatDef(60,  0.09, 1.0, ["physical_damage_pct", "cold_damage_pct"], is_bow=True),
     "Falcon Strikes":         SkillStatDef(90,  0.11, 2.0, ["minion_damage_pct", "physical_damage_pct"]),
     "Aerial Assault":         SkillStatDef(130, 0.13, 0.6, ["minion_damage_pct", "physical_damage_pct"]),
     "Dive Bomb":              SkillStatDef(200, 0.15, 0.4, ["minion_damage_pct", "physical_damage_pct"]),
@@ -158,6 +160,14 @@ class DPSResult:
     dps: int
     effective_attack_speed: float
     crit_contribution_pct: int
+    # Flat added damage breakdown
+    flat_damage_added: int = 0
+    # Ailment DPS
+    bleed_dps: int = 0
+    ignite_dps: int = 0
+    poison_dps: int = 0
+    ailment_dps: int = 0
+    total_dps: int = 0      # hit dps + ailment dps
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -178,6 +188,110 @@ class MonteCarloDPS:
 
 
 # ---------------------------------------------------------------------------
+# Ailment constants (Last Epoch mechanics)
+# ---------------------------------------------------------------------------
+
+# Bleed: physical DoT, 70% of hit damage over 4s per stack
+BLEED_BASE_RATIO = 0.70
+BLEED_DURATION = 4.0
+
+# Ignite: fire DoT, 20% of hit damage per second per stack, 3s duration
+IGNITE_DPS_RATIO = 0.20
+IGNITE_DURATION = 3.0
+
+# Poison: 30% of hit damage per second per stack, 3s duration
+POISON_DPS_RATIO = 0.30
+POISON_DURATION = 3.0
+
+# Elemental stat keys — used to detect elemental skills for elemental_damage_pct
+_ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
+
+
+# ---------------------------------------------------------------------------
+# Helpers — flat added damage and ailment calculation
+# ---------------------------------------------------------------------------
+
+def _sum_flat_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
+    """Sum all flat added damage relevant to a skill's type."""
+    total = 0.0
+    if skill_def.is_spell:
+        total += (stats.added_spell_damage + stats.added_spell_fire +
+                  stats.added_spell_cold + stats.added_spell_lightning +
+                  stats.added_spell_necrotic + stats.added_spell_void)
+    if skill_def.is_melee:
+        total += (stats.added_melee_physical + stats.added_melee_fire +
+                  stats.added_melee_cold + stats.added_melee_lightning +
+                  stats.added_melee_void + stats.added_melee_necrotic)
+    if skill_def.is_throwing:
+        total += (stats.added_throw_physical + stats.added_throw_fire +
+                  stats.added_throw_cold)
+    if skill_def.is_bow:
+        total += stats.added_bow_physical + stats.added_bow_fire
+    return total
+
+
+def _sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
+    """Sum all % increased damage bonuses for a skill, including implicit type bonuses."""
+    total = sum(getattr(stats, k, 0.0) for k in skill_def.scaling_stats)
+
+    # Weapon-type % bonuses (additive with other increased damage)
+    if skill_def.is_melee:
+        total += stats.melee_damage_pct
+    if skill_def.is_throwing:
+        total += stats.throwing_damage_pct
+    if skill_def.is_bow:
+        total += stats.bow_damage_pct
+
+    # Elemental damage bonus applies if skill scales with any elemental stat
+    if _ELEMENTAL_STATS.intersection(skill_def.scaling_stats):
+        total += stats.elemental_damage_pct
+
+    return total
+
+
+def _calc_ailment_dps(
+    hit_damage: float,
+    effective_as: float,
+    stats: BuildStats,
+) -> tuple[int, int, int]:
+    """
+    Calculate per-ailment DPS from proc chance, base hit, and DoT scaling.
+
+    Returns (bleed_dps, ignite_dps, poison_dps).
+    """
+    bleed_dps = ignite_dps = poison_dps = 0
+
+    # Bleed: physical DoT
+    if stats.bleed_chance_pct > 0:
+        chance = min(1.0, stats.bleed_chance_pct / 100)
+        base_per_stack = hit_damage * BLEED_BASE_RATIO / BLEED_DURATION
+        maintained = effective_as * chance * BLEED_DURATION
+        increased = 1 + (stats.physical_damage_pct + stats.dot_damage_pct +
+                         stats.bleed_damage_pct) / 100
+        bleed_dps = round(base_per_stack * maintained * increased)
+
+    # Ignite: fire DoT
+    if stats.ignite_chance_pct > 0:
+        chance = min(1.0, stats.ignite_chance_pct / 100)
+        base_per_stack = hit_damage * IGNITE_DPS_RATIO
+        maintained = effective_as * chance * IGNITE_DURATION
+        increased = 1 + (stats.fire_damage_pct + stats.dot_damage_pct +
+                         stats.ignite_damage_pct) / 100
+        ignite_dps = round(base_per_stack * maintained * increased)
+
+    # Poison: poison DoT
+    if stats.poison_chance_pct > 0:
+        chance = min(1.0, stats.poison_chance_pct / 100)
+        base_per_stack = hit_damage * POISON_DPS_RATIO
+        maintained = effective_as * chance * POISON_DURATION
+        increased = 1 + (stats.poison_damage_pct + stats.dot_damage_pct +
+                         stats.poison_dot_damage_pct) / 100
+        poison_dps = round(base_per_stack * maintained * increased)
+
+    return bleed_dps, ignite_dps, poison_dps
+
+
+# ---------------------------------------------------------------------------
 # DPS calculation
 # ---------------------------------------------------------------------------
 
@@ -189,7 +303,7 @@ def calculate_dps(
     """
     Calculate expected DPS for a skill at a given level using build stats.
 
-    Mirrors calculateSkillDPS() in frontend/src/lib/simulation.ts.
+    Includes flat added damage, weapon-type bonuses, and ailment/DoT DPS.
     """
     skill_def = SKILL_STATS.get(skill_name)
     if not skill_def:
@@ -198,14 +312,15 @@ def calculate_dps(
     # Base damage scaled by level
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
 
-    # Sum all "increased" % damage bonuses relevant to this skill (additive pool)
-    total_damage_pct = 0.0
-    for stat_key in skill_def.scaling_stats:
-        total_damage_pct += getattr(stats, stat_key, 0.0)
+    # Flat added damage from gear
+    flat_added = _sum_flat_damage(stats, skill_def)
+    effective_base = scaled_base + flat_added
 
-    # HitDamage = BaseDamage * (1 + IncreasedDamage%) * MoreDamage
-    # "more" multipliers stack multiplicatively on top of the increased pool
-    hit_damage = scaled_base * (1 + total_damage_pct / 100) * stats.more_damage_multiplier
+    # Sum all "increased" % damage bonuses (additive pool)
+    total_damage_pct = _sum_increased_damage(stats, skill_def)
+
+    # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
+    hit_damage = effective_base * (1 + total_damage_pct / 100) * stats.more_damage_multiplier
 
     # AverageHit = non-crit portion + crit portion
     non_crit = (1 - stats.crit_chance) * hit_damage
@@ -215,17 +330,29 @@ def calculate_dps(
     # Effective attack speed
     cast_speed_bonus = stats.cast_speed / 100 if skill_def.is_spell else 0.0
     attack_speed_bonus = stats.attack_speed_pct / 100 if not skill_def.is_spell else 0.0
-    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus)
+    # Throwing attack speed applies on top for throwing skills
+    throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
+    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
 
-    dps = average_hit * effective_as
-    crit_contrib = round((crit_hit * effective_as) / dps * 100) if dps > 0 else 0
+    hit_dps = average_hit * effective_as
+    crit_contrib = round((crit_hit * effective_as) / hit_dps * 100) if hit_dps > 0 else 0
+
+    # Ailment DPS
+    bleed_dps, ignite_dps, poison_dps = _calc_ailment_dps(hit_damage, effective_as, stats)
+    ailment_total = bleed_dps + ignite_dps + poison_dps
 
     return DPSResult(
         hit_damage=round(hit_damage),
         average_hit=round(average_hit),
-        dps=round(dps),
+        dps=round(hit_dps),
         effective_attack_speed=round(effective_as * 100) / 100,
         crit_contribution_pct=crit_contrib,
+        flat_damage_added=round(flat_added),
+        bleed_dps=bleed_dps,
+        ignite_dps=ignite_dps,
+        poison_dps=poison_dps,
+        ailment_dps=ailment_total,
+        total_dps=round(hit_dps) + ailment_total,
     )
 
 
@@ -250,12 +377,16 @@ def monte_carlo_dps(
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
 
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-    total_pct = sum(getattr(stats, k, 0.0) for k in skill_def.scaling_stats)
-    hit_damage = scaled_base * (1 + total_pct / 100) * stats.more_damage_multiplier
+    flat_added = _sum_flat_damage(stats, skill_def)
+    effective_base = scaled_base + flat_added
+
+    total_pct = _sum_increased_damage(stats, skill_def)
+    hit_damage = effective_base * (1 + total_pct / 100) * stats.more_damage_multiplier
 
     cast_speed_bonus = stats.cast_speed / 100 if skill_def.is_spell else 0.0
     attack_speed_bonus = stats.attack_speed_pct / 100 if not skill_def.is_spell else 0.0
-    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus)
+    throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
+    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
 
     damages = []
     for _ in range(n):

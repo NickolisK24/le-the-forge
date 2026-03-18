@@ -78,8 +78,8 @@ class TestGetStatUpgrades:
         """A build with high crit chance should rank crit multiplier highly."""
         crit_stats = aggregate_stats("Mage", "Sorcerer", [], [],
                                      [{"name": "Critical Strike Chance", "tier": 5}] * 3)
-        upgrades = get_stat_upgrades(crit_stats, "Fireball", 20, top_n=5)
-        top_stats = [u.stat for u in upgrades[:3]]
+        upgrades = get_stat_upgrades(crit_stats, "Fireball", 20, top_n=10)
+        top_stats = [u.stat for u in upgrades[:6]]
         assert "crit_multiplier_pct" in top_stats
 
     def test_no_negative_dps_in_relevant_stats(self):

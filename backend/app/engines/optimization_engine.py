@@ -29,8 +29,9 @@ class StatUpgrade:
         return asdict(self)
 
 
-# Candidate increments — mirrors STAT_TEST_INCREMENTS in simulation.ts
+# Candidate increments — comprehensive stat testing
 STAT_TEST_INCREMENTS: list = [
+    # Offense — damage %
     {"key": "crit_multiplier_pct", "label": "+40% Crit Multiplier",       "delta": 40},
     {"key": "crit_chance_pct",     "label": "+7% Crit Chance",            "delta": 7},
     {"key": "attack_speed_pct",    "label": "+10% Attack Speed",          "delta": 10},
@@ -40,13 +41,43 @@ STAT_TEST_INCREMENTS: list = [
     {"key": "cold_damage_pct",     "label": "+40% Cold Damage",           "delta": 40},
     {"key": "lightning_damage_pct","label": "+40% Lightning Damage",      "delta": 40},
     {"key": "necrotic_damage_pct", "label": "+40% Necrotic Damage",       "delta": 40},
+    {"key": "void_damage_pct",     "label": "+40% Void Damage",           "delta": 40},
+    {"key": "poison_damage_pct",   "label": "+40% Poison Damage",         "delta": 40},
     {"key": "cast_speed",          "label": "+10% Cast Speed",            "delta": 10},
+    {"key": "melee_damage_pct",    "label": "+40% Melee Damage",          "delta": 40},
+    {"key": "throwing_damage_pct", "label": "+40% Throwing Damage",       "delta": 40},
+    {"key": "bow_damage_pct",      "label": "+40% Bow Damage",            "delta": 40},
+    {"key": "elemental_damage_pct","label": "+40% Elemental Damage",      "delta": 40},
+    {"key": "dot_damage_pct",      "label": "+40% DoT Damage",            "delta": 40},
+    {"key": "minion_damage_pct",   "label": "+40% Minion Damage",         "delta": 40},
+    # Offense — flat added damage
+    {"key": "added_spell_damage",  "label": "+15 Flat Spell Damage",      "delta": 15},
+    {"key": "added_melee_physical","label": "+18 Flat Melee Physical",    "delta": 18},
+    # Offense — ailments
+    {"key": "bleed_chance_pct",    "label": "+30% Bleed Chance",          "delta": 30},
+    {"key": "ignite_chance_pct",   "label": "+30% Ignite Chance",         "delta": 30},
+    {"key": "poison_chance_pct",   "label": "+30% Poison Chance",         "delta": 30},
+    {"key": "bleed_damage_pct",    "label": "+40% Bleed Damage",          "delta": 40},
+    {"key": "ignite_damage_pct",   "label": "+40% Ignite Damage",         "delta": 40},
+    # Defense — health / armour
     {"key": "max_health",          "label": "+300 Health",                "delta": 300},
     {"key": "armour",              "label": "+200 Armour",                "delta": 200},
+    {"key": "dodge_rating",        "label": "+150 Dodge Rating",          "delta": 150},
+    {"key": "block_chance",        "label": "+20% Block Chance",          "delta": 20},
+    {"key": "block_effectiveness", "label": "+200 Block Effectiveness",   "delta": 200},
+    {"key": "endurance",           "label": "+20% Endurance",             "delta": 20},
+    {"key": "crit_avoidance",      "label": "+40% Crit Avoidance",        "delta": 40},
+    {"key": "glancing_blow",       "label": "+20% Glancing Blow",         "delta": 20},
+    # Defense — resistances
     {"key": "fire_res",            "label": "+20% Fire Resistance",       "delta": 20},
     {"key": "cold_res",            "label": "+20% Cold Resistance",       "delta": 20},
     {"key": "lightning_res",       "label": "+20% Lightning Resistance",  "delta": 20},
     {"key": "void_res",            "label": "+20% Void Resistance",       "delta": 20},
+    {"key": "necrotic_res",        "label": "+20% Necrotic Resistance",   "delta": 20},
+    {"key": "physical_res",        "label": "+10% Physical Resistance",   "delta": 10},
+    # Sustain
+    {"key": "leech",               "label": "+5% Leech",                  "delta": 5},
+    {"key": "health_regen",        "label": "+15 Health Regen",           "delta": 15},
 ]
 
 

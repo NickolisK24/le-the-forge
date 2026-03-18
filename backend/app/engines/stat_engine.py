@@ -341,7 +341,10 @@ def aggregate_stats(
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
 
-    # 6. Apply % bonuses to base values
+    # 6. Apply percentage health bonuses
+    stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
+
+    # 7. Apply % bonuses to base values
     stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
     stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)

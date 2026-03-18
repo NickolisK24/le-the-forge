@@ -120,7 +120,11 @@ class TestCalculateDefense:
         for key in ["max_health", "effective_hp", "armor_reduction_pct", "avg_resistance",
                     "fire_res", "cold_res", "lightning_res", "void_res", "necrotic_res",
                     "dodge_chance_pct", "ward_regen_per_second", "ward_decay_per_second",
-                    "net_ward_per_second", "survivability_score", "weaknesses", "strengths"]:
+                    "net_ward_per_second", "survivability_score", "weaknesses", "strengths",
+                    "physical_res", "poison_res", "block_chance_pct", "block_mitigation_pct",
+                    "endurance_pct", "endurance_threshold_pct", "crit_avoidance_pct",
+                    "glancing_blow_pct", "stun_avoidance_pct", "ward_buffer", "total_ehp",
+                    "leech_pct", "health_on_kill", "sustain_score"]:
             assert key in d, f"Missing key: {key}"
 
 
@@ -205,3 +209,164 @@ class TestWardSustainability:
         stats.ward_regen = 0.0
         result = calculate_defense(stats)
         assert any("ward" in w.lower() for w in result.weaknesses)
+
+
+class TestBlockMechanics:
+    def test_block_chance_increases_ehp(self):
+        base = BuildStats()
+        base.max_health = 2000
+        blocked = BuildStats()
+        blocked.max_health = 2000
+        blocked.block_chance = 40
+        blocked.block_effectiveness = 500
+        assert calculate_defense(blocked).effective_hp > calculate_defense(base).effective_hp
+
+    def test_block_chance_capped_at_100(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.block_chance = 150  # over cap
+        stats.block_effectiveness = 500
+        result = calculate_defense(stats)
+        assert result.block_chance_pct == 100.0
+
+    def test_block_mitigation_formula(self):
+        """BlockMitigation = effectiveness / (effectiveness + 1000)"""
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.block_effectiveness = 1000
+        result = calculate_defense(stats)
+        assert result.block_mitigation_pct == 50.0
+
+    def test_block_is_strength(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.block_chance = 40
+        result = calculate_defense(stats)
+        assert any("block" in s.lower() for s in result.strengths)
+
+
+class TestEnduranceMechanics:
+    def test_endurance_increases_ehp(self):
+        base = BuildStats()
+        base.max_health = 2000
+        endured = BuildStats()
+        endured.max_health = 2000
+        endured.endurance = 40
+        endured.endurance_threshold = 60
+        assert calculate_defense(endured).effective_hp > calculate_defense(base).effective_hp
+
+    def test_endurance_capped_at_60(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.endurance = 80  # over LE cap
+        result = calculate_defense(stats)
+        assert result.endurance_pct == 60.0
+
+    def test_endurance_is_strength(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.endurance = 30
+        result = calculate_defense(stats)
+        assert any("endurance" in s.lower() for s in result.strengths)
+
+
+class TestCritAvoidanceAndGlancingBlow:
+    def test_crit_avoidance_increases_ehp(self):
+        base = BuildStats()
+        base.max_health = 2000
+        avoided = BuildStats()
+        avoided.max_health = 2000
+        avoided.crit_avoidance = 80
+        assert calculate_defense(avoided).effective_hp > calculate_defense(base).effective_hp
+
+    def test_glancing_blow_increases_ehp(self):
+        base = BuildStats()
+        base.max_health = 2000
+        glancing = BuildStats()
+        glancing.max_health = 2000
+        glancing.glancing_blow = 40
+        assert calculate_defense(glancing).effective_hp > calculate_defense(base).effective_hp
+
+    def test_crit_avoidance_is_strength(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.crit_avoidance = 60
+        result = calculate_defense(stats)
+        assert any("crit avoidance" in s.lower() for s in result.strengths)
+
+
+class TestWardBuffer:
+    def test_ward_adds_to_total_ehp(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.ward = 500
+        result = calculate_defense(stats)
+        assert result.ward_buffer == 500
+        assert result.total_ehp > result.effective_hp
+
+    def test_total_ehp_includes_ward(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        result = calculate_defense(stats)
+        assert result.total_ehp == result.effective_hp + result.ward_buffer
+
+
+class TestPhysicalPoisonResistance:
+    def test_physical_res_in_result(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.physical_res = 30
+        result = calculate_defense(stats)
+        assert result.physical_res == 30
+
+    def test_poison_res_in_result(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.poison_res = 45
+        result = calculate_defense(stats)
+        assert result.poison_res == 45
+
+    def test_physical_res_affects_avg_resistance(self):
+        base = BuildStats()
+        base.max_health = 2000
+        with_phys = BuildStats()
+        with_phys.max_health = 2000
+        with_phys.physical_res = 50
+        assert calculate_defense(with_phys).avg_resistance > calculate_defense(base).avg_resistance
+
+
+class TestSustainMetrics:
+    def test_leech_in_result(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.leech = 5
+        result = calculate_defense(stats)
+        assert result.leech_pct == 5.0
+
+    def test_health_on_kill_in_result(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.health_on_kill = 20
+        result = calculate_defense(stats)
+        assert result.health_on_kill == 20.0
+
+    def test_sustain_score_increases_with_leech(self):
+        base = BuildStats()
+        base.max_health = 2000
+        sustained = BuildStats()
+        sustained.max_health = 2000
+        sustained.leech = 8
+        assert calculate_defense(sustained).sustain_score > calculate_defense(base).sustain_score
+
+    def test_no_sustain_is_weakness(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        result = calculate_defense(stats)
+        assert any("sustain" in w.lower() for w in result.weaknesses)
+
+    def test_leech_is_strength(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.leech = 5
+        result = calculate_defense(stats)
+        assert any("leech" in s.lower() for s in result.strengths)

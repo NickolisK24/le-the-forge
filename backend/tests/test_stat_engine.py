@@ -177,3 +177,22 @@ class TestGetAffixValue:
 
     def test_invalid_tier_returns_zero(self):
         assert get_affix_value("Health", 99) == 0
+
+
+class TestPercentageHealth:
+    def test_health_pct_multiplies_max_health(self):
+        """health_pct should multiplicatively increase max_health."""
+        base = aggregate_stats("Sentinel", "Paladin", [], [], [])
+        boosted = aggregate_stats("Sentinel", "Paladin", [], [],
+                                  [{"name": "Percentage Health", "tier": 5}])
+        assert boosted.max_health > base.max_health
+        # The boost should be multiplicative, not just flat
+        pct_value = get_affix_value("Percentage Health", 5)
+        expected_min = base.max_health * (1 + pct_value / 100)
+        assert boosted.max_health >= expected_min * 0.99  # allow rounding
+
+    def test_hybrid_health_adds_flat(self):
+        base = aggregate_stats("Sentinel", "Paladin", [], [], [])
+        boosted = aggregate_stats("Sentinel", "Paladin", [], [],
+                                  [{"name": "Hybrid Health", "tier": 3}])
+        assert boosted.max_health > base.max_health
