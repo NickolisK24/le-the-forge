@@ -12,6 +12,11 @@ already-loaded data objects.
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
+from app.game_data.game_data_loader import (
+    get_affix_tier_midpoints,
+    get_affix_stat_keys,
+)
+
 
 # ---------------------------------------------------------------------------
 # BuildStats dataclass — mirrors BuildStats interface in simulation.ts
@@ -19,12 +24,14 @@ from typing import Optional
 
 @dataclass
 class BuildStats:
-    # Offense
+    # Offense — base
     base_damage: float = 0.0
     attack_speed: float = 1.0
     crit_chance: float = 0.05       # 0.0–1.0
     crit_multiplier: float = 1.5    # total multiplier e.g. 2.0
-    spell_damage_pct: float = 0.0   # "increased" pool — additive with others
+
+    # Offense — percentage increased damage pools
+    spell_damage_pct: float = 0.0
     physical_damage_pct: float = 0.0
     fire_damage_pct: float = 0.0
     cold_damage_pct: float = 0.0
@@ -33,28 +40,105 @@ class BuildStats:
     void_damage_pct: float = 0.0
     poison_damage_pct: float = 0.0
     minion_damage_pct: float = 0.0
-    attack_speed_pct: float = 0.0   # % bonus
-    cast_speed: float = 0.0         # % bonus
-    crit_chance_pct: float = 0.0    # % to add to crit_chance
+    melee_damage_pct: float = 0.0
+    throwing_damage_pct: float = 0.0
+    bow_damage_pct: float = 0.0
+    elemental_damage_pct: float = 0.0
+    dot_damage_pct: float = 0.0
+
+    # Offense — percentage speed / crit
+    attack_speed_pct: float = 0.0
+    cast_speed: float = 0.0
+    throwing_attack_speed: float = 0.0
+    crit_chance_pct: float = 0.0
     crit_multiplier_pct: float = 0.0
-    more_damage_multiplier: float = 1.0  # "more" pool — multiplicative (default 1×)
-    # Defense
+    more_damage_multiplier: float = 1.0
+
+    # Offense — flat added damage
+    added_melee_physical: float = 0.0
+    added_melee_fire: float = 0.0
+    added_melee_cold: float = 0.0
+    added_melee_lightning: float = 0.0
+    added_melee_void: float = 0.0
+    added_melee_necrotic: float = 0.0
+    added_spell_damage: float = 0.0
+    added_spell_fire: float = 0.0
+    added_spell_cold: float = 0.0
+    added_spell_lightning: float = 0.0
+    added_spell_necrotic: float = 0.0
+    added_spell_void: float = 0.0
+    added_throw_physical: float = 0.0
+    added_throw_fire: float = 0.0
+    added_throw_cold: float = 0.0
+    added_bow_physical: float = 0.0
+    added_bow_fire: float = 0.0
+
+    # Offense — ailment chance
+    poison_chance_pct: float = 0.0
+    bleed_chance_pct: float = 0.0
+    ignite_chance_pct: float = 0.0
+    shock_chance_pct: float = 0.0
+    chill_chance_pct: float = 0.0
+    slow_chance_pct: float = 0.0
+
+    # Offense — ailment / DoT damage
+    bleed_damage_pct: float = 0.0
+    ignite_damage_pct: float = 0.0
+    poison_dot_damage_pct: float = 0.0
+
+    # Offense — minion
+    minion_health_pct: float = 0.0
+    minion_speed_pct: float = 0.0
+    minion_physical_damage_pct: float = 0.0
+    minion_spell_damage_pct: float = 0.0
+    minion_melee_damage_pct: float = 0.0
+
+    # Defense — health / armour
     max_health: float = 0.0
+    health_pct: float = 0.0
+    hybrid_health: float = 0.0
     armour: float = 0.0
     dodge_rating: float = 0.0
+    block_chance: float = 0.0
+    block_effectiveness: float = 0.0
+    endurance: float = 0.0
+    endurance_threshold: float = 0.0
+    stun_avoidance: float = 0.0
+    crit_avoidance: float = 0.0
+    glancing_blow: float = 0.0
+
+    # Defense — ward
     ward: float = 0.0
     ward_retention_pct: float = 0.0
-    ward_regen: float = 0.0         # flat ward regenerated per second
+    ward_regen: float = 0.0
+
+    # Defense — resistances
     fire_res: float = 0.0
     cold_res: float = 0.0
     lightning_res: float = 0.0
     void_res: float = 0.0
     necrotic_res: float = 0.0
     poison_res: float = 0.0
+    physical_res: float = 0.0
+
     # Resources
     max_mana: float = 0.0
     mana_regen: float = 0.0
     health_regen: float = 0.0
+
+    # Sustain
+    leech: float = 0.0
+    health_on_kill: float = 0.0
+    mana_on_kill: float = 0.0
+    ward_on_kill: float = 0.0
+
+    # Utility
+    movement_speed: float = 0.0
+    cooldown_recovery_speed: float = 0.0
+    channelling_cost_reduction: float = 0.0
+    area_pct: float = 0.0
+    stun_duration_pct: float = 0.0
+
     # Attributes
     strength: float = 0.0
     intelligence: float = 0.0
@@ -137,80 +221,9 @@ CORE_STAT_CYCLE: list = [
 
 NOTABLE_MULTIPLIER = 3
 
-# Affix stat_key → midpoint value per tier
-# Tier keys: "T1"=lowest/worst, "T5"=best/highest. Matches crafting system.
-AFFIX_TIER_MIDPOINTS: dict = {
-    "Spell Damage":               {"T1": 4,  "T2": 11, "T3": 20, "T4": 32, "T5": 47},
-    "Necrotic Damage":            {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Fire Damage":                {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Cold Damage":                {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Lightning Damage":           {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Physical Damage":            {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Void Damage":                {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Poison Damage":              {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Minion Damage":              {"T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80},
-    "Cast Speed":                 {"T1": 4,  "T2": 7,  "T3": 12, "T4": 17, "T5": 22},
-    "Attack Speed":               {"T1": 4,  "T2": 7,  "T3": 12, "T4": 17, "T5": 22},
-    "Health":                     {"T1": 27, "T2": 45, "T3": 68, "T4": 95, "T5": 130},
-    "Armour":                     {"T1": 59, "T2": 104, "T3": 164, "T4": 249, "T5": 360},
-    "Ward":                       {"T1": 9,  "T2": 22, "T3": 39, "T4": 64, "T5": 100},
-    "Endurance":                  {"T1": 14, "T2": 27, "T3": 44, "T4": 67, "T5": 95},
-    "Fire Resistance":            {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Cold Resistance":            {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Lightning Resistance":       {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Void Resistance":            {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Necrotic Resistance":        {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Poison Resistance":          {"T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55},
-    "Ward Retention":             {"T1": 7,  "T2": 12, "T3": 17, "T4": 22, "T5": 27},
-    "Dodge Rating":               {"T1": 37, "T2": 64, "T3": 99, "T4": 149, "T5": 220},
-    "Critical Strike Chance":     {"T1": 1,  "T2": 3,  "T3": 5,  "T4": 7,  "T5": 10},
-    "Critical Strike Multiplier": {"T1": 5,  "T2": 11, "T3": 19, "T4": 32, "T5": 50},
-    "Strength":                   {"T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21},
-    "Intelligence":               {"T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21},
-    "Dexterity":                  {"T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21},
-    "Vitality":                   {"T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21},
-    "Attunement":                 {"T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21},
-    "Mana":                       {"T1": 14, "T2": 27, "T3": 44, "T4": 67, "T5": 95},
-    "Mana Regen":                 {"T1": 1,  "T2": 3,  "T3": 5,  "T4": 8,  "T5": 12},
-    "Health Regen":               {"T1": 1,  "T2": 4,  "T3": 7,  "T4": 12, "T5": 20},
-}
-
-# Maps affix display name → BuildStats field name
-AFFIX_STAT_KEYS: dict = {
-    "Spell Damage":               "spell_damage_pct",
-    "Necrotic Damage":            "necrotic_damage_pct",
-    "Fire Damage":                "fire_damage_pct",
-    "Cold Damage":                "cold_damage_pct",
-    "Lightning Damage":           "lightning_damage_pct",
-    "Physical Damage":            "physical_damage_pct",
-    "Void Damage":                "void_damage_pct",
-    "Poison Damage":              "poison_damage_pct",
-    "Minion Damage":              "minion_damage_pct",
-    "Cast Speed":                 "cast_speed",
-    "Attack Speed":               "attack_speed_pct",
-    "Health":                     "max_health",
-    "Armour":                     "armour",
-    "Ward":                       "ward",
-    "Endurance":                  "max_health",
-    "Fire Resistance":            "fire_res",
-    "Cold Resistance":            "cold_res",
-    "Lightning Resistance":       "lightning_res",
-    "Void Resistance":            "void_res",
-    "Necrotic Resistance":        "necrotic_res",
-    "Poison Resistance":          "poison_res",
-    "Ward Retention":             "ward_retention_pct",
-    "Dodge Rating":               "dodge_rating",
-    "Critical Strike Chance":     "crit_chance_pct",
-    "Critical Strike Multiplier": "crit_multiplier_pct",
-    "Strength":                   "strength",
-    "Intelligence":               "intelligence",
-    "Dexterity":                  "dexterity",
-    "Vitality":                   "vitality",
-    "Attunement":                 "attunement",
-    "Mana":                       "max_mana",
-    "Mana Regen":                 "mana_regen",
-    "Health Regen":               "health_regen",
-}
+# Affix lookups — loaded from canonical affixes.json via game_data_loader
+AFFIX_TIER_MIDPOINTS: dict = get_affix_tier_midpoints()
+AFFIX_STAT_KEYS: dict = get_affix_stat_keys()
 
 
 # ---------------------------------------------------------------------------
@@ -242,7 +255,7 @@ def _get_node_bonus(node_id: int, node_type: str, node_name: str) -> dict:
 # ---------------------------------------------------------------------------
 
 def get_affix_value(affix_name: str, tier: int) -> float:
-    """Returns the midpoint stat value for an affix at the given tier (1=lowest, 5=best)."""
+    """Returns the midpoint stat value for an affix at the given tier (1=lowest, 7=best)."""
     tier_key = f"T{tier}"
     midpoints = AFFIX_TIER_MIDPOINTS.get(affix_name, {})
     return float(midpoints.get(tier_key, 0))

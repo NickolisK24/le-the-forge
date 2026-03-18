@@ -1,73 +1,11626 @@
 {
-  "_comment": "Tier keys: T1=lowest/worst value, T5=best/highest. Values are midpoints of each tier range. Tiers match the crafting system where items start at T1 and upgrade toward T5.",
-  "tier_midpoints": {
-    "Spell Damage":               { "T1": 4,  "T2": 11, "T3": 20, "T4": 32, "T5": 47 },
-    "Necrotic Damage":            { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Fire Damage":                { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Cold Damage":                { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Lightning Damage":           { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Physical Damage":            { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Void Damage":                { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Poison Damage":              { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Minion Damage":              { "T1": 14, "T2": 27, "T3": 42, "T4": 59, "T5": 80 },
-    "Cast Speed":                 { "T1": 4,  "T2": 7,  "T3": 12, "T4": 17, "T5": 22 },
-    "Attack Speed":               { "T1": 4,  "T2": 7,  "T3": 12, "T4": 17, "T5": 22 },
-    "Health":                     { "T1": 27, "T2": 45, "T3": 68, "T4": 95, "T5": 130 },
-    "Armour":                     { "T1": 59, "T2": 104, "T3": 164, "T4": 249, "T5": 360 },
-    "Ward":                       { "T1": 9,  "T2": 22, "T3": 39, "T4": 64, "T5": 100 },
-    "Endurance":                  { "T1": 14, "T2": 27, "T3": 44, "T4": 67, "T5": 95 },
-    "Fire Resistance":            { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Cold Resistance":            { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Lightning Resistance":       { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Void Resistance":            { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Necrotic Resistance":        { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Poison Resistance":          { "T1": 15, "T2": 24, "T3": 34, "T4": 44, "T5": 55 },
-    "Ward Retention":             { "T1": 7,  "T2": 12, "T3": 17, "T4": 22, "T5": 27 },
-    "Dodge Rating":               { "T1": 37, "T2": 64, "T3": 99, "T4": 149, "T5": 220 },
-    "Critical Strike Chance":     { "T1": 1,  "T2": 3,  "T3": 5,  "T4": 7,  "T5": 10 },
-    "Critical Strike Multiplier": { "T1": 5,  "T2": 11, "T3": 19, "T4": 32, "T5": 50 },
-    "Strength":                   { "T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21 },
-    "Intelligence":               { "T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21 },
-    "Dexterity":                  { "T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21 },
-    "Vitality":                   { "T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21 },
-    "Attunement":                 { "T1": 4,  "T2": 7,  "T3": 11, "T4": 15, "T5": 21 },
-    "Mana":                       { "T1": 14, "T2": 27, "T3": 44, "T4": 67, "T5": 95 },
-    "Mana Regen":                 { "T1": 1,  "T2": 3,  "T3": 5,  "T4": 8,  "T5": 12 },
-    "Health Regen":               { "T1": 1,  "T2": 4,  "T3": 7,  "T4": 12, "T5": 20 }
+  "_version": "2.0",
+  "_description": "Comprehensive Last Epoch affix database. Categories: prefix, suffix, experimental, personal, champion, set, idol_enchant, idol_weaver. Tiers 1-7 for standard, 1-5 for special.",
+  "_categories": {
+    "prefix": "Standard craftable prefixes (T1-T7)",
+    "suffix": "Standard craftable suffixes (T1-T7)",
+    "experimental": "Exalted-only experimental affixes",
+    "personal": "Class-specific personal affixes",
+    "champion": "Champion item affixes (Nemesis system)",
+    "set": "Set item affixes",
+    "idol_enchant": "Enchanted idol affixes",
+    "idol_weaver": "Weaver idol affixes (Weaver's Will system)"
   },
-  "stat_keys": {
-    "Spell Damage":               "spell_damage_pct",
-    "Necrotic Damage":            "necrotic_damage_pct",
-    "Fire Damage":                "fire_damage_pct",
-    "Cold Damage":                "cold_damage_pct",
-    "Lightning Damage":           "lightning_damage_pct",
-    "Physical Damage":            "physical_damage_pct",
-    "Void Damage":                "void_damage_pct",
-    "Poison Damage":              "poison_damage_pct",
-    "Minion Damage":              "minion_damage_pct",
-    "Cast Speed":                 "cast_speed",
-    "Attack Speed":               "attack_speed_pct",
-    "Health":                     "max_health",
-    "Armour":                     "armour",
-    "Ward":                       "ward",
-    "Endurance":                  "max_health",
-    "Fire Resistance":            "fire_res",
-    "Cold Resistance":            "cold_res",
-    "Lightning Resistance":       "lightning_res",
-    "Void Resistance":            "void_res",
-    "Necrotic Resistance":        "necrotic_res",
-    "Poison Resistance":          "poison_res",
-    "Ward Retention":             "ward_retention_pct",
-    "Dodge Rating":               "dodge_rating",
-    "Critical Strike Chance":     "crit_chance_pct",
-    "Critical Strike Multiplier": "crit_multiplier_pct",
-    "Strength":                   "strength",
-    "Intelligence":               "intelligence",
-    "Dexterity":                  "dexterity",
-    "Vitality":                   "vitality",
-    "Attunement":                 "attunement",
-    "Mana":                       "max_mana",
-    "Mana Regen":                 "mana_regen",
-    "Health Regen":               "health_regen"
-  }
+  "affixes": [
+    {
+      "id": 1,
+      "name": "Spell Damage",
+      "category": "prefix",
+      "stat_key": "spell_damage_pct",
+      "tiers": {
+        "1": [
+          1,
+          7
+        ],
+        "2": [
+          10,
+          19
+        ],
+        "3": [
+          20,
+          31
+        ],
+        "4": [
+          30,
+          43
+        ],
+        "5": [
+          39,
+          55
+        ],
+        "6": [
+          51,
+          72
+        ],
+        "7": [
+          64,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm",
+        "Chest",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage"
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Melee Damage",
+      "category": "prefix",
+      "stat_key": "melee_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage"
+      ]
+    },
+    {
+      "id": 3,
+      "name": "Throwing Damage",
+      "category": "prefix",
+      "stat_key": "throwing_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Gloves",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "throwing",
+        "damage"
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Bow Damage",
+      "category": "prefix",
+      "stat_key": "bow_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Bow",
+        "Gloves",
+        "Amulet",
+        "Relic",
+        "Quiver"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "ranged",
+        "damage"
+      ]
+    },
+    {
+      "id": 5,
+      "name": "Minion Damage",
+      "category": "prefix",
+      "stat_key": "minion_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 6,
+      "name": "Fire Damage",
+      "category": "prefix",
+      "stat_key": "fire_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "fire",
+        "damage",
+        "elemental"
+      ]
+    },
+    {
+      "id": 7,
+      "name": "Cold Damage",
+      "category": "prefix",
+      "stat_key": "cold_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "cold",
+        "damage",
+        "elemental"
+      ]
+    },
+    {
+      "id": 8,
+      "name": "Lightning Damage",
+      "category": "prefix",
+      "stat_key": "lightning_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "lightning",
+        "damage",
+        "elemental"
+      ]
+    },
+    {
+      "id": 9,
+      "name": "Necrotic Damage",
+      "category": "prefix",
+      "stat_key": "necrotic_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "necrotic",
+        "damage"
+      ]
+    },
+    {
+      "id": 10,
+      "name": "Void Damage",
+      "category": "prefix",
+      "stat_key": "void_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "void",
+        "damage"
+      ]
+    },
+    {
+      "id": 11,
+      "name": "Poison Damage",
+      "category": "prefix",
+      "stat_key": "poison_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "poison",
+        "damage"
+      ]
+    },
+    {
+      "id": 12,
+      "name": "Physical Damage",
+      "category": "prefix",
+      "stat_key": "physical_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "physical",
+        "damage"
+      ]
+    },
+    {
+      "id": 13,
+      "name": "Elemental Damage",
+      "category": "prefix",
+      "stat_key": "elemental_damage_pct",
+      "tiers": {
+        "1": [
+          1,
+          7
+        ],
+        "2": [
+          10,
+          19
+        ],
+        "3": [
+          20,
+          31
+        ],
+        "4": [
+          30,
+          43
+        ],
+        "5": [
+          39,
+          55
+        ],
+        "6": [
+          51,
+          72
+        ],
+        "7": [
+          64,
+          91
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "elemental",
+        "damage"
+      ]
+    },
+    {
+      "id": 14,
+      "name": "Damage Over Time",
+      "category": "prefix",
+      "stat_key": "dot_damage_pct",
+      "tiers": {
+        "1": [
+          1,
+          7
+        ],
+        "2": [
+          10,
+          19
+        ],
+        "3": [
+          20,
+          31
+        ],
+        "4": [
+          30,
+          43
+        ],
+        "5": [
+          39,
+          55
+        ],
+        "6": [
+          51,
+          72
+        ],
+        "7": [
+          64,
+          91
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "dot",
+        "damage"
+      ]
+    },
+    {
+      "id": 15,
+      "name": "Added Melee Physical Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_physical",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "physical"
+      ]
+    },
+    {
+      "id": 16,
+      "name": "Added Melee Fire Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_fire",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "fire",
+        "elemental"
+      ]
+    },
+    {
+      "id": 17,
+      "name": "Added Melee Cold Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_cold",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "cold",
+        "elemental"
+      ]
+    },
+    {
+      "id": 18,
+      "name": "Added Melee Lightning Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_lightning",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "lightning",
+        "elemental"
+      ]
+    },
+    {
+      "id": 19,
+      "name": "Added Melee Void Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_void",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "void"
+      ]
+    },
+    {
+      "id": 20,
+      "name": "Added Melee Necrotic Damage",
+      "category": "prefix",
+      "stat_key": "added_melee_necrotic",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "melee",
+        "damage",
+        "flat",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 21,
+      "name": "Added Spell Fire Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_fire",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat",
+        "fire",
+        "elemental"
+      ]
+    },
+    {
+      "id": 22,
+      "name": "Added Spell Cold Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_cold",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat",
+        "cold",
+        "elemental"
+      ]
+    },
+    {
+      "id": 23,
+      "name": "Added Spell Lightning Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_lightning",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat",
+        "lightning",
+        "elemental"
+      ]
+    },
+    {
+      "id": 24,
+      "name": "Added Spell Necrotic Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_necrotic",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 25,
+      "name": "Added Spell Void Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_void",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat",
+        "void"
+      ]
+    },
+    {
+      "id": 26,
+      "name": "Added Spell Damage",
+      "category": "prefix",
+      "stat_key": "added_spell_damage",
+      "tiers": {
+        "1": [
+          1,
+          3
+        ],
+        "2": [
+          3,
+          7
+        ],
+        "3": [
+          6,
+          10
+        ],
+        "4": [
+          8,
+          14
+        ],
+        "5": [
+          10,
+          18
+        ],
+        "6": [
+          13,
+          23
+        ],
+        "7": [
+          16,
+          30
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "spell",
+        "damage",
+        "flat"
+      ]
+    },
+    {
+      "id": 27,
+      "name": "Added Throwing Physical Damage",
+      "category": "prefix",
+      "stat_key": "added_throw_physical",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Gloves",
+        "Ring",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "throwing",
+        "damage",
+        "flat"
+      ]
+    },
+    {
+      "id": 28,
+      "name": "Added Throwing Fire Damage",
+      "category": "prefix",
+      "stat_key": "added_throw_fire",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Gloves",
+        "Ring",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "throwing",
+        "damage",
+        "flat"
+      ]
+    },
+    {
+      "id": 29,
+      "name": "Added Throwing Cold Damage",
+      "category": "prefix",
+      "stat_key": "added_throw_cold",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Gloves",
+        "Ring",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "throwing",
+        "damage",
+        "flat"
+      ]
+    },
+    {
+      "id": 30,
+      "name": "Added Bow Physical Damage",
+      "category": "prefix",
+      "stat_key": "added_bow_physical",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          11
+        ],
+        "3": [
+          10,
+          16
+        ],
+        "4": [
+          14,
+          22
+        ],
+        "5": [
+          18,
+          28
+        ],
+        "6": [
+          23,
+          36
+        ],
+        "7": [
+          30,
+          46
+        ]
+      },
+      "applicable": [
+        "Bow",
+        "Quiver"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "ranged",
+        "damage",
+        "flat"
+      ]
+    },
+    {
+      "id": 31,
+      "name": "Added Bow Fire Damage",
+      "category": "prefix",
+      "stat_key": "added_bow_fire",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          8
+        ],
+        "3": [
+          8,
+          13
+        ],
+        "4": [
+          11,
+          18
+        ],
+        "5": [
+          14,
+          22
+        ],
+        "6": [
+          18,
+          29
+        ],
+        "7": [
+          23,
+          36
+        ]
+      },
+      "applicable": [
+        "Bow",
+        "Quiver"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "ranged",
+        "damage",
+        "flat",
+        "fire"
+      ]
+    },
+    {
+      "id": 32,
+      "name": "Health",
+      "category": "prefix",
+      "stat_key": "max_health",
+      "tiers": {
+        "1": [
+          20,
+          35
+        ],
+        "2": [
+          43,
+          64
+        ],
+        "3": [
+          66,
+          92
+        ],
+        "4": [
+          88,
+          121
+        ],
+        "5": [
+          111,
+          150
+        ],
+        "6": [
+          144,
+          195
+        ],
+        "7": [
+          183,
+          248
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "health"
+      ]
+    },
+    {
+      "id": 33,
+      "name": "Hybrid Health",
+      "category": "prefix",
+      "stat_key": "hybrid_health",
+      "tiers": {
+        "1": [
+          8,
+          14
+        ],
+        "2": [
+          17,
+          27
+        ],
+        "3": [
+          26,
+          40
+        ],
+        "4": [
+          36,
+          52
+        ],
+        "5": [
+          45,
+          65
+        ],
+        "6": [
+          58,
+          84
+        ],
+        "7": [
+          74,
+          107
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "health"
+      ]
+    },
+    {
+      "id": 34,
+      "name": "Percentage Health",
+      "category": "prefix",
+      "stat_key": "health_pct",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          4,
+          8
+        ],
+        "3": [
+          7,
+          11
+        ],
+        "4": [
+          10,
+          14
+        ],
+        "5": [
+          12,
+          18
+        ],
+        "6": [
+          16,
+          23
+        ],
+        "7": [
+          20,
+          30
+        ]
+      },
+      "applicable": [
+        "Chest",
+        "Belt",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "health"
+      ]
+    },
+    {
+      "id": 35,
+      "name": "Armour",
+      "category": "prefix",
+      "stat_key": "armour",
+      "tiers": {
+        "1": [
+          40,
+          79
+        ],
+        "2": [
+          105,
+          164
+        ],
+        "3": [
+          170,
+          250
+        ],
+        "4": [
+          235,
+          335
+        ],
+        "5": [
+          300,
+          420
+        ],
+        "6": [
+          390,
+          546
+        ],
+        "7": [
+          495,
+          693
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "armour"
+      ]
+    },
+    {
+      "id": 36,
+      "name": "Ward",
+      "category": "prefix",
+      "stat_key": "ward",
+      "tiers": {
+        "1": [
+          5,
+          14
+        ],
+        "2": [
+          24,
+          40
+        ],
+        "3": [
+          42,
+          67
+        ],
+        "4": [
+          61,
+          94
+        ],
+        "5": [
+          80,
+          120
+        ],
+        "6": [
+          104,
+          156
+        ],
+        "7": [
+          132,
+          198
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Amulet",
+        "Ring",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "ward"
+      ]
+    },
+    {
+      "id": 37,
+      "name": "Endurance",
+      "category": "prefix",
+      "stat_key": "endurance",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          28,
+          42
+        ],
+        "3": [
+          45,
+          64
+        ],
+        "4": [
+          62,
+          87
+        ],
+        "5": [
+          80,
+          110
+        ],
+        "6": [
+          104,
+          143
+        ],
+        "7": [
+          132,
+          182
+        ]
+      },
+      "applicable": [
+        "Belt",
+        "Boots",
+        "Chest"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "endurance"
+      ]
+    },
+    {
+      "id": 38,
+      "name": "Block Chance",
+      "category": "prefix",
+      "stat_key": "block_chance",
+      "tiers": {
+        "1": [
+          5,
+          9
+        ],
+        "2": [
+          11,
+          17
+        ],
+        "3": [
+          18,
+          24
+        ],
+        "4": [
+          24,
+          32
+        ],
+        "5": [
+          30,
+          40
+        ],
+        "6": [
+          39,
+          52
+        ],
+        "7": [
+          50,
+          66
+        ]
+      },
+      "applicable": [
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "block"
+      ]
+    },
+    {
+      "id": 39,
+      "name": "Block Effectiveness",
+      "category": "prefix",
+      "stat_key": "block_effectiveness",
+      "tiers": {
+        "1": [
+          20,
+          39
+        ],
+        "2": [
+          60,
+          92
+        ],
+        "3": [
+          100,
+          144
+        ],
+        "4": [
+          140,
+          197
+        ],
+        "5": [
+          180,
+          250
+        ],
+        "6": [
+          234,
+          325
+        ],
+        "7": [
+          297,
+          412
+        ]
+      },
+      "applicable": [
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "block"
+      ]
+    },
+    {
+      "id": 40,
+      "name": "Cast Speed",
+      "category": "prefix",
+      "stat_key": "cast_speed",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          12,
+          15
+        ],
+        "4": [
+          16,
+          20
+        ],
+        "5": [
+          20,
+          25
+        ],
+        "6": [
+          26,
+          32
+        ],
+        "7": [
+          33,
+          41
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "speed",
+        "spell"
+      ]
+    },
+    {
+      "id": 41,
+      "name": "Attack Speed",
+      "category": "prefix",
+      "stat_key": "attack_speed_pct",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          12,
+          15
+        ],
+        "4": [
+          16,
+          20
+        ],
+        "5": [
+          20,
+          25
+        ],
+        "6": [
+          26,
+          32
+        ],
+        "7": [
+          33,
+          41
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Bow",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "speed",
+        "attack"
+      ]
+    },
+    {
+      "id": 42,
+      "name": "Throwing Attack Speed",
+      "category": "prefix",
+      "stat_key": "throwing_attack_speed",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          12,
+          15
+        ],
+        "4": [
+          16,
+          20
+        ],
+        "5": [
+          20,
+          25
+        ],
+        "6": [
+          26,
+          32
+        ],
+        "7": [
+          33,
+          41
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Gloves",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "speed",
+        "throwing"
+      ]
+    },
+    {
+      "id": 43,
+      "name": "Minion Health",
+      "category": "prefix",
+      "stat_key": "minion_health_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "defense"
+      ]
+    },
+    {
+      "id": 44,
+      "name": "Minion Speed",
+      "category": "prefix",
+      "stat_key": "minion_speed_pct",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          6,
+          9
+        ],
+        "3": [
+          9,
+          14
+        ],
+        "4": [
+          12,
+          18
+        ],
+        "5": [
+          15,
+          22
+        ],
+        "6": [
+          20,
+          29
+        ],
+        "7": [
+          25,
+          36
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "speed"
+      ]
+    },
+    {
+      "id": 45,
+      "name": "Minion Physical Damage",
+      "category": "prefix",
+      "stat_key": "minion_physical_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 46,
+      "name": "Minion Spell Damage",
+      "category": "prefix",
+      "stat_key": "minion_spell_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "damage",
+        "spell"
+      ]
+    },
+    {
+      "id": 47,
+      "name": "Minion Melee Damage",
+      "category": "prefix",
+      "stat_key": "minion_melee_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Helm",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "minion",
+        "damage",
+        "melee"
+      ]
+    },
+    {
+      "id": 48,
+      "name": "Chance to Poison on Hit",
+      "category": "prefix",
+      "stat_key": "poison_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "poison",
+        "ailment"
+      ]
+    },
+    {
+      "id": 49,
+      "name": "Chance to Bleed on Hit",
+      "category": "prefix",
+      "stat_key": "bleed_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "bleed",
+        "ailment"
+      ]
+    },
+    {
+      "id": 50,
+      "name": "Chance to Ignite on Hit",
+      "category": "prefix",
+      "stat_key": "ignite_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "ignite",
+        "ailment",
+        "fire"
+      ]
+    },
+    {
+      "id": 51,
+      "name": "Chance to Shock on Hit",
+      "category": "prefix",
+      "stat_key": "shock_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "shock",
+        "ailment",
+        "lightning"
+      ]
+    },
+    {
+      "id": 52,
+      "name": "Chance to Chill on Hit",
+      "category": "prefix",
+      "stat_key": "chill_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "chill",
+        "ailment",
+        "cold"
+      ]
+    },
+    {
+      "id": 53,
+      "name": "Chance to Slow on Hit",
+      "category": "prefix",
+      "stat_key": "slow_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          19
+        ],
+        "3": [
+          18,
+          28
+        ],
+        "4": [
+          24,
+          36
+        ],
+        "5": [
+          30,
+          45
+        ],
+        "6": [
+          39,
+          58
+        ],
+        "7": [
+          50,
+          74
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "slow",
+        "ailment"
+      ]
+    },
+    {
+      "id": 54,
+      "name": "Bleed Damage",
+      "category": "prefix",
+      "stat_key": "bleed_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "bleed",
+        "damage",
+        "dot"
+      ]
+    },
+    {
+      "id": 55,
+      "name": "Ignite Damage",
+      "category": "prefix",
+      "stat_key": "ignite_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "ignite",
+        "damage",
+        "dot"
+      ]
+    },
+    {
+      "id": 56,
+      "name": "Poison Damage Over Time",
+      "category": "prefix",
+      "stat_key": "poison_dot_damage_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          25,
+          37
+        ],
+        "3": [
+          40,
+          54
+        ],
+        "4": [
+          55,
+          72
+        ],
+        "5": [
+          70,
+          90
+        ],
+        "6": [
+          91,
+          117
+        ],
+        "7": [
+          116,
+          148
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "poison",
+        "damage",
+        "dot"
+      ]
+    },
+    {
+      "id": 57,
+      "name": "Fire Resistance",
+      "category": "suffix",
+      "stat_key": "fire_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 58,
+      "name": "Cold Resistance",
+      "category": "suffix",
+      "stat_key": "cold_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 59,
+      "name": "Lightning Resistance",
+      "category": "suffix",
+      "stat_key": "lightning_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 60,
+      "name": "Void Resistance",
+      "category": "suffix",
+      "stat_key": "void_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 61,
+      "name": "Necrotic Resistance",
+      "category": "suffix",
+      "stat_key": "necrotic_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 62,
+      "name": "Poison Resistance",
+      "category": "suffix",
+      "stat_key": "poison_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 63,
+      "name": "Physical Resistance",
+      "category": "suffix",
+      "stat_key": "physical_res",
+      "tiers": {
+        "1": [
+          12,
+          19
+        ],
+        "2": [
+          22,
+          29
+        ],
+        "3": [
+          31,
+          40
+        ],
+        "4": [
+          40,
+          50
+        ],
+        "5": [
+          50,
+          60
+        ],
+        "6": [
+          65,
+          78
+        ],
+        "7": [
+          82,
+          99
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 64,
+      "name": "Strength",
+      "category": "suffix",
+      "stat_key": "strength",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          10,
+          14
+        ],
+        "4": [
+          14,
+          19
+        ],
+        "5": [
+          18,
+          24
+        ],
+        "6": [
+          23,
+          31
+        ],
+        "7": [
+          30,
+          40
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Ring",
+        "Amulet",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "attribute"
+      ]
+    },
+    {
+      "id": 65,
+      "name": "Intelligence",
+      "category": "suffix",
+      "stat_key": "intelligence",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          10,
+          14
+        ],
+        "4": [
+          14,
+          19
+        ],
+        "5": [
+          18,
+          24
+        ],
+        "6": [
+          23,
+          31
+        ],
+        "7": [
+          30,
+          40
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Ring",
+        "Amulet",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "attribute"
+      ]
+    },
+    {
+      "id": 66,
+      "name": "Dexterity",
+      "category": "suffix",
+      "stat_key": "dexterity",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          10,
+          14
+        ],
+        "4": [
+          14,
+          19
+        ],
+        "5": [
+          18,
+          24
+        ],
+        "6": [
+          23,
+          31
+        ],
+        "7": [
+          30,
+          40
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Ring",
+        "Amulet",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "attribute"
+      ]
+    },
+    {
+      "id": 67,
+      "name": "Vitality",
+      "category": "suffix",
+      "stat_key": "vitality",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          10,
+          14
+        ],
+        "4": [
+          14,
+          19
+        ],
+        "5": [
+          18,
+          24
+        ],
+        "6": [
+          23,
+          31
+        ],
+        "7": [
+          30,
+          40
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Ring",
+        "Amulet",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "attribute"
+      ]
+    },
+    {
+      "id": 68,
+      "name": "Attunement",
+      "category": "suffix",
+      "stat_key": "attunement",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          7,
+          10
+        ],
+        "3": [
+          10,
+          14
+        ],
+        "4": [
+          14,
+          19
+        ],
+        "5": [
+          18,
+          24
+        ],
+        "6": [
+          23,
+          31
+        ],
+        "7": [
+          30,
+          40
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Ring",
+        "Amulet",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "attribute"
+      ]
+    },
+    {
+      "id": 69,
+      "name": "Dodge Rating",
+      "category": "suffix",
+      "stat_key": "dodge_rating",
+      "tiers": {
+        "1": [
+          25,
+          49
+        ],
+        "2": [
+          64,
+          102
+        ],
+        "3": [
+          102,
+          154
+        ],
+        "4": [
+          141,
+          207
+        ],
+        "5": [
+          180,
+          260
+        ],
+        "6": [
+          234,
+          338
+        ],
+        "7": [
+          297,
+          429
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "dodge"
+      ]
+    },
+    {
+      "id": 70,
+      "name": "Ward Retention",
+      "category": "suffix",
+      "stat_key": "ward_retention_pct",
+      "tiers": {
+        "1": [
+          5,
+          9
+        ],
+        "2": [
+          10,
+          14
+        ],
+        "3": [
+          15,
+          20
+        ],
+        "4": [
+          20,
+          25
+        ],
+        "5": [
+          25,
+          30
+        ],
+        "6": [
+          32,
+          39
+        ],
+        "7": [
+          41,
+          50
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Ring",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "ward"
+      ]
+    },
+    {
+      "id": 71,
+      "name": "Endurance Threshold",
+      "category": "suffix",
+      "stat_key": "endurance_threshold",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          4,
+          8
+        ],
+        "3": [
+          7,
+          11
+        ],
+        "4": [
+          10,
+          14
+        ],
+        "5": [
+          12,
+          18
+        ],
+        "6": [
+          16,
+          23
+        ],
+        "7": [
+          20,
+          30
+        ]
+      },
+      "applicable": [
+        "Belt",
+        "Boots",
+        "Chest",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense"
+      ]
+    },
+    {
+      "id": 72,
+      "name": "Stun Avoidance",
+      "category": "suffix",
+      "stat_key": "stun_avoidance",
+      "tiers": {
+        "1": [
+          20,
+          39
+        ],
+        "2": [
+          48,
+          74
+        ],
+        "3": [
+          75,
+          110
+        ],
+        "4": [
+          102,
+          145
+        ],
+        "5": [
+          130,
+          180
+        ],
+        "6": [
+          169,
+          234
+        ],
+        "7": [
+          214,
+          297
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense"
+      ]
+    },
+    {
+      "id": 73,
+      "name": "Critical Strike Avoidance",
+      "category": "suffix",
+      "stat_key": "crit_avoidance",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          22,
+          36
+        ],
+        "3": [
+          35,
+          52
+        ],
+        "4": [
+          48,
+          68
+        ],
+        "5": [
+          60,
+          85
+        ],
+        "6": [
+          78,
+          110
+        ],
+        "7": [
+          99,
+          140
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense",
+        "critical"
+      ]
+    },
+    {
+      "id": 74,
+      "name": "Glancing Blow",
+      "category": "suffix",
+      "stat_key": "glancing_blow",
+      "tiers": {
+        "1": [
+          5,
+          9
+        ],
+        "2": [
+          10,
+          17
+        ],
+        "3": [
+          15,
+          24
+        ],
+        "4": [
+          20,
+          32
+        ],
+        "5": [
+          25,
+          40
+        ],
+        "6": [
+          32,
+          52
+        ],
+        "7": [
+          41,
+          66
+        ]
+      },
+      "applicable": [
+        "Chest",
+        "Helm",
+        "Shield",
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "defense"
+      ]
+    },
+    {
+      "id": 75,
+      "name": "Critical Strike Chance",
+      "category": "suffix",
+      "stat_key": "crit_chance_pct",
+      "tiers": {
+        "1": [
+          1,
+          2
+        ],
+        "2": [
+          3,
+          4
+        ],
+        "3": [
+          5,
+          7
+        ],
+        "4": [
+          7,
+          10
+        ],
+        "5": [
+          9,
+          12
+        ],
+        "6": [
+          12,
+          16
+        ],
+        "7": [
+          15,
+          20
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Ring",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "critical",
+        "offense"
+      ]
+    },
+    {
+      "id": 76,
+      "name": "Critical Strike Multiplier",
+      "category": "suffix",
+      "stat_key": "crit_multiplier_pct",
+      "tiers": {
+        "1": [
+          3,
+          7
+        ],
+        "2": [
+          12,
+          20
+        ],
+        "3": [
+          22,
+          34
+        ],
+        "4": [
+          31,
+          47
+        ],
+        "5": [
+          40,
+          60
+        ],
+        "6": [
+          52,
+          78
+        ],
+        "7": [
+          66,
+          99
+        ]
+      },
+      "applicable": [
+        "Ring",
+        "Amulet",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "critical",
+        "offense"
+      ]
+    },
+    {
+      "id": 77,
+      "name": "Movement Speed",
+      "category": "suffix",
+      "stat_key": "movement_speed",
+      "tiers": {
+        "1": [
+          3,
+          4
+        ],
+        "2": [
+          5,
+          6
+        ],
+        "3": [
+          6,
+          9
+        ],
+        "4": [
+          8,
+          12
+        ],
+        "5": [
+          10,
+          14
+        ],
+        "6": [
+          13,
+          18
+        ],
+        "7": [
+          16,
+          23
+        ]
+      },
+      "applicable": [
+        "Boots"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "speed",
+        "movement"
+      ]
+    },
+    {
+      "id": 78,
+      "name": "Mana",
+      "category": "suffix",
+      "stat_key": "max_mana",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          28,
+          42
+        ],
+        "3": [
+          45,
+          64
+        ],
+        "4": [
+          62,
+          87
+        ],
+        "5": [
+          80,
+          110
+        ],
+        "6": [
+          104,
+          143
+        ],
+        "7": [
+          132,
+          182
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Amulet",
+        "Ring",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "resource",
+        "mana"
+      ]
+    },
+    {
+      "id": 79,
+      "name": "Mana Regen",
+      "category": "suffix",
+      "stat_key": "mana_regen",
+      "tiers": {
+        "1": [
+          1,
+          2
+        ],
+        "2": [
+          3,
+          5
+        ],
+        "3": [
+          6,
+          8
+        ],
+        "4": [
+          8,
+          12
+        ],
+        "5": [
+          10,
+          15
+        ],
+        "6": [
+          13,
+          20
+        ],
+        "7": [
+          16,
+          25
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Amulet",
+        "Ring",
+        "Belt",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "resource",
+        "mana"
+      ]
+    },
+    {
+      "id": 80,
+      "name": "Health Regen",
+      "category": "suffix",
+      "stat_key": "health_regen",
+      "tiers": {
+        "1": [
+          1,
+          2
+        ],
+        "2": [
+          4,
+          8
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          19
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Belt",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "resource",
+        "health"
+      ]
+    },
+    {
+      "id": 81,
+      "name": "Health on Kill",
+      "category": "suffix",
+      "stat_key": "health_on_kill",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "sustain",
+        "health"
+      ]
+    },
+    {
+      "id": 82,
+      "name": "Leech",
+      "category": "suffix",
+      "stat_key": "leech",
+      "tiers": {
+        "1": [
+          1,
+          2
+        ],
+        "2": [
+          2,
+          4
+        ],
+        "3": [
+          4,
+          6
+        ],
+        "4": [
+          5,
+          8
+        ],
+        "5": [
+          6,
+          10
+        ],
+        "6": [
+          8,
+          13
+        ],
+        "7": [
+          10,
+          16
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Ring",
+        "Amulet",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "sustain"
+      ]
+    },
+    {
+      "id": 83,
+      "name": "Mana on Kill",
+      "category": "suffix",
+      "stat_key": "mana_on_kill",
+      "tiers": {
+        "1": [
+          1,
+          2
+        ],
+        "2": [
+          2,
+          4
+        ],
+        "3": [
+          4,
+          6
+        ],
+        "4": [
+          5,
+          8
+        ],
+        "5": [
+          6,
+          10
+        ],
+        "6": [
+          8,
+          13
+        ],
+        "7": [
+          10,
+          16
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Helm",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "sustain",
+        "mana"
+      ]
+    },
+    {
+      "id": 84,
+      "name": "Ward on Kill",
+      "category": "suffix",
+      "stat_key": "ward_on_kill",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Helm",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "sustain",
+        "ward"
+      ]
+    },
+    {
+      "id": 85,
+      "name": "Cooldown Recovery Speed",
+      "category": "suffix",
+      "stat_key": "cooldown_recovery_speed",
+      "tiers": {
+        "1": [
+          3,
+          5
+        ],
+        "2": [
+          6,
+          9
+        ],
+        "3": [
+          9,
+          14
+        ],
+        "4": [
+          12,
+          18
+        ],
+        "5": [
+          15,
+          22
+        ],
+        "6": [
+          20,
+          29
+        ],
+        "7": [
+          25,
+          36
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Amulet",
+        "Ring",
+        "Relic",
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "utility",
+        "cooldown"
+      ]
+    },
+    {
+      "id": 86,
+      "name": "Reduced Channelling Cost",
+      "category": "suffix",
+      "stat_key": "channelling_cost_reduction",
+      "tiers": {
+        "1": [
+          5,
+          9
+        ],
+        "2": [
+          10,
+          16
+        ],
+        "3": [
+          15,
+          22
+        ],
+        "4": [
+          20,
+          28
+        ],
+        "5": [
+          25,
+          35
+        ],
+        "6": [
+          32,
+          46
+        ],
+        "7": [
+          41,
+          58
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "utility",
+        "mana"
+      ]
+    },
+    {
+      "id": 87,
+      "name": "Increased Area",
+      "category": "suffix",
+      "stat_key": "area_pct",
+      "tiers": {
+        "1": [
+          5,
+          9
+        ],
+        "2": [
+          10,
+          17
+        ],
+        "3": [
+          15,
+          24
+        ],
+        "4": [
+          20,
+          32
+        ],
+        "5": [
+          25,
+          40
+        ],
+        "6": [
+          32,
+          52
+        ],
+        "7": [
+          41,
+          66
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Helm",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "utility",
+        "area"
+      ]
+    },
+    {
+      "id": 88,
+      "name": "Stun Duration",
+      "category": "suffix",
+      "stat_key": "stun_duration_pct",
+      "tiers": {
+        "1": [
+          10,
+          19
+        ],
+        "2": [
+          20,
+          34
+        ],
+        "3": [
+          30,
+          50
+        ],
+        "4": [
+          40,
+          65
+        ],
+        "5": [
+          50,
+          80
+        ],
+        "6": [
+          65,
+          104
+        ],
+        "7": [
+          82,
+          132
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "utility",
+        "stun"
+      ]
+    },
+    {
+      "id": 89,
+      "name": "Chance to Shred Armour on Hit",
+      "category": "experimental",
+      "stat_key": "armour_shred_chance",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "shred"
+      ]
+    },
+    {
+      "id": 90,
+      "name": "Chance to Shred Fire Resistance",
+      "category": "experimental",
+      "stat_key": "fire_shred_chance",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "shred",
+        "fire"
+      ]
+    },
+    {
+      "id": 91,
+      "name": "Chance to Shred Cold Resistance",
+      "category": "experimental",
+      "stat_key": "cold_shred_chance",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "shred",
+        "cold"
+      ]
+    },
+    {
+      "id": 92,
+      "name": "Chance to Shred Lightning Resistance",
+      "category": "experimental",
+      "stat_key": "lightning_shred_chance",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "shred",
+        "lightning"
+      ]
+    },
+    {
+      "id": 93,
+      "name": "Damage Leeched as Health",
+      "category": "experimental",
+      "stat_key": "damage_leech_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "sustain"
+      ]
+    },
+    {
+      "id": 94,
+      "name": "Frailty on Hit",
+      "category": "experimental",
+      "stat_key": "frailty_chance",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ailment"
+      ]
+    },
+    {
+      "id": 95,
+      "name": "Reduced Bonus Damage from Crits",
+      "category": "experimental",
+      "stat_key": "crit_damage_reduction",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "defense"
+      ]
+    },
+    {
+      "id": 96,
+      "name": "Increased Effect of Non-Damage Ailments",
+      "category": "experimental",
+      "stat_key": "ailment_effect_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ailment"
+      ]
+    },
+    {
+      "id": 97,
+      "name": "Health Gained on Block",
+      "category": "experimental",
+      "stat_key": "health_on_block",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "defense",
+        "block"
+      ]
+    },
+    {
+      "id": 98,
+      "name": "Ward Gained per Second",
+      "category": "experimental",
+      "stat_key": "ward_regen",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ward"
+      ]
+    },
+    {
+      "id": 99,
+      "name": "Mana Spent Gained as Ward",
+      "category": "experimental",
+      "stat_key": "mana_to_ward_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ward",
+        "mana"
+      ]
+    },
+    {
+      "id": 100,
+      "name": "Critical Strike Chance per Strength",
+      "category": "experimental",
+      "stat_key": "crit_per_strength",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "critical"
+      ]
+    },
+    {
+      "id": 101,
+      "name": "Damage per Active Totem",
+      "category": "experimental",
+      "stat_key": "damage_per_totem",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "damage",
+        "totem"
+      ]
+    },
+    {
+      "id": 102,
+      "name": "Damage per Active Companion",
+      "category": "experimental",
+      "stat_key": "damage_per_companion",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "damage",
+        "minion"
+      ]
+    },
+    {
+      "id": 103,
+      "name": "Damage while Channelling",
+      "category": "experimental",
+      "stat_key": "channelling_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "damage",
+        "channel"
+      ]
+    },
+    {
+      "id": 104,
+      "name": "Overkill Damage",
+      "category": "experimental",
+      "stat_key": "overkill_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Bow"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "damage"
+      ]
+    },
+    {
+      "id": 105,
+      "name": "Physical Penetration",
+      "category": "experimental",
+      "stat_key": "physical_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration"
+      ]
+    },
+    {
+      "id": 106,
+      "name": "Fire Penetration",
+      "category": "experimental",
+      "stat_key": "fire_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration",
+        "fire"
+      ]
+    },
+    {
+      "id": 107,
+      "name": "Cold Penetration",
+      "category": "experimental",
+      "stat_key": "cold_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration",
+        "cold"
+      ]
+    },
+    {
+      "id": 108,
+      "name": "Lightning Penetration",
+      "category": "experimental",
+      "stat_key": "lightning_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration",
+        "lightning"
+      ]
+    },
+    {
+      "id": 109,
+      "name": "Void Penetration",
+      "category": "experimental",
+      "stat_key": "void_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration",
+        "void"
+      ]
+    },
+    {
+      "id": 110,
+      "name": "Necrotic Penetration",
+      "category": "experimental",
+      "stat_key": "necrotic_penetration",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "penetration",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 111,
+      "name": "Health Gained on Potion Use",
+      "category": "experimental",
+      "stat_key": "health_on_potion",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "sustain"
+      ]
+    },
+    {
+      "id": 112,
+      "name": "Ward Gained on Potion Use",
+      "category": "experimental",
+      "stat_key": "ward_on_potion",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ward"
+      ]
+    },
+    {
+      "id": 113,
+      "name": "Increased Effect of Buffs",
+      "category": "experimental",
+      "stat_key": "buff_effect_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Amulet",
+        "Relic"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "utility"
+      ]
+    },
+    {
+      "id": 114,
+      "name": "Increased Duration of Ailments",
+      "category": "experimental",
+      "stat_key": "ailment_duration_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "ailment"
+      ]
+    },
+    {
+      "id": 115,
+      "name": "Armour Mitigation",
+      "category": "experimental",
+      "stat_key": "armour_mitigation_pct",
+      "tiers": {
+        "1": [
+          5,
+          15
+        ],
+        "2": [
+          12,
+          25
+        ],
+        "3": [
+          20,
+          40
+        ],
+        "4": [
+          35,
+          55
+        ],
+        "5": [
+          50,
+          75
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "experimental",
+        "defense"
+      ]
+    },
+    {
+      "id": 116,
+      "name": "Necrotic Spell Damage",
+      "category": "personal",
+      "stat_key": "necrotic_spell_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "personal",
+        "spell",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 117,
+      "name": "Minion Critical Strike Chance",
+      "category": "personal",
+      "stat_key": "minion_crit_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Relic"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "personal",
+        "minion",
+        "critical"
+      ]
+    },
+    {
+      "id": 118,
+      "name": "Sacrifice Damage",
+      "category": "personal",
+      "stat_key": "sacrifice_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "personal",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 119,
+      "name": "Ward per Intelligence",
+      "category": "personal",
+      "stat_key": "ward_per_intelligence",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "personal",
+        "ward",
+        "attribute"
+      ]
+    },
+    {
+      "id": 120,
+      "name": "Spell Crit Multiplier",
+      "category": "personal",
+      "stat_key": "spell_crit_multiplier_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Amulet"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "personal",
+        "spell",
+        "critical"
+      ]
+    },
+    {
+      "id": 121,
+      "name": "Spell Damage per Mana",
+      "category": "personal",
+      "stat_key": "spell_damage_per_mana",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "personal",
+        "spell",
+        "damage",
+        "mana"
+      ]
+    },
+    {
+      "id": 122,
+      "name": "Mana Efficiency",
+      "category": "personal",
+      "stat_key": "mana_efficiency_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Sceptre",
+        "Helm"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "personal",
+        "mana",
+        "utility"
+      ]
+    },
+    {
+      "id": 123,
+      "name": "Lightning Blast Chains",
+      "category": "personal",
+      "stat_key": "lightning_blast_chains",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "personal",
+        "lightning",
+        "spell"
+      ]
+    },
+    {
+      "id": 124,
+      "name": "Companion Damage",
+      "category": "personal",
+      "stat_key": "companion_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear",
+        "Relic"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "personal",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 125,
+      "name": "Companion Health",
+      "category": "personal",
+      "stat_key": "companion_health_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Relic"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "personal",
+        "minion",
+        "defense"
+      ]
+    },
+    {
+      "id": 126,
+      "name": "Totem Damage",
+      "category": "personal",
+      "stat_key": "totem_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "personal",
+        "totem",
+        "damage"
+      ]
+    },
+    {
+      "id": 127,
+      "name": "Totem Health",
+      "category": "personal",
+      "stat_key": "totem_health_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Wand",
+        "Staff",
+        "Relic"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "personal",
+        "totem",
+        "defense"
+      ]
+    },
+    {
+      "id": 128,
+      "name": "Sentinel Throwing Speed",
+      "category": "personal",
+      "stat_key": "sentinel_throw_speed",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Gloves",
+        "Relic"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "personal",
+        "throwing",
+        "speed"
+      ]
+    },
+    {
+      "id": 129,
+      "name": "Block Armour",
+      "category": "personal",
+      "stat_key": "block_armour",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Shield"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "personal",
+        "block",
+        "defense"
+      ]
+    },
+    {
+      "id": 130,
+      "name": "Healing Effectiveness",
+      "category": "personal",
+      "stat_key": "healing_effectiveness_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Shield",
+        "Chest",
+        "Helm"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "personal",
+        "defense",
+        "healing"
+      ]
+    },
+    {
+      "id": 131,
+      "name": "Smite Damage",
+      "category": "personal",
+      "stat_key": "smite_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Polearm",
+        "Spear",
+        "Shield"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "personal",
+        "spell",
+        "damage"
+      ]
+    },
+    {
+      "id": 132,
+      "name": "Shadow Damage",
+      "category": "personal",
+      "stat_key": "shadow_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Dagger",
+        "Bow",
+        "Amulet"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "personal",
+        "shadow",
+        "damage"
+      ]
+    },
+    {
+      "id": 133,
+      "name": "Dagger Damage",
+      "category": "personal",
+      "stat_key": "dagger_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Dagger"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "personal",
+        "melee",
+        "damage"
+      ]
+    },
+    {
+      "id": 134,
+      "name": "Bow Specific Damage",
+      "category": "personal",
+      "stat_key": "bow_specific_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Bow"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "personal",
+        "ranged",
+        "damage"
+      ]
+    },
+    {
+      "id": 135,
+      "name": "Dodge Rating per Dexterity",
+      "category": "personal",
+      "stat_key": "dodge_per_dexterity",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          12,
+          21
+        ],
+        "3": [
+          20,
+          32
+        ],
+        "4": [
+          28,
+          44
+        ],
+        "5": [
+          35,
+          55
+        ],
+        "6": [
+          46,
+          72
+        ],
+        "7": [
+          58,
+          91
+        ]
+      },
+      "applicable": [
+        "Boots",
+        "Gloves"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "personal",
+        "defense",
+        "dodge"
+      ]
+    },
+    {
+      "id": 136,
+      "name": "Champion's Strength",
+      "category": "champion",
+      "stat_key": "champion_strength",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "attribute"
+      ]
+    },
+    {
+      "id": 137,
+      "name": "Champion's Intelligence",
+      "category": "champion",
+      "stat_key": "champion_intelligence",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "attribute"
+      ]
+    },
+    {
+      "id": 138,
+      "name": "Champion's Dexterity",
+      "category": "champion",
+      "stat_key": "champion_dexterity",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "attribute"
+      ]
+    },
+    {
+      "id": 139,
+      "name": "Champion's Vitality",
+      "category": "champion",
+      "stat_key": "champion_vitality",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "attribute"
+      ]
+    },
+    {
+      "id": 140,
+      "name": "Champion's Fortitude",
+      "category": "champion",
+      "stat_key": "champion_fortitude",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "defense"
+      ]
+    },
+    {
+      "id": 141,
+      "name": "Champion's Resolve",
+      "category": "champion",
+      "stat_key": "champion_resolve",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Belt",
+        "Ring",
+        "Amulet",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "defense"
+      ]
+    },
+    {
+      "id": 142,
+      "name": "Champion's Fury",
+      "category": "champion",
+      "stat_key": "champion_fury",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "damage"
+      ]
+    },
+    {
+      "id": 143,
+      "name": "Champion's Wrath",
+      "category": "champion",
+      "stat_key": "champion_wrath",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "damage"
+      ]
+    },
+    {
+      "id": 144,
+      "name": "Champion's Precision",
+      "category": "champion",
+      "stat_key": "champion_precision",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Sword",
+        "Axe",
+        "Mace",
+        "Dagger",
+        "Sceptre",
+        "Wand",
+        "Staff",
+        "Bow",
+        "Polearm",
+        "Spear"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "critical"
+      ]
+    },
+    {
+      "id": 145,
+      "name": "Champion's Swiftness",
+      "category": "champion",
+      "stat_key": "champion_swiftness",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Boots",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "speed"
+      ]
+    },
+    {
+      "id": 146,
+      "name": "Champion's Resilience",
+      "category": "champion",
+      "stat_key": "champion_resilience",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "defense"
+      ]
+    },
+    {
+      "id": 147,
+      "name": "Champion's Elemental Aegis",
+      "category": "champion",
+      "stat_key": "champion_ele_aegis",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Gloves",
+        "Boots",
+        "Shield"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "champion",
+        "resistance"
+      ]
+    },
+    {
+      "id": 148,
+      "name": "Arboreal Circuit (2pc)",
+      "category": "set",
+      "stat_key": "arboreal_circuit_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 149,
+      "name": "Arboreal Circuit (3pc)",
+      "category": "set",
+      "stat_key": "arboreal_circuit_3",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Ring",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 150,
+      "name": "Wings of Argentus (2pc)",
+      "category": "set",
+      "stat_key": "wings_argentus_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 151,
+      "name": "Wings of Argentus (3pc)",
+      "category": "set",
+      "stat_key": "wings_argentus_3",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Chest",
+        "Boots"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 152,
+      "name": "Frozen Eyes of Formosus (2pc)",
+      "category": "set",
+      "stat_key": "frozen_eyes_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 153,
+      "name": "Morditas' Reach (2pc)",
+      "category": "set",
+      "stat_key": "morditas_reach_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Gloves",
+        "Amulet"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 154,
+      "name": "Isadora's Grave Binding (2pc)",
+      "category": "set",
+      "stat_key": "isadora_grave_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Chest",
+        "Belt"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 155,
+      "name": "Isadora's Grave Binding (3pc)",
+      "category": "set",
+      "stat_key": "isadora_grave_3",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Chest",
+        "Belt",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 156,
+      "name": "Paranoia (2pc)",
+      "category": "set",
+      "stat_key": "paranoia_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Helm",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 157,
+      "name": "Ravenous Void (2pc)",
+      "category": "set",
+      "stat_key": "ravenous_void_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Gloves",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 158,
+      "name": "Corsair's Bounty (2pc)",
+      "category": "set",
+      "stat_key": "corsair_bounty_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Belt",
+        "Boots"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 159,
+      "name": "Vessel of Strife (2pc)",
+      "category": "set",
+      "stat_key": "vessel_strife_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Chest",
+        "Gloves"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 160,
+      "name": "Ashes of Orchirian (2pc)",
+      "category": "set",
+      "stat_key": "ashes_orchirian_2",
+      "tiers": {
+        "1": [
+          1,
+          1
+        ]
+      },
+      "applicable": [
+        "Boots",
+        "Ring"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "set"
+      ]
+    },
+    {
+      "id": 161,
+      "name": "Idol Spell Damage",
+      "category": "idol_enchant",
+      "stat_key": "spell_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "spell",
+        "damage"
+      ]
+    },
+    {
+      "id": 162,
+      "name": "Idol Melee Damage",
+      "category": "idol_enchant",
+      "stat_key": "melee_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "melee",
+        "damage"
+      ]
+    },
+    {
+      "id": 163,
+      "name": "Idol Throwing Damage",
+      "category": "idol_enchant",
+      "stat_key": "throwing_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "throwing",
+        "damage"
+      ]
+    },
+    {
+      "id": 164,
+      "name": "Idol Minion Damage",
+      "category": "idol_enchant",
+      "stat_key": "minion_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 165,
+      "name": "Idol Fire Damage",
+      "category": "idol_enchant",
+      "stat_key": "fire_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "fire",
+        "damage"
+      ]
+    },
+    {
+      "id": 166,
+      "name": "Idol Cold Damage",
+      "category": "idol_enchant",
+      "stat_key": "cold_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "cold",
+        "damage"
+      ]
+    },
+    {
+      "id": 167,
+      "name": "Idol Lightning Damage",
+      "category": "idol_enchant",
+      "stat_key": "lightning_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "lightning",
+        "damage"
+      ]
+    },
+    {
+      "id": 168,
+      "name": "Idol Necrotic Damage",
+      "category": "idol_enchant",
+      "stat_key": "necrotic_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "necrotic",
+        "damage"
+      ]
+    },
+    {
+      "id": 169,
+      "name": "Idol Void Damage",
+      "category": "idol_enchant",
+      "stat_key": "void_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "void",
+        "damage"
+      ]
+    },
+    {
+      "id": 170,
+      "name": "Idol Physical Damage",
+      "category": "idol_enchant",
+      "stat_key": "physical_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "physical",
+        "damage"
+      ]
+    },
+    {
+      "id": 171,
+      "name": "Idol Poison Damage",
+      "category": "idol_enchant",
+      "stat_key": "poison_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "poison",
+        "damage"
+      ]
+    },
+    {
+      "id": 172,
+      "name": "Idol Health",
+      "category": "idol_enchant",
+      "stat_key": "max_health",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "defense",
+        "health"
+      ]
+    },
+    {
+      "id": 173,
+      "name": "Idol Armour",
+      "category": "idol_enchant",
+      "stat_key": "armour",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "defense",
+        "armour"
+      ]
+    },
+    {
+      "id": 174,
+      "name": "Idol Chance to Bleed",
+      "category": "idol_enchant",
+      "stat_key": "bleed_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "ailment",
+        "bleed"
+      ]
+    },
+    {
+      "id": 175,
+      "name": "Idol Chance to Ignite",
+      "category": "idol_enchant",
+      "stat_key": "ignite_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "ailment",
+        "ignite"
+      ]
+    },
+    {
+      "id": 176,
+      "name": "Idol Chance to Poison",
+      "category": "idol_enchant",
+      "stat_key": "poison_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "ailment",
+        "poison"
+      ]
+    },
+    {
+      "id": 177,
+      "name": "Idol Chance to Shock",
+      "category": "idol_enchant",
+      "stat_key": "shock_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "ailment",
+        "shock"
+      ]
+    },
+    {
+      "id": 178,
+      "name": "Idol Chance to Chill",
+      "category": "idol_enchant",
+      "stat_key": "chill_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "ailment",
+        "chill"
+      ]
+    },
+    {
+      "id": 179,
+      "name": "Idol Attack Speed",
+      "category": "idol_enchant",
+      "stat_key": "attack_speed_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "speed",
+        "attack"
+      ]
+    },
+    {
+      "id": 180,
+      "name": "Idol Cast Speed",
+      "category": "idol_enchant",
+      "stat_key": "cast_speed",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "speed",
+        "spell"
+      ]
+    },
+    {
+      "id": 181,
+      "name": "Idol Critical Strike Chance",
+      "category": "idol_enchant",
+      "stat_key": "crit_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "critical"
+      ]
+    },
+    {
+      "id": 182,
+      "name": "Idol Minion Health",
+      "category": "idol_enchant",
+      "stat_key": "minion_health_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "prefix",
+        "minion",
+        "defense"
+      ]
+    },
+    {
+      "id": 183,
+      "name": "Idol Fire Resistance",
+      "category": "idol_enchant",
+      "stat_key": "fire_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "fire"
+      ]
+    },
+    {
+      "id": 184,
+      "name": "Idol Cold Resistance",
+      "category": "idol_enchant",
+      "stat_key": "cold_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "cold"
+      ]
+    },
+    {
+      "id": 185,
+      "name": "Idol Lightning Resistance",
+      "category": "idol_enchant",
+      "stat_key": "lightning_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "lightning"
+      ]
+    },
+    {
+      "id": 186,
+      "name": "Idol Void Resistance",
+      "category": "idol_enchant",
+      "stat_key": "void_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "void"
+      ]
+    },
+    {
+      "id": 187,
+      "name": "Idol Necrotic Resistance",
+      "category": "idol_enchant",
+      "stat_key": "necrotic_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 188,
+      "name": "Idol Poison Resistance",
+      "category": "idol_enchant",
+      "stat_key": "poison_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "poison"
+      ]
+    },
+    {
+      "id": 189,
+      "name": "Idol Physical Resistance",
+      "category": "idol_enchant",
+      "stat_key": "physical_res",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "resistance",
+        "physical"
+      ]
+    },
+    {
+      "id": 190,
+      "name": "Idol Dodge Rating",
+      "category": "idol_enchant",
+      "stat_key": "dodge_rating",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "defense",
+        "dodge"
+      ]
+    },
+    {
+      "id": 191,
+      "name": "Idol Stun Avoidance",
+      "category": "idol_enchant",
+      "stat_key": "stun_avoidance",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "defense",
+        "stun"
+      ]
+    },
+    {
+      "id": 192,
+      "name": "Idol Critical Strike Avoidance",
+      "category": "idol_enchant",
+      "stat_key": "crit_avoidance",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "defense",
+        "critical"
+      ]
+    },
+    {
+      "id": 193,
+      "name": "Idol Ward",
+      "category": "idol_enchant",
+      "stat_key": "ward",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "defense",
+        "ward"
+      ]
+    },
+    {
+      "id": 194,
+      "name": "Idol Endurance",
+      "category": "idol_enchant",
+      "stat_key": "endurance",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "defense",
+        "endurance"
+      ]
+    },
+    {
+      "id": 195,
+      "name": "Idol Health Regen",
+      "category": "idol_enchant",
+      "stat_key": "health_regen",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "sustain",
+        "health"
+      ]
+    },
+    {
+      "id": 196,
+      "name": "Idol Vitality",
+      "category": "idol_enchant",
+      "stat_key": "vitality",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "attribute"
+      ]
+    },
+    {
+      "id": 197,
+      "name": "Idol Attunement",
+      "category": "idol_enchant",
+      "stat_key": "attunement",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "attribute"
+      ]
+    },
+    {
+      "id": 198,
+      "name": "Idol Strength",
+      "category": "idol_enchant",
+      "stat_key": "strength",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "attribute"
+      ]
+    },
+    {
+      "id": 199,
+      "name": "Idol Dexterity",
+      "category": "idol_enchant",
+      "stat_key": "dexterity",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "attribute"
+      ]
+    },
+    {
+      "id": 200,
+      "name": "Idol Intelligence",
+      "category": "idol_enchant",
+      "stat_key": "intelligence",
+      "tiers": {
+        "1": [
+          2,
+          4
+        ],
+        "2": [
+          5,
+          9
+        ],
+        "3": [
+          8,
+          14
+        ],
+        "4": [
+          12,
+          20
+        ],
+        "5": [
+          15,
+          25
+        ],
+        "6": [
+          20,
+          32
+        ],
+        "7": [
+          25,
+          41
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "idol",
+        "suffix",
+        "attribute"
+      ]
+    },
+    {
+      "id": 201,
+      "name": "Idol Necrotic Spell Damage",
+      "category": "idol_enchant",
+      "stat_key": "necrotic_spell_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "idol",
+        "class_specific",
+        "spell",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 202,
+      "name": "Idol Minion Necrotic Damage",
+      "category": "idol_enchant",
+      "stat_key": "minion_necrotic_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "idol",
+        "class_specific",
+        "minion",
+        "necrotic"
+      ]
+    },
+    {
+      "id": 203,
+      "name": "Idol Ward on Minion Death",
+      "category": "idol_enchant",
+      "stat_key": "ward_on_minion_death",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "idol",
+        "class_specific",
+        "ward",
+        "minion"
+      ]
+    },
+    {
+      "id": 204,
+      "name": "Idol Bone Golem Damage",
+      "category": "idol_enchant",
+      "stat_key": "bone_golem_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Acolyte",
+      "tags": [
+        "idol",
+        "class_specific",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 205,
+      "name": "Idol Lightning Spell Damage",
+      "category": "idol_enchant",
+      "stat_key": "lightning_spell_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "idol",
+        "class_specific",
+        "spell",
+        "lightning"
+      ]
+    },
+    {
+      "id": 206,
+      "name": "Idol Fire Spell Damage",
+      "category": "idol_enchant",
+      "stat_key": "fire_spell_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "idol",
+        "class_specific",
+        "spell",
+        "fire"
+      ]
+    },
+    {
+      "id": 207,
+      "name": "Idol Cold Spell Damage",
+      "category": "idol_enchant",
+      "stat_key": "cold_spell_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "idol",
+        "class_specific",
+        "spell",
+        "cold"
+      ]
+    },
+    {
+      "id": 208,
+      "name": "Idol Mana on Spell Cast",
+      "category": "idol_enchant",
+      "stat_key": "mana_on_spell_cast",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Mage",
+      "tags": [
+        "idol",
+        "class_specific",
+        "mana",
+        "spell"
+      ]
+    },
+    {
+      "id": 209,
+      "name": "Idol Companion Damage",
+      "category": "idol_enchant",
+      "stat_key": "companion_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "idol",
+        "class_specific",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 210,
+      "name": "Idol Companion Health",
+      "category": "idol_enchant",
+      "stat_key": "companion_health_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "idol",
+        "class_specific",
+        "minion",
+        "defense"
+      ]
+    },
+    {
+      "id": 211,
+      "name": "Idol Totem Damage",
+      "category": "idol_enchant",
+      "stat_key": "totem_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "idol",
+        "class_specific",
+        "totem",
+        "damage"
+      ]
+    },
+    {
+      "id": 212,
+      "name": "Idol Attunement per Companion",
+      "category": "idol_enchant",
+      "stat_key": "attunement_per_companion",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Primalist",
+      "tags": [
+        "idol",
+        "class_specific",
+        "attribute",
+        "minion"
+      ]
+    },
+    {
+      "id": 213,
+      "name": "Idol Throwing Sentinel Damage",
+      "category": "idol_enchant",
+      "stat_key": "sentinel_idol_throw_dmg",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "idol",
+        "class_specific",
+        "throwing",
+        "damage"
+      ]
+    },
+    {
+      "id": 214,
+      "name": "Idol Block Chance",
+      "category": "idol_enchant",
+      "stat_key": "block_chance",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "idol",
+        "class_specific",
+        "defense",
+        "block"
+      ]
+    },
+    {
+      "id": 215,
+      "name": "Idol Healing Effectiveness",
+      "category": "idol_enchant",
+      "stat_key": "healing_effectiveness_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "idol",
+        "class_specific",
+        "defense",
+        "healing"
+      ]
+    },
+    {
+      "id": 216,
+      "name": "Idol Void Knight Damage",
+      "category": "idol_enchant",
+      "stat_key": "void_knight_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Sentinel",
+      "tags": [
+        "idol",
+        "class_specific",
+        "void",
+        "damage"
+      ]
+    },
+    {
+      "id": 217,
+      "name": "Idol Shadow Dagger Damage",
+      "category": "idol_enchant",
+      "stat_key": "shadow_dagger_damage_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "idol",
+        "class_specific",
+        "shadow",
+        "damage"
+      ]
+    },
+    {
+      "id": 218,
+      "name": "Idol Dodge Rating on Hit",
+      "category": "idol_enchant",
+      "stat_key": "dodge_on_hit",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "idol",
+        "class_specific",
+        "defense",
+        "dodge"
+      ]
+    },
+    {
+      "id": 219,
+      "name": "Idol Bow Critical Strike Chance",
+      "category": "idol_enchant",
+      "stat_key": "bow_crit_chance_pct",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "idol",
+        "class_specific",
+        "ranged",
+        "critical"
+      ]
+    },
+    {
+      "id": 220,
+      "name": "Idol Smoke Bomb Cooldown",
+      "category": "idol_enchant",
+      "stat_key": "smoke_bomb_cooldown",
+      "tiers": {
+        "1": [
+          3,
+          6
+        ],
+        "2": [
+          7,
+          13
+        ],
+        "3": [
+          12,
+          20
+        ],
+        "4": [
+          16,
+          28
+        ],
+        "5": [
+          20,
+          35
+        ],
+        "6": [
+          26,
+          46
+        ],
+        "7": [
+          33,
+          58
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": "Rogue",
+      "tags": [
+        "idol",
+        "class_specific",
+        "utility",
+        "cooldown"
+      ]
+    },
+    {
+      "id": 221,
+      "name": "Weaver Spell Damage",
+      "category": "idol_weaver",
+      "stat_key": "spell_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "spell",
+        "damage"
+      ]
+    },
+    {
+      "id": 222,
+      "name": "Weaver Melee Damage",
+      "category": "idol_weaver",
+      "stat_key": "melee_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "melee",
+        "damage"
+      ]
+    },
+    {
+      "id": 223,
+      "name": "Weaver Fire Damage",
+      "category": "idol_weaver",
+      "stat_key": "fire_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "fire",
+        "damage"
+      ]
+    },
+    {
+      "id": 224,
+      "name": "Weaver Cold Damage",
+      "category": "idol_weaver",
+      "stat_key": "cold_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "cold",
+        "damage"
+      ]
+    },
+    {
+      "id": 225,
+      "name": "Weaver Lightning Damage",
+      "category": "idol_weaver",
+      "stat_key": "lightning_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "lightning",
+        "damage"
+      ]
+    },
+    {
+      "id": 226,
+      "name": "Weaver Necrotic Damage",
+      "category": "idol_weaver",
+      "stat_key": "necrotic_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "necrotic",
+        "damage"
+      ]
+    },
+    {
+      "id": 227,
+      "name": "Weaver Void Damage",
+      "category": "idol_weaver",
+      "stat_key": "void_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "void",
+        "damage"
+      ]
+    },
+    {
+      "id": 228,
+      "name": "Weaver Physical Damage",
+      "category": "idol_weaver",
+      "stat_key": "physical_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "physical",
+        "damage"
+      ]
+    },
+    {
+      "id": 229,
+      "name": "Weaver Health",
+      "category": "idol_weaver",
+      "stat_key": "max_health",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "health"
+      ]
+    },
+    {
+      "id": 230,
+      "name": "Weaver Armour",
+      "category": "idol_weaver",
+      "stat_key": "armour",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "armour"
+      ]
+    },
+    {
+      "id": 231,
+      "name": "Weaver Critical Strike Chance",
+      "category": "idol_weaver",
+      "stat_key": "crit_chance_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "critical"
+      ]
+    },
+    {
+      "id": 232,
+      "name": "Weaver Critical Strike Multiplier",
+      "category": "idol_weaver",
+      "stat_key": "crit_multiplier_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "critical"
+      ]
+    },
+    {
+      "id": 233,
+      "name": "Weaver Dodge Rating",
+      "category": "idol_weaver",
+      "stat_key": "dodge_rating",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "dodge"
+      ]
+    },
+    {
+      "id": 234,
+      "name": "Weaver Ward",
+      "category": "idol_weaver",
+      "stat_key": "ward",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "ward"
+      ]
+    },
+    {
+      "id": 235,
+      "name": "Weaver Movement Speed",
+      "category": "idol_weaver",
+      "stat_key": "movement_speed",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "speed",
+        "movement"
+      ]
+    },
+    {
+      "id": 236,
+      "name": "Weaver All Resistances",
+      "category": "idol_weaver",
+      "stat_key": "all_res",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "resistance"
+      ]
+    },
+    {
+      "id": 237,
+      "name": "Weaver Health Regen",
+      "category": "idol_weaver",
+      "stat_key": "health_regen",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "sustain",
+        "health"
+      ]
+    },
+    {
+      "id": 238,
+      "name": "Weaver Mana Regen",
+      "category": "idol_weaver",
+      "stat_key": "mana_regen",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "sustain",
+        "mana"
+      ]
+    },
+    {
+      "id": 239,
+      "name": "Weaver Minion Damage",
+      "category": "idol_weaver",
+      "stat_key": "minion_damage_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "minion",
+        "damage"
+      ]
+    },
+    {
+      "id": 240,
+      "name": "Weaver Attack Speed",
+      "category": "idol_weaver",
+      "stat_key": "attack_speed_pct",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "speed",
+        "attack"
+      ]
+    },
+    {
+      "id": 241,
+      "name": "Weaver Cast Speed",
+      "category": "idol_weaver",
+      "stat_key": "cast_speed",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "speed",
+        "spell"
+      ]
+    },
+    {
+      "id": 242,
+      "name": "Weaver Leech",
+      "category": "idol_weaver",
+      "stat_key": "leech",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "sustain",
+        "leech"
+      ]
+    },
+    {
+      "id": 243,
+      "name": "Weaver Endurance",
+      "category": "idol_weaver",
+      "stat_key": "endurance",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense",
+        "endurance"
+      ]
+    },
+    {
+      "id": 244,
+      "name": "Weaver Stun Avoidance",
+      "category": "idol_weaver",
+      "stat_key": "stun_avoidance",
+      "tiers": {
+        "1": [
+          5,
+          10
+        ],
+        "2": [
+          11,
+          20
+        ],
+        "3": [
+          18,
+          30
+        ],
+        "4": [
+          24,
+          40
+        ],
+        "5": [
+          30,
+          50
+        ],
+        "6": [
+          39,
+          65
+        ],
+        "7": [
+          50,
+          82
+        ]
+      },
+      "applicable": [
+        "Idol_1x1",
+        "Idol_1x2",
+        "Idol_1x3",
+        "Idol_1x4",
+        "Idol_2x2"
+      ],
+      "class_requirement": null,
+      "tags": [
+        "weaver",
+        "idol",
+        "defense"
+      ]
+    }
+  ]
 }

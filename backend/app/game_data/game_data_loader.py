@@ -2,8 +2,8 @@
 Game Data Loader — loads and caches game constants from JSON files.
 
 Engines import from here when they want authoritative data from the JSON
-files rather than their inline constants. The two sources are kept in sync;
-the JSON files are the canonical reference for future patch updates.
+files rather than their inline constants.  The JSON files are the canonical
+reference for future patch updates.
 
 Usage:
     from app.game_data.game_data_loader import (
@@ -13,11 +13,14 @@ Usage:
         get_attribute_scaling,
         get_affix_tier_midpoints,
         get_affix_stat_keys,
+        get_all_affixes,
+        get_affixes_by_category,
         get_skill_stats,
     )
 """
 
 import json
+import math
 import os
 from functools import lru_cache
 
@@ -36,7 +39,7 @@ def _classes() -> dict:
 
 
 @lru_cache(maxsize=1)
-def _affixes() -> dict:
+def _affixes_raw() -> dict:
     return _load("affixes.json")
 
 
@@ -44,6 +47,61 @@ def _affixes() -> dict:
 def _skills() -> dict:
     return _load("skills.json")
 
+
+# ------------------------------------------------------------------
+# Derived affix lookups — built once from the v2.0 affixes.json
+# ------------------------------------------------------------------
+
+@lru_cache(maxsize=1)
+def _build_affix_lookups() -> tuple[dict, dict]:
+    """Build tier-midpoints and stat-keys dicts from the v2.0 affix list."""
+    raw = _affixes_raw()
+    affix_list = raw.get("affixes", [])
+
+    midpoints: dict[str, dict[str, float]] = {}
+    stat_keys: dict[str, str] = {}
+
+    for affix in affix_list:
+        name = affix["name"]
+        stat_keys[name] = affix["stat_key"]
+        tiers = affix.get("tiers", {})
+        mp: dict[str, float] = {}
+        for tier_key, bounds in tiers.items():
+            lo, hi = bounds
+            mp[f"T{tier_key}"] = math.floor((lo + hi) / 2)
+        midpoints[name] = mp
+
+    return midpoints, stat_keys
+
+
+def get_affix_tier_midpoints() -> dict:
+    """Returns affix name → {T1: mid, T2: mid, …} mapping (all categories)."""
+    return _build_affix_lookups()[0]
+
+
+def get_affix_stat_keys() -> dict:
+    """Returns affix display name → BuildStats field name mapping."""
+    return _build_affix_lookups()[1]
+
+
+def get_all_affixes() -> list[dict]:
+    """Returns the full list of affix definitions from the canonical JSON."""
+    return _affixes_raw().get("affixes", [])
+
+
+def get_affixes_by_category(category: str) -> list[dict]:
+    """Returns affix definitions filtered by category."""
+    return [a for a in get_all_affixes() if a.get("category") == category]
+
+
+def get_affix_categories() -> dict:
+    """Returns the category descriptions dict."""
+    return _affixes_raw().get("_categories", {})
+
+
+# ------------------------------------------------------------------
+# Class / skill data
+# ------------------------------------------------------------------
 
 def get_class_base_stats() -> dict:
     """Returns base stats dict keyed by class name."""
@@ -68,16 +126,6 @@ def get_keystone_bonuses() -> dict:
 def get_attribute_scaling() -> dict:
     """Returns attribute → BuildStats field scaling ratios."""
     return _classes()["attribute_scaling"]
-
-
-def get_affix_tier_midpoints() -> dict:
-    """Returns affix name → tier → midpoint value mapping."""
-    return _affixes()["tier_midpoints"]
-
-
-def get_affix_stat_keys() -> dict:
-    """Returns affix display name → BuildStats field name mapping."""
-    return _affixes()["stat_keys"]
 
 
 def get_skill_stats() -> dict:

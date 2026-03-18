@@ -276,9 +276,11 @@ export interface ClassMeta {
 export interface AffixDef {
   id?: number;
   name: string;
-  type: "prefix" | "suffix";
+  type: "prefix" | "suffix" | "experimental" | "personal" | "champion" | "set" | "idol_enchant" | "idol_weaver";
   stat_key: string;
   tier_ranges: Record<string, [number, number]>;
   applicable_types: string[];
+  class_requirement?: string | null;
+  tags?: string[];
 }
 

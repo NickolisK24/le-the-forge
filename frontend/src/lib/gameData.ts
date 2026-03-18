@@ -482,11 +482,14 @@ export const SKILL_STATS: Record<string, SkillStatDef> = {
 // ---------------------------------------------------------------------------
 
 export interface AffixDefinition {
+  id?: number;
   name: string;
-  type: "prefix" | "suffix";
+  type: "prefix" | "suffix" | "experimental" | "personal" | "champion" | "set" | "idol_enchant" | "idol_weaver";
   stat_key: string;   // matches BuildStats key in simulation.ts
   tiers: Record<string, [number, number]>;
   applicable: string[];
+  class_requirement?: string | null;
+  tags?: string[];
 }
 
 export const AFFIX_DEFINITIONS: AffixDefinition[] = [

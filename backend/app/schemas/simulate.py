@@ -5,7 +5,7 @@ These schemas validate raw simulation payloads that don't require
 a saved build — the frontend sends stats/class/gear directly.
 """
 
-from marshmallow import Schema, fields, validate, validates, ValidationError, post_load
+from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, EXCLUDE
 
 
 VALID_CLASSES = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"]
@@ -19,11 +19,19 @@ VALID_MASTERIES = {
 
 
 class StatsInputSchema(Schema):
-    """Flat BuildStats dict — all fields optional with sensible defaults."""
+    """Flat BuildStats dict — all fields optional with sensible defaults.
+    Accepts any field from BuildStats; unknown keys are silently ignored.
+    """
+    class Meta:
+        unknown = EXCLUDE
+
+    # Offense — base
     base_damage = fields.Float(load_default=0.0)
     attack_speed = fields.Float(load_default=1.0)
     crit_chance = fields.Float(load_default=0.05)
     crit_multiplier = fields.Float(load_default=1.5)
+
+    # Offense — percentage damage pools
     spell_damage_pct = fields.Float(load_default=0.0)
     physical_damage_pct = fields.Float(load_default=0.0)
     fire_damage_pct = fields.Float(load_default=0.0)
@@ -33,14 +41,72 @@ class StatsInputSchema(Schema):
     void_damage_pct = fields.Float(load_default=0.0)
     poison_damage_pct = fields.Float(load_default=0.0)
     minion_damage_pct = fields.Float(load_default=0.0)
+    melee_damage_pct = fields.Float(load_default=0.0)
+    throwing_damage_pct = fields.Float(load_default=0.0)
+    bow_damage_pct = fields.Float(load_default=0.0)
+    elemental_damage_pct = fields.Float(load_default=0.0)
+    dot_damage_pct = fields.Float(load_default=0.0)
+
+    # Offense — speed / crit
     attack_speed_pct = fields.Float(load_default=0.0)
     cast_speed = fields.Float(load_default=0.0)
+    throwing_attack_speed = fields.Float(load_default=0.0)
     crit_chance_pct = fields.Float(load_default=0.0)
     crit_multiplier_pct = fields.Float(load_default=0.0)
     more_damage_multiplier = fields.Float(load_default=1.0)
+
+    # Offense — flat added damage
+    added_melee_physical = fields.Float(load_default=0.0)
+    added_melee_fire = fields.Float(load_default=0.0)
+    added_melee_cold = fields.Float(load_default=0.0)
+    added_melee_lightning = fields.Float(load_default=0.0)
+    added_melee_void = fields.Float(load_default=0.0)
+    added_melee_necrotic = fields.Float(load_default=0.0)
+    added_spell_damage = fields.Float(load_default=0.0)
+    added_spell_fire = fields.Float(load_default=0.0)
+    added_spell_cold = fields.Float(load_default=0.0)
+    added_spell_lightning = fields.Float(load_default=0.0)
+    added_spell_necrotic = fields.Float(load_default=0.0)
+    added_spell_void = fields.Float(load_default=0.0)
+    added_throw_physical = fields.Float(load_default=0.0)
+    added_throw_fire = fields.Float(load_default=0.0)
+    added_throw_cold = fields.Float(load_default=0.0)
+    added_bow_physical = fields.Float(load_default=0.0)
+    added_bow_fire = fields.Float(load_default=0.0)
+
+    # Offense — ailment chance
+    poison_chance_pct = fields.Float(load_default=0.0)
+    bleed_chance_pct = fields.Float(load_default=0.0)
+    ignite_chance_pct = fields.Float(load_default=0.0)
+    shock_chance_pct = fields.Float(load_default=0.0)
+    chill_chance_pct = fields.Float(load_default=0.0)
+    slow_chance_pct = fields.Float(load_default=0.0)
+
+    # Offense — DoT / ailment damage
+    bleed_damage_pct = fields.Float(load_default=0.0)
+    ignite_damage_pct = fields.Float(load_default=0.0)
+    poison_dot_damage_pct = fields.Float(load_default=0.0)
+
+    # Offense — minion
+    minion_health_pct = fields.Float(load_default=0.0)
+    minion_speed_pct = fields.Float(load_default=0.0)
+    minion_physical_damage_pct = fields.Float(load_default=0.0)
+    minion_spell_damage_pct = fields.Float(load_default=0.0)
+    minion_melee_damage_pct = fields.Float(load_default=0.0)
+
+    # Defense
     max_health = fields.Float(load_default=0.0)
+    health_pct = fields.Float(load_default=0.0)
+    hybrid_health = fields.Float(load_default=0.0)
     armour = fields.Float(load_default=0.0)
     dodge_rating = fields.Float(load_default=0.0)
+    block_chance = fields.Float(load_default=0.0)
+    block_effectiveness = fields.Float(load_default=0.0)
+    endurance = fields.Float(load_default=0.0)
+    endurance_threshold = fields.Float(load_default=0.0)
+    stun_avoidance = fields.Float(load_default=0.0)
+    crit_avoidance = fields.Float(load_default=0.0)
+    glancing_blow = fields.Float(load_default=0.0)
     ward = fields.Float(load_default=0.0)
     ward_retention_pct = fields.Float(load_default=0.0)
     ward_regen = fields.Float(load_default=0.0)
@@ -50,9 +116,25 @@ class StatsInputSchema(Schema):
     void_res = fields.Float(load_default=0.0)
     necrotic_res = fields.Float(load_default=0.0)
     poison_res = fields.Float(load_default=0.0)
+    physical_res = fields.Float(load_default=0.0)
+
+    # Resources / Sustain
     max_mana = fields.Float(load_default=0.0)
     mana_regen = fields.Float(load_default=0.0)
     health_regen = fields.Float(load_default=0.0)
+    leech = fields.Float(load_default=0.0)
+    health_on_kill = fields.Float(load_default=0.0)
+    mana_on_kill = fields.Float(load_default=0.0)
+    ward_on_kill = fields.Float(load_default=0.0)
+
+    # Utility
+    movement_speed = fields.Float(load_default=0.0)
+    cooldown_recovery_speed = fields.Float(load_default=0.0)
+    channelling_cost_reduction = fields.Float(load_default=0.0)
+    area_pct = fields.Float(load_default=0.0)
+    stun_duration_pct = fields.Float(load_default=0.0)
+
+    # Attributes
     strength = fields.Float(load_default=0.0)
     intelligence = fields.Float(load_default=0.0)
     dexterity = fields.Float(load_default=0.0)
