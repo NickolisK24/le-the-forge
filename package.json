@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "dotenv-safe": "^9.1.0"
+  }
+}

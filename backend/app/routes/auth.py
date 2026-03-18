@@ -1,0 +1,129 @@
+"""
+Auth Blueprint — /api/auth
+
+GET  /api/auth/discord              → Redirects to Discord OAuth page
+GET  /api/auth/discord/authorized   → OAuth callback; issues JWT; redirects to frontend
+GET  /api/auth/me                   → Returns current user profile
+POST /api/auth/logout               → Client-side token discard (stateless)
+"""
+
+from flask import Blueprint, redirect, current_app, request
+
+from app.utils.auth import (
+    upsert_user_from_discord,
+    issue_token,
+    login_required,
+    get_current_user,
+)
+from app.utils.responses import ok, unauthorized
+from app.schemas import UserSchema
+
+auth_bp = Blueprint("auth", __name__)
+user_schema = UserSchema()
+
+
+@auth_bp.get("/discord")
+def discord_login():
+    """
+    Initiates Discord OAuth2 PKCE flow.
+    In production, replace with actual Flask-Dance OAuth redirect.
+    """
+    client_id = current_app.config["DISCORD_CLIENT_ID"]
+    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+    scope = "identify"
+    url = (
+        f"https://discord.com/api/oauth2/authorize"
+        f"?client_id={client_id}"
+        f"&redirect_uri={redirect_uri}"
+        f"&response_type=code"
+        f"&scope={scope}"
+    )
+    return redirect(url)
+
+
+@auth_bp.get("/discord/authorized")
+def discord_authorized():
+    """
+    OAuth2 callback. Full flow:
+      1. Receive ?code= from Discord
+      2. POST to Discord token endpoint to exchange code → access token
+      3. GET /users/@me with that access token to fetch the Discord profile
+      4. Upsert our User row from the profile
+      5. Issue a signed JWT and redirect to the frontend with it
+    """
+    import requests as http
+
+    code = request.args.get("code")
+    if not code:
+        current_app.logger.warning("Discord OAuth callback received no code.")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_code")
+
+    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+
+    # ── 1. Exchange authorization code for access token ──────────────────
+    token_response = http.post(
+        "https://discord.com/api/oauth2/token",
+        data={
+            "client_id":     current_app.config["DISCORD_CLIENT_ID"],
+            "client_secret": current_app.config["DISCORD_CLIENT_SECRET"],
+            "grant_type":    "authorization_code",
+            "code":          code,
+            "redirect_uri":  redirect_uri,
+        },
+        headers={"Content-Type": "application/x-www-form-urlencoded"},
+        timeout=10,
+    )
+
+    if not token_response.ok:
+        current_app.logger.error(
+            "Discord token exchange failed: %s %s",
+            token_response.status_code,
+            token_response.text,
+        )
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=token_exchange")
+
+    discord_token = token_response.json().get("access_token")
+    if not discord_token:
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_access_token")
+
+    # ── 2. Fetch Discord user profile ─────────────────────────────────────
+    profile_response = http.get(
+        "https://discord.com/api/users/@me",
+        headers={"Authorization": f"Bearer {discord_token}"},
+        timeout=10,
+    )
+
+    if not profile_response.ok:
+        current_app.logger.error(
+            "Discord profile fetch failed: %s %s",
+            profile_response.status_code,
+            profile_response.text,
+        )
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=profile_fetch")
+
+    discord_user = profile_response.json()
+
+    # ── 3. Upsert user + issue JWT ────────────────────────────────────────
+    user = upsert_user_from_discord(discord_user)
+    jwt_token = issue_token(user)
+
+    current_app.logger.info("User %s authenticated via Discord.", user.username)
+    return redirect(
+        f"{current_app.config['FRONTEND_URL']}/auth/callback?token={jwt_token}"
+    )
+
+
+@auth_bp.get("/me")
+@login_required
+def me():
+    user = get_current_user()
+    if not user:
+        return unauthorized()
+    return ok(data=user_schema.dump(user))
+
+
+@auth_bp.post("/logout")
+def logout():
+    # JWT is stateless — client discards the token.
+    # If we add token revocation (Redis blocklist), it goes here.
+    return ok(data={"message": "Logged out."})
