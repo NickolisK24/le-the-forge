@@ -29,7 +29,7 @@ def discord_login():
     In production, replace with actual Flask-Dance OAuth redirect.
     """
     client_id = current_app.config["DISCORD_CLIENT_ID"]
-    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+    redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
     scope = "identify"
     url = (
         f"https://discord.com/api/oauth2/authorize"
@@ -58,7 +58,7 @@ def discord_authorized():
         current_app.logger.warning("Discord OAuth callback received no code.")
         return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_code")
 
-    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+    redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
 
     # ── 1. Exchange authorization code for access token ──────────────────
     token_response = http.post(
