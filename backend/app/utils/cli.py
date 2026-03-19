@@ -11,6 +11,7 @@ import click
 from flask import Flask
 
 from app import db
+from app.game_data.game_data_loader import get_all_affixes
 
 
 def register_commands(app: Flask) -> None:
@@ -19,7 +20,19 @@ def register_commands(app: Flask) -> None:
     def seed():
         """Seed reference data: item types, affix defs."""
         from app.models import ItemType, AffixDef
-        from app.routes.ref import AFFIX_SEED_DATA
+
+        affix_seed_data = [
+            {
+                "name": affix["name"],
+                "type": affix["category"],
+                "stat_key": affix["stat_key"],
+                "tiers": affix["tiers"],
+                "applicable": affix.get("applicable", []),
+                "class_requirement": affix.get("class_requirement"),
+                "tags": affix.get("tags", []),
+            }
+            for affix in get_all_affixes()
+        ]
 
         click.echo("Seeding item types...")
         item_types = [
@@ -45,7 +58,7 @@ def register_commands(app: Flask) -> None:
                 db.session.add(ItemType(name=name, category=category, base_implicit=implicit))
 
         click.echo("Seeding affix definitions...")
-        for a in AFFIX_SEED_DATA:
+        for a in affix_seed_data:
             if not AffixDef.query.filter_by(name=a["name"]).first():
                 db.session.add(AffixDef(
                     name=a["name"],
@@ -53,6 +66,8 @@ def register_commands(app: Flask) -> None:
                     stat_key=a["stat_key"],
                     tier_ranges=a["tiers"],
                     applicable_types=a["applicable"],
+                    class_requirement=a["class_requirement"],
+                    tags=a["tags"],
                 ))
 
         db.session.commit()

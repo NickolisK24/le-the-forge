@@ -2,13 +2,56 @@
 
 ## Prerequisites
 
-- Docker Desktop running (WSL2 backend on Windows)
-- `.env` at the project root with `DISCORD_CLIENT_ID` and `DISCORD_CLIENT_SECRET`
+- Docker Desktop running
+- Python 3.11+
+- Node.js 20+
+- `.env` at the project root
 
 ## Local Setup
 
+The native development flow maps Docker Postgres to `127.0.0.1:5433` so it does
+not conflict with a host Postgres instance already using `5432`.
+
 ```bash
-# Start everything
+# Copy local environment
+cp .env.example .env
+
+# Start only shared services in Docker
+docker compose up -d db redis
+
+# Backend setup
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db upgrade
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed-builds
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask run --port=5050 --debug
+```
+
+In a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Optional root helper scripts:
+
+```bash
+npm run dev:db
+npm run db:upgrade
+npm run db:seed
+npm run db:seed-builds
+npm run dev:backend
+npm run dev:frontend
+```
+
+Optional full-container workflow:
+
+```bash
 docker compose up --build
 
 # Seed the database (first run only)
@@ -18,20 +61,24 @@ docker compose exec -e PYTHONPATH=/app backend flask seed-builds
 ```
 
 Frontend: `http://localhost:5173`
-Backend API: `http://localhost:5000/api`
+Backend API: `http://localhost:5050/api`
 
 ## Running Tests
 
 All 40+ tests must pass before committing.
 
 ```bash
-docker compose exec -e PYTHONPATH=/app backend pytest tests/ -v
+cd backend
+source .venv/bin/activate
+PYTHONPATH=. pytest tests/ -v
 ```
 
 Run a single test file:
 
 ```bash
-docker compose exec -e PYTHONPATH=/app backend pytest tests/test_craft.py -v
+cd backend
+source .venv/bin/activate
+PYTHONPATH=. pytest tests/test_craft.py -v
 ```
 
 ## Branch Conventions
@@ -85,16 +132,21 @@ All new engines go in `backend/app/engines/` and must have corresponding tests i
 ## Common Commands
 
 ```bash
-# Restart backend after Python changes
-docker compose restart backend
+# Restart Docker services only
+docker compose restart db redis
+
+# Run backend locally
+npm run dev:backend
 
 # DB migration after model changes
-docker compose exec -e PYTHONPATH=/app backend flask db migrate -m "description"
-docker compose exec -e PYTHONPATH=/app backend flask db upgrade
+cd backend
+source .venv/bin/activate
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db migrate -m "description"
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db upgrade
 
 # Flush Redis (rate limit reset)
 docker compose exec redis redis-cli FLUSHALL
 
-# View backend logs
-docker compose logs backend --tail=50 -f
+# View Docker service logs
+docker compose logs db redis --tail=50 -f
 ```

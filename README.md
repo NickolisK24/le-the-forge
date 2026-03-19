@@ -152,6 +152,57 @@ the-forge/
 
 The Forge is currently being developed as a **local analytics tool** designed for theorycrafters and build optimizers.
 
+## Local Desktop Development
+
+Recommended local workflow:
+
+* backend runs locally on your machine
+* frontend runs locally on your machine
+* PostgreSQL and Redis run via Docker
+
+The default Docker Postgres port is `5433` so local development does not collide
+with a host Postgres instance already using `5432`.
+
+Quick start:
+
+```bash
+cp .env.example .env
+docker compose up -d db redis
+
+cd backend
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db upgrade
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed-builds
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask run --port=5050 --debug
+```
+
+In a second terminal:
+
+```bash
+cd frontend
+npm install
+npm run dev
+```
+
+Or use the root helper scripts after dependencies are installed:
+
+```bash
+npm run dev:db
+npm run db:upgrade
+npm run db:seed
+npm run db:seed-builds
+npm run dev:backend
+npm run dev:frontend
+```
+
+Local URLs:
+
+* frontend: `http://localhost:5173`
+* backend API: `http://localhost:5050/api`
+
 The long-term goal is to create a platform that enables players to:
 
 * analyze builds

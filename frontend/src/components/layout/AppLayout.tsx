@@ -8,6 +8,7 @@ const NAV_LINKS = [
 ];
 
 export default function AppLayout() {
+  const authUrl = `${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`;
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
@@ -102,7 +103,7 @@ export default function AppLayout() {
               </>
             ) : (
               <a
-                href="http://localhost:5000/api/auth/discord"
+                href={authUrl}
                 className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-4 py-2 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
               >
                 Sign In

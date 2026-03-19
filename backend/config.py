@@ -12,7 +12,7 @@ class Config:
     )
 
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", "postgresql://forge:forgedev@localhost:5432/the_forge"
+        "DATABASE_URL", "postgresql://forge:forgedev@127.0.0.1:5433/the_forge"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
