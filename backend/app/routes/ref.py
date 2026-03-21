@@ -132,7 +132,7 @@ def get_affixes():
         if category:
             data = [a for a in data if a["type"] == category]
         if item_slot:
-            data = [a for a in data if item_slot in a.get("applicable", [])]
+            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", a.get("applicable", []))]]
         if class_req:
             data = [a for a in data if a.get("class_requirement") in (None, class_req)]
         if tag:
@@ -141,21 +141,26 @@ def get_affixes():
 
     result = []
     for a in affixes:
-        if item_slot and item_slot not in (a.applicable_types or []):
+        if item_slot and item_slot.lower() not in [s.lower() for s in (a.applicable_types or [])]:
             continue
         if class_req and a.class_requirement and a.class_requirement != class_req:
             continue
         if tag and tag not in (a.tags or []):
             continue
+        # Convert tier_ranges dict {"1": [lo,hi]} to [{tier, min, max}] array
+        tier_ranges = a.tier_ranges or {}
+        tiers = sorted(
+            [{"tier": int(k), "min": v[0], "max": v[1]} for k, v in tier_ranges.items()],
+            key=lambda t: t["tier"],
+        )
         result.append({
-            "id": a.id,
+            "id": str(a.id),
             "name": a.name,
             "type": a.affix_type,
-            "stat_key": a.stat_key,
-            "tier_ranges": a.tier_ranges,
-            "applicable_types": a.applicable_types,
+            "applicable_to": a.applicable_types or [],
+            "tiers": tiers,
+            "tags": a.tags or [],
             "class_requirement": a.class_requirement,
-            "tags": a.tags,
         })
     return ok(data=result)
 
