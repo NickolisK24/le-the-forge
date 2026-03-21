@@ -23,6 +23,7 @@ from app.engines.craft_engine import (
     FP_COSTS,
 )
 from app.engines.fp_engine import roll_session_fp_cost
+from app.engines.item_engine import create_item
 from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialError
 
 import random
@@ -32,15 +33,31 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
     import secrets
     slug = secrets.token_urlsafe(8)
 
+    # Resolve FP via item_engine (supports random/manual/fixed modes)
+    fp_mode = data.get("fp_mode", "random")
+    manual_fp = data.get("manual_fp")
+    item_type = data["item_type"]
+
+    # If caller supplied an explicit forge_potential, treat as manual override
+    if "forge_potential" in data and fp_mode == "random":
+        fp_mode = "manual"
+        manual_fp = data["forge_potential"]
+
+    result = create_item(item_type.lower(), fp_mode=fp_mode, manual_fp=manual_fp)
+    if not result["success"]:
+        raise ValueError(result["reason"])
+
+    forge_potential = result["item"]["forge_potential"]
+
     session = CraftSession(
         user_id=user_id,
         slug=slug,
-        item_type=data["item_type"],
+        item_type=item_type,
         item_name=data.get("item_name"),
         item_level=data.get("item_level", 84),
         rarity=data.get("rarity", "Exalted"),
         instability=data.get("instability", 0),
-        forge_potential=data.get("forge_potential", 28),
+        forge_potential=forge_potential,
         affixes=data.get("affixes", []),
     )
     db.session.add(session)

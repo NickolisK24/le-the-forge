@@ -1,0 +1,110 @@
+{
+  "helmet": {
+    "min_fp": 18,
+    "max_fp": 28,
+    "implicit": null,
+    "armor": 45
+  },
+  "body": {
+    "min_fp": 22,
+    "max_fp": 34,
+    "implicit": null,
+    "armor": 120
+  },
+  "gloves": {
+    "min_fp": 16,
+    "max_fp": 24,
+    "implicit": null,
+    "armor": 30
+  },
+  "boots": {
+    "min_fp": 16,
+    "max_fp": 24,
+    "implicit": null,
+    "armor": 30
+  },
+  "belt": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "amulet": {
+    "min_fp": 12,
+    "max_fp": 20,
+    "implicit": null,
+    "armor": 0
+  },
+  "ring": {
+    "min_fp": 12,
+    "max_fp": 20,
+    "implicit": null,
+    "armor": 0
+  },
+  "relic": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "sword": {
+    "min_fp": 16,
+    "max_fp": 26,
+    "implicit": null,
+    "armor": 0
+  },
+  "axe": {
+    "min_fp": 16,
+    "max_fp": 26,
+    "implicit": null,
+    "armor": 0
+  },
+  "mace": {
+    "min_fp": 16,
+    "max_fp": 26,
+    "implicit": null,
+    "armor": 0
+  },
+  "dagger": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "sceptre": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "wand": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "staff": {
+    "min_fp": 18,
+    "max_fp": 28,
+    "implicit": null,
+    "armor": 0
+  },
+  "bow": {
+    "min_fp": 16,
+    "max_fp": 26,
+    "implicit": null,
+    "armor": 0
+  },
+  "quiver": {
+    "min_fp": 14,
+    "max_fp": 22,
+    "implicit": null,
+    "armor": 0
+  },
+  "shield": {
+    "min_fp": 16,
+    "max_fp": 26,
+    "implicit": null,
+    "armor": 60
+  }
+}

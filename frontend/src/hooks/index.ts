@@ -195,6 +195,14 @@ export function useItemTypes() {
   });
 }
 
+export function useBaseItems() {
+  return useQuery({
+    queryKey: ["ref", "base-items"],
+    queryFn: () => refApi.baseItems(),
+    staleTime: Infinity,
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Profile
 // ---------------------------------------------------------------------------

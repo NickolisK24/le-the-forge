@@ -261,6 +261,8 @@ export interface CraftSessionCreatePayload {
   rarity?: string;
   instability?: number;
   forge_potential?: number;
+  fp_mode?: "random" | "manual" | "fixed";
+  manual_fp?: number;
   affixes?: CraftAffix[];
 }
 

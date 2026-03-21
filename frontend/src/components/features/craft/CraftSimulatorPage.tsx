@@ -8,7 +8,7 @@ import {
   compareStrategies, instabilityColor, MAX_INSTABILITY, fpCost, RISK_COLORS,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
-import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes } from "@/hooks";
+import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems } from "@/hooks";
 import { useAuthStore } from "@/store";
 import type {
   CraftAffix, CraftAction, CraftOutcome, AffixDef,
@@ -918,12 +918,16 @@ export default function CraftSimulatorPage() {
   const store = useCraftStore();
   const createSession = useCreateCraftSession();
   const craftAction = useCraftAction();
+  const { data: baseItemsRes } = useBaseItems();
+  const baseItems = baseItemsRes?.data ?? {};
 
   const { data: sessionRes, isLoading: sessionLoading } = useCraftSession(slug ?? "");
   const { data: summaryRes } = useCraftSummary(slug ?? "");
 
   const [log, setLog] = useState<LogEntry[]>([]);
   const [copied, setCopied] = useState(false);
+  const [fpMode, setFpMode] = useState<"random" | "manual">("random");
+  const [manualFp, setManualFp] = useState<number | "">("");
 
   const isLive = Boolean(slug);
   const session = sessionRes?.data;
@@ -1065,7 +1069,9 @@ export default function CraftSimulatorPage() {
       item_level: store.itemLevel,
       rarity: store.rarity,
       instability: store.instability,
-      forge_potential: store.forgePotential,
+      // Pass fp_mode=manual + actual FP so backend uses item_engine correctly
+      fp_mode: "manual",
+      manual_fp: store.forgePotential,
       affixes: store.affixes,
     });
     if (res.data) {
@@ -1231,6 +1237,84 @@ export default function CraftSimulatorPage() {
                 />
               )}
             </div>
+
+            {/* FP range + mode selector (local only) */}
+            {!isLive && (() => {
+              const baseKey = store.itemType.toLowerCase();
+              const baseMeta = baseItems[baseKey];
+              const fpMin = baseMeta?.min_fp ?? 12;
+              const fpMax = baseMeta?.max_fp ?? 28;
+              const manualFpNum = typeof manualFp === "number" ? manualFp : null;
+              const manualValid = manualFpNum !== null && manualFpNum >= fpMin && manualFpNum <= fpMax;
+              return (
+                <div className="border-t border-forge-border pt-3 flex flex-col gap-2">
+                  {/* Range badge */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">FP Range</span>
+                    <span className="font-mono text-xs text-forge-muted">{fpMin}–{fpMax}</span>
+                  </div>
+
+                  {/* Mode toggle */}
+                  <div className="flex gap-1">
+                    {(["random", "manual"] as const).map((m) => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => setFpMode(m)}
+                        className={`flex-1 py-1 font-mono text-[10px] uppercase tracking-wider border rounded-sm transition-colors ${
+                          fpMode === m
+                            ? "border-forge-amber bg-forge-amber/10 text-forge-amber"
+                            : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                        }`}
+                      >
+                        {m}
+                      </button>
+                    ))}
+                  </div>
+
+                  {fpMode === "random" ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        const rolled = Math.floor(Math.random() * (fpMax - fpMin + 1)) + fpMin;
+                        store.setForgePotential(rolled);
+                      }}
+                    >
+                      🎲 Randomize FP
+                    </Button>
+                  ) : (
+                    <div>
+                      <input
+                        type="number"
+                        min={fpMin}
+                        max={fpMax}
+                        value={manualFp}
+                        placeholder={`${fpMin}–${fpMax}`}
+                        onChange={(e) => {
+                          const v = e.target.value === "" ? "" : Number(e.target.value);
+                          setManualFp(v);
+                          if (typeof v === "number" && v >= fpMin && v <= fpMax) {
+                            store.setForgePotential(v);
+                          }
+                        }}
+                        className={`w-full bg-forge-surface2 border font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber ${
+                          manualFp !== "" && !manualValid
+                            ? "border-forge-red text-forge-red"
+                            : "border-forge-border text-forge-text"
+                        }`}
+                      />
+                      {manualFp !== "" && !manualValid && (
+                        <p className="font-mono text-[10px] text-forge-red mt-1">
+                          Must be {fpMin}–{fpMax}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             <div className="flex justify-between items-center py-2 border-t border-forge-border">
               <span className="font-mono text-xs uppercase tracking-wider text-forge-dim">
