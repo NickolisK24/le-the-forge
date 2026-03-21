@@ -1,0 +1,238 @@
+[
+  {
+    "id": "ailment",
+    "description": "Ailment"
+  },
+  {
+    "id": "area",
+    "description": "Area"
+  },
+  {
+    "id": "armour",
+    "description": "Armour"
+  },
+  {
+    "id": "attack",
+    "description": "Attack"
+  },
+  {
+    "id": "attribute",
+    "description": "Attribute"
+  },
+  {
+    "id": "bleed",
+    "description": "Bleed"
+  },
+  {
+    "id": "block",
+    "description": "Block"
+  },
+  {
+    "id": "champion",
+    "description": "Champion"
+  },
+  {
+    "id": "channel",
+    "description": "Channel"
+  },
+  {
+    "id": "chill",
+    "description": "Chill"
+  },
+  {
+    "id": "class_specific",
+    "description": "Class Specific"
+  },
+  {
+    "id": "cold",
+    "description": "Cold"
+  },
+  {
+    "id": "cooldown",
+    "description": "Cooldown"
+  },
+  {
+    "id": "critical",
+    "description": "Critical"
+  },
+  {
+    "id": "damage",
+    "description": "Damage"
+  },
+  {
+    "id": "defense",
+    "description": "Defense"
+  },
+  {
+    "id": "dodge",
+    "description": "Dodge"
+  },
+  {
+    "id": "dot",
+    "description": "Dot"
+  },
+  {
+    "id": "elemental",
+    "description": "Elemental"
+  },
+  {
+    "id": "endurance",
+    "description": "Endurance"
+  },
+  {
+    "id": "experimental",
+    "description": "Experimental"
+  },
+  {
+    "id": "fire",
+    "description": "Fire"
+  },
+  {
+    "id": "flat",
+    "description": "Flat"
+  },
+  {
+    "id": "healing",
+    "description": "Healing"
+  },
+  {
+    "id": "health",
+    "description": "Health"
+  },
+  {
+    "id": "idol",
+    "description": "Idol"
+  },
+  {
+    "id": "ignite",
+    "description": "Ignite"
+  },
+  {
+    "id": "leech",
+    "description": "Leech"
+  },
+  {
+    "id": "lightning",
+    "description": "Lightning"
+  },
+  {
+    "id": "mana",
+    "description": "Mana"
+  },
+  {
+    "id": "melee",
+    "description": "Melee"
+  },
+  {
+    "id": "minion",
+    "description": "Minion"
+  },
+  {
+    "id": "movement",
+    "description": "Movement"
+  },
+  {
+    "id": "necrotic",
+    "description": "Necrotic"
+  },
+  {
+    "id": "offense",
+    "description": "Offense"
+  },
+  {
+    "id": "penetration",
+    "description": "Penetration"
+  },
+  {
+    "id": "personal",
+    "description": "Personal"
+  },
+  {
+    "id": "physical",
+    "description": "Physical"
+  },
+  {
+    "id": "poison",
+    "description": "Poison"
+  },
+  {
+    "id": "prefix",
+    "description": "Prefix"
+  },
+  {
+    "id": "ranged",
+    "description": "Ranged"
+  },
+  {
+    "id": "resistance",
+    "description": "Resistance"
+  },
+  {
+    "id": "resource",
+    "description": "Resource"
+  },
+  {
+    "id": "set",
+    "description": "Set"
+  },
+  {
+    "id": "shadow",
+    "description": "Shadow"
+  },
+  {
+    "id": "shock",
+    "description": "Shock"
+  },
+  {
+    "id": "shred",
+    "description": "Shred"
+  },
+  {
+    "id": "slow",
+    "description": "Slow"
+  },
+  {
+    "id": "speed",
+    "description": "Speed"
+  },
+  {
+    "id": "spell",
+    "description": "Spell"
+  },
+  {
+    "id": "stun",
+    "description": "Stun"
+  },
+  {
+    "id": "suffix",
+    "description": "Suffix"
+  },
+  {
+    "id": "sustain",
+    "description": "Sustain"
+  },
+  {
+    "id": "throwing",
+    "description": "Throwing"
+  },
+  {
+    "id": "totem",
+    "description": "Totem"
+  },
+  {
+    "id": "utility",
+    "description": "Utility"
+  },
+  {
+    "id": "void",
+    "description": "Void"
+  },
+  {
+    "id": "ward",
+    "description": "Ward"
+  },
+  {
+    "id": "weaver",
+    "description": "Weaver"
+  }
+]
