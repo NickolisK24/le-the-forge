@@ -51,9 +51,23 @@ export function useVote() {
   return useMutation({
     mutationFn: ({ slug, direction }: { slug: string; direction: 1 | -1 }) =>
       buildsApi.vote(slug, direction),
-    onSuccess: (_data, { slug }) => {
+    onSuccess: (data, { slug }) => {
+      // Update cache directly — do NOT invalidate detail (would re-fetch and increment views)
+      if (data.data) {
+        qc.setQueryData(qk.builds.detail(slug), (old: any) => {
+          if (!old?.data) return old;
+          return {
+            ...old,
+            data: {
+              ...old.data,
+              vote_count: data.data!.vote_count,
+              user_vote: data.data!.user_vote,
+              tier: data.data!.tier,
+            },
+          };
+        });
+      }
       qc.invalidateQueries({ queryKey: qk.builds.all });
-      qc.invalidateQueries({ queryKey: qk.builds.detail(slug) });
     },
   });
 }

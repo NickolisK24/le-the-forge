@@ -22,10 +22,13 @@ function FlagToggle({
   label, checked, onChange,
 }: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
   return (
-    <label className="flex items-center gap-2 cursor-pointer select-none">
+    <button
+      type="button"
+      onClick={() => onChange(!checked)}
+      className="flex items-center gap-2 cursor-pointer select-none"
+    >
       <div
-        onClick={() => onChange(!checked)}
-        className={`w-4 h-4 rounded-sm border flex-shrink-0 flex items-center justify-center transition-colors cursor-pointer ${
+        className={`w-4 h-4 rounded-sm border flex-shrink-0 flex items-center justify-center transition-colors ${
           checked
             ? "bg-forge-amber border-forge-amber"
             : "bg-forge-surface2 border-forge-border"
@@ -34,7 +37,7 @@ function FlagToggle({
         {checked && <span className="text-forge-bg text-[10px] font-bold">✓</span>}
       </div>
       <span className="font-body text-sm text-forge-text">{label}</span>
-    </label>
+    </button>
   );
 }
 
