@@ -92,7 +92,7 @@ def get_build(build_id_or_slug: str, increment_views: bool = False) -> Optional[
 
 def update_build(build: Build, data: dict) -> Build:
     updatable = [
-        "name", "description", "passive_tree", "gear",
+        "name", "description", "level", "passive_tree", "gear",
         "is_ssf", "is_hc", "is_ladder_viable", "is_budget",
         "patch_version", "is_public",
     ]

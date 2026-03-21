@@ -7,7 +7,7 @@ Convention:
   - <Model>UpdateSchema → input validation for PATCH (all fields optional)
 """
 
-from marshmallow import Schema, fields, validate, validates, ValidationError, post_load
+from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, EXCLUDE
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 from app import db
@@ -111,8 +111,12 @@ class BuildCreateSchema(Schema):
 
 
 class BuildUpdateSchema(Schema):
+    class Meta:
+        unknown = EXCLUDE
+
     name = fields.Str(validate=validate.Length(min=3, max=120))
     description = fields.Str(validate=validate.Length(max=2000))
+    level = fields.Int(validate=validate.Range(min=1, max=100))
     passive_tree = fields.List(fields.Int())
     gear = fields.List(fields.Dict())
     skills = fields.List(fields.Dict())
