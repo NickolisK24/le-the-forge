@@ -7,6 +7,8 @@ import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
+import SkillTreeGraph from "./SkillTreeGraph";
+import { getSkillTree } from "@/data/skillTrees";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
 const MAX_SKILLS = 5;
@@ -49,11 +51,12 @@ interface DraftSkill {
   skill_name: string;
   slot: number;
   points_allocated: number;
+  spec_tree: number[];
 }
 
 function SkillRow({
-  skill, onRemove, onPoints,
-}: { skill: DraftSkill; onRemove: () => void; onPoints: (p: number) => void }) {
+  skill, onRemove, onPoints, onOpenTree,
+}: { skill: DraftSkill; onRemove: () => void; onPoints: (p: number) => void; onOpenTree: () => void }) {
   return (
     <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
       <span className="flex-1 font-body text-sm text-forge-text truncate">{skill.skill_name}</span>
@@ -68,10 +71,67 @@ function SkillRow({
         title={`Skill level (0–${MAX_SKILL_LEVEL}; base cap 20, gear can push higher)`}
       />
       <button
+        onClick={onOpenTree}
+        className="text-forge-dim hover:text-forge-amber transition-colors font-mono text-xs leading-none"
+        title="View skill tree"
+      >🌿</button>
+      <button
         onClick={onRemove}
         className="text-forge-dim hover:text-red-400 transition-colors font-mono text-xs leading-none"
         title="Remove skill"
       >✕</button>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Skill tree modal
+// ---------------------------------------------------------------------------
+interface AllocMap { [nodeId: number]: number }
+
+function SkillTreeModal({
+  skillName, allocated, onAllocate, onClose, readOnly,
+}: {
+  skillName: string;
+  allocated: AllocMap;
+  onAllocate: (nodeId: number, points: number) => void;
+  onClose: () => void;
+  readOnly?: boolean;
+}) {
+  const nodes = getSkillTree(skillName);
+  const totalPoints = Object.values(allocated).reduce((a, b) => a + b, 0);
+
+  return (
+    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={onClose}>
+      <div
+        className="relative w-full max-w-2xl rounded border border-forge-border bg-forge-bg shadow-2xl"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <div className="flex items-center justify-between border-b border-forge-border px-4 py-3">
+          <div>
+            <span className="font-display text-lg text-forge-amber">{skillName}</span>
+            <span className="ml-3 font-mono text-xs text-forge-dim">
+              {totalPoints} node{totalPoints !== 1 ? "s" : ""} allocated
+            </span>
+          </div>
+          <button
+            onClick={onClose}
+            className="text-forge-dim hover:text-forge-text font-mono text-sm transition-colors"
+          >✕ Close</button>
+        </div>
+        {nodes.length ? (
+          <SkillTreeGraph nodes={nodes} allocated={allocated} onAllocate={onAllocate} readOnly={readOnly} />
+        ) : (
+          <div className="flex items-center justify-center py-16 font-mono text-sm text-forge-dim">
+            No tree data for this skill yet.
+          </div>
+        )}
+        {!readOnly && (
+          <div className="border-t border-forge-border px-4 py-2 text-right">
+            <Button variant="outline" size="sm" onClick={onClose}>Done</Button>
+          </div>
+        )}
+      </div>
     </div>
   );
 }
@@ -99,8 +159,12 @@ function BuildSummary({ build }: { build: Build }) {
       skill_name: s.skill_name,
       slot: s.slot,
       points_allocated: s.points_allocated,
+      spec_tree: s.spec_tree ?? [],
     }))
   );
+
+  // Skill tree modal state: { skillIndex, readOnly }
+  const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
 
   // Class/mastery are fixed at creation — backend doesn't allow changing them
   const characterClass = build.character_class;
@@ -127,7 +191,7 @@ function BuildSummary({ build }: { build: Build }) {
 
   function addSkill(skillName: string) {
     if (draftSkills.length >= MAX_SKILLS) { toast.error(`Max ${MAX_SKILLS} skills`); return; }
-    setDraftSkills((prev) => [...prev, { skill_name: skillName, slot: prev.length + 1, points_allocated: 20 }]);
+    setDraftSkills((prev) => [...prev, { skill_name: skillName, slot: prev.length + 1, points_allocated: 20, spec_tree: [] }]);
   }
 
   function removeSkill(index: number) {
@@ -136,6 +200,23 @@ function BuildSummary({ build }: { build: Build }) {
 
   function setPoints(index: number, points: number) {
     setDraftSkills((prev) => prev.map((s, i) => i === index ? { ...s, points_allocated: points } : s));
+  }
+
+  function setTreeAlloc(skillIndex: number, nodeId: number, points: number) {
+    setDraftSkills((prev) => prev.map((s, i) => {
+      if (i !== skillIndex) return s;
+      const tree = s.spec_tree.filter((id) => id !== nodeId);
+      const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
+      return { ...s, spec_tree: updated };
+    }));
+  }
+
+  function getTreeAllocMap(skillIndex: number): AllocMap {
+    const skill = draftSkills[skillIndex];
+    if (!skill) return {};
+    const map: AllocMap = {};
+    for (const id of skill.spec_tree) map[id] = (map[id] ?? 0) + 1;
+    return map;
   }
 
   function cancelEdit() {
@@ -147,7 +228,7 @@ function BuildSummary({ build }: { build: Build }) {
     setIsHc(build.is_hc);
     setIsLadder(build.is_ladder_viable);
     setIsBudget(build.is_budget);
-    setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated })));
+    setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree ?? [] })));
     setEditing(false);
   }
 
@@ -163,7 +244,7 @@ function BuildSummary({ build }: { build: Build }) {
         is_hc: isHc,
         is_ladder_viable: isLadder,
         is_budget: isBudget,
-        skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated })) as Partial<BuildSkill>[],
+        skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree })) as Partial<BuildSkill>[],
       },
     });
     if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
@@ -242,19 +323,48 @@ function BuildSummary({ build }: { build: Build }) {
         <Panel title="Skills" className="lg:col-span-2">
           {build.skills.length ? (
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {build.skills.map((skill, i) => (
-                <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4">
-                  <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
-                  <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
-                    Slot {i + 1} · {skill.points_allocated} pts
+              {build.skills.map((skill, i) => {
+                const nodes = getSkillTree(skill.skill_name);
+                const allocMap: AllocMap = {};
+                for (const id of (skill.spec_tree ?? [])) allocMap[id] = (allocMap[id] ?? 0) + 1;
+                const totalNodes = Object.values(allocMap).reduce((a, b) => a + b, 0);
+                return (
+                  <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4 flex flex-col gap-3">
+                    <div>
+                      <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
+                      <div className="mt-1 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
+                        Slot {i + 1} · {skill.points_allocated} pts
+                        {totalNodes > 0 && <span className="ml-2 text-forge-amber">· {totalNodes} tree nodes</span>}
+                      </div>
+                    </div>
+                    {nodes.length > 0 && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        onClick={() => setTreeModal({ skillIndex: i, readOnly: true })}
+                      >
+                        🌿 View Skill Tree
+                      </Button>
+                    )}
                   </div>
-                </div>
-              ))}
+                );
+              })}
             </div>
           ) : (
             <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
           )}
         </Panel>
+
+        {/* Skill tree modal (view-only) */}
+        {treeModal !== null && (
+          <SkillTreeModal
+            skillName={build.skills[treeModal.skillIndex]?.skill_name ?? ""}
+            allocated={getTreeAllocMap(treeModal.skillIndex)}
+            onAllocate={() => {}}
+            onClose={() => setTreeModal(null)}
+            readOnly
+          />
+        )}
       </div>
     );
   }
@@ -309,7 +419,7 @@ function BuildSummary({ build }: { build: Build }) {
             {draftSkills.length > 0 && (
               <div className="flex flex-col gap-2">
                 {draftSkills.map((skill, i) => (
-                  <SkillRow key={skill.skill_name} skill={skill} onRemove={() => removeSkill(i)} onPoints={(p) => setPoints(i, p)} />
+                  <SkillRow key={skill.skill_name} skill={skill} onRemove={() => removeSkill(i)} onPoints={(p) => setPoints(i, p)} onOpenTree={() => setTreeModal({ skillIndex: i, readOnly: false })} />
                 ))}
               </div>
             )}
@@ -341,6 +451,17 @@ function BuildSummary({ build }: { build: Build }) {
           </div>
         </Panel>
       </div>
+
+      {/* Skill tree modal (edit mode) */}
+      {treeModal !== null && (
+        <SkillTreeModal
+          skillName={draftSkills[treeModal.skillIndex]?.skill_name ?? ""}
+          allocated={getTreeAllocMap(treeModal.skillIndex)}
+          onAllocate={(nodeId, pts) => setTreeAlloc(treeModal.skillIndex, nodeId, pts)}
+          onClose={() => setTreeModal(null)}
+          readOnly={treeModal.readOnly}
+        />
+      )}
     </div>
   );
 }
@@ -366,6 +487,7 @@ export default function BuildPlannerPage() {
   const [isLadder, setIsLadder] = useState(false);
   const [isBudget, setIsBudget] = useState(false);
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
+  const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
 
   const masteryOptions = useMemo(() => MASTERIES[characterClass], [characterClass]);
 
@@ -403,7 +525,7 @@ export default function BuildPlannerPage() {
     }
     setDraftSkills((prev) => [
       ...prev,
-      { skill_name: skillName, slot: prev.length + 1, points_allocated: 20 },
+      { skill_name: skillName, slot: prev.length + 1, points_allocated: 20, spec_tree: [] },
     ]);
   }
 
@@ -419,6 +541,23 @@ export default function BuildPlannerPage() {
     setDraftSkills((prev) =>
       prev.map((s, i) => (i === index ? { ...s, points_allocated: points } : s))
     );
+  }
+
+  function setTreeAlloc(skillIndex: number, nodeId: number, points: number) {
+    setDraftSkills((prev) => prev.map((s, i) => {
+      if (i !== skillIndex) return s;
+      const tree = s.spec_tree.filter((id) => id !== nodeId);
+      const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
+      return { ...s, spec_tree: updated };
+    }));
+  }
+
+  function getTreeAllocMap(skillIndex: number): AllocMap {
+    const skill = draftSkills[skillIndex];
+    if (!skill) return {};
+    const map: AllocMap = {};
+    for (const id of skill.spec_tree) map[id] = (map[id] ?? 0) + 1;
+    return map;
   }
 
   async function handleSave() {
@@ -438,6 +577,7 @@ export default function BuildPlannerPage() {
         skill_name: s.skill_name,
         slot: s.slot,
         points_allocated: s.points_allocated,
+        spec_tree: s.spec_tree,
       })) as Partial<BuildSkill>[],
     };
 
@@ -563,6 +703,7 @@ export default function BuildPlannerPage() {
                     skill={skill}
                     onRemove={() => removeSkill(i)}
                     onPoints={(p) => setPoints(i, p)}
+                    onOpenTree={() => setTreeModal({ skillIndex: i, readOnly: false })}
                   />
                 ))}
               </div>
@@ -663,6 +804,17 @@ export default function BuildPlannerPage() {
           </div>
         </Panel>
       </div>
+
+      {/* Skill tree modal (create mode) */}
+      {treeModal !== null && (
+        <SkillTreeModal
+          skillName={draftSkills[treeModal.skillIndex]?.skill_name ?? ""}
+          allocated={getTreeAllocMap(treeModal.skillIndex)}
+          onAllocate={(nodeId, pts) => setTreeAlloc(treeModal.skillIndex, nodeId, pts)}
+          onClose={() => setTreeModal(null)}
+          readOnly={false}
+        />
+      )}
     </div>
   );
 }
