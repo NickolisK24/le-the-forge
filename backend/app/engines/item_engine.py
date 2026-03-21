@@ -84,13 +84,13 @@ def create_item(
         return {"success": False, "reason": error}
 
     item = {
-        "base": base_type,
+        "item_type": base_type,
         "rarity": rarity,
         "item_level": item_level,
         "prefixes": [],
         "suffixes": [],
-        "sealed": None,
-        "forge_potential": fp,
+        "sealed_affix": None,
+        "forging_potential": fp,
         "history": [],
         "implicit": base.get("implicit"),
         "armor": base.get("armor", 0),
