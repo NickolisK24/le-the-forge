@@ -9,7 +9,7 @@ assembling the session summary.
 from typing import Optional
 
 from app import db
-from app.models import CraftSession, CraftStep
+from app.models import CraftSession, CraftStep, AffixDef
 from app.engines.craft_engine import (
     fracture_risk,
     fracture_risk_pct,
@@ -129,7 +129,18 @@ def _apply_affix_mutation(session: CraftSession, action: str,
     affixes = session.affixes or []
 
     if action == "add_affix" and affix_name:
-        affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False})
+        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix")
+        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix")
+        # Determine type from affix DB if available
+        affix_def = AffixDef.query.filter_by(name=affix_name).first()
+        affix_type = affix_def.affix_type if affix_def else None
+        if affix_type == "prefix" and prefix_count >= 2:
+            raise ValueError("Prefix slots full (max 2 prefixes).")
+        if affix_type == "suffix" and suffix_count >= 2:
+            raise ValueError("Suffix slots full (max 2 suffixes).")
+        if len(affixes) >= 4:
+            raise ValueError("Item already has 4 affixes.")
+        affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
 
     elif action == "upgrade_affix" and affix_name:
         for a in affixes:
@@ -138,6 +149,9 @@ def _apply_affix_mutation(session: CraftSession, action: str,
                 break
 
     elif action == "seal_affix" and affix_name:
+        sealed_count = sum(1 for a in affixes if a.get("sealed"))
+        if sealed_count >= 1:
+            raise ValueError("Only 1 affix can be sealed at a time.")
         for a in affixes:
             if a["name"] == affix_name:
                 a["sealed"] = True

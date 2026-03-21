@@ -541,7 +541,7 @@ interface ActionPanelProps {
   isLive: boolean;
   isPending: boolean;
   itemType: string;
-  onAction: (action: CraftAction, affixName?: string, targetTier?: number) => void;
+  onAction: (action: CraftAction, affixName?: string, targetTier?: number, affixType?: "prefix" | "suffix") => void;
 }
 
 function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, onAction }: ActionPanelProps) {
@@ -553,6 +553,11 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
   // Fetch real affixes from the backend, filtered by item slot
   const { data: affixRes } = useAffixes({ slot: itemType.toLowerCase() });
   const availableAffixes: AffixDef[] = affixRes?.data ?? [];
+
+  // Slot counts
+  const prefixCount = affixes.filter((a) => a.type === "prefix").length;
+  const suffixCount = affixes.filter((a) => a.type === "suffix").length;
+  const sealedCount = affixes.filter((a) => a.sealed).length;
 
   // The affix name selected for add_affix — defaults to first available
   const [newAffixName, setNewAffixName] = useState("");
@@ -580,7 +585,8 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
 
   function handleSubmit() {
     if (action === "add_affix") {
-      onAction(action, newAffixName, targetTier);
+      const def = availableAffixes.find((a) => a.name === newAffixName);
+      onAction(action, newAffixName, targetTier, def?.type);
     } else {
       onAction(action, targetAffix);
     }
@@ -612,24 +618,44 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
 
         {action === "add_affix" ? (
           <div className="flex flex-col gap-3">
+            {/* Slot capacity indicator */}
+            <div className="grid grid-cols-2 gap-2 rounded-sm border border-forge-border bg-forge-bg px-3 py-2">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Prefix</div>
+                <div className={`font-display text-lg ${prefixCount >= 2 ? "text-red-400" : "text-forge-text"}`}>
+                  {prefixCount} <span className="text-forge-dim text-sm">/ 2</span>
+                </div>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Suffix</div>
+                <div className={`font-display text-lg ${suffixCount >= 2 ? "text-red-400" : "text-forge-text"}`}>
+                  {suffixCount} <span className="text-forge-dim text-sm">/ 2</span>
+                </div>
+              </div>
+            </div>
+
             {/* Filter bar */}
             <div className="flex items-center gap-2">
               <SectionLabel>Add Affix</SectionLabel>
               <div className="ml-auto flex gap-1">
-                {(["", "prefix", "suffix"] as const).map((f) => (
-                  <button
-                    key={f || "all"}
-                    type="button"
-                    onClick={() => setAffixFilter(f)}
-                    className={`px-2 py-0.5 rounded-sm font-mono text-[10px] uppercase border transition-colors ${
-                      affixFilter === f
-                        ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
-                        : "border-forge-border text-forge-dim hover:border-forge-amber/50"
-                    }`}
-                  >
-                    {f || "all"}
-                  </button>
-                ))}
+                {(["", "prefix", "suffix"] as const).map((f) => {
+                  const full = f === "prefix" ? prefixCount >= 2 : f === "suffix" ? suffixCount >= 2 : false;
+                  return (
+                    <button
+                      key={f || "all"}
+                      type="button"
+                      onClick={() => setAffixFilter(f)}
+                      disabled={full}
+                      className={`px-2 py-0.5 rounded-sm font-mono text-[10px] uppercase border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                        affixFilter === f
+                          ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
+                          : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                      }`}
+                    >
+                      {f || "all"}
+                    </button>
+                  );
+                })}
               </div>
             </div>
 
@@ -642,23 +668,29 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
                   {availableAffixes
                     .filter((a) => !affixFilter || a.type === affixFilter)
                     .filter((a) => !affixes.find((ex) => ex.name === a.name))
-                    .map((a) => (
-                      <button
-                        key={a.id}
-                        type="button"
-                        onClick={() => setNewAffixName(a.name)}
-                        className={`flex items-center justify-between w-full px-2 py-1 rounded-sm text-left transition-colors ${
-                          newAffixName === a.name
-                            ? "bg-forge-amber/20 border border-forge-amber/40 text-forge-amber"
-                            : "hover:bg-forge-surface2 text-forge-text border border-transparent"
-                        }`}
-                      >
-                        <span className="font-body text-xs">{a.name}</span>
-                        <span className={`font-mono text-[9px] uppercase ${a.type === "prefix" ? "text-blue-400" : "text-purple-400"}`}>
-                          {a.type}
-                        </span>
-                      </button>
-                    ))}
+                    .map((a) => {
+                      const slotFull = (a.type === "prefix" && prefixCount >= 2) || (a.type === "suffix" && suffixCount >= 2);
+                      return (
+                        <button
+                          key={a.id}
+                          type="button"
+                          disabled={slotFull}
+                          onClick={() => !slotFull && setNewAffixName(a.name)}
+                          className={`flex items-center justify-between w-full px-2 py-1 rounded-sm text-left transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                            newAffixName === a.name
+                              ? "bg-forge-amber/20 border border-forge-amber/40 text-forge-amber"
+                              : slotFull
+                              ? "border border-transparent text-forge-dim"
+                              : "hover:bg-forge-surface2 text-forge-text border border-transparent"
+                          }`}
+                        >
+                          <span className="font-body text-xs">{a.name}</span>
+                          <span className={`font-mono text-[9px] uppercase ${a.type === "prefix" ? "text-blue-400" : "text-purple-400"}`}>
+                            {slotFull ? "full" : a.type}
+                          </span>
+                        </button>
+                      );
+                    })}
                 </div>
               )}
             </div>
@@ -922,7 +954,7 @@ export default function CraftSimulatorPage() {
     setLog((prev) => [{ ts, ...entry }, ...prev.slice(0, 14)]);
   }
 
-  async function handleAction(action: CraftAction, affixName?: string, targetTier?: number) {
+  async function handleAction(action: CraftAction, affixName?: string, targetTier?: number, affixType?: "prefix" | "suffix") {
     if (isLive && session) {
       const res = await craftAction.mutateAsync({ slug: slug!, action, affixName, targetTier });
       if (res.data) {
@@ -938,6 +970,24 @@ export default function CraftSimulatorPage() {
         addLog({ message: res.errors[0].message, outcome: "info" });
       }
     } else {
+      // Enforce affix slot limits locally before simulating
+      if (action === "add_affix" && affixName) {
+        const prefixCount = store.affixes.filter((a) => a.type === "prefix").length;
+        const suffixCount = store.affixes.filter((a) => a.type === "suffix").length;
+        if (affixType === "prefix" && prefixCount >= 2) {
+          addLog({ message: "Prefix slots full (max 2 prefixes).", outcome: "info" }); return;
+        }
+        if (affixType === "suffix" && suffixCount >= 2) {
+          addLog({ message: "Suffix slots full (max 2 suffixes).", outcome: "info" }); return;
+        }
+      }
+      if (action === "seal_affix") {
+        const sealedCount = store.affixes.filter((a) => a.sealed).length;
+        if (sealedCount >= 1) {
+          addLog({ message: "Only 1 affix can be sealed at a time.", outcome: "info" }); return;
+        }
+      }
+
       const result = localSimulate(
         action, affixName, targetTier,
         store.instability, store.forgePotential, store.affixes, store.isFractured,
@@ -948,9 +998,14 @@ export default function CraftSimulatorPage() {
         return;
       }
 
+      // Attach type to newly added affix
+      const newAffixes = result.newAffixes.map((a) =>
+        a.name === affixName && !a.type ? { ...a, type: affixType } : a
+      );
+
       store.setInstability(result.newInstability);
       store.setForgePotential(result.newFp);
-      store.setAffixes(result.newAffixes);
+      store.setAffixes(newAffixes);
       if (result.outcome === "fracture") store.setFractured(true);
 
       addLog({
