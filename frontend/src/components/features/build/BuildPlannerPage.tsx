@@ -242,11 +242,11 @@ function BuildSummary({ build }: { build: Build }) {
         <Panel title="Skills" className="lg:col-span-2">
           {build.skills.length ? (
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {build.skills.map((skill) => (
+              {build.skills.map((skill, i) => (
                 <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4">
                   <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
                   <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
-                    Slot {skill.slot} · {skill.points_allocated} pts
+                    Slot {i + 1} · {skill.points_allocated} pts
                   </div>
                 </div>
               ))}
