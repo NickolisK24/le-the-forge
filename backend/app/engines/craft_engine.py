@@ -3,11 +3,21 @@ Craft Engine — pure crafting math extracted from craft_service.py.
 
 All functions here are stateless and have no DB or HTTP dependencies.
 craft_service.py imports from here for its calculations.
+
+FP costs and instability gains are loaded from crafting_rules.json via fp_engine.
 """
 
 import copy
 import random
 from typing import Optional
+
+from app.engines.fp_engine import (
+    expected_fp_cost,
+    fp_cost_range,
+    roll_fp_cost,
+    roll_instability_gain,
+    load_fp_rules,
+)
 
 
 # ---------------------------------------------------------------------------
@@ -15,23 +25,24 @@ from typing import Optional
 # ---------------------------------------------------------------------------
 
 MAX_INSTABILITY = 80
-FP_COSTS = {
-    "add_affix": 4,
-    "upgrade_affix": 5,
-    "seal_affix": 8,
-    "unseal_affix": 2,
-    "remove_affix": 3,
-}
-INSTABILITY_GAINS = {
-    "add_affix": (3, 7),
-    "upgrade_affix": (4, 10),
-    "seal_affix": (0, 0),
-    "unseal_affix": (1, 3),
-    "remove_affix": (2, 5),
-}
 PERFECT_ROLL_THRESHOLD = 95
 SEAL_RISK_THRESHOLD = 0.20
 TARGET_TIER = 4
+
+# Derived from rules file — used for planning and display only.
+# Actual per-action costs are rolled randomly via fp_engine.roll_fp_cost().
+def _build_fp_cost_table() -> dict:
+    rules = load_fp_rules()
+    return {k: int((v["min"] + v["max"]) / 2) for k, v in rules["fp_costs"].items()}
+
+# Keep FP_COSTS as expected (mean) values for backward-compat imports
+FP_COSTS = _build_fp_cost_table()
+
+
+def fp_cost(action: str) -> int:
+    """Expected FP cost for an action (mean of range). Used for path planning."""
+    return FP_COSTS.get(action, 4)
+
 
 
 # ---------------------------------------------------------------------------
@@ -57,17 +68,18 @@ def fracture_risk_pct(instability: int, sealed_count: int = 0) -> float:
 
 def instability_gain(action: str, roll: Optional[float] = None) -> int:
     """Returns instability gained for an action."""
-    lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
-    if lo == hi:
-        return lo
-    if roll and roll > PERFECT_ROLL_THRESHOLD:
-        return lo
-    return random.randint(lo, hi)
+    is_perfect = bool(roll and roll > PERFECT_ROLL_THRESHOLD)
+    return roll_instability_gain(action, is_perfect=is_perfect)
 
 
 def expected_instability_gain(action: str) -> float:
     """Expected (mean) instability gain accounting for 5% perfect rolls."""
     lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
+    if lo == hi:
+        return float(lo)
+    rules = load_fp_rules()
+    gains = rules["instability_gains"].get(action, {"min": 3, "max": 8})
+    lo, hi = gains["min"], gains["max"]
     if lo == hi:
         return float(lo)
     perfect_prob = 0.05

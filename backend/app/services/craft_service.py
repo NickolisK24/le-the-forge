@@ -22,6 +22,7 @@ from app.engines.craft_engine import (
     PERFECT_ROLL_THRESHOLD,
     FP_COSTS,
 )
+from app.engines.fp_engine import roll_session_fp_cost
 from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialError
 
 import random
@@ -56,7 +57,7 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     if session.is_fractured:
         raise ItemFracturedError()
 
-    cost = fp_cost(action)
+    cost = roll_session_fp_cost(action)
     if session.forge_potential < cost:
         raise InsufficientForgePotentialError(needed=cost, available=session.forge_potential)
 

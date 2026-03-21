@@ -40,10 +40,25 @@ const ACTION_LABELS: Record<CraftAction, string> = {
   remove_affix:  "Remove Affix",
 };
 
-const ACTION_FP: Record<CraftAction, number> = {
-  add_affix: 4, upgrade_affix: 5, seal_affix: 8,
-  unseal_affix: 2, remove_affix: 3,
+// FP cost ranges loaded from crafting_rules.json (mirrored here for local sim).
+// These match /data/crafting_rules.json exactly — update both if costs change.
+const FP_COST_RANGES: Record<CraftAction, [number, number]> = {
+  add_affix:     [2, 6],
+  upgrade_affix: [1, 5],
+  seal_affix:    [4, 12],
+  unseal_affix:  [1, 3],
+  remove_affix:  [2, 8],
 };
+
+function rollFpCost(action: CraftAction): number {
+  const [lo, hi] = FP_COST_RANGES[action];
+  return Math.floor(Math.random() * (hi - lo + 1)) + lo;
+}
+
+// Expected (mean) FP cost — used for UI display
+const ACTION_FP: Record<CraftAction, number> = Object.fromEntries(
+  Object.entries(FP_COST_RANGES).map(([k, [lo, hi]]) => [k, Math.round((lo + hi) / 2)])
+) as Record<CraftAction, number>;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -85,10 +100,11 @@ function localSimulate(
     newInstability: instability, newFp: fp, newAffixes: affixes,
   };
 
-  const cost = ACTION_FP[action];
+  // Roll random FP cost (mirrors backend fp_engine.roll_fp_cost)
+  const cost = rollFpCost(action);
   if (fp < cost) return {
     outcome: "error",
-    message: `Not enough Forge Potential. Need ${cost} FP, have ${fp}.`,
+    message: `Not enough Forge Potential. Rolled ${cost} FP cost, have ${fp}.`,
     roll: 0, riskPct: 0,
     newInstability: instability, newFp: fp, newAffixes: affixes,
   };
@@ -109,6 +125,7 @@ function localSimulate(
     instGain = Math.floor(Math.random() * 3) + 1;
   } else {
     outcome = "success";
+    // Instability gains mirror crafting_rules.json instability_gains
     const gainRanges: Record<CraftAction, [number, number]> = {
       add_affix: [3, 7], upgrade_affix: [4, 10], seal_affix: [0, 0],
       unseal_affix: [1, 3], remove_affix: [2, 5],
@@ -573,8 +590,9 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
     }
   }, [affixes]);
 
-  const cost = ACTION_FP[action];
-  const canAct = !isFractured && fp >= cost && !isPending;
+  // canAct: enabled if fp covers at least the minimum possible roll
+  const [minCost] = FP_COST_RANGES[action];
+  const canAct = !isFractured && fp >= minCost && !isPending;
 
   const needsExistingAffix = action !== "add_affix";
   const affixOptions = action === "seal_affix"
@@ -610,7 +628,7 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
                 )}
               >
                 <span className="block">{ACTION_LABELS[a]}</span>
-                <span className="text-forge-dim font-mono text-[11px]">{ACTION_FP[a]} FP</span>
+                <span className="text-forge-dim font-mono text-[11px]">{FP_COST_RANGES[a][0]}–{FP_COST_RANGES[a][1]} FP</span>
               </button>
             ))}
           </div>
@@ -782,9 +800,9 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
         )}
 
         <div className="flex justify-between font-mono text-[11px] uppercase tracking-wider">
-          <span className="text-forge-dim">FP Required</span>
-          <span className={fp >= cost ? "text-forge-green" : "text-forge-red"}>
-            {cost} / {fp} available
+          <span className="text-forge-dim">FP Cost Range</span>
+          <span className={fp >= FP_COST_RANGES[action][0] ? "text-forge-green" : "text-forge-red"}>
+            {FP_COST_RANGES[action][0]}–{FP_COST_RANGES[action][1]} / {fp} available
           </span>
         </div>
 
