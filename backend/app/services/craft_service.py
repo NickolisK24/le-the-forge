@@ -129,17 +129,18 @@ def _apply_affix_mutation(session: CraftSession, action: str,
     affixes = session.affixes or []
 
     if action == "add_affix" and affix_name:
-        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix")
-        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix")
-        # Determine type from affix DB if available
+        # Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
+        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix" and not a.get("sealed"))
+        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix" and not a.get("sealed"))
+        active_count = sum(1 for a in affixes if not a.get("sealed"))
         affix_def = AffixDef.query.filter_by(name=affix_name).first()
         affix_type = affix_def.affix_type if affix_def else None
         if affix_type == "prefix" and prefix_count >= 2:
-            raise ValueError("Prefix slots full (max 2 prefixes).")
+            raise ValueError("Prefix slots full (max 2 active prefixes).")
         if affix_type == "suffix" and suffix_count >= 2:
-            raise ValueError("Suffix slots full (max 2 suffixes).")
-        if len(affixes) >= 4:
-            raise ValueError("Item already has 4 affixes.")
+            raise ValueError("Suffix slots full (max 2 active suffixes).")
+        if active_count >= 4:
+            raise ValueError("Item already has 4 active affixes.")
         affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
 
     elif action == "upgrade_affix" and affix_name:

@@ -122,7 +122,7 @@ function localSimulate(
 
   let newAffixes = [...affixes];
   if (!fractured) {
-    if (action === "add_affix" && affixName && newAffixes.length < 4) {
+    if (action === "add_affix" && affixName && newAffixes.filter((a) => !a.sealed).length < 4) {
       newAffixes.push({ name: affixName, tier: targetTier ?? 1, sealed: false });
     } else if (action === "upgrade_affix" && affixName) {
       newAffixes = newAffixes.map((a) =>
@@ -554,9 +554,9 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
   const { data: affixRes } = useAffixes({ slot: itemType.toLowerCase() });
   const availableAffixes: AffixDef[] = affixRes?.data ?? [];
 
-  // Slot counts
-  const prefixCount = affixes.filter((a) => a.type === "prefix").length;
-  const suffixCount = affixes.filter((a) => a.type === "suffix").length;
+  // Slot counts — sealed affixes don't count toward prefix/suffix limits
+  const prefixCount = affixes.filter((a) => a.type === "prefix" && !a.sealed).length;
+  const suffixCount = affixes.filter((a) => a.type === "suffix" && !a.sealed).length;
   const sealedCount = affixes.filter((a) => a.sealed).length;
 
   // The affix name selected for add_affix — defaults to first available
@@ -994,13 +994,13 @@ export default function CraftSimulatorPage() {
     } else {
       // Enforce affix slot limits locally before simulating
       if (action === "add_affix" && affixName) {
-        const prefixCount = store.affixes.filter((a) => a.type === "prefix").length;
-        const suffixCount = store.affixes.filter((a) => a.type === "suffix").length;
+        const prefixCount = store.affixes.filter((a) => a.type === "prefix" && !a.sealed).length;
+        const suffixCount = store.affixes.filter((a) => a.type === "suffix" && !a.sealed).length;
         if (affixType === "prefix" && prefixCount >= 2) {
-          addLog({ message: "Prefix slots full (max 2 prefixes).", outcome: "info" }); return;
+          addLog({ message: "Prefix slots full (max 2 active prefixes).", outcome: "info" }); return;
         }
         if (affixType === "suffix" && suffixCount >= 2) {
-          addLog({ message: "Suffix slots full (max 2 suffixes).", outcome: "info" }); return;
+          addLog({ message: "Suffix slots full (max 2 active suffixes).", outcome: "info" }); return;
         }
       }
       if (action === "seal_affix") {

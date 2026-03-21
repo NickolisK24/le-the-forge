@@ -109,11 +109,12 @@ export const useCraftStore = create<CraftUIState>((set) => ({
   addAffix: (affix) =>
     set((state) => {
       const existing = state.affixes;
-      const prefixCount = existing.filter((a) => a.type === "prefix").length;
-      const suffixCount = existing.filter((a) => a.type === "suffix").length;
+      // Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
+      const prefixCount = existing.filter((a) => a.type === "prefix" && !a.sealed).length;
+      const suffixCount = existing.filter((a) => a.type === "suffix" && !a.sealed).length;
       if (affix.type === "prefix" && prefixCount >= 2) return state;
       if (affix.type === "suffix" && suffixCount >= 2) return state;
-      if (!affix.type && existing.length >= 4) return state; // unknown type: fall back to total cap
+      if (!affix.type && existing.filter((a) => !a.sealed).length >= 4) return state;
       return { affixes: [...existing, affix] };
     }),
 
