@@ -70,6 +70,14 @@ def create_build(data: dict, user_id: Optional[str] = None) -> Build:
         skill = BuildSkill(
             build=build,
             slot=idx + 1,
+            skill_name=skill_data.get("skill_name", ""),
+            points_allocated=skill_data.get("points_allocated", 0),
+            spec_tree=skill_data.get("spec_tree", []),
+        )
+        db.session.add(skill)
+
+    db.session.commit()
+    return build
 
 
 def get_build(build_id_or_slug: str, increment_views: bool = False) -> Optional[Build]:
