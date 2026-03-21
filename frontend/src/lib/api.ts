@@ -204,6 +204,7 @@ export const refApi = {
   skills: (charClass?: string) =>
     get<Record<string, string[]>>(`/ref/skills${charClass ? `?class=${charClass}` : ""}`),
   baseItems: () => get<Record<string, { min_fp: number; max_fp: number; implicit: string | null; armor: number }>>("/ref/base-items"),
+  fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
 };
 
 // ---------------------------------------------------------------------------

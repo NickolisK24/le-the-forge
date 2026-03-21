@@ -8,7 +8,7 @@ import {
   compareStrategies, instabilityColor, MAX_INSTABILITY, fpCost, RISK_COLORS,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
-import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems } from "@/hooks";
+import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems, useFpRanges } from "@/hooks";
 import { useAuthStore } from "@/store";
 import type {
   CraftAffix, CraftAction, CraftOutcome, AffixDef,
@@ -920,6 +920,8 @@ export default function CraftSimulatorPage() {
   const craftAction = useCraftAction();
   const { data: baseItemsRes } = useBaseItems();
   const baseItems = baseItemsRes?.data ?? {};
+  const { data: fpRangesRes } = useFpRanges();
+  const fpRanges = fpRangesRes?.data ?? {};
 
   const { data: sessionRes, isLoading: sessionLoading } = useCraftSession(slug ?? "");
   const { data: summaryRes } = useCraftSummary(slug ?? "");
@@ -1240,17 +1242,17 @@ export default function CraftSimulatorPage() {
 
             {/* FP range + mode selector (local only) */}
             {!isLive && (() => {
-              const baseKey = store.itemType.toLowerCase();
-              const baseMeta = baseItems[baseKey];
-              const fpMin = baseMeta?.min_fp ?? 12;
-              const fpMax = baseMeta?.max_fp ?? 28;
+              const rarityKey = store.rarity.toLowerCase();
+              const rarityMeta = fpRanges[rarityKey];
+              const fpMin = rarityMeta?.min_fp ?? 20;
+              const fpMax = rarityMeta?.max_fp ?? 40;
               const manualFpNum = typeof manualFp === "number" ? manualFp : null;
               const manualValid = manualFpNum !== null && manualFpNum >= fpMin && manualFpNum <= fpMax;
               return (
                 <div className="border-t border-forge-border pt-3 flex flex-col gap-2">
-                  {/* Range badge */}
+                  {/* Range badge — driven by rarity */}
                   <div className="flex items-center justify-between">
-                    <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">FP Range</span>
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">FP Range ({store.rarity})</span>
                     <span className="font-mono text-xs text-forge-muted">{fpMin}–{fpMax}</span>
                   </div>
 

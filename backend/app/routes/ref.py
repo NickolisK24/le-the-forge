@@ -18,7 +18,7 @@ from flask import Blueprint, request, jsonify
 
 from app.models import ItemType, AffixDef, PassiveNode
 from app.game_data.game_data_loader import get_all_affixes, get_affix_categories
-from app.engines.fp_engine import get_crafting_rules
+from app.engines.fp_engine import get_crafting_rules, get_all_fp_ranges, get_fp_range_by_rarity
 from app.engines.base_engine import get_all_bases, get_fp_range
 from app.utils.responses import ok
 
@@ -256,3 +256,20 @@ def get_base_item_endpoint(base_type: str):
         return ok(data={**bases[key], "min_fp": lo, "max_fp": hi, "base_type": key})
     except ValueError as e:
         return ok(data=None, status=400)
+
+
+@ref_bp.get("/fp-ranges")
+def get_fp_ranges_endpoint():
+    """Return FP ranges by rarity. Source: data/forging_potential_ranges.json."""
+    return ok(data=get_all_fp_ranges())
+
+
+@ref_bp.get("/fp-ranges/<rarity>")
+def get_fp_range_endpoint(rarity: str):
+    """Return FP range for a specific rarity (+ optional ?ilvl= for Phase 2 tiers)."""
+    try:
+        item_level = int(request.args.get("ilvl", 84))
+        lo, hi = get_fp_range_by_rarity(rarity, item_level)
+        return ok(data={"rarity": rarity.lower(), "min_fp": lo, "max_fp": hi, "item_level": item_level})
+    except ValueError as e:
+        return ok(data={"error": str(e)}, status=400)

@@ -203,6 +203,14 @@ export function useBaseItems() {
   });
 }
 
+export function useFpRanges() {
+  return useQuery({
+    queryKey: ["ref", "fp-ranges"],
+    queryFn: () => refApi.fpRanges(),
+    staleTime: Infinity,
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Profile
 // ---------------------------------------------------------------------------

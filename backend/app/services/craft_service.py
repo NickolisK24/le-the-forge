@@ -33,17 +33,19 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
     import secrets
     slug = secrets.token_urlsafe(8)
 
-    # Resolve FP via item_engine (supports random/manual/fixed modes)
     fp_mode = data.get("fp_mode", "random")
     manual_fp = data.get("manual_fp")
     item_type = data["item_type"]
+    rarity = data.get("rarity", "Rare")
+    item_level = data.get("item_level", 84)
 
     # If caller supplied an explicit forge_potential, treat as manual override
     if "forge_potential" in data and fp_mode == "random":
         fp_mode = "manual"
         manual_fp = data["forge_potential"]
 
-    result = create_item(item_type.lower(), fp_mode=fp_mode, manual_fp=manual_fp)
+    result = create_item(item_type.lower(), rarity=rarity, item_level=item_level,
+                         fp_mode=fp_mode, manual_fp=manual_fp)
     if not result["success"]:
         raise ValueError(result["reason"])
 
@@ -54,8 +56,8 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
         slug=slug,
         item_type=item_type,
         item_name=data.get("item_name"),
-        item_level=data.get("item_level", 84),
-        rarity=data.get("rarity", "Exalted"),
+        item_level=item_level,
+        rarity=rarity,
         instability=data.get("instability", 0),
         forge_potential=forge_potential,
         affixes=data.get("affixes", []),

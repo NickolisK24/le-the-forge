@@ -1,0 +1,19 @@
+{
+  "_comment": "Phase 1: rarity-only FP ranges. Phase 2 will add item-level tiers (low/mid/high). The resolve logic in fp_engine.py handles both formats.",
+  "normal": {
+    "min_fp": 0,
+    "max_fp": 20
+  },
+  "magic": {
+    "min_fp": 10,
+    "max_fp": 30
+  },
+  "rare": {
+    "min_fp": 20,
+    "max_fp": 40
+  },
+  "exalted": {
+    "min_fp": 40,
+    "max_fp": 60
+  }
+}

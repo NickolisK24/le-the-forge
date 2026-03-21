@@ -156,3 +156,89 @@ def roll_session_fp_cost(action_type: str) -> int:
 def get_crafting_rules() -> dict:
     """Return the full rules dict — for the /api/ref/crafting-rules endpoint."""
     return load_fp_rules()
+
+
+# ---------------------------------------------------------------------------
+# Rarity-based FP generation
+# Source: /data/forging_potential_ranges.json
+#
+# Phase 1: flat rarity → {min_fp, max_fp}
+# Phase 2: rarity → {low, mid, high} tiers by item level (forward-compatible)
+# ---------------------------------------------------------------------------
+
+FP_RANGES_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "forging_potential_ranges.json")
+_fp_ranges_cache: Optional[dict] = None
+
+# Item level tier thresholds (Phase 2)
+_ITEM_LEVEL_TIERS = [
+    (31, "low"),    # ilvl 1–30
+    (61, "mid"),    # ilvl 31–60
+    (999, "high"),  # ilvl 61+
+]
+
+
+def load_fp_ranges() -> dict:
+    """Load and cache forging_potential_ranges.json."""
+    global _fp_ranges_cache
+    if _fp_ranges_cache is None:
+        with open(FP_RANGES_PATH) as f:
+            _fp_ranges_cache = json.load(f)
+    return _fp_ranges_cache
+
+
+def _resolve_rarity_fp_range(rarity: str, item_level: int = 84) -> tuple[int, int]:
+    """
+    Resolve (min_fp, max_fp) for a rarity + item level.
+
+    Phase 1 (current): rarity entry has min_fp/max_fp directly.
+    Phase 2 (future):  rarity entry has nested low/mid/high tiers.
+    Both formats handled transparently.
+    """
+    ranges = load_fp_ranges()
+    key = rarity.lower()
+    entry = ranges.get(key)
+    if entry is None:
+        raise ValueError(f"Unknown rarity: {rarity!r}. Valid: {[k for k in ranges if not k.startswith('_')]}")
+
+    # Phase 1 format: {min_fp, max_fp} directly
+    if "min_fp" in entry:
+        return entry["min_fp"], entry["max_fp"]
+
+    # Phase 2 format: {low: {...}, mid: {...}, high: {...}}
+    tier_name = "low"
+    for threshold, name in _ITEM_LEVEL_TIERS:
+        if item_level < threshold:
+            tier_name = name
+            break
+    tier = entry.get(tier_name, entry.get("high", {}))
+    return tier["min_fp"], tier["max_fp"]
+
+
+def generate_fp_by_rarity(rarity: str, item_level: int = 84) -> int:
+    """
+    Generate random FP based on item rarity (and optionally item level).
+    This is the primary FP generation function for new items.
+    """
+    lo, hi = _resolve_rarity_fp_range(rarity, item_level)
+    return random.randint(lo, hi)
+
+
+def validate_fp_by_rarity(rarity: str, user_fp: int, item_level: int = 84) -> bool:
+    """
+    Validate that a user-supplied FP value is within the rarity's valid range.
+    Returns False for non-integers or out-of-range values.
+    """
+    if not isinstance(user_fp, int) or isinstance(user_fp, bool):
+        return False
+    lo, hi = _resolve_rarity_fp_range(rarity, item_level)
+    return lo <= user_fp <= hi
+
+
+def get_fp_range_by_rarity(rarity: str, item_level: int = 84) -> tuple[int, int]:
+    """Return (min_fp, max_fp) for a rarity — used for UI display."""
+    return _resolve_rarity_fp_range(rarity, item_level)
+
+
+def get_all_fp_ranges() -> dict:
+    """Return the full forging_potential_ranges.json — for /api/ref/fp-ranges endpoint."""
+    return load_fp_ranges()
