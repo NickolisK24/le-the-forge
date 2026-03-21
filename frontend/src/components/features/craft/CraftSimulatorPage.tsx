@@ -969,7 +969,7 @@ export default function CraftSimulatorPage() {
         </div>
       </div>
 
-      <div className="grid gap-4" style={{ gridTemplateColumns: "300px 1fr" }}>
+      <div className="grid gap-4 lg:grid-cols-[300px_1fr]">
         {/* ── LEFT COLUMN ── */}
         <div className="flex flex-col gap-3">
 

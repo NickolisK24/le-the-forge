@@ -1,10 +1,12 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
 import { useEffect } from "react";
 
 import { useAuthStore } from "@/store";
 import { authApi, setToken } from "@/lib/api";
 
+import ErrorBoundary from "@/components/ErrorBoundary";
 import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "@/components/features/HomePage";
 import BuildsPage from "@/components/features/builds/BuildsPage";
@@ -12,6 +14,7 @@ import BuildPlannerPage from "@/components/features/build/BuildPlannerPage";
 import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
+import NotFoundPage from "@/components/features/NotFoundPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -53,24 +56,44 @@ export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthBootstrapper>
-          <Routes>
-            {/* OAuth callback — no layout wrapper */}
-            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+        <ErrorBoundary>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: "#10152a",
+                color: "#c8d0e0",
+                border: "1px solid #2a3050",
+                fontFamily: "var(--font-body, sans-serif)",
+                fontSize: "14px",
+              },
+              error: {
+                iconTheme: { primary: "#ef4444", secondary: "#10152a" },
+              },
+              success: {
+                iconTheme: { primary: "#f5a623", secondary: "#10152a" },
+              },
+            }}
+          />
+          <AuthBootstrapper>
+            <Routes>
+              {/* OAuth callback — no layout wrapper */}
+              <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
-            {/* Main app shell */}
-            <Route element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="/builds" element={<BuildsPage />} />
-              <Route path="/build" element={<BuildPlannerPage />} />
-              <Route path="/build/:slug" element={<BuildPlannerPage />} />
-              <Route path="/craft" element={<CraftSimulatorPage />} />
-              <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
-              <Route path="/profile" element={<UserProfilePage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
-        </AuthBootstrapper>
+              {/* Main app shell */}
+              <Route element={<AppLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="/builds" element={<BuildsPage />} />
+                <Route path="/build" element={<BuildPlannerPage />} />
+                <Route path="/build/:slug" element={<BuildPlannerPage />} />
+                <Route path="/craft" element={<CraftSimulatorPage />} />
+                <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
+                <Route path="/profile" element={<UserProfilePage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </AuthBootstrapper>
+        </ErrorBoundary>
       </BrowserRouter>
     </QueryClientProvider>
   );

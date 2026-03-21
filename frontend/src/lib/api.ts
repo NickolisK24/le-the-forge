@@ -58,12 +58,21 @@ async function request<T>(
     headers["Authorization"] = `Bearer ${_token}`;
   }
 
-  const res = await fetch(`${BASE_URL}${path}`, {
-    method,
-    headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-    signal,
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+      signal,
+    });
+  } catch (err) {
+    const message =
+      err instanceof DOMException && err.name === "AbortError"
+        ? "Request cancelled"
+        : "Network error — check your connection";
+    return { data: null, meta: null, errors: [{ message }] };
+  }
 
   // 204 No Content
   if (res.status === 204) {
