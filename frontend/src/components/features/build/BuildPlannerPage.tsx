@@ -10,6 +10,7 @@ import type { Build, BuildSkill, CharacterClass } from "@/types";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
 const MAX_SKILLS = 5;
+const MAX_SKILL_LEVEL = 30; // Base cap is 20; gear can grant additional levels
 
 const inputCls =
   "w-full rounded-sm border border-forge-border bg-forge-surface2 px-3 py-2 font-body text-sm text-forge-text outline-none focus:border-forge-amber/60 disabled:opacity-50";
@@ -60,11 +61,11 @@ function SkillRow({
       <input
         type="number"
         min={0}
-        max={20}
+        max={MAX_SKILL_LEVEL}
         value={skill.points_allocated}
-        onChange={(e) => onPoints(Math.min(20, Math.max(0, Number(e.target.value) || 0)))}
+        onChange={(e) => onPoints(Math.min(MAX_SKILL_LEVEL, Math.max(0, Number(e.target.value) || 0)))}
         className="w-14 rounded-sm border border-forge-border bg-forge-bg px-2 py-0.5 font-mono text-xs text-forge-text outline-none focus:border-forge-amber/60 text-center"
-        title="Points allocated (0–20)"
+        title={`Skill level (0–${MAX_SKILL_LEVEL}; base cap 20, gear can push higher)`}
       />
       <button
         onClick={onRemove}
@@ -448,7 +449,7 @@ export default function BuildPlannerPage() {
 
             {draftSkills.length === 0 && (
               <p className="font-body text-xs text-forge-dim">
-                Pick up to {MAX_SKILLS} skills to specialize. Points can be adjusted (0–20).
+                Pick up to {MAX_SKILLS} skills to specialize. Base level cap is 20; set higher to account for +skill levels from gear.
               </p>
             )}
           </div>
