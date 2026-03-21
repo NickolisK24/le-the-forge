@@ -273,14 +273,19 @@ export interface ClassMeta {
   skills: string[];
 }
 
+export interface AffixTier {
+  tier: number;
+  min: number;
+  max: number;
+}
+
 export interface AffixDef {
-  id?: number;
+  id: string;
   name: string;
-  type: "prefix" | "suffix" | "experimental" | "personal" | "champion" | "set" | "idol_enchant" | "idol_weaver";
-  stat_key: string;
-  tier_ranges: Record<string, [number, number]>;
-  applicable_types: string[];
-  class_requirement?: string | null;
+  type: "prefix" | "suffix";
+  applicable_to: string[];
+  tiers: AffixTier[];
   tags?: string[];
+  class_requirement?: string | null;
 }
 
