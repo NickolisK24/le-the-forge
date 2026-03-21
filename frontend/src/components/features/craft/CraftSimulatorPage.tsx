@@ -683,6 +683,26 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
                 ))}
               </div>
             </div>
+
+            {/* Selected affixes on this item */}
+            {affixes.length > 0 && (
+              <div>
+                <SectionLabel>Selected Affixes</SectionLabel>
+                <div className="mt-1 flex flex-col gap-0.5">
+                  {affixes.map((a) => (
+                    <div
+                      key={a.name}
+                      className="flex items-center justify-between rounded-sm border border-forge-border bg-forge-surface2 px-2 py-1"
+                    >
+                      <span className="font-body text-xs text-forge-text">{a.name}</span>
+                      <span className="font-mono text-[10px] text-forge-dim">
+                        T{a.tier}{a.sealed ? " · 🔒" : ""}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div>
