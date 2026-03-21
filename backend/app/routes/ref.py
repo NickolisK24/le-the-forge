@@ -75,10 +75,10 @@ def _get_affix_seed_data() -> list[dict]:
         {
             "id": a["id"],
             "name": a["name"],
-            "type": a["category"],
-            "stat_key": a["stat_key"],
+            "type": a["type"],
+            "stat_key": a.get("stat_key", a["id"]),
             "tiers": a["tiers"],
-            "applicable": a.get("applicable", []),
+            "applicable": a.get("applicable_to", []),
             "class_requirement": a.get("class_requirement"),
             "tags": a.get("tags", []),
         }

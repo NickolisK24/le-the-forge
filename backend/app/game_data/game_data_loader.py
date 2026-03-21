@@ -26,6 +26,10 @@ from functools import lru_cache
 
 _DATA_DIR = os.path.dirname(__file__)
 
+# Canonical affix data lives in /data/affixes.json (project root)
+_ROOT_DIR = os.path.abspath(os.path.join(_DATA_DIR, "..", "..", ".."))
+_AFFIXES_PATH = os.path.join(_ROOT_DIR, "data", "affixes.json")
+
 
 def _load(filename: str) -> dict:
     path = os.path.join(_DATA_DIR, filename)
@@ -39,8 +43,10 @@ def _classes() -> dict:
 
 
 @lru_cache(maxsize=1)
-def _affixes_raw() -> dict:
-    return _load("affixes.json")
+def _affixes_raw() -> list:
+    """Load the canonical flat affix list from /data/affixes.json."""
+    with open(_AFFIXES_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
 
 
 @lru_cache(maxsize=1)
@@ -54,21 +60,20 @@ def _skills() -> dict:
 
 @lru_cache(maxsize=1)
 def _build_affix_lookups() -> tuple[dict, dict]:
-    """Build tier-midpoints and stat-keys dicts from the v2.0 affix list."""
-    raw = _affixes_raw()
-    affix_list = raw.get("affixes", [])
+    """Build tier-midpoints and stat-keys dicts from the canonical affix list."""
+    affix_list = _affixes_raw()
 
     midpoints: dict[str, dict[str, float]] = {}
     stat_keys: dict[str, str] = {}
 
     for affix in affix_list:
         name = affix["name"]
-        stat_keys[name] = affix["stat_key"]
-        tiers = affix.get("tiers", {})
+        # stat_key may not exist in the new schema — fall back to id
+        stat_keys[name] = affix.get("stat_key", affix["id"])
         mp: dict[str, float] = {}
-        for tier_key, bounds in tiers.items():
-            lo, hi = bounds
-            mp[f"T{tier_key}"] = math.floor((lo + hi) / 2)
+        for tier_entry in affix.get("tiers", []):
+            lo, hi = tier_entry["min"], tier_entry["max"]
+            mp[f"T{tier_entry['tier']}"] = math.floor((lo + hi) / 2)
         midpoints[name] = mp
 
     return midpoints, stat_keys
@@ -85,18 +90,20 @@ def get_affix_stat_keys() -> dict:
 
 
 def get_all_affixes() -> list[dict]:
-    """Returns the full list of affix definitions from the canonical JSON."""
-    return _affixes_raw().get("affixes", [])
+    """Returns the full flat list of affix definitions from the canonical JSON."""
+    return _affixes_raw()
 
 
 def get_affixes_by_category(category: str) -> list[dict]:
-    """Returns affix definitions filtered by category."""
-    return [a for a in get_all_affixes() if a.get("category") == category]
+    """Returns affix definitions filtered by type (prefix/suffix)."""
+    return [a for a in get_all_affixes() if a.get("type") == category]
 
 
 def get_affix_categories() -> dict:
-    """Returns the category descriptions dict."""
-    return _affixes_raw().get("_categories", {})
+    """Returns a summary of affix type counts."""
+    from collections import Counter
+    counts = Counter(a["type"] for a in get_all_affixes())
+    return dict(counts)
 
 
 # ------------------------------------------------------------------

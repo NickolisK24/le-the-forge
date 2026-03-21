@@ -27,7 +27,7 @@ def register_commands(app: Flask) -> None:
                 "type": affix["category"],
                 "stat_key": affix["stat_key"],
                 "tiers": affix["tiers"],
-                "applicable": affix.get("applicable", []),
+                "applicable": affix.get("applicable_to", []),
                 "class_requirement": affix.get("class_requirement"),
                 "tags": affix.get("tags", []),
             }
