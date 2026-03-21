@@ -8,10 +8,10 @@ import {
   compareStrategies, instabilityColor, MAX_INSTABILITY, fpCost, RISK_COLORS,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
-import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary } from "@/hooks";
+import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes } from "@/hooks";
 import { useAuthStore } from "@/store";
 import type {
-  CraftAffix, CraftAction, CraftOutcome,
+  CraftAffix, CraftAction, CraftOutcome, AffixDef,
   OptimalPathStep, SimulationResult, StrategyComparison,
 } from "@/types";
 
@@ -540,14 +540,27 @@ interface ActionPanelProps {
   isFractured: boolean;
   isLive: boolean;
   isPending: boolean;
+  itemType: string;
   onAction: (action: CraftAction, affixName?: string, targetTier?: number) => void;
 }
 
-function ActionPanel({ affixes, fp, isFractured, isLive, isPending, onAction }: ActionPanelProps) {
+function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, onAction }: ActionPanelProps) {
   const [action, setAction] = useState<CraftAction>("upgrade_affix");
   const [targetAffix, setTargetAffix] = useState(affixes[0]?.name ?? "");
-  const [newAffixName, setNewAffixName] = useState(COMMON_AFFIXES[0]);
   const [targetTier, setTargetTier] = useState(1);
+  const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "">("");
+
+  // Fetch real affixes from the backend, filtered by item slot
+  const { data: affixRes } = useAffixes({ slot: itemType.toLowerCase() });
+  const availableAffixes: AffixDef[] = affixRes?.data ?? [];
+
+  // The affix name selected for add_affix — defaults to first available
+  const [newAffixName, setNewAffixName] = useState("");
+  useEffect(() => {
+    if (!newAffixName && availableAffixes.length > 0) {
+      setNewAffixName(availableAffixes[0].name);
+    }
+  }, [availableAffixes]);
 
   useEffect(() => {
     if (affixes.length > 0 && !affixes.find((a) => a.name === targetAffix)) {
@@ -598,26 +611,77 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, onAction }: 
         </div>
 
         {action === "add_affix" ? (
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <SectionLabel>Affix</SectionLabel>
-              <select
-                className="w-full bg-forge-surface2 border border-forge-border text-forge-text font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber"
-                value={newAffixName}
-                onChange={(e) => setNewAffixName(e.target.value)}
-              >
-                {COMMON_AFFIXES.map((a) => <option key={a}>{a}</option>)}
-              </select>
+          <div className="flex flex-col gap-3">
+            {/* Filter bar */}
+            <div className="flex items-center gap-2">
+              <SectionLabel>Add Affix</SectionLabel>
+              <div className="ml-auto flex gap-1">
+                {(["", "prefix", "suffix"] as const).map((f) => (
+                  <button
+                    key={f || "all"}
+                    type="button"
+                    onClick={() => setAffixFilter(f)}
+                    className={`px-2 py-0.5 rounded-sm font-mono text-[10px] uppercase border transition-colors ${
+                      affixFilter === f
+                        ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
+                        : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                    }`}
+                  >
+                    {f || "all"}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {/* Clickable affix grid */}
+            <div className="max-h-40 overflow-y-auto rounded-sm border border-forge-border bg-forge-bg p-1">
+              {availableAffixes.length === 0 ? (
+                <p className="p-2 font-mono text-xs text-forge-dim italic">Loading affixes…</p>
+              ) : (
+                <div className="flex flex-col gap-0.5">
+                  {availableAffixes
+                    .filter((a) => !affixFilter || a.type === affixFilter)
+                    .filter((a) => !affixes.find((ex) => ex.name === a.name))
+                    .map((a) => (
+                      <button
+                        key={a.id}
+                        type="button"
+                        onClick={() => setNewAffixName(a.name)}
+                        className={`flex items-center justify-between w-full px-2 py-1 rounded-sm text-left transition-colors ${
+                          newAffixName === a.name
+                            ? "bg-forge-amber/20 border border-forge-amber/40 text-forge-amber"
+                            : "hover:bg-forge-surface2 text-forge-text border border-transparent"
+                        }`}
+                      >
+                        <span className="font-body text-xs">{a.name}</span>
+                        <span className={`font-mono text-[9px] uppercase ${a.type === "prefix" ? "text-blue-400" : "text-purple-400"}`}>
+                          {a.type}
+                        </span>
+                      </button>
+                    ))}
+                </div>
+              )}
+            </div>
+
+            {/* Tier picker */}
             <div>
               <SectionLabel>Starting Tier</SectionLabel>
-              <select
-                className="w-full bg-forge-surface2 border border-forge-border text-forge-text font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber"
-                value={targetTier}
-                onChange={(e) => setTargetTier(Number(e.target.value))}
-              >
-                {TIERS.map((t) => <option key={t} value={t}>T{t}</option>)}
-              </select>
+              <div className="mt-1 flex gap-1">
+                {TIERS.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTargetTier(t)}
+                    className={`flex-1 py-1 rounded-sm font-mono text-xs border transition-colors ${
+                      targetTier === t
+                        ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
+                        : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                    }`}
+                  >
+                    T{t}
+                  </button>
+                ))}
+              </div>
             </div>
           </div>
         ) : (
@@ -1085,7 +1149,7 @@ export default function CraftSimulatorPage() {
           <AffixList
             affixes={affixes}
             disabled={isLive}
-            onAdd={() => store.addAffix({ name: COMMON_AFFIXES[0], tier: 1, sealed: false })}
+            onAdd={() => store.addAffix({ name: "Health", tier: 1, sealed: false })}
             onRemove={(name) => store.removeAffix(name)}
             onUpdate={(name, updates) => store.updateAffix(name, updates)}
           />
@@ -1121,6 +1185,7 @@ export default function CraftSimulatorPage() {
               isFractured={isFractured}
               isLive={isLive}
               isPending={craftAction.isPending || createSession.isPending}
+              itemType={isLive ? (session?.item_type ?? store.itemType) : store.itemType}
               onAction={handleAction}
             />
             <OutcomePredictorPanel optPath={optPath} simResult={simResult} />
