@@ -109,6 +109,7 @@ export function useUpdateBuild() {
 }
 
 
+export function useDeleteBuild() {
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (slug: string) => buildsApi.delete(slug),
