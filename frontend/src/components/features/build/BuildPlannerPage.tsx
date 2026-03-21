@@ -1,0 +1,516 @@
+import { useMemo, useState } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+
+import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
+import { useBuild, useCreateBuild, useVote } from "@/hooks";
+import { useAuthStore } from "@/store";
+import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
+import type { Build, BuildSkill, CharacterClass } from "@/types";
+
+const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
+const MAX_SKILLS = 5;
+
+const inputCls =
+  "w-full rounded-sm border border-forge-border bg-forge-surface2 px-3 py-2 font-body text-sm text-forge-text outline-none focus:border-forge-amber/60 disabled:opacity-50";
+const labelCls = "font-mono text-[11px] uppercase tracking-widest text-forge-dim";
+
+// ---------------------------------------------------------------------------
+// Checkbox toggle
+// ---------------------------------------------------------------------------
+function FlagToggle({
+  label, checked, onChange,
+}: { label: string; checked: boolean; onChange: (v: boolean) => void }) {
+  return (
+    <label className="flex items-center gap-2 cursor-pointer select-none">
+      <div
+        onClick={() => onChange(!checked)}
+        className={`w-4 h-4 rounded-sm border flex-shrink-0 flex items-center justify-center transition-colors cursor-pointer ${
+          checked
+            ? "bg-forge-amber border-forge-amber"
+            : "bg-forge-surface2 border-forge-border"
+        }`}
+      >
+        {checked && <span className="text-forge-bg text-[10px] font-bold">✓</span>}
+      </div>
+      <span className="font-body text-sm text-forge-text">{label}</span>
+    </label>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Skill row inside the picker
+// ---------------------------------------------------------------------------
+interface DraftSkill {
+  skill_name: string;
+  slot: number;
+  points_allocated: number;
+}
+
+function SkillRow({
+  skill, onRemove, onPoints,
+}: { skill: DraftSkill; onRemove: () => void; onPoints: (p: number) => void }) {
+  return (
+    <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
+      <span className="flex-1 font-body text-sm text-forge-text truncate">{skill.skill_name}</span>
+      <span className="font-mono text-[10px] text-forge-dim w-4 text-center">{skill.slot}</span>
+      <input
+        type="number"
+        min={0}
+        max={20}
+        value={skill.points_allocated}
+        onChange={(e) => onPoints(Math.min(20, Math.max(0, Number(e.target.value) || 0)))}
+        className="w-14 rounded-sm border border-forge-border bg-forge-bg px-2 py-0.5 font-mono text-xs text-forge-text outline-none focus:border-forge-amber/60 text-center"
+        title="Points allocated (0–20)"
+      />
+      <button
+        onClick={onRemove}
+        className="text-forge-dim hover:text-red-400 transition-colors font-mono text-xs leading-none"
+        title="Remove skill"
+      >✕</button>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Build summary (view mode)
+// ---------------------------------------------------------------------------
+function BuildSummary({ build }: { build: Build }) {
+  const { user } = useAuthStore();
+  const vote = useVote();
+
+  function handleVote(direction: 1 | -1) {
+    if (!user) { toast.error("Sign in to vote"); return; }
+    vote.mutate(
+      { slug: build.slug, direction },
+      {
+        onSuccess: (res) => {
+          if (res.errors) toast.error(res.errors[0]?.message ?? "Vote failed");
+        },
+        onError: () => toast.error("Vote failed"),
+      }
+    );
+  }
+
+  return (
+    <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+      <Panel title="Overview">
+        <div className="space-y-4">
+          <div>
+            <h1 className="font-display text-4xl font-bold text-forge-amber tracking-wider">{build.name}</h1>
+            {build.description && (
+              <p className="mt-2 max-w-3xl font-body text-sm leading-relaxed text-forge-muted">{build.description}</p>
+            )}
+          </div>
+
+          <div className="flex flex-wrap gap-2">
+            <Badge variant="class">{build.character_class}</Badge>
+            <Badge variant="mastery">{build.mastery}</Badge>
+            {build.tier && (
+              <Badge variant={`tier-${build.tier.toLowerCase()}` as "tier-s" | "tier-a" | "tier-b" | "tier-c"}>
+                {build.tier}
+              </Badge>
+            )}
+            {build.is_ssf && <Badge variant="ssf">SSF</Badge>}
+            {build.is_hc && <Badge variant="hc">HC</Badge>}
+            {build.is_ladder_viable && <Badge variant="ladder">Ladder</Badge>}
+            {build.is_budget && <Badge variant="budget">Budget</Badge>}
+          </div>
+
+          <div className="grid gap-4 sm:grid-cols-3">
+            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+              <div className={labelCls}>Level</div>
+              <div className="mt-2 font-display text-2xl text-forge-text">{build.level}</div>
+            </div>
+            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+              <div className={labelCls}>Votes</div>
+              <div className="mt-2 flex items-center gap-3">
+                <span className="font-display text-2xl text-forge-text">{build.vote_count}</span>
+                <div className="flex gap-1">
+                  <button
+                    onClick={() => handleVote(1)}
+                    disabled={vote.isPending}
+                    className={`px-2 py-0.5 rounded text-xs border transition-colors ${
+                      build.user_vote === 1
+                        ? "border-forge-amber bg-forge-amber/20 text-forge-amber"
+                        : "border-forge-border text-forge-dim hover:border-forge-amber hover:text-forge-amber"
+                    }`}
+                  >▲</button>
+                  <button
+                    onClick={() => handleVote(-1)}
+                    disabled={vote.isPending}
+                    className={`px-2 py-0.5 rounded text-xs border transition-colors ${
+                      build.user_vote === -1
+                        ? "border-red-500 bg-red-500/20 text-red-400"
+                        : "border-forge-border text-forge-dim hover:border-red-500 hover:text-red-400"
+                    }`}
+                  >▼</button>
+                </div>
+              </div>
+            </div>
+            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+              <div className={labelCls}>Views</div>
+              <div className="mt-2 font-display text-2xl text-forge-text">{build.view_count}</div>
+            </div>
+          </div>
+        </div>
+      </Panel>
+
+      <Panel title="Snapshot">
+        <dl className="space-y-4">
+          {[
+            ["Patch", build.patch_version],
+            ["Cycle", build.cycle],
+            ["Passive Nodes", build.passive_tree.length],
+            ["Skills", build.skills.length],
+            ["Gear Slots", build.gear.length],
+          ].map(([label, value]) => (
+            <div key={String(label)}>
+              <dt className={labelCls}>{label}</dt>
+              <dd className="mt-1 font-body text-sm text-forge-text">{value}</dd>
+            </div>
+          ))}
+        </dl>
+      </Panel>
+
+      <Panel title="Skills" className="lg:col-span-2">
+        {build.skills.length ? (
+          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+            {build.skills.map((skill) => (
+              <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4">
+                <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
+                <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
+                  Slot {skill.slot} · {skill.points_allocated} pts
+                </div>
+              </div>
+            ))}
+          </div>
+        ) : (
+          <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
+        )}
+      </Panel>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Build planner (create mode)
+// ---------------------------------------------------------------------------
+export default function BuildPlannerPage() {
+  const { slug } = useParams();
+  const navigate = useNavigate();
+  const { data, isLoading } = useBuild(slug ?? "");
+  const createBuild = useCreateBuild();
+  const { user } = useAuthStore();
+
+  // Form state
+  const [name, setName] = useState("New Forge Build");
+  const [description, setDescription] = useState("");
+  const [characterClass, setCharacterClass] = useState<CharacterClass>("Sentinel");
+  const [mastery, setMastery] = useState(MASTERIES.Sentinel[0]);
+  const [level, setLevel] = useState(70);
+  const [isSsf, setIsSsf] = useState(false);
+  const [isHc, setIsHc] = useState(false);
+  const [isLadder, setIsLadder] = useState(false);
+  const [isBudget, setIsBudget] = useState(false);
+  const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
+
+  const masteryOptions = useMemo(() => MASTERIES[characterClass], [characterClass]);
+
+  // Skills available for the selected class, filtered to base + chosen mastery
+  const availableSkills = useMemo(() =>
+    CLASS_SKILLS[characterClass].filter(
+      (s) => !s.mastery || s.mastery === mastery
+    ),
+    [characterClass, mastery]
+  );
+
+  const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
+
+  function handleClassChange(next: CharacterClass) {
+    setCharacterClass(next);
+    setMastery(MASTERIES[next][0]);
+    setDraftSkills([]);
+  }
+
+  function handleMasteryChange(next: string) {
+    setMastery(next);
+    // Drop skills that belong to a different mastery
+    setDraftSkills((prev) =>
+      prev.filter((ds) => {
+        const def = CLASS_SKILLS[characterClass].find((s) => s.skill_name === ds.skill_name);
+        return !def?.mastery || def.mastery === next;
+      })
+    );
+  }
+
+  function addSkill(skillName: string) {
+    if (draftSkills.length >= MAX_SKILLS) {
+      toast.error(`Max ${MAX_SKILLS} skills per build`);
+      return;
+    }
+    setDraftSkills((prev) => [
+      ...prev,
+      { skill_name: skillName, slot: prev.length + 1, points_allocated: 20 },
+    ]);
+  }
+
+  function removeSkill(index: number) {
+    setDraftSkills((prev) =>
+      prev
+        .filter((_, i) => i !== index)
+        .map((s, i) => ({ ...s, slot: i + 1 }))
+    );
+  }
+
+  function setPoints(index: number, points: number) {
+    setDraftSkills((prev) =>
+      prev.map((s, i) => (i === index ? { ...s, points_allocated: points } : s))
+    );
+  }
+
+  async function handleSave() {
+    if (!name.trim()) { toast.error("Build name is required"); return; }
+
+    const payload = {
+      name: name.trim(),
+      description: description.trim() || undefined,
+      character_class: characterClass,
+      mastery,
+      level,
+      is_ssf: isSsf,
+      is_hc: isHc,
+      is_ladder_viable: isLadder,
+      is_budget: isBudget,
+      skills: draftSkills.map((s) => ({
+        skill_name: s.skill_name,
+        slot: s.slot,
+        points_allocated: s.points_allocated,
+      })) as Partial<BuildSkill>[],
+    };
+
+    const res = await createBuild.mutateAsync(payload);
+
+    if (res.errors) {
+      toast.error(res.errors[0]?.message ?? "Failed to save build");
+      return;
+    }
+
+    toast.success("Build saved!");
+    if (res.data?.slug) navigate(`/build/${res.data.slug}`);
+  }
+
+  // ── Loading / not-found states ──
+  if (slug && isLoading) {
+    return (
+      <div className="flex min-h-[40vh] items-center justify-center">
+        <Spinner size={28} />
+      </div>
+    );
+  }
+
+  if (slug && !isLoading && !data?.data) {
+    return (
+      <EmptyState
+        title="Build not found"
+        description="This build could not be loaded."
+        action={<Link to="/builds"><Button size="sm">Back to Builds</Button></Link>}
+      />
+    );
+  }
+
+  if (data?.data) return <BuildSummary build={data.data} />;
+
+  // ── Create form ──
+  return (
+    <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
+
+      {/* ── LEFT: main form ── */}
+      <div className="flex flex-col gap-6">
+
+        {/* Identity */}
+        <Panel title="Build Identity">
+          <div className="grid gap-4 md:grid-cols-2">
+            <label className="block md:col-span-2">
+              <SectionLabel>Build Name</SectionLabel>
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                className={inputCls + " mt-1.5"}
+                placeholder="e.g. Bone Minion Necromancer"
+              />
+            </label>
+
+            <label className="block md:col-span-2">
+              <SectionLabel>Description (optional)</SectionLabel>
+              <textarea
+                value={description}
+                onChange={(e) => setDescription(e.target.value)}
+                rows={2}
+                className={inputCls + " mt-1.5 resize-none"}
+                placeholder="Brief description of the build strategy..."
+              />
+            </label>
+
+            <label className="block">
+              <SectionLabel>Class</SectionLabel>
+              <select
+                value={characterClass}
+                onChange={(e) => handleClassChange(e.target.value as CharacterClass)}
+                className={inputCls + " mt-1.5"}
+              >
+                {CHARACTER_CLASSES.map((c) => <option key={c}>{c}</option>)}
+              </select>
+            </label>
+
+            <label className="block">
+              <SectionLabel>Mastery</SectionLabel>
+              <select
+                value={mastery}
+                onChange={(e) => handleMasteryChange(e.target.value)}
+                className={inputCls + " mt-1.5"}
+              >
+                {masteryOptions.map((m) => <option key={m}>{m}</option>)}
+              </select>
+            </label>
+
+            <label className="block">
+              <SectionLabel>Level</SectionLabel>
+              <input
+                type="number"
+                min={1}
+                max={100}
+                value={level}
+                onChange={(e) => setLevel(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+                className={inputCls + " mt-1.5"}
+              />
+            </label>
+
+            <div className="flex flex-col justify-end gap-3 pb-1">
+              <SectionLabel>Tags</SectionLabel>
+              <div className="flex flex-wrap gap-4">
+                <FlagToggle label="SSF" checked={isSsf} onChange={setIsSsf} />
+                <FlagToggle label="Hardcore" checked={isHc} onChange={setIsHc} />
+                <FlagToggle label="Ladder viable" checked={isLadder} onChange={setIsLadder} />
+                <FlagToggle label="Budget" checked={isBudget} onChange={setIsBudget} />
+              </div>
+            </div>
+          </div>
+        </Panel>
+
+        {/* Skills */}
+        <Panel title={`Skills (${draftSkills.length}/${MAX_SKILLS})`}>
+          <div className="flex flex-col gap-4">
+
+            {/* Selected skills */}
+            {draftSkills.length > 0 && (
+              <div className="flex flex-col gap-2">
+                {draftSkills.map((skill, i) => (
+                  <SkillRow
+                    key={skill.skill_name}
+                    skill={skill}
+                    onRemove={() => removeSkill(i)}
+                    onPoints={(p) => setPoints(i, p)}
+                  />
+                ))}
+              </div>
+            )}
+
+            {/* Skill picker */}
+            {draftSkills.length < MAX_SKILLS && (
+              <div>
+                <SectionLabel>
+                  Add skill — {characterClass} · {mastery}
+                </SectionLabel>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {availableSkills
+                    .filter((s) => !selectedNames.has(s.name))
+                    .map((s) => (
+                      <button
+                        key={s.name}
+                        onClick={() => addSkill(s.name)}
+                        title={s.tags.join(", ")}
+                        className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2.5 py-1.5 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors"
+                      >
+                        <span>{s.icon}</span>
+                        <span>{s.name}</span>
+                        {s.mastery && (
+                          <span className="font-mono text-[9px] text-forge-dim opacity-70">{s.mastery}</span>
+                        )}
+                      </button>
+                    ))}
+                </div>
+              </div>
+            )}
+
+            {draftSkills.length === 0 && (
+              <p className="font-body text-xs text-forge-dim">
+                Pick up to {MAX_SKILLS} skills to specialize. Points can be adjusted (0–20).
+              </p>
+            )}
+          </div>
+        </Panel>
+      </div>
+
+      {/* ── RIGHT: preview + save ── */}
+      <div className="flex flex-col gap-6">
+        <Panel title="Preview">
+          <div className="space-y-3">
+            <div className="font-display text-2xl text-forge-amber">{name || "Untitled Build"}</div>
+            {description && (
+              <p className="font-body text-xs text-forge-muted leading-relaxed">{description}</p>
+            )}
+            <div className="flex flex-wrap gap-1.5">
+              <Badge variant="class">{characterClass}</Badge>
+              <Badge variant="mastery">{mastery}</Badge>
+              <span
+                className="rounded-sm border px-2 py-0.5 font-mono text-[10px] uppercase tracking-widest"
+                style={{
+                  color: CLASS_COLORS[characterClass],
+                  borderColor: `${CLASS_COLORS[characterClass]}55`,
+                  background: `${CLASS_COLORS[characterClass]}14`,
+                }}
+              >
+                Lv {level}
+              </span>
+              {isSsf && <Badge variant="ssf">SSF</Badge>}
+              {isHc && <Badge variant="hc">HC</Badge>}
+              {isLadder && <Badge variant="ladder">Ladder</Badge>}
+              {isBudget && <Badge variant="budget">Budget</Badge>}
+            </div>
+            {draftSkills.length > 0 && (
+              <div className="mt-2 flex flex-col gap-1">
+                {draftSkills.map((s) => (
+                  <div key={s.skill_name} className="flex justify-between font-mono text-[11px] text-forge-dim">
+                    <span>{s.skill_name}</span>
+                    <span>{s.points_allocated} pts</span>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+        </Panel>
+
+        <Panel title="Save">
+          <div className="flex flex-col gap-4">
+            {!user && (
+              <p className="font-body text-xs text-forge-dim">
+                You're not signed in. The build will be saved anonymously.
+              </p>
+            )}
+            <Button
+              onClick={handleSave}
+              disabled={createBuild.isPending || !name.trim()}
+              className="w-full"
+            >
+              {createBuild.isPending ? "Saving…" : "Save Build"}
+            </Button>
+            <Link to="/builds">
+              <Button variant="ghost" className="w-full">Browse Builds</Button>
+            </Link>
+          </div>
+        </Panel>
+      </div>
+    </div>
+  );
+}
