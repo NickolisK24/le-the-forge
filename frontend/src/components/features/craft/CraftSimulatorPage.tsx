@@ -548,7 +548,7 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
   const [action, setAction] = useState<CraftAction>("upgrade_affix");
   const [targetAffix, setTargetAffix] = useState(affixes[0]?.name ?? "");
   const [targetTier, setTargetTier] = useState(1);
-  const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "">("");
+  const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "experimental" | "personal" | "">("");
 
   // Fetch real affixes from the backend, filtered by item slot
   const { data: affixRes } = useAffixes({ slot: itemType.toLowerCase() });
@@ -635,24 +635,30 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
             </div>
 
             {/* Filter bar */}
-            <div className="flex items-center gap-2">
+            <div className="flex flex-col gap-1">
               <SectionLabel>Add Affix</SectionLabel>
-              <div className="ml-auto flex gap-1">
-                {(["", "prefix", "suffix"] as const).map((f) => {
-                  const full = f === "prefix" ? prefixCount >= 2 : f === "suffix" ? suffixCount >= 2 : false;
+              <div className="flex flex-wrap gap-1">
+                {([
+                  { key: "", label: "All" },
+                  { key: "prefix", label: "Prefix" },
+                  { key: "suffix", label: "Suffix" },
+                  { key: "experimental", label: "Experimental" },
+                  { key: "personal", label: "Personal" },
+                ] as const).map(({ key, label }) => {
+                  const full = key === "prefix" ? prefixCount >= 2 : key === "suffix" ? suffixCount >= 2 : false;
                   return (
                     <button
-                      key={f || "all"}
+                      key={key || "all"}
                       type="button"
-                      onClick={() => setAffixFilter(f)}
+                      onClick={() => setAffixFilter(key)}
                       disabled={full}
                       className={`px-2 py-0.5 rounded-sm font-mono text-[10px] uppercase border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
-                        affixFilter === f
+                        affixFilter === key
                           ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
                           : "border-forge-border text-forge-dim hover:border-forge-amber/50"
                       }`}
                     >
-                      {f || "all"}
+                      {label}
                     </button>
                   );
                 })}
@@ -666,10 +672,26 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
               ) : (
                 <div className="flex flex-col gap-0.5">
                   {availableAffixes
-                    .filter((a) => !affixFilter || a.type === affixFilter)
+                    .filter((a) => {
+                      if (!affixFilter) return true;
+                      if (affixFilter === "experimental" || affixFilter === "personal") {
+                        return (a.tags ?? []).includes(affixFilter);
+                      }
+                      return a.type === affixFilter && !(a.tags ?? []).includes("experimental") && !(a.tags ?? []).includes("personal");
+                    })
                     .filter((a) => !affixes.find((ex) => ex.name === a.name))
                     .map((a) => {
                       const slotFull = (a.type === "prefix" && prefixCount >= 2) || (a.type === "suffix" && suffixCount >= 2);
+                      // Label: show experimental/personal tag if present, else type
+                      const specialTag = (a.tags ?? []).find((t) => t === "experimental" || t === "personal");
+                      const label = specialTag ?? a.type;
+                      const labelColor = specialTag === "experimental"
+                        ? "text-yellow-400"
+                        : specialTag === "personal"
+                        ? "text-emerald-400"
+                        : a.type === "prefix"
+                        ? "text-blue-400"
+                        : "text-purple-400";
                       return (
                         <button
                           key={a.id}
@@ -685,8 +707,8 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
                           }`}
                         >
                           <span className="font-body text-xs">{a.name}</span>
-                          <span className={`font-mono text-[9px] uppercase ${a.type === "prefix" ? "text-blue-400" : "text-purple-400"}`}>
-                            {slotFull ? "full" : a.type}
+                          <span className={`font-mono text-[9px] uppercase ${labelColor}`}>
+                            {slotFull ? "full" : label}
                           </span>
                         </button>
                       );

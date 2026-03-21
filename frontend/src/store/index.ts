@@ -108,8 +108,13 @@ export const useCraftStore = create<CraftUIState>((set) => ({
 
   addAffix: (affix) =>
     set((state) => {
-      if (state.affixes.length >= 4) return state;
-      return { affixes: [...state.affixes, affix] };
+      const existing = state.affixes;
+      const prefixCount = existing.filter((a) => a.type === "prefix").length;
+      const suffixCount = existing.filter((a) => a.type === "suffix").length;
+      if (affix.type === "prefix" && prefixCount >= 2) return state;
+      if (affix.type === "suffix" && suffixCount >= 2) return state;
+      if (!affix.type && existing.length >= 4) return state; // unknown type: fall back to total cap
+      return { affixes: [...existing, affix] };
     }),
 
   removeAffix: (name) =>
@@ -118,11 +123,18 @@ export const useCraftStore = create<CraftUIState>((set) => ({
     })),
 
   updateAffix: (name, updates) =>
-    set((state) => ({
-      affixes: state.affixes.map((a) =>
-        a.name === name ? { ...a, ...updates } : a
-      ),
-    })),
+    set((state) => {
+      // Enforce max 1 sealed
+      if (updates.sealed === true) {
+        const alreadySealed = state.affixes.filter((a) => a.name !== name && a.sealed).length;
+        if (alreadySealed >= 1) return state;
+      }
+      return {
+        affixes: state.affixes.map((a) =>
+          a.name === name ? { ...a, ...updates } : a
+        ),
+      };
+    }),
 
   setSessionSlug: (sessionSlug) => set({ sessionSlug }),
   setFractured: (isFractured) => set({ isFractured }),

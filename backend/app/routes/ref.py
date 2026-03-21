@@ -121,16 +121,20 @@ def get_affixes():
     class_req = request.args.get("class")
     tag = request.args.get("tag")
 
-    affixes = AffixDef.query
-    if category:
-        affixes = affixes.filter_by(affix_type=category)
-    affixes = affixes.order_by(AffixDef.name).all()
+    # Craftable affix types only — skip idol/set/champion types
+    CRAFTABLE_TYPES = ["prefix", "suffix", "experimental", "personal"]
+    # Map old DB affix_type values to canonical prefix/suffix
+    TYPE_NORMALIZE = {"experimental": "prefix", "personal": "prefix"}
+
+    affixes = AffixDef.query.filter(
+        AffixDef.affix_type.in_(CRAFTABLE_TYPES)
+    ).order_by(AffixDef.name).all()
 
     if not affixes:
         # Static fallback from canonical JSON
         data = _get_affix_seed_data()
         if category:
-            data = [a for a in data if a["type"] == category]
+            data = [a for a in data if a["type"] == category or category in a.get("tags", [])]
         if item_slot:
             data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", a.get("applicable", []))]]
         if class_req:
@@ -145,8 +149,19 @@ def get_affixes():
             continue
         if class_req and a.class_requirement and a.class_requirement != class_req:
             continue
-        if tag and tag not in (a.tags or []):
+
+        # Normalize type to prefix/suffix; keep original as a tag if experimental/personal
+        raw_type = a.affix_type
+        canonical_type = TYPE_NORMALIZE.get(raw_type, raw_type)
+        tags = list(a.tags or [])
+        if raw_type in TYPE_NORMALIZE and raw_type not in tags:
+            tags.append(raw_type)
+
+        if tag and tag not in tags:
             continue
+        if category and category not in (canonical_type, raw_type) and category not in tags:
+            continue
+
         # Convert tier_ranges dict {"1": [lo,hi]} to [{tier, min, max}] array
         tier_ranges = a.tier_ranges or {}
         tiers = sorted(
@@ -156,10 +171,10 @@ def get_affixes():
         result.append({
             "id": str(a.id),
             "name": a.name,
-            "type": a.affix_type,
+            "type": canonical_type,
             "applicable_to": a.applicable_types or [],
             "tiers": tiers,
-            "tags": a.tags or [],
+            "tags": tags,
             "class_requirement": a.class_requirement,
         })
     return ok(data=result)

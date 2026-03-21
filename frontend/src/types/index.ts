@@ -161,6 +161,7 @@ export interface CraftAffix {
   name: string;
   tier: number;
   sealed: boolean;
+  type?: "prefix" | "suffix";
 }
 
 export interface CraftStep {
