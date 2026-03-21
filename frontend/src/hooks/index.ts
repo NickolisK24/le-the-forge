@@ -67,7 +67,9 @@ export function useVote() {
           };
         });
       }
-      qc.invalidateQueries({ queryKey: qk.builds.all });
+      // Only invalidate list queries — NOT builds.all, which would also match
+      // the detail query and trigger a re-fetch that increments view_count.
+      qc.invalidateQueries({ queryKey: ["builds", "list"] });
     },
   });
 }
