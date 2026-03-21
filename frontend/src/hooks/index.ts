@@ -92,7 +92,23 @@ export function useCreateBuild() {
   });
 }
 
-export function useDeleteBuild() {
+export function useUpdateBuild() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ slug, payload }: { slug: string; payload: Partial<BuildCreatePayload> }) =>
+      buildsApi.update(slug, payload),
+    onSuccess: (_data, { slug }) => {
+      // Update detail cache directly (no re-fetch = no view increment)
+      qc.setQueryData(qk.builds.detail(slug), (old: any) => {
+        if (!old?.data || !_data.data) return old;
+        return { ...old, data: _data.data };
+      });
+      qc.invalidateQueries({ queryKey: ["builds", "list"] });
+    },
+  });
+}
+
+
   const qc = useQueryClient();
   return useMutation({
     mutationFn: (slug: string) => buildsApi.delete(slug),

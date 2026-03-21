@@ -3,7 +3,7 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
-import { useBuild, useCreateBuild, useVote } from "@/hooks";
+import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
@@ -82,6 +82,35 @@ function SkillRow({
 function BuildSummary({ build }: { build: Build }) {
   const { user } = useAuthStore();
   const vote = useVote();
+  const updateBuild = useUpdateBuild();
+  const isOwner = user && build.author?.id === user.id;
+
+  // Edit mode state — initialised from the existing build
+  const [editing, setEditing] = useState(false);
+  const [name, setName] = useState(build.name);
+  const [description, setDescription] = useState(build.description ?? "");
+  const [level, setLevel] = useState(build.level);
+  const [isSsf, setIsSsf] = useState(build.is_ssf);
+  const [isHc, setIsHc] = useState(build.is_hc);
+  const [isLadder, setIsLadder] = useState(build.is_ladder_viable);
+  const [isBudget, setIsBudget] = useState(build.is_budget);
+  const [draftSkills, setDraftSkills] = useState<DraftSkill[]>(
+    build.skills.map((s) => ({
+      skill_name: s.skill_name,
+      slot: s.slot,
+      points_allocated: s.points_allocated,
+    }))
+  );
+
+  // Class/mastery are fixed at creation — backend doesn't allow changing them
+  const characterClass = build.character_class;
+  const mastery = build.mastery;
+
+  const availableSkills = useMemo(
+    () => CLASS_SKILLS[characterClass].filter((s) => !s.mastery || s.mastery === mastery),
+    [characterClass, mastery]
+  );
+  const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
 
   function handleVote(direction: 1 | -1) {
     if (!user) { toast.error("Sign in to vote"); return; }
@@ -96,103 +125,222 @@ function BuildSummary({ build }: { build: Build }) {
     );
   }
 
-  return (
-    <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-      <Panel title="Overview">
-        <div className="space-y-4">
-          <div>
-            <h1 className="font-display text-4xl font-bold text-forge-amber tracking-wider">{build.name}</h1>
-            {build.description && (
-              <p className="mt-2 max-w-3xl font-body text-sm leading-relaxed text-forge-muted">{build.description}</p>
-            )}
-          </div>
+  function addSkill(skillName: string) {
+    if (draftSkills.length >= MAX_SKILLS) { toast.error(`Max ${MAX_SKILLS} skills`); return; }
+    setDraftSkills((prev) => [...prev, { skill_name: skillName, slot: prev.length + 1, points_allocated: 20 }]);
+  }
 
-          <div className="flex flex-wrap gap-2">
-            <Badge variant="class">{build.character_class}</Badge>
-            <Badge variant="mastery">{build.mastery}</Badge>
-            {build.tier && (
-              <Badge variant={`tier-${build.tier.toLowerCase()}` as "tier-s" | "tier-a" | "tier-b" | "tier-c"}>
-                {build.tier}
-              </Badge>
-            )}
-            {build.is_ssf && <Badge variant="ssf">SSF</Badge>}
-            {build.is_hc && <Badge variant="hc">HC</Badge>}
-            {build.is_ladder_viable && <Badge variant="ladder">Ladder</Badge>}
-            {build.is_budget && <Badge variant="budget">Budget</Badge>}
-          </div>
+  function removeSkill(index: number) {
+    setDraftSkills((prev) => prev.filter((_, i) => i !== index).map((s, i) => ({ ...s, slot: i + 1 })));
+  }
 
-          <div className="grid gap-4 sm:grid-cols-3">
-            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
-              <div className={labelCls}>Level</div>
-              <div className="mt-2 font-display text-2xl text-forge-text">{build.level}</div>
+  function setPoints(index: number, points: number) {
+    setDraftSkills((prev) => prev.map((s, i) => i === index ? { ...s, points_allocated: points } : s));
+  }
+
+  function cancelEdit() {
+    // Reset form to current build values
+    setName(build.name);
+    setDescription(build.description ?? "");
+    setLevel(build.level);
+    setIsSsf(build.is_ssf);
+    setIsHc(build.is_hc);
+    setIsLadder(build.is_ladder_viable);
+    setIsBudget(build.is_budget);
+    setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated })));
+    setEditing(false);
+  }
+
+  async function handleSave() {
+    if (!name.trim()) { toast.error("Build name is required"); return; }
+    const res = await updateBuild.mutateAsync({
+      slug: build.slug,
+      payload: {
+        name: name.trim(),
+        description: description.trim() || undefined,
+        level,
+        is_ssf: isSsf,
+        is_hc: isHc,
+        is_ladder_viable: isLadder,
+        is_budget: isBudget,
+        skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated })) as Partial<BuildSkill>[],
+      },
+    });
+    if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
+    toast.success("Build updated!");
+    setEditing(false);
+  }
+
+  // ── View mode ──
+  if (!editing) {
+    return (
+      <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+        <Panel title="Overview">
+          <div className="space-y-4">
+            <div className="flex items-start justify-between gap-4">
+              <div>
+                <h1 className="font-display text-4xl font-bold text-forge-amber tracking-wider">{build.name}</h1>
+                {build.description && (
+                  <p className="mt-2 max-w-3xl font-body text-sm leading-relaxed text-forge-muted">{build.description}</p>
+                )}
+              </div>
+              {isOwner && (
+                <Button variant="outline" size="sm" onClick={() => setEditing(true)}>Edit</Button>
+              )}
             </div>
-            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
-              <div className={labelCls}>Votes</div>
-              <div className="mt-2 flex items-center gap-3">
-                <span className="font-display text-2xl text-forge-text">{build.vote_count}</span>
-                <div className="flex gap-1">
-                  <button
-                    onClick={() => handleVote(1)}
-                    disabled={vote.isPending}
-                    className={`px-2 py-0.5 rounded text-xs border transition-colors ${
-                      build.user_vote === 1
-                        ? "border-forge-amber bg-forge-amber/20 text-forge-amber"
-                        : "border-forge-border text-forge-dim hover:border-forge-amber hover:text-forge-amber"
-                    }`}
-                  >▲</button>
-                  <button
-                    onClick={() => handleVote(-1)}
-                    disabled={vote.isPending}
-                    className={`px-2 py-0.5 rounded text-xs border transition-colors ${
-                      build.user_vote === -1
-                        ? "border-red-500 bg-red-500/20 text-red-400"
-                        : "border-forge-border text-forge-dim hover:border-red-500 hover:text-red-400"
-                    }`}
-                  >▼</button>
+
+            <div className="flex flex-wrap gap-2">
+              <Badge variant="class">{build.character_class}</Badge>
+              <Badge variant="mastery">{build.mastery}</Badge>
+              {build.tier && (
+                <Badge variant={`tier-${build.tier.toLowerCase()}` as "tier-s" | "tier-a" | "tier-b" | "tier-c"}>
+                  {build.tier}
+                </Badge>
+              )}
+              {build.is_ssf && <Badge variant="ssf">SSF</Badge>}
+              {build.is_hc && <Badge variant="hc">HC</Badge>}
+              {build.is_ladder_viable && <Badge variant="ladder">Ladder</Badge>}
+              {build.is_budget && <Badge variant="budget">Budget</Badge>}
+            </div>
+
+            <div className="grid gap-4 sm:grid-cols-3">
+              <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+                <div className={labelCls}>Level</div>
+                <div className="mt-2 font-display text-2xl text-forge-text">{build.level}</div>
+              </div>
+              <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+                <div className={labelCls}>Votes</div>
+                <div className="mt-2 flex items-center gap-3">
+                  <span className="font-display text-2xl text-forge-text">{build.vote_count}</span>
+                  <div className="flex gap-1">
+                    <button onClick={() => handleVote(1)} disabled={vote.isPending}
+                      className={`px-2 py-0.5 rounded text-xs border transition-colors ${build.user_vote === 1 ? "border-forge-amber bg-forge-amber/20 text-forge-amber" : "border-forge-border text-forge-dim hover:border-forge-amber hover:text-forge-amber"}`}>▲</button>
+                    <button onClick={() => handleVote(-1)} disabled={vote.isPending}
+                      className={`px-2 py-0.5 rounded text-xs border transition-colors ${build.user_vote === -1 ? "border-red-500 bg-red-500/20 text-red-400" : "border-forge-border text-forge-dim hover:border-red-500 hover:text-red-400"}`}>▼</button>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="rounded border border-forge-border bg-forge-surface2 p-4">
-              <div className={labelCls}>Views</div>
-              <div className="mt-2 font-display text-2xl text-forge-text">{build.view_count}</div>
+              <div className="rounded border border-forge-border bg-forge-surface2 p-4">
+                <div className={labelCls}>Views</div>
+                <div className="mt-2 font-display text-2xl text-forge-text">{build.view_count}</div>
+              </div>
             </div>
           </div>
-        </div>
-      </Panel>
+        </Panel>
 
-      <Panel title="Snapshot">
-        <dl className="space-y-4">
-          {[
-            ["Patch", build.patch_version],
-            ["Cycle", build.cycle],
-            ["Passive Nodes", build.passive_tree.length],
-            ["Skills", build.skills.length],
-            ["Gear Slots", build.gear.length],
-          ].map(([label, value]) => (
-            <div key={String(label)}>
-              <dt className={labelCls}>{label}</dt>
-              <dd className="mt-1 font-body text-sm text-forge-text">{value}</dd>
-            </div>
-          ))}
-        </dl>
-      </Panel>
-
-      <Panel title="Skills" className="lg:col-span-2">
-        {build.skills.length ? (
-          <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-            {build.skills.map((skill) => (
-              <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4">
-                <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
-                <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
-                  Slot {skill.slot} · {skill.points_allocated} pts
-                </div>
+        <Panel title="Snapshot">
+          <dl className="space-y-4">
+            {([["Patch", build.patch_version], ["Cycle", build.cycle], ["Passive Nodes", build.passive_tree.length], ["Skills", build.skills.length], ["Gear Slots", build.gear.length]] as [string, string | number][]).map(([label, value]) => (
+              <div key={label}>
+                <dt className={labelCls}>{label}</dt>
+                <dd className="mt-1 font-body text-sm text-forge-text">{value}</dd>
               </div>
             ))}
+          </dl>
+        </Panel>
+
+        <Panel title="Skills" className="lg:col-span-2">
+          {build.skills.length ? (
+            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+              {build.skills.map((skill) => (
+                <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4">
+                  <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
+                  <div className="mt-2 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
+                    Slot {skill.slot} · {skill.points_allocated} pts
+                  </div>
+                </div>
+              ))}
+            </div>
+          ) : (
+            <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
+          )}
+        </Panel>
+      </div>
+    );
+  }
+
+  // ── Edit mode ──
+  return (
+    <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
+      <div className="flex flex-col gap-6">
+
+        <Panel title="Edit Build">
+          <div className="grid gap-4 md:grid-cols-2">
+            <label className="block md:col-span-2">
+              <SectionLabel>Build Name</SectionLabel>
+              <input value={name} onChange={(e) => setName(e.target.value)} className={inputCls + " mt-1.5"} />
+            </label>
+            <label className="block md:col-span-2">
+              <SectionLabel>Description (optional)</SectionLabel>
+              <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className={inputCls + " mt-1.5 resize-none"} />
+            </label>
+
+            {/* Class & mastery are read-only — fixed at creation */}
+            <div className="block">
+              <SectionLabel>Class</SectionLabel>
+              <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{characterClass}</div>
+            </div>
+            <div className="block">
+              <SectionLabel>Mastery</SectionLabel>
+              <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{mastery}</div>
+            </div>
+
+            <label className="block">
+              <SectionLabel>Level</SectionLabel>
+              <input type="number" min={1} max={100} value={level}
+                onChange={(e) => setLevel(Math.min(100, Math.max(1, Number(e.target.value) || 1)))}
+                className={inputCls + " mt-1.5"} />
+            </label>
+
+            <div className="flex flex-col justify-end gap-3 pb-1">
+              <SectionLabel>Tags</SectionLabel>
+              <div className="flex flex-wrap gap-4">
+                <FlagToggle label="SSF" checked={isSsf} onChange={setIsSsf} />
+                <FlagToggle label="Hardcore" checked={isHc} onChange={setIsHc} />
+                <FlagToggle label="Ladder viable" checked={isLadder} onChange={setIsLadder} />
+                <FlagToggle label="Budget" checked={isBudget} onChange={setIsBudget} />
+              </div>
+            </div>
           </div>
-        ) : (
-          <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
-        )}
-      </Panel>
+        </Panel>
+
+        <Panel title={`Skills (${draftSkills.length}/${MAX_SKILLS})`}>
+          <div className="flex flex-col gap-4">
+            {draftSkills.length > 0 && (
+              <div className="flex flex-col gap-2">
+                {draftSkills.map((skill, i) => (
+                  <SkillRow key={skill.skill_name} skill={skill} onRemove={() => removeSkill(i)} onPoints={(p) => setPoints(i, p)} />
+                ))}
+              </div>
+            )}
+            {draftSkills.length < MAX_SKILLS && (
+              <div>
+                <SectionLabel>Add skill — {characterClass} · {mastery}</SectionLabel>
+                <div className="mt-2 flex flex-wrap gap-2">
+                  {availableSkills.filter((s) => !selectedNames.has(s.name)).map((s) => (
+                    <button key={s.name} onClick={() => addSkill(s.name)} title={s.tags.join(", ")}
+                      className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2.5 py-1.5 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors">
+                      <span>{s.icon}</span><span>{s.name}</span>
+                      {s.mastery && <span className="font-mono text-[9px] text-forge-dim opacity-70">{s.mastery}</span>}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            )}
+          </div>
+        </Panel>
+      </div>
+
+      <div className="flex flex-col gap-6">
+        <Panel title="Save Changes">
+          <div className="flex flex-col gap-3">
+            <Button onClick={handleSave} disabled={updateBuild.isPending || !name.trim()} className="w-full">
+              {updateBuild.isPending ? "Saving…" : "Save Changes"}
+            </Button>
+            <Button variant="ghost" onClick={cancelEdit} className="w-full">Cancel</Button>
+          </div>
+        </Panel>
+      </div>
     </div>
   );
 }
