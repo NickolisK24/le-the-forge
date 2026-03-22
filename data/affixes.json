@@ -7441,5 +7441,9448 @@
       }
     ],
     "stat_key": null
+  },
+  {
+    "id": "armor",
+    "name": "Armor",
+    "type": "suffix",
+    "tags": [
+      "armor"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 25
+      },
+      {
+        "tier": 2,
+        "min": 26,
+        "max": 55
+      },
+      {
+        "tier": 3,
+        "min": 56,
+        "max": 90
+      },
+      {
+        "tier": 4,
+        "min": 91,
+        "max": 130
+      },
+      {
+        "tier": 5,
+        "min": 131,
+        "max": 200
+      }
+    ],
+    "stat_key": "armor"
+  },
+  {
+    "id": "cold_protection",
+    "name": "Cold Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "cold_protection"
+  },
+  {
+    "id": "elemental_protection",
+    "name": "Elemental Protection",
+    "type": "suffix",
+    "tags": [
+      "elemental",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff",
+      "catalyst",
+      "shield",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 35
+      },
+      {
+        "tier": 2,
+        "min": 36,
+        "max": 70
+      },
+      {
+        "tier": 3,
+        "min": 71,
+        "max": 110
+      },
+      {
+        "tier": 4,
+        "min": 111,
+        "max": 160
+      },
+      {
+        "tier": 5,
+        "min": 161,
+        "max": 220
+      }
+    ],
+    "stat_key": "elemental_protection"
+  },
+  {
+    "id": "fire_protection",
+    "name": "Fire Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm",
+      "staff",
+      "wand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "fire_protection"
+  },
+  {
+    "id": "lightning_protection",
+    "name": "Lightning Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "lightning_protection"
+  },
+  {
+    "id": "melee_cold_damage",
+    "name": "Melee Cold Damage",
+    "type": "prefix",
+    "tags": [
+      "cold",
+      "damage",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "mace",
+      "polearm",
+      "staff",
+      "sword",
+      "dagger",
+      "sceptre",
+      "claws"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 10
+      },
+      {
+        "tier": 3,
+        "min": 11,
+        "max": 14
+      },
+      {
+        "tier": 4,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 26
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "melee_critical_strike_chance",
+    "name": "Melee Critical Strike Chance",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 2
+      },
+      {
+        "tier": 2,
+        "min": 3,
+        "max": 3
+      },
+      {
+        "tier": 3,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 4,
+        "min": 5,
+        "max": 5
+      },
+      {
+        "tier": 5,
+        "min": 6,
+        "max": 6
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "melee_fire_damage",
+    "name": "Melee Fire Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "fire",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "mace",
+      "polearm",
+      "staff",
+      "sword",
+      "dagger",
+      "sceptre",
+      "claws"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 10
+      },
+      {
+        "tier": 3,
+        "min": 11,
+        "max": 14
+      },
+      {
+        "tier": 4,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 26
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "melee_lightning_damage",
+    "name": "Melee Lightning Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "lightning",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "mace",
+      "polearm",
+      "staff",
+      "sword",
+      "dagger",
+      "sceptre",
+      "claws"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 10
+      },
+      {
+        "tier": 3,
+        "min": 11,
+        "max": 14
+      },
+      {
+        "tier": 4,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 26
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "melee_physical_damage",
+    "name": "Melee Physical Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "melee",
+      "physical"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 10
+      },
+      {
+        "tier": 3,
+        "min": 11,
+        "max": 14
+      },
+      {
+        "tier": 4,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 26
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "melee_void_damage",
+    "name": "Melee Void Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "melee",
+      "void"
+    ],
+    "applicable_to": [
+      "axe",
+      "mace",
+      "polearm",
+      "staff",
+      "sword",
+      "dagger",
+      "sceptre",
+      "claws"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 7
+      },
+      {
+        "tier": 2,
+        "min": 8,
+        "max": 12
+      },
+      {
+        "tier": 3,
+        "min": 13,
+        "max": 17
+      },
+      {
+        "tier": 4,
+        "min": 18,
+        "max": 22
+      },
+      {
+        "tier": 5,
+        "min": 23,
+        "max": 30
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "necrotic_protection",
+    "name": "Necrotic Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "necrotic_protection"
+  },
+  {
+    "id": "poison_protection",
+    "name": "Poison Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "poison_protection"
+  },
+  {
+    "id": "void_protection",
+    "name": "Void Protection",
+    "type": "suffix",
+    "tags": [
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "gloves",
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "claws",
+      "polearm",
+      "staff",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic",
+      "boots"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 21,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 90
+      },
+      {
+        "tier": 3,
+        "min": 91,
+        "max": 150
+      },
+      {
+        "tier": 4,
+        "min": 151,
+        "max": 230
+      },
+      {
+        "tier": 5,
+        "min": 231,
+        "max": 320
+      }
+    ],
+    "stat_key": "void_protection"
+  },
+  {
+    "id": "all_attributes",
+    "name": "All Attributes",
+    "type": "suffix",
+    "tags": [
+      "attribute"
+    ],
+    "applicable_to": [
+      "axe",
+      "mace",
+      "polearm",
+      "staff",
+      "sword",
+      "bow",
+      "crossbow"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 2,
+        "min": 2,
+        "max": 2
+      },
+      {
+        "tier": 3,
+        "min": 3,
+        "max": 3
+      },
+      {
+        "tier": 4,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 5,
+        "min": 5,
+        "max": 5
+      }
+    ],
+    "stat_key": "all_attributes"
+  },
+  {
+    "id": "adaptive_spell_damage",
+    "name": "Adaptive Spell Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "spell"
+    ],
+    "applicable_to": [
+      "sword"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 11
+      },
+      {
+        "tier": 4,
+        "min": 12,
+        "max": 14
+      },
+      {
+        "tier": 5,
+        "min": 15,
+        "max": 25
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "chance_to_blind_on_hit",
+    "name": "Chance to Blind on Hit",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "polearm",
+      "staff",
+      "bow",
+      "crossbow"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 14
+      },
+      {
+        "tier": 2,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 3,
+        "min": 20,
+        "max": 24
+      },
+      {
+        "tier": 4,
+        "min": 25,
+        "max": 31
+      },
+      {
+        "tier": 5,
+        "min": 32,
+        "max": 45
+      }
+    ],
+    "stat_key": "chance_to_blind_on_hit"
+  },
+  {
+    "id": "chance_to_chill_attackers",
+    "name": "Chance To Chill Attackers",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "gloves",
+      "chest",
+      "shield",
+      "catalyst",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 22
+      },
+      {
+        "tier": 3,
+        "min": 23,
+        "max": 29
+      },
+      {
+        "tier": 4,
+        "min": 30,
+        "max": 39
+      },
+      {
+        "tier": 5,
+        "min": 40,
+        "max": 60
+      }
+    ],
+    "stat_key": "chill_chance"
+  },
+  {
+    "id": "chance_to_shock_attackers",
+    "name": "Chance To Shock Attackers",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "shield",
+      "catalyst",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 22
+      },
+      {
+        "tier": 2,
+        "min": 23,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 40
+      },
+      {
+        "tier": 4,
+        "min": 41,
+        "max": 65
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "shock_chance"
+  },
+  {
+    "id": "chance_to_slow_attackers",
+    "name": "Chance To Slow Attackers",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "ring",
+      "boots",
+      "shield",
+      "catalyst",
+      "belt"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 22
+      },
+      {
+        "tier": 3,
+        "min": 23,
+        "max": 29
+      },
+      {
+        "tier": 4,
+        "min": 30,
+        "max": 39
+      },
+      {
+        "tier": 5,
+        "min": 40,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_to_slow_attackers"
+  },
+  {
+    "id": "damage_dealt_to_mana_before_health",
+    "name": "Damage Dealt to Mana Before Health",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "life",
+      "mana"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 5,
+        "max": 5
+      },
+      {
+        "tier": 3,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 4,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 5,
+        "min": 8,
+        "max": 10
+      }
+    ],
+    "stat_key": "damage_dealt_to_mana_before_health"
+  },
+  {
+    "id": "dodge_rating_for_4_seconds_on_potion_use",
+    "name": "Dodge Rating for 4 seconds on potion use",
+    "type": "prefix",
+    "tags": [
+      "dodge"
+    ],
+    "applicable_to": [
+      "belt"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 100,
+        "max": 200
+      },
+      {
+        "tier": 2,
+        "min": 201,
+        "max": 300
+      },
+      {
+        "tier": 3,
+        "min": 301,
+        "max": 400
+      },
+      {
+        "tier": 4,
+        "min": 401,
+        "max": 500
+      },
+      {
+        "tier": 5,
+        "min": 501,
+        "max": 800
+      }
+    ],
+    "stat_key": "dodge_rating"
+  },
+  {
+    "id": "freeze_rate_multiplier",
+    "name": "Freeze Rate Multiplier",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "wand",
+      "sceptre",
+      "staff",
+      "catalyst"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 45
+      },
+      {
+        "tier": 2,
+        "min": 46,
+        "max": 70
+      },
+      {
+        "tier": 3,
+        "min": 0,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 5,
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "stat_key": "freeze_rate_multiplier"
+  },
+  {
+    "id": "health_on_melee_hit",
+    "name": "Health On Melee Hit",
+    "type": "suffix",
+    "tags": [
+      "life",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sword",
+      "polearm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 3
+      },
+      {
+        "tier": 2,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 3,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 4,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 5,
+        "min": 10,
+        "max": 13
+      }
+    ],
+    "stat_key": "health_on_melee_hit"
+  },
+  {
+    "id": "health_regen_per_second",
+    "name": "Health Regen Per Second",
+    "type": "prefix",
+    "tags": [
+      "life",
+      "regen"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "gloves"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "tier": 2,
+        "min": 3,
+        "max": 4
+      },
+      {
+        "tier": 3,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 4,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 5,
+        "min": 9,
+        "max": 10
+      }
+    ],
+    "stat_key": "health_regen_per_second"
+  },
+  {
+    "id": "ignite_chance_for_4_seconds_on_potion_use",
+    "name": "Ignite Chance for 4 seconds on potion use",
+    "type": "prefix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "belt"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 3,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "tier": 5,
+        "min": 2,
+        "max": 3
+      }
+    ],
+    "stat_key": "ignite_chance_for_4_seconds_on_potion_use"
+  },
+  {
+    "id": "armour_and_protections",
+    "name": "Armour And Protections",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "resistance"
+    ],
+    "applicable_to": [
+      "shield"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 24
+      },
+      {
+        "tier": 2,
+        "min": 25,
+        "max": 29
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 34
+      },
+      {
+        "tier": 4,
+        "min": 35,
+        "max": 39
+      },
+      {
+        "tier": 5,
+        "min": 40,
+        "max": 50
+      }
+    ],
+    "stat_key": "armour_and_protections"
+  },
+  {
+    "id": "chance_to_find_potions",
+    "name": "Chance To Find Potions",
+    "type": "prefix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "belt",
+      "helm",
+      "boots",
+      "ring",
+      "amulet",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 11,
+        "max": 20
+      },
+      {
+        "tier": 2,
+        "min": 21,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 40
+      },
+      {
+        "tier": 4,
+        "min": 41,
+        "max": 50
+      },
+      {
+        "tier": 5,
+        "min": 51,
+        "max": 70
+      }
+    ],
+    "stat_key": "chance_to_find_potions"
+  },
+  {
+    "id": "increased_cooldown_recovery_speed",
+    "name": "Increased Cooldown Recovery Speed",
+    "type": "prefix",
+    "tags": [
+      "cooldown",
+      "speed"
+    ],
+    "applicable_to": [
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 4,
+        "min": 11,
+        "max": 12
+      },
+      {
+        "tier": 5,
+        "min": 13,
+        "max": 15
+      }
+    ],
+    "stat_key": "increased_cooldown_recovery_speed"
+  },
+  {
+    "id": "increased_healing_effectiveness",
+    "name": "Increased Healing Effectiveness",
+    "type": "prefix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "ring",
+      "amulet",
+      "relic",
+      "shield"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 20
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 35
+      },
+      {
+        "tier": 3,
+        "min": 36,
+        "max": 50
+      },
+      {
+        "tier": 4,
+        "min": 51,
+        "max": 65
+      },
+      {
+        "tier": 5,
+        "min": 66,
+        "max": 90
+      }
+    ],
+    "stat_key": "increased_healing_effectiveness"
+  },
+  {
+    "id": "health_regeneration",
+    "name": "Health Regeneration",
+    "type": "suffix",
+    "tags": [
+      "life",
+      "regen"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 25
+      },
+      {
+        "tier": 3,
+        "min": 26,
+        "max": 35
+      },
+      {
+        "tier": 4,
+        "min": 36,
+        "max": 45
+      },
+      {
+        "tier": 5,
+        "min": 46,
+        "max": 75
+      }
+    ],
+    "stat_key": "health_regen"
+  },
+  {
+    "id": "mana_regeneration",
+    "name": "Mana Regeneration",
+    "type": "suffix",
+    "tags": [
+      "mana",
+      "regen"
+    ],
+    "applicable_to": [
+      "ring",
+      "relic",
+      "gloves"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 15
+      }
+    ],
+    "stat_key": "mana_regen"
+  },
+  {
+    "id": "melee_attack_speed",
+    "name": "Melee Attack Speed",
+    "type": "prefix",
+    "tags": [
+      "melee",
+      "speed"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm",
+      "gloves"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 11
+      },
+      {
+        "tier": 4,
+        "min": 12,
+        "max": 14
+      },
+      {
+        "tier": 5,
+        "min": 15,
+        "max": 20
+      }
+    ],
+    "stat_key": "attack_speed"
+  },
+  {
+    "id": "increased_stun_chance_with_melee_attacks",
+    "name": "Increased Stun Chance With Melee Attacks",
+    "type": "suffix",
+    "tags": [
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 45
+      },
+      {
+        "tier": 2,
+        "min": 46,
+        "max": 60
+      },
+      {
+        "tier": 3,
+        "min": 61,
+        "max": 75
+      },
+      {
+        "tier": 4,
+        "min": 76,
+        "max": 90
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_stun_chance_with_melee_attacks"
+  },
+  {
+    "id": "increased_shock_effect",
+    "name": "Increased Shock Effect",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "wand",
+      "amulet",
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 35,
+        "max": 50
+      },
+      {
+        "tier": 2,
+        "min": 51,
+        "max": 65
+      },
+      {
+        "tier": 3,
+        "min": 66,
+        "max": 80
+      },
+      {
+        "tier": 4,
+        "min": 0,
+        "max": 1
+      },
+      {
+        "tier": 5,
+        "min": 1,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_shock_effect"
+  },
+  {
+    "id": "spell_critical_strike_chance",
+    "name": "Spell Critical Strike Chance",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "spell"
+    ],
+    "applicable_to": [
+      "wand",
+      "sceptre",
+      "staff",
+      "amulet",
+      "relic",
+      "catalyst"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 25
+      },
+      {
+        "tier": 2,
+        "min": 26,
+        "max": 34
+      },
+      {
+        "tier": 3,
+        "min": 35,
+        "max": 43
+      },
+      {
+        "tier": 4,
+        "min": 44,
+        "max": 54
+      },
+      {
+        "tier": 5,
+        "min": 55,
+        "max": 80
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "increased_stun_chance",
+    "name": "Increased Stun Chance",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "wand",
+      "polearm",
+      "staff",
+      "bow",
+      "crossbow"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 35
+      },
+      {
+        "tier": 2,
+        "min": 36,
+        "max": 45
+      },
+      {
+        "tier": 3,
+        "min": 46,
+        "max": 55
+      },
+      {
+        "tier": 4,
+        "min": 56,
+        "max": 70
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_stun_chance"
+  },
+  {
+    "id": "throwing_attack_damage",
+    "name": "Throwing Attack Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "ranged"
+    ],
+    "applicable_to": [
+      "shield",
+      "gloves",
+      "relic",
+      "amulet"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 25
+      },
+      {
+        "tier": 2,
+        "min": 26,
+        "max": 35
+      },
+      {
+        "tier": 3,
+        "min": 36,
+        "max": 47
+      },
+      {
+        "tier": 4,
+        "min": 48,
+        "max": 59
+      },
+      {
+        "tier": 5,
+        "min": 60,
+        "max": 90
+      }
+    ],
+    "stat_key": "throwing_attack_damage"
+  },
+  {
+    "id": "melee_damage_leeched_as_health",
+    "name": "Melee Damage Leeched as Health",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "leech",
+      "life",
+      "melee"
+    ],
+    "applicable_to": [
+      "axe",
+      "dagger",
+      "mace",
+      "sceptre",
+      "sword",
+      "claws",
+      "polearm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 39
+      },
+      {
+        "tier": 2,
+        "min": 40,
+        "max": 49
+      },
+      {
+        "tier": 3,
+        "min": 50,
+        "max": 59
+      },
+      {
+        "tier": 4,
+        "min": 60,
+        "max": 69
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "minion_dodge_rating",
+    "name": "Minion Dodge Rating",
+    "type": "prefix",
+    "tags": [
+      "dodge",
+      "minion"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "gloves",
+      "boots",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 35,
+        "max": 65
+      },
+      {
+        "tier": 2,
+        "min": 66,
+        "max": 100
+      },
+      {
+        "tier": 3,
+        "min": 101,
+        "max": 140
+      },
+      {
+        "tier": 4,
+        "min": 141,
+        "max": 200
+      },
+      {
+        "tier": 5,
+        "min": 201,
+        "max": 300
+      }
+    ],
+    "stat_key": "dodge_rating"
+  },
+  {
+    "id": "minion_health_regen",
+    "name": "Minion Health Regen",
+    "type": "prefix",
+    "tags": [
+      "life",
+      "minion",
+      "regen"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "gloves",
+      "boots",
+      "shield",
+      "catalyst",
+      "amulet",
+      "ring",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 40
+      },
+      {
+        "tier": 2,
+        "min": 41,
+        "max": 80
+      },
+      {
+        "tier": 3,
+        "min": 0,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 2
+      },
+      {
+        "tier": 5,
+        "min": 2,
+        "max": 3
+      }
+    ],
+    "stat_key": "minion_health_pct"
+  },
+  {
+    "id": "damage_reflected",
+    "name": "Damage Reflected",
+    "type": "prefix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "chest",
+      "shield"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 10
+      },
+      {
+        "tier": 4,
+        "min": 11,
+        "max": 13
+      },
+      {
+        "tier": 5,
+        "min": 14,
+        "max": 20
+      }
+    ],
+    "stat_key": "damage_reflected"
+  },
+  {
+    "id": "potion_health_converted_to_ward",
+    "name": "Potion Health Converted to Ward",
+    "type": "prefix",
+    "tags": [
+      "life",
+      "ward"
+    ],
+    "applicable_to": [
+      "belt",
+      "gloves",
+      "relic",
+      "ring"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 14
+      },
+      {
+        "tier": 2,
+        "min": 15,
+        "max": 19
+      },
+      {
+        "tier": 3,
+        "min": 20,
+        "max": 24
+      },
+      {
+        "tier": 4,
+        "min": 25,
+        "max": 29
+      },
+      {
+        "tier": 5,
+        "min": 30,
+        "max": 35
+      }
+    ],
+    "stat_key": "potion_health_converted_to_ward"
+  },
+  {
+    "id": "damage_taken_on_block",
+    "name": "Damage Taken on Block",
+    "type": "suffix",
+    "tags": [
+      "block",
+      "damage"
+    ],
+    "applicable_to": [
+      "shield"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "damage_taken_on_block"
+  },
+  {
+    "id": "damage_reflected_to_attackers",
+    "name": "Damage Reflected to Attackers",
+    "type": "prefix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "chest",
+      "shield"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 11
+      },
+      {
+        "tier": 3,
+        "min": 12,
+        "max": 17
+      },
+      {
+        "tier": 4,
+        "min": 18,
+        "max": 25
+      },
+      {
+        "tier": 5,
+        "min": 26,
+        "max": 50
+      }
+    ],
+    "stat_key": "damage_reflected_to_attackers"
+  },
+  {
+    "id": "damage_over_time_for_minions",
+    "name": "Damage Over Time for Minions",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "minion"
+    ],
+    "applicable_to": [
+      "helm",
+      "ring",
+      "amulet",
+      "relic",
+      "staff",
+      "sceptre"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 34
+      },
+      {
+        "tier": 3,
+        "min": 35,
+        "max": 49
+      },
+      {
+        "tier": 4,
+        "min": 50,
+        "max": 69
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "damage_over_time_for_minions"
+  },
+  {
+    "id": "ward_gained_on_kill",
+    "name": "Ward Gained on Kill",
+    "type": "prefix",
+    "tags": [
+      "ward"
+    ],
+    "applicable_to": [
+      "amulet"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 11
+      },
+      {
+        "tier": 4,
+        "min": 12,
+        "max": 14
+      },
+      {
+        "tier": 5,
+        "min": 15,
+        "max": 20
+      }
+    ],
+    "stat_key": "ward_gained_on_kill"
+  },
+  {
+    "id": "elemental_damage_over_time",
+    "name": "Elemental Damage Over Time",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "elemental"
+    ],
+    "applicable_to": [
+      "ring",
+      "relic",
+      "belt",
+      "amulet",
+      "wand",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 34
+      },
+      {
+        "tier": 3,
+        "min": 35,
+        "max": 49
+      },
+      {
+        "tier": 4,
+        "min": 50,
+        "max": 69
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "elemental_damage_pct"
+  },
+  {
+    "id": "armour_and_protections_while_channelling",
+    "name": "Armour and Protections While Channelling",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "resistance"
+    ],
+    "applicable_to": [
+      "ring",
+      "relic",
+      "staff"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 35,
+        "max": 55
+      },
+      {
+        "tier": 2,
+        "min": 56,
+        "max": 80
+      },
+      {
+        "tier": 3,
+        "min": 81,
+        "max": 125
+      },
+      {
+        "tier": 4,
+        "min": 126,
+        "max": 180
+      },
+      {
+        "tier": 5,
+        "min": 181,
+        "max": 250
+      }
+    ],
+    "stat_key": "armour_and_protections_while_channelling"
+  },
+  {
+    "id": "chance_to_receive_a_glancing_blow",
+    "name": "Chance to receive a Glancing Blow",
+    "type": "prefix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "boots",
+      "gloves",
+      "helm",
+      "shield",
+      "belt",
+      "ring",
+      "relic",
+      "amulet"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 2,
+        "min": 2,
+        "max": 2
+      },
+      {
+        "tier": 3,
+        "min": 3,
+        "max": 3
+      },
+      {
+        "tier": 4,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 5,
+        "min": 6,
+        "max": 7
+      }
+    ],
+    "stat_key": "chance_to_receive_a_glancing_blow"
+  },
+  {
+    "id": "chance_to_receive_a_glancing_blow_when_hit",
+    "name": "Chance to receive a Glancing Blow when hit",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest",
+      "belt",
+      "boots",
+      "gloves",
+      "shield",
+      "ring",
+      "amulet",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 4,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 5,
+        "min": 12,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_to_receive_a_glancing_blow_when_hit"
+  },
+  {
+    "id": "chance_to_gain_30_ward_when_hit",
+    "name": "Chance To Gain 30 Ward When Hit",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_stout",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "chance_to_gain_30_ward_when_hit"
+  },
+  {
+    "id": "ward_on_potion_use",
+    "name": "Ward On Potion Use",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_lagonian",
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": null
+  },
+  {
+    "id": "damage_leeched_as_health_on_hit",
+    "name": "Damage Leeched as Health on Hit",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "leech",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_humble",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 25
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "elemental_protection_while_transformed",
+    "name": "Elemental Protection While Transformed",
+    "type": "suffix",
+    "tags": [
+      "elemental",
+      "idol",
+      "resistance"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 100,
+        "max": 300
+      }
+    ],
+    "stat_key": "elemental_protection_while_transformed"
+  },
+  {
+    "id": "chance_to_bleed_on_cold_hit",
+    "name": "Chance To Bleed on Cold Hit",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_to_bleed_on_cold_hit"
+  },
+  {
+    "id": "fire_damage_over_time",
+    "name": "Fire Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 33,
+        "max": 90
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "increased_bleed_duration",
+    "name": "Increased Bleed Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 40
+      }
+    ],
+    "stat_key": "increased_bleed_duration"
+  },
+  {
+    "id": "totem_armor",
+    "name": "Totem Armor",
+    "type": "prefix",
+    "tags": [
+      "armor",
+      "idol",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 178,
+        "max": 480
+      }
+    ],
+    "stat_key": "totem_armor"
+  },
+  {
+    "id": "health_regen_while_transformed",
+    "name": "Health Regen While Transformed",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "life",
+      "regen"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "health_regen_while_transformed"
+  },
+  {
+    "id": "totem_elemental_protection",
+    "name": "Totem Elemental Protection",
+    "type": "prefix",
+    "tags": [
+      "elemental",
+      "idol",
+      "resistance",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 133,
+        "max": 360
+      }
+    ],
+    "stat_key": "totem_elemental_protection"
+  },
+  {
+    "id": "increased_stun_duration",
+    "name": "Increased Stun Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_humble",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "increased_stun_duration"
+  },
+  {
+    "id": "cast_speed_for_totems",
+    "name": "Cast Speed for Totems",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "speed",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 24
+      }
+    ],
+    "stat_key": "cast_speed"
+  },
+  {
+    "id": "minion_melee_damage_leeched_as_health",
+    "name": "Minion Melee Damage Leeched As Health",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "leech",
+      "life",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "minion_melee_attack_speed",
+    "name": "Minion Melee Attack Speed",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "melee",
+      "minion",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 24
+      }
+    ],
+    "stat_key": "attack_speed"
+  },
+  {
+    "id": "minion_increased_cooldown_recovery_speed",
+    "name": "Minion Increased Cooldown Recovery Speed",
+    "type": "prefix",
+    "tags": [
+      "cooldown",
+      "idol",
+      "minion",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 20
+      }
+    ],
+    "stat_key": "minion_increased_cooldown_recovery_speed"
+  },
+  {
+    "id": "minion_increased_healing_effectiveness",
+    "name": "Minion Increased Healing Effectiveness",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "minion_increased_healing_effectiveness"
+  },
+  {
+    "id": "increased_minion_melee_stun_chance",
+    "name": "Increased Minion Melee Stun Chance",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_minion_melee_stun_chance"
+  },
+  {
+    "id": "minion_chance_to_bleed_on_hit",
+    "name": "Minion Chance To Bleed On Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 52
+      }
+    ],
+    "stat_key": "bleed_chance"
+  },
+  {
+    "id": "minion_chance_to_poison_on_hit",
+    "name": "Minion Chance To Poison On Hit",
+    "type": "suffix",
+    "tags": [
+      "chance",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 11,
+        "max": 30
+      }
+    ],
+    "stat_key": "poison_chance"
+  },
+  {
+    "id": "minion_melee_critical_strike_chance",
+    "name": "Minion Melee Critical Strike Chance",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "spell_damage_leeched_while_channelling",
+    "name": "Spell Damage Leeched While Channelling",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "leech",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "melee_damage_while_transformed",
+    "name": "Melee Damage While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "melee_damage_pct"
+  },
+  {
+    "id": "spell_damage_while_transformed",
+    "name": "Spell Damage While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "damage_over_time_while_transformed",
+    "name": "Damage Over Time While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "damage_over_time_while_transformed"
+  },
+  {
+    "id": "melee_critical_strike_multiplier_while_transformed",
+    "name": "Melee Critical Strike Multiplier While Transformed",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 33
+      }
+    ],
+    "stat_key": "crit_multiplier"
+  },
+  {
+    "id": "chance_to_apply_frostbite_on_hit_with_cold_skills",
+    "name": "Chance To Apply Frostbite on Hit with Cold Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 40
+      }
+    ],
+    "stat_key": "chance_to_apply_frostbite_on_hit_with_cold_skills"
+  },
+  {
+    "id": "critical_strike_chance_for_totems",
+    "name": "Critical Strike Chance for Totems",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 3
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "damage_over_time_taken_while_channelling",
+    "name": "Damage Over Time Taken While Channelling",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "damage_over_time_taken_while_channelling"
+  },
+  {
+    "id": "chance_to_apply_frostbite_with_cold_skills",
+    "name": "Chance To Apply Frostbite With Cold Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 50
+      }
+    ],
+    "stat_key": "chance_to_apply_frostbite_with_cold_skills"
+  },
+  {
+    "id": "frostbite_duration",
+    "name": "Frostbite Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "frostbite_duration"
+  },
+  {
+    "id": "cold_damage_over_time",
+    "name": "Cold Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 75
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "ward_generated_per_second",
+    "name": "Ward Generated Per Second",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 25
+      }
+    ],
+    "stat_key": "ward_generated_per_second"
+  },
+  {
+    "id": "ward_gained_on_melee_hit",
+    "name": "Ward Gained On Melee Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "melee",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "ward_gained_on_melee_hit"
+  },
+  {
+    "id": "melee_elemental_damage",
+    "name": "Melee Elemental Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "elemental",
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 28,
+        "max": 70
+      }
+    ],
+    "stat_key": "elemental_damage_pct"
+  },
+  {
+    "id": "chance_to_ignite_with_fire_skills",
+    "name": "Chance To Ignite With Fire Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 16,
+        "max": 42
+      }
+    ],
+    "stat_key": "ignite_chance"
+  },
+  {
+    "id": "chance_to_shock_with_lightning_skills",
+    "name": "Chance To Shock With Lightning Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "shock_chance"
+  },
+  {
+    "id": "ignite_effect",
+    "name": "Ignite Effect",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 16
+      }
+    ],
+    "stat_key": "ignite_effect"
+  },
+  {
+    "id": "frostbite_effect",
+    "name": "Frostbite Effect",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 13,
+        "max": 35
+      }
+    ],
+    "stat_key": "frostbite_effect"
+  },
+  {
+    "id": "shock_effect",
+    "name": "Shock Effect",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 50
+      }
+    ],
+    "stat_key": "shock_effect"
+  },
+  {
+    "id": "critical_strike_chance_with_lightning_skills",
+    "name": "Critical Strike Chance With Lightning Skills",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "strike"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "spell_fire_damage",
+    "name": "Spell Fire Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "fire",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 4
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "spell_lightning_damage",
+    "name": "Spell Lightning Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "lightning",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 4
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "spell_cold_damage",
+    "name": "Spell Cold Damage",
+    "type": "suffix",
+    "tags": [
+      "cold",
+      "damage",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 4
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "physical_damage_over_time",
+    "name": "Physical Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 33,
+        "max": 90
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "chance_to_blind_with_spells",
+    "name": "Chance To Blind With Spells",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 13,
+        "max": 35
+      }
+    ],
+    "stat_key": "chance_to_blind_with_spells"
+  },
+  {
+    "id": "mana_efficiency_with_void_spells",
+    "name": "Mana Efficiency With Void Spells",
+    "type": "prefix",
+    "tags": [
+      "efficiency",
+      "idol",
+      "mana",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 25
+      }
+    ],
+    "stat_key": "mana_efficiency_with_void_spells"
+  },
+  {
+    "id": "chance_to_shred_armor_on_hit",
+    "name": "Chance To Shred Armor on Hit",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_to_shred_armor_on_hit"
+  },
+  {
+    "id": "throwing_attack_critical_strike_multiplier",
+    "name": "Throwing Attack Critical Strike Multiplier",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "ranged"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 13,
+        "max": 35
+      }
+    ],
+    "stat_key": "crit_multiplier"
+  },
+  {
+    "id": "increased_stun_chance_with_throwing_attacks",
+    "name": "Increased Stun Chance With Throwing Attacks",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ranged"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_stun_chance_with_throwing_attacks"
+  },
+  {
+    "id": "time_rot_duration",
+    "name": "Time Rot Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "time_rot_duration"
+  },
+  {
+    "id": "fire_damage_taken_as_physical",
+    "name": "Fire Damage Taken As Physical",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 20
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "lightning_damage_taken_as_physical",
+    "name": "Lightning Damage Taken As Physical",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 20
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "cold_damage_taken_as_physical",
+    "name": "Cold Damage Taken As Physical",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 20
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "chance_to_shred_fire_protection_on_hit_with_fire_skills",
+    "name": "Chance To Shred Fire Protection on Hit With Fire Skills",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "resistance",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "chance_to_shred_fire_protection_on_hit_with_fire_skills"
+  },
+  {
+    "id": "chance_to_shred_armor_on_hit_with_fire_skills",
+    "name": "Chance To Shred Armor on Hit With Fire Skills",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "chance_to_shred_armor_on_hit_with_fire_skills"
+  },
+  {
+    "id": "chance_to_slow_with_void_skills",
+    "name": "Chance To Slow With Void Skills",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_to_slow_with_void_skills"
+  },
+  {
+    "id": "chance_to_bleed_on_hit_while_at_high_health",
+    "name": "Chance To Bleed on Hit While At High Health",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "bleed_chance"
+  },
+  {
+    "id": "chance_to_ignite_while_at_high_health",
+    "name": "Chance To Ignite While At High Health",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "ignite_chance"
+  },
+  {
+    "id": "chance_to_shred_armor_on_melee_hit",
+    "name": "Chance To Shred Armor on Melee Hit",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "chance_to_shred_armor_on_melee_hit"
+  },
+  {
+    "id": "chance_to_shred_armor_on_hit_with_throwing_attacks",
+    "name": "Chance To Shred Armor on Hit with Throwing Attacks",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "idol",
+      "ranged"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "chance_to_shred_armor_on_hit_with_throwing_attacks"
+  },
+  {
+    "id": "chance_to_gain_haste_for_3_seconds_when_you_summon_a_totem",
+    "name": "Chance To Gain Haste For 3 Seconds When You Summon A Totem",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 50
+      }
+    ],
+    "stat_key": "chance_to_gain_haste_for_3_seconds_when_you_summon_a_totem"
+  },
+  {
+    "id": "chance_on_10_or_more_mana_spent_to_cast_lightning_at_a_nearby_enemy",
+    "name": "Chance On 10 Or More Mana Spent To Cast Lightning At A Nearby Enemy",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "mana",
+      "on"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 50
+      }
+    ],
+    "stat_key": "chance_on_10_or_more_mana_spent_to_cast_lightning_at_a_nearby_enemy"
+  },
+  {
+    "id": "chance_on_kill_to_refresh_random_companion_ability",
+    "name": "Chance On Kill To Refresh Random Companion Ability",
+    "type": "prefix",
+    "tags": [
+      "minion"
+    ],
+    "applicable_to": [
+      "any"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 8
+      }
+    ],
+    "stat_key": "chance_on_kill_to_refresh_random_companion_ability"
+  },
+  {
+    "id": "bees_per_10_seconds",
+    "name": "Bees Per 10 Seconds",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 3
+      }
+    ],
+    "stat_key": "bees_per_10_seconds"
+  },
+  {
+    "id": "chance_to_chill_nearby_enemies_when_you_use_a_skill_that_costs_at_least_20_mana",
+    "name": "Chance To Chill Nearby Enemies When you use a skill that costs at least 20 Mana",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "chill_chance"
+  },
+  {
+    "id": "chance_on_hit_to_summon_a_thorn_totem",
+    "name": "Chance On Hit To Summon A Thorn Totem",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_on_hit_to_summon_a_thorn_totem"
+  },
+  {
+    "id": "mana_gained_when_transforming_back_to_human_form",
+    "name": "Mana Gained When Transforming Back To Human Form",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 15
+      }
+    ],
+    "stat_key": "mana_gained_when_transforming_back_to_human_form"
+  },
+  {
+    "id": "chance_to_cast_ice_thorns_when_hit",
+    "name": "Chance To Cast Ice Thorns When Hit",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 8
+      }
+    ],
+    "stat_key": "chance_to_cast_ice_thorns_when_hit"
+  },
+  {
+    "id": "chance_to_cast_maelstrom_every_5_seconds",
+    "name": "Chance To Cast Maelstrom Every 5 Seconds",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 30
+      }
+    ],
+    "stat_key": "chance_to_cast_maelstrom_every_5_seconds"
+  },
+  {
+    "id": "chance_to_cast_healing_nova_when_hit",
+    "name": "Chance To Cast Healing Nova When Hit",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 8
+      }
+    ],
+    "stat_key": "chance_to_cast_healing_nova_when_hit"
+  },
+  {
+    "id": "chance_to_create_an_aftershock_under_a_nearby_enemy_on_melee_attack",
+    "name": "Chance To Create An Aftershock Under A Nearby Enemy On Melee Attack",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 8
+      }
+    ],
+    "stat_key": "chance_to_create_an_aftershock_under_a_nearby_enemy_on_melee_attack"
+  },
+  {
+    "id": "chance_to_cast_an_avalanche_boulder_at_a_nearby_enemy_on_spell_cast",
+    "name": "Chance To Cast An Avalanche Boulder At a Nearby Enemy On Spell Cast",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_an_avalanche_boulder_at_a_nearby_enemy_on_spell_cast"
+  },
+  {
+    "id": "chance_to_cast_an_avalanche_boulder_at_a_nearby_enemy_on_melee_attack",
+    "name": "Chance To Cast An Avalanche Boulder At a Nearby Enemy On Melee Attack",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 8
+      }
+    ],
+    "stat_key": "chance_to_cast_an_avalanche_boulder_at_a_nearby_enemy_on_melee_attack"
+  },
+  {
+    "id": "increased_aspect_of_the_shark_effect",
+    "name": "Increased Aspect Of The Shark Effect",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 20
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_shark_effect"
+  },
+  {
+    "id": "increased_aspect_of_the_shark_duration",
+    "name": "Increased Aspect Of The Shark Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 25
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_shark_duration"
+  },
+  {
+    "id": "increased_aspect_of_the_boar_effect",
+    "name": "Increased Aspect Of The Boar Effect",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 12
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_boar_effect"
+  },
+  {
+    "id": "increased_aspect_of_the_boar_duration",
+    "name": "Increased Aspect Of The Boar Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_boar_duration"
+  },
+  {
+    "id": "increased_aspect_of_the_viper_effect",
+    "name": "Increased Aspect Of The Viper Effect",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 25
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_viper_effect"
+  },
+  {
+    "id": "increased_aspect_of_the_viper_duration",
+    "name": "Increased Aspect Of The Viper Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_viper_duration"
+  },
+  {
+    "id": "increased_aspect_of_the_lynx_effect",
+    "name": "Increased Aspect Of The Lynx Effect",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 25
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_lynx_effect"
+  },
+  {
+    "id": "increased_aspect_of_the_lynx_duration",
+    "name": "Increased Aspect Of The Lynx Duration",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "increased_aspect_of_the_lynx_duration"
+  },
+  {
+    "id": "increased_spell_damage_if_you_have_an_active_totem",
+    "name": "Increased Spell Damage If You Have An Active Totem",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "spell",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 60
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "increased_cold_damage_per_active_totem",
+    "name": "Increased Cold Damage Per Active Totem",
+    "type": "suffix",
+    "tags": [
+      "cold",
+      "damage",
+      "idol",
+      "totem"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 22
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "chance_on_melee_kill_to_heal_a_random_minion_to_full_health",
+    "name": "Chance On Melee Kill To Heal A Random Minion To Full Health",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "life",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_on_melee_kill_to_heal_a_random_minion_to_full_health"
+  },
+  {
+    "id": "seconds_of_stun_immunity_after_using_teleport",
+    "name": "Seconds Of Stun Immunity After Using Teleport",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 3
+      }
+    ],
+    "stat_key": "seconds_of_stun_immunity_after_using_teleport"
+  },
+  {
+    "id": "chance_to_cast_fire_aura_on_critical_strike",
+    "name": "Chance To Cast Fire Aura On Critical Strike",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_to_cast_fire_aura_on_critical_strike"
+  },
+  {
+    "id": "increased_elemental_nova_area",
+    "name": "Increased Elemental Nova Area",
+    "type": "prefix",
+    "tags": [
+      "elemental",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 11,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_elemental_nova_area"
+  },
+  {
+    "id": "increased_fire_aura_damage",
+    "name": "Increased Fire Aura Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "fire",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_fire_aura_damage"
+  },
+  {
+    "id": "static_charges_generated_per_second",
+    "name": "Static Charges Generated Per Second",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 4
+      }
+    ],
+    "stat_key": "static_charges_generated_per_second"
+  },
+  {
+    "id": "increased_cast_speed_while_you_have_lightning_aegis",
+    "name": "Increased Cast Speed While You Have Lightning Aegis",
+    "type": "prefix",
+    "tags": [
+      "cast",
+      "idol",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 28
+      }
+    ],
+    "stat_key": "cast_speed"
+  },
+  {
+    "id": "chance_to_gain_lightning_aegis_when_hit",
+    "name": "Chance To Gain Lightning Aegis When Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_gain_lightning_aegis_when_hit"
+  },
+  {
+    "id": "ward_granted_when_casting_flame_ward",
+    "name": "Ward Granted When Casting Flame Ward",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 50
+      }
+    ],
+    "stat_key": "ward_granted_when_casting_flame_ward"
+  },
+  {
+    "id": "chance_to_cast_elemental_nova_when_hit",
+    "name": "Chance To Cast Elemental Nova When Hit",
+    "type": "prefix",
+    "tags": [
+      "elemental",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_elemental_nova_when_hit"
+  },
+  {
+    "id": "chance_to_cast_fire_aura_when_hit",
+    "name": "Chance To Cast Fire Aura When Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 5
+      }
+    ],
+    "stat_key": "chance_to_cast_fire_aura_when_hit"
+  },
+  {
+    "id": "increased_fire_aura_area",
+    "name": "Increased Fire Aura Area",
+    "type": "prefix",
+    "tags": [
+      "fire",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_fire_aura_area"
+  },
+  {
+    "id": "ward_gained_when_damage_leaves_you_at_low_health_5_second_cooldown",
+    "name": "Ward Gained When Damage Leaves You At Low Health (5 Second Cooldown)",
+    "type": "prefix",
+    "tags": [
+      "cooldown",
+      "damage",
+      "idol",
+      "life",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 35,
+        "max": 100
+      }
+    ],
+    "stat_key": "ward_gained_when_damage_leaves_you_at_low_health_5_second_cooldown"
+  },
+  {
+    "id": "damage_reflected_while_you_have_lightning_aegis",
+    "name": "Damage Reflected While You Have Lightning Aegis",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "reflected"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "damage_reflected_while_you_have_lightning_aegis"
+  },
+  {
+    "id": "chance_to_cast_lightning_blast_when_hit_while_you_have_lightning_aegis",
+    "name": "Chance To Cast Lightning Blast When Hit While You Have Lightning Aegis",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 20
+      }
+    ],
+    "stat_key": "chance_to_cast_lightning_blast_when_hit_while_you_have_lightning_aegis"
+  },
+  {
+    "id": "increased_lightning_damage_while_you_have_lightning_aegis",
+    "name": "Increased Lightning Damage While You Have Lightning Aegis",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "lightning"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "chance_to_cast_fire_aura_on_kill_with_fire_skills",
+    "name": "Chance To Cast Fire Aura On Kill With Fire Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 20
+      }
+    ],
+    "stat_key": "chance_to_cast_fire_aura_on_kill_with_fire_skills"
+  },
+  {
+    "id": "increased_lightning_damage_doubled_if_you_have_over_300_max_mana",
+    "name": "Increased Lightning Damage (Doubled If You Have Over 300 Max Mana)",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "lightning",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 50
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "increased_cold_damage_doubled_if_you_have_over_300_max_mana",
+    "name": "Increased Cold Damage (Doubled If You Have Over 300 Max Mana)",
+    "type": "suffix",
+    "tags": [
+      "cold",
+      "damage",
+      "idol",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 50
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "increased_fire_damage_doubled_if_you_have_over_300_max_mana",
+    "name": "Increased Fire Damage (Doubled If You Have Over 300 Max Mana)",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "fire",
+      "idol",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 50
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "poison_chance_while_at_low_health",
+    "name": "Poison Chance While At Low Health",
+    "type": "suffix",
+    "tags": [
+      "chance",
+      "idol",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "poison_chance"
+  },
+  {
+    "id": "damage_over_time_while_at_low_health",
+    "name": "Damage Over Time While At Low Health",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 26,
+        "max": 70
+      }
+    ],
+    "stat_key": "damage_over_time_while_at_low_health"
+  },
+  {
+    "id": "chance_to_apply_damned_on_hit",
+    "name": "Chance To Apply Damned On Hit",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 13,
+        "max": 36
+      }
+    ],
+    "stat_key": "chance_to_apply_damned_on_hit"
+  },
+  {
+    "id": "damage_while_transformed",
+    "name": "Damage While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 26,
+        "max": 70
+      }
+    ],
+    "stat_key": "damage_while_transformed"
+  },
+  {
+    "id": "damage_over_time_taken_while_transformed",
+    "name": "Damage Over Time Taken While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "damage_over_time_taken_while_transformed"
+  },
+  {
+    "id": "damage_leeched_as_health_while_transformed",
+    "name": "Damage Leeched As Health While Transformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "leech",
+      "life"
+    ],
+    "applicable_to": [
+      "any"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "reduced_health_cost_of_spells",
+    "name": "Reduced Health Cost Of Spells",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "life",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "reduced_health_cost_of_spells"
+  },
+  {
+    "id": "chance_to_chill_with_necrotic_skills",
+    "name": "Chance To Chill With Necrotic Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 16,
+        "max": 42
+      }
+    ],
+    "stat_key": "chill_chance"
+  },
+  {
+    "id": "increased_aura_of_decay_area",
+    "name": "Increased Aura Of Decay Area",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 20
+      }
+    ],
+    "stat_key": "increased_aura_of_decay_area"
+  },
+  {
+    "id": "armor_granted_by_bone_armor",
+    "name": "Armor Granted By Bone Armor",
+    "type": "prefix",
+    "tags": [
+      "armor",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 60,
+        "max": 200
+      }
+    ],
+    "stat_key": "armor_granted_by_bone_armor"
+  },
+  {
+    "id": "increased_warpath_area",
+    "name": "Increased Warpath Area",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_warpath_area"
+  },
+  {
+    "id": "chance_to_apply_time_rot_on_hit",
+    "name": "Chance To Apply Time Rot On Hit",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_to_apply_time_rot_on_hit"
+  },
+  {
+    "id": "chance_to_cast_void_rift_on_kill",
+    "name": "Chance To Cast Void Rift On Kill",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_void_rift_on_kill"
+  },
+  {
+    "id": "chance_to_create_a_void_essence_on_kill",
+    "name": "Chance To Create A Void Essence On Kill",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_create_a_void_essence_on_kill"
+  },
+  {
+    "id": "chance_to_cast_manifest_weapon_on_melee_hit",
+    "name": "Chance To Cast Manifest Weapon On Melee Hit",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 16
+      }
+    ],
+    "stat_key": "chance_to_cast_manifest_weapon_on_melee_hit"
+  },
+  {
+    "id": "chance_to_cast_divine_bolt_when_you_use_a_0_cost_skill",
+    "name": "Chance To Cast Divine Bolt When You Use A 0 Cost Skill",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_divine_bolt_when_you_use_a_0_cost_skill"
+  },
+  {
+    "id": "chance_to_cast_smite_when_you_hit_with_throwing_attacks",
+    "name": "Chance To Cast Smite When You Hit With Throwing Attacks",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ranged"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_smite_when_you_hit_with_throwing_attacks"
+  },
+  {
+    "id": "health_gained_when_stunned",
+    "name": "Health Gained When Stunned",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "life"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 56,
+        "max": 150
+      }
+    ],
+    "stat_key": "health_gained_when_stunned"
+  },
+  {
+    "id": "increased_echo_damage_when_a_skill_echoes",
+    "name": "Increased Echo Damage When A Skill Echoes",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_echo_damage_when_a_skill_echoes"
+  },
+  {
+    "id": "increased_void_damage_for_4_seconds_when_a_skill_echoes",
+    "name": "Increased Void Damage For 4 Seconds When a Skill Echoes",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "void"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "increased_melee_damage_for_4_seconds_when_a_skill_echoes",
+    "name": "Increased Melee Damage For 4 Seconds When a Skill Echoes",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "melee"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "melee_damage_pct"
+  },
+  {
+    "id": "chance_to_gain_inspiration_on_kills_with_void_skills",
+    "name": "Chance To Gain Inspiration On Kills With Void Skills",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 35
+      }
+    ],
+    "stat_key": "chance_to_gain_inspiration_on_kills_with_void_skills"
+  },
+  {
+    "id": "increased_damage_for_4_seconds_if_you_have_cast_devouring_orb_recently",
+    "name": "Increased Damage For 4 Seconds If You Have Cast Devouring Orb Recently",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 22,
+        "max": 60
+      }
+    ],
+    "stat_key": "damage_pct"
+  },
+  {
+    "id": "abyssal_decay_duration",
+    "name": "Abyssal Decay Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "abyssal_decay_duration"
+  },
+  {
+    "id": "chance_to_fear_on_hit",
+    "name": "Chance To Fear On Hit",
+    "type": "suffix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 20
+      }
+    ],
+    "stat_key": "chance_to_fear_on_hit"
+  },
+  {
+    "id": "increased_minion_cooldown_recovery_speed",
+    "name": "Increased Minion Cooldown Recovery Speed",
+    "type": "suffix",
+    "tags": [
+      "cooldown",
+      "idol",
+      "minion",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 35
+      }
+    ],
+    "stat_key": "increased_minion_cooldown_recovery_speed"
+  },
+  {
+    "id": "minion_chance_to_apply_mark_for_death_on_hit",
+    "name": "Minion Chance To Apply Mark For Death On Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "minion_chance_to_apply_mark_for_death_on_hit"
+  },
+  {
+    "id": "minion_chance_to_inflict_plague_on_hit",
+    "name": "Minion Chance To Inflict Plague on Hit",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "minion_chance_to_inflict_plague_on_hit"
+  },
+  {
+    "id": "damage_over_time_taken",
+    "name": "Damage Over Time Taken",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "damage_over_time_taken"
+  },
+  {
+    "id": "chance_to_inflict_bleed_on_physical_spell_hit",
+    "name": "Chance To Inflict Bleed On Physical Spell Hit",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "spell",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 50
+      }
+    ],
+    "stat_key": "chance_to_inflict_bleed_on_physical_spell_hit"
+  },
+  {
+    "id": "spell_damage_while_at_low_health",
+    "name": "Spell Damage While At Low Health",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "life",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 75
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "minion_fire_damage",
+    "name": "Minion Fire Damage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "fire",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 33,
+        "max": 90
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "minion_cold_damage",
+    "name": "Minion Cold Damage",
+    "type": "prefix",
+    "tags": [
+      "cold",
+      "damage",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 33,
+        "max": 90
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "physical_spell_critical_strike_chance",
+    "name": "Physical Spell Critical Strike Chance",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 24,
+        "max": 65
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "poison_chance_on_spell_hit",
+    "name": "Poison Chance On Spell Hit",
+    "type": "suffix",
+    "tags": [
+      "chance",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 36
+      }
+    ],
+    "stat_key": "poison_chance"
+  },
+  {
+    "id": "seconds_to_sigils_of_hope_duration",
+    "name": "Seconds to Sigils of Hope Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 2,
+        "max": 4
+      }
+    ],
+    "stat_key": "seconds_to_sigils_of_hope_duration"
+  },
+  {
+    "id": "chance_to_deal_20_fire_damage_on_hit_with_shield_throw",
+    "name": "Chance To Deal 20 Fire Damage On Hit With Shield Throw",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "shield_throw_damage_converted_to_void",
+    "name": "Shield Throw Damage Converted to Void",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "throw"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      }
+    ],
+    "stat_key": "shield_throw_damage_converted_to_void"
+  },
+  {
+    "id": "lightning_damage_with_hammer_throw",
+    "name": "Lightning Damage With Hammer Throw",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 12
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "chance_to_cast_poison_nova_when_hit",
+    "name": "Chance To Cast Poison Nova When Hit",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      }
+    ],
+    "stat_key": "chance_to_cast_poison_nova_when_hit"
+  },
+  {
+    "id": "chance_for_hungering_souls_to_fire_6_additional_projectiles",
+    "name": "Chance For Hungering Souls To Fire 6 Additional Projectiles",
+    "type": "prefix",
+    "tags": [
+      "for",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 25
+      }
+    ],
+    "stat_key": "chance_for_hungering_souls_to_fire_6_additional_projectiles"
+  },
+  {
+    "id": "increased_cooldown_recovery_speed_with_transplant",
+    "name": "Increased Cooldown Recovery Speed With Transplant",
+    "type": "suffix",
+    "tags": [
+      "cooldown",
+      "idol",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 18
+      }
+    ],
+    "stat_key": "increased_cooldown_recovery_speed_with_transplant"
+  },
+  {
+    "id": "necrotic_spell_damage_per_skeleton_mage",
+    "name": "Necrotic Spell Damage Per Skeleton Mage",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "chance_to_gain_20_ward_on_kill_with_hungering_souls",
+    "name": "Chance To Gain 20 Ward On Kill With Hungering Souls",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "ward"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 60
+      }
+    ],
+    "stat_key": "ward_on_kill"
+  },
+  {
+    "id": "chance_for_summon_wraith_to_summon_a_putrid_wraith_instead",
+    "name": "Chance For Summon Wraith To Summon A Putrid Wraith Instead",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_for_summon_wraith_to_summon_a_putrid_wraith_instead"
+  },
+  {
+    "id": "chance_for_summon_wraith_to_summon_a_flame_wraith_instead",
+    "name": "Chance For Summon Wraith To Summon A Flame Wraith Instead",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 60
+      }
+    ],
+    "stat_key": "chance_for_summon_wraith_to_summon_a_flame_wraith_instead"
+  },
+  {
+    "id": "chance_to_cast_soul_feast_when_you_cast_transplant",
+    "name": "Chance To Cast Soul Feast When You Cast Transplant",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_to_cast_soul_feast_when_you_cast_transplant"
+  },
+  {
+    "id": "poison_protection_while_aura_of_decay_is_active",
+    "name": "Poison Protection While Aura Of Decay Is Active",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "protection",
+      "resistance"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 185,
+        "max": 500
+      }
+    ],
+    "stat_key": "poison_protection_while_aura_of_decay_is_active"
+  },
+  {
+    "id": "chance_to_apply_a_spark_charge_on_hit_with_lightning_skills",
+    "name": "Chance to Apply a Spark Charge on Hit with Lightning Skills",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "to"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 25
+      }
+    ],
+    "stat_key": "chance_to_apply_a_spark_charge_on_hit_with_lightning_skills"
+  },
+  {
+    "id": "totem_adaptive_spell_damage",
+    "name": "Totem Adaptive Spell Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "spell",
+      "totem"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "increased_cooldown_recovery_speed_while_transformed",
+    "name": "Increased Cooldown Recovery Speed While Transformed",
+    "type": "suffix",
+    "tags": [
+      "cooldown",
+      "speed"
+    ],
+    "applicable_to": [
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 2,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 3,
+        "min": 10,
+        "max": 12
+      },
+      {
+        "tier": 4,
+        "min": 13,
+        "max": 14
+      },
+      {
+        "tier": 5,
+        "min": 15,
+        "max": 18
+      }
+    ],
+    "stat_key": "increased_cooldown_recovery_speed_while_transformed"
+  },
+  {
+    "id": "minion_critical_strike_modifier",
+    "name": "Minion Critical Strike Modifier",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "minion"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 3,
+        "min": 18,
+        "max": 20
+      },
+      {
+        "tier": 4,
+        "min": 21,
+        "max": 23
+      },
+      {
+        "tier": 5,
+        "min": 24,
+        "max": 30
+      }
+    ],
+    "stat_key": "minion_critical_strike_modifier"
+  },
+  {
+    "id": "minion_spell_critical_strike_chance",
+    "name": "Minion Spell Critical Strike Chance",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "minion",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "critical_strike_multiplier_while_transformed",
+    "name": "Critical Strike Multiplier While Transformed",
+    "type": "suffix",
+    "tags": [
+      "critical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 3,
+        "min": 18,
+        "max": 20
+      },
+      {
+        "tier": 4,
+        "min": 21,
+        "max": 23
+      },
+      {
+        "tier": 5,
+        "min": 24,
+        "max": 30
+      }
+    ],
+    "stat_key": "crit_multiplier"
+  },
+  {
+    "id": "increased_frostbite_effect",
+    "name": "Increased Frostbite Effect",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 15
+      },
+      {
+        "tier": 2,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 3,
+        "min": 18,
+        "max": 20
+      },
+      {
+        "tier": 4,
+        "min": 21,
+        "max": 23
+      },
+      {
+        "tier": 5,
+        "min": 24,
+        "max": 35
+      }
+    ],
+    "stat_key": "increased_frostbite_effect"
+  },
+  {
+    "id": "freete_rate_per_stack_of_chill",
+    "name": "Freete Rate Per Stack of Chill",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "freete_rate_per_stack_of_chill"
+  },
+  {
+    "id": "totem_increased_cast_speed",
+    "name": "Totem Increased Cast Speed",
+    "type": "suffix",
+    "tags": [
+      "speed",
+      "totem"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 2,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 3,
+        "min": 12,
+        "max": 13
+      },
+      {
+        "tier": 4,
+        "min": 14,
+        "max": 15
+      },
+      {
+        "tier": 5,
+        "min": 16,
+        "max": 20
+      }
+    ],
+    "stat_key": "cast_speed"
+  },
+  {
+    "id": "added_minion_melee_crit_chance",
+    "name": "Added Minion Melee Crit Chance",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 3
+      },
+      {
+        "tier": 2,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 3,
+        "min": 5,
+        "max": 5
+      },
+      {
+        "tier": 4,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 5,
+        "min": 7,
+        "max": 9
+      }
+    ],
+    "stat_key": "added_minion_melee_crit_chance"
+  },
+  {
+    "id": "increased_melee_damage_while_transformed",
+    "name": "Increased Melee Damage While Transformed",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "melee"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "melee_damage_pct"
+  },
+  {
+    "id": "increased_spell_damage_while_transformed",
+    "name": "Increased Spell Damage While Transformed",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "increased_damage_over_time_while_transformed",
+    "name": "Increased Damage Over Time While Transformed",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "damage_pct"
+  },
+  {
+    "id": "increased_totem_critical_strike_chance",
+    "name": "'Increased Totem Critical Strike Chance '",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "totem"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 45,
+        "max": 51
+      },
+      {
+        "tier": 2,
+        "min": 52,
+        "max": 58
+      },
+      {
+        "tier": 3,
+        "min": 59,
+        "max": 65
+      },
+      {
+        "tier": 4,
+        "min": 66,
+        "max": 72
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "increased_totem_damage",
+    "name": "Increased Totem Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "totem"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "increased_totem_damage"
+  },
+  {
+    "id": "increased_bleed_effect",
+    "name": "Increased Bleed Effect",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 27
+      },
+      {
+        "tier": 2,
+        "min": 28,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 33
+      },
+      {
+        "tier": 4,
+        "min": 34,
+        "max": 36
+      },
+      {
+        "tier": 5,
+        "min": 37,
+        "max": 45
+      }
+    ],
+    "stat_key": "increased_bleed_effect"
+  },
+  {
+    "id": "added_physical_damage_if_wielding_a_sword",
+    "name": "Added Physical Damage If Wielding A Sword",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "physical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "chance_to_bleed_if_wielding_an_axe",
+    "name": "Chance To Bleed If Wielding An Axe",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 23
+      },
+      {
+        "tier": 2,
+        "min": 24,
+        "max": 27
+      },
+      {
+        "tier": 3,
+        "min": 28,
+        "max": 31
+      },
+      {
+        "tier": 4,
+        "min": 32,
+        "max": 35
+      },
+      {
+        "tier": 5,
+        "min": 36,
+        "max": 45
+      }
+    ],
+    "stat_key": "chance_to_bleed_if_wielding_an_axe"
+  },
+  {
+    "id": "added_physical_damage_if_wielding_a_mace",
+    "name": "Added Physical Damage If Wielding A Mace",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "physical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 10
+      },
+      {
+        "tier": 2,
+        "min": 11,
+        "max": 11
+      },
+      {
+        "tier": 3,
+        "min": 12,
+        "max": 12
+      },
+      {
+        "tier": 4,
+        "min": 13,
+        "max": 13
+      },
+      {
+        "tier": 5,
+        "min": 14,
+        "max": 18
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "void_damage_taken_as_physical",
+    "name": "Void Damage Taken As Physical",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 3,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 4,
+        "min": 24,
+        "max": 25
+      },
+      {
+        "tier": 5,
+        "min": 26,
+        "max": 35
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "necrotic_damage_taken_as_physical",
+    "name": "Necrotic Damage Taken As Physical",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 3,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 4,
+        "min": 24,
+        "max": 25
+      },
+      {
+        "tier": 5,
+        "min": 26,
+        "max": 35
+      }
+    ],
+    "stat_key": "necrotic_damage_pct"
+  },
+  {
+    "id": "poison_damage_taken_as_physical",
+    "name": "Poison Damage Taken As Physical",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 3,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 4,
+        "min": 24,
+        "max": 25
+      },
+      {
+        "tier": 5,
+        "min": 26,
+        "max": 35
+      }
+    ],
+    "stat_key": "poison_damage_taken_as_physical"
+  },
+  {
+    "id": "throwing_attack_critical_strike_chance",
+    "name": "Throwing Attack Critical Strike Chance",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "ranged"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 45,
+        "max": 51
+      },
+      {
+        "tier": 2,
+        "min": 52,
+        "max": 58
+      },
+      {
+        "tier": 3,
+        "min": 59,
+        "max": 65
+      },
+      {
+        "tier": 4,
+        "min": 66,
+        "max": 72
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "reduced_channel_cost",
+    "name": "Reduced Channel Cost",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "reduced_channel_cost"
+  },
+  {
+    "id": "increased_armor_shred_effect",
+    "name": "Increased Armor Shred Effect",
+    "type": "suffix",
+    "tags": [
+      "armor"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 45,
+        "max": 51
+      },
+      {
+        "tier": 2,
+        "min": 52,
+        "max": 58
+      },
+      {
+        "tier": 3,
+        "min": 59,
+        "max": 65
+      },
+      {
+        "tier": 4,
+        "min": 66,
+        "max": 72
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "armor_pct"
+  },
+  {
+    "id": "increased_fire_damage_over_time",
+    "name": "Increased Fire Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "fire"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 45
+      },
+      {
+        "tier": 2,
+        "min": 46,
+        "max": 51
+      },
+      {
+        "tier": 3,
+        "min": 52,
+        "max": 57
+      },
+      {
+        "tier": 4,
+        "min": 58,
+        "max": 63
+      },
+      {
+        "tier": 5,
+        "min": 64,
+        "max": 80
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "increased_void_damage_over_time",
+    "name": "Increased Void Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "void"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 45
+      },
+      {
+        "tier": 2,
+        "min": 46,
+        "max": 51
+      },
+      {
+        "tier": 3,
+        "min": 52,
+        "max": 57
+      },
+      {
+        "tier": 4,
+        "min": 58,
+        "max": 63
+      },
+      {
+        "tier": 5,
+        "min": 64,
+        "max": 80
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "increased_abyssal_decay_duration",
+    "name": "Increased Abyssal Decay Duration",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 17
+      },
+      {
+        "tier": 2,
+        "min": 18,
+        "max": 23
+      },
+      {
+        "tier": 3,
+        "min": 24,
+        "max": 29
+      },
+      {
+        "tier": 4,
+        "min": 30,
+        "max": 34
+      },
+      {
+        "tier": 5,
+        "min": 35,
+        "max": 45
+      }
+    ],
+    "stat_key": "increased_abyssal_decay_duration"
+  },
+  {
+    "id": "mana_gained_on_vengeance_use",
+    "name": "Mana Gained On Vengeance Use",
+    "type": "suffix",
+    "tags": [
+      "mana"
+    ],
+    "applicable_to": [
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 3,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 4,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 5,
+        "min": 7,
+        "max": 10
+      }
+    ],
+    "stat_key": "mana_gained_on_vengeance_use"
+  },
+  {
+    "id": "mana_gained_on_rive_use",
+    "name": "Mana Gained On Rive Use",
+    "type": "suffix",
+    "tags": [
+      "mana"
+    ],
+    "applicable_to": [
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 3,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 4,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 5,
+        "min": 7,
+        "max": 10
+      }
+    ],
+    "stat_key": "mana_gained_on_rive_use"
+  },
+  {
+    "id": "mana_gained_on_smite_use",
+    "name": "Mana Gained On Smite Use",
+    "type": "suffix",
+    "tags": [
+      "mana"
+    ],
+    "applicable_to": [
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 3,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 4,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 5,
+        "min": 7,
+        "max": 10
+      }
+    ],
+    "stat_key": "mana_gained_on_smite_use"
+  },
+  {
+    "id": "increased_hammer_throw_damage",
+    "name": "Increased Hammer Throw Damage",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "increased_hammer_throw_damage"
+  },
+  {
+    "id": "increased_shield_throw_critical_strike_chance",
+    "name": "Increased Shield Throw Critical Strike Chance",
+    "type": "suffix",
+    "tags": [
+      "critical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 45,
+        "max": 51
+      },
+      {
+        "tier": 2,
+        "min": 52,
+        "max": 58
+      },
+      {
+        "tier": 3,
+        "min": 59,
+        "max": 65
+      },
+      {
+        "tier": 4,
+        "min": 66,
+        "max": 72
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "increased_smelters_wrath_damage",
+    "name": "Increased Smelters Wrath Damage",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "any"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "increased_smelters_wrath_damage"
+  },
+  {
+    "id": "increased_spell_crit_doubled_over_300_max_mana",
+    "name": "Increased Spell Crit Doubled Over 300 Max Mana",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "mana",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 42
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "increased_spell_crit_doubled_over_300_max_mana"
+  },
+  {
+    "id": "ward_per_second",
+    "name": "Ward Per Second",
+    "type": "prefix",
+    "tags": [
+      "ward"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "ward_per_second"
+  },
+  {
+    "id": "adaptive_spell_damage_while_channeling",
+    "name": "Adaptive Spell Damage While Channeling",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "increased_freeze_rate_per_stack_of_chill",
+    "name": "Increased Freeze Rate Per Stack of Chill",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 26,
+        "max": 30
+      },
+      {
+        "tier": 2,
+        "min": 31,
+        "max": 35
+      },
+      {
+        "tier": 3,
+        "min": 36,
+        "max": 40
+      },
+      {
+        "tier": 4,
+        "min": 41,
+        "max": 45
+      },
+      {
+        "tier": 5,
+        "min": 46,
+        "max": 60
+      }
+    ],
+    "stat_key": "increased_freeze_rate_per_stack_of_chill"
+  },
+  {
+    "id": "lightning_critical_strike_multiplier",
+    "name": "Lightning Critical Strike Multiplier",
+    "type": "suffix",
+    "tags": [
+      "critical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 2,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 3,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 4,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 5,
+        "min": 24,
+        "max": 30
+      }
+    ],
+    "stat_key": "crit_multiplier"
+  },
+  {
+    "id": "spell_damage_leeched_as_health_while_channeling",
+    "name": "Spell Damage Leeched As Health While Channeling",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "leech",
+      "life",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 26
+      },
+      {
+        "tier": 2,
+        "min": 27,
+        "max": 33
+      },
+      {
+        "tier": 3,
+        "min": 34,
+        "max": 40
+      },
+      {
+        "tier": 4,
+        "min": 41,
+        "max": 47
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "increased_cold_damage_over_time",
+    "name": "Increased Cold Damage Over Time",
+    "type": "suffix",
+    "tags": [
+      "cold",
+      "damage"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 44
+      },
+      {
+        "tier": 2,
+        "min": 45,
+        "max": 49
+      },
+      {
+        "tier": 3,
+        "min": 50,
+        "max": 54
+      },
+      {
+        "tier": 4,
+        "min": 55,
+        "max": 59
+      },
+      {
+        "tier": 5,
+        "min": 60,
+        "max": 80
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "increased_melee_elemental_damage",
+    "name": "Increased Melee Elemental Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "elemental",
+      "melee"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 43
+      },
+      {
+        "tier": 4,
+        "min": 43,
+        "max": 48
+      },
+      {
+        "tier": 5,
+        "min": 48,
+        "max": 60
+      }
+    ],
+    "stat_key": "elemental_damage_pct"
+  },
+  {
+    "id": "chance_to_ignite_on_hit_with_fire_skills",
+    "name": "Chance To Ignite On Hit With Fire Skills",
+    "type": "suffix",
+    "tags": [
+      "to"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 44
+      },
+      {
+        "tier": 2,
+        "min": 45,
+        "max": 49
+      },
+      {
+        "tier": 3,
+        "min": 50,
+        "max": 54
+      },
+      {
+        "tier": 4,
+        "min": 55,
+        "max": 59
+      },
+      {
+        "tier": 5,
+        "min": 60,
+        "max": 80
+      }
+    ],
+    "stat_key": "ignite_chance"
+  },
+  {
+    "id": "chance_to_shock_on_hit_with_lightning_skills",
+    "name": "Chance To Shock On Hit With Lightning Skills",
+    "type": "suffix",
+    "tags": [
+      "to"
+    ],
+    "applicable_to": [
+      "any"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 44
+      },
+      {
+        "tier": 2,
+        "min": 45,
+        "max": 49
+      },
+      {
+        "tier": 3,
+        "min": 50,
+        "max": 54
+      },
+      {
+        "tier": 4,
+        "min": 55,
+        "max": 59
+      },
+      {
+        "tier": 5,
+        "min": 60,
+        "max": 80
+      }
+    ],
+    "stat_key": "shock_chance"
+  },
+  {
+    "id": "chance_to_cast_fire_aura_on_kill_with_a_fire_skill",
+    "name": "Chance To Cast Fire Aura On Kill With A Fire Skill",
+    "type": "suffix",
+    "tags": [
+      "to"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 5
+      },
+      {
+        "tier": 2,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 3,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 4,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 5,
+        "min": 12,
+        "max": 15
+      }
+    ],
+    "stat_key": "chance_to_cast_fire_aura_on_kill_with_a_fire_skill"
+  },
+  {
+    "id": "increased_physical_damage_while_tranformed",
+    "name": "Increased Physical Damage While Tranformed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "physical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 44
+      },
+      {
+        "tier": 2,
+        "min": 45,
+        "max": 49
+      },
+      {
+        "tier": 3,
+        "min": 50,
+        "max": 54
+      },
+      {
+        "tier": 4,
+        "min": 55,
+        "max": 59
+      },
+      {
+        "tier": 5,
+        "min": 60,
+        "max": 80
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "increased_necrotic_damage_while_transformed",
+    "name": "Increased Necrotic Damage While Transformed",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "necrotic"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 45,
+        "max": 51
+      },
+      {
+        "tier": 2,
+        "min": 52,
+        "max": 58
+      },
+      {
+        "tier": 3,
+        "min": 59,
+        "max": 65
+      },
+      {
+        "tier": 4,
+        "min": 66,
+        "max": 72
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "necrotic_damage_pct"
+  },
+  {
+    "id": "increased_skeleton_mage_damage",
+    "name": "Increased Skeleton Mage Damage",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 38
+      },
+      {
+        "tier": 2,
+        "min": 39,
+        "max": 52
+      },
+      {
+        "tier": 3,
+        "min": 53,
+        "max": 66
+      },
+      {
+        "tier": 4,
+        "min": 67,
+        "max": 80
+      },
+      {
+        "tier": 5,
+        "min": 0,
+        "max": 1
+      }
+    ],
+    "stat_key": "increased_skeleton_mage_damage"
+  },
+  {
+    "id": "mana_gained_on_harvest_use",
+    "name": "Mana Gained On Harvest Use",
+    "type": "suffix",
+    "tags": [
+      "mana"
+    ],
+    "applicable_to": [
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 4,
+        "min": 11,
+        "max": 12
+      },
+      {
+        "tier": 5,
+        "min": 13,
+        "max": 15
+      }
+    ],
+    "stat_key": "mana_gained_on_harvest_use"
+  },
+  {
+    "id": "harvest_damage_leeched_as_health",
+    "name": "Harvest Damage Leeched As Health",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "leech",
+      "life"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 16
+      },
+      {
+        "tier": 2,
+        "min": 17,
+        "max": 21
+      },
+      {
+        "tier": 3,
+        "min": 22,
+        "max": 26
+      },
+      {
+        "tier": 4,
+        "min": 27,
+        "max": 31
+      },
+      {
+        "tier": 5,
+        "min": 32,
+        "max": 40
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "damage_to_minions_reflected_to_attackers",
+    "name": "Damage To Minions Reflected to Attackers",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "minion"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 10
+      },
+      {
+        "tier": 2,
+        "min": 11,
+        "max": 11
+      },
+      {
+        "tier": 3,
+        "min": 12,
+        "max": 12
+      },
+      {
+        "tier": 4,
+        "min": 13,
+        "max": 14
+      },
+      {
+        "tier": 5,
+        "min": 15,
+        "max": 20
+      }
+    ],
+    "stat_key": "damage_to_minions_reflected_to_attackers"
+  },
+  {
+    "id": "extra_potion_slot_and_potion_health",
+    "name": "Extra Potion Slot And Potion Health",
+    "type": "prefix",
+    "tags": [
+      "life"
+    ],
+    "applicable_to": [
+      "belt"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 3,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 5,
+        "min": 1,
+        "max": 1
+      }
+    ],
+    "stat_key": "extra_potion_slot_and_potion_health"
+  },
+  {
+    "id": "freeze_rate_multiplier_and_cold_protection",
+    "name": "Freeze Rate Multiplier and Cold Protection",
+    "type": "prefix",
+    "tags": [
+      "rate",
+      "resistance"
+    ],
+    "applicable_to": [
+      "ring",
+      "relic",
+      "amulet",
+      "gloves"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 40
+      },
+      {
+        "tier": 2,
+        "min": 41,
+        "max": 65
+      },
+      {
+        "tier": 3,
+        "min": 0,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 5,
+        "min": 1,
+        "max": 2
+      }
+    ],
+    "stat_key": "freeze_rate_multiplier_and_cold_protection"
+  },
+  {
+    "id": "hybrid_health_leech",
+    "name": "Hybrid Health Leech",
+    "type": "prefix",
+    "tags": [
+      "leech",
+      "life"
+    ],
+    "applicable_to": [
+      "ring",
+      "gloves",
+      "relic"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 2,
+        "min": 12,
+        "max": 13
+      },
+      {
+        "tier": 3,
+        "min": 14,
+        "max": 16
+      },
+      {
+        "tier": 4,
+        "min": 17,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 25
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "hybrid_stun_avoidance",
+    "name": "Hybrid Stun Avoidance",
+    "type": "prefix",
+    "tags": [
+      "stun"
+    ],
+    "applicable_to": [
+      "amulet"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 25
+      },
+      {
+        "tier": 2,
+        "min": 26,
+        "max": 50
+      },
+      {
+        "tier": 3,
+        "min": 51,
+        "max": 80
+      },
+      {
+        "tier": 4,
+        "min": 81,
+        "max": 130
+      },
+      {
+        "tier": 5,
+        "min": 131,
+        "max": 200
+      }
+    ],
+    "stat_key": "stun_avoidance"
+  },
+  {
+    "id": "lightning_damage_and_leech",
+    "name": "Lightning Damage And Leech",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "leech"
+    ],
+    "applicable_to": [
+      "sceptre"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 3,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "spell_damage_and_mana_cost",
+    "name": "Spell Damage and Mana Cost",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "mana",
+      "spell"
+    ],
+    "applicable_to": [
+      "wand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 4,
+        "max": 10
+      },
+      {
+        "tier": 2,
+        "min": 11,
+        "max": 16
+      },
+      {
+        "tier": 3,
+        "min": 17,
+        "max": 22
+      },
+      {
+        "tier": 4,
+        "min": 23,
+        "max": 30
+      },
+      {
+        "tier": 5,
+        "min": 31,
+        "max": 45
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "throwing_attack_damage_and_mana_cost",
+    "name": "Throwing Attack Damage and Mana Cost",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "mana",
+      "ranged"
+    ],
+    "applicable_to": [
+      "ring"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 3,
+        "max": 4
+      },
+      {
+        "tier": 2,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 3,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 4,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 5,
+        "min": 11,
+        "max": 14
+      }
+    ],
+    "stat_key": "throwing_attack_damage_and_mana_cost"
+  },
+  {
+    "id": "throwing_damage_and_fire_vulnerability",
+    "name": "Throwing Damage And Fire Vulnerability",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "ranged"
+    ],
+    "applicable_to": [
+      "ring",
+      "amulet"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 7
+      },
+      {
+        "tier": 2,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 3,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 4,
+        "min": 12,
+        "max": 13
+      },
+      {
+        "tier": 5,
+        "min": 14,
+        "max": 17
+      }
+    ],
+    "stat_key": "throwing_damage_pct"
+  },
+  {
+    "id": "mana_and_armor",
+    "name": "Mana And Armor",
+    "type": "suffix",
+    "tags": [
+      "armor",
+      "idol",
+      "mana"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 12
+      }
+    ],
+    "stat_key": "mana_and_armor"
+  },
+  {
+    "id": "chance_to_bleed_on_melee_hit_for_you_and_your_minions",
+    "name": "Chance To Bleed on Melee Hit for You and Your Minions",
+    "type": "suffix",
+    "tags": [
+      "idol",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "chance_to_bleed_on_melee_hit_for_you_and_your_minions"
+  },
+  {
+    "id": "melee_bleed_duration_for_you_and_your_minions",
+    "name": "Melee Bleed Duration For You And Your Minions",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 25
+      }
+    ],
+    "stat_key": "melee_bleed_duration_for_you_and_your_minions"
+  },
+  {
+    "id": "critical_strike_avoidance_for_you_and_your_minions",
+    "name": "Critical Strike Avoidance for You and Your Minions",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "idol",
+      "minion",
+      "strike"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "critical_strike_avoidance_for_you_and_your_minions"
+  },
+  {
+    "id": "critical_strike_chance_with_lightning_skills_for_you_and_your_minions",
+    "name": "Critical Strike Chance with Lightning Skills for You and Your Minions",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "idol",
+      "minion",
+      "strike"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 19,
+        "max": 50
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "cold_and_lightning_damage",
+    "name": "Cold and Lightning Damage",
+    "type": "suffix",
+    "tags": [
+      "and",
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 48
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "spell_damage_for_you_and_your_minions",
+    "name": "Spell Damage For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "minion",
+      "spell"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 48
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "melee_damage_for_you_and_your_minions",
+    "name": "Melee Damage For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "melee",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 48
+      }
+    ],
+    "stat_key": "melee_damage_pct"
+  },
+  {
+    "id": "physical_and_poison_damage",
+    "name": "Physical And Poison Damage",
+    "type": "suffix",
+    "tags": [
+      "and",
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 48
+      }
+    ],
+    "stat_key": "physical_and_poison_damage"
+  },
+  {
+    "id": "damage_over_time_for_you_and_your_minions",
+    "name": "Damage Over Time For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 48
+      }
+    ],
+    "stat_key": "damage_over_time_for_you_and_your_minions"
+  },
+  {
+    "id": "ignite_and_spreading_flames_duration",
+    "name": "Ignite And Spreading Flames Duration",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 7,
+        "max": 25
+      }
+    ],
+    "stat_key": "ignite_and_spreading_flames_duration"
+  },
+  {
+    "id": "damage_reflected_for_you_and_your_minions",
+    "name": "Damage Reflected For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 35
+      }
+    ],
+    "stat_key": "damage_reflected_for_you_and_your_minions"
+  },
+  {
+    "id": "health_regen_and_damage_taken_over_time",
+    "name": "Health Regen And Damage Taken Over Time",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "life",
+      "regen"
+    ],
+    "applicable_to": [
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [],
+    "stat_key": "health_regen_and_damage_taken_over_time"
+  },
+  {
+    "id": "plague_chance_on_hit_and_increased_plague_effect",
+    "name": "Plague Chance On Hit And Increased Plague Effect",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 25
+      }
+    ],
+    "stat_key": "plague_chance_on_hit_and_increased_plague_effect"
+  },
+  {
+    "id": "critical_strike_chance_for_you_and_your_minions",
+    "name": "Critical Strike Chance For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "idol",
+      "minion"
+    ],
+    "applicable_to": [
+      "idol_large",
+      "idol_huge",
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 15,
+        "max": 40
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "critical_strike_multiplier_with_rive_and_judgement",
+    "name": "Critical Strike Multiplier With Rive And Judgement",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "crit_multiplier"
+  },
+  {
+    "id": "increased_area_with_rive_and_forge_strike",
+    "name": "Increased Area With Rive And Forge Strike",
+    "type": "prefix",
+    "tags": [
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 11,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_area_with_rive_and_forge_strike"
+  },
+  {
+    "id": "increased_damage_with_vengeance_and_smite",
+    "name": "Increased Damage With Vengeance And Smite",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_large"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 80
+      }
+    ],
+    "stat_key": "damage_pct"
+  },
+  {
+    "id": "increased_projectile_speed_with_marrow_shards_and_bone_nova",
+    "name": "Increased Projectile Speed With Marrow Shards And Bone Nova",
+    "type": "prefix",
+    "tags": [
+      "idol",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 10,
+        "max": 30
+      }
+    ],
+    "stat_key": "increased_projectile_speed_with_marrow_shards_and_bone_nova"
+  },
+  {
+    "id": "increased_damage_with_rip_blood_and_blood_splatter",
+    "name": "Increased Damage With Rip Blood And Blood Splatter",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_adorned"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 28,
+        "max": 75
+      }
+    ],
+    "stat_key": "damage_pct"
+  },
+  {
+    "id": "critical_strike_chance_for_skeletons_and_skeleton_mages",
+    "name": "Critical Strike Chance For Skeletons And Skeleton Mages",
+    "type": "prefix",
+    "tags": [
+      "critical",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_grand"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 3
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "damage_reflected_for_skeletons_and_skeleton_mages",
+    "name": "Damage Reflected For Skeletons And Skeleton Mages",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 9,
+        "max": 30
+      }
+    ],
+    "stat_key": "damage_reflected_for_skeletons_and_skeleton_mages"
+  },
+  {
+    "id": "shared_physical_damage",
+    "name": "Shared Physical Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "physical"
+    ],
+    "applicable_to": [
+      "idol_small",
+      "idol_humble",
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "shared_lightning_damage",
+    "name": "Shared Lightning Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "lightning"
+    ],
+    "applicable_to": [
+      "idol_lagonian",
+      "idol_stout",
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "lightning_damage_pct"
+  },
+  {
+    "id": "shared_cold_damage",
+    "name": "Shared Cold Damage",
+    "type": "suffix",
+    "tags": [
+      "cold",
+      "damage",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_lagonian",
+      "idol_stout",
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "cold_damage_pct"
+  },
+  {
+    "id": "shared_fire_damage",
+    "name": "Shared Fire Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "fire",
+      "idol"
+    ],
+    "applicable_to": [
+      "idol_lagonian",
+      "idol_stout",
+      "idol_large",
+      "idol_huge"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "shared_void_damage",
+    "name": "Shared Void Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "void"
+    ],
+    "applicable_to": [
+      "idol_small",
+      "idol_humble",
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "shared_necrotic_damage",
+    "name": "Shared Necrotic Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "necrotic"
+    ],
+    "applicable_to": [
+      "idol_small",
+      "idol_humble",
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "necrotic_damage_pct"
+  },
+  {
+    "id": "shared_poison_damage",
+    "name": "Shared Poison Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "idol",
+      "poison"
+    ],
+    "applicable_to": [
+      "idol_small",
+      "idol_humble",
+      "idol_grand",
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 17,
+        "max": 45
+      }
+    ],
+    "stat_key": "shared_poison_damage"
+  },
+  {
+    "id": "increased_volcanic_orb_damage_and_reduced_speed",
+    "name": "Increased Volcanic Orb Damage And Reduced Speed",
+    "type": "prefix",
+    "tags": [
+      "damage",
+      "idol",
+      "speed"
+    ],
+    "applicable_to": [
+      "idol_ornate"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 55
+      }
+    ],
+    "stat_key": "increased_volcanic_orb_damage_and_reduced_speed"
+  },
+  {
+    "id": "shared_glancing_blow",
+    "name": "Shared Glancing Blow",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 5,
+        "max": 6
+      },
+      {
+        "tier": 2,
+        "min": 7,
+        "max": 8
+      },
+      {
+        "tier": 3,
+        "min": 9,
+        "max": 10
+      },
+      {
+        "tier": 4,
+        "min": 11,
+        "max": 12
+      },
+      {
+        "tier": 5,
+        "min": 13,
+        "max": 16
+      }
+    ],
+    "stat_key": "shared_glancing_blow"
+  },
+  {
+    "id": "shared_bleed_duration",
+    "name": "Shared Bleed Duration",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 2,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 3,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 4,
+        "min": 24,
+        "max": 25
+      },
+      {
+        "tier": 5,
+        "min": 26,
+        "max": 35
+      }
+    ],
+    "stat_key": "shared_bleed_duration"
+  },
+  {
+    "id": "shared_increased_spell_damage",
+    "name": "Shared Increased Spell Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "spell"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 27
+      },
+      {
+        "tier": 2,
+        "min": 28,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 33
+      },
+      {
+        "tier": 4,
+        "min": 34,
+        "max": 36
+      },
+      {
+        "tier": 5,
+        "min": 37,
+        "max": 50
+      }
+    ],
+    "stat_key": "spell_damage_pct"
+  },
+  {
+    "id": "shared_increased_melee_damage",
+    "name": "Shared Increased Melee Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "melee"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 27
+      },
+      {
+        "tier": 2,
+        "min": 28,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 33
+      },
+      {
+        "tier": 4,
+        "min": 34,
+        "max": 36
+      },
+      {
+        "tier": 5,
+        "min": 37,
+        "max": 50
+      }
+    ],
+    "stat_key": "melee_damage_pct"
+  },
+  {
+    "id": "increased_physical_damage_and_bleed_duatrion",
+    "name": "Increased Physical Damage And Bleed Duatrion",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "physical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 28
+      },
+      {
+        "tier": 2,
+        "min": 29,
+        "max": 32
+      },
+      {
+        "tier": 3,
+        "min": 33,
+        "max": 36
+      },
+      {
+        "tier": 4,
+        "min": 37,
+        "max": 40
+      },
+      {
+        "tier": 5,
+        "min": 41,
+        "max": 50
+      }
+    ],
+    "stat_key": "physical_damage_pct"
+  },
+  {
+    "id": "increased_fire_damage_and_ignite_duration",
+    "name": "Increased Fire Damage And Ignite Duration",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "fire"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 28
+      },
+      {
+        "tier": 2,
+        "min": 29,
+        "max": 32
+      },
+      {
+        "tier": 3,
+        "min": 33,
+        "max": 36
+      },
+      {
+        "tier": 4,
+        "min": 37,
+        "max": 40
+      },
+      {
+        "tier": 5,
+        "min": 41,
+        "max": 50
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "increased_void_damage_and_added_spell_void_damage",
+    "name": "Increased Void Damage And Added Spell Void Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "spell",
+      "void"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 41
+      },
+      {
+        "tier": 4,
+        "min": 42,
+        "max": 46
+      },
+      {
+        "tier": 5,
+        "min": 47,
+        "max": 60
+      }
+    ],
+    "stat_key": "void_damage_pct"
+  },
+  {
+    "id": "flame_ward_charge_and_added_ward",
+    "name": "Flame Ward Charge and Added Ward",
+    "type": "suffix",
+    "tags": [
+      "ward"
+    ],
+    "applicable_to": [
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 2,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 3,
+        "min": 24,
+        "max": 26
+      },
+      {
+        "tier": 4,
+        "min": 27,
+        "max": 30
+      },
+      {
+        "tier": 5,
+        "min": 31,
+        "max": 40
+      }
+    ],
+    "stat_key": "flame_ward_charge_and_added_ward"
+  },
+  {
+    "id": "shared_increased_fire_damage",
+    "name": "Shared Increased Fire Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "increased"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 30,
+        "max": 33
+      },
+      {
+        "tier": 2,
+        "min": 34,
+        "max": 37
+      },
+      {
+        "tier": 3,
+        "min": 38,
+        "max": 41
+      },
+      {
+        "tier": 4,
+        "min": 42,
+        "max": 46
+      },
+      {
+        "tier": 5,
+        "min": 47,
+        "max": 60
+      }
+    ],
+    "stat_key": "fire_damage_pct"
+  },
+  {
+    "id": "shared_increased_necrotic_damage",
+    "name": "Shared Increased Necrotic Damage",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "increased"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 27
+      },
+      {
+        "tier": 2,
+        "min": 28,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 33
+      },
+      {
+        "tier": 4,
+        "min": 34,
+        "max": 36
+      },
+      {
+        "tier": 5,
+        "min": 37,
+        "max": 50
+      }
+    ],
+    "stat_key": "necrotic_damage_pct"
+  },
+  {
+    "id": "shared_bleed_chance_on_hit",
+    "name": "Shared Bleed Chance On Hit",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "chest",
+      "helm"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 20,
+        "max": 23
+      },
+      {
+        "tier": 2,
+        "min": 24,
+        "max": 27
+      },
+      {
+        "tier": 3,
+        "min": 28,
+        "max": 31
+      },
+      {
+        "tier": 4,
+        "min": 32,
+        "max": 35
+      },
+      {
+        "tier": 5,
+        "min": 36,
+        "max": 45
+      }
+    ],
+    "stat_key": "shared_bleed_chance_on_hit"
+  },
+  {
+    "id": "shared_increased_bleed_duration",
+    "name": "Shared Increased Bleed Duration",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 2,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 3,
+        "min": 20,
+        "max": 21
+      },
+      {
+        "tier": 4,
+        "min": 22,
+        "max": 23
+      },
+      {
+        "tier": 5,
+        "min": 24,
+        "max": 30
+      }
+    ],
+    "stat_key": "shared_increased_bleed_duration"
+  },
+  {
+    "id": "shared_bleed_effect",
+    "name": "Shared Bleed Effect",
+    "type": "suffix",
+    "tags": [
+      "misc"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 12,
+        "max": 13
+      },
+      {
+        "tier": 2,
+        "min": 14,
+        "max": 15
+      },
+      {
+        "tier": 3,
+        "min": 16,
+        "max": 17
+      },
+      {
+        "tier": 4,
+        "min": 18,
+        "max": 19
+      },
+      {
+        "tier": 5,
+        "min": 20,
+        "max": 25
+      }
+    ],
+    "stat_key": "shared_bleed_effect"
+  },
+  {
+    "id": "shared_physical_damage_leeched_as_health",
+    "name": "Shared Physical Damage Leeched As Health",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "leech",
+      "life",
+      "physical"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 6,
+        "max": 7
+      },
+      {
+        "tier": 2,
+        "min": 8,
+        "max": 9
+      },
+      {
+        "tier": 3,
+        "min": 10,
+        "max": 11
+      },
+      {
+        "tier": 4,
+        "min": 12,
+        "max": 13
+      },
+      {
+        "tier": 5,
+        "min": 14,
+        "max": 20
+      }
+    ],
+    "stat_key": "leech"
+  },
+  {
+    "id": "poison_damage_and_poison_protection",
+    "name": "Poison Damage And Poison Protection",
+    "type": "suffix",
+    "tags": [
+      "damage",
+      "resistance"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 25,
+        "max": 27
+      },
+      {
+        "tier": 2,
+        "min": 28,
+        "max": 30
+      },
+      {
+        "tier": 3,
+        "min": 31,
+        "max": 33
+      },
+      {
+        "tier": 4,
+        "min": 34,
+        "max": 36
+      },
+      {
+        "tier": 5,
+        "min": 37,
+        "max": 50
+      }
+    ],
+    "stat_key": "poison_damage_and_poison_protection"
+  },
+  {
+    "id": "increased_critical_strike_chance_for_you_and_your_minions",
+    "name": "Increased Critical Strike Chance For You And Your Minions",
+    "type": "suffix",
+    "tags": [
+      "critical",
+      "minion"
+    ],
+    "applicable_to": [
+      "helm",
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 40,
+        "max": 45
+      },
+      {
+        "tier": 2,
+        "min": 46,
+        "max": 51
+      },
+      {
+        "tier": 3,
+        "min": 52,
+        "max": 57
+      },
+      {
+        "tier": 4,
+        "min": 58,
+        "max": 63
+      },
+      {
+        "tier": 5,
+        "min": 64,
+        "max": 80
+      }
+    ],
+    "stat_key": "crit_chance"
+  },
+  {
+    "id": "1_skeleton_and_increased_skeleton_damage",
+    "name": "+1 Skeleton and Increased Skeleton Damage",
+    "type": "suffix",
+    "tags": [
+      "damage"
+    ],
+    "applicable_to": [
+      "chest"
+    ],
+    "class_requirement": null,
+    "tiers": [
+      {
+        "tier": 1,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 2,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 3,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 4,
+        "min": 1,
+        "max": 1
+      },
+      {
+        "tier": 5,
+        "min": 1,
+        "max": 1
+      }
+    ],
+    "stat_key": "1_skeleton_and_increased_skeleton_damage"
   }
 ]
