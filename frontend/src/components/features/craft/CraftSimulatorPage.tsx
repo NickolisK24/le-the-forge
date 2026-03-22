@@ -1032,8 +1032,8 @@ export default function CraftSimulatorPage() {
       item_name: store.itemName || undefined,
       item_level: store.itemLevel,
       rarity: store.rarity,
-      // Pass fp_mode=manual + actual FP so backend uses item_engine correctly
-      fp_mode: "manual",
+      // Use "fixed" mode so backend accepts the exact FP without rarity-range validation
+      fp_mode: "fixed",
       manual_fp: store.forgePotential,
       affixes: store.affixes,
     });
