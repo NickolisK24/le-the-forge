@@ -99,9 +99,8 @@ function localSimulate(
     newAffixes: affixes,
   };
 
-  // In modern Last Epoch, all successful crafts are "perfect" (no quality distinction)
-  const roll = Math.random() * 100;
-  const outcome: CraftOutcome = roll > 95 ? "perfect" : "success";
+  // In modern Last Epoch, all successful crafts are "success" (no quality distinction)
+  const outcome: CraftOutcome = "success";
   const newFp = fp - cost;
 
   let newAffixes = [...affixes];
@@ -127,10 +126,10 @@ function localSimulate(
 
   return {
     outcome,
-    message: outcome === "perfect" ? "Perfect craft!" : "Success!",
+    message: "Success!",
     newFp,
     newAffixes,
-    roll: Math.round(roll * 100) / 100,
+    roll: null, // No rolls in FP-only system
   };
 }
 
@@ -275,40 +274,87 @@ function OutcomePredictorPanel({
   optPath: OptimalPathStep[];
   simResult: SimulationResult;
 }) {
-  const brickPct = Math.round(simResult.brick_chance * 1000) / 10;
-  const perfectPct = Math.round(simResult.perfect_item_chance * 1000) / 10;
-
   return (
-    <Panel title="Outcome Predictor">
+    <Panel title="Crafting Statistics">
       <div className="flex flex-col gap-3">
-        {/* Survival curve */}
+        {/* FP Consumption stats */}
         <div>
-          <SectionLabel>Survival Curve</SectionLabel>
-          <SurvivalCurve curve={simResult.step_survival_curve} steps={optPath} />
+          <SectionLabel>FP Consumption</SectionLabel>
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p25}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                25th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p50}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                50th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p75}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                75th %
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Steps Completed stats */}
+        <div>
+          <SectionLabel>Steps Completed</SectionLabel>
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p25}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                25th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p50}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                50th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p75}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                75th %
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Summary stats */}
         <div className="grid grid-cols-2 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
           <div className="bg-forge-surface text-center py-3 px-2">
-            <span
-              className="font-display text-xl font-bold block mb-0.5"
-              style={{ color: brickPct < 20 ? "#3dca74" : brickPct < 40 ? "#f0a020" : "#ff5050" }}
-            >
-              {brickPct.toFixed(1)}%
+            <span className="font-display text-xl font-bold block mb-0.5 text-forge-green">
+              {optPath.length}
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-forge-dim">
-              Brick Chance
+              Total Steps
             </span>
           </div>
           <div className="bg-forge-surface text-center py-3 px-2">
-            <span
-              className="font-display text-xl font-bold block mb-0.5"
-              style={{ color: perfectPct >= 75 ? "#3dca74" : perfectPct >= 50 ? "#f0a020" : "#ff5050" }}
-            >
-              {perfectPct.toFixed(1)}%
+            <span className="font-display text-xl font-bold block mb-0.5 text-forge-amber">
+              {optPath.reduce((sum, step) => sum + (FP_COSTS[step.action as keyof typeof FP_COSTS] ?? 0), 0)}
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-forge-dim">
-              Perfect Item Chance
+              Total FP Cost
             </span>
           </div>
         </div>
@@ -369,16 +415,10 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
 
               {/* Cumulative survival */}
               <div className="text-right self-start pt-0.5">
-                <span
-                  className="font-mono text-[11px]"
-                  style={{
-                    color: step.cumulative_survival_pct >= 70 ? "#3dca74" :
-                           step.cumulative_survival_pct >= 40 ? "#f0a020" : "#ff5050",
-                  }}
-                >
+                <span className="font-mono text-[11px] text-forge-green">
                   {step.cumulative_survival_pct.toFixed(1)}%
                 </span>
-                <div className="font-mono text-[7px] text-forge-dim">survival</div>
+                <div className="font-mono text-[7px] text-forge-dim">success</div>
               </div>
             </div>
           );
@@ -391,15 +431,8 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
           <span className="font-mono text-[11px] text-forge-dim uppercase tracking-wider">
             {steps.length} steps · {steps.reduce((s, step) => s + fpCost(step.action), 0)} FP total
           </span>
-          <span
-            className="font-mono text-[11px]"
-            style={{
-              color: (steps[steps.length - 1]?.cumulative_survival_pct ?? 100) >= 70
-                ? "#3dca74"
-                : "#f0a020",
-            }}
-          >
-            {(steps[steps.length - 1]?.cumulative_survival_pct ?? 100).toFixed(1)}% overall survival
+          <span className="font-mono text-[11px] text-forge-green">
+            100% success rate
           </span>
         </div>
       )}
@@ -417,7 +450,7 @@ function StrategyComparisonPanel({
   strategies: StrategyComparison[];
 }) {
   const recommended = strategies.reduce((best, s) =>
-    s.perfect_item_chance > best.perfect_item_chance ? s : best,
+    s.expected_fp_cost < best.expected_fp_cost ? s : best,
     strategies[0],
   );
 
@@ -426,8 +459,6 @@ function StrategyComparisonPanel({
       <div className="grid grid-cols-3 gap-2">
         {strategies.map((s) => {
           const isRec = s.name === recommended?.name;
-          const brickPct = Math.round(s.brick_chance * 1000) / 10;
-          const perfectPct = Math.round(s.perfect_item_chance * 1000) / 10;
 
           return (
             <div
@@ -459,32 +490,26 @@ function StrategyComparisonPanel({
 
               <div className="grid grid-cols-2 gap-1 mt-1">
                 <div>
-                  <div
-                    className="font-display text-sm font-bold"
-                    style={{ color: perfectPct >= 75 ? "#3dca74" : perfectPct >= 50 ? "#f0a020" : "#ff5050" }}
-                  >
-                    {perfectPct.toFixed(0)}%
+                  <div className="font-display text-sm font-bold text-forge-green">
+                    {s.expected_steps}
                   </div>
                   <div className="font-mono text-[7px] text-forge-dim uppercase tracking-wider">
-                    Perfect
+                    Steps
                   </div>
                 </div>
                 <div>
-                  <div
-                    className="font-display text-sm font-bold"
-                    style={{ color: brickPct < 15 ? "#3dca74" : brickPct < 35 ? "#f0a020" : "#ff5050" }}
-                  >
-                    {brickPct.toFixed(0)}%
+                  <div className="font-display text-sm font-bold text-forge-amber">
+                    {s.expected_fp_cost}
                   </div>
                   <div className="font-mono text-[7px] text-forge-dim uppercase tracking-wider">
-                    Brick
+                    FP Cost
                   </div>
                 </div>
               </div>
 
               {s.expected_steps > 0 && (
                 <div className="font-mono text-[11px] text-forge-dim border-t border-forge-border/40 pt-1.5">
-                  {s.expected_steps} steps · {s.expected_fp_cost} FP
+                  100% success rate
                 </div>
               )}
             </div>
@@ -904,9 +929,8 @@ export default function CraftSimulatorPage() {
     }));
     if (simSteps.length === 0) {
       return {
-        brick_chance: 0,
-        perfect_item_chance: 1,
-        step_survival_curve: [],
+        fp_consumed: { p25: 0, p50: 0, p75: 0 },
+        steps_completed: { p25: 0, p50: 0, p75: 0 },
         n_simulations: 0,
       };
     }
