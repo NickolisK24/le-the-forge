@@ -1,6 +1,7 @@
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 import { useAuthStore } from "@/store";
@@ -52,6 +53,34 @@ function AuthBootstrapper({ children }: { children: React.ReactNode }) {
   return <>{children}</>;
 }
 
+const AUTH_FAIL_MESSAGES: Record<string, string> = {
+  discord_unreachable: "Could not reach Discord. Please try again.",
+  discord_timeout: "Discord login timed out. Please try again.",
+  token_exchange: "Discord login failed. Please try again.",
+  profile_fetch: "Could not fetch your Discord profile. Please try again.",
+  no_code: "Discord login was cancelled.",
+  no_access_token: "Discord did not return an access token. Please try again.",
+};
+
+function AuthErrorHandler() {
+  const [params, setParams] = useSearchParams();
+
+  useEffect(() => {
+    const failed = params.get("auth");
+    const reason = params.get("reason") ?? "";
+    if (failed === "failed") {
+      const msg = AUTH_FAIL_MESSAGES[reason] ?? "Login failed. Please try again.";
+      toast.error(msg, { duration: 6000 });
+      // Clean up the URL without triggering a navigation
+      params.delete("auth");
+      params.delete("reason");
+      setParams(params, { replace: true });
+    }
+  }, []);
+
+  return null;
+}
+
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
@@ -76,6 +105,7 @@ export default function App() {
             }}
           />
           <AuthBootstrapper>
+            <AuthErrorHandler />
             <Routes>
               {/* OAuth callback — no layout wrapper */}
               <Route path="/auth/callback" element={<AuthCallbackPage />} />
