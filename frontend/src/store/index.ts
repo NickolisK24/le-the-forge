@@ -56,37 +56,43 @@ interface CraftUIState {
   itemName: string;
   itemLevel: number;
   rarity: string;
+  instability: number;
   forgePotential: number;
   affixes: CraftAffix[];
   sessionSlug: string | null;
+  isFractured: boolean;
 
   setItemType: (v: string) => void;
   setItemName: (v: string) => void;
   setItemLevel: (v: number) => void;
   setRarity: (v: string) => void;
+  setInstability: (v: number) => void;
   setForgePotential: (v: number) => void;
   setAffixes: (v: CraftAffix[]) => void;
   addAffix: (affix: CraftAffix) => void;
   removeAffix: (name: string) => void;
   updateAffix: (name: string, updates: Partial<CraftAffix>) => void;
   setSessionSlug: (slug: string | null) => void;
+  setFractured: (v: boolean) => void;
   resetSession: () => void;
 }
 
 const DEFAULT_CRAFT: Omit<
   CraftUIState,
   | "setItemType" | "setItemName" | "setItemLevel" | "setRarity"
-  | "setForgePotential" | "setAffixes"
+  | "setInstability" | "setForgePotential" | "setAffixes"
   | "addAffix" | "removeAffix" | "updateAffix"
-  | "setSessionSlug" | "resetSession"
+  | "setSessionSlug" | "setFractured" | "resetSession"
 > = {
   itemType: "Wand",
   itemName: "",
   itemLevel: 84,
   rarity: "Exalted",
+  instability: 0,
   forgePotential: 28,
   affixes: [],
   sessionSlug: null,
+  isFractured: false,
 };
 
 export const useCraftStore = create<CraftUIState>((set) => ({
@@ -96,6 +102,7 @@ export const useCraftStore = create<CraftUIState>((set) => ({
   setItemName: (itemName) => set({ itemName }),
   setItemLevel: (itemLevel) => set({ itemLevel }),
   setRarity: (rarity) => set({ rarity }),
+  setInstability: (instability) => set({ instability }),
   setForgePotential: (forgePotential) => set({ forgePotential }),
   setAffixes: (affixes) => set({ affixes }),
 
@@ -131,11 +138,13 @@ export const useCraftStore = create<CraftUIState>((set) => ({
     }),
 
   setSessionSlug: (sessionSlug) => set({ sessionSlug }),
+  setFractured: (isFractured) => set({ isFractured }),
 
   resetSession: () =>
     set({
       ...DEFAULT_CRAFT,
       affixes: [],
       sessionSlug: null,
+      isFractured: false,
     }),
 }));

@@ -540,7 +540,7 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
   const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "experimental" | "personal" | "">("");
 
   // Fetch real affixes from the backend, filtered by item slot
-  const { data: affixRes } = useAffixes({ slot: itemType.toLowerCase() });
+  const { data: affixRes, isPending: affixesPending, isError: affixesError } = useAffixes({ slot: itemType.toLowerCase() });
   const availableAffixes: AffixDef[] = affixRes?.data ?? [];
 
   // Slot counts — sealed affixes don't count toward prefix/suffix limits
@@ -658,8 +658,12 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
 
             {/* Clickable affix grid */}
             <div className="max-h-40 overflow-y-auto rounded-sm border border-forge-border bg-forge-bg p-1">
-              {availableAffixes.length === 0 ? (
+              {affixesPending ? (
                 <p className="p-2 font-mono text-xs text-forge-dim italic">Loading affixes…</p>
+              ) : affixesError ? (
+                <p className="p-2 font-mono text-xs text-forge-red italic">Failed to load affixes. Is the server running?</p>
+              ) : availableAffixes.length === 0 ? (
+                <p className="p-2 font-mono text-xs text-forge-dim italic">No affixes found for {itemType}.</p>
               ) : (
                 <div className="flex flex-col gap-0.5">
                   {availableAffixes

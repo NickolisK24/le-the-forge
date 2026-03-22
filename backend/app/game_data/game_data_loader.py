@@ -29,6 +29,7 @@ _DATA_DIR = os.path.dirname(__file__)
 # Canonical affix data lives in /data/affixes.json (project root)
 _ROOT_DIR = os.path.abspath(os.path.join(_DATA_DIR, "..", "..", ".."))
 _AFFIXES_PATH = os.path.join(_ROOT_DIR, "data", "affixes.json")
+_ENEMY_PROFILES_PATH = os.path.join(_ROOT_DIR, "data", "enemy_profiles.json")
 
 
 def _load(filename: str) -> dict:
@@ -140,14 +141,9 @@ def get_skill_stats() -> dict:
     return _skills()["skills"]
 
 
-# ------------------------------------------------------------------
-# Enemy profiles
-# ------------------------------------------------------------------
-
 @lru_cache(maxsize=1)
 def _enemy_profiles_raw() -> list:
-    path = os.path.join(_ROOT_DIR, "data", "enemy_profiles.json")
-    with open(path, "r", encoding="utf-8") as f:
+    with open(_ENEMY_PROFILES_PATH, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
@@ -158,57 +154,7 @@ def get_enemy_profiles() -> list[dict]:
 
 def get_enemy_profile(enemy_id: str) -> dict | None:
     """Returns a single enemy profile by id, or None if not found."""
-    return next((e for e in get_enemy_profiles() if e["id"] == enemy_id), None)
-
-
-# ------------------------------------------------------------------
-# Implicit stats
-# ------------------------------------------------------------------
-
-@lru_cache(maxsize=1)
-def _implicit_stats_raw() -> dict:
-    path = os.path.join(_ROOT_DIR, "data", "implicit_stats.json")
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def get_implicit_stat(item_type: str) -> dict | None:
-    """Returns implicit stat definition for an item type, or None."""
-    return _implicit_stats_raw().get(item_type)
-
-
-# ------------------------------------------------------------------
-# Damage types
-# ------------------------------------------------------------------
-
-@lru_cache(maxsize=1)
-def _damage_types_raw() -> list:
-    path = os.path.join(_ROOT_DIR, "data", "damage_types.json")
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def get_damage_types() -> list[dict]:
-    """Returns all damage type definitions."""
-    return _damage_types_raw()
-
-
-# ------------------------------------------------------------------
-# Rarities
-# ------------------------------------------------------------------
-
-@lru_cache(maxsize=1)
-def _rarities_raw() -> list:
-    path = os.path.join(_ROOT_DIR, "data", "rarities.json")
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
-
-
-def get_rarities() -> list[dict]:
-    """Returns all rarity tier definitions."""
-    return _rarities_raw()
-
-
-def get_rarity(rarity_id: str) -> dict | None:
-    """Returns a rarity definition by id, or None if not found."""
-    return next((r for r in get_rarities() if r["id"] == rarity_id), None)
+    for profile in _enemy_profiles_raw():
+        if profile.get("id") == enemy_id:
+            return profile
+    return None

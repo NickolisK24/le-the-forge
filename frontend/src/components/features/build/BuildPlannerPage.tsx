@@ -3,10 +3,10 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
-import { useBuild, useCreateBuild, useUpdateBuild, useVote, useSimulateBuild } from "@/hooks";
+import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
-import type { Build, BuildSkill, CharacterClass, SimulateBuildResult } from "@/types";
+import type { Build, BuildSkill, CharacterClass } from "@/types";
 import SkillTreeGraph from "./SkillTreeGraph";
 import { getSkillTree } from "@/data/skillTrees";
 
@@ -137,119 +137,6 @@ function SkillTreeModal({
 }
 
 // ---------------------------------------------------------------------------
-// Simulation results panel
-// ---------------------------------------------------------------------------
-function SimulationPanel({ build }: { build: Build }) {
-  const simulate = useSimulateBuild();
-  const result = simulate.data?.data as SimulateBuildResult | null | undefined;
-  const hasSkill = (build.skills?.length ?? 0) > 0;
-
-  return (
-    <Panel title="Simulation">
-      <div className="flex flex-col gap-4">
-        <Button
-          onClick={() => simulate.mutate(build)}
-          disabled={simulate.isPending || !hasSkill}
-          className="w-full"
-        >
-          {simulate.isPending ? "Simulating…" : "⚡ Run Simulation"}
-        </Button>
-        {!hasSkill && (
-          <p className="font-body text-xs text-forge-dim">Add at least one skill to run simulation.</p>
-        )}
-        {simulate.isError && (
-          <p className="font-body text-xs text-red-400">Simulation failed — backend may be offline.</p>
-        )}
-        {result && (
-          <div className="flex flex-col gap-4">
-            {/* DPS */}
-            <div>
-              <SectionLabel>Combat DPS — {build.skills[0]?.skill_name}</SectionLabel>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                {[
-                  ["Total DPS", result.combat?.dps?.total_dps?.toLocaleString()],
-                  ["Avg Hit", result.combat?.dps?.average_hit?.toLocaleString()],
-                  ["Crit Contrib", `${result.combat?.dps?.crit_contribution_pct?.toFixed(1)}%`],
-                  ["Ailment DPS", result.combat?.dps?.ailment_dps?.toLocaleString()],
-                ].map(([label, val]) => (
-                  <div key={label} className="rounded border border-forge-border bg-forge-surface2 p-2">
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">{label}</div>
-                    <div className="mt-0.5 font-display text-lg text-forge-amber">{val ?? "—"}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Defense */}
-            <div>
-              <SectionLabel>Defense</SectionLabel>
-              <div className="mt-2 grid grid-cols-2 gap-2">
-                {[
-                  ["EHP", result.defense?.effective_hp?.toLocaleString()],
-                  ["Armor Mit.", `${result.defense?.armor_reduction_pct?.toFixed(1)}%`],
-                  ["Avg Res.", `${result.defense?.avg_resistance_pct?.toFixed(1)}%`],
-                  ["Dodge", `${result.defense?.dodge_chance_pct?.toFixed(1)}%`],
-                ].map(([label, val]) => (
-                  <div key={label} className="rounded border border-forge-border bg-forge-surface2 p-2">
-                    <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">{label}</div>
-                    <div className="mt-0.5 font-display text-lg text-forge-text">{val ?? "—"}</div>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            {/* Survivability score */}
-            <div className="rounded border border-forge-border bg-forge-surface2 p-3 flex items-center justify-between">
-              <span className="font-mono text-[11px] uppercase tracking-widest text-forge-dim">Survivability Score</span>
-              <span className="font-display text-2xl text-forge-amber">{result.defense?.survivability_score ?? "—"}</span>
-            </div>
-
-            {/* Top stat upgrades */}
-            {result.optimization?.length > 0 && (
-              <div>
-                <SectionLabel>Top Upgrades</SectionLabel>
-                <div className="mt-2 flex flex-col gap-1.5">
-                  {result.optimization.slice(0, 5).map((u) => (
-                    <div key={u.stat} className="flex items-center justify-between rounded border border-forge-border bg-forge-surface2 px-3 py-1.5">
-                      <span className="font-body text-xs text-forge-text">{u.stat.replace(/_/g, " ")}</span>
-                      <span className="font-mono text-xs text-forge-amber">+{u.dps_gain_pct.toFixed(1)}% DPS</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
-            )}
-
-            {/* Weaknesses */}
-            {result.defense?.weaknesses?.length > 0 && (
-              <div>
-                <SectionLabel>Weaknesses</SectionLabel>
-                <ul className="mt-2 flex flex-col gap-1">
-                  {result.defense.weaknesses.map((w) => (
-                    <li key={w} className="font-body text-xs text-red-400">⚠ {w}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-
-            {/* Strengths */}
-            {result.defense?.strengths?.length > 0 && (
-              <div>
-                <SectionLabel>Strengths</SectionLabel>
-                <ul className="mt-2 flex flex-col gap-1">
-                  {result.defense.strengths.map((s) => (
-                    <li key={s} className="font-body text-xs text-green-400">✓ {s}</li>
-                  ))}
-                </ul>
-              </div>
-            )}
-          </div>
-        )}
-      </div>
-    </Panel>
-  );
-}
-
-// ---------------------------------------------------------------------------
 // Build summary (view mode)
 // ---------------------------------------------------------------------------
 function BuildSummary({ build }: { build: Build }) {
@@ -369,7 +256,6 @@ function BuildSummary({ build }: { build: Build }) {
   if (!editing) {
     return (
       <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
-        <div className="flex flex-col gap-6">
         <Panel title="Overview">
           <div className="space-y-4">
             <div className="flex items-start justify-between gap-4">
@@ -479,12 +365,6 @@ function BuildSummary({ build }: { build: Build }) {
             readOnly
           />
         )}
-        </div>
-
-        {/* Simulation sidebar */}
-        <div className="flex flex-col gap-6">
-          <SimulationPanel build={build} />
-        </div>
       </div>
     );
   }

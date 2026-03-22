@@ -25,22 +25,6 @@ import type {
   AffixDef,
   User,
   PaginationMeta,
-  CraftSimulatePayload,
-  CraftSimulateResult,
-  SimulateStatsPayload,
-  BuildStatsResult,
-  SimulateCombatPayload,
-  SimulateCombatResult,
-  SimulateDefensePayload,
-  DefenseResult,
-  SimulateOptimizePayload,
-  StatUpgrade,
-  SimulateBuildPayload,
-  SimulateBuildResult,
-  EnemyProfile,
-  DamageType,
-  Rarity,
-  ImplicitStat,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -61,7 +45,7 @@ export function getToken() {
 // Core fetch helper
 // ---------------------------------------------------------------------------
 
-export async function request<T>(
+async function request<T>(
   method: string,
   path: string,
   body?: unknown,
@@ -193,36 +177,13 @@ export const craftApi = {
   summary: (slug: string) => get<CraftSummary>(`/craft/${slug}/summary`),
 
   predict: (state: {
+    instability: number;
     forge_potential: number;
     affixes: CraftAffix[];
     n_simulations?: number;
   }) => post<CraftPredictResult>("/craft/predict", state),
 
-  simulate: (payload: CraftSimulatePayload) =>
-    post<CraftSimulateResult>("/craft/simulate", payload),
-
   delete: (slug: string) => del<null>(`/craft/${slug}`),
-};
-
-// ---------------------------------------------------------------------------
-// Simulation (stateless engine endpoints)
-// ---------------------------------------------------------------------------
-
-export const simulateApi = {
-  stats: (payload: SimulateStatsPayload) =>
-    post<BuildStatsResult>("/simulate/stats", payload),
-
-  combat: (payload: SimulateCombatPayload) =>
-    post<SimulateCombatResult>("/simulate/combat", payload),
-
-  defense: (payload: SimulateDefensePayload) =>
-    post<DefenseResult>("/simulate/defense", payload),
-
-  optimize: (payload: SimulateOptimizePayload) =>
-    post<StatUpgrade[]>("/simulate/optimize", payload),
-
-  build: (payload: SimulateBuildPayload) =>
-    post<SimulateBuildResult>("/simulate/build", payload),
 };
 
 // ---------------------------------------------------------------------------
@@ -244,12 +205,6 @@ export const refApi = {
     get<Record<string, string[]>>(`/ref/skills${charClass ? `?class=${charClass}` : ""}`),
   baseItems: () => get<Record<string, { min_fp: number; max_fp: number; implicit: string | null; armor: number }>>("/ref/base-items"),
   fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
-  enemyProfiles: () => get<EnemyProfile[]>("/ref/enemy-profiles"),
-  enemyProfile: (id: string) => get<EnemyProfile>(`/ref/enemy-profiles/${id}`),
-  damageTypes: () => get<DamageType[]>("/ref/damage-types"),
-  rarities: () => get<Rarity[]>("/ref/rarities"),
-  implicitStats: () => get<Record<string, ImplicitStat | null>>("/ref/implicit-stats"),
-  implicitStat: (itemType: string) => get<ImplicitStat | null>(`/ref/implicit-stats/${itemType}`),
 };
 
 // ---------------------------------------------------------------------------
@@ -260,45 +215,4 @@ export const profileApi = {
   get: () => get<any>("/profile"),
   builds: (page = 1) => get<any>(`/profile/builds?page=${page}&sort=new`),
   sessions: (page = 1) => get<any>(`/profile/sessions?page=${page}`),
-};
-
-// ---------------------------------------------------------------------------
-// Admin — affix editor
-// ---------------------------------------------------------------------------
-
-export interface AdminAffixTier {
-  tier: number;
-  min: number;
-  max: number;
-}
-
-export interface AdminAffix {
-  id: string;
-  name: string;
-  type: "prefix" | "suffix";
-  tags: string[];
-  applicable_to: string[];
-  class_requirement: string | null;
-  tiers: AdminAffixTier[];
-  stat_key: string | null;
-}
-
-export interface AdminAffixFilters {
-  q?: string;
-  type?: string;
-  tag?: string;
-  slot?: string;
-}
-
-export const adminApi = {
-  affixes: (filters: AdminAffixFilters = {}) => {
-    const qs = new URLSearchParams(
-      Object.fromEntries(
-        Object.entries(filters).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
-      )
-    ).toString();
-    return get<AdminAffix[]>(`/admin/affixes${qs ? "?" + qs : ""}`);
-  },
-  updateAffix: (id: string, patch: Partial<Omit<AdminAffix, "id">>) =>
-    request<AdminAffix>("PATCH", `/admin/affixes/${id}`, patch),
 };
