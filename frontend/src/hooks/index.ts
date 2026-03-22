@@ -240,3 +240,58 @@ export function useProfileSessions(page = 1) {
     staleTime: 30_000,
   });
 }
+// ---------------------------------------------------------------------------
+// Simulation
+// ---------------------------------------------------------------------------
+
+import { simulateApi } from "@/lib/api";
+import type {
+  Build,
+  SimulateBuildPayload,
+  SimulateBuildResult,
+  BuildStatsResult,
+  SimulateCombatResult,
+  DefenseResult,
+  StatUpgrade,
+} from "@/types";
+
+export { type SimulateBuildResult, type BuildStatsResult, type SimulateCombatResult, type DefenseResult, type StatUpgrade };
+
+/** Extract flat gear_affixes list from a Build's gear slots. */
+function extractGearAffixes(gear: Build["gear"]): Array<{ name: string; tier: number }> {
+  return gear.flatMap((slot) =>
+    (slot.affixes ?? [])
+      .filter((a) => !a.sealed)
+      .map((a) => ({ name: a.name, tier: a.tier }))
+  );
+}
+
+/** Derive the primary skill from a build's skill list. */
+function primarySkill(build: Build): { name: string; level: number } {
+  const first = build.skills?.[0];
+  return { name: first?.skill_name ?? "", level: first?.points_allocated ?? 20 };
+}
+
+/**
+ * Mutation hook that runs the full simulation pipeline for a Build.
+ * Call `mutate(build)` with a Build object; results come back in `data`.
+ */
+export function useSimulateBuild() {
+  return useMutation({
+    mutationFn: (build: Build) => {
+      const gearAffixes = extractGearAffixes(build.gear ?? []);
+      const { name: skillName, level: skillLevel } = primarySkill(build);
+
+      const payload: SimulateBuildPayload = {
+        character_class: build.character_class,
+        mastery: build.mastery,
+        allocated_node_ids: build.passive_tree ?? [],
+        gear_affixes: gearAffixes,
+        skill_name: skillName,
+        skill_level: skillLevel,
+        n_simulations: 5_000,
+      };
+      return simulateApi.build(payload);
+    },
+  });
+}
