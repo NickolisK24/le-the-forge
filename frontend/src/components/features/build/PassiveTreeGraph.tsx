@@ -166,7 +166,7 @@ export default function PassiveTreeGraph({
   onAllocate,
   readOnly = false,
 }: Props) {
-  const regionMap = PASSIVE_TREES[characterClass] ?? {};
+  const regionMap = PASSIVE_TREES[characterClass.toLowerCase()] ?? {};
   const regionKeys = Object.keys(regionMap);
 
   const masteryKey = mastery.toLowerCase().replace(/\s+/g, "-");
