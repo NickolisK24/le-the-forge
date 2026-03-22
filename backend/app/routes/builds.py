@@ -14,7 +14,7 @@ from flask import Blueprint, request
 from flask_jwt_extended import get_jwt_identity
 from marshmallow import ValidationError
 
-from app import db
+from app import db, limiter
 from app.models import Build
 from app.schemas import (
     BuildSchema,
@@ -96,6 +96,7 @@ def meta_snapshot():
 # ---------------------------------------------------------------------------
 
 @builds_bp.post("")
+@limiter.limit("20 per minute")
 def create_build():
     try:
         data = build_create_schema.load(request.get_json() or {})
@@ -176,6 +177,7 @@ def delete_build(slug: str):
 # ---------------------------------------------------------------------------
 
 @builds_bp.post("/<slug>/simulate")
+@limiter.limit("10 per minute")
 def simulate_build(slug: str):
     """
     Run the full simulation pipeline for a build.
@@ -191,6 +193,7 @@ def simulate_build(slug: str):
 
 @builds_bp.post("/<slug>/vote")
 @login_required
+@limiter.limit("30 per minute")
 def vote(slug: str):
     build = Build.query.filter_by(slug=slug).first()
     if not build:

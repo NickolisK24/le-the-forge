@@ -18,6 +18,7 @@ POST /api/simulate/build    → full pipeline (stats → combat → defense → 
 from flask import Blueprint, request
 from marshmallow import ValidationError
 
+from app import limiter
 from app.models import PassiveNode
 from app.schemas.simulate import (
     SimulateStatsSchema,
@@ -46,6 +47,7 @@ def _load_passive_nodes(character_class: str) -> list[dict]:
 
 
 @simulate_bp.post("/stats")
+@limiter.limit("30 per minute")
 def simulate_stats():
     """Aggregate all character stats from class, mastery, passives, and gear."""
     try:
@@ -65,6 +67,7 @@ def simulate_stats():
 
 
 @simulate_bp.post("/combat")
+@limiter.limit("20 per minute")
 def simulate_combat():
     """Calculate DPS and run Monte Carlo variance simulation."""
     try:
@@ -82,6 +85,7 @@ def simulate_combat():
 
 
 @simulate_bp.post("/defense")
+@limiter.limit("30 per minute")
 def simulate_defense():
     """Calculate EHP, resistances, ward sustainability, and survivability score."""
     try:
@@ -94,6 +98,7 @@ def simulate_defense():
 
 
 @simulate_bp.post("/optimize")
+@limiter.limit("10 per minute")
 def simulate_optimize():
     """Rank stat upgrades by DPS and EHP gain percentage."""
     try:
@@ -111,6 +116,7 @@ def simulate_optimize():
 
 
 @simulate_bp.post("/build")
+@limiter.limit("10 per minute")
 def simulate_build():
     """Full pipeline: aggregate stats → DPS → defense → optimization."""
     try:

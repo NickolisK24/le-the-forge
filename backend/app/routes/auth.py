@@ -9,6 +9,7 @@ POST /api/auth/logout               → Client-side token discard (stateless)
 
 from flask import Blueprint, redirect, current_app, request
 
+from app import limiter
 from app.utils.auth import (
     upsert_user_from_discord,
     issue_token,
@@ -23,6 +24,7 @@ user_schema = UserSchema()
 
 
 @auth_bp.get("/discord")
+@limiter.limit("20 per minute")
 def discord_login():
     """
     Initiates Discord OAuth2 PKCE flow.
@@ -42,6 +44,7 @@ def discord_login():
 
 
 @auth_bp.get("/discord/authorized")
+@limiter.limit("20 per minute")
 def discord_authorized():
     """
     OAuth2 callback. Full flow:

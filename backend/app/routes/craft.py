@@ -16,6 +16,7 @@ Auth is required only to persist and share sessions.
 from flask import Blueprint, request
 from marshmallow import ValidationError
 
+from app import limiter
 from app.models import CraftSession
 from app.schemas import (
     CraftSessionSchema,
@@ -42,6 +43,7 @@ simulate_schema = CraftSimulateSchema()
 
 
 @craft_bp.post("")
+@limiter.limit("30 per minute")
 def create_session():
     try:
         data = session_create_schema.load(request.get_json() or {})
@@ -54,6 +56,7 @@ def create_session():
 
 
 @craft_bp.post("/predict")
+@limiter.limit("30 per minute")
 def predict():
     """
     Stateless crafting outcome predictor — no session required.
@@ -93,6 +96,7 @@ def predict():
 
 
 @craft_bp.post("/simulate")
+@limiter.limit("20 per minute")
 def simulate():
     """
     Monte Carlo crafting path simulator — rolls random FP costs each iteration
@@ -127,6 +131,7 @@ def get_session(slug: str):
 
 
 @craft_bp.post("/<slug>/action")
+@limiter.limit("60 per minute")
 def apply_action(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
