@@ -61,18 +61,25 @@ def discord_authorized():
     redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
 
     # ── 1. Exchange authorization code for access token ──────────────────
-    token_response = http.post(
-        "https://discord.com/api/oauth2/token",
-        data={
-            "client_id":     current_app.config["DISCORD_CLIENT_ID"],
-            "client_secret": current_app.config["DISCORD_CLIENT_SECRET"],
-            "grant_type":    "authorization_code",
-            "code":          code,
-            "redirect_uri":  redirect_uri,
-        },
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        timeout=10,
-    )
+    try:
+        token_response = http.post(
+            "https://discord.com/api/oauth2/token",
+            data={
+                "client_id":     current_app.config["DISCORD_CLIENT_ID"],
+                "client_secret": current_app.config["DISCORD_CLIENT_SECRET"],
+                "grant_type":    "authorization_code",
+                "code":          code,
+                "redirect_uri":  redirect_uri,
+            },
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=10,
+        )
+    except http.exceptions.ConnectionError:
+        current_app.logger.error("Discord token exchange failed: cannot reach discord.com (DNS/network error)")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_unreachable")
+    except http.exceptions.Timeout:
+        current_app.logger.error("Discord token exchange timed out")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_timeout")
 
     if not token_response.ok:
         current_app.logger.error(
@@ -87,11 +94,18 @@ def discord_authorized():
         return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_access_token")
 
     # ── 2. Fetch Discord user profile ─────────────────────────────────────
-    profile_response = http.get(
-        "https://discord.com/api/users/@me",
-        headers={"Authorization": f"Bearer {discord_token}"},
-        timeout=10,
-    )
+    try:
+        profile_response = http.get(
+            "https://discord.com/api/users/@me",
+            headers={"Authorization": f"Bearer {discord_token}"},
+            timeout=10,
+        )
+    except http.exceptions.ConnectionError:
+        current_app.logger.error("Discord profile fetch failed: cannot reach discord.com (DNS/network error)")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_unreachable")
+    except http.exceptions.Timeout:
+        current_app.logger.error("Discord profile fetch timed out")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_timeout")
 
     if not profile_response.ok:
         current_app.logger.error(
