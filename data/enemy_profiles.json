@@ -1,0 +1,162 @@
+[
+  {
+    "id": "training_dummy",
+    "name": "Training Dummy",
+    "category": "dummy",
+    "description": "Zero resistances and armor. Used for raw DPS comparisons.",
+    "health": 10000,
+    "armor": 0,
+    "resistances": {
+      "physical": 0,
+      "fire": 0,
+      "cold": 0,
+      "lightning": 0,
+      "void": 0,
+      "necrotic": 0,
+      "poison": 0
+    },
+    "crit_chance": 0.0,
+    "crit_multiplier": 1.0,
+    "tags": ["dummy"]
+  },
+  {
+    "id": "normal_monster",
+    "name": "Normal Monster",
+    "category": "normal",
+    "description": "Standard white monster. Moderate resistances and armor.",
+    "health": 2000,
+    "armor": 200,
+    "resistances": {
+      "physical": 15,
+      "fire": 20,
+      "cold": 20,
+      "lightning": 20,
+      "void": 15,
+      "necrotic": 15,
+      "poison": 10
+    },
+    "crit_chance": 0.05,
+    "crit_multiplier": 1.5,
+    "tags": ["monster", "normal"]
+  },
+  {
+    "id": "magic_monster",
+    "name": "Magic Monster",
+    "category": "magic",
+    "description": "Blue magic monster. Elevated resistances and health.",
+    "health": 5000,
+    "armor": 350,
+    "resistances": {
+      "physical": 25,
+      "fire": 30,
+      "cold": 30,
+      "lightning": 30,
+      "void": 25,
+      "necrotic": 25,
+      "poison": 20
+    },
+    "crit_chance": 0.10,
+    "crit_multiplier": 1.5,
+    "tags": ["monster", "magic"]
+  },
+  {
+    "id": "rare_monster",
+    "name": "Rare Monster",
+    "category": "rare",
+    "description": "Yellow rare monster with mods. High resistances and health.",
+    "health": 15000,
+    "armor": 500,
+    "resistances": {
+      "physical": 35,
+      "fire": 40,
+      "cold": 40,
+      "lightning": 40,
+      "void": 35,
+      "necrotic": 35,
+      "poison": 30
+    },
+    "crit_chance": 0.15,
+    "crit_multiplier": 1.5,
+    "tags": ["monster", "rare"]
+  },
+  {
+    "id": "boss_standard",
+    "name": "Standard Boss",
+    "category": "boss",
+    "description": "Zone boss. Capped resistances and heavy armor.",
+    "health": 100000,
+    "armor": 800,
+    "resistances": {
+      "physical": 50,
+      "fire": 50,
+      "cold": 50,
+      "lightning": 50,
+      "void": 50,
+      "necrotic": 50,
+      "poison": 40
+    },
+    "crit_chance": 0.25,
+    "crit_multiplier": 2.0,
+    "tags": ["boss"]
+  },
+  {
+    "id": "boss_pinnacle",
+    "name": "Pinnacle Boss",
+    "category": "pinnacle",
+    "description": "End-game pinnacle boss (Aberroth, Julra, etc.). Maximum resistance and armor.",
+    "health": 500000,
+    "armor": 1200,
+    "resistances": {
+      "physical": 60,
+      "fire": 60,
+      "cold": 60,
+      "lightning": 60,
+      "void": 75,
+      "necrotic": 75,
+      "poison": 50
+    },
+    "crit_chance": 0.35,
+    "crit_multiplier": 2.0,
+    "tags": ["boss", "pinnacle"]
+  },
+  {
+    "id": "void_knight",
+    "name": "Void Knight Champion",
+    "category": "rare",
+    "description": "Void-immune elite. High void resistance but average elsewhere.",
+    "health": 20000,
+    "armor": 500,
+    "resistances": {
+      "physical": 30,
+      "fire": 30,
+      "cold": 30,
+      "lightning": 30,
+      "void": 75,
+      "necrotic": 20,
+      "poison": 20
+    },
+    "crit_chance": 0.20,
+    "crit_multiplier": 1.5,
+    "tags": ["monster", "rare", "void"]
+  },
+  {
+    "id": "lich_undead",
+    "name": "Lich / Undead Boss",
+    "category": "boss",
+    "description": "Undead boss with high necrotic/void resistance.",
+    "health": 80000,
+    "armor": 400,
+    "resistances": {
+      "physical": 40,
+      "fire": 30,
+      "cold": 30,
+      "lightning": 30,
+      "void": 60,
+      "necrotic": 75,
+      "poison": 20
+    },
+    "crit_chance": 0.20,
+    "crit_multiplier": 2.0,
+    "tags": ["boss", "undead", "necrotic"]
+  }
+]

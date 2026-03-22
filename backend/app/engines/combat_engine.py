@@ -18,6 +18,7 @@ from dataclasses import dataclass, asdict
 from typing import Optional
 
 from app.engines.stat_engine import BuildStats
+from app.game_data.game_data_loader import get_enemy_profile
 
 
 # ---------------------------------------------------------------------------
@@ -409,4 +410,111 @@ def monte_carlo_dps(
         percentile_25=round(damages[n // 4]),
         percentile_75=round(damages[3 * n // 4]),
         n_simulations=n,
+    )
+
+
+# ---------------------------------------------------------------------------
+# Enemy-aware DPS calculation
+# ---------------------------------------------------------------------------
+
+@dataclass
+class EnemyAwareDPS:
+    skill_name: str
+    enemy_id: str
+    raw_dps: int              # DPS vs Training Dummy (0 res, 0 armor)
+    effective_dps: int        # DPS after enemy resistances and armor
+    armor_reduction_pct: float
+    avg_res_reduction_pct: float
+    penetration_applied: dict
+
+    def to_dict(self) -> dict:
+        return asdict(self)
+
+
+def calculate_dps_vs_enemy(
+    stats: BuildStats,
+    skill_name: str,
+    skill_level: int,
+    enemy_id: str = "training_dummy",
+) -> EnemyAwareDPS:
+    """
+    Calculates effective DPS against a specific enemy profile from enemy_profiles.json.
+
+    Applies:
+    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 300)
+    - Enemy resistances minus character penetration for matching damage types
+    - Resistance cap at 75%
+
+    Returns raw DPS (vs dummy) and effective DPS (vs enemy).
+    """
+    base_result = calculate_dps(stats, skill_name, skill_level)
+    raw_dps = base_result.total_dps
+
+    enemy = get_enemy_profile(enemy_id)
+    if not enemy:
+        return EnemyAwareDPS(
+            skill_name=skill_name,
+            enemy_id=enemy_id,
+            raw_dps=raw_dps,
+            effective_dps=raw_dps,
+            armor_reduction_pct=0.0,
+            avg_res_reduction_pct=0.0,
+            penetration_applied={},
+        )
+
+    # Armor reduction
+    armor = enemy["armor"]
+    armor_mitigation = armor / (armor + 1000)
+
+    # Penetration dict — maps BuildStats field → damage type id
+    PENETRATION_MAP = {
+        "physical_penetration": "physical",
+        "fire_penetration": "fire",
+        "cold_penetration": "cold",
+        "lightning_penetration": "lightning",
+        "void_penetration": "void",
+        "necrotic_penetration": "necrotic",
+    }
+
+    # Resolve skill's primary damage type(s) from scaling_stats
+    skill_def = SKILL_STATS.get(skill_name)
+    if not skill_def:
+        return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
+
+    # Determine which damage types this skill deals
+    skill_damage_types: set[str] = set()
+    if "physical_damage_pct" in skill_def.scaling_stats or skill_def.is_melee:
+        skill_damage_types.add("physical")
+    for stat in skill_def.scaling_stats:
+        for pen_stat, dmg_type in PENETRATION_MAP.items():
+            if dmg_type + "_damage_pct" == stat:
+                skill_damage_types.add(dmg_type)
+
+    # Calculate effective resistance for each damage type the skill deals
+    pen_applied: dict[str, float] = {}
+    res_reductions: list[float] = []
+
+    for dmg_type in (skill_damage_types or {"physical"}):
+        enemy_res = enemy["resistances"].get(dmg_type, 0)
+        pen_stat = dmg_type + "_penetration"
+        pen = getattr(stats, pen_stat, 0.0)
+        effective_res = max(0, min(75, enemy_res - pen))
+        if pen > 0:
+            pen_applied[dmg_type] = pen
+        res_reductions.append(effective_res)
+
+    avg_res = sum(res_reductions) / len(res_reductions) if res_reductions else 0.0
+
+    # Apply both reductions multiplicatively
+    effective_multiplier = (1 - armor_mitigation) * (1 - avg_res / 100)
+    effective_dps = round(raw_dps * effective_multiplier)
+
+    return EnemyAwareDPS(
+        skill_name=skill_name,
+        enemy_id=enemy_id,
+        raw_dps=raw_dps,
+        effective_dps=effective_dps,
+        armor_reduction_pct=round(armor_mitigation * 100, 1),
+        avg_res_reduction_pct=round(avg_res, 1),
+        penetration_applied=pen_applied,
     )
