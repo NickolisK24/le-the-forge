@@ -19,6 +19,12 @@ from app.engines.fp_engine import (
     load_fp_rules,
 )
 
+from app.engines.affix_engine import (
+    get_affix_by_name,
+    can_add_affix,
+    is_max_tier
+)
+
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -373,3 +379,221 @@ def compare_strategies(instability: int, affixes: list, forge_potential: int) ->
         })
 
     return results
+
+
+def add_affix(
+    item,
+    affix_name,
+    tier
+):
+
+    affix = get_affix_by_name(
+        affix_name
+    )
+
+    if affix is None:
+        return {
+            "success": False,
+            "reason": "Affix not found"
+        }
+
+    affix_type = affix["type"]
+
+    if not can_add_affix(
+        item,
+        affix_type
+    ):
+        return {
+            "success": False,
+            "reason": "Slot limit reached"
+        }
+
+    fp_cost = roll_fp_cost(
+        action="add"
+    )
+
+    if item["forging_potential"] < fp_cost:
+        return {
+            "success": False,
+            "reason": "Not enough FP"
+        }
+
+    item["forging_potential"] -= fp_cost
+
+    affix_data = {
+
+        "name": affix_name,
+        "tier": tier
+
+    }
+
+    if affix_type == "prefix":
+
+        item["prefixes"].append(
+            affix_data
+        )
+
+    else:
+
+        item["suffixes"].append(
+            affix_data
+        )
+
+    return True
+
+
+def upgrade_affix(
+    item,
+    affix_name
+):
+
+    for affix_list in [
+
+        item["prefixes"],
+        item["suffixes"]
+
+    ]:
+
+        for affix in affix_list:
+
+            if affix["name"] == affix_name:
+
+                affix_data = get_affix_by_name(
+                    affix_name
+                )
+
+                if is_max_tier(
+                    affix_data,
+                    affix["tier"]
+                ):
+                    return {
+                        "success": False,
+                        "reason": "Already at max tier"
+                    }
+
+                fp_cost = roll_fp_cost(
+                    action="upgrade"
+                )
+
+                if (
+                    item["forging_potential"]
+                    < fp_cost
+                ):
+                    return {
+                        "success": False,
+                        "reason": "Not enough FP"
+                    }
+
+                item[
+                    "forging_potential"
+                ] -= fp_cost
+
+                affix["tier"] += 1
+
+                return True
+
+    return {
+        "success": False,
+        "reason": "Affix not found"
+    }
+
+
+def remove_affix(
+    item,
+    affix_name
+):
+
+    for affix_list in [
+
+        item["prefixes"],
+        item["suffixes"]
+
+    ]:
+
+        for affix in affix_list:
+
+            if affix["name"] == affix_name:
+
+                fp_cost = roll_fp_cost(
+                    action="remove"
+                )
+
+                if (
+                    item["forging_potential"]
+                    < fp_cost
+                ):
+                    return {
+                        "success": False,
+                        "reason": "Not enough FP"
+                    }
+
+                item[
+                    "forging_potential"
+                ] -= fp_cost
+
+                affix_list.remove(
+                    affix
+                )
+
+                return True
+
+    return {
+        "success": False,
+        "reason": "Affix not found"
+    }
+
+
+def seal_affix(
+    item,
+    affix_name
+):
+
+    if item["sealed_affix"]:
+
+        return {
+            "success": False,
+            "reason": "Already has sealed affix"
+        }
+
+    for affix_list in [
+
+        item["prefixes"],
+        item["suffixes"]
+
+    ]:
+
+        for affix in affix_list:
+
+            if affix["name"] == affix_name:
+
+                fp_cost = roll_fp_cost(
+                    action="seal"
+                )
+
+                if (
+                    item["forging_potential"]
+                    < fp_cost
+                ):
+                    return {
+                        "success": False,
+                        "reason": "Not enough FP"
+                    }
+
+                item[
+                    "forging_potential"
+                ] -= fp_cost
+
+                item[
+                    "sealed_affix"
+                ] = affix
+
+                affix_list.remove(
+                    affix
+                )
+
+                return True
+
+    return {
+        "success": False,
+        "reason": "Affix not found"
+    }

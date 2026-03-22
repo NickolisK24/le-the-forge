@@ -140,15 +140,20 @@ def validate_affix_slots(item: dict) -> bool:
     return prefix_count <= MAX_PREFIXES and suffix_count <= MAX_SUFFIXES
 
 
-def can_add_affix(item: dict, affix_type: str) -> bool:
-    """Return True if another affix of the given type can be added."""
+def can_add_affix(item, affix_type):
     if affix_type == "prefix":
-        active = sum(1 for a in item.get("prefixes", []) if not a.get("sealed", False))
-        return active < MAX_PREFIXES
-    elif affix_type == "suffix":
-        active = sum(1 for a in item.get("suffixes", []) if not a.get("sealed", False))
-        return active < MAX_SUFFIXES
-    return False
+        if len(item["prefixes"]) >= 2:
+            return False
+    if affix_type == "suffix":
+        if len(item["suffixes"]) >= 2:
+            return False
+    return True
+
+
+def can_seal_affix(item):
+    if item["sealed_affix"] is not None:
+        return False
+    return True
 
 
 # ---------------------------------------------------------------------------
@@ -164,3 +169,15 @@ def count_affix_types(item: dict) -> dict:
         "suffixes": suffix_count,
         "sealed": 1 if item.get("sealed_affix") else 0,
     }
+
+
+def is_max_tier(
+    affix,
+    tier
+):
+
+    max_tier = len(
+        affix["tiers"]
+    )
+
+    return tier >= max_tier
