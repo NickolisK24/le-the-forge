@@ -11,19 +11,20 @@ import { Panel, Button, Badge, Spinner } from "@/components/ui";
 
 const ALL_SLOTS = [
   "helm", "chest", "belt", "boots", "gloves",
-  "axe", "dagger", "mace", "sceptre", "sword", "claws", "wand", "staff", "polearm", "bow", "crossbow",
+  "axe_1h", "axe_2h", "dagger", "mace_1h", "mace_2h", "sceptre", "shortsword",
+  "sword_1h", "sword_2h", "wand", "staff", "polearm", "bow", "crossbow",
   "shield", "quiver", "catalyst",
-  "amulet", "ring", "relic",
-  "idol_small", "idol_stout", "idol_grand", "idol_large", "idol_ornate", "idol_huge", "idol_adorned",
-  "idol_lagonian", "idol_humble",
+  "amulet", "ring", "relic", "experimental",
+  "idol_tiny_1x1", "idol_small_1x2", "idol_small_1x3", "idol_stout_2x1",
+  "idol_grand_2x2", "idol_large_1x4", "idol_ornate_2x3", "idol_huge_4x1",
+  "idol_immense_4x2",
 ];
 
 const ALL_TAGS = [
-  "damage", "resistance", "life", "mana", "armor", "dodge", "block",
-  "critical", "speed", "spell", "melee", "ranged", "minion", "totem",
-  "ward", "leech", "regen", "attribute", "cooldown", "idol", "misc",
-  "elemental", "fire", "cold", "lightning", "void", "necrotic", "poison", "physical",
-  "protection",
+  "damage", "resistance", "health", "mana", "armor", "dodge", "block",
+  "crit", "attack_speed", "cast_speed", "movement", "spell", "minion",
+  "ward", "endurance",
+  "fire", "cold", "lightning", "void", "necrotic", "poison", "physical",
 ];
 
 // ---------------------------------------------------------------------------
