@@ -99,7 +99,8 @@ class TestBuildCRUD:
         client.get(f"/api/builds/{sample_build.slug}")
         client.get(f"/api/builds/{sample_build.slug}")
         from app.models import Build
-        refreshed = Build.query.get(sample_build.id)
+        from app import db
+        refreshed = db.session.get(Build, sample_build.id)
         assert (refreshed.view_count or 0) >= initial_views + 1
 
 

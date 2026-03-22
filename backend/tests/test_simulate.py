@@ -250,7 +250,7 @@ class TestExceptionHandling:
         session = CraftSession(
             slug=secrets.token_urlsafe(8),
             item_type="Helmet",
-            forge_potential=1,  # Not enough FP for upgrade (costs 2-8)
+            forge_potential=0,  # Not enough FP for upgrade (min cost is 1)
             affixes=[{"name": "Increased Spell Damage", "tier": 2, "sealed": False}],
         )
         db.session.add(session)

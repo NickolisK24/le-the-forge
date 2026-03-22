@@ -76,7 +76,7 @@ def get_current_user() -> User | None:
         user_id = get_jwt_identity()
         if not user_id:
             return None
-        return User.query.get(user_id)
+        return db.session.get(User, user_id)
     except Exception:
         return None
 
