@@ -374,6 +374,36 @@ def compare_strategies(instability: int, affixes: list, forge_potential: int) ->
     return results
 
 
+def fracture_item(item):
+    """
+    Apply a fracture to an item dict.
+
+    A fractured item is permanently damaged — no further crafting actions can
+    be applied. One random unsealed affix is destroyed as part of the fracture.
+    The item is marked with is_fractured=True.
+
+    Returns:
+      True on success.
+      {"success": False, "reason": ...} if item is already fractured or has no affixes.
+    """
+    if item.get("is_fractured"):
+        return {"success": False, "reason": "Item is already fractured"}
+
+    all_affixes = item.get("prefixes", []) + item.get("suffixes", [])
+    unsealed = [a for a in all_affixes if not a.get("sealed")]
+
+    if not unsealed:
+        return {"success": False, "reason": "No affixes to fracture"}
+
+    destroyed = random.choice(unsealed)
+
+    item["prefixes"] = [a for a in item.get("prefixes", []) if a is not destroyed]
+    item["suffixes"] = [a for a in item.get("suffixes", []) if a is not destroyed]
+    item["is_fractured"] = True
+
+    return {"success": True, "destroyed_affix": destroyed["name"]}
+
+
 def add_affix(
     item,
     affix_name,

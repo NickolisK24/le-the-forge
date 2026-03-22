@@ -10,7 +10,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from app.engines.craft_engine import add_affix, upgrade_affix, remove_affix, seal_affix, unseal_affix
+from app.engines.craft_engine import add_affix, upgrade_affix, remove_affix, seal_affix, unseal_affix, fracture_item
 
 
 def _make_item(**kwargs):
@@ -239,3 +239,53 @@ class TestUnsealAffix:
         result = unseal_affix(item)
         assert result["success"] is False
         assert result["reason"] == "Not enough FP"
+
+# ---------------------------------------------------------------------------
+# fracture_item
+# ---------------------------------------------------------------------------
+
+class TestFractureItem:
+
+    def test_marks_item_as_fractured(self):
+        item = _make_item(prefixes=[{"name": "Spell Damage", "tier": 3}])
+        result = fracture_item(item)
+        assert result["success"] is True
+        assert item["is_fractured"] is True
+
+    def test_destroys_one_affix(self):
+        item = _make_item(
+            prefixes=[{"name": "Spell Damage", "tier": 3}],
+            suffixes=[{"name": "Fire Resistance", "tier": 2}],
+        )
+        total_before = len(item["prefixes"]) + len(item["suffixes"])
+        fracture_item(item)
+        total_after = len(item["prefixes"]) + len(item["suffixes"])
+        assert total_after == total_before - 1
+
+    def test_returns_destroyed_affix_name(self):
+        item = _make_item(prefixes=[{"name": "Spell Damage", "tier": 3}])
+        result = fracture_item(item)
+        assert result["destroyed_affix"] == "Spell Damage"
+
+    def test_does_not_destroy_sealed_affix(self):
+        sealed = {"name": "Spell Damage", "tier": 3, "sealed": True}
+        item = _make_item(
+            prefixes=[{"name": "Fire Damage", "tier": 1}, sealed],
+        )
+        fracture_item(item)
+        assert any(a.get("sealed") for a in item["prefixes"])
+
+    def test_fails_when_already_fractured(self):
+        item = _make_item(
+            prefixes=[{"name": "Spell Damage", "tier": 1}],
+            is_fractured=True,
+        )
+        result = fracture_item(item)
+        assert result["success"] is False
+        assert result["reason"] == "Item is already fractured"
+
+    def test_fails_when_no_affixes(self):
+        item = _make_item()
+        result = fracture_item(item)
+        assert result["success"] is False
+        assert result["reason"] == "No affixes to fracture"
