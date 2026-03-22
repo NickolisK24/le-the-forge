@@ -704,7 +704,7 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
             </div>
 
             {/* Selected affixes on this item */}
-            {affixes.length > 0 && (
+            {Array.isArray(affixes) && affixes.length > 0 && (
               <div>
                 <SectionLabel>Selected Affixes</SectionLabel>
                 <div className="mt-1 flex flex-col gap-0.5">
@@ -797,7 +797,7 @@ function AffixList({
         </button>
       ) : undefined
     }>
-      {affixes.length === 0 ? (
+      {(!Array.isArray(affixes) || affixes.length === 0) ? (
         <p className="font-body text-sm italic text-forge-dim text-center py-2">
           No affixes — use the Action panel to add one
         </p>
@@ -883,9 +883,9 @@ export default function CraftSimulatorPage() {
   const summary = summaryRes?.data;
 
   const fp = isLive ? (session?.forge_potential ?? 0) : store.forgePotential;
-  const affixes: CraftAffix[] = isLive ? (session?.affixes ?? []) : store.affixes;
+  const affixes: CraftAffix[] = isLive ? (session?.affixes ?? []) : (store.affixes ?? []);
 
-  const sealedCount = affixes.filter((a) => a.sealed).length;
+  const sealedCount = Array.isArray(affixes) ? affixes.filter((a) => a.sealed).length : 0;
 
   // ---------------------------------------------------------------------------
   // Prediction data — from backend (live) or computed locally (local mode)

@@ -120,20 +120,15 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
     fp_remaining = item["forge_potential"]
 
     # 6. Return result
-    outcome = "perfect" if roll > PERFECT_ROLL_THRESHOLD else "success"
-
-    messages = {
-        "success": f"Craft successful. FP remaining: {fp_remaining}.",
-        "perfect": f"Perfect craft! FP remaining: {fp_remaining}.",
-    }
+    outcome = "success"  # No risk mechanics in modern Last Epoch
 
     return {
         "success": True,
         "outcome": outcome,
-        "roll": round(roll, 2),
+        "roll": None,  # No rolls in FP-only system
         "fp_cost": cost,
         "fp_remaining": fp_remaining,
-        "message": messages[outcome],
+        "message": f"Craft successful. FP remaining: {fp_remaining}.",
         "item": item
     }
 

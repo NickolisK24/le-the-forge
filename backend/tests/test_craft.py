@@ -161,8 +161,7 @@ class TestCraftSession:
         })
         result = apply_action(session, "add_affix", affix_name="Health")
         assert len(session.steps) == 1
-        assert result["outcome"] == "success"  # No fractures in modern system
-        assert result["outcome"] == "success"  # No fractures in modern system
+        assert result["outcome"] == "success"  # No risk mechanics in modern system
 
     def test_summary_returns_expected_keys(self, db):
         session = create_session({

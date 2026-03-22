@@ -193,7 +193,6 @@ export const craftApi = {
   summary: (slug: string) => get<CraftSummary>(`/craft/${slug}/summary`),
 
   predict: (state: {
-    instability: number;
     forge_potential: number;
     affixes: CraftAffix[];
     n_simulations?: number;

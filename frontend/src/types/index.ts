@@ -155,7 +155,7 @@ export type CraftAction =
   | "unseal_affix"
   | "remove_affix";
 
-export type CraftOutcome = "success" | "perfect" | "fracture";
+export type CraftOutcome = "success" | "perfect";
 
 export interface CraftAffix {
   name: string;
@@ -194,11 +194,8 @@ export interface CraftSession {
 export interface CraftActionResult {
   success: boolean;
   outcome: CraftOutcome;
-  fracture_risk_pct: number;
   roll: number;
-  instability: number;
   forge_potential: number;
-  is_fractured: boolean;
   message: string;
   step_number: number;
   error?: string;
@@ -207,26 +204,20 @@ export interface CraftActionResult {
 export interface OptimalPathStep {
   action: CraftAction;
   affix: string;
-  risk_pct: number;
   note: string;
   cumulative_survival_pct: number;
   sealed_count_at_step: number;
 }
 
 export interface SimulationResult {
-  brick_chance: number;
-  perfect_item_chance: number;
-  step_survival_curve: number[];
-  step_fracture_rates: number[];
-  median_instability: number;
+  fp_consumed: { p25: number; p50: number; p75: number };
+  steps_completed: { p25: number; p50: number; p75: number };
   n_simulations: number;
 }
 
 export interface StrategyComparison {
   name: string;
   description: string;
-  brick_chance: number;
-  perfect_item_chance: number;
   expected_steps: number;
   expected_fp_cost: number;
 }
@@ -241,9 +232,7 @@ export interface CraftSummary {
   total_actions: number;
   successes: number;
   perfects: number;
-  fractures: number;
   fp_spent: number;
-  current_risk_pct: number;
   optimal_path: OptimalPathStep[];
   simulation_result: SimulationResult;
   strategy_comparison: StrategyComparison[];
@@ -254,7 +243,6 @@ export interface CraftSessionCreatePayload {
   item_name?: string;
   item_level?: number;
   rarity?: string;
-  instability?: number;
   forge_potential?: number;
   fp_mode?: "random" | "manual" | "fixed";
   manual_fp?: number;
@@ -433,7 +421,6 @@ export interface SimulateBuildResult {
 // ---------------------------------------------------------------------------
 
 export interface CraftSimulatePayload {
-  instability: number;
   forge_potential: number;
   steps: Array<{ action: string; affix_name?: string }>;
   n_simulations?: number;
@@ -441,11 +428,8 @@ export interface CraftSimulatePayload {
 
 export interface CraftSimulateResult {
   n_simulations: number;
-  fracture_rate: number;
   fp_consumed: { p25: number; p50: number; p75: number };
   steps_completed: { p25: number; p50: number; p75: number };
-  final_instability: { p25: number; p50: number; p75: number };
-  fracture_severity: { none: number; minor: number; major: number; total: number };
 }
 
 // ---------------------------------------------------------------------------
