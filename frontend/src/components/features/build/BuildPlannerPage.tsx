@@ -8,6 +8,7 @@ import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
 import SkillTreeGraph from "./SkillTreeGraph";
+import PassiveTreeGraph from "./PassiveTreeGraph";
 import { getSkillTree } from "@/data/skillTrees";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
@@ -166,6 +167,22 @@ function BuildSummary({ build }: { build: Build }) {
   // Skill tree modal state: { skillIndex, readOnly }
   const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
 
+  // Passive tree allocation (stored as flat array of node IDs in DB)
+  const [passiveTree, setPassiveTree] = useState<number[]>(build.passive_tree ?? []);
+
+  function getPassiveAllocMap(): AllocMap {
+    const map: AllocMap = {};
+    for (const id of passiveTree) map[id] = (map[id] ?? 0) + 1;
+    return map;
+  }
+
+  function setPassiveAlloc(nodeId: number, points: number) {
+    setPassiveTree((prev) => {
+      const without = prev.filter((id) => id !== nodeId);
+      return points >= 1 ? [...without, ...Array(points).fill(nodeId)] : without;
+    });
+  }
+
   // Class/mastery are fixed at creation — backend doesn't allow changing them
   const characterClass = build.character_class;
   const mastery = build.mastery;
@@ -229,6 +246,7 @@ function BuildSummary({ build }: { build: Build }) {
     setIsLadder(build.is_ladder_viable);
     setIsBudget(build.is_budget);
     setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree ?? [] })));
+    setPassiveTree(build.passive_tree ?? []);
     setEditing(false);
   }
 
@@ -245,6 +263,7 @@ function BuildSummary({ build }: { build: Build }) {
         is_ladder_viable: isLadder,
         is_budget: isBudget,
         skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree })) as Partial<BuildSkill>[],
+        passive_tree: passiveTree,
       },
     });
     if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
@@ -355,6 +374,20 @@ function BuildSummary({ build }: { build: Build }) {
           )}
         </Panel>
 
+        <Panel title="Passive Tree" className="lg:col-span-2">
+          <PassiveTreeGraph
+            characterClass={build.character_class}
+            mastery={build.mastery}
+            allocated={(() => {
+              const map: AllocMap = {};
+              for (const id of (build.passive_tree ?? [])) map[id] = (map[id] ?? 0) + 1;
+              return map;
+            })()}
+            onAllocate={() => {}}
+            readOnly
+          />
+        </Panel>
+
         {/* Skill tree modal (view-only) */}
         {treeModal !== null && (
           <SkillTreeModal
@@ -439,6 +472,15 @@ function BuildSummary({ build }: { build: Build }) {
             )}
           </div>
         </Panel>
+
+        <Panel title="Passive Tree">
+          <PassiveTreeGraph
+            characterClass={characterClass}
+            mastery={mastery}
+            allocated={getPassiveAllocMap()}
+            onAllocate={setPassiveAlloc}
+          />
+        </Panel>
       </div>
 
       <div className="flex flex-col gap-6">
@@ -488,6 +530,20 @@ export default function BuildPlannerPage() {
   const [isBudget, setIsBudget] = useState(false);
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
   const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
+  const [passiveTree, setPassiveTree] = useState<number[]>([]);
+
+  function getPassiveAllocMap(): AllocMap {
+    const map: AllocMap = {};
+    for (const id of passiveTree) map[id] = (map[id] ?? 0) + 1;
+    return map;
+  }
+
+  function setPassiveAlloc(nodeId: number, points: number) {
+    setPassiveTree((prev) => {
+      const without = prev.filter((id) => id !== nodeId);
+      return points >= 1 ? [...without, ...Array(points).fill(nodeId)] : without;
+    });
+  }
 
   const masteryOptions = useMemo(() => MASTERIES[characterClass], [characterClass]);
 
@@ -579,6 +635,7 @@ export default function BuildPlannerPage() {
         points_allocated: s.points_allocated,
         spec_tree: s.spec_tree,
       })) as Partial<BuildSkill>[],
+      passive_tree: passiveTree,
     };
 
     const res = await createBuild.mutateAsync(payload);
@@ -742,6 +799,15 @@ export default function BuildPlannerPage() {
               </p>
             )}
           </div>
+        </Panel>
+
+        <Panel title="Passive Tree">
+          <PassiveTreeGraph
+            characterClass={characterClass}
+            mastery={mastery}
+            allocated={getPassiveAllocMap()}
+            onAllocate={setPassiveAlloc}
+          />
         </Panel>
       </div>
 
