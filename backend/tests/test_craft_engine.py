@@ -10,7 +10,7 @@ import os
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
 
-from app.engines.craft_engine import add_affix, upgrade_affix, remove_affix, seal_affix
+from app.engines.craft_engine import add_affix, upgrade_affix, remove_affix, seal_affix, unseal_affix
 
 
 def _make_item(**kwargs):
@@ -200,3 +200,42 @@ class TestSealAffix:
         result = seal_affix(item, "Spell Damage")
         assert result["success"] is False
         assert result["reason"] == "Affix not found"
+
+
+# ---------------------------------------------------------------------------
+# unseal_affix
+# ---------------------------------------------------------------------------
+
+class TestUnsealAffix:
+
+    def test_returns_sealed_prefix_to_prefix_list(self):
+        item = _make_item(sealed_affix={"name": "Spell Damage", "tier": 3})
+        result = unseal_affix(item)
+        assert result is True
+        assert item["sealed_affix"] is None
+        assert any(a["name"] == "Spell Damage" for a in item["prefixes"])
+
+    def test_returns_sealed_suffix_to_suffix_list(self):
+        item = _make_item(sealed_affix={"name": "Fire Resistance", "tier": 2})
+        result = unseal_affix(item)
+        assert result is True
+        assert item["sealed_affix"] is None
+        assert any(a["name"] == "Fire Resistance" for a in item["suffixes"])
+
+    def test_deducts_fp_on_unseal(self):
+        item = _make_item(sealed_affix={"name": "Spell Damage", "tier": 1})
+        fp_before = item["forging_potential"]
+        unseal_affix(item)
+        assert item["forging_potential"] < fp_before
+
+    def test_fails_when_no_sealed_affix(self):
+        item = _make_item()
+        result = unseal_affix(item)
+        assert result["success"] is False
+        assert result["reason"] == "No sealed affix"
+
+    def test_fails_when_not_enough_fp(self):
+        item = _make_item(forging_potential=0, sealed_affix={"name": "Spell Damage", "tier": 1})
+        result = unseal_affix(item)
+        assert result["success"] is False
+        assert result["reason"] == "Not enough FP"

@@ -530,6 +530,34 @@ def remove_affix(
     }
 
 
+def unseal_affix(item):
+    """
+    Return the sealed affix back to its prefix/suffix slot.
+
+    Deducts FP cost. Fails if there is no sealed affix or not enough FP.
+    """
+    if item["sealed_affix"] is None:
+        return {"success": False, "reason": "No sealed affix"}
+
+    fp_cost = roll_fp_cost("unseal_affix")
+
+    if item["forging_potential"] < fp_cost:
+        return {"success": False, "reason": "Not enough FP"}
+
+    item["forging_potential"] -= fp_cost
+
+    affix = item["sealed_affix"]
+    item["sealed_affix"] = None
+
+    affix_data = get_affix_by_name(affix["name"])
+    if affix_data and affix_data["type"] == "prefix":
+        item["prefixes"].append(affix)
+    else:
+        item["suffixes"].append(affix)
+
+    return True
+
+
 def seal_affix(
     item,
     affix_name
