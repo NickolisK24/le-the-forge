@@ -11,6 +11,8 @@ import copy
 import random
 from typing import Optional
 
+import numpy as np
+
 from app.engines.fp_engine import (
     expected_fp_cost,
     fp_cost_range,
@@ -407,113 +409,150 @@ def simulate_crafting_path(
     """
     rules = load_fp_rules()
     n = n_simulations
-    fracture_at_step = [0] * len(proposed_steps)
-    survived_all = 0
+    num_steps = len(proposed_steps)
 
-    fp_consumed_list = []
-    steps_completed_list = []
-    final_instability_list = []
+    # Pre-extract per-step config so we don't re-hit dicts inside the hot loop
+    step_cost_ranges = []
+    step_risk_rates = []
+    step_gain_ranges = []
+    for step in proposed_steps:
+        action = step.get("action", "upgrade_affix")
+        sealed_ct = step.get("sealed_count_at_step", 0)
+        cost_cfg = rules["fp_costs"].get(action, {"min": 2, "max": 6})
+        gain_cfg = rules["instability_gains"].get(action, {"min": 3, "max": 8})
+        step_cost_ranges.append((cost_cfg["min"], cost_cfg["max"]))
+        step_gain_ranges.append((gain_cfg["min"], gain_cfg["max"]))
+        step_risk_rates.append(sealed_ct)  # stored to compute risk per-inst
+
+    # ---- Vectorized simulation using NumPy ----
+    rng = np.random.default_rng()
+
+    # State arrays — one entry per simulation run
+    fp_arr  = np.full(n, forge_potential, dtype=np.float32)
+    inst_arr = np.full(n, instability, dtype=np.float32)
+    active   = np.ones(n, dtype=bool)    # runs still in progress
+    fractured = np.zeros(n, dtype=bool)
+    steps_done = np.zeros(n, dtype=np.int32)
+    fp_spent = np.zeros(n, dtype=np.float32)
+
+    # For severity breakdown — tracked as fractional rolls
     severity_minor = 0
     severity_major = 0
     severity_destructive = 0
+    fracture_at_step = np.zeros(num_steps, dtype=np.int32)
 
-    for _ in range(n):
-        inst = instability
-        fp = forge_potential
-        fractured = False
-        fp_spent = 0
+    for step_idx, step in enumerate(proposed_steps):
+        action = step.get("action", "upgrade_affix")
+        sealed_ct = step.get("sealed_count_at_step", 0)
 
-        for step_idx, step in enumerate(proposed_steps):
-            action = step.get("action", "upgrade_affix")
-            sealed_ct = step.get("sealed_count_at_step", 0)
+        cost_lo, cost_hi = step_cost_ranges[step_idx]
+        gain_lo, gain_hi = step_gain_ranges[step_idx]
 
-            cost_cfg = rules["fp_costs"].get(action, {"min": 2, "max": 6})
-            cost = random.randint(cost_cfg["min"], cost_cfg["max"])
+        # Only runs still active take this step
+        mask = active.copy()
+        if not mask.any():
+            break
 
-            if fp < cost:
-                # Ran out of FP — treat as incomplete, not fracture
-                break
-
-            risk = fracture_risk(inst, sealed_ct)
-            roll = random.random()
-
-            if roll < risk:
-                fracture_at_step[step_idx] += 1
-                fractured = True
-                fp_spent += cost
-                fp -= cost
-                relative = roll / risk if risk > 0 else 0
-                if relative < 0.33:
-                    severity_destructive += 1
-                elif relative < 0.67:
-                    severity_major += 1
-                else:
-                    severity_minor += 1
-                break
-
-            gain_cfg = rules["instability_gains"].get(action, {"min": 3, "max": 8})
-            lo, hi = gain_cfg["min"], gain_cfg["max"]
-            if lo == hi:
-                gain = lo
-            elif roll > (PERFECT_ROLL_THRESHOLD / 100.0):
-                gain = lo
-            else:
-                gain = random.randint(lo, hi)
-
-            inst = min(MAX_INSTABILITY, inst + gain)
-            fp_spent += cost
-            fp -= cost
-            steps_completed_list_temp = step_idx + 1
-
-        if not fractured:
-            survived_all += 1
-            final_instability_list.append(inst)
+        # Roll FP costs for all active runs
+        if cost_lo == cost_hi:
+            costs = np.full(n, cost_lo, dtype=np.float32)
         else:
-            final_instability_list.append(inst)
+            costs = rng.integers(cost_lo, cost_hi + 1, size=n).astype(np.float32)
 
-        fp_consumed_list.append(fp_spent)
-        steps_completed_list.append(steps_completed_list_temp if not fractured else step_idx + 1)
+        # Runs that can't afford the cost stop (not a fracture)
+        cant_afford = mask & (fp_arr < costs)
+        active[cant_afford] = False
+        mask = active & ~fractured
 
-    cumulative_fractures = 0
+        if not mask.any():
+            break
+
+        # Compute fracture risk per run (depends on current instability)
+        risk_arr = np.vectorize(lambda inst: fracture_risk(inst, sealed_ct))(inst_arr)
+
+        # Roll fracture check
+        fracture_rolls = rng.random(n)
+        fractured_this_step = mask & (fracture_rolls < risk_arr)
+
+        if fractured_this_step.any():
+            fracture_at_step[step_idx] += int(fractured_this_step.sum())
+            fractured |= fractured_this_step
+            active[fractured_this_step] = False
+
+            # Severity breakdown
+            relative = np.where(
+                risk_arr[fractured_this_step] > 0,
+                fracture_rolls[fractured_this_step] / risk_arr[fractured_this_step],
+                0.5,
+            )
+            severity_destructive += int((relative < 0.33).sum())
+            severity_major += int(((relative >= 0.33) & (relative < 0.67)).sum())
+            severity_minor += int((relative >= 0.67).sum())
+
+            # Deduct FP for fractured runs too
+            fp_spent[fractured_this_step] += costs[fractured_this_step]
+            fp_arr[fractured_this_step] -= costs[fractured_this_step]
+
+        # For runs that survived this step
+        survived_step = mask & ~fractured_this_step
+        if survived_step.any():
+            fp_spent[survived_step] += costs[survived_step]
+            fp_arr[survived_step] -= costs[survived_step]
+            steps_done[survived_step] = step_idx + 1
+
+            # Roll instability gain
+            if gain_lo == gain_hi:
+                gains = np.full(n, gain_lo, dtype=np.float32)
+            else:
+                gains = rng.integers(gain_lo, gain_hi + 1, size=n).astype(np.float32)
+                # Perfect roll threshold: use minimum gain
+                perfect = fracture_rolls > (PERFECT_ROLL_THRESHOLD / 100.0)
+                gains = np.where(perfect, gain_lo, gains)
+
+            inst_arr[survived_step] = np.minimum(
+                MAX_INSTABILITY, inst_arr[survived_step] + gains[survived_step]
+            )
+
+    survived_all = int((~fractured).sum())
+
+    # ---- Aggregate results ----
+    fp_consumed = fp_spent
+    steps_completed = np.where(fractured, steps_done, steps_done)  # same either way
+    final_inst = inst_arr
+
+    def _pct(arr, p):
+        return int(np.percentile(arr, p))
+
+    cumulative = 0
     step_survival = []
     for count in fracture_at_step:
-        cumulative_fractures += count
-        step_survival.append(round(1.0 - cumulative_fractures / n, 4))
-
-    def _percentile(data, pct):
-        if not data:
-            return 0
-        s = sorted(data)
-        idx = int(len(s) * pct / 100)
-        return s[min(idx, len(s) - 1)]
-
-    def _mean(data):
-        return round(sum(data) / len(data), 2) if data else 0
+        cumulative += int(count)
+        step_survival.append(round(1.0 - cumulative / n, 4))
 
     return {
-        "brick_chance": round(sum(fracture_at_step) / n, 4),
+        "brick_chance": round(float(fractured.sum()) / n, 4),
         "perfect_item_chance": round(survived_all / n, 4),
         "step_survival_curve": step_survival,
-        "step_fracture_rates": [round(f / n, 4) for f in fracture_at_step],
+        "step_fracture_rates": [round(int(f) / n, 4) for f in fracture_at_step],
         "fp_consumed": {
-            "min": min(fp_consumed_list) if fp_consumed_list else 0,
-            "max": max(fp_consumed_list) if fp_consumed_list else 0,
-            "mean": _mean(fp_consumed_list),
-            "p25": _percentile(fp_consumed_list, 25),
-            "p50": _percentile(fp_consumed_list, 50),
-            "p75": _percentile(fp_consumed_list, 75),
+            "min": int(fp_consumed.min()),
+            "max": int(fp_consumed.max()),
+            "mean": round(float(fp_consumed.mean()), 2),
+            "p25": _pct(fp_consumed, 25),
+            "p50": _pct(fp_consumed, 50),
+            "p75": _pct(fp_consumed, 75),
         },
         "steps_completed": {
-            "min": min(steps_completed_list) if steps_completed_list else 0,
-            "max": max(steps_completed_list) if steps_completed_list else 0,
-            "mean": _mean(steps_completed_list),
-            "p50": _percentile(steps_completed_list, 50),
+            "min": int(steps_completed.min()),
+            "max": int(steps_completed.max()),
+            "mean": round(float(steps_completed.mean()), 2),
+            "p50": _pct(steps_completed, 50),
         },
         "final_instability": {
-            "min": min(final_instability_list) if final_instability_list else instability,
-            "max": max(final_instability_list) if final_instability_list else instability,
-            "mean": _mean(final_instability_list),
-            "p50": _percentile(final_instability_list, 50),
+            "min": int(final_inst.min()),
+            "max": int(final_inst.max()),
+            "mean": round(float(final_inst.mean()), 2),
+            "p50": _pct(final_inst, 50),
         },
         "fracture_severity": {
             "minor_fracture_chance":       round(severity_minor / n, 4),
