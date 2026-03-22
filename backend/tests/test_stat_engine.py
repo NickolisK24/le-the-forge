@@ -116,15 +116,15 @@ class TestPassiveNodeBonuses:
 
 class TestGearAffixes:
     def test_affix_value_adds_to_stat(self):
-        affixes = [{"name": "Health", "tier": 1}]
+        affixes = [{"name": "Added Health", "tier": 1}]
         stats_with = aggregate_stats("Mage", "Sorcerer", [], [], affixes)
         stats_without = aggregate_stats("Mage", "Sorcerer", [], [], [])
         # T1 Health midpoint is 130
         assert stats_with.max_health > stats_without.max_health
 
     def test_t1_affix_better_than_t5(self):
-        affix_t1 = [{"name": "Fire Damage", "tier": 1}]
-        affix_t5 = [{"name": "Fire Damage", "tier": 5}]
+        affix_t1 = [{"name": "Increased Fire Damage", "tier": 1}]
+        affix_t5 = [{"name": "Increased Fire Damage", "tier": 5}]
         stats_t1 = aggregate_stats("Acolyte", "Lich", [], [], affix_t1)
         stats_t5 = aggregate_stats("Acolyte", "Lich", [], [], affix_t5)
         # T5 is now the best tier, T1 is lowest
@@ -169,14 +169,14 @@ class TestAttributeScaling:
 
 class TestGetAffixValue:
     def test_t1_health_midpoint(self):
-        val = get_affix_value("Health", 1)
-        assert val == 27  # T1 is lowest tier
+        val = get_affix_value("Added Health", 1)
+        assert val == 10  # T1 midpoint: (5+15)/2 = 10
 
     def test_unknown_affix_returns_zero(self):
         assert get_affix_value("Completely Fake Affix", 1) == 0
 
     def test_invalid_tier_returns_zero(self):
-        assert get_affix_value("Health", 99) == 0
+        assert get_affix_value("Added Health", 99) == 0
 
 
 class TestPercentageHealth:
@@ -184,10 +184,10 @@ class TestPercentageHealth:
         """health_pct should multiplicatively increase max_health."""
         base = aggregate_stats("Sentinel", "Paladin", [], [], [])
         boosted = aggregate_stats("Sentinel", "Paladin", [], [],
-                                  [{"name": "Percentage Health", "tier": 5}])
+                                  [{"name": "Increased Health", "tier": 5}])
         assert boosted.max_health > base.max_health
         # The boost should be multiplicative, not just flat
-        pct_value = get_affix_value("Percentage Health", 5)
+        pct_value = get_affix_value("Increased Health", 5)
         expected_min = base.max_health * (1 + pct_value / 100)
         assert boosted.max_health >= expected_min * 0.99  # allow rounding
 

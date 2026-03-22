@@ -51,7 +51,7 @@ class TestCalculateDPS:
 
     def test_spell_damage_increases_dps(self):
         base_stats = _base_mage_stats()
-        boosted_stats = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Spell Damage", "tier": 1}])
+        boosted_stats = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Spell Damage", "tier": 1}])
         base_dps = calculate_dps(base_stats, "Fireball", 20)
         boost_dps = calculate_dps(boosted_stats, "Fireball", 20)
         assert boost_dps.dps > base_dps.dps
@@ -63,7 +63,7 @@ class TestCalculateDPS:
 
     def test_attack_speed_affects_dps(self):
         base = _base_mage_stats()
-        fast = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Cast Speed", "tier": 1}])
+        fast = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Cast Speed", "tier": 1}])
         base_dps = calculate_dps(base, "Fireball", 20)
         fast_dps = calculate_dps(fast, "Fireball", 20)
         assert fast_dps.dps > base_dps.dps
@@ -75,7 +75,7 @@ class TestCalculateDPS:
 
     def test_melee_skill_uses_attack_speed_pct(self):
         base = aggregate_stats("Sentinel", "Paladin", [], [], [])
-        faster = aggregate_stats("Sentinel", "Paladin", [], [], [{"name": "Attack Speed", "tier": 1}])
+        faster = aggregate_stats("Sentinel", "Paladin", [], [], [{"name": "Increased Melee Attack Speed", "tier": 1}])
         base_dps = calculate_dps(base, "Rive", 20)
         fast_dps = calculate_dps(faster, "Rive", 20)
         assert fast_dps.dps > base_dps.dps
@@ -83,7 +83,7 @@ class TestCalculateDPS:
     def test_spell_does_not_benefit_from_attack_speed_affix(self):
         base = aggregate_stats("Mage", "Sorcerer", [], [], [])
         # Attack speed affix should not affect Fireball (it's a spell)
-        with_atk = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Attack Speed", "tier": 1}])
+        with_atk = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Melee Attack Speed", "tier": 1}])
         assert calculate_dps(base, "Fireball", 20).dps == calculate_dps(with_atk, "Fireball", 20).dps
 
     def test_all_known_skills_have_positive_dps(self):
@@ -136,7 +136,7 @@ class TestMonteCarloDPS:
 
     def test_high_crit_chance_raises_mean(self):
         low_crit = aggregate_stats("Mage", "Sorcerer", [], [], [])
-        high_crit = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Critical Strike Chance", "tier": 1}])
+        high_crit = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Critical Strike Chance", "tier": 1}])
         mc_low = monte_carlo_dps(low_crit, "Fireball", 20, n=10_000)
         mc_high = monte_carlo_dps(high_crit, "Fireball", 20, n=10_000)
         assert mc_high.mean_dps > mc_low.mean_dps
