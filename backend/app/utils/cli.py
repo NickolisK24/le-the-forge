@@ -16,49 +16,55 @@ from app.game_data.game_data_loader import get_all_affixes
 
 def register_commands(app: Flask) -> None:
 
-    @app.cli.command("seed")
-    def seed():
-        """Seed reference data: item types, affix defs."""
-        from app.models import ItemType, AffixDef
-
-        affix_seed_data = [
-            {
+    def _build_affix_seed_data():
+        result = []
+        for affix in get_all_affixes():
+            cr = affix.get("class_requirement")
+            # DB column is a single VARCHAR; if the JSON gives a list, join it
+            if isinstance(cr, list):
+                cr = ",".join(cr) if cr else None
+            result.append({
                 "name": affix["name"],
-                "type": affix["category"],
-                "stat_key": affix["stat_key"],
+                "type": affix.get("type", affix.get("category", "prefix")),
+                "stat_key": affix.get("stat_key", ""),
                 "tiers": affix["tiers"],
                 "applicable": affix.get("applicable_to", []),
-                "class_requirement": affix.get("class_requirement"),
+                "class_requirement": cr,
                 "tags": affix.get("tags", []),
-            }
-            for affix in get_all_affixes()
-        ]
+            })
+        return result
+
+    _ITEM_TYPES = [
+        ("Wand", "weapon", "+X% Spell Damage"),
+        ("Staff", "weapon", "+X% Spell Damage"),
+        ("Sword", "weapon", "+X% Melee Damage"),
+        ("Axe", "weapon", "+X% Melee Damage"),
+        ("Dagger", "weapon", "+X% Critical Strike Chance"),
+        ("Mace", "weapon", "+X% Melee Damage"),
+        ("Sceptre", "weapon", "+X Mana"),
+        ("Bow", "weapon", "+X% Bow Damage"),
+        ("Shield", "off_hand", "+X Armour"),
+        ("Helm", "armour", None),
+        ("Chest", "armour", None),
+        ("Gloves", "armour", None),
+        ("Boots", "armour", None),
+        ("Belt", "accessory", None),
+        ("Ring", "accessory", None),
+        ("Amulet", "accessory", None),
+    ]
+
+    @app.cli.command("seed")
+    def seed():
+        """Seed reference data: item types, affix defs (skips existing rows)."""
+        from app.models import ItemType, AffixDef
 
         click.echo("Seeding item types...")
-        item_types = [
-            ("Wand", "weapon", "+X% Spell Damage"),
-            ("Staff", "weapon", "+X% Spell Damage"),
-            ("Sword", "weapon", "+X% Melee Damage"),
-            ("Axe", "weapon", "+X% Melee Damage"),
-            ("Dagger", "weapon", "+X% Critical Strike Chance"),
-            ("Mace", "weapon", "+X% Melee Damage"),
-            ("Sceptre", "weapon", "+X Mana"),
-            ("Bow", "weapon", "+X% Bow Damage"),
-            ("Shield", "off_hand", "+X Armour"),
-            ("Helm", "armour", None),
-            ("Chest", "armour", None),
-            ("Gloves", "armour", None),
-            ("Boots", "armour", None),
-            ("Belt", "accessory", None),
-            ("Ring", "accessory", None),
-            ("Amulet", "accessory", None),
-        ]
-        for name, category, implicit in item_types:
+        for name, category, implicit in _ITEM_TYPES:
             if not ItemType.query.filter_by(name=name).first():
                 db.session.add(ItemType(name=name, category=category, base_implicit=implicit))
 
         click.echo("Seeding affix definitions...")
-        for a in affix_seed_data:
+        for a in _build_affix_seed_data():
             if not AffixDef.query.filter_by(name=a["name"]).first():
                 db.session.add(AffixDef(
                     name=a["name"],
@@ -72,6 +78,32 @@ def register_commands(app: Flask) -> None:
 
         db.session.commit()
         click.echo("✓ Reference data seeded.")
+
+    @app.cli.command("reseed-affixes")
+    def reseed_affixes():
+        """Wipe and re-seed AffixDef table from data/affixes.json."""
+        from app.models import AffixDef
+
+        click.echo("Clearing existing affix definitions...")
+        AffixDef.query.delete()
+        db.session.commit()
+
+        click.echo("Seeding affix definitions...")
+        count = 0
+        for a in _build_affix_seed_data():
+            db.session.add(AffixDef(
+                name=a["name"],
+                affix_type=a["type"],
+                stat_key=a["stat_key"],
+                tier_ranges=a["tiers"],
+                applicable_types=a["applicable"],
+                class_requirement=a["class_requirement"],
+                tags=a["tags"],
+            ))
+            count += 1
+
+        db.session.commit()
+        click.echo(f"✓ {count} affix definitions seeded.")
 
     @app.cli.command("seed-builds")
     def seed_builds():

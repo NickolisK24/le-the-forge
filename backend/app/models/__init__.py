@@ -266,10 +266,10 @@ class AffixDef(db.Model):
     __tablename__ = "affix_defs"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(256), nullable=False)
     # "prefix"|"suffix"|"experimental"|"personal"|"champion"|"set"|"idol_enchant"|"idol_weaver"
     affix_type = db.Column(db.String(16), nullable=False)
-    stat_key = db.Column(db.String(64), nullable=False)
+    stat_key = db.Column(db.String(256), nullable=False)
 
     # Min/max values per tier (T1..T7), stored as JSON
     # e.g. {"1": [5, 9], "2": [10, 15], ...}
@@ -278,8 +278,8 @@ class AffixDef(db.Model):
     # Which item types can roll this affix
     applicable_types = db.Column(db.JSON, nullable=False, default=list)
 
-    # Class restriction (null = any class)
-    class_requirement = db.Column(db.String(32), nullable=True)
+    # Class restriction (null = any class; comma-separated for multi-class)
+    class_requirement = db.Column(db.String(128), nullable=True)
 
     # Searchable tags
     tags = db.Column(db.JSON, nullable=False, default=list)
