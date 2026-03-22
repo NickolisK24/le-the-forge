@@ -119,7 +119,8 @@ def simulate():
 
 
 @craft_bp.get("/<slug>")
-def get_session(slug: str):    session = CraftSession.query.filter_by(slug=slug).first()
+def get_session(slug: str):
+    session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
         return not_found("Craft session")
 
