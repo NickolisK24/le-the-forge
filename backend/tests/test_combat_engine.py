@@ -137,8 +137,8 @@ class TestMonteCarloDPS:
     def test_high_crit_chance_raises_mean(self):
         low_crit = aggregate_stats("Mage", "Sorcerer", [], [], [])
         high_crit = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Critical Strike Chance", "tier": 1}])
-        mc_low = monte_carlo_dps(low_crit, "Fireball", 20, n=2_000)
-        mc_high = monte_carlo_dps(high_crit, "Fireball", 20, n=2_000)
+        mc_low = monte_carlo_dps(low_crit, "Fireball", 20, n=10_000)
+        mc_high = monte_carlo_dps(high_crit, "Fireball", 20, n=10_000)
         assert mc_high.mean_dps > mc_low.mean_dps
 
     def test_unknown_skill_returns_zeros(self):
