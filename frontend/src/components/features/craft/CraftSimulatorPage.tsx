@@ -2,10 +2,10 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
-import { Panel, Button, RiskBar, SectionLabel, Spinner } from "@/components/ui";
+import { Panel, Button, SectionLabel, Spinner } from "@/components/ui";
 import {
-  fractureRiskPct, successPct, riskLevel, optimalPath, simulateSequence,
-  compareStrategies, instabilityColor, MAX_INSTABILITY, fpCost, RISK_COLORS,
+  optimalPath, simulateSequence,
+  compareStrategies, fpCost,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
 import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems, useFpRanges } from "@/hooks";
@@ -69,8 +69,6 @@ interface LogEntry {
   message: string;
   outcome: CraftOutcome | "info";
   roll?: number;
-  riskPct?: number;
-  instabilityAfter?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -82,93 +80,57 @@ function localSimulate(
   action: CraftAction,
   affixName: string | undefined,
   targetTier: number | undefined,
-  instability: number,
   fp: number,
   affixes: CraftAffix[],
-  isFractured: boolean,
 ): {
-  outcome: CraftOutcome | "error";
+  outcome: CraftOutcome;
   message: string;
-  newInstability: number;
   newFp: number;
   newAffixes: CraftAffix[];
   roll: number;
-  riskPct: number;
 } {
-  if (isFractured) return {
-    outcome: "error", message: "Item is fractured.", roll: 0, riskPct: 0,
-    newInstability: instability, newFp: fp, newAffixes: affixes,
-  };
-
   // Roll random FP cost (mirrors backend fp_engine.roll_fp_cost)
   const cost = rollFpCost(action);
   if (fp < cost) return {
-    outcome: "error",
-    message: `Not enough Forge Potential. Rolled ${cost} FP cost, have ${fp}.`,
-    roll: 0, riskPct: 0,
-    newInstability: instability, newFp: fp, newAffixes: affixes,
+    outcome: "success", // In modern LE, insufficient FP just means can't craft
+    message: `Not enough Forge Potential. Need ${cost} FP, have ${fp}.`,
+    roll: 0,
+    newFp: fp,
+    newAffixes: affixes,
   };
 
-  const sealedCount = affixes.filter((a) => a.sealed).length;
-  const riskPct = fractureRiskPct(instability, sealedCount);
+  // In modern Last Epoch, all successful crafts are "perfect" (no quality distinction)
   const roll = Math.random() * 100;
-  const fractured = roll < riskPct;
-
-  let instGain = 0;
-  let outcome: CraftOutcome;
-
-  if (fractured) {
-    outcome = "fracture";
-    instGain = 0;
-  } else if (roll > 95) {
-    outcome = "perfect";
-    instGain = Math.floor(Math.random() * 3) + 1;
-  } else {
-    outcome = "success";
-    // Instability gains mirror crafting_rules.json instability_gains
-    const gainRanges: Record<CraftAction, [number, number]> = {
-      add_affix: [3, 7], upgrade_affix: [4, 10], seal_affix: [0, 0],
-      unseal_affix: [1, 3], remove_affix: [2, 5],
-    };
-    const [lo, hi] = gainRanges[action];
-    instGain = lo === hi ? lo : Math.floor(Math.random() * (hi - lo + 1)) + lo;
-  }
-
-  const newInstability = Math.min(MAX_INSTABILITY, instability + instGain);
+  const outcome: CraftOutcome = roll > 95 ? "perfect" : "success";
   const newFp = fp - cost;
 
   let newAffixes = [...affixes];
-  if (!fractured) {
-    if (action === "add_affix" && affixName && newAffixes.filter((a) => !a.sealed).length < 4) {
-      newAffixes.push({ name: affixName, tier: targetTier ?? 1, sealed: false });
-    } else if (action === "upgrade_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName && !a.sealed
-          ? { ...a, tier: Math.min(5, a.tier + 1) }
-          : a
-      );
-    } else if (action === "seal_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName ? { ...a, sealed: true } : a
-      );
-    } else if (action === "unseal_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName ? { ...a, sealed: false } : a
-      );
-    } else if (action === "remove_affix" && affixName) {
-      newAffixes = newAffixes.filter((a) => a.name !== affixName);
-    }
+  if (action === "add_affix" && affixName && newAffixes.filter((a) => !a.sealed).length < 4) {
+    newAffixes.push({ name: affixName, tier: targetTier ?? 1, sealed: false });
+  } else if (action === "upgrade_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName && !a.sealed
+        ? { ...a, tier: Math.min(5, a.tier + 1) }
+        : a
+    );
+  } else if (action === "seal_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName ? { ...a, sealed: true } : a
+    );
+  } else if (action === "unseal_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName ? { ...a, sealed: false } : a
+    );
+  } else if (action === "remove_affix" && affixName) {
+    newAffixes = newAffixes.filter((a) => a.name !== affixName);
   }
 
-  const messages: Record<CraftOutcome, string> = {
-    success: `${ACTION_LABELS[action]} succeeded. +${instGain} instability.`,
-    perfect: `Perfect craft! ${ACTION_LABELS[action]} with minimal instability gain (+${instGain}).`,
-    fracture: `Item fractured! Roll: ${roll.toFixed(1)} vs ${riskPct.toFixed(1)}% threshold.`,
-  };
-
   return {
-    outcome, message: messages[outcome], roll: parseFloat(roll.toFixed(2)),
-    riskPct, newInstability, newFp, newAffixes,
+    outcome,
+    message: outcome === "perfect" ? "Perfect craft!" : "Success!",
+    newFp,
+    newAffixes,
+    roll: Math.round(roll * 100) / 100,
   };
 }
 
@@ -353,7 +315,7 @@ function OutcomePredictorPanel({
 
         {simResult.n_simulations > 0 && (
           <p className="font-mono text-[11px] text-forge-dim text-center">
-            {simResult.n_simulations.toLocaleString()} simulations · median instability: {simResult.median_instability}
+            {simResult.n_simulations.toLocaleString()} simulations
           </p>
         )}
       </div>
@@ -380,13 +342,12 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
     <Panel title="Optimal Craft Path">
       <div className="flex flex-col">
         {steps.map((step, i) => {
-          const rl = riskLevel(step.risk_pct);
           const isSeal = step.action === "seal_affix";
           return (
             <div
               key={i}
               className="grid gap-2 py-2 border-b border-forge-border/40 last:border-b-0"
-              style={{ gridTemplateColumns: "20px 1fr 52px 60px" }}
+              style={{ gridTemplateColumns: "20px 1fr 60px" }}
             >
               {/* Step number */}
               <span className="font-display text-xs font-bold text-forge-amber self-start pt-0.5">
@@ -404,19 +365,6 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
                 <div className="font-mono text-[11px] text-forge-dim leading-snug mt-0.5">
                   {step.note}
                 </div>
-              </div>
-
-              {/* Risk at step */}
-              <div className="text-right self-start pt-0.5">
-                <span className={clsx(
-                  "font-mono text-[11px] px-1 py-0.5 border rounded-sm",
-                  isSeal ? "text-forge-green border-forge-green/40" :
-                  rl === "safe" ? "text-forge-green border-forge-green/40" :
-                  rl === "moderate" ? "text-forge-amber border-forge-amber/40" :
-                  "text-forge-red border-forge-red/40"
-                )}>
-                  {isSeal ? "0%" : `~${step.risk_pct.toFixed(0)}%`}
-                </span>
               </div>
 
               {/* Cumulative survival */}
@@ -554,14 +502,13 @@ function StrategyComparisonPanel({
 interface ActionPanelProps {
   affixes: CraftAffix[];
   fp: number;
-  isFractured: boolean;
   isLive: boolean;
   isPending: boolean;
   itemType: string;
   onAction: (action: CraftAction, affixName?: string, targetTier?: number, affixType?: "prefix" | "suffix") => void;
 }
 
-function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, onAction }: ActionPanelProps) {
+function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: ActionPanelProps) {
   const [action, setAction] = useState<CraftAction>("upgrade_affix");
   const [targetAffix, setTargetAffix] = useState(affixes[0]?.name ?? "");
   const [targetTier, setTargetTier] = useState(1);
@@ -592,7 +539,7 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
 
   // canAct: enabled if fp covers at least the minimum possible roll
   const [minCost] = FP_COST_RANGES[action];
-  const canAct = !isFractured && fp >= minCost && !isPending;
+  const canAct = fp >= minCost && !isPending;
 
   const needsExistingAffix = action !== "add_affix";
   const affixOptions = action === "seal_affix"
@@ -807,12 +754,12 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, itemType, on
         </div>
 
         <Button
-          variant={isFractured ? "danger" : "primary"}
+          variant="primary"
           className="w-full"
           disabled={!canAct || (needsExistingAffix && affixOptions.length === 0)}
           onClick={handleSubmit}
         >
-          {isPending ? "Forging..." : isFractured ? "Item Fractured" : `${ACTION_LABELS[action]}`}
+          {isPending ? "Forging..." : `${ACTION_LABELS[action]}`}
         </Button>
 
         {!isLive && (
@@ -935,23 +882,18 @@ export default function CraftSimulatorPage() {
   const session = sessionRes?.data;
   const summary = summaryRes?.data;
 
-  const instability = isLive ? (session?.instability ?? 0) : store.instability;
   const fp = isLive ? (session?.forge_potential ?? 0) : store.forgePotential;
   const affixes: CraftAffix[] = isLive ? (session?.affixes ?? []) : store.affixes;
-  const isFractured = isLive ? (session?.is_fractured ?? false) : store.isFractured;
 
   const sealedCount = affixes.filter((a) => a.sealed).length;
-  const riskPct = fractureRiskPct(instability, sealedCount);
-  const successP = successPct(instability, sealedCount);
-  const rl = riskLevel(riskPct);
 
   // ---------------------------------------------------------------------------
   // Prediction data — from backend (live) or computed locally (local mode)
   // ---------------------------------------------------------------------------
 
   const localOptPath = useMemo(
-    () => optimalPath(instability, affixes, fp),
-    [instability, fp, affixes],
+    () => optimalPath(affixes, fp),
+    [fp, affixes],
   );
 
   const localSimResult = useMemo(() => {
@@ -964,17 +906,15 @@ export default function CraftSimulatorPage() {
         brick_chance: 0,
         perfect_item_chance: 1,
         step_survival_curve: [],
-        step_fracture_rates: [],
-        median_instability: instability,
         n_simulations: 0,
       };
     }
-    return simulateSequence(instability, fp, simSteps, 3_000);
-  }, [localOptPath, instability, fp]);
+    return simulateSequence(fp, simSteps, 3_000);
+  }, [localOptPath, fp]);
 
   const localStrategies = useMemo(
-    () => compareStrategies(instability, affixes, fp),
-    [instability, fp, affixes],
+    () => compareStrategies(affixes, fp),
+    [fp, affixes],
   );
 
   const optPath: OptimalPathStep[] = isLive
@@ -1008,10 +948,7 @@ export default function CraftSimulatorPage() {
           message: res.data.message,
           outcome: res.data.outcome,
           roll: res.data.roll,
-          riskPct: res.data.fracture_risk_pct,
-          instabilityAfter: res.data.instability,
         });
-        if (res.data.is_fractured) store.setFractured(true);
       } else if (res.errors) {
         addLog({ message: res.errors[0].message, outcome: "info" });
       }
@@ -1036,7 +973,7 @@ export default function CraftSimulatorPage() {
 
       const result = localSimulate(
         action, affixName, targetTier,
-        store.instability, store.forgePotential, store.affixes, store.isFractured,
+        store.forgePotential, store.affixes,
       );
 
       if (result.outcome === "error") {
@@ -1049,17 +986,13 @@ export default function CraftSimulatorPage() {
         a.name === affixName && !a.type ? { ...a, type: affixType } : a
       );
 
-      store.setInstability(result.newInstability);
       store.setForgePotential(result.newFp);
       store.setAffixes(newAffixes);
-      if (result.outcome === "fracture") store.setFractured(true);
 
       addLog({
         message: result.message,
-        outcome: result.outcome as CraftOutcome,
+        outcome: result.outcome,
         roll: result.roll,
-        riskPct: result.riskPct,
-        instabilityAfter: result.newInstability,
       });
     }
   }
@@ -1070,7 +1003,6 @@ export default function CraftSimulatorPage() {
       item_name: store.itemName || undefined,
       item_level: store.itemLevel,
       rarity: store.rarity,
-      instability: store.instability,
       // Pass fp_mode=manual + actual FP so backend uses item_engine correctly
       fp_mode: "manual",
       manual_fp: store.forgePotential,
@@ -1220,21 +1152,20 @@ export default function CraftSimulatorPage() {
             </div>
           </Panel>
 
-          {/* Instability panel */}
+          {/* Forge Potential panel */}
           <Panel title="Forge Potential">
             <div className="mb-3">
               <div className="flex justify-between items-baseline mb-1.5">
-                <span className="font-display text-xl font-bold" style={{ color: instabilityColor(instability) }}>
-                  {instability}
+                <span className="font-display text-xl font-bold text-forge-amber">
+                  {fp}
                 </span>
-                <span className="font-body text-sm text-forge-dim">/ {MAX_INSTABILITY} instability</span>
+                <span className="font-body text-sm text-forge-dim">FP remaining</span>
               </div>
-              <RiskBar pct={(instability / MAX_INSTABILITY) * 100} level={rl} />
               {!isLive && (
                 <input
-                  type="range" min={0} max={80} step={1}
-                  value={instability}
-                  onChange={(e) => store.setInstability(Number(e.target.value))}
+                  type="range" min={0} max={100} step={1}
+                  value={fp}
+                  onChange={(e) => store.setForgePotential(Number(e.target.value))}
                   className="w-full mt-2 accent-forge-amber"
                 />
               )}
@@ -1338,32 +1269,6 @@ export default function CraftSimulatorPage() {
                 {sealedCount} / {affixes.length}
               </span>
             </div>
-
-            {/* Fracture Risk Indicator */}
-            <div className="py-2 border-t border-forge-border">
-              <div className="flex justify-between items-center mb-2">
-                <span className="font-mono text-xs uppercase tracking-wider text-forge-dim">
-                  Fracture Risk
-                </span>
-                <span
-                  className={clsx(
-                    "font-mono text-sm font-bold",
-                    riskLevel(riskPct) === "safe" && "text-forge-green",
-                    riskLevel(riskPct) === "moderate" && "text-forge-amber",
-                    (riskLevel(riskPct) === "dangerous" || riskLevel(riskPct) === "critical") && "text-forge-red"
-                  )}
-                >
-                  {riskPct.toFixed(1)}%
-                </span>
-              </div>
-              <RiskBar pct={riskPct} level={riskLevel(riskPct)} />
-            </div>
-
-            {isFractured && (
-              <div className="mt-2 border border-forge-red/40 bg-forge-red/8 rounded-sm px-3 py-2 text-forge-red font-mono text-xs tracking-wider uppercase text-center">
-                ⚠ Item Fractured
-              </div>
-            )}
           </Panel>
 
           {/* Affix list */}
@@ -1379,13 +1284,12 @@ export default function CraftSimulatorPage() {
         {/* ── RIGHT COLUMN ── */}
         <div className="flex flex-col gap-3">
 
-          {/* Risk stat cards */}
-          <div className="grid grid-cols-4 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
+          {/* Craft Stats */}
+          <div className="grid grid-cols-3 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
             {[
-              { label: "Fracture Risk", value: `${riskPct.toFixed(1)}%`, color: RISK_COLORS[rl] },
-              { label: "Success Rate", value: `${successP.toFixed(1)}%`, color: "#3dca74" },
-              { label: "With 1 Seal", value: `${fractureRiskPct(instability, sealedCount + 1).toFixed(1)}%`, color: "#3dca74" },
               { label: "FP Remaining", value: `${fp}`, color: fp > 15 ? "#3dca74" : fp > 8 ? "#f0a020" : "#ff5050" },
+              { label: "Sealed Affixes", value: `${sealedCount}/${affixes.length}`, color: "#3dca74" },
+              { label: "Completion", value: `${Math.round((affixes.filter(a => a.tier >= 4).length / Math.max(affixes.length, 1)) * 100)}%`, color: "#3dca74" },
             ].map((card) => (
               <div key={card.label} className="bg-forge-surface text-center py-4 px-2">
                 <span className="font-display text-2xl font-bold block mb-1" style={{ color: card.color }}>
@@ -1403,7 +1307,6 @@ export default function CraftSimulatorPage() {
             <ActionPanel
               affixes={affixes}
               fp={fp}
-              isFractured={isFractured}
               isLive={isLive}
               isPending={craftAction.isPending || createSession.isPending}
               itemType={isLive ? (session?.item_type ?? store.itemType) : store.itemType}
@@ -1424,55 +1327,39 @@ export default function CraftSimulatorPage() {
           {isLive && session?.steps && session.steps.length > 0 && (
             <Panel title="Craft Timeline">
               <div className="flex flex-col max-h-80 overflow-y-auto">
-                {session.steps.map((step, i) => {
-                  const rl = riskLevel(step.fracture_risk_pct);
-                  return (
-                    <div
-                      key={step.id}
-                      className="grid gap-2 py-3 border-b border-forge-border/40 last:border-b-0"
-                      style={{ gridTemplateColumns: "24px 1fr 60px 50px" }}
-                    >
-                      {/* Step number */}
-                      <span className="font-display text-sm font-bold text-forge-amber self-start">
-                        {step.step_number}
-                      </span>
+                {session.steps.map((step, i) => (
+                  <div
+                    key={step.id}
+                    className="grid gap-2 py-3 border-b border-forge-border/40 last:border-b-0"
+                    style={{ gridTemplateColumns: "24px 1fr 60px" }}
+                  >
+                    {/* Step number */}
+                    <span className="font-display text-sm font-bold text-forge-amber self-start">
+                      {step.step_number}
+                    </span>
 
-                      {/* Action details */}
-                      <div className="min-w-0">
-                        <div className="font-body text-sm">
-                          {ACTION_LABELS[step.action]}
-                          {step.affix_name && (
-                            <span className="text-forge-dim"> · {step.affix_name}</span>
-                          )}
-                        </div>
-                        <div className="font-mono text-xs text-forge-dim mt-1">
-                          {step.outcome === "success" && "✓ Success"}
-                          {step.outcome === "perfect" && "★ Perfect"}
-                          {step.outcome === "fracture" && "💥 Fractured"}
-                        </div>
+                    {/* Action details */}
+                    <div className="min-w-0">
+                      <div className="font-body text-sm">
+                        {ACTION_LABELS[step.action]}
+                        {step.affix_name && (
+                          <span className="text-forge-dim"> · {step.affix_name}</span>
+                        )}
                       </div>
-
-                      {/* Risk */}
-                      <div className="text-right self-start">
-                        <span className={clsx(
-                          "font-mono text-xs px-2 py-1 border rounded-sm",
-                          rl === "safe" ? "text-forge-green border-forge-green/40" :
-                          rl === "moderate" ? "text-forge-amber border-forge-amber/40" :
-                          "text-forge-red border-forge-red/40"
-                        )}>
-                          {step.fracture_risk_pct.toFixed(1)}%
-                        </span>
-                      </div>
-
-                      {/* Instability change */}
-                      <div className="text-right self-start">
-                        <span className="font-mono text-xs text-forge-dim">
-                          {step.instability_before} → {step.instability_after}
-                        </span>
+                      <div className="font-mono text-xs text-forge-dim mt-1">
+                        {step.outcome === "success" && "✓ Success"}
+                        {step.outcome === "perfect" && "★ Perfect"}
                       </div>
                     </div>
-                  );
-                })}
+
+                    {/* FP change */}
+                    <div className="text-right self-start">
+                      <span className="font-mono text-xs text-forge-dim">
+                        {step.fp_before} → {step.fp_after}
+                      </span>
+                    </div>
+                  </div>
+                ))}
               </div>
             </Panel>
           )}
@@ -1499,7 +1386,7 @@ export default function CraftSimulatorPage() {
                       </span>
                       {entry.roll !== undefined && (
                         <div className="font-mono text-[11px] text-forge-dim mt-0.5">
-                          Roll: {entry.roll.toFixed(1)} · Risk: {entry.riskPct?.toFixed(1)}% · Inst: {entry.instabilityAfter}
+                          Roll: {entry.roll.toFixed(1)}
                         </div>
                       )}
                     </div>
@@ -1517,14 +1404,13 @@ export default function CraftSimulatorPage() {
                   { label: "Total Actions", value: summary.total_actions },
                   { label: "Successes", value: summary.successes },
                   { label: "Perfects", value: summary.perfects },
-                  { label: "Fractures", value: summary.fractures, danger: summary.fractures > 0 },
                   { label: "FP Spent", value: summary.fp_spent },
-                  { label: "Current Risk", value: `${summary.current_risk_pct.toFixed(1)}%` },
+                  { label: "Completion Rate", value: `${Math.round((summary.successes + summary.perfects) / Math.max(summary.total_actions, 1) * 100)}%` },
                 ].map((s) => (
                   <div key={s.label} className="text-center py-2 border border-forge-border rounded-sm">
                     <span className={clsx(
                       "font-display text-lg font-bold block",
-                      s.danger ? "text-forge-red" : "text-forge-amber"
+                      "text-forge-amber"
                     )}>
                       {s.value}
                     </span>
