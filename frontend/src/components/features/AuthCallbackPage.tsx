@@ -18,8 +18,12 @@ export default function AuthCallbackPage() {
       return;
     }
 
+    const controller = new AbortController();
+
     setToken(token);
-    authApi.me().then((res) => {
+    authApi.me(controller.signal).then((res) => {
+      // Ignore results from aborted requests (React StrictMode double-fire)
+      if (controller.signal.aborted) return;
       if (res.data) {
         sessionStorage.setItem("forge_token", token);
         login(token, res.data);
@@ -29,6 +33,8 @@ export default function AuthCallbackPage() {
         navigate("/");
       }
     });
+
+    return () => controller.abort();
   }, []);
 
   return (

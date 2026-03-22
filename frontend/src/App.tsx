@@ -29,25 +29,29 @@ const queryClient = new QueryClient({
 // Boot: attempt to restore session from URL token (OAuth callback)
 // or from a previously stored token.
 function AuthBootstrapper({ children }: { children: React.ReactNode }) {
-  const { login, logout, setUser } = useAuthStore();
+  const { login, logout } = useAuthStore();
 
   useEffect(() => {
-    // Check for token in URL (OAuth callback handled in AuthCallbackPage)
-    // Fall back to fetching /api/auth/me if a token was already set
     const stored = sessionStorage.getItem("forge_token");
-    if (stored) {
-      setToken(stored);
-      authApi.me().then((res) => {
-        if (res.data) {
-          login(stored, res.data);
-        } else {
-          sessionStorage.removeItem("forge_token");
-          logout();
-        }
-      });
-    } else {
+    if (!stored) {
       useAuthStore.setState({ isLoading: false });
+      return;
     }
+
+    const controller = new AbortController();
+    setToken(stored);
+    authApi.me(controller.signal).then((res) => {
+      if (controller.signal.aborted) return;
+      if (res.data) {
+        login(stored, res.data);
+      } else {
+        sessionStorage.removeItem("forge_token");
+        setToken(null);
+        logout();
+      }
+    });
+
+    return () => controller.abort();
   }, []);
 
   return <>{children}</>;
