@@ -243,28 +243,26 @@ class TestSimulateBuild:
 
 class TestExceptionHandling:
     def test_forge_error_handler(self, client, db):
-        """ItemFracturedError should be caught by global handler and return 400."""
+        """Insufficient FP should return 400."""
         from app.models import CraftSession
         import secrets
 
         session = CraftSession(
             slug=secrets.token_urlsafe(8),
             item_type="Helmet",
-            instability=50,
-            forge_potential=20,
-            affixes=[{"name": "Spell Damage", "tier": 2, "sealed": False}],
-            is_fractured=True,
+            forge_potential=1,  # Not enough FP for upgrade (costs 2-8)
+            affixes=[{"name": "Increased Spell Damage", "tier": 2, "sealed": False}],
         )
         db.session.add(session)
         db.session.commit()
 
         resp = client.post(f"/api/craft/{session.slug}/action", json={
             "action": "upgrade_affix",
-            "affix_name": "Spell Damage",
+            "affix_name": "Increased Spell Damage",
         })
         assert resp.status_code == 400
         errors = resp.get_json()["errors"]
-        assert any("fractured" in e["message"].lower() for e in errors)
+        assert any("forge potential" in e["message"].lower() for e in errors)
 
     def test_insufficient_fp_error(self, client, db):
         """InsufficientForgePotentialError should return 400."""
@@ -274,7 +272,6 @@ class TestExceptionHandling:
         session = CraftSession(
             slug=secrets.token_urlsafe(8),
             item_type="Helmet",
-            instability=0,
             forge_potential=0,  # No FP left
             affixes=[{"name": "Spell Damage", "tier": 2, "sealed": False}],
         )

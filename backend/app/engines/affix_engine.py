@@ -167,7 +167,7 @@ def count_affix_types(item: dict) -> dict:
     return {
         "prefixes": prefix_count,
         "suffixes": suffix_count,
-        "sealed": 1 if item.get("sealed_affix") else 0,
+        "sealed": 1 if item.get("sealed") else 0,
     }
 
 

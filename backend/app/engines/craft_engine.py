@@ -170,7 +170,10 @@ def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
         if affix.get("sealed"):
             raise ValueError("Cannot upgrade sealed affix")
         current_tier = affix.get("tier", 1)
-        if is_max_tier(affix_name, current_tier):
+        affix_def = get_affix_by_name(affix_name)
+        if not affix_def:
+            raise ValueError(f"Affix definition not found for {affix_name}")
+        if is_max_tier(affix_def, current_tier):
             raise ValueError("Affix already at max tier")
         affix["tier"] = current_tier + 1
 
