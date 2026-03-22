@@ -32,7 +32,6 @@ export function fpCost(action: string): number {
 // ---------------------------------------------------------------------------
 
 export function optimalPath(
-  instability: number,
   affixes: CraftAffix[],
   forgePotential = 28,
 ): OptimalPathStep[] {

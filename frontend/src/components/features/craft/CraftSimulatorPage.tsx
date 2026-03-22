@@ -510,7 +510,7 @@ interface ActionPanelProps {
 
 function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: ActionPanelProps) {
   const [action, setAction] = useState<CraftAction>("upgrade_affix");
-  const [targetAffix, setTargetAffix] = useState(affixes[0]?.name ?? "");
+  const [targetAffix, setTargetAffix] = useState(Array.isArray(affixes) && affixes[0]?.name ? affixes[0].name : "");
   const [targetTier, setTargetTier] = useState(1);
   const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "experimental" | "personal" | "">("");
 
@@ -519,9 +519,10 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
   const availableAffixes: AffixDef[] = affixRes?.data ?? [];
 
   // Slot counts — sealed affixes don't count toward prefix/suffix limits
-  const prefixCount = affixes.filter((a) => a.type === "prefix" && !a.sealed).length;
-  const suffixCount = affixes.filter((a) => a.type === "suffix" && !a.sealed).length;
-  const sealedCount = affixes.filter((a) => a.sealed).length;
+  const safeAffixes = Array.isArray(affixes) ? affixes : [];
+  const prefixCount = safeAffixes.filter((a) => a.type === "prefix" && !a.sealed).length;
+  const suffixCount = safeAffixes.filter((a) => a.type === "suffix" && !a.sealed).length;
+  const sealedCount = safeAffixes.filter((a) => a.sealed).length;
 
   // The affix name selected for add_affix — defaults to first available
   const [newAffixName, setNewAffixName] = useState("");
@@ -532,10 +533,10 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
   }, [availableAffixes]);
 
   useEffect(() => {
-    if (affixes.length > 0 && !affixes.find((a) => a.name === targetAffix)) {
-      setTargetAffix(affixes[0].name);
+    if (safeAffixes.length > 0 && !safeAffixes.find((a) => a.name === targetAffix)) {
+      setTargetAffix(safeAffixes[0].name);
     }
-  }, [affixes]);
+  }, [safeAffixes, targetAffix]);
 
   // canAct: enabled if fp covers at least the minimum possible roll
   const [minCost] = FP_COST_RANGES[action];
@@ -543,10 +544,10 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
 
   const needsExistingAffix = action !== "add_affix";
   const affixOptions = action === "seal_affix"
-    ? affixes.filter((a) => !a.sealed)
+    ? safeAffixes.filter((a) => !a.sealed)
     : action === "unseal_affix"
-    ? affixes.filter((a) => a.sealed)
-    : affixes;
+    ? safeAffixes.filter((a) => a.sealed)
+    : safeAffixes;
 
   function handleSubmit() {
     if (action === "add_affix") {
@@ -644,7 +645,7 @@ function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: Act
                       }
                       return a.type === affixFilter && !(a.tags ?? []).includes("experimental") && !(a.tags ?? []).includes("personal");
                     })
-                    .filter((a) => !affixes.find((ex) => ex.name === a.name))
+                    .filter((a) => !safeAffixes.find((ex) => ex.name === a.name))
                     .map((a) => {
                       const slotFull = (a.type === "prefix" && prefixCount >= 2) || (a.type === "suffix" && suffixCount >= 2);
                       // Label: show experimental/personal tag if present, else type
@@ -892,7 +893,7 @@ export default function CraftSimulatorPage() {
   // ---------------------------------------------------------------------------
 
   const localOptPath = useMemo(
-    () => optimalPath(affixes, fp),
+    () => optimalPath(Array.isArray(affixes) ? affixes : [], fp),
     [fp, affixes],
   );
 
@@ -913,7 +914,7 @@ export default function CraftSimulatorPage() {
   }, [localOptPath, fp]);
 
   const localStrategies = useMemo(
-    () => compareStrategies(affixes, fp),
+    () => compareStrategies(Array.isArray(affixes) ? affixes : [], fp),
     [fp, affixes],
   );
 
