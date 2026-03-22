@@ -13,6 +13,7 @@ import type {
   CraftAffix,
   OptimalPathStep,
   SimulationResult,
+  LocalSimulationResult,
   StrategyComparison,
 } from "@/types";
 
@@ -101,7 +102,7 @@ export function simulateSequence(
   forgePotential: number,
   proposedSteps: SimStep[],
   nSimulations = 3_000,
-): SimulationResult {
+): LocalSimulationResult {
   const n = nSimulations;
   const fpConsumed: number[] = [];
   const stepsCompleted: number[] = [];
@@ -138,6 +139,7 @@ export function simulateSequence(
       p50: sortedSteps[Math.floor(sortedSteps.length * 0.5)],
       p75: sortedSteps[Math.floor(sortedSteps.length * 0.75)],
     },
+    n_simulations: n,
   };
 }
 

@@ -12,7 +12,7 @@ import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary
 import { useAuthStore } from "@/store";
 import type {
   CraftAffix, CraftAction, CraftOutcome, AffixDef,
-  OptimalPathStep, SimulationResult, StrategyComparison,
+  OptimalPathStep, SimulationResult, LocalSimulationResult, StrategyComparison,
 } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -272,7 +272,7 @@ function OutcomePredictorPanel({
   simResult,
 }: {
   optPath: OptimalPathStep[];
-  simResult: SimulationResult;
+  simResult: LocalSimulationResult;
 }) {
   return (
     <Panel title="Crafting Statistics">
@@ -951,8 +951,8 @@ export default function CraftSimulatorPage() {
     : localOptPath;
 
   const simResult: SimulationResult = isLive
-    ? (summary?.simulation_result ?? localSimResult)
-    : localSimResult;
+    ? (summary?.simulation_result ?? { completion_chance: 1, step_survival_curve: [], n_simulations: 0 })
+    : { completion_chance: 1, step_survival_curve: [], n_simulations: localSimResult.n_simulations };
 
   const strategies: StrategyComparison[] = isLive
     ? (summary?.strategy_comparison ?? localStrategies)
@@ -1341,7 +1341,7 @@ export default function CraftSimulatorPage() {
               itemType={isLive ? (session?.item_type ?? store.itemType) : store.itemType}
               onAction={handleAction}
             />
-            <OutcomePredictorPanel optPath={optPath} simResult={simResult} />
+            <OutcomePredictorPanel optPath={optPath} simResult={localSimResult} />
           </div>
 
           {/* Optimal path table */}

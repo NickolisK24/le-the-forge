@@ -216,6 +216,12 @@ export interface SimulationResult {
   n_simulations: number;
 }
 
+export interface LocalSimulationResult {
+  fp_consumed: { p25: number; p50: number; p75: number };
+  steps_completed: { p25: number; p50: number; p75: number };
+  n_simulations: number;
+}
+
 export interface StrategyComparison {
   name: string;
   description: string;
