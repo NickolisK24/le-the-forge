@@ -111,6 +111,7 @@ class BuildStats:
     ward: float = 0.0
     ward_retention_pct: float = 0.0
     ward_regen: float = 0.0
+    mana_to_ward_pct: float = 0.0      # % of mana spent converted to ward
 
     # Defense — resistances
     fire_res: float = 0.0
@@ -121,16 +122,50 @@ class BuildStats:
     poison_res: float = 0.0
     physical_res: float = 0.0
 
+    # Offense — penetration (bypasses enemy resistance)
+    physical_penetration: float = 0.0
+    fire_penetration: float = 0.0
+    cold_penetration: float = 0.0
+    lightning_penetration: float = 0.0
+    void_penetration: float = 0.0
+    necrotic_penetration: float = 0.0
+
+    # Offense — debuff application chances
+    armour_shred_chance: float = 0.0
+    fire_shred_chance: float = 0.0
+    cold_shred_chance: float = 0.0
+    lightning_shred_chance: float = 0.0
+
+    # Offense — channelling
+    channelling_damage_pct: float = 0.0
+
+    # Offense — specific damage types
+    shadow_damage_pct: float = 0.0
+    dagger_damage_pct: float = 0.0
+    overkill_damage_pct: float = 0.0
+
+    # Offense — minion/companion/totem
+    minion_crit_chance_pct: float = 0.0
+    companion_damage_pct: float = 0.0
+    companion_health_pct: float = 0.0
+    totem_damage_pct: float = 0.0
+    totem_health_pct: float = 0.0
+
     # Resources
     max_mana: float = 0.0
     mana_regen: float = 0.0
     health_regen: float = 0.0
+    mana_efficiency_pct: float = 0.0
 
     # Sustain
     leech: float = 0.0
     health_on_kill: float = 0.0
     mana_on_kill: float = 0.0
     ward_on_kill: float = 0.0
+    health_on_block: float = 0.0
+    health_on_potion: float = 0.0
+    ward_on_potion: float = 0.0
+    healing_effectiveness_pct: float = 0.0
 
     # Utility
     movement_speed: float = 0.0
@@ -138,6 +173,9 @@ class BuildStats:
     channelling_cost_reduction: float = 0.0
     area_pct: float = 0.0
     stun_duration_pct: float = 0.0
+    buff_effect_pct: float = 0.0
+    ailment_effect_pct: float = 0.0
+    ailment_duration_pct: float = 0.0
 
     # Attributes
     strength: float = 0.0
