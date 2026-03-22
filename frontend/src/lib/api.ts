@@ -61,7 +61,7 @@ export function getToken() {
 // Core fetch helper
 // ---------------------------------------------------------------------------
 
-async function request<T>(
+export async function request<T>(
   method: string,
   path: string,
   body?: unknown,
@@ -261,4 +261,45 @@ export const profileApi = {
   get: () => get<any>("/profile"),
   builds: (page = 1) => get<any>(`/profile/builds?page=${page}&sort=new`),
   sessions: (page = 1) => get<any>(`/profile/sessions?page=${page}`),
+};
+
+// ---------------------------------------------------------------------------
+// Admin — affix editor
+// ---------------------------------------------------------------------------
+
+export interface AdminAffixTier {
+  tier: number;
+  min: number;
+  max: number;
+}
+
+export interface AdminAffix {
+  id: string;
+  name: string;
+  type: "prefix" | "suffix";
+  tags: string[];
+  applicable_to: string[];
+  class_requirement: string | null;
+  tiers: AdminAffixTier[];
+  stat_key: string | null;
+}
+
+export interface AdminAffixFilters {
+  q?: string;
+  type?: string;
+  tag?: string;
+  slot?: string;
+}
+
+export const adminApi = {
+  affixes: (filters: AdminAffixFilters = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(filters).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
+      )
+    ).toString();
+    return get<AdminAffix[]>(`/admin/affixes${qs ? "?" + qs : ""}`);
+  },
+  updateAffix: (id: string, patch: Partial<Omit<AdminAffix, "id">>) =>
+    request<AdminAffix>("PATCH", `/admin/affixes/${id}`, patch),
 };

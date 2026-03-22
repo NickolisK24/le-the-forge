@@ -37,6 +37,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.ref import ref_bp
     from app.routes.profile import profile_bp
     from app.routes.simulate import simulate_bp
+    from app.routes.admin import admin_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -44,6 +45,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(ref_bp, url_prefix="/api/ref")
     app.register_blueprint(profile_bp, url_prefix="/api/profile")
     app.register_blueprint(simulate_bp, url_prefix="/api/simulate")
+    app.register_blueprint(admin_bp, url_prefix="/api/admin")
 
     # Global error handler for domain exceptions
     from app.utils.exceptions import ForgeError

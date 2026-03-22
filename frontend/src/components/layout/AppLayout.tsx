@@ -2,9 +2,10 @@ import { Outlet, NavLink, useNavigate, Link } from "react-router-dom";
 import { useAuthStore } from "@/store";
 
 const NAV_LINKS = [
-  { to: "/builds", label: "Builds"   },
-  { to: "/build",  label: "Planner"  },
-  { to: "/craft",  label: "Craft Sim"},
+  { to: "/builds",  label: "Builds"   },
+  { to: "/build",   label: "Planner"  },
+  { to: "/craft",   label: "Craft Sim"},
+  { to: "/affixes", label: "Affixes"  },
 ];
 
 export default function AppLayout() {
