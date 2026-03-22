@@ -215,3 +215,37 @@ export const profileApi = {
   builds: (page = 1) => get<any>(`/profile/builds?page=${page}&sort=new`),
   sessions: (page = 1) => get<any>(`/profile/sessions?page=${page}`),
 };
+// ---------------------------------------------------------------------------
+// Admin — affix management
+// ---------------------------------------------------------------------------
+
+export interface AdminAffixTier {
+  tier: number;
+  min: number;
+  max: number;
+}
+
+export interface AdminAffix {
+  id: string;
+  name: string;
+  type: string;
+  tags: string[];
+  applicable_to: string[];
+  class_requirement: string | null;
+  stat_key: string | null;
+  tiers: AdminAffixTier[];
+}
+
+export const adminApi = {
+  affixes: (params: { q?: string; type?: string; tag?: string; slot?: string } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
+      )
+    ).toString();
+    return get<AdminAffix[]>(`/admin/affixes${qs ? "?" + qs : ""}`);
+  },
+
+  updateAffix: (id: string, payload: Partial<Omit<AdminAffix, "id">>) =>
+    patch<AdminAffix>(`/admin/affixes/${id}`, payload),
+};
