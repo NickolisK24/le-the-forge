@@ -416,7 +416,7 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
               {/* Cumulative survival */}
               <div className="text-right self-start pt-0.5">
                 <span className="font-mono text-[11px] text-forge-green">
-                  {step.cumulative_survival_pct.toFixed(1)}%
+                  {step.cumulative_survival_pct?.toFixed(1)}%
                 </span>
                 <div className="font-mono text-[7px] text-forge-dim">success</div>
               </div>
@@ -1412,7 +1412,7 @@ export default function CraftSimulatorPage() {
                       )}>
                         {entry.message}
                       </span>
-                      {entry.roll !== undefined && (
+                      {entry.roll != null && (
                         <div className="font-mono text-[11px] text-forge-dim mt-0.5">
                           Roll: {entry.roll.toFixed(1)}
                         </div>
