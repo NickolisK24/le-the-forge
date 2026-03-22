@@ -1339,6 +1339,26 @@ export default function CraftSimulatorPage() {
               </span>
             </div>
 
+            {/* Fracture Risk Indicator */}
+            <div className="py-2 border-t border-forge-border">
+              <div className="flex justify-between items-center mb-2">
+                <span className="font-mono text-xs uppercase tracking-wider text-forge-dim">
+                  Fracture Risk
+                </span>
+                <span
+                  className={clsx(
+                    "font-mono text-sm font-bold",
+                    riskLevel(riskPct) === "safe" && "text-forge-green",
+                    riskLevel(riskPct) === "moderate" && "text-forge-amber",
+                    (riskLevel(riskPct) === "dangerous" || riskLevel(riskPct) === "critical") && "text-forge-red"
+                  )}
+                >
+                  {riskPct.toFixed(1)}%
+                </span>
+              </div>
+              <RiskBar pct={riskPct} level={riskLevel(riskPct)} />
+            </div>
+
             {isFractured && (
               <div className="mt-2 border border-forge-red/40 bg-forge-red/8 rounded-sm px-3 py-2 text-forge-red font-mono text-xs tracking-wider uppercase text-center">
                 ⚠ Item Fractured
@@ -1398,6 +1418,63 @@ export default function CraftSimulatorPage() {
           {/* Strategy comparison */}
           {strategies.length > 0 && (
             <StrategyComparisonPanel strategies={strategies} />
+          )}
+
+          {/* Craft Timeline - Live sessions only */}
+          {isLive && session?.steps && session.steps.length > 0 && (
+            <Panel title="Craft Timeline">
+              <div className="flex flex-col max-h-80 overflow-y-auto">
+                {session.steps.map((step, i) => {
+                  const rl = riskLevel(step.fracture_risk_pct);
+                  return (
+                    <div
+                      key={step.id}
+                      className="grid gap-2 py-3 border-b border-forge-border/40 last:border-b-0"
+                      style={{ gridTemplateColumns: "24px 1fr 60px 50px" }}
+                    >
+                      {/* Step number */}
+                      <span className="font-display text-sm font-bold text-forge-amber self-start">
+                        {step.step_number}
+                      </span>
+
+                      {/* Action details */}
+                      <div className="min-w-0">
+                        <div className="font-body text-sm">
+                          {ACTION_LABELS[step.action]}
+                          {step.affix_name && (
+                            <span className="text-forge-dim"> · {step.affix_name}</span>
+                          )}
+                        </div>
+                        <div className="font-mono text-xs text-forge-dim mt-1">
+                          {step.outcome === "success" && "✓ Success"}
+                          {step.outcome === "perfect" && "★ Perfect"}
+                          {step.outcome === "fracture" && "💥 Fractured"}
+                        </div>
+                      </div>
+
+                      {/* Risk */}
+                      <div className="text-right self-start">
+                        <span className={clsx(
+                          "font-mono text-xs px-2 py-1 border rounded-sm",
+                          rl === "safe" ? "text-forge-green border-forge-green/40" :
+                          rl === "moderate" ? "text-forge-amber border-forge-amber/40" :
+                          "text-forge-red border-forge-red/40"
+                        )}>
+                          {step.fracture_risk_pct.toFixed(1)}%
+                        </span>
+                      </div>
+
+                      {/* Instability change */}
+                      <div className="text-right self-start">
+                        <span className="font-mono text-xs text-forge-dim">
+                          {step.instability_before} → {step.instability_after}
+                        </span>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </Panel>
           )}
 
           {/* Craft log */}

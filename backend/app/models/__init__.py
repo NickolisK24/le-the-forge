@@ -195,15 +195,11 @@ class CraftSession(TimestampMixin, db.Model):
     item_level = db.Column(db.SmallInteger, nullable=False, default=84)
     rarity = db.Column(db.String(16), nullable=False, default="Exalted")
 
-    # Current instability value (0-80)
-    instability = db.Column(db.SmallInteger, default=0, nullable=False)
     # Forge potential remaining
     forge_potential = db.Column(db.SmallInteger, default=28, nullable=False)
 
     # Current affixes — JSON array of { name, tier, sealed }
     affixes = db.Column(db.JSON, nullable=False, default=list)
-
-    is_fractured = db.Column(db.Boolean, default=False, nullable=False)
 
     steps = db.relationship(
         "CraftStep", back_populates="session", cascade="all, delete-orphan",
@@ -211,7 +207,7 @@ class CraftSession(TimestampMixin, db.Model):
     )
 
     def __repr__(self):
-        return f"<CraftSession {self.item_name or self.item_type} inst={self.instability}>"
+        return f"<CraftSession {self.item_name or self.item_type} fp={self.forge_potential}>"
 
 
 class CraftStep(db.Model):
@@ -232,13 +228,9 @@ class CraftStep(db.Model):
     tier_before = db.Column(db.SmallInteger, nullable=True)
     tier_after = db.Column(db.SmallInteger, nullable=True)
 
-    instability_before = db.Column(db.SmallInteger, nullable=False)
-    instability_after = db.Column(db.SmallInteger, nullable=False)
-
-    fracture_risk_pct = db.Column(db.Float, nullable=False)
     roll = db.Column(db.Float, nullable=True)  # The actual RNG roll (0-100)
     outcome = db.Column(db.String(16), nullable=False)
-    # "success" | "fracture" | "perfect"
+    # "success" | "perfect"
 
     fp_before = db.Column(db.SmallInteger, nullable=False)
     fp_after = db.Column(db.SmallInteger, nullable=False)

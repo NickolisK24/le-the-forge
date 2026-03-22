@@ -172,9 +172,6 @@ export interface CraftStep {
   affix_name?: string;
   tier_before?: number;
   tier_after?: number;
-  instability_before: number;
-  instability_after: number;
-  fracture_risk_pct: number;
   roll?: number;
   outcome: CraftOutcome;
   fp_before: number;
@@ -188,10 +185,8 @@ export interface CraftSession {
   item_name?: string;
   item_level: number;
   rarity: string;
-  instability: number;
   forge_potential: number;
   affixes: CraftAffix[];
-  is_fractured: boolean;
   created_at: string;
   steps: CraftStep[];
 }

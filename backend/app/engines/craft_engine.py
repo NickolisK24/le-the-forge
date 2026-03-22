@@ -4,7 +4,7 @@ Craft Engine — pure crafting math extracted from craft_service.py.
 All functions here are stateless and have no DB or HTTP dependencies.
 craft_service.py imports from here for its calculations.
 
-FP costs and instability gains are loaded from crafting_rules.json via fp_engine.
+FP costs are loaded from crafting_rules.json via fp_engine.
 """
 
 import copy
@@ -17,7 +17,6 @@ from app.engines.fp_engine import (
     expected_fp_cost,
     fp_cost_range,
     roll_fp_cost,
-    roll_instability_gain,
     load_fp_rules,
 )
 
@@ -32,9 +31,7 @@ from app.engines.affix_engine import (
 # Constants
 # ---------------------------------------------------------------------------
 
-MAX_INSTABILITY = 80
 PERFECT_ROLL_THRESHOLD = 95
-SEAL_RISK_THRESHOLD = 0.20
 TARGET_TIER = 4
 
 # Derived from rules file — used for planning and display only.
@@ -56,28 +53,6 @@ def fp_cost(action: str) -> int:
 # Pure math helpers
 # ---------------------------------------------------------------------------
 
-def fracture_risk(instability: int, sealed_count: int = 0) -> float:
-    """
-    Returns fracture probability (0.0–1.0).
-
-    Formula: (effective_instability / MAX_INSTABILITY)²
-    Each sealed affix reduces effective instability by 12.
-    """
-    effective = max(0, instability - (sealed_count * 12))
-    base = (effective / MAX_INSTABILITY) ** 2
-    return min(base, 1.0)
-
-
-def fracture_risk_pct(instability: int, sealed_count: int = 0) -> float:
-    """Same as fracture_risk but returns 0–100 float rounded to 1 decimal."""
-    return round(fracture_risk(instability, sealed_count) * 100, 1)
-
-
-def instability_gain(action: str, roll: Optional[float] = None) -> int:
-    """Returns instability gained for an action."""
-    is_perfect = bool(roll and roll > PERFECT_ROLL_THRESHOLD)
-    return roll_instability_gain(action, is_perfect=is_perfect)
-
 
 def expected_instability_gain(action: str) -> float:
     """Expected (mean) instability gain accounting for 5% perfect rolls."""
@@ -98,27 +73,25 @@ def expected_instability_gain(action: str) -> float:
 def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None,
                       target_tier: Optional[int] = None) -> dict:
     """
-    Unified craft action pipeline. Applies a single forge action to an item.
+    Modern Last Epoch craft action pipeline (post-0.8.4).
+    Items NEVER fracture. Crafting simply stops when FP runs out.
 
     Pipeline Order (MANDATORY):
     1. Validate action
-    2. Consume FP
+    2. Roll FP cost
     3. Apply craft effect
-    4. Apply instability gain
-    5. Roll fracture
-    6. Log result
-    7. Return result
+    4. Reduce FP
+    5. Check FP remaining
+    6. Return result
 
     Item structure:
     {
         "forge_potential": int,
-        "instability": int,
-        "is_fractured": bool,
         "affixes": list[dict]  # [{name, tier, sealed}]
     }
     """
     # 1. Validate action
-    if item["is_fractured"]:
+    if item.get("is_fractured", False):
         return {
             "success": False,
             "outcome": "error",
@@ -126,7 +99,7 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
             "item": item
         }
 
-    # 2. Consume FP
+    # 2. Roll FP cost
     cost = roll_fp_cost(action)
     if item["forge_potential"] < cost:
         return {
@@ -136,48 +109,30 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
             "item": item
         }
 
+    # 3. Apply craft effect
+    roll = random.uniform(0, 100)
+    _apply_craft_effect(item, action, affix_name, target_tier, roll)
+
+    # 4. Reduce FP
     item["forge_potential"] -= cost
 
-    # 3. Apply craft effect (if not fractured)
-    # We'll apply this after instability/fracture for now, but per plan it's before
-    # Actually, let's follow plan: apply effect first, then instability, then fracture
+    # 5. Check FP remaining (crafting stops when FP = 0, but doesn't fracture)
+    fp_remaining = item["forge_potential"]
 
-    # For now, assume no fracture yet
-    fractured = False
-    roll = random.uniform(0, 100)
+    # 6. Return result
+    outcome = "perfect" if roll > PERFECT_ROLL_THRESHOLD else "success"
 
-    # 3. Apply craft effect
-    if not fractured:
-        _apply_craft_effect(item, action, affix_name, target_tier, roll)
-
-    # 4. Apply instability gain
-    inst_gain = instability_gain(action, roll)
-    item["instability"] = min(MAX_INSTABILITY, item["instability"] + inst_gain)
-
-    # 5. Roll fracture (after instability gain)
-    sealed_count = sum(1 for a in item["affixes"] if a.get("sealed"))
-    risk = fracture_risk(item["instability"], sealed_count)
-    if random.random() < risk:
-        fractured = True
-        item["is_fractured"] = True
-
-    # 6. Log result
-    outcome = "fracture" if fractured else ("perfect" if roll > PERFECT_ROLL_THRESHOLD else "success")
-
-    # 7. Return result
     messages = {
-        "success": f"Craft successful. +{inst_gain} instability.",
-        "perfect": f"Perfect craft! Minimal instability gain (+{inst_gain}).",
-        "fracture": "Item fractured. The forge claims another victim.",
+        "success": f"Craft successful. FP remaining: {fp_remaining}.",
+        "perfect": f"Perfect craft! FP remaining: {fp_remaining}.",
     }
 
     return {
-        "success": outcome != "fracture",
+        "success": True,
         "outcome": outcome,
         "roll": round(roll, 2),
-        "instability_gain": inst_gain,
-        "fracture_risk_pct": round(risk * 100, 1),
         "fp_cost": cost,
+        "fp_remaining": fp_remaining,
         "message": messages[outcome],
         "item": item
     }
@@ -250,19 +205,16 @@ def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
 # Optimal path search
 # ---------------------------------------------------------------------------
 
-def optimal_path_search(instability: int, affixes: list, forge_potential: int) -> list:
+def optimal_path_search(affixes: list, forge_potential: int) -> list:
     """
     Finds the optimal crafting sequence for upgrading all unsealed affixes to T4.
+    Modern Last Epoch: No instability or fractures, just FP management.
 
-    Uses iterative lookahead with expected-value instability tracking.
-    Seals an affix when fracture risk exceeds SEAL_RISK_THRESHOLD (20%).
+    Uses simple greedy approach: upgrade lowest tier affixes first, seal when beneficial.
     """
     steps = []
-    inst = float(instability)
     fp = forge_potential
     current_affixes = copy.deepcopy(affixes)
-    sealed_count = sum(1 for a in current_affixes if a.get("sealed"))
-    cumulative_survival = 1.0
 
     to_upgrade = [
         a for a in current_affixes
@@ -272,75 +224,23 @@ def optimal_path_search(instability: int, affixes: list, forge_potential: int) -
     if not to_upgrade:
         return steps
 
+    # Sort by current tier (lowest first) to upgrade weakest affixes first
+    to_upgrade.sort(key=lambda a: a.get("tier", 1))
+
     for target_affix in to_upgrade:
-        current_risk = fracture_risk(int(inst), sealed_count)
-
-        if current_risk > SEAL_RISK_THRESHOLD:
-            candidates = [
-                a for a in current_affixes
-                if not a.get("sealed") and a["name"] != target_affix["name"]
-            ]
-            if candidates and fp >= FP_COSTS["seal_affix"]:
-                to_seal = max(candidates, key=lambda a: a.get("tier", 0))
-                steps.append({
-                    "action": "seal_affix",
-                    "affix": to_seal["name"],
-                    "risk_pct": 0.0,
-                    "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                    "sealed_count_at_step": sealed_count,
-                    "note": (
-                        f"Seal \"{to_seal['name']}\" (T{to_seal['tier']}) — "
-                        f"risk at {fracture_risk_pct(int(inst), sealed_count):.1f}%, "
-                        f"drops to {fracture_risk_pct(int(inst), sealed_count + 1):.1f}% after seal"
-                    ),
-                })
-                to_seal["sealed"] = True
-                sealed_count += 1
-                fp -= FP_COSTS["seal_affix"]
-
         while target_affix.get("tier", 1) < TARGET_TIER and fp >= FP_COSTS["upgrade_affix"]:
-            current_risk = fracture_risk(int(inst), sealed_count)
-
-            if current_risk > SEAL_RISK_THRESHOLD:
-                candidates = [
-                    a for a in current_affixes
-                    if not a.get("sealed") and a["name"] != target_affix["name"]
-                ]
-                if candidates and fp >= FP_COSTS["seal_affix"]:
-                    to_seal = max(candidates, key=lambda a: a.get("tier", 0))
-                    steps.append({
-                        "action": "seal_affix",
-                        "affix": to_seal["name"],
-                        "risk_pct": 0.0,
-                        "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                        "sealed_count_at_step": sealed_count,
-                        "note": (
-                            f"Seal \"{to_seal['name']}\" — instability climbing, "
-                            f"protect T{to_seal['tier']} gains before continuing"
-                        ),
-                    })
-                    to_seal["sealed"] = True
-                    sealed_count += 1
-                    fp -= FP_COSTS["seal_affix"]
-                    current_risk = fracture_risk(int(inst), sealed_count)
-
-            cumulative_survival *= (1.0 - current_risk)
             new_tier = min(5, target_affix.get("tier", 1) + 1)
             target_affix["tier"] = new_tier
 
             steps.append({
                 "action": "upgrade_affix",
                 "affix": f"{target_affix['name']} → T{new_tier}",
-                "risk_pct": round(current_risk * 100, 1),
-                "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                "sealed_count_at_step": sealed_count,
-                "note": (
-                    f"Upgrade to T{new_tier} — "
-                    f"{round(current_risk * 100, 1)}% fracture risk at this step"
-                ),
+                "risk_pct": 0.0,  # No risk in modern system
+                "cumulative_survival_pct": 100.0,  # Always survives
+                "sealed_count_at_step": sum(1 for a in current_affixes if a.get("sealed")),
+                "note": f"Upgrade to T{new_tier}",
             })
 
-            inst = min(MAX_INSTABILITY, inst + expected_instability_gain("upgrade_affix"))
             fp -= FP_COSTS["upgrade_affix"]
 
     return steps
@@ -351,98 +251,56 @@ def optimal_path_search(instability: int, affixes: list, forge_potential: int) -
 # ---------------------------------------------------------------------------
 
 def simulate_sequence(
-    instability: int,
     forge_potential: int,
     proposed_steps: list,
     n_simulations: int = 10_000,
 ) -> dict:
     """
-    Monte Carlo simulation of a proposed action sequence.
+    Monte Carlo simulation of a proposed action sequence for modern Last Epoch.
+    No instability or fractures - just FP exhaustion and success rates.
 
     Returns:
-      brick_chance, perfect_item_chance, step_survival_curve,
-      step_fracture_rates, median_instability, n_simulations
+      brick_chance (always 0.0), perfect_item_chance, step_survival_curve,
+      step_fracture_rates (always []), n_simulations
     """
     n = n_simulations
-    fracture_at_step = [0] * len(proposed_steps)
-    survived_all = 0
-    final_instabilities = []
-    # Severity counters — fraction of fracture events per type
-    # Minor: roll in top third of risk window (barely fractured)
-    # Major: roll in middle third
-    # Destructive: roll in bottom third (worst outcome)
-    severity_minor = 0
-    severity_major = 0
-    severity_destructive = 0
+    fp_exhausted_at_step = [0] * len(proposed_steps)
+    completed_all = 0
+    fp_remaining_distribution = []
 
     for _ in range(n):
-        inst = instability
         fp = forge_potential
-        fractured = False
+        completed = True
 
         for step_idx, step in enumerate(proposed_steps):
             action = step.get("action", "upgrade_affix")
-            sealed_ct = step.get("sealed_count_at_step", 0)
             cost = FP_COSTS.get(action, 4)
 
             if fp < cost:
+                fp_exhausted_at_step[step_idx] += 1
+                completed = False
+                fp_remaining_distribution.append(fp)
                 break
 
-            risk = fracture_risk(inst, sealed_ct)
-            roll = random.random()
-
-            if roll < risk:
-                fracture_at_step[step_idx] += 1
-                fractured = True
-                # Classify severity by roll position within the fracture window:
-                # roll near 0 → worst (destructive), roll near risk boundary → best (minor)
-                relative = roll / risk if risk > 0 else 0
-                if relative < 0.33:
-                    severity_destructive += 1
-                elif relative < 0.67:
-                    severity_major += 1
-                else:
-                    severity_minor += 1
-                break
-
-            _gains = load_fp_rules()["instability_gains"].get(action, {"min": 3, "max": 8})
-            lo, hi = _gains["min"], _gains["max"]
-            if lo == hi:
-                gain = lo
-            elif roll > (PERFECT_ROLL_THRESHOLD / 100.0):
-                gain = lo
-            else:
-                gain = random.randint(lo, hi)
-
-            inst = min(MAX_INSTABILITY, inst + gain)
             fp -= cost
 
-        if not fractured:
-            survived_all += 1
-            final_instabilities.append(inst)
+        if completed:
+            completed_all += 1
+            fp_remaining_distribution.append(fp)
 
-    cumulative_fractures = 0
+    # Calculate survival curve (steps completed)
+    cumulative_exhaustion = 0
     step_survival = []
-    for count in fracture_at_step:
-        cumulative_fractures += count
-        step_survival.append(round(1.0 - cumulative_fractures / n, 4))
-
-    total_fractures = sum(fracture_at_step)
-    sorted_finals = sorted(final_instabilities)
-    median_inst = sorted_finals[len(sorted_finals) // 2] if sorted_finals else instability
+    for count in fp_exhausted_at_step:
+        cumulative_exhaustion += count
+        step_survival.append(round(1.0 - cumulative_exhaustion / n, 4))
 
     return {
-        "brick_chance": round(total_fractures / n, 4),
-        "perfect_item_chance": round(survived_all / n, 4),
+        "brick_chance": 0.0,  # No fractures in modern Last Epoch
+        "perfect_item_chance": round(completed_all / n, 4),
         "step_survival_curve": step_survival,
-        "step_fracture_rates": [round(f / n, 4) for f in fracture_at_step],
-        "median_instability": median_inst,
+        "step_fracture_rates": [],  # No fractures
         "n_simulations": n,
-        "fracture_severity": {
-            "minor_fracture_chance":       round(severity_minor / n, 4),
-            "major_fracture_chance":       round(severity_major / n, 4),
-            "destructive_fracture_chance": round(severity_destructive / n, 4),
-        },
     }
 
 
@@ -450,61 +308,32 @@ def simulate_sequence(
 # Strategy comparison
 # ---------------------------------------------------------------------------
 
-def compare_strategies(instability: int, affixes: list, forge_potential: int) -> list:
+def compare_strategies(affixes: list, forge_potential: int) -> list:
     """
-    Evaluate three crafting strategies via Monte Carlo:
-      Aggressive:   Upgrade without sealing
-      Balanced:     Seal when risk > 20% (optimal path)
-      Conservative: Seal all before any upgrade
+    Evaluate crafting strategies for modern Last Epoch (no instability/fractures).
+    Since there's no risk, strategies differ only in FP efficiency and completion rates.
     """
     unsealed = [
         a for a in affixes
         if not a.get("sealed") and a.get("tier", 1) < TARGET_TIER
     ]
-    existing_sealed_count = sum(1 for a in affixes if a.get("sealed"))
 
-    # Aggressive
-    aggressive_steps = []
-    running_inst = float(instability)
-    for affix in unsealed:
-        tier = affix.get("tier", 1)
-        while tier < TARGET_TIER:
-            aggressive_steps.append({
-                "action": "upgrade_affix",
-                "sealed_count_at_step": existing_sealed_count,
-            })
-            running_inst = min(MAX_INSTABILITY, running_inst + expected_instability_gain("upgrade_affix"))
-            tier += 1
+    if not unsealed:
+        return []
 
-    # Balanced
-    balanced_raw = optimal_path_search(instability, copy.deepcopy(affixes), forge_potential)
-    balanced_steps = [
-        {"action": s["action"], "sealed_count_at_step": s["sealed_count_at_step"]}
-        for s in balanced_raw
-    ]
+    # Calculate upgrade steps needed
+    total_upgrades_needed = sum(TARGET_TIER - a.get("tier", 1) for a in unsealed)
 
-    # Conservative
-    conservative_steps = []
-    cons_sealed = existing_sealed_count
-    for affix in unsealed:
-        conservative_steps.append({
-            "action": "seal_affix",
-            "sealed_count_at_step": cons_sealed,
-        })
-        cons_sealed += 1
-    for affix in unsealed:
-        tier = affix.get("tier", 1)
-        while tier < TARGET_TIER:
-            conservative_steps.append({
-                "action": "upgrade_affix",
-                "sealed_count_at_step": cons_sealed,
-            })
-            tier += 1
+    # Strategy 1: Direct upgrades (most FP efficient)
+    direct_steps = [{"action": "upgrade_affix", "sealed_count_at_step": 0} for _ in range(total_upgrades_needed)]
+
+    # Strategy 2: Seal then upgrade (uses more FP but allows more control)
+    seal_steps = [{"action": "seal_affix", "sealed_count_at_step": i} for i in range(len(unsealed))]
+    seal_then_upgrade_steps = seal_steps + [{"action": "upgrade_affix", "sealed_count_at_step": len(unsealed)} for _ in range(total_upgrades_needed)]
 
     strategies = [
-        ("Aggressive",   "Upgrade without sealing — high risk, no FP spent on seals",   aggressive_steps),
-        ("Balanced",     "Seal strategically when fracture risk exceeds 20%",            balanced_steps),
-        ("Conservative", "Seal all affixes before any upgrade — maximum protection",     conservative_steps),
+        ("Direct Upgrade", "Upgrade affixes directly — most FP efficient", direct_steps),
+        ("Seal First", "Seal all affixes first, then upgrade — more FP cost but maximum control", seal_then_upgrade_steps),
     ]
 
     results = []
@@ -517,7 +346,7 @@ def compare_strategies(instability: int, affixes: list, forge_potential: int) ->
             })
             continue
 
-        sim = simulate_sequence(instability, forge_potential, steps, n_simulations=5_000)
+        sim = simulate_sequence(forge_potential, steps, n_simulations=5_000)
         fp_cost_total = sum(FP_COSTS.get(s["action"], 4) for s in steps)
         results.append({
             "name": name,

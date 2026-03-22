@@ -11,15 +11,11 @@ from typing import Optional
 from app import db
 from app.models import CraftSession, CraftStep, AffixDef
 from app.engines.craft_engine import (
-    fracture_risk,
-    fracture_risk_pct,
-    instability_gain,
     fp_cost,
     optimal_path_search,
     simulate_sequence,
     simulate_crafting_path,
     compare_strategies,
-    MAX_INSTABILITY,
     PERFECT_ROLL_THRESHOLD,
     FP_COSTS,
 )
@@ -40,7 +36,7 @@ class CraftSessionManager:
     tracks history, and allows undo operations.
 
     Responsibilities:
-    - Maintain item state (FP, instability, affixes, fracture status)
+    - Maintain item state (FP, affixes)
     - Apply craft actions using unified pipeline
     - Track full action history
     - Allow undo of last action
@@ -52,8 +48,6 @@ class CraftSessionManager:
         Initialize with item dict:
         {
             "forge_potential": int,
-            "instability": int,
-            "is_fractured": bool,
             "affixes": list[dict]
         }
         """
@@ -136,7 +130,6 @@ def undo_last_action(item: dict, history: list[dict]) -> dict:
 
     Required Behavior:
     - Restore previous FP
-    - Restore previous instability  
     - Restore previous affix state
     - Remove last history entry
 
@@ -149,8 +142,6 @@ def undo_last_action(item: dict, history: list[dict]) -> dict:
 
     # Reverse the changes from the last action
     item["forge_potential"] += last_action.get("fp_cost", 0)
-    item["instability"] -= last_action.get("instability_gain", 0)
-    item["instability"] = max(0, item["instability"])  # Don't go below 0
 
     # For affixes, we need to reverse the specific action
     # This is simplified - in practice, we'd need to track exact changes
@@ -221,7 +212,6 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
         item_name=data.get("item_name"),
         item_level=item_level,
         rarity=rarity,
-        instability=data.get("instability", 0),
         forge_potential=forging_potential,
         affixes=data.get("affixes", []),
     )
@@ -243,8 +233,6 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     affixes_before = session.affixes or []
     item = {
         "forge_potential": session.forge_potential,
-        "instability": session.instability,
-        "is_fractured": session.is_fractured,
         "affixes": affixes_before.copy()
     }
 
@@ -254,12 +242,10 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     if not result["success"]:
         # Restore FP if failed
         session.forge_potential = item["forge_potential"] + result.get("fp_cost", 0)
-        raise ItemFracturedError() if result["outcome"] == "error" and "fractured" in result["message"].lower() else InsufficientForgePotentialError(needed=result.get("fp_cost", 0), available=session.forge_potential)
+        raise InsufficientForgePotentialError(needed=result.get("fp_cost", 0), available=session.forge_potential)
 
     # Update session from result
     session.forge_potential = result["item"]["forge_potential"]
-    session.instability = result["item"]["instability"]
-    session.is_fractured = result["item"]["is_fractured"]
     session.affixes = result["item"]["affixes"]
 
     # Log the step
@@ -271,9 +257,6 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
         affix_name=affix_name,
         tier_before=None,  # TODO: track tier before
         tier_after=target_tier,
-        instability_before=result["item"]["instability"] - result["instability_gain"],
-        instability_after=result["item"]["instability"],
-        fracture_risk_pct=result["fracture_risk_pct"],
         roll=result["roll"],
         outcome=result["outcome"],
         fp_before=result["item"]["forge_potential"] + result["fp_cost"],
@@ -286,11 +269,8 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     return {
         "success": result["success"],
         "outcome": result["outcome"],
-        "fracture_risk_pct": result["fracture_risk_pct"],
         "roll": result["roll"],
-        "instability": session.instability,
         "forge_potential": session.forge_potential,
-        "is_fractured": session.is_fractured,
         "message": result["message"],
         "step_number": step_number,
     }
@@ -302,10 +282,8 @@ def get_session_summary(session: CraftSession) -> dict:
     total = len(steps)
     successes = sum(1 for s in steps if s.outcome == "success")
     perfects = sum(1 for s in steps if s.outcome == "perfect")
-    sealed_count = sum(1 for a in (session.affixes or []) if a.get("sealed"))
 
     path = optimal_path_search(
-        session.instability,
         session.affixes or [],
         session.forge_potential,
     )
@@ -315,7 +293,6 @@ def get_session_summary(session: CraftSession) -> dict:
         for s in path
     ]
     sim_result = simulate_sequence(
-        session.instability,
         session.forge_potential,
         sim_steps,
         n_simulations=10_000,
@@ -324,12 +301,10 @@ def get_session_summary(session: CraftSession) -> dict:
         "perfect_item_chance": 1.0,
         "step_survival_curve": [],
         "step_fracture_rates": [],
-        "median_instability": session.instability,
         "n_simulations": 0,
     }
 
     strategies = compare_strategies(
-        session.instability,
         session.affixes or [],
         session.forge_potential,
     )
@@ -338,9 +313,7 @@ def get_session_summary(session: CraftSession) -> dict:
         "total_actions": total,
         "successes": successes,
         "perfects": perfects,
-        "fractures": 1 if session.is_fractured else 0,
         "fp_spent": sum(fp_cost(s.action) for s in steps),
-        "current_risk_pct": fracture_risk_pct(session.instability, sealed_count),
         "optimal_path": path,
         "simulation_result": sim_result,
         "strategy_comparison": strategies,

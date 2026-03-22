@@ -64,29 +64,27 @@ def predict():
     except ValidationError as e:
         return validation_error(e)
 
-    instability = data["instability"]
     forge_potential = data["forge_potential"]
     affixes = data.get("affixes", [])
     n_simulations = data.get("n_simulations", 10_000)
 
-    path = craft_service.optimal_path_search(instability, affixes, forge_potential)
+    path = craft_service.optimal_path_search(0, affixes, forge_potential)  # instability is always 0
 
     sim_steps = [
         {"action": s["action"], "sealed_count_at_step": s["sealed_count_at_step"]}
         for s in path
     ]
     sim_result = craft_service.simulate_sequence(
-        instability, forge_potential, sim_steps, n_simulations
+        0, forge_potential, sim_steps, n_simulations  # instability is always 0
     ) if sim_steps else {
         "brick_chance": 0.0,
         "perfect_item_chance": 1.0,
         "step_survival_curve": [],
         "step_fracture_rates": [],
-        "median_instability": instability,
         "n_simulations": 0,
     }
 
-    strategies = craft_service.compare_strategies(instability, affixes, forge_potential)
+    strategies = craft_service.compare_strategies(0, affixes, forge_potential)  # instability is always 0
 
     return ok(data={
         "optimal_path": path,
@@ -110,7 +108,7 @@ def simulate():
         return validation_error(e)
 
     result = craft_service.simulate_crafting_path(
-        instability=data["instability"],
+        instability=0,  # instability is always 0 in modern Last Epoch
         forge_potential=data["forge_potential"],
         proposed_steps=data["steps"],
         n_simulations=data["n_simulations"],
@@ -181,12 +179,7 @@ def undo_action(slug: str):
 
     # Reverse the changes
     session.forge_potential += last_step.fp_before - last_step.fp_after
-    session.instability = last_step.instability_before
     session.affixes = last_step.affixes_before or []
-
-    # If the last action caused fracture, un-fracture
-    if last_step.outcome == "fracture":
-        session.is_fractured = False
 
     # Remove the last step
     db.session.delete(last_step)
@@ -196,8 +189,6 @@ def undo_action(slug: str):
         "success": True,
         "message": "Last action undone",
         "forge_potential": session.forge_potential,
-        "instability": session.instability,
-        "is_fractured": session.is_fractured,
         "affixes": session.affixes
     })
 
