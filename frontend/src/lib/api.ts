@@ -25,6 +25,22 @@ import type {
   AffixDef,
   User,
   PaginationMeta,
+  CraftSimulatePayload,
+  CraftSimulateResult,
+  SimulateStatsPayload,
+  BuildStatsResult,
+  SimulateCombatPayload,
+  SimulateCombatResult,
+  SimulateDefensePayload,
+  DefenseResult,
+  SimulateOptimizePayload,
+  StatUpgrade,
+  SimulateBuildPayload,
+  SimulateBuildResult,
+  EnemyProfile,
+  DamageType,
+  Rarity,
+  ImplicitStat,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -183,7 +199,31 @@ export const craftApi = {
     n_simulations?: number;
   }) => post<CraftPredictResult>("/craft/predict", state),
 
+  simulate: (payload: CraftSimulatePayload) =>
+    post<CraftSimulateResult>("/craft/simulate", payload),
+
   delete: (slug: string) => del<null>(`/craft/${slug}`),
+};
+
+// ---------------------------------------------------------------------------
+// Simulation (stateless engine endpoints)
+// ---------------------------------------------------------------------------
+
+export const simulateApi = {
+  stats: (payload: SimulateStatsPayload) =>
+    post<BuildStatsResult>("/simulate/stats", payload),
+
+  combat: (payload: SimulateCombatPayload) =>
+    post<SimulateCombatResult>("/simulate/combat", payload),
+
+  defense: (payload: SimulateDefensePayload) =>
+    post<DefenseResult>("/simulate/defense", payload),
+
+  optimize: (payload: SimulateOptimizePayload) =>
+    post<StatUpgrade[]>("/simulate/optimize", payload),
+
+  build: (payload: SimulateBuildPayload) =>
+    post<SimulateBuildResult>("/simulate/build", payload),
 };
 
 // ---------------------------------------------------------------------------
@@ -205,6 +245,12 @@ export const refApi = {
     get<Record<string, string[]>>(`/ref/skills${charClass ? `?class=${charClass}` : ""}`),
   baseItems: () => get<Record<string, { min_fp: number; max_fp: number; implicit: string | null; armor: number }>>("/ref/base-items"),
   fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
+  enemyProfiles: () => get<EnemyProfile[]>("/ref/enemy-profiles"),
+  enemyProfile: (id: string) => get<EnemyProfile>(`/ref/enemy-profiles/${id}`),
+  damageTypes: () => get<DamageType[]>("/ref/damage-types"),
+  rarities: () => get<Rarity[]>("/ref/rarities"),
+  implicitStats: () => get<Record<string, ImplicitStat | null>>("/ref/implicit-stats"),
+  implicitStat: (itemType: string) => get<ImplicitStat | null>(`/ref/implicit-stats/${itemType}`),
 };
 
 // ---------------------------------------------------------------------------

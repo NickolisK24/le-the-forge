@@ -273,3 +273,55 @@ def get_fp_range_endpoint(rarity: str):
         return ok(data={"rarity": rarity.lower(), "min_fp": lo, "max_fp": hi, "item_level": item_level})
     except ValueError as e:
         return ok(data={"error": str(e)}, status=400)
+
+
+# ---------------------------------------------------------------------------
+# New dataset endpoints
+# ---------------------------------------------------------------------------
+
+@ref_bp.get("/enemy-profiles")
+def get_enemy_profiles_endpoint():
+    """Return all enemy profiles from data/enemy_profiles.json."""
+    from app.game_data.game_data_loader import get_enemy_profiles
+    return ok(data=get_enemy_profiles())
+
+
+@ref_bp.get("/enemy-profiles/<enemy_id>")
+def get_enemy_profile_endpoint(enemy_id: str):
+    """Return a single enemy profile by id."""
+    from app.game_data.game_data_loader import get_enemy_profile
+    profile = get_enemy_profile(enemy_id)
+    if not profile:
+        return ok(data={"error": f"Enemy profile '{enemy_id}' not found"}, status=404)
+    return ok(data=profile)
+
+
+@ref_bp.get("/damage-types")
+def get_damage_types_endpoint():
+    """Return all damage type definitions from data/damage_types.json."""
+    from app.game_data.game_data_loader import get_damage_types
+    return ok(data=get_damage_types())
+
+
+@ref_bp.get("/rarities")
+def get_rarities_endpoint():
+    """Return all rarity tier definitions from data/rarities.json."""
+    from app.game_data.game_data_loader import get_rarities
+    return ok(data=get_rarities())
+
+
+@ref_bp.get("/implicit-stats")
+def get_implicit_stats_endpoint():
+    """Return all implicit stat definitions keyed by item type."""
+    from app.game_data.game_data_loader import _implicit_stats_raw
+    return ok(data=_implicit_stats_raw())
+
+
+@ref_bp.get("/implicit-stats/<item_type>")
+def get_implicit_stat_endpoint(item_type: str):
+    """Return implicit stat for a specific item type."""
+    from app.game_data.game_data_loader import get_implicit_stat
+    stat = get_implicit_stat(item_type.lower())
+    if stat is None:
+        return ok(data=None)
+    return ok(data=stat)

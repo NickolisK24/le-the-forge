@@ -292,3 +292,217 @@ export interface AffixDef {
   class_requirement?: string | null;
 }
 
+
+// ---------------------------------------------------------------------------
+// Simulation API types
+// ---------------------------------------------------------------------------
+
+export interface SimulateStatsPayload {
+  character_class: string;
+  mastery: string;
+  allocated_node_ids?: number[];
+  gear_affixes?: Array<{ name: string; tier: number }>;
+}
+
+export interface BuildStatsResult {
+  // Offense
+  base_damage: number;
+  attack_speed: number;
+  crit_chance: number;
+  crit_multiplier: number;
+  spell_damage_pct: number;
+  physical_damage_pct: number;
+  fire_damage_pct: number;
+  cold_damage_pct: number;
+  lightning_damage_pct: number;
+  necrotic_damage_pct: number;
+  void_damage_pct: number;
+  // Defense
+  max_health: number;
+  armour: number;
+  dodge_rating: number;
+  block_chance: number;
+  ward: number;
+  fire_res: number;
+  cold_res: number;
+  lightning_res: number;
+  void_res: number;
+  necrotic_res: number;
+  // Penetration
+  fire_penetration: number;
+  cold_penetration: number;
+  lightning_penetration: number;
+  void_penetration: number;
+  necrotic_penetration: number;
+  physical_penetration: number;
+  // Attributes
+  strength: number;
+  intelligence: number;
+  dexterity: number;
+  vitality: number;
+  attunement: number;
+  [key: string]: number;
+}
+
+export interface CombatDPSResult {
+  dps: number;
+  average_hit: number;
+  effective_attack_speed: number;
+  increased_damage_pool: number;
+  crit_contribution_pct: number;
+  ailment_dps: number;
+  total_dps: number;
+  flat_damage_added: number;
+}
+
+export interface MonteCarloDPSResult {
+  mean_dps: number;
+  min_dps: number;
+  max_dps: number;
+  std_dev: number;
+  percentile_25: number;
+  percentile_75: number;
+  n_simulations: number;
+}
+
+export interface SimulateCombatResult {
+  dps: CombatDPSResult;
+  monte_carlo: MonteCarloDPSResult;
+  skill_name: string;
+  skill_level: number;
+}
+
+export interface DefenseResult {
+  effective_hp: number;
+  total_ehp_with_ward: number;
+  armor_reduction_pct: number;
+  avg_resistance_pct: number;
+  dodge_chance_pct: number;
+  ward_net_gain_per_sec: number;
+  sustain_score: number;
+  survivability_score: number;
+  block_chance_pct: number;
+  endurance_pct: number;
+  glancing_blow_pct: number;
+  crit_avoidance_pct: number;
+  resistances: Record<string, number>;
+  weaknesses: string[];
+  strengths: string[];
+}
+
+export interface StatUpgrade {
+  stat: string;
+  increment: number;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  combined_score: number;
+}
+
+export interface SimulateCombatPayload {
+  stats: BuildStatsResult;
+  skill_name: string;
+  skill_level?: number;
+  n_simulations?: number;
+}
+
+export interface SimulateDefensePayload {
+  stats: BuildStatsResult;
+}
+
+export interface SimulateOptimizePayload {
+  stats: BuildStatsResult;
+  skill_name: string;
+  skill_level?: number;
+  top_n?: number;
+}
+
+export interface SimulateBuildPayload {
+  character_class: string;
+  mastery: string;
+  allocated_node_ids?: number[];
+  gear_affixes?: Array<{ name: string; tier: number }>;
+  skill_name: string;
+  skill_level?: number;
+  n_simulations?: number;
+}
+
+export interface SimulateBuildResult {
+  stats: BuildStatsResult;
+  combat: SimulateCombatResult;
+  defense: DefenseResult;
+  optimization: StatUpgrade[];
+}
+
+// ---------------------------------------------------------------------------
+// Craft Simulation types
+// ---------------------------------------------------------------------------
+
+export interface CraftSimulatePayload {
+  instability: number;
+  forge_potential: number;
+  steps: Array<{ action: string; affix_name?: string }>;
+  n_simulations?: number;
+}
+
+export interface CraftSimulateResult {
+  n_simulations: number;
+  fracture_rate: number;
+  fp_consumed: { p25: number; p50: number; p75: number };
+  steps_completed: { p25: number; p50: number; p75: number };
+  final_instability: { p25: number; p50: number; p75: number };
+  fracture_severity: { none: number; minor: number; major: number; total: number };
+}
+
+// ---------------------------------------------------------------------------
+// New reference data types
+// ---------------------------------------------------------------------------
+
+export interface EnemyResistances {
+  physical: number;
+  fire: number;
+  cold: number;
+  lightning: number;
+  void: number;
+  necrotic: number;
+  poison: number;
+}
+
+export interface EnemyProfile {
+  id: string;
+  name: string;
+  category: string;
+  description: string;
+  health: number;
+  armor: number;
+  resistances: EnemyResistances;
+  crit_chance: number;
+  crit_multiplier: number;
+  tags: string[];
+}
+
+export interface DamageType {
+  id: string;
+  name: string;
+  tags: string[];
+  description: string;
+  stat_key: string;
+  resistance_stat: string;
+  penetration_stat: string | null;
+}
+
+export interface Rarity {
+  id: string;
+  name: string;
+  max_prefixes: number;
+  max_suffixes: number;
+  description: string;
+  color: string;
+  min_fp: number;
+  max_fp: number;
+}
+
+export interface ImplicitStat {
+  stat: string;
+  values: { min: number; max: number };
+  description: string;
+}
