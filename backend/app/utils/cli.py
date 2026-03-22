@@ -23,11 +23,13 @@ def register_commands(app: Flask) -> None:
             # DB column is a single VARCHAR; if the JSON gives a list, join it
             if isinstance(cr, list):
                 cr = ",".join(cr) if cr else None
+            # Convert tiers list to dict for DB storage
+            tiers_dict = {str(t["tier"]): [t["min"], t["max"]] for t in affix["tiers"]}
             result.append({
                 "name": affix["name"],
                 "type": affix.get("type", affix.get("category", "prefix")),
                 "stat_key": affix.get("stat_key", ""),
-                "tiers": affix["tiers"],
+                "tiers": tiers_dict,
                 "applicable": affix.get("applicable_to", []),
                 "class_requirement": cr,
                 "tags": affix.get("tags", []),
