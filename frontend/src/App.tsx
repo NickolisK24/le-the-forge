@@ -16,6 +16,7 @@ import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
 import NotFoundPage from "@/components/features/NotFoundPage";
+import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -144,6 +145,7 @@ export default function App() {
                 <Route path="/build/:slug" element={<BuildPlannerPage />} />
                 <Route path="/craft" element={<CraftSimulatorPage />} />
                 <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
+                <Route path="/affixes" element={<AffixEditorPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
