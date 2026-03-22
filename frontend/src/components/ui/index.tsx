@@ -23,19 +23,19 @@ export function Panel({ title, action, children, className }: PanelProps) {
   return (
     <div
       className={clsx(
-        "rounded border border-forge-border bg-forge-surface overflow-hidden",
+        "rounded border border-forge-border bg-forge-surface overflow-hidden flex flex-col",
         className
       )}
     >
       {title && (
-        <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-4 py-3">
+        <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-4 py-3 shrink-0">
           <span className="font-mono text-xs uppercase tracking-widest text-forge-cyan">
             {title}
           </span>
           {action && <div>{action}</div>}
         </div>
       )}
-      <div className="p-4">{children}</div>
+      <div className="p-4 flex flex-col flex-1 overflow-hidden">{children}</div>
     </div>
   );
 }
