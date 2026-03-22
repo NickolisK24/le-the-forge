@@ -243,6 +243,9 @@ class CraftStep(db.Model):
     fp_before = db.Column(db.SmallInteger, nullable=False)
     fp_after = db.Column(db.SmallInteger, nullable=False)
 
+    # Affixes state before this action (for undo)
+    affixes_before = db.Column(db.JSON, nullable=True)
+
     session = db.relationship("CraftSession", back_populates="steps")
 
 

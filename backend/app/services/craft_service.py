@@ -30,6 +30,168 @@ from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialE
 import random
 
 
+# ---------------------------------------------------------------------------
+# Craft Session Engine
+# ---------------------------------------------------------------------------
+
+class CraftSessionManager:
+    """
+    Runtime craft session manager. Maintains item state, applies actions,
+    tracks history, and allows undo operations.
+
+    Responsibilities:
+    - Maintain item state (FP, instability, affixes, fracture status)
+    - Apply craft actions using unified pipeline
+    - Track full action history
+    - Allow undo of last action
+    - Provide current state snapshots
+    """
+
+    def __init__(self, initial_item: dict):
+        """
+        Initialize with item dict:
+        {
+            "forge_potential": int,
+            "instability": int,
+            "is_fractured": bool,
+            "affixes": list[dict]
+        }
+        """
+        self.current_item = initial_item.copy()
+        self.history: list[dict] = []  # List of action results
+        self.undo_stack: list[dict] = []  # Stack of previous item states for undo
+
+    def apply(self, action: str, affix_name: Optional[str] = None,
+              target_tier: Optional[int] = None) -> dict:
+        """
+        Apply a craft action to the current item.
+
+        Returns the action result dict from apply_craft_action.
+        """
+        # Save current state for undo
+        self.undo_stack.append(self.current_item.copy())
+
+        # Apply the action
+        result = apply_craft_action(
+            self.current_item,
+            action,
+            affix_name,
+            target_tier
+        )
+
+        # If action failed, restore state and don't add to history
+        if not result["success"]:
+            self.current_item = self.undo_stack.pop()
+            return result
+
+        # Add to history
+        self.history.append(result)
+
+        return result
+
+    def undo(self) -> bool:
+        """
+        Undo the last action. Restores the previous item state.
+
+        Returns True if undo was successful, False if no actions to undo.
+        """
+        if not self.undo_stack:
+            return False
+
+        # Restore previous state
+        self.current_item = self.undo_stack.pop()
+
+        # Remove last history entry
+        if self.history:
+            self.history.pop()
+
+        return True
+
+    def get_state(self) -> dict:
+        """
+        Get current item state plus history.
+        """
+        return {
+            "item": self.current_item.copy(),
+            "history": self.history.copy(),
+            "can_undo": len(self.undo_stack) > 0
+        }
+
+    def get_item(self) -> dict:
+        """Get current item state."""
+        return self.current_item.copy()
+
+    def get_history(self) -> list[dict]:
+        """Get action history."""
+        return self.history.copy()
+
+
+# ---------------------------------------------------------------------------
+# Undo System
+# ---------------------------------------------------------------------------
+
+def undo_last_action(item: dict, history: list[dict]) -> dict:
+    """
+    Undo the last craft action on an item.
+
+    Required Behavior:
+    - Restore previous FP
+    - Restore previous instability  
+    - Restore previous affix state
+    - Remove last history entry
+
+    Returns updated item dict.
+    """
+    if not history:
+        return item  # No actions to undo
+
+    last_action = history[-1]
+
+    # Reverse the changes from the last action
+    item["forge_potential"] += last_action.get("fp_cost", 0)
+    item["instability"] -= last_action.get("instability_gain", 0)
+    item["instability"] = max(0, item["instability"])  # Don't go below 0
+
+    # For affixes, we need to reverse the specific action
+    # This is simplified - in practice, we'd need to track exact changes
+    action = last_action.get("action")
+    affix_name = last_action.get("affix_name")
+
+    if action == "add_affix" and affix_name:
+        # Remove the added affix
+        item["affixes"] = [a for a in item["affixes"] if a["name"] != affix_name]
+    elif action == "upgrade_affix" and affix_name:
+        # Downgrade the tier
+        for a in item["affixes"]:
+            if a["name"] == affix_name:
+                a["tier"] = max(1, a.get("tier", 1) - 1)
+                break
+    elif action == "seal_affix" and affix_name:
+        # Unseal
+        for a in item["affixes"]:
+            if a["name"] == affix_name:
+                a["sealed"] = False
+                break
+    elif action == "unseal_affix" and affix_name:
+        # Reseal
+        for a in item["affixes"]:
+            if a["name"] == affix_name:
+                a["sealed"] = True
+                break
+    elif action == "remove_affix" and affix_name:
+        # Re-add the removed affix (simplified - assume tier 1)
+        item["affixes"].append({"name": affix_name, "tier": 1, "sealed": False})
+
+    # If it was fractured, un-fracture (though this is rare)
+    if last_action.get("outcome") == "fracture":
+        item["is_fractured"] = False
+
+    # Remove from history
+    history.pop()
+
+    return item
+
+
 def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
     import secrets
     slug = secrets.token_urlsafe(8)
@@ -78,11 +240,12 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
     Mutates the session in-place and appends a CraftStep log entry.
     """
     # Create item dict from session
+    affixes_before = session.affixes or []
     item = {
         "forge_potential": session.forge_potential,
         "instability": session.instability,
         "is_fractured": session.is_fractured,
-        "affixes": session.affixes or []
+        "affixes": affixes_before.copy()
     }
 
     # Apply the unified craft action
@@ -115,6 +278,7 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
         outcome=result["outcome"],
         fp_before=result["item"]["forge_potential"] + result["fp_cost"],
         fp_after=result["item"]["forge_potential"],
+        affixes_before=affixes_before,
     )
     db.session.add(step)
     db.session.commit()

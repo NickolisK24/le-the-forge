@@ -160,6 +160,48 @@ def apply_action(slug: str):
     return ok(data=result)
 
 
+@craft_bp.post("/<slug>/undo")
+def undo_action(slug: str):
+    session = CraftSession.query.filter_by(slug=slug).first()
+    if not session:
+        return not_found("Craft session")
+
+    # If session has an owner, only the owner can modify it
+    if session.user_id:
+        user = get_current_user()
+        if not user or session.user_id != user.id:
+            return forbidden()
+
+    # Check if there are steps to undo
+    if not session.steps:
+        return error("No actions to undo", 400)
+
+    # Get the last step
+    last_step = max(session.steps, key=lambda s: s.step_number)
+
+    # Reverse the changes
+    session.forge_potential += last_step.fp_before - last_step.fp_after
+    session.instability = last_step.instability_before
+    session.affixes = last_step.affixes_before or []
+
+    # If the last action caused fracture, un-fracture
+    if last_step.outcome == "fracture":
+        session.is_fractured = False
+
+    # Remove the last step
+    db.session.delete(last_step)
+    db.session.commit()
+
+    return ok(data={
+        "success": True,
+        "message": "Last action undone",
+        "forge_potential": session.forge_potential,
+        "instability": session.instability,
+        "is_fractured": session.is_fractured,
+        "affixes": session.affixes
+    })
+
+
 @craft_bp.get("/<slug>/summary")
 def get_summary(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
