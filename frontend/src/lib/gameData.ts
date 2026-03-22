@@ -259,10 +259,12 @@ export interface PassiveNode {
   type: NodeType;
   name: string;
   regionId: string;
-  /** Maximum points that can be invested in this node (1 for keystone/toggle, 2-5 for notable, 1-8 for core) */
+  /** Maximum points that can be invested in this node */
   maxPoints?: number;
   /** Parent node ID — required connection for prerequisite enforcement */
   parentId?: number;
+  /** In-game node description / stat text */
+  description?: string;
 }
 
 // ---------------------------------------------------------------------------
