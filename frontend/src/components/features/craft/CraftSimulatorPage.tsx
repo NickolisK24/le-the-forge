@@ -376,7 +376,7 @@ function OutcomePredictorPanel({
 function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
   if (steps.length === 0) {
     return (
-      <Panel title="Optimal Craft Path">
+      <Panel title="Recommended Next Steps">
         <p className="font-body text-sm italic text-forge-dim py-1 text-center">
           No upgrades needed — all affixes at T4 or sealed.
         </p>
@@ -385,7 +385,12 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
   }
 
   return (
-    <Panel title="Optimal Craft Path">
+    <Panel
+      title="Recommended Next Steps"
+      action={
+        <span className="font-mono text-[10px] text-forge-dim italic">updates as you craft</span>
+      }
+    >
       <div className="flex flex-col">
         {steps.map((step, i) => {
           const isSeal = step.action === "seal_affix";
