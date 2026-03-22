@@ -50,7 +50,6 @@ def fp_cost(action: str) -> int:
     return FP_COSTS.get(action, 4)
 
 
-
 # ---------------------------------------------------------------------------
 # Pure math helpers
 # ---------------------------------------------------------------------------
@@ -80,9 +79,6 @@ def instability_gain(action: str, roll: Optional[float] = None) -> int:
 
 def expected_instability_gain(action: str) -> float:
     """Expected (mean) instability gain accounting for 5% perfect rolls."""
-    lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
-    if lo == hi:
-        return float(lo)
     rules = load_fp_rules()
     gains = rules["instability_gains"].get(action, {"min": 3, "max": 8})
     lo, hi = gains["min"], gains["max"]
@@ -91,10 +87,6 @@ def expected_instability_gain(action: str) -> float:
     perfect_prob = 0.05
     normal_mean = (lo + hi) / 2.0
     return perfect_prob * lo + (1 - perfect_prob) * normal_mean
-
-
-def fp_cost(action: str) -> int:
-    return FP_COSTS.get(action, 4)
 
 
 # ---------------------------------------------------------------------------
@@ -256,7 +248,8 @@ def simulate_sequence(
                     severity_minor += 1
                 break
 
-            lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
+            _gains = load_fp_rules()["instability_gains"].get(action, {"min": 3, "max": 8})
+            lo, hi = _gains["min"], _gains["max"]
             if lo == hi:
                 gain = lo
             elif roll > (PERFECT_ROLL_THRESHOLD / 100.0):
@@ -408,9 +401,7 @@ def add_affix(
             "reason": "Slot limit reached"
         }
 
-    fp_cost = roll_fp_cost(
-        action="add"
-    )
+    fp_cost = roll_fp_cost("add_affix")
 
     if item["forging_potential"] < fp_cost:
         return {
@@ -471,9 +462,7 @@ def upgrade_affix(
                         "reason": "Already at max tier"
                     }
 
-                fp_cost = roll_fp_cost(
-                    action="upgrade"
-                )
+                fp_cost = roll_fp_cost("upgrade_affix")
 
                 if (
                     item["forging_potential"]
@@ -514,9 +503,7 @@ def remove_affix(
 
             if affix["name"] == affix_name:
 
-                fp_cost = roll_fp_cost(
-                    action="remove"
-                )
+                fp_cost = roll_fp_cost("remove_affix")
 
                 if (
                     item["forging_potential"]
@@ -566,9 +553,7 @@ def seal_affix(
 
             if affix["name"] == affix_name:
 
-                fp_cost = roll_fp_cost(
-                    action="seal"
-                )
+                fp_cost = roll_fp_cost("seal_affix")
 
                 if (
                     item["forging_potential"]
