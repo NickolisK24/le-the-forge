@@ -191,7 +191,13 @@ class CraftSessionCreateSchema(Schema):
         validate=validate.OneOf(VALID_RARITIES), load_default="Exalted"
     )
     forge_potential = fields.Int(
-        validate=validate.Range(min=0, max=60), load_default=28
+        validate=validate.Range(min=0, max=60), load_default=None
+    )
+    fp_mode = fields.Str(
+        validate=validate.OneOf(["random", "manual", "fixed"]), load_default="random"
+    )
+    manual_fp = fields.Int(
+        validate=validate.Range(min=0, max=60), load_default=None
     )
     affixes = fields.List(fields.Dict(), load_default=[])
 

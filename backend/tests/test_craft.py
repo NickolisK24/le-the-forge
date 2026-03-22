@@ -116,7 +116,7 @@ class TestCraftSession:
             "item_type": "Wand",
             "item_name": "Test Wand",
             "item_level": 84,
-            "forging_potential": 28,
+            "forge_potential": 28, "fp_mode": "manual", "manual_fp": 28,
             "affixes": [],
         })
         assert session.id is not None
@@ -132,7 +132,7 @@ class TestCraftSession:
     def test_apply_action_success(self, db):
         session = create_session({
             "item_type": "Wand",
-            "forging_potential": 28,
+            "forge_potential": 28, "fp_mode": "manual", "manual_fp": 28,
             "affixes": [],
         })
         result = apply_action(session, "add_affix", affix_name="Cast Speed", target_tier=1)
@@ -153,7 +153,7 @@ class TestCraftSession:
     def test_successful_craft_adds_step(self, db):
         session = create_session({
             "item_type": "Wand",
-            "forging_potential": 28,
+            "forge_potential": 28, "fp_mode": "manual", "manual_fp": 28,
             "affixes": [],
         })
         result = apply_action(session, "add_affix", affix_name="Health")

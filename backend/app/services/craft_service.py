@@ -187,10 +187,10 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
     rarity = data.get("rarity", "Rare")
     item_level = data.get("item_level", 84)
 
-    # If caller supplied an explicit forging_potential, treat as manual override
-    if "forging_potential" in data and fp_mode == "random":
+    # If caller supplied forge_potential directly, treat as manual override
+    if data.get("forge_potential") is not None and fp_mode == "random":
         fp_mode = "manual"
-        manual_fp = data["forging_potential"]
+        manual_fp = data["forge_potential"]
 
     result = create_item(item_type.lower(), rarity=rarity, item_level=item_level,
                          fp_mode=fp_mode, manual_fp=manual_fp)
