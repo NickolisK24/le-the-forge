@@ -92,6 +92,161 @@ def expected_instability_gain(action: str) -> float:
 
 
 # ---------------------------------------------------------------------------
+# Unified Craft Pipeline
+# ---------------------------------------------------------------------------
+
+def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None,
+                      target_tier: Optional[int] = None) -> dict:
+    """
+    Unified craft action pipeline. Applies a single forge action to an item.
+
+    Pipeline Order (MANDATORY):
+    1. Validate action
+    2. Consume FP
+    3. Apply craft effect
+    4. Apply instability gain
+    5. Roll fracture
+    6. Log result
+    7. Return result
+
+    Item structure:
+    {
+        "forge_potential": int,
+        "instability": int,
+        "is_fractured": bool,
+        "affixes": list[dict]  # [{name, tier, sealed}]
+    }
+    """
+    # 1. Validate action
+    if item["is_fractured"]:
+        return {
+            "success": False,
+            "outcome": "error",
+            "message": "Item is fractured.",
+            "item": item
+        }
+
+    # 2. Consume FP
+    cost = roll_fp_cost(action)
+    if item["forge_potential"] < cost:
+        return {
+            "success": False,
+            "outcome": "error",
+            "message": f"Insufficient FP. Need {cost}, have {item['forge_potential']}.",
+            "item": item
+        }
+
+    item["forge_potential"] -= cost
+
+    # 3. Apply craft effect (if not fractured)
+    # We'll apply this after instability/fracture for now, but per plan it's before
+    # Actually, let's follow plan: apply effect first, then instability, then fracture
+
+    # For now, assume no fracture yet
+    fractured = False
+    roll = random.uniform(0, 100)
+
+    # 3. Apply craft effect
+    if not fractured:
+        _apply_craft_effect(item, action, affix_name, target_tier, roll)
+
+    # 4. Apply instability gain
+    inst_gain = instability_gain(action, roll)
+    item["instability"] = min(MAX_INSTABILITY, item["instability"] + inst_gain)
+
+    # 5. Roll fracture (after instability gain)
+    sealed_count = sum(1 for a in item["affixes"] if a.get("sealed"))
+    risk = fracture_risk(item["instability"], sealed_count)
+    if random.random() < risk:
+        fractured = True
+        item["is_fractured"] = True
+
+    # 6. Log result
+    outcome = "fracture" if fractured else ("perfect" if roll > PERFECT_ROLL_THRESHOLD else "success")
+
+    # 7. Return result
+    messages = {
+        "success": f"Craft successful. +{inst_gain} instability.",
+        "perfect": f"Perfect craft! Minimal instability gain (+{inst_gain}).",
+        "fracture": "Item fractured. The forge claims another victim.",
+    }
+
+    return {
+        "success": outcome != "fracture",
+        "outcome": outcome,
+        "roll": round(roll, 2),
+        "instability_gain": inst_gain,
+        "fracture_risk_pct": round(risk * 100, 1),
+        "fp_cost": cost,
+        "message": messages[outcome],
+        "item": item
+    }
+
+
+def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
+                       target_tier: Optional[int], roll: float):
+    """Apply the actual craft effect to the item."""
+    affixes = item["affixes"]
+
+    if action == "add_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for add_affix")
+        # Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
+        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix" and not a.get("sealed"))
+        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix" and not a.get("sealed"))
+        active_count = sum(1 for a in affixes if not a.get("sealed"))
+        # Get affix type from affix_engine
+        affix_def = get_affix_by_name(affix_name)
+        affix_type = affix_def.get("type") if affix_def else None
+        if affix_type == "prefix" and prefix_count >= 2:
+            raise ValueError("Prefix slots full (max 2 active prefixes).")
+        if affix_type == "suffix" and suffix_count >= 2:
+            raise ValueError("Suffix slots full (max 2 active suffixes).")
+        if active_count >= 4:
+            raise ValueError("Item already has 4 active affixes.")
+        affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
+
+    elif action == "upgrade_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for upgrade_affix")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        if affix.get("sealed"):
+            raise ValueError("Cannot upgrade sealed affix")
+        current_tier = affix.get("tier", 1)
+        if is_max_tier(affix_name, current_tier):
+            raise ValueError("Affix already at max tier")
+        affix["tier"] = current_tier + 1
+
+    elif action == "seal_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for seal_affix")
+        sealed_count = sum(1 for a in affixes if a.get("sealed"))
+        if sealed_count >= 1:
+            raise ValueError("Only 1 affix can be sealed at a time.")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        affix["sealed"] = True
+
+    elif action == "unseal_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for unseal_affix")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        if not affix.get("sealed"):
+            raise ValueError("Affix not sealed")
+        affix["sealed"] = False
+
+    elif action == "remove_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for remove_affix")
+        item["affixes"] = [a for a in affixes if a["name"] != affix_name]
+
+
+# ---------------------------------------------------------------------------
 # Optimal path search
 # ---------------------------------------------------------------------------
 

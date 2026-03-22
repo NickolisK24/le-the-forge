@@ -68,128 +68,68 @@ def create_session(data: dict, user_id: Optional[str] = None) -> CraftSession:
     return session
 
 
+from app.engines.craft_engine import apply_craft_action
+
+
 def apply_action(session: CraftSession, action: str, affix_name: Optional[str] = None,
                  target_tier: Optional[int] = None) -> dict:
     """
-    Apply a single forge action to a session. Mutates the session in-place
-    and appends a CraftStep log entry.
+    Apply a single forge action to a session using the unified craft pipeline.
+    Mutates the session in-place and appends a CraftStep log entry.
     """
-    if session.is_fractured:
-        raise ItemFracturedError()
+    # Create item dict from session
+    item = {
+        "forge_potential": session.forge_potential,
+        "instability": session.instability,
+        "is_fractured": session.is_fractured,
+        "affixes": session.affixes or []
+    }
 
-    cost = roll_session_fp_cost(action)
-    if session.forge_potential < cost:
-        raise InsufficientForgePotentialError(needed=cost, available=session.forge_potential)
+    # Apply the unified craft action
+    result = apply_craft_action(item, action, affix_name, target_tier)
 
-    sealed_count = sum(1 for a in session.affixes if a.get("sealed"))
-    risk = fracture_risk(session.instability, sealed_count)
-    risk_pct = round(risk * 100, 1)
+    if not result["success"]:
+        # Restore FP if failed
+        session.forge_potential = item["forge_potential"] + result.get("fp_cost", 0)
+        raise ItemFracturedError() if result["outcome"] == "error" and "fractured" in result["message"].lower() else InsufficientForgePotentialError(needed=result.get("fp_cost", 0), available=session.forge_potential)
 
-    roll = random.uniform(0, 100)
-    fractured = (roll / 100) < risk
+    # Update session from result
+    session.forge_potential = result["item"]["forge_potential"]
+    session.instability = result["item"]["instability"]
+    session.is_fractured = result["item"]["is_fractured"]
+    session.affixes = result["item"]["affixes"]
 
-    if fractured:
-        outcome = "fracture"
-        inst_gain = 0
-        session.is_fractured = True
-    elif roll > PERFECT_ROLL_THRESHOLD:
-        outcome = "perfect"
-        inst_gain = instability_gain(action, roll)
-    else:
-        outcome = "success"
-        inst_gain = instability_gain(action, roll)
-
-    inst_before = session.instability
-    fp_before = session.forge_potential
-    session.instability = min(MAX_INSTABILITY, session.instability + inst_gain)
-    session.forge_potential = max(0, session.forge_potential - cost)
-
-    if not fractured:
-        _apply_affix_mutation(session, action, affix_name, target_tier)
-
+    # Log the step
     step_number = len(list(session.steps)) + 1
     step = CraftStep(
         session_id=session.id,
         step_number=step_number,
         action=action,
         affix_name=affix_name,
-        tier_before=None,
+        tier_before=None,  # TODO: track tier before
         tier_after=target_tier,
-        instability_before=inst_before,
-        instability_after=session.instability,
-        fracture_risk_pct=risk_pct,
-        roll=round(roll, 2),
-        outcome=outcome,
-        fp_before=fp_before,
-        fp_after=session.forge_potential,
+        instability_before=result["item"]["instability"] - result["instability_gain"],
+        instability_after=result["item"]["instability"],
+        fracture_risk_pct=result["fracture_risk_pct"],
+        roll=result["roll"],
+        outcome=result["outcome"],
+        fp_before=result["item"]["forge_potential"] + result["fp_cost"],
+        fp_after=result["item"]["forge_potential"],
     )
     db.session.add(step)
     db.session.commit()
 
-    messages = {
-        "success": f"Craft successful. +{inst_gain} instability.",
-        "perfect": f"Perfect craft! Minimal instability gain (+{inst_gain}).",
-        "fracture": "Item fractured. The forge claims another victim.",
-    }
-
     return {
-        "success": outcome != "fracture",
-        "outcome": outcome,
-        "fracture_risk_pct": risk_pct,
-        "roll": round(roll, 2),
+        "success": result["success"],
+        "outcome": result["outcome"],
+        "fracture_risk_pct": result["fracture_risk_pct"],
+        "roll": result["roll"],
         "instability": session.instability,
         "forge_potential": session.forge_potential,
         "is_fractured": session.is_fractured,
-        "message": messages[outcome],
+        "message": result["message"],
         "step_number": step_number,
     }
-
-
-def _apply_affix_mutation(session: CraftSession, action: str,
-                           affix_name: Optional[str], target_tier: Optional[int]):
-    affixes = session.affixes or []
-
-    if action == "add_affix" and affix_name:
-        # Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
-        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix" and not a.get("sealed"))
-        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix" and not a.get("sealed"))
-        active_count = sum(1 for a in affixes if not a.get("sealed"))
-        affix_def = AffixDef.query.filter_by(name=affix_name).first()
-        affix_type = affix_def.affix_type if affix_def else None
-        if affix_type == "prefix" and prefix_count >= 2:
-            raise ValueError("Prefix slots full (max 2 active prefixes).")
-        if affix_type == "suffix" and suffix_count >= 2:
-            raise ValueError("Suffix slots full (max 2 active suffixes).")
-        if active_count >= 4:
-            raise ValueError("Item already has 4 active affixes.")
-        affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
-
-    elif action == "upgrade_affix" and affix_name:
-        for a in affixes:
-            if a["name"] == affix_name and not a.get("sealed"):
-                a["tier"] = min(5, (a.get("tier") or 1) + 1)
-                break
-
-    elif action == "seal_affix" and affix_name:
-        sealed_count = sum(1 for a in affixes if a.get("sealed"))
-        if sealed_count >= 1:
-            raise ValueError("Only 1 affix can be sealed at a time.")
-        for a in affixes:
-            if a["name"] == affix_name:
-                a["sealed"] = True
-                break
-
-    elif action == "unseal_affix" and affix_name:
-        for a in affixes:
-            if a["name"] == affix_name:
-                a["sealed"] = False
-                break
-
-    elif action == "remove_affix" and affix_name:
-        session.affixes = [a for a in affixes if a["name"] != affix_name]
-        return
-
-    session.affixes = affixes
 
 
 def get_session_summary(session: CraftSession) -> dict:
