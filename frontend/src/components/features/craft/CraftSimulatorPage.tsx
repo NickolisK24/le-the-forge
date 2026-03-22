@@ -5,7 +5,7 @@ import { clsx } from "clsx";
 import { Panel, Button, SectionLabel, Spinner } from "@/components/ui";
 import {
   optimalPath, simulateSequence,
-  compareStrategies, fpCost,
+  compareStrategies, fpCost, FP_COSTS,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
 import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems, useFpRanges } from "@/hooks";
