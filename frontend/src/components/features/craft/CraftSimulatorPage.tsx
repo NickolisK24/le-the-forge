@@ -1295,7 +1295,7 @@ export default function CraftSimulatorPage() {
                 Sealed Affixes
               </span>
               <span className="font-display text-base font-bold text-forge-text">
-                {sealedCount} / {affixes.length}
+                {sealedCount} / 1
               </span>
             </div>
           </Panel>
@@ -1317,7 +1317,7 @@ export default function CraftSimulatorPage() {
           <div className="grid grid-cols-3 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
             {[
               { label: "FP Remaining", value: `${fp}`, color: fp > 15 ? "#3dca74" : fp > 8 ? "#f0a020" : "#ff5050" },
-              { label: "Sealed Affixes", value: `${sealedCount}/${affixes.length}`, color: "#3dca74" },
+              { label: "Sealed Affixes", value: `${sealedCount}/1`, color: "#3dca74" },
               { label: "Completion", value: `${Math.round((affixes.filter(a => a.tier >= 4).length / Math.max(affixes.length, 1)) * 100)}%`, color: "#3dca74" },
             ].map((card) => (
               <div key={card.label} className="bg-forge-surface text-center py-4 px-2">
