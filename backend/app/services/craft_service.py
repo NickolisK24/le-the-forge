@@ -17,6 +17,7 @@ from app.engines.craft_engine import (
     fp_cost,
     optimal_path_search,
     simulate_sequence,
+    simulate_crafting_path,
     compare_strategies,
     MAX_INSTABILITY,
     PERFECT_ROLL_THRESHOLD,

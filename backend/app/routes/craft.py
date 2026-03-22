@@ -3,6 +3,7 @@ Craft Blueprint — /api/craft
 
 POST   /api/craft                  → Create a new craft session
 POST   /api/craft/predict          → Stateless optimal path + Monte Carlo (no session)
+POST   /api/craft/simulate         → High-fidelity path simulation with random FP rolls
 GET    /api/craft/<slug>           → Get session with step log
 POST   /api/craft/<slug>/action    → Apply a forge action
 GET    /api/craft/<slug>/summary   → Get session summary + optimal path + simulation
@@ -21,6 +22,7 @@ from app.schemas import (
     CraftSessionCreateSchema,
     CraftActionSchema,
     CraftPredictSchema,
+    CraftSimulateSchema,
 )
 from app.services import craft_service
 from app.utils.auth import get_current_user
@@ -35,6 +37,7 @@ session_schema = CraftSessionSchema()
 session_create_schema = CraftSessionCreateSchema()
 action_schema = CraftActionSchema()
 predict_schema = CraftPredictSchema()
+simulate_schema = CraftSimulateSchema()
 
 
 @craft_bp.post("")
@@ -92,9 +95,31 @@ def predict():
     })
 
 
+@craft_bp.post("/simulate")
+def simulate():
+    """
+    High-fidelity crafting path simulator — rolls actual random FP costs and
+    instability gains each iteration for accurate probability distributions.
+
+    Unlike /predict (which uses mean costs), this gives realistic spread of
+    FP consumption, steps completed, and fracture risk across N full runs.
+    """
+    try:
+        data = simulate_schema.load(request.get_json() or {})
+    except ValidationError as e:
+        return validation_error(e)
+
+    result = craft_service.simulate_crafting_path(
+        instability=data["instability"],
+        forge_potential=data["forge_potential"],
+        proposed_steps=data["steps"],
+        n_simulations=data["n_simulations"],
+    )
+    return ok(data=result)
+
+
 @craft_bp.get("/<slug>")
-def get_session(slug: str):
-    session = CraftSession.query.filter_by(slug=slug).first()
+def get_session(slug: str):    session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
         return not_found("Craft session")
 

@@ -374,6 +374,156 @@ def compare_strategies(instability: int, affixes: list, forge_potential: int) ->
     return results
 
 
+def simulate_crafting_path(
+    instability: int,
+    forge_potential: int,
+    proposed_steps: list,
+    n_simulations: int = 1_000,
+) -> dict:
+    """
+    High-fidelity Monte Carlo simulation of a crafting path.
+
+    Unlike simulate_sequence (which uses mean FP costs), this function rolls
+    actual random FP costs and instability gains each iteration — giving
+    accurate probability distributions of FP consumption, step completion,
+    and fracture outcomes.
+
+    Args:
+      instability:     Starting instability (0–80).
+      forge_potential: Starting FP.
+      proposed_steps:  List of {"action": str, "sealed_count_at_step": int}.
+      n_simulations:   Number of full runs (default 1 000; max recommended 50 000).
+
+    Returns a dict with:
+      brick_chance               — fraction of runs that fractured
+      perfect_item_chance        — fraction of runs that completed all steps
+      step_survival_curve        — cumulative survival after each step
+      step_fracture_rates        — per-step fracture rate
+      fp_consumed: {min, max, mean, p25, p50, p75}
+      steps_completed: {min, max, mean, p50}
+      final_instability: {min, max, mean, p50}
+      fracture_severity: {minor, major, destructive}
+      n_simulations
+    """
+    rules = load_fp_rules()
+    n = n_simulations
+    fracture_at_step = [0] * len(proposed_steps)
+    survived_all = 0
+
+    fp_consumed_list = []
+    steps_completed_list = []
+    final_instability_list = []
+    severity_minor = 0
+    severity_major = 0
+    severity_destructive = 0
+
+    for _ in range(n):
+        inst = instability
+        fp = forge_potential
+        fractured = False
+        fp_spent = 0
+
+        for step_idx, step in enumerate(proposed_steps):
+            action = step.get("action", "upgrade_affix")
+            sealed_ct = step.get("sealed_count_at_step", 0)
+
+            cost_cfg = rules["fp_costs"].get(action, {"min": 2, "max": 6})
+            cost = random.randint(cost_cfg["min"], cost_cfg["max"])
+
+            if fp < cost:
+                # Ran out of FP — treat as incomplete, not fracture
+                break
+
+            risk = fracture_risk(inst, sealed_ct)
+            roll = random.random()
+
+            if roll < risk:
+                fracture_at_step[step_idx] += 1
+                fractured = True
+                fp_spent += cost
+                fp -= cost
+                relative = roll / risk if risk > 0 else 0
+                if relative < 0.33:
+                    severity_destructive += 1
+                elif relative < 0.67:
+                    severity_major += 1
+                else:
+                    severity_minor += 1
+                break
+
+            gain_cfg = rules["instability_gains"].get(action, {"min": 3, "max": 8})
+            lo, hi = gain_cfg["min"], gain_cfg["max"]
+            if lo == hi:
+                gain = lo
+            elif roll > (PERFECT_ROLL_THRESHOLD / 100.0):
+                gain = lo
+            else:
+                gain = random.randint(lo, hi)
+
+            inst = min(MAX_INSTABILITY, inst + gain)
+            fp_spent += cost
+            fp -= cost
+            steps_completed_list_temp = step_idx + 1
+
+        if not fractured:
+            survived_all += 1
+            final_instability_list.append(inst)
+        else:
+            final_instability_list.append(inst)
+
+        fp_consumed_list.append(fp_spent)
+        steps_completed_list.append(steps_completed_list_temp if not fractured else step_idx + 1)
+
+    cumulative_fractures = 0
+    step_survival = []
+    for count in fracture_at_step:
+        cumulative_fractures += count
+        step_survival.append(round(1.0 - cumulative_fractures / n, 4))
+
+    def _percentile(data, pct):
+        if not data:
+            return 0
+        s = sorted(data)
+        idx = int(len(s) * pct / 100)
+        return s[min(idx, len(s) - 1)]
+
+    def _mean(data):
+        return round(sum(data) / len(data), 2) if data else 0
+
+    return {
+        "brick_chance": round(sum(fracture_at_step) / n, 4),
+        "perfect_item_chance": round(survived_all / n, 4),
+        "step_survival_curve": step_survival,
+        "step_fracture_rates": [round(f / n, 4) for f in fracture_at_step],
+        "fp_consumed": {
+            "min": min(fp_consumed_list) if fp_consumed_list else 0,
+            "max": max(fp_consumed_list) if fp_consumed_list else 0,
+            "mean": _mean(fp_consumed_list),
+            "p25": _percentile(fp_consumed_list, 25),
+            "p50": _percentile(fp_consumed_list, 50),
+            "p75": _percentile(fp_consumed_list, 75),
+        },
+        "steps_completed": {
+            "min": min(steps_completed_list) if steps_completed_list else 0,
+            "max": max(steps_completed_list) if steps_completed_list else 0,
+            "mean": _mean(steps_completed_list),
+            "p50": _percentile(steps_completed_list, 50),
+        },
+        "final_instability": {
+            "min": min(final_instability_list) if final_instability_list else instability,
+            "max": max(final_instability_list) if final_instability_list else instability,
+            "mean": _mean(final_instability_list),
+            "p50": _percentile(final_instability_list, 50),
+        },
+        "fracture_severity": {
+            "minor_fracture_chance":       round(severity_minor / n, 4),
+            "major_fracture_chance":       round(severity_major / n, 4),
+            "destructive_fracture_chance": round(severity_destructive / n, 4),
+        },
+        "n_simulations": n,
+    }
+
+
 def fracture_item(item):
     """
     Apply a fracture to an item dict.

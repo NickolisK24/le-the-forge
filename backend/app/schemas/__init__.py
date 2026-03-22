@@ -221,3 +221,13 @@ class CraftPredictSchema(Schema):
     )
 
 
+class CraftSimulateSchema(Schema):
+    """Body for POST /api/craft/simulate — high-fidelity path simulation."""
+    instability = fields.Int(validate=validate.Range(min=0, max=80), load_default=0)
+    forge_potential = fields.Int(validate=validate.Range(min=0, max=60), load_default=28)
+    steps = fields.List(fields.Dict(), required=True)
+    n_simulations = fields.Int(
+        validate=validate.Range(min=100, max=50_000), load_default=1_000
+    )
+
+
