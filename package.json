@@ -1,15 +1,53 @@
 {
   "private": true,
+  "main": "electron/main.js",
   "scripts": {
     "dev:db": "docker compose up -d db redis",
     "dev:db:down": "docker compose stop db redis",
     "dev:backend": "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. ../.venv/bin/python -m flask run --port=5050 --debug",
     "dev:frontend": "cd frontend && npm run dev",
+    "dev:desktop": "concurrently -n backend,frontend,electron -c cyan,green,yellow \"npm run dev:backend\" \"npm run dev:frontend\" \"wait-on http://localhost:5050/api/health http://localhost:5173 && electron .\"",
+    "build:frontend": "cd frontend && npm run build",
+    "build:desktop": "npm run build:frontend && electron-builder",
     "db:upgrade": "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. ../.venv/bin/python -m flask db upgrade",
     "db:seed": "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. ../.venv/bin/python -m flask seed",
     "db:seed-builds": "cd backend && FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. ../.venv/bin/python -m flask seed-builds"
   },
   "devDependencies": {
-    "dotenv-safe": "^9.1.0"
+    "concurrently": "^8.2.2",
+    "dotenv-safe": "^9.1.0",
+    "electron": "^33.0.0",
+    "electron-builder": "^25.1.8",
+    "wait-on": "^8.0.1"
+  },
+  "build": {
+    "appId": "com.theforge.app",
+    "productName": "The Forge",
+    "copyright": "Copyright © 2025",
+    "directories": {
+      "buildResources": "assets",
+      "output": "dist-desktop"
+    },
+    "files": [
+      "electron/**/*",
+      "frontend/dist/**/*",
+      "!**/node_modules/**"
+    ],
+    "mac": {
+      "category": "public.app-category.games",
+      "target": [
+        { "target": "dmg", "arch": ["x64", "arm64"] }
+      ]
+    },
+    "win": {
+      "target": [
+        { "target": "nsis", "arch": ["x64"] }
+      ]
+    },
+    "linux": {
+      "target": [
+        { "target": "AppImage", "arch": ["x64"] }
+      ]
+    }
   }
 }
