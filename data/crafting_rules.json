@@ -21,13 +21,6 @@
       "max": 8
     }
   },
-  "instability_gains": {
-    "add_affix": { "min": 3, "max": 7 },
-    "upgrade_affix": { "min": 4, "max": 10 },
-    "seal_affix": { "min": 0, "max": 0 },
-    "unseal_affix": { "min": 1, "max": 3 },
-    "remove_affix": { "min": 2, "max": 5 }
-  },
   "base_item_fp": {
     "helmet":  { "min": 18, "max": 28 },
     "body":    { "min": 18, "max": 28 },

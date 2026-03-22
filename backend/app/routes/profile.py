@@ -67,8 +67,6 @@ def get_profile():
                 "slug": s.slug,
                 "item_type": s.item_type,
                 "item_name": s.item_name,
-                "instability": s.instability,
-                "is_fractured": s.is_fractured,
                 "created_at": s.created_at.isoformat(),
             }
             for s in recent_sessions
@@ -118,9 +116,7 @@ def profile_sessions():
                 "slug": s.slug,
                 "item_type": s.item_type,
                 "item_name": s.item_name,
-                "instability": s.instability,
                 "forge_potential": s.forge_potential,
-                "is_fractured": s.is_fractured,
                 "step_count": len(list(s.steps)),
                 "created_at": s.created_at.isoformat(),
             }

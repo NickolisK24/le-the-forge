@@ -76,26 +76,23 @@ class TestOptimalPath:
         path = optimal_path_search([{"name": "Health", "tier": 4, "sealed": False}], 28)
         assert path == []
 
-    def test_simulation_brick_and_perfect_sum_to_one(self):
+    def test_simulation_completion_and_survival_sum(self):
         steps = [{"action": "upgrade_affix", "sealed_count_at_step": 0}] * 3
         result = simulate_sequence(28, steps, n_simulations=1_000)
-        total = result["brick_chance"] + result["perfect_item_chance"]
-        assert abs(total - 1.0) < 0.02  # within 2% (Monte Carlo variance)
+        assert "completion_chance" in result
+        assert 0.0 <= result["completion_chance"] <= 1.0
 
-    def test_simulation_zero_risk_never_bricks(self):
-        # In modern Last Epoch, no fractures - just FP exhaustion
+    def test_simulation_zero_risk_always_completes(self):
+        # With enough FP, all steps complete
         steps = [{"action": "upgrade_affix", "sealed_count_at_step": 0}] * 5
         result = simulate_sequence(40, steps, n_simulations=500)
-        assert result["brick_chance"] == 0.0  # No fractures in modern system
-        assert result["perfect_item_chance"] == 1.0
+        assert result["completion_chance"] == 1.0
 
-    def test_simulation_fp_exhaustion_bricks(self):
+    def test_simulation_fp_exhaustion_stops_early(self):
         # With insufficient FP, crafting fails to complete all steps
         steps = [{"action": "upgrade_affix", "sealed_count_at_step": 0}] * 10  # More steps than FP allows
         result = simulate_sequence(5, steps, n_simulations=200)  # Very low FP
-        # In modern system, incomplete crafting doesn't "brick" but fails to complete
-        assert result["brick_chance"] == 0.0  # No fractures
-        assert result["perfect_item_chance"] < 1.0  # Won't complete all steps
+        assert result["completion_chance"] < 1.0  # Won't complete all steps
 
     def test_compare_strategies_returns_three(self):
         strategies = compare_strategies(
@@ -177,7 +174,6 @@ class TestCraftSession:
         assert "simulation_result" in summary
         assert "strategy_comparison" in summary
         sim = summary["simulation_result"]
-        assert "brick_chance" in sim
-        assert "perfect_item_chance" in sim
+        assert "completion_chance" in sim
         assert "step_survival_curve" in sim
         assert len(summary["strategy_comparison"]) == 2  # Updated to 2 strategies

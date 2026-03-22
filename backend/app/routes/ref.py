@@ -11,7 +11,7 @@ GET  /api/ref/passives            → Passive tree nodes (filterable by class/ma
 GET  /api/ref/skills              → Skill definitions (filterable by class)
 GET  /api/ref/classes             → Class + mastery metadata
 GET  /api/ref/affix-categories    → Available affix category descriptions
-GET  /api/ref/crafting-rules      → FP cost ranges and instability gains from crafting_rules.json
+GET  /api/ref/crafting-rules      → FP cost ranges from crafting_rules.json
 """
 
 from flask import Blueprint, request, jsonify
@@ -234,7 +234,7 @@ def get_skills():
 
 @ref_bp.get("/crafting-rules")
 def get_crafting_rules_endpoint():
-    """Return FP cost ranges and instability gains. Source: data/crafting_rules.json."""
+    """Return FP cost ranges. Source: data/crafting_rules.json."""
     return ok(data=get_crafting_rules())
 
 

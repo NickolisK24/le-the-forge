@@ -190,9 +190,6 @@ class CraftSessionCreateSchema(Schema):
     rarity = fields.Str(
         validate=validate.OneOf(VALID_RARITIES), load_default="Exalted"
     )
-    instability = fields.Int(
-        validate=validate.Range(min=0, max=80), load_default=0
-    )
     forge_potential = fields.Int(
         validate=validate.Range(min=0, max=60), load_default=28
     )

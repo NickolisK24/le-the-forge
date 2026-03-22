@@ -164,7 +164,7 @@ export function compareStrategies(
   }
 
   // Strategy 2: Balanced — uses optimalPath
-  const balancedRaw = optimalPath(0, affixes, forgePotential); // instability = 0 since we don't use it
+  const balancedRaw = optimalPath(affixes, forgePotential);
   const balancedSteps: SimStep[] = balancedRaw.map((s) => ({
     action: s.action,
     sealed_count_at_step: s.sealed_count_at_step,

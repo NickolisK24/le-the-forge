@@ -184,9 +184,9 @@ function SessionsTab() {
                   <div className="flex items-center gap-4 flex-shrink-0">
                     <div
                       className="font-display text-sm font-bold"
-                      style={{ color: session.is_fractured ? "#ff5050" : session.instability > 55 ? "#f0a020" : "#3dca74" }}
+                      style={{ color: "#3dca74" }}
                     >
-                      {session.is_fractured ? "Fractured" : `${session.instability} inst.`}
+                      {session.forge_potential} FP
                     </div>
                     <div className="font-mono text-xs uppercase tracking-widest text-forge-muted border border-forge-border rounded-sm px-3 py-1.5 hover:border-forge-amber hover:text-forge-amber transition-colors">
                       Resume →
@@ -265,9 +265,9 @@ function OverviewTab({ profileData }: { profileData: any }) {
               </div>
               <span
                 className="font-mono text-xs font-semibold"
-                style={{ color: s.is_fractured ? "#ff5050" : "#3dca74" }}
+                style={{ color: "#3dca74" }}
               >
-                {s.is_fractured ? "⚠ Frac." : `${s.instability}i`}
+                {s.forge_potential} FP
               </span>
             </div>
           </Link>

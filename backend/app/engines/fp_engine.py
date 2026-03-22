@@ -72,19 +72,6 @@ def expected_fp_cost(action_type: str) -> float:
     return (lo + hi) / 2.0
 
 
-def roll_instability_gain(action_type: str, is_perfect: bool = False) -> int:
-    """
-    Roll instability gained for an action.
-    Perfect rolls use the minimum gain.
-    """
-    rules = load_fp_rules()
-    gains = rules["instability_gains"].get(action_type, {"min": 3, "max": 8})
-    lo, hi = gains["min"], gains["max"]
-    if lo == hi:
-        return lo
-    return lo if is_perfect else random.randint(lo, hi)
-
-
 def roll_base_fp(item_type: str) -> int:
     """Roll the starting FP for a new item of the given type."""
     rules = load_fp_rules()

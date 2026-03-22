@@ -1404,7 +1404,6 @@ export default function CraftSimulatorPage() {
                       <span className={clsx(
                         "font-mono text-xs",
                         entry.outcome === "success" || entry.outcome === "perfect" ? "text-forge-green" :
-                        entry.outcome === "fracture" ? "text-forge-red" :
                         "text-forge-muted"
                       )}>
                         {entry.message}

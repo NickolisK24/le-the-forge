@@ -16,7 +16,7 @@ const FEATURES = [
     to: "/craft",
     title: "Craft Simulator",
     description:
-      "Calculate fracture risk before committing your shards. Find the optimal path to your target item.",
+      "Plan your crafting sequence with FP cost simulation. Find the optimal path to your target item.",
     status: "Live",
     statusVariant: "live",
     icon: "🔥",

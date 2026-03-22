@@ -3,7 +3,7 @@ Craft Blueprint — /api/craft
 
 POST   /api/craft                  → Create a new craft session
 POST   /api/craft/predict          → Stateless optimal path + Monte Carlo (no session)
-POST   /api/craft/simulate         → High-fidelity path simulation with random FP rolls
+POST   /api/craft/simulate         → Monte Carlo path simulation with random FP rolls
 GET    /api/craft/<slug>           → Get session with step log
 POST   /api/craft/<slug>/action    → Apply a forge action
 GET    /api/craft/<slug>/summary   → Get session summary + optimal path + simulation
@@ -25,6 +25,7 @@ from app.schemas import (
     CraftSimulateSchema,
 )
 from app.services import craft_service
+from app.engines.craft_engine import simulate_sequence
 from app.utils.auth import get_current_user
 from app.utils.responses import (
     ok, created, no_content, error,
@@ -68,23 +69,21 @@ def predict():
     affixes = data.get("affixes", [])
     n_simulations = data.get("n_simulations", 10_000)
 
-    path = craft_service.optimal_path_search(0, affixes, forge_potential)  # instability is always 0
+    path = craft_service.optimal_path_search(affixes, forge_potential)
 
     sim_steps = [
         {"action": s["action"], "sealed_count_at_step": s["sealed_count_at_step"]}
         for s in path
     ]
-    sim_result = craft_service.simulate_sequence(
-        0, forge_potential, sim_steps, n_simulations  # instability is always 0
+    sim_result = simulate_sequence(
+        forge_potential, sim_steps, n_simulations
     ) if sim_steps else {
-        "brick_chance": 0.0,
-        "perfect_item_chance": 1.0,
+        "completion_chance": 1.0,
         "step_survival_curve": [],
-        "step_fracture_rates": [],
         "n_simulations": 0,
     }
 
-    strategies = craft_service.compare_strategies(0, affixes, forge_potential)  # instability is always 0
+    strategies = craft_service.compare_strategies(affixes, forge_potential)
 
     return ok(data={
         "optimal_path": path,
@@ -96,19 +95,15 @@ def predict():
 @craft_bp.post("/simulate")
 def simulate():
     """
-    High-fidelity crafting path simulator — rolls actual random FP costs and
-    instability gains each iteration for accurate probability distributions.
-
-    Unlike /predict (which uses mean costs), this gives realistic spread of
-    FP consumption, steps completed, and fracture risk across N full runs.
+    Monte Carlo crafting path simulator — rolls random FP costs each iteration
+    for accurate probability distributions of FP consumption and completion rates.
     """
     try:
         data = simulate_schema.load(request.get_json() or {})
     except ValidationError as e:
         return validation_error(e)
 
-    result = craft_service.simulate_crafting_path(
-        instability=0,  # instability is always 0 in modern Last Epoch
+    result = simulate_sequence(
         forge_potential=data["forge_potential"],
         proposed_steps=data["steps"],
         n_simulations=data["n_simulations"],

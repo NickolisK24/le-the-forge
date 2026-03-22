@@ -54,18 +54,6 @@ def fp_cost(action: str) -> int:
 # ---------------------------------------------------------------------------
 
 
-def expected_instability_gain(action: str) -> float:
-    """Expected (mean) instability gain accounting for 5% perfect rolls."""
-    rules = load_fp_rules()
-    gains = rules["instability_gains"].get(action, {"min": 3, "max": 8})
-    lo, hi = gains["min"], gains["max"]
-    if lo == hi:
-        return float(lo)
-    perfect_prob = 0.05
-    normal_mean = (lo + hi) / 2.0
-    return perfect_prob * lo + (1 - perfect_prob) * normal_mean
-
-
 # ---------------------------------------------------------------------------
 # Unified Craft Pipeline
 # ---------------------------------------------------------------------------
@@ -90,15 +78,7 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
         "affixes": list[dict]  # [{name, tier, sealed}]
     }
     """
-    # 1. Validate action
-    if item.get("is_fractured", False):
-        return {
-            "success": False,
-            "outcome": "error",
-            "message": "Item is fractured.",
-            "item": item
-        }
-
+    # 1. Validate action — check FP first
     # 2. Roll FP cost
     cost = roll_fp_cost(action)
     if item["forge_potential"] < cost:
@@ -116,7 +96,7 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
     # 4. Reduce FP
     item["forge_potential"] -= cost
 
-    # 5. Check FP remaining (crafting stops when FP = 0, but doesn't fracture)
+    # 5. Check FP remaining (crafting stops when FP = 0)
     fp_remaining = item["forge_potential"]
 
     # 6. Return result
@@ -255,11 +235,10 @@ def simulate_sequence(
 ) -> dict:
     """
     Monte Carlo simulation of a proposed action sequence for modern Last Epoch.
-    No instability or fractures - just FP exhaustion and success rates.
+    No instability or fractures — just FP exhaustion and completion rates.
 
     Returns:
-      brick_chance (always 0.0), perfect_item_chance, step_survival_curve,
-      step_fracture_rates (always []), n_simulations
+      completion_chance, step_survival_curve, n_simulations
     """
     n = n_simulations
     fp_exhausted_at_step = [0] * len(proposed_steps)
@@ -294,10 +273,8 @@ def simulate_sequence(
         step_survival.append(round(1.0 - cumulative_exhaustion / n, 4))
 
     return {
-        "brick_chance": 0.0,  # No fractures in modern Last Epoch
-        "perfect_item_chance": round(completed_all / n, 4),
+        "completion_chance": round(completed_all / n, 4),
         "step_survival_curve": step_survival,
-        "step_fracture_rates": [],  # No fractures
         "n_simulations": n,
     }
 
@@ -339,8 +316,8 @@ def compare_strategies(affixes: list, forge_potential: int) -> list:
         if not steps:
             results.append({
                 "name": name, "description": description,
-                "brick_chance": 0.0, "perfect_item_chance": 1.0,
                 "expected_steps": 0, "expected_fp_cost": 0,
+                "completion_chance": 1.0,
             })
             continue
 
@@ -349,8 +326,7 @@ def compare_strategies(affixes: list, forge_potential: int) -> list:
         results.append({
             "name": name,
             "description": description,
-            "brick_chance": sim["brick_chance"],
-            "perfect_item_chance": sim["perfect_item_chance"],
+            "completion_chance": sim["completion_chance"],
             "expected_steps": len(steps),
             "expected_fp_cost": fp_cost_total,
         })
@@ -358,221 +334,8 @@ def compare_strategies(affixes: list, forge_potential: int) -> list:
     return results
 
 
-def simulate_crafting_path(
-    instability: int,
-    forge_potential: int,
-    proposed_steps: list,
-    n_simulations: int = 1_000,
-) -> dict:
-    """
-    High-fidelity Monte Carlo simulation of a crafting path.
-
-    Unlike simulate_sequence (which uses mean FP costs), this function rolls
-    actual random FP costs and instability gains each iteration — giving
-    accurate probability distributions of FP consumption, step completion,
-    and fracture outcomes.
-
-    Args:
-      instability:     Starting instability (0–80).
-      forge_potential: Starting FP.
-      proposed_steps:  List of {"action": str, "sealed_count_at_step": int}.
-      n_simulations:   Number of full runs (default 1 000; max recommended 50 000).
-
-    Returns a dict with:
-      brick_chance               — fraction of runs that fractured
-      perfect_item_chance        — fraction of runs that completed all steps
-      step_survival_curve        — cumulative survival after each step
-      step_fracture_rates        — per-step fracture rate
-      fp_consumed: {min, max, mean, p25, p50, p75}
-      steps_completed: {min, max, mean, p50}
-      final_instability: {min, max, mean, p50}
-      fracture_severity: {minor, major, destructive}
-      n_simulations
-    """
-    rules = load_fp_rules()
-    n = n_simulations
-    num_steps = len(proposed_steps)
-
-    # Pre-extract per-step config so we don't re-hit dicts inside the hot loop
-    step_cost_ranges = []
-    step_risk_rates = []
-    step_gain_ranges = []
-    for step in proposed_steps:
-        action = step.get("action", "upgrade_affix")
-        sealed_ct = step.get("sealed_count_at_step", 0)
-        cost_cfg = rules["fp_costs"].get(action, {"min": 2, "max": 6})
-        gain_cfg = rules["instability_gains"].get(action, {"min": 3, "max": 8})
-        step_cost_ranges.append((cost_cfg["min"], cost_cfg["max"]))
-        step_gain_ranges.append((gain_cfg["min"], gain_cfg["max"]))
-        step_risk_rates.append(sealed_ct)  # stored to compute risk per-inst
-
-    # ---- Vectorized simulation using NumPy ----
-    rng = np.random.default_rng()
-
-    # State arrays — one entry per simulation run
-    fp_arr  = np.full(n, forge_potential, dtype=np.float32)
-    inst_arr = np.full(n, instability, dtype=np.float32)
-    active   = np.ones(n, dtype=bool)    # runs still in progress
-    fractured = np.zeros(n, dtype=bool)
-    steps_done = np.zeros(n, dtype=np.int32)
-    fp_spent = np.zeros(n, dtype=np.float32)
-
-    # For severity breakdown — tracked as fractional rolls
-    severity_minor = 0
-    severity_major = 0
-    severity_destructive = 0
-    fracture_at_step = np.zeros(num_steps, dtype=np.int32)
-
-    for step_idx, step in enumerate(proposed_steps):
-        action = step.get("action", "upgrade_affix")
-        sealed_ct = step.get("sealed_count_at_step", 0)
-
-        cost_lo, cost_hi = step_cost_ranges[step_idx]
-        gain_lo, gain_hi = step_gain_ranges[step_idx]
-
-        # Only runs still active take this step
-        mask = active.copy()
-        if not mask.any():
-            break
-
-        # Roll FP costs for all active runs
-        if cost_lo == cost_hi:
-            costs = np.full(n, cost_lo, dtype=np.float32)
-        else:
-            costs = rng.integers(cost_lo, cost_hi + 1, size=n).astype(np.float32)
-
-        # Runs that can't afford the cost stop (not a fracture)
-        cant_afford = mask & (fp_arr < costs)
-        active[cant_afford] = False
-        mask = active & ~fractured
-
-        if not mask.any():
-            break
-
-        # Compute fracture risk per run (depends on current instability)
-        risk_arr = np.vectorize(lambda inst: fracture_risk(inst, sealed_ct))(inst_arr)
-
-        # Roll fracture check
-        fracture_rolls = rng.random(n)
-        fractured_this_step = mask & (fracture_rolls < risk_arr)
-
-        if fractured_this_step.any():
-            fracture_at_step[step_idx] += int(fractured_this_step.sum())
-            fractured |= fractured_this_step
-            active[fractured_this_step] = False
-
-            # Severity breakdown
-            relative = np.where(
-                risk_arr[fractured_this_step] > 0,
-                fracture_rolls[fractured_this_step] / risk_arr[fractured_this_step],
-                0.5,
-            )
-            severity_destructive += int((relative < 0.33).sum())
-            severity_major += int(((relative >= 0.33) & (relative < 0.67)).sum())
-            severity_minor += int((relative >= 0.67).sum())
-
-            # Deduct FP for fractured runs too
-            fp_spent[fractured_this_step] += costs[fractured_this_step]
-            fp_arr[fractured_this_step] -= costs[fractured_this_step]
-
-        # For runs that survived this step
-        survived_step = mask & ~fractured_this_step
-        if survived_step.any():
-            fp_spent[survived_step] += costs[survived_step]
-            fp_arr[survived_step] -= costs[survived_step]
-            steps_done[survived_step] = step_idx + 1
-
-            # Roll instability gain
-            if gain_lo == gain_hi:
-                gains = np.full(n, gain_lo, dtype=np.float32)
-            else:
-                gains = rng.integers(gain_lo, gain_hi + 1, size=n).astype(np.float32)
-                # Perfect roll threshold: use minimum gain
-                perfect = fracture_rolls > (PERFECT_ROLL_THRESHOLD / 100.0)
-                gains = np.where(perfect, gain_lo, gains)
-
-            inst_arr[survived_step] = np.minimum(
-                MAX_INSTABILITY, inst_arr[survived_step] + gains[survived_step]
-            )
-
-    survived_all = int((~fractured).sum())
-
-    # ---- Aggregate results ----
-    fp_consumed = fp_spent
-    steps_completed = np.where(fractured, steps_done, steps_done)  # same either way
-    final_inst = inst_arr
-
-    def _pct(arr, p):
-        return int(np.percentile(arr, p))
-
-    cumulative = 0
-    step_survival = []
-    for count in fracture_at_step:
-        cumulative += int(count)
-        step_survival.append(round(1.0 - cumulative / n, 4))
-
-    return {
-        "brick_chance": round(float(fractured.sum()) / n, 4),
-        "perfect_item_chance": round(survived_all / n, 4),
-        "step_survival_curve": step_survival,
-        "step_fracture_rates": [round(int(f) / n, 4) for f in fracture_at_step],
-        "fp_consumed": {
-            "min": int(fp_consumed.min()),
-            "max": int(fp_consumed.max()),
-            "mean": round(float(fp_consumed.mean()), 2),
-            "p25": _pct(fp_consumed, 25),
-            "p50": _pct(fp_consumed, 50),
-            "p75": _pct(fp_consumed, 75),
-        },
-        "steps_completed": {
-            "min": int(steps_completed.min()),
-            "max": int(steps_completed.max()),
-            "mean": round(float(steps_completed.mean()), 2),
-            "p50": _pct(steps_completed, 50),
-        },
-        "final_instability": {
-            "min": int(final_inst.min()),
-            "max": int(final_inst.max()),
-            "mean": round(float(final_inst.mean()), 2),
-            "p50": _pct(final_inst, 50),
-        },
-        "fracture_severity": {
-            "minor_fracture_chance":       round(severity_minor / n, 4),
-            "major_fracture_chance":       round(severity_major / n, 4),
-            "destructive_fracture_chance": round(severity_destructive / n, 4),
-        },
-        "n_simulations": n,
-    }
 
 
-def fracture_item(item):
-    """
-    Apply a fracture to an item dict.
-
-    A fractured item is permanently damaged — no further crafting actions can
-    be applied. One random unsealed affix is destroyed as part of the fracture.
-    The item is marked with is_fractured=True.
-
-    Returns:
-      True on success.
-      {"success": False, "reason": ...} if item is already fractured or has no affixes.
-    """
-    if item.get("is_fractured"):
-        return {"success": False, "reason": "Item is already fractured"}
-
-    all_affixes = item.get("prefixes", []) + item.get("suffixes", [])
-    unsealed = [a for a in all_affixes if not a.get("sealed")]
-
-    if not unsealed:
-        return {"success": False, "reason": "No affixes to fracture"}
-
-    destroyed = random.choice(unsealed)
-
-    item["prefixes"] = [a for a in item.get("prefixes", []) if a is not destroyed]
-    item["suffixes"] = [a for a in item.get("suffixes", []) if a is not destroyed]
-    item["is_fractured"] = True
-
-    return {"success": True, "destroyed_affix": destroyed["name"]}
 
 
 def add_affix(

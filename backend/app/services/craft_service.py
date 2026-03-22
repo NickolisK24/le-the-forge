@@ -14,14 +14,12 @@ from app.engines.craft_engine import (
     fp_cost,
     optimal_path_search,
     simulate_sequence,
-    simulate_crafting_path,
     compare_strategies,
-    PERFECT_ROLL_THRESHOLD,
     FP_COSTS,
 )
 from app.engines.fp_engine import roll_session_fp_cost
 from app.engines.item_engine import create_item
-from app.utils.exceptions import ItemFracturedError, InsufficientForgePotentialError
+from app.utils.exceptions import InsufficientForgePotentialError
 
 import random
 
@@ -173,10 +171,6 @@ def undo_last_action(item: dict, history: list[dict]) -> dict:
         # Re-add the removed affix (simplified - assume tier 1)
         item["affixes"].append({"name": affix_name, "tier": 1, "sealed": False})
 
-    # If it was fractured, un-fracture (though this is rare)
-    if last_action.get("outcome") == "fracture":
-        item["is_fractured"] = False
-
     # Remove from history
     history.pop()
 
@@ -297,10 +291,8 @@ def get_session_summary(session: CraftSession) -> dict:
         sim_steps,
         n_simulations=10_000,
     ) if sim_steps else {
-        "brick_chance": 0.0,
-        "perfect_item_chance": 1.0,
+        "completion_chance": 1.0,
         "step_survival_curve": [],
-        "step_fracture_rates": [],
         "n_simulations": 0,
     }
 
