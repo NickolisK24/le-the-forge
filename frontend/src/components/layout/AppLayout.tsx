@@ -10,6 +10,8 @@ const NAV_LINKS = [
 
 export default function AppLayout() {
   const authUrl = `${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`;
+  const devLoginUrl = `${import.meta.env.VITE_API_URL ?? "/api"}/auth/dev-login`;
+  const isDev = import.meta.env.DEV;
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
 
@@ -103,12 +105,23 @@ export default function AppLayout() {
                 </button>
               </>
             ) : (
-              <a
-                href={authUrl}
-                className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-4 py-2 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
-              >
-                Sign In
-              </a>
+              <div className="flex items-center gap-2">
+                <a
+                  href={authUrl}
+                  className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-4 py-2 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
+                >
+                  Sign In
+                </a>
+                {isDev && (
+                  <a
+                    href={devLoginUrl}
+                    className="font-mono text-xs uppercase tracking-widest text-forge-dim hover:text-forge-amber transition-colors border border-forge-border px-3 py-2 rounded-sm no-underline"
+                    title="Dev login (bypasses Discord — development only)"
+                  >
+                    Dev
+                  </a>
+                )}
+              </div>
             )}
           </div>
         </div>

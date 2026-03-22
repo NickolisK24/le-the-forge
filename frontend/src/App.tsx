@@ -66,6 +66,8 @@ const AUTH_FAIL_MESSAGES: Record<string, string> = {
   no_access_token: "Discord did not return an access token. Please try again.",
 };
 
+const IS_DEV = import.meta.env.DEV;
+
 function AuthErrorHandler() {
   const [params, setParams] = useSearchParams();
 
@@ -74,8 +76,28 @@ function AuthErrorHandler() {
     const reason = params.get("reason") ?? "";
     if (failed === "failed") {
       const msg = AUTH_FAIL_MESSAGES[reason] ?? "Login failed. Please try again.";
-      toast.error(msg, { duration: 6000 });
-      // Clean up the URL without triggering a navigation
+
+      if (IS_DEV && reason === "discord_unreachable") {
+        // In dev, offer a bypass link since Discord may be unreachable in local environments
+        toast.error(
+          (t) => (
+            <span>
+              {msg}{" "}
+              <a
+                href="/api/auth/dev-login"
+                style={{ color: "#f5a623", textDecoration: "underline", cursor: "pointer" }}
+                onClick={() => toast.dismiss(t.id)}
+              >
+                Dev login
+              </a>
+            </span>
+          ),
+          { duration: 12000 }
+        );
+      } else {
+        toast.error(msg, { duration: 6000 });
+      }
+
       params.delete("auth");
       params.delete("reason");
       setParams(params, { replace: true });
