@@ -121,12 +121,6 @@ def get_session(slug: str):
     if not session:
         return not_found("Craft session")
 
-    # If session has an owner, only the owner can view it
-    if session.user_id:
-        user = get_current_user()
-        if not user or session.user_id != user.id:
-            return forbidden()
-
     return ok(data=session_schema.dump(session))
 
 
