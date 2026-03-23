@@ -1,129 +1,85 @@
 # The Forge – Development Roadmap
 
-This document outlines the planned development stages for The Forge.
-
-The project will evolve in phases, gradually expanding its analytical capabilities.
+This document outlines the development stages for The Forge.
 
 ---
 
-# Phase 1 – Core Foundation
+# ✅ Phase 1 – Core Foundation *(Complete)*
 
-Goal: Build the core simulation engine.
-
-Features:
-
-* character data model
-* stat calculation engine
-* base damage simulation
-* defensive stat modeling
-* basic build analysis output
-
-Deliverable:
-
-Local tool capable of evaluating a character build.
+- Character data model
+- Stat calculation engine (base stats, mastery, passive nodes, gear affixes, attribute scaling)
+- Base damage simulation (DPS, crit scaling, attack/cast speed)
+- Defensive stat modeling (EHP, resistance capping, survivability score)
+- Basic build analysis output (upgrade advisor, weakness detection)
 
 ---
 
-# Phase 2 – Crafting Simulation
+# ✅ Phase 2 – Crafting Simulation *(Complete)*
 
-Goal: Model Last Epoch crafting mechanics.
+- Affix tier system with full seed data (34 affixes)
+- Forging potential tracking and RNG cost model
+- Crafting probability modeling and outcome simulation
+- Monte Carlo simulation across thousands of craft attempts
+- Strategy comparison and optimal path search
 
-Features:
-
-* affix tier system
-* forging potential tracking
-* fracture mechanics
-* crafting probability modeling
-* crafting outcome simulation
-
-Deliverable:
-
-Crafting simulator capable of predicting expected item outcomes.
+> **Note:** Fracture mechanics were removed in alignment with modern Last Epoch (1.0+) game design.
 
 ---
 
-# Phase 3 – Optimization Engine
+# ✅ Phase 3 – Passive Tree *(Complete)*
 
-Goal: Identify the most impactful upgrades.
-
-Features:
-
-* stat sensitivity analysis
-* offensive stat ranking
-* defensive improvement analysis
-* upgrade efficiency scoring
-
-Deliverable:
-
-Stat optimization recommendations for builds.
+- Real game node coordinates loaded from exported layout JSON
+- SVG connection rendering between nodes
+- BFS path validation — only reachable nodes can be allocated
+- Hexagonal nodes with stone texture background, color-coded by type
+- Static auto-fit layout (pan/zoom removed)
+- Leveling path tracker — scrollable timeline recording allocation order per level
 
 ---
 
-# Phase 4 – Crafting Strategy Engine
+# 🔧 Phase 4 – Optimization Engine *(In Progress)*
 
-Goal: Recommend optimal crafting paths.
+- Stat sensitivity analysis
+- Offensive stat ranking
+- Defensive improvement analysis
+- Upgrade efficiency scoring
 
-Features:
-
-* craft path simulation
-* expected value calculations
-* fracture risk evaluation
-* optimal crafting strategy generation
-
-Deliverable:
-
-AI-assisted crafting recommendations.
+Partially implemented in `optimization_engine.py`. Needs expansion and full API exposure.
 
 ---
 
-# Phase 5 – Full Build Import System
+# 🔜 Phase 5 – Skill Tree UI
 
-Goal: Allow players to import full builds.
-
-Features:
-
-* gear import
-* passive tree import
-* skill modifier import
-* automated character state generation
-
-Deliverable:
-
-Fully importable builds ready for simulation.
+- Visual skill tree component (data already loaded in `skillTrees/index.ts`)
+- Mastery gate behavior — specialization selection unlocking deeper branches
+- Skill node tooltips with stat values and scaling
 
 ---
 
-# Phase 6 – Advanced Analysis Tools
+# 🔜 Phase 6 – Full Build Import System
 
-Goal: Expand analytical capabilities.
-
-Features:
-
-* boss encounter simulations
-* corruption scaling analysis
-* gear upgrade ranking
-* build weakness detection
-
-Deliverable:
-
-Deep analytical insights for endgame builds.
+- Gear import
+- Passive tree import from external format
+- Skill modifier import
+- Automated character state generation
 
 ---
 
-# Phase 7 – Community Tools
+# 🔜 Phase 7 – Advanced Analysis Tools
 
-Goal: Expand utility for the broader community.
+- Boss encounter simulations
+- Corruption scaling analysis
+- Gear upgrade ranking against current build
+- Build weakness detection UI
 
-Features:
+---
 
-* build comparison tools
-* meta build analytics
-* shared build reports
-* theorycrafting tools
+# 🔜 Phase 8 – Community Tools
 
-Deliverable:
-
-A powerful toolkit for build creators and theorycrafters.
+- Build comparison tools
+- Meta build analytics
+- Shared build reports
+- Theorycrafting tools
 
 ---
 
@@ -137,3 +93,4 @@ Future expansion may include:
 * community build databases
 * statistical meta analysis
 * encounter-specific build optimization
+* native desktop packaging (Electron/Tauri)

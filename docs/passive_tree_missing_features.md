@@ -1,255 +1,61 @@
+# Passive Tree System — Status & Remaining Work
 
-# Passive Tree System — Missing Components & Next Steps
+## Completed Systems ✅
 
-## Current Working Systems ✅
-
-Your passive tree currently has:
-
-- Node rendering working
-- Node types displaying (Core / Notable / Keystone / Gate)
-- Class mastery tabs working
-- Zoom and pan functionality
-- Layout positioning functioning
-- Data successfully loaded from exported JSON files
-
-This confirms:
-
-```
-Layout pipeline = Working
-Rendering engine = Working
-Data extraction = Successful
-```
+- **Node rendering** — hexagonal SVG nodes, color-coded by type
+- **Node types** — Core / Notable / Keystone / Mastery-Gate visually distinct
+- **Class mastery tabs** — region selector working
+- **Real game coordinates** — x/y positions loaded from exported layout JSON (no procedural layout)
+- **Static auto-fit layout** — tree scales to fill panel; pan/zoom removed
+- **Connection rendering** — SVG lines drawn between connected node pairs
+- **Path validation (BFS)** — only nodes reachable from root can be allocated
+- **Passive point tracking** — points spent per node, total displayed
+- **Leveling path tracker** — `PassiveProgressBar` records allocation order with timestamps, hover tooltips, rewind support, and level ruler
+- **Stone texture background** — themed dark panel background
 
 ---
 
-# Missing Core Systems (Priority Order)
+## Remaining Work
 
-## 1 — Node Connections (Highest Priority)
+### Mastery Gate Behavior
 
-**Current State:**  
-Nodes are floating independently.
+Gate nodes render but clicking one does not trigger specialization selection or unlock the deeper branch. Needs:
 
-**Expected State:**  
-Nodes should be connected by visual lines.
+- Modal or inline prompt to choose specialization
+- State flag that records chosen mastery per character class
+- Deeper nodes locked behind gate become unlocked when mastery is chosen
 
-Without connections:
+### Node Icons
 
-- Pathing cannot function
-- Progression validation fails
-- Tree visuals feel incomplete
+The `iconId` values (`a-r-*`) are custom IDs from the export script with no mapping to Unity sprite names in the actual game files. Resolution options:
 
-**What Must Be Implemented:**
+- Use a community-maintained icon pack if one becomes available
+- Render node type glyphs as SVG symbols (no external images required)
+- Leave as color+shape only (current state — acceptable)
 
-- Render connection lines between linked nodes
-- Use node relationship data from metadata
-- Draw lines using SVG or Canvas
+### Skill Tree UI
 
-This is the **most important missing system.**
+Data is loaded (`frontend/src/data/skillTrees/index.ts`) but no visual component exists yet. The skill tree is a separate graph per skill with its own node layout.
 
----
+### Mastery-Specific Sub-Trees
 
-## 2 — Mastery Gate Behavior
-
-**Current State:**  
-Mastery gate renders visually only.
-
-**Missing Behavior:**
-
-- Selecting mastery
-- Unlocking specialization tree
-- Enabling deeper nodes
-
-**Required System:**
-
-```
-Reach mastery gate
-→ Select specialization
-→ Unlock new node branch
-```
+Some classes have mastery-specific passive regions that should only become visible/interactable after the mastery gate is passed.
 
 ---
 
-## 3 — Path Unlock Logic
-
-**Current State:**  
-Nodes likely clickable without path validation.
-
-**Expected Behavior:**
-
-Nodes should only be selectable if:
+## Progress Snapshot
 
 ```
-Connected to unlocked nodes
+Data extraction              ✅ Complete
+Layout rendering             ✅ Complete
+Node drawing                 ✅ Complete
+Real game positions          ✅ Complete
+Connection rendering         ✅ Complete
+Path validation              ✅ Complete
+Passive point tracking       ✅ Complete
+Leveling path tracker        ✅ Complete
+Static auto-fit layout       ✅ Complete
+Mastery gate behavior        ⬅️ Next Target
+Node icons                   Deferred (blocked by data)
+Skill tree UI                Upcoming
 ```
-
-**Required Implementation:**
-
-- Graph traversal logic
-- Breadth-first search (BFS)
-- Connectivity validation
-
----
-
-## 4 — Node Tooltips
-
-**Current State:**  
-Nodes are visual only.
-
-**Missing UX Elements:**
-
-- Node description
-- Stat bonuses
-- Scaling values
-- Requirements
-- Point limits
-
-**Data Source:**
-
-```
-char-tree-metadata.json
-skill-tree-metadata.json
-```
-
-This transforms the tree from visual → functional.
-
----
-
-## 5 — Background Artwork
-
-**Current State:**
-
-Black background.
-
-**Expected:**
-
-Themed passive tree background image.
-
-Adds:
-
-- Visual clarity
-- Professional polish
-- UI immersion
-
----
-
-## 6 — Node Icons
-
-**Current State:**
-
-Generic node visuals.
-
-**Missing:**
-
-- Ability icons
-- Stat icons
-- Mastery visuals
-
-These improve:
-
-- Readability
-- Recognition speed
-- Visual depth
-
----
-
-## 7 — Passive Point Tracking
-
-**Current State:**
-
-Node count displayed.
-
-**Missing:**
-
-- Points spent
-- Points remaining
-- Refund logic
-- Allocation validation
-
-Expected logic:
-
-```
-Total Points - Spent Points = Remaining
-```
-
----
-
-## 8 — Tree Centering & Scaling
-
-**Current State:**
-
-Tree visible but not perfectly normalized.
-
-**Needed:**
-
-- Auto-centering logic
-- Viewport scaling
-- Bounding normalization
-
-Ensures consistent display across screen sizes.
-
----
-
-# The Single Most Important Next Task
-
-## Implement Connection Rendering
-
-Without connections:
-
-```
-Tree = Visual Only
-```
-
-With connections:
-
-```
-Tree = Functional System
-```
-
-This unlocks:
-
-- Valid node progression
-- Path checking
-- Full gameplay simulation
-
----
-
-# Recommended Next Build Order
-
-Follow this exact sequence:
-
-1. Render node connections
-2. Add path validation logic
-3. Implement node tooltips
-4. Add mastery unlock behavior
-5. Add passive point tracking
-6. Add UI polish (icons/background)
-
----
-
-# Current Project Progress Snapshot
-
-```
-Data extraction        ✅ Complete
-Layout rendering       ✅ Complete
-Node drawing           ✅ Complete
-Connection rendering   ⬅️ Next Target
-Path validation        Upcoming
-Tooltip system         Upcoming
-Mastery unlocking      Upcoming
-```
-
----
-
-# Immediate Development Goal
-
-**Next system to build:**
-
-```
-Connection Graph Renderer
-```
-
-Once this exists:
-
-- Tree becomes logically functional
-- Progression rules become enforceable
-- Path validation becomes possible

@@ -52,9 +52,9 @@ Simulates crafting attempts and estimates expected outcomes.
 Features include:
 
 * crafting success probabilities
-* fracture risk analysis
 * expected stat outcomes
 * optimal crafting strategies
+* Monte Carlo simulation across thousands of attempts
 
 ---
 
