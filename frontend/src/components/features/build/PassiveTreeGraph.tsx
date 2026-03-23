@@ -8,18 +8,19 @@ import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
 // Constants
 // ---------------------------------------------------------------------------
 const NODE_R: Record<string, number> = {
-  core: 10,
-  notable: 16,
-  keystone: 24,
-  "mastery-gate": 14,
+  core: 18,
+  notable: 24,
+  keystone: 32,
+  "mastery-gate": 22,
 };
 
-const COLORS = {
-  core:          { idle: "#28201a", active: "#c8902a", border: "#5a4a28", glow: "#c8902a" },
-  notable:       { idle: "#1a1e2e", active: "#5c8fd6", border: "#3a5a90", glow: "#5c8fd6" },
-  keystone:      { idle: "#1a2a1c", active: "#3ca040", border: "#3a7a3e", glow: "#3ca040" },
-  "mastery-gate":{ idle: "#2a1818", active: "#c04040", border: "#7a2a2a", glow: "#c04040" },
-} as const;
+// Flat-top hexagon points at radius r
+function hexPoints(r: number): string {
+  return Array.from({ length: 6 }, (_, i) => {
+    const a = (i * 60) * Math.PI / 180; // flat-top: 0°,60°,120°,...
+    return `${(Math.cos(a) * r).toFixed(2)},${(Math.sin(a) * r).toFixed(2)}`;
+  }).join(" ");
+}
 
 const REGION_LABELS: Record<string, string> = {
   base:          "Base",
@@ -40,23 +41,21 @@ const REGION_LABELS: Record<string, string> = {
   falconer:      "Falconer",
 };
 
-// Maximum passive points per class (Last Epoch: 1 per level, levels 1-100)
-const MAX_PASSIVE_POINTS = 113; // ~113 by end-game with all sources
+// Maximum passive points per class
+const MAX_PASSIVE_POINTS = 113;
 
-const DISPLAY_H = 560;    // fixed display area height
+const DISPLAY_H = 580;
 
 // ---------------------------------------------------------------------------
 // Layout — use real game x,y, centered around the canvas midpoint
 // ---------------------------------------------------------------------------
 interface LayoutNode extends PassiveNode {
-  lx: number; // world x (origin at canvas center)
-  ly: number; // world y (origin at canvas center)
+  lx: number;
+  ly: number;
 }
 
 function toLayoutNodes(nodes: PassiveNode[]): LayoutNode[] {
   if (nodes.length === 0) return [];
-  // Data x,y are already in screen-space pixels (canvas ~1170×601).
-  // Compute canvas center from bounding box so the tree is centered at (0,0).
   const xs = nodes.map(n => n.x);
   const ys = nodes.map(n => n.y);
   const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
@@ -297,8 +296,8 @@ export default function PassiveTreeGraph({
       {/* SVG canvas — pan + zoom */}
       <div
         ref={containerRef}
-        className="relative overflow-hidden bg-forge-bg select-none"
-        style={{ height: DISPLAY_H, cursor: dragging.current ? "grabbing" : "grab" }}
+        className="relative overflow-hidden select-none"
+        style={{ height: DISPLAY_H, cursor: dragging.current ? "grabbing" : "grab", background: "#0f0c09" }}
         onMouseDown={handleMouseDown}
         onMouseMove={handleMouseMove}
         onMouseUp={handleMouseUp}
@@ -313,43 +312,71 @@ export default function PassiveTreeGraph({
           style={{ display: "block", position: "absolute", inset: 0 }}
         >
           <defs>
-            {/* Glow filter for active nodes */}
-            <filter id="glow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
+            <filter id="stone-texture" x="0%" y="0%" width="100%" height="100%">
+              <feTurbulence type="fractalNoise" baseFrequency="0.65 0.45" numOctaves="4" seed="8" stitchTiles="stitch" result="noise"/>
+              <feColorMatrix type="matrix" result="tinted"
+                values="0.06 0 0 0 0.04   0 0.04 0 0 0.02   0 0 0.03 0 0.01   0 0 0 0.35 0"/>
+              <feComposite in="tinted" in2="SourceGraphic" operator="over"/>
             </filter>
-            {/* Background radial gradient */}
-            <radialGradient id="bg-grad" cx="50%" cy="50%" r="50%">
-              <stop offset="0%" stopColor="#1a1612" />
-              <stop offset="100%" stopColor="#0e0c0a" />
+            <filter id="glow" x="-80%" y="-80%" width="260%" height="260%">
+              <feGaussianBlur stdDeviation="5" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <filter id="line-glow" x="-20%" y="-300%" width="140%" height="700%">
+              <feGaussianBlur stdDeviation="2" result="blur"/>
+              <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+            </filter>
+            <radialGradient id="vignette" cx="50%" cy="50%" r="70%">
+              <stop offset="0%" stopColor="transparent"/>
+              <stop offset="100%" stopColor="#000000" stopOpacity="0.55"/>
+            </radialGradient>
+            <radialGradient id="node-idle" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#3a3228"/><stop offset="100%" stopColor="#1a1410"/>
+            </radialGradient>
+            <radialGradient id="node-active" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#e8c060"/><stop offset="60%" stopColor="#c8902a"/><stop offset="100%" stopColor="#7a5010"/>
+            </radialGradient>
+            <radialGradient id="node-notable-idle" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#2a2e40"/><stop offset="100%" stopColor="#141620"/>
+            </radialGradient>
+            <radialGradient id="node-notable-active" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#90c0f0"/><stop offset="60%" stopColor="#4a80c0"/><stop offset="100%" stopColor="#1a3060"/>
+            </radialGradient>
+            <radialGradient id="node-keystone-idle" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#1e3020"/><stop offset="100%" stopColor="#0e1810"/>
+            </radialGradient>
+            <radialGradient id="node-keystone-active" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#80f090"/><stop offset="60%" stopColor="#30a040"/><stop offset="100%" stopColor="#104020"/>
+            </radialGradient>
+            <radialGradient id="node-gate-idle" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#342010"/><stop offset="100%" stopColor="#1a1008"/>
+            </radialGradient>
+            <radialGradient id="node-gate-active" cx="35%" cy="30%" r="65%">
+              <stop offset="0%" stopColor="#ffa060"/><stop offset="60%" stopColor="#d04020"/><stop offset="100%" stopColor="#701008"/>
             </radialGradient>
           </defs>
 
-          {/* Background */}
-          <rect width={containerSize.w} height={containerSize.h} fill="url(#bg-grad)" />
+          <rect width={containerSize.w} height={containerSize.h} fill="#100d0a"/>
+          <rect width={containerSize.w} height={containerSize.h} filter="url(#stone-texture)" fill="#100d0a"/>
+          <rect width={containerSize.w} height={containerSize.h} fill="url(#vignette)"/>
 
-          {/* Edges — rendered from full edge list extracted from game metadata */}
+          {/* Edges */}
           <g>
             {edges.map(({ from, to }) => {
               const fromNode = byId.get(from);
               const toNode = byId.get(to);
               if (!fromNode || !toNode) return null;
-              const bothActive =
-                (allocated[from] ?? 0) >= 1 &&
-                (allocated[to] ?? 0) >= 1;
+              const bothActive = (allocated[from] ?? 0) >= 1 && (allocated[to] ?? 0) >= 1;
               const toUnlocked = isUnlocked(to);
               const { sx: x1, sy: y1 } = worldToScreen(fromNode.lx, fromNode.ly);
               const { sx: x2, sy: y2 } = worldToScreen(toNode.lx, toNode.ly);
               return (
-                <line
-                  key={`e-${from}-${to}`}
+                <line key={`e-${from}-${to}`}
                   x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#3a3020" : "#181614"}
-                  strokeWidth={bothActive ? 2.5 : 1.5}
-                  opacity={bothActive ? 1 : toUnlocked ? 0.6 : 0.2}
+                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#4a3c20" : "#1e1a12"}
+                  strokeWidth={bothActive ? 3 : 1.5}
+                  opacity={bothActive ? 0.9 : toUnlocked ? 0.55 : 0.18}
+                  filter={bothActive ? "url(#line-glow)" : undefined}
                 />
               );
             })}
@@ -359,108 +386,68 @@ export default function PassiveTreeGraph({
           <g>
             {layoutNodes.map(node => {
               const type = node.type ?? "core";
-              const r = (NODE_R[type] ?? 10) * Math.max(0.6, zoom);
+              const baseR = NODE_R[type] ?? 18;
+              const r = baseR * Math.max(0.5, zoom);
               const max = node.maxPoints ?? 1;
               const pts = allocated[node.id] ?? 0;
               const active = pts >= 1;
               const unlocked = isUnlocked(node.id);
-              const colors = COLORS[type as keyof typeof COLORS] ?? COLORS.core;
-              const fill = active ? colors.active : colors.idle;
-              const stroke = active ? "#e8b040" : unlocked ? colors.border : "#222018";
               const { sx: scx, sy: scy } = worldToScreen(node.lx, node.ly);
 
+              let fillGrad = active ? "url(#node-active)" : "url(#node-idle)";
+              if (type === "notable")       fillGrad = active ? "url(#node-notable-active)" : "url(#node-notable-idle)";
+              else if (type === "keystone") fillGrad = active ? "url(#node-keystone-active)" : "url(#node-keystone-idle)";
+              else if (type === "mastery-gate") fillGrad = active ? "url(#node-gate-active)" : "url(#node-gate-idle)";
+
+              const borderCol = active
+                ? (type === "notable" ? "#70a8e0" : type === "keystone" ? "#50c060" : type === "mastery-gate" ? "#d06030" : "#d4a030")
+                : unlocked
+                  ? (type === "notable" ? "#3a5080" : type === "keystone" ? "#2a5a30" : type === "mastery-gate" ? "#7a3010" : "#5a4820")
+                  : "#1e1a12";
+
+              const hexPts = hexPoints(r);
+              const outerPts = hexPoints(r + 4 * Math.max(0.5, zoom));
+
               return (
-                <g
-                  key={node.id}
+                <g key={node.id}
                   transform={`translate(${scx},${scy})`}
-                  style={{ cursor: readOnly || !unlocked ? "default" : "pointer" }}
+                  opacity={unlocked || active ? 1 : 0.22}
+                  style={{ cursor: readOnly ? "default" : unlocked ? "pointer" : "not-allowed" }}
                   onClick={e => handleNodeClick(node, e)}
                   onMouseEnter={e => setTooltip({ node, screenX: e.clientX, screenY: e.clientY })}
                   onMouseMove={e => setTooltip(t => t ? { ...t, screenX: e.clientX, screenY: e.clientY } : null)}
                   onMouseLeave={() => setTooltip(null)}
                 >
-                  {/* Glow ring for active nodes */}
-                  {active && (
-                    <circle
-                      r={r + 4}
-                      fill={colors.glow}
-                      opacity={0.2}
-                      filter="url(#glow)"
-                    />
-                  )}
+                  {active && <polygon points={outerPts} fill={borderCol} opacity={0.22} filter="url(#glow)"/>}
+                  <polygon points={outerPts} fill="none" stroke={borderCol} strokeWidth={active ? 2 : 1} opacity={active ? 0.9 : 0.45}/>
+                  <polygon points={hexPts} fill={fillGrad}/>
+                  <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
-                  {/* Keystone outer diamond */}
-                  {type === "keystone" && (
-                    <polygon
-                      points={`0,${-(r + 7)} ${r + 7},0 0,${r + 7} ${-(r + 7)},0`}
-                      fill="none"
-                      stroke={active ? "#e8b040" : unlocked ? colors.border : "#2a2218"}
-                      strokeWidth={1.5}
-                      opacity={unlocked ? 1 : 0.2}
-                    />
-                  )}
+                  {/* Point counter below node */}
+                  <text
+                    y={r + Math.max(11, 14 * zoom)}
+                    textAnchor="middle"
+                    fontSize={Math.max(8, 11 * zoom)}
+                    fill={active ? "#d4a030" : unlocked ? "#6a5c40" : "#3a3020"}
+                    fontFamily="monospace"
+                    fontWeight="bold"
+                    pointerEvents="none"
+                  >
+                    {pts}/{max}
+                  </text>
 
-                  {/* Mastery-gate outer square */}
-                  {type === "mastery-gate" && (
-                    <rect
-                      x={-(r + 5)} y={-(r + 5)}
-                      width={(r + 5) * 2} height={(r + 5) * 2}
-                      fill="none"
-                      stroke={active ? "#e84040" : unlocked ? colors.border : "#2a1818"}
-                      strokeWidth={1}
-                      opacity={unlocked ? 1 : 0.2}
-                      rx={2}
-                    />
-                  )}
-
-                  {/* Node body */}
-                  <circle
-                    r={r}
-                    fill={fill}
-                    stroke={stroke}
-                    strokeWidth={active ? 2 : 1}
-                    opacity={unlocked || active ? 1 : 0.25}
-                  />
-
-                  {/* Multi-point fill arcs */}
-                  {max > 1 && pts > 0 && pts < max && (
+                  {/* Name label for notables/keystones */}
+                  {node.name && (type === "notable" || type === "keystone") && zoom >= 0.65 && (
                     <text
+                      y={r + Math.max(24, 28 * zoom)}
                       textAnchor="middle"
-                      dominantBaseline="central"
-                      fontSize={Math.max(7, r * 0.7)}
-                      fill={active ? "#1a1208" : "#888"}
-                      fontFamily="monospace"
-                      fontWeight="bold"
+                      fontSize={Math.max(6, 8 * zoom)}
+                      fill={active ? "#e8c060" : unlocked ? "#8a7a58" : "#3a3020"}
+                      fontFamily="serif"
+                      fontStyle="italic"
                       pointerEvents="none"
                     >
-                      {pts}/{max}
-                    </text>
-                  )}
-                  {max > 1 && pts === max && (
-                    <text
-                      textAnchor="middle"
-                      dominantBaseline="central"
-                      fontSize={Math.max(7, r * 0.7)}
-                      fill="#1a1208"
-                      fontFamily="monospace"
-                      fontWeight="bold"
-                      pointerEvents="none"
-                    >
-                      {pts}/{max}
-                    </text>
-                  )}
-
-                  {/* Node name — notable & keystone only, shown when zoomed in */}
-                  {node.name && (type === "notable" || type === "keystone") && zoom >= 0.7 && (
-                    <text
-                      y={r + Math.max(9, 11 * zoom)}
-                      textAnchor="middle"
-                      fontSize={Math.max(7, 9 * zoom)}
-                      fill={active ? "#e8b040" : unlocked ? "#9a8870" : "#444"}
-                      fontFamily="monospace"
-                      pointerEvents="none"
-                    >
-                      {node.name.length > 18 ? node.name.slice(0, 17) + "…" : node.name}
+                      {node.name.length > 20 ? node.name.slice(0, 19) + "…" : node.name}
                     </text>
                   )}
                 </g>
@@ -469,7 +456,7 @@ export default function PassiveTreeGraph({
           </g>
         </svg>
 
-        {/* Tooltip — follows the mouse cursor */}
+        {/* Tooltip */}
         {tooltip && (() => {
           const n = tooltip.node;
           const max = n.maxPoints ?? 1;
@@ -498,10 +485,7 @@ export default function PassiveTreeGraph({
                 </div>
               )}
               {mr > 0 && (
-                <div className={clsx(
-                  "mt-1.5 font-mono text-[10px]",
-                  totalSpent >= mr ? "text-forge-dim" : "text-yellow-400/80"
-                )}>
+                <div className={clsx("mt-1.5 font-mono text-[10px]", totalSpent >= mr ? "text-forge-dim" : "text-yellow-400/80")}>
                   ⬡ Requires {mr} total points ({totalSpent}/{mr})
                 </div>
               )}
@@ -513,9 +497,7 @@ export default function PassiveTreeGraph({
                 </div>
               )}
               {!readOnly && !locked && pts < max && pointsLeft === 0 && (
-                <div className="mt-1 font-mono text-[10px] text-red-400/80">
-                  No passive points remaining
-                </div>
+                <div className="mt-1 font-mono text-[10px] text-red-400/80">No passive points remaining</div>
               )}
             </div>
           );

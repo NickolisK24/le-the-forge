@@ -265,6 +265,8 @@ export interface PassiveNode {
   parentId?: number;
   /** In-game node description / stat text */
   description?: string;
+  /** Game icon asset ID (e.g. "a-r-292") */
+  iconId?: string;
 }
 
 // ---------------------------------------------------------------------------
