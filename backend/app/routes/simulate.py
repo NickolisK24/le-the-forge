@@ -13,6 +13,16 @@ POST /api/simulate/combat   → DPS + Monte Carlo from stats + skill
 POST /api/simulate/defense  → EHP + survivability from stats
 POST /api/simulate/optimize → stat upgrade recommendations from stats + skill
 POST /api/simulate/build    → full pipeline (stats → combat → defense → optimize)
+
+Async mode
+----------
+The two expensive endpoints (/combat and /build) accept an optional
+``"async": true`` field in the request body.  When set the simulation is
+submitted to the background job pool and the response is:
+
+    {"data": {"job_id": "a1b2c3d4"}, ...}   (HTTP 202)
+
+The client then polls GET /api/jobs/<job_id> until status == "done".
 """
 
 from flask import Blueprint, request
@@ -29,6 +39,7 @@ from app.schemas.simulate import (
 )
 from app.services import simulation_service
 from app.utils.responses import ok, error, validation_error
+from app.utils.cache import get, set as cache_set, make_hash
 
 
 simulate_bp = Blueprint("simulate", __name__)
@@ -39,11 +50,17 @@ defense_schema = SimulateDefenseSchema()
 optimize_schema = SimulateOptimizeSchema()
 build_schema = SimulateBuildSchema()
 
+_SIM_CACHE_TTL = 300  # 5 minutes for simulation results
+
 
 def _load_passive_nodes(character_class: str) -> list[dict]:
     """Load passive nodes for a class from the database."""
     db_nodes = PassiveNode.query.filter_by(character_class=character_class).all()
     return [{"id": n.id, "type": n.node_type, "name": n.name} for n in db_nodes]
+
+
+def _sim_cache_key(prefix: str, data: dict) -> str:
+    return f"forge:sim:{prefix}:{make_hash(data)}"
 
 
 @simulate_bp.post("/stats")
@@ -55,6 +72,13 @@ def simulate_stats():
     except ValidationError as e:
         return validation_error(e)
 
+    cache_key = _sim_cache_key("stats", data)
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
     nodes = _load_passive_nodes(data["character_class"])
     stats = simulation_service.aggregate_stats(
         character_class=data["character_class"],
@@ -63,17 +87,44 @@ def simulate_stats():
         nodes=nodes,
         gear_affixes=data.get("gear_affixes", []),
     )
-    return ok(data=stats.to_dict())
+    result = stats.to_dict()
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
+    return ok(data=result)
 
 
 @simulate_bp.post("/combat")
 @limiter.limit("20 per minute")
 def simulate_combat():
-    """Calculate DPS and run Monte Carlo variance simulation."""
+    """Calculate DPS and run Monte Carlo variance simulation.
+
+    Pass ``"async": true`` in the request body to run in the background.
+    Returns ``{"job_id": "..."}`` (HTTP 202) which you poll at GET /api/jobs/<id>.
+    """
     try:
         data = combat_schema.load(request.get_json() or {})
     except ValidationError as e:
         return validation_error(e)
+
+    run_async = data.pop("async", False) if isinstance(data, dict) else False
+
+    cache_key = _sim_cache_key("combat", data)
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
+    if run_async:
+        from app.utils import jobs
+        job_id = jobs.enqueue(
+            simulation_service.simulate_combat,
+            stats_dict=data["stats"],
+            skill_name=data["skill_name"],
+            skill_level=data.get("skill_level", 20),
+            n_simulations=data.get("n_simulations", 10_000),
+            seed=data.get("seed"),
+        )
+        return ok(data={"job_id": job_id}), 202
 
     result = simulation_service.simulate_combat(
         stats_dict=data["stats"],
@@ -82,6 +133,7 @@ def simulate_combat():
         n_simulations=data.get("n_simulations", 10_000),
         seed=data.get("seed"),
     )
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)
 
 
@@ -94,7 +146,15 @@ def simulate_defense():
     except ValidationError as e:
         return validation_error(e)
 
+    cache_key = _sim_cache_key("defense", data)
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
     result = simulation_service.simulate_defense(stats_dict=data["stats"])
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)
 
 
@@ -107,26 +167,49 @@ def simulate_optimize():
     except ValidationError as e:
         return validation_error(e)
 
+    cache_key = _sim_cache_key("optimize", data)
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
     result = simulation_service.simulate_optimize(
         stats_dict=data["stats"],
         skill_name=data["skill_name"],
         skill_level=data.get("skill_level", 20),
         top_n=data.get("top_n", 5),
     )
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)
 
 
 @simulate_bp.post("/build")
 @limiter.limit("10 per minute")
 def simulate_build():
-    """Full pipeline: aggregate stats → DPS → defense → optimization."""
+    """Full pipeline: aggregate stats → DPS → defense → optimization.
+
+    Pass ``"async": true`` in the request body to run in the background.
+    Returns ``{"job_id": "..."}`` (HTTP 202) which you poll at GET /api/jobs/<id>.
+    """
     try:
         data = build_schema.load(request.get_json() or {})
     except ValidationError as e:
         return validation_error(e)
 
+    run_async = data.pop("async", False) if isinstance(data, dict) else False
+
+    # Resolve nodes synchronously (DB access must stay in request thread)
     nodes = _load_passive_nodes(data["character_class"])
-    result = simulation_service.simulate_full_build(
+
+    cache_key = _sim_cache_key("build", {**data, "nodes": nodes})
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
+    sim_kwargs = dict(
         character_class=data["character_class"],
         mastery=data["mastery"],
         allocated_node_ids=data.get("allocated_node_ids", []),
@@ -137,4 +220,12 @@ def simulate_build():
         n_simulations=data.get("n_simulations", 5_000),
         seed=data.get("seed"),
     )
+
+    if run_async:
+        from app.utils import jobs
+        job_id = jobs.enqueue(simulation_service.simulate_full_build, **sim_kwargs)
+        return ok(data={"job_id": job_id}), 202
+
+    result = simulation_service.simulate_full_build(**sim_kwargs)
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)

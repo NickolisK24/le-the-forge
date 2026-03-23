@@ -249,3 +249,14 @@ export const adminApi = {
   updateAffix: (id: string, payload: Partial<Omit<AdminAffix, "id">>) =>
     patch<AdminAffix>(`/admin/affixes/${id}`, payload),
 };
+
+export interface VersionInfo {
+  version: string;
+  commit: string;
+  data_version: string;
+  current_patch: string;
+}
+
+export const versionApi = {
+  get: () => get<VersionInfo>("/version"),
+};

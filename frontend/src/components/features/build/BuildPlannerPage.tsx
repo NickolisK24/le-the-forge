@@ -1,5 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
@@ -7,6 +8,7 @@ import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
+import { versionApi } from "@/lib/api";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
@@ -285,8 +287,21 @@ function BuildSummary({ build }: { build: Build }) {
 
   // ── View mode ──
   if (!editing) {
+    const currentPatch = versionRes?.data?.current_patch;
+    const patchMismatch = currentPatch && build.patch_version && build.patch_version !== currentPatch;
+
     return (
       <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] min-w-0">
+        {patchMismatch && (
+          <div className="lg:col-span-2 flex items-start gap-3 rounded border border-forge-amber/40 bg-forge-amber/8 px-4 py-3 text-sm">
+            <span className="text-forge-amber font-display font-bold shrink-0">⚠ Outdated build</span>
+            <span className="text-forge-muted font-body">
+              This build was created for patch <strong className="text-forge-text">{build.patch_version}</strong>{" "}
+              but the current patch is <strong className="text-forge-text">{currentPatch}</strong>.
+              Stats and skills may have changed — verify before using.
+            </span>
+          </div>
+        )}
         <Panel title="Overview">
           <div className="space-y-4">
             <div className="flex items-start justify-between gap-4">
@@ -545,6 +560,13 @@ export default function BuildPlannerPage() {
   const { data, isLoading } = useBuild(slug ?? "");
   const createBuild = useCreateBuild();
   const { user } = useAuthStore();
+
+  const { data: versionRes } = useQuery({
+    queryKey: ["version"],
+    queryFn: () => versionApi.get(),
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
 
   // Form state
   const [name, setName] = useState("New Forge Build");

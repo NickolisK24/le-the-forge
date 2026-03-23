@@ -30,6 +30,7 @@ from app.utils.responses import (
     not_found, forbidden, validation_error,
     paginate_meta,
 )
+from app.utils.cache import get, set as cache_set, delete_pattern, make_hash
 
 builds_bp = Blueprint("builds", __name__)
 
@@ -38,6 +39,18 @@ build_list_schema = BuildListSchema(many=True)
 build_create_schema = BuildCreateSchema()
 build_update_schema = BuildUpdateSchema()
 vote_schema = VoteSchema()
+
+_LIST_CACHE_TTL = 30   # seconds — short TTL since builds can be created often
+_META_CACHE_TTL = 120  # seconds for meta snapshot
+
+_BUILDS_LIST_KEY = "forge:builds:list"
+_BUILDS_META_KEY = "forge:builds:meta"
+
+
+def _invalidate_builds_cache() -> None:
+    """Bust all build list and meta cache entries."""
+    delete_pattern("forge:builds:list:*")
+    delete_pattern("forge:builds:meta:*")
 
 
 # ---------------------------------------------------------------------------
@@ -61,7 +74,7 @@ def list_builds():
             return None
         return v.lower() in ("1", "true", "yes")
 
-    builds, total, pages = build_service.list_builds(
+    filter_kwargs = dict(
         page=page,
         per_page=per_page,
         character_class=args.get("class"),
@@ -76,10 +89,19 @@ def list_builds():
         search=args.get("q"),
     )
 
-    return ok(
-        data=build_list_schema.dump(builds),
-        meta=paginate_meta(page, per_page, total, pages),
-    )
+    cache_key = f"{_BUILDS_LIST_KEY}:{make_hash(filter_kwargs)}"
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached["data"], meta=cached["meta"])
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
+    builds, total, pages = build_service.list_builds(**filter_kwargs)
+    data = build_list_schema.dump(builds)
+    meta = paginate_meta(page, per_page, total, pages)
+    cache_set(cache_key, {"data": data, "meta": meta}, _LIST_CACHE_TTL)
+
+    return ok(data=data, meta=meta)
 
 
 # ---------------------------------------------------------------------------
@@ -88,7 +110,14 @@ def list_builds():
 
 @builds_bp.get("/meta/snapshot")
 def meta_snapshot():
-    return ok(data=build_service.meta_snapshot())
+    cached = get(_BUILDS_META_KEY)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+    data = build_service.meta_snapshot()
+    cache_set(_BUILDS_META_KEY, data, _META_CACHE_TTL)
+    return ok(data=data)
 
 
 # ---------------------------------------------------------------------------
@@ -105,6 +134,7 @@ def create_build():
 
     user = get_current_user()
     build = build_service.create_build(data, user_id=user.id if user else None)
+    _invalidate_builds_cache()
     return created(data=build_schema.dump(build))
 
 
@@ -150,6 +180,7 @@ def update_build(slug: str):
         return validation_error(e)
 
     build = build_service.update_build(build, data)
+    _invalidate_builds_cache()
     return ok(data=build_schema.dump(build))
 
 
@@ -169,6 +200,7 @@ def delete_build(slug: str):
         return forbidden()
 
     build_service.delete_build(build)
+    _invalidate_builds_cache()
     return no_content()
 
 
@@ -206,4 +238,5 @@ def vote(slug: str):
 
     user = get_current_user()
     result = build_service.cast_vote(build, user.id, data["direction"])
+    _invalidate_builds_cache()
     return ok(data=result)

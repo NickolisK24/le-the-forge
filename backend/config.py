@@ -22,6 +22,11 @@ class Config:
 
     REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
 
+    # Reference data version — bump when affixes.json / game data changes.
+    DATA_VERSION = os.environ.get("DATA_VERSION", "1.0.0")
+    # Last Epoch patch string tracked by this instance.
+    CURRENT_PATCH = os.environ.get("CURRENT_PATCH", "1.2")
+
     DISCORD_CLIENT_ID = os.environ.get("DISCORD_CLIENT_ID", "")
     DISCORD_CLIENT_SECRET = os.environ.get("DISCORD_CLIENT_SECRET", "")
     DISCORD_REDIRECT_URI = os.environ.get(

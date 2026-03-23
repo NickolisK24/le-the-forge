@@ -21,6 +21,7 @@ from app.game_data.game_data_loader import get_all_affixes, get_affix_categories
 from app.engines.fp_engine import get_crafting_rules, get_all_fp_ranges, get_fp_range_by_rarity
 from app.engines.base_engine import get_all_bases, get_fp_range
 from app.utils.responses import ok
+from app.utils.cache import cached_route, delete_pattern
 
 ref_bp = Blueprint("ref", __name__)
 
@@ -90,11 +91,13 @@ def _get_affix_seed_data() -> list[dict]:
 
 
 @ref_bp.get("/classes")
+@cached_route("ref:classes", ttl=86400)
 def get_classes():
     return ok(data=CLASS_META)
 
 
 @ref_bp.get("/item-types")
+@cached_route("ref:item-types", ttl=86400)
 def get_item_types():
     item_types = ItemType.query.order_by(ItemType.category, ItemType.name).all()
     if not item_types:
@@ -118,6 +121,7 @@ def get_item_types():
 
 
 @ref_bp.get("/affixes")
+@cached_route("ref:affixes", ttl=3600)
 def get_affixes():
     category = request.args.get("category") or request.args.get("type")
     item_slot = request.args.get("slot")
@@ -184,11 +188,13 @@ def get_affixes():
 
 
 @ref_bp.get("/affix-categories")
+@cached_route("ref:affix-categories", ttl=86400)
 def get_affix_categories_endpoint():
     return ok(data=get_affix_categories())
 
 
 @ref_bp.get("/passives")
+@cached_route("ref:passives", ttl=3600)
 def get_passives():
     char_class = request.args.get("class")
     mastery = request.args.get("mastery")
@@ -219,6 +225,7 @@ def get_passives():
 
 
 @ref_bp.get("/skills")
+@cached_route("ref:skills", ttl=86400)
 def get_skills():
     char_class = request.args.get("class")
     if char_class and char_class in CLASS_META:
@@ -233,12 +240,14 @@ def get_skills():
 
 
 @ref_bp.get("/crafting-rules")
+@cached_route("ref:crafting-rules", ttl=86400)
 def get_crafting_rules_endpoint():
     """Return FP cost ranges. Source: data/crafting_rules.json."""
     return ok(data=get_crafting_rules())
 
 
 @ref_bp.get("/base-items")
+@cached_route("ref:base-items", ttl=86400)
 def get_base_items_endpoint():
     """Return all base item definitions including FP ranges. Source: data/base_items.json."""
     return ok(data=get_all_bases())
@@ -259,6 +268,7 @@ def get_base_item_endpoint(base_type: str):
 
 
 @ref_bp.get("/fp-ranges")
+@cached_route("ref:fp-ranges", ttl=86400)
 def get_fp_ranges_endpoint():
     """Return FP ranges by rarity. Source: data/forging_potential_ranges.json."""
     return ok(data=get_all_fp_ranges())
@@ -280,6 +290,7 @@ def get_fp_range_endpoint(rarity: str):
 # ---------------------------------------------------------------------------
 
 @ref_bp.get("/enemy-profiles")
+@cached_route("ref:enemy-profiles", ttl=86400)
 def get_enemy_profiles_endpoint():
     """Return all enemy profiles from data/enemy_profiles.json."""
     from app.game_data.game_data_loader import get_enemy_profiles
@@ -297,6 +308,7 @@ def get_enemy_profile_endpoint(enemy_id: str):
 
 
 @ref_bp.get("/damage-types")
+@cached_route("ref:damage-types", ttl=86400)
 def get_damage_types_endpoint():
     """Return all damage type definitions from data/damage_types.json."""
     from app.game_data.game_data_loader import get_damage_types
@@ -304,6 +316,7 @@ def get_damage_types_endpoint():
 
 
 @ref_bp.get("/rarities")
+@cached_route("ref:rarities", ttl=86400)
 def get_rarities_endpoint():
     """Return all rarity tier definitions from data/rarities.json."""
     from app.game_data.game_data_loader import get_rarities
@@ -311,6 +324,7 @@ def get_rarities_endpoint():
 
 
 @ref_bp.get("/implicit-stats")
+@cached_route("ref:implicit-stats", ttl=86400)
 def get_implicit_stats_endpoint():
     """Return all implicit stat definitions keyed by item type."""
     from app.game_data.game_data_loader import _implicit_stats_raw

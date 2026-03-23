@@ -1,5 +1,7 @@
 import { Outlet, NavLink, useNavigate, Link } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/store";
+import { versionApi } from "@/lib/api";
 
 const NAV_LINKS = [
   { to: "/builds",  label: "Builds"   },
@@ -14,6 +16,14 @@ export default function AppLayout() {
   const isDev = import.meta.env.DEV;
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
+
+  const { data: versionRes } = useQuery({
+    queryKey: ["version"],
+    queryFn: () => versionApi.get(),
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+  const version = versionRes?.data;
 
   function handleLogout() {
     logout();
@@ -131,6 +141,30 @@ export default function AppLayout() {
       <main className="mx-auto max-w-7xl px-6 py-8 overflow-x-hidden">
         <Outlet />
       </main>
+
+      {/* Footer */}
+      <footer className="border-t border-forge-border mt-8 py-4 px-6">
+        <div className="mx-auto max-w-7xl flex items-center justify-between">
+          <span className="font-mono text-xs text-forge-dim">
+            The Forge — Last Epoch Build Analyzer
+          </span>
+          {version && (
+            <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
+              <span className="text-forge-muted">
+                v{version.version}
+              </span>
+              <span className="text-forge-border">·</span>
+              <span title={`git ${version.commit}`} className="text-forge-dim">
+                {version.commit}
+              </span>
+              <span className="text-forge-border">·</span>
+              <span title="Last Epoch patch" className="text-forge-amber/60">
+                patch {version.current_patch}
+              </span>
+            </span>
+          )}
+        </div>
+      </footer>
     </div>
   );
 }
