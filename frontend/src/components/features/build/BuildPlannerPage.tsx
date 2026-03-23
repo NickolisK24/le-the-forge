@@ -9,6 +9,7 @@ import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
+import PassiveProgressBar from "./PassiveProgressBar";
 import { getSkillTree } from "@/data/skillTrees";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
@@ -178,12 +179,23 @@ function BuildSummary({ build }: { build: Build }) {
 
   function setPassiveAlloc(nodeId: number, points: number) {
     setPassiveTree((prev) => {
-      const without = prev.filter((id) => id !== nodeId);
-      return points >= 1 ? [...without, ...Array(points).fill(nodeId)] : without;
+      const current = prev.filter(id => id === nodeId).length;
+      if (points > current) {
+        // Add one point at end (preserves chronological order)
+        return [...prev, nodeId];
+      } else if (points < current) {
+        // Remove the last occurrence (most recently added)
+        const idx = prev.lastIndexOf(nodeId);
+        return idx === -1 ? prev : [...prev.slice(0, idx), ...prev.slice(idx + 1)];
+      }
+      return prev;
     });
   }
 
-  // Class/mastery are fixed at creation — backend doesn't allow changing them
+  function rewindPassiveTo(stepIndex: number) {
+    // Keep only the first stepIndex entries (undo everything after)
+    setPassiveTree(prev => prev.slice(0, stepIndex));
+  }
   const characterClass = build.character_class;
   const mastery = build.mastery;
 
@@ -386,6 +398,15 @@ function BuildSummary({ build }: { build: Build }) {
             onAllocate={() => {}}
             readOnly
           />
+          {(build.passive_tree?.length ?? 0) > 0 && (
+            <div className="mt-3">
+              <PassiveProgressBar
+                history={build.passive_tree ?? []}
+                characterClass={build.character_class}
+                readOnly
+              />
+            </div>
+          )}
         </Panel>
 
         {/* Skill tree modal (view-only) */}
@@ -480,6 +501,13 @@ function BuildSummary({ build }: { build: Build }) {
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
           />
+          <div className="mt-3">
+            <PassiveProgressBar
+              history={passiveTree}
+              characterClass={characterClass}
+              onRewindTo={rewindPassiveTo}
+            />
+          </div>
         </Panel>
       </div>
 
@@ -540,9 +568,19 @@ export default function BuildPlannerPage() {
 
   function setPassiveAlloc(nodeId: number, points: number) {
     setPassiveTree((prev) => {
-      const without = prev.filter((id) => id !== nodeId);
-      return points >= 1 ? [...without, ...Array(points).fill(nodeId)] : without;
+      const current = prev.filter(id => id === nodeId).length;
+      if (points > current) {
+        return [...prev, nodeId];
+      } else if (points < current) {
+        const idx = prev.lastIndexOf(nodeId);
+        return idx === -1 ? prev : [...prev.slice(0, idx), ...prev.slice(idx + 1)];
+      }
+      return prev;
     });
+  }
+
+  function rewindPassiveTo(stepIndex: number) {
+    setPassiveTree(prev => prev.slice(0, stepIndex));
   }
 
   const masteryOptions = useMemo(() => MASTERIES[characterClass], [characterClass]);
@@ -808,6 +846,13 @@ export default function BuildPlannerPage() {
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
           />
+          <div className="mt-3">
+            <PassiveProgressBar
+              history={passiveTree}
+              characterClass={characterClass}
+              onRewindTo={rewindPassiveTo}
+            />
+          </div>
         </Panel>
       </div>
 
