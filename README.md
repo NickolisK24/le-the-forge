@@ -10,6 +10,22 @@ Turn complex game systems into clear, actionable insights for players.
 
 ---
 
+## Screenshots
+
+| Home | Community Builds |
+|------|-----------------|
+| ![Home](docs/screenshots/20260323_184859_01_home.webp) | ![Builds](docs/screenshots/20260323_184859_02_builds.webp) |
+
+| Build Planner | Craft Simulator |
+|--------------|-----------------|
+| ![Build Planner](docs/screenshots/20260323_184859_03_build_new.webp) | ![Craft Simulator](docs/screenshots/20260323_184859_04_craft.webp) |
+
+| Build Comparison |
+|-----------------|
+| ![Compare](docs/screenshots/20260323_184859_05_compare.webp) |
+
+---
+
 # Why The Forge Exists
 
 Last Epoch has deep systems:
