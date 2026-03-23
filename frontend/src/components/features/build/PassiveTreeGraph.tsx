@@ -1,4 +1,4 @@
-import { useState, useMemo, useRef, useCallback, useEffect } from "react";
+import { useState, useMemo, useRef, useEffect } from "react";
 import { clsx } from "clsx";
 import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
@@ -116,8 +116,7 @@ export default function PassiveTreeGraph({
     [layoutNodes]
   );
 
-  // Build edge list for the current region: [{fromId, toId}]
-  // An edge exists for every parentId in PASSIVE_TREE_META for nodes in this region
+  // Build edge list for the current region
   const edges = useMemo(() => {
     const result: Array<{ from: number; to: number }> = [];
     for (const node of layoutNodes) {
@@ -136,20 +135,7 @@ export default function PassiveTreeGraph({
   const totalSpent = Object.values(allocated).reduce((s, v) => s + v, 0);
   const pointsLeft = totalPassivePoints - totalSpent;
 
-  // Pan / zoom state
-  const [pan, setPan] = useState({ x: 0, y: 0 });
-  const [zoom, setZoom] = useState(1.0);
-  const dragging = useRef(false);
-  const lastMouse = useRef({ x: 0, y: 0 });
   const containerRef = useRef<HTMLDivElement>(null);
-  const svgRef = useRef<SVGSVGElement>(null);
-
-  // Reset pan/zoom when region changes
-  useEffect(() => {
-    setPan({ x: 0, y: 0 });
-    setZoom(1.0);
-  }, [activeRegion]);
-
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
   const [containerSize, setContainerSize] = useState({ w: 800, h: DISPLAY_H });
 
@@ -165,85 +151,61 @@ export default function PassiveTreeGraph({
     return () => ro.disconnect();
   }, []);
 
-  // Mouse handlers for pan
-  const handleMouseDown = useCallback((e: React.MouseEvent) => {
-    if (e.button !== 0) return;
-    dragging.current = true;
-    lastMouse.current = { x: e.clientX, y: e.clientY };
-    e.preventDefault();
-  }, []);
+  // Compute scale + offset to fit all nodes inside the container with padding
+  const { scale, offsetX, offsetY } = useMemo(() => {
+    if (layoutNodes.length === 0) return { scale: 1, offsetX: 0, offsetY: 0 };
+    const pad = 48;
+    const xs = layoutNodes.map(n => n.lx);
+    const ys = layoutNodes.map(n => n.ly);
+    const minX = Math.min(...xs), maxX = Math.max(...xs);
+    const minY = Math.min(...ys), maxY = Math.max(...ys);
+    const treeW = maxX - minX || 1;
+    const treeH = maxY - minY || 1;
+    const sx = (containerSize.w - pad * 2) / treeW;
+    const sy = (containerSize.h - pad * 2) / treeH;
+    const s = Math.min(sx, sy);
+    const ox = (containerSize.w - treeW * s) / 2 - minX * s;
+    const oy = (containerSize.h - treeH * s) / 2 - minY * s;
+    return { scale: s, offsetX: ox, offsetY: oy };
+  }, [layoutNodes, containerSize]);
 
-  const handleMouseMove = useCallback((e: React.MouseEvent) => {
-    if (!dragging.current) return;
-    const dx = e.clientX - lastMouse.current.x;
-    const dy = e.clientY - lastMouse.current.y;
-    lastMouse.current = { x: e.clientX, y: e.clientY };
-    setPan(p => ({ x: p.x + dx, y: p.y + dy }));
-  }, []);
+  // World→screen using auto-fit transform
+  const worldToScreen = (lx: number, ly: number) => ({
+    sx: lx * scale + offsetX,
+    sy: ly * scale + offsetY,
+  });
 
-  const handleMouseUp = useCallback(() => {
-    dragging.current = false;
-  }, []);
+  // Effective node radius scaled to fit
+  const scaledR = (base: number) => Math.max(4, base * scale);
 
-  const handleWheel = useCallback((e: React.WheelEvent) => {
-    e.preventDefault();
-    const factor = e.deltaY < 0 ? 1.1 : 0.9;
-    setZoom(z => Math.max(0.3, Math.min(3.0, z * factor)));
-  }, []);
-
-  /**
-   * A node is unlocked if:
-   * 1. It has no parent requirements (free), OR
-   *    ALL parents have at least 1 point allocated
-   * 2. The total points spent in the tree >= masteryRequirement
-   */
-  function isUnlocked(nodeId: number): boolean {
+  // Unlock check: node is unlocked if total spent >= mastery threshold AND all parents allocated
+  const isUnlocked = (nodeId: number): boolean => {
     const meta = classMeta[nodeId];
-    if (!meta) return true;
-    // Check mastery point threshold
-    if (meta.masteryRequirement > 0 && totalSpent < meta.masteryRequirement) return false;
-    // Check parent requirements — all parents must be allocated
-    if (meta.parentIds.length === 0) return true;
+    if (!meta) return true; // no metadata = always unlocked (root nodes)
+    if (totalSpent < meta.masteryRequirement) return false;
     return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
-  }
+  };
 
-  function handleNodeClick(node: LayoutNode, e: React.MouseEvent) {
-    e.stopPropagation();
+  const handleNodeClick = (node: LayoutNode, e: React.MouseEvent) => {
     if (readOnly) return;
+    e.stopPropagation();
+    const pts = allocated[node.id] ?? 0;
     const max = node.maxPoints ?? 1;
-    const current = allocated[node.id] ?? 0;
-
-    if (current >= max) {
-      // Refund: only allowed if no allocated child depends on this node
-      const meta = classMeta[node.id];
-      const hasAllocChild = layoutNodes.some(n => {
-        const nm = classMeta[n.id];
-        return nm?.parentIds.includes(node.id) && (allocated[n.id] ?? 0) > 0;
+    if (pts >= max) {
+      // Refund: only if no allocated child depends on this node
+      const hasAllocatedChild = layoutNodes.some(n => {
+        const m = classMeta[n.id];
+        return m && m.parentIds.includes(node.id) && (allocated[n.id] ?? 0) >= 1;
       });
-      if (!hasAllocChild) onAllocate(node.id, current - 1);
-    } else {
-      if (!isUnlocked(node.id)) return;
-      if (pointsLeft <= 0) return; // no points remaining
-      onAllocate(node.id, current + 1);
+      if (!hasAllocatedChild) onAllocate(node.id, pts - 1);
+    } else if (pts > 0) {
+      onAllocate(node.id, pts + 1);
+    } else if (isUnlocked(node.id) && pointsLeft > 0) {
+      onAllocate(node.id, 1);
     }
-  }
-
-  // "Double-click to reset view" helper
-  const handleSvgDoubleClick = useCallback(() => {
-    setPan({ x: 0, y: 0 });
-    setZoom(1.0);
-  }, []);
+  };
 
   const regionPoints = layoutNodes.reduce((s, n) => s + (allocated[n.id] ?? 0), 0);
-
-  // Center of SVG viewport
-  const cx = containerSize.w / 2;
-  const cy = containerSize.h / 2;
-  // World→screen: screen = (world * zoom) + pan + center
-  const worldToScreen = (wx: number, wy: number) => ({
-    sx: wx * zoom + pan.x + cx,
-    sy: wy * zoom + pan.y + cy,
-  });
 
   return (
     <div className="flex flex-col gap-0 rounded border border-forge-border bg-forge-surface overflow-hidden">
@@ -293,20 +255,13 @@ export default function PassiveTreeGraph({
         </div>
       </div>
 
-      {/* SVG canvas — pan + zoom */}
+      {/* SVG canvas — static, auto-fit */}
       <div
         ref={containerRef}
         className="relative overflow-hidden select-none"
-        style={{ height: DISPLAY_H, cursor: dragging.current ? "grabbing" : "grab", background: "#0f0c09" }}
-        onMouseDown={handleMouseDown}
-        onMouseMove={handleMouseMove}
-        onMouseUp={handleMouseUp}
-        onMouseLeave={handleMouseUp}
-        onWheel={handleWheel}
-        onDoubleClick={handleSvgDoubleClick}
+        style={{ height: DISPLAY_H, background: "#0f0c09" }}
       >
         <svg
-          ref={svgRef}
           width={containerSize.w}
           height={containerSize.h}
           style={{ display: "block", position: "absolute", inset: 0 }}
@@ -374,7 +329,7 @@ export default function PassiveTreeGraph({
                 <line key={`e-${from}-${to}`}
                   x1={x1} y1={y1} x2={x2} y2={y2}
                   stroke={bothActive ? "#c8902a" : toUnlocked ? "#4a3c20" : "#1e1a12"}
-                  strokeWidth={bothActive ? 3 : 1.5}
+                  strokeWidth={bothActive ? Math.max(1.5, 3 * scale) : Math.max(0.5, 1.5 * scale)}
                   opacity={bothActive ? 0.9 : toUnlocked ? 0.55 : 0.18}
                   filter={bothActive ? "url(#line-glow)" : undefined}
                 />
@@ -386,8 +341,8 @@ export default function PassiveTreeGraph({
           <g>
             {layoutNodes.map(node => {
               const type = node.type ?? "core";
-              const baseR = NODE_R[type] ?? 18;
-              const r = baseR * Math.max(0.5, zoom);
+              const r = scaledR(NODE_R[type] ?? 18);
+              const outerR = r + Math.max(2, 4 * scale);
               const max = node.maxPoints ?? 1;
               const pts = allocated[node.id] ?? 0;
               const active = pts >= 1;
@@ -395,8 +350,8 @@ export default function PassiveTreeGraph({
               const { sx: scx, sy: scy } = worldToScreen(node.lx, node.ly);
 
               let fillGrad = active ? "url(#node-active)" : "url(#node-idle)";
-              if (type === "notable")       fillGrad = active ? "url(#node-notable-active)" : "url(#node-notable-idle)";
-              else if (type === "keystone") fillGrad = active ? "url(#node-keystone-active)" : "url(#node-keystone-idle)";
+              if (type === "notable")           fillGrad = active ? "url(#node-notable-active)" : "url(#node-notable-idle)";
+              else if (type === "keystone")     fillGrad = active ? "url(#node-keystone-active)" : "url(#node-keystone-idle)";
               else if (type === "mastery-gate") fillGrad = active ? "url(#node-gate-active)" : "url(#node-gate-idle)";
 
               const borderCol = active
@@ -406,14 +361,16 @@ export default function PassiveTreeGraph({
                   : "#1e1a12";
 
               const hexPts = hexPoints(r);
-              const outerPts = hexPoints(r + 4 * Math.max(0.5, zoom));
+              const outerPts = hexPoints(outerR);
+              const fontSize = Math.max(7, 11 * scale);
+              const labelSize = Math.max(6, 9 * scale);
 
               return (
                 <g key={node.id}
                   transform={`translate(${scx},${scy})`}
                   opacity={unlocked || active ? 1 : 0.22}
                   style={{ cursor: readOnly ? "default" : unlocked ? "pointer" : "not-allowed" }}
-                  onClick={e => handleNodeClick(node, e)}
+                  onClick={e => { e.stopPropagation(); handleNodeClick(node, e); }}
                   onMouseEnter={e => setTooltip({ node, screenX: e.clientX, screenY: e.clientY })}
                   onMouseMove={e => setTooltip(t => t ? { ...t, screenX: e.clientX, screenY: e.clientY } : null)}
                   onMouseLeave={() => setTooltip(null)}
@@ -423,11 +380,10 @@ export default function PassiveTreeGraph({
                   <polygon points={hexPts} fill={fillGrad}/>
                   <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
-                  {/* Point counter below node */}
                   <text
-                    y={r + Math.max(11, 14 * zoom)}
+                    y={outerR + fontSize * 0.3}
                     textAnchor="middle"
-                    fontSize={Math.max(8, 11 * zoom)}
+                    fontSize={fontSize}
                     fill={active ? "#d4a030" : unlocked ? "#6a5c40" : "#3a3020"}
                     fontFamily="monospace"
                     fontWeight="bold"
@@ -436,12 +392,11 @@ export default function PassiveTreeGraph({
                     {pts}/{max}
                   </text>
 
-                  {/* Name label for notables/keystones */}
-                  {node.name && (type === "notable" || type === "keystone") && zoom >= 0.65 && (
+                  {node.name && (type === "notable" || type === "keystone") && scale >= 0.35 && (
                     <text
-                      y={r + Math.max(24, 28 * zoom)}
+                      y={outerR + fontSize * 0.3 + labelSize + 2}
                       textAnchor="middle"
-                      fontSize={Math.max(6, 8 * zoom)}
+                      fontSize={labelSize}
                       fill={active ? "#e8c060" : unlocked ? "#8a7a58" : "#3a3020"}
                       fontFamily="serif"
                       fontStyle="italic"
@@ -503,10 +458,7 @@ export default function PassiveTreeGraph({
           );
         })()}
 
-        {/* Mini HUD */}
-        <div className="pointer-events-none absolute bottom-2 right-2 font-mono text-[9px] text-forge-dim/50">
-          {Math.round(zoom * 100)}% · drag to pan · scroll to zoom · dbl-click to reset
-        </div>
+
       </div>
 
       {/* Footer legend */}
