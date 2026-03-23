@@ -266,6 +266,43 @@ export function Divider({ label }: { label?: string }) {
 // Confirm Modal — used before destructive actions (delete)
 // ---------------------------------------------------------------------------
 
+// ---------------------------------------------------------------------------
+// ErrorMessage
+// ---------------------------------------------------------------------------
+
+export function ErrorMessage({
+  title = "Something went wrong",
+  message,
+  onRetry,
+}: {
+  title?: string;
+  message?: string;
+  onRetry?: () => void;
+}) {
+  return (
+    <div className="flex flex-col items-center justify-center gap-4 py-16 text-center">
+      <div className="w-12 h-12 rounded-full border border-forge-red/40 bg-forge-red/10 flex items-center justify-center">
+        <span className="text-forge-red text-xl font-bold">!</span>
+      </div>
+      <div>
+        <p className="font-display text-base font-semibold text-forge-red tracking-wide">{title}</p>
+        {message && (
+          <p className="font-body text-sm text-forge-muted mt-1">{message}</p>
+        )}
+      </div>
+      {onRetry && (
+        <Button variant="ghost" size="sm" onClick={onRetry}>
+          Try Again
+        </Button>
+      )}
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// ConfirmModal
+// ---------------------------------------------------------------------------
+
 export function ConfirmModal({
   title,
   message,

@@ -1,4 +1,4 @@
-import { useMemo, useState } from "react";
+import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import toast from "react-hot-toast";
 
@@ -559,6 +559,53 @@ export default function BuildPlannerPage() {
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
   const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
+  const [hasDraft, setHasDraft] = useState(false);
+
+  // ---------------------------------------------------------------------------
+  // Draft save / restore (only for new builds, not when editing an existing slug)
+  // ---------------------------------------------------------------------------
+  const DRAFT_KEY = "forge_draft_build";
+  const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Restore draft on mount for new builds only
+  useEffect(() => {
+    if (slug) return; // editing existing — don't overwrite
+    const raw = localStorage.getItem(DRAFT_KEY);
+    if (!raw) return;
+    try {
+      const draft = JSON.parse(raw);
+      if (draft.name) setName(draft.name);
+      if (draft.description) setDescription(draft.description);
+      if (draft.characterClass) setCharacterClass(draft.characterClass);
+      if (draft.mastery) setMastery(draft.mastery);
+      if (typeof draft.level === "number") setLevel(draft.level);
+      if (typeof draft.isSsf === "boolean") setIsSsf(draft.isSsf);
+      if (typeof draft.isHc === "boolean") setIsHc(draft.isHc);
+      if (typeof draft.isLadder === "boolean") setIsLadder(draft.isLadder);
+      if (typeof draft.isBudget === "boolean") setIsBudget(draft.isBudget);
+      if (Array.isArray(draft.draftSkills)) setDraftSkills(draft.draftSkills);
+      if (Array.isArray(draft.passiveTree)) setPassiveTree(draft.passiveTree);
+      setHasDraft(true);
+    } catch {
+      localStorage.removeItem(DRAFT_KEY);
+    }
+  }, [slug]);
+
+  // Auto-save draft to localStorage (debounced 1.5s) for new builds only
+  useEffect(() => {
+    if (slug) return;
+    if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
+    saveTimerRef.current = setTimeout(() => {
+      const draft = { name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree };
+      localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
+    }, 1500);
+    return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
+  }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree]);
+
+  function clearDraft() {
+    localStorage.removeItem(DRAFT_KEY);
+    setHasDraft(false);
+  }
 
   function getPassiveAllocMap(): AllocMap {
     const map: AllocMap = {};
@@ -683,6 +730,7 @@ export default function BuildPlannerPage() {
       return;
     }
 
+    clearDraft();
     toast.success("Build saved!");
     if (res.data?.slug) navigate(`/build/${res.data.slug}`);
   }
@@ -711,6 +759,42 @@ export default function BuildPlannerPage() {
   // ── Create form ──
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_360px] min-w-0">
+
+      {/* Draft / auth banners */}
+      {!user && (
+        <div className="xl:col-span-2 flex items-center justify-between gap-4 rounded border border-forge-amber/30 bg-forge-amber/8 px-4 py-3">
+          <div className="flex items-center gap-3">
+            <span className="text-forge-amber text-sm">⚠</span>
+            <span className="font-body text-sm text-forge-muted">
+              {hasDraft
+                ? "Draft restored from local storage. "
+                : "Your build is saved locally. "}
+              <span className="text-forge-amber">Sign in to save permanently and share with the community.</span>
+            </span>
+          </div>
+          <div className="flex items-center gap-2 flex-shrink-0">
+            {hasDraft && (
+              <Button variant="danger" size="sm" onClick={clearDraft}>
+                Clear Draft
+              </Button>
+            )}
+            <a href="/api/auth/discord">
+              <Button variant="primary" size="sm">Sign In</Button>
+            </a>
+          </div>
+        </div>
+      )}
+
+      {hasDraft && user && (
+        <div className="xl:col-span-2 flex items-center justify-between gap-4 rounded border border-forge-cyan/30 bg-forge-cyan/8 px-4 py-3">
+          <span className="font-body text-sm text-forge-muted">
+            <span className="text-forge-cyan">Draft restored.</span> Fill in the details and save.
+          </span>
+          <Button variant="ghost" size="sm" onClick={clearDraft}>
+            Clear Draft
+          </Button>
+        </div>
+      )}
 
       {/* ── LEFT: main form ── */}
       <div className="flex flex-col gap-6 min-w-0">

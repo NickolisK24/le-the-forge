@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { clsx } from "clsx";
 
-import { Panel, Button, Badge, Spinner, EmptyState, ConfirmModal } from "@/components/ui";
+import { Panel, Button, Badge, Spinner, EmptyState, ConfirmModal, ErrorMessage } from "@/components/ui";
 import {
   useProfile, useProfileBuilds,
   useProfileSessions, useDeleteBuild,
@@ -46,7 +46,7 @@ type Tab = "overview" | "builds" | "sessions";
 
 function BuildsTab() {
   const [page, setPage] = useState(1);
-  const { data: res, isLoading } = useProfileBuilds(page);
+  const { data: res, isLoading, isError, refetch } = useProfileBuilds(page);
   const deleteBuild = useDeleteBuild();
   const [deleteTarget, setDeleteTarget] = useState<{ slug: string; name: string } | null>(null);
 
@@ -60,6 +60,7 @@ function BuildsTab() {
   }
 
   if (isLoading) return <div className="flex justify-center py-12"><Spinner size={28} /></div>;
+  if (isError) return <ErrorMessage message="Could not load builds." onRetry={refetch} />;
 
   return (
     <div>
@@ -149,12 +150,13 @@ function BuildsTab() {
 
 function SessionsTab() {
   const [page, setPage] = useState(1);
-  const { data: res, isLoading } = useProfileSessions(page);
+  const { data: res, isLoading, isError, refetch } = useProfileSessions(page);
 
   const sessions = res?.data ?? [];
   const meta = res?.meta;
 
   if (isLoading) return <div className="flex justify-center py-12"><Spinner size={28} /></div>;
+  if (isError) return <ErrorMessage message="Could not load sessions." onRetry={refetch} />;
 
   return (
     <div>
@@ -283,7 +285,7 @@ function OverviewTab({ profileData }: { profileData: any }) {
 
 export default function UserProfilePage() {
   const { user } = useAuthStore();
-  const { data: profileRes, isLoading } = useProfile();
+  const { data: profileRes, isLoading, isError, refetch } = useProfile();
   const [tab, setTab] = useState<Tab>("overview");
 
   if (!user) return <Navigate to="/" replace />;
@@ -292,9 +294,11 @@ export default function UserProfilePage() {
     return <div className="flex items-center justify-center py-24"><Spinner size={32} /></div>;
   }
 
-  const profile = profileRes?.data;
-  if (!profile) return null;
+  if (isError || !profileRes?.data) {
+    return <ErrorMessage title="Could not load profile" message="Please try again." onRetry={refetch} />;
+  }
 
+  const profile = profileRes.data;
   const stats = profile.stats;
 
   const TABS: { id: Tab; label: string; count?: number }[] = [

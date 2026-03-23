@@ -182,13 +182,14 @@ Detailed technical documentation can be found in the docs folder.
 
 ## Core Documentation
 
+* docs/api_reference.md — full REST API reference with request/response schemas
 * docs/system_overview.md
 * docs/development_roadmap.md
 * docs/data_models.md
 * docs/engine_architecture.md
 * docs/simulation_design.md
 
-These documents explain the internal systems that power The Forge.
+Screenshots and demo assets are in `docs/screenshots/`. Run `./scripts/screenshot.sh` to capture new screenshots.
 
 ---
 
