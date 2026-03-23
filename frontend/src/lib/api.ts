@@ -260,3 +260,92 @@ export interface VersionInfo {
 export const versionApi = {
   get: () => get<VersionInfo>("/version"),
 };
+
+// ---------------------------------------------------------------------------
+// Simulation results
+// ---------------------------------------------------------------------------
+
+export interface DPSResult {
+  hit_damage: number;
+  average_hit: number;
+  dps: number;
+  effective_attack_speed: number;
+  crit_contribution_pct: number;
+  flat_damage_added: number;
+  bleed_dps: number;
+  ignite_dps: number;
+  poison_dps: number;
+  ailment_dps: number;
+  total_dps: number;
+}
+
+export interface MonteCarloDPS {
+  mean_dps: number;
+  min_dps: number;
+  max_dps: number;
+  std_dev: number;
+  percentile_25: number;
+  percentile_75: number;
+  n_simulations: number;
+}
+
+export interface StatUpgrade {
+  stat: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+}
+
+export interface DefenseResult {
+  max_health: number;
+  effective_hp: number;
+  armor_reduction_pct: number;
+  avg_resistance: number;
+  fire_res: number;
+  cold_res: number;
+  lightning_res: number;
+  void_res: number;
+  necrotic_res: number;
+  physical_res: number;
+  poison_res: number;
+  dodge_chance_pct: number;
+  block_chance_pct: number;
+  block_mitigation_pct: number;
+  endurance_pct: number;
+  endurance_threshold_pct: number;
+  crit_avoidance_pct: number;
+  glancing_blow_pct: number;
+  stun_avoidance_pct: number;
+  ward_buffer: number;
+  total_ehp: number;
+  ward_regen_per_second: number;
+  ward_decay_per_second: number;
+  net_ward_per_second: number;
+  leech_pct: number;
+  health_on_kill: number;
+  mana_on_kill: number;
+  ward_on_kill: number;
+  health_regen: number;
+  mana_regen: number;
+  survivability_score: number;
+  sustain_score: number;
+  weaknesses: string[];
+  strengths: string[];
+}
+
+export interface BuildSimulationResult {
+  primary_skill: string;
+  skill_level: number;
+  stats: Record<string, number>;
+  dps: DPSResult;
+  monte_carlo: MonteCarloDPS;
+  defense: DefenseResult;
+  stat_upgrades: StatUpgrade[];
+  seed: number | null;
+}
+
+export const simulateApi = {
+  build: (slug: string) =>
+    post<BuildSimulationResult>(`/builds/${slug}/simulate`),
+};
+

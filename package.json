@@ -66,5 +66,8 @@
         }
       ]
     }
+  },
+  "dependencies": {
+    "recharts": "^3.8.0"
   }
 }

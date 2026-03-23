@@ -1,6 +1,6 @@
 import { useMemo, useState, useEffect, useRef } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
@@ -8,7 +8,9 @@ import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
-import { versionApi } from "@/lib/api";
+import { versionApi, simulateApi, type BuildSimulationResult } from "@/lib/api";
+import { PRESETS } from "@/data/presets";
+import SimulationDashboard from "./SimulationDashboard";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
@@ -155,6 +157,48 @@ function BuildSummary({ build }: { build: Build }) {
     staleTime: 5 * 60 * 1000,
     retry: false,
   });
+
+  const [simResult, setSimResult] = useState<BuildSimulationResult | null>(null);
+  const [showDashboard, setShowDashboard] = useState(false);
+  const simulateMutation = useMutation({
+    mutationFn: () => simulateApi.build(build.slug),
+    onSuccess: (res) => {
+      if (res.data) {
+        setSimResult(res.data);
+        setShowDashboard(true);
+      } else {
+        toast.error("Simulation returned no data");
+      }
+    },
+    onError: () => toast.error("Simulation failed — backend may be unavailable"),
+  });
+
+  function handleExport() {
+    const payload = {
+      name: build.name,
+      description: build.description,
+      character_class: build.character_class,
+      mastery: build.mastery,
+      level: build.level,
+      patch_version: build.patch_version,
+      cycle: build.cycle,
+      is_ssf: build.is_ssf,
+      is_hc: build.is_hc,
+      is_ladder_viable: build.is_ladder_viable,
+      is_budget: build.is_budget,
+      passive_tree: build.passive_tree,
+      skills: build.skills.map((s) => ({
+        skill_name: s.skill_name,
+        slot: s.slot,
+        points_allocated: s.points_allocated,
+        spec_tree: s.spec_tree,
+      })),
+      gear: build.gear,
+    };
+    navigator.clipboard.writeText(JSON.stringify(payload, null, 2))
+      .then(() => toast.success("Build JSON copied to clipboard"))
+      .catch(() => toast.error("Clipboard write failed"));
+  }
 
   // Edit mode state — initialised from the existing build
   const [editing, setEditing] = useState(false);
@@ -323,6 +367,30 @@ function BuildSummary({ build }: { build: Build }) {
               )}
             </div>
 
+            {/* Action row */}
+            <div className="flex flex-wrap gap-2">
+              <Button
+                variant="primary"
+                size="sm"
+                onClick={() => simulateMutation.mutate()}
+                disabled={simulateMutation.isPending}
+              >
+                {simulateMutation.isPending ? "Analyzing…" : "⚡ Analyze Build"}
+              </Button>
+              {simResult && (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => setShowDashboard((v) => !v)}
+                >
+                  {showDashboard ? "Hide Results" : "Show Results"}
+                </Button>
+              )}
+              <Button variant="ghost" size="sm" onClick={handleExport}>
+                ↓ Export JSON
+              </Button>
+            </div>
+
             <div className="flex flex-wrap gap-2">
               <Badge variant="class">{build.character_class}</Badge>
               <Badge variant="mastery">{build.mastery}</Badge>
@@ -440,6 +508,13 @@ function BuildSummary({ build }: { build: Build }) {
             onClose={() => setTreeModal(null)}
             readOnly
           />
+        )}
+
+        {/* Simulation results dashboard */}
+        {showDashboard && simResult && (
+          <div className="mt-2">
+            <SimulationDashboard result={simResult} />
+          </div>
         )}
       </div>
     );
@@ -582,6 +657,60 @@ export default function BuildPlannerPage() {
   const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
+
+  // Import / preset modal state
+  const [showImport, setShowImport] = useState(false);
+  const [importText, setImportText] = useState("");
+  const [importError, setImportError] = useState("");
+  const [showPresets, setShowPresets] = useState(false);
+
+  function handleImport() {
+    setImportError("");
+    try {
+      const parsed = JSON.parse(importText);
+      if (parsed.name) setName(parsed.name);
+      if (parsed.description) setDescription(parsed.description);
+      if (parsed.character_class) handleClassChange(parsed.character_class);
+      if (parsed.mastery) setMastery(parsed.mastery);
+      if (typeof parsed.level === "number") setLevel(parsed.level);
+      if (typeof parsed.is_ssf === "boolean") setIsSsf(parsed.is_ssf);
+      if (typeof parsed.is_hc === "boolean") setIsHc(parsed.is_hc);
+      if (typeof parsed.is_ladder_viable === "boolean") setIsLadder(parsed.is_ladder_viable);
+      if (typeof parsed.is_budget === "boolean") setIsBudget(parsed.is_budget);
+      if (Array.isArray(parsed.passive_tree)) setPassiveTree(parsed.passive_tree);
+      if (Array.isArray(parsed.skills)) {
+        setDraftSkills(parsed.skills.map((s: any) => ({
+          skill_name: s.skill_name,
+          slot: s.slot ?? 1,
+          points_allocated: s.points_allocated ?? 20,
+          spec_tree: Array.isArray(s.spec_tree) ? s.spec_tree : [],
+        })));
+      }
+      toast.success("Build imported successfully");
+      setShowImport(false);
+      setImportText("");
+    } catch {
+      setImportError("Invalid JSON — paste the full exported build JSON");
+    }
+  }
+
+  function handleLoadPreset(presetId: string) {
+    const preset = PRESETS.find((p) => p.id === presetId);
+    if (!preset) return;
+    handleClassChange(preset.character_class);
+    setMastery(preset.mastery);
+    setName(`${preset.label} (Template)`);
+    setDescription(preset.description);
+    setLevel(preset.level);
+    setIsSsf(preset.tags.is_ssf ?? false);
+    setIsHc(preset.tags.is_hc ?? false);
+    setIsLadder(preset.tags.is_ladder_viable ?? false);
+    setIsBudget(preset.tags.is_budget ?? false);
+    setDraftSkills([{ skill_name: preset.primary_skill, slot: 1, points_allocated: 20, spec_tree: [] }]);
+    setPassiveTree([]);
+    setShowPresets(false);
+    toast.success(`Loaded preset: ${preset.label}`);
+  }
 
   // ---------------------------------------------------------------------------
   // Draft save / restore (only for new builds, not when editing an existing slug)
@@ -815,6 +944,57 @@ export default function BuildPlannerPage() {
           <Button variant="ghost" size="sm" onClick={clearDraft}>
             Clear Draft
           </Button>
+        </div>
+      )}
+
+      {/* Quick start: presets + import */}
+      <div className="xl:col-span-2 flex items-center gap-3">
+        <Button variant="outline" size="sm" onClick={() => setShowPresets((v) => !v)}>
+          📋 Load Preset
+        </Button>
+        <Button variant="ghost" size="sm" onClick={() => { setShowImport((v) => !v); setImportError(""); }}>
+          ↑ Import JSON
+        </Button>
+      </div>
+
+      {showPresets && (
+        <div className="xl:col-span-2 rounded border border-forge-border bg-forge-surface2 p-4">
+          <div className="font-mono text-xs uppercase tracking-widest text-forge-muted mb-3">Select a preset</div>
+          <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-4">
+            {PRESETS.map((p) => (
+              <button
+                key={p.id}
+                onClick={() => handleLoadPreset(p.id)}
+                className="text-left rounded border border-forge-border bg-forge-surface hover:border-forge-amber/60 hover:bg-forge-amber/5 p-3 transition-colors"
+              >
+                <div className="font-display text-sm font-bold text-forge-amber">{p.label}</div>
+                <div className="font-mono text-[10px] text-forge-cyan mt-0.5">{p.character_class} · {p.mastery}</div>
+                <p className="font-body text-xs text-forge-dim mt-1 leading-snug line-clamp-2">{p.description}</p>
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {showImport && (
+        <div className="xl:col-span-2 rounded border border-forge-border bg-forge-surface2 p-4">
+          <div className="font-mono text-xs uppercase tracking-widest text-forge-muted mb-2">Paste exported build JSON</div>
+          <textarea
+            value={importText}
+            onChange={(e) => { setImportText(e.target.value); setImportError(""); }}
+            rows={6}
+            placeholder='{ "name": "My Build", "character_class": "Mage", ... }'
+            className="w-full rounded border border-forge-border bg-forge-surface px-3 py-2 font-mono text-xs text-forge-text placeholder:text-forge-dim focus:border-forge-amber/60 focus:outline-none resize-y"
+          />
+          {importError && <p className="font-mono text-xs text-forge-red mt-1">{importError}</p>}
+          <div className="flex gap-2 mt-2">
+            <Button variant="primary" size="sm" onClick={handleImport} disabled={!importText.trim()}>
+              Import
+            </Button>
+            <Button variant="ghost" size="sm" onClick={() => { setShowImport(false); setImportError(""); setImportText(""); }}>
+              Cancel
+            </Button>
+          </div>
         </div>
       )}
 

@@ -1350,6 +1350,23 @@ export default function CraftSimulatorPage() {
           </div>
 
           {/* Optimal path table */}
+          {optPath.length > 0 && (
+            <div className="rounded border border-forge-amber/40 bg-forge-amber/8 px-4 py-3 flex items-start gap-4">
+              <span className="text-xl">⚡</span>
+              <div className="min-w-0">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted mb-0.5">Smart Advisor · Your Next Action</div>
+                <div className="font-display text-sm font-bold text-forge-amber capitalize">
+                  {optPath[0].action.replace(/_/g, " ")} — {optPath[0].affix}
+                </div>
+                {optPath[0].note && (
+                  <p className="font-body text-xs text-forge-dim mt-0.5">{optPath[0].note}</p>
+                )}
+                <div className="font-mono text-[10px] text-forge-muted mt-1">
+                  Risk: {optPath[0].risk_pct.toFixed(1)}% · Survival after step: {optPath[0].cumulative_survival_pct.toFixed(1)}%
+                </div>
+              </div>
+            </div>
+          )}
           <OptimalPathPanel steps={optPath} />
 
           {/* Strategy comparison */}
