@@ -21,7 +21,7 @@ export default function AppLayout() {
   }
 
   return (
-    <div className="min-h-screen bg-forge-bg text-forge-text font-body">
+    <div className="min-h-screen bg-forge-bg text-forge-text font-body overflow-x-hidden">
       {/* Nav */}
       <nav
         className="sticky top-0 z-50 border-b border-forge-border bg-forge-surface/95 backdrop-blur-md"
