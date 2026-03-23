@@ -39,102 +39,25 @@ const REGION_LABELS: Record<string, string> = {
   falconer:      "Falconer",
 };
 
-const RING_SPACING = 120; // px between depth rings
 const DISPLAY_H = 560;    // fixed display area height
 
 // ---------------------------------------------------------------------------
-// Radial layout
+// Layout — use real game x,y, centered around the canvas midpoint
 // ---------------------------------------------------------------------------
 interface LayoutNode extends PassiveNode {
-  lx: number; // layout x (centered at 0,0)
-  ly: number; // layout y (centered at 0,0)
+  lx: number; // world x (origin at canvas center)
+  ly: number; // world y (origin at canvas center)
 }
 
-function computeRadialLayout(nodes: PassiveNode[]): LayoutNode[] {
+function toLayoutNodes(nodes: PassiveNode[]): LayoutNode[] {
   if (nodes.length === 0) return [];
-
-  // Build child map
-  const children = new Map<number | null, number[]>();
-  const byId = new Map(nodes.map(n => [n.id, n]));
-
-  for (const n of nodes) {
-    const pid = n.parentId ?? null;
-    if (!children.has(pid)) children.set(pid, []);
-    children.get(pid)!.push(n.id);
-  }
-
-  // BFS depths
-  const depth = new Map<number, number>();
-  const roots = (children.get(null) ?? []).filter(id => byId.has(id));
-  const queue: { id: number; d: number }[] = roots.map(id => ({ id, d: 0 }));
-  while (queue.length) {
-    const { id, d } = queue.shift()!;
-    if (depth.has(id)) continue;
-    depth.set(id, d);
-    for (const child of children.get(id) ?? []) {
-      if (!depth.has(child)) queue.push({ id: child, d: d + 1 });
-    }
-  }
-
-  // Orphan nodes (no path from root): assign depth = max+1
-  const maxD = Math.max(0, ...depth.values());
-  for (const n of nodes) {
-    if (!depth.has(n.id)) depth.set(n.id, maxD + 1);
-  }
-
-  // Subtree leaf count for angular sector allocation
-  function leafCount(id: number): number {
-    const kids = (children.get(id) ?? []).filter(c => byId.has(c));
-    if (kids.length === 0) return 1;
-    return kids.reduce((s, c) => s + leafCount(c), 0);
-  }
-
-  const angles = new Map<number, number>();
-
-  function assignAngles(id: number, startA: number, endA: number) {
-    angles.set(id, (startA + endA) / 2);
-    const kids = (children.get(id) ?? []).filter(c => byId.has(c));
-    if (kids.length === 0) return;
-    const sizes = kids.map(leafCount);
-    const total = sizes.reduce((s, v) => s + v, 0);
-    let cur = startA;
-    for (let i = 0; i < kids.length; i++) {
-      const span = (sizes[i] / total) * (endA - startA);
-      assignAngles(kids[i], cur, cur + span);
-      cur += span;
-    }
-  }
-
-  if (roots.length === 0) {
-    // Fallback: circular for all nodes with no root
-    nodes.forEach((n, i) => {
-      angles.set(n.id, (i / nodes.length) * 2 * Math.PI);
-    });
-  } else if (roots.length === 1) {
-    assignAngles(roots[0], -Math.PI, Math.PI);
-    angles.set(roots[0], -Math.PI / 2); // root at top
-  } else {
-    const sizes = roots.map(leafCount);
-    const total = sizes.reduce((s, v) => s + v, 0);
-    let cur = -Math.PI;
-    for (let i = 0; i < roots.length; i++) {
-      const span = (sizes[i] / total) * 2 * Math.PI;
-      assignAngles(roots[i], cur, cur + span);
-      cur += span;
-    }
-  }
-
-  // Convert to x,y — root at center, depth determines radius
-  return nodes.map(n => {
-    const d = depth.get(n.id) ?? 0;
-    const a = angles.get(n.id) ?? 0;
-    const r = d === 0 ? 0 : RING_SPACING * d;
-    return {
-      ...n,
-      lx: Math.cos(a) * r,
-      ly: Math.sin(a) * r,
-    };
-  });
+  // Data x,y are already in screen-space pixels (canvas ~1170×601).
+  // Compute canvas center from bounding box so the tree is centered at (0,0).
+  const xs = nodes.map(n => n.x);
+  const ys = nodes.map(n => n.y);
+  const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
+  const midY = (Math.min(...ys) + Math.max(...ys)) / 2;
+  return nodes.map(n => ({ ...n, lx: n.x - midX, ly: n.y - midY }));
 }
 
 // ---------------------------------------------------------------------------
@@ -178,7 +101,7 @@ export default function PassiveTreeGraph({
     [regionMap, activeRegion]
   );
 
-  const layoutNodes = useMemo(() => computeRadialLayout(rawNodes), [rawNodes]);
+  const layoutNodes = useMemo(() => toLayoutNodes(rawNodes), [rawNodes]);
 
   const byId = useMemo(
     () => new Map(layoutNodes.map(n => [n.id, n])),
@@ -349,18 +272,7 @@ export default function PassiveTreeGraph({
           {/* Background */}
           <rect width={containerSize.w} height={containerSize.h} fill="url(#bg-grad)" />
 
-          {/* Subtle concentric rings for visual depth */}
-          {[1, 2, 3, 4, 5, 6].map(ring => (
-            <circle
-              key={`ring-${ring}`}
-              cx={cx + pan.x}
-              cy={cy + pan.y}
-              r={ring * RING_SPACING * zoom}
-              fill="none"
-              stroke="#1e1c18"
-              strokeWidth={0.5}
-            />
-          ))}
+
 
           {/* Edges */}
           <g>
