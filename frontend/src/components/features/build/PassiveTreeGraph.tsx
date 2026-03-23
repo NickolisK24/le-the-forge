@@ -2,6 +2,7 @@ import { useState, useMemo, useRef, useCallback, useEffect } from "react";
 import { clsx } from "clsx";
 import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
+import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -39,6 +40,9 @@ const REGION_LABELS: Record<string, string> = {
   falconer:      "Falconer",
 };
 
+// Maximum passive points per class (Last Epoch: 1 per level, levels 1-100)
+const MAX_PASSIVE_POINTS = 113; // ~113 by end-game with all sources
+
 const DISPLAY_H = 560;    // fixed display area height
 
 // ---------------------------------------------------------------------------
@@ -71,6 +75,8 @@ interface Props {
   allocated: AllocMap;
   onAllocate: (nodeId: number, points: number) => void;
   readOnly?: boolean;
+  /** Total passive points the character has earned (defaults to MAX_PASSIVE_POINTS) */
+  totalPassivePoints?: number;
 }
 
 interface TooltipInfo {
@@ -88,9 +94,12 @@ export default function PassiveTreeGraph({
   allocated,
   onAllocate,
   readOnly = false,
+  totalPassivePoints = MAX_PASSIVE_POINTS,
 }: Props) {
-  const regionMap = PASSIVE_TREES[characterClass.toLowerCase()] ?? {};
+  const cls = characterClass.toLowerCase();
+  const regionMap = PASSIVE_TREES[cls] ?? {};
   const regionKeys = Object.keys(regionMap);
+  const classMeta = PASSIVE_TREE_META[cls] ?? {};
 
   const masteryKey = mastery.toLowerCase().replace(/\s+/g, "-");
   const defaultRegion = regionKeys.includes(masteryKey) ? masteryKey : (regionKeys[0] ?? "base");
@@ -107,6 +116,26 @@ export default function PassiveTreeGraph({
     () => new Map(layoutNodes.map(n => [n.id, n])),
     [layoutNodes]
   );
+
+  // Build edge list for the current region: [{fromId, toId}]
+  // An edge exists for every parentId in PASSIVE_TREE_META for nodes in this region
+  const edges = useMemo(() => {
+    const result: Array<{ from: number; to: number }> = [];
+    for (const node of layoutNodes) {
+      const meta = classMeta[node.id];
+      if (!meta) continue;
+      for (const pid of meta.parentIds) {
+        if (byId.has(pid)) {
+          result.push({ from: pid, to: node.id });
+        }
+      }
+    }
+    return result;
+  }, [layoutNodes, byId, classMeta]);
+
+  // Total points spent across ALL regions
+  const totalSpent = Object.values(allocated).reduce((s, v) => s + v, 0);
+  const pointsLeft = totalPassivePoints - totalSpent;
 
   // Pan / zoom state
   const [pan, setPan] = useState({ x: 0, y: 0 });
@@ -163,25 +192,39 @@ export default function PassiveTreeGraph({
     setZoom(z => Math.max(0.3, Math.min(3.0, z * factor)));
   }, []);
 
+  /**
+   * A node is unlocked if:
+   * 1. It has no parent requirements (free), OR
+   *    ALL parents have at least 1 point allocated
+   * 2. The total points spent in the tree >= masteryRequirement
+   */
   function isUnlocked(nodeId: number): boolean {
-    const node = byId.get(nodeId);
-    if (!node || node.parentId == null) return true;
-    const parent = byId.get(node.parentId);
-    if (!parent) return true;
-    return (allocated[parent.id] ?? 0) >= 1 && isUnlocked(parent.id);
+    const meta = classMeta[nodeId];
+    if (!meta) return true;
+    // Check mastery point threshold
+    if (meta.masteryRequirement > 0 && totalSpent < meta.masteryRequirement) return false;
+    // Check parent requirements — all parents must be allocated
+    if (meta.parentIds.length === 0) return true;
+    return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
   }
 
   function handleNodeClick(node: LayoutNode, e: React.MouseEvent) {
     e.stopPropagation();
-    if (readOnly || !isUnlocked(node.id)) return;
+    if (readOnly) return;
     const max = node.maxPoints ?? 1;
     const current = allocated[node.id] ?? 0;
+
     if (current >= max) {
-      const hasAllocChild = layoutNodes.some(
-        n => n.parentId === node.id && (allocated[n.id] ?? 0) > 0
-      );
+      // Refund: only allowed if no allocated child depends on this node
+      const meta = classMeta[node.id];
+      const hasAllocChild = layoutNodes.some(n => {
+        const nm = classMeta[n.id];
+        return nm?.parentIds.includes(node.id) && (allocated[n.id] ?? 0) > 0;
+      });
       if (!hasAllocChild) onAllocate(node.id, current - 1);
     } else {
+      if (!isUnlocked(node.id)) return;
+      if (pointsLeft <= 0) return; // no points remaining
       onAllocate(node.id, current + 1);
     }
   }
@@ -192,7 +235,6 @@ export default function PassiveTreeGraph({
     setZoom(1.0);
   }, []);
 
-  const totalPoints = Object.values(allocated).reduce((s, v) => s + v, 0);
   const regionPoints = layoutNodes.reduce((s, n) => s + (allocated[n.id] ?? 0), 0);
 
   // Center of SVG viewport
@@ -206,6 +248,24 @@ export default function PassiveTreeGraph({
 
   return (
     <div className="flex flex-col gap-0 rounded border border-forge-border bg-forge-surface overflow-hidden">
+
+      {/* Point budget bar */}
+      <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-3 py-1.5 shrink-0">
+        <div className="flex items-center gap-3 font-mono text-[10px]">
+          <span className="text-forge-dim uppercase tracking-widest">Passive Points</span>
+          <span className={clsx("font-bold", totalSpent > 0 ? "text-forge-amber" : "text-forge-dim")}>
+            {totalSpent} spent
+          </span>
+          <span className="text-forge-dim">·</span>
+          <span className={clsx("font-bold", pointsLeft < 10 ? "text-red-400" : "text-forge-text")}>
+            {pointsLeft} remaining
+          </span>
+          <span className="text-forge-dim">/ {totalPassivePoints}</span>
+        </div>
+        {!readOnly && pointsLeft === 0 && (
+          <span className="font-mono text-[9px] text-red-400/80">All points spent</span>
+        )}
+      </div>
 
       {/* Region tabs */}
       <div className="flex items-stretch border-b border-forge-border bg-forge-surface2 overflow-x-auto shrink-0">
@@ -230,8 +290,7 @@ export default function PassiveTreeGraph({
           );
         })}
         <div className="ml-auto flex items-center px-3 font-mono text-[10px] text-forge-dim whitespace-nowrap">
-          {totalPoints > 0 && <span className="text-forge-amber mr-2">{totalPoints} pts total</span>}
-          {layoutNodes.length} nodes
+          {layoutNodes.length} nodes · {edges.length} connections
         </div>
       </div>
 
@@ -272,27 +331,25 @@ export default function PassiveTreeGraph({
           {/* Background */}
           <rect width={containerSize.w} height={containerSize.h} fill="url(#bg-grad)" />
 
-
-
-          {/* Edges */}
+          {/* Edges — rendered from full edge list extracted from game metadata */}
           <g>
-            {layoutNodes.map(node => {
-              if (node.parentId == null) return null;
-              const parent = byId.get(node.parentId);
-              if (!parent) return null;
+            {edges.map(({ from, to }) => {
+              const fromNode = byId.get(from);
+              const toNode = byId.get(to);
+              if (!fromNode || !toNode) return null;
               const bothActive =
-                (allocated[node.id] ?? 0) >= 1 &&
-                (allocated[parent.id] ?? 0) >= 1;
-              const unlocked = isUnlocked(node.id);
-              const { sx: x1, sy: y1 } = worldToScreen(parent.lx, parent.ly);
-              const { sx: x2, sy: y2 } = worldToScreen(node.lx, node.ly);
+                (allocated[from] ?? 0) >= 1 &&
+                (allocated[to] ?? 0) >= 1;
+              const toUnlocked = isUnlocked(to);
+              const { sx: x1, sy: y1 } = worldToScreen(fromNode.lx, fromNode.ly);
+              const { sx: x2, sy: y2 } = worldToScreen(toNode.lx, toNode.ly);
               return (
                 <line
-                  key={`e-${node.id}`}
+                  key={`e-${from}-${to}`}
                   x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke={bothActive ? "#c8902a" : unlocked ? "#2e2a20" : "#181614"}
-                  strokeWidth={bothActive ? 2.5 : 1}
-                  opacity={bothActive ? 1 : unlocked ? 0.7 : 0.25}
+                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#3a3020" : "#181614"}
+                  strokeWidth={bothActive ? 2.5 : 1.5}
+                  opacity={bothActive ? 1 : toUnlocked ? 0.6 : 0.2}
                 />
               );
             })}
@@ -417,14 +474,17 @@ export default function PassiveTreeGraph({
           const n = tooltip.node;
           const max = n.maxPoints ?? 1;
           const pts = allocated[n.id] ?? 0;
+          const nodeMeta = classMeta[n.id];
+          const mr = nodeMeta?.masteryRequirement ?? 0;
+          const locked = !isUnlocked(n.id);
           const containerRect = containerRef.current?.getBoundingClientRect();
           if (!containerRect) return null;
           const tx = tooltip.screenX - containerRect.left + 16;
           const ty = tooltip.screenY - containerRect.top - 12;
           return (
             <div
-              className="pointer-events-none absolute z-20 w-56 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
-              style={{ left: Math.min(tx, containerSize.w - 240), top: Math.max(4, ty) }}
+              className="pointer-events-none absolute z-20 w-64 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
+              style={{ left: Math.min(tx, containerSize.w - 272), top: Math.max(4, ty) }}
             >
               <div className="font-display text-sm font-bold text-forge-amber leading-tight">
                 {n.name || "Node"}
@@ -433,13 +493,28 @@ export default function PassiveTreeGraph({
                 {n.type} · {pts}/{max} pts
               </div>
               {n.description && (
-                <div className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90">
-                  {n.description}
+                <div className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">
+                  {n.description.replace(/\s{2,}/g, "\n")}
                 </div>
               )}
-              {!readOnly && !isUnlocked(n.id) && (
-                <div className="mt-1.5 font-mono text-[10px] text-red-400/80">
-                  ⚠ Requires parent node
+              {mr > 0 && (
+                <div className={clsx(
+                  "mt-1.5 font-mono text-[10px]",
+                  totalSpent >= mr ? "text-forge-dim" : "text-yellow-400/80"
+                )}>
+                  ⬡ Requires {mr} total points ({totalSpent}/{mr})
+                </div>
+              )}
+              {!readOnly && locked && (
+                <div className="mt-1 font-mono text-[10px] text-red-400/80">
+                  ⚠ {mr > 0 && totalSpent < mr
+                    ? `Invest ${mr - totalSpent} more point${mr - totalSpent > 1 ? "s" : ""} first`
+                    : "Requires parent node(s)"}
+                </div>
+              )}
+              {!readOnly && !locked && pts < max && pointsLeft === 0 && (
+                <div className="mt-1 font-mono text-[10px] text-red-400/80">
+                  No passive points remaining
                 </div>
               )}
             </div>

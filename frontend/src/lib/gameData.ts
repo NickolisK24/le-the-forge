@@ -261,7 +261,7 @@ export interface PassiveNode {
   regionId: string;
   /** Maximum points that can be invested in this node */
   maxPoints?: number;
-  /** Parent node ID — required connection for prerequisite enforcement */
+  /** Primary parent node ID (kept for backwards compatibility) */
   parentId?: number;
   /** In-game node description / stat text */
   description?: string;
