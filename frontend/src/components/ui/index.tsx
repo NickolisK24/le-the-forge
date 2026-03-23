@@ -35,7 +35,7 @@ export function Panel({ title, action, children, className }: PanelProps) {
           {action && <div>{action}</div>}
         </div>
       )}
-      <div className="p-4 flex flex-col flex-1 overflow-hidden">{children}</div>
+      <div className="p-4 flex flex-col flex-1 overflow-hidden min-w-0">{children}</div>
     </div>
   );
 }

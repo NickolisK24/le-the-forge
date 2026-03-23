@@ -101,7 +101,7 @@ export default function PassiveProgressBar({
       </button>
 
       {!collapsed && (
-        <div className="p-2">
+        <div className="p-2 min-w-0 overflow-hidden">
           {history.length === 0 ? (
             <p className="py-3 text-center font-mono text-[10px] text-forge-dim/50">
               Start allocating passives — each step will appear here in order.
@@ -111,7 +111,7 @@ export default function PassiveProgressBar({
               {/* Scrollable step list */}
               <div
                 ref={scrollRef}
-                className="flex gap-1.5 overflow-x-auto pb-1 scroll-smooth min-w-0"
+                className="flex gap-1.5 overflow-x-auto pb-1 scroll-smooth max-w-full"
                 style={{ scrollbarWidth: "thin" }}
               >
                 {history.map((nodeId, i) => {

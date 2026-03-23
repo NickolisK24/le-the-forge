@@ -286,7 +286,7 @@ function BuildSummary({ build }: { build: Build }) {
   // ── View mode ──
   if (!editing) {
     return (
-      <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr]">
+      <div className="grid gap-6 lg:grid-cols-[1.3fr_0.7fr] min-w-0">
         <Panel title="Overview">
           <div className="space-y-4">
             <div className="flex items-start justify-between gap-4">
@@ -425,8 +425,8 @@ function BuildSummary({ build }: { build: Build }) {
 
   // ── Edit mode ──
   return (
-    <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
-      <div className="flex flex-col gap-6">
+    <div className="grid gap-6 xl:grid-cols-[1fr_360px] min-w-0">
+      <div className="flex flex-col gap-6 min-w-0">
 
         <Panel title="Edit Build">
           <div className="grid gap-4 md:grid-cols-2">
@@ -511,7 +511,7 @@ function BuildSummary({ build }: { build: Build }) {
         </Panel>
       </div>
 
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 min-w-0">
         <Panel title="Save Changes">
           <div className="flex flex-col gap-3">
             <Button onClick={handleSave} disabled={updateBuild.isPending || !name.trim()} className="w-full">
@@ -710,10 +710,10 @@ export default function BuildPlannerPage() {
 
   // ── Create form ──
   return (
-    <div className="grid gap-6 xl:grid-cols-[1fr_360px]">
+    <div className="grid gap-6 xl:grid-cols-[1fr_360px] min-w-0">
 
       {/* ── LEFT: main form ── */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 min-w-0">
 
         {/* Identity */}
         <Panel title="Build Identity">
@@ -857,7 +857,7 @@ export default function BuildPlannerPage() {
       </div>
 
       {/* ── RIGHT: preview + save ── */}
-      <div className="flex flex-col gap-6">
+      <div className="flex flex-col gap-6 min-w-0">
         <Panel title="Preview">
           <div className="space-y-3">
             <div className="font-display text-2xl text-forge-amber">{name || "Untitled Build"}</div>

@@ -128,7 +128,7 @@ export default function AppLayout() {
       </nav>
 
       {/* Page content */}
-      <main className="mx-auto max-w-7xl px-6 py-8">
+      <main className="mx-auto max-w-7xl px-6 py-8 overflow-x-hidden">
         <Outlet />
       </main>
     </div>
