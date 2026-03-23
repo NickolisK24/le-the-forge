@@ -1,47 +1,70 @@
 #!/usr/bin/env python3
 """
-extract_images.py — Extract passive tree node icons from the Last Epoch Unity export.
+extract_images.py — Extract passive tree node icons from Last Epoch game files.
+
+Uses UnityPy to read Unity binary asset files (.assets, .bundle) directly,
+finds every Sprite whose name matches an icon ID from char-tree-layout.json
+(e.g. "a-r-292"), and exports it as a PNG to:
+    frontend/public/assets/passive-icons/<iconId>.png
+
+Install dependency first:
+    pip install unitypy Pillow
 
 Usage:
-    python3 scripts/extract_images.py --export /path/to/LE_Export
+    # Point at the game's Data directory (most common):
+    python3 scripts/extract_images.py --data "/path/to/Last Epoch_Data"
 
-What it does:
-  1. Reads char-tree-layout.json to collect all unique icon IDs (e.g. "a-r-292")
-  2. Searches the Unity export for matching sprite/texture files
-  3. Copies + renames them to frontend/public/assets/passive-icons/<iconId>.png
-     (or .webp / whatever format the export contains)
+    # macOS Steam default:
+    python3 scripts/extract_images.py \\
+        --data "$HOME/Library/Application Support/Steam/steamapps/common/Last Epoch/Last Epoch.app/Contents/Data"
 
-The Unity export path can be a local directory or a mounted network share, e.g.:
-    /Volumes/DevShare/LE_Export
-    /mnt/devshare/LE_Export
+    # Windows Steam default:
+    python3 scripts/extract_images.py \\
+        --data "C:/Program Files (x86)/Steam/steamapps/common/Last Epoch/Last Epoch_Data"
 
-After running, the frontend can load icons via:
-    /assets/passive-icons/a-r-292.png
+    # You can also point at the Unity project export if it contains .assets files:
+    python3 scripts/extract_images.py --data /Volumes/DevShare/LE_Export
+
+    # Dry-run (list what would be extracted without writing files):
+    python3 scripts/extract_images.py --data "..." --dry-run
 """
 
 import argparse
 import json
-import os
-import shutil
 import sys
 from pathlib import Path
 
 # ---------------------------------------------------------------------------
 # Paths relative to repo root
 # ---------------------------------------------------------------------------
-REPO_ROOT     = Path(__file__).resolve().parent.parent
-LAYOUT_JSON   = REPO_ROOT / "frontend/src/data/raw/char-tree-layout.json"
-OUT_DIR       = REPO_ROOT / "frontend/public/assets/passive-icons"
+REPO_ROOT   = Path(__file__).resolve().parent.parent
+LAYOUT_JSON = REPO_ROOT / "frontend/src/data/raw/char-tree-layout.json"
+OUT_DIR     = REPO_ROOT / "frontend/public/assets/passive-icons"
 
-# Image extensions to search for (in priority order)
-IMAGE_EXTS = [".png", ".webp", ".jpg", ".jpeg", ".tga", ".bmp"]
+# Asset file extensions UnityPy can read
+ASSET_EXTS = {".assets", ".bundle", ".resS", ""}   # "" catches extension-less files
+
+
+def check_deps() -> None:
+    missing = []
+    try:
+        import UnityPy  # noqa: F401
+    except ImportError:
+        missing.append("unitypy")
+    try:
+        from PIL import Image  # noqa: F401
+    except ImportError:
+        missing.append("Pillow")
+    if missing:
+        print("ERROR: Missing required packages. Install with:")
+        print(f"  pip install {' '.join(missing)}")
+        sys.exit(1)
 
 
 def load_icon_ids() -> set[str]:
     """Collect every unique icon ID referenced in char-tree-layout.json."""
     with open(LAYOUT_JSON) as f:
         data = json.load(f)
-
     icons: set[str] = set()
     for tree_data in data.values():
         for region in tree_data.get("nodes", []):
@@ -53,126 +76,113 @@ def load_icon_ids() -> set[str]:
     return icons
 
 
-def build_search_index(export_root: Path) -> dict[str, Path]:
-    """
-    Walk the export directory and build a mapping of stem → file path.
-    The stem is the filename without extension, lowercased.
-    Only files whose extension is in IMAGE_EXTS are indexed.
-    """
-    print(f"Indexing image files under: {export_root}")
-    print("(This may take a minute for large exports...)")
-
-    index: dict[str, Path] = {}
-    count = 0
-    for dirpath, _, filenames in os.walk(export_root):
-        for fname in filenames:
-            p = Path(dirpath) / fname
-            if p.suffix.lower() in IMAGE_EXTS:
-                # Store by lowercased stem — we'll search for the icon ID within it
-                stem = p.stem.lower()
-                # Keep first match (shallowest wins)
-                if stem not in index:
-                    index[stem] = p
-                count += 1
-
-    print(f"Indexed {count} image files ({len(index)} unique stems)")
-    return index
+def iter_asset_files(data_root: Path):
+    """Yield all Unity asset/bundle files under data_root."""
+    for p in data_root.rglob("*"):
+        if p.is_file() and p.suffix.lower() in ASSET_EXTS:
+            yield p
 
 
-def find_icon(icon_id: str, index: dict[str, Path]) -> Path | None:
-    """
-    Find the best matching file for a given icon ID like "a-r-292".
+def run(data_path: str, dry_run: bool) -> None:
+    import UnityPy
 
-    Unity export naming varies by tool (AssetRipper, UnityPy, etc.).
-    Try several candidate stem patterns before giving up.
-    """
-    numeric = icon_id.split("-")[-1]   # "292"
-    candidates = [
-        icon_id.lower(),               # "a-r-292"
-        icon_id.replace("-", "_").lower(),  # "a_r_292"
-        f"passive_{numeric}",
-        f"passiveicon_{numeric}",
-        f"icon_{numeric}",
-        f"node_{numeric}",
-        numeric,                        # just "292"
-    ]
-    for c in candidates:
-        if c in index:
-            return index[c]
-
-    # Partial match fallback: look for any stem that ends with the numeric part
-    suffix = f"_{numeric}"
-    for stem, path in index.items():
-        if stem.endswith(suffix):
-            return path
-
-    return None
-
-
-def run(export_path: str, dry_run: bool) -> None:
-    export_root = Path(export_path).resolve()
-    if not export_root.exists():
-        print(f"ERROR: Export path does not exist: {export_root}", file=sys.stderr)
+    data_root = Path(data_path).resolve()
+    if not data_root.exists():
+        print(f"ERROR: Path does not exist: {data_root}", file=sys.stderr)
         sys.exit(1)
 
     icon_ids = load_icon_ids()
-    print(f"Found {len(icon_ids)} unique icon IDs in char-tree-layout.json")
+    print(f"Loaded {len(icon_ids)} icon IDs from char-tree-layout.json")
+    print(f"Scanning: {data_root}")
+    print()
 
     if not dry_run:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    index = build_search_index(export_root)
+    found:   dict[str, bool] = {}   # icon_id -> True once saved
+    scanned_files = 0
 
-    found = 0
-    missing = []
+    for asset_file in iter_asset_files(data_root):
+        # Skip if all icons already found
+        remaining = icon_ids - set(found.keys())
+        if not remaining:
+            break
 
-    for icon_id in sorted(icon_ids):
-        src = find_icon(icon_id, index)
-        if src is None:
-            missing.append(icon_id)
+        try:
+            env = UnityPy.load(str(asset_file))
+        except Exception:
             continue
 
-        dest = OUT_DIR / f"{icon_id}{src.suffix.lower()}"
+        file_had_match = False
+        for obj in env.objects:
+            if obj.type.name != "Sprite":
+                continue
+            try:
+                data = obj.read()
+            except Exception:
+                continue
 
-        if dry_run:
-            print(f"  [DRY] {icon_id} → {src.name}")
-        else:
-            shutil.copy2(src, dest)
-            print(f"  COPY  {icon_id} → {dest.relative_to(REPO_ROOT)}")
+            name = getattr(data, "name", "") or ""
+            if name not in remaining:
+                continue
 
-        found += 1
+            # Found a match — extract the image
+            file_had_match = True
+            try:
+                img = data.image
+                dest = OUT_DIR / f"{name}.png"
+                if dry_run:
+                    print(f"  [DRY] {name}  ←  {asset_file.name}")
+                else:
+                    img.save(dest)
+                    print(f"  SAVE  {name}.png")
+                found[name] = True
+            except Exception as exc:
+                print(f"  WARN  {name}: could not extract image — {exc}")
 
+        scanned_files += 1
+        if file_had_match:
+            print(f"  ↳ matched in {asset_file.relative_to(data_root)}")
+
+    # Summary
     print()
-    print(f"Results: {found} found, {len(missing)} missing")
+    print(f"Scanned {scanned_files} asset files")
+    print(f"Extracted: {len(found)} / {len(icon_ids)}")
 
+    missing = sorted(icon_ids - set(found.keys()))
     if missing:
-        print(f"\nMissing icon IDs ({len(missing)}):")
+        print(f"\nMissing ({len(missing)} icons not found in any asset file):")
         for m in missing:
             print(f"  {m}")
-
         missing_log = REPO_ROOT / "scripts/missing_icons.txt"
         if not dry_run:
             missing_log.write_text("\n".join(missing) + "\n")
-            print(f"\nMissing list saved to: {missing_log.relative_to(REPO_ROOT)}")
+            print(f"\nSaved missing list → {missing_log.relative_to(REPO_ROOT)}")
+    else:
+        print("\nAll icons extracted successfully!")
 
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Extract passive tree node icons from a Last Epoch Unity export."
+        description="Extract Last Epoch passive tree icons using UnityPy.",
+        formatter_class=argparse.RawDescriptionHelpFormatter,
+        epilog=__doc__,
     )
     parser.add_argument(
-        "--export", "-e",
+        "--data", "-d",
         required=True,
         metavar="PATH",
-        help="Path to the root of the Unity export (e.g. /Volumes/DevShare/LE_Export)",
+        help="Path to Last Epoch game data directory (e.g. 'Last Epoch_Data') "
+             "or Unity project export containing .assets/.bundle files",
     )
     parser.add_argument(
         "--dry-run", "-n",
         action="store_true",
-        help="Print what would be copied without actually copying anything",
+        help="List matching sprites without writing any files",
     )
     args = parser.parse_args()
-    run(args.export, args.dry_run)
+    check_deps()
+    run(args.data, args.dry_run)
 
 
 if __name__ == "__main__":
