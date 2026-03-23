@@ -399,7 +399,7 @@ function BuildSummary({ build }: { build: Build }) {
             readOnly
           />
           {(build.passive_tree?.length ?? 0) > 0 && (
-            <div className="mt-3">
+            <div className="mt-3 min-w-0 overflow-hidden">
               <PassiveProgressBar
                 history={build.passive_tree ?? []}
                 characterClass={build.character_class}
@@ -501,7 +501,7 @@ function BuildSummary({ build }: { build: Build }) {
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
           />
-          <div className="mt-3">
+          <div className="mt-3 min-w-0 overflow-hidden">
             <PassiveProgressBar
               history={passiveTree}
               characterClass={characterClass}
@@ -846,7 +846,7 @@ export default function BuildPlannerPage() {
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
           />
-          <div className="mt-3">
+          <div className="mt-3 min-w-0 overflow-hidden">
             <PassiveProgressBar
               history={passiveTree}
               characterClass={characterClass}

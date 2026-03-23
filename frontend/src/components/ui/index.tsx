@@ -23,7 +23,7 @@ export function Panel({ title, action, children, className }: PanelProps) {
   return (
     <div
       className={clsx(
-        "rounded border border-forge-border bg-forge-surface overflow-hidden flex flex-col",
+        "rounded border border-forge-border bg-forge-surface overflow-hidden flex flex-col min-w-0",
         className
       )}
     >

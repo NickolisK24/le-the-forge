@@ -74,7 +74,7 @@ export default function PassiveProgressBar({
   if (history.length === 0 && readOnly) return null;
 
   return (
-    <div className="rounded border border-forge-border bg-forge-surface overflow-hidden">
+    <div className="rounded border border-forge-border bg-forge-surface overflow-hidden min-w-0">
       {/* Header */}
       <button
         className="flex w-full items-center justify-between px-3 py-1.5 bg-forge-surface2 hover:bg-forge-surface transition-colors"
@@ -111,7 +111,7 @@ export default function PassiveProgressBar({
               {/* Scrollable step list */}
               <div
                 ref={scrollRef}
-                className="flex gap-1.5 overflow-x-auto pb-1 scroll-smooth"
+                className="flex gap-1.5 overflow-x-auto pb-1 scroll-smooth min-w-0"
                 style={{ scrollbarWidth: "thin" }}
               >
                 {history.map((nodeId, i) => {
