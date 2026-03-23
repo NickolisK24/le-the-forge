@@ -149,6 +149,13 @@ function BuildSummary({ build }: { build: Build }) {
   const updateBuild = useUpdateBuild();
   const isOwner = user && build.author?.id === user.id;
 
+  const { data: versionRes } = useQuery({
+    queryKey: ["version"],
+    queryFn: () => versionApi.get(),
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+
   // Edit mode state — initialised from the existing build
   const [editing, setEditing] = useState(false);
   const [name, setName] = useState(build.name);
@@ -560,13 +567,6 @@ export default function BuildPlannerPage() {
   const { data, isLoading } = useBuild(slug ?? "");
   const createBuild = useCreateBuild();
   const { user } = useAuthStore();
-
-  const { data: versionRes } = useQuery({
-    queryKey: ["version"],
-    queryFn: () => versionApi.get(),
-    staleTime: 5 * 60 * 1000,
-    retry: false,
-  });
 
   // Form state
   const [name, setName] = useState("New Forge Build");
