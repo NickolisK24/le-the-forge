@@ -10,6 +10,9 @@ a build first.
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
 from app.engines.stat_engine import BuildStats
 from app.utils.exceptions import SimulationError, BuildValidationError
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 def aggregate_stats(
@@ -34,21 +37,31 @@ def simulate_combat(
     skill_name: str,
     skill_level: int = 20,
     n_simulations: int = 10_000,
+    seed: int | None = None,
 ) -> dict:
     """Calculate DPS + Monte Carlo from a stats dict and skill."""
+    log.info(
+        "simulate_combat",
+        skill=skill_name,
+        skill_level=skill_level,
+        n=n_simulations,
+        seed=seed,
+    )
     stats = _build_stats_from_dict(stats_dict)
 
     dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations)
+    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed)
 
     return {
         "dps": dps_result.to_dict(),
         "monte_carlo": mc_result.to_dict(),
+        "seed": seed,
     }
 
 
 def simulate_defense(stats_dict: dict) -> dict:
     """Calculate EHP and survivability from a stats dict."""
+    log.info("simulate_defense")
     stats = _build_stats_from_dict(stats_dict)
     defense_result = defense_engine.calculate_defense(stats)
     return defense_result.to_dict()
@@ -61,6 +74,7 @@ def simulate_optimize(
     top_n: int = 5,
 ) -> list[dict]:
     """Rank stat upgrades by DPS/EHP gain from a stats dict."""
+    log.info("simulate_optimize", skill=skill_name, top_n=top_n)
     stats = _build_stats_from_dict(stats_dict)
     upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=top_n)
     return [u.to_dict() for u in upgrades]
@@ -75,11 +89,20 @@ def simulate_full_build(
     skill_name: str,
     skill_level: int = 20,
     n_simulations: int = 5_000,
+    seed: int | None = None,
 ) -> dict:
     """
     Full pipeline: stats → combat → defense → optimize.
     Equivalent to build_analysis_service.analyze_build() but from raw data.
     """
+    log.info(
+        "simulate_full_build",
+        character_class=character_class,
+        mastery=mastery,
+        skill=skill_name,
+        n=n_simulations,
+        seed=seed,
+    )
     stats = aggregate_stats(
         character_class=character_class,
         mastery=mastery,
@@ -89,7 +112,7 @@ def simulate_full_build(
     )
 
     dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations)
+    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed)
     defense_result = defense_engine.calculate_defense(stats)
     upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=5)
 
@@ -101,6 +124,7 @@ def simulate_full_build(
         "monte_carlo": mc_result.to_dict(),
         "defense": defense_result.to_dict(),
         "stat_upgrades": [u.to_dict() for u in upgrades],
+        "seed": seed,
     }
 
 

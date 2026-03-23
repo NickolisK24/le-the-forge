@@ -26,10 +26,10 @@ class StatsInputSchema(Schema):
         unknown = EXCLUDE
 
     # Offense — base
-    base_damage = fields.Float(load_default=0.0)
-    attack_speed = fields.Float(load_default=1.0)
-    crit_chance = fields.Float(load_default=0.05)
-    crit_multiplier = fields.Float(load_default=1.5)
+    base_damage = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    attack_speed = fields.Float(load_default=1.0, validate=validate.Range(min=0.1, max=20.0))
+    crit_chance = fields.Float(load_default=0.05, validate=validate.Range(min=0.0, max=1.0))
+    crit_multiplier = fields.Float(load_default=1.5, validate=validate.Range(min=1.0, max=20.0))
 
     # Offense — percentage damage pools
     spell_damage_pct = fields.Float(load_default=0.0)
@@ -53,7 +53,7 @@ class StatsInputSchema(Schema):
     throwing_attack_speed = fields.Float(load_default=0.0)
     crit_chance_pct = fields.Float(load_default=0.0)
     crit_multiplier_pct = fields.Float(load_default=0.0)
-    more_damage_multiplier = fields.Float(load_default=1.0)
+    more_damage_multiplier = fields.Float(load_default=1.0, validate=validate.Range(min=0.01, max=100.0))
 
     # Offense — flat added damage
     added_melee_physical = fields.Float(load_default=0.0)
@@ -95,28 +95,28 @@ class StatsInputSchema(Schema):
     minion_melee_damage_pct = fields.Float(load_default=0.0)
 
     # Defense
-    max_health = fields.Float(load_default=0.0)
-    health_pct = fields.Float(load_default=0.0)
-    hybrid_health = fields.Float(load_default=0.0)
-    armour = fields.Float(load_default=0.0)
-    dodge_rating = fields.Float(load_default=0.0)
-    block_chance = fields.Float(load_default=0.0)
-    block_effectiveness = fields.Float(load_default=0.0)
-    endurance = fields.Float(load_default=0.0)
-    endurance_threshold = fields.Float(load_default=0.0)
-    stun_avoidance = fields.Float(load_default=0.0)
-    crit_avoidance = fields.Float(load_default=0.0)
-    glancing_blow = fields.Float(load_default=0.0)
-    ward = fields.Float(load_default=0.0)
-    ward_retention_pct = fields.Float(load_default=0.0)
-    ward_regen = fields.Float(load_default=0.0)
-    fire_res = fields.Float(load_default=0.0)
-    cold_res = fields.Float(load_default=0.0)
-    lightning_res = fields.Float(load_default=0.0)
-    void_res = fields.Float(load_default=0.0)
-    necrotic_res = fields.Float(load_default=0.0)
-    poison_res = fields.Float(load_default=0.0)
-    physical_res = fields.Float(load_default=0.0)
+    max_health = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    health_pct = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    hybrid_health = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    armour = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    dodge_rating = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    block_chance = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    block_effectiveness = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    endurance = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    endurance_threshold = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    stun_avoidance = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    crit_avoidance = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    glancing_blow = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    ward = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    ward_retention_pct = fields.Float(load_default=0.0, validate=validate.Range(min=0, max=100))
+    ward_regen = fields.Float(load_default=0.0, validate=validate.Range(min=0))
+    fire_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    cold_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    lightning_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    void_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    necrotic_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    poison_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
+    physical_res = fields.Float(load_default=0.0, validate=validate.Range(min=-100, max=75))
 
     # Resources / Sustain
     max_mana = fields.Float(load_default=0.0)
@@ -178,6 +178,7 @@ class SimulateCombatSchema(Schema):
     n_simulations = fields.Int(
         validate=validate.Range(min=100, max=50_000), load_default=10_000
     )
+    seed = fields.Int(load_default=None, allow_none=True)
 
 
 class SimulateDefenseSchema(Schema):
@@ -212,6 +213,7 @@ class SimulateBuildSchema(Schema):
     n_simulations = fields.Int(
         validate=validate.Range(min=100, max=50_000), load_default=5_000
     )
+    seed = fields.Int(load_default=None, allow_none=True)
 
     @validates("mastery")
     def validate_mastery(self, value, **kwargs):

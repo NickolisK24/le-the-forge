@@ -18,6 +18,9 @@ from dataclasses import dataclass, asdict
 from typing import Optional
 
 from app.engines.stat_engine import BuildStats
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 from app.game_data.game_data_loader import get_enemy_profile
 
 
@@ -306,8 +309,11 @@ def calculate_dps(
 
     Includes flat added damage, weapon-type bonuses, and ailment/DoT DPS.
     """
+    log.debug("calculate_dps", skill=skill_name, skill_level=skill_level)
+
     skill_def = SKILL_STATS.get(skill_name)
     if not skill_def:
+        log.warning("calculate_dps.unknown_skill", skill=skill_name)
         return DPSResult(0, 0, 0, 1.0, 0)
 
     # Base damage scaled by level
@@ -366,16 +372,31 @@ def monte_carlo_dps(
     skill_name: str,
     skill_level: int = 20,
     n: int = 10_000,
+    seed: Optional[int] = None,
 ) -> MonteCarloDPS:
     """
     Simulate n attacks and measure DPS variance from random crit outcomes.
 
     Each attack independently rolls whether it crits. This captures the
     variance in short burst windows even if mean DPS is the same.
+
+    Pass ``seed`` for a fully reproducible run — useful for regression tests
+    and deterministic comparison between build variants.
     """
+    log.info(
+        "monte_carlo_dps.start",
+        skill=skill_name,
+        skill_level=skill_level,
+        n=n,
+        seed=seed,
+    )
+
     skill_def = SKILL_STATS.get(skill_name)
     if not skill_def:
+        log.warning("monte_carlo_dps.unknown_skill", skill=skill_name)
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
+
+    rng = random.Random(seed)
 
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
     flat_added = _sum_flat_damage(stats, skill_def)
@@ -391,7 +412,7 @@ def monte_carlo_dps(
 
     damages = []
     for _ in range(n):
-        if random.random() < stats.crit_chance:
+        if rng.random() < stats.crit_chance:
             dmg = hit_damage * stats.crit_multiplier
         else:
             dmg = hit_damage
@@ -402,7 +423,7 @@ def monte_carlo_dps(
     variance = sum((d - mean) ** 2 for d in damages) / n
     std = variance ** 0.5
 
-    return MonteCarloDPS(
+    result = MonteCarloDPS(
         mean_dps=round(mean),
         min_dps=round(damages[0]),
         max_dps=round(damages[-1]),
@@ -411,6 +432,8 @@ def monte_carlo_dps(
         percentile_75=round(damages[3 * n // 4]),
         n_simulations=n,
     )
+    log.info("monte_carlo_dps.end", skill=skill_name, mean_dps=result.mean_dps, seed=seed)
+    return result
 
 
 # ---------------------------------------------------------------------------

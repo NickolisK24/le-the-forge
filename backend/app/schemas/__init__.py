@@ -221,6 +221,7 @@ class CraftPredictSchema(Schema):
     n_simulations = fields.Int(
         validate=validate.Range(min=100, max=50_000), load_default=10_000
     )
+    seed = fields.Int(load_default=None, allow_none=True)
 
 
 class CraftSimulateSchema(Schema):
@@ -230,5 +231,6 @@ class CraftSimulateSchema(Schema):
     n_simulations = fields.Int(
         validate=validate.Range(min=100, max=50_000), load_default=1_000
     )
+    seed = fields.Int(load_default=None, allow_none=True)
 
 

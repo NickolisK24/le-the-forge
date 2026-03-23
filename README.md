@@ -43,6 +43,46 @@ Metrics include:
 * damage scaling analysis
 * defensive layer evaluation
 
+**Example output — Bone Curse Lich (Acolyte), level 90:**
+
+```json
+{
+  "primary_skill": "Bone Curse",
+  "skill_level": 20,
+  "dps": {
+    "hit_damage": 4821,
+    "average_hit": 6340,
+    "dps": 9732,
+    "effective_attack_speed": 1.54,
+    "crit_contribution_pct": 31,
+    "total_dps": 11480
+  },
+  "monte_carlo": {
+    "mean_dps": 9718,
+    "min_dps": 6230,
+    "max_dps": 16447,
+    "std_dev": 2841.3,
+    "percentile_25": 6230,
+    "percentile_75": 16447,
+    "n_simulations": 10000
+  },
+  "defense": {
+    "max_health": 1840,
+    "effective_hp": 6120,
+    "armor_reduction_pct": 28,
+    "avg_resistance": 62,
+    "survivability_score": 71,
+    "weaknesses": ["low physical resistance", "no leech"],
+    "strengths": ["capped fire resistance", "large ward buffer"]
+  },
+  "stat_upgrades": [
+    { "stat": "necrotic_damage_pct", "label": "+15% Necrotic Damage", "dps_gain_pct": 8.4, "ehp_gain_pct": 0.0 },
+    { "stat": "crit_multiplier_pct", "label": "+30% Crit Multiplier",  "dps_gain_pct": 6.1, "ehp_gain_pct": 0.0 },
+    { "stat": "max_health",          "label": "+200 Health",           "dps_gain_pct": 0.0, "ehp_gain_pct": 4.9 }
+  ]
+}
+```
+
 ---
 
 ## Crafting Outcome Predictor
@@ -56,17 +96,44 @@ Features include:
 * optimal crafting strategies
 * Monte Carlo simulation across thousands of attempts
 
+**Example output — Rare Helmet, 28 FP, two T2 prefixes:**
+
+```json
+{
+  "optimal_path": [
+    { "action": "upgrade_affix", "affix": "% increased Health", "from_tier": 2, "to_tier": 4, "fp_cost": 4 },
+    { "action": "upgrade_affix", "affix": "% increased Armour",  "from_tier": 2, "to_tier": 4, "fp_cost": 4 },
+    { "action": "seal_affix",    "affix": "% increased Health",  "fp_cost": 8 }
+  ],
+  "simulation_result": {
+    "completion_chance": 0.8120,
+    "step_survival_curve": [1.0, 0.9430, 0.8120],
+    "n_simulations": 10000
+  },
+  "strategy_comparison": [
+    { "name": "Direct Upgrade",  "completion_chance": 0.8120, "fp_efficiency": "high" },
+    { "name": "Seal First",      "completion_chance": 0.6340, "fp_efficiency": "medium" }
+  ]
+}
+```
+
 ---
 
 ## Stat Optimization Engine
 
 Determines which stats provide the greatest performance improvements.
 
-Example outputs:
+**Example output — Marksman Rogue, Detonating Arrow:**
 
-* most valuable offensive upgrades
-* defensive weaknesses
-* stat scaling efficiency
+```json
+[
+  { "stat": "bow_damage_pct",        "label": "+20% Bow Damage",        "dps_gain_pct": 11.2, "ehp_gain_pct": 0.0 },
+  { "stat": "physical_damage_pct",   "label": "+20% Physical Damage",   "dps_gain_pct": 9.8,  "ehp_gain_pct": 0.0 },
+  { "stat": "crit_chance_pct",       "label": "+5% Critical Strike",    "dps_gain_pct": 7.3,  "ehp_gain_pct": 0.0 },
+  { "stat": "max_health",            "label": "+200 Health",             "dps_gain_pct": 0.0,  "ehp_gain_pct": 6.1 },
+  { "stat": "dodge_rating",          "label": "+150 Dodge Rating",       "dps_gain_pct": 0.0,  "ehp_gain_pct": 3.4 }
+]
+```
 
 ---
 

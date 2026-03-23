@@ -7,6 +7,7 @@ from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
 
 from config import config
+from app.utils.logging import configure_logging
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -29,6 +30,8 @@ def create_app(env: str = "development") -> Flask:
         origins=[app.config["FRONTEND_URL"]],
         supports_credentials=True,
     )
+
+    configure_logging(app)
 
     # Register blueprints
     from app.routes.auth import auth_bp

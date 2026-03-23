@@ -79,11 +79,12 @@ def predict():
         for s in path
     ]
     sim_result = simulate_sequence(
-        forge_potential, sim_steps, n_simulations
+        forge_potential, sim_steps, n_simulations, seed=data.get("seed")
     ) if sim_steps else {
         "completion_chance": 1.0,
         "step_survival_curve": [],
         "n_simulations": 0,
+        "seed": data.get("seed"),
     }
 
     strategies = craft_service.compare_strategies(affixes, forge_potential)
@@ -111,6 +112,7 @@ def simulate():
         forge_potential=data["forge_potential"],
         proposed_steps=data["steps"],
         n_simulations=data["n_simulations"],
+        seed=data.get("seed"),
     )
     return ok(data=result)
 

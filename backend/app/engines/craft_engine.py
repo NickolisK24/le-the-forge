@@ -26,6 +26,10 @@ from app.engines.affix_engine import (
     is_max_tier
 )
 
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
+
 
 # ---------------------------------------------------------------------------
 # Constants
@@ -82,12 +86,27 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
     # 2. Roll FP cost
     cost = roll_fp_cost(action)
     if item["forge_potential"] < cost:
+        log.warning(
+            "craft_action.insufficient_fp",
+            action=action,
+            needed=cost,
+            available=item["forge_potential"],
+        )
         return {
             "success": False,
             "outcome": "error",
             "message": f"Insufficient FP. Need {cost}, have {item['forge_potential']}.",
             "item": item
         }
+
+    log.info(
+        "craft_action.apply",
+        action=action,
+        affix=affix_name,
+        target_tier=target_tier,
+        fp_before=item["forge_potential"],
+        fp_cost=cost,
+    )
 
     # 3. Apply craft effect
     roll = random.uniform(0, 100)
@@ -101,6 +120,8 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
 
     # 6. Return result
     outcome = "success"  # No risk mechanics in modern Last Epoch
+
+    log.info("craft_action.success", action=action, fp_remaining=fp_remaining)
 
     return {
         "success": True,
@@ -232,14 +253,28 @@ def simulate_sequence(
     forge_potential: int,
     proposed_steps: list,
     n_simulations: int = 10_000,
+    seed: Optional[int] = None,
 ) -> dict:
     """
     Monte Carlo simulation of a proposed action sequence for modern Last Epoch.
     No instability or fractures — just FP exhaustion and completion rates.
 
+    Pass ``seed`` for a fully reproducible run — identical inputs + seed always
+    produce identical output, which is required for regression testing and
+    stable comparison between crafting strategies.
+
     Returns:
-      completion_chance, step_survival_curve, n_simulations
+      completion_chance, step_survival_curve, n_simulations, seed
     """
+    log.info(
+        "simulate_sequence.start",
+        forge_potential=forge_potential,
+        steps=len(proposed_steps),
+        n=n_simulations,
+        seed=seed,
+    )
+
+    rng = random.Random(seed)
     n = n_simulations
     fp_exhausted_at_step = [0] * len(proposed_steps)
     completed_all = 0
@@ -272,10 +307,19 @@ def simulate_sequence(
         cumulative_exhaustion += count
         step_survival.append(round(1.0 - cumulative_exhaustion / n, 4))
 
+    completion_chance = round(completed_all / n, 4)
+    log.info(
+        "simulate_sequence.end",
+        completion_chance=completion_chance,
+        n=n,
+        seed=seed,
+    )
+
     return {
-        "completion_chance": round(completed_all / n, 4),
+        "completion_chance": completion_chance,
         "step_survival_curve": step_survival,
         "n_simulations": n,
+        "seed": seed,
     }
 
 

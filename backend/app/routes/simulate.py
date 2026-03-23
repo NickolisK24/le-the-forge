@@ -80,6 +80,7 @@ def simulate_combat():
         skill_name=data["skill_name"],
         skill_level=data.get("skill_level", 20),
         n_simulations=data.get("n_simulations", 10_000),
+        seed=data.get("seed"),
     )
     return ok(data=result)
 
@@ -134,5 +135,6 @@ def simulate_build():
         skill_name=data["skill_name"],
         skill_level=data.get("skill_level", 20),
         n_simulations=data.get("n_simulations", 5_000),
+        seed=data.get("seed"),
     )
     return ok(data=result)

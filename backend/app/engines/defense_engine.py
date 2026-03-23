@@ -22,6 +22,9 @@ Pure module — no DB, no HTTP.
 from dataclasses import dataclass, asdict
 
 from app.engines.stat_engine import BuildStats
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 RES_CAP = 75                  # Last Epoch resistance cap
@@ -78,6 +81,12 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
     Includes block, endurance, crit avoidance, glancing blow, ward buffer,
     physical/poison resistance, and sustain metrics.
     """
+    log.debug(
+        "calculate_defense",
+        health=stats.max_health,
+        armour=stats.armour,
+        ward=stats.ward,
+    )
     # Armour mitigation
     armor_reduction = stats.armour / (stats.armour + 1000)
 
