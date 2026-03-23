@@ -4137,3 +4137,9 @@ export const SKILL_TREES: Record<string, N[]> = {
     {id:28,x:1429.2,y:148.2,type:"notable",name:"Skills.Skill_bl5st_28_Name",maxPoints:1,parentId:20},
   ],
 };
+
+/** Look up a skill tree by skill name (case-insensitive, spaces → underscores). */
+export function getSkillTree(skillName: string): PassiveNode[] {
+  const key = skillName.toLowerCase().replace(/\s+/g, "_");
+  return SKILL_TREES[key] ?? [];
+}
