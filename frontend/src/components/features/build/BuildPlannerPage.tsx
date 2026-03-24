@@ -14,7 +14,7 @@ import SimulationDashboard from "./SimulationDashboard";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
-import { getSkillTree } from "@/data/skillTrees";
+import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
 const MAX_SKILLS = 5;
@@ -63,6 +63,7 @@ interface DraftSkill {
 function SkillRow({
   skill, onRemove, onPoints, onOpenTree,
 }: { skill: DraftSkill; onRemove: () => void; onPoints: (p: number) => void; onOpenTree: () => void }) {
+  const hasTree = hasSkillTree(skill.skill_name);
   return (
     <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
       <span className="flex-1 font-body text-sm text-forge-text truncate">{skill.skill_name}</span>
@@ -78,8 +79,8 @@ function SkillRow({
       />
       <button
         onClick={onOpenTree}
-        className="text-forge-dim hover:text-forge-amber transition-colors font-mono text-xs leading-none"
-        title="View skill tree"
+        className={`font-mono text-xs leading-none transition-colors ${hasTree ? "text-forge-amber hover:text-amber-300" : "text-forge-dim hover:text-forge-muted"}`}
+        title={hasTree ? "View skill tree" : "No tree data for this skill yet"}
       >🌿</button>
       <button
         onClick={onRemove}
@@ -458,7 +459,7 @@ function BuildSummary({ build }: { build: Build }) {
                         {totalNodes > 0 && <span className="ml-2 text-forge-amber">· {totalNodes} tree nodes</span>}
                       </div>
                     </div>
-                    {nodes.length > 0 && (
+                    {nodes.length > 0 ? (
                       <Button
                         variant="outline"
                         size="sm"
@@ -466,6 +467,8 @@ function BuildSummary({ build }: { build: Build }) {
                       >
                         🌿 View Skill Tree
                       </Button>
+                    ) : (
+                      <span className="font-mono text-[10px] text-forge-dim italic">No tree data yet</span>
                     )}
                   </div>
                 );

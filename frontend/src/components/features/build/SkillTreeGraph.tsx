@@ -1,5 +1,6 @@
 import { useState } from "react";
 import type { SkillNode } from "@/data/skillTrees";
+import { cleanNodeName } from "@/data/skillTrees";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -13,12 +14,14 @@ const NODE_R: Record<SkillNode["type"], number> = {
   core: 14,
   notable: 20,
   keystone: 28,
+  "mastery-gate": 22,  // skill entry node
 };
 
-const COLORS = {
-  core: { idle: "#3a3020", active: "#c8902a", border: "#5a4a28" },
-  notable: { idle: "#2a2a3a", active: "#7b5ea7", border: "#4a3a7a" },
-  keystone: { idle: "#1a2a1a", active: "#2e7d32", border: "#3a6a3a" },
+const COLORS: Record<SkillNode["type"], { idle: string; active: string; border: string }> = {
+  core:           { idle: "#3a3020", active: "#c8902a", border: "#5a4a28" },
+  notable:        { idle: "#2a2a3a", active: "#7b5ea7", border: "#4a3a7a" },
+  keystone:       { idle: "#1a2a1a", active: "#2e7d32", border: "#3a6a3a" },
+  "mastery-gate": { idle: "#3a1a08", active: "#d06020", border: "#8a4010" },
 } as const;
 
 // ---------------------------------------------------------------------------
@@ -131,6 +134,17 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                 strokeWidth={node.type === "keystone" ? 2.5 : 1.5}
                 opacity={unlocked || active ? 1 : 0.4}
               />
+              {/* Outer ring for mastery-gate (skill entry node) */}
+              {node.type === "mastery-gate" && (
+                <circle
+                  r={r + 5}
+                  fill="none"
+                  stroke={active ? "#e8b040" : "#8a4010"}
+                  strokeWidth={1.5}
+                  strokeDasharray={active ? "none" : "4 2"}
+                  opacity={0.8}
+                />
+              )}
               {/* Diamond shape for keystones */}
               {node.type === "keystone" && (
                 <polygon
@@ -142,7 +156,7 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                 />
               )}
               {/* Point counter */}
-              {node.maxPoints > 1 && (
+              {(node.maxPoints ?? 1) > 1 && (
                 <text
                   textAnchor="middle"
                   dominantBaseline="central"
@@ -154,8 +168,21 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                   {pts}/{node.maxPoints}
                 </text>
               )}
-              {/* Label for named nodes */}
-              {node.name && (
+              {/* Play icon on inactive entry node */}
+              {node.type === "mastery-gate" && !active && (
+                <text
+                  textAnchor="middle"
+                  dominantBaseline="central"
+                  fontSize={r * 0.7}
+                  fill="#d06020"
+                  fontFamily="monospace"
+                  fontWeight="bold"
+                >
+                  ▶
+                </text>
+              )}
+              {/* Labels for named non-entry nodes */}
+              {node.name && node.type !== "mastery-gate" && (
                 <text
                   y={r + 12 * scale}
                   textAnchor="middle"
@@ -163,11 +190,11 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                   fill={active ? "#e8b040" : "#888"}
                   fontFamily="monospace"
                 >
-                  {node.name}
+                  {cleanNodeName(node.name)}
                 </text>
               )}
               {/* Hover tooltip */}
-              {isHov && node.name && (
+              {isHov && (
                 <g>
                   <rect
                     x={-55 * scale}
@@ -186,7 +213,9 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                     fill="#e8b040"
                     fontFamily="monospace"
                   >
-                    {node.name}
+                    {node.type === "mastery-gate"
+                      ? "Skill Entry — allocate first"
+                      : cleanNodeName(node.name)}
                   </text>
                 </g>
               )}
@@ -197,6 +226,10 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
 
       {/* Legend */}
       <div className="flex items-center gap-4 border-t border-forge-border px-3 py-1.5 text-[10px] font-mono text-forge-dim">
+        <span className="flex items-center gap-1.5">
+          <span className="inline-block h-3 w-3 rounded-full bg-[#3a1a08] border border-[#8a4010]" />
+          Entry
+        </span>
         <span className="flex items-center gap-1.5">
           <span className="inline-block h-3 w-3 rounded-full bg-[#3a3020] border border-[#5a4a28]" />
           Core
@@ -210,7 +243,7 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
           Keystone
         </span>
         {!readOnly && (
-          <span className="ml-auto">Click to allocate · Right-click to refund</span>
+          <span className="ml-auto">Click to allocate · Click again to refund</span>
         )}
       </div>
     </div>

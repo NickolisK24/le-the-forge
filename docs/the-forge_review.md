@@ -1,38 +1,57 @@
-# The Forge — Accomplishments, Gaps, and Next-Step Roadmap
+# The Forge — Full Project Review
+**Scope:** Verified repository review of `NickolisK24/le-the-forge`  
+**Focus:** What has been accomplished, what needs work, and what should be incorporated next
 
-## Purpose of this document
+---
 
-This document is a full project review of **The Forge**, focused on three things:
+## Executive Summary
 
-1. **What has already been accomplished**
-2. **What still needs work**
-3. **What should be incorporated next to make the program stronger, more reliable, and more impressive**
+The Forge is already far beyond a basic portfolio project. It is a domain-specific analysis platform for **Last Epoch** that combines backend simulation logic, game data modeling, build analysis, crafting prediction, optimization, frontend presentation, and desktop packaging support. The repository is organized like a serious engineering project rather than a throwaway demo.
 
-It is written as a practical development guide so you can use it while building, refactoring, and prioritizing future work.
+What stands out most is the way the project is being decomposed into focused systems:
+
+- build and stat analysis
+- combat and defense simulation
+- crafting outcome prediction
+- optimization and recommendation logic
+- frontend dashboard presentation
+- Electron-based desktop packaging
+- documentation and roadmap planning
+
+The strongest current theme in the project is this: **you are building a full analytical product, not just a UI.**
 
 ---
 
 ## 1) What You Have Already Accomplished
 
-### 1.1 You built a real product concept, not a demo
+### 1.1 You chose a meaningful and technically difficult problem
 
-The Forge is not a generic CRUD app or a throwaway portfolio idea. It is a **domain-specific analysis and optimization tool for Last Epoch**, which is a strong project choice because it solves a real problem: translating complex game systems into useful decisions.
+The Forge is not a generic app. It targets a real gameplay problem: helping players understand whether an item is an upgrade, which stats matter most, how safe crafting is, and where a build is weak. That is a strong project choice because the value comes from solving complexity, not from superficial interface work.
 
-That matters because the project has:
+This matters because Last Epoch systems are inherently hard to reason about:
+- layered defenses
+- stat interactions
+- crafting outcomes
+- build-specific scaling
+- upgrade tradeoffs
 
-- a clear audience
-- a meaningful purpose
-- a technical problem worth solving
-- enough complexity to demonstrate serious engineering skill
+Your project directly attacks that complexity.
 
-### 1.2 You defined a strong product goal
+### 1.2 You established a clear product identity
 
-Your README states that The Forge is a data-driven analysis and optimization toolkit that helps players evaluate builds, analyze gear, and make better crafting decisions through simulation and statistical modeling. The project goal is clear: turn complex game systems into actionable insights. That is a strong product statement and it gives the repository direction.
+The project has a strong identity as a **data-driven analysis and optimization toolkit**. That is important because the repository has a clear user promise:
 
-### 1.3 You created a layered architecture instead of a monolithic script
+- analyze builds
+- evaluate gear
+- simulate crafting
+- optimize stat choices
+- recommend upgrades
 
-The repo is organized into major top-level areas such as:
+That clarity makes the project easier to build, easier to explain, and easier to present in a portfolio.
 
+### 1.3 You created a multi-layer repository structure
+
+At the top level, the repository already separates major responsibilities into:
 - `backend/`
 - `frontend/`
 - `electron/`
@@ -40,12 +59,11 @@ The repo is organized into major top-level areas such as:
 - `data/`
 - `scripts/`
 
-That tells me you are thinking in terms of **system boundaries**, not just individual files. That is a major step up from beginner project structure.
+That is a very good sign. It shows you are thinking like someone building a real software system with multiple deliverables instead of putting everything into one folder.
 
-### 1.4 You established a backend that is meant to grow
+### 1.4 You built a backend structure that reflects real system boundaries
 
-The backend contains:
-
+Inside `backend/`, the project includes:
 - `app/`
 - `migrations/`
 - `tests/`
@@ -54,8 +72,7 @@ The backend contains:
 - `requirements.txt`
 - `wsgi.py`
 
-Inside `backend/app/`, the project is already split into:
-
+Inside `backend/app/`, the code is further organized into:
 - `engines/`
 - `game_data/`
 - `models/`
@@ -64,572 +81,514 @@ Inside `backend/app/`, the project is already split into:
 - `services/`
 - `utils/`
 
-That is one of the strongest parts of the project so far. It shows you are already separating concerns into logical layers.
+That structure is one of the strongest things about the project. It suggests that you understand the difference between:
+- domain logic
+- service orchestration
+- persistence
+- validation
+- API transport
+- utility support
 
-### 1.5 You documented the system seriously
+That is a mature backend shape.
 
-You already have a documentation folder and a README that explains:
+### 1.5 You have a real engine-based design
 
-- the project purpose
-- core features
-- high-level architecture
-- development workflow
-- local setup
-- the core docs the user should read first
+The engine list in `backend/app/engines/` includes:
+- `base_engine.py`
+- `item_engine.py`
+- `affix_engine.py`
+- `stat_engine.py`
+- `combat_engine.py`
+- `defense_engine.py`
+- `fp_engine.py`
+- `craft_engine.py`
+- `optimization_engine.py`
 
-That level of documentation is a big accomplishment. Most projects do not reach this level of clarity.
+That lineup shows a very deliberate approach to domain decomposition. Instead of one giant calculation file, you are breaking the system into specialized logic units. That is exactly what you want in a simulation-heavy app.
 
-### 1.6 You thought about local development like a real software project
+### 1.6 You already have a meaningful backend test suite
 
-The quick-start instructions show a mature development workflow:
-
-- Docker for PostgreSQL and Redis
-- local backend development
-- local frontend development
-- environment file setup
-- database migrations
-- seed data loading
-- separate ports for backend and frontend
-
-That means you are not just building features — you are creating an actual developer experience.
-
-### 1.7 You are already designing for simulation-heavy systems
-
-The README makes it clear that the backend is intended to support:
-
-- build analysis
-- crafting probability prediction
-- stat optimization
-- gear comparison
-- combat and defense evaluation
-
-That is a sophisticated domain. It means the program needs computation, modeling, validation, and good data handling. You have already chosen a technically rich direction.
-
----
-
-## 2) What You Need to Work On Next
-
-This section is the most important one. It is not about making the project “look nice.” It is about making it **reliable, trustworthy, testable, and easier to extend**.
-
-### 2.1 Add visible proof of progress
-
-Right now, the project description is strong, but the repository would be even more convincing if it showed the product in action.
-
-You should add:
-
-- screenshots of the dashboard
-- screenshots of results panels
-- screenshots of build comparison views
-- screenshots of crafting or simulation outputs
-- a short demo GIF or screen recording
-
-This is important because people trust what they can see faster than what they have to imagine.
-
-#### What to add specifically
-- `docs/images/dashboard-home.png`
-- `docs/images/build-analysis.png`
-- `docs/images/crafting-simulation.png`
-- `docs/images/gear-compare.png`
-- `docs/demo/demo.gif`
-
-### 2.2 Add real example outputs
-
-The README explains what the tools do, but it would be much stronger if it showed sample output from the system.
-
-You should include examples like:
-
-- a build analysis summary
-- a gear comparison result
-- a crafting simulation outcome
-- a stat optimization result
-- an explanation of why an item is or is not an upgrade
-
-This helps users understand the value immediately.
-
-#### Example format to include
-- input build setup
-- simulation assumptions
-- result summary
-- recommended next step
-- confidence or caveats
-
-### 2.3 Improve backend test coverage
-
-The backend is the most important place to add tests because it contains the math and the logic.
-
-The project should have automated tests for:
-
-- damage calculations
-- defensive calculations
-- stat scaling rules
-- crafting chance logic
-- simulation result consistency
-- edge cases in imported data
-- schema validation failures
-- regression checks for future game patches
-
-If the math is wrong, the whole product loses trust.
-
-#### Tests you should definitely have
-- `test_damage_scaling.py`
-- `test_defense_layers.py`
-- `test_crafting_probability.py`
-- `test_build_import_validation.py`
+The `backend/tests/` directory contains:
+- `conftest.py`
+- `test_affix_engine.py`
+- `test_base_engine.py`
+- `test_builds.py`
+- `test_combat_engine.py`
+- `test_craft.py`
+- `test_craft_engine.py`
+- `test_defense_engine.py`
+- `test_fp_engine.py`
+- `test_optimization_engine.py`
+- `test_simulate.py`
 - `test_simulation_determinism.py`
+- `test_stat_engine.py`
 
-### 2.4 Add deterministic simulation support
+That is a major accomplishment. It means testing is not an afterthought. You already have test coverage aimed at the most important backend areas:
+- stat logic
+- crafting logic
+- combat logic
+- defense logic
+- optimization logic
+- deterministic behavior
 
-If your simulation uses randomness, you need repeatable runs.
+That is exactly where tests should exist in this kind of project.
 
-You should support:
-- explicit random seeds
-- reproducible test runs
-- stable comparison between build variants
-- consistent debugging when results look suspicious
+### 1.7 You already have desktop workflow support
 
-This is especially important for Monte Carlo crafting simulations or any probabilistic engine.
+The root `package.json` shows that you have planned for more than just browser-based usage. The scripts include:
+- `dev:db`
+- `dev:backend`
+- `dev:frontend`
+- `dev:desktop`
+- `build:frontend`
+- `build:desktop`
+- database upgrade and seeding helpers
 
-### 2.5 Strengthen data validation
+That is an important accomplishment because it means the project is designed to support a desktop-style workflow with backend, frontend, and Electron running together.
 
-Your project depends on game data, which means bad data can create bad results fast.
+### 1.8 You already have packaging targets for multiple platforms
 
-You need validation for:
-- items
-- affixes
-- passive nodes
-- skills
-- stat values
-- tier ranges
-- required levels
-- allowed modifiers
-- result schema integrity
+The Electron build config includes targets for:
+- macOS
+- Windows
+- Linux
 
-This prevents silent corruption from entering the analysis pipeline.
+That means the app is being shaped as a cross-platform desktop product, not just a local web tool.
 
-### 2.6 Make the API easier to understand and integrate
+### 1.9 You created meaningful documentation and planning artifacts
 
-Your backend will become much easier to use if you document the API well.
+The repository includes:
+- `README.md`
+- `ROADMAP.md`
+- `CHANGELOG.md`
+- `CONTRIBUTING.md`
+- detailed docs in `docs/`
 
-You should add:
-- endpoint reference pages
-- request/response examples
-- schema definitions
-- error examples
-- auth or access rules if needed later
-- a clear explanation of which endpoints are for builds, simulations, comparisons, and recommendations
+That documentation discipline is a strength. It shows that the project is being treated like software that should be understood, maintained, and evolved over time.
 
-#### Recommended docs file
-- `docs/api_reference.md`
+### 1.10 Your roadmap shows strong feature maturity
 
-### 2.7 Add structured logging
+Your roadmap already records major milestones as completed, including:
+- crafting simulation
+- passive tree work
+- advanced data loading and UI work
+- ongoing optimization engine expansion
 
-Logging needs to be useful for debugging computations, not just for showing that something ran.
-
-You should log:
-- simulation start and end
-- build IDs
-- item IDs
-- seed values
-- input validation errors
-- performance timing
-- cache hits and misses
-- recommendation generation steps
-
-This will save a huge amount of time later.
-
-### 2.8 Add caching where it matters
-
-Some computations will be expensive.
-
-Use caching for:
-- repeated simulations with the same inputs
-- fetched or parsed game data
-- repeated build analysis requests
-- result serialization that does not change often
-
-Redis is already part of the setup, which is a very good sign. Now it should be used intentionally.
-
-### 2.9 Introduce background processing for heavy jobs
-
-Some analysis tasks may take too long to run inside a normal request cycle.
-
-You should plan for background processing for:
-- long crafting simulations
-- batch comparisons
-- bulk optimization jobs
-- large imported builds
-- expensive multi-step analysis chains
-
-This keeps the app responsive.
-
-### 2.10 Make the architecture more modular as it grows
-
-You already have a good engine-based structure, but you need to keep it from turning into one giant coupling point.
-
-Avoid:
-- one massive “intelligence engine” file
-- direct engine-to-engine calls everywhere
-- hidden shared state
-- business rules scattered across routes and services
-
-Keep each engine focused on one responsibility:
-- character analysis
-- stat calculation
-- combat simulation
-- defense evaluation
-- crafting outcomes
-- optimization ranking
-
-### 2.11 Add version awareness for game data
-
-Last Epoch will evolve, and game balance changes will affect your calculations.
-
-You should store or track:
-- game version
-- data version
-- patch-specific assumptions
-- dated balance logic
-- versioned simulation outputs
-
-This helps avoid confusion when older results no longer match current patch behavior.
-
-### 2.12 Improve the frontend with clearer states
-
-The frontend should not just show results. It should also guide the user through the process.
-
-Add:
-- loading states
-- progress indicators
-- empty states
-- error states
-- “no results yet” guidance
-- clear result summaries
-- comparison explanations
-- action buttons for next steps
-
-Users should always know what is happening.
+That means the project has moved well beyond the “idea” stage and into active implementation.
 
 ---
 
-## 3) What You Should Incorporate Into the Program
+## 2) What Your Repository Proves Right Now
 
-This section focuses on features and systems that would make The Forge much more powerful and more complete.
+This project already proves several things about your engineering direction:
 
-### 3.1 A build import system that feels effortless
+### 2.1 You think in layers
+You are separating routing, services, data, schemas, engines, and tests.
 
-This should be one of the most important features in the program.
+### 2.2 You think in domain terms
+You are not building a generic app. You are building a Last Epoch analysis platform with specialized systems.
 
-The user should be able to import or enter:
-- character stats
-- skill choices
-- passive allocations
-- gear loadout
-- crafting state
-- modifiers and affixes
+### 2.3 You think in workflows
+You have setup scripts, Docker support, seeding flows, and desktop launch flow.
 
-The fewer manual steps, the better.
+### 2.4 You think in long-term maintainability
+You have docs, roadmap planning, changelog discipline, and a test directory.
 
-#### Good import sources could include
-- pasted build text
-- structured JSON
-- build code or link import
-- manual form entry
-- saved build presets
+### 2.5 You think in product terms
+The project is not just “code.” It has a clear end-user purpose and an intended output: recommendations.
 
-### 3.2 A comparison mode for “current vs improved”
+---
 
-This is one of the most valuable features you can add.
+## 3) What Needs Work
 
-Users should be able to compare:
-- current gear vs replacement gear
-- current passive tree vs updated tree
-- current build vs adjusted build
-- pre-craft item vs post-craft outcome
-- two alternate skill paths
+This is the part that will matter most if you want The Forge to become truly polished.
 
-The comparison should show:
-- raw stat changes
-- damage changes
-- survivability changes
-- efficiency changes
-- recommended choice with reasoning
+### 3.1 The optimization layer needs to be fully exposed and productized
 
-### 3.3 A recommendation engine that explains itself
+Your roadmap says the optimization engine is in progress and needs expansion and full API exposure. That is the correct next move.
 
-A recommendation engine is only useful if it explains the result.
+The optimization layer should not remain a hidden internal feature. It should become a first-class part of the product that can answer:
+- what stat is best right now?
+- where is the biggest DPS gain?
+- what defensive weakness should be fixed first?
+- what is the most efficient upgrade path?
 
-The program should not only say:
-- “equip this item”
+Right now, the engine exists. The next step is turning it into a robust user-facing feature.
+
+### 3.2 The build import system still needs to be fully completed
+
+The roadmap shows that the full build import system is still a future phase. That is a major priority because import support is what turns the app from “interesting” into “practical.”
+
+Users should be able to bring in:
+- gear
+- passives
+- skills
+- modifiers
+- character state
+
+Without this, analysis still depends too heavily on manual setup.
+
+### 3.3 The project needs a stronger explanation of assumptions
+
+Simulation-heavy tools must be explicit about what they assume.
+
+Examples:
+- crit calculations
+- damage conversion assumptions
+- resistance caps
+- forging potential behavior
+- probabilistic crafting outcomes
+- deterministic vs randomized results
+
+If assumptions are not visible, users may trust the output too much or misunderstand the results.
+
+### 3.4 The backend should continue to harden around schema validation
+
+You already have schemas in the backend structure, which is good. The next step is making sure everything entering the engines is validated strictly.
+
+That includes:
+- stat inputs
+- gear inputs
+- affix data
+- skill modifiers
+- simulation parameters
+- imported build data
+
+This is one of the most important defenses against incorrect results.
+
+### 3.5 The engine boundaries need to stay clean
+
+The biggest backend risk in a project like this is letting the engines become too interconnected.
+
+You do not want:
+- combat logic calling random services directly
+- optimization logic mutating state unexpectedly
+- crafting logic depending on UI choices
+- stat logic becoming mixed with presentation concerns
+
+Each engine should stay focused on one job and exchange structured data cleanly.
+
+### 3.6 The UI still needs more “proof” and less abstraction
+
+The README is clear, but the project would become much stronger if it showed:
+- screenshots
+- visual results
+- example recommendations
+- before/after comparisons
+- simulated crafting outcomes
+
+The repo currently explains the system well. It should also showcase the system.
+
+### 3.7 Some features are stronger in architecture than in surface exposure
+
+This is a good problem to have, but it is still a problem.
+
+Your backend structure suggests serious capability, but the user-facing result should make that capability obvious. The frontend needs to surface the intelligence that already exists in the backend.
+
+---
+
+## 4) What You Should Incorporate Into the Program
+
+This section is the “build next” list. These are the features and systems that would make The Forge far more valuable.
+
+### 4.1 A true build comparison mode
+
+One of the most useful features for a theorycrafting tool is direct comparison.
+
+The app should allow a user to compare:
+- current item vs upgrade item
+- current passive tree vs proposed passive tree
+- current build vs a modified build
+- current crafting state vs a potential finished item
+- current defensive setup vs a more balanced setup
+
+The output should explain:
+- DPS difference
+- survivability difference
+- stat tradeoffs
+- risk level
+- recommended choice
+
+### 4.2 An explanation-driven recommendation engine
+
+The recommendation engine should not just say “equip this” or “craft that.”
 
 It should explain:
-- why the item is better
-- which stat made the difference
-- what tradeoff exists
-- whether the upgrade is safe
-- whether the upgrade changes survivability or damage profile
+- why the recommendation is better
+- what specific stat pushed the result
+- which weakness it improves
+- what tradeoff it introduces
+- whether it is a safe upgrade or a risky one
 
-This helps users trust the result.
+Explanations build trust.
 
-### 3.4 Crafting strategy suggestions
+### 4.3 A crafting strategy planner
 
-The crafting system is one of the best opportunities for high-value analysis.
+Your crafting tools already exist conceptually, but they should become a dedicated user-facing system.
 
-The program should help with:
-- safe crafting paths
-- high-risk/high-reward paths
-- expected value comparisons
-- success chance estimates
-- whether to stop crafting now or continue
-- which affix to target first
-- what happens if an attempt fails
+The crafting planner should help answer:
+- should I stop crafting now?
+- what is the safest next mod to attempt?
+- what is the expected value of continuing?
+- what is the chance of failure?
+- what is the best path for a high-roll attempt?
+- what outcome distribution should I expect after many attempts?
 
-This should not feel like random advice. It should feel like a crafted decision model.
+This is a high-value feature because crafting is one of the most stressful and uncertain parts of the game.
 
-### 3.5 Stat efficiency scoring
+### 4.4 A defense analysis panel
 
-You already have the idea of stat optimization, and it should become one of the core program features.
+The app should evaluate more than damage.
 
-The app should answer:
-- Which stat gives the biggest gain right now?
-- Which stat is redundant because of caps or diminishing returns?
-- Which stat helps the weakest part of the build?
-- Which stat improves the best layer for this character?
-
-This will make the tool feel intelligent instead of generic.
-
-### 3.6 Defensive layer evaluation
-
-A strong build analyzer must not only show damage.
-
-It should evaluate:
-- armor
-- ward or equivalent mitigation layers
+It should explicitly show:
 - health pool
-- endurance or damage reduction effects
-- resistances
-- avoidance layers
-- recovery sustain
-- vulnerability under burst damage
+- effective health
+- resistance coverage
+- mitigation layers
+- burst vulnerability
+- sustain gaps
+- defensive imbalance
 
-This helps the user understand where the build fails, not just where it succeeds.
+Players often over-focus on damage. A good tool should highlight the build’s survival profile clearly.
 
-### 3.7 Simulation presets
+### 4.5 Stat efficiency scoring
 
-To make the tool practical, add presets such as:
-- boss fight analysis
-- mapping / general clearing
+This should become a major feature.
+
+The app should identify:
+- the most efficient damage stat
+- the most efficient defensive stat
+- diminishing-return zones
+- capped or near-capped stats
+- low-value stats for the current build
+
+This is the kind of feature that makes the tool feel smart instead of simply informative.
+
+### 4.6 Simulation presets
+
+Presets would make the app much easier to use.
+
+Good examples:
+- boss fight setup
+- general mapping setup
 - survivability stress test
-- crafting risk simulation
-- budget build comparison
-- endgame scaling comparison
+- crafting simulation preset
+- budget build analysis
+- endgame scaling test
 
-Presets reduce friction and make the tool more usable.
+Presets reduce setup time and let users get value faster.
 
-### 3.8 A saved builds system
+### 4.7 Saved builds and analysis history
 
-Users will want to store:
-- baseline builds
-- experiment branches
-- crafting attempts
-- test comparison snapshots
-- favorite recommendations
+Users will eventually want to revisit what they tested.
 
-This becomes especially useful if you later add user accounts or local persistence.
+You should support:
+- saved build profiles
+- saved comparison snapshots
+- saved craft simulation history
+- saved recommendation history
+- versioned analysis results
 
-### 3.9 A clear results dashboard
+That makes the tool useful over time, not just in one session.
 
-The final dashboard should feel like an analysis cockpit.
+### 4.8 A stronger results dashboard
 
-It should highlight:
-- current build power
-- weak points
-- best next upgrades
-- crafting risk
-- stat efficiency
+The results view should feel like a control center.
+
+It should show:
+- build summary
+- strongest stat gains
+- biggest weaknesses
+- best upgrade options
+- recommended crafting actions
+- simulation confidence or assumptions
 - comparison deltas
-- confidence or assumptions
-- recent simulations
 
-This is where the project can become visually impressive.
+A well-designed dashboard will do a lot of the selling for the project.
 
-### 3.10 Performance profiling and benchmarking
+### 4.9 A fully documented API reference
 
-Because simulation-heavy apps can become slow, you should build tools to measure performance.
+Once the backend matures further, API documentation becomes critical.
 
-Track:
-- simulation runtime
-- crafting loop time
+You should document:
+- available endpoints
+- request formats
+- response structures
+- error handling
+- expected validation rules
+- simulation input fields
+- example payloads
+
+This will make the project easier to extend and easier to use.
+
+### 4.10 A performance and benchmarking layer
+
+Because this is simulation-heavy, it can get slow fast.
+
+You should measure:
+- simulation time
+- crafting loop runtime
+- comparison runtime
+- optimization runtime
 - caching effectiveness
-- request response time
-- data loading time
-- frontend render impact
+- data load speed
 
-This helps you know when the app needs optimization.
-
-### 3.11 A release and versioning process
-
-Treat the project like a real software product.
-
-Add:
-- tagged releases
-- a changelog discipline
-- version numbers
-- milestone notes
-- patch compatibility notes
-
-This makes the project easier to maintain and easier to present.
+This helps you know where optimization is actually needed.
 
 ---
 
-## 4) Detailed Backend Priorities
+## 5) Backend-Specific Priorities
 
-This section is specifically for backend work.
-
-### 4.1 Keep the route layer thin
+### 5.1 Keep routes thin
 
 Routes should:
-- validate input
-- call services
-- return responses
+- validate
+- pass data to services
+- return results
 
-Routes should not:
-- contain business logic
-- perform heavy calculations
-- know too much about engine internals
+Routes should not contain the math.
 
-### 4.2 Keep services focused
+### 5.2 Keep services orchestration-focused
 
-Services should coordinate work, not become another monolith.
+Services should coordinate the workflow:
+- input parsing
+- engine selection
+- result assembly
+- error translation
 
-A service should:
-- prepare inputs
-- call the correct engine
-- combine outputs
-- format the response
-- handle application-level errors
+### 5.3 Keep engines pure where possible
 
-### 4.3 Keep engines pure where possible
-
-Engines should ideally:
-- take structured input
+Engines should be easy to test and reason about.
+They should ideally:
+- accept structured input
 - return structured output
-- avoid hidden state
-- avoid side effects unless needed
-- remain easy to test
+- avoid hidden shared state
+- avoid unnecessary side effects
 
-This is one of the best ways to keep simulation code maintainable.
+### 5.4 Keep tests close to the math
 
-### 4.4 Make schemas strict
+The most important tests are the ones that validate the system’s logic:
+- stat aggregation
+- combat calculations
+- defense formulas
+- crafting probabilities
+- optimization ranking
+- deterministic simulation behavior
 
-Use schemas to describe:
-- input payloads
-- item records
-- build structures
-- simulation parameters
-- output results
-- error responses
+### 5.5 Keep data versioned
 
-Strict schemas reduce bugs and make the API easier to document.
+Last Epoch game logic changes over time. Your system should be able to track:
+- patch version
+- data version
+- engine assumptions by version
+- result timestamps
 
-### 4.5 Prepare for edge cases now
-
-The backend will need to handle:
-- incomplete builds
-- invalid stat names
-- impossible item combinations
-- malformed imports
-- missing game data
-- patch mismatches
-- zero-value calculations
-- extreme value calculations
-
-Build defensive handling early.
+This will matter more as the project grows.
 
 ---
 
-## 5) Recommended Priority Order
+## 6) What the Roadmap Says About the Project’s Current State
 
-If you want the smartest order of operations, here is the sequence I would follow.
+Your roadmap is especially valuable because it shows where the project has already advanced and where it still needs attention.
 
-### Phase 1 — Immediate foundation
-1. Add backend tests
-2. Add schema validation
-3. Add deterministic simulation control
-4. Add structured logging
-5. Add example outputs to the README
+### Completed or largely completed areas include:
+- crafting simulation
+- passive tree work
+- core data handling
+- major UI and layout improvements
 
-### Phase 2 — Usability
-6. Add screenshots and a demo video/GIF
-7. Document the API
-8. Improve loading/error states in the frontend
-9. Add comparison mode
-10. Add a saved builds workflow
+### In progress areas include:
+- optimization engine expansion
+- stronger API exposure
+- more complete build import flow
+- advanced analysis features
 
-### Phase 3 — Scale and polish
-11. Add caching
-12. Add background jobs for expensive tasks
-13. Add performance profiling
-14. Add release versioning
-15. Add patch/data version awareness
+### Future phases still planned include:
+- skill tree UI work
+- build import improvements
+- advanced analysis tools
+- community features
+- desktop packaging expansion
 
-### Phase 4 — High-value features
-16. Add build import support
-17. Add crafting strategy recommendations
-18. Add simulation presets
-19. Add deeper defensive layer analysis
-20. Add a more polished results dashboard
+That means the project is in a real growth stage, not an early concept stage.
 
 ---
 
-## 6) What This Project Already Proves About You
+## 7) The Biggest Risks If Nothing Changes
 
-This project already shows that you can do more than write code.
+If you keep building without tightening the foundations, the project may run into these problems:
 
-It shows that you can:
-- think in systems
-- design a domain-specific tool
-- organize a multi-folder project
-- plan backend and frontend separation
-- document architecture
-- build toward real-world workflow
-- work on a technically demanding problem
+### 7.1 Engine bloat
+A small number of engine files can become too large and too coupled.
 
-That is valuable.
+### 7.2 Weak simulation trust
+If results are not clearly validated, users may question whether the math is correct.
 
-You are building something that can become a serious portfolio piece because it demonstrates both technical ambition and product thinking.
+### 7.3 Hidden assumptions
+If the app does not explain assumptions, recommendations may feel arbitrary.
 
----
+### 7.4 Too much backend power, not enough visibility
+You already have strong backend direction. The next challenge is making that strength obvious in the UI.
 
-## 7) Final Direction
-
-The Forge is strongest when it becomes all of these things at once:
-
-- a build analyzer
-- a crafting assistant
-- a stat optimization engine
-- a comparison tool
-- a simulation platform
-- a polished desktop-friendly app
-- a well-tested backend system
-- a documented and maintainable codebase
-
-The biggest opportunity now is not just adding features. It is making the project feel dependable, explainable, and complete.
-
-If you keep pushing in that direction, this can become one of the best projects in your portfolio.
+### 7.5 Performance drag
+Once simulations scale up, the app may become slow unless caching, batching, or background work are added.
 
 ---
 
-## 8) Suggested Next Files to Create
+## 8) Recommended Build Order
 
-These are good follow-up documents to add to the repo:
+If the goal is to make the next version of The Forge significantly stronger, the best order is:
+
+1. Finalize and expose optimization logic
+2. Finish build import support
+3. Strengthen validation and schema boundaries
+4. Add more backend tests for simulation correctness
+5. Improve result explanations in the UI
+6. Add comparison mode
+7. Add save/load support for builds and simulations
+8. Add caching and performance controls
+9. Add API documentation
+10. Add screenshots, examples, and demo visuals
+
+---
+
+## 9) Final Assessment
+
+The Forge already shows serious engineering ambition and real structural maturity. The repository proves that you are building in a way that resembles actual software product development:
+- layered backend
+- dedicated engines
+- tests
+- roadmap discipline
+- changelog discipline
+- desktop workflow support
+- simulation-oriented domain logic
+
+The biggest opportunity now is to finish the transition from **well-architected project** to **fully polished product**.
+
+That means focusing on:
+- trust
+- explanation
+- validation
+- usability
+- performance
+- clarity
+
+If you keep pushing in that direction, this can become one of the strongest projects in your portfolio.
+
+---
+
+## 10) Suggested Follow-Up Documents
+
+These would help the repository even more:
 
 - `docs/api_reference.md`
-- `docs/example_outputs.md`
 - `docs/testing_strategy.md`
-- `docs/performance_notes.md`
+- `docs/performance_benchmarks.md`
 - `docs/data_versioning.md`
 - `docs/architecture_decisions.md`
+- `docs/example_outputs.md`
+- `docs/build_comparison_guide.md`
 
-These documents will make the project easier to understand and maintain.
+These files would make the project easier to maintain, easier to demo, and easier to extend.
 
 ---

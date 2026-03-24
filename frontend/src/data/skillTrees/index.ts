@@ -6,6 +6,37 @@
 import type { PassiveNode } from "@/lib/gameData";
 type N = PassiveNode;
 
+/** SkillNode is structurally identical to PassiveNode — re-exported for component use. */
+export type SkillNode = PassiveNode;
+
+/**
+ * Mapping from normalized skill name → tree code.
+ * Only includes skills where the mapping is confirmed against exported data.
+ */
+const SKILL_NAME_TO_CODE: Record<string, string> = {
+  "fireball":       "fi9",
+  "glacier":        "gl14",
+  "lightning blast":"lb23il",
+  "swipe":          "sw43",
+  "summon wolf":    "wo42",
+  "maelstrom":      "ms26",
+  "flurry":         "fl13",
+  "summon bear":    "be36ar",
+  "tornado":        "to50",
+  "erasing strike": "er6no",
+};
+
+/**
+ * Strips game localization key format to a short readable label.
+ * "Skills.Skill_fi9_4_Name" → "Node 4"
+ */
+export function cleanNodeName(name: string | undefined): string {
+  if (!name) return "";
+  const m = name.match(/Skills\.Skill_\w+_(\d+)_Name$/);
+  if (m) return `Node ${m[1]}`;
+  return name;
+}
+
 export const SKILL_TREES: Record<string, N[]> = {
   "fi9": [
     {id:0,x:882.0,y:405.0,type:"mastery-gate",name:"Skills.Skill_fi9_0_Name",maxPoints:1,parentId:undefined},
@@ -4138,8 +4169,14 @@ export const SKILL_TREES: Record<string, N[]> = {
   ],
 };
 
-/** Look up a skill tree by skill name (case-insensitive, spaces → underscores). */
-export function getSkillTree(skillName: string): PassiveNode[] {
-  const key = skillName.toLowerCase().replace(/\s+/g, "_");
-  return SKILL_TREES[key] ?? [];
+/** Look up a skill tree by skill name (case-insensitive). Falls back to legacy key format. */
+export function getSkillTree(skillName: string): SkillNode[] {
+  const norm = skillName.toLowerCase().trim();
+  const code = SKILL_NAME_TO_CODE[norm] ?? norm.replace(/\s+/g, "_");
+  return SKILL_TREES[code] ?? [];
+}
+
+/** Returns true if a skill tree exists for the given skill name. */
+export function hasSkillTree(skillName: string): boolean {
+  return getSkillTree(skillName).length > 0;
 }
