@@ -54,3 +54,5 @@ desktop.ini
 
 # Last Epoch filter exports (local testing artifacts)
 *.filter
+# Raw game data — clone separately, run scripts/sync_game_data.py to populate /data/
+last-epoch-data/

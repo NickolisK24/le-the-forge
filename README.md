@@ -302,6 +302,20 @@ See the full next-steps roadmap:
 
 docs/forge_next_steps.md
 
+### Game Data Setup
+
+The backend relies on curated game data in `/data/`. This is pre-generated and committed to the repo — no extra steps needed for most contributors.
+
+If you need to re-sync from the raw game exports (e.g. after a patch), clone the data repo alongside this one and run the sync script:
+
+```bash
+# From the project root
+git clone https://github.com/NickolisK24/last-epoch-data.git
+python scripts/sync_game_data.py
+```
+
+> **Note:** `last-epoch-data/` is intentionally excluded from this repo (`.gitignore`) as it contains raw extracted game assets. Only the processed `/data/` output is committed.
+
 ---
 
 # Long-Term Vision
