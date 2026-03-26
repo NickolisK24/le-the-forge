@@ -27,18 +27,14 @@ const _PRIMALIST_BASE: N[] = [
 const _PRIMALIST_BEASTMASTER: N[] = [
   {id:12,x:82.9,y:76.1,type:"notable",name:"Ursine Strength",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"You have additional strength and take less damage from nearby enemies (multiplicative with other modifiers).",iconId:"a-r-715"},
   {id:13,x:82.9,y:445.2,type:"notable",name:"Savagery",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"You and your minions deal [7%] increased melee damage per point",iconId:"a-r-39"},
-  {id:14,x:200.0,y:260.7,type:"notable",name:"Artor's Loyalty",regionId:"beastmaster",maxPoints:1,parentId:undefined,description:"You are limited to a single companion.
-
-Your companion is larger and deals more damage (multiplicative with other modifiers).",iconId:"a-r-199"},
+  {id:14,x:200.0,y:260.7,type:"notable",name:"Artor's Loyalty",regionId:"beastmaster",maxPoints:1,parentId:undefined,description:"You are limited to a single companion.  Your companion is larger and deals more damage (multiplicative with other modifiers).",iconId:"a-r-199"},
   {id:15,x:200.0,y:352.9,type:"notable",name:"Ambush",regionId:"beastmaster",maxPoints:8,parentId:13,description:"Every 5 seconds, your next melee attack deals increased damage and grants {Aspect of the Shark} for 3 seconds, a buff that increases melee damage by 75% and melee attack speed by 10%.",iconId:"a-r-719"},
   {id:16,x:317.2,y:445.2,type:"notable",name:"Lamprey Teeth",regionId:"beastmaster",maxPoints:6,parentId:13,description:"You and your minions leech [1.5%] of melee damage as health per point Your minions have [20%] increased health leech per point.",iconId:"a-r-716"},
   {id:17,x:82.9,y:260.7,type:"notable",name:"Feline Bond",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"You and your companions have +[10] dodge rating per point. [10%] increased companion revive range per point.",iconId:"a-r-241"},
   {id:18,x:317.2,y:76.1,type:"notable",name:"Tusk Warrior",regionId:"beastmaster",maxPoints:8,parentId:19,description:"{Aspect of the Boar} also grants increased physical damage and a chance for attacks and spells to cause enemies to bleed.",iconId:"a-r-525"},
   {id:19,x:200.0,y:168.4,type:"notable",name:"Boar Heart",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"You are granted {Aspect of the Boar} for a duration when hit by a melee attack, a buff that reduces damage taken by 15%. This effect has a 2 second cooldown.",iconId:"a-r-589"},
   {id:20,x:902.8,y:168.4,type:"notable",name:"Hawk Wings",regionId:"beastmaster",maxPoints:10,parentId:undefined,description:"You and your minions have increased dodge rating, and you and your minions have a chance to gain {Haste} on hit.",iconId:"a-r-1085"},
-  {id:21,x:785.6,y:260.7,type:"notable",name:"Cry of the Lynx",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"You and your companions have an increased chance to critically strike. 
-
-When you use a companion ability, you and your companions are granted {Aspect of the Lynx} for a duration, a buff that grants 100% increased critical strike chance and 100% increased stun chance.",iconId:"a-r-40"},
+  {id:21,x:785.6,y:260.7,type:"notable",name:"Cry of the Lynx",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"You and your companions have an increased chance to critically strike.   When you use a companion ability, you and your companions are granted {Aspect of the Lynx} for a duration, a buff that grants 100% increased critical strike chance and 100% increased stun chance.",iconId:"a-r-40"},
   {id:22,x:434.3,y:260.7,type:"notable",name:"The Chase",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"Your minions have [4%] increased attack speed, cast speed, and movement speed per point. You revive companions [5%] faster per point.",iconId:"a-r-546"},
   {id:23,x:551.4,y:168.4,type:"notable",name:"Envenom",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"Grants you and your minions [10%] additional chance per point to poison on hit with melee attacks",iconId:"a-r-290"},
   {id:24,x:317.2,y:260.7,type:"notable",name:"Call of the Pack",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"You and your companions have additional health, and you and your companions are healed whenever you use a companion ability.",iconId:"a-r-837"},
@@ -49,18 +45,14 @@ When you use a companion ability, you and your companions are granted {Aspect of
   {id:29,x:785.6,y:168.4,type:"notable",name:"Avian Shelter",regionId:"beastmaster",maxPoints:10,parentId:undefined,description:"You have a higher endurance threshold and you and your minions have additional physical resistance.",iconId:"a-r-461"},
   {id:30,x:1137.0,y:445.2,type:"notable",name:"Feeding Frenzy",regionId:"beastmaster",maxPoints:1,parentId:109,description:"{Aspect of the Shark} can now stack up to 10 times, but it is significantly less effective (multiplicative with other modifiers).",iconId:"a-r-31"},
   {id:31,x:1137.0,y:168.4,type:"notable",name:"Critical Bite",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"{Aspect of the Lynx} also grants a percentage of damage leeched .",iconId:"a-r-57"},
-  {id:32,x:785.6,y:352.9,type:"notable",name:"Natural Bond",regionId:"beastmaster",maxPoints:1,parentId:undefined,description:"You are limited to only one companion.
-
-Your companion is granted more health and deals more damage (both effects are multiplicative with other modifiers).",iconId:"a-r-121"},
+  {id:32,x:785.6,y:352.9,type:"notable",name:"Natural Bond",regionId:"beastmaster",maxPoints:1,parentId:undefined,description:"You are limited to only one companion.  Your companion is granted more health and deals more damage (both effects are multiplicative with other modifiers).",iconId:"a-r-121"},
   {id:33,x:1137.0,y:352.9,type:"notable",name:"Primal Aspects",regionId:"beastmaster",maxPoints:10,parentId:59,description:"All {Aspect} buffs from this tree last longer.",iconId:"a-r-171"},
   {id:34,x:1137.0,y:76.1,type:"notable",name:"Ancient Might",regionId:"beastmaster",maxPoints:10,parentId:undefined,description:"+[1] Strength per point You and your minions deal +[1] melee physical damage per point",iconId:"a-r-324"},
   {id:54,x:668.5,y:168.4,type:"notable",name:"Nature's Embrace",regionId:"beastmaster",maxPoints:1,parentId:undefined,description:"+1 Maximum Companions",iconId:"a-r-1311"},
   {id:55,x:551.4,y:76.1,type:"notable",name:"Deep Wounds",regionId:"beastmaster",maxPoints:8,parentId:undefined,description:"{Aspect of the Boar} also grants Bleed you inflict additional Physical Penetration.",iconId:"a-r-10"},
   {id:56,x:668.5,y:76.1,type:"notable",name:"Porcine Constitution",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"{Aspect of the Boar} grants additional damage reduction, and now also grants increased health regeneration.",iconId:"a-r-725"},
   {id:57,x:668.5,y:445.2,type:"notable",name:"The Circle Of Life",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"You gain health and have a chance to be granted {Aspect Of The Shark} for 3 seconds whenever you kill an enemy.",iconId:"a-r-946"},
-  {id:58,x:785.6,y:76.1,type:"notable",name:"Viper Fangs",regionId:"beastmaster",maxPoints:10,parentId:undefined,description:"You and your companions have increased melee attack speed.
-
-When you hit an enemy, you have a chance for you and your companions to be granted {Aspect of the Viper} for 3 seconds, a buff that grants 100% chance to poison on hit and 100% increased damage over time.",iconId:"a-r-14"},
+  {id:58,x:785.6,y:76.1,type:"notable",name:"Viper Fangs",regionId:"beastmaster",maxPoints:10,parentId:undefined,description:"You and your companions have increased melee attack speed.  When you hit an enemy, you have a chance for you and your companions to be granted {Aspect of the Viper} for 3 seconds, a buff that grants 100% chance to poison on hit and 100% increased damage over time.",iconId:"a-r-14"},
   {id:59,x:902.8,y:352.9,type:"notable",name:"Dragon Slayer",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"The On Kill effects of {Circle Of Life} also have an equal chance to trigger when you hit a rare or boss enemy.",iconId:"a-r-323"},
   {id:67,x:551.4,y:445.2,type:"notable",name:"Hunters of the Deep",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"Your companions are granted {Aspect of the Shark} whenever you are, and Aspect of the Shark lasts longer.",iconId:"a-r-150"},
   {id:101,x:551.4,y:260.7,type:"notable",name:"Axe and Claw",regionId:"beastmaster",maxPoints:5,parentId:undefined,description:"You and your minions deal +[2] melee physical damage per point",iconId:"a-r-720"},
@@ -82,9 +74,7 @@ const _PRIMALIST_SHAMAN: N[] = [
   {id:45,x:668.5,y:260.7,type:"notable",name:"Rune of Awe",regionId:"shaman",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-702"},
   {id:46,x:551.4,y:445.2,type:"notable",name:"Storm Elder",regionId:"shaman",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-1301"},
   {id:48,x:668.5,y:168.4,type:"notable",name:"Protective Circle",regionId:"shaman",maxPoints:5,parentId:undefined,description:"You have additional physical and elemental resistance for each active totem.",iconId:"a-r-722"},
-  {id:49,x:1019.9,y:260.7,type:"notable",name:"Swirling Maelstrom",regionId:"shaman",maxPoints:6,parentId:50,description:"You have additional health and mana, and have a chance to cast {Maelstrom} when hit. 
-
-This effect has a 5 second cooldown.",iconId:"a-r-316"},
+  {id:49,x:1019.9,y:260.7,type:"notable",name:"Swirling Maelstrom",regionId:"shaman",maxPoints:6,parentId:50,description:"You have additional health and mana, and have a chance to cast {Maelstrom} when hit.   This effect has a 5 second cooldown.",iconId:"a-r-316"},
   {id:50,x:785.6,y:260.7,type:"notable",name:"Elemental Shrines",regionId:"shaman",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-1246"},
   {id:51,x:551.4,y:168.4,type:"notable",name:"Glacial Strike",regionId:"shaman",maxPoints:8,parentId:undefined,description:"You have additional strength",iconId:"a-r-594"},
   {id:52,x:1019.9,y:76.1,type:"notable",name:"Sky Armour",regionId:"shaman",maxPoints:8,parentId:undefined,description:"Grants [10] armour per point and [2%] increased movement speed per point",iconId:"a-r-379"},
@@ -97,14 +87,11 @@ This effect has a 5 second cooldown.",iconId:"a-r-316"},
   {id:65,x:668.5,y:352.9,type:"notable",name:"Dervish",regionId:"shaman",maxPoints:5,parentId:undefined,description:"[10%] increased elemental melee damage per point",iconId:"a-r-142"},
   {id:66,x:902.8,y:168.4,type:"notable",name:"Storm Blade",regionId:"shaman",maxPoints:8,parentId:48,description:"You have increased melee damage for each active totem.",iconId:"a-r-1318"},
   {id:68,x:1019.9,y:445.2,type:"notable",name:"Thunder Strike",regionId:"shaman",maxPoints:5,parentId:39,description:"Your melee attacks have a chance to cast {Storm Bolt} on hit.",iconId:"a-r-379"},
-  {id:69,x:902.8,y:352.9,type:"notable",name:"Lagon's Answer",regionId:"shaman",maxPoints:5,parentId:undefined,description:"Your direct spell casts have a chance to cast {Storm Bolt}.
-While channeling, you have a chance to cast {Storm Bolt} every second.",iconId:"a-r-85"},
+  {id:69,x:902.8,y:352.9,type:"notable",name:"Lagon's Answer",regionId:"shaman",maxPoints:5,parentId:undefined,description:"Your direct spell casts have a chance to cast {Storm Bolt}. While channeling, you have a chance to cast {Storm Bolt} every second.",iconId:"a-r-85"},
   {id:70,x:1137.0,y:352.9,type:"notable",name:"Conflux",regionId:"shaman",maxPoints:8,parentId:69,description:"Your area skills have increased area, and you take less damage from shocked enemies.",iconId:"a-r-417"},
   {id:102,x:551.4,y:352.9,type:"notable",name:"Fist of Stone",regionId:"shaman",maxPoints:5,parentId:62,description:"You and your minions have [18%] increased stun chance per point",iconId:"a-r-744"},
   {id:103,x:668.5,y:76.1,type:"notable",name:"Heorot's Path",regionId:"shaman",maxPoints:10,parentId:undefined,description:"+[30%] freeze rate multiplier per point for you and your minions",iconId:"a-r-987"},
-  {id:106,x:902.8,y:76.1,type:"notable",name:"Eternal Storm",regionId:"shaman",maxPoints:5,parentId:103,description:"When you kill a frozen enemy, a random totem is healed to full, has its duration refreshed, and its damage is permanently increased. 
-
-This damage increase is doubled for cold damage.",iconId:"a-r-300"},
+  {id:106,x:902.8,y:76.1,type:"notable",name:"Eternal Storm",regionId:"shaman",maxPoints:5,parentId:103,description:"When you kill a frozen enemy, a random totem is healed to full, has its duration refreshed, and its damage is permanently increased.   This damage increase is doubled for cold damage.",iconId:"a-r-300"},
   {id:107,x:1137.0,y:168.4,type:"notable",name:"Ironbark",regionId:"shaman",maxPoints:10,parentId:undefined,description:"Your totems have +[20] health and armour per point Your totems cannot be stunned",iconId:"a-r-77"},
 ];
 
@@ -153,14 +140,8 @@ const _MAGE_BASE: N[] = [
   {id:7,x:479.7,y:352.9,type:"notable",name:"Arcane Flames",regionId:"base",maxPoints:6,parentId:2,description:"When you hit an enemy with a fire skill you {Ignite} additional nearby enemies. This effect has a 5 second cooldown.",iconId:"a-r-92"},
   {id:8,x:678.3,y:76.1,type:"notable",name:"Warden",regionId:"base",maxPoints:5,parentId:3,description:"You have a chance to gain {Haste} for one second on hit and deal increased damage based on your increased movement speed.",iconId:"a-r-381"},
   {id:9,x:678.3,y:260.7,type:"notable",name:"Knowledge of Destruction",regionId:"base",maxPoints:10,parentId:undefined,description:"You have additional dodge rating and a chance to receieve a {Glancing Blow} when hit.",iconId:"a-r-474"},
-  {id:24,x:678.3,y:445.2,type:"notable",name:"Rune of Winter",regionId:"base",maxPoints:5,parentId:undefined,description:"Increases your chance to freeze and converts lightning blast and volcanic orb to cold spells, changing their base damage type to cold and giving them a chance to freeze.
-
-Lightning Blast gains a base freeze rate of 46.
-
-Volcanic Orb's core gains a base freeze rate of 40 and its shrapnel gains a freeze rate of 32.",iconId:"a-r-432"},
-  {id:45,x:876.9,y:168.4,type:"notable",name:"Sun and Storms ",regionId:"base",maxPoints:5,parentId:undefined,description:"You deal increased fire and lightning damage.
-
-You gain ward when you use a lightning skill or a fire skill. This effect has a 7 second cooldown, but the cooldown is not shared between different elements, so you can gain ward from a fire skill and a lightning skill within the same 7 second duration.",iconId:"a-r-737"},
+  {id:24,x:678.3,y:445.2,type:"notable",name:"Rune of Winter",regionId:"base",maxPoints:5,parentId:undefined,description:"Increases your chance to freeze and converts lightning blast and volcanic orb to cold spells, changing their base damage type to cold and giving them a chance to freeze.  Lightning Blast gains a base freeze rate of 46.  Volcanic Orb's core gains a base freeze rate of 40 and its shrapnel gains a freeze rate of 32.",iconId:"a-r-432"},
+  {id:45,x:876.9,y:168.4,type:"notable",name:"Sun and Storms ",regionId:"base",maxPoints:5,parentId:undefined,description:"You deal increased fire and lightning damage.  You gain ward when you use a lightning skill or a fire skill. This effect has a 7 second cooldown, but the cooldown is not shared between different elements, so you can gain ward from a fire skill and a lightning skill within the same 7 second duration.",iconId:"a-r-737"},
   {id:58,x:1075.5,y:445.2,type:"notable",name:"Arcane Wind",regionId:"base",maxPoints:3,parentId:59,description:"When you hit an enemy with a cold skill you {Chill} additional nearby enemies. This effect has a 5 second cooldown.",iconId:"a-r-563"},
   {id:59,x:876.9,y:352.9,type:"notable",name:"Ice and Fire",regionId:"base",maxPoints:5,parentId:undefined,description:"",iconId:"a-r-433"},
   {id:78,x:1075.5,y:76.1,type:"notable",name:"Silver Rune",regionId:"base",maxPoints:3,parentId:45,description:"Augments the ward gain effects of the {Reactive Ward} and {Sun and Storms} nodes, causing them to grant more ward and have shorter cooldowns.",iconId:"a-r-270"},
@@ -170,9 +151,7 @@ const _MAGE_SORCERER: N[] = [
   {id:10,x:902.4,y:168.4,type:"notable",name:"Spell Slinger",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"+[1] adaptive spell damage per point [3%] increased cast speed per point",iconId:"a-r-966"},
   {id:11,x:199.6,y:168.4,type:"notable",name:"Essence of Celerity",regionId:"sorcerer",maxPoints:8,parentId:13,description:"Each stack of {Arcane Momentum} lasts longer and also increases your spell damage.",iconId:"a-r-65"},
   {id:12,x:82.5,y:445.2,type:"notable",name:"Mana Shell",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"Grants [10] armour and [4] mana per point",iconId:"a-r-500"},
-  {id:13,x:82.5,y:76.1,type:"notable",name:"Arcane Momentum",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"When you cast a spell you gain a stack of {Arcane Momentum} for 2 seconds and refreshing the duration of all existing stacks.
-
-Each stacks of Arcane Momentum increases your cast speed.",iconId:"a-r-301"},
+  {id:13,x:82.5,y:76.1,type:"notable",name:"Arcane Momentum",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"When you cast a spell you gain a stack of {Arcane Momentum} for 2 seconds and refreshing the duration of all existing stacks.  Each stacks of Arcane Momentum increases your cast speed.",iconId:"a-r-301"},
   {id:14,x:199.6,y:352.9,type:"notable",name:"Wisdom",regionId:"sorcerer",maxPoints:8,parentId:12,description:"Adds [1] intelligence and [3] mana per point",iconId:"a-r-1141"},
   {id:15,x:433.9,y:352.9,type:"notable",name:"Lost Knowledge",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"You gain ward based on your current mana when you use a skill that costs at least 40 mana.",iconId:"a-r-474"},
   {id:16,x:316.8,y:260.7,type:"notable",name:"Cryomancer",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"[6%] increased cold damage per point +[15%] freeze rate multiplier per point",iconId:"a-r-902"},
@@ -185,15 +164,11 @@ Each stacks of Arcane Momentum increases your cast speed.",iconId:"a-r-301"},
   {id:25,x:785.2,y:168.4,type:"notable",name:"Chronomancy",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"+[1] vitality per point. +[4%] chill, shock, and ignite duration per point.",iconId:"a-r-8"},
   {id:26,x:785.2,y:352.9,type:"notable",name:"Arcane Obliteration",regionId:"sorcerer",maxPoints:5,parentId:22,description:"+[10%] critical strike multiplier with spells per point",iconId:"a-r-141"},
   {id:27,x:1019.5,y:168.4,type:"notable",name:"Dragon Mage",regionId:"sorcerer",maxPoints:10,parentId:undefined,description:"You are granted increased damage with an element whenever you have casted a spell of another element recently (last 4 seconds).",iconId:"a-r-946"},
-  {id:28,x:785.2,y:260.7,type:"notable",name:"Warder",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"You have a chance to be granted ward whenever you hit an enemy with a fire, cold, or lightning skill.
-
-This effect has a 10 second cooldown, but the cooldown is not shared between different elements, so you can gain ward from a fire hit and a lightning hit within the same 10 second duration.",iconId:"a-r-503"},
+  {id:28,x:785.2,y:260.7,type:"notable",name:"Warder",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"You have a chance to be granted ward whenever you hit an enemy with a fire, cold, or lightning skill.  This effect has a 10 second cooldown, but the cooldown is not shared between different elements, so you can gain ward from a fire hit and a lightning hit within the same 10 second duration.",iconId:"a-r-503"},
   {id:29,x:1019.5,y:445.2,type:"notable",name:"Arcane Current",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"[50%] increased effect of shock per point",iconId:"a-r-42"},
   {id:30,x:1136.6,y:445.2,type:"notable",name:"Archmage",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"+[1] adaptive spell damage per point Triple if you have at least 200 maximum mana",iconId:"a-r-734"},
   {id:31,x:1019.5,y:352.9,type:"notable",name:"Dragon Breath",regionId:"sorcerer",maxPoints:10,parentId:undefined,description:"You are granted an additional chance to apply an elemental ailment with skills of the same element whenever you have casted a spell of another element recently (last 4 seconds).",iconId:"a-r-858"},
-  {id:60,x:199.6,y:260.7,type:"notable",name:"Afterglow",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"You deal increased spell damage and have additional ward retention.
-
-These effects are doubled if you have recently (in the last 4 seconds) either used a skill that costs 40 mana or started channelling a skill that costs at least 8 mana per second while channelling.",iconId:"a-r-506"},
+  {id:60,x:199.6,y:260.7,type:"notable",name:"Afterglow",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"You deal increased spell damage and have additional ward retention.  These effects are doubled if you have recently (in the last 4 seconds) either used a skill that costs 40 mana or started channelling a skill that costs at least 8 mana per second while channelling.",iconId:"a-r-506"},
   {id:61,x:551.0,y:445.2,type:"notable",name:"Rift Bolt",regionId:"sorcerer",maxPoints:5,parentId:17,description:"+[40] lightning penetration per point +[0.2%] of lightning damage leeched as health per point",iconId:"a-r-313"},
   {id:62,x:551.0,y:260.7,type:"notable",name:"Chill to the Bone",regionId:"sorcerer",maxPoints:5,parentId:16,description:"+[40] cold penetration per point +[0.2%] of cold damage leeched as health per point",iconId:"a-r-262"},
   {id:63,x:551.0,y:76.1,type:"notable",name:"Lavamancer",regionId:"sorcerer",maxPoints:5,parentId:18,description:"+[40] fire penetration per point +[0.2%] of fire damage leeched as health per point",iconId:"a-r-1336"},
@@ -201,9 +176,7 @@ These effects are doubled if you have recently (in the last 4 seconds) either us
   {id:65,x:1136.6,y:76.1,type:"notable",name:"Recollection",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"[5%] increased cooldown recovery speed per point",iconId:"a-r-895"},
   {id:66,x:433.9,y:168.4,type:"notable",name:"Whirling Snow",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"You have a chance to chill enemies when you are hit, and your skills have a chance to chill enemies on hit. This effect is doubled for cold skills.",iconId:"a-r-3"},
   {id:67,x:902.4,y:352.9,type:"notable",name:"Elemental Ascendance",regionId:"sorcerer",maxPoints:8,parentId:undefined,description:"[5%] increased elemental damage per point [5%] increased elemental protection per point [5%] increased stun chance with elemental spells per point",iconId:"a-r-1301"},
-  {id:68,x:1136.6,y:260.7,type:"notable",name:"Mirror Breath",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"Cycles the effects {Dragon Mage} and {Dragon Breath}.
-
-For example, using a fire skill now gives a bonus to cold damage and chill chance with cold skills, instead of lightning damage shock chance with lightning skills.",iconId:"a-r-461"},
+  {id:68,x:1136.6,y:260.7,type:"notable",name:"Mirror Breath",regionId:"sorcerer",maxPoints:5,parentId:undefined,description:"Cycles the effects {Dragon Mage} and {Dragon Breath}.  For example, using a fire skill now gives a bonus to cold damage and chill chance with cold skills, instead of lightning damage shock chance with lightning skills.",iconId:"a-r-461"},
   {id:69,x:785.2,y:76.1,type:"notable",name:"Arcane Insight",regionId:"sorcerer",maxPoints:10,parentId:undefined,description:"You have additional intelligence, and you have a chance when you hit an enemy to be granted {Insight,} a buff that grants 20% increased elemental damage and 20% ward retention for 5 seconds.",iconId:"a-r-441"},
   {id:76,x:1019.5,y:76.1,type:"notable",name:"Elixir of Knowledge",regionId:"sorcerer",maxPoints:3,parentId:69,description:"Whenever you use a potion, you gain ward based on to your intelligence.",iconId:"a-r-1203"},
 ];
@@ -215,9 +188,7 @@ const _MAGE_SPELLBLADE: N[] = [
   {id:35,x:82.9,y:260.7,type:"notable",name:"Infused Weapon",regionId:"spellblade",maxPoints:8,parentId:undefined,description:"Your melee attacks deal additional damage. The type of damage added depends on the damage type of the attack.",iconId:"a-r-1270"},
   {id:36,x:317.2,y:260.7,type:"notable",name:"Frozen Steel",regionId:"spellblade",maxPoints:5,parentId:35,description:"Your melee attacks deal additional cold damage and you have a higher chance to freeze enemies.",iconId:"a-r-1178"},
   {id:37,x:317.2,y:352.9,type:"notable",name:"Arcane Shielding",regionId:"spellblade",maxPoints:5,parentId:undefined,description:"You gain Arcane Shield for 4 seconds when you use an melee attack and hit at least one enemy. Arcane Shield is a buff that reduces damage taken and generates ward, but does not stack.",iconId:"a-r-36"},
-  {id:38,x:200.0,y:168.4,type:"notable",name:"Flame Walker",regionId:"spellblade",maxPoints:8,parentId:33,description:"Each second if you are moving or using a melee attack you have chance to cast Fire Aura. This chance is doubled if you do not have an active Fire Aura.
-
-You can have multiple stacks of Fire Aura active at once.",iconId:"a-r-274"},
+  {id:38,x:200.0,y:168.4,type:"notable",name:"Flame Walker",regionId:"spellblade",maxPoints:8,parentId:33,description:"Each second if you are moving or using a melee attack you have chance to cast Fire Aura. This chance is doubled if you do not have an active Fire Aura.  You can have multiple stacks of Fire Aura active at once.",iconId:"a-r-274"},
   {id:39,x:317.2,y:445.2,type:"notable",name:"Warden's Echo",regionId:"spellblade",maxPoints:5,parentId:undefined,description:"When you gain Ward from {Arcane Warden} you have a chance to create an elemental burst damaging enemies around you. The element of the burst matches the element of the melee attack you used.",iconId:"a-r-453"},
   {id:40,x:434.3,y:260.7,type:"notable",name:"Fire Blood",regionId:"spellblade",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-515"},
   {id:41,x:668.5,y:168.4,type:"notable",name:"Mana Reaver",regionId:"spellblade",maxPoints:5,parentId:undefined,description:"You have additional health and you have a chance to regain mana when you use a melee attack and hit at least one enemy.",iconId:"a-r-498"},
@@ -228,9 +199,7 @@ You can have multiple stacks of Fire Aura active at once.",iconId:"a-r-274"},
   {id:47,x:785.6,y:76.1,type:"notable",name:"Burning Hands",regionId:"spellblade",maxPoints:5,parentId:41,description:"You have additional fire resistance and you have a chance to cast Fire Aura when you use a melee attack and hit at least one enemy.",iconId:"a-r-980"},
   {id:48,x:785.6,y:445.2,type:"notable",name:"Volka's Razor",regionId:"spellblade",maxPoints:6,parentId:75,description:"Your melee attacks deal increased elemental damage if they cost 10 or more mana. This also affects the damage dealt by all the ailments they apply and the spells they trigger from their trees.",iconId:"a-r-47"},
   {id:49,x:902.8,y:352.9,type:"notable",name:"Mental Fortitude",regionId:"spellblade",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-495"},
-  {id:50,x:1137.0,y:168.4,type:"notable",name:"Blade Weaver",regionId:"spellblade",maxPoints:10,parentId:74,description:"When you use a melee attack that costs less than 10 mana you gain a stack of {Blade Weaving}.
-
-When you use a melee attack that costs 10 or more mana the stacks are consumed and the attack deals 15% more elemental damage (multiplicative with other modifiers) per stack consumed.",iconId:"a-r-21"},
+  {id:50,x:1137.0,y:168.4,type:"notable",name:"Blade Weaver",regionId:"spellblade",maxPoints:10,parentId:74,description:"When you use a melee attack that costs less than 10 mana you gain a stack of {Blade Weaving}.  When you use a melee attack that costs 10 or more mana the stacks are consumed and the attack deals 15% more elemental damage (multiplicative with other modifiers) per stack consumed.",iconId:"a-r-21"},
   {id:51,x:1137.0,y:352.9,type:"notable",name:"Prodigy",regionId:"spellblade",maxPoints:5,parentId:49,description:"You gain ward per second for each point of intelligence you have.",iconId:"a-r-497"},
   {id:52,x:1137.0,y:445.2,type:"notable",name:"Blades of Fires",regionId:"spellblade",maxPoints:5,parentId:114,description:"Each stack of Fire Aura increases your melee elemental damage.",iconId:"a-r-1150"},
   {id:70,x:434.3,y:168.4,type:"notable",name:"Freezing Aura",regionId:"spellblade",maxPoints:8,parentId:38,description:"You have a higher freeze rate multiplier and Fire Aura is converted to cold. This converts its base damage and gives it a chance to freeze enemies within its area of effect.",iconId:"a-r-450"},
@@ -266,9 +235,7 @@ const _MAGE_RUNEMASTER: N[] = [
   {id:97,x:785.6,y:260.7,type:"notable",name:"Ancient Inscriptions",regionId:"runemaster",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-1225"},
   {id:98,x:785.6,y:76.1,type:"notable",name:"Runic Fortress",regionId:"runemaster",maxPoints:6,parentId:undefined,description:"You have additional armor while channeling per active {Rune} from {Runic Invocation}.",iconId:"a-r-1101"},
   {id:99,x:1019.9,y:445.2,type:"notable",name:"Order's Imposition",regionId:"runemaster",maxPoints:6,parentId:95,description:"You deal more damage over time to {Branded} enemies (multiplicative with other modifiers).",iconId:"a-r-786"},
-  {id:100,x:1019.9,y:168.4,type:"notable",name:"Runeword: Avalanche",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Cold Skill you have a chance to gain {Runeword: Avalanche}, a buff that grants additional Spell Cold Damage and grants additional Endurance Threshold per stack of Ignite on the attacker.
-
-This buff lasts 6 seconds and does not stack.",iconId:"a-r-96"},
+  {id:100,x:1019.9,y:168.4,type:"notable",name:"Runeword: Avalanche",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Cold Skill you have a chance to gain {Runeword: Avalanche}, a buff that grants additional Spell Cold Damage and grants additional Endurance Threshold per stack of Ignite on the attacker.  This buff lasts 6 seconds and does not stack.",iconId:"a-r-96"},
   {id:101,x:1137.0,y:445.2,type:"notable",name:"Celestial Doom",regionId:"runemaster",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-774"},
   {id:102,x:1137.0,y:260.7,type:"notable",name:"Logocracy",regionId:"runemaster",maxPoints:5,parentId:112,description:"{Runeword Buffs} last longer.",iconId:"a-r-706"},
   {id:104,x:200.0,y:445.2,type:"notable",name:"Runeword: Cataclysm",regionId:"runemaster",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-94"},
@@ -277,13 +244,9 @@ This buff lasts 6 seconds and does not stack.",iconId:"a-r-96"},
   {id:107,x:551.4,y:260.7,type:"notable",name:"Freezing Point",regionId:"runemaster",maxPoints:10,parentId:88,description:"",iconId:"a-r-594"},
   {id:108,x:668.5,y:260.7,type:"notable",name:"Decree of the Bountiful Ocean",regionId:"runemaster",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-710"},
   {id:109,x:902.8,y:168.4,type:"notable",name:"Cerulean Runestones",regionId:"runemaster",maxPoints:8,parentId:97,description:"You have additional endurance and maximum mana.",iconId:"a-r-581"},
-  {id:110,x:1019.9,y:352.9,type:"notable",name:"Runeword: Inferno",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Fire Skill you have a chance to gain {Runeword: Inferno}, a buff that grants additional Spell Fire Damage and grants you more Armor per stack of Shock on the Attacker.
-
-This buff lasts 6 seconds and does not stack.",iconId:"a-r-97"},
+  {id:110,x:1019.9,y:352.9,type:"notable",name:"Runeword: Inferno",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Fire Skill you have a chance to gain {Runeword: Inferno}, a buff that grants additional Spell Fire Damage and grants you more Armor per stack of Shock on the Attacker.  This buff lasts 6 seconds and does not stack.",iconId:"a-r-97"},
   {id:111,x:902.8,y:352.9,type:"notable",name:"Sanguine Runestones",regionId:"runemaster",maxPoints:8,parentId:97,description:"",iconId:"a-r-795"},
-  {id:112,x:902.8,y:260.7,type:"notable",name:"Runeword: Hurricane",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Lightning Skill you have a chance to gain {Runeword: Hurricane}, a buff that grants additional Spell Lightning Damage and Freeze Rate Multiplier.
-
-This buff lasts 6 seconds and does not stack.",iconId:"a-r-95"},
+  {id:112,x:902.8,y:260.7,type:"notable",name:"Runeword: Hurricane",regionId:"runemaster",maxPoints:5,parentId:undefined,description:"When you directly use a Lightning Skill you have a chance to gain {Runeword: Hurricane}, a buff that grants additional Spell Lightning Damage and Freeze Rate Multiplier.  This buff lasts 6 seconds and does not stack.",iconId:"a-r-95"},
 ];
 
 const _SENTINEL_BASE: N[] = [
@@ -309,53 +272,31 @@ const _SENTINEL_VOID_KNIGHT: N[] = [
   {id:11,x:82.9,y:76.1,type:"notable",name:"Abyssal Endurance",regionId:"void-knight",maxPoints:10,parentId:undefined,description:"Adds [7] health and [15] void protection per point",iconId:"a-r-81"},
   {id:12,x:200.0,y:445.2,type:"notable",name:"World Eater",regionId:"void-knight",maxPoints:6,parentId:10,description:"You leech a portion of your melee and void damage .",iconId:"a-r-73"},
   {id:13,x:200.0,y:76.1,type:"notable",name:"Sorrow and Steel",regionId:"void-knight",maxPoints:10,parentId:undefined,description:"[7%] increased void damage and [7%] increased physical damage per point",iconId:"a-r-1220"},
-  {id:14,x:551.4,y:260.7,type:"notable",name:"Patient Doom",regionId:"void-knight",maxPoints:6,parentId:undefined,description:"Every 3 seconds, your next melee attack deals increased damage.
-
-Excludes movement abilities.",iconId:"a-r-80"},
+  {id:14,x:551.4,y:260.7,type:"notable",name:"Patient Doom",regionId:"void-knight",maxPoints:6,parentId:undefined,description:"Every 3 seconds, your next melee attack deals increased damage.  Excludes movement abilities.",iconId:"a-r-80"},
   {id:15,x:317.2,y:352.9,type:"notable",name:"Void Blades",regionId:"void-knight",maxPoints:8,parentId:58,description:"Melee attacks deal [3] additional void damage on hit per point",iconId:"a-r-809"},
   {id:16,x:317.2,y:260.7,type:"notable",name:"Dark Maw",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Whenever you kill an enemy, you have a chance to absorb 5% of its health.",iconId:"a-r-1126"},
   {id:17,x:668.5,y:76.1,type:"notable",name:"Renouncement",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"You have additional Vitality and Smite now gains spell void damage per point of Vitality, but no longer gains increased damage per point of Attunement.",iconId:"a-r-8"},
-  {id:18,x:551.4,y:445.2,type:"notable",name:"Finality",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Your melee hits deal increased void damage and instantly kill enemies that are below a health threshold (a percentage of their maximum health).
-
-If you have a similar effect from an item or passive node, then the highest threshold is used.",iconId:"a-r-518"},
+  {id:18,x:551.4,y:445.2,type:"notable",name:"Finality",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Your melee hits deal increased void damage and instantly kill enemies that are below a health threshold (a percentage of their maximum health).  If you have a similar effect from an item or passive node, then the highest threshold is used.",iconId:"a-r-518"},
   {id:19,x:434.3,y:352.9,type:"notable",name:"Future Strike",regionId:"void-knight",maxPoints:10,parentId:undefined,description:"Whenever you hit an enemy you have a chance to inflict a {Future Strike,} an ailment that lasts 2 seconds then deals 60 void damage all at once at the end of its duration. Future Strike counts .",iconId:"a-r-9"},
   {id:20,x:434.3,y:445.2,type:"notable",name:"Undending Hunger",regionId:"void-knight",maxPoints:5,parentId:12,description:"{Dark Maw} absorbs more health when it triggers.",iconId:"a-r-1128"},
   {id:22,x:902.8,y:260.7,type:"notable",name:"Eternal Form",regionId:"void-knight",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-245"},
   {id:23,x:785.6,y:168.4,type:"notable",name:"Future Mind",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-44"},
   {id:24,x:902.8,y:352.9,type:"notable",name:"Void Aegis",regionId:"void-knight",maxPoints:5,parentId:25,description:"You have a chance to be granted {Void Aegis} whenever you are hit, granting you 10% reduced damage taken. Void Aegis breaks after you take 100 damage, releasing a void rift dealing damage to nearby enemies.",iconId:"a-r-750"},
-  {id:25,x:785.6,y:445.2,type:"notable",name:"Essence of the End",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"You have a chance to gain a {Void Essence} on kill.
-
-Void Essences last 7 seconds and grant 15% increased void damage, 15% increased melee damage, and 10% reduced duration of stuns on you.
-
-You can have a maximum of 3 Void Essences at once.",iconId:"a-r-80"},
+  {id:25,x:785.6,y:445.2,type:"notable",name:"Essence of the End",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"You have a chance to gain a {Void Essence} on kill.  Void Essences last 7 seconds and grant 15% increased void damage, 15% increased melee damage, and 10% reduced duration of stuns on you.  You can have a maximum of 3 Void Essences at once.",iconId:"a-r-80"},
   {id:26,x:1019.9,y:260.7,type:"notable",name:"Dread",regionId:"void-knight",maxPoints:10,parentId:undefined,description:"[8%] increased void damage and [1%] increased movement speed per point",iconId:"a-r-749"},
   {id:40,x:785.6,y:76.1,type:"notable",name:"Echoing Strikes",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Your melee attacks, throwing attacks, and void spells have a higher chance to be echoed 1 second later.",iconId:"a-r-63"},
   {id:51,x:317.2,y:168.4,type:"notable",name:"Void Bolts",regionId:"void-knight",maxPoints:8,parentId:58,description:"Spells and throwing attacks deal +[2] void damage on hit per point",iconId:"a-r-748"},
-  {id:54,x:1019.9,y:445.2,type:"notable",name:"Void Well",regionId:"void-knight",maxPoints:1,parentId:25,description:"While you have 3 or more {Void Essences,} if you drop below 0 mana, you consume 1 void essence to set your mana to 30% of your maximum mana pool.
-
-This effect has a 3 second cooldown.",iconId:"a-r-79"},
+  {id:54,x:1019.9,y:445.2,type:"notable",name:"Void Well",regionId:"void-knight",maxPoints:1,parentId:25,description:"While you have 3 or more {Void Essences,} if you drop below 0 mana, you consume 1 void essence to set your mana to 30% of your maximum mana pool.  This effect has a 3 second cooldown.",iconId:"a-r-79"},
   {id:56,x:317.2,y:76.1,type:"notable",name:"Void Corruption",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"Your critical strikes deal more damage for each passive point you have invested in the Void Knight tree.",iconId:"a-r-56"},
   {id:57,x:551.4,y:76.1,type:"notable",name:"Rot Ripples",regionId:"void-knight",maxPoints:6,parentId:undefined,description:"{Time Rot} you inflict lasts longer and whenever you kill an enemy afflicted with Time Rot, nearby enemies have a chance to be inflicted with Time Rot.",iconId:"a-r-382"},
-  {id:58,x:82.9,y:260.7,type:"notable",name:"Temporal Corruption",regionId:"void-knight",maxPoints:6,parentId:undefined,description:"Your spells and attacks deal additional void damage and Smite's base damage is converted to void.
-
-Ignite chance from all sources is converted to slow chance for Smite, and effects from Smite's tree that depend on ignite depend on slow instead.
-
-Smite can no longer provide healing.",iconId:"a-r-470"},
-  {id:59,x:668.5,y:445.2,type:"notable",name:"Null Velocity",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"Whenever you use an ability that reduces your mana below 0, you are granted {Haste} for a duration.
-
-This effect has a 10 second cooldown.",iconId:"a-r-1174"},
+  {id:58,x:82.9,y:260.7,type:"notable",name:"Temporal Corruption",regionId:"void-knight",maxPoints:6,parentId:undefined,description:"Your spells and attacks deal additional void damage and Smite's base damage is converted to void.  Ignite chance from all sources is converted to slow chance for Smite, and effects from Smite's tree that depend on ignite depend on slow instead.  Smite can no longer provide healing.",iconId:"a-r-470"},
+  {id:59,x:668.5,y:445.2,type:"notable",name:"Null Velocity",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"Whenever you use an ability that reduces your mana below 0, you are granted {Haste} for a duration.  This effect has a 10 second cooldown.",iconId:"a-r-1174"},
   {id:60,x:668.5,y:168.4,type:"notable",name:"Rot Grip",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Your melee attacks have a chance to inflict enemies with {Time Rot.}",iconId:"a-r-562"},
   {id:61,x:785.6,y:260.7,type:"notable",name:"Singular Purpose",regionId:"void-knight",maxPoints:5,parentId:60,description:"[10%] reduced block chance and block effectiveness per point [10%] increased void damage and void protection per point",iconId:"a-r-1359"},
   {id:62,x:434.3,y:168.4,type:"notable",name:"Doom Knight",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-1124"},
   {id:63,x:668.5,y:352.9,type:"notable",name:"Woe",regionId:"void-knight",maxPoints:8,parentId:undefined,description:"You deal increased melee damage, and you have increased armor and void damage if you have killed an enemy with a melee attack recently (last 4 seconds).",iconId:"a-r-596"},
-  {id:64,x:1137.0,y:445.2,type:"notable",name:"Void Flux",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Whenever damage reduces your health below 20%, you send all nearby enemies forward in time for 4 seconds.
-
-This effect has a 30 second cooldown.
-
-Bosses are only sent forward by a millisecond and do not visually disappear.",iconId:"a-r-181"},
-  {id:79,x:1019.9,y:76.1,type:"notable",name:"Time Legion",regionId:"void-knight",maxPoints:10,parentId:40,description:"You have increased melee attack speed and your melee attacks have a chance to inflict enemies with {Time Rot.}
-
-Your melee attacks, throwing attacks, and void spells have a higher chance to be echoed 1 second later.",iconId:"a-r-595"},
+  {id:64,x:1137.0,y:445.2,type:"notable",name:"Void Flux",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"Whenever damage reduces your health below 20%, you send all nearby enemies forward in time for 4 seconds.  This effect has a 30 second cooldown.  Bosses are only sent forward by a millisecond and do not visually disappear.",iconId:"a-r-181"},
+  {id:79,x:1019.9,y:76.1,type:"notable",name:"Time Legion",regionId:"void-knight",maxPoints:10,parentId:40,description:"You have increased melee attack speed and your melee attacks have a chance to inflict enemies with {Time Rot.}  Your melee attacks, throwing attacks, and void spells have a higher chance to be echoed 1 second later.",iconId:"a-r-595"},
   {id:102,x:1137.0,y:168.4,type:"notable",name:"Avatar of Regret",regionId:"void-knight",maxPoints:1,parentId:26,description:"Your melee attacks, throwing attacks, and void spells have a much higher chance to echo, but you have reduced melee attack speed and throwing attack speed and your skills cost more mana.",iconId:"a-r-561"},
   {id:116,x:1137.0,y:352.9,type:"notable",name:"Node 116",regionId:"void-knight",maxPoints:5,parentId:undefined,description:"",iconId:"a-r-1125"},
 ];
@@ -383,18 +324,12 @@ const _SENTINEL_FORGE_GUARD: N[] = [
   {id:47,x:1019.9,y:352.9,type:"notable",name:"Walls of Solarum",regionId:"forge-guard",maxPoints:8,parentId:41,description:"While you are using a shield you have additional elemental resistance and deal increased fire damage over time.",iconId:"a-r-1171"},
   {id:48,x:902.8,y:260.7,type:"notable",name:"Osprixbane",regionId:"forge-guard",maxPoints:5,parentId:41,description:"You take less fire damage on block (multiplicative with other modifiers) and you deal increased damage if you have blocked recently (past 4 seconds)",iconId:"a-r-493"},
   {id:52,x:317.2,y:260.7,type:"notable",name:"Shield Breaker",regionId:"forge-guard",maxPoints:6,parentId:30,description:"Your throwing attacks cost more mana, but shred physical and fire resistance.",iconId:"a-r-744"},
-  {id:53,x:200.0,y:168.4,type:"notable",name:"Fresh from the Forge",regionId:"forge-guard",maxPoints:10,parentId:65,description:"Every 3 seconds, your next melee attack deals additional physical and fire damage.
-
-Every 3 seconds, your next throwing attack deals additional physical and fire damage.
-
-Excludes movement abilities.",iconId:"a-r-246"},
+  {id:53,x:200.0,y:168.4,type:"notable",name:"Fresh from the Forge",regionId:"forge-guard",maxPoints:10,parentId:65,description:"Every 3 seconds, your next melee attack deals additional physical and fire damage.  Every 3 seconds, your next throwing attack deals additional physical and fire damage.  Excludes movement abilities.",iconId:"a-r-246"},
   {id:65,x:82.9,y:260.7,type:"notable",name:"Weapons Master",regionId:"forge-guard",maxPoints:10,parentId:undefined,description:"+[1] strength per point +[1] attunement per point",iconId:"a-r-1365"},
   {id:66,x:551.4,y:445.2,type:"notable",name:"Iron Attunement",regionId:"forge-guard",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-364"},
   {id:67,x:1019.9,y:168.4,type:"notable",name:"Liquid Iron",regionId:"forge-guard",maxPoints:5,parentId:38,description:"You take less damage over time (multiplicative with other modifiers) and have additional physical resistance. These bonuses are doubled if you have used a potion recently.",iconId:"a-r-941"},
   {id:68,x:1137.0,y:352.9,type:"notable",name:"Molded by the Forge",regionId:"forge-guard",maxPoints:8,parentId:undefined,description:"Your melee attacks gain a bonus depending on the type of weapon you are wielding.",iconId:"a-r-272"},
-  {id:100,x:668.5,y:260.7,type:"notable",name:"Folded Steel",regionId:"forge-guard",maxPoints:10,parentId:undefined,description:"Your manifest armour and {Forged Weapons} deal additional physical damage with their melee attacks.
-
-You can also control an additional {Forged Weapon}.",iconId:"a-r-273"},
+  {id:100,x:668.5,y:260.7,type:"notable",name:"Folded Steel",regionId:"forge-guard",maxPoints:10,parentId:undefined,description:"Your manifest armour and {Forged Weapons} deal additional physical damage with their melee attacks.  You can also control an additional {Forged Weapon}.",iconId:"a-r-273"},
   {id:110,x:434.3,y:352.9,type:"notable",name:"Siege Captain",regionId:"forge-guard",maxPoints:8,parentId:30,description:"While you have a shield equipped your blocks are more effective and you deal additional physical damage with throwing attacks.",iconId:"a-r-116"},
   {id:111,x:434.3,y:168.4,type:"notable",name:"Champion of the Forge",regionId:"forge-guard",maxPoints:8,parentId:53,description:"You deal increased melee damage if you're using a two handed weapon.",iconId:"a-r-558"},
   {id:112,x:1137.0,y:168.4,type:"notable",name:"Avatar of War",regionId:"forge-guard",maxPoints:8,parentId:undefined,description:"You deal increased melee damage for each hit you have taken in the past 10 seconds.",iconId:"a-r-1366"},
@@ -409,9 +344,7 @@ const _SENTINEL_PALADIN: N[] = [
   {id:73,x:434.3,y:76.1,type:"notable",name:"Rahyeh's Strength",regionId:"paladin",maxPoints:8,parentId:84,description:"You have additional strength, and you deal increased fire damage if you have hit an enemy with a melee attack recently (last 4 seconds).",iconId:"a-r-246"},
   {id:74,x:200.0,y:168.4,type:"notable",name:"Divine Bolt",regionId:"paladin",maxPoints:4,parentId:undefined,description:"Whenever you hit an enemy with a melee attack you have a 20% chance to cast {Divine Bolt,} a blast of holy energy that deals fire damage to a random nearby enemy.",iconId:"a-r-265"},
   {id:75,x:551.4,y:76.1,type:"notable",name:"Prayer",regionId:"paladin",maxPoints:6,parentId:undefined,description:"You have increased damage and healing effectiveness if you have healed yourself or an ally recently (last 4 seconds).",iconId:"a-r-423"},
-  {id:76,x:200.0,y:445.2,type:"notable",name:"Holy Symbol",regionId:"paladin",maxPoints:6,parentId:72,description:"When you block you cast {Holy Symbol,} healing yourself.
-
-This effect has a 3 second cooldown.",iconId:"a-r-37"},
+  {id:76,x:200.0,y:445.2,type:"notable",name:"Holy Symbol",regionId:"paladin",maxPoints:6,parentId:72,description:"When you block you cast {Holy Symbol,} healing yourself.  This effect has a 3 second cooldown.",iconId:"a-r-37"},
   {id:77,x:82.9,y:168.4,type:"notable",name:"Conviction",regionId:"paladin",maxPoints:8,parentId:undefined,description:"You deal [4%] increased physical and fire damage per point +[14] physical and fire penetration per point",iconId:"a-r-449"},
   {id:78,x:434.3,y:445.2,type:"notable",name:"Holy Nova",regionId:"paladin",maxPoints:1,parentId:76,description:"{Holy Symbol} also heals allies in an area around you.",iconId:"a-r-501"},
   {id:80,x:434.3,y:168.4,type:"notable",name:"Shared Divinity",regionId:"paladin",maxPoints:6,parentId:74,description:"{Divine Bolt} fires extra projectiles, but has a reduced chance to cast on hit.",iconId:"a-r-752"},
@@ -429,11 +362,7 @@ This effect has a 3 second cooldown.",iconId:"a-r-37"},
   {id:93,x:1137.0,y:168.4,type:"notable",name:"Light of Rahyeh",regionId:"paladin",maxPoints:7,parentId:119,description:"[8%] increased fire damage and [1%] increased movement speed per point",iconId:"a-r-494"},
   {id:94,x:317.2,y:260.7,type:"notable",name:"Blinding Light",regionId:"paladin",maxPoints:7,parentId:undefined,description:"Your hits have a chance to blind enemies and you have higher endurance.",iconId:"a-r-13"},
   {id:95,x:1137.0,y:352.9,type:"notable",name:"Divine Intervention",regionId:"paladin",maxPoints:7,parentId:119,description:"While you have 3 or more {Divine Essences,} if you would die, you have a 10% chance to instead consume all Divine Essences and be returned to life at full health.",iconId:"a-r-1163"},
-  {id:96,x:1019.9,y:352.9,type:"notable",name:"Divine Essence",regionId:"paladin",maxPoints:5,parentId:undefined,description:"You have a chance to be granted a {Divine Essence} when you heal yourself or an ally.
-
-Divine Essences last 10 seconds and grant 10% increased armor and healing effectiveness. They also reduce the duration of stuns on you by 10%.
-
-You can have a maximum of 3 Divine Essences at once.",iconId:"a-r-557"},
+  {id:96,x:1019.9,y:352.9,type:"notable",name:"Divine Essence",regionId:"paladin",maxPoints:5,parentId:undefined,description:"You have a chance to be granted a {Divine Essence} when you heal yourself or an ally.  Divine Essences last 10 seconds and grant 10% increased armor and healing effectiveness. They also reduce the duration of stuns on you by 10%.  You can have a maximum of 3 Divine Essences at once.",iconId:"a-r-557"},
   {id:97,x:551.4,y:445.2,type:"notable",name:"Alignment",regionId:"paladin",maxPoints:8,parentId:undefined,description:"Every 3 seconds, the next spell you cast has increased healing effectiveness.",iconId:"a-r-712"},
   {id:98,x:1019.9,y:168.4,type:"notable",name:"Reverence of Duality",regionId:"paladin",maxPoints:12,parentId:undefined,description:"[2%] increased health, damage, healing effectiveness, and mana per point.",iconId:"a-r-558"},
   {id:104,x:668.5,y:260.7,type:"notable",name:"Faith Armour",regionId:"paladin",maxPoints:8,parentId:undefined,description:"[5%] increased Armor per point +[5%] critical strike avoidance per point",iconId:"a-r-1122"},
@@ -470,11 +399,8 @@ const _ACOLYTE_NECROMANCER: N[] = [
   {id:16,x:317.2,y:352.9,type:"notable",name:"Mortal Tether",regionId:"necromancer",maxPoints:10,parentId:21,description:"Your minions have [15%] increased health per point",iconId:"a-r-231"},
   {id:17,x:434.3,y:445.2,type:"notable",name:"Wisp Weaver",regionId:"necromancer",maxPoints:8,parentId:undefined,description:"Whenever you use a minion skill, you have a chance to gain ward equal to the mana spent.",iconId:"a-r-537"},
   {id:18,x:551.4,y:168.4,type:"notable",name:"Soul Drinker",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"You are granted a percentage of excess healing from {Life Drinker} .",iconId:"a-r-951"},
-  {id:19,x:434.3,y:76.1,type:"notable",name:"Mark of Punishment",regionId:"necromancer",maxPoints:10,parentId:undefined,description:"Whenever one of your minions die, it has a chance to mark the nearest enemy for death for 5 seconds.
-
-{Mark for Death} is a curse that lasts for 8 seconds and reduces all resistances by 25%. It cannot stack.",iconId:"a-r-237"},
-  {id:20,x:551.4,y:76.1,type:"notable",name:"Dark Retribution",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"Whenever one of your minions dies, you have a chance to summon a {Skeleton Vanguard} from its corpse, a minion that deals melee physical damage using a spear. You are limited to 3 active skeleton vanguards.
-This node also grants additional melee physical damage to Skeleton Vanguards summoned from any source.",iconId:"a-r-536"},
+  {id:19,x:434.3,y:76.1,type:"notable",name:"Mark of Punishment",regionId:"necromancer",maxPoints:10,parentId:undefined,description:"Whenever one of your minions die, it has a chance to mark the nearest enemy for death for 5 seconds.  {Mark for Death} is a curse that lasts for 8 seconds and reduces all resistances by 25%. It cannot stack.",iconId:"a-r-237"},
+  {id:20,x:551.4,y:76.1,type:"notable",name:"Dark Retribution",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"Whenever one of your minions dies, you have a chance to summon a {Skeleton Vanguard} from its corpse, a minion that deals melee physical damage using a spear. You are limited to 3 active skeleton vanguards. This node also grants additional melee physical damage to Skeleton Vanguards summoned from any source.",iconId:"a-r-536"},
   {id:21,x:200.0,y:445.2,type:"notable",name:"Blood Armour",regionId:"necromancer",maxPoints:8,parentId:undefined,description:"You have [10%] increased health regeneration per point, and your minions regenerate [2] additional health per second per point.",iconId:"a-r-523"},
   {id:23,x:668.5,y:352.9,type:"notable",name:"Tyrant",regionId:"necromancer",maxPoints:8,parentId:undefined,description:"You have [3%] increased health per point, but your minions have [3%] reduced health per point.",iconId:"a-r-734"},
   {id:24,x:785.6,y:445.2,type:"notable",name:"Cling To Life",regionId:"necromancer",maxPoints:6,parentId:23,description:"Grants you Vitality and grants your minions all resistances.",iconId:"a-r-317"},
@@ -489,9 +415,7 @@ This node also grants additional melee physical damage to Skeleton Vanguards sum
   {id:63,x:785.6,y:76.1,type:"notable",name:"River of Bones",regionId:"necromancer",maxPoints:5,parentId:62,description:"You and your minions have [20%] increased critical strike chance and [4%] of crit damage leeched as health per point. Your minions have [20%] increased health leech per point. Your minions have +[20",iconId:"a-r-1161"},
   {id:64,x:1019.9,y:445.2,type:"notable",name:"Empty The Graves",regionId:"necromancer",maxPoints:4,parentId:undefined,description:"You have increased health regeneration and additional armor for each minion you control.",iconId:"a-r-250"},
   {id:65,x:1137.0,y:352.9,type:"notable",name:"Disciples of Necromancy",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"+1 Maximum Skeletal Mages",iconId:"a-r-217"},
-  {id:74,x:668.5,y:260.7,type:"notable",name:"Effigies",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"When you take a hit while at low health you have a chance to consume one of your minions, stealing its current health to heal yourself.
-
-Your minions deal increased fire and bow damage.",iconId:"a-r-534"},
+  {id:74,x:668.5,y:260.7,type:"notable",name:"Effigies",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"When you take a hit while at low health you have a chance to consume one of your minions, stealing its current health to heal yourself.  Your minions deal increased fire and bow damage.",iconId:"a-r-534"},
   {id:75,x:434.3,y:260.7,type:"notable",name:"Aegisfall",regionId:"necromancer",maxPoints:8,parentId:14,description:"Your minions have a chance to shred armour on hit",iconId:"a-r-7"},
   {id:76,x:785.6,y:260.7,type:"notable",name:"Moonlight Pyre",regionId:"necromancer",maxPoints:10,parentId:undefined,description:"Your minions deal additional fire and necrotic damage with spells and attacks.",iconId:"a-r-337"},
   {id:77,x:1137.0,y:260.7,type:"notable",name:"Veins of Malice",regionId:"necromancer",maxPoints:5,parentId:undefined,description:"Whenever you cast a spell, you sacrifice 5% of your current health to grant your minions {Haste} and {Frenzy} for a duration. This effect has a 10 second cooldown.",iconId:"a-r-889"},
@@ -501,8 +425,7 @@ const _ACOLYTE_LICH: N[] = [
   {id:22,x:317.2,y:260.7,type:"notable",name:"Hollow Lich",regionId:"lich",maxPoints:1,parentId:30,description:"All sources of health leech are converted to increased damage at 10 times their value.",iconId:"a-r-48"},
   {id:29,x:82.9,y:445.2,type:"notable",name:"Dance with Death",regionId:"lich",maxPoints:8,parentId:undefined,description:"You deal increased damage. This bonus is tripled when you are below 35% health.",iconId:"a-r-229"},
   {id:30,x:82.9,y:260.7,type:"notable",name:"Survival of the Cruel",regionId:"lich",maxPoints:8,parentId:undefined,description:"+[5] health per point [0.5%] of spell damage leeched as health per point",iconId:"a-r-317"},
-  {id:31,x:200.0,y:445.2,type:"notable",name:"Harvested Legions",regionId:"lich",maxPoints:5,parentId:undefined,description:"Whenever you kill an enemy you have a chance to summon a {Skeleton Vanguard} from its corpse, a minion that deals melee physical damage using a spear. You are limited to 3 active skeleton vanguards.
-This node also grants increased health to Skeleton Vanguards summoned from any source.",iconId:"a-r-536"},
+  {id:31,x:200.0,y:445.2,type:"notable",name:"Harvested Legions",regionId:"lich",maxPoints:5,parentId:undefined,description:"Whenever you kill an enemy you have a chance to summon a {Skeleton Vanguard} from its corpse, a minion that deals melee physical damage using a spear. You are limited to 3 active skeleton vanguards. This node also grants increased health to Skeleton Vanguards summoned from any source.",iconId:"a-r-536"},
   {id:32,x:200.0,y:352.9,type:"notable",name:"Serrated Bones",regionId:"lich",maxPoints:8,parentId:undefined,description:"You and your minions have an additional [7%] chance per point to inflict bleeding on hit",iconId:"a-r-1165"},
   {id:33,x:200.0,y:76.1,type:"notable",name:"Soul Barrier",regionId:"lich",maxPoints:8,parentId:undefined,description:"When you drop below half health, you are granted ward. This effect has a 12 second cooldown.",iconId:"a-r-949"},
   {id:34,x:317.2,y:352.9,type:"notable",name:"Desolation",regionId:"lich",maxPoints:8,parentId:undefined,description:"You and your minions deal [7%] increased damage over time per point",iconId:"a-r-905"},
@@ -537,18 +460,14 @@ This node also grants increased health to Skeleton Vanguards summoned from any s
 
 const _ACOLYTE_WARLOCK: N[] = [
   {id:50,x:82.9,y:445.2,type:"notable",name:"Soul Stealer",regionId:"warlock",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-1161"},
-  {id:52,x:82.9,y:260.7,type:"notable",name:"Chaos Flames",regionId:"warlock",maxPoints:8,parentId:undefined,description:"You deal increased fire damage and have a chance to ignite on hit with fire skills, and you deal increased necrotic damage and have a chance to inflict damned on hit with necrotic skills.
-
-These effects also apply to your minions.",iconId:"a-r-99"},
+  {id:52,x:82.9,y:260.7,type:"notable",name:"Chaos Flames",regionId:"warlock",maxPoints:8,parentId:undefined,description:"You deal increased fire damage and have a chance to ignite on hit with fire skills, and you deal increased necrotic damage and have a chance to inflict damned on hit with necrotic skills.  These effects also apply to your minions.",iconId:"a-r-99"},
   {id:53,x:82.9,y:76.1,type:"notable",name:"Spiteful Decay",regionId:"warlock",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-532"},
   {id:54,x:317.2,y:445.2,type:"notable",name:"Harrowing Armor",regionId:"warlock",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-810"},
   {id:79,x:200.0,y:260.7,type:"notable",name:"Unholy Torment",regionId:"warlock",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-694"},
   {id:86,x:200.0,y:168.4,type:"notable",name:"Cauldron of Blood",regionId:"warlock",maxPoints:8,parentId:53,description:"",iconId:"a-r-915"},
   {id:87,x:551.4,y:445.2,type:"notable",name:"Dark Protections",regionId:"warlock",maxPoints:7,parentId:54,description:"",iconId:"a-r-416"},
   {id:88,x:317.2,y:168.4,type:"notable",name:"Vile Tide",regionId:"warlock",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-295"},
-  {id:89,x:317.2,y:352.9,type:"notable",name:"Ward of Malevolence",regionId:"warlock",maxPoints:5,parentId:undefined,description:"You gain additional ward decay threshold and you gain ward on kill. 
-
-You also gain ward per 2 points of Intelligence while channeling a skill.",iconId:"a-r-685"},
+  {id:89,x:317.2,y:352.9,type:"notable",name:"Ward of Malevolence",regionId:"warlock",maxPoints:5,parentId:undefined,description:"You gain additional ward decay threshold and you gain ward on kill.   You also gain ward per 2 points of Intelligence while channeling a skill.",iconId:"a-r-685"},
   {id:90,x:317.2,y:76.1,type:"notable",name:"Crimson Favors",regionId:"warlock",maxPoints:6,parentId:86,description:"",iconId:"a-r-225"},
   {id:91,x:434.3,y:260.7,type:"notable",name:"Imperishable",regionId:"warlock",maxPoints:5,parentId:89,description:"",iconId:"a-r-45"},
   {id:92,x:551.4,y:352.9,type:"notable",name:"Doom Herald",regionId:"warlock",maxPoints:8,parentId:89,description:"You take less damage while channeling and deal more damage to damned enemies while channeling (both multiplicative with other modifiers).",iconId:"a-r-337"},
@@ -560,21 +479,15 @@ You also gain ward per 2 points of Intelligence while channeling a skill.",iconI
   {id:99,x:668.5,y:76.1,type:"notable",name:"Malefic Body",regionId:"warlock",maxPoints:10,parentId:undefined,description:"",iconId:"a-r-949"},
   {id:100,x:785.6,y:445.2,type:"notable",name:"Encroaching Darkness",regionId:"warlock",maxPoints:5,parentId:undefined,description:"When you directly cast a {Curse} skill you also afflict a number of enemies around the target location with {Anguish}.",iconId:"a-r-698"},
   {id:101,x:785.6,y:260.7,type:"notable",name:"The Ashen One",regionId:"warlock",maxPoints:8,parentId:97,description:"",iconId:"a-r-696"},
-  {id:102,x:785.6,y:76.1,type:"notable",name:"Chaotic Strikes",regionId:"warlock",maxPoints:5,parentId:undefined,description:"Your hits have a chance to deal double damage.
-
-Additionally your hits have a chance to deal double damage per {Curse} on the target.",iconId:"a-r-111"},
+  {id:102,x:785.6,y:76.1,type:"notable",name:"Chaotic Strikes",regionId:"warlock",maxPoints:5,parentId:undefined,description:"Your hits have a chance to deal double damage.  Additionally your hits have a chance to deal double damage per {Curse} on the target.",iconId:"a-r-111"},
   {id:103,x:902.8,y:352.9,type:"notable",name:"Scorched Reach",regionId:"warlock",maxPoints:7,parentId:97,description:"",iconId:"a-r-582"},
   {id:104,x:902.8,y:168.4,type:"notable",name:"Grasping Damnation",regionId:"warlock",maxPoints:6,parentId:98,description:"The Chains from the {Chains of Ruin} node last longer. Additionally damned that you inflict last longer.",iconId:"a-r-112"},
   {id:105,x:1137.0,y:445.2,type:"notable",name:"Duskbringer",regionId:"warlock",maxPoints:6,parentId:100,description:"",iconId:"a-r-678"},
-  {id:106,x:1019.9,y:352.9,type:"notable",name:"Fleeting Crone",regionId:"warlock",maxPoints:5,parentId:undefined,description:"You have a chance to gain {Haste} for 2 seconds when you kill a {Cursed} enemy or hit a {Cursed} boss or rare enemy.
-
-Additionally {Haste} on you has increased effect.",iconId:"a-r-813"},
+  {id:106,x:1019.9,y:352.9,type:"notable",name:"Fleeting Crone",regionId:"warlock",maxPoints:5,parentId:undefined,description:"You have a chance to gain {Haste} for 2 seconds when you kill a {Cursed} enemy or hit a {Cursed} boss or rare enemy.  Additionally {Haste} on you has increased effect.",iconId:"a-r-813"},
   {id:107,x:1019.9,y:168.4,type:"notable",name:"Vessel of Chaos",regionId:"warlock",maxPoints:7,parentId:undefined,description:"",iconId:"a-r-99"},
   {id:108,x:1019.9,y:76.1,type:"notable",name:"Wreak Havoc",regionId:"warlock",maxPoints:5,parentId:102,description:"",iconId:"a-r-695"},
   {id:109,x:1137.0,y:260.7,type:"notable",name:"Accursed Seer",regionId:"warlock",maxPoints:5,parentId:undefined,description:"",iconId:"a-r-693"},
-  {id:110,x:1019.9,y:260.7,type:"notable",name:"Grimhilde's Domain",regionId:"warlock",maxPoints:5,parentId:101,description:"{Witchfire} that you inflict deals more damage (multiplicative with other modifiers) per global chance to ignite with fire skills and per global chance to inflict damned with necrotic skills.
-
-Additionally while you have {Ignite} or {Damned Overload} your hits spread {Witchfire} to a number of enemies within 10 meters.",iconId:"a-r-102"},
+  {id:110,x:1019.9,y:260.7,type:"notable",name:"Grimhilde's Domain",regionId:"warlock",maxPoints:5,parentId:101,description:"{Witchfire} that you inflict deals more damage (multiplicative with other modifiers) per global chance to ignite with fire skills and per global chance to inflict damned with necrotic skills.  Additionally while you have {Ignite} or {Damned Overload} your hits spread {Witchfire} to a number of enemies within 10 meters.",iconId:"a-r-102"},
   {id:111,x:1137.0,y:76.1,type:"notable",name:"Aspect of Death",regionId:"warlock",maxPoints:5,parentId:undefined,description:"You have increased health and you deal more damage (multiplicative with other modifiers) per stack of each negative ailment on you up to a maximum of 90.",iconId:"a-r-1232"},
   {id:112,x:200.0,y:352.9,type:"notable",name:"Occultist's Mind",regionId:"warlock",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-310"},
 ];
@@ -617,9 +530,7 @@ const _ROGUE_BLADEDANCER: N[] = [
   {id:63,x:668.5,y:260.7,type:"notable",name:"Blood Dance",regionId:"bladedancer",maxPoints:5,parentId:undefined,description:"You leech a portion of melee damage .",iconId:"a-r-200"},
   {id:64,x:668.5,y:168.4,type:"notable",name:"Asuvon's Pact",regionId:"bladedancer",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-63"},
   {id:65,x:785.6,y:445.2,type:"notable",name:"Weapons of Choice",regionId:"bladedancer",maxPoints:8,parentId:62,description:"You gain a bonus while dual wielding depending on your weapon combination.",iconId:"a-r-272"},
-  {id:66,x:785.6,y:260.7,type:"notable",name:"Argent Veil",regionId:"bladedancer",maxPoints:5,parentId:undefined,description:"When you drop below 70% health you gain stacks of {Silver Shroud}. Silver Shroud is a buff that gives you 100% chance to dodge the next hit. Dodging a hit with Silver Shroud consumes all stacks, granting you 100 ward per stack.
-
-This node's effect has a 15 second cooldown, but the cooldown does not prevent you from gaining Silver Shroud from other sources.",iconId:"a-r-161"},
+  {id:66,x:785.6,y:260.7,type:"notable",name:"Argent Veil",regionId:"bladedancer",maxPoints:5,parentId:undefined,description:"When you drop below 70% health you gain stacks of {Silver Shroud}. Silver Shroud is a buff that gives you 100% chance to dodge the next hit. Dodging a hit with Silver Shroud consumes all stacks, granting you 100 ward per stack.  This node's effect has a 15 second cooldown, but the cooldown does not prevent you from gaining Silver Shroud from other sources.",iconId:"a-r-161"},
   {id:67,x:785.6,y:76.1,type:"notable",name:"Perfection",regionId:"bladedancer",maxPoints:5,parentId:64,description:"When you use a melee attack and hit at least one enemy you gain a stack of Perfection. When you receive a hit you lose all stacks. Each stack of perfection increases your damage.",iconId:"a-r-329"},
   {id:68,x:902.8,y:352.9,type:"notable",name:"Critical Eye",regionId:"bladedancer",maxPoints:5,parentId:undefined,description:"You have increased critical strike chance and you have a chance to inflict {Critical Vulnerability} on hit.",iconId:"a-r-31"},
   {id:69,x:902.8,y:260.7,type:"notable",name:"Cloaked Reaper",regionId:"bladedancer",maxPoints:5,parentId:undefined,description:"When you kill an enemy or hit a rare or boss enemy, you regain health for each stack of any Shroud on you.",iconId:"a-r-9"},
@@ -665,9 +576,7 @@ const _ROGUE_MARKSMAN: N[] = [
 
 const _ROGUE_FALCONER: N[] = [
   {id:48,x:82.9,y:445.2,type:"notable",name:"Handler",regionId:"falconer",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-458"},
-  {id:78,x:82.9,y:260.7,type:"notable",name:"Raptor's Wings",regionId:"falconer",maxPoints:5,parentId:undefined,description:"You have a chance to gain haste for 2 seconds when you or your {Falcon} hits an enemy.
-
-Additionally, you deal more damage (multiplicative with other modifiers) while you have haste.",iconId:"a-r-1004"},
+  {id:78,x:82.9,y:260.7,type:"notable",name:"Raptor's Wings",regionId:"falconer",maxPoints:5,parentId:undefined,description:"You have a chance to gain haste for 2 seconds when you or your {Falcon} hits an enemy.  Additionally, you deal more damage (multiplicative with other modifiers) while you have haste.",iconId:"a-r-1004"},
   {id:79,x:82.9,y:76.1,type:"notable",name:"Wilderness Scout",regionId:"falconer",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-113"},
   {id:80,x:200.0,y:352.9,type:"notable",name:"Crimson Skies",regionId:"falconer",maxPoints:5,parentId:48,description:"You have a chance to gain a stack of {Crimson Shroud} when your {Falcon} or {Ballistas} hit an enemy.",iconId:"a-r-733"},
   {id:81,x:200.0,y:260.7,type:"notable",name:"Agile Hunt",regionId:"falconer",maxPoints:8,parentId:undefined,description:"",iconId:"a-r-1016"},
@@ -684,26 +593,17 @@ Additionally, you deal more damage (multiplicative with other modifiers) while y
   {id:92,x:668.5,y:445.2,type:"notable",name:"Evasion Tactics",regionId:"falconer",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-704"},
   {id:93,x:668.5,y:260.7,type:"notable",name:"Coordinated Fade",regionId:"falconer",maxPoints:5,parentId:undefined,description:"When you use a certain ability on your bar, you gain 3 stacks of Silver Shroud. This effect has a 10 second cooldown.",iconId:"a-r-1011"},
   {id:94,x:785.6,y:352.9,type:"notable",name:"Relentless Talons",regionId:"falconer",maxPoints:5,parentId:92,description:"",iconId:"a-r-587"},
-  {id:95,x:668.5,y:76.1,type:"notable",name:"Deflect and Weave",regionId:"falconer",maxPoints:5,parentId:undefined,description:"You have additional block and a chance to receive a glancing blow. Additionally, you
- regain health whenever you block or recieve a glancing blow.",iconId:"a-r-742"},
-  {id:97,x:785.6,y:260.7,type:"notable",name:"Intuitive Connection",regionId:"falconer",maxPoints:1,parentId:undefined,description:"{Falcon Strikes} and {Dive Bomb} are now instant cast.
-
-Additionally, {Falcon Strikes} and {Dive Bomb} have a longer cooldown.",iconId:"a-r-455"},
-  {id:98,x:785.6,y:76.1,type:"notable",name:"Final Souvenir",regionId:"falconer",maxPoints:6,parentId:undefined,description:"You have additional dodge rating and you now have a chance to drop {Caltrops} around you when you dodge and there is an enemy within 4 meters of you.
-
-This effect has a 2 second cooldown.",iconId:"a-r-539"},
+  {id:95,x:668.5,y:76.1,type:"notable",name:"Deflect and Weave",regionId:"falconer",maxPoints:5,parentId:undefined,description:"You have additional block and a chance to receive a glancing blow. Additionally, you regain health whenever you block or recieve a glancing blow.",iconId:"a-r-742"},
+  {id:97,x:785.6,y:260.7,type:"notable",name:"Intuitive Connection",regionId:"falconer",maxPoints:1,parentId:undefined,description:"{Falcon Strikes} and {Dive Bomb} are now instant cast.  Additionally, {Falcon Strikes} and {Dive Bomb} have a longer cooldown.",iconId:"a-r-455"},
+  {id:98,x:785.6,y:76.1,type:"notable",name:"Final Souvenir",regionId:"falconer",maxPoints:6,parentId:undefined,description:"You have additional dodge rating and you now have a chance to drop {Caltrops} around you when you dodge and there is an enemy within 4 meters of you.  This effect has a 2 second cooldown.",iconId:"a-r-539"},
   {id:99,x:902.8,y:352.9,type:"notable",name:"Sky Assassin",regionId:"falconer",maxPoints:7,parentId:undefined,description:"",iconId:"a-r-18"},
   {id:100,x:902.8,y:260.7,type:"notable",name:"Needle Like Precision",regionId:"falconer",maxPoints:6,parentId:undefined,description:"",iconId:"a-r-670"},
   {id:101,x:902.8,y:168.4,type:"notable",name:"Leog's Strategem",regionId:"falconer",maxPoints:8,parentId:98,description:"",iconId:"a-r-943"},
   {id:102,x:1019.9,y:445.2,type:"notable",name:"Stymphalian Feathers",regionId:"falconer",maxPoints:6,parentId:92,description:"You have additional armor per point of Dexterity.",iconId:"a-r-245"},
   {id:103,x:1019.9,y:352.9,type:"notable",name:"Expediency",regionId:"falconer",maxPoints:5,parentId:undefined,description:"Haste on you has increased effect and you gain haste for a short duration whenever you use a potion.",iconId:"a-r-959"},
   {id:104,x:1019.9,y:168.4,type:"notable",name:"Poise",regionId:"falconer",maxPoints:5,parentId:undefined,description:"",iconId:"a-r-493"},
-  {id:105,x:1137.0,y:445.2,type:"notable",name:"Tailwind",regionId:"falconer",maxPoints:6,parentId:undefined,description:"You take less damage while moving. Additionally, you have increased movement speed and dodge rating.
-
-These effects are doubled if your {Falcon} has hit an enemy recently.",iconId:"a-r-1006"},
-  {id:106,x:1137.0,y:260.7,type:"notable",name:"Finesse Them",regionId:"falconer",maxPoints:7,parentId:100,description:"You regain health when you or your minions crits an enemy.
-
-You have additional critical strike avoidance.",iconId:"a-r-598"},
+  {id:105,x:1137.0,y:445.2,type:"notable",name:"Tailwind",regionId:"falconer",maxPoints:6,parentId:undefined,description:"You take less damage while moving. Additionally, you have increased movement speed and dodge rating.  These effects are doubled if your {Falcon} has hit an enemy recently.",iconId:"a-r-1006"},
+  {id:106,x:1137.0,y:260.7,type:"notable",name:"Finesse Them",regionId:"falconer",maxPoints:7,parentId:100,description:"You regain health when you or your minions crits an enemy.  You have additional critical strike avoidance.",iconId:"a-r-598"},
   {id:107,x:1137.0,y:76.1,type:"notable",name:"Strike Their Flank",regionId:"falconer",maxPoints:6,parentId:98,description:"",iconId:"a-r-1023"},
 ];
 

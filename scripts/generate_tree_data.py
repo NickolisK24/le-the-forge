@@ -43,7 +43,7 @@ MASTERY_REGION: dict[str, list[str]] = {
 
 def _escape_ts(s: str) -> str:
     """Escape a string for insertion into a TypeScript string literal."""
-    return s.replace("\\", "\\\\").replace('"', '\\"')
+    return s.replace("\\", "\\\\").replace('"', '\\"').replace("\n", " ").replace("\r", "")
 
 
 # ---------------------------------------------------------------------------
