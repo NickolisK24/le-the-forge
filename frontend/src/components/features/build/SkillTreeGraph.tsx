@@ -5,10 +5,7 @@ import { cleanNodeName } from "@/data/skillTrees";
 // ---------------------------------------------------------------------------
 // Constants
 // ---------------------------------------------------------------------------
-const CANVAS_W = 620;
-const CANVAS_H = 900;
-const VIEW_W = 620;
-const VIEW_H = 580; // cropped — entry at bottom, keystone near top
+const PADDING = 48; // px of breathing room around node bounds
 
 const NODE_R: Record<SkillNode["type"], number> = {
   core: 14,
@@ -47,6 +44,19 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
   // Build a map for quick lookup
   const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
 
+  // Compute node bounds so the viewBox always contains all nodes
+  const maxR = Math.max(...Object.values(NODE_R));
+  const minX = nodes.length ? Math.min(...nodes.map((n) => n.x)) - maxR - PADDING : 0;
+  const minY = nodes.length ? Math.min(...nodes.map((n) => n.y)) - maxR - PADDING : 0;
+  const maxX = nodes.length ? Math.max(...nodes.map((n) => n.x)) + maxR + PADDING : 100;
+  const maxY = nodes.length ? Math.max(...nodes.map((n) => n.y)) + maxR + PADDING : 100;
+  const rawW = maxX - minX;
+  const rawH = maxY - minY;
+
+  // Translate node coords so (minX, minY) maps to (0, 0) in SVG space
+  function cx(x: number) { return x - minX; }
+  function cy(y: number) { return y - minY; }
+
   // Check if a node's parent chain is allocated (all ancestors have ≥1 point)
   function isUnlocked(nodeId: number): boolean {
     const node = byId[nodeId];
@@ -61,7 +71,6 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
     if (!isUnlocked(node.id)) return;
     const current = allocated[node.id] ?? 0;
     if (current >= node.maxPoints) {
-      // deduct — only if no children are allocated
       const hasAllocatedChild = nodes.some(
         (n) => n.parentId === node.id && (allocated[n.id] ?? 0) > 0
       );
@@ -73,19 +82,12 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
     }
   }
 
-  // Scale canvas to fit in VIEW_H
-  const scaleY = VIEW_H / CANVAS_H;
-  const scaleX = VIEW_W / CANVAS_W;
-  const scale = Math.min(scaleX, scaleY);
-
-  function cx(x: number) { return x * scale; }
-  function cy(y: number) { return y * scale; }
-
   return (
     <div className="relative overflow-hidden rounded-sm border border-forge-border bg-forge-bg">
       <svg
         width="100%"
-        viewBox={`0 0 ${CANVAS_W * scale} ${CANVAS_H * scale}`}
+        viewBox={`0 0 ${rawW} ${rawH}`}
+        preserveAspectRatio="xMidYMid meet"
         style={{ display: "block", touchAction: "none" }}
       >
         {/* Edges */}
@@ -109,7 +111,7 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
 
         {/* Nodes */}
         {nodes.map((node) => {
-          const r = NODE_R[node.type] * scale;
+          const r = NODE_R[node.type];
           const pts = allocated[node.id] ?? 0;
           const active = pts >= 1;
           const unlocked = isUnlocked(node.id);
@@ -184,9 +186,9 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
               {/* Labels for named non-entry nodes */}
               {node.name && node.type !== "mastery-gate" && (
                 <text
-                  y={r + 12 * scale}
+                  y={r + 14}
                   textAnchor="middle"
-                  fontSize={10 * scale}
+                  fontSize={10}
                   fill={active ? "#e8b040" : "#888"}
                   fontFamily="monospace"
                 >
@@ -197,19 +199,19 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
               {isHov && (
                 <g>
                   <rect
-                    x={-55 * scale}
-                    y={-r - 32 * scale}
-                    width={110 * scale}
-                    height={20 * scale}
-                    rx={3 * scale}
+                    x={-55}
+                    y={-r - 32}
+                    width={110}
+                    height={20}
+                    rx={3}
                     fill="#1a1208"
                     stroke="#c8902a"
                     strokeWidth={0.8}
                   />
                   <text
-                    y={-r - 22 * scale}
+                    y={-r - 22}
                     textAnchor="middle"
-                    fontSize={9 * scale}
+                    fontSize={9}
                     fill="#e8b040"
                     fontFamily="monospace"
                   >
