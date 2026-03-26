@@ -280,7 +280,7 @@ def enrich_skill_trees(dry_run: bool = False) -> None:
     # The function currently strips "Skills.Skill_xxx_N_Name" → "Node N"
     # With real names, the function should just return the name directly.
     old_fn = re.compile(
-        r'export function cleanNodeName\(name: string \| undefined\): string \{[^}]+\}',
+        r'export function cleanNodeName\(name: string \| undefined\): string \{.*?\n\}',
         re.DOTALL,
     )
     new_fn = (

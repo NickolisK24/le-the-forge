@@ -119,8 +119,6 @@ export function cleanNodeName(name: string | undefined): string {
   const m = name.match(/Skills\.Skill_\w+_(\d+)_Name$/);
   if (m) return `Node ${m[1]}`;
   return name;
-}`;
-  return name;
 }
 
 export const SKILL_TREES: Record<string, N[]> = {
