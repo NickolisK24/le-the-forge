@@ -127,7 +127,7 @@ function SkillTreeModal({
           >✕ Close</button>
         </div>
         {nodes.length ? (
-          <SkillTreeGraph nodes={nodes} allocated={allocated} onAllocate={onAllocate} readOnly={readOnly} />
+          <SkillTreeGraph nodes={nodes} allocated={allocated} onAllocate={onAllocate} readOnly={readOnly} skillName={skillName} />
         ) : (
           <div className="flex items-center justify-center py-16 font-mono text-sm text-forge-dim">
             No tree data for this skill yet.

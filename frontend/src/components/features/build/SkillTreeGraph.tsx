@@ -1,6 +1,6 @@
 import { useState } from "react";
 import type { SkillNode } from "@/data/skillTrees";
-import { cleanNodeName } from "@/data/skillTrees";
+import { cleanNodeName, getSkillCode } from "@/data/skillTrees";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -33,13 +33,18 @@ interface Props {
   allocated: AllocMap;
   onAllocate: (nodeId: number, points: number) => void;
   readOnly?: boolean;
+  skillName?: string; // used to show the skill icon on the mastery-gate node
 }
 
 // ---------------------------------------------------------------------------
 // SkillTreeGraph
 // ---------------------------------------------------------------------------
-export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly }: Props) {
+export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly, skillName }: Props) {
   const [hovered, setHovered] = useState<number | null>(null);
+
+  // Resolve skill icon path (used on mastery-gate node)
+  const treeCode = skillName ? getSkillCode(skillName) : null;
+  const skillIconUrl = treeCode ? `/assets/skill-icons/${treeCode}.png` : null;
 
   // Build a map for quick lookup
   const byId = Object.fromEntries(nodes.map((n) => [n.id, n]));
@@ -170,8 +175,21 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly 
                   {pts}/{node.maxPoints}
                 </text>
               )}
-              {/* Play icon on inactive entry node */}
-              {node.type === "mastery-gate" && !active && (
+              {/* Skill icon on mastery-gate node */}
+              {node.type === "mastery-gate" && skillIconUrl && (
+                <image
+                  href={skillIconUrl}
+                  x={-r * 0.75}
+                  y={-r * 0.75}
+                  width={r * 1.5}
+                  height={r * 1.5}
+                  opacity={active ? 1 : 0.6}
+                  pointerEvents="none"
+                  preserveAspectRatio="xMidYMid meet"
+                />
+              )}
+              {/* Play icon on inactive entry node when no image */}
+              {node.type === "mastery-gate" && !active && !skillIconUrl && (
                 <text
                   textAnchor="middle"
                   dominantBaseline="central"

@@ -4260,6 +4260,12 @@ export function getSkillTree(skillName: string): SkillNode[] {
   return SKILL_TREES[code] ?? [];
 }
 
+/** Returns the tree code for a skill name, or null if not found. */
+export function getSkillCode(skillName: string): string | null {
+  const norm = skillName.toLowerCase().trim();
+  return SKILL_NAME_TO_CODE[norm] ?? null;
+}
+
 /** Returns true if a skill tree exists for the given skill name. */
 export function hasSkillTree(skillName: string): boolean {
   return getSkillTree(skillName).length > 0;

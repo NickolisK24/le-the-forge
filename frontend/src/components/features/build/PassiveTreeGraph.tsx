@@ -380,6 +380,20 @@ export default function PassiveTreeGraph({
                   <polygon points={hexPts} fill={fillGrad}/>
                   <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
+                  {/* Node icon — rendered inside the hex when image is available */}
+                  {node.iconId && (
+                    <image
+                      href={`/assets/passive-icons/${node.iconId}.png`}
+                      x={-r * 0.65}
+                      y={-r * 0.65}
+                      width={r * 1.3}
+                      height={r * 1.3}
+                      opacity={unlocked || active ? (active ? 1 : 0.7) : 0.35}
+                      pointerEvents="none"
+                      preserveAspectRatio="xMidYMid meet"
+                    />
+                  )}
+
                   <text
                     y={outerR + fontSize * 0.3}
                     textAnchor="middle"
