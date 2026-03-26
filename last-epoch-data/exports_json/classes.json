@@ -1,0 +1,148 @@
+{
+  "meta": {
+    "total": 5
+  },
+  "classes": [
+    {
+      "id": 3,
+      "name": "Acolyte",
+      "treeID": "ac-1",
+      "baseHealth": 100,
+      "baseMana": 50,
+      "hideThirdMasterySkillsInPanel": false,
+      "specialTagForClassSpecificStats": 5,
+      "healthBarHeightOffset": -0.15,
+      "masteries": [
+        {
+          "name": "Acolyte",
+          "localizationKey": "Class_Acolyte"
+        },
+        {
+          "name": "Necromancer",
+          "localizationKey": "Mastery_Necromancer"
+        },
+        {
+          "name": "Lich",
+          "localizationKey": "Mastery_Lich"
+        },
+        {
+          "name": "Warlock",
+          "localizationKey": "Mastery_Warlock"
+        }
+      ]
+    },
+    {
+      "id": 1,
+      "name": "Mage",
+      "treeID": "mg-1",
+      "baseHealth": 100,
+      "baseMana": 50,
+      "hideThirdMasterySkillsInPanel": false,
+      "specialTagForClassSpecificStats": 3,
+      "healthBarHeightOffset": 0.0,
+      "masteries": [
+        {
+          "name": "Mage",
+          "localizationKey": "Class_Mage"
+        },
+        {
+          "name": "Sorcerer",
+          "localizationKey": "Mastery_Sorcerer"
+        },
+        {
+          "name": "Spellblade",
+          "localizationKey": "Mastery_Spellblade"
+        },
+        {
+          "name": "Runemaster",
+          "localizationKey": "Mastery_Runemaster"
+        }
+      ],
+      "_fallback": true
+    },
+    {
+      "id": 0,
+      "name": "Primalist",
+      "treeID": "pr-1",
+      "baseHealth": 100,
+      "baseMana": 50,
+      "hideThirdMasterySkillsInPanel": false,
+      "specialTagForClassSpecificStats": 2,
+      "healthBarHeightOffset": 0.2,
+      "masteries": [
+        {
+          "name": "Primalist",
+          "localizationKey": "Class_Primalist"
+        },
+        {
+          "name": "Beastmaster",
+          "localizationKey": "Mastery_Beastmaster"
+        },
+        {
+          "name": "Shaman",
+          "localizationKey": "Mastery_Shaman"
+        },
+        {
+          "name": "Druid",
+          "localizationKey": "Mastery_Druid"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "name": "Rogue",
+      "treeID": "rg-1",
+      "baseHealth": 100,
+      "baseMana": 50,
+      "hideThirdMasterySkillsInPanel": false,
+      "specialTagForClassSpecificStats": 6,
+      "healthBarHeightOffset": 0.0,
+      "masteries": [
+        {
+          "name": "Rogue",
+          "localizationKey": "Class_Rogue"
+        },
+        {
+          "name": "Bladedancer",
+          "localizationKey": "Mastery_Bladedancer"
+        },
+        {
+          "name": "Marksman",
+          "localizationKey": "Mastery_Marksman"
+        },
+        {
+          "name": "Falconer",
+          "localizationKey": "Mastery_Falconer"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "name": "Sentinel",
+      "treeID": "kn-1",
+      "baseHealth": 100,
+      "baseMana": 50,
+      "hideThirdMasterySkillsInPanel": false,
+      "specialTagForClassSpecificStats": 4,
+      "healthBarHeightOffset": 0.2,
+      "masteries": [
+        {
+          "name": "Sentinel",
+          "localizationKey": "Class_Sentinel"
+        },
+        {
+          "name": "Void Knight",
+          "localizationKey": "Mastery_VoidKnight"
+        },
+        {
+          "name": "Forge Guard",
+          "localizationKey": "Mastery_Forge_Guard"
+        },
+        {
+          "name": "Paladin",
+          "localizationKey": "Mastery_Paladin"
+        }
+      ]
+    }
+  ]
+}

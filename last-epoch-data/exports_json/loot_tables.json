@@ -1,0 +1,2037 @@
+{
+  "_meta": {
+    "total": 24,
+    "by_category": {
+      "generic": 21,
+      "boss": 3
+    }
+  },
+  "lootTables": [
+    {
+      "name": "Cave Loot - Arena and Dungeon Keys",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.5,
+          "maxDropChance": 2.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 0,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 3,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 4,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 5,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 6,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Glyphs",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 2.0,
+          "maxDropChance": 5.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 103,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Rare Items",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 2.2,
+          "maxDropChance": 0.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.3,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 5,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 2,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 0,
+          "dropChance": 0.3,
+          "maxDropChance": 0.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.1,
+          "minLevel": 25,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 5,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 2,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 0,
+          "dropChance": 0.3,
+          "maxDropChance": 0.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.1,
+          "minLevel": 40,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 5,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 2,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Runes",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 5.0,
+          "maxDropChance": 10.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 102,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Set Items",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.05,
+          "maxDropChance": 1.3,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 4,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Shards",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.35,
+          "maxDropChance": 1.6,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 2.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 101,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 1,
+                "requiredLegendaryType": 1,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Cave Loot - Uniques",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.05,
+          "maxDropChance": 1.3,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 3,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Arena and Dungeon Keys",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.5,
+          "maxDropChance": 2.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 0,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 3,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 4,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 5,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 104,
+                "itemTypeGroup": 0,
+                "subType": 6,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Exalted Armor",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.2,
+          "maxDropChance": 1.9,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 4,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Exalted Caster Weapons",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.2,
+          "maxDropChance": 1.9,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 1,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Exalted Jewelry",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.2,
+          "maxDropChance": 1.9,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 20,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 21,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 22,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Exalted Melee Weapons",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.2,
+          "maxDropChance": 1.9,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 5,
+                "itemTypeGroup": 6,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Exalted Ranged Weapons",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.2,
+          "maxDropChance": 1.9,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.25,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 1,
+                "itemType": 0,
+                "itemTypeGroup": 7,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Glyphs",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 2.0,
+          "maxDropChance": 5.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 103,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Runes",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 5.0,
+          "maxDropChance": 10.0,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 102,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Set Items",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.05,
+          "maxDropChance": 1.3,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 4,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Unique LP (Guaranteed)",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.02,
+          "maxDropChance": 1.1,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 5,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 3,
+                "uniqueID": -1,
+                "requireLegendaryType": 1,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 1,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Uniques",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.05,
+          "maxDropChance": 1.3,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 3,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Weaver Idols",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 2.1,
+          "maxDropChance": 2.8,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.4,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 25,
+                "itemTypeGroup": 0,
+                "subType": 2,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 2,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 26,
+                "itemTypeGroup": 0,
+                "subType": 1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 2,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 27,
+                "itemTypeGroup": 0,
+                "subType": 1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 2,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 28,
+                "itemTypeGroup": 0,
+                "subType": 1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 2,
+                "rarityGroup": 5,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Weaver's Will Uniques",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.05,
+          "maxDropChance": 1.3,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 3,
+                "uniqueID": -1,
+                "requireLegendaryType": 1,
+                "requiredLegendaryType": 1,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Tomb Loot - Woven Echoes",
+      "lootGroups": [
+        {
+          "chanceModifier": 0,
+          "dropChance": 1.1,
+          "maxDropChance": 1.35,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [],
+          "lootType": 0,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": 107,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 1,
+                "rarity": 0,
+                "rarityGroup": 0,
+                "uniqueID": -1,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "generic"
+    },
+    {
+      "name": "Dun1 Julra BossLoot",
+      "lootGroups": [
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 1.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.0
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 1.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.0
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 1.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.0
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 4.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 1.0
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 10.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 5.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            },
+            {
+              "weight": 2.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 238,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "boss"
+    },
+    {
+      "name": "Dun2 Mountain Beneath BossLoot",
+      "lootGroups": [
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.45
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.47
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.48
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.5
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 256,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.2
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.35
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.45
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 253,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.12
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.18
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 254,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.12
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 255,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "boss"
+    },
+    {
+      "name": "Dun3 Cremorus BossLoot",
+      "lootGroups": [
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.45
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.5
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.6
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.65
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": -1,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 257,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.15
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.25
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.3
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 8,
+                "rarityGroup": 0,
+                "uniqueID": 260,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.12
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.18
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 258,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        },
+        {
+          "chanceModifier": 2,
+          "dropChance": 0.1,
+          "maxDropChance": 0.22,
+          "chanceMultiplierPerCorruption": 0.0,
+          "corruptionOffsetForChanceMultiplier": 0.0,
+          "dropChancesForTiers": [
+            {
+              "tier": 0,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 1,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 2,
+              "dropChance": 0.0
+            },
+            {
+              "tier": 3,
+              "dropChance": 0.12
+            }
+          ],
+          "lootType": 1,
+          "dropAttemptsModifier": 0.0,
+          "minLevel": 0,
+          "minCorruption": 0,
+          "drops": [
+            {
+              "weight": 1.0,
+              "loot": {
+                "itemTypeType": 0,
+                "itemType": -1,
+                "itemTypeGroup": 0,
+                "subType": -1,
+                "property": 54,
+                "ilvl": 100,
+                "rarityType": 0,
+                "rarity": 7,
+                "rarityGroup": 0,
+                "uniqueID": 259,
+                "requireLegendaryType": 0,
+                "requiredLegendaryType": 0,
+                "minimumLegendaryPotential": 0,
+                "hasClassRequirement": 0,
+                "classRequirement": 0,
+                "hasSubClassRequirement": 0,
+                "subClassRequirement": 0
+              }
+            }
+          ]
+        }
+      ],
+      "category": "boss"
+    }
+  ]
+}
