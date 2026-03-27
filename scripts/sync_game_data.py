@@ -352,8 +352,6 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
     with open(src_path, encoding="utf-8") as f:
         raw = json.load(f)
 
-    layout_lookup = _build_layout_lookup()
-
     nodes_out: list[dict] = []
 
     for tree in raw.get("passiveTrees", []):
@@ -364,7 +362,6 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
 
         prefix = CLASS_PREFIX[cls]
         mastery_map = MASTERY_MAP[cls]
-        cls_layout = layout_lookup.get(cls, {})
 
         for node in tree.get("nodes", []):
             raw_id: int = node["id"]
@@ -373,33 +370,35 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
             mastery_idx: int = node.get("mastery", 0)
             mastery_name: str | None = mastery_map.get(mastery_idx)
 
-            # Connections: unpack requirements → namespaced IDs
-            connections = [f"{prefix}_{r}" for r in node.get("requirements", [])]
+            # Connections: requirements is [{node: int, requirement: int}, ...]
+            connections = [
+                f"{prefix}_{r['node']}"
+                for r in node.get("requirements", [])
+            ]
 
-            # Stats: compact {key, value} pairs (drop localization keys)
+            # Stats: compact {key, value} pairs; source uses "statName" field
             raw_stats = node.get("stats", [])
             stats = [
-                {"key": s.get("statNameKey", ""), "value": s.get("value", "")}
+                {"key": s.get("statName", ""), "value": s.get("value", "")}
                 for s in raw_stats
             ]
 
-            # First related ability name, if any
-            related = node.get("relatedAbilities", [])
-            ability_granted = related[0] if related else None
+            # Ability granted by this node (may be null)
+            ability_granted = node.get("abilityGrantedByNode") or None
 
-            # x/y from layout lookup; fall back to 0.0
-            layout_node = cls_layout.get(raw_id, {})
-            x = layout_node.get("x", 0.0)
-            y = layout_node.get("y", 0.0)
+            # x/y: source provides real coordinates in transform dict
+            transform = node.get("transform", {})
+            x = transform.get("x", 0.0)
+            y = transform.get("y", 0.0)
 
-            # Icon: prefer layout sprite (more reliable), fall back to node field
-            icon = layout_node.get("icon") or node.get("icon", "")
+            # Icon: source stores integer sprite ID; stringify for consistent storage
+            raw_icon = node.get("icon")
+            icon = str(raw_icon) if raw_icon is not None else None
 
-            # node_type: normalise to snake_case backend convention
-            raw_type = node.get("type", "core")
-            node_type = raw_type.lower().replace("-", "_").replace(" ", "_")
-            if node_type not in ("core", "notable", "keystone", "mastery_gate"):
-                node_type = "core"
+            # node_type: source has no explicit type field; derive from maxPoints
+            # maxPoints==1 → notable (single-point allocatable), >1 → core (investable)
+            max_pts = node.get("maxPoints", 1)
+            node_type = "core" if max_pts > 1 else "notable"
 
             nodes_out.append({
                 "id": node_id,
