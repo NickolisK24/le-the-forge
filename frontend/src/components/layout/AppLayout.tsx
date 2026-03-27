@@ -4,10 +4,11 @@ import { useAuthStore } from "@/store";
 import { versionApi } from "@/lib/api";
 
 const NAV_LINKS = [
-  { to: "/builds",  label: "Builds"   },
-  { to: "/build",   label: "Planner"  },
-  { to: "/craft",   label: "Craft Sim"},
-  { to: "/affixes", label: "Affixes"  },
+  { to: "/builds",   label: "Builds"   },
+  { to: "/build",    label: "Planner"  },
+  { to: "/passives", label: "Passives" },
+  { to: "/craft",    label: "Craft Sim"},
+  { to: "/affixes",  label: "Affixes"  },
 ];
 
 export default function AppLayout() {
