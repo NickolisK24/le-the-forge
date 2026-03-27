@@ -294,16 +294,20 @@ def _build_layout_lookup() -> dict[str, dict[int, dict]]:
     with open(layout_path, encoding="utf-8") as f:
         layout = json.load(f)
 
-    def _flatten(children: list[dict], acc: dict[int, dict]) -> None:
-        for child in children:
-            if "nodeId" in child and "rect" in child:
-                acc[child["nodeId"]] = {
-                    "x": child["rect"][0],
-                    "y": child["rect"][1],
-                    "icon": child.get("icon", ""),
+    def _flatten(obj: object, acc: dict[int, dict]) -> None:
+        """Recursively walk any nested dict/list to collect nodeId entries."""
+        if isinstance(obj, dict):
+            if "nodeId" in obj and "rect" in obj:
+                acc[obj["nodeId"]] = {
+                    "x": obj["rect"][0],
+                    "y": obj["rect"][1],
+                    "icon": obj.get("icon", ""),
                 }
-            if "children" in child:
-                _flatten(child["children"], acc)
+            for v in obj.values():
+                _flatten(v, acc)
+        elif isinstance(obj, list):
+            for item in obj:
+                _flatten(item, acc)
 
     result: dict[str, dict[int, dict]] = {}
     for tree_id, tree_data in layout.items():
@@ -311,9 +315,7 @@ def _build_layout_lookup() -> dict[str, dict[int, dict]]:
         if not cls:
             continue
         node_map: dict[int, dict] = {}
-        for section in tree_data.get("nodes", []):
-            if "children" in section:
-                _flatten(section["children"], node_map)
+        _flatten(tree_data, node_map)
         result[cls] = node_map
 
     return result
