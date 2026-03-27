@@ -248,6 +248,189 @@ def sync_skills_metadata(dry_run: bool = False) -> dict | None:
     return metadata
 
 
+# ---------------------------------------------------------------------------
+# Class / mastery metadata for passive tree sync
+# ---------------------------------------------------------------------------
+
+# Integer mastery index → mastery name (None = base class tree)
+MASTERY_MAP: dict[str, dict[int, str | None]] = {
+    "Acolyte":  {0: None, 1: "Necromancer", 2: "Lich",      3: "Warlock"},
+    "Mage":     {0: None, 1: "Sorcerer",    2: "Runemaster", 3: "Spellblade"},
+    "Primalist":{0: None, 1: "Shaman",      2: "Beastmaster",3: "Druid"},
+    "Rogue":    {0: None, 1: "Bladedancer", 2: "Marksman",   3: "Falconer"},
+    "Sentinel": {0: None, 1: "Paladin",     2: "Forge Guard",3: "Void Knight"},
+}
+
+# Class name → two-letter prefix used in namespaced IDs (e.g. "ac_0")
+CLASS_PREFIX: dict[str, str] = {
+    "Acolyte":  "ac",
+    "Mage":     "mg",
+    "Primalist":"pr",
+    "Rogue":    "rg",
+    "Sentinel": "sn",
+}
+
+# Tree ID (from char-tree-layout.json) → class name
+TREE_ID_TO_CLASS: dict[str, str] = {
+    "ac-1": "Acolyte",
+    "mg-1": "Mage",
+    "pr-1": "Primalist",
+    "rg-1": "Rogue",
+    "kn-1": "Sentinel",
+}
+
+
+def _build_layout_lookup() -> dict[str, dict[int, dict]]:
+    """
+    Parse char-tree-layout.json from the frontend raw data directory and return
+    a nested lookup: class_name → raw_node_id → {x, y, icon}.
+
+    The layout file uses real game coordinates stored as rect[x, y, w, h].
+    """
+    layout_path = ROOT / "frontend" / "src" / "data" / "raw" / "char-tree-layout.json"
+    if not layout_path.exists():
+        return {}
+
+    with open(layout_path, encoding="utf-8") as f:
+        layout = json.load(f)
+
+    def _flatten(children: list[dict], acc: dict[int, dict]) -> None:
+        for child in children:
+            if "nodeId" in child and "rect" in child:
+                acc[child["nodeId"]] = {
+                    "x": child["rect"][0],
+                    "y": child["rect"][1],
+                    "icon": child.get("icon", ""),
+                }
+            if "children" in child:
+                _flatten(child["children"], acc)
+
+    result: dict[str, dict[int, dict]] = {}
+    for tree_id, tree_data in layout.items():
+        cls = TREE_ID_TO_CLASS.get(tree_id)
+        if not cls:
+            continue
+        node_map: dict[int, dict] = {}
+        for section in tree_data.get("nodes", []):
+            if "children" in section:
+                _flatten(section["children"], node_map)
+        result[cls] = node_map
+
+    return result
+
+
+def sync_passives(dry_run: bool = False) -> list[dict] | None:
+    """
+    Transform last-epoch-data/exports_json/passive_trees.json into
+    data/passives.json, with namespaced IDs and resolved mastery names.
+
+    Source schema (passive_trees.json):
+      {"passiveTrees": [{"class": "Acolyte", "nodes": [{
+          "id": int, "name": str, "description": str,
+          "mastery": int,            # 0=base, 1/2/3=mastery subtrees
+          "masteryRequirement": int, # points needed to unlock
+          "maxPoints": int,
+          "requirements": [int, ...],  # connected node IDs
+          "stats": [{"statNameKey": str, "value": str, ...}, ...],
+          "relatedAbilities": [str, ...],
+          "type": str,               # "core"|"notable"|"keystone"|"mastery_gate"
+          "icon": str,               # sprite ID e.g. "a-r-42"
+      }, ...]}]}
+
+    Output per node (data/passives.json array):
+      id, raw_node_id, character_class, mastery, mastery_index,
+      mastery_requirement, name, description, node_type, x, y,
+      max_points, connections, stats, ability_granted, icon
+    """
+    src_path = SRC_DIR / "passive_trees.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping passives sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    layout_lookup = _build_layout_lookup()
+
+    nodes_out: list[dict] = []
+
+    for tree in raw.get("passiveTrees", []):
+        cls = tree.get("class", "")
+        if cls not in MASTERY_MAP:
+            print(f"  [WARN] Unknown class '{cls}' in passive_trees.json — skipping")
+            continue
+
+        prefix = CLASS_PREFIX[cls]
+        mastery_map = MASTERY_MAP[cls]
+        cls_layout = layout_lookup.get(cls, {})
+
+        for node in tree.get("nodes", []):
+            raw_id: int = node["id"]
+            node_id = f"{prefix}_{raw_id}"
+
+            mastery_idx: int = node.get("mastery", 0)
+            mastery_name: str | None = mastery_map.get(mastery_idx)
+
+            # Connections: unpack requirements → namespaced IDs
+            connections = [f"{prefix}_{r}" for r in node.get("requirements", [])]
+
+            # Stats: compact {key, value} pairs (drop localization keys)
+            raw_stats = node.get("stats", [])
+            stats = [
+                {"key": s.get("statNameKey", ""), "value": s.get("value", "")}
+                for s in raw_stats
+            ]
+
+            # First related ability name, if any
+            related = node.get("relatedAbilities", [])
+            ability_granted = related[0] if related else None
+
+            # x/y from layout lookup; fall back to 0.0
+            layout_node = cls_layout.get(raw_id, {})
+            x = layout_node.get("x", 0.0)
+            y = layout_node.get("y", 0.0)
+
+            # Icon: prefer layout sprite (more reliable), fall back to node field
+            icon = layout_node.get("icon") or node.get("icon", "")
+
+            # node_type: normalise to snake_case backend convention
+            raw_type = node.get("type", "core")
+            node_type = raw_type.lower().replace("-", "_").replace(" ", "_")
+            if node_type not in ("core", "notable", "keystone", "mastery_gate"):
+                node_type = "core"
+
+            nodes_out.append({
+                "id": node_id,
+                "raw_node_id": raw_id,
+                "character_class": cls,
+                "mastery": mastery_name,
+                "mastery_index": mastery_idx,
+                "mastery_requirement": node.get("masteryRequirement", 0),
+                "name": node.get("name", ""),
+                "description": node.get("description", ""),
+                "node_type": node_type,
+                "x": x,
+                "y": y,
+                "max_points": node.get("maxPoints", 1),
+                "connections": connections,
+                "stats": stats,
+                "ability_granted": ability_granted,
+                "icon": icon or None,
+            })
+
+    out_path = DATA_DIR / "passives.json"
+    total = len(nodes_out)
+
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(nodes_out, f, indent=2, ensure_ascii=False)
+        print(f"  passives: {total} nodes → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] passives: would write {total} nodes → {out_path.name}")
+
+    return nodes_out
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync game data from last-epoch-data exports.")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing files")
@@ -278,6 +461,11 @@ def main():
 
     # --- Skills metadata ---
     sync_skills_metadata(dry_run=args.dry_run)
+
+    print()
+
+    # --- Passives ---
+    sync_passives(dry_run=args.dry_run)
 
     print("\nDone.")
 
