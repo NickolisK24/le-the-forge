@@ -2,16 +2,20 @@
 """
 extract_images.py — Extract passive tree node icons from Last Epoch game files.
 
-Uses UnityPy to read Unity binary asset files (.assets, .bundle) directly,
-finds every Sprite whose name matches an icon ID from char-tree-layout.json
-(e.g. "a-r-292"), and exports it as a PNG to:
-    frontend/public/assets/passive-icons/<iconId>.png
+HOW THE ICON NAMING WORKS
+--------------------------
+The frontend uses icon IDs like "a-r-292" (from char-tree-layout.json).
+These are 1-based indices into the SkillIconsSpriteAtlas packed sprite list
+inside resources.assets. So "a-r-292" = atlas.m_PackedSprites[291].
+
+This script extracts all referenced a-r-NNN icons from the atlas and saves them
+to frontend/public/assets/passive-icons/a-r-NNN.png.
 
 Install dependency first:
     pip install unitypy Pillow
 
-Usage:
-    # Point at the game's Data directory (most common):
+Usage (point at the game's Data folder containing resources.assets):
+    # macOS (direct game install folder):
     python3 scripts/extract_images.py --data "/path/to/Last Epoch_Data"
 
     # macOS Steam default:
@@ -22,27 +26,19 @@ Usage:
     python3 scripts/extract_images.py \\
         --data "C:/Program Files (x86)/Steam/steamapps/common/Last Epoch/Last Epoch_Data"
 
-    # You can also point at the Unity project export if it contains .assets files:
-    python3 scripts/extract_images.py --data /Volumes/DevShare/LE_Export
-
     # Dry-run (list what would be extracted without writing files):
     python3 scripts/extract_images.py --data "..." --dry-run
 """
 
 import argparse
-import json
+import re
 import sys
 from pathlib import Path
 
-# ---------------------------------------------------------------------------
-# Paths relative to repo root
-# ---------------------------------------------------------------------------
-REPO_ROOT   = Path(__file__).resolve().parent.parent
-LAYOUT_JSON = REPO_ROOT / "frontend/src/data/raw/char-tree-layout.json"
-OUT_DIR     = REPO_ROOT / "frontend/public/assets/passive-icons"
-
-# Asset file extensions UnityPy can read
-ASSET_EXTS = {".assets", ".bundle", ".resS", ""}   # "" catches extension-less files
+REPO_ROOT       = Path(__file__).resolve().parent.parent
+PASSIVE_TREES   = REPO_ROOT / "frontend/src/data/passiveTrees/index.ts"
+OUT_DIR         = REPO_ROOT / "frontend/public/assets/passive-icons"
+ATLAS_NAME_HINT = "SkillIcons"   # substring of the SpriteAtlas m_Name
 
 
 def check_deps() -> None:
@@ -61,105 +57,85 @@ def check_deps() -> None:
         sys.exit(1)
 
 
-def load_icon_ids() -> set[str]:
-    """Collect every unique icon ID referenced in char-tree-layout.json."""
-    with open(LAYOUT_JSON) as f:
-        data = json.load(f)
-    icons: set[str] = set()
-    for tree_data in data.values():
-        for region in tree_data.get("nodes", []):
-            if region is None:
-                continue
-            for child in region.get("children", []):
-                if child and "icon" in child:
-                    icons.add(child["icon"])
-    return icons
-
-
-def iter_asset_files(data_root: Path):
-    """Yield all Unity asset/bundle files under data_root."""
-    for p in data_root.rglob("*"):
-        if p.is_file() and p.suffix.lower() in ASSET_EXTS:
-            yield p
+def load_icon_ids() -> list[int]:
+    """Return sorted list of unique a-r-NNN numeric indices from passiveTrees/index.ts."""
+    with open(PASSIVE_TREES, encoding="utf-8") as f:
+        content = f.read()
+    nums = sorted(set(int(m) for m in re.findall(r'iconId:"a-r-(\d+)"', content)))
+    return nums
 
 
 def run(data_path: str, dry_run: bool) -> None:
     import UnityPy
 
     data_root = Path(data_path).resolve()
-    if not data_root.exists():
-        print(f"ERROR: Path does not exist: {data_root}", file=sys.stderr)
+    resources_assets = data_root / "resources.assets"
+    if not resources_assets.exists():
+        print(f"ERROR: resources.assets not found at: {resources_assets}")
+        print("Make sure --data points to the 'Last Epoch_Data' folder.")
         sys.exit(1)
 
-    icon_ids = load_icon_ids()
-    print(f"Loaded {len(icon_ids)} icon IDs from char-tree-layout.json")
-    print(f"Scanning: {data_root}")
-    print()
+    icon_nums = load_icon_ids()
+    print(f"Loaded {len(icon_nums)} icon IDs from passiveTrees/index.ts")
+    print(f"  Range: a-r-{min(icon_nums)} .. a-r-{max(icon_nums)}")
+    print(f"Loading: {resources_assets}")
+
+    env = UnityPy.load(str(resources_assets))
+
+    # Find the SkillIconsSpriteAtlas and load its packed sprites in order
+    atlas_sprites: list = []
+    for obj in env.objects:
+        if obj.type.name != "SpriteAtlas":
+            continue
+        try:
+            d = obj.read()
+            if ATLAS_NAME_HINT in (d.m_Name or ""):
+                print(f"Found atlas: {d.m_Name!r} with "
+                      f"{len(getattr(d, 'm_PackedSprites', []))} sprites")
+                atlas_sprites = list(getattr(d, "m_PackedSprites", []))
+                break
+        except Exception:
+            pass
+
+    if not atlas_sprites:
+        print(f"ERROR: Could not find SpriteAtlas containing '{ATLAS_NAME_HINT}'")
+        sys.exit(1)
+
+    print(f"Atlas has {len(atlas_sprites)} packed sprites")
 
     if not dry_run:
         OUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    found:   dict[str, bool] = {}   # icon_id -> True once saved
-    scanned_files = 0
-
-    for asset_file in iter_asset_files(data_root):
-        # Skip if all icons already found
-        remaining = icon_ids - set(found.keys())
-        if not remaining:
-            break
-
-        try:
-            env = UnityPy.load(str(asset_file))
-        except Exception:
+    saved = 0
+    errors = []
+    for ar_num in icon_nums:
+        idx = ar_num - 1   # a-r-NNN is 1-based
+        if idx >= len(atlas_sprites):
+            errors.append(f"a-r-{ar_num}: index {idx} out of range (atlas has {len(atlas_sprites)})")
             continue
+        try:
+            sprite_data = atlas_sprites[idx].read()
+            img = sprite_data.image
+            dest = OUT_DIR / f"a-r-{ar_num}.png"
+            if dry_run:
+                print(f"  [DRY] a-r-{ar_num} → atlas[{idx}] ({sprite_data.m_Name!r})")
+            else:
+                img.save(dest)
+                saved += 1
+        except Exception as exc:
+            errors.append(f"a-r-{ar_num}: {exc}")
 
-        file_had_match = False
-        for obj in env.objects:
-            if obj.type.name != "Sprite":
-                continue
-            try:
-                data = obj.read()
-            except Exception:
-                continue
-
-            name = getattr(data, "name", "") or ""
-            if name not in remaining:
-                continue
-
-            # Found a match — extract the image
-            file_had_match = True
-            try:
-                img = data.image
-                dest = OUT_DIR / f"{name}.png"
-                if dry_run:
-                    print(f"  [DRY] {name}  ←  {asset_file.name}")
-                else:
-                    img.save(dest)
-                    print(f"  SAVE  {name}.png")
-                found[name] = True
-            except Exception as exc:
-                print(f"  WARN  {name}: could not extract image — {exc}")
-
-        scanned_files += 1
-        if file_had_match:
-            print(f"  ↳ matched in {asset_file.relative_to(data_root)}")
-
-    # Summary
     print()
-    print(f"Scanned {scanned_files} asset files")
-    print(f"Extracted: {len(found)} / {len(icon_ids)}")
-
-    missing = sorted(icon_ids - set(found.keys()))
-    if missing:
-        print(f"\nMissing ({len(missing)} icons not found in any asset file):")
-        for m in missing:
-            print(f"  {m}")
-        missing_log = REPO_ROOT / "scripts/missing_icons.txt"
-        if not dry_run:
-            missing_log.write_text("\n".join(missing) + "\n")
-            print(f"\nSaved missing list → {missing_log.relative_to(REPO_ROOT)}")
+    if dry_run:
+        print(f"DRY RUN: would extract {len(icon_nums)} icons")
     else:
-        print("\nAll icons extracted successfully!")
+        print(f"Extracted: {saved} / {len(icon_nums)}")
+    if errors:
+        print(f"Errors ({len(errors)}):")
+        for e in errors[:10]:
+            print(f"  {e}")
+    else:
+        print("All icons extracted successfully!")
 
 
 def main() -> None:
@@ -172,13 +148,12 @@ def main() -> None:
         "--data", "-d",
         required=True,
         metavar="PATH",
-        help="Path to Last Epoch game data directory (e.g. 'Last Epoch_Data') "
-             "or Unity project export containing .assets/.bundle files",
+        help="Path to Last Epoch game data directory containing resources.assets",
     )
     parser.add_argument(
         "--dry-run", "-n",
         action="store_true",
-        help="List matching sprites without writing any files",
+        help="List what would be extracted without writing any files",
     )
     args = parser.parse_args()
     check_deps()
