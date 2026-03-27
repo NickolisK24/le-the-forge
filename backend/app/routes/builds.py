@@ -124,6 +124,24 @@ def meta_snapshot():
 # Create
 # ---------------------------------------------------------------------------
 
+def _validate_passive_tree(node_ids: list, character_class: str) -> str | None:
+    """
+    Validate every namespaced node ID in passive_tree against the DB.
+
+    Returns the first invalid ID string, or None if all are valid.
+    Integer IDs (legacy format) are skipped — they pre-date the namespaced
+    system and cannot be checked against passive_nodes.
+    """
+    from app.models import PassiveNode
+    for nid in node_ids:
+        if not isinstance(nid, str):
+            continue  # legacy integer IDs: skip
+        node = db.session.get(PassiveNode, nid)
+        if node is None or node.character_class != character_class:
+            return nid
+    return None
+
+
 @builds_bp.post("")
 @limiter.limit("20 per minute")
 def create_build():
@@ -131,6 +149,12 @@ def create_build():
         data = build_create_schema.load(request.get_json() or {})
     except ValidationError as e:
         return validation_error(e)
+
+    passive_ids = data.get("passive_tree", [])
+    if passive_ids:
+        bad = _validate_passive_tree(passive_ids, data["character_class"])
+        if bad:
+            return error(f"Invalid passive node: {bad}")
 
     user = get_current_user()
     build = build_service.create_build(data, user_id=user.id if user else None)
