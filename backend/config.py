@@ -61,6 +61,9 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     WTF_CSRF_ENABLED = False
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
+    # Use in-process memory storage so tests never need a running Redis
+    RATELIMIT_STORAGE_URI = "memory://"
+    RATELIMIT_ENABLED = True
 
 
 config = {
