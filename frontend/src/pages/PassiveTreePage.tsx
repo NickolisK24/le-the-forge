@@ -25,7 +25,7 @@ interface Props {
 
 export default function PassiveTreePage({ onAllocatedChange }: Props) {
   const [selectedClass,  setSelectedClass]  = useState<CharacterClass | null>(null);
-  const [selectedMastery, setSelectedMastery] = useState<string | null>(null);
+  const [selectedMastery, setSelectedMastery] = useState<string>("__base__");
   const [allocated, setAllocated] = useState<AllocMap>({});
 
   // ---------------------------------------------------------------------------
@@ -52,7 +52,8 @@ export default function PassiveTreePage({ onAllocatedChange }: Props) {
   const nodes = useMemo(() => {
     const all = treeData?.nodes ?? [];
     if (selectedMastery === "__base__") return all.filter((n) => n.mastery === null);
-    return all;
+    // Mastery endpoint returns base + mastery nodes; show only mastery nodes
+    return all.filter((n) => n.mastery !== null);
   }, [treeData, selectedMastery]);
 
   // ---------------------------------------------------------------------------
@@ -74,12 +75,12 @@ export default function PassiveTreePage({ onAllocatedChange }: Props) {
 
   const handleClassChange = (cls: CharacterClass | null) => {
     setSelectedClass(cls);
-    setSelectedMastery(null);
+    setSelectedMastery("__base__");
     setAllocated({});
     onAllocatedChange?.([]);
   };
 
-  const handleMasteryChange = (mastery: string | null) => {
+  const handleMasteryChange = (mastery: string) => {
     setSelectedMastery(mastery);
     setAllocated({});
     onAllocatedChange?.([]);
