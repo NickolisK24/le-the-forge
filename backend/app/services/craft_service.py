@@ -249,7 +249,7 @@ def apply_action(session: CraftSession, action: str, affix_name: Optional[str] =
         step_number=step_number,
         action=action,
         affix_name=affix_name,
-        tier_before=None,  # TODO: track tier before
+        tier_before=next((a["tier"] for a in affixes_before if a.get("name") == affix_name), None),
         tier_after=target_tier,
         roll=result["roll"],
         outcome=result["outcome"],
