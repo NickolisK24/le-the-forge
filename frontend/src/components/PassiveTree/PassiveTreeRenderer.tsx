@@ -74,7 +74,7 @@ function toLayout(nodes: PassiveNode[]): LayoutNode[] {
   const ys = nodes.map((n) => n.y);
   const midX = (Math.min(...xs) + Math.max(...xs)) / 2;
   const midY = (Math.min(...ys) + Math.max(...ys)) / 2;
-  return nodes.map((n) => ({ ...n, lx: n.x - midX, ly: n.y - midY }));
+  return nodes.map((n) => ({ ...n, lx: n.x - midX, ly: -(n.y - midY) }));
 }
 
 // ---------------------------------------------------------------------------

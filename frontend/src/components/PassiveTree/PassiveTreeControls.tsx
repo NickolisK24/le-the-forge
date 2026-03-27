@@ -22,9 +22,9 @@ const BASE_POINT_CAP = 20;
 
 interface Props {
   selectedClass: CharacterClass | null;
-  selectedMastery: string | null;
+  selectedMastery: string;
   onClassChange: (cls: CharacterClass | null) => void;
-  onMasteryChange: (mastery: string | null) => void;
+  onMasteryChange: (mastery: string) => void;
   basePointsSpent: number;
   masteryPointsSpent: number;
   onReset: () => void;
@@ -54,7 +54,7 @@ export default function PassiveTreeControls({
           onChange={(e) => {
             const val = e.target.value as CharacterClass | "";
             onClassChange(val || null);
-            onMasteryChange(null);
+            onMasteryChange("__base__");
           }}
           className="min-w-[148px] rounded-sm border border-forge-border bg-forge-surface2 px-3 py-1.5 font-body text-sm text-forge-text outline-none focus:border-forge-cyan/50"
         >
@@ -74,11 +74,11 @@ export default function PassiveTreeControls({
             Mastery
           </label>
           <select
-            value={selectedMastery ?? ""}
-            onChange={(e) => onMasteryChange(e.target.value || null)}
+            value={selectedMastery}
+            onChange={(e) => onMasteryChange(e.target.value)}
             className="min-w-[164px] rounded-sm border border-forge-border bg-forge-surface2 px-3 py-1.5 font-body text-sm text-forge-text outline-none focus:border-forge-cyan/50"
           >
-            <option value="">All masteries</option>
+            <option value="__base__">Base class</option>
             {masteries.map((m) => (
               <option key={m} value={m}>
                 {m}
@@ -108,7 +108,7 @@ export default function PassiveTreeControls({
             </span>
           </div>
 
-          {selectedMastery && (
+          {selectedMastery && selectedMastery !== "__base__" && (
             <div className="flex flex-col items-center gap-0.5">
               <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">
                 Mastery pts
