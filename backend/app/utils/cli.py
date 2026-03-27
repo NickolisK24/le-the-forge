@@ -159,6 +159,77 @@ def register_commands(app: Flask) -> None:
         db.session.commit()
         click.echo(f"✓ {len(sample_builds)} sample builds seeded.")
 
+    @app.cli.command("seed-passives")
+    def seed_passives():
+        """Upsert passive nodes from data/passives.json into passive_nodes table."""
+        import json
+        from pathlib import Path
+        from app.models import PassiveNode
+
+        data_path = Path(__file__).resolve().parent.parent.parent.parent / "data" / "passives.json"
+        if not data_path.exists():
+            click.echo(f"ERROR: {data_path} not found. Run sync_game_data.py first.", err=True)
+            return
+
+        with open(data_path, encoding="utf-8") as f:
+            nodes = json.load(f)
+
+        # Build a set of all node IDs in the file for connection validation
+        all_ids: set[str] = {n["id"] for n in nodes}
+
+        inserted = updated = warnings = 0
+
+        for node in nodes:
+            # Warn about any connection IDs that reference a non-existent node
+            for conn_id in node.get("connections", []):
+                if conn_id not in all_ids:
+                    click.echo(f"  [WARN] Node {node['id']}: connection '{conn_id}' not found in passives.json")
+                    warnings += 1
+
+            existing = PassiveNode.query.get(node["id"])
+            if existing:
+                existing.raw_node_id = node["raw_node_id"]
+                existing.character_class = node["character_class"]
+                existing.mastery = node.get("mastery")
+                existing.mastery_index = node.get("mastery_index", 0)
+                existing.mastery_requirement = node.get("mastery_requirement", 0)
+                existing.name = node["name"]
+                existing.description = node.get("description")
+                existing.node_type = node.get("node_type", "core")
+                existing.x = node.get("x", 0.0)
+                existing.y = node.get("y", 0.0)
+                existing.max_points = node.get("max_points", 1)
+                existing.connections = node.get("connections", [])
+                existing.stats = node.get("stats")
+                existing.ability_granted = node.get("ability_granted")
+                existing.icon = node.get("icon")
+                updated += 1
+            else:
+                db.session.add(PassiveNode(
+                    id=node["id"],
+                    raw_node_id=node["raw_node_id"],
+                    character_class=node["character_class"],
+                    mastery=node.get("mastery"),
+                    mastery_index=node.get("mastery_index", 0),
+                    mastery_requirement=node.get("mastery_requirement", 0),
+                    name=node["name"],
+                    description=node.get("description"),
+                    node_type=node.get("node_type", "core"),
+                    x=node.get("x", 0.0),
+                    y=node.get("y", 0.0),
+                    max_points=node.get("max_points", 1),
+                    connections=node.get("connections", []),
+                    stats=node.get("stats"),
+                    ability_granted=node.get("ability_granted"),
+                    icon=node.get("icon"),
+                ))
+                inserted += 1
+
+        db.session.commit()
+        click.echo(f"✓ Passive nodes seeded: {inserted} inserted, {updated} updated.")
+        if warnings:
+            click.echo(f"  {warnings} dangling connection ID(s) logged above.")
+
     @app.cli.command("create-admin")
     @click.argument("username")
     def create_admin(username: str):
