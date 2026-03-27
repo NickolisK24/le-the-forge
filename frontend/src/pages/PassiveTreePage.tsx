@@ -40,7 +40,8 @@ export default function PassiveTreePage({ onAllocatedChange }: Props) {
     queryKey: ["passives", selectedClass, selectedMastery],
     queryFn: () => {
       if (!selectedClass) return null;
-      return selectedMastery
+      // "__base__" is a client-side sentinel — fetch full tree and filter below
+      return selectedMastery && selectedMastery !== "__base__"
         ? fetchMasteryTree(selectedClass, selectedMastery)
         : fetchClassTree(selectedClass);
     },
@@ -48,7 +49,11 @@ export default function PassiveTreePage({ onAllocatedChange }: Props) {
     staleTime: 5 * 60 * 1000, // passive data changes rarely; cache for 5 min
   });
 
-  const nodes = treeData?.nodes ?? [];
+  const nodes = useMemo(() => {
+    const all = treeData?.nodes ?? [];
+    if (selectedMastery === "__base__") return all.filter((n) => n.mastery === null);
+    return all;
+  }, [treeData, selectedMastery]);
 
   // ---------------------------------------------------------------------------
   // Allocation handlers
@@ -157,8 +162,8 @@ export default function PassiveTreePage({ onAllocatedChange }: Props) {
           <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-4 py-2">
             <span className="font-mono text-xs uppercase tracking-widest text-forge-cyan">
               {treeData.class ?? selectedClass}
-              {treeData.mastery && (
-                <span className="text-forge-muted"> · {treeData.mastery}</span>
+              {(treeData.mastery || selectedMastery === "__base__") && (
+                <span className="text-forge-muted"> · {selectedMastery === "__base__" ? "Base" : treeData.mastery}</span>
               )}
             </span>
             <span className="font-mono text-[10px] text-forge-dim">

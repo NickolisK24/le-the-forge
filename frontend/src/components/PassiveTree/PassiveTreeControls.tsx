@@ -79,6 +79,7 @@ export default function PassiveTreeControls({
             className="min-w-[164px] rounded-sm border border-forge-border bg-forge-surface2 px-3 py-1.5 font-body text-sm text-forge-text outline-none focus:border-forge-cyan/50"
           >
             <option value="">All masteries</option>
+            <option value="__base__">Base class</option>
             {masteries.map((m) => (
               <option key={m} value={m}>
                 {m}
@@ -108,7 +109,7 @@ export default function PassiveTreeControls({
             </span>
           </div>
 
-          {selectedMastery && (
+          {selectedMastery && selectedMastery !== "__base__" && (
             <div className="flex flex-col items-center gap-0.5">
               <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">
                 Mastery pts
