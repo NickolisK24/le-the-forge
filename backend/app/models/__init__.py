@@ -284,9 +284,12 @@ class PassiveNode(db.Model):
     """Passive tree node definition. Seeded from LE game data."""
     __tablename__ = "passive_nodes"
 
-    id = db.Column(db.Integer, primary_key=True)  # matches in-game node ID
+    id = db.Column(db.String(16), primary_key=True)  # namespaced: e.g. "ac_0"
+    raw_node_id = db.Column(db.Integer, nullable=False)  # original in-game integer id
     character_class = db.Column(db.String(32), nullable=False)
-    mastery = db.Column(db.String(32), nullable=True)  # null = base class tree
+    mastery = db.Column(db.String(32), nullable=True)   # null = base class tree
+    mastery_index = db.Column(db.SmallInteger, nullable=False, default=0)
+    mastery_requirement = db.Column(db.SmallInteger, nullable=False, default=0)
     name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=True)
     node_type = db.Column(db.String(16), nullable=False)
@@ -295,5 +298,14 @@ class PassiveNode(db.Model):
     y = db.Column(db.Float, nullable=False)
     max_points = db.Column(db.SmallInteger, default=1, nullable=False)
 
-    # Connected node IDs
+    # Connected node IDs (namespaced strings, e.g. ["ac_1", "ac_5"])
     connections = db.Column(db.JSON, nullable=False, default=list)
+
+    # Stat effects as a JSON array of {key, value} dicts
+    stats = db.Column(db.JSON, nullable=True, default=list)
+
+    # Ability or skill unlocked by allocating this node (nullable)
+    ability_granted = db.Column(db.String(128), nullable=True)
+
+    # Icon sprite identifier (e.g. "a-r-42")
+    icon = db.Column(db.String(32), nullable=True)
