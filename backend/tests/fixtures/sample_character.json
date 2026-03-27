@@ -1,0 +1,94 @@
+{
+  "_comment": "Sample character payload for end-to-end testing. Represents a Lich Acolyte focused on necrotic spell damage.",
+  "character_class": "Acolyte",
+  "mastery": "Lich",
+  "level": 85,
+  "allocated_node_ids": [1, 5, 12, 20, 35, 48],
+  "skills": [
+    { "slot": 0, "skill_name": "Bone Curse",   "points_allocated": 20, "spec_tree": [] },
+    { "slot": 1, "skill_name": "Transplant",   "points_allocated": 10, "spec_tree": [] },
+    { "slot": 2, "skill_name": "Summon Wraith", "points_allocated": 5,  "spec_tree": [] }
+  ],
+  "gear": [
+    {
+      "slot": "helm",
+      "item_name": "Exalted Helm",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Health",              "tier": 4, "sealed": false },
+        { "name": "Necrotic Resistance", "tier": 3, "sealed": false }
+      ]
+    },
+    {
+      "slot": "body",
+      "item_name": "Exalted Robe",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Spell Damage",  "tier": 5, "sealed": false },
+        { "name": "Health",        "tier": 3, "sealed": false },
+        { "name": "Ward",          "tier": 2, "sealed": false }
+      ]
+    },
+    {
+      "slot": "weapon",
+      "item_name": "Exalted Sceptre",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Spell Damage",        "tier": 5, "sealed": false },
+        { "name": "Cast Speed",          "tier": 3, "sealed": false },
+        { "name": "Necrotic Damage",     "tier": 4, "sealed": false }
+      ]
+    },
+    {
+      "slot": "gloves",
+      "item_name": "Exalted Gloves",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Health",          "tier": 3, "sealed": false },
+        { "name": "Fire Resistance", "tier": 2, "sealed": false }
+      ]
+    },
+    {
+      "slot": "boots",
+      "item_name": "Exalted Boots",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Health",           "tier": 3, "sealed": false },
+        { "name": "Cold Resistance",  "tier": 2, "sealed": false }
+      ]
+    },
+    {
+      "slot": "amulet",
+      "item_name": "Exalted Amulet",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Spell Damage",    "tier": 4, "sealed": false },
+        { "name": "Cast Speed",      "tier": 2, "sealed": false }
+      ]
+    },
+    {
+      "slot": "ring_left",
+      "item_name": "Exalted Ring",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Health",              "tier": 3, "sealed": false },
+        { "name": "Void Resistance",     "tier": 2, "sealed": false }
+      ]
+    },
+    {
+      "slot": "ring_right",
+      "item_name": "Exalted Ring",
+      "rarity": "Exalted",
+      "affixes": [
+        { "name": "Necrotic Damage",     "tier": 3, "sealed": false },
+        { "name": "Lightning Resistance","tier": 2, "sealed": false }
+      ]
+    }
+  ],
+  "simulate": {
+    "skill_name": "Bone Curse",
+    "skill_level": 20,
+    "n_simulations": 1000,
+    "seed": 42
+  }
+}

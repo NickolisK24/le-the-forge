@@ -91,4 +91,8 @@ def create_app(env: str = "development") -> Flask:
     def health():
         return {"status": "ok", "env": env}
 
+    @app.get("/api/test")
+    def test():
+        return {"message": "API is running"}
+
     return app
