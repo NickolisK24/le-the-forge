@@ -40,7 +40,7 @@ services:
       DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET}
       FRONTEND_URL: http://localhost:5173
     ports:
-      - "5001:5000"
+      - "5050:5000"
     volumes:
       - ./backend:/app
         - ./data:/data
@@ -52,7 +52,7 @@ services:
     depends_on:
       - backend
     environment:
-      VITE_API_URL: http://localhost:5001/api
+      VITE_API_URL: http://localhost:5050/api
     ports:
       - "5173:5173"
     volumes:
