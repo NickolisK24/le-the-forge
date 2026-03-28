@@ -382,178 +382,77 @@ def compare_strategies(affixes: list, forge_potential: int) -> list:
 
 
 
-def add_affix(
-    item,
-    affix_name,
-    tier
-):
-
-    affix = get_affix_by_name(
-        affix_name
-    )
-
+def add_affix(item, affix_name, tier):
+    """Add an affix to an item. Returns structured {success, reason} response."""
+    affix = get_affix_by_name(affix_name)
     if affix is None:
-        return {
-            "success": False,
-            "reason": "Affix not found"
-        }
+        return {"success": False, "reason": "Affix not found"}
 
     affix_type = affix["type"]
+    if not can_add_affix(item, affix_type):
+        return {"success": False, "reason": "Slot limit reached"}
 
-    if not can_add_affix(
-        item,
-        affix_type
-    ):
-        return {
-            "success": False,
-            "reason": "Slot limit reached"
-        }
+    cost = roll_fp_cost("add_affix")
+    if item["forging_potential"] < cost:
+        return {"success": False, "reason": "Not enough FP"}
 
-    fp_cost = roll_fp_cost("add_affix")
-
-    if item["forging_potential"] < fp_cost:
-        return {
-            "success": False,
-            "reason": "Not enough FP"
-        }
-
-    item["forging_potential"] -= fp_cost
-
-    affix_data = {
-
-        "name": affix_name,
-        "tier": tier
-
-    }
-
+    item["forging_potential"] -= cost
+    affix_data = {"name": affix_name, "tier": tier}
     if affix_type == "prefix":
-
-        item["prefixes"].append(
-            affix_data
-        )
-
+        item["prefixes"].append(affix_data)
     else:
+        item["suffixes"].append(affix_data)
 
-        item["suffixes"].append(
-            affix_data
-        )
-
-    return True
+    return {"success": True, "reason": "Affix added"}
 
 
-def upgrade_affix(
-    item,
-    affix_name
-):
-
-    for affix_list in [
-
-        item["prefixes"],
-        item["suffixes"]
-
-    ]:
-
+def upgrade_affix(item, affix_name):
+    """Upgrade an affix tier by 1. Returns structured {success, reason} response."""
+    for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
-
             if affix["name"] == affix_name:
+                affix_data = get_affix_by_name(affix_name)
+                if is_max_tier(affix_data, affix["tier"]):
+                    return {"success": False, "reason": "Already at max tier"}
 
-                affix_data = get_affix_by_name(
-                    affix_name
-                )
+                cost = roll_fp_cost("upgrade_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
 
-                if is_max_tier(
-                    affix_data,
-                    affix["tier"]
-                ):
-                    return {
-                        "success": False,
-                        "reason": "Already at max tier"
-                    }
-
-                fp_cost = roll_fp_cost("upgrade_affix")
-
-                if (
-                    item["forging_potential"]
-                    < fp_cost
-                ):
-                    return {
-                        "success": False,
-                        "reason": "Not enough FP"
-                    }
-
-                item[
-                    "forging_potential"
-                ] -= fp_cost
-
+                item["forging_potential"] -= cost
                 affix["tier"] += 1
+                return {"success": True, "reason": "Affix upgraded"}
 
-                return True
-
-    return {
-        "success": False,
-        "reason": "Affix not found"
-    }
+    return {"success": False, "reason": "Affix not found"}
 
 
-def remove_affix(
-    item,
-    affix_name
-):
-
-    for affix_list in [
-
-        item["prefixes"],
-        item["suffixes"]
-
-    ]:
-
+def remove_affix(item, affix_name):
+    """Remove an affix from an item. Returns structured {success, reason} response."""
+    for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
-
             if affix["name"] == affix_name:
+                cost = roll_fp_cost("remove_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
 
-                fp_cost = roll_fp_cost("remove_affix")
+                item["forging_potential"] -= cost
+                affix_list.remove(affix)
+                return {"success": True, "reason": "Affix removed"}
 
-                if (
-                    item["forging_potential"]
-                    < fp_cost
-                ):
-                    return {
-                        "success": False,
-                        "reason": "Not enough FP"
-                    }
-
-                item[
-                    "forging_potential"
-                ] -= fp_cost
-
-                affix_list.remove(
-                    affix
-                )
-
-                return True
-
-    return {
-        "success": False,
-        "reason": "Affix not found"
-    }
+    return {"success": False, "reason": "Affix not found"}
 
 
 def unseal_affix(item):
-    """
-    Return the sealed affix back to its prefix/suffix slot.
-
-    Deducts FP cost. Fails if there is no sealed affix or not enough FP.
-    """
+    """Return the sealed affix back to its prefix/suffix slot.
+    Returns structured {success, reason} response."""
     if item["sealed_affix"] is None:
         return {"success": False, "reason": "No sealed affix"}
 
-    fp_cost = roll_fp_cost("unseal_affix")
-
-    if item["forging_potential"] < fp_cost:
+    cost = roll_fp_cost("unseal_affix")
+    if item["forging_potential"] < cost:
         return {"success": False, "reason": "Not enough FP"}
 
-    item["forging_potential"] -= fp_cost
-
+    item["forging_potential"] -= cost
     affix = item["sealed_affix"]
     item["sealed_affix"] = None
 
@@ -563,58 +462,24 @@ def unseal_affix(item):
     else:
         item["suffixes"].append(affix)
 
-    return True
+    return {"success": True, "reason": "Affix unsealed"}
 
 
-def seal_affix(
-    item,
-    affix_name
-):
-
+def seal_affix(item, affix_name):
+    """Seal an affix (max 1 sealed). Returns structured {success, reason} response."""
     if item["sealed_affix"]:
+        return {"success": False, "reason": "Already has sealed affix"}
 
-        return {
-            "success": False,
-            "reason": "Already has sealed affix"
-        }
-
-    for affix_list in [
-
-        item["prefixes"],
-        item["suffixes"]
-
-    ]:
-
+    for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
-
             if affix["name"] == affix_name:
+                cost = roll_fp_cost("seal_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
 
-                fp_cost = roll_fp_cost("seal_affix")
+                item["forging_potential"] -= cost
+                item["sealed_affix"] = affix
+                affix_list.remove(affix)
+                return {"success": True, "reason": "Affix sealed"}
 
-                if (
-                    item["forging_potential"]
-                    < fp_cost
-                ):
-                    return {
-                        "success": False,
-                        "reason": "Not enough FP"
-                    }
-
-                item[
-                    "forging_potential"
-                ] -= fp_cost
-
-                item[
-                    "sealed_affix"
-                ] = affix
-
-                affix_list.remove(
-                    affix
-                )
-
-                return True
-
-    return {
-        "success": False,
-        "reason": "Affix not found"
-    }
+    return {"success": False, "reason": "Affix not found"}

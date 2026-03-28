@@ -18,6 +18,10 @@ import json
 import os
 from typing import Optional
 
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
+
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 AFFIX_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "affixes.json")

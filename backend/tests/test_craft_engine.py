@@ -34,7 +34,7 @@ class TestAddAffix:
     def test_adds_prefix_to_empty_item(self):
         item = _make_item()
         result = add_affix(item, "Increased Spell Damage", 1)
-        assert result is True
+        assert result["success"] is True
         assert len(item["prefixes"]) == 1
         assert item["prefixes"][0]["name"] == "Increased Spell Damage"
         assert item["prefixes"][0]["tier"] == 1
@@ -89,7 +89,7 @@ class TestUpgradeAffix:
     def test_upgrades_tier(self):
         item = _make_item(prefixes=[{"name": "Increased Spell Damage", "tier": 1}])
         result = upgrade_affix(item, "Increased Spell Damage")
-        assert result is True
+        assert result["success"] is True
         assert item["prefixes"][0]["tier"] == 2
 
     def test_deducts_fp_on_upgrade(self):
@@ -126,13 +126,13 @@ class TestRemoveAffix:
     def test_removes_prefix(self):
         item = _make_item(prefixes=[{"name": "Increased Spell Damage", "tier": 2}])
         result = remove_affix(item, "Increased Spell Damage")
-        assert result is True
+        assert result["success"] is True
         assert len(item["prefixes"]) == 0
 
     def test_removes_suffix(self):
         item = _make_item(suffixes=[{"name": "Increased Cast Speed", "tier": 1}])
         result = remove_affix(item, "Increased Cast Speed")
-        assert result is True
+        assert result["success"] is True
         assert len(item["suffixes"]) == 0
 
     def test_deducts_fp_on_remove(self):
@@ -163,14 +163,14 @@ class TestSealAffix:
     def test_seals_prefix(self):
         item = _make_item(prefixes=[{"name": "Increased Spell Damage", "tier": 3}])
         result = seal_affix(item, "Increased Spell Damage")
-        assert result is True
+        assert result["success"] is True
         assert item["sealed_affix"]["name"] == "Increased Spell Damage"
         assert len(item["prefixes"]) == 0
 
     def test_seals_suffix(self):
         item = _make_item(suffixes=[{"name": "Increased Cast Speed", "tier": 2}])
         result = seal_affix(item, "Increased Cast Speed")
-        assert result is True
+        assert result["success"] is True
         assert item["sealed_affix"]["name"] == "Increased Cast Speed"
         assert len(item["suffixes"]) == 0
 
@@ -211,14 +211,14 @@ class TestUnsealAffix:
     def test_returns_sealed_prefix_to_prefix_list(self):
         item = _make_item(sealed_affix={"name": "Increased Spell Damage", "tier": 3})
         result = unseal_affix(item)
-        assert result is True
+        assert result["success"] is True
         assert item["sealed_affix"] is None
         assert any(a["name"] == "Increased Spell Damage" for a in item["prefixes"])
 
     def test_returns_sealed_suffix_to_suffix_list(self):
         item = _make_item(sealed_affix={"name": "Fire Resistance", "tier": 2})
         result = unseal_affix(item)
-        assert result is True
+        assert result["success"] is True
         assert item["sealed_affix"] is None
         assert any(a["name"] == "Fire Resistance" for a in item["suffixes"])
 

@@ -8,6 +8,7 @@ PATCH  /api/builds/<slug>          → Update build (owner only)
 DELETE /api/builds/<slug>          → Delete build (owner only)
 POST   /api/builds/<slug>/vote     → Cast or toggle vote (auth required)
 GET    /api/builds/meta/snapshot   → Aggregate meta stats
+POST   /api/builds/<slug>/optimize → Ranked stat upgrades with explanations
 """
 
 from flask import Blueprint, request
@@ -245,6 +246,25 @@ def simulate_build(slug: str):
         return not_found("Build")
     result = build_service.simulate_build(build)
     return ok(data=result)
+
+
+@builds_bp.post("/<slug>/optimize")
+@limiter.limit("10 per minute")
+def optimize_build(slug: str):
+    """
+    Dedicated optimization endpoint for a saved build.
+    Returns ranked stat upgrades with DPS/EHP gain percentages and explanations.
+    """
+    build = build_service.get_build(slug)
+    if not build:
+        return not_found("Build")
+
+    result = build_service.simulate_build(build)
+    return ok(data={
+        "stat_upgrades": result.get("stat_upgrades", []),
+        "primary_skill": result.get("primary_skill"),
+        "skill_level": result.get("skill_level"),
+    })
 
 
 @builds_bp.post("/<slug>/vote")
