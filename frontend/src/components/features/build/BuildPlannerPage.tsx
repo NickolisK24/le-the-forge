@@ -8,12 +8,13 @@ import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
-import { versionApi, simulateApi, type BuildSimulationResult } from "@/lib/api";
+import { versionApi, simulateApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
 import SimulationDashboard from "./SimulationDashboard";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
+import BuildImportModal from "./BuildImportModal";
 import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
@@ -662,38 +663,27 @@ export default function BuildPlannerPage() {
   const [hasDraft, setHasDraft] = useState(false);
 
   // Import / preset modal state
-  const [showImport, setShowImport] = useState(false);
-  const [importText, setImportText] = useState("");
-  const [importError, setImportError] = useState("");
+  const [showImportModal, setShowImportModal] = useState(false);
   const [showPresets, setShowPresets] = useState(false);
 
-  function handleImport() {
-    setImportError("");
-    try {
-      const parsed = JSON.parse(importText);
-      if (parsed.name) setName(parsed.name);
-      if (parsed.description) setDescription(parsed.description);
-      if (parsed.character_class) handleClassChange(parsed.character_class);
-      if (parsed.mastery) setMastery(parsed.mastery);
-      if (typeof parsed.level === "number") setLevel(parsed.level);
-      if (typeof parsed.is_ssf === "boolean") setIsSsf(parsed.is_ssf);
-      if (typeof parsed.is_hc === "boolean") setIsHc(parsed.is_hc);
-      if (typeof parsed.is_ladder_viable === "boolean") setIsLadder(parsed.is_ladder_viable);
-      if (typeof parsed.is_budget === "boolean") setIsBudget(parsed.is_budget);
-      if (Array.isArray(parsed.passive_tree)) setPassiveTree(parsed.passive_tree);
-      if (Array.isArray(parsed.skills)) {
-        setDraftSkills(parsed.skills.map((s: any) => ({
-          skill_name: s.skill_name,
-          slot: s.slot ?? 1,
-          points_allocated: s.points_allocated ?? 20,
-          spec_tree: Array.isArray(s.spec_tree) ? s.spec_tree : [],
-        })));
-      }
-      toast.success("Build imported successfully");
-      setShowImport(false);
-      setImportText("");
-    } catch {
-      setImportError("Invalid JSON — paste the full exported build JSON");
+  function handleApplyImport(imported: ImportedBuild) {
+    if (imported.name) setName(imported.name);
+    if (imported.description) setDescription(imported.description);
+    if (imported.character_class) handleClassChange(imported.character_class as CharacterClass);
+    if (imported.mastery) setMastery(imported.mastery);
+    if (typeof imported.level === "number") setLevel(imported.level);
+    if (typeof (imported as any).is_ssf === "boolean") setIsSsf((imported as any).is_ssf);
+    if (typeof (imported as any).is_hc === "boolean") setIsHc((imported as any).is_hc);
+    if (typeof (imported as any).is_ladder_viable === "boolean") setIsLadder((imported as any).is_ladder_viable);
+    if (typeof (imported as any).is_budget === "boolean") setIsBudget((imported as any).is_budget);
+    if (Array.isArray(imported.passive_tree)) setPassiveTree(imported.passive_tree);
+    if (Array.isArray(imported.skills)) {
+      setDraftSkills(imported.skills.map((s) => ({
+        skill_name: s.skill_name,
+        slot: s.slot ?? 1,
+        points_allocated: s.points_allocated ?? 20,
+        spec_tree: Array.isArray(s.spec_tree) ? s.spec_tree : [],
+      })));
     }
   }
 
@@ -955,8 +945,8 @@ export default function BuildPlannerPage() {
         <Button variant="outline" size="sm" onClick={() => setShowPresets((v) => !v)}>
           📋 Load Preset
         </Button>
-        <Button variant="ghost" size="sm" onClick={() => { setShowImport((v) => !v); setImportError(""); }}>
-          ↑ Import JSON
+        <Button variant="ghost" size="sm" onClick={() => setShowImportModal(true)}>
+          ↑ Import Build
         </Button>
       </div>
 
@@ -979,26 +969,11 @@ export default function BuildPlannerPage() {
         </div>
       )}
 
-      {showImport && (
-        <div className="xl:col-span-2 rounded border border-forge-border bg-forge-surface2 p-4">
-          <div className="font-mono text-xs uppercase tracking-widest text-forge-muted mb-2">Paste exported build JSON</div>
-          <textarea
-            value={importText}
-            onChange={(e) => { setImportText(e.target.value); setImportError(""); }}
-            rows={6}
-            placeholder='{ "name": "My Build", "character_class": "Mage", ... }'
-            className="w-full rounded border border-forge-border bg-forge-surface px-3 py-2 font-mono text-xs text-forge-text placeholder:text-forge-dim focus:border-forge-amber/60 focus:outline-none resize-y"
-          />
-          {importError && <p className="font-mono text-xs text-forge-red mt-1">{importError}</p>}
-          <div className="flex gap-2 mt-2">
-            <Button variant="primary" size="sm" onClick={handleImport} disabled={!importText.trim()}>
-              Import
-            </Button>
-            <Button variant="ghost" size="sm" onClick={() => { setShowImport(false); setImportError(""); setImportText(""); }}>
-              Cancel
-            </Button>
-          </div>
-        </div>
+      {showImportModal && (
+        <BuildImportModal
+          onImport={handleApplyImport}
+          onClose={() => setShowImportModal(false)}
+        />
       )}
 
       {/* ── LEFT: main form ── */}

@@ -350,3 +350,36 @@ export const simulateApi = {
     post<BuildSimulationResult>(`/builds/${slug}/simulate`),
 };
 
+// ---------------------------------------------------------------------------
+// Import API
+// ---------------------------------------------------------------------------
+
+export interface ImportedBuild {
+  name: string;
+  description: string;
+  character_class: string;
+  mastery: string;
+  level: number;
+  passive_tree: number[];
+  skills: Array<{
+    skill_name: string;
+    slot: number;
+    points_allocated: number;
+    spec_tree: number[];
+  }>;
+  gear: unknown[];
+  _import_meta?: {
+    source: string;
+    char_class_id: number;
+    mastery_id: number;
+    skill_count: number;
+    passive_nodes: number;
+    gear_note: string;
+  };
+}
+
+export const importApi = {
+  fromUrl: (url: string) =>
+    post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
+};
+

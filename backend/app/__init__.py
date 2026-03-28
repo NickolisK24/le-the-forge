@@ -64,9 +64,11 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.admin import admin_bp
     from app.routes.jobs import jobs_bp
     from app.routes.version import version_bp
+    from app.routes.import_route import import_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
+    app.register_blueprint(import_bp, url_prefix="/api/import")
     app.register_blueprint(craft_bp, url_prefix="/api/craft")
     app.register_blueprint(ref_bp, url_prefix="/api/ref")
     app.register_blueprint(passives_bp, url_prefix="/api/passives")
