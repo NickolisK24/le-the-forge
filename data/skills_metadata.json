@@ -4,923 +4,923 @@
     "name": "Abyssal Echoes",
     "description": "A nova that echoes from up to 8 enemies it reaches and applies abyssal decay. Enemies with abyssal decay take void damage over time for 5 seconds, if they take a hit all the damage from abyssal decay is dealt to them immediately.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Acid Flask": {
     "id": "aacfl",
     "name": "Acid Flask",
     "description": "Throw a flask of acid that explodes dealing physical damage on impact, poisoning enemies and reducing their armor.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Aerial Assault": {
     "id": "aa989",
     "name": "Aerial Assault",
     "description": "You leap towards the target and your {Falcon} dives to catch you and momentarily carry you further, before it flies up and unleashes a {Wing Burst} at the target location.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Anomaly": {
     "id": "an0mz",
     "name": "Anomaly",
     "description": "Brings enemies that were sent forward back to your time.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Armblade Slash": {
     "id": "abs2",
     "name": "Armblade Slash",
     "description": "Slash enemies in front of you with a fast combo ability.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Assemble Abomination": {
     "id": "aa710",
     "name": "Assemble Abomination",
     "description": "Hold ability key to channel to absorb your Wraiths, Summoned Skeletons, Skeletal Mages, Golems, and Volatile Zombies in an area. When you release, summon a single hulking abomination with added health and more damage per minion absorbed.\n\nThe abomination remembers the minions absorbed to create it and will rapidly devour those minions to restore 10% of its maximum health.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Aura Of Decay": {
     "id": "ad0ry",
     "name": "Aura Of Decay",
     "description": "Toggles Aura of Decay, which poisons you every second, and leaves a trail of decay. Enemies near you or in the trail are poisoned four times a second, and your chance to poison on hit applies to each of these instances at 100% effectiveness.\n\nWhile Aura of Decay is active you take 30% less poison damage. Additionally, you take 50% less damage from your own Aura of Decay.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Avalanche": {
     "id": "av75ch",
     "name": "Avalanche",
     "description": "Summon the might of winter and pummel your foes in ice and snow, unleashing a large boulder at the target followed by 10 smaller boulders around the area over 2 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Ballista": {
     "id": "ba1574",
     "name": "Ballista",
     "description": "Summons a ballista that fires bolts at nearby enemies.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Banner Rush": {
     "id": "br8s7",
     "name": "Banner Rush",
     "description": "Dash to your Banner. Cannot be used without a target.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Bone Curse": {
     "id": "bc53",
     "name": "Bone Curse",
     "description": "Apply a curse to enemies in an area for 8 seconds that causes physical damage when hit. The damage is tripled if you inflicted the hit yourself.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Chaos Bolts": {
     "id": "ch4bo",
     "name": "Chaos Bolts",
     "description": "A barrage of chaotic projectiles which land in an area around the target. The explosions deal necrotic and fire damage in a small area.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Chthonic Fissure": {
     "id": "ch0fs",
     "name": "Chthonic Fissure",
     "description": "Opens an infernal fissure in the ground, dealing fire damage over time to enemies on top of it, as well as releasing {Spirits} from the fissure that seek nearby enemies. These spirits inflict enemies with {Torment}, a {Curse} that slows and deals necrotic damage over time.\n\nMax 1 active fissure.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Cinder Strike": {
     "id": "cinss",
     "name": "Cinder Strike",
     "description": "Melee or bow combo with three attacks. The first attack also creates a fiery explosion, damaging nearby enemies.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Create Shadow": {
     "id": "en6",
     "name": "Create Shadow",
     "description": "Create a Shadow of yourself that persists for up to 5 seconds and will imitate your next Shadow Cascade, Shurikens, Umbral Blades, or Acid Flask.\nUp to 3 Shadows can be active at once.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Dancing Strikes": {
     "id": "dacn37",
     "name": "Dancing Strikes",
     "description": "Requires dual wielding.\n\nA series of fast dash attacks. Dancing Strikes' movement does not scale with attack speed, but it gains increased cooldown recovery speed and more damage equal to 50% of your total increased melee attack speed.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Dark Quiver": {
     "id": "dqv5",
     "name": "Dark Quiver",
     "description": "Requires a bow.\n\nSummons 7 Black Arrows that rain from the sky over 4 seconds, granting 100% increased damage to your next bow attack when retrieved.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Death Seal": {
     "id": "ds34i",
     "name": "Death Seal",
     "description": "Releases a Wave of Death dealing damage based on how long Death Seal has been actve and your current percent missing health.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Decoy": {
     "id": "deeco",
     "name": "Decoy",
     "description": "Throw a device to create a Decoy that taunts enemies around it for 2.5 seconds before exploding.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Detonate Decoy": {
     "id": "",
     "name": "Detonate Decoy",
     "description": "Detonate your decoys instantly.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Detonating Arrow": {
     "id": "detar",
     "name": "Detonating Arrow",
     "description": "Requires a bow.\n\nFires an arrow that embeds itself in a target then explodes after 0.6 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Devouring Orb": {
     "id": "do5vr",
     "name": "Devouring Orb",
     "description": "Creates a devouring orb at the target location for 10 seconds that deals void damage over time to nearby enemies, and casts a void rift whenever something dies nearby, hitting nearby enemies to deal void damage.\n\nEach successive rift has 12% more damage and area of effect, capped at an increase of 120%.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Dive": {
     "id": "sbsw7",
     "name": "Dive",
     "description": "Dash a short fixed distance in the target direction dealing damage to all enemies in your path.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Dive Bomb": {
     "id": "db992",
     "name": "Dive Bomb",
     "description": "Your {Falcon} ascends high into the sky then dive bombs the target location at high speed, dealing a high amount of physical damage to enemies in the area.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Drain Life": {
     "id": "dl73",
     "name": "Drain Life",
     "description": "Channelled spell that targets up to 3 enemies around the target location, dealing necrotic damage over time and leeching 30% of that damage back as health.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Dread Shade": {
     "id": "ds4d3",
     "name": "Dread Shade",
     "description": "Your minion's health is drained for 3% of its max health per second for each second the shade has been active, but it and your minions around it deal +10 necrotic damage with spells and attacks and have 50% increased necrotic damage.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Earthquake": {
     "id": "eq5s",
     "name": "Earthquake",
     "description": "Slam the ground with your weapon damaging enemies in a large area and creating 2 to 4 aftershocks nearby.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Entangling Roots": {
     "id": "er6no",
     "name": "Entangling Roots",
     "description": "Call forth a wave of roots that grows outwards in a wide cone in front of you. The wave deals physical damage and roots enemies it hits for 1.5 seconds. Rooted enemies take physical damage over time until they are freed.\n\nAdded spell damage applies at 100% to the initial hit and 200% per second to the damage over time.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Erasing Strike": {
     "id": "es6ai",
     "name": "Erasing Strike",
     "description": "A melee attack that hits all enemies in a large area in front of you. Enemies killed by the hit are erased from existence, replaced by void rifts.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Eterra's Blessing": {
     "id": "eb5656",
     "name": "Eterra's Blessing",
     "description": "The nearest allied target is healed for 100 health. If the target is one of your minions then the healing is tripled and the minion is energised for 4 seconds, increasing its size by 20% and its damage by 100%.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Evade": {
     "id": "werebearevade1",
     "name": "Evade",
     "description": "Rapidly move a short distance forwards.\n\nEvading does not grant damage immunity or prevent abilities from hitting you.\n\nEvade gains 0.5% Increased Cooldown Recovery Speed per Character level.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Explosive Trap": {
     "id": "ex4tp",
     "name": "Explosive Trap",
     "description": "Throws a trap that explodes when triggered, dealing throwing fire damage. Traps take 0.4 seconds to arm and explode when enemies walk over them or after 30s. \n\nYou can have a maximum of 6 active traps at a time.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Falcon Strikes": {
     "id": "aa32a",
     "name": "Falcon Strikes",
     "description": "Your Falcon rapidly strike enemies within the target area.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Falconry": {
     "id": "falc0",
     "name": "Falconry",
     "description": "Passive:\nSummons a {Falcon} that fights with you.\n\nActive:\n{Falcon Strikes}: The {Falcon} rapidly hits many enemies in the target area. \n",
     "lore": "The Dune Falcon is one of the most deadly hunters in all of Eterra. What it lacks in size it makes up in speed, precision, and intelligence. Fierce and independent, the Dune Falcon is known to maim those who attempt to train it. Only those it recognizes as an equal can hope to gain its trust and be accepted as a hunting partner.",
-    "class": ""
+    "class": "Rogue"
   },
   "Flay": {
     "id": "fl44",
     "name": "Flay",
     "description": "Spirit Step up to 3 meters towards an enemy if not within range, then perform a narrow rending slash.\nEach enemy killed by the melee attack will release a Blood Eruption, a spell dealing physical damage in an area.\nEnemies can be hit by both Flay and all Blood Eruptions that occur.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Flurry": {
     "id": "flur3",
     "name": "Flurry",
     "description": "A bow or melee attack that performs 3 rapid strikes. The last strike can be cancelled by moving.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Forge Strike": {
     "id": "fs3e3",
     "name": "Forge Strike",
     "description": "A melee attack that hits all enemies in an area in front of you.\n\n25% chance on hit to summon a Forged Weapon which lasts for 20 seconds and is affected by the stats and attack rate of your weapon. You can control up to 6 Forged Weapons at once.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Frigid Tempest": {
     "id": "fi9",
     "name": "Frigid Tempest",
     "description": "Conjures a spear of frost that pierces enemies.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Fury Leap": {
     "id": "fl13",
     "name": "Fury Leap",
     "description": "Leap to the target location, dealing damage to nearby enemies when you hit the ground.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Gathering Storm": {
     "id": "ga2st",
     "name": "Gathering Storm",
     "description": "Strike at your enemy with a mighty lightning powered storm. When you use Gathering Storm and hit at least one enemy, you gain a {Storm Stack}. Every second you expend a Storm Stack to cause a {Storm Bolt} to strike a nearby enemy. This interval is reduced by 2% for every stack you currently have.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Ghostflame": {
     "id": "gh0fl",
     "name": "Ghostflame",
     "description": "Channel to releases a continuous jet of horrid flames in front of you dealing fire and necrotic damage over time.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Hail of Arrows": {
     "id": "exvol8",
     "name": "Hail of Arrows",
     "description": "Requires a bow.\n\nLaunch a hail of arrows into the sky that rain down on the target location over 3.5 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Hammer Throw": {
     "id": "ht16aw",
     "name": "Hammer Throw",
     "description": "Throws a hammer that returns to you after a short delay.\n\nAdded Throwing Damage is applied to each hit at 110% effectiveness.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Harvest": {
     "id": "ha84",
     "name": "Harvest",
     "description": "A melee attack that hits all enemies in an area in front of you, dealing double damage to those that are Cursed.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Healing Hands": {
     "id": "hh7pa3",
     "name": "Healing Hands",
     "description": "Heals all allies in a target area for 50 health and applies a lingering warmth which heals 80 health over the next 3 seconds. The lingering warmth cannot stack on the same target.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Heartseeker": {
     "id": "htsk5",
     "name": "Heartseeker",
     "description": "Requires a bow.\n\nShoot an arrow that seeks the heart of a nearby target, passing harmlessly through other enemies. Whenever it hits its target it has a chance to continue through it and {Recurve} to strike it again. \n\nSubsequent {Recurve} chance is multiplied by 0.8 each time the arrow {Recurves}. If the target dies, it will choose a new target.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Holy Aura": {
     "id": "ah443",
     "name": "Holy Aura",
     "description": "You and nearby allies passively gain 30% increased damage and +15% additional elemental resistance. Activating Holy Aura doubles the stat bonuses for 4 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Human Form": {
     "id": "wbthf",
     "name": "Human Form",
     "description": "Return back to human form, returning your original stats and abilities.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Hungering Souls": {
     "id": "hs18gu",
     "name": "Hungering Souls",
     "description": "Calls forth five hungering souls that seeks out enemies, on hit they deal necrotic damage and then possesses the target.\n\nPossessed enemies take necrotic damage over time for 1.5 seconds. Enemies cannot be possessed by multiple souls at once.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Infernal Shade": {
     "id": "is40",
     "name": "Infernal Shade",
     "description": "Target enemy and all nearby enemies take fire damage per second. Each enemy can only have one Infernal Shade attached at a time. Expires after 5 seconds. Max 4 active shades.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Javelin": {
     "id": "javeli",
     "name": "Javelin",
     "description": "Hurl a javelin that pierces through every enemy in its path.\n\nIf you have a spear equipped added melee damage from the spear applies to Javelin as added throwing damage at 50% of its normal value. Added melee damage from other sources has no effect.\n\nAdded throwing damage applies at 250% effectiveness.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Judgement": {
     "id": "pa67ju",
     "name": "Judgement",
     "description": "A powerful melee attack that leaves an area of {Consecrated Ground} for 4 seconds.\n\nAllies on the {Consecrated Ground} are healed for 50 health each second.\n\nEnemies on Consecrate Ground take fire damage over time that scales with spell damage. Consecrate Ground gains 1 spell damage per 5% increased healing effectiveness.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Lethal Mirage": {
     "id": "mira59",
     "name": "Lethal Mirage",
     "description": "Become immune for a duration and rapidly strike nearby targets with 6 mirages.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Lunge": {
     "id": "lu25ng",
     "name": "Lunge",
     "description": "Dash to a nearby enemy and strike it with your weapon. Cannot be used without a target. Costs more mana the further away the target is.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Maelstrom": {
     "id": "mas54",
     "name": "Maelstrom",
     "description": "Surrounds you with a freezing Maelstrom that deals cold damage over time to nearby enemies.\n\nCan be cast repeatedly to create multiple maelstroms at once. Each Maelstrom lasts 7 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Manifest Armor": {
     "id": "ma6hdr",
     "name": "Manifest Armor",
     "description": "Manifests an animated set of heavy armor, which attacks slowly.\n\nStats granted by your body armor, helmet, gloves and boots also apply to your Manifest Armor.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Marrow Shards": {
     "id": "bp2nk",
     "name": "Marrow Shards",
     "description": "Fires sharpened bones from your body. The bones pierce through enemies inflicting physical damage. Instead of mana, this spell costs 9% of your current health.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Maul": {
     "id": "wbra",
     "name": "Maul",
     "description": "Jump forward a short distance and slam into the ground dealing damage to nearby enemies.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Multishot": {
     "id": "mush9",
     "name": "Multishot",
     "description": "Requires a bow.\n\nA bow attack that fires a cone of 5 arrows in the target direction. Aiming the cursor further from your character reduces the spread.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Multistrike": {
     "id": "multis",
     "name": "Multistrike",
     "description": "A melee attack that grants a stack of {Armament} if you hit at least one enemy.\n\nArmament stacks up to 2 times and each stack lasts 3 seconds.\n\nEach stack of {Armament} causes an additional sword to strike a nearby enemy when you use Multistrike.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Net": {
     "id": "ne01t",
     "name": "Net",
     "description": "Leaps backwards and throws a net which snares enemies and deals physical damage. Netted bosses and rare enemies have 35% less movement speed, and other enemies are immobilized.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Profane Veil": {
     "id": "pr5fm",
     "name": "Profane Veil",
     "description": "Channel to conceal yourself within a Profane Veil that deals necrotic damage over time to enemies around you. While concealed you dodge every Hit, but you can still take damage from damage over time effects, such as ailments, and you move more slowly.\n\nLast for up to 2 seconds (also ends when you release the key). Cooldown does not recover during use.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Puncture": {
     "id": "pun22",
     "name": "Puncture",
     "description": "An extended melee stab or piercing bow attack that has a 30% chance to inflict bleed on hit. Bleeds inflicted by puncture have 30% increased duration.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Rampage": {
     "id": "ch2ge",
     "name": "Rampage",
     "description": "Charge towards a target location dealing damage and knocking back enemies in your path.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Reap": {
     "id": "rf1azz",
     "name": "Reap",
     "description": "Dash a short distance in the target direction using your scythes to strike all enemies in your path. Restores 15 health for each enemy hit.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Rebuke": {
     "id": "re82ke",
     "name": "Rebuke",
     "description": "Hold ability key to channel for up to 2 seconds. You take 80% less damage while channelling.\n\nWhen you stop channelling the barrier breaks dealing physical damage to all nearby enemies. This deals 20 additional physical damage for each hit you received while channelling.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Ring Of Shields": {
     "id": "rs31hi",
     "name": "Ring Of Shields",
     "description": "Manifests a ring of shields around you.\n\nEach shield has 75 base health and lasts up to 10 seconds. Shields draw enemy aggression and block projectiles.\n\nStats on your equipped shield also apply to the shields created by Ring of Shields",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Rip Blood": {
     "id": "rb31pl",
     "name": "Rip Blood",
     "description": "Rips blood out of a target enemy dealing physical damage to it. An orb of the blood is drawn back to you, restoring 5 health when it reaches you.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Riposte": {
     "id": "ln24",
     "name": "Riposte",
     "description": "",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Rive": {
     "id": "sndr1-",
     "name": "Rive",
     "description": "A combo of three melee attacks. Every third consecutive attack with Rive slashes in a full circle around the character, dealing double damage.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Roar": {
     "id": "wb45ro",
     "name": "Roar",
     "description": "Unleash a thunderous roar which knocks enemies back and stuns them for 1.5 seconds. Rares and bosses are stunned for half as long.. All effects from your Warcry Skill Tree are applied to Roar.\n\n20% of remaining cooldown recovered whenever you stun (or freeze if Warcry is converted to cold) an enemy, including with Roar itself. This effect can occur a maximum of two times each second.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Sacrifice": {
     "id": "sf31rc",
     "name": "Sacrifice",
     "description": "Rips apart an allied minion, dealing physical damage to enemies around it.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Serpent Strike": {
     "id": "st31et",
     "name": "Serpent Strike",
     "description": "Requires a spear.\n\nA melee attack with 140% poison chance.\n\nPoisons inflicted by serpent strike last 40% longer.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Shadow Cascade": {
     "id": "dagg3",
     "name": "Shadow Cascade",
     "description": "Requires dual wielding.\n\nA circular attack that's also used by your shadow clones.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Shield Bash": {
     "id": "sb4h",
     "name": "Shield Bash",
     "description": "Requires a shield.\n\nA melee directional attack that stuns enemies for 1 second. 100% increased stun duration against non-boss enemies.\n\n1.5% more damage per 1% block chance (up to 150%, multiplicative with other modifiers).\n\n20% of remaining cooldown recovered whenever you stun an enemy, including with Shield Bash itself. This effect can occur a maximum of two times each second.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Shield Rush": {
     "id": "sr31hu",
     "name": "Shield Rush",
     "description": "Requires a shield.\n\nCharge through enemies in the target direction until you release the ability key. You hit enemies in your path and in a wider area at the end of the movement. You do not regenerate mana while rushing.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Shield Throw": {
     "id": "st31io",
     "name": "Shield Throw",
     "description": "Throws a shield at a target enemy. The shield ricochets to up to 2 additional targets before returning to you.\n\nYou cannot throw a new shield until the current shield has returned to you.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Shift": {
     "id": "shiif",
     "name": "Shift",
     "description": "Dash a short fixed distance in the target direction.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Shocking Impact": {
     "id": "me27",
     "name": "Shocking Impact",
     "description": "Call a meteor from the sky that deals a large amount of damage upon landing. Added damage is applied at five times its normal value.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Shurikens": {
     "id": "srk21",
     "name": "Shurikens",
     "description": "Throw 3 shurikens in a cone.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Smelter's Wrath": {
     "id": "st4th",
     "name": "Smelter's Wrath",
     "description": "Channel to charge a powerful frontal cone attack, dealing fire and physical damage to all enemies hit. Charging for longer increases its range and power. 2 second maximum charge time.\n\nYour armor is doubled while channelling Smelter's Wrath.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Smite": {
     "id": "sm87r4",
     "name": "Smite",
     "description": "Smites a target enemy with a bolt of holy fire that descends from the sky, healing allies around the target for 60 health. If you are in the area you are also healed.\n\nCannot be used without a target.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Smoke Bomb": {
     "id": "smbmb",
     "name": "Smoke Bomb",
     "description": "Drop a Smoke Bomb at your feet that blinds enemies and grants you haste while you remain inside it. The Smoke Bomb grows in size over its duration. Lasts 4 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Soul Feast": {
     "id": "fe8at",
     "name": "Soul Feast",
     "description": "Feasts on the souls of {Cursed} enemies, dealing necrotic damage to them, and drawing fragments of their souls back to you. The soul fragments each grant 3 ward when they reach you.\n\nFeasts on up to 13 enemies, prioritising those closest to you.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Spirit Plague": {
     "id": "sp5g2",
     "name": "Spirit Plague",
     "description": "Curses a target with a powerful necrotic damage over time effect which lasts 3 seconds. Spreads to a single nearby target on target death.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Spirit Thorns": {
     "id": "tb47",
     "name": "Spirit Thorns",
     "description": "Releases a burst of thorns towards enemies in the target direction. Thorns deal physical damage on hit and multiple thorns can hit the same target.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Spriggan Form": {
     "id": "sf5rd",
     "name": "Spriggan Form",
     "description": "Transform into a forest spriggan, increasing your spell casting capabilities, and gaining 4 new abilities.\n\nYour mana is replaced with Rage while in spriggan form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Bear": {
     "id": "be36ar",
     "name": "Summon Bear",
     "description": "Summons a primal bear that follows you into combat. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe bear counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Bone Golem": {
     "id": "bg36nl",
     "name": "Summon Bone Golem",
     "description": "Summons a bone golem, which attacks slowly, but has a 15% chance to retaliate with Bone Shatter when hit.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Cryomancer": {
     "id": "sc3r",
     "name": "Summon Cryomancer",
     "description": "Summons a skeleton mage to assist you. You are limited to 2 mages at a time.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Death Knight": {
     "id": "sdk3",
     "name": "Summon Death Knight",
     "description": "Summons a Skeleton Death Knight to assist you.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Forged Weapon": {
     "id": "sw44on",
     "name": "Summon Forged Weapon",
     "description": "Summons a Forged Weapon which lasts for 20 seconds and is affected by the stats and attack rate of your weapon. You can control up to 6 Forged Weapons at once.\n\nForged Weapons have 220 based health.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Summon Frenzy Totem": {
     "id": "sf37",
     "name": "Summon Frenzy Totem",
     "description": "Summons a totem that grants Frenzy to all nearby allies. Frenzy increases attack and cast speed by 20%.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Healing Totem": {
     "id": "sht54dd",
     "name": "Summon Healing Totem",
     "description": "Summons a totem that heals nearby allies. Healing totems have 100 base health and last 6 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Hive": {
     "id": "sh1v3",
     "name": "Summon Hive",
     "description": "Summons a Hive that releases Locusts while enemies are nearby. You can have a maximum of three Hives by default and each Hive contains 12 Locusts.\n\nYou are limited to 12 active Locusts and each Locust lasts up to 12 seconds.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Summon Pyromancer": {
     "id": "pr6y",
     "name": "Summon Pyromancer",
     "description": "Summons a skeleton mage to assist you. You are limited to 2 mages at a time.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Raptor": {
     "id": "srtor",
     "name": "Summon Raptor",
     "description": "Summons a primal raptor that ferociously attacks your enemies. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe raptor counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Sabertooth": {
     "id": "sa36oh",
     "name": "Summon Sabertooth",
     "description": "Summons a primal sabertooth cat that leaps into combat. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe sabertooth cat counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Scorpion": {
     "id": "sc36pi",
     "name": "Summon Scorpion",
     "description": "Summons a scorpion that follows you into combat. Its attacks with its tails inflict a long lasting poison. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe scorpion counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Summon Skeletal Mage": {
     "id": "sm4g",
     "name": "Summon Skeletal Mage",
     "description": "Summons a Skeletal Mage to assist you. You are limited to 2 Skeletal Mages at a time.\nSkeletal Mages cast Dread Bolt, which has 150% added damage effectiveness and has a 50% chance to apply Damned on hit.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Skeleton": {
     "id": "ss37kl",
     "name": "Summon Skeleton",
     "description": "Summons a skeleton warrior or skeleton archer to guard you. You are limited to 3 skeletons at a time.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Skeleton Rogue": {
     "id": "sr5t",
     "name": "Summon Skeleton Rogue",
     "description": "Summon a primal wolf to guard you and attack your enemies",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Spriggan": {
     "id": "sp38",
     "name": "Summon Spriggan",
     "description": "Summon a spriggan that casts spells to attack your enemies and has a passive Healing Aura that restores 10 health per second. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe spriggan counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Squirrel": {
     "id": "sps5l",
     "name": "Summon Squirrel",
     "description": "Summons a primal wolf that follows you into combat. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe wolf counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Storm Crows": {
     "id": "ssc50",
     "name": "Summon Storm Crows",
     "description": "Summons Storm Crows up to your companion limit. The Storm Crow casts spells from a distance. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nThe Storm Crow counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Storm Totem": {
     "id": "st38ml",
     "name": "Summon Storm Totem",
     "description": "Summons a totem that casts lightning storms around nearby enemies.\n\nStorm totems last 8 seconds, and you cannot control more than 1 at once.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Thorn Totem": {
     "id": "th39",
     "name": "Summon Thorn Totem",
     "description": "Summons a totem that fires thorns at nearby enemies. You can have a maximum of two thorn totems by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Vine": {
     "id": "vi41a",
     "name": "Summon Vine",
     "description": "Summons 1 poisonous vine.\n\nVines are melee minions that inflict poison on hit. You can have up to 12 vines.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Vines": {
     "id": "vi41",
     "name": "Summon Vines",
     "description": "Summon 3 poisonous vines for 8 seconds.\n\nEach vine has 50 base health.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Volatile Zombie": {
     "id": "svz81",
     "name": "Summon Volatile Zombie",
     "description": "Summons a Volatile Zombie which trudges towards the nearest enemy. When it reaches an enemy or dies, it explodes dealing physical and fire damage to surrounding enemies.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Summon Wolf": {
     "id": "wo42",
     "name": "Summon Wolf",
     "description": "Summons a primal wolf that follows you into combat. When its health drops to 0 it is downed, and you can stand near it to revive it.\n\nWhile you have your maximum number of wolves, the ability is replaced with {Howl}.\n\nThe wolf counts as a companion. You can have a maximum of two companions at once by default.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Summon Wraith": {
     "id": "sw42ih",
     "name": "Summon Wraith",
     "description": "Summons a wraith that rapidly fades from this world, but will seek and attack your foes while it remains.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Swarm Strike": {
     "id": "sbsa4",
     "name": "Swarm Strike",
     "description": "A circular attack which deals damage to all nearby enemies, then gathers nearby locusts to create a Swarm around you which deals damage over time to nearby enemies.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Swarmblade Form": {
     "id": "sbf4m",
     "name": "Swarmblade Form",
     "description": "Transform into an agile Swarmblade, increasing your melee capabilities, and gaining 4 new abilities.\n\nYour mana is replaced with Rage while in swarmblade form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Swipe": {
     "id": "sw43",
     "name": "Swipe",
     "description": "A melee attack that hits all enemies in an area in front of you. Unaffected by weapon range.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Symbols of Hope": {
     "id": "si4lgl",
     "name": "Symbols of Hope",
     "description": "Every 2 seconds, summons a symbol that orbits you, causing you and your allies' attacks and spells to deal 3 additional fire damage and increasing health regeneration by 20%.\n\nActivate to consume the symbols, granting 100 ward and 5% less damage taken per symbol for 3 seconds.\n\nYou can have up to 3 symbols at a time.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Synchronized Strike": {
     "id": "sync5",
     "name": "Synchronized Strike",
     "description": "Requires a melee weapon.\n\nJump forward and strike in an area in front of you while shadows appear and simultaneously strike on either side of you.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Teleport": {
     "id": "fl45",
     "name": "Teleport",
     "description": "Teleport to target location.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Tempest Strike": {
     "id": "ts85i",
     "name": "Tempest Strike",
     "description": "A melee combo attack that cycles through a cold strike, a physical strike, and a lightning strike that trigger elemental {Tempest} spells of the same damage type if the strikes hit at least one enemy.\n\nCold strike: Triggers a {Frigid Tempest}, which is a cold projectile that pierces through enemies.\nPhysical strike: Triggers a {Wind Tempest}, which is a small twister that lasts a short duration dealing physical damage per over time.\nLightning strike: Triggers a {Thunder Tempest}, which is an expanding storm of lightning bolts.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Thorn Shield": {
     "id": "ts48",
     "name": "Thorn Shield",
     "description": "Form a protective barrier of thorns around yourself or an ally that grants 30 armor and reflects 50 damage to attackers. When the shield expires, a burst of thorns shoots out and damages all nearby enemies.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Tornado": {
     "id": "to50",
     "name": "Tornado",
     "description": "Conjures a tornado that moves at random, pulling in nearby enemies and dealing physical damage to them.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Transplant": {
     "id": "ts50pl",
     "name": "Transplant",
     "description": "Creates a new body for you at the target location, then detonates your old body to deal physical damage to enemies around it.\n\nInstead of mana, this spell costs 13% of your current health.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Umbral Blades": {
     "id": "na28",
     "name": "Umbral Blades",
     "description": "Recall all Umbral Blades to you, hitting enemies along the way.",
     "lore": "",
-    "class": ""
+    "class": "Rogue"
   },
   "Upheaval": {
     "id": "uph41",
     "name": "Upheaval",
     "description": "Sunders the ground in a line in front of you, dealing damage to enemies along the path.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Vengeance": {
     "id": "gs15de",
     "name": "Vengeance",
     "description": "A melee attack that also prepares you to riposte incoming hits.\n\nIf vengeance successfully hits an enemy and you take a hit in the next 2 seconds you will riposte, taking 25% less damage and striking at a nearby enemy.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Void Cleave": {
     "id": "v01cv",
     "name": "Void Cleave",
     "description": "Requires a 2-handed sword or axe.\n\nA melee attack that hits all enemies in an area in front of you. Can be echoed by Void Knights. Unaffected by weapon range.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Volatile Reversal": {
     "id": "vr53sl",
     "name": "Volatile Reversal",
     "description": "A combo ability that jumps forwards in time to a target location and performs a melee attack on arrival. Recast within 3 seconds to jump backwards in time to your original location and perform a melee attack on arrival.",
     "lore": "",
-    "class": ""
+    "class": "Mage"
   },
   "Wandering Spirits": {
     "id": "ws54hm",
     "name": "Wandering Spirits",
     "description": "Reveals wandering spirits around you for 6 seconds. The spirits wander at random dealing necrotic damage over time to enemies they pass through.\n\n4 spirits are revealed immediately after casting the skill and 17 more are revealed over the next 6 seconds.\n\nThe spirits individually last up to 4 seconds, but all remaining spirits fade once the reveal duration ends.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Warcry": {
     "id": "wc57",
     "name": "Warcry",
     "description": "Unleash a mighty roar that knocks back nearby enemies and stuns them for 1.5 seconds. Rares and bosses are stunned for half as long.\n\n20% of remaining cooldown recovered whenever you stun (or freeze if Warcry is converted to cold) an enemy, including with Warcry itself. This effect can occur a maximum of two times each second.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   },
   "Warpath": {
     "id": "va53st",
     "name": "Warpath",
     "description": "Spin towards the mouse while you hold down the ability key, striking nearby enemies as you move.",
     "lore": "",
-    "class": ""
+    "class": "Sentinel"
   },
   "Wave of Death": {
     "id": "dsw43",
     "name": "Wave of Death",
     "description": "Releases a Wave of Death dealing damage based on how long Death Seal has been actve and your current percent missing health.",
     "lore": "",
-    "class": ""
+    "class": "Acolyte"
   },
   "Werebear Form": {
     "id": "wb8fo",
     "name": "Werebear Form",
     "description": "Transform into a ferocious werebear, increasing your physical capabilities and gaining 4 new abilities. \n\nYour mana is replaced with Rage while in werebear form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
     "lore": "",
-    "class": ""
+    "class": "Primalist"
   }
 }
