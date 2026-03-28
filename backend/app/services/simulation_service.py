@@ -21,6 +21,7 @@ def aggregate_stats(
     allocated_node_ids: list[int],
     nodes: list[dict],
     gear_affixes: list[dict],
+    passive_stats: dict | None = None,
 ) -> BuildStats:
     """Aggregate stats from raw inputs — no saved build required."""
     return stat_engine.aggregate_stats(
@@ -29,6 +30,7 @@ def aggregate_stats(
         allocated_node_ids=allocated_node_ids,
         nodes=nodes,
         gear_affixes=gear_affixes,
+        passive_stats=passive_stats,
     )
 
 
@@ -90,6 +92,7 @@ def simulate_full_build(
     skill_level: int = 20,
     n_simulations: int = 5_000,
     seed: int | None = None,
+    passive_stats: dict | None = None,
 ) -> dict:
     """
     Full pipeline: stats → combat → defense → optimize.
@@ -109,6 +112,7 @@ def simulate_full_build(
         allocated_node_ids=allocated_node_ids,
         nodes=nodes,
         gear_affixes=gear_affixes,
+        passive_stats=passive_stats,
     )
 
     dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level)
