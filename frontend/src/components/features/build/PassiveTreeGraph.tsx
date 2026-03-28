@@ -137,9 +137,13 @@ export default function PassiveTreeGraph({
   const regionKeys = Object.keys(regionMap);
   const classMeta = PASSIVE_TREE_META[cls] ?? {};
 
-  const masteryKey = mastery.toLowerCase().replace(/\s+/g, "-");
-  const defaultRegion = regionKeys.includes(masteryKey) ? masteryKey : (regionKeys[0] ?? "base");
-  const [activeRegion, setActiveRegion] = useState(defaultRegion);
+  const [activeRegion, setActiveRegion] = useState(regionKeys.includes("base") ? "base" : (regionKeys[0] ?? "base"));
+
+  // Reset to base tree when class changes
+  useEffect(() => {
+    const keys = Object.keys(PASSIVE_TREES[cls] ?? {});
+    setActiveRegion(keys.includes("base") ? "base" : (keys[0] ?? "base"));
+  }, [cls]);
 
   const rawNodes: PassiveNode[] = useMemo(
     () => regionMap[activeRegion] ?? [],
