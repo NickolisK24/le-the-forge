@@ -383,3 +383,32 @@ export const importApi = {
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
 };
 
+// ---------------------------------------------------------------------------
+// Unique items reference
+// ---------------------------------------------------------------------------
+
+export interface UniqueItem {
+  id: string;
+  name: string;
+  slot: string;
+  base: string;
+  implicit: string | null;
+  unique_passive: string;
+  affixes: string[];
+  tags: string[];
+  class_req: string | null;
+  set: string | null;
+}
+
+export const uniquesApi = {
+  list: (params: { slot?: string; class?: string; q?: string } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
+      )
+    ).toString();
+    return get<UniqueItem[]>(`/ref/uniques${qs ? "?" + qs : ""}`);
+  },
+  get: (slug: string) => get<UniqueItem>(`/ref/uniques/${slug}`),
+};
+

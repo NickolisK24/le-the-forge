@@ -1,0 +1,1131 @@
+{
+  "_meta": {
+    "description": "Last Epoch unique item reference data for The Forge build planner.",
+    "note": "Affix ranges are curated approximations. Verify against in-game tooltips for exact values.",
+    "version": "1.1",
+    "slots": ["helmet", "body", "gloves", "boots", "belt", "amulet", "ring", "relic", "sword", "axe", "mace", "dagger", "sceptre", "wand", "staff", "bow", "quiver", "shield"]
+  },
+
+  "apogee_of_frozen_light": {
+    "name": "Apogee of Frozen Light",
+    "slot": "helmet",
+    "base": "Runed Helm",
+    "implicit": null,
+    "unique_passive": "Apogee of Frozen Light — Your Cold spells have a 25% chance to Shatter enemies on hit",
+    "affixes": [
+      "+40–60% increased Cold Damage",
+      "+20–35% chance to Chill on Hit",
+      "+10–20% increased Spell Damage",
+      "+5–10% increased Cast Speed",
+      "+25–40 Intelligence"
+    ],
+    "tags": ["cold", "spell", "chill", "freeze", "sorcerer"],
+    "class_req": "Mage",
+    "set": null
+  },
+
+  "vessels_of_memory": {
+    "name": "Vessels of Memory",
+    "slot": "helmet",
+    "base": "Sage's Hood",
+    "implicit": null,
+    "unique_passive": "Vessels of Memory — Gain a stack of Memory on kill. Each stack grants +2% Spell Damage. Lose all stacks on death.",
+    "affixes": [
+      "+30–50% increased Spell Damage",
+      "+20–30 Intelligence",
+      "+15–25% increased Mana Regeneration",
+      "+10–18% increased Cast Speed"
+    ],
+    "tags": ["spell", "intelligence", "mana", "stacking"],
+    "class_req": null,
+    "set": null
+  },
+
+  "devoured_crown": {
+    "name": "Devoured Crown",
+    "slot": "helmet",
+    "base": "Antlered Headdress",
+    "implicit": null,
+    "unique_passive": "Devoured Crown — Your Companions deal 30% increased Damage and have 25% increased Attack Speed",
+    "affixes": [
+      "+40–60% increased Companion Damage",
+      "+2–4 to Companion Skills",
+      "+15–25% increased Companion Health",
+      "+20–35% increased Companion Attack Speed"
+    ],
+    "tags": ["companion", "summon", "minion", "beastmaster"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "frozen_skull": {
+    "name": "Frozen Skull",
+    "slot": "helmet",
+    "base": "Bone Helm",
+    "implicit": null,
+    "unique_passive": "Frozen Skull — Your Minions deal Cold Damage and apply Chill on hit",
+    "affixes": [
+      "+30–50% increased Minion Damage",
+      "+20–40% increased Minion Cold Damage",
+      "+15–25% increased Minion Health",
+      "+10–20% chance to Chill on Hit for Minions"
+    ],
+    "tags": ["minion", "cold", "chill", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "calamity": {
+    "name": "Calamity",
+    "slot": "helmet",
+    "base": "Conquerer's Helm",
+    "implicit": null,
+    "unique_passive": "Calamity — Your Crit Multiplier is increased by 10% for each 5% of your Critical Strike Chance above 50%",
+    "affixes": [
+      "+10–20% Critical Strike Chance",
+      "+40–80% Critical Strike Multiplier",
+      "+20–35% increased Global Damage",
+      "+5–10 Dexterity"
+    ],
+    "tags": ["crit", "damage", "global"],
+    "class_req": null,
+    "set": null
+  },
+
+  "pinnacle_of_obsession": {
+    "name": "Pinnacle of Obsession",
+    "slot": "helmet",
+    "base": "Iron Helm",
+    "implicit": null,
+    "unique_passive": "Pinnacle of Obsession — Gain 1% increased Damage for every 10 Affixes on your equipped items",
+    "affixes": [
+      "+25–40% increased Global Damage",
+      "+15–25 Attunement",
+      "+10–20% Elemental Resistance",
+      "+80–120 Health"
+    ],
+    "tags": ["damage", "affix_synergy", "scaling"],
+    "class_req": null,
+    "set": null
+  },
+
+  "the_unsung_prophet": {
+    "name": "The Unsung Prophet",
+    "slot": "helmet",
+    "base": "Templar Helm",
+    "implicit": null,
+    "unique_passive": "The Unsung Prophet — Your Void skills deal bonus damage equal to 10% of your Void Protection",
+    "affixes": [
+      "+40–60% increased Void Damage",
+      "+20–35 Void Protection",
+      "+15–25% increased Void Spell Damage",
+      "+30–50 Attunement"
+    ],
+    "tags": ["void", "protection_scaling", "void_knight"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "exsanguinous": {
+    "name": "Exsanguinous",
+    "slot": "body",
+    "base": "Faded Coat",
+    "implicit": null,
+    "unique_passive": "Exsanguinous — You are considered to be at Low Life if you have less than 50 Ward. Gain Ward equal to 50% of your Missing Life.",
+    "affixes": [
+      "+80–120% Ward Retention",
+      "-50–70% of Maximum Life",
+      "+10–20% increased Global Damage while on Low Life",
+      "+15–25% increased Cast Speed"
+    ],
+    "tags": ["ward", "life", "low_life", "lich", "acolyte"],
+    "class_req": null,
+    "set": null
+  },
+
+  "last_steps_of_the_living": {
+    "name": "Last Steps of the Living",
+    "slot": "body",
+    "base": "Necrotic Vestment",
+    "implicit": null,
+    "unique_passive": "Last Steps of the Living — On reaching Low Life, gain Ghost Walk for 2 seconds (5 second cooldown)",
+    "affixes": [
+      "+15–25% Dodge Rating",
+      "+10–20% Movement Speed while at Low Life",
+      "+60–90 Health",
+      "+15–25% Necrotic Resistance"
+    ],
+    "tags": ["low_life", "dodge", "movement", "ghost_walk", "acolyte"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "shroud_of_obscurity": {
+    "name": "Shroud of Obscurity",
+    "slot": "body",
+    "base": "Assassin's Coat",
+    "implicit": null,
+    "unique_passive": "Shroud of Obscurity — Enemies cannot see you while you are stationary for more than 0.5 seconds",
+    "affixes": [
+      "+20–35% Dodge Rating",
+      "+10–20% increased Damage while Invisible",
+      "+15–25% Movement Speed",
+      "+50–80% Stealth Duration"
+    ],
+    "tags": ["dodge", "stealth", "rogue", "bladedancer"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "titan_heart": {
+    "name": "Titan Heart",
+    "slot": "body",
+    "base": "Forge Plate",
+    "implicit": null,
+    "unique_passive": "Titan Heart — Your Armor is doubled while you have not moved in the last 2 seconds",
+    "affixes": [
+      "+200–300 Armor",
+      "+15–25% Block Chance",
+      "+10–20% Block Effectiveness",
+      "+150–200 Health"
+    ],
+    "tags": ["armor", "block", "tank", "sentinel", "forge_guard"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "twisted_heart_of_uhkeiros": {
+    "name": "Twisted Heart of Uhkeiros",
+    "slot": "body",
+    "base": "Necrotic Vestment",
+    "implicit": null,
+    "unique_passive": "Twisted Heart of Uhkeiros — Your Skeletons explode on death dealing 100% of their Health as Physical Damage to nearby enemies",
+    "affixes": [
+      "+40–60% increased Minion Damage",
+      "+20–30 Minions Summoned at a Time",
+      "+15–25% increased Minion Health",
+      "+30–50% Minion Physical Damage"
+    ],
+    "tags": ["minion", "skeleton", "explosion", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "ravenous_void": {
+    "name": "Ravenous Void",
+    "slot": "body",
+    "base": "Void-touched Robe",
+    "implicit": null,
+    "unique_passive": "Ravenous Void — When you kill an enemy, heal for 3% of your Maximum Health and gain 5% increased Void Damage for 4 seconds, stacking up to 10 times",
+    "affixes": [
+      "+35–55% increased Void Damage",
+      "+10–20% increased Attack Speed",
+      "+80–120 Health",
+      "+5% Life Leech on Void Damage"
+    ],
+    "tags": ["void", "leech", "on_kill", "scaling"],
+    "class_req": null,
+    "set": null
+  },
+
+  "siphon_of_anguish": {
+    "name": "Siphon of Anguish",
+    "slot": "body",
+    "base": "Scholar's Vestment",
+    "implicit": null,
+    "unique_passive": "Siphon of Anguish — Drain Life heals for 100% more and can now target Rare and Boss enemies for double effect",
+    "affixes": [
+      "+40–60% increased Necrotic Damage",
+      "+20–35% increased Drain Life Damage",
+      "+10–20% Drain Life Range",
+      "+50–80 Ward on Kill"
+    ],
+    "tags": ["drain_life", "necrotic", "leech", "lich"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "the_invokers_static_touch": {
+    "name": "The Invoker's Static Touch",
+    "slot": "gloves",
+    "base": "Silk Gloves",
+    "implicit": null,
+    "unique_passive": "The Invoker's Static Touch — Your Spells have a 10% chance to Echo, casting again for 30% effectiveness",
+    "affixes": [
+      "+15–25% increased Spell Damage",
+      "+10–20% increased Cast Speed",
+      "+20–35% Lightning Damage",
+      "+5–10% chance to Echo Spells"
+    ],
+    "tags": ["spell", "echo", "lightning", "mage"],
+    "class_req": "Mage",
+    "set": null
+  },
+
+  "erasing_strike": {
+    "name": "Erasing Strike",
+    "slot": "gloves",
+    "base": "Iron Gauntlets",
+    "implicit": null,
+    "unique_passive": "Erasing Strike — Your Melee hits apply Void Rift, dealing Void Damage over time",
+    "affixes": [
+      "+30–50% increased Void Damage",
+      "+15–25% increased Melee Damage",
+      "+10–20% increased Melee Attack Speed",
+      "+20–35 Void Damage on Melee Hit"
+    ],
+    "tags": ["void", "melee", "void_knight", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "grip_of_the_void": {
+    "name": "Grip of the Void",
+    "slot": "gloves",
+    "base": "Void-touched Gloves",
+    "implicit": null,
+    "unique_passive": "Grip of the Void — Your Void Skills drain 5% of enemy Maximum Health on hit",
+    "affixes": [
+      "+40–60% increased Void Damage",
+      "+15–25 Attunement",
+      "+10–20% Void Penetration",
+      "+5–10% Attack and Cast Speed"
+    ],
+    "tags": ["void", "drain", "attunement"],
+    "class_req": null,
+    "set": null
+  },
+
+  "forged_in_blood": {
+    "name": "Forged in Blood",
+    "slot": "gloves",
+    "base": "Plated Gauntlets",
+    "implicit": null,
+    "unique_passive": "Forged in Blood — Your Shield Throw has a 30% chance to return to you and be thrown again",
+    "affixes": [
+      "+25–40% increased Shield Throw Damage",
+      "+15–25% Block Chance",
+      "+10–20% Armor",
+      "+30–50% increased Throwing Attack Speed"
+    ],
+    "tags": ["shield_throw", "block", "forge_guard", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "rive": {
+    "name": "Rive",
+    "slot": "boots",
+    "base": "Soldier's Greaves",
+    "implicit": null,
+    "unique_passive": "Rive — Your Melee attacks Cleave enemies in a wider arc. Rive also applies Bleed on hit.",
+    "affixes": [
+      "+20–35% increased Melee Damage",
+      "+15–25% Movement Speed",
+      "+10–20% increased Attack Speed",
+      "+8–15% Bleed Chance on Melee Hit"
+    ],
+    "tags": ["melee", "cleave", "bleed", "movement"],
+    "class_req": null,
+    "set": null
+  },
+
+  "julras_stardial": {
+    "name": "Julra's Stardial",
+    "slot": "boots",
+    "base": "Temporal Sandals",
+    "implicit": null,
+    "unique_passive": "Julra's Stardial — Enemies you hit have Time Rot applied to them, slowing them and reducing their damage output",
+    "affixes": [
+      "+20–35% increased Void Damage",
+      "+15–25% Movement Speed",
+      "+10–20% Slow effectiveness",
+      "+50–80 Health"
+    ],
+    "tags": ["void", "time_rot", "slow", "movement"],
+    "class_req": null,
+    "set": null
+  },
+
+  "tears_of_the_forest": {
+    "name": "Tears of the Forest",
+    "slot": "boots",
+    "base": "Druid's Sandals",
+    "implicit": null,
+    "unique_passive": "Tears of the Forest — While moving, leave a trail of Entangling Roots that lasts 3 seconds",
+    "affixes": [
+      "+20–35% increased Nature Damage",
+      "+15–25% Movement Speed",
+      "+10–20% Slow on Hit",
+      "+30–50% Entangling Roots Duration"
+    ],
+    "tags": ["nature", "roots", "slow", "movement", "druid"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "wings_of_argentus": {
+    "name": "Wings of Argentus",
+    "slot": "boots",
+    "base": "Falconer's Boots",
+    "implicit": null,
+    "unique_passive": "Wings of Argentus — Your Falcon has 50% increased Movement Speed and deals 20% more Damage",
+    "affixes": [
+      "+20–35% increased Companion Damage",
+      "+20–35% Movement Speed",
+      "+15–25% Dodge Rating",
+      "+10–20% increased Companion Attack Speed"
+    ],
+    "tags": ["companion", "falcon", "movement", "dodge", "falconer"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "heorot": {
+    "name": "Heorot",
+    "slot": "boots",
+    "base": "Bear-hide Boots",
+    "implicit": null,
+    "unique_passive": "Heorot — While transformed into a Werebear, your armor is doubled and you deal 25% more Damage",
+    "affixes": [
+      "+30–50% increased Physical Damage",
+      "+15–25% Movement Speed",
+      "+100–150 Armor",
+      "+80–120 Health"
+    ],
+    "tags": ["werebear", "physical", "armor", "druid"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "bleeding_heart": {
+    "name": "Bleeding Heart",
+    "slot": "belt",
+    "base": "Leather Belt",
+    "implicit": null,
+    "unique_passive": "Bleeding Heart — Ignite also causes enemies to Bleed. Your Ignite damage is increased by your Bleed chance.",
+    "affixes": [
+      "+30–50% increased Fire Damage",
+      "+15–25% Ignite Chance",
+      "+10–20% Bleed Chance",
+      "+40–60 Health"
+    ],
+    "tags": ["fire", "ignite", "bleed", "ailment"],
+    "class_req": null,
+    "set": null
+  },
+
+  "reach_of_the_grave": {
+    "name": "Reach of the Grave",
+    "slot": "belt",
+    "base": "Bone-link Belt",
+    "implicit": null,
+    "unique_passive": "Reach of the Grave — Your Skeletons and Zombies have 30% increased Area of Effect and attack all enemies they pass through",
+    "affixes": [
+      "+30–50% increased Minion Damage",
+      "+15–25% increased Minion Health",
+      "+10–20% increased Minion Area of Effect",
+      "+20–35% Minion Attack Speed"
+    ],
+    "tags": ["minion", "skeleton", "zombie", "aoe", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "mark_of_the_architect": {
+    "name": "Mark of the Architect",
+    "slot": "belt",
+    "base": "Forged Belt",
+    "implicit": null,
+    "unique_passive": "Mark of the Architect — Gain 1% of your Armor as Bonus Physical Damage",
+    "affixes": [
+      "+150–250 Armor",
+      "+10–20% Armor",
+      "+15–25% Block Chance",
+      "+60–90 Health"
+    ],
+    "tags": ["armor", "physical", "block", "forge_guard", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "logis_hunger": {
+    "name": "Logi's Hunger",
+    "slot": "belt",
+    "base": "Storm-woven Sash",
+    "implicit": null,
+    "unique_passive": "Logi's Hunger — Casting Totems grants you 10% increased Damage per active Totem",
+    "affixes": [
+      "+30–50% increased Totem Damage",
+      "+1–2 to Maximum Totems",
+      "+15–25% increased Mana Regeneration",
+      "+20–35 Attunement"
+    ],
+    "tags": ["totem", "mana", "shaman", "primalist"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "dragonflame_edict": {
+    "name": "The Dragonflame Edict",
+    "slot": "belt",
+    "base": "Emberweave Belt",
+    "implicit": null,
+    "unique_passive": "The Dragonflame Edict — Dragon Breath is added to your skill bar. It costs no Mana and deals Fire Damage.",
+    "affixes": [
+      "+40–60% increased Fire Damage",
+      "+15–25% increased Fire Spell Damage",
+      "+10–20% increased Cast Speed",
+      "+30–50 Attunement"
+    ],
+    "tags": ["fire", "spell", "breath", "unique_skill"],
+    "class_req": null,
+    "set": null
+  },
+
+  "burning_chest": {
+    "name": "Burning Chest",
+    "slot": "amulet",
+    "base": "Ember Pendant",
+    "implicit": null,
+    "unique_passive": "Burning Chest — Your Ignites deal 1% more Damage for each stack of Ignite on the target, up to 300%",
+    "affixes": [
+      "+40–60% increased Ignite Damage",
+      "+15–25% Ignite Chance",
+      "+20–35% increased Fire Damage",
+      "+10–20 Attunement"
+    ],
+    "tags": ["ignite", "fire", "ailment", "stacking"],
+    "class_req": null,
+    "set": null
+  },
+
+  "eye_of_reen": {
+    "name": "Eye of Reen",
+    "slot": "amulet",
+    "base": "Primal Eye Talisman",
+    "implicit": null,
+    "unique_passive": "Eye of Reen — Your Companions have 100% increased Critical Strike Chance and deal Critical Strikes for 50% increased Damage",
+    "affixes": [
+      "+30–50% increased Companion Damage",
+      "+20–35% Companion Critical Strike Chance",
+      "+15–25% Companion Attack Speed",
+      "+30–50 Vitality"
+    ],
+    "tags": ["companion", "crit", "beastmaster", "primalist"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "throne_of_ambition": {
+    "name": "Throne of Ambition",
+    "slot": "amulet",
+    "base": "Gold-chained Medallion",
+    "implicit": null,
+    "unique_passive": "Throne of Ambition — Gain 1% increased Damage for each different Ailment type currently on your target",
+    "affixes": [
+      "+25–40% increased Global Damage",
+      "+15–25% Ailment Chance",
+      "+10–20% increased Damage with Ailments",
+      "+20–35 Intelligence"
+    ],
+    "tags": ["ailment", "global_damage", "scaling"],
+    "class_req": null,
+    "set": null
+  },
+
+  "reign_of_winter": {
+    "name": "Reign of Winter",
+    "slot": "amulet",
+    "base": "Frosted Pendant",
+    "implicit": null,
+    "unique_passive": "Reign of Winter — Chilled enemies take 20% more damage from all sources",
+    "affixes": [
+      "+40–60% increased Cold Damage",
+      "+20–35% Chill Chance",
+      "+15–25% Freeze Chance",
+      "+20–35 Intelligence"
+    ],
+    "tags": ["cold", "chill", "freeze", "amplification"],
+    "class_req": null,
+    "set": null
+  },
+
+  "omnis": {
+    "name": "Omnis",
+    "slot": "ring",
+    "base": "Circle of Elements",
+    "implicit": null,
+    "unique_passive": "Omnis — Your Elemental Resistances also grant equal amounts of Elemental Damage bonus",
+    "affixes": [
+      "+15–25% Fire Resistance",
+      "+15–25% Cold Resistance",
+      "+15–25% Lightning Resistance",
+      "+10–20% increased Elemental Damage"
+    ],
+    "tags": ["elemental", "resistance", "all_elements", "scaling"],
+    "class_req": null,
+    "set": null
+  },
+
+  "orians_eye": {
+    "name": "Orian's Eye",
+    "slot": "ring",
+    "base": "Runed Band",
+    "implicit": null,
+    "unique_passive": "Orian's Eye — Your Critical Strikes with Spells have a 20% chance to release a Chain Lightning bolt",
+    "affixes": [
+      "+15–25% Spell Critical Strike Chance",
+      "+30–50% Critical Strike Multiplier",
+      "+20–35% Lightning Damage",
+      "+10–20 Intelligence"
+    ],
+    "tags": ["spell", "crit", "lightning", "chain"],
+    "class_req": null,
+    "set": null
+  },
+
+  "shard_of_the_shattered_lance": {
+    "name": "Shard of the Shattered Lance",
+    "slot": "ring",
+    "base": "Void-touched Band",
+    "implicit": null,
+    "unique_passive": "Shard of the Shattered Lance — Your Abyssal Echoes fire a lance that deals Void Damage in a line",
+    "affixes": [
+      "+30–50% increased Void Damage",
+      "+15–25% increased Melee Damage",
+      "+20–35 Attunement",
+      "+10–20% Void Penetration"
+    ],
+    "tags": ["void", "melee", "echo", "void_knight"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "band_of_the_broken_realm": {
+    "name": "Band of the Broken Realm",
+    "slot": "ring",
+    "base": "Cracked Band",
+    "implicit": null,
+    "unique_passive": "Band of the Broken Realm — Each use of Volatile Reversal grants 5% increased Void Damage for 6 seconds, stacking up to 10 times",
+    "affixes": [
+      "+35–55% increased Void Damage",
+      "+15–25% increased Volatile Reversal Damage",
+      "+20–35 Attunement",
+      "+10–20% Movement Speed after using Volatile Reversal"
+    ],
+    "tags": ["void", "volatile_reversal", "stacking", "void_knight"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "echos_call": {
+    "name": "Echo's Call",
+    "slot": "ring",
+    "base": "Sage's Band",
+    "implicit": null,
+    "unique_passive": "Echo's Call — Spells that Echo deal an additional 20% of their base Damage",
+    "affixes": [
+      "+20–35% Echo Chance",
+      "+15–25% increased Spell Damage",
+      "+10–20% increased Cast Speed",
+      "+25–40 Intelligence"
+    ],
+    "tags": ["spell", "echo", "cast_speed"],
+    "class_req": null,
+    "set": null
+  },
+
+  "risen_skull": {
+    "name": "Risen Skull",
+    "slot": "relic",
+    "base": "Bone Idol",
+    "implicit": null,
+    "unique_passive": "Risen Skull — Your Skeletal Mages shoot an additional projectile and have 20% increased Damage",
+    "affixes": [
+      "+30–50% increased Skeletal Mage Damage",
+      "+1 to Skeletal Mage Skills",
+      "+15–25% increased Minion Projectile Speed",
+      "+20–35% Minion Cast Speed"
+    ],
+    "tags": ["minion", "skeletal_mage", "projectile", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "fractured_crystalline_glyph": {
+    "name": "Fractured Crystalline Glyph",
+    "slot": "relic",
+    "base": "Mana Crystal",
+    "implicit": null,
+    "unique_passive": "Fractured Crystalline Glyph — Your Arcane spells create a mana shard on hit. Picking up a shard restores 20 Mana.",
+    "affixes": [
+      "+30–50% increased Spell Damage",
+      "+15–25% increased Mana Efficiency",
+      "+20–35 Mana",
+      "+10–20 Intelligence"
+    ],
+    "tags": ["spell", "mana", "arcane", "runemaster"],
+    "class_req": "Mage",
+    "set": null
+  },
+
+  "smoke_weaver": {
+    "name": "Smoke Weaver",
+    "slot": "relic",
+    "base": "Shadow Talisman",
+    "implicit": null,
+    "unique_passive": "Smoke Weaver — Smoke Bomb now also Poisons enemies inside it each second",
+    "affixes": [
+      "+30–50% increased Poison Damage",
+      "+15–25% Smoke Bomb Duration",
+      "+10–20% Poison Chance",
+      "+20–35% Dodge Rating"
+    ],
+    "tags": ["poison", "smoke_bomb", "bladedancer", "rogue"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "lens_of_the_forgotten": {
+    "name": "Lens of the Forgotten",
+    "slot": "relic",
+    "base": "Arcane Lens",
+    "implicit": null,
+    "unique_passive": "Lens of the Forgotten — You can see the Resistances and Ailments of enemies through walls",
+    "affixes": [
+      "+20–35% increased Damage against Rare enemies",
+      "+15–25% increased Damage against Boss enemies",
+      "+10–20% Elemental Penetration",
+      "+25–40 Intelligence"
+    ],
+    "tags": ["damage", "boss", "rare", "penetration"],
+    "class_req": null,
+    "set": null
+  },
+
+  "rahyehs_light": {
+    "name": "Rahyeh's Light",
+    "slot": "sword",
+    "base": "Templar Blade",
+    "implicit": "+15–25% Fire Damage",
+    "unique_passive": "Rahyeh's Light — Your Holy Aura also grants allies 20% increased Fire Damage",
+    "affixes": [
+      "+40–60% increased Fire Damage",
+      "+20–35% increased Holy Damage",
+      "+15–25% Attack Speed",
+      "+30–50% increased Fire Melee Damage"
+    ],
+    "tags": ["fire", "holy", "melee", "paladin", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "harvest": {
+    "name": "Harvest",
+    "slot": "sword",
+    "base": "Jagged Blade",
+    "implicit": "+10–20% Physical Damage",
+    "unique_passive": "Harvest — Enemies killed by this weapon shatter and deal Physical Damage to nearby enemies",
+    "affixes": [
+      "+30–50% increased Physical Damage",
+      "+15–25% Bleed Chance on Hit",
+      "+10–20% Attack Speed",
+      "+20–35% increased Melee Area of Effect"
+    ],
+    "tags": ["physical", "bleed", "melee", "aoe", "on_kill"],
+    "class_req": null,
+    "set": null
+  },
+
+  "stormcarved_testament": {
+    "name": "Stormcarved Testament",
+    "slot": "axe",
+    "base": "Storm Axe",
+    "implicit": "+10–20% Lightning Damage",
+    "unique_passive": "Stormcarved Testament — Your Totems also cast Lightning Bolts when you attack",
+    "affixes": [
+      "+40–60% increased Lightning Damage",
+      "+25–40% increased Totem Damage",
+      "+1 to Totem Skills",
+      "+15–25% Totem Attack Speed"
+    ],
+    "tags": ["totem", "lightning", "shaman", "primalist"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "famine": {
+    "name": "Famine",
+    "slot": "axe",
+    "base": "Void-touched Axe",
+    "implicit": "+10–20% Void Damage",
+    "unique_passive": "Famine — Enemies hit by this weapon have reduced Healing received by 50%",
+    "affixes": [
+      "+35–55% increased Void Damage",
+      "+15–25% Attack Speed",
+      "+20–35% increased Melee Damage",
+      "+10–20% Void Penetration"
+    ],
+    "tags": ["void", "melee", "healing_reduction"],
+    "class_req": null,
+    "set": null
+  },
+
+  "hammer_of_lorent": {
+    "name": "Hammer of Lorent",
+    "slot": "mace",
+    "base": "Warhammer",
+    "implicit": "+15–25% Physical Damage",
+    "unique_passive": "Hammer of Lorent — Smite sends out 2 additional Hammers that deal 50% of base Damage",
+    "affixes": [
+      "+35–55% increased Physical Damage",
+      "+20–35% increased Smite Damage",
+      "+15–25% Attack Speed",
+      "+100–150% Stun Chance"
+    ],
+    "tags": ["physical", "smite", "stun", "paladin", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "beacon_of_the_lost": {
+    "name": "Beacon of the Lost",
+    "slot": "mace",
+    "base": "Mortar",
+    "implicit": "+10–20% Physical Damage",
+    "unique_passive": "Beacon of the Lost — When you stun an enemy, release a shockwave that deals Physical Damage",
+    "affixes": [
+      "+30–50% increased Physical Damage",
+      "+20–35% Stun Chance",
+      "+15–25% Attack Speed",
+      "+100–150 Armor"
+    ],
+    "tags": ["physical", "stun", "shockwave", "melee"],
+    "class_req": null,
+    "set": null
+  },
+
+  "reign_of_darkness": {
+    "name": "Reign of Darkness",
+    "slot": "dagger",
+    "base": "Shadow Knife",
+    "implicit": "+15–25% Physical Damage",
+    "unique_passive": "Reign of Darkness — Applying Poison also grants Shadow Daggers that orbit you, dealing Physical Damage",
+    "affixes": [
+      "+30–50% increased Physical Damage",
+      "+20–35% Poison Chance",
+      "+15–25% increased Poison Damage",
+      "+10–20% Attack Speed"
+    ],
+    "tags": ["physical", "poison", "bladedancer", "rogue"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "disemboweling_strike": {
+    "name": "Disemboweling Strike",
+    "slot": "dagger",
+    "base": "Rending Blade",
+    "implicit": "+10–20% Physical Damage",
+    "unique_passive": "Disemboweling Strike — Your Bleed stacks deal 20% more Damage and last 50% longer",
+    "affixes": [
+      "+25–40% increased Physical Damage",
+      "+20–35% Bleed Chance",
+      "+15–25% increased Bleed Damage",
+      "+10–20% Attack Speed"
+    ],
+    "tags": ["physical", "bleed", "melee", "rogue"],
+    "class_req": null,
+    "set": null
+  },
+
+  "hungering_souls": {
+    "name": "Hungering Souls",
+    "slot": "sceptre",
+    "base": "Bone Sceptre",
+    "implicit": "+10–20% Necrotic Damage",
+    "unique_passive": "Hungering Souls — Your Wandering Spirits hunger for life, healing you for 2% of damage dealt",
+    "affixes": [
+      "+35–55% increased Necrotic Damage",
+      "+20–35% increased Spirit Damage",
+      "+15–25% increased Cast Speed",
+      "+30–50 Attunement"
+    ],
+    "tags": ["necrotic", "spirit", "leech", "warlock"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "flesh_aberration": {
+    "name": "Flesh Aberration",
+    "slot": "sceptre",
+    "base": "Marrow Staff",
+    "implicit": "+10–20% Physical Damage",
+    "unique_passive": "Flesh Aberration — Your Golems are replaced by a Flesh Golem that inherits bonuses from all Golem types",
+    "affixes": [
+      "+40–60% increased Golem Damage",
+      "+1 to Golem Skills",
+      "+20–35% increased Golem Health",
+      "+15–25% Golem Attack Speed"
+    ],
+    "tags": ["golem", "minion", "physical", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "morditas_reach": {
+    "name": "Mordita's Reach",
+    "slot": "wand",
+    "base": "Bone Wand",
+    "implicit": "+8–15% Necrotic Damage",
+    "unique_passive": "Mordita's Reach — Bone Curse chains to nearby enemies when the cursed enemy dies",
+    "affixes": [
+      "+35–55% increased Necrotic Damage",
+      "+20–35% increased Bone Curse Damage",
+      "+15–25% increased Cast Speed",
+      "+20–35 Intelligence"
+    ],
+    "tags": ["necrotic", "curse", "chain", "lich"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "liaths_sanctity": {
+    "name": "Liath's Sanctity",
+    "slot": "wand",
+    "base": "Lich's Wand",
+    "implicit": "+8–15% Void Damage",
+    "unique_passive": "Liath's Sanctity — Drain Life heals you for Ward instead of Health",
+    "affixes": [
+      "+35–55% increased Void Damage",
+      "+20–35% increased Drain Life Effectiveness",
+      "+15–25% Ward Retention",
+      "+20–35 Attunement"
+    ],
+    "tags": ["void", "drain_life", "ward", "lich"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "disintegrating_aura": {
+    "name": "Disintegrating Aura",
+    "slot": "staff",
+    "base": "Arcane Staff",
+    "implicit": "+15–25 Intelligence",
+    "unique_passive": "Disintegrating Aura — Casting Disintegrate leaves a burning aura at your feet that Ignites and damages nearby enemies",
+    "affixes": [
+      "+40–60% increased Fire Damage",
+      "+30–50% increased Disintegrate Damage",
+      "+20–35% increased Cast Speed",
+      "+15–25% Ignite Chance"
+    ],
+    "tags": ["fire", "ignite", "disintegrate", "sorcerer", "mage"],
+    "class_req": "Mage",
+    "set": null
+  },
+
+  "covens_wrath": {
+    "name": "Coven's Wrath",
+    "slot": "staff",
+    "base": "Witch's Staff",
+    "implicit": "+15–25 Attunement",
+    "unique_passive": "Coven's Wrath — Casting Sacrifice deals extra Necrotic Damage equal to 10% of target's Maximum Health",
+    "affixes": [
+      "+35–55% increased Necrotic Damage",
+      "+20–35% increased Sacrifice Damage",
+      "+15–25% increased Cast Speed",
+      "+30–50 Attunement"
+    ],
+    "tags": ["necrotic", "sacrifice", "warlock", "acolyte"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "gustwave": {
+    "name": "Gustwave",
+    "slot": "bow",
+    "base": "Longbow",
+    "implicit": "+10–20% Physical Damage",
+    "unique_passive": "Gustwave — Your Arrows create a gust of wind on impact, pushing nearby enemies away",
+    "affixes": [
+      "+30–50% increased Physical Damage",
+      "+15–25% increased Attack Speed",
+      "+20–35% Projectile Speed",
+      "+10–20% increased Area of Effect"
+    ],
+    "tags": ["physical", "projectile", "knockback", "marksman", "rogue"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "arbor_of_eternity": {
+    "name": "Arbor of Eternity",
+    "slot": "bow",
+    "base": "Elder Bow",
+    "implicit": "+10–20% Nature Damage",
+    "unique_passive": "Arbor of Eternity — Your Arrows sprout roots on hit, Rooting enemies for 2 seconds",
+    "affixes": [
+      "+30–50% increased Nature Damage",
+      "+15–25% Slow on Hit",
+      "+20–35% Root Duration",
+      "+20–35% Projectile Damage"
+    ],
+    "tags": ["nature", "root", "slow", "primalist"],
+    "class_req": "Primalist",
+    "set": null
+  },
+
+  "arrowguard": {
+    "name": "Arrowguard",
+    "slot": "shield",
+    "base": "Tower Shield",
+    "implicit": "+5–10% Block Chance",
+    "unique_passive": "Arrowguard — Blocking a Projectile attack releases a barrage of arrows in the direction it came from",
+    "affixes": [
+      "+15–25% Block Chance",
+      "+10–20% Block Effectiveness",
+      "+150–200 Armor",
+      "+80–120 Health"
+    ],
+    "tags": ["block", "physical", "projectile", "sentinel"],
+    "class_req": "Sentinel",
+    "set": null
+  },
+
+  "woven_flesh": {
+    "name": "Woven Flesh",
+    "slot": "shield",
+    "base": "Bone Barrier",
+    "implicit": "+5–10% Block Chance",
+    "unique_passive": "Woven Flesh — Blocking an attack heals your Minions for 5% of their Maximum Health",
+    "affixes": [
+      "+15–25% Block Chance",
+      "+20–35% increased Minion Health",
+      "+10–20% Minion Damage",
+      "+80–120 Health"
+    ],
+    "tags": ["block", "minion", "heal", "necromancer"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "quiver_of_nixes": {
+    "name": "Quiver of Nixes",
+    "slot": "quiver",
+    "base": "Feathered Quiver",
+    "implicit": "+5–10% Physical Damage",
+    "unique_passive": "Quiver of Nixes — Your Arrows split into 2 additional Arrows after hitting an enemy",
+    "affixes": [
+      "+20–35% increased Physical Damage",
+      "+15–25% Projectile Speed",
+      "+2–3 Arrows Fired Simultaneously",
+      "+10–20% Attack Speed"
+    ],
+    "tags": ["physical", "projectile", "split", "marksman", "rogue"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "gambler_of_fate": {
+    "name": "Gambler of Fate",
+    "slot": "helmet",
+    "base": "Fool's Cap",
+    "implicit": null,
+    "unique_passive": "Gambler of Fate — Each time you roll a Dodge, gain 5% increased Damage for 4 seconds, stacking up to 10 times",
+    "affixes": [
+      "+20–35% Dodge Rating",
+      "+15–25% increased Damage on Dodge",
+      "+10–20% Movement Speed",
+      "+30–50 Dexterity"
+    ],
+    "tags": ["dodge", "stacking", "movement", "rogue", "bladedancer"],
+    "class_req": "Rogue",
+    "set": null
+  },
+
+  "temporal_sanctum_key": {
+    "name": "Temporal Sanctum Key",
+    "slot": "relic",
+    "base": "Temporal Relic",
+    "implicit": null,
+    "unique_passive": "Temporal Sanctum Key — Your Time Rot also applies a stack every second, dealing Void Damage",
+    "affixes": [
+      "+30–50% increased Void Damage",
+      "+20–35% Time Rot Duration",
+      "+15–25% Void Penetration",
+      "+20–35 Attunement"
+    ],
+    "tags": ["void", "time_rot", "dot"],
+    "class_req": null,
+    "set": null
+  },
+
+  "soul_gamblers_garb": {
+    "name": "Soul Gambler's Garb",
+    "slot": "body",
+    "base": "Gambler's Coat",
+    "implicit": null,
+    "unique_passive": "Soul Gambler's Garb — Each kill has a 20% chance to grant a random powerful buff for 10 seconds",
+    "affixes": [
+      "+20–35% increased Global Damage",
+      "+15–25% increased Attack and Cast Speed",
+      "+80–120 Health",
+      "+10–20% Dodge Rating"
+    ],
+    "tags": ["global_damage", "on_kill", "random_buff"],
+    "class_req": null,
+    "set": null
+  },
+
+  "prism_of_the_seeker": {
+    "name": "Prism of the Seeker",
+    "slot": "relic",
+    "base": "Crystal Prism",
+    "implicit": null,
+    "unique_passive": "Prism of the Seeker — Elemental damage bonuses you have are shared equally among Fire, Cold and Lightning",
+    "affixes": [
+      "+25–40% increased Elemental Damage",
+      "+15–25 Intelligence",
+      "+10–20% Elemental Penetration",
+      "+20–35% Elemental Resistance"
+    ],
+    "tags": ["elemental", "fire", "cold", "lightning", "sorcerer"],
+    "class_req": "Mage",
+    "set": null
+  },
+
+  "crown_of_the_pale_order": {
+    "name": "Crown of the Pale Order",
+    "slot": "helmet",
+    "base": "Lich's Crown",
+    "implicit": null,
+    "unique_passive": "Crown of the Pale Order — You cannot regenerate Life. Gain Life Leech from all sources of Damage.",
+    "affixes": [
+      "+10–20% Life Leech",
+      "+30–50% increased Necrotic Damage",
+      "+15–25% increased Void Damage",
+      "+40–60 Attunement"
+    ],
+    "tags": ["leech", "necrotic", "void", "lich", "no_regen"],
+    "class_req": "Acolyte",
+    "set": null
+  },
+
+  "shield_of_the_last_abyss": {
+    "name": "Shield of the Last Abyss",
+    "slot": "shield",
+    "base": "Void-touched Shield",
+    "implicit": "+5–10% Void Resistance",
+    "unique_passive": "Shield of the Last Abyss — Blocking a hit releases a Void Bolt in the direction of the attacker",
+    "affixes": [
+      "+15–25% Block Chance",
+      "+30–50% increased Void Damage",
+      "+20–35 Void Protection",
+      "+10–20% Void Penetration"
+    ],
+    "tags": ["block", "void", "counter", "void_knight"],
+    "class_req": "Sentinel",
+    "set": null
+  }
+}
