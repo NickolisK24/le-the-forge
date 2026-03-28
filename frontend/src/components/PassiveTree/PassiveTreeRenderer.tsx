@@ -12,6 +12,12 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import type { PassiveNode } from "@/services/passiveTreeService";
+import iconSpriteMap from "@/data/iconSpriteMap.json";
+
+// Sprite sheet URL from lastepochtools CDN
+const SPRITE_URL =
+  "https://www.lastepochtools.com/data/version140/planner/res/d285216918221e26ef5d5b32f3407c4a.webp";
+const SPRITE_ICON_SIZE = 64; // each icon is 64x64 in the sheet
 
 // ---------------------------------------------------------------------------
 // Palette — indexed by mastery_index (0 = base, 1/2/3 = masteries)
@@ -57,6 +63,45 @@ const PALETTE: Record<
 // Base radii in world-unit space; scaled proportionally at render time
 const R_STANDARD = 14; // max_points > 1  (repeatable core node)
 const R_KEYSTONE  = 20; // max_points === 1 (single-invest keystone/notable)
+
+// ---------------------------------------------------------------------------
+// SVG shape helpers — diamond for notables, circle for core nodes
+// ---------------------------------------------------------------------------
+function diamondPath(r: number): string {
+  return `M0,${-r} L${r},0 L0,${r} L${-r},0 Z`;
+}
+
+// Sprite icon rendered via foreignObject inside SVG
+function SpriteIcon({ iconId, size }: { iconId: string | null; size: number }) {
+  if (!iconId) return null;
+  const pos = (iconSpriteMap as Record<string, [number, number]>)[iconId];
+  if (!pos) return null;
+  const [bx, by] = pos;
+  // Scale: we want to display at `size` px, sprite icons are 64x64
+  const scaleFactor = size / SPRITE_ICON_SIZE;
+  return (
+    <foreignObject
+      x={-size / 2}
+      y={-size / 2}
+      width={size}
+      height={size}
+      pointerEvents="none"
+    >
+      <div
+        style={{
+          width: size,
+          height: size,
+          backgroundImage: `url(${SPRITE_URL})`,
+          backgroundPosition: `-${bx * scaleFactor}px -${by * scaleFactor}px`,
+          backgroundSize: `${2387 * scaleFactor}px auto`,
+          backgroundRepeat: "no-repeat",
+          borderRadius: "50%",
+          imageRendering: "auto",
+        }}
+      />
+    </foreignObject>
+  );
+}
 
 const CANVAS_H = 560;
 
@@ -282,41 +327,74 @@ export default function PassiveTreeRenderer({
                 >
                   {/* Glow halo when active */}
                   {active && (
+                    node.node_type === "notable" ? (
+                      <path
+                        d={diamondPath(r + 4 * scale)}
+                        fill={pal.strokeActive}
+                        opacity={0.16}
+                        filter="url(#pt-glow)"
+                        pointerEvents="none"
+                      />
+                    ) : (
+                      <circle
+                        r={r + 4 * scale}
+                        fill={pal.strokeActive}
+                        opacity={0.16}
+                        filter="url(#pt-glow)"
+                        pointerEvents="none"
+                      />
+                    )
+                  )}
+                  {/* Outer ring */}
+                  {node.node_type === "notable" ? (
+                    <path
+                      d={diamondPath(r + Math.max(1.5, 2 * scale))}
+                      fill="none"
+                      stroke={active ? pal.strokeActive : pal.strokeIdle}
+                      strokeWidth={active ? 1.5 : 0.8}
+                      opacity={active ? 0.9 : 0.45}
+                      pointerEvents="none"
+                    />
+                  ) : (
                     <circle
-                      r={r + 4 * scale}
-                      fill={pal.strokeActive}
-                      opacity={0.16}
-                      filter="url(#pt-glow)"
+                      r={r + Math.max(1.5, 2 * scale)}
+                      fill="none"
+                      stroke={active ? pal.strokeActive : pal.strokeIdle}
+                      strokeWidth={active ? 1.5 : 0.8}
+                      opacity={active ? 0.9 : 0.45}
                       pointerEvents="none"
                     />
                   )}
-                  {/* Outer ring */}
-                  <circle
-                    r={r + Math.max(1.5, 2 * scale)}
-                    fill="none"
-                    stroke={active ? pal.strokeActive : pal.strokeIdle}
-                    strokeWidth={active ? 1.5 : 0.8}
-                    opacity={active ? 0.9 : 0.45}
-                    pointerEvents="none"
-                  />
                   {/* Node body */}
-                  <circle
-                    r={r}
-                    fill={pal.nodeFill}
-                    stroke={active ? pal.strokeActive : pal.strokeIdle}
-                    strokeWidth={active ? 1.5 : 1}
-                  />
-                  {/* Points label (only for multi-point core nodes) */}
+                  {node.node_type === "notable" ? (
+                    <path
+                      d={diamondPath(r)}
+                      fill={pal.nodeFill}
+                      stroke={active ? pal.strokeActive : pal.strokeIdle}
+                      strokeWidth={active ? 1.5 : 1}
+                    />
+                  ) : (
+                    <circle
+                      r={r}
+                      fill={pal.nodeFill}
+                      stroke={active ? pal.strokeActive : pal.strokeIdle}
+                      strokeWidth={active ? 1.5 : 1}
+                    />
+                  )}
+                  {/* Sprite icon from game data */}
+                  <SpriteIcon iconId={node.icon} size={r * 1.6} />
+                  {/* Points label beneath the node */}
                   {node.max_points > 1 && (
                     <text
                       textAnchor="middle"
-                      dominantBaseline="central"
-                      fontSize={Math.max(7, 10 * scale)}
+                      dominantBaseline="hanging"
+                      y={r + Math.max(3, 4 * scale)}
+                      fontSize={Math.max(7, 9 * scale)}
                       fill={active ? pal.strokeActive : pal.strokeIdle}
                       fontFamily="monospace"
                       fontWeight="bold"
                       pointerEvents="none"
-                      opacity={0.9}
+                      opacity={0.85}
                     >
                       {pts}/{node.max_points}
                     </text>
