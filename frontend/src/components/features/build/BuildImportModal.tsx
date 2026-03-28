@@ -56,10 +56,13 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
     setUrlLoading(true);
     try {
       const res = await importApi.fromUrl(url.trim());
-      if (res.error || !res.data?.build) {
-        setUrlError(res.error ?? "Unknown error from server.");
+      // ApiResponse uses { data, errors } envelope
+      const errMsg = res.errors?.[0]?.message;
+      const build = (res.data as any)?.build as ImportedBuild | undefined;
+      if (errMsg || !build) {
+        setUrlError(errMsg ?? "No build data returned — check the URL and try again.");
       } else {
-        setPreview(res.data.build);
+        setPreview(build);
       }
     } catch {
       setUrlError("Request failed — backend may be unavailable.");
