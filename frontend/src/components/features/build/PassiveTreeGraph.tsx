@@ -139,6 +139,9 @@ export default function PassiveTreeGraph({
   const regionKeys = Object.keys(regionMap);
   const classMeta = PASSIVE_TREE_META[cls] ?? {};
 
+  // Normalize mastery name to region key (e.g. "Forge Guard" → "forge-guard")
+  const chosenMasteryRegion = mastery ? mastery.toLowerCase().replace(/\s+/g, '-') : '';
+
   const [activeRegion, setActiveRegion] = useState(regionKeys.includes("base") ? "base" : (regionKeys[0] ?? "base"));
 
   // Reset to base tree when class changes
@@ -236,13 +239,23 @@ export default function PassiveTreeGraph({
   // Effective node radius scaled to fit
   const scaledR = (base: number) => Math.max(4, base * scale);
 
-  // Unlock check: node is unlocked if total spent >= mastery threshold AND all parents allocated
+  // Unlock check: node is unlocked if:
+  //   1. It belongs to the chosen mastery region (or base)
+  //   2. Total points spent >= mastery threshold
+  //   3. All parent nodes are allocated
   const isUnlocked = (nodeId: number): boolean => {
     const meta = classMeta[nodeId];
     if (!meta) return true; // no metadata = always unlocked (root nodes)
+    // Lock nodes that belong to a mastery region that isn't the chosen one
+    if (chosenMasteryRegion && meta.region !== 'base' && meta.region !== chosenMasteryRegion) return false;
     if (totalSpent < meta.masteryRequirement) return false;
     return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
   };
+
+  // Whether the currently-viewed region belongs to a non-chosen mastery
+  const isWrongMasteryRegion = !!chosenMasteryRegion
+    && activeRegion !== 'base'
+    && activeRegion !== chosenMasteryRegion;
 
   const handleAllocate = (node: LayoutNode, e: React.MouseEvent) => {
     if (readOnly) return;
@@ -296,17 +309,27 @@ export default function PassiveTreeGraph({
           const pts = (regionMap[key] ?? []).reduce(
             (s: number, n: PassiveNode) => s + (allocated[n.id] ?? 0), 0
           );
+          const isBase = key === 'base';
+          const isChosen = !isBase && key === chosenMasteryRegion;
+          const isLocked = !isBase && !!chosenMasteryRegion && !isChosen;
           return (
             <button
               key={key}
               onClick={() => setActiveRegion(key)}
+              title={isLocked ? `Locked — your mastery is ${mastery}` : undefined}
               className={clsx(
-                "px-4 py-2 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap border-r border-forge-border transition-colors shrink-0",
+                "flex items-center gap-1 px-4 py-2 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap border-r border-forge-border transition-colors shrink-0",
                 activeRegion === key
-                  ? "bg-forge-bg text-forge-amber"
-                  : "text-forge-dim hover:text-forge-text"
+                  ? isChosen
+                    ? "bg-forge-bg text-amber-300"
+                    : "bg-forge-bg text-forge-amber"
+                  : isLocked
+                    ? "text-forge-dim/40 hover:text-forge-dim/70 cursor-not-allowed"
+                    : "text-forge-dim hover:text-forge-text"
               )}
             >
+              {isLocked && <span className="opacity-50">🔒</span>}
+              {isChosen && <span className="text-amber-400">⬡</span>}
               {REGION_LABELS[key] ?? key}
               {pts > 0 && <span className="ml-1.5 text-forge-amber opacity-80">{pts}</span>}
             </button>
@@ -316,6 +339,19 @@ export default function PassiveTreeGraph({
           {layoutNodes.length} nodes · {edges.length} connections
         </div>
       </div>
+
+      {/* Mastery indicator banner */}
+      {chosenMasteryRegion && (
+        <div className="flex items-center gap-3 border-b border-forge-border bg-forge-bg/60 px-3 py-1 shrink-0">
+          <span className="font-mono text-[9px] uppercase tracking-widest text-forge-dim">Chosen Mastery</span>
+          <span className="font-mono text-[10px] font-bold text-amber-400">⬡ {mastery}</span>
+          {isWrongMasteryRegion && (
+            <span className="ml-auto font-mono text-[9px] text-red-400/70">
+              🔒 Locked — switch to {mastery} or Base tab to allocate
+            </span>
+          )}
+        </div>
+      )}
 
       {/* SVG canvas — static, auto-fit */}
       <div
@@ -528,9 +564,14 @@ export default function PassiveTreeGraph({
               )}
               {!readOnly && locked && (
                 <div className="mt-1 font-mono text-[10px] text-red-400/80">
-                  ⚠ {mr > 0 && totalSpent < mr
-                    ? `Invest ${mr - totalSpent} more point${mr - totalSpent > 1 ? "s" : ""} first`
-                    : "Requires parent node(s)"}
+                  ⚠ {(() => {
+                    const nodeMeta2 = classMeta[n.id];
+                    if (nodeMeta2?.region && nodeMeta2.region !== 'base' && chosenMasteryRegion && nodeMeta2.region !== chosenMasteryRegion)
+                      return `Requires ${REGION_LABELS[nodeMeta2.region] ?? nodeMeta2.region} mastery`;
+                    if (mr > 0 && totalSpent < mr)
+                      return `Invest ${mr - totalSpent} more point${mr - totalSpent > 1 ? "s" : ""} first`;
+                    return "Requires parent node(s)";
+                  })()}
                 </div>
               )}
               {!readOnly && !locked && pts < max && pointsLeft === 0 && (
