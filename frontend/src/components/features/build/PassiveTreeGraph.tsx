@@ -4,6 +4,8 @@ import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
 import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
 import iconSpriteMap from "@/data/iconSpriteMap.json";
+import { fetchClassTree } from "@/services/passiveTreeService";
+import type { PassiveNode as ApiPassiveNode } from "@/services/passiveTreeService";
 
 // Sprite sheet from lastepochtools CDN
 const SPRITE_URL =
@@ -144,6 +146,21 @@ export default function PassiveTreeGraph({
     const keys = Object.keys(PASSIVE_TREES[cls] ?? {});
     setActiveRegion(keys.includes("base") ? "base" : (keys[0] ?? "base"));
   }, [cls]);
+
+  // Fetch full node data (with stats) from API; keyed by raw_node_id for tooltip lookup
+  const [apiNodeMap, setApiNodeMap] = useState<Map<number, ApiPassiveNode>>(new Map());
+  useEffect(() => {
+    if (!characterClass) return;
+    fetchClassTree(characterClass)
+      .then(res => {
+        const map = new Map<number, ApiPassiveNode>();
+        for (const node of res.nodes) {
+          map.set(node.raw_node_id, node);
+        }
+        setApiNodeMap(map);
+      })
+      .catch(() => {/* silently fail — tooltip just won't show stats */});
+  }, [characterClass]);
 
   const rawNodes: PassiveNode[] = useMemo(
     () => regionMap[activeRegion] ?? [],
@@ -468,14 +485,15 @@ export default function PassiveTreeGraph({
           const nodeMeta = classMeta[n.id];
           const mr = nodeMeta?.masteryRequirement ?? 0;
           const locked = !isUnlocked(n.id);
+          const apiNode = apiNodeMap.get(n.id);
           const containerRect = containerRef.current?.getBoundingClientRect();
           if (!containerRect) return null;
           const tx = tooltip.screenX - containerRect.left + 16;
           const ty = tooltip.screenY - containerRect.top - 12;
           return (
             <div
-              className="pointer-events-none absolute z-20 w-64 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
-              style={{ left: Math.min(tx, containerSize.w - 272), top: Math.max(4, ty) }}
+              className="pointer-events-none absolute z-20 w-72 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
+              style={{ left: Math.min(tx, containerSize.w - 296), top: Math.max(4, ty) }}
             >
               <div className="font-display text-sm font-bold text-forge-amber leading-tight">
                 {n.name || "Node"}
@@ -486,6 +504,21 @@ export default function PassiveTreeGraph({
               {n.description && (
                 <div className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">
                   {n.description.replace(/\s{2,}/g, "\n")}
+                </div>
+              )}
+              {apiNode?.stats && apiNode.stats.length > 0 && (
+                <div className="mt-2 border-t border-forge-border/50 pt-1.5 flex flex-col gap-0.5">
+                  {apiNode.stats.map((s, i) => (
+                    <div key={i} className="flex justify-between font-mono text-[10px]">
+                      <span className="text-forge-dim">{s.key}</span>
+                      <span className="text-forge-amber ml-2 shrink-0">{s.value}</span>
+                    </div>
+                  ))}
+                </div>
+              )}
+              {apiNode?.ability_granted && (
+                <div className="mt-1.5 font-mono text-[10px] text-forge-text/70">
+                  ✦ Grants: <span className="text-forge-amber">{apiNode.ability_granted}</span>
                 </div>
               )}
               {mr > 0 && (
