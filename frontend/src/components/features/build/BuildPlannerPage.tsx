@@ -15,7 +15,9 @@ import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
+import GearEditor from "./GearEditor";
 import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
+import type { GearSlot } from "@/types";
 
 const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
 const MAX_SKILLS = 5;
@@ -226,6 +228,9 @@ function BuildSummary({ build }: { build: Build }) {
   // Passive tree allocation (stored as flat array of node IDs in DB)
   const [passiveTree, setPassiveTree] = useState<number[]>(build.passive_tree ?? []);
 
+  // Gear slots
+  const [gearSlots, setGearSlots] = useState<GearSlot[]>(build.gear ?? []);
+
   function getPassiveAllocMap(): AllocMap {
     const map: AllocMap = {};
     for (const id of passiveTree) map[id] = (map[id] ?? 0) + 1;
@@ -314,6 +319,7 @@ function BuildSummary({ build }: { build: Build }) {
     setIsBudget(build.is_budget);
     setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree ?? [] })));
     setPassiveTree(build.passive_tree ?? []);
+    setGearSlots(build.gear ?? []);
     setEditing(false);
   }
 
@@ -331,6 +337,7 @@ function BuildSummary({ build }: { build: Build }) {
         is_budget: isBudget,
         skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree })) as Partial<BuildSkill>[],
         passive_tree: passiveTree,
+        gear: gearSlots,
       },
     });
     if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
@@ -595,6 +602,14 @@ function BuildSummary({ build }: { build: Build }) {
           </div>
         </Panel>
 
+        <Panel title={`Gear (${gearSlots.length} equipped)`}>
+          <GearEditor
+            gear={gearSlots}
+            characterClass={characterClass}
+            onChange={setGearSlots}
+          />
+        </Panel>
+
         <Panel title="Passive Tree">
           <PassiveTreeGraph
             characterClass={characterClass}
@@ -660,6 +675,7 @@ export default function BuildPlannerPage() {
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
   const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
+  const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
 
   // Import / preset modal state
@@ -684,6 +700,9 @@ export default function BuildPlannerPage() {
         points_allocated: s.points_allocated ?? 20,
         spec_tree: Array.isArray(s.spec_tree) ? s.spec_tree : [],
       })));
+    }
+    if (Array.isArray(imported.gear) && imported.gear.length > 0) {
+      setDraftGear(imported.gear as GearSlot[]);
     }
   }
 
@@ -865,6 +884,7 @@ export default function BuildPlannerPage() {
         spec_tree: s.spec_tree,
       })) as Partial<BuildSkill>[],
       passive_tree: passiveTree,
+      gear: draftGear,
     };
 
     const res = await createBuild.mutateAsync(payload);
@@ -1101,6 +1121,14 @@ export default function BuildPlannerPage() {
               </p>
             )}
           </div>
+        </Panel>
+
+        <Panel title={`Gear (${draftGear.length} equipped)`}>
+          <GearEditor
+            gear={draftGear}
+            characterClass={characterClass}
+            onChange={setDraftGear}
+          />
         </Panel>
 
         <Panel title="Passive Tree">

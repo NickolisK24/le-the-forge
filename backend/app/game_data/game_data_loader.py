@@ -43,6 +43,10 @@ _ROOT_DIR = os.path.abspath(os.path.join(_DATA_DIR, "..", "..", ".."))
 _AFFIXES_PATH = os.path.join(_ROOT_DIR, "data", "affixes.json")
 _ENEMY_PROFILES_PATH = os.path.join(_ROOT_DIR, "data", "enemy_profiles.json")
 _SKILLS_METADATA_PATH = os.path.join(_ROOT_DIR, "data", "skills_metadata.json")
+_UNIQUES_PATH = os.path.join(_ROOT_DIR, "data", "uniques.json")
+_RARITIES_PATH = os.path.join(_ROOT_DIR, "data", "rarities.json")
+_DAMAGE_TYPES_PATH = os.path.join(_ROOT_DIR, "data", "damage_types.json")
+_IMPLICIT_STATS_PATH = os.path.join(_ROOT_DIR, "data", "implicit_stats.json")
 
 
 def _load(filename: str) -> dict:
@@ -213,3 +217,76 @@ def get_affix_by_id(affix_id: int) -> dict | None:
         if affix.get("affix_id") == affix_id:
             return affix
     return None
+
+
+# ------------------------------------------------------------------
+# Unique items
+# ------------------------------------------------------------------
+
+@lru_cache(maxsize=1)
+def _uniques_raw() -> dict:
+    """Load the curated unique items catalogue from /data/uniques.json."""
+    if not os.path.exists(_UNIQUES_PATH):
+        return {}
+    with open(_UNIQUES_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_all_uniques() -> list:
+    """Return all unique items as a list of dicts (with 'id' = slug key)."""
+    raw = _uniques_raw()
+    return [
+        {"id": slug, **item}
+        for slug, item in raw.items()
+        if slug != "_meta"
+    ]
+
+
+def get_unique_by_id(slug: str) -> dict | None:
+    """Return a single unique item by its slug, or None."""
+    raw = _uniques_raw()
+    item = raw.get(slug)
+    if item is None or slug == "_meta":
+        return None
+    return {"id": slug, **item}
+
+
+# ------------------------------------------------------------------
+# Rarities / damage types / implicit stats (static JSON loaders)
+# ------------------------------------------------------------------
+
+@lru_cache(maxsize=1)
+def _rarities_raw() -> dict:
+    if not os.path.exists(_RARITIES_PATH):
+        return {}
+    with open(_RARITIES_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_rarities() -> dict:
+    return _rarities_raw()
+
+
+@lru_cache(maxsize=1)
+def _damage_types_raw() -> dict:
+    if not os.path.exists(_DAMAGE_TYPES_PATH):
+        return {}
+    with open(_DAMAGE_TYPES_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_damage_types() -> dict:
+    return _damage_types_raw()
+
+
+@lru_cache(maxsize=1)
+def _implicit_stats_raw() -> dict:
+    if not os.path.exists(_IMPLICIT_STATS_PATH):
+        return {}
+    with open(_IMPLICIT_STATS_PATH, "r", encoding="utf-8") as f:
+        return json.load(f)
+
+
+def get_implicit_stat(item_type: str) -> dict | None:
+    stats = _implicit_stats_raw()
+    return stats.get(item_type.lower())

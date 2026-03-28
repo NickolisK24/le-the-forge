@@ -339,3 +339,47 @@ def get_implicit_stat_endpoint(item_type: str):
     if stat is None:
         return ok(data=None)
     return ok(data=stat)
+
+
+# ---------------------------------------------------------------------------
+# Unique items
+# ---------------------------------------------------------------------------
+
+@ref_bp.get("/uniques")
+@cached_route("ref:uniques", ttl=86400)
+def get_uniques_endpoint():
+    """
+    GET /api/ref/uniques
+    Optional query params:
+      ?slot=helmet       — filter by item slot
+      ?class=Acolyte     — filter by class_req (null items always included)
+      ?q=exsang          — case-insensitive name search
+    """
+    from app.game_data.game_data_loader import get_all_uniques
+    uniques = get_all_uniques()
+
+    slot = request.args.get("slot", "").strip().lower()
+    class_req = request.args.get("class", "").strip()
+    query = request.args.get("q", "").strip().lower()
+
+    if slot:
+        uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
+    if class_req:
+        uniques = [
+            u for u in uniques
+            if u.get("class_req") is None or u.get("class_req") == class_req
+        ]
+    if query:
+        uniques = [u for u in uniques if query in u.get("name", "").lower()]
+
+    return ok(data=uniques)
+
+
+@ref_bp.get("/uniques/<slug>")
+def get_unique_endpoint(slug: str):
+    """Return a single unique item by slug."""
+    from app.game_data.game_data_loader import get_unique_by_id
+    item = get_unique_by_id(slug)
+    if item is None:
+        return ok(data={"error": f"Unique '{slug}' not found"}, status=404)
+    return ok(data=item)
