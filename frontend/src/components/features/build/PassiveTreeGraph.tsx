@@ -22,6 +22,15 @@ const NODE_R: Record<string, number> = {
   "mastery-gate": 22,
 };
 
+// Last Epoch mastery mechanics:
+//   • All mastery trees unlock once 20 points are spent in the BASE tree
+//     (handled automatically by masteryRequirement = 20 on mastery nodes in edges.ts)
+//   • Cross-mastery investment is allowed, BUT:
+//     once your PRIMARY mastery has >= CHAIN_THRESHOLD points, you are "chained"
+//     and nodes deeper than SECONDARY_MASTERY_DEPTH in other masteries become locked
+const CHAIN_THRESHOLD = 20;       // primary mastery points that triggers the chain
+const SECONDARY_MASTERY_DEPTH = 20; // masteryRequirement >= this is "deep" in a secondary mastery
+
 // Flat-top hexagon points at radius r
 function hexPoints(r: number): string {
   return Array.from({ length: 6 }, (_, i) => {
@@ -196,6 +205,18 @@ export default function PassiveTreeGraph({
   const totalSpent = Object.values(allocated).reduce((s, v) => s + v, 0);
   const pointsLeft = totalPassivePoints - totalSpent;
 
+  // Points spent exclusively in the primary (chosen) mastery region
+  const primaryMasterySpent = useMemo(() => {
+    if (!chosenMasteryRegion) return 0;
+    return Object.entries(allocated).reduce((sum, [nodeIdStr, pts]) => {
+      const meta = classMeta[Number(nodeIdStr)];
+      return meta?.region === chosenMasteryRegion ? sum + pts : sum;
+    }, 0);
+  }, [allocated, classMeta, chosenMasteryRegion]);
+
+  // Chain is active once you've committed >= CHAIN_THRESHOLD points to primary mastery
+  const isChained = primaryMasterySpent >= CHAIN_THRESHOLD;
+
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
   const [containerSize, setContainerSize] = useState({ w: 800, h: DISPLAY_H });
@@ -239,21 +260,27 @@ export default function PassiveTreeGraph({
   // Effective node radius scaled to fit
   const scaledR = (base: number) => Math.max(4, base * scale);
 
-  // Unlock check: node is unlocked if:
-  //   1. It belongs to the chosen mastery region (or base)
-  //   2. Total points spent >= mastery threshold
-  //   3. All parent nodes are allocated
+  // Unlock check implements Last Epoch mastery rules:
+  //   1. Base tree always accessible
+  //   2. Mastery trees unlock after 20 base points (handled by masteryRequirement in edges.ts)
+  //   3. ALL mastery trees are accessible — cross-mastery investment is allowed
+  //   4. CHAIN: once primary mastery has >= CHAIN_THRESHOLD pts, deep nodes
+  //      (masteryRequirement >= SECONDARY_MASTERY_DEPTH) in OTHER masteries are locked
+  //   5. Parent nodes must be allocated
   const isUnlocked = (nodeId: number): boolean => {
     const meta = classMeta[nodeId];
-    if (!meta) return true; // no metadata = always unlocked (root nodes)
-    // Lock nodes that belong to a mastery region that isn't the chosen one
-    if (chosenMasteryRegion && meta.region !== 'base' && meta.region !== chosenMasteryRegion) return false;
+    if (!meta) return true;
+    const isSecondaryMastery = chosenMasteryRegion
+      && meta.region !== 'base'
+      && meta.region !== chosenMasteryRegion;
+    // Chain: deep secondary mastery nodes lock once primary mastery is committed
+    if (isSecondaryMastery && isChained && meta.masteryRequirement >= SECONDARY_MASTERY_DEPTH) return false;
     if (totalSpent < meta.masteryRequirement) return false;
     return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
   };
 
-  // Whether the currently-viewed region belongs to a non-chosen mastery
-  const isWrongMasteryRegion = !!chosenMasteryRegion
+  // Whether the currently-viewed region is a secondary mastery (not base, not chosen)
+  const isSecondaryRegion = !!chosenMasteryRegion
     && activeRegion !== 'base'
     && activeRegion !== chosenMasteryRegion;
 
@@ -310,26 +337,26 @@ export default function PassiveTreeGraph({
             (s: number, n: PassiveNode) => s + (allocated[n.id] ?? 0), 0
           );
           const isBase = key === 'base';
-          const isChosen = !isBase && key === chosenMasteryRegion;
-          const isLocked = !isBase && !!chosenMasteryRegion && !isChosen;
+          const isPrimary = !isBase && key === chosenMasteryRegion;
+          const isSecondary = !isBase && !!chosenMasteryRegion && !isPrimary;
           return (
             <button
               key={key}
               onClick={() => setActiveRegion(key)}
-              title={isLocked ? `Locked — your mastery is ${mastery}` : undefined}
+              title={isSecondary && isChained ? `Secondary mastery — deep nodes locked (chain active at ${CHAIN_THRESHOLD} primary pts)` : undefined}
               className={clsx(
                 "flex items-center gap-1 px-4 py-2 font-mono text-[10px] uppercase tracking-widest whitespace-nowrap border-r border-forge-border transition-colors shrink-0",
                 activeRegion === key
-                  ? isChosen
+                  ? isPrimary
                     ? "bg-forge-bg text-amber-300"
                     : "bg-forge-bg text-forge-amber"
-                  : isLocked
-                    ? "text-forge-dim/40 hover:text-forge-dim/70 cursor-not-allowed"
+                  : isSecondary
+                    ? "text-forge-dim/60 hover:text-forge-text"
                     : "text-forge-dim hover:text-forge-text"
               )}
             >
-              {isLocked && <span className="opacity-50">🔒</span>}
-              {isChosen && <span className="text-amber-400">⬡</span>}
+              {isPrimary && <span className="text-amber-400">⬡</span>}
+              {isSecondary && isChained && <span className="opacity-60" title="Chain active">⛓</span>}
               {REGION_LABELS[key] ?? key}
               {pts > 0 && <span className="ml-1.5 text-forge-amber opacity-80">{pts}</span>}
             </button>
@@ -343,11 +370,23 @@ export default function PassiveTreeGraph({
       {/* Mastery indicator banner */}
       {chosenMasteryRegion && (
         <div className="flex items-center gap-3 border-b border-forge-border bg-forge-bg/60 px-3 py-1 shrink-0">
-          <span className="font-mono text-[9px] uppercase tracking-widest text-forge-dim">Chosen Mastery</span>
+          <span className="font-mono text-[9px] uppercase tracking-widest text-forge-dim">Primary Mastery</span>
           <span className="font-mono text-[10px] font-bold text-amber-400">⬡ {mastery}</span>
-          {isWrongMasteryRegion && (
-            <span className="ml-auto font-mono text-[9px] text-red-400/70">
-              🔒 Locked — switch to {mastery} or Base tab to allocate
+          <span className="font-mono text-[9px] text-forge-dim">
+            {primaryMasterySpent} / {CHAIN_THRESHOLD} pts
+          </span>
+          {isChained ? (
+            <span className="ml-auto font-mono text-[9px] text-orange-400/80">
+              ⛓ Chained — deep nodes in secondary masteries locked
+            </span>
+          ) : (
+            <span className="ml-auto font-mono text-[9px] text-forge-dim/50">
+              Cross-mastery allowed · chain at {CHAIN_THRESHOLD} primary pts
+            </span>
+          )}
+          {isSecondaryRegion && (
+            <span className="font-mono text-[9px] text-forge-dim/70 border-l border-forge-border/50 pl-3">
+              Secondary tree — {isChained ? "shallow nodes only" : "all nodes accessible"}
             </span>
           )}
         </div>
@@ -566,8 +605,10 @@ export default function PassiveTreeGraph({
                 <div className="mt-1 font-mono text-[10px] text-red-400/80">
                   ⚠ {(() => {
                     const nodeMeta2 = classMeta[n.id];
-                    if (nodeMeta2?.region && nodeMeta2.region !== 'base' && chosenMasteryRegion && nodeMeta2.region !== chosenMasteryRegion)
-                      return `Requires ${REGION_LABELS[nodeMeta2.region] ?? nodeMeta2.region} mastery`;
+                    const isSecMastery = nodeMeta2?.region && nodeMeta2.region !== 'base'
+                      && chosenMasteryRegion && nodeMeta2.region !== chosenMasteryRegion;
+                    if (isSecMastery && isChained && (nodeMeta2?.masteryRequirement ?? 0) >= SECONDARY_MASTERY_DEPTH)
+                      return `⛓ Chained — invest more in ${mastery} first to unlock deep nodes`;
                     if (mr > 0 && totalSpent < mr)
                       return `Invest ${mr - totalSpent} more point${mr - totalSpent > 1 ? "s" : ""} first`;
                     return "Requires parent node(s)";
