@@ -227,23 +227,27 @@ export default function PassiveTreeGraph({
     return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
   };
 
-  const handleNodeClick = (node: LayoutNode, e: React.MouseEvent) => {
+  const handleAllocate = (node: LayoutNode, e: React.MouseEvent) => {
     if (readOnly) return;
     e.stopPropagation();
     const pts = allocated[node.id] ?? 0;
     const max = node.maxPoints ?? 1;
-    if (pts >= max) {
-      // Refund: only if no allocated child depends on this node
-      const hasAllocatedChild = layoutNodes.some(n => {
-        const m = classMeta[n.id];
-        return m && m.parentIds.includes(node.id) && (allocated[n.id] ?? 0) >= 1;
-      });
-      if (!hasAllocatedChild) onAllocate(node.id, pts - 1);
-    } else if (pts > 0) {
+    if (pts < max && isUnlocked(node.id) && pointsLeft > 0) {
       onAllocate(node.id, pts + 1);
-    } else if (isUnlocked(node.id) && pointsLeft > 0) {
-      onAllocate(node.id, 1);
     }
+  };
+
+  const handleDeallocate = (node: LayoutNode, e: React.MouseEvent) => {
+    if (readOnly) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const pts = allocated[node.id] ?? 0;
+    if (pts <= 0) return;
+    const hasAllocatedChild = layoutNodes.some(n => {
+      const m = classMeta[n.id];
+      return m && m.parentIds.includes(node.id) && (allocated[n.id] ?? 0) >= 1;
+    });
+    if (!hasAllocatedChild) onAllocate(node.id, pts - 1);
   };
 
   const regionPoints = layoutNodes.reduce((s, n) => s + (allocated[n.id] ?? 0), 0);
@@ -300,7 +304,7 @@ export default function PassiveTreeGraph({
       <div
         ref={containerRef}
         className="relative overflow-hidden select-none"
-        style={{ height: DISPLAY_H, background: "#0f0c09" }}
+        style={{ height: DISPLAY_H, background: "#0b0e1a" }}
       >
         <svg
           width={containerSize.w}
@@ -352,8 +356,8 @@ export default function PassiveTreeGraph({
             </radialGradient>
           </defs>
 
-          <rect width={containerSize.w} height={containerSize.h} fill="#100d0a"/>
-          <rect width={containerSize.w} height={containerSize.h} filter="url(#stone-texture)" fill="#100d0a"/>
+          <rect width={containerSize.w} height={containerSize.h} fill="#0b0e1a"/>
+          <rect width={containerSize.w} height={containerSize.h} filter="url(#stone-texture)" fill="#0b0e1a"/>
           <rect width={containerSize.w} height={containerSize.h} fill="url(#vignette)"/>
 
           {/* Edges */}
@@ -369,9 +373,9 @@ export default function PassiveTreeGraph({
               return (
                 <line key={`e-${from}-${to}`}
                   x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#4a3c20" : "#1e1a12"}
-                  strokeWidth={bothActive ? Math.max(1.5, 3 * scale) : Math.max(0.5, 1.5 * scale)}
-                  opacity={bothActive ? 0.9 : toUnlocked ? 0.55 : 0.18}
+                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#7a6a40" : "#3a3020"}
+                  strokeWidth={bothActive ? Math.max(2, 3 * scale) : Math.max(1, 2 * scale)}
+                  opacity={bothActive ? 1 : toUnlocked ? 0.8 : 0.4}
                   filter={bothActive ? "url(#line-glow)" : undefined}
                 />
               );
@@ -411,7 +415,8 @@ export default function PassiveTreeGraph({
                   transform={`translate(${scx},${scy})`}
                   opacity={unlocked || active ? 1 : 0.22}
                   style={{ cursor: readOnly ? "default" : unlocked ? "pointer" : "not-allowed" }}
-                  onClick={e => { e.stopPropagation(); handleNodeClick(node, e); }}
+                  onClick={e => handleAllocate(node, e)}
+                  onContextMenu={e => handleDeallocate(node, e)}
                   onMouseEnter={e => setTooltip({ node, screenX: e.clientX, screenY: e.clientY })}
                   onMouseMove={e => setTooltip(t => t ? { ...t, screenX: e.clientX, screenY: e.clientY } : null)}
                   onMouseLeave={() => setTooltip(null)}
@@ -527,7 +532,7 @@ export default function PassiveTreeGraph({
           <span className="text-forge-amber">{regionPoints} pts in region</span>
         )}
         {!readOnly && (
-          <span className="ml-auto text-forge-dim/60">click to invest · click again to refund</span>
+          <span className="ml-auto text-forge-dim/60">left-click to invest · right-click to refund</span>
         )}
       </div>
     </div>

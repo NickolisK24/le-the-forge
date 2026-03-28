@@ -228,14 +228,22 @@ export default function PassiveTreeRenderer({
     return Array.from(seen.entries()).sort(([a], [b]) => a - b);
   }, [nodes]);
 
-  const handleClick = (node: LayoutNode, e: React.MouseEvent) => {
+  const handleAllocate = (node: LayoutNode, e: React.MouseEvent) => {
     if (readOnly) return;
     e.stopPropagation();
     const pts = allocated[node.id] ?? 0;
-    if (pts >= node.max_points) {
-      onAllocate(node.id, pts - 1);
-    } else if (isUnlocked(node)) {
+    if (pts < node.max_points && isUnlocked(node)) {
       onAllocate(node.id, pts + 1);
+    }
+  };
+
+  const handleDeallocate = (node: LayoutNode, e: React.MouseEvent) => {
+    if (readOnly) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const pts = allocated[node.id] ?? 0;
+    if (pts > 0) {
+      onAllocate(node.id, pts - 1);
     }
   };
 
@@ -314,7 +322,8 @@ export default function PassiveTreeRenderer({
                   style={{
                     cursor: readOnly ? "default" : unlocked ? "pointer" : "not-allowed",
                   }}
-                  onClick={(e) => handleClick(node, e)}
+                  onClick={(e) => handleAllocate(node, e)}
+                  onContextMenu={(e) => handleDeallocate(node, e)}
                   onMouseEnter={(e) =>
                     setTooltip({ node, screenX: e.clientX, screenY: e.clientY })
                   }
@@ -501,7 +510,7 @@ export default function PassiveTreeRenderer({
         })}
         {!readOnly && (
           <span className="ml-auto font-mono text-[10px] text-forge-dim/60">
-            click to invest · click again to refund
+            left-click to invest · right-click to refund
           </span>
         )}
       </div>
