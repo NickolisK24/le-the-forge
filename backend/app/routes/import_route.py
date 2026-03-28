@@ -23,19 +23,19 @@ import_bp = Blueprint("import", __name__)
 # These mirror the internal game enum values used by Last Epoch Tools.
 # ---------------------------------------------------------------------------
 _CLASS_MAP: Dict[int, str] = {
-    1: "Acolyte",
-    2: "Primalist",
-    3: "Mage",
-    4: "Sentinel",
-    5: "Rogue",
+    0: "Primalist",
+    1: "Mage",
+    2: "Sentinel",
+    3: "Acolyte",
+    4: "Rogue",
 }
 
 _MASTERY_MAP: Dict[str, Dict[int, str]] = {
+    "Primalist": {1: "Beastmaster", 2: "Shaman",      3: "Druid"},
+    "Mage":      {1: "Sorcerer",    2: "Spellblade",  3: "Runemaster"},
+    "Sentinel":  {1: "Void Knight", 2: "Forge Guard", 3: "Paladin"},
     "Acolyte":   {1: "Necromancer", 2: "Lich",        3: "Warlock"},
-    "Primalist": {1: "Beastmaster", 2: "Druid",        3: "Shaman"},
-    "Mage":      {1: "Sorcerer",    2: "Runemaster",   3: "Spellblade"},
-    "Sentinel":  {1: "Forge Guard", 2: "Paladin",      3: "Void Knight"},
-    "Rogue":     {1: "Bladedancer", 2: "Marksman",     3: "Falconer"},
+    "Rogue":     {1: "Bladedancer", 2: "Marksman",    3: "Falconer"},
 }
 
 # ---------------------------------------------------------------------------
@@ -132,7 +132,7 @@ def _map_let_build(build_info: dict) -> dict:
     mastery_id = int(bio.get("chosenMastery", 0))
     level = int(bio.get("level", 70))
 
-    char_class = _CLASS_MAP.get(char_class_id, "Acolyte")
+    char_class = _CLASS_MAP.get(char_class_id, "Sentinel")
     mastery = _MASTERY_MAP.get(char_class, {}).get(mastery_id, "")
 
     # ---- Passive tree -------------------------------------------------------
