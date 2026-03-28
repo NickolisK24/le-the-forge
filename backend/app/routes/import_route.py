@@ -11,9 +11,10 @@ import re
 from typing import Dict, List, Optional
 
 import requests as _requests
-from flask import Blueprint, current_app, jsonify, request
+from flask import Blueprint, current_app, request
 
 from app import limiter
+from app.utils.responses import ok, error as err_response
 
 import_bp = Blueprint("import", __name__)
 
@@ -228,14 +229,14 @@ def import_from_url():
     url: str = body.get("url", "").strip()
 
     if not url:
-        return jsonify({"error": "url is required"}), 400
+        return err_response("url is required", 400)
 
     # Validate URL contains a planner code
     match = re.search(r"lastepochtools\.com/planner/([A-Za-z0-9_\-]+)", url)
     if not match:
-        return jsonify({
-            "error": "Invalid URL — expected: https://www.lastepochtools.com/planner/[code]"
-        }), 400
+        return err_response(
+            "Invalid URL — expected: https://www.lastepochtools.com/planner/[code]", 400
+        )
 
     code = match.group(1)
 
@@ -256,14 +257,14 @@ def import_from_url():
         )
         resp.raise_for_status()
     except _requests.Timeout:
-        return jsonify({"error": "Timed out fetching the build page — try again."}), 504
+        return err_response("Timed out fetching the build page — try again.", 504)
     except _requests.HTTPError as exc:
         status = exc.response.status_code if exc.response is not None else 502
         if status == 404:
-            return jsonify({"error": "Build not found — the link may be expired or invalid."}), 404
-        return jsonify({"error": f"Last Epoch Tools returned HTTP {status}."}), 502
+            return err_response("Build not found — the link may be expired or invalid.", 404)
+        return err_response(f"Last Epoch Tools returned HTTP {status}.", 502)
     except _requests.RequestException as exc:
-        return jsonify({"error": f"Network error fetching build: {exc}"}), 502
+        return err_response(f"Network error fetching build: {exc}", 502)
 
     html = resp.text
     current_app.logger.info(
@@ -278,18 +279,15 @@ def import_from_url():
             f"import/url: could not find window[buildInfo] for code={code}. "
             f"HTML snippet: {html[:500]!r}"
         )
-        return jsonify({
-            "error": (
-                "Could not find build data in the page. "
-                "The build code may be invalid, or Last Epoch Tools may have updated their page format."
-            )
-        }), 404
+        return err_response(
+            "Could not find build data in the page. "
+            "The build code may be invalid, or Last Epoch Tools may have updated their page format.",
+            404,
+        )
 
     # LE Tools sets buildLoadError on invalid/deleted build codes
     if build_info.get("buildLoadError"):
-        return jsonify({
-            "error": "Build not found or deleted on Last Epoch Tools."
-        }), 404
+        return err_response("Build not found or deleted on Last Epoch Tools.", 404)
 
     # LE Tools sometimes wraps the real payload in a "data" key
     if "data" in build_info and isinstance(build_info["data"], dict):
@@ -301,9 +299,7 @@ def import_from_url():
             f"import/url: extracted JSON missing bio/charTree for code={code}: "
             f"{list(build_info.keys())}"
         )
-        return jsonify({
-            "error": "Build data is incomplete or in an unexpected format."
-        }), 502
+        return err_response("Build data is incomplete or in an unexpected format.", 502)
 
     mapped = _map_let_build(build_info)
     current_app.logger.info(
@@ -311,4 +307,4 @@ def import_from_url():
         f"mastery={mapped['mastery']} passive_nodes={len(mapped['passive_tree'])} "
         f"skills={len(mapped['skills'])}"
     )
-    return jsonify({"build": mapped, "source_code": code})
+    return ok({"build": mapped, "source_code": code})
