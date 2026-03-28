@@ -3,6 +3,12 @@ import { clsx } from "clsx";
 import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
 import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
+import iconSpriteMap from "@/data/iconSpriteMap.json";
+
+// Sprite sheet from lastepochtools CDN
+const SPRITE_URL =
+  "https://www.lastepochtools.com/data/version140/planner/res/d285216918221e26ef5d5b32f3407c4a.webp";
+const SPRITE_ICON_SIZE = 64;
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -43,6 +49,37 @@ const REGION_LABELS: Record<string, string> = {
 
 // Maximum passive points per class
 const MAX_PASSIVE_POINTS = 113;
+
+// Sprite icon rendered via foreignObject inside SVG
+function SpriteIcon({ iconId, size }: { iconId: string | undefined; size: number }) {
+  if (!iconId) return null;
+  const pos = (iconSpriteMap as Record<string, [number, number]>)[iconId];
+  if (!pos) return null;
+  const [bx, by] = pos;
+  const scaleFactor = size / SPRITE_ICON_SIZE;
+  return (
+    <foreignObject
+      x={-size / 2}
+      y={-size / 2}
+      width={size}
+      height={size}
+      pointerEvents="none"
+    >
+      <div
+        style={{
+          width: size,
+          height: size,
+          backgroundImage: `url(${SPRITE_URL})`,
+          backgroundPosition: `-${bx * scaleFactor}px -${by * scaleFactor}px`,
+          backgroundSize: `${2387 * scaleFactor}px auto`,
+          backgroundRepeat: "no-repeat",
+          borderRadius: "50%",
+          imageRendering: "auto",
+        }}
+      />
+    </foreignObject>
+  );
+}
 
 const DISPLAY_H = 580;
 
@@ -100,9 +137,13 @@ export default function PassiveTreeGraph({
   const regionKeys = Object.keys(regionMap);
   const classMeta = PASSIVE_TREE_META[cls] ?? {};
 
-  const masteryKey = mastery.toLowerCase().replace(/\s+/g, "-");
-  const defaultRegion = regionKeys.includes(masteryKey) ? masteryKey : (regionKeys[0] ?? "base");
-  const [activeRegion, setActiveRegion] = useState(defaultRegion);
+  const [activeRegion, setActiveRegion] = useState(regionKeys.includes("base") ? "base" : (regionKeys[0] ?? "base"));
+
+  // Reset to base tree when class changes
+  useEffect(() => {
+    const keys = Object.keys(PASSIVE_TREES[cls] ?? {});
+    setActiveRegion(keys.includes("base") ? "base" : (keys[0] ?? "base"));
+  }, [cls]);
 
   const rawNodes: PassiveNode[] = useMemo(
     () => regionMap[activeRegion] ?? [],
@@ -186,23 +227,27 @@ export default function PassiveTreeGraph({
     return meta.parentIds.every(pid => (allocated[pid] ?? 0) >= 1);
   };
 
-  const handleNodeClick = (node: LayoutNode, e: React.MouseEvent) => {
+  const handleAllocate = (node: LayoutNode, e: React.MouseEvent) => {
     if (readOnly) return;
     e.stopPropagation();
     const pts = allocated[node.id] ?? 0;
     const max = node.maxPoints ?? 1;
-    if (pts >= max) {
-      // Refund: only if no allocated child depends on this node
-      const hasAllocatedChild = layoutNodes.some(n => {
-        const m = classMeta[n.id];
-        return m && m.parentIds.includes(node.id) && (allocated[n.id] ?? 0) >= 1;
-      });
-      if (!hasAllocatedChild) onAllocate(node.id, pts - 1);
-    } else if (pts > 0) {
+    if (pts < max && isUnlocked(node.id) && pointsLeft > 0) {
       onAllocate(node.id, pts + 1);
-    } else if (isUnlocked(node.id) && pointsLeft > 0) {
-      onAllocate(node.id, 1);
     }
+  };
+
+  const handleDeallocate = (node: LayoutNode, e: React.MouseEvent) => {
+    if (readOnly) return;
+    e.preventDefault();
+    e.stopPropagation();
+    const pts = allocated[node.id] ?? 0;
+    if (pts <= 0) return;
+    const hasAllocatedChild = layoutNodes.some(n => {
+      const m = classMeta[n.id];
+      return m && m.parentIds.includes(node.id) && (allocated[n.id] ?? 0) >= 1;
+    });
+    if (!hasAllocatedChild) onAllocate(node.id, pts - 1);
   };
 
   const regionPoints = layoutNodes.reduce((s, n) => s + (allocated[n.id] ?? 0), 0);
@@ -259,7 +304,7 @@ export default function PassiveTreeGraph({
       <div
         ref={containerRef}
         className="relative overflow-hidden select-none"
-        style={{ height: DISPLAY_H, background: "#0f0c09" }}
+        style={{ height: DISPLAY_H, background: "#0b0e1a" }}
       >
         <svg
           width={containerSize.w}
@@ -311,8 +356,8 @@ export default function PassiveTreeGraph({
             </radialGradient>
           </defs>
 
-          <rect width={containerSize.w} height={containerSize.h} fill="#100d0a"/>
-          <rect width={containerSize.w} height={containerSize.h} filter="url(#stone-texture)" fill="#100d0a"/>
+          <rect width={containerSize.w} height={containerSize.h} fill="#0b0e1a"/>
+          <rect width={containerSize.w} height={containerSize.h} filter="url(#stone-texture)" fill="#0b0e1a"/>
           <rect width={containerSize.w} height={containerSize.h} fill="url(#vignette)"/>
 
           {/* Edges */}
@@ -328,9 +373,9 @@ export default function PassiveTreeGraph({
               return (
                 <line key={`e-${from}-${to}`}
                   x1={x1} y1={y1} x2={x2} y2={y2}
-                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#4a3c20" : "#1e1a12"}
-                  strokeWidth={bothActive ? Math.max(1.5, 3 * scale) : Math.max(0.5, 1.5 * scale)}
-                  opacity={bothActive ? 0.9 : toUnlocked ? 0.55 : 0.18}
+                  stroke={bothActive ? "#c8902a" : toUnlocked ? "#7a6a40" : "#3a3020"}
+                  strokeWidth={bothActive ? Math.max(2, 3 * scale) : Math.max(1, 2 * scale)}
+                  opacity={bothActive ? 1 : toUnlocked ? 0.8 : 0.4}
                   filter={bothActive ? "url(#line-glow)" : undefined}
                 />
               );
@@ -370,7 +415,8 @@ export default function PassiveTreeGraph({
                   transform={`translate(${scx},${scy})`}
                   opacity={unlocked || active ? 1 : 0.22}
                   style={{ cursor: readOnly ? "default" : unlocked ? "pointer" : "not-allowed" }}
-                  onClick={e => { e.stopPropagation(); handleNodeClick(node, e); }}
+                  onClick={e => handleAllocate(node, e)}
+                  onContextMenu={e => handleDeallocate(node, e)}
                   onMouseEnter={e => setTooltip({ node, screenX: e.clientX, screenY: e.clientY })}
                   onMouseMove={e => setTooltip(t => t ? { ...t, screenX: e.clientX, screenY: e.clientY } : null)}
                   onMouseLeave={() => setTooltip(null)}
@@ -380,19 +426,8 @@ export default function PassiveTreeGraph({
                   <polygon points={hexPts} fill={fillGrad}/>
                   <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
-                  {/* Node icon — rendered inside the hex when image is available */}
-                  {node.iconId && (
-                    <image
-                      href={`/assets/passive-icons/${node.iconId}.png`}
-                      x={-r * 0.65}
-                      y={-r * 0.65}
-                      width={r * 1.3}
-                      height={r * 1.3}
-                      opacity={unlocked || active ? (active ? 1 : 0.7) : 0.35}
-                      pointerEvents="none"
-                      preserveAspectRatio="xMidYMid meet"
-                    />
-                  )}
+                  {/* Node icon from sprite sheet */}
+                  <SpriteIcon iconId={node.iconId} size={r * 1.6} />
 
                   <text
                     y={outerR + fontSize * 0.3}
@@ -497,7 +532,7 @@ export default function PassiveTreeGraph({
           <span className="text-forge-amber">{regionPoints} pts in region</span>
         )}
         {!readOnly && (
-          <span className="ml-auto text-forge-dim/60">click to invest · click again to refund</span>
+          <span className="ml-auto text-forge-dim/60">left-click to invest · right-click to refund</span>
         )}
       </div>
     </div>
