@@ -294,6 +294,7 @@ export interface StatUpgrade {
   label: string;
   dps_gain_pct: number;
   ehp_gain_pct: number;
+  explanation?: string;
 }
 
 export interface DefenseResult {

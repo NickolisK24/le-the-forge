@@ -1,18 +1,21 @@
 """
 Structured logging configuration for The Forge backend.
 
-Provides a consistent log format across engines, services, and routes:
+Supports two output formats controlled by the LOG_FORMAT_JSON config flag:
+
+  LOG_FORMAT_JSON=false (default):
     [LEVEL] [timestamp] [module] message  key=value key=value ...
 
-Usage in any module:
-    from app.utils.logging import get_logger
-    log = get_logger(__name__)
-    log.info("simulation.start", skill="Fireball", seed=42, n=10000)
+  LOG_FORMAT_JSON=true:
+    {"timestamp": "...", "level": "INFO", "module": "...", "event": "...", "key": "value"}
 
-In engine/service code where Flask context is not available, use get_logger().
-In route code, current_app.logger remains available for request-level events.
+Usage in any module:
+    from app.utils.logging import ForgeLogger
+    log = ForgeLogger(__name__)
+    log.info("simulation.start", skill="Fireball", seed=42, n=10000)
 """
 
+import json
 import logging
 import time
 from functools import wraps
@@ -22,13 +25,37 @@ LOG_FORMAT = "%(levelname)s %(asctime)s [%(name)s] %(message)s"
 DATE_FORMAT = "%Y-%m-%dT%H:%M:%S"
 
 
+class JsonFormatter(logging.Formatter):
+    """Emits each log record as a single JSON line."""
+
+    def format(self, record: logging.LogRecord) -> str:
+        entry = {
+            "timestamp": self.formatTime(record, DATE_FORMAT),
+            "level": record.levelname,
+            "module": record.name,
+            "event": record.getMessage(),
+        }
+        # Merge structured fields attached by ForgeLogger
+        if hasattr(record, "_structured"):
+            entry.update(record._structured)
+        return json.dumps(entry, default=str)
+
+
 def configure_logging(app):
     """
     Attach structured logging to a Flask app.
     Called from the app factory after the app is created.
+
+    Set LOG_FORMAT_JSON=true in config for machine-readable JSON output.
     """
-    handler = logging.StreamHandler()
-    handler.setFormatter(logging.Formatter(fmt=LOG_FORMAT, datefmt=DATE_FORMAT))
+    use_json = app.config.get("LOG_FORMAT_JSON", False)
+
+    if use_json:
+        handler = logging.StreamHandler()
+        handler.setFormatter(JsonFormatter())
+    else:
+        handler = logging.StreamHandler()
+        handler.setFormatter(logging.Formatter(fmt=LOG_FORMAT, datefmt=DATE_FORMAT))
 
     # Set level from app config, defaulting to INFO
     level_name = app.config.get("LOG_LEVEL", "INFO")
@@ -44,7 +71,7 @@ def configure_logging(app):
     logging.getLogger("werkzeug").setLevel(logging.WARNING)
     logging.getLogger("sqlalchemy.engine").setLevel(logging.WARNING)
 
-    app.logger.info("Logging configured at level %s", level_name)
+    app.logger.info("Logging configured at level %s (json=%s)", level_name, use_json)
 
 
 def get_logger(name: str) -> logging.Logger:
@@ -63,26 +90,33 @@ class ForgeLogger:
     """
     Thin wrapper around logging.Logger that appends structured key=value pairs.
 
+    In JSON mode, the key-value pairs are embedded as top-level JSON fields.
+    In text mode, they are appended as key=value suffixes.
+
     Usage:
         log = ForgeLogger(__name__)
         log.info("simulation.start", skill="Fireball", seed=42)
-        # → INFO 2026-01-01T00:00:00 [app.engines.combat_engine] simulation.start  skill='Fireball'  seed=42
     """
 
     def __init__(self, name: str):
         self._log = logging.getLogger(name)
 
+    def _emit(self, level: int, event: str, kwargs: dict):
+        # Attach structured data for JsonFormatter to pick up
+        extra = {"_structured": kwargs} if kwargs else {}
+        self._log.log(level, "%s%s", event, _format_kv(kwargs), extra=extra)
+
     def debug(self, event: str, **kwargs):
-        self._log.debug("%s%s", event, _format_kv(kwargs))
+        self._emit(logging.DEBUG, event, kwargs)
 
     def info(self, event: str, **kwargs):
-        self._log.info("%s%s", event, _format_kv(kwargs))
+        self._emit(logging.INFO, event, kwargs)
 
     def warning(self, event: str, **kwargs):
-        self._log.warning("%s%s", event, _format_kv(kwargs))
+        self._emit(logging.WARNING, event, kwargs)
 
     def error(self, event: str, **kwargs):
-        self._log.error("%s%s", event, _format_kv(kwargs))
+        self._emit(logging.ERROR, event, kwargs)
 
     def exception(self, event: str, **kwargs):
         self._log.exception("%s%s", event, _format_kv(kwargs))

@@ -132,6 +132,21 @@ def simulate_full_build(
     }
 
 
+def simulate_sensitivity(
+    stats_dict: dict,
+    skill_name: str,
+    skill_level: int = 20,
+    stat_keys: list[str] | None = None,
+    delta: float = 10.0,
+) -> list[dict]:
+    """Stat sensitivity analysis — which stats give the most marginal value."""
+    log.info("simulate_sensitivity", skill=skill_name, delta=delta)
+    stats = _build_stats_from_dict(stats_dict)
+    return optimization_engine.stat_sensitivity(
+        stats, skill_name, skill_level, stat_keys=stat_keys, delta=delta
+    )
+
+
 def _build_stats_from_dict(d: dict) -> BuildStats:
     """Construct a BuildStats dataclass from a flat dict, ignoring unknown keys."""
     stats = BuildStats()

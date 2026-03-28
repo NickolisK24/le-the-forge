@@ -8,7 +8,10 @@ and will later contribute a FP modifier on top of the rarity range.
 
 from typing import Optional
 
+from app.utils.logging import ForgeLogger
 from app.engines.base_engine import get_base
+
+log = ForgeLogger(__name__)
 from app.engines.fp_engine import (
     generate_fp_by_rarity,
     validate_fp_by_rarity,

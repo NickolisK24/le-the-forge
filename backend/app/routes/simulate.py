@@ -36,6 +36,7 @@ from app.schemas.simulate import (
     SimulateCombatSchema,
     SimulateDefenseSchema,
     SimulateOptimizeSchema,
+    SimulateSensitivitySchema,
     SimulateBuildSchema,
 )
 from app.services import simulation_service
@@ -49,6 +50,7 @@ stats_schema = SimulateStatsSchema()
 combat_schema = SimulateCombatSchema()
 defense_schema = SimulateDefenseSchema()
 optimize_schema = SimulateOptimizeSchema()
+sensitivity_schema = SimulateSensitivitySchema()
 build_schema = SimulateBuildSchema()
 
 _SIM_CACHE_TTL = 300  # 5 minutes for simulation results
@@ -185,6 +187,33 @@ def simulate_optimize():
         skill_name=data["skill_name"],
         skill_level=data.get("skill_level", 20),
         top_n=data.get("top_n", 5),
+    )
+    cache_set(cache_key, result, _SIM_CACHE_TTL)
+    return ok(data=result)
+
+
+@simulate_bp.post("/sensitivity")
+@limiter.limit("10 per minute")
+def simulate_sensitivity():
+    """Stat sensitivity analysis — which stats give the most marginal value."""
+    try:
+        data = sensitivity_schema.load(request.get_json() or {})
+    except ValidationError as e:
+        return validation_error(e)
+
+    cache_key = _sim_cache_key("sensitivity", data)
+    cached = get(cache_key)
+    if cached is not None:
+        resp = ok(data=cached)
+        resp[0].headers["X-Cache"] = "HIT"
+        return resp
+
+    result = simulation_service.simulate_sensitivity(
+        stats_dict=data["stats"],
+        skill_name=data["skill_name"],
+        skill_level=data.get("skill_level", 20),
+        stat_keys=data.get("stat_keys"),
+        delta=data.get("delta", 10.0),
     )
     cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)

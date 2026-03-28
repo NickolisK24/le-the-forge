@@ -251,34 +251,68 @@ function UpgradeChart({ upgrades }: { upgrades: StatUpgrade[] }) {
     .sort((a, b) => b.dps_gain_pct - a.dps_gain_pct)
     .slice(0, 6);
 
+  const DEAD_STAT_THRESHOLD = 1.0; // <1% DPS gain = dead stat
+
   return (
     <Panel title="Stat Upgrade Priorities">
       <div className="space-y-2">
-        {top.map((u, i) => (
-          <div key={u.stat} className="grid gap-2 items-center" style={{ gridTemplateColumns: "18px 1fr 50px 50px" }}>
-            <span className="font-display text-xs font-bold text-forge-amber">{i + 1}</span>
-            <div className="min-w-0">
-              <div className="font-body text-xs text-forge-text truncate">{u.label}</div>
-              <div className="mt-0.5 h-1 rounded-full bg-forge-surface3 overflow-hidden">
-                <div
-                  className="h-full rounded-full"
-                  style={{
-                    width: `${Math.min(100, (u.dps_gain_pct / top[0].dps_gain_pct) * 100)}%`,
-                    background: `linear-gradient(90deg, ${C.amber}, ${C.amberHot})`,
-                  }}
-                />
+        {top.map((u, i) => {
+          const isDead = u.dps_gain_pct < DEAD_STAT_THRESHOLD && u.ehp_gain_pct < DEAD_STAT_THRESHOLD;
+          const isDiminishing = u.explanation?.includes("diminishing");
+          return (
+            <div key={u.stat}>
+              <div className="grid gap-2 items-center" style={{ gridTemplateColumns: "18px 1fr 50px 50px" }}>
+                <span className={`font-display text-xs font-bold ${isDead ? "text-forge-dim" : "text-forge-amber"}`}>{i + 1}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className={`font-body text-xs truncate ${isDead ? "text-forge-dim line-through" : "text-forge-text"}`}>
+                      {u.label}
+                    </span>
+                    {isDead && (
+                      <span className="shrink-0 font-mono text-[8px] uppercase tracking-wider text-forge-dim bg-forge-surface3 px-1 py-px rounded">
+                        low impact
+                      </span>
+                    )}
+                    {isDiminishing && !isDead && (
+                      <span className="shrink-0 font-mono text-[8px] uppercase tracking-wider text-yellow-500/80 bg-yellow-500/10 px-1 py-px rounded">
+                        diminishing
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-0.5 h-1 rounded-full bg-forge-surface3 overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.min(100, top[0].dps_gain_pct > 0 ? (u.dps_gain_pct / top[0].dps_gain_pct) * 100 : 0)}%`,
+                        background: isDead
+                          ? C.muted
+                          : `linear-gradient(90deg, ${C.amber}, ${C.amberHot})`,
+                        opacity: isDead ? 0.4 : 1,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-mono text-[10px] text-forge-dim">DPS</div>
+                  <div className={`font-mono text-xs ${isDead ? "text-forge-dim" : "text-forge-amber"}`}>
+                    +{u.dps_gain_pct.toFixed(1)}%
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-mono text-[10px] text-forge-dim">EHP</div>
+                  <div className={`font-mono text-xs ${isDead ? "text-forge-dim" : "text-forge-cyan"}`}>
+                    +{u.ehp_gain_pct.toFixed(1)}%
+                  </div>
+                </div>
               </div>
+              {u.explanation && !isDead && (
+                <div className="ml-5 mt-0.5 font-mono text-[9px] text-forge-dim/70 leading-snug truncate">
+                  {u.explanation}
+                </div>
+              )}
             </div>
-            <div className="text-right">
-              <div className="font-mono text-[10px] text-forge-dim">DPS</div>
-              <div className="font-mono text-xs text-forge-amber">+{u.dps_gain_pct.toFixed(1)}%</div>
-            </div>
-            <div className="text-right">
-              <div className="font-mono text-[10px] text-forge-dim">EHP</div>
-              <div className="font-mono text-xs text-forge-cyan">+{u.ehp_gain_pct.toFixed(1)}%</div>
-            </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </Panel>
   );
@@ -331,6 +365,90 @@ function AvoidancePanel({ def }: { def: DefenseResult }) {
             </div>
           ))}
         </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Burst Vulnerability Warnings
+// ---------------------------------------------------------------------------
+
+/** Common burst damage thresholds in Last Epoch endgame content. */
+const BURST_SCENARIOS = [
+  { label: "Empowered Boss Slam",  damage: 3000, element: "physical" as const },
+  { label: "Void Eruption",        damage: 4000, element: "void" as const },
+  { label: "Lagon Lunar Beam",     damage: 5000, element: "cold" as const },
+  { label: "Julra Void Meteor",    damage: 6000, element: "void" as const },
+  { label: "Shade of Orobyss",     damage: 8000, element: "necrotic" as const },
+];
+
+const RES_KEY_MAP: Record<string, keyof DefenseResult> = {
+  physical: "armor_reduction_pct",
+  fire: "fire_res",
+  cold: "cold_res",
+  lightning: "lightning_res",
+  void: "void_res",
+  necrotic: "necrotic_res",
+  poison: "poison_res",
+};
+
+function BurstVulnerabilityPanel({ def }: { def: DefenseResult }) {
+  const totalPool = def.total_ehp;
+
+  const checks = BURST_SCENARIOS.map(scenario => {
+    // Effective resistance for this element (armor for physical, res for elemental)
+    const resKey = RES_KEY_MAP[scenario.element];
+    const resPct = resKey ? (def[resKey] as number) ?? 0 : 0;
+    const mitigation = Math.min(resPct, 75) / 100; // cap at 75%
+    const effectiveDamage = scenario.damage * (1 - mitigation);
+    const survives = totalPool >= effectiveDamage;
+    const margin = totalPool - effectiveDamage;
+    const marginPct = totalPool > 0 ? (margin / totalPool) * 100 : -100;
+
+    return {
+      ...scenario,
+      effectiveDamage: Math.round(effectiveDamage),
+      survives,
+      margin: Math.round(margin),
+      marginPct: Math.round(marginPct),
+    };
+  });
+
+  const failures = checks.filter(c => !c.survives);
+  const tight = checks.filter(c => c.survives && c.marginPct < 20);
+
+  if (failures.length === 0 && tight.length === 0) return null;
+
+  return (
+    <Panel title="Burst Vulnerability">
+      <div className="space-y-1.5">
+        {failures.map(c => (
+          <div key={c.label} className="flex items-center gap-2 font-mono text-[10px]">
+            <span className="text-red-400 shrink-0">✗</span>
+            <span className="text-red-400 font-bold">{c.label}</span>
+            <span className="text-forge-dim">({fmt(c.effectiveDamage)} after {c.element} mitigation)</span>
+            <span className="ml-auto text-red-400">
+              {fmt(Math.abs(c.margin))} over EHP
+            </span>
+          </div>
+        ))}
+        {tight.map(c => (
+          <div key={c.label} className="flex items-center gap-2 font-mono text-[10px]">
+            <span className="text-yellow-500 shrink-0">⚠</span>
+            <span className="text-yellow-500">{c.label}</span>
+            <span className="text-forge-dim">({fmt(c.effectiveDamage)} after {c.element} mitigation)</span>
+            <span className="ml-auto text-yellow-500">
+              {c.marginPct}% margin
+            </span>
+          </div>
+        ))}
+        {failures.length > 0 && (
+          <div className="mt-2 font-body text-[10px] text-forge-dim/70 leading-snug">
+            Your build cannot survive {failures.length} burst scenario{failures.length > 1 ? "s" : ""}.
+            Prioritize Health, Resistances, or Ward to close the gap.
+          </div>
+        )}
       </div>
     </Panel>
   );
@@ -429,7 +547,8 @@ export default function SimulationDashboard({ result }: { result: BuildSimulatio
         <UpgradeChart upgrades={upgrades} />
       </div>
 
-      {/* Full width insights */}
+      {/* Burst vulnerability + insights */}
+      <BurstVulnerabilityPanel def={def} />
       <InsightsPanel def={def} />
     </div>
   );

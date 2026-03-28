@@ -16,6 +16,9 @@ from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
 )
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -327,6 +330,15 @@ def aggregate_stats(
     Returns:
         BuildStats with all values accumulated and derived stats applied.
     """
+    log.info(
+        "aggregate_stats.start",
+        character_class=character_class,
+        mastery=mastery,
+        nodes=len(allocated_node_ids),
+        gear_affixes=len(gear_affixes),
+        has_passive_stats=passive_stats is not None,
+    )
+
     stats = BuildStats()
     allocated_set = set(allocated_node_ids)
 
@@ -394,5 +406,12 @@ def aggregate_stats(
     stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
     stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)
+
+    log.info(
+        "aggregate_stats.end",
+        base_damage=stats.base_damage,
+        max_health=stats.max_health,
+        crit_chance=round(stats.crit_chance, 4),
+    )
 
     return stats

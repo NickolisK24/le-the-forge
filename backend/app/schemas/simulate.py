@@ -199,6 +199,19 @@ class SimulateOptimizeSchema(Schema):
     )
 
 
+class SimulateSensitivitySchema(Schema):
+    """POST /api/simulate/sensitivity — stat sensitivity analysis."""
+    stats = fields.Nested(StatsInputSchema, required=True)
+    skill_name = fields.Str(required=True, validate=validate.Length(min=1, max=64))
+    skill_level = fields.Int(
+        validate=validate.Range(min=1, max=40), load_default=20
+    )
+    stat_keys = fields.List(fields.Str(), load_default=None, allow_none=True)
+    delta = fields.Float(
+        validate=validate.Range(min=0.1, max=1000), load_default=10.0
+    )
+
+
 class SimulateBuildSchema(Schema):
     """POST /api/simulate/build — full pipeline from raw build data."""
     character_class = fields.Str(

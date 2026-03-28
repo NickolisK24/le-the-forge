@@ -10,6 +10,10 @@ import json
 import random
 from typing import Optional
 
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
+
 # ---------------------------------------------------------------------------
 # Load base item data
 # ---------------------------------------------------------------------------

@@ -413,10 +413,20 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly,
           if (!containerRect) return null;
           const tx = tooltip.screenX - containerRect.left + 16;
           const ty = tooltip.screenY - containerRect.top - 12;
+
+          // Parse description: text before "|" is flavor, after "|" is structured stats
+          const raw = n.description ?? "";
+          const pipeIdx = raw.indexOf("|");
+          const flavorText = pipeIdx >= 0 ? raw.slice(0, pipeIdx).trim() : raw.trim();
+          const statsText = pipeIdx >= 0 ? raw.slice(pipeIdx + 1).trim() : "";
+          const statEntries = statsText
+            ? statsText.split(";").map(s => s.trim()).filter(Boolean)
+            : [];
+
           return (
             <div
-              className="pointer-events-none absolute z-20 w-64 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
-              style={{ left: Math.min(tx, containerSize.w - 272), top: Math.max(4, ty) }}
+              className="pointer-events-none absolute z-20 w-72 rounded border border-forge-amber/50 bg-forge-bg/95 p-3 shadow-2xl"
+              style={{ left: Math.min(tx, containerSize.w - 296), top: Math.max(4, ty) }}
             >
               <div className="font-display text-sm font-bold text-forge-amber leading-tight">
                 {cleanNodeName(n.name) || "Node"}
@@ -424,9 +434,28 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly,
               <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-forge-dim">
                 {isRoot ? "Skill Entry — auto-granted" : `${n.type} · ${pts}/${max} pts`}
               </div>
-              {n.description && (
-                <div className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">
-                  {n.description.replace(/\s{2,}/g, "\n")}
+              {flavorText && (
+                <div className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90">
+                  {flavorText}
+                </div>
+              )}
+              {statEntries.length > 0 && (
+                <div className="mt-2 border-t border-forge-border/50 pt-1.5 flex flex-col gap-0.5">
+                  {statEntries.map((entry, i) => {
+                    const isDownside = entry.toLowerCase().includes("(downside)");
+                    const display = entry.replace(/\s*\(downside\)\s*/i, "").trim();
+                    return (
+                      <div key={i} className="font-mono text-[10px] flex justify-between gap-2">
+                        <span className={isDownside ? "text-red-400/80" : "text-forge-dim"}>{display}</span>
+                        {isDownside && <span className="text-red-400/60 text-[9px] shrink-0">penalty</span>}
+                      </div>
+                    );
+                  })}
+                  {max > 1 && (
+                    <div className="mt-1 font-mono text-[9px] text-forge-dim/60 italic">
+                      Values shown are per point ({max} pts max)
+                    </div>
+                  )}
                 </div>
               )}
               {!readOnly && locked && !isRoot && (
