@@ -150,6 +150,7 @@ class SimulateStatsSchema(Schema):
     mastery = fields.Str(required=True)
     allocated_node_ids = fields.List(fields.Int(), load_default=[])
     gear_affixes = fields.List(fields.Dict(), load_default=[])
+    passive_tree = fields.List(fields.Str(), load_default=[])
 
     @validates("mastery")
     def validate_mastery(self, value, **kwargs):
@@ -206,6 +207,7 @@ class SimulateBuildSchema(Schema):
     mastery = fields.Str(required=True)
     allocated_node_ids = fields.List(fields.Int(), load_default=[])
     gear_affixes = fields.List(fields.Dict(), load_default=[])
+    passive_tree = fields.List(fields.Str(), load_default=[])
     skill_name = fields.Str(required=True, validate=validate.Length(min=1, max=64))
     skill_level = fields.Int(
         validate=validate.Range(min=1, max=40), load_default=20

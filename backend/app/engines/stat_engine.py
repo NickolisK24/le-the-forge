@@ -309,6 +309,7 @@ def aggregate_stats(
     allocated_node_ids: list[int],
     nodes: list[dict],        # list of {"id", "type", "name"}
     gear_affixes: list[dict], # list of {"name", "tier", "sealed"} — same as CraftAffix
+    passive_stats: Optional[dict] = None,  # output of resolve_passive_stats()
 ) -> BuildStats:
     """
     Aggregate all character stats from every source.
@@ -319,6 +320,9 @@ def aggregate_stats(
         allocated_node_ids: list of passive node IDs the player has allocated
         nodes: all available passive nodes for the class (id, type, name)
         gear_affixes: flat list of affixes across all gear slots (name, tier)
+        passive_stats: resolved passive tree stats from passive_stat_resolver
+            ({"additive": {...}, "special_effects": [...]}). When provided,
+            the additive values are merged into the stat totals.
 
     Returns:
         BuildStats with all values accumulated and derived stats applied.
@@ -369,7 +373,11 @@ def aggregate_stats(
         if value and hasattr(stats, stat_key):
             setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
-    # 5. Attribute scaling
+    # 5. Resolved passive tree stats (from passive_stat_resolver)
+    if passive_stats:
+        _add_partial(stats, passive_stats.get("additive", {}))
+
+    # 6. Attribute scaling
     stats.spell_damage_pct    += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"]
     stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["max_mana"]
     stats.physical_damage_pct += stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"]
@@ -379,10 +387,10 @@ def aggregate_stats(
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
 
-    # 6. Apply percentage health bonuses
+    # 7. Apply percentage health bonuses
     stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
 
-    # 7. Apply % bonuses to base values
+    # 8. Apply % bonuses to base values
     stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
     stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)

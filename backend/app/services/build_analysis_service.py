@@ -8,6 +8,7 @@ Extracted from build_service.py so the orchestration layer is separate from CRUD
 
 from app.models import Build
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
+from app.services.passive_stat_resolver import resolve_passive_stats
 from app.utils.exceptions import BuildValidationError
 
 
@@ -56,6 +57,10 @@ def analyze_build(build: Build) -> dict:
         primary_skill = sorted_skills[0].skill_name or None
         skill_level = max(1, sorted_skills[0].points_allocated or 20)
 
+    # Resolve passive tree stats from DB node data
+    passive_tree_ids = [nid for nid in (build.passive_tree or []) if isinstance(nid, str)]
+    passive_stats = resolve_passive_stats(passive_tree_ids) if passive_tree_ids else None
+
     # 1. Aggregate stats
     stats = stat_engine.aggregate_stats(
         character_class=build.character_class,
@@ -63,6 +68,7 @@ def analyze_build(build: Build) -> dict:
         allocated_node_ids=build.passive_tree or [],
         nodes=nodes,
         gear_affixes=gear_affixes,
+        passive_stats=passive_stats,
     )
 
     # 2. DPS

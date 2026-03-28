@@ -30,6 +30,7 @@ from marshmallow import ValidationError
 
 from app import limiter
 from app.models import PassiveNode
+from app.services.passive_stat_resolver import resolve_passive_stats
 from app.schemas.simulate import (
     SimulateStatsSchema,
     SimulateCombatSchema,
@@ -80,14 +81,19 @@ def simulate_stats():
         return resp
 
     nodes = _load_passive_nodes(data["character_class"])
+    passive_tree = data.get("passive_tree", [])
+    passive_stats = resolve_passive_stats(passive_tree) if passive_tree else None
     stats = simulation_service.aggregate_stats(
         character_class=data["character_class"],
         mastery=data["mastery"],
         allocated_node_ids=data.get("allocated_node_ids", []),
         nodes=nodes,
         gear_affixes=data.get("gear_affixes", []),
+        passive_stats=passive_stats,
     )
     result = stats.to_dict()
+    if passive_stats and passive_stats.get("special_effects"):
+        result["special_effects"] = passive_stats["special_effects"]
     cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)
 
@@ -201,6 +207,8 @@ def simulate_build():
 
     # Resolve nodes synchronously (DB access must stay in request thread)
     nodes = _load_passive_nodes(data["character_class"])
+    passive_tree = data.get("passive_tree", [])
+    passive_stats = resolve_passive_stats(passive_tree) if passive_tree else None
 
     cache_key = _sim_cache_key("build", {**data, "nodes": nodes})
     cached = get(cache_key)
@@ -219,6 +227,7 @@ def simulate_build():
         skill_level=data.get("skill_level", 20),
         n_simulations=data.get("n_simulations", 5_000),
         seed=data.get("seed"),
+        passive_stats=passive_stats,
     )
 
     if run_async:
