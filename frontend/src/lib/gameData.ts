@@ -86,31 +86,38 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
   ],
 
   Mage: [
-    // Base skills
-    { name: "Glacier",          tags: ["Spell","Cold","AoE"],              icon: "❄️" },
-    { name: "Fireball",         tags: ["Spell","Fire","Projectile"],       icon: "🔥" },
+    // Base Mage skills (available to all masteries)
     { name: "Lightning Blast",  tags: ["Spell","Lightning","Projectile"],  icon: "⚡" },
+    { name: "Fireball",         tags: ["Spell","Fire","Projectile"],       icon: "🔥" },
+    { name: "Snap Freeze",      tags: ["Spell","Cold","AoE","Freeze"],     icon: "🧊" },
+    { name: "Elemental Nova",   tags: ["Spell","Cold","Fire","Lightning","AoE"], icon: "💥" },
     { name: "Mana Strike",      tags: ["Melee","Spell","Lightning"],       icon: "✨" },
+    { name: "Flame Ward",       tags: ["Spell","Fire","Ward","Defense"],   icon: "🛡️" },
     { name: "Teleport",         tags: ["Movement","Spell"],                icon: "🌀" },
-    { name: "Surge",            tags: ["Melee","Lightning","Movement"],    icon: "⚡" },
     { name: "Frost Claw",       tags: ["Spell","Cold","Projectile"],       icon: "❄️" },
-    { name: "Static Orb",       tags: ["Spell","Lightning","AoE"],        icon: "🔵" },
-    { name: "Volcanic Orb",     tags: ["Spell","Fire","AoE"],             icon: "🟠" },
+    { name: "Static",           tags: ["Spell","Lightning","AoE"],         icon: "⚡" },
+    { name: "Glacier",          tags: ["Spell","Cold","AoE"],              icon: "❄️" },
     { name: "Disintegrate",     tags: ["Spell","Fire","Lightning","Channel"], icon: "🔆" },
-    // Sorcerer exclusive
-    { name: "Shatter Strike",   mastery: "Sorcerer", tags: ["Melee","Cold"],          icon: "🔷" },
-    { name: "Flame Ward",       mastery: "Sorcerer", tags: ["Spell","Fire","Ward","Defense"], icon: "🛡️" },
-    { name: "Meteor",           mastery: "Sorcerer", tags: ["Spell","Fire","AoE"],   icon: "☄️" },
-    { name: "Nova",             mastery: "Sorcerer", tags: ["Spell","Cold","Lightning","AoE"], icon: "💥" },
-    // Spellblade exclusive
-    { name: "Shatter Strike",   mastery: "Spellblade", tags: ["Melee","Cold"],        icon: "🔷" },
-    { name: "Enchant Weapon",   mastery: "Spellblade", tags: ["Buff","Melee","Fire"], icon: "🗡️" },
-    { name: "Mana Strike",      mastery: "Spellblade", tags: ["Melee","Lightning"],   icon: "✨" },
-    { name: "Snap Freeze",      mastery: "Spellblade", tags: ["Spell","Cold","AoE","Freeze"], icon: "🧊" },
+    { name: "Volcanic Orb",     tags: ["Spell","Fire","AoE"],              icon: "🟠" },
+    { name: "Focus",            tags: ["Spell","Channel","Buff"],          icon: "🔮" },
     // Runemaster exclusive
-    { name: "Rune of Winter",   mastery: "Runemaster", tags: ["Spell","Cold","Rune"], icon: "❄️" },
-    { name: "Runic Invocation", mastery: "Runemaster", tags: ["Spell","Rune"],        icon: "🔮" },
-    { name: "Runic Bolt",       mastery: "Runemaster", tags: ["Spell","Rune","Projectile"], icon: "🔵" },
+    { name: "Flame Rush",       mastery: "Runemaster", tags: ["Movement","Spell","Fire"],       icon: "🔥" },
+    { name: "Frost Wall",       mastery: "Runemaster", tags: ["Spell","Cold","AoE","Defense"],  icon: "❄️" },
+    { name: "Runebolt",         mastery: "Runemaster", tags: ["Spell","Rune","Projectile"],     icon: "🔵" },
+    { name: "Glyph of Dominion",mastery: "Runemaster", tags: ["Spell","Rune","AoE"],            icon: "🔮" },
+    { name: "Runic Invocation", mastery: "Runemaster", tags: ["Spell","Rune"],                  icon: "🔮" },
+    // Sorcerer exclusive
+    { name: "Static Orb",       mastery: "Sorcerer", tags: ["Spell","Lightning","AoE"],         icon: "🔵" },
+    { name: "Ice Barrage",      mastery: "Sorcerer", tags: ["Spell","Cold","Projectile"],       icon: "❄️" },
+    { name: "Arcane Ascendance",mastery: "Sorcerer", tags: ["Spell","Buff","Transformation"],   icon: "✨" },
+    { name: "Black Hole",       mastery: "Sorcerer", tags: ["Spell","Void","AoE"],              icon: "⚫" },
+    { name: "Meteor",           mastery: "Sorcerer", tags: ["Spell","Fire","AoE"],              icon: "☄️" },
+    // Spellblade exclusive
+    { name: "Static Orb",       mastery: "Spellblade", tags: ["Spell","Lightning","AoE"],       icon: "🔵" },
+    { name: "Ice Barrage",      mastery: "Spellblade", tags: ["Spell","Cold","Projectile"],     icon: "❄️" },
+    { name: "Arcane Ascendance",mastery: "Spellblade", tags: ["Spell","Buff","Transformation"], icon: "✨" },
+    { name: "Black Hole",       mastery: "Spellblade", tags: ["Spell","Void","AoE"],            icon: "⚫" },
+    { name: "Meteor",           mastery: "Spellblade", tags: ["Spell","Fire","AoE"],            icon: "☄️" },
   ],
 
   Primalist: [

@@ -932,7 +932,7 @@ export default function BuildPlannerPage() {
                 Clear Draft
               </Button>
             )}
-            <a href="/api/auth/discord">
+            <a href={`${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}>
               <Button variant="primary" size="sm">Sign In</Button>
             </a>
           </div>
