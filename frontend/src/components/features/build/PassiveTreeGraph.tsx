@@ -3,6 +3,12 @@ import { clsx } from "clsx";
 import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
 import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
+import iconSpriteMap from "@/data/iconSpriteMap.json";
+
+// Sprite sheet from lastepochtools CDN
+const SPRITE_URL =
+  "https://www.lastepochtools.com/data/version140/planner/res/d285216918221e26ef5d5b32f3407c4a.webp";
+const SPRITE_ICON_SIZE = 64;
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -43,6 +49,37 @@ const REGION_LABELS: Record<string, string> = {
 
 // Maximum passive points per class
 const MAX_PASSIVE_POINTS = 113;
+
+// Sprite icon rendered via foreignObject inside SVG
+function SpriteIcon({ iconId, size }: { iconId: string | undefined; size: number }) {
+  if (!iconId) return null;
+  const pos = (iconSpriteMap as Record<string, [number, number]>)[iconId];
+  if (!pos) return null;
+  const [bx, by] = pos;
+  const scaleFactor = size / SPRITE_ICON_SIZE;
+  return (
+    <foreignObject
+      x={-size / 2}
+      y={-size / 2}
+      width={size}
+      height={size}
+      pointerEvents="none"
+    >
+      <div
+        style={{
+          width: size,
+          height: size,
+          backgroundImage: `url(${SPRITE_URL})`,
+          backgroundPosition: `-${bx * scaleFactor}px -${by * scaleFactor}px`,
+          backgroundSize: `${2387 * scaleFactor}px auto`,
+          backgroundRepeat: "no-repeat",
+          borderRadius: "50%",
+          imageRendering: "auto",
+        }}
+      />
+    </foreignObject>
+  );
+}
 
 const DISPLAY_H = 580;
 
@@ -380,19 +417,8 @@ export default function PassiveTreeGraph({
                   <polygon points={hexPts} fill={fillGrad}/>
                   <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
-                  {/* Node icon — rendered inside the hex when image is available */}
-                  {node.iconId && (
-                    <image
-                      href={`/assets/passive-icons/${node.iconId}.png`}
-                      x={-r * 0.65}
-                      y={-r * 0.65}
-                      width={r * 1.3}
-                      height={r * 1.3}
-                      opacity={unlocked || active ? (active ? 1 : 0.7) : 0.35}
-                      pointerEvents="none"
-                      preserveAspectRatio="xMidYMid meet"
-                    />
-                  )}
+                  {/* Node icon from sprite sheet */}
+                  <SpriteIcon iconId={node.iconId} size={r * 1.6} />
 
                   <text
                     y={outerR + fontSize * 0.3}
