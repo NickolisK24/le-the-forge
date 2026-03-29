@@ -11,8 +11,10 @@
  */
 
 import { useState } from "react";
+import { createPortal } from "react-dom";
+import { useQuery } from "@tanstack/react-query";
 import type { GearSlot } from "@/types";
-import type { UniqueItem } from "@/lib/api";
+import { uniquesApi, type UniqueItem } from "@/lib/api";
 import UniqueItemPicker from "./UniqueItemPicker";
 
 // ---------------------------------------------------------------------------
@@ -30,6 +32,7 @@ const IDOL_SLOTS    = new Set(["idol_1x1_eterra","idol_1x3","idol_1x4","idol_2x2
 interface Props {
   gear: GearSlot[];
   onChange: (gear: GearSlot[]) => void;
+  readOnly?: boolean;
 }
 
 type TabId = "equipment" | "idols";
@@ -230,6 +233,123 @@ const IDOL_DEFS: IdolSlotDef[] = [
 ];
 
 // ---------------------------------------------------------------------------
+// Slot label helper (mirrors UniqueItemPicker)
+// ---------------------------------------------------------------------------
+
+const SLOT_LABEL: Record<string, string> = {
+  helmet: "Helmet", body: "Body Armour", gloves: "Gloves", boots: "Boots",
+  belt: "Belt", amulet: "Amulet", ring: "Ring", relic: "Relic", catalyst: "Catalyst",
+  sword: "Sword", axe: "Axe", mace: "Mace", dagger: "Dagger", sceptre: "Sceptre",
+  wand: "Wand", staff: "Staff", bow: "Bow", quiver: "Quiver", shield: "Shield",
+  two_handed_spear: "Spear",
+  idol_1x1_eterra: "Idol (1×1)", idol_1x3: "Idol (1×3)",
+  idol_1x4: "Idol (1×4)", idol_2x2: "Idol (2×2)",
+};
+
+// ---------------------------------------------------------------------------
+// Item tooltip
+// ---------------------------------------------------------------------------
+
+interface TooltipProps {
+  itemName: string;
+  /** The item's actual stored slot (e.g. "bow", "helmet", "idol_1x3") */
+  itemSlot: string;
+  anchorRect: DOMRect;
+}
+
+function ItemTooltip({ itemName, itemSlot, anchorRect }: TooltipProps) {
+  const { data: res } = useQuery({
+    queryKey: ["uniques", itemSlot],
+    queryFn: () => uniquesApi.list({ slot: itemSlot }),
+    staleTime: 86_400_000,
+  });
+
+  const item: UniqueItem | undefined = res?.data?.find((u) => u.name === itemName);
+
+  const TOOLTIP_W = 272;
+  const left = anchorRect.left - TOOLTIP_W - 10;
+  // If not enough room on the left, show to the right
+  const finalLeft = left < 8 ? anchorRect.right + 10 : left;
+  const finalTop = Math.max(8, Math.min(anchorRect.top, window.innerHeight - 420));
+
+  return createPortal(
+    <div
+      style={{ position: "fixed", left: finalLeft, top: finalTop, width: TOOLTIP_W, zIndex: 9999 }}
+      className="pointer-events-none rounded border border-forge-border bg-forge-bg shadow-2xl"
+    >
+      {!item ? (
+        <div className="px-4 py-3 font-mono text-xs text-forge-dim">Loading…</div>
+      ) : (
+        <div className="flex flex-col gap-3 p-4">
+
+          {/* Name + meta */}
+          <div>
+            <div className="font-display text-base text-amber-300 leading-tight">{item.name}</div>
+            <div className="mt-0.5 flex flex-wrap gap-x-2 gap-y-0 font-mono text-[10px] text-forge-dim">
+              <span>{item.base}</span>
+              <span>·</span>
+              <span>{SLOT_LABEL[item.slot] ?? item.slot}</span>
+              {item.level_req && <><span>·</span><span>Req. Lv {item.level_req}</span></>}
+            </div>
+          </div>
+
+          <div className="h-px bg-forge-border/50" />
+
+          {/* Implicit */}
+          {item.implicit && (
+            <div className="font-mono text-[11px] text-forge-text/65 italic">{item.implicit}</div>
+          )}
+
+          {/* Fixed affixes */}
+          {(item.affixes ?? []).length > 0 && (
+            <div className="flex flex-col gap-0.5">
+              {(item.affixes ?? []).map((a, i) => (
+                <div key={i} className="font-mono text-[11px] text-sky-200/80 leading-snug">{a}</div>
+              ))}
+            </div>
+          )}
+
+          {/* Unique effects */}
+          {(item.unique_effects ?? []).length > 0 && (
+            <div className="rounded border border-amber-500/25 bg-amber-500/[0.04] p-2.5">
+              <div className="font-mono text-[9px] uppercase tracking-widest text-amber-500/80 mb-1.5">
+                Unique Effects
+              </div>
+              <div className="flex flex-col gap-1">
+                {(item.unique_effects ?? []).map((e, i) => (
+                  <div key={i} className="font-body text-xs text-forge-text/85 leading-snug">{e}</div>
+                ))}
+              </div>
+            </div>
+          )}
+
+          {/* Lore */}
+          {item.lore && (
+            <div className="border-t border-forge-border/30 pt-2">
+              <p className="font-body text-[10px] text-forge-dim/60 italic leading-relaxed">
+                "{item.lore}"
+              </p>
+            </div>
+          )}
+
+          {/* Tags */}
+          {(item.tags ?? []).length > 0 && (
+            <div className="flex flex-wrap gap-1">
+              {(item.tags ?? []).map((t) => (
+                <span key={t} className="rounded-sm bg-forge-surface2 px-1.5 py-0.5 font-mono text-[9px] text-forge-dim">
+                  {t}
+                </span>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
+    </div>,
+    document.body,
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
 
@@ -237,11 +357,14 @@ interface PaperSlotProps {
   def: PaperSlotDef;
   equipped: GearSlot | undefined;
   large?: boolean;
+  readOnly?: boolean;
   onPick: () => void;
   onClear: () => void;
+  onHoverEnter: (rect: DOMRect) => void;
+  onHoverLeave: () => void;
 }
 
-function PaperSlotCell({ def, equipped, large, onPick, onClear }: PaperSlotProps) {
+function PaperSlotCell({ def, equipped, large, readOnly, onPick, onClear, onHoverEnter, onHoverLeave }: PaperSlotProps) {
   const [hovering, setHovering] = useState(false);
 
   return (
@@ -249,17 +372,20 @@ function PaperSlotCell({ def, equipped, large, onPick, onClear }: PaperSlotProps
       style={{ gridArea: def.area }}
       className={`
         relative flex flex-col items-center justify-center rounded border
-        cursor-pointer select-none transition-all duration-150 overflow-hidden
+        ${readOnly ? "cursor-default" : "cursor-pointer"} select-none transition-all duration-150 overflow-hidden
         ${equipped
           ? "border-amber-500/40 bg-forge-surface shadow-[inset_0_0_12px_rgba(245,158,11,0.06)]"
-          : hovering
+          : hovering && !readOnly
             ? "border-forge-amber/35 bg-forge-surface2"
             : "border-forge-border bg-forge-surface"
         }
       `}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      onClick={onPick}
+      onMouseEnter={(e) => {
+        setHovering(true);
+        if (equipped) onHoverEnter((e.currentTarget as HTMLElement).getBoundingClientRect());
+      }}
+      onMouseLeave={() => { setHovering(false); onHoverLeave(); }}
+      onClick={readOnly ? undefined : onPick}
     >
       {/* Ghost slot art */}
       <div
@@ -289,8 +415,8 @@ function PaperSlotCell({ def, equipped, large, onPick, onClear }: PaperSlotProps
         )}
       </div>
 
-      {/* Clear button — top-right corner on hover when equipped */}
-      {equipped && hovering && (
+      {/* Clear button — top-right corner on hover when equipped (edit mode only) */}
+      {equipped && hovering && !readOnly && (
         <button
           className="absolute top-1 right-1 z-20 w-4 h-4 flex items-center justify-center rounded-sm bg-forge-bg/80 font-mono text-[9px] text-forge-dim hover:text-red-400 transition-colors"
           onClick={(e) => { e.stopPropagation(); onClear(); }}
@@ -314,11 +440,14 @@ interface IdolCellProps {
   colSpan: number;
   rowSpan: number;
   equipped: GearSlot | undefined;
+  readOnly?: boolean;
   onPick: () => void;
   onClear: () => void;
+  onHoverEnter: (rect: DOMRect) => void;
+  onHoverLeave: () => void;
 }
 
-function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equipped, onPick, onClear }: IdolCellProps) {
+function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equipped, readOnly, onPick, onClear, onHoverEnter, onHoverLeave }: IdolCellProps) {
   const [hovering, setHovering] = useState(false);
 
   return (
@@ -329,16 +458,22 @@ function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equippe
         minHeight: rowSpan * 40,
       }}
       className={`
-        relative flex flex-col items-center justify-center rounded border cursor-pointer
+        relative flex flex-col items-center justify-center rounded border
+        ${readOnly ? "cursor-default" : "cursor-pointer"}
         select-none transition-all duration-150 overflow-hidden
         ${equipped
           ? "border-amber-500/35 bg-forge-surface shadow-[inset_0_0_8px_rgba(245,158,11,0.05)]"
-          : "border-forge-border/70 bg-forge-surface hover:border-forge-amber/25 hover:bg-forge-surface2"
+          : readOnly
+            ? "border-forge-border/70 bg-forge-surface"
+            : "border-forge-border/70 bg-forge-surface hover:border-forge-amber/25 hover:bg-forge-surface2"
         }
       `}
-      onMouseEnter={() => setHovering(true)}
-      onMouseLeave={() => setHovering(false)}
-      onClick={onPick}
+      onMouseEnter={(e) => {
+        setHovering(true);
+        if (equipped) onHoverEnter((e.currentTarget as HTMLElement).getBoundingClientRect());
+      }}
+      onMouseLeave={() => { setHovering(false); onHoverLeave(); }}
+      onClick={readOnly ? undefined : onPick}
     >
       {/* Ghost art */}
       <div className="absolute inset-0 flex items-center justify-center pointer-events-none text-2xl opacity-[0.06]">
@@ -359,7 +494,7 @@ function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equippe
         )}
       </div>
 
-      {equipped && hovering && (
+      {equipped && hovering && !readOnly && (
         <button
           className="absolute top-0.5 right-0.5 z-20 w-3.5 h-3.5 flex items-center justify-center rounded-sm bg-forge-bg/80 font-mono text-[8px] text-forge-dim hover:text-red-400 transition-colors"
           onClick={(e) => { e.stopPropagation(); onClear(); }}
@@ -375,9 +510,10 @@ function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equippe
 // Main component
 // ---------------------------------------------------------------------------
 
-export default function GearEditor({ gear, onChange }: Props) {
+export default function GearEditor({ gear, onChange, readOnly }: Props) {
   const [tab, setTab] = useState<TabId>("equipment");
   const [activePicker, setActivePicker] = useState<{ slot: string; label: string; gearKey: string } | null>(null);
+  const [tooltip, setTooltip] = useState<{ name: string; slot: string; rect: DOMRect } | null>(null);
 
   // ---- Equip handler ----
   function handleEquip(item: UniqueItem, gearKey: string, storeSlots: Set<string> | null) {
@@ -455,16 +591,22 @@ export default function GearEditor({ gear, onChange }: Props) {
             gap: "6px",
           }}
         >
-          {PAPER_SLOTS.map((def) => (
-            <PaperSlotCell
-              key={def.gearKey}
-              def={def}
-              equipped={def.findEquipped(gear)}
-              large={["weapon", "body", "offhand"].includes(def.area)}
-              onPick={() => setActivePicker({ slot: def.pickerSlot, label: def.label, gearKey: def.gearKey })}
-              onClear={() => handleClear(def)}
-            />
-          ))}
+          {PAPER_SLOTS.map((def) => {
+            const eq = def.findEquipped(gear);
+            return (
+              <PaperSlotCell
+                key={def.gearKey}
+                def={def}
+                equipped={eq}
+                large={["weapon", "body", "offhand"].includes(def.area)}
+                readOnly={readOnly}
+                onPick={() => setActivePicker({ slot: def.pickerSlot, label: def.label, gearKey: def.gearKey })}
+                onClear={() => handleClear(def)}
+                onHoverEnter={(rect) => eq && setTooltip({ name: eq.item_name, slot: eq.slot, rect })}
+                onHoverLeave={() => setTooltip(null)}
+              />
+            );
+          })}
         </div>
       )}
 
@@ -483,32 +625,47 @@ export default function GearEditor({ gear, onChange }: Props) {
             }}
           >
             {IDOL_DEFS.flatMap((def) =>
-              Array.from({ length: def.count }, (_, i) => (
-                <IdolCell
-                  key={`${def.type}__${i}`}
-                  type={def.type}
-                  label={`${def.label} · ${i + 1}`}
-                  index={i}
-                  colSpan={def.colSpan}
-                  rowSpan={def.rowSpan}
-                  equipped={getGear(gear, def.type, i)}
-                  onPick={() =>
-                    setActivePicker({
-                      slot: "idol",
-                      label: `Idol ${def.label}`,
-                      gearKey: `${def.type}__${i}`,
-                    })
-                  }
-                  onClear={() => handleIdolClear(def.type, i)}
-                />
-              ))
+              Array.from({ length: def.count }, (_, i) => {
+                const eq = getGear(gear, def.type, i);
+                return (
+                  <IdolCell
+                    key={`${def.type}__${i}`}
+                    type={def.type}
+                    label={`${def.label} · ${i + 1}`}
+                    index={i}
+                    colSpan={def.colSpan}
+                    rowSpan={def.rowSpan}
+                    equipped={eq}
+                    readOnly={readOnly}
+                    onPick={() =>
+                      setActivePicker({
+                        slot: "idol",
+                        label: `Idol ${def.label}`,
+                        gearKey: `${def.type}__${i}`,
+                      })
+                    }
+                    onClear={() => handleIdolClear(def.type, i)}
+                    onHoverEnter={(rect) => eq && setTooltip({ name: eq.item_name, slot: eq.slot, rect })}
+                    onHoverLeave={() => setTooltip(null)}
+                  />
+                );
+              })
             )}
           </div>
         </div>
       )}
 
-      {/* ── Picker modal ── */}
-      {activePicker && (
+      {/* ── Hover tooltip ── */}
+      {tooltip && (
+        <ItemTooltip
+          itemName={tooltip.name}
+          itemSlot={tooltip.slot}
+          anchorRect={tooltip.rect}
+        />
+      )}
+
+      {/* ── Picker modal (edit mode only) ── */}
+      {activePicker && !readOnly && (
         <UniqueItemPicker
           slot={activePicker.slot}
           displayLabel={activePicker.label}

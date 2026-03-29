@@ -450,6 +450,16 @@ function BuildSummary({ build }: { build: Build }) {
           </dl>
         </Panel>
 
+        {build.gear.length > 0 && (
+          <Panel title={`Gear (${build.gear.length} equipped)`}>
+            <GearEditor
+              gear={build.gear}
+              onChange={() => {}}
+              readOnly
+            />
+          </Panel>
+        )}
+
         <Panel title="Skills" className="lg:col-span-2">
           {build.skills.length ? (
             <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -602,13 +612,6 @@ function BuildSummary({ build }: { build: Build }) {
           </div>
         </Panel>
 
-        <Panel title={`Gear (${gearSlots.length} equipped)`}>
-          <GearEditor
-            gear={gearSlots}
-            onChange={setGearSlots}
-          />
-        </Panel>
-
         <Panel title="Passive Tree">
           <PassiveTreeGraph
             characterClass={characterClass}
@@ -627,6 +630,13 @@ function BuildSummary({ build }: { build: Build }) {
       </div>
 
       <div className="flex flex-col gap-6 min-w-0">
+        <Panel title={`Gear (${gearSlots.length} equipped)`}>
+          <GearEditor
+            gear={gearSlots}
+            onChange={setGearSlots}
+          />
+        </Panel>
+
         <Panel title="Save Changes">
           <div className="flex flex-col gap-3">
             <Button onClick={handleSave} disabled={updateBuild.isPending || !name.trim()} className="w-full">
@@ -1122,13 +1132,6 @@ export default function BuildPlannerPage() {
           </div>
         </Panel>
 
-        <Panel title={`Gear (${draftGear.length} equipped)`}>
-          <GearEditor
-            gear={draftGear}
-            onChange={setDraftGear}
-          />
-        </Panel>
-
         <Panel title="Passive Tree">
           <PassiveTreeGraph
             characterClass={characterClass}
@@ -1146,7 +1149,7 @@ export default function BuildPlannerPage() {
         </Panel>
       </div>
 
-      {/* ── RIGHT: preview + save ── */}
+      {/* ── RIGHT: preview + gear + save ── */}
       <div className="flex flex-col gap-6 min-w-0">
         <Panel title="Preview">
           <div className="space-y-3">
@@ -1183,6 +1186,13 @@ export default function BuildPlannerPage() {
               </div>
             )}
           </div>
+        </Panel>
+
+        <Panel title={`Gear (${draftGear.length} equipped)`}>
+          <GearEditor
+            gear={draftGear}
+            onChange={setDraftGear}
+          />
         </Panel>
 
         <Panel title="Save">
