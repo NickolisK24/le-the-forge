@@ -3,7 +3,7 @@
 Repository: NickolisK24/le-the-forge
 Date: 2026-03-27
 Status: Active Development — Phases 1–3 Complete, Phase 4 In Progress
-Last Updated: 2026-03-28
+Last Updated: 2026-03-29
 
 ---
 
@@ -53,7 +53,9 @@ The Forge is not a concept — it's a working multi-engine simulation platform. 
 | Full REST API | ✅ Documented | 30+ endpoints across auth, builds, craft sessions, simulation, reference data |
 | Game Data Layer | ✅ Rich | 11 JSON data files including 1.1MB affixes.json, skills_metadata.json, enemy_profiles.json, damage_types.json |
 | Crafting Simulator | ⚠️ Partial | Strategy comparison, optimal path search, FP tracking (backend Monte Carlo exists but not surfaced in frontend UI) |
-| Build Planner | ✅ Functional | Passive tree (real game coords, BFS validation, leveling path), skill selection, gear slots |
+| Build Planner | ✅ Functional | Passive tree (real game coords, BFS validation, leveling path), skill selection, skill spec trees, gear editor |
+| Unique Items | ✅ Complete | 403 unique items (uniques.json), backend API with meta-slot expansion, paper-doll gear editor, hover item tooltips |
+| Set Items | ✅ Exists | set_items.json extracted — not yet surfaced in UI |
 | Passive Tree | ✅ Advanced | Hexagonal SVG nodes, real game positions, connection rendering, BFS path validation, leveling path tracker |
 | Build Comparison | ✅ Exists | Side-by-side comparison page |
 | Community Builds | ✅ Exists | Browse, vote, filter, search, tier system |
@@ -138,30 +140,34 @@ Issue board triaged 2026-03-27. Phase labels applied.
 
 ## 4. Short-Term Roadmap (30–90 Days) — 🔄 IN PROGRESS
 
-### 4.1 Mastery Gate Behavior (Passive Tree) — 🔄 ~55%
+### 4.1 Mastery Gate Behavior (Passive Tree) — 🔄 ~85%
 
 Per docs/passive_tree_missing_features.md:
 
-- 📋 Modal/inline prompt for specialization selection
-- 📋 State flag for chosen mastery per class
-- 📋 Deeper nodes unlock after gate is passed
-- 📋 Mastery-specific sub-trees become visible
+- ✅ Mastery gate enforcement implemented — correct Last Epoch rules applied
+- ✅ State flag for chosen mastery per class
+- ✅ Deeper nodes blocked until gate requirements met
+- 📋 Modal/inline prompt for specialization selection (UX polish)
+- 📋 Mastery-specific sub-trees visually distinct
 
-### 4.2 Skill Tree UI Component — 🔄 ~90%
+### 4.2 Skill Tree UI Component — ✅ ~95%
 
 - ✅ Per-skill node graph with layout (SkillTreeGraph.tsx)
 - ✅ Node tooltips with stat values, scaling info, and structured stat parsing (`|` separator)
 - ✅ Downside detection with red highlighting and "penalty" badge
 - ✅ Multi-point nodes show per-point values with max points
-- 📋 Point allocation tracking
+- ✅ Point allocation tracking — spec_tree stored per skill, persisted to DB
+- ✅ Skill tree viewable in both edit and read-only (view) mode
 - 📋 Mastery gate integration
 
-### 4.3 Build Import System — 🔄 ~65%
+### 4.3 Build Import System — 🔄 ~85%
 
-- 📋 Paste-to-import — Parse Last Epoch Tools build planner export URLs
-- 🔄 JSON import — Accept structured JSON character data (schema exists)
-- 📋 Game save file import (future)
-- 📋 Auto-populate: gear, passives, skills, modifiers, character state
+- ✅ LE Tools URL import — parse Last Epoch Tools build planner export URLs with correct class/mastery mapping (0-indexed, fixed)
+- ✅ JSON import — paste structured JSON to auto-populate all fields
+- ✅ Auto-populate: character class, mastery, level, passives, skills, gear
+- ✅ Import presets — load template builds
+- 📋 Game save file import (future/long-term)
+- 📋 Patch version mismatch warnings on import
 
 ### 4.4 Defense Analysis Panel — 🔄 ~85%
 
@@ -342,7 +348,18 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 - 📋 Sound effects (desktop mode)
 - 📋 Loading skeletons during API calls
 
-### 8.4 Mobile Responsiveness — 📋 Planned
+### 8.4 Gear Editor — ✅ Complete
+
+- ✅ Paper-doll equipment layout matching Last Epoch's in-game UI (CSS grid-template-areas)
+- ✅ Equipment tab — Helmet, Body, Weapon (meta-slot: all 9 weapon types), Off-hand (Shield/Quiver/Catalyst), Amulet, Ring×2, Belt, Gloves, Boots, Relic
+- ✅ Idols tab — 1×1, 1×3, 1×4, 2×2 idol grid with correct slot counts
+- ✅ UniqueItemPicker modal — per-slot filtered list, search by name/base/tag, full item preview pane
+- ✅ Hover tooltips — fixed-position portal overlay on every equipped cell showing all stats (implicit, affixes, unique effects, lore, tags)
+- ✅ Read-only mode — view mode shows gear without interaction, no picker/clear
+- ✅ Right-column placement — gear editor lives in sidebar alongside Preview and Save, left column stays focused on Skills + Passive Tree
+- ✅ Backend API — `/api/ref/uniques?slot=` with meta-slot expansion; 24h cache
+
+### 8.5 Mobile Responsiveness — 📋 Planned
 
 - 📋 Responsive grid layouts
 - 📋 Touch-friendly passive tree
@@ -367,12 +384,12 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 | rarities.json | ✅ Exists | Complete |
 | skills_metadata.json (40KB) | ✅ Exists | Add skill tree node data |
 | tags.json | ✅ Exists | Complete |
-| uniques.json | 🔴 Missing | Add all unique items with special affixes |
+| uniques.json | ✅ Complete | 403 unique items — name, slot, base, affixes, unique_effects, lore, tags, level_req |
+| set_items.json | ✅ Exists | Extracted — set bonuses not yet surfaced in UI |
 | idols.json | 🔴 Missing | Add idol types, affix pools |
 | blessings.json | 🔴 Missing | Timeline blessings per boss |
 | passive_nodes_full.json | 🔴 Missing | Full stat values per node per point |
 | skill_tree_nodes.json | 🔴 Missing | Skill specialization tree data |
-| set_items.json | 🔴 Missing | Set bonuses |
 
 ### 9.2 Automated Data Sync Pipeline — 🔄 ~30%
 
@@ -529,9 +546,9 @@ Current: 40+ tests. Target: 100+
 
 | Version | Scope | Status |
 |---------|-------|--------|
-| v0.2.0 | Optimization engine + craft hardening | 🔄 In Progress |
-| v0.3.0 | Skill tree UI, mastery gates, build import | 📋 Planned |
-| v0.4.0 | Boss simulation, crafting planner, defense panel | 📋 Planned |
+| v0.2.0 | Optimization engine + craft hardening | ✅ Done |
+| v0.3.0 | Skill trees, mastery gates, build import, unique items + gear editor | ✅ Done |
+| v0.4.0 | Boss simulation, crafting strategy planner, defense panel completion | 📋 Planned |
 | v0.5.0 | Recommendation engine with explanations | 📋 Planned |
 | v1.0.0 | Feature-complete desktop release | 📋 Planned |
 
@@ -615,11 +632,12 @@ The Forge's moat is its engine architecture. Everything else is presentation. Th
 | 🔴 Critical | Close open Phase 1 issues | Now | ✅ Done |
 | 🔴 Critical | Expose optimization engine via API | Week 1-2 | ✅ Done |
 | 🔴 Critical | Harden craft engine rules | Week 2-3 | ✅ Done |
-| 🟡 High | Mastery gate behavior | Week 3-4 | 🔄 ~55% |
-| 🟡 High | Build import system | Month 2 | 🔄 ~65% |
+| 🟡 High | Mastery gate behavior | Week 3-4 | 🔄 ~85% |
+| 🟡 High | Build import system | Month 2 | 🔄 ~85% |
+| 🟡 High | Unique items + gear editor | Month 2 | ✅ Done |
 | 🟡 High | Defense analysis panel UI | Month 2 | 🔄 ~85% |
 | 🟡 High | Stat efficiency scoring UI | Month 2-3 | 🔄 ~75% |
-| 🟢 Medium | Skill tree UI component | Month 3 | 🔄 ~90% |
+| 🟢 Medium | Skill tree UI component | Month 3 | ✅ ~95% |
 | 🟢 Medium | Boss encounter simulation | Month 3-4 | 📋 Planned |
 | 🟢 Medium | Recommendation engine with explanations | Month 4-5 | 📋 Planned |
 | 🟢 Medium | Crafting strategy planner | Month 5-6 | 📋 Planned |
