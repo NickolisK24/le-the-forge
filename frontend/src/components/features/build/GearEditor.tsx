@@ -536,6 +536,18 @@ const RARITY_COLOR: Record<string, string> = {
   exalted: "text-emerald-400",
 };
 
+// Map GearEditor slot names → affixes.json applicable_to values
+const SLOT_TO_AFFIX_SLOT: Record<string, string> = {
+  body:             "chest",
+  helmet:           "helm",
+  sword:            "sword_1h",
+  axe:              "axe_1h",
+  mace:             "mace_1h",
+  two_handed_spear: "spear",
+  // identical names — no mapping needed for: boots, gloves, belt, amulet, ring,
+  // relic, dagger, sceptre, wand, staff, bow, quiver, shield, catalyst
+};
+
 function AffixEditorModal({ gearSlot, onSave, onClose, onReplace }: AffixEditorProps) {
   const [affixes, setAffixes] = useState<AffixOnItem[]>(gearSlot.affixes ?? []);
   const [addingAffix, setAddingAffix] = useState(false);
@@ -543,9 +555,10 @@ function AffixEditorModal({ gearSlot, onSave, onClose, onReplace }: AffixEditorP
   const [newAffixTier, setNewAffixTier] = useState(5);
   const [newAffixSealed, setNewAffixSealed] = useState(false);
 
+  const affixSlot = SLOT_TO_AFFIX_SLOT[gearSlot.slot] ?? gearSlot.slot;
   const { data: affixRes } = useQuery({
-    queryKey: ["affixes", gearSlot.slot],
-    queryFn: () => refApi.affixes({ slot: gearSlot.slot }),
+    queryKey: ["affixes", affixSlot],
+    queryFn: () => refApi.affixes({ slot: affixSlot }),
     staleTime: 86_400_000,
   });
   const availableAffixes = useMemo(
