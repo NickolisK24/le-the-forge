@@ -1138,6 +1138,7 @@ export default function BuildPlannerPage() {
             mastery={mastery}
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
+            onMasteryChange={handleMasteryChange}
           />
           <div className="mt-3 min-w-0 overflow-hidden">
             <PassiveProgressBar
