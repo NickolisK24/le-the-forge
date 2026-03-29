@@ -2,7 +2,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { clsx } from "clsx";
 import type { PassiveNode } from "@/lib/gameData";
 import { PASSIVE_TREES } from "@/data/passiveTrees";
-import { PASSIVE_TREE_META } from "@/data/passiveTrees/edges";
+import { PASSIVE_TREE_META, type NodeMeta } from "@/data/passiveTrees/edges";
 import iconSpriteMap from "@/data/iconSpriteMap.json";
 import { fetchClassTree } from "@/services/passiveTreeService";
 import type { PassiveNode as ApiPassiveNode } from "@/services/passiveTreeService";
@@ -121,9 +121,18 @@ interface Props {
   mastery: string;
   allocated: AllocMap;
   onAllocate: (nodeId: number, points: number) => void;
+  /** Called when the player clicks a mastery gate and confirms a specialization.
+   *  If omitted, gate nodes behave as regular nodes (e.g. in edit/read-only). */
+  onMasteryChange?: (mastery: string) => void;
   readOnly?: boolean;
   /** Total passive points the character has earned (defaults to MAX_PASSIVE_POINTS) */
   totalPassivePoints?: number;
+}
+
+interface MasteryGateModal {
+  nodeId: number;
+  masteryRegion: string;
+  masteryName: string;
 }
 
 interface TooltipInfo {
@@ -133,6 +142,31 @@ interface TooltipInfo {
 }
 
 // ---------------------------------------------------------------------------
+// Gate resolver — find which mastery region a gate node unlocks
+// ---------------------------------------------------------------------------
+
+function getMasteryForGate(
+  nodeId: number,
+  classMeta: Record<number, NodeMeta>,
+): string | null {
+  for (const meta of Object.values(classMeta)) {
+    if (meta.parentIds.includes(nodeId) && meta.region !== "base") {
+      return meta.region;
+    }
+  }
+  return null;
+}
+
+// Class accent colors for gate modal
+const CLASS_ACCENT: Record<string, string> = {
+  acolyte:  "#b870ff",
+  mage:     "#00d4f5",
+  primalist:"#3dca74",
+  sentinel: "#f0a020",
+  rogue:    "#ff5050",
+};
+
+// ---------------------------------------------------------------------------
 // PassiveTreeGraph
 // ---------------------------------------------------------------------------
 export default function PassiveTreeGraph({
@@ -140,6 +174,7 @@ export default function PassiveTreeGraph({
   mastery,
   allocated,
   onAllocate,
+  onMasteryChange,
   readOnly = false,
   totalPassivePoints = MAX_PASSIVE_POINTS,
 }: Props) {
@@ -220,6 +255,7 @@ export default function PassiveTreeGraph({
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
   const [containerSize, setContainerSize] = useState({ w: 800, h: DISPLAY_H });
+  const [gateModal, setGateModal] = useState<MasteryGateModal | null>(null);
 
   useEffect(() => {
     const el = containerRef.current;
@@ -289,9 +325,24 @@ export default function PassiveTreeGraph({
     e.stopPropagation();
     const pts = allocated[node.id] ?? 0;
     const max = node.maxPoints ?? 1;
-    if (pts < max && isUnlocked(node.id) && pointsLeft > 0) {
-      onAllocate(node.id, pts + 1);
+    if (pts >= max || !isUnlocked(node.id) || pointsLeft <= 0) return;
+
+    // Mastery gate nodes: show specialization modal on first investment
+    if (node.type === "mastery-gate" && onMasteryChange) {
+      const gateRegion = getMasteryForGate(node.id, classMeta as Record<number, NodeMeta>);
+      if (gateRegion) {
+        const gateMasteryName = REGION_LABELS[gateRegion] ?? gateRegion;
+        // Already the chosen mastery — just allocate without a modal
+        if (chosenMasteryRegion === gateRegion) {
+          onAllocate(node.id, pts + 1);
+        } else {
+          setGateModal({ nodeId: node.id, masteryRegion: gateRegion, masteryName: gateMasteryName });
+        }
+        return;
+      }
     }
+
+    onAllocate(node.id, pts + 1);
   };
 
   const handleDeallocate = (node: LayoutNode, e: React.MouseEvent) => {
@@ -310,7 +361,7 @@ export default function PassiveTreeGraph({
   const regionPoints = layoutNodes.reduce((s, n) => s + (allocated[n.id] ?? 0), 0);
 
   return (
-    <div className="flex flex-col gap-0 rounded border border-forge-border bg-forge-surface overflow-hidden">
+    <div className="relative flex flex-col gap-0 rounded border border-forge-border bg-forge-surface overflow-hidden">
 
       {/* Point budget bar */}
       <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-3 py-1.5 shrink-0">
@@ -624,6 +675,88 @@ export default function PassiveTreeGraph({
 
 
       </div>
+
+      {/* Mastery gate confirmation modal */}
+      {gateModal && (
+        <div
+          className="absolute inset-0 z-30 flex items-center justify-center bg-black/70"
+          onClick={() => setGateModal(null)}
+        >
+          <div
+            className="relative w-80 rounded border bg-forge-bg shadow-2xl overflow-hidden"
+            style={{ borderColor: `${CLASS_ACCENT[cls] ?? "#f0a020"}55` }}
+            onClick={e => e.stopPropagation()}
+          >
+            {/* Accent bar */}
+            <div
+              className="h-1 w-full"
+              style={{ background: CLASS_ACCENT[cls] ?? "#f0a020" }}
+            />
+
+            <div className="p-5 flex flex-col gap-4">
+              {/* Header */}
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim mb-1">
+                  Specialization Gate
+                </div>
+                <div
+                  className="font-display text-2xl font-bold leading-tight"
+                  style={{ color: CLASS_ACCENT[cls] ?? "#f0a020" }}
+                >
+                  {gateModal.masteryName}
+                </div>
+              </div>
+
+              {/* Body */}
+              <div className="font-body text-sm text-forge-muted leading-relaxed">
+                {mastery && chosenMasteryRegion !== gateModal.masteryRegion ? (
+                  <>
+                    <span className="text-orange-400 font-semibold">Changing specialization</span>
+                    {" "}from{" "}
+                    <span className="text-forge-text">{mastery}</span>
+                    {" "}to{" "}
+                    <span style={{ color: CLASS_ACCENT[cls] ?? "#f0a020" }} className="font-semibold">
+                      {gateModal.masteryName}
+                    </span>
+                    . Skills exclusive to {mastery} will be removed from your build.
+                  </>
+                ) : (
+                  <>
+                    Invest in the{" "}
+                    <span style={{ color: CLASS_ACCENT[cls] ?? "#f0a020" }} className="font-semibold">
+                      {gateModal.masteryName}
+                    </span>
+                    {" "}specialization. You can still invest points in other masteries, but deep nodes lock once you've committed {CHAIN_THRESHOLD} points here.
+                  </>
+                )}
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-2 pt-1">
+                <button
+                  className="flex-1 rounded px-3 py-2 font-mono text-sm font-bold transition-colors text-forge-bg"
+                  style={{ background: CLASS_ACCENT[cls] ?? "#f0a020" }}
+                  onClick={() => {
+                    const { nodeId, masteryRegion, masteryName } = gateModal;
+                    onMasteryChange!(masteryName);
+                    onAllocate(nodeId, (allocated[nodeId] ?? 0) + 1);
+                    setActiveRegion(masteryRegion);
+                    setGateModal(null);
+                  }}
+                >
+                  Confirm {gateModal.masteryName}
+                </button>
+                <button
+                  className="rounded border border-forge-border px-3 py-2 font-mono text-sm text-forge-dim hover:text-forge-text transition-colors"
+                  onClick={() => setGateModal(null)}
+                >
+                  Cancel
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      )}
 
       {/* Footer legend */}
       <div className="flex flex-wrap items-center gap-4 border-t border-forge-border px-3 py-1.5 text-[10px] font-mono text-forge-dim bg-forge-surface2 shrink-0">
