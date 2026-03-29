@@ -10,12 +10,12 @@
  * The actual GearSlot stored uses the item's real slot (e.g. "bow", "shield").
  */
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import { createPortal } from "react-dom";
 import { useQuery } from "@tanstack/react-query";
-import type { GearSlot } from "@/types";
-import { uniquesApi, type UniqueItem } from "@/lib/api";
-import UniqueItemPicker from "./UniqueItemPicker";
+import type { GearSlot, AffixOnItem } from "@/types";
+import { uniquesApi, refApi, type UniqueItem, type BaseItemDef } from "@/lib/api";
+import ItemPicker from "./ItemPicker";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -349,6 +349,11 @@ function ItemTooltip({ itemName, itemSlot, anchorRect }: TooltipProps) {
   );
 }
 
+/** True when the item is crafted (has a rarity other than "legendary"). */
+function isCrafted(g: GearSlot): boolean {
+  return g.rarity !== "legendary";
+}
+
 // ---------------------------------------------------------------------------
 // Sub-components
 // ---------------------------------------------------------------------------
@@ -401,9 +406,16 @@ function PaperSlotCell({ def, equipped, large, readOnly, onPick, onClear, onHove
             <span className="font-mono text-[10px] text-forge-dim/70 uppercase tracking-widest leading-none mb-1">
               {def.label}
             </span>
-            <span className={`font-mono text-center leading-tight text-amber-300 ${large ? "text-xs" : "text-[10px]"}`}>
+            <span className={`font-mono text-center leading-tight ${
+              isCrafted(equipped) ? "text-emerald-300" : "text-amber-300"
+            } ${large ? "text-xs" : "text-[10px]"}`}>
               {equipped.item_name}
             </span>
+            {isCrafted(equipped) && (
+              <span className="font-mono text-[8px] text-emerald-500/70 uppercase tracking-wider mt-0.5">
+                {equipped.rarity} · {(equipped.affixes ?? []).length} affix{(equipped.affixes ?? []).length !== 1 ? "es" : ""}
+              </span>
+            )}
           </>
         ) : (
           <>
@@ -507,6 +519,190 @@ function IdolCell({ type: _type, label, index: _index, colSpan, rowSpan, equippe
 }
 
 // ---------------------------------------------------------------------------
+// Affix editor modal (crafted items)
+// ---------------------------------------------------------------------------
+
+interface AffixEditorProps {
+  gearSlot: GearSlot;
+  onSave: (updated: GearSlot) => void;
+  onClose: () => void;
+  onReplace: () => void;
+}
+
+const RARITY_COLOR: Record<string, string> = {
+  normal:  "text-forge-text",
+  magic:   "text-blue-400",
+  rare:    "text-yellow-400",
+  exalted: "text-emerald-400",
+};
+
+function AffixEditorModal({ gearSlot, onSave, onClose, onReplace }: AffixEditorProps) {
+  const [affixes, setAffixes] = useState<AffixOnItem[]>(gearSlot.affixes ?? []);
+  const [addingAffix, setAddingAffix] = useState(false);
+  const [newAffixName, setNewAffixName] = useState("");
+  const [newAffixTier, setNewAffixTier] = useState(5);
+  const [newAffixSealed, setNewAffixSealed] = useState(false);
+
+  const { data: affixRes } = useQuery({
+    queryKey: ["affixes", gearSlot.slot],
+    queryFn: () => refApi.affixes({ slot: gearSlot.slot }),
+    staleTime: 86_400_000,
+  });
+  const availableAffixes = useMemo(
+    () => (affixRes?.data ?? []).map((a) => a.name),
+    [affixRes]
+  );
+
+  const maxTierForAffix = useMemo(() => {
+    if (!newAffixName) return 5;
+    const found = (affixRes?.data ?? []).find((a) => a.name === newAffixName);
+    return found ? Math.max(...found.tiers.map((t) => t.tier)) : 5;
+  }, [newAffixName, affixRes]);
+
+  function addAffix() {
+    if (!newAffixName) return;
+    setAffixes((prev) => [...prev, { name: newAffixName, tier: newAffixTier, sealed: newAffixSealed }]);
+    setNewAffixName("");
+    setNewAffixTier(5);
+    setNewAffixSealed(false);
+    setAddingAffix(false);
+  }
+
+  function removeAffix(idx: number) {
+    setAffixes((prev) => prev.filter((_, i) => i !== idx));
+  }
+
+  const rarityColor = RARITY_COLOR[gearSlot.rarity ?? "normal"] ?? "text-forge-text";
+
+  return (
+    <div
+      className="fixed inset-0 z-50 flex items-center justify-center bg-black/75 p-4"
+      onClick={onClose}
+    >
+      <div
+        className="w-full max-w-md rounded border border-forge-border bg-forge-bg shadow-2xl flex flex-col overflow-hidden"
+        style={{ maxHeight: "80vh" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Header */}
+        <div className="flex items-center justify-between px-4 py-3 border-b border-forge-border shrink-0">
+          <div>
+            <div className={`font-display text-base ${rarityColor} leading-tight`}>{gearSlot.item_name}</div>
+            <div className="font-mono text-[10px] text-forge-dim capitalize">{gearSlot.rarity} · {SLOT_LABEL[gearSlot.slot] ?? gearSlot.slot}</div>
+          </div>
+          <div className="flex gap-2 items-center">
+            <button
+              onClick={onReplace}
+              className="font-mono text-[10px] text-forge-dim hover:text-forge-text border border-forge-border px-2 py-0.5 rounded-sm transition-colors"
+            >
+              Swap
+            </button>
+            <button onClick={onClose} className="font-mono text-xs text-forge-dim hover:text-forge-text">✕</button>
+          </div>
+        </div>
+
+        {/* Affixes list */}
+        <div className="flex-1 overflow-y-auto p-4 flex flex-col gap-2">
+          {affixes.length === 0 && (
+            <p className="font-mono text-xs text-forge-dim/50 text-center py-4">No affixes. Add up to 4 (2 prefix + 2 suffix).</p>
+          )}
+          {affixes.map((a, i) => (
+            <div key={i} className="flex items-center gap-2 rounded border border-forge-border bg-forge-surface px-3 py-2">
+              <div className="flex-1">
+                <div className="font-mono text-xs text-sky-200/85 leading-tight">{a.name}</div>
+                <div className="font-mono text-[10px] text-forge-dim mt-0.5 flex gap-2">
+                  <span>T{a.tier}</span>
+                  {a.sealed && <span className="text-amber-400/70">sealed</span>}
+                </div>
+              </div>
+              <button
+                onClick={() => removeAffix(i)}
+                className="font-mono text-[10px] text-forge-dim/50 hover:text-red-400 transition-colors px-1"
+              >
+                ✕
+              </button>
+            </div>
+          ))}
+
+          {/* Add affix form */}
+          {addingAffix ? (
+            <div className="rounded border border-forge-border bg-forge-surface p-3 flex flex-col gap-2 mt-1">
+              <select
+                value={newAffixName}
+                onChange={(e) => { setNewAffixName(e.target.value); setNewAffixTier(5); }}
+                className="w-full rounded-sm border border-forge-border bg-forge-surface2 px-2 py-1.5 font-body text-xs text-forge-text outline-none focus:border-forge-amber/60"
+              >
+                <option value="">Select affix…</option>
+                {availableAffixes.map((n) => (
+                  <option key={n} value={n}>{n}</option>
+                ))}
+              </select>
+              <div className="flex items-center gap-3">
+                <label className="font-mono text-[10px] text-forge-dim shrink-0">
+                  Tier {newAffixTier}
+                </label>
+                <input
+                  type="range"
+                  min={1}
+                  max={maxTierForAffix}
+                  value={newAffixTier}
+                  onChange={(e) => setNewAffixTier(Number(e.target.value))}
+                  className="flex-1 accent-forge-amber"
+                />
+                <label className="flex items-center gap-1 font-mono text-[10px] text-forge-dim cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={newAffixSealed}
+                    onChange={(e) => setNewAffixSealed(e.target.checked)}
+                    className="accent-forge-amber"
+                  />
+                  Sealed
+                </label>
+              </div>
+              <div className="flex gap-2 justify-end">
+                <button
+                  onClick={() => setAddingAffix(false)}
+                  className="font-mono text-[10px] text-forge-dim hover:text-forge-text px-2 py-1"
+                >
+                  Cancel
+                </button>
+                <button
+                  onClick={addAffix}
+                  disabled={!newAffixName}
+                  className="font-mono text-[10px] text-forge-amber border border-forge-amber/50 rounded-sm px-3 py-1 hover:bg-forge-amber/10 transition-colors disabled:opacity-40"
+                >
+                  Add
+                </button>
+              </div>
+            </div>
+          ) : affixes.length < 4 ? (
+            <button
+              onClick={() => setAddingAffix(true)}
+              className="font-mono text-xs text-forge-dim/60 hover:text-forge-amber border border-dashed border-forge-border/50 hover:border-forge-amber/40 rounded px-3 py-2 transition-colors mt-1"
+            >
+              + Add Affix
+            </button>
+          ) : null}
+        </div>
+
+        {/* Footer */}
+        <div className="flex gap-2 justify-end px-4 py-3 border-t border-forge-border shrink-0">
+          <button onClick={onClose} className="font-mono text-xs text-forge-dim hover:text-forge-text px-3 py-1.5">
+            Cancel
+          </button>
+          <button
+            onClick={() => onSave({ ...gearSlot, affixes })}
+            className="font-mono text-xs text-forge-amber border border-forge-amber/50 rounded-sm px-4 py-1.5 hover:bg-forge-amber/10 transition-colors"
+          >
+            Save Affixes
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Main component
 // ---------------------------------------------------------------------------
 
@@ -514,32 +710,53 @@ export default function GearEditor({ gear, onChange, readOnly }: Props) {
   const [tab, setTab] = useState<TabId>("equipment");
   const [activePicker, setActivePicker] = useState<{ slot: string; label: string; gearKey: string } | null>(null);
   const [tooltip, setTooltip] = useState<{ name: string; slot: string; rect: DOMRect } | null>(null);
+  const [affixEditor, setAffixEditor] = useState<{ gearSlot: GearSlot; storeSlots: Set<string> | null } | null>(null);
 
-  // ---- Equip handler ----
-  function handleEquip(item: UniqueItem, gearKey: string, storeSlots: Set<string> | null) {
+  // ---- Equip unique handler ----
+  function handleEquipUnique(item: UniqueItem, gearKey: string, storeSlots: Set<string> | null) {
     const [slotBase, idxStr] = gearKey.split("__");
     const occurrence = parseInt(idxStr ?? "0");
-
-    // For meta-slots (weapon/offhand), remove any existing item of that category first
     let next = gear;
-    if (storeSlots) {
-      next = next.filter((g) => !storeSlots.has(g.slot));
-    }
-
-    // Determine actual slot to store (for ring etc, use slotBase; for weapon/offhand use item.slot)
+    if (storeSlots) next = next.filter((g) => !storeSlots.has(g.slot));
     const actualSlot = storeSlots ? item.slot : slotBase;
-
     next = upsertGear(next, { slot: actualSlot, item_name: item.name, rarity: "legendary", affixes: [] }, occurrence);
     onChange(next);
+  }
+
+  // ---- Equip crafted base handler ----
+  function handleEquipCrafted(
+    base: BaseItemDef,
+    actualSlot: string,
+    rarity: string,
+    gearKey: string,
+    storeSlots: Set<string> | null,
+  ) {
+    const [slotBase, idxStr] = gearKey.split("__");
+    const occurrence = parseInt(idxStr ?? "0");
+    let next = gear;
+    if (storeSlots) next = next.filter((g) => !storeSlots.has(g.slot));
+    const slot = storeSlots ? actualSlot : slotBase;
+    next = upsertGear(next, { slot, item_name: base.name, rarity, affixes: [] }, occurrence);
+    onChange(next);
+  }
+
+  // ---- Save affixes from the inline editor ----
+  function handleSaveAffixes(updatedSlot: GearSlot, storeSlots: Set<string> | null) {
+    let next: GearSlot[];
+    if (storeSlots) {
+      next = gear.map((g) => (storeSlots.has(g.slot) && g.item_name === updatedSlot.item_name ? updatedSlot : g));
+    } else {
+      next = gear.map((g) => (g.slot === updatedSlot.slot && g.item_name === updatedSlot.item_name ? updatedSlot : g));
+    }
+    onChange(next);
+    setAffixEditor(null);
   }
 
   // ---- Clear handler ----
   function handleClear(def: PaperSlotDef) {
     const [slotBase, idxStr] = def.gearKey.split("__");
     const occurrence = parseInt(idxStr ?? "0");
-
     if (def.storeSlots) {
-      // Remove the actual equipped item (any slot in the meta-set)
       const equipped = def.findEquipped(gear);
       if (equipped) onChange(gear.filter((g) => g !== equipped));
     } else {
@@ -593,6 +810,7 @@ export default function GearEditor({ gear, onChange, readOnly }: Props) {
         >
           {PAPER_SLOTS.map((def) => {
             const eq = def.findEquipped(gear);
+            const equipped_crafted = eq && isCrafted(eq);
             return (
               <PaperSlotCell
                 key={def.gearKey}
@@ -600,9 +818,16 @@ export default function GearEditor({ gear, onChange, readOnly }: Props) {
                 equipped={eq}
                 large={["weapon", "body", "offhand"].includes(def.area)}
                 readOnly={readOnly}
-                onPick={() => setActivePicker({ slot: def.pickerSlot, label: def.label, gearKey: def.gearKey })}
+                onPick={() => {
+                  if (equipped_crafted && !readOnly) {
+                    // Crafted item: open affix editor on click
+                    setAffixEditor({ gearSlot: eq!, storeSlots: def.storeSlots });
+                  } else {
+                    setActivePicker({ slot: def.pickerSlot, label: def.label, gearKey: def.gearKey });
+                  }
+                }}
                 onClear={() => handleClear(def)}
-                onHoverEnter={(rect) => eq && setTooltip({ name: eq.item_name, slot: eq.slot, rect })}
+                onHoverEnter={(rect) => eq && !equipped_crafted && setTooltip({ name: eq.item_name!, slot: eq.slot, rect })}
                 onHoverLeave={() => setTooltip(null)}
               />
             );
@@ -664,17 +889,40 @@ export default function GearEditor({ gear, onChange, readOnly }: Props) {
         />
       )}
 
-      {/* ── Picker modal (edit mode only) ── */}
+      {/* ── Item picker modal (edit mode only) ── */}
       {activePicker && !readOnly && (
-        <UniqueItemPicker
+        <ItemPicker
           slot={activePicker.slot}
           displayLabel={activePicker.label}
-          onSelect={(item) => {
+          onSelectUnique={(item) => {
             const def = PAPER_SLOTS.find((d) => d.gearKey === activePicker.gearKey);
-            handleEquip(item, activePicker.gearKey, def?.storeSlots ?? null);
+            handleEquipUnique(item, activePicker.gearKey, def?.storeSlots ?? null);
+            setActivePicker(null);
+          }}
+          onSelectCrafted={(base, actualSlot, rarity) => {
+            const def = PAPER_SLOTS.find((d) => d.gearKey === activePicker.gearKey);
+            handleEquipCrafted(base, actualSlot, rarity, activePicker.gearKey, def?.storeSlots ?? null);
             setActivePicker(null);
           }}
           onClose={() => setActivePicker(null)}
+        />
+      )}
+
+      {/* ── Affix editor modal for crafted items ── */}
+      {affixEditor && !readOnly && (
+        <AffixEditorModal
+          gearSlot={affixEditor.gearSlot}
+          onSave={(updated) => handleSaveAffixes(updated, affixEditor.storeSlots)}
+          onClose={() => setAffixEditor(null)}
+          onReplace={() => {
+            // Open picker to swap this crafted item out
+            const def = PAPER_SLOTS.find((d) => {
+              const eq = d.findEquipped(gear);
+              return eq?.item_name === affixEditor.gearSlot.item_name && eq?.slot === affixEditor.gearSlot.slot;
+            });
+            setAffixEditor(null);
+            if (def) setActivePicker({ slot: def.pickerSlot, label: def.label, gearKey: def.gearKey });
+          }}
         />
       )}
     </div>

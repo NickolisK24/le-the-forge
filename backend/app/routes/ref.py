@@ -19,7 +19,7 @@ from flask import Blueprint, request, jsonify
 from app.models import ItemType, AffixDef, PassiveNode
 from app.game_data.game_data_loader import get_all_affixes, get_affix_categories
 from app.engines.fp_engine import get_crafting_rules, get_all_fp_ranges, get_fp_range_by_rarity
-from app.engines.base_engine import get_all_bases, get_fp_range
+from app.engines.base_engine import get_all_bases, get_bases_for_slot, get_fp_range
 from app.utils.responses import ok
 from app.utils.cache import cached_route, delete_pattern
 
@@ -247,24 +247,28 @@ def get_crafting_rules_endpoint():
 
 
 @ref_bp.get("/base-items")
-@cached_route("ref:base-items", ttl=86400)
 def get_base_items_endpoint():
-    """Return all base item definitions including FP ranges. Source: data/base_items.json."""
+    """
+    Return base item definitions.
+
+    ?slot=helmet  → flat list of named items for that slot
+    (no param)    → full dict keyed by slot category
+    """
+    slot = request.args.get("slot", "").strip().lower()
+    if slot:
+        items = get_bases_for_slot(slot)
+        return ok(data=items)
     return ok(data=get_all_bases())
 
 
 @ref_bp.get("/base-items/<base_type>")
 def get_base_item_endpoint(base_type: str):
-    """Return FP range and metadata for a specific base type."""
-    try:
-        bases = get_all_bases()
-        key = base_type.lower()
-        if key not in bases:
-            return ok(data=None, status=404)
-        lo, hi = get_fp_range(key)
-        return ok(data={**bases[key], "min_fp": lo, "max_fp": hi, "base_type": key})
-    except ValueError as e:
-        return ok(data=None, status=400)
+    """Return all named base items for a specific slot category."""
+    key = base_type.lower()
+    items = get_bases_for_slot(key)
+    if not items:
+        return ok(data=None, status=404)
+    return ok(data=items)
 
 
 @ref_bp.get("/fp-ranges")
