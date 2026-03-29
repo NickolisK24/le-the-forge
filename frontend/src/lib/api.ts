@@ -202,7 +202,8 @@ export const refApi = {
   },
   skills: (charClass?: string) =>
     get<Record<string, string[]>>(`/ref/skills${charClass ? `?class=${charClass}` : ""}`),
-  baseItems: () => get<Record<string, { min_fp: number; max_fp: number; implicit: string | null; armor: number }>>("/ref/base-items"),
+  baseItems: () => get<Record<string, BaseItemDef[]>>("/ref/base-items"),
+  baseItemsBySlot: (slot: string) => get<BaseItemDef[]>(`/ref/base-items?slot=${encodeURIComponent(slot)}`),
   fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
 };
 
@@ -386,6 +387,16 @@ export const importApi = {
 // ---------------------------------------------------------------------------
 // Unique items reference
 // ---------------------------------------------------------------------------
+
+export interface BaseItemDef {
+  name: string;
+  level_req: number;
+  min_fp: number;
+  max_fp: number;
+  armor: number;
+  implicit: string | null;
+  tags: string[];
+}
 
 export interface UniqueItem {
   id: string;
