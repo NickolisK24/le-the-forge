@@ -36,9 +36,10 @@ class TestAffixLoading(unittest.TestCase):
             self.assertIn("applicable_to", affix)
             self.assertIn("tiers", affix)
 
-    def test_only_prefix_and_suffix(self):
+    def test_only_known_types(self):
+        # Affix types: prefix, suffix, and idol (idol-slot affixes)
         types = {a["type"] for a in affix_data}
-        self.assertTrue(types <= {"prefix", "suffix"})
+        self.assertTrue(types <= {"prefix", "suffix", "idol"})
 
 
 class TestAffixFiltering(unittest.TestCase):

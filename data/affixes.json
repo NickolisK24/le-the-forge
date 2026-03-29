@@ -253,7 +253,7 @@
         "max": 39
       }
     ],
-    "stat_key": "added_block_chance",
+    "stat_key": "block_chance",
     "affix_id": 3,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -479,7 +479,7 @@
         "max": 100
       }
     ],
-    "stat_key": "added_critical_strike_multiplier",
+    "stat_key": "crit_multiplier_pct",
     "affix_id": 6,
     "rolls_on": "equipment",
     "level_requirement": 20,
@@ -1994,7 +1994,7 @@
         "max": 50
       }
     ],
-    "stat_key": "increased_cooldown_recovery_speed",
+    "stat_key": "cooldown_recovery_speed",
     "affix_id": 27,
     "rolls_on": "equipment",
     "level_requirement": 6,
@@ -2056,7 +2056,7 @@
         "max": 48
       }
     ],
-    "stat_key": "increased_movement_speed",
+    "stat_key": "movement_speed",
     "affix_id": 28,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -2119,7 +2119,7 @@
         "max": 23400
       }
     ],
-    "stat_key": "health_and_stun_avoidance",
+    "stat_key": "max_health",
     "affix_id": 29,
     "rolls_on": "equipment",
     "level_requirement": 46,
@@ -2850,7 +2850,7 @@
         "max": 200
       }
     ],
-    "stat_key": "leech_rate",
+    "stat_key": "leech",
     "affix_id": 40,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -3108,7 +3108,7 @@
         "max": 8000
       }
     ],
-    "stat_key": "health_on_melee_hit",
+    "stat_key": "health_on_kill",
     "affix_id": 44,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -3241,7 +3241,7 @@
         "max": 60
       }
     ],
-    "stat_key": "all_resistances",
+    "stat_key": "_all_res",
     "affix_id": 46,
     "rolls_on": "equipment",
     "level_requirement": 55,
@@ -3496,7 +3496,7 @@
         "max": 2000
       }
     ],
-    "stat_key": "strength",
+    "stat_key": "_all_attributes",
     "affix_id": 50,
     "rolls_on": "equipment",
     "level_requirement": 13,
@@ -3558,7 +3558,7 @@
         "max": 180000
       }
     ],
-    "stat_key": "added_stun_avoidance",
+    "stat_key": "stun_avoidance",
     "affix_id": 51,
     "rolls_on": "equipment",
     "level_requirement": 13,
@@ -4356,7 +4356,7 @@
         "max": 18
       }
     ],
-    "stat_key": "added_melee_crit_chance",
+    "stat_key": "crit_chance_pct",
     "affix_id": 62,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -4500,7 +4500,7 @@
         "max": 5600
       }
     ],
-    "stat_key": "minion_melee_and_bow_damage",
+    "stat_key": "minion_damage_pct",
     "affix_id": 64,
     "rolls_on": "equipment",
     "level_requirement": 20,
@@ -4759,7 +4759,7 @@
         "max": 130
       }
     ],
-    "stat_key": "chance_to_inflict_bleed",
+    "stat_key": "bleed_chance_pct",
     "affix_id": 68,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -4833,7 +4833,7 @@
         "max": 250
       }
     ],
-    "stat_key": "melee_health_leech",
+    "stat_key": "leech",
     "affix_id": 69,
     "rolls_on": "equipment",
     "level_requirement": 10,
@@ -4905,7 +4905,7 @@
         "max": 600
       }
     ],
-    "stat_key": "minion_health",
+    "stat_key": "minion_health_pct",
     "affix_id": 70,
     "rolls_on": "equipment",
     "level_requirement": 6,
@@ -5617,7 +5617,7 @@
         "max": 75
       }
     ],
-    "stat_key": "elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 80,
     "rolls_on": "equipment",
     "level_requirement": 27,
@@ -5679,7 +5679,7 @@
         "max": 280000
       }
     ],
-    "stat_key": "added_block_effectiveness",
+    "stat_key": "block_effectiveness",
     "affix_id": 81,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -5875,7 +5875,7 @@
         "max": 300
       }
     ],
-    "stat_key": "increased_spell_crit_chance",
+    "stat_key": "crit_chance_pct",
     "affix_id": 84,
     "rolls_on": "equipment",
     "level_requirement": 15,
@@ -6754,7 +6754,7 @@
         "max": 100
       }
     ],
-    "stat_key": "critical_strike_avoidance_and_added_dodge_rating",
+    "stat_key": "crit_avoidance",
     "affix_id": 97,
     "rolls_on": "equipment",
     "level_requirement": 36,
@@ -6885,7 +6885,7 @@
         "max": 7600
       }
     ],
-    "stat_key": "ward_gained_on_kill",
+    "stat_key": "ward_on_kill",
     "affix_id": 99,
     "rolls_on": "equipment",
     "level_requirement": 40,
@@ -7018,7 +7018,7 @@
         "max": 60
       }
     ],
-    "stat_key": "increased_area_for_area_skills",
+    "stat_key": "area_pct",
     "affix_id": 101,
     "rolls_on": "equipment",
     "level_requirement": 32,
@@ -7084,7 +7084,7 @@
         "max": 5600
       }
     ],
-    "stat_key": "minion_spell_and_bow_damage",
+    "stat_key": "minion_damage_pct",
     "affix_id": 102,
     "rolls_on": "equipment",
     "level_requirement": 22,
@@ -7214,7 +7214,7 @@
         "max": 95
       }
     ],
-    "stat_key": "all_resistances_while_channelling",
+    "stat_key": "_all_res",
     "affix_id": 104,
     "rolls_on": "equipment",
     "level_requirement": 46,
@@ -7244,7 +7244,7 @@
         "max": 8000
       }
     ],
-    "stat_key": "idol_health",
+    "stat_key": "max_health",
     "affix_id": 105,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7272,7 +7272,7 @@
         "max": 2000
       }
     ],
-    "stat_key": "idol_health_on_kill",
+    "stat_key": "health_on_kill",
     "affix_id": 106,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7299,7 +7299,7 @@
         "max": 11
       }
     ],
-    "stat_key": "idol_increased_health",
+    "stat_key": "health_pct",
     "affix_id": 107,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7327,7 +7327,7 @@
         "max": 68
       }
     ],
-    "stat_key": "idol_increased_health_regen",
+    "stat_key": "health_regen",
     "affix_id": 108,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7355,7 +7355,7 @@
         "max": 4000
       }
     ],
-    "stat_key": "idol_mana",
+    "stat_key": "max_mana",
     "affix_id": 109,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7383,7 +7383,7 @@
         "max": 15600
       }
     ],
-    "stat_key": "idol_armor",
+    "stat_key": "armour",
     "affix_id": 110,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7414,7 +7414,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_fire_resistance",
+    "stat_key": "fire_res",
     "affix_id": 111,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7445,7 +7445,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_cold_resistance",
+    "stat_key": "cold_res",
     "affix_id": 112,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7475,7 +7475,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_lightning_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 113,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7505,7 +7505,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_necrotic_resistance",
+    "stat_key": "necrotic_res",
     "affix_id": 114,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7535,7 +7535,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_void_resistance",
+    "stat_key": "void_res",
     "affix_id": 115,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7566,7 +7566,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_poison_resistance",
+    "stat_key": "poison_res",
     "affix_id": 116,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7596,7 +7596,7 @@
         "max": 20
       }
     ],
-    "stat_key": "idol_elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 117,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7624,7 +7624,7 @@
         "max": 7000
       }
     ],
-    "stat_key": "idol_dodge_rating",
+    "stat_key": "dodge_rating",
     "affix_id": 118,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7738,7 +7738,7 @@
         "max": 8000
       }
     ],
-    "stat_key": "idol_ward_on_potion_use",
+    "stat_key": "ward_on_potion",
     "affix_id": 122,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -7794,7 +7794,7 @@
         "max": 700
       }
     ],
-    "stat_key": "idol_vitality",
+    "stat_key": "vitality",
     "affix_id": 124,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8084,7 +8084,7 @@
         "max": 55
       }
     ],
-    "stat_key": "idol_increased_critical_strike_chance_small",
+    "stat_key": "crit_chance_pct",
     "affix_id": 134,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8140,7 +8140,7 @@
         "max": 45000
       }
     ],
-    "stat_key": "idol_stun_avoidance",
+    "stat_key": "stun_avoidance",
     "affix_id": 136,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8196,7 +8196,7 @@
         "max": 36
       }
     ],
-    "stat_key": "idol_bleed_chance",
+    "stat_key": "bleed_chance_pct",
     "affix_id": 138,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8224,7 +8224,7 @@
         "max": 30
       }
     ],
-    "stat_key": "idol_ignite_chance",
+    "stat_key": "ignite_chance_pct",
     "affix_id": 139,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8252,7 +8252,7 @@
         "max": 30
       }
     ],
-    "stat_key": "idol_poison_chance",
+    "stat_key": "poison_chance_pct",
     "affix_id": 140,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8280,7 +8280,7 @@
         "max": 50
       }
     ],
-    "stat_key": "idol_shock_chance",
+    "stat_key": "shock_chance_pct",
     "affix_id": 141,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -8308,7 +8308,7 @@
         "max": 30
       }
     ],
-    "stat_key": "idol_ward_retention",
+    "stat_key": "ward_retention_pct",
     "affix_id": 142,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -14028,7 +14028,7 @@
         "max": 110
       }
     ],
-    "stat_key": "increased_mana_regen",
+    "stat_key": "mana_regen",
     "affix_id": 330,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -17413,7 +17413,7 @@
         "max": 11200
       }
     ],
-    "stat_key": "ward_per_second",
+    "stat_key": "ward_regen",
     "affix_id": 382,
     "rolls_on": "equipment",
     "level_requirement": 22,
@@ -20241,7 +20241,7 @@
         "max": 6
       }
     ],
-    "stat_key": "block_chance_and_effectiveness",
+    "stat_key": "block_chance",
     "affix_id": 426,
     "rolls_on": "equipment",
     "level_requirement": 13,
@@ -20471,7 +20471,7 @@
         "max": 45
       }
     ],
-    "stat_key": "idol_physical_resistance",
+    "stat_key": "physical_res",
     "affix_id": 430,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -20603,7 +20603,7 @@
         "max": 53
       }
     ],
-    "stat_key": "increased_bow_attack_speed",
+    "stat_key": "attack_speed_pct",
     "affix_id": 432,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -20670,7 +20670,7 @@
         "max": 4400
       }
     ],
-    "stat_key": "added_bow_physical_damage",
+    "stat_key": "added_bow_physical",
     "affix_id": 433,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -20737,7 +20737,7 @@
         "max": 4400
       }
     ],
-    "stat_key": "added_bow_fire_damage",
+    "stat_key": "added_bow_fire",
     "affix_id": 434,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -32442,7 +32442,7 @@
         "max": 5600
       }
     ],
-    "stat_key": "minion_melee_and_spell_damage",
+    "stat_key": "minion_damage_pct",
     "affix_id": 643,
     "rolls_on": "equipment",
     "level_requirement": 18,
@@ -34014,7 +34014,7 @@
         "max": 110
       }
     ],
-    "stat_key": "area_for_melee_area_skills",
+    "stat_key": "area_pct",
     "affix_id": 671,
     "rolls_on": "equipment",
     "level_requirement": 30,
@@ -34076,7 +34076,7 @@
         "max": 16
       }
     ],
-    "stat_key": "crit_chance_and_bow_attack_speed",
+    "stat_key": "crit_chance_pct",
     "affix_id": 672,
     "rolls_on": "equipment",
     "level_requirement": 44,
@@ -36787,7 +36787,7 @@
         "max": 24000
       }
     ],
-    "stat_key": "mana_and_mana_regen",
+    "stat_key": "max_mana",
     "affix_id": 718,
     "rolls_on": "equipment",
     "level_requirement": 36,
@@ -36860,7 +36860,7 @@
         "max": 44
       }
     ],
-    "stat_key": "physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 719,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -36933,7 +36933,7 @@
         "max": 44
       }
     ],
-    "stat_key": "fire_penetration_and_minion_fire_penetration",
+    "stat_key": "fire_penetration",
     "affix_id": 720,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -37006,7 +37006,7 @@
         "max": 44
       }
     ],
-    "stat_key": "cold_penetration_and_minion_cold_penetration",
+    "stat_key": "cold_penetration",
     "affix_id": 721,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -37079,7 +37079,7 @@
         "max": 44
       }
     ],
-    "stat_key": "lightning_penetration_and_minion_lightning_penetration",
+    "stat_key": "lightning_penetration",
     "affix_id": 722,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -37152,7 +37152,7 @@
         "max": 44
       }
     ],
-    "stat_key": "void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 723,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -37219,7 +37219,7 @@
         "max": 44
       }
     ],
-    "stat_key": "necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 724,
     "rolls_on": "equipment",
     "level_requirement": 60,
@@ -38891,7 +38891,7 @@
         "max": 24000
       }
     ],
-    "stat_key": "mana_and_mana_spent_gained_as_ward",
+    "stat_key": "max_mana",
     "affix_id": 759,
     "rolls_on": "equipment",
     "level_requirement": 43,
@@ -42906,7 +42906,7 @@
         "max": 8000
       }
     ],
-    "stat_key": "ward_per_second_and_ward_decay_threshold",
+    "stat_key": "ward_regen",
     "affix_id": 824,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -42969,7 +42969,7 @@
         "max": 24300
       }
     ],
-    "stat_key": "added_health_and_added_health_regeneration",
+    "stat_key": "max_health",
     "affix_id": 825,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -43131,7 +43131,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 831,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43158,7 +43158,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_poison_penetration_and_minion_poison_penetration",
+    "stat_key": "poison_chance_pct",
     "affix_id": 832,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43185,7 +43185,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 833,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43212,7 +43212,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 834,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43239,7 +43239,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_void_resistance_and_minion_void_resistance",
+    "stat_key": "void_res",
     "affix_id": 835,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43266,7 +43266,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_poison_resistance_and_minion_poison_resistance",
+    "stat_key": "poison_res",
     "affix_id": 836,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43293,7 +43293,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_physical_resistance_and_minion_physical_resistance",
+    "stat_key": "physical_res",
     "affix_id": 837,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43320,7 +43320,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_necrotic_resistance_and_minion_necrotic_resistance",
+    "stat_key": "necrotic_res",
     "affix_id": 838,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43536,7 +43536,7 @@
         "max": 7
       }
     ],
-    "stat_key": "idol_ward_retention_and_ward_per_second",
+    "stat_key": "ward_retention_pct",
     "affix_id": 846,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43563,7 +43563,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_cold_penetration_and_minion_cold_penetration",
+    "stat_key": "cold_penetration",
     "affix_id": 847,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43590,7 +43590,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_fire_penetration_and_minion_fire_penetration",
+    "stat_key": "fire_penetration",
     "affix_id": 848,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43617,7 +43617,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_lightning_penetration_and_minion_lightning_penetration",
+    "stat_key": "lightning_penetration",
     "affix_id": 849,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43644,7 +43644,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_cold_resistance_and_minion_cold_resistance",
+    "stat_key": "cold_res",
     "affix_id": 850,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43671,7 +43671,7 @@
         "max": 6
       }
     ],
-    "stat_key": "idol_elemental_resistance_and_minion_elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 851,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43698,7 +43698,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_fire_resistance_and_minion_fire_resistance",
+    "stat_key": "fire_res",
     "affix_id": 852,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43725,7 +43725,7 @@
         "max": 1800
       }
     ],
-    "stat_key": "idol_health_and_added_health_regeneration",
+    "stat_key": "max_health",
     "affix_id": 853,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43752,7 +43752,7 @@
         "max": 1800
       }
     ],
-    "stat_key": "idol_health_and_mana",
+    "stat_key": "max_health",
     "affix_id": 854,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43779,7 +43779,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_lightning_resistance_and_minion_lightning_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 855,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43806,7 +43806,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_endurance_and_endurance_threshold",
+    "stat_key": "endurance",
     "affix_id": 856,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43914,7 +43914,7 @@
         "max": 2000
       }
     ],
-    "stat_key": "idol_health_on_kill_and_added_health",
+    "stat_key": "health_on_kill",
     "affix_id": 860,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43968,7 +43968,7 @@
         "max": 500
       }
     ],
-    "stat_key": "idol_vitality_and_added_health_regen",
+    "stat_key": "vitality",
     "affix_id": 862,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -43995,7 +43995,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 863,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44022,7 +44022,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 864,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44049,7 +44049,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_poison_penetration_and_minion_poison_penetration",
+    "stat_key": "poison_chance_pct",
     "affix_id": 865,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44076,7 +44076,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 866,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44103,7 +44103,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_necrotic_resistance_and_minion_necrotic_resistance",
+    "stat_key": "necrotic_res",
     "affix_id": 867,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44130,7 +44130,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_void_resistance_and_minion_void_resistance",
+    "stat_key": "void_res",
     "affix_id": 868,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44157,7 +44157,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_poison_resistance_and_minion_poison_resistance",
+    "stat_key": "poison_res",
     "affix_id": 869,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44184,7 +44184,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_physical_resistance_and_minion_physical_resistance",
+    "stat_key": "physical_res",
     "affix_id": 870,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44400,7 +44400,7 @@
         "max": 30
       }
     ],
-    "stat_key": "idol_increased_critical_strike_chance_and_critical_strike_multiplier",
+    "stat_key": "crit_chance_pct",
     "affix_id": 878,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44508,7 +44508,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_cold_penetration_and_minion_cold_penetration",
+    "stat_key": "cold_penetration",
     "affix_id": 882,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44535,7 +44535,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_fire_penetration_and_minion_fire_penetration",
+    "stat_key": "fire_penetration",
     "affix_id": 883,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44562,7 +44562,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_lightning_penetration_and_minion_lightning_penetration",
+    "stat_key": "lightning_penetration",
     "affix_id": 884,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44589,7 +44589,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_cold_resistance_and_minion_cold_resistance",
+    "stat_key": "cold_res",
     "affix_id": 885,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44616,7 +44616,7 @@
         "max": 12
       }
     ],
-    "stat_key": "idol_elemental_resistance_and_minion_elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 886,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44643,7 +44643,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_fire_resistance_and_minion_fire_resistance",
+    "stat_key": "fire_res",
     "affix_id": 887,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44670,7 +44670,7 @@
         "max": 23
       }
     ],
-    "stat_key": "idol_lightning_resistance_and_minion_lightning_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 888,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44697,7 +44697,7 @@
         "max": 8000
       }
     ],
-    "stat_key": "idol_added_block_effectiveness_and_health_gained_on_block",
+    "stat_key": "block_effectiveness",
     "affix_id": 889,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44724,7 +44724,7 @@
         "max": 1600
       }
     ],
-    "stat_key": "idol_ward_per_second_and_ward_retention",
+    "stat_key": "ward_regen",
     "affix_id": 890,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -44812,7 +44812,7 @@
         "max": 18
       }
     ],
-    "stat_key": "idol_increased_critical_strike_chance_and_added_critical_strike_multiplier",
+    "stat_key": "crit_chance_pct",
     "affix_id": 892,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -45043,7 +45043,7 @@
         "max": 19000
       }
     ],
-    "stat_key": "idol_added_dodge_rating_if_you_have_been_hit_recently_and_critical_strike_avoidance",
+    "stat_key": "dodge_rating",
     "affix_id": 896,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -45104,7 +45104,7 @@
         "max": 2000
       }
     ],
-    "stat_key": "idol_ward_decay_threshold_and_ward_per_second",
+    "stat_key": "ward_regen",
     "affix_id": 897,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -46743,7 +46743,7 @@
         "max": 8
       }
     ],
-    "stat_key": "idol_minion_melee_attack_speed_and_added_minion_melee_damage",
+    "stat_key": "minion_melee_damage_pct",
     "affix_id": 925,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -46801,7 +46801,7 @@
         "max": 8
       }
     ],
-    "stat_key": "idol_minion_cast_speed_and_added_minion_spell_damage",
+    "stat_key": "minion_spell_damage_pct",
     "affix_id": 926,
     "rolls_on": "idols",
     "level_requirement": 0,
@@ -47734,7 +47734,7 @@
         "max": 12000
       }
     ],
-    "stat_key": "added_melee_and_spell_necrotic_damage",
+    "stat_key": "added_melee_necrotic",
     "affix_id": 943,
     "rolls_on": "equipment",
     "level_requirement": 35,
@@ -47859,7 +47859,7 @@
         "max": 65
       }
     ],
-    "stat_key": "minion_area_and_damage",
+    "stat_key": "minion_damage_pct",
     "affix_id": 945,
     "rolls_on": "equipment",
     "level_requirement": 46,
@@ -48154,7 +48154,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 831,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48251,7 +48251,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 833,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48301,7 +48301,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 834,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48351,7 +48351,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 835,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48448,7 +48448,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 837,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48498,7 +48498,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 838,
     "rolls_on": "idol",
     "level_requirement": 25,
@@ -48890,7 +48890,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_ward_retention_and_ward_per_second",
+    "stat_key": "ward_retention_pct",
     "affix_id": 846,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -48940,7 +48940,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_cold_penetration_and_minion_cold_penetration",
+    "stat_key": "cold_penetration",
     "affix_id": 847,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -48987,7 +48987,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_fire_penetration_and_minion_fire_penetration",
+    "stat_key": "fire_penetration",
     "affix_id": 848,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49037,7 +49037,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_lightning_penetration_and_minion_lightning_penetration",
+    "stat_key": "lightning_penetration",
     "affix_id": 849,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49088,7 +49088,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_cold_resistance_and_minion_cold_resistance",
+    "stat_key": "cold_res",
     "affix_id": 850,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49138,7 +49138,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_elemental_resistance_and_minion_elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 851,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49189,7 +49189,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_fire_resistance_and_minion_fire_resistance",
+    "stat_key": "fire_res",
     "affix_id": 852,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49238,7 +49238,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_health_and_added_health_regeneration",
+    "stat_key": "max_health",
     "affix_id": 853,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49336,7 +49336,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_lightning_resistance_and_minion_lightning_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 855,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49385,7 +49385,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_endurance_and_endurance_threshold",
+    "stat_key": "endurance",
     "affix_id": 856,
     "rolls_on": "idol",
     "level_requirement": 26,
@@ -49581,7 +49581,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_health_on_kill_and_added_health",
+    "stat_key": "health_on_kill",
     "affix_id": 860,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49677,7 +49677,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_vitality_and_added_health_regen",
+    "stat_key": "vitality",
     "affix_id": 862,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49727,7 +49727,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_necrotic_penetration_and_minion_necrotic_penetration",
+    "stat_key": "necrotic_penetration",
     "affix_id": 863,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49777,7 +49777,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_void_penetration_and_minion_void_penetration",
+    "stat_key": "void_penetration",
     "affix_id": 864,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49874,7 +49874,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_physical_penetration_and_minion_physical_penetration",
+    "stat_key": "physical_penetration",
     "affix_id": 866,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49925,7 +49925,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_necrotic_resistance_and_minion_necrotic_resistance",
+    "stat_key": "necrotic_res",
     "affix_id": 867,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -49976,7 +49976,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_void_resistance_and_minion_void_resistance",
+    "stat_key": "void_res",
     "affix_id": 868,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -50027,7 +50027,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_poison_resistance_and_minion_poison_resistance",
+    "stat_key": "poison_res",
     "affix_id": 869,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -50078,7 +50078,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_physical_resistance_and_minion_physical_resistance",
+    "stat_key": "physical_res",
     "affix_id": 870,
     "rolls_on": "idol",
     "level_requirement": 27,
@@ -50467,7 +50467,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_increased_critical_strike_chance_and_critical_strike_multiplier",
+    "stat_key": "crit_chance_pct",
     "affix_id": 878,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50665,7 +50665,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_cold_penetration_and_minion_cold_penetration",
+    "stat_key": "cold_penetration",
     "affix_id": 882,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50715,7 +50715,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_fire_penetration_and_minion_fire_penetration",
+    "stat_key": "fire_penetration",
     "affix_id": 883,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50765,7 +50765,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_lightning_penetration_and_minion_lightning_penetration",
+    "stat_key": "lightning_penetration",
     "affix_id": 884,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50816,7 +50816,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_cold_resistance_and_minion_cold_resistance",
+    "stat_key": "cold_res",
     "affix_id": 885,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50866,7 +50866,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_elemental_resistance_and_minion_elemental_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 886,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -50964,7 +50964,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_lightning_resistance_and_minion_lightning_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 888,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -51014,7 +51014,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_added_block_effectiveness_and_health_gained_on_block",
+    "stat_key": "block_effectiveness",
     "affix_id": 889,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -51063,7 +51063,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_ward_per_second_and_ward_retention",
+    "stat_key": "ward_regen",
     "affix_id": 890,
     "rolls_on": "idol",
     "level_requirement": 28,
@@ -51160,7 +51160,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_increased_critical_strike_chance_and_added_critical_strike_multiplier",
+    "stat_key": "crit_chance_pct",
     "affix_id": 892,
     "rolls_on": "idol",
     "level_requirement": 29,
@@ -51344,7 +51344,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_added_dodge_rating_if_you_have_been_hit_recently_and_critical_strike_avoidance",
+    "stat_key": "dodge_rating",
     "affix_id": 896,
     "rolls_on": "idol",
     "level_requirement": 33,
@@ -51392,7 +51392,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_ward_decay_threshold_and_ward_per_second",
+    "stat_key": "ward_regen",
     "affix_id": 897,
     "rolls_on": "idol",
     "level_requirement": 29,
@@ -52670,7 +52670,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_minion_melee_attack_speed_and_added_minion_melee_damage",
+    "stat_key": "minion_melee_damage_pct",
     "affix_id": 925,
     "rolls_on": "idol",
     "level_requirement": 31,
@@ -52718,7 +52718,7 @@
         "max": 0
       }
     ],
-    "stat_key": "idol_minion_cast_speed_and_added_minion_spell_damage",
+    "stat_key": "minion_spell_damage_pct",
     "affix_id": 926,
     "rolls_on": "idol",
     "level_requirement": 31,
@@ -55107,7 +55107,7 @@
         "max": 3
       }
     ],
-    "stat_key": "idol_critical_strike_avoidance",
+    "stat_key": "crit_avoidance",
     "affix_id": 1067,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55235,7 +55235,7 @@
         "max": 14
       }
     ],
-    "stat_key": "idol_added_dodge_rating_while_using_evade",
+    "stat_key": "dodge_rating",
     "affix_id": 1059,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55260,7 +55260,7 @@
         "max": 4
       }
     ],
-    "stat_key": "idol_added_health_regen",
+    "stat_key": "health_regen",
     "affix_id": 1058,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55333,7 +55333,7 @@
         "max": 40
       }
     ],
-    "stat_key": "idol_added_stun_avoidance",
+    "stat_key": "stun_avoidance",
     "affix_id": 1054,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55358,7 +55358,7 @@
         "max": 5
       }
     ],
-    "stat_key": "idol_increased_armor",
+    "stat_key": "armour",
     "affix_id": 1053,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55383,7 +55383,7 @@
         "max": 6
       }
     ],
-    "stat_key": "idol_added_critical_strike_multiplier",
+    "stat_key": "crit_multiplier_pct",
     "affix_id": 1052,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55408,7 +55408,7 @@
         "max": 7
       }
     ],
-    "stat_key": "idol_ward_per_second",
+    "stat_key": "ward_regen",
     "affix_id": 1051,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55483,7 +55483,7 @@
         "max": 5
       }
     ],
-    "stat_key": "idol_increased_mana_regen",
+    "stat_key": "mana_regen",
     "affix_id": 1048,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55558,7 +55558,7 @@
         "max": 2
       }
     ],
-    "stat_key": "idol_minion_critical_strike_chance",
+    "stat_key": "minion_crit_chance_pct",
     "affix_id": 1045,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55655,7 +55655,7 @@
         "max": 8
       }
     ],
-    "stat_key": "idol_added_throwing_damage",
+    "stat_key": "added_throw_physical",
     "affix_id": 1041,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55680,7 +55680,7 @@
         "max": 10
       }
     ],
-    "stat_key": "idol_added_melee_damage",
+    "stat_key": "added_melee_physical",
     "affix_id": 1039,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55706,7 +55706,7 @@
         "max": 8
       }
     ],
-    "stat_key": "idol_added_spell_damage",
+    "stat_key": "added_spell_damage",
     "affix_id": 1038,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55731,7 +55731,7 @@
         "max": 8
       }
     ],
-    "stat_key": "idol_added_bow_damage",
+    "stat_key": "added_bow_physical",
     "affix_id": 1037,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -55833,7 +55833,7 @@
         "max": 1
       }
     ],
-    "stat_key": "idol_increased_mana_regen_per_100_maximum_mana",
+    "stat_key": "mana_regen",
     "affix_id": 1040,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -57461,7 +57461,7 @@
         "max": 110
       }
     ],
-    "stat_key": "mana_spent_gained_as_ward_and_ward_decay_threshold",
+    "stat_key": "max_mana",
     "affix_id": 973,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -57651,7 +57651,7 @@
         "max": 15
       }
     ],
-    "stat_key": "increased_cast_speed_and_ward_gain_on_direct_spell_cast",
+    "stat_key": "cast_speed",
     "affix_id": 976,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -57712,7 +57712,7 @@
         "max": 15
       }
     ],
-    "stat_key": "increased_mana_and_mana_per_attunement",
+    "stat_key": "max_mana",
     "affix_id": 977,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -57774,7 +57774,7 @@
         "max": 30
       }
     ],
-    "stat_key": "increased_cast_speed_and_increased_minion_cast_speed",
+    "stat_key": "cast_speed",
     "affix_id": 978,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -58283,7 +58283,7 @@
         "max": 42
       }
     ],
-    "stat_key": "increased_melee_attack_speed_and_frezy_after_using_evade",
+    "stat_key": "attack_speed_pct",
     "affix_id": 989,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -58706,7 +58706,7 @@
         "max": 21
       }
     ],
-    "stat_key": "increased_health_and_missing_health_regained_on_potion_use",
+    "stat_key": "health_pct",
     "affix_id": 996,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59005,7 +59005,7 @@
         "max": 15
       }
     ],
-    "stat_key": "missing_health_gained_as_ward_per_second_and_ward_decay_threshold",
+    "stat_key": "ward_regen",
     "affix_id": 1002,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59124,7 +59124,7 @@
         "max": 21
       }
     ],
-    "stat_key": "increased_attack_and_cast_speed",
+    "stat_key": "_attack_and_cast_speed",
     "affix_id": 1004,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59185,7 +59185,7 @@
         "max": 12
       }
     ],
-    "stat_key": "increased_cast_speed_and_ward_gain_on_direct_spell_cast_gloves",
+    "stat_key": "cast_speed",
     "affix_id": 1005,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59428,7 +59428,7 @@
         "max": 32
       }
     ],
-    "stat_key": "increased_mana_and_current_mana_gained_as_ward_per_second",
+    "stat_key": "max_mana",
     "affix_id": 1009,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59488,7 +59488,7 @@
         "max": 21
       }
     ],
-    "stat_key": "increased_health_and_ward_per_second",
+    "stat_key": "health_pct",
     "affix_id": 1010,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59665,7 +59665,7 @@
         "max": 1
       }
     ],
-    "stat_key": "level_of_all_skills_and_added_mana",
+    "stat_key": "max_mana",
     "affix_id": 1014,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59726,7 +59726,7 @@
         "max": 10
       }
     ],
-    "stat_key": "added_attunement_and_increased_mana_regen",
+    "stat_key": "attunement",
     "affix_id": 1015,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59787,7 +59787,7 @@
         "max": 10
       }
     ],
-    "stat_key": "added_intelligence_and_ward_per_second",
+    "stat_key": "intelligence",
     "affix_id": 1016,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59848,7 +59848,7 @@
         "max": 10
       }
     ],
-    "stat_key": "added_dexterity_and_increased_dodge_rating",
+    "stat_key": "dexterity",
     "affix_id": 1017,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59909,7 +59909,7 @@
         "max": 10
       }
     ],
-    "stat_key": "added_strength_and_added_armor",
+    "stat_key": "strength",
     "affix_id": 1018,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -59970,7 +59970,7 @@
         "max": 16
       }
     ],
-    "stat_key": "increased_health_and_health_regen_applies_to_ward",
+    "stat_key": "health_pct",
     "affix_id": 1019,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60030,7 +60030,7 @@
         "max": 15
       }
     ],
-    "stat_key": "maximum_health_gained_as_endurance_threshold_and_endurance",
+    "stat_key": "endurance",
     "affix_id": 1020,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60091,7 +60091,7 @@
         "max": 21
       }
     ],
-    "stat_key": "increased_mana_and_mana_spent_gained_as_ward",
+    "stat_key": "max_mana",
     "affix_id": 1021,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60222,7 +60222,7 @@
         "max": 35
       }
     ],
-    "stat_key": "physical_resistance_and_void_resistance",
+    "stat_key": "physical_res",
     "affix_id": 1023,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60291,7 +60291,7 @@
         "max": 35
       }
     ],
-    "stat_key": "elemental_resistance_and_necrotic_resistance",
+    "stat_key": "_elemental_res",
     "affix_id": 1024,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60361,7 +60361,7 @@
         "max": 35
       }
     ],
-    "stat_key": "physical_resistance_and_poison_resistance",
+    "stat_key": "physical_res",
     "affix_id": 1025,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60431,7 +60431,7 @@
         "max": 35
       }
     ],
-    "stat_key": "lightning_resistance_and_poison_resistance",
+    "stat_key": "lightning_res",
     "affix_id": 1026,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60501,7 +60501,7 @@
         "max": 35
       }
     ],
-    "stat_key": "cold_resistance_and_void_resistance",
+    "stat_key": "cold_res",
     "affix_id": 1027,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60571,7 +60571,7 @@
         "max": 35
       }
     ],
-    "stat_key": "fire_resistance_and_necrotic_resistance",
+    "stat_key": "fire_res",
     "affix_id": 1028,
     "rolls_on": "equipment",
     "level_requirement": 0,
@@ -60604,7 +60604,7 @@
         "max": 1
       }
     ],
-    "stat_key": "idol_all_resistances_for_you_and_your_minions",
+    "stat_key": "_all_res",
     "affix_id": 1070,
     "rolls_on": "idol",
     "level_requirement": 0,
@@ -61867,7 +61867,7 @@
         "max": 40
       }
     ],
-    "stat_key": "idol_block_effectiveness_and_block_chance",
+    "stat_key": "block_effectiveness",
     "affix_id": 1032,
     "rolls_on": "idol",
     "level_requirement": 0,
