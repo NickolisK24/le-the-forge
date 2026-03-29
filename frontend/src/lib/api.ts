@@ -400,8 +400,13 @@ export interface UniqueItem {
   lore?: string;
 }
 
+/** Meta-slot categories understood by the backend */
+export const WEAPON_META_SLOT  = "weapon";   // sword/axe/mace/dagger/sceptre/wand/staff/bow/spear
+export const OFFHAND_META_SLOT = "offhand";  // shield/quiver/catalyst
+export const IDOL_META_SLOT    = "idol";     // all idol sizes
+
 export const uniquesApi = {
-  list: (params: { slot?: string; class?: string; q?: string } = {}) => {
+  list: (params: { slot?: string; q?: string } = {}) => {
     const qs = new URLSearchParams(
       Object.fromEntries(
         Object.entries(params).filter(([, v]) => v !== undefined && v !== "") as [string, string][]

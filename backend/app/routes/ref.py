@@ -345,32 +345,54 @@ def get_implicit_stat_endpoint(item_type: str):
 # Unique items
 # ---------------------------------------------------------------------------
 
+
+# Meta-slot categories for the paper-doll picker
+_WEAPON_SLOTS = frozenset([
+    "sword", "axe", "mace", "dagger", "sceptre",
+    "wand", "staff", "bow", "two_handed_spear",
+])
+_OFFHAND_SLOTS = frozenset(["shield", "quiver", "catalyst"])
+_IDOL_SLOTS = frozenset([
+    "idol_1x1_eterra", "idol_1x3", "idol_1x4", "idol_2x2",
+])
+_SLOT_CATEGORIES: dict = {
+    "weapon":  _WEAPON_SLOTS,
+    "offhand": _OFFHAND_SLOTS,
+    "idol":    _IDOL_SLOTS,
+}
+
+
 @ref_bp.get("/uniques")
 @cached_route("ref:uniques", ttl=86400)
 def get_uniques_endpoint():
     """
     GET /api/ref/uniques
     Optional query params:
-      ?slot=helmet       — filter by item slot
-      ?class=Acolyte     — filter by class_req (null items always included)
-      ?q=exsang          — case-insensitive name search
+      ?slot=helmet       — exact slot name, OR meta-category:
+                           weapon  → all 1H/2H weapon slots
+                           offhand → shield, quiver, catalyst
+                           idol    → all idol sizes
+      ?q=exsang          — case-insensitive name/tag search
     """
     from app.game_data.game_data_loader import get_all_uniques
     uniques = get_all_uniques()
 
     slot = request.args.get("slot", "").strip().lower()
-    class_req = request.args.get("class", "").strip()
     query = request.args.get("q", "").strip().lower()
 
     if slot:
-        uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
-    if class_req:
+        expanded = _SLOT_CATEGORIES.get(slot)
+        if expanded:
+            uniques = [u for u in uniques if u.get("slot", "").lower() in expanded]
+        else:
+            uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
+
+    if query:
         uniques = [
             u for u in uniques
-            if u.get("class_req") is None or u.get("class_req") == class_req
+            if query in u.get("name", "").lower()
+            or any(query in t.lower() for t in u.get("tags", []))
         ]
-    if query:
-        uniques = [u for u in uniques if query in u.get("name", "").lower()]
 
     return ok(data=uniques)
 
