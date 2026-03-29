@@ -66,12 +66,16 @@ export default function UniqueItemPicker({ slot, displayLabel, onSelect, onClose
   const filtered = useMemo(() => {
     if (!search.trim()) return items;
     const q = search.toLowerCase();
-    return items.filter(
-      (u) =>
-        u.name.toLowerCase().includes(q) ||
-        u.tags.some((t) => t.toLowerCase().includes(q)) ||
-        u.base.toLowerCase().includes(q)
-    );
+    return items.filter((u) => {
+      const name = (u.name ?? "").toLowerCase();
+      const base = (u.base ?? "").toLowerCase();
+      const tags = Array.isArray(u.tags) ? u.tags : [];
+      return (
+        name.includes(q) ||
+        base.includes(q) ||
+        tags.some((t) => (t ?? "").toLowerCase().includes(q))
+      );
+    });
   }, [items, search]);
 
   const preview = hovered ?? filtered[0] ?? null;
@@ -176,9 +180,9 @@ export default function UniqueItemPicker({ slot, displayLabel, onSelect, onClose
               )}
 
               {/* Fixed affixes */}
-              {preview.affixes.length > 0 && (
+              {(preview.affixes ?? []).length > 0 && (
                 <div className="flex flex-col gap-1">
-                  {preview.affixes.map((a, i) => (
+                  {(preview.affixes ?? []).map((a, i) => (
                     <div key={i} className="font-mono text-xs text-sky-200/80 leading-snug">
                       {a}
                     </div>
@@ -187,13 +191,13 @@ export default function UniqueItemPicker({ slot, displayLabel, onSelect, onClose
               )}
 
               {/* Unique effects */}
-              {preview.unique_effects.length > 0 && (
+              {(preview.unique_effects ?? []).length > 0 && (
                 <div className="rounded border border-amber-500/25 bg-amber-500/[0.04] p-3">
                   <div className="font-mono text-[9px] uppercase tracking-widest text-amber-500/80 mb-2">
                     Unique Effects
                   </div>
                   <div className="flex flex-col gap-1.5">
-                    {preview.unique_effects.map((e, i) => (
+                    {(preview.unique_effects ?? []).map((e, i) => (
                       <div key={i} className="font-body text-sm text-forge-text/85 leading-snug">
                         {e}
                       </div>
@@ -212,9 +216,9 @@ export default function UniqueItemPicker({ slot, displayLabel, onSelect, onClose
               )}
 
               {/* Tags */}
-              {preview.tags.length > 0 && (
+              {(preview.tags ?? []).length > 0 && (
                 <div className="flex flex-wrap gap-1">
-                  {preview.tags.map((t) => (
+                  {(preview.tags ?? []).map((t) => (
                     <span key={t} className="rounded-sm bg-forge-surface2 px-2 py-0.5 font-mono text-[10px] text-forge-dim">
                       {t}
                     </span>
