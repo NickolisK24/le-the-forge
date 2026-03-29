@@ -303,11 +303,19 @@ def calculate_dps(
     stats: BuildStats,
     skill_name: str,
     skill_level: int = 20,
+    skill_modifiers: dict | None = None,
 ) -> DPSResult:
     """
     Calculate expected DPS for a skill at a given level using build stats.
 
-    Includes flat added damage, weapon-type bonuses, and ailment/DoT DPS.
+    Includes flat added damage, weapon-type bonuses, ailment/DoT DPS, and
+    optional skill_modifiers from the spec tree resolver:
+        more_damage_pct     — extra "more" multiplier (multiplicative)
+        added_hits_per_cast — additional projectiles / chains
+        attack_speed_pct    — skill-specific attack speed bonus
+        cast_speed_pct      — skill-specific cast speed bonus
+        crit_chance_pct     — skill-specific crit chance bonus
+        crit_multiplier_pct — skill-specific crit multiplier bonus
     """
     log.debug("calculate_dps", skill=skill_name, skill_level=skill_level)
 
@@ -315,6 +323,8 @@ def calculate_dps(
     if not skill_def:
         log.warning("calculate_dps.unknown_skill", skill=skill_name)
         return DPSResult(0, 0, 0, 1.0, 0)
+
+    sm = skill_modifiers or {}
 
     # Base damage scaled by level
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
@@ -326,23 +336,32 @@ def calculate_dps(
     # Sum all "increased" % damage bonuses (additive pool)
     total_damage_pct = _sum_increased_damage(stats, skill_def)
 
+    # "More" damage multiplier: product of base stats multiplier and spec-tree more%
+    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
+
     # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
-    hit_damage = effective_base * (1 + total_damage_pct / 100) * stats.more_damage_multiplier
+    hit_damage = effective_base * (1 + total_damage_pct / 100) * more_mult
+
+    # Crit chance and multiplier (base + spec tree bonuses)
+    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
 
     # AverageHit = non-crit portion + crit portion
-    non_crit = (1 - stats.crit_chance) * hit_damage
-    crit_hit = stats.crit_chance * hit_damage * stats.crit_multiplier
+    non_crit = (1 - effective_crit_chance) * hit_damage
+    crit_hit = effective_crit_chance * hit_damage * effective_crit_mult
     average_hit = non_crit + crit_hit
 
-    # Effective attack speed
-    cast_speed_bonus = stats.cast_speed / 100 if skill_def.is_spell else 0.0
-    attack_speed_bonus = stats.attack_speed_pct / 100 if not skill_def.is_spell else 0.0
-    # Throwing attack speed applies on top for throwing skills
+    # Effective attack speed (base + build stats + spec tree bonuses)
+    cast_speed_bonus = (stats.cast_speed + sm.get("cast_speed_pct", 0.0)) / 100 if skill_def.is_spell else 0.0
+    attack_speed_bonus = (stats.attack_speed_pct + sm.get("attack_speed_pct", 0.0)) / 100 if not skill_def.is_spell else 0.0
     throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
     effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
 
-    hit_dps = average_hit * effective_as
-    crit_contrib = round((crit_hit * effective_as) / hit_dps * 100) if hit_dps > 0 else 0
+    # Hits per cast: base 1 + spec tree extra projectiles/chains
+    hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
+
+    hit_dps = average_hit * effective_as * hits_per_cast
+    crit_contrib = round((crit_hit * effective_as * hits_per_cast) / hit_dps * 100) if hit_dps > 0 else 0
 
     # Ailment DPS
     bleed_dps, ignite_dps, poison_dps = _calc_ailment_dps(hit_damage, effective_as, stats)
@@ -373,6 +392,7 @@ def monte_carlo_dps(
     skill_level: int = 20,
     n: int = 10_000,
     seed: Optional[int] = None,
+    skill_modifiers: dict | None = None,
 ) -> MonteCarloDPS:
     """
     Simulate n attacks and measure DPS variance from random crit outcomes.
@@ -397,26 +417,32 @@ def monte_carlo_dps(
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
 
     rng = random.Random(seed)
+    sm = skill_modifiers or {}
 
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
     flat_added = _sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
     total_pct = _sum_increased_damage(stats, skill_def)
-    hit_damage = effective_base * (1 + total_pct / 100) * stats.more_damage_multiplier
+    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
+    hit_damage = effective_base * (1 + total_pct / 100) * more_mult
 
-    cast_speed_bonus = stats.cast_speed / 100 if skill_def.is_spell else 0.0
-    attack_speed_bonus = stats.attack_speed_pct / 100 if not skill_def.is_spell else 0.0
+    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
+    hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
+
+    cast_speed_bonus = (stats.cast_speed + sm.get("cast_speed_pct", 0.0)) / 100 if skill_def.is_spell else 0.0
+    attack_speed_bonus = (stats.attack_speed_pct + sm.get("attack_speed_pct", 0.0)) / 100 if not skill_def.is_spell else 0.0
     throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
     effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
 
     damages = []
     for _ in range(n):
-        if rng.random() < stats.crit_chance:
-            dmg = hit_damage * stats.crit_multiplier
+        if rng.random() < effective_crit_chance:
+            dmg = hit_damage * effective_crit_mult
         else:
             dmg = hit_damage
-        damages.append(dmg * effective_as)
+        damages.append(dmg * effective_as * hits_per_cast)
 
     damages.sort()
     mean = sum(damages) / n

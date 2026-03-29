@@ -11,6 +11,7 @@ import re
 from app.models import Build
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
 from app.services.passive_stat_resolver import resolve_passive_stats
+from app.services.skill_tree_resolver import resolve_skill_tree_stats
 from app.utils.exceptions import BuildValidationError
 
 # ---------------------------------------------------------------------------
@@ -186,10 +187,12 @@ def analyze_build(build: Build) -> dict:
     # Primary skill: first slot with a skill name, fallback to empty
     primary_skill = None
     skill_level = 20
+    primary_spec_tree: list[int] = []
     sorted_skills = sorted(build.skills, key=lambda s: s.slot)
     if sorted_skills:
         primary_skill = sorted_skills[0].skill_name or None
         skill_level = max(1, sorted_skills[0].points_allocated or 20)
+        primary_spec_tree = sorted_skills[0].spec_tree or []
 
     # Map build.passive_tree (list of ints) to DB namespaced string IDs, then resolve
     # real stat values from the PassiveNode.stats column.
@@ -197,7 +200,18 @@ def analyze_build(build: Build) -> dict:
     allocated_str_ids = [raw_id_to_str[nid] for nid in allocated_int_ids if nid in raw_id_to_str]
     passive_stats = resolve_passive_stats(allocated_str_ids) if allocated_str_ids else None
 
-    # 1. Aggregate stats
+    # Resolve skill spec tree stats.
+    # spec_tree is stored as a flat list of node IDs (same node repeated per point):
+    # [2, 2, 2, 6, 6, 7] means node 2 × 3pts, node 6 × 2pts, node 7 × 1pt.
+    from collections import Counter
+    spec_tree_allocations = []
+    if primary_skill and primary_spec_tree:
+        counts = Counter(primary_spec_tree)
+        spec_tree_allocations = [{"node_id": nid, "points": pts} for nid, pts in counts.items()]
+
+    skill_tree_result = resolve_skill_tree_stats(primary_skill or "", spec_tree_allocations)
+
+    # 1. Aggregate stats (base stats + passives + gear)
     stats = stat_engine.aggregate_stats(
         character_class=build.character_class,
         mastery=build.mastery,
@@ -207,11 +221,21 @@ def analyze_build(build: Build) -> dict:
         passive_stats=passive_stats,
     )
 
-    # 2. DPS
-    dps_result = combat_engine.calculate_dps(stats, primary_skill or "", skill_level)
+    # Apply spec tree build-stat bonuses (e.g. node adds +10% fire res, +5% crit chance)
+    if skill_tree_result["build_stat_bonuses"]:
+        stat_engine._add_partial(stats, skill_tree_result["build_stat_bonuses"])
+
+    # 2. DPS — pass skill_modifiers from spec tree
+    dps_result = combat_engine.calculate_dps(
+        stats, primary_skill or "", skill_level,
+        skill_modifiers=skill_tree_result["skill_modifiers"],
+    )
 
     # 3. Monte Carlo DPS variance (5k sims — lighter than backend 10k)
-    mc_result = combat_engine.monte_carlo_dps(stats, primary_skill or "", skill_level, n=5_000)
+    mc_result = combat_engine.monte_carlo_dps(
+        stats, primary_skill or "", skill_level, n=5_000,
+        skill_modifiers=skill_tree_result["skill_modifiers"],
+    )
 
     # 4. Defense
     defense_result = defense_engine.calculate_defense(stats)
@@ -229,4 +253,6 @@ def analyze_build(build: Build) -> dict:
         "monte_carlo": mc_result.to_dict(),
         "defense": defense_result.to_dict(),
         "stat_upgrades": [u.to_dict() for u in upgrades],
+        "skill_tree_modifiers": skill_tree_result["skill_modifiers"],
+        "skill_tree_special_effects": skill_tree_result["special_effects"][:10],
     }
