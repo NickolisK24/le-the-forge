@@ -14,6 +14,7 @@
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
   ResponsiveContainer, Cell, ReferenceLine, ErrorBar,
+  ScatterChart, Scatter,
 } from "recharts";
 import type { BuildSimulationResult, DefenseResult, StatUpgrade } from "@/lib/api";
 import { Panel } from "@/components/ui";
@@ -322,7 +323,104 @@ function UpgradeChart({ upgrades }: { upgrades: StatUpgrade[] }) {
 // Avoidance Layers
 // ---------------------------------------------------------------------------
 
-function AvoidancePanel({ def }: { def: DefenseResult }) {
+// ---------------------------------------------------------------------------
+// Upgrade Priority Matrix  (4-quadrant scatter: DPS gain% vs EHP gain%)
+// ---------------------------------------------------------------------------
+
+type Quad = "balanced" | "offensive" | "defensive" | "dead";
+const QUAD_COLOR: Record<Quad, string> = {
+  balanced:  C.amber,
+  offensive: "#f97316",
+  defensive: C.cyan,
+  dead:      C.muted,
+};
+
+function classifyQuad(dps: number, ehp: number): Quad {
+  const THRESH = 0.5;
+  if (dps >= THRESH && ehp >= THRESH) return "balanced";
+  if (dps >= THRESH)                  return "offensive";
+  if (ehp >= THRESH)                  return "defensive";
+  return "dead";
+}
+
+function UpgradePriorityMatrix({ upgrades }: { upgrades: StatUpgrade[] }) {
+  const data = upgrades.map(u => ({
+    dps:   u.dps_gain_pct,
+    ehp:   u.ehp_gain_pct,
+    label: u.label,
+    short: u.label.length > 14 ? u.label.slice(0, 13) + "…" : u.label,
+    quad:  classifyQuad(u.dps_gain_pct, u.ehp_gain_pct),
+  }));
+
+  const maxDps = Math.max(...data.map(d => d.dps), 2);
+  const maxEhp = Math.max(...data.map(d => d.ehp), 2);
+
+  return (
+    <Panel title="Upgrade Priority Matrix">
+      <div className="space-y-2">
+        <ResponsiveContainer width="100%" height={210}>
+          <ScatterChart margin={{ top: 10, right: 24, bottom: 24, left: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
+            <XAxis
+              type="number" dataKey="dps" name="DPS Gain"
+              domain={[0, maxDps * 1.1]}
+              tick={{ fill: C.muted, fontSize: 9, fontFamily: "monospace" }}
+              axisLine={false} tickLine={false}
+              label={{ value: "DPS Gain %", position: "insideBottom", offset: -12, fill: C.muted, fontSize: 9 }}
+            />
+            <YAxis
+              type="number" dataKey="ehp" name="EHP Gain"
+              domain={[0, maxEhp * 1.1]}
+              tick={{ fill: C.muted, fontSize: 9, fontFamily: "monospace" }}
+              axisLine={false} tickLine={false}
+              label={{ value: "EHP %", angle: -90, position: "insideLeft", offset: 12, fill: C.muted, fontSize: 9 }}
+            />
+            <Tooltip
+              cursor={{ strokeDasharray: "3 3", stroke: C.border }}
+              contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 4, fontSize: 10 }}
+              formatter={(v: number) => [`${(v as number).toFixed(1)}%`]}
+              labelFormatter={(_, payload) => payload?.[0]?.payload?.label ?? ""}
+            />
+            <ReferenceLine x={0.5} stroke={C.border} strokeDasharray="4 2" />
+            <ReferenceLine y={0.5} stroke={C.border} strokeDasharray="4 2" />
+            <Scatter
+              data={data}
+              shape={(props: any) => {
+                const color = QUAD_COLOR[props.payload.quad as Quad] ?? C.muted;
+                return (
+                  <g key={props.payload.label}>
+                    <circle cx={props.cx} cy={props.cy} r={5} fill={color} opacity={0.85} />
+                    <text x={props.cx + 8} y={props.cy + 4} fontSize={8} fill={color} fontFamily="monospace">
+                      {props.payload.short}
+                    </text>
+                  </g>
+                );
+              }}
+            />
+          </ScatterChart>
+        </ResponsiveContainer>
+
+        {/* Quadrant legend */}
+        <div className="flex gap-4 justify-center pt-1">
+          {(["balanced", "offensive", "defensive", "dead"] as Quad[]).map(q => (
+            <div key={q} className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: QUAD_COLOR[q] }} />
+              <span className="font-mono text-[9px] capitalize" style={{ color: QUAD_COLOR[q] }}>
+                {q === "dead" ? "Low Impact" : q}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Avoidance & Sustain
+// ---------------------------------------------------------------------------
+
+function AvoidancePanel({ def, dpsValue }: { def: DefenseResult; dpsValue: number }) {
   const layers = [
     { label: "Dodge",         value: def.dodge_chance_pct,      color: C.cyan  },
     { label: "Block",         value: def.block_chance_pct,      color: C.amber },
@@ -332,11 +430,18 @@ function AvoidancePanel({ def }: { def: DefenseResult }) {
     { label: "Stun Avoid",    value: def.stun_avoidance_pct,   color: "#f472b6"},
   ].filter(l => l.value > 0);
 
+  // Sustain gap: compute total HP/s absorbed from all sources
+  const leechPerSec  = (dpsValue * def.leech_pct) / 100;
+  const wardNet      = Math.max(0, def.net_ward_per_second);
+  const totalSustain = leechPerSec + def.health_regen + wardNet;
+
   const sustainRows = [
-    { label: "Leech",           value: def.leech_pct > 0 ? `${def.leech_pct}%` : "—"       },
-    { label: "Health Regen",    value: def.health_regen > 0 ? `${def.health_regen}/s` : "—" },
-    { label: "Ward Net",        value: def.net_ward_per_second !== 0 ? `${def.net_ward_per_second > 0 ? "+" : ""}${def.net_ward_per_second}/s` : "—" },
-    { label: "On Kill (HP)",    value: def.health_on_kill > 0 ? fmt(def.health_on_kill) : "—"   },
+    { label: "Leech",        value: def.leech_pct > 0 ? `${def.leech_pct}%` : "—",
+      sub: leechPerSec > 0 ? `${fmt(leechPerSec)}/s` : "" },
+    { label: "Health Regen", value: def.health_regen > 0 ? `${def.health_regen}/s` : "—", sub: "" },
+    { label: "Ward Net",     value: def.net_ward_per_second !== 0
+      ? `${def.net_ward_per_second > 0 ? "+" : ""}${def.net_ward_per_second}/s` : "—", sub: "" },
+    { label: "On Kill (HP)", value: def.health_on_kill > 0 ? fmt(def.health_on_kill) : "—", sub: "" },
   ];
 
   return (
@@ -359,11 +464,22 @@ function AvoidancePanel({ def }: { def: DefenseResult }) {
           {sustainRows.map(r => (
             <div key={r.label} className="flex items-center justify-between gap-2">
               <span className="font-mono text-[10px] text-forge-dim">{r.label}</span>
-              <span className={`font-mono text-xs ${r.value === "—" ? "text-forge-dim" : "text-forge-green"}`}>
-                {r.value}
-              </span>
+              <div className="text-right">
+                <span className={`font-mono text-xs ${r.value === "—" ? "text-forge-dim" : "text-forge-green"}`}>
+                  {r.value}
+                </span>
+                {r.sub && (
+                  <div className="font-mono text-[9px] text-forge-dim/60">{r.sub}</div>
+                )}
+              </div>
             </div>
           ))}
+          {totalSustain > 0 && (
+            <div className="mt-2 pt-2 border-t border-forge-border/30 flex items-center justify-between">
+              <span className="font-mono text-[10px] text-forge-muted">Total HP/s</span>
+              <span className="font-display text-sm font-bold text-forge-green">{fmt(totalSustain)}</span>
+            </div>
+          )}
         </div>
       </div>
     </Panel>
@@ -543,9 +659,12 @@ export default function SimulationDashboard({ result }: { result: BuildSimulatio
 
       {/* Grid: Avoidance + Upgrades */}
       <div className="grid grid-cols-2 gap-4">
-        <AvoidancePanel def={def} />
+        <AvoidancePanel def={def} dpsValue={dps.total_dps} />
         <UpgradeChart upgrades={upgrades} />
       </div>
+
+      {/* Upgrade Priority Matrix */}
+      {upgrades.length > 0 && <UpgradePriorityMatrix upgrades={upgrades} />}
 
       {/* Burst vulnerability + insights */}
       <BurstVulnerabilityPanel def={def} />
