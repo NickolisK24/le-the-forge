@@ -392,12 +392,12 @@ export interface UniqueItem {
   name: string;
   slot: string;
   base: string;
+  level_req?: number;
   implicit: string | null;
-  unique_passive: string;
   affixes: string[];
+  unique_effects: string[];
   tags: string[];
-  class_req: string | null;
-  set: string | null;
+  lore?: string;
 }
 
 export const uniquesApi = {

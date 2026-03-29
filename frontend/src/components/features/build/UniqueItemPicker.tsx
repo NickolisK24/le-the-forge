@@ -2,8 +2,8 @@
  * UniqueItemPicker
  *
  * Modal for browsing and selecting a unique item for a specific gear slot.
- * Fetches from GET /api/ref/uniques?slot=<slot>&class=<class>
- * and lets the user search by name.
+ * Fetches from GET /api/ref/uniques?slot=<slot>
+ * and lets the user search by name or tag.
  *
  * On selection calls onSelect(item) and closes.
  */
@@ -15,7 +15,6 @@ import { Button } from "@/components/ui";
 
 interface Props {
   slot: string;
-  characterClass?: string;
   onSelect: (item: UniqueItem) => void;
   onClose: () => void;
 }
@@ -29,6 +28,7 @@ const SLOT_LABEL: Record<string, string> = {
   amulet: "Amulet",
   ring: "Ring",
   relic: "Relic",
+  catalyst: "Catalyst",
   sword: "Sword",
   axe: "Axe",
   mace: "Mace",
@@ -39,32 +39,20 @@ const SLOT_LABEL: Record<string, string> = {
   bow: "Bow",
   quiver: "Quiver",
   shield: "Shield",
+  two_handed_spear: "Spear",
+  idol_1x1_eterra: "Idol (1×1)",
+  idol_1x3: "Idol (1×3)",
+  idol_1x4: "Idol (1×4)",
+  idol_2x2: "Idol (2×2)",
 };
 
-const CLASS_COLOR: Record<string, string> = {
-  Acolyte: "text-purple-400",
-  Mage: "text-blue-400",
-  Primalist: "text-green-400",
-  Sentinel: "text-orange-400",
-  Rogue: "text-red-400",
-};
-
-export default function UniqueItemPicker({
-  slot,
-  characterClass,
-  onSelect,
-  onClose,
-}: Props) {
+export default function UniqueItemPicker({ slot, onSelect, onClose }: Props) {
   const [search, setSearch] = useState("");
   const [hovered, setHovered] = useState<UniqueItem | null>(null);
 
   const { data: res, isLoading } = useQuery({
-    queryKey: ["uniques", slot, characterClass],
-    queryFn: () =>
-      uniquesApi.list({
-        slot,
-        ...(characterClass ? { class: characterClass } : {}),
-      }),
+    queryKey: ["uniques", slot],
+    queryFn: () => uniquesApi.list({ slot }),
     staleTime: 86_400_000,
   });
 
@@ -73,7 +61,11 @@ export default function UniqueItemPicker({
   const filtered = useMemo(() => {
     if (!search.trim()) return items;
     const q = search.toLowerCase();
-    return items.filter((u) => u.name.toLowerCase().includes(q));
+    return items.filter(
+      (u) =>
+        u.name.toLowerCase().includes(q) ||
+        u.tags.some((t) => t.toLowerCase().includes(q))
+    );
   }, [items, search]);
 
   const preview = hovered ?? filtered[0] ?? null;
@@ -88,7 +80,7 @@ export default function UniqueItemPicker({
         style={{ maxHeight: "90vh" }}
         onClick={(e) => e.stopPropagation()}
       >
-        {/* ---- Left panel: list ---- */}
+        {/* ── Left: list ── */}
         <div className="flex flex-col w-72 border-r border-forge-border shrink-0">
           {/* Header */}
           <div className="flex items-center justify-between border-b border-forge-border px-4 py-3">
@@ -108,23 +100,29 @@ export default function UniqueItemPicker({
             <input
               autoFocus
               type="text"
-              placeholder="Search…"
+              placeholder="Search name or tag…"
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="w-full rounded-sm border border-forge-border bg-forge-surface2 px-2 py-1.5 font-body text-sm text-forge-text outline-none focus:border-forge-amber/60"
             />
           </div>
 
+          {/* Count */}
+          <div className="px-3 py-1.5 border-b border-forge-border/40">
+            <span className="font-mono text-[10px] text-forge-dim">
+              {filtered.length} item{filtered.length !== 1 ? "s" : ""}
+              {search ? ` matching "${search}"` : ""}
+            </span>
+          </div>
+
           {/* List */}
           <div className="flex-1 overflow-y-auto">
             {isLoading && (
-              <p className="px-4 py-3 font-mono text-xs text-forge-dim">
-                Loading…
-              </p>
+              <p className="px-4 py-3 font-mono text-xs text-forge-dim">Loading…</p>
             )}
             {!isLoading && filtered.length === 0 && (
               <p className="px-4 py-3 font-mono text-xs text-forge-dim">
-                No uniques found for this slot.
+                No uniques found.
               </p>
             )}
             {filtered.map((item) => (
@@ -133,17 +131,15 @@ export default function UniqueItemPicker({
                 onMouseEnter={() => setHovered(item)}
                 onMouseLeave={() => setHovered(null)}
                 onClick={() => { onSelect(item); onClose(); }}
-                className="w-full text-left px-4 py-2.5 border-b border-forge-border/40 transition-colors hover:bg-forge-surface"
+                className="w-full text-left px-4 py-2.5 border-b border-forge-border/30 transition-colors hover:bg-forge-surface"
               >
-                <div className="font-mono text-sm text-amber-300 leading-tight">
+                <div className="font-mono text-sm text-amber-300 leading-tight truncate">
                   {item.name}
                 </div>
-                <div className="font-mono text-[10px] text-forge-dim mt-0.5">
-                  {item.base}
-                  {item.class_req && (
-                    <span className={`ml-2 ${CLASS_COLOR[item.class_req] ?? "text-forge-dim"}`}>
-                      · {item.class_req}
-                    </span>
+                <div className="font-mono text-[10px] text-forge-dim mt-0.5 flex gap-2">
+                  <span>{item.base}</span>
+                  {item.level_req && (
+                    <span className="text-forge-dim/70">Lv {item.level_req}</span>
                   )}
                 </div>
               </button>
@@ -151,22 +147,19 @@ export default function UniqueItemPicker({
           </div>
         </div>
 
-        {/* ---- Right panel: preview ---- */}
-        <div className="flex-1 flex flex-col overflow-y-auto bg-forge-surface/30">
+        {/* ── Right: preview ── */}
+        <div className="flex-1 flex flex-col overflow-y-auto bg-forge-surface/20">
           {preview ? (
             <div className="p-5 flex flex-col gap-4">
-              {/* Item name + base */}
+              {/* Name + base */}
               <div>
-                <div className="font-display text-xl text-amber-300">
+                <div className="font-display text-xl text-amber-300 leading-tight">
                   {preview.name}
                 </div>
-                <div className="font-mono text-xs text-forge-dim mt-0.5">
-                  {preview.base} · {SLOT_LABEL[preview.slot] ?? preview.slot}
-                  {preview.class_req && (
-                    <span className={`ml-2 ${CLASS_COLOR[preview.class_req] ?? "text-forge-dim"}`}>
-                      · {preview.class_req} only
-                    </span>
-                  )}
+                <div className="font-mono text-xs text-forge-dim mt-1 flex flex-wrap gap-x-3 gap-y-0.5">
+                  <span>{preview.base}</span>
+                  <span>· {SLOT_LABEL[preview.slot] ?? preview.slot}</span>
+                  {preview.level_req && <span>· Req. Lv {preview.level_req}</span>}
                 </div>
               </div>
 
@@ -181,22 +174,37 @@ export default function UniqueItemPicker({
               {preview.affixes.length > 0 && (
                 <div className="flex flex-col gap-1">
                   {preview.affixes.map((a, i) => (
-                    <div key={i} className="font-mono text-xs text-forge-text/90">
+                    <div key={i} className="font-mono text-xs text-sky-200/90">
                       {a}
                     </div>
                   ))}
                 </div>
               )}
 
-              {/* Unique passive */}
-              <div className="rounded border border-amber-500/30 bg-amber-500/5 p-3">
-                <div className="font-mono text-[10px] uppercase tracking-widest text-amber-400 mb-1.5">
-                  Unique Passive
+              {/* Unique effects */}
+              {preview.unique_effects.length > 0 && (
+                <div className="rounded border border-amber-500/30 bg-amber-500/5 p-3">
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-amber-400 mb-2">
+                    Unique Effects
+                  </div>
+                  <div className="flex flex-col gap-1.5">
+                    {preview.unique_effects.map((e, i) => (
+                      <div key={i} className="font-body text-sm text-forge-text/90 leading-snug">
+                        {e}
+                      </div>
+                    ))}
+                  </div>
                 </div>
-                <div className="font-body text-sm text-forge-text/90 leading-relaxed">
-                  {preview.unique_passive}
+              )}
+
+              {/* Lore */}
+              {preview.lore && (
+                <div className="border-t border-forge-border/40 pt-3">
+                  <p className="font-body text-xs text-forge-dim italic leading-relaxed">
+                    "{preview.lore}"
+                  </p>
                 </div>
-              </div>
+              )}
 
               {/* Tags */}
               {preview.tags.length > 0 && (
@@ -213,7 +221,7 @@ export default function UniqueItemPicker({
               )}
 
               {/* Equip button */}
-              <div className="flex justify-end pt-2">
+              <div className="flex justify-end pt-1">
                 <Button
                   variant="primary"
                   size="sm"

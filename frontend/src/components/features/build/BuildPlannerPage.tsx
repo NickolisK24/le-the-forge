@@ -605,7 +605,6 @@ function BuildSummary({ build }: { build: Build }) {
         <Panel title={`Gear (${gearSlots.length} equipped)`}>
           <GearEditor
             gear={gearSlots}
-            characterClass={characterClass}
             onChange={setGearSlots}
           />
         </Panel>
@@ -1126,7 +1125,6 @@ export default function BuildPlannerPage() {
         <Panel title={`Gear (${draftGear.length} equipped)`}>
           <GearEditor
             gear={draftGear}
-            characterClass={characterClass}
             onChange={setDraftGear}
           />
         </Panel>
