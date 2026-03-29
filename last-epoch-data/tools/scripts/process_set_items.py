@@ -139,13 +139,22 @@ def format_affix(mod: dict) -> str:
 
 
 def format_tooltip(text: str) -> str:
-    """Convert '[36,48,2]% Increased ...' → '36–48% Increased ...'"""
+    """Convert '[36,48,2]% Increased ...' → '36–48% Increased ...'
+    Handles scaling patterns like '[1,c,5]' (c = per character level)."""
     def replace(m):
         nums = [n.strip() for n in m.group(1).split(",")]
-        if len(nums) >= 2:
-            lo, hi = fmt_val(float(nums[0])), fmt_val(float(nums[1]))
+        numeric = []
+        for n in nums:
+            try:
+                numeric.append(float(n))
+            except ValueError:
+                pass
+        if len(numeric) >= 2:
+            lo, hi = fmt_val(numeric[0]), fmt_val(numeric[1])
             return f"{lo}–{hi}" if lo != hi else lo
-        return nums[0]
+        elif len(numeric) == 1:
+            return fmt_val(numeric[0])
+        return m.group(0)
     return re.sub(r"\[([^\]]+)\]", replace, text)
 
 

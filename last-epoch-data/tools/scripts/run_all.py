@@ -40,6 +40,7 @@ PIPELINE = [
     ("Process Affixes",      "process_affixes.py"),
     ("Process Items",        "process_items.py"),
     ("Process Uniques",      "process_uniques.py"),
+    ("Process All Uniques",  "process_all_uniques.py"),
     ("Process Set Items",    "process_set_items.py"),
     ("Process Timelines",    "process_timelines.py"),
     ("Process Monster Mods", "process_monster_mods.py"),
