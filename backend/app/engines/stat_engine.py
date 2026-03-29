@@ -132,6 +132,7 @@ class BuildStats:
     lightning_penetration: float = 0.0
     void_penetration: float = 0.0
     necrotic_penetration: float = 0.0
+    poison_penetration: float = 0.0
 
     # Offense — debuff application chances
     armour_shred_chance: float = 0.0
@@ -278,6 +279,37 @@ def _add_partial(stats: BuildStats, partial: dict) -> None:
 
 
 # ---------------------------------------------------------------------------
+# Helper — apply a single stat_key (direct or composite) to BuildStats
+# ---------------------------------------------------------------------------
+
+def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
+    """
+    Apply a stat_key value to BuildStats.  Handles both simple field names
+    and special composite keys that distribute to multiple fields:
+      _all_attributes      → strength, intelligence, dexterity, vitality, attunement
+      _all_res / _all_resistances → fire_res, cold_res, lightning_res, void_res, necrotic_res, poison_res
+      _elemental_res       → fire_res, cold_res, lightning_res
+      _attack_and_cast_speed → attack_speed_pct, cast_speed
+    """
+    if value == 0:
+        return
+    if stat_key == "_all_attributes":
+        for attr in ("strength", "intelligence", "dexterity", "vitality", "attunement"):
+            setattr(stats, attr, getattr(stats, attr) + value)
+    elif stat_key in ("_all_res", "_all_resistances"):
+        for res in ("fire_res", "cold_res", "lightning_res", "void_res", "necrotic_res", "poison_res"):
+            setattr(stats, res, getattr(stats, res) + value)
+    elif stat_key == "_elemental_res":
+        for res in ("fire_res", "cold_res", "lightning_res"):
+            setattr(stats, res, getattr(stats, res) + value)
+    elif stat_key == "_attack_and_cast_speed":
+        stats.attack_speed_pct += value
+        stats.cast_speed += value
+    elif hasattr(stats, stat_key):
+        setattr(stats, stat_key, getattr(stats, stat_key) + value)
+
+
+# ---------------------------------------------------------------------------
 # Helper — passive node bonus (mirrors getNodeBonus in simulation.ts)
 # ---------------------------------------------------------------------------
 
@@ -368,22 +400,41 @@ def aggregate_stats(
         stats.armour += pts_used * 15
 
     # 3. Passive node bonuses
+    # Nodes dict now has "id" = raw_node_id (int) so set comparison works correctly.
+    # When real passive_stats are available from the DB resolver, only apply keystones
+    # here (their effects aren't in the DB stats column). For regular/notable nodes the
+    # resolver data is authoritative and we skip the modulo fallback to avoid double-counting.
+    has_real_passive_data = bool(passive_stats and passive_stats.get("additive"))
     for node in nodes:
         if node["id"] not in allocated_set:
             continue
-        bonus = _get_node_bonus(node["id"], node.get("type", "core"), node.get("name", ""))
+        node_type = node.get("type", "core")
+        node_name = node.get("name", "")
+        if has_real_passive_data and node_type != "keystone":
+            # Real data from passive_stat_resolver covers this node; skip modulo fallback.
+            continue
+        bonus = _get_node_bonus(node["id"], node_type, node_name)
         _add_partial(stats, bonus)
 
     # 4. Gear affix values (sealed affixes still contribute stats)
+    # Accepts two formats:
+    #   a) Normal crafted affixes: {"name": str, "tier": int} — looked up via AFFIX_STAT_KEYS
+    #   b) Synthetic unique stats: {"stat_key": str, "value": float} — applied directly
     for affix in gear_affixes:
+        # Format b: synthetic unique item stats injected by build_analysis_service
+        if "stat_key" in affix:
+            _apply_stat_key(stats, affix["stat_key"], float(affix.get("value", 0)))
+            continue
+
+        # Format a: normal gear affix by name + tier
         affix_name = affix.get("name", "")
         tier = int(affix.get("tier", 3))
         stat_key = AFFIX_STAT_KEYS.get(affix_name)
         if not stat_key:
             continue
         value = get_affix_value(affix_name, tier)
-        if value and hasattr(stats, stat_key):
-            setattr(stats, stat_key, getattr(stats, stat_key) + value)
+        if value:
+            _apply_stat_key(stats, stat_key, value)
 
     # 5. Resolved passive tree stats (from passive_stat_resolver)
     if passive_stats:

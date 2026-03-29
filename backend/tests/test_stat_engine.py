@@ -170,7 +170,8 @@ class TestAttributeScaling:
 class TestGetAffixValue:
     def test_t1_health_midpoint(self):
         val = get_affix_value("Added Health", 1)
-        assert val == 10  # T1 midpoint: (5+15)/2 = 10
+        # T1 midpoint: (500+1500)/2 = 1000 (real LE data)
+        assert val == 1000
 
     def test_unknown_affix_returns_zero(self):
         assert get_affix_value("Completely Fake Affix", 1) == 0
