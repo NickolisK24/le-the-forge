@@ -333,9 +333,7 @@ Future capabilities may include:
 
 # Contributing
 
-This project is currently in early development.
-
-Contributions, feedback, and ideas from the community are welcome.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, branch conventions, architecture guidelines, and the PR checklist.
 
 ---
 
