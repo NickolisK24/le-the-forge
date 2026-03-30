@@ -169,9 +169,7 @@ The Forge is built around a central **Intelligence Engine** that powers all anal
 
 For a full architecture breakdown, see:
 
-docs/system_architecture.md
-
-### High-Level Flow
+docs/architecture.md
 
 ```mermaid
 flowchart TD
@@ -198,12 +196,12 @@ Detailed technical documentation can be found in the docs folder.
 
 ## Core Documentation
 
+* docs/architecture.md — system overview, engine structure, and simulation math
 * docs/api_reference.md — full REST API reference with request/response schemas
-* docs/system_overview.md
-* docs/development_roadmap.md
-* docs/data_models.md
-* docs/engine_architecture.md
-* docs/simulation_design.md
+* docs/data_models.md — core data structures
+* docs/passive_tree.md — passive tree system design
+* docs/development_roadmap.md — master development roadmap and feature plan
+* docs/development_phases.md — GitHub workflow phases guide
 
 Screenshots and demo assets are in `docs/screenshots/`. Run `./scripts/screenshot.sh` to capture new screenshots.
 
@@ -220,10 +218,12 @@ the-forge/
 ├ ROADMAP.md
 │
 ├ docs/
-│   ├ system_architecture.md
-│   ├ intelligence_engine.md
+│   ├ architecture.md
+│   ├ api_reference.md
 │   ├ data_models.md
-│   └ engine_architecture.md
+│   ├ passive_tree.md
+│   ├ development_roadmap.md
+│   └ development_phases.md
 │
 ├ backend/
 │
@@ -298,9 +298,9 @@ The long-term goal is to create a platform that enables players to:
 
 ## Development Guide
 
-See the full next-steps roadmap:
+See the development roadmap:
 
-docs/forge_next_steps.md
+docs/development_roadmap.md
 
 ### Game Data Setup
 

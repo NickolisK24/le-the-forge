@@ -74,3 +74,4 @@ scripts/missing_icons.txt
 # TypeScript/Vite build artifacts
 frontend/tsconfig.tsbuildinfo
 frontend/vite.config.d.ts
+le-parser/

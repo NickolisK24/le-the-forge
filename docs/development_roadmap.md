@@ -1,15 +1,6 @@
-# THE FORGE — MASTER DEVELOPMENT ROADMAP (OVERRIDDEN & REBUILT)
+# THE FORGE — MASTER DEVELOPMENT ROADMAP
 
-This document replaces your previous `development_roadmap.md` and reflects:
-
-* Your **current real progress**
-* What is **actually completed**
-* What **must be built next**
-* What **future systems** will turn this into the **ultimate Last Epoch crafting simulator**
-
-This is now your **single source of truth**.
-
-Use it daily.
+This is the single source of truth for project progress, current objectives, and planned features.
 
 ---
 
