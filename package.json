@@ -24,7 +24,7 @@
   "build": {
     "appId": "com.theforge.app",
     "productName": "The Forge",
-    "copyright": "Copyright © 2025",
+    "copyright": "Copyright © 2026",
     "directories": {
       "buildResources": "assets",
       "output": "dist-desktop"
