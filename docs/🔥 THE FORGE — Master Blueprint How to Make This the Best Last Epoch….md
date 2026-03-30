@@ -2,7 +2,7 @@
 
 Repository: NickolisK24/le-the-forge
 Date: 2026-03-27
-Status: Active Development — Phases 1–3 Complete, Phase 4 In Progress
+Status: Active Development — Phases 1–4 In Progress, Simulation Pipeline ~80% Complete
 Last Updated: 2026-03-29
 
 ---
@@ -29,7 +29,7 @@ Last Updated: 2026-03-29
 7. Backend Architecture Hardening — 🔄 Partial
 8. Frontend & UX Transformation — 🔄 Partial
 9. Data Pipeline & Game Accuracy — 🔄 Partial
-10. Simulation Engine Upgrades — 📋 Planned
+10. Simulation Engine Upgrades — 🔄 In Progress
 11. Community & Social Features — 📋 Planned
 12. Developer Experience & Infrastructure — 🔄 Partial
 13. Performance & Scalability — 📋 Planned
@@ -48,15 +48,18 @@ The Forge is not a concept — it's a working multi-engine simulation platform. 
 | System | Status | Key Files |
 |--------|--------|-----------|
 | Backend Architecture | ✅ Mature | routes/ → services/ → engines/ → models/ |
-| 9 Specialized Engines | ✅/⚠️ Active | stat_engine, combat_engine, defense_engine, craft_engine, optimization_engine, affix_engine, base_engine, item_engine, fp_engine |
-| 40+ Backend Tests | ✅ Passing | test_stat_engine, test_combat_engine, test_defense_engine, test_craft_engine, test_optimization_engine, test_simulation_determinism, etc. |
+| 9 Specialized Engines | ✅ Active | stat_engine, combat_engine, defense_engine, craft_engine, optimization_engine, affix_engine, base_engine, item_engine, fp_engine |
+| **325 Backend Tests** | ✅ Passing | test_stat_engine, test_combat_engine, test_defense_engine, test_craft_engine, test_optimization_engine, test_simulation_determinism, test_base_engine (8 tests), etc. |
 | Full REST API | ✅ Documented | 30+ endpoints across auth, builds, craft sessions, simulation, reference data |
-| Game Data Layer | ✅ Rich | 11 JSON data files including 1.1MB affixes.json, skills_metadata.json, enemy_profiles.json, damage_types.json |
+| Game Data Layer | ✅ Rich | 13 JSON data files including 1.1MB affixes.json, skills_metadata.json, enemy_profiles.json, skill_tree_nodes.json, base_items.json (110 named bases) |
 | Crafting Simulator | ⚠️ Partial | Strategy comparison, optimal path search, FP tracking (backend Monte Carlo exists but not surfaced in frontend UI) |
-| Build Planner | ✅ Complete | Passive tree (real game coords, BFS validation, leveling path), skill selection with trees, mastery gates, affix-aware gear editor, import system |
+| Build Planner | ✅ Complete | Passive tree (real game coords, BFS validation, leveling path), skill selection with spec trees, mastery gates, full gear editor, import system |
 | Unique Items | ✅ Complete | 403 unique items (uniques.json), backend API with meta-slot expansion, paper-doll gear editor, hover item tooltips |
+| **Crafted Items (Gear Editor)** | ✅ Complete | 110 named base items across 19 slots; ItemPicker with Unique/Crafted tabs; AffixEditorModal with slot-filtered dropdown, tier slider, sealed toggle; emerald color coding for crafted gear |
 | Set Items | ✅ Exists | set_items.json extracted — set bonuses not yet surfaced in UI |
-| Passive Tree | ✅ Advanced | Hexagonal SVG nodes, real game positions, connection rendering, BFS path validation, leveling path tracker |
+| Passive Tree | ✅ Advanced | Hexagonal SVG nodes, real game positions, connection rendering, BFS path validation, leveling path tracker, **integer→string ID mismatch fixed** |
+| **Spec Tree Resolver** | ✅ Complete | skill_tree_resolver.py parses node descriptions (pipe-separated stats), routes to build_stat_bonuses or skill_modifiers; 132 trees, 2190 nodes in skill_tree_nodes.json |
+| **Full Simulation Pipeline** | ✅ ~80% | Passives + spec tree + gear (uniques + crafted affixes) all flow into stat aggregation → DPS calculation |
 | Build Comparison | ✅ Exists | Side-by-side comparison page |
 | Community Builds | ✅ Exists | Browse, vote, filter, search, tier system |
 | Meta Tracker | 🔴 Planned | Backend endpoint exists (GET /api/builds/meta/snapshot) but no frontend page built |
@@ -66,12 +69,12 @@ The Forge is not a concept — it's a working multi-engine simulation platform. 
 | Docker Dev Environment | ✅ Working | Flask + PostgreSQL + Redis + Vite |
 | Documentation | ✅ Extensive | API reference, architecture docs, roadmap, changelog, contributing guide |
 
-### ⚠️ What's Partially Built (from ROADMAP & Review)
+### ⚠️ What's Partially Built
 
-- Optimization Engine — ✅ stat sensitivity analysis now fully exposed via API with explanations
+- Optimization Engine — ✅ stat sensitivity analysis fully exposed via API with explanations
 - Craft Engine — ✅ consolidated to structured `{success, reason}` responses, rule enforcement hardened
-- Stat Engine — 🔄 aggregation works but needs expansion for all conditional stats
-- Combat Engine — 🔄 DPS + Monte Carlo works but needs enemy-specific modeling
+- Stat Engine — ✅ passive stats now correctly mapped (integer→string ID fix), affix stat_keys expanded (238 mapped vs. 47 before), composite stats handled (`_all_attributes`, `_all_res`, `_elemental_res`, `_attack_and_cast_speed`); 🔄 conditional stats still needed
+- Combat Engine — ✅ spec tree modifiers applied (`more_damage_pct`, `crit_chance_pct`, `crit_multiplier_pct`, `added_hits_per_cast`, `hits_per_cast`); 🔄 enemy-specific modeling still needed
 - Defense Engine — 🔄 EHP + resistance capping works, burst vulnerability panel added, needs DoT modeling
 
 ### 🔓 Open Issues
@@ -125,7 +128,7 @@ Issue board audited and cleaned up 2026-03-27.
 - ✅ Remove affix: empty case handling
 - ✅ Seal affix: 1 sealed max enforcement
 - ✅ All actions: structured `{ success, reason }` responses
-- ✅ All 40+ backend tests updated and passing
+- ✅ All backend tests updated and passing
 
 ### 3.4 Add Structured Logging (Issue #14) — ✅ Done
 - ✅ `ForgeLogger` added to all 9 engines
@@ -185,6 +188,42 @@ Per docs/passive_tree_missing_features.md:
 - ✅ "Dead stats" flagged (<1% → "low impact" muted/strikethrough)
 - ✅ Color-coded upgrade priority matrix — 2D scatter (DPS gain% vs EHP gain%) with Balanced/Offensive/Defensive/Low Impact quadrants
 
+### 4.6 Full Simulation Pipeline (Passives + Spec Tree + Gear) — ✅ ~80% Complete
+
+The core "analyze a build and get real numbers" pipeline now works end-to-end:
+
+**Passive Tree Integration — ✅ Fixed**
+- ✅ Integer→string ID mismatch resolved: `build.passive_tree` stores raw integer node IDs; `raw_id_to_str` map built from DB to translate before stat aggregation
+- ✅ Double-counting prevention: when real DB passive data exists, skip fallback modulo formula for non-keystone nodes
+- ✅ Keystone bonuses always applied via `KEYSTONE_BONUSES` dict regardless of tier
+
+**Affix Stat Pipeline — ✅ Fixed**
+- ✅ `_apply_stat_key()` helper handles direct and composite stat keys (`_all_attributes`, `_all_res`, `_elemental_res`, `_attack_and_cast_speed`)
+- ✅ Affix stat_key coverage expanded: 238 affixes mapped (was 47); includes idol affixes, all resistance types, ward regen, leech, block chance
+- ✅ Unique item stat parsing: 60+ regex patterns extract midpoint values from free-text descriptions ("+20–80% increased Fire Damage" → 50)
+
+**Spec Tree Integration — ✅ Complete**
+- ✅ `skill_tree_resolver.py`: parses `|` separator in node descriptions, routes `build_stat_bonuses` to BuildStats and `skill_modifiers` to DPS engine
+- ✅ `skill_tree_nodes.json`: 132 skill trees, 2190 nodes, all description text preserved
+- ✅ `combat_engine.py` updated: `more_damage_pct` (multiplicative stacking), `crit_chance_pct`, `crit_multiplier_pct`, `added_hits_per_cast`, `hits_per_cast` all applied in both `calculate_dps` and `monte_carlo_dps`
+- ✅ `build_analysis_service.py`: extracts `primary_spec_tree` from first sorted skill, converts flat node-ID list to `{node_id, points}` via `Counter`, applies resolver output to stats and DPS call
+
+**Remaining:**
+- 📋 Multi-skill DPS — calculate DPS for each of 5 skill slots, return combined total + per-skill breakdown
+- 📋 Hits-per-cast metadata — add `hits_per_cast`, `base_minion_count`, `is_channelled` to SKILL_STATS definitions
+- 📋 Conditional stats — stats that only apply under certain conditions (on-hit, on-crit, vs. specific enemy types)
+
+### 4.7 Gear Editor — Full Item Coverage — ✅ Complete
+
+- ✅ 110 named base items across 19 slot categories (Rusted Coif → Imperial Helm, Corroded Sword → Dragonlance, etc.) with real LE-style implicit stats and FP ranges
+- ✅ `base_engine.py` updated for list-based structure; named item lookup by name or slot key; backward compatible
+- ✅ `GET /api/ref/base-items?slot=helmet` returns flat list for slot
+- ✅ `ItemPicker.tsx` — unified modal with **Unique Items** and **Crafted Items** tabs
+- ✅ Crafted tab: base item list filtered by slot, rarity selector (Normal/Magic/Rare/Exalted), preview pane showing implicit + FP range + base armor
+- ✅ `AffixEditorModal` — opens when clicking an equipped crafted item; slot-filtered affix dropdown (234 affixes for body slot), tier slider (1–maxTier), sealed toggle, add/remove, save → feeds directly into simulation
+- ✅ `SLOT_TO_AFFIX_SLOT` mapping — translates gear slot names ("body", "helmet") to affix `applicable_to` values ("chest", "helm") so dropdown populates correctly
+- ✅ Crafted items displayed in emerald green with rarity + affix count; uniques remain amber
+
 ---
 
 ## 5. Medium-Term Roadmap (90–180 Days) — 📋 PLANNED
@@ -234,6 +273,13 @@ Comparison page exists. Enhancements:
 - 📋 Delta breakdown
 - 📋 "Clone and modify" workflow
 - 📋 Multi-build comparison (3+)
+
+### 5.6 Multi-Skill DPS Breakdown — 📋 Next Up
+
+- 📋 Calculate DPS for each of the 5 skill slots independently
+- 📋 Return per-skill breakdown + combined total in simulation response
+- 📋 Each skill uses its own spec_tree from the build's skill array
+- 📋 Display per-skill contribution bars in SimulationDashboard
 
 ---
 
@@ -321,12 +367,14 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 
 ## 8. Frontend & UX Transformation — 🔄 PARTIAL
 
-### 8.1 Results Dashboard Overhaul — 🔄 ~60%
+### 8.1 Results Dashboard Overhaul — 🔄 ~65%
 
 - ✅ SimulationDashboard with DPS, EHP, Score display
 - ✅ Top upgrades ranked with explanation text
 - ✅ Weakness/strength display from defense engine
 - ✅ BurstVulnerabilityPanel with 5 endgame scenarios
+- ✅ Upgrade Priority Matrix — 2D scatter chart with Balanced/Offensive/Defensive/Low Impact quadrants
+- ✅ Sustain panel — Total HP/s from leech (DPS × leech%), health regen, ward net
 - 📋 Full "command center" layout as designed
 - 📋 Recommended craft action with success rate
 
@@ -348,16 +396,17 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 - 📋 Sound effects (desktop mode)
 - 📋 Loading skeletons during API calls
 
-### 8.4 Gear Editor — ✅ Complete
+### 8.4 Gear Editor — ✅ Complete (Full Item Coverage)
 
 - ✅ Paper-doll equipment layout matching Last Epoch's in-game UI (CSS grid-template-areas)
 - ✅ Equipment tab — Helmet, Body, Weapon (meta-slot: all 9 weapon types), Off-hand (Shield/Quiver/Catalyst), Amulet, Ring×2, Belt, Gloves, Boots, Relic
 - ✅ Idols tab — 1×1, 1×3, 1×4, 2×2 idol grid with correct slot counts
-- ✅ UniqueItemPicker modal — per-slot filtered list, search by name/base/tag, full item preview pane
-- ✅ Hover tooltips — fixed-position portal overlay on every equipped cell showing all stats (implicit, affixes, unique effects, lore, tags)
-- ✅ Read-only mode — view mode shows gear without interaction, no picker/clear
-- ✅ Right-column placement — gear editor lives in sidebar alongside Preview and Save, left column stays focused on Skills + Passive Tree
-- ✅ Backend API — `/api/ref/uniques?slot=` with meta-slot expansion; 24h cache
+- ✅ **ItemPicker modal** — Unique Items tab (403 uniques, search by name/base/tag, full preview) + **Crafted Items tab** (110 named base items, rarity selector, FP/armor preview)
+- ✅ **AffixEditorModal** — slot-filtered affix dropdown (234+ affixes per slot), tier slider (1→max tier), sealed checkbox, add/remove up to 4 affixes; feeds directly into simulation via `{name, tier}` affix objects
+- ✅ Hover tooltips — fixed-position portal overlay on every equipped unique showing all stats (implicit, affixes, unique effects, lore, tags)
+- ✅ Crafted items display in emerald green with rarity + affix count badge; uniques remain amber
+- ✅ Read-only mode — view mode shows gear without interaction
+- ✅ Backend API — `/api/ref/uniques?slot=` with meta-slot expansion; `/api/ref/base-items?slot=` with named base list; 24h cache
 
 ### 8.5 Mobile Responsiveness — 📋 Planned
 
@@ -371,15 +420,15 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 
 ### 9.1 Expand Game Data Coverage
 
-| File | Status | Action |
-|------|--------|--------|
-| affixes.json (1.1MB) | ✅ Complete | Maintain on patch |
-| base_items.json | ✅ Complete | All base types extracted (Feb 2026) |
+| File | Status | Notes |
+|------|--------|-------|
+| affixes.json (1.1MB) | ✅ Complete | 1230 affixes; **238 stat_keys mapped** (was 47); composite stats handled |
+| base_items.json | ✅ **Rebuilt** | **110 named base items** across 19 slots with level req, FP range, armor, implicit text |
 | crafting_rules.json | ✅ Exists | Validate against live game |
 | damage_types.json | ✅ Exists | Complete |
 | enemy_profiles.json | ✅ Exists | Add all bosses + corruption scaling |
 | forging_potential_ranges.json | ✅ Exists | Validate against live data |
-| implicit_stats.json | ✅ Exists | Expand to all item bases |
+| implicit_stats.json | ✅ Exists | 19 slot entries — expand to all item bases |
 | item_types.json | ✅ Exists | Complete |
 | rarities.json | ✅ Exists | Complete |
 | skills_metadata.json (40KB) | ✅ Exists | Complete with skill tree node data |
@@ -389,7 +438,7 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 | idols.json | 🔴 Missing | Add idol types, affix pools |
 | blessings.json | 🔴 Missing | Timeline blessings per boss |
 | passive_nodes_full.json | ✅ Complete | Extracted with full stat values per node |
-| skill_tree_nodes.json | ✅ Complete | Spec tree data extracted |
+| **skill_tree_nodes.json** | ✅ **New** | **132 skill trees, 2190 nodes** generated from frontend skill tree index; pipe-separated description format |
 
 ### 9.2 Automated Data Sync Pipeline — 🔄 ~30%
 
@@ -407,18 +456,23 @@ The golden rule from CONTRIBUTING.md: Engines have no DB/HTTP imports.
 
 ---
 
-## 10. Simulation Engine Upgrades — 📋 PLANNED
+## 10. Simulation Engine Upgrades — 🔄 IN PROGRESS
 
-### 10.1 Full Damage Pipeline — 🔄 ~60%
+### 10.1 Full Damage Pipeline — 🔄 ~75%
 
-combat_engine.py models the core pipeline. Remaining:
+combat_engine.py models the core pipeline:
 
 - ✅ Base → Flat Added → Increased% → More multipliers → Crit → Resistance → Final
 - ✅ Ailment damage (bleed, poison, ignite)
+- ✅ **Spec tree modifiers applied**: `more_damage_pct` (multiplicative), `crit_chance_pct`, `crit_multiplier_pct`, `hits_per_cast` from `added_hits_per_cast`
+- ✅ **Passive stats correctly aggregated**: integer→string ID fix means passive tree bonuses now actually affect simulation
+- ✅ **Affix stats correctly applied**: 238 mapped stat_keys feed into BuildStats (was silently ignored before)
+- ✅ **Unique item stats parsed**: regex extraction of midpoint values from description strings
 - 📋 Damage conversion (physical → void, etc.)
 - 📋 DoT calculations
 - 📋 Channeled skill modeling
 - 📋 Minion damage (summon builds)
+- 📋 Multi-skill DPS (per-skill breakdown + combined total)
 
 ### 10.2 Ward Simulation — 🔄 ~40%
 
@@ -475,12 +529,15 @@ combat_engine.py models the core pipeline. Remaining:
 - 📋 Release: publish Electron binaries
 - 📋 Scheduled: weekly data sync
 
-### 12.2 Test Coverage Expansion — 🔄 ~40%
+### 12.2 Test Coverage Expansion — 🔄 ~65%
 
-Current: 40+ tests. Target: 100+
+Current: **325 tests passing**. Target: 400+
 
 - ✅ Engine tests with edge cases (stat, combat, defense, craft, optimization)
 - ✅ Simulation determinism regression tests
+- ✅ **Base engine tests expanded to 8** (named item lookup, all 110 bases validated)
+- ✅ **Affix engine tests updated** for idol type and real tier values
+- ✅ **Stat engine tests updated** for correct T1 health midpoint (1000, not 10)
 - 📋 API endpoint integration tests
 - 📋 Frontend component tests
 - 📋 Data integrity tests
@@ -520,7 +577,7 @@ Current: 40+ tests. Target: 100+
 2. 📋 Redis result caching (Redis already available)
 3. 📋 Lazy data loading
 4. 📋 Multiprocessing for batch simulations
-5. ✅ React Query frontend caching
+5. ✅ React Query frontend caching (24h stale time on all ref data)
 6. 📋 Database query optimization (indexes)
 
 ### 13.3 Benchmarking — 📋 Planned
@@ -548,7 +605,8 @@ Current: 40+ tests. Target: 100+
 |---------|-------|--------|
 | v0.2.0 | Optimization engine + craft hardening | ✅ Done |
 | v0.3.0 | Skill trees, mastery gates, build import, unique items + gear editor | ✅ Done |
-| v0.4.0 | Boss simulation, crafting strategy planner, defense panel completion | 📋 Planned |
+| **v0.3.5** | **Spec tree → DPS pipeline, crafted gear with affix editor, base items, passive fix** | ✅ **Done** |
+| v0.4.0 | Boss simulation, crafting strategy planner, multi-skill DPS, defense panel completion | 📋 Planned |
 | v0.5.0 | Recommendation engine with explanations | 📋 Planned |
 | v1.0.0 | Feature-complete desktop release | 📋 Planned |
 
@@ -593,6 +651,7 @@ Current: 40+ tests. Target: 100+
 **1. 🧠 Intelligence, Not Just Information**
 - Every other tool shows numbers. The Forge tells you what the numbers mean.
 - ✅ Foundation: `explanation` field on recommendations, `stat_sensitivity()`, dead stat flagging
+- ✅ Upgrade Priority Matrix — visual quadrant system (Balanced / Offensive / Defensive / Low Impact)
 
 **2. 🎯 Answer the Questions Players Actually Ask**
 - "Is this item an upgrade?" → Item comparison with DPS/EHP delta
@@ -600,6 +659,7 @@ Current: 40+ tests. Target: 100+
 - "Where is my build weakest?" → ✅ Ranked weakness list with burst vulnerability panel
 - "What stat should I prioritize?" → ✅ Sensitivity analysis with diminishing return warnings
 - "Can I do this boss?" → Boss-specific simulation
+- "What gear should I be crafting?" → ✅ Crafted item picker with full base library + affix editor
 
 **3. ⚡ Speed to Insight**
 - 📋 Presets, one-click import, instant results, no manual entry
@@ -607,6 +667,8 @@ Current: 40+ tests. Target: 100+
 **4. 🔬 Simulation Depth That Others Can't Match**
 - ✅ Monte Carlo on DPS and crafting
 - ✅ Deterministic replay with seed
+- ✅ **Spec tree modifiers applied to DPS** — no competitor does this
+- ✅ **All three data layers flow into simulation**: passives + spec tree + gear affixes
 - 📋 Confidence intervals on every number
 - 📋 10K-run simulations
 
@@ -619,7 +681,7 @@ Current: 40+ tests. Target: 100+
 Once The Forge has all five pillars, no competitor can catch up quickly because:
 - Last Epoch Tools would need to build an entire backend simulation engine
 - Maxroll would need to pivot from guides to analysis software
-- Both would need to replicate 9 specialized engines and 40+ tests
+- Both would need to replicate 9 specialized engines and 325 tests
 
 The Forge's moat is its engine architecture. Everything else is presentation. The engines are the hard part, and you've already built them.
 
@@ -638,6 +700,10 @@ The Forge's moat is its engine architecture. Everything else is presentation. Th
 | 🟡 High | Defense analysis panel UI | Month 2 | ✅ Done |
 | 🟡 High | Stat efficiency scoring UI | Month 2-3 | ✅ Done |
 | 🟢 Medium | Skill tree UI component | Month 3 | ✅ Done |
+| 🟢 Medium | **Spec tree → DPS pipeline** | **Month 3** | ✅ **Done** |
+| 🟢 Medium | **Passive tree ID fix + full stat aggregation** | **Month 3** | ✅ **Done** |
+| 🟢 Medium | **Crafted items + base library + affix editor** | **Month 3** | ✅ **Done** |
+| 🟢 Medium | Multi-skill DPS breakdown | Month 3-4 | 📋 Next |
 | 🟢 Medium | Boss encounter simulation | Month 3-4 | 📋 Planned |
 | 🟢 Medium | Recommendation engine with explanations | Month 4-5 | 📋 Planned |
 | 🟢 Medium | Crafting strategy planner | Month 5-6 | 📋 Planned |
@@ -646,6 +712,6 @@ The Forge's moat is its engine architecture. Everything else is presentation. Th
 
 ---
 
-The foundation is built. The engines exist. The architecture is sound. Now it's about surfacing the intelligence that already lives in the backend, making it effortless to use, and explaining why — not just what.
+The foundation is built. The engines exist. The architecture is sound. The simulation pipeline — passives, spec trees, and gear — now flows end-to-end. Now it's about surfacing the intelligence that already lives in the backend, making it effortless to use, and explaining why — not just what.
 
 That's how The Forge becomes the best Last Epoch tool the game has ever seen. 🔥
