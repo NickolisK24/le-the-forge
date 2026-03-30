@@ -16,7 +16,7 @@ import {
   ResponsiveContainer, Cell, ReferenceLine, ErrorBar,
   ScatterChart, Scatter,
 } from "recharts";
-import type { BuildSimulationResult, DefenseResult, StatUpgrade } from "@/lib/api";
+import type { BuildSimulationResult, DefenseResult, StatUpgrade, SkillDpsEntry } from "@/lib/api";
 import { Panel } from "@/components/ui";
 
 // ---------------------------------------------------------------------------
@@ -612,20 +612,80 @@ function InsightsPanel({ def }: { def: DefenseResult }) {
 }
 
 // ---------------------------------------------------------------------------
+// Per-Skill DPS Breakdown
+// ---------------------------------------------------------------------------
+
+const SLOT_COLORS = [C.amber, C.cyan, C.green, "#c084fc", "#fb923c"] as const;
+
+function SkillDpsPanel({ skills, combinedDps }: { skills: SkillDpsEntry[]; combinedDps: number }) {
+  if (!skills || skills.length === 0) return null;
+  const maxDps = Math.max(...skills.map(s => s.total_dps), 1);
+
+  return (
+    <Panel title="Skill DPS Breakdown" action={
+      <span className="font-mono text-[10px] text-forge-dim">
+        Combined ceiling: <span className="text-forge-text">{fmt(combinedDps)}</span>
+      </span>
+    }>
+      <div className="space-y-3">
+        {skills.map((s, i) => {
+          const color = SLOT_COLORS[i % SLOT_COLORS.length];
+          const pct = (s.total_dps / maxDps) * 100;
+          return (
+            <div key={s.slot}>
+              <div className="flex justify-between font-mono text-xs mb-1">
+                <span style={{ color }} className="flex items-center gap-1.5">
+                  {s.skill_name}
+                  {s.is_primary && (
+                    <span className="font-mono text-[8px] uppercase tracking-wider bg-forge-surface3 text-forge-amber px-1 py-px rounded">
+                      primary
+                    </span>
+                  )}
+                </span>
+                <span className="text-forge-text">{fmt(s.total_dps)}</span>
+              </div>
+              <div className="h-1.5 rounded-full bg-forge-surface3 overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-700"
+                  style={{ width: `${pct}%`, backgroundColor: color }}
+                />
+              </div>
+            </div>
+          );
+        })}
+        <div className="pt-2 border-t border-forge-border/30 flex justify-between font-mono text-[10px] text-forge-dim">
+          <span>{skills.length} skill{skills.length !== 1 ? "s" : ""} active</span>
+          <span>Levels: {skills.map(s => s.skill_level).join(" · ")}</span>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
 // Root export
 // ---------------------------------------------------------------------------
 
 export default function SimulationDashboard({ result }: { result: BuildSimulationResult }) {
-  const { dps, monte_carlo: mc, defense: def, stat_upgrades: upgrades } = result;
+  const { dps, monte_carlo: mc, defense: def, stat_upgrades: upgrades, dps_per_skill, combined_dps } = result;
+  const hasMultipleSkills = dps_per_skill && dps_per_skill.length > 1;
 
   return (
     <div className="space-y-4">
       {/* Summary strip */}
       <div className="flex items-center justify-between rounded border border-forge-border bg-forge-surface2 px-6 py-3">
         <div className="text-center">
-          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Total DPS</div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">
+            {hasMultipleSkills ? "Primary DPS" : "Total DPS"}
+          </div>
           <div className="font-display text-2xl font-bold text-forge-amber">{fmt(dps.total_dps)}</div>
         </div>
+        {hasMultipleSkills && (
+          <div className="text-center">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Combined DPS</div>
+            <div className="font-display text-2xl font-bold text-forge-amber/70">{fmt(combined_dps)}</div>
+          </div>
+        )}
         <div className="text-center">
           <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Mean DPS (sim)</div>
           <div className="font-display text-2xl font-bold text-forge-text">{fmt(mc.mean_dps)}</div>
@@ -644,6 +704,11 @@ export default function SimulationDashboard({ result }: { result: BuildSimulatio
           <div className="font-mono text-[10px] text-forge-dim">Lv {result.skill_level}</div>
         </div>
       </div>
+
+      {/* Per-skill DPS breakdown (shown when build has 2+ skills) */}
+      {hasMultipleSkills && (
+        <SkillDpsPanel skills={dps_per_skill} combinedDps={combined_dps ?? 0} />
+      )}
 
       {/* Grid: DPS + Monte Carlo */}
       <div className="grid grid-cols-2 gap-4">

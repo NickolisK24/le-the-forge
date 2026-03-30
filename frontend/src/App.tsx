@@ -20,6 +20,7 @@ import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
 
 import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
 import PassiveTreePage from "@/pages/PassiveTreePage";
+import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -151,6 +152,7 @@ export default function App() {
                 <Route path="/affixes" element={<AffixEditorPage />} />
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
+                <Route path="/meta" element={<MetaSnapshotPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>

@@ -135,6 +135,26 @@ function buildQueryString(filters: BuildFilters & { page?: number; per_page?: nu
   return qs ? `?${qs}` : "";
 }
 
+export interface MetaSnapshotEntry {
+  class: string;
+  count: number;
+}
+
+export interface STierBuild {
+  id: string;
+  slug: string;
+  name: string;
+  mastery: string;
+}
+
+export interface MetaSnapshot {
+  total_builds: number;
+  most_played_class: string;
+  top_mastery: string;
+  class_distribution: MetaSnapshotEntry[];
+  s_tier_builds: STierBuild[];
+}
+
 export const buildsApi = {
   list: (filters: BuildFilters & { page?: number; per_page?: number } = {}) =>
     get<BuildListItem[]>(`/builds${buildQueryString(filters)}`),
@@ -150,6 +170,8 @@ export const buildsApi = {
 
   vote: (slug: string, direction: 1 | -1) =>
     post<VoteResult>(`/builds/${slug}/vote`, { direction }),
+
+  metaSnapshot: () => get<MetaSnapshot>("/builds/meta/snapshot"),
 };
 
 // ---------------------------------------------------------------------------
@@ -335,6 +357,15 @@ export interface DefenseResult {
   strengths: string[];
 }
 
+export interface SkillDpsEntry {
+  skill_name: string;
+  skill_level: number;
+  slot: number;
+  dps: number;
+  total_dps: number;
+  is_primary: boolean;
+}
+
 export interface BuildSimulationResult {
   primary_skill: string;
   skill_level: number;
@@ -344,6 +375,8 @@ export interface BuildSimulationResult {
   defense: DefenseResult;
   stat_upgrades: StatUpgrade[];
   seed: number | null;
+  dps_per_skill: SkillDpsEntry[];
+  combined_dps: number;
 }
 
 export const simulateApi = {

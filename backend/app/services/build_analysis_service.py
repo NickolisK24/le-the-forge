@@ -237,6 +237,34 @@ def analyze_build(build: Build) -> dict:
         skill_modifiers=skill_tree_result["skill_modifiers"],
     )
 
+    # 3b. Per-skill DPS for all occupied skill slots (rotation breakdown).
+    # Each skill uses its own spec_tree modifiers; build-wide stats are shared.
+    # combined_dps is a naive sum (rotation ceiling — assumes all skills active simultaneously).
+    dps_per_skill = []
+    combined_dps = 0.0
+    for skill in sorted_skills:
+        s_name = skill.skill_name or None
+        if not s_name:
+            continue
+        s_level = max(1, skill.points_allocated or 20)
+        s_spec_tree = skill.spec_tree or []
+        s_counts = Counter(s_spec_tree)
+        s_allocations = [{"node_id": nid, "points": pts} for nid, pts in s_counts.items()]
+        s_tree_result = resolve_skill_tree_stats(s_name, s_allocations)
+        s_dps = combat_engine.calculate_dps(
+            stats, s_name, s_level,
+            skill_modifiers=s_tree_result["skill_modifiers"],
+        )
+        dps_per_skill.append({
+            "skill_name": s_name,
+            "skill_level": s_level,
+            "slot": skill.slot,
+            "dps": round(s_dps.dps),
+            "total_dps": round(s_dps.total_dps),
+            "is_primary": skill.slot == sorted_skills[0].slot,
+        })
+        combined_dps += s_dps.total_dps
+
     # 4. Defense
     defense_result = defense_engine.calculate_defense(stats)
 
@@ -255,4 +283,6 @@ def analyze_build(build: Build) -> dict:
         "stat_upgrades": [u.to_dict() for u in upgrades],
         "skill_tree_modifiers": skill_tree_result["skill_modifiers"],
         "skill_tree_special_effects": skill_tree_result["special_effects"][:10],
+        "dps_per_skill": dps_per_skill,
+        "combined_dps": round(combined_dps),
     }
