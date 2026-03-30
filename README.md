@@ -341,6 +341,4 @@ Contributions, feedback, and ideas from the community are welcome.
 
 # License
 
-This project is intended for educational and community use.
-
-License details will be added as development progresses.
+This project is licensed under the [MIT License](LICENSE).
