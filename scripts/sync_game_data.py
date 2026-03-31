@@ -767,7 +767,7 @@ def sync_timelines(dry_run: bool = False) -> list[dict] | None:
             "difficulties": difficulties,
         })
 
-    out_path = DATA_DIR / "progression" / "timelines.json"
+    out_path = DATA_DIR / "world" / "timelines.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
