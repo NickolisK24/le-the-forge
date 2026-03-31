@@ -548,7 +548,7 @@ def sync_blessings(dry_run: bool = False) -> list[dict] | None:
             "stats": implicits,
         })
 
-    out_path = DATA_DIR / "progressions" / "blessings.json"
+    out_path = DATA_DIR / "progression" / "blessings.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -767,7 +767,7 @@ def sync_timelines(dry_run: bool = False) -> list[dict] | None:
             "difficulties": difficulties,
         })
 
-    out_path = DATA_DIR / "progressions" / "timelines.json"
+    out_path = DATA_DIR / "progression" / "timelines.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
