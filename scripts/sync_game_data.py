@@ -432,9 +432,306 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
     return nodes_out
 
 
+def sync_blessings(dry_run: bool = False) -> list[dict] | None:
+    """
+    Transform last-epoch-data/exports_json/blessings.json into data/blessings.json.
+
+    Source schema:
+      {"blessings": [{
+          "name": str,              # internal ID (e.g. "27")
+          "displayName": str,       # e.g. "Pride of Rebellion"
+          "subTypeID": int,         # 0=normal, 1=grand
+          "levelRequirement": int,
+          "classRequirement": str,  # "Any" or class name
+          "implicits": [{
+              "property": str, "tags": [str, ...],
+              "modifierType": str, "value": float, "maxValue": float
+          }],
+          "cannotDrop": bool,
+          ...
+      }]}
+
+    Output (data/blessings.json): array of blessing entries.
+    """
+    src_path = SRC_DIR / "blessings.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping blessings sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    blessings_list: list[dict] = raw.get("blessings", [])
+    out: list[dict] = []
+
+    for entry in blessings_list:
+        display = entry.get("displayName", "")
+        if not display:
+            continue
+
+        implicits = []
+        for imp in entry.get("implicits", []):
+            implicits.append({
+                "property": imp.get("property", ""),
+                "tags": imp.get("tags", []),
+                "modifier_type": imp.get("modifierType", ""),
+                "value": imp.get("value", 0.0),
+                "max_value": imp.get("maxValue", 0.0),
+            })
+
+        class_req = entry.get("classRequirement", "Any")
+        out.append({
+            "id": _slugify(display),
+            "name": display,
+            "internal_name": entry.get("name", ""),
+            "tier": entry.get("subTypeID", 0),
+            "level_req": entry.get("levelRequirement", 0),
+            "class_req": class_req if class_req != "Any" else None,
+            "cannot_drop": entry.get("cannotDrop", False),
+            "stats": implicits,
+        })
+
+    out_path = DATA_DIR / "blessings.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  blessings: {len(out)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] blessings: would write {len(out)} entries → {out_path.name}")
+
+    return out
+
+
+def sync_ailments(dry_run: bool = False) -> list[dict] | None:
+    """
+    Transform last-epoch-data/exports_json/ailments.json into data/ailments.json.
+
+    Source schema:
+      {"ailments": [{
+          "id": int,
+          "name": str,          # CamelCase internal name e.g. "AbyssalDecay"
+          "displayName": str,   # e.g. "Abyssal Decay"
+          "instanceName": str,  # e.g. "Abyssal Decay"
+          "duration": float,    # seconds
+          "maxInstances": int,  # 0 = unlimited stacks
+          "positive": bool,     # true = buff, false = debuff
+          "showsInBuffUI": bool,
+          "tags": int,          # bitmask
+          "applyPrefix": bool,
+          ...
+      }]}
+
+    Output (data/ailments.json): array of ailment entries.
+    """
+    src_path = SRC_DIR / "ailments.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping ailments sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    ailments_list: list[dict] = raw.get("ailments", [])
+    out: list[dict] = []
+
+    for entry in ailments_list:
+        display = entry.get("displayName", "")
+        if not display:
+            continue
+
+        out.append({
+            "id": entry.get("id"),
+            "slug": _slugify(display),
+            "name": display,
+            "internal_name": entry.get("name", ""),
+            "instance_name": entry.get("instanceName", display),
+            "duration": entry.get("duration", 0.0),
+            "max_instances": entry.get("maxInstances", 0),
+            "positive": entry.get("positive", False),
+            "shows_in_buff_ui": entry.get("showsInBuffUI", True),
+            "tags": entry.get("tags", 0),
+        })
+
+    out_path = DATA_DIR / "ailments.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  ailments: {len(out)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] ailments: would write {len(out)} entries → {out_path.name}")
+
+    return out
+
+
+def sync_monster_mods(dry_run: bool = False) -> list[dict] | None:
+    """
+    Transform last-epoch-data/exports_json/monster_mods.json into data/monster_mods.json.
+
+    Source schema:
+      {"monsterMods": [{
+          "name": str,               # e.g. "Increased Health"
+          "description": str,        # e.g. "More Health"
+          "title": str,              # e.g. "of the Ox"
+          "minimumLevel": int,
+          "hasBonusDrop": int,       # 0/1
+          "bonusDropMin": int,
+          "bonusDropMax": int,
+          "stats": [{
+              "property": int,
+              "addedValue": float,
+              "increasedValue": float,
+              "moreValues": [float, ...]
+          }],
+          ...
+      }]}
+
+    Output (data/monster_mods.json): array of monster mod entries.
+    """
+    src_path = SRC_DIR / "monster_mods.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping monster_mods sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    mods_list: list[dict] = raw.get("monsterMods", [])
+    out: list[dict] = []
+
+    for entry in mods_list:
+        name = entry.get("name", "")
+        if not name:
+            continue
+
+        stats = []
+        for s in entry.get("stats", []):
+            stats.append({
+                "property": s.get("property"),
+                "added_value": s.get("addedValue", 0.0),
+                "increased_value": s.get("increasedValue", 0.0),
+                "more_values": s.get("moreValues", []),
+            })
+
+        out.append({
+            "id": _slugify(name),
+            "name": name,
+            "description": entry.get("description", ""),
+            "title": entry.get("title", ""),
+            "minimum_level": entry.get("minimumLevel", 0),
+            "has_bonus_drop": bool(entry.get("hasBonusDrop", 0)),
+            "bonus_drop_min": entry.get("bonusDropMin", 0),
+            "bonus_drop_max": entry.get("bonusDropMax", 0),
+            "stats": stats,
+        })
+
+    out_path = DATA_DIR / "monster_mods.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  monster_mods: {len(out)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] monster_mods: would write {len(out)} entries → {out_path.name}")
+
+    return out
+
+
+def sync_timelines(dry_run: bool = False) -> list[dict] | None:
+    """
+    Transform last-epoch-data/exports_json/timelines.json into data/timelines.json.
+
+    Source schema:
+      {"timelines": [{
+          "name": str,          # internal name e.g. "Frost Lich Timeline"
+          "timelineID": int,
+          "displayName": str,   # e.g. "Blood, Frost, and Death"
+          "restZone": str,
+          "optionRerollCost": int,
+          "difficulties": [{
+              "level": int,
+              "maxStability": int,
+              "anySlotBlessings": [int, ...],   # blessing subTypeID references
+              "firstSlotBlessings": [int, ...],
+              "otherSlotBlessings": [int, ...],
+              "minimumCorruption": int,
+              "maximumCorruption": int,
+              "sufficientRequirements": [{"timelineID": int, "completionType": int}],
+              ...
+          }],
+          ...
+      }]}
+
+    Output (data/timelines.json): array of timeline entries.
+    """
+    src_path = SRC_DIR / "timelines.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping timelines sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    timelines_list: list[dict] = raw.get("timelines", [])
+    out: list[dict] = []
+
+    for entry in timelines_list:
+        display = entry.get("displayName", "")
+        internal = entry.get("name", "")
+        if not display and not internal:
+            continue
+
+        difficulties = []
+        for d in entry.get("difficulties", []):
+            # Merge all blessing bucket lists into a single deduplicated list
+            blessings = list(dict.fromkeys(
+                d.get("anySlotBlessings", [])
+                + d.get("firstSlotBlessings", [])
+                + d.get("otherSlotBlessings", [])
+            ))
+            requirements = [
+                {"timeline_id": r["timelineID"], "completion_type": r["completionType"]}
+                for r in d.get("sufficientRequirements", [])
+            ]
+            difficulties.append({
+                "level": d.get("level", 0),
+                "max_stability": d.get("maxStability", 0),
+                "blessings": blessings,
+                "minimum_corruption": d.get("minimumCorruption", 0),
+                "maximum_corruption": d.get("maximumCorruption") if d.get("hasMaxCorruption") else None,
+                "sufficient_requirements": requirements,
+            })
+
+        out.append({
+            "id": _slugify(display or internal),
+            "name": display or internal,
+            "internal_name": internal,
+            "timeline_id": entry.get("timelineID"),
+            "rest_zone": entry.get("restZone", ""),
+            "option_reroll_cost": entry.get("optionRerollCost", 0),
+            "difficulties": difficulties,
+        })
+
+    out_path = DATA_DIR / "timelines.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  timelines: {len(out)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] timelines: would write {len(out)} entries → {out_path.name}")
+
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync game data from last-epoch-data exports.")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing files")
+    parser.add_argument("--all", dest="all", action="store_true", help="Run all sync functions")
+    parser.add_argument("--affixes", action="store_true", help="Sync affixes.json")
+    parser.add_argument("--skills", action="store_true", help="Sync skills_metadata.json")
+    parser.add_argument("--passives", action="store_true", help="Sync passives.json")
+    parser.add_argument("--blessings", action="store_true", help="Sync blessings.json")
+    parser.add_argument("--ailments", action="store_true", help="Sync ailments.json")
+    parser.add_argument("--monster-mods", action="store_true", dest="monster_mods", help="Sync monster_mods.json")
+    parser.add_argument("--timelines", action="store_true", help="Sync timelines.json")
     args = parser.parse_args()
 
     if not SRC_DIR.exists():
@@ -442,33 +739,61 @@ def main():
         print("Make sure last-epoch-data is available in the project root.", file=sys.stderr)
         sys.exit(1)
 
+    # If no specific flags given, default to running all
+    specific_flags = [args.affixes, args.skills, args.passives, args.blessings,
+                      args.ailments, args.monster_mods, args.timelines]
+    run_all = args.all or not any(specific_flags)
+
     print(f"{'[DRY RUN] ' if args.dry_run else ''}Syncing game data from {SRC_DIR.name}...\n")
 
     # --- Affixes ---
-    affixes_path = DATA_DIR / "affixes.json"
-    with open(affixes_path, encoding="utf-8") as f:
-        existing_affixes = json.load(f)
+    if run_all or args.affixes:
+        affixes_path = DATA_DIR / "affixes.json"
+        with open(affixes_path, encoding="utf-8") as f:
+            existing_affixes = json.load(f)
 
-    updated_affixes = sync_affixes(existing_affixes, dry_run=args.dry_run)
+        updated_affixes = sync_affixes(existing_affixes, dry_run=args.dry_run)
 
-    if not args.dry_run:
-        with open(affixes_path, "w", encoding="utf-8") as f:
-            json.dump(updated_affixes, f, indent=2, ensure_ascii=False)
-        print(f"  → Written: {affixes_path}")
-    else:
-        print(f"  [DRY RUN] Would write {len(updated_affixes)} affixes → {affixes_path}")
+        if not args.dry_run:
+            with open(affixes_path, "w", encoding="utf-8") as f:
+                json.dump(updated_affixes, f, indent=2, ensure_ascii=False)
+            print(f"  → Written: {affixes_path}")
+        else:
+            print(f"  [DRY RUN] Would write {len(updated_affixes)} affixes → {affixes_path}")
 
-    print()
+        print()
 
     # --- Skills metadata ---
-    sync_skills_metadata(dry_run=args.dry_run)
-
-    print()
+    if run_all or args.skills:
+        sync_skills_metadata(dry_run=args.dry_run)
+        print()
 
     # --- Passives ---
-    sync_passives(dry_run=args.dry_run)
+    if run_all or args.passives:
+        sync_passives(dry_run=args.dry_run)
+        print()
 
-    print("\nDone.")
+    # --- Blessings ---
+    if run_all or args.blessings:
+        sync_blessings(dry_run=args.dry_run)
+        print()
+
+    # --- Ailments ---
+    if run_all or args.ailments:
+        sync_ailments(dry_run=args.dry_run)
+        print()
+
+    # --- Monster Mods ---
+    if run_all or args.monster_mods:
+        sync_monster_mods(dry_run=args.dry_run)
+        print()
+
+    # --- Timelines ---
+    if run_all or args.timelines:
+        sync_timelines(dry_run=args.dry_run)
+        print()
+
+    print("Done.")
 
 
 if __name__ == "__main__":
