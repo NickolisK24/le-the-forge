@@ -55,8 +55,10 @@ IDOL_SLOT_PREFIX = "IDOL_"
 
 
 def _slugify(name: str) -> str:
-    """Convert 'Void Penetration' → 'void_penetration'."""
+    """Convert 'Void Penetration' → 'void_penetration'. Strips apostrophes before slugifying
+    so "Artor's Legacy" → 'artors_legacy' (matching existing data/uniques.json key style)."""
     slug = name.lower().strip()
+    slug = slug.replace("'", "")   # strip apostrophes before the regex pass
     slug = re.sub(r"[^a-z0-9]+", "_", slug)
     slug = slug.strip("_")
     return slug
@@ -372,7 +374,7 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
 
             # Connections: requirements is [{node: int, requirement: int}, ...]
             connections = [
-                f"{prefix}_{r['node']}"
+                f"{prefix}_{r['nodeId']}"
                 for r in node.get("requirements", [])
             ]
 
@@ -721,6 +723,245 @@ def sync_timelines(dry_run: bool = False) -> list[dict] | None:
     return out
 
 
+def _format_tooltip_text(text: str) -> str:
+    """
+    Convert game tooltip format '[min,max,step]...' → 'min–max...'.
+
+    Examples:
+      '[100,150,0]% Chance to Ignite' → '100–150% Chance to Ignite'
+      '[0.06,0.12,0]' → '6–12'  (floats < 1 are multiplied × 100 for display)
+    """
+    def _replace(m: re.Match) -> str:
+        parts = m.group(1).split(",")
+        try:
+            lo = float(parts[0])
+            hi = float(parts[1])
+            # Values stored as fractions (0–1) → convert to percentage display
+            if abs(lo) < 1.0 and abs(hi) < 1.0 and lo != 0.0:
+                lo = round(lo * 100)
+                hi = round(hi * 100)
+            else:
+                lo = int(lo) if lo == int(lo) else lo
+                hi = int(hi) if hi == int(hi) else hi
+            return f"{lo}–{hi}"
+        except (ValueError, IndexError):
+            return m.group(0)
+
+    return re.sub(r"\[([^\]]+)\]", _replace, text)
+
+
+def sync_uniques(dry_run: bool = False) -> dict | None:
+    """
+    Merge exports_json/uniques.json into data/uniques.json.
+
+    Source schema (uniques.json → "uniques" array):
+      id, name, displayName, baseType, mods, legendaryType,
+      effectiveLevelForLP, canDropRandomly, rerollChance,
+      tooltipDescriptions [{text}], loreText
+
+    Merge strategy:
+    - Keyed by slug of `name` (matches existing data/uniques.json keys).
+    - Curated fields preserved if already set: base, implicit, affixes, tags.
+    - Updated from export: slot, lore, unique_effects (from tooltipDescriptions).
+    - New raw fields added: legendary_type, effective_level_for_lp,
+      can_drop_randomly, reroll_chance.
+    """
+    src_path = SRC_DIR / "uniques.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping uniques sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    existing_path = DATA_DIR / "uniques.json"
+    existing: dict = {}
+    if existing_path.exists():
+        with open(existing_path, encoding="utf-8") as f:
+            existing = json.load(f)
+
+    export_uniques: list[dict] = raw.get("uniques", [])
+    out: dict = {"_meta": existing.get("_meta", {})}
+    new_count = 0
+    updated_count = 0
+
+    for item in export_uniques:
+        name = item.get("name", "")
+        display = item.get("displayName", "") or name
+        if not name and not display:
+            continue
+
+        slug = _slugify(display)
+        current = existing.get(slug, {})
+        is_new = not bool(current)
+
+        slot = _convert_slot(item.get("baseType", ""))
+        unique_effects = [
+            _format_tooltip_text(t["text"])
+            for t in item.get("tooltipDescriptions", [])
+        ]
+        lore = item.get("loreText", "") or current.get("lore", "")
+
+        entry = {
+            "name": display,
+            "slot": slot or current.get("slot", ""),
+            # Curated fields: preserve if set, leave empty if not
+            "base": current.get("base", ""),
+            "implicit": current.get("implicit", ""),
+            "affixes": current.get("affixes", []),
+            "unique_effects": unique_effects,
+            "tags": current.get("tags", []),
+            "lore": lore,
+            # Raw export fields
+            "legendary_type": item.get("legendaryType", "None"),
+            "effective_level_for_lp": item.get("effectiveLevelForLP"),
+            "can_drop_randomly": item.get("canDropRandomly", True),
+            "reroll_chance": item.get("rerollChance", 0.0),
+        }
+
+        out[slug] = entry
+        if is_new:
+            new_count += 1
+        else:
+            updated_count += 1
+
+    # Preserve any existing entries not in the export
+    for slug, val in existing.items():
+        if slug not in out:
+            out[slug] = val
+
+    out_path = DATA_DIR / "uniques.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  uniques: {updated_count} updated, {new_count} new → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] uniques: would update {updated_count}, add {new_count} → {out_path.name}")
+
+    return out
+
+
+def sync_set_items(dry_run: bool = False) -> dict | None:
+    """
+    Merge set item data from exports into data/set_items.json.
+
+    Sources:
+      - exports_json/uniques.json → "setItems" array (47 items with mods/tooltips)
+      - exports_json/set_bonuses.json → "setBonuses" array (7 sets with bonus tiers)
+
+    Merge strategy:
+    - Individual set items keyed by slug of displayName (or name).
+    - Curated fields preserved: base, affixes, tags, lore.
+    - Updated: slot, unique_effects (from tooltipDescriptions).
+    - "sets" dict updated with set_name and bonus tier descriptions from set_bonuses.json.
+    """
+    uniques_src = SRC_DIR / "uniques.json"
+    bonuses_src = SRC_DIR / "set_bonuses.json"
+
+    if not uniques_src.exists():
+        print(f"  [WARN] {uniques_src} not found — skipping set_items sync")
+        return None
+
+    with open(uniques_src, encoding="utf-8") as f:
+        uniques_raw = json.load(f)
+
+    set_bonuses_by_id: dict[int, dict] = {}
+    if bonuses_src.exists():
+        with open(bonuses_src, encoding="utf-8") as f:
+            bonuses_raw = json.load(f)
+        for entry in bonuses_raw.get("setBonuses", []):
+            set_bonuses_by_id[entry["setId"]] = entry
+    else:
+        print(f"  [WARN] {bonuses_src} not found — set bonus descriptions will be skipped")
+
+    existing_path = DATA_DIR / "set_items.json"
+    existing: dict = {}
+    if existing_path.exists():
+        with open(existing_path, encoding="utf-8") as f:
+            existing = json.load(f)
+
+    export_set_items: list[dict] = uniques_raw.get("setItems", [])
+
+    # Rebuild sets dict: setId → {name, items[], bonuses[]}
+    sets: dict[str, dict] = existing.get("sets", {})
+    set_id_to_slugs: dict[int, list[str]] = {}
+
+    out: dict = {"_meta": existing.get("_meta", {})}
+    new_count = 0
+    updated_count = 0
+
+    for item in export_set_items:
+        display = item.get("displayName", "") or item.get("name", "")
+        if not display:
+            continue
+
+        slug = _slugify(display)
+        current = existing.get(slug, {})
+        is_new = not bool(current)
+
+        slot = _convert_slot(item.get("baseType", ""))
+        unique_effects = [
+            _format_tooltip_text(t["text"])
+            for t in item.get("tooltipDescriptions", [])
+        ]
+        set_id: int = item.get("setId", 0)
+
+        entry = {
+            "name": display,
+            "slot": slot or current.get("slot", ""),
+            "set_id": set_id,
+            "set": set_bonuses_by_id.get(set_id, {}).get("setName", current.get("set", "")),
+            "base": current.get("base", ""),
+            "affixes": current.get("affixes", []),
+            "unique_effects": unique_effects,
+            "tags": current.get("tags", []),
+            "lore": item.get("loreText", "") or current.get("lore", ""),
+        }
+
+        out[slug] = entry
+        set_id_to_slugs.setdefault(set_id, []).append(slug)
+
+        if is_new:
+            new_count += 1
+        else:
+            updated_count += 1
+
+    # Rebuild sets dict with bonus tier data
+    for set_id, slugs in set_id_to_slugs.items():
+        bonus_entry = set_bonuses_by_id.get(set_id, {})
+        set_name = bonus_entry.get("setName", sets.get(str(set_id), {}).get("name", ""))
+        bonuses = [
+            {
+                "pieces_required": b["piecesRequired"],
+                "text": b.get("text", ""),
+                "alt_text": b.get("altText", ""),
+            }
+            for b in bonus_entry.get("bonuses", [])
+        ]
+        sets[str(set_id)] = {
+            "name": set_name,
+            "items": slugs,
+            "bonuses": bonuses,
+        }
+
+    out["sets"] = sets
+
+    # Preserve any existing item entries not in the export
+    for slug, val in existing.items():
+        if slug not in out and slug not in ("_meta", "sets"):
+            out[slug] = val
+
+    out_path = DATA_DIR / "set_items.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  set_items: {updated_count} updated, {new_count} new, {len(sets)} sets → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] set_items: would update {updated_count}, add {new_count}, {len(sets)} sets → {out_path.name}")
+
+    return out
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync game data from last-epoch-data exports.")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing files")
@@ -732,6 +973,8 @@ def main():
     parser.add_argument("--ailments", action="store_true", help="Sync ailments.json")
     parser.add_argument("--monster-mods", action="store_true", dest="monster_mods", help="Sync monster_mods.json")
     parser.add_argument("--timelines", action="store_true", help="Sync timelines.json")
+    parser.add_argument("--uniques", action="store_true", help="Sync uniques.json")
+    parser.add_argument("--set-items", action="store_true", dest="set_items", help="Sync set_items.json")
     args = parser.parse_args()
 
     if not SRC_DIR.exists():
@@ -741,7 +984,8 @@ def main():
 
     # If no specific flags given, default to running all
     specific_flags = [args.affixes, args.skills, args.passives, args.blessings,
-                      args.ailments, args.monster_mods, args.timelines]
+                      args.ailments, args.monster_mods, args.timelines,
+                      args.uniques, args.set_items]
     run_all = args.all or not any(specific_flags)
 
     print(f"{'[DRY RUN] ' if args.dry_run else ''}Syncing game data from {SRC_DIR.name}...\n")
@@ -791,6 +1035,16 @@ def main():
     # --- Timelines ---
     if run_all or args.timelines:
         sync_timelines(dry_run=args.dry_run)
+        print()
+
+    # --- Uniques ---
+    if run_all or args.uniques:
+        sync_uniques(dry_run=args.dry_run)
+        print()
+
+    # --- Set Items ---
+    if run_all or args.set_items:
+        sync_set_items(dry_run=args.dry_run)
         print()
 
     print("Done.")
