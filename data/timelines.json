@@ -1,0 +1,645 @@
+[
+  {
+    "id": "blood_frost_and_death",
+    "name": "Blood, Frost, and Death",
+    "internal_name": "Frost Lich Timeline",
+    "timeline_id": 4,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 3000,
+    "difficulties": [
+      {
+        "level": 74,
+        "max_stability": 600,
+        "blessings": [
+          14,
+          15,
+          16,
+          17,
+          18,
+          19,
+          20,
+          21,
+          22,
+          23,
+          59,
+          60
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 2,
+            "completion_type": 0
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1600,
+        "blessings": [
+          127,
+          128,
+          129,
+          130,
+          131,
+          132,
+          133,
+          134,
+          135,
+          136,
+          146,
+          147
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the_last_ruin",
+    "name": "The Last Ruin",
+    "internal_name": "Gaspar Timeline",
+    "timeline_id": 8,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 4500,
+    "difficulties": [
+      {
+        "level": 90,
+        "max_stability": 1000,
+        "blessings": [
+          162,
+          164,
+          166,
+          168,
+          170,
+          172,
+          174,
+          176,
+          178
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1800,
+        "blessings": [
+          163,
+          165,
+          167,
+          169,
+          171,
+          173,
+          175,
+          177,
+          179
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 8,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the_age_of_winter",
+    "name": "The Age of Winter",
+    "internal_name": "Heorot Timeline",
+    "timeline_id": 9,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 4500,
+    "difficulties": [
+      {
+        "level": 90,
+        "max_stability": 1000,
+        "blessings": [
+          180,
+          182,
+          184,
+          186,
+          188,
+          190,
+          192,
+          194,
+          196,
+          198,
+          200
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1800,
+        "blessings": [
+          181,
+          183,
+          185,
+          187,
+          189,
+          191,
+          193,
+          195,
+          197,
+          199,
+          201
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 9,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ending_the_storm",
+    "name": "Ending the Storm",
+    "internal_name": "Lagon Timeline",
+    "timeline_id": 5,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 3000,
+    "difficulties": [
+      {
+        "level": 78,
+        "max_stability": 750,
+        "blessings": [
+          72,
+          74,
+          76,
+          78,
+          80,
+          82,
+          84,
+          86,
+          88,
+          90,
+          92,
+          94,
+          96
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 3,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 4,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 4,
+            "completion_type": 1
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1700,
+        "blessings": [
+          73,
+          75,
+          77,
+          79,
+          81,
+          83,
+          85,
+          87,
+          89,
+          91,
+          93,
+          95,
+          97
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 9,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the_stolen_lance",
+    "name": "The Stolen Lance",
+    "internal_name": "Osprix Lance Timeline",
+    "timeline_id": 2,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 2500,
+    "difficulties": [
+      {
+        "level": 66,
+        "max_stability": 500,
+        "blessings": [
+          62,
+          63,
+          64,
+          65,
+          66,
+          67,
+          68,
+          69,
+          70,
+          71,
+          61
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 1,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 1,
+            "completion_type": 1
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1600,
+        "blessings": [
+          117,
+          118,
+          119,
+          120,
+          121,
+          122,
+          123,
+          124,
+          125,
+          126,
+          148
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "reign_of_dragons",
+    "name": "Reign of Dragons",
+    "internal_name": "Reign of Dragons Timeline",
+    "timeline_id": 7,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 4000,
+    "difficulties": [
+      {
+        "level": 85,
+        "max_stability": 900,
+        "blessings": [
+          98,
+          99,
+          100,
+          101,
+          102,
+          103,
+          104,
+          105,
+          106,
+          107,
+          108,
+          109,
+          110
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 5,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 5,
+            "completion_type": 1
+          },
+          {
+            "timeline_id": 6,
+            "completion_type": 0
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1700,
+        "blessings": [
+          149,
+          150,
+          151,
+          152,
+          153,
+          154,
+          155,
+          156,
+          157,
+          158,
+          159,
+          160,
+          161
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 8,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 9,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 10,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fall_of_the_outcasts",
+    "name": "Fall of the Outcasts",
+    "internal_name": "Undead Abomination Timeline",
+    "timeline_id": 1,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 2000,
+    "difficulties": [
+      {
+        "level": 62,
+        "max_stability": 500,
+        "blessings": [
+          111,
+          113,
+          115,
+          0,
+          2,
+          4,
+          6,
+          8,
+          10,
+          12
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": []
+      },
+      {
+        "level": 100,
+        "max_stability": 1600,
+        "blessings": [
+          112,
+          114,
+          116,
+          1,
+          3,
+          5,
+          7,
+          9,
+          11,
+          13
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "fall_of_the_empire",
+    "name": "Fall of the Empire",
+    "internal_name": "Undead Vs Void Timeline",
+    "timeline_id": 6,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 3500,
+    "difficulties": [
+      {
+        "level": 82,
+        "max_stability": 800,
+        "blessings": [
+          50,
+          51,
+          52,
+          53,
+          54,
+          55,
+          56,
+          57,
+          58
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 5,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 5,
+            "completion_type": 1
+          },
+          {
+            "timeline_id": 4,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 4,
+            "completion_type": 1
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1700,
+        "blessings": [
+          137,
+          138,
+          139,
+          140,
+          141,
+          142,
+          143,
+          144,
+          145
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "the_black_sun",
+    "name": "The Black Sun",
+    "internal_name": "Void Rahyeh Timeline",
+    "timeline_id": 3,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 2500,
+    "difficulties": [
+      {
+        "level": 70,
+        "max_stability": 550,
+        "blessings": [
+          24,
+          26,
+          28,
+          30,
+          32,
+          34,
+          36,
+          38,
+          40,
+          42,
+          44,
+          46,
+          48
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 1,
+            "completion_type": 0
+          },
+          {
+            "timeline_id": 1,
+            "completion_type": 1
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1600,
+        "blessings": [
+          25,
+          27,
+          29,
+          31,
+          33,
+          35,
+          37,
+          39,
+          41,
+          43,
+          45,
+          47,
+          49
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 8,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "spirits_of_fire",
+    "name": "Spirits of Fire",
+    "internal_name": "Volcano Shamans Timeline",
+    "timeline_id": 10,
+    "rest_zone": "M_Rest",
+    "option_reroll_cost": 4500,
+    "difficulties": [
+      {
+        "level": 90,
+        "max_stability": 1000,
+        "blessings": [
+          202,
+          204,
+          206,
+          208,
+          210,
+          212,
+          214,
+          216,
+          218,
+          220,
+          222
+        ],
+        "minimum_corruption": 0,
+        "maximum_corruption": 50,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 7,
+            "completion_type": 0
+          }
+        ]
+      },
+      {
+        "level": 100,
+        "max_stability": 1800,
+        "blessings": [
+          203,
+          205,
+          207,
+          209,
+          211,
+          213,
+          215,
+          217,
+          219,
+          221,
+          223
+        ],
+        "minimum_corruption": 100,
+        "maximum_corruption": null,
+        "sufficient_requirements": [
+          {
+            "timeline_id": 10,
+            "completion_type": 0
+          }
+        ]
+      }
+    ]
+  }
+]
