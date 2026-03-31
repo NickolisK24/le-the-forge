@@ -1,0 +1,1930 @@
+[
+  {
+    "id": 6665178931200,
+    "text": "Ash Tribe Armor"
+  },
+  {
+    "id": 6665187319808,
+    "text": "Ash Tribe Boots"
+  },
+  {
+    "id": 6665187319809,
+    "text": "Ash Tribe Gloves"
+  },
+  {
+    "id": 6665187319810,
+    "text": "Ash Tribe Helmet"
+  },
+  {
+    "id": 6665187319811,
+    "text": "Test Helmet"
+  },
+  {
+    "id": 6665187319812,
+    "text": "Constellation Axe"
+  },
+  {
+    "id": 6665191514112,
+    "text": "Constellation Bow"
+  },
+  {
+    "id": 6665191514113,
+    "text": "Constellation Shield"
+  },
+  {
+    "id": 6665191514114,
+    "text": "Constellation Sword"
+  },
+  {
+    "id": 6665191514115,
+    "text": "Constellation Wand"
+  },
+  {
+    "id": 6665191514116,
+    "text": "Constellation 1H Sword"
+  },
+  {
+    "id": 6665191514117,
+    "text": "Soul Eater Boots"
+  },
+  {
+    "id": 6665191514118,
+    "text": "Soul Eater Chest"
+  },
+  {
+    "id": 6665191514119,
+    "text": "Soul Eater Gloves"
+  },
+  {
+    "id": 6665191514120,
+    "text": "Soul Eater Helm"
+  },
+  {
+    "id": 6665191514121,
+    "text": "Necrotic Shroud"
+  },
+  {
+    "id": 6665191514122,
+    "text": "Divine Shroud"
+  },
+  {
+    "id": 6665191514123,
+    "text": "Wyrmscale Aegis"
+  },
+  {
+    "id": 6665191514124,
+    "text": "Crystal Crown"
+  },
+  {
+    "id": 6665191514125,
+    "text": "Dreadforged Helm"
+  },
+  {
+    "id": 6665191514126,
+    "text": "2 Handed Divinity's Fist"
+  },
+  {
+    "id": 6665191514127,
+    "text": "Temporal Guardian Catalyst"
+  },
+  {
+    "id": 6665191514128,
+    "text": "Moltenplume Gaze"
+  },
+  {
+    "id": 6665191514129,
+    "text": "Crystalweave Plate Boots"
+  },
+  {
+    "id": 6665191514130,
+    "text": "Crystalweave Plate Chest"
+  },
+  {
+    "id": 6665191514131,
+    "text": "Crystalweave Plate Gloves"
+  },
+  {
+    "id": 6665191514132,
+    "text": "Crystalweave Plate Helm"
+  },
+  {
+    "id": 6665191514133,
+    "text": "Crescent Sage Boots"
+  },
+  {
+    "id": 6665191514134,
+    "text": "Crescent Sage Chest"
+  },
+  {
+    "id": 6665191514135,
+    "text": " Crescent Sage Gloves"
+  },
+  {
+    "id": 6665191514136,
+    "text": "Crescent Sage Helm"
+  },
+  {
+    "id": 6665191514137,
+    "text": "Fallen Ronin Boots"
+  },
+  {
+    "id": 6665191514138,
+    "text": "Fallen Ronin Chest"
+  },
+  {
+    "id": 6665191514139,
+    "text": "Fallen Ronin Gloves"
+  },
+  {
+    "id": 6665191514140,
+    "text": "Fallen Ronin Helm"
+  },
+  {
+    "id": 6665191514141,
+    "text": "Temporal Guardian Boots"
+  },
+  {
+    "id": 6665191514142,
+    "text": "Temporal Guardian Chest"
+  },
+  {
+    "id": 6665191514143,
+    "text": "Temporal Guardian Gloves"
+  },
+  {
+    "id": 6665191514144,
+    "text": "Temporal Guardian Helm"
+  },
+  {
+    "id": 6665191514145,
+    "text": "Argentum Myrmidon Boots"
+  },
+  {
+    "id": 6665191514146,
+    "text": "Argentum Myrmidon Helm"
+  },
+  {
+    "id": 6665191514147,
+    "text": "Argentum Myrmidon Gloves"
+  },
+  {
+    "id": 6665191514148,
+    "text": "Argentum Myrmidon Chest"
+  },
+  {
+    "id": 6665191514149,
+    "text": "1 Handed Divinity's Fist"
+  },
+  {
+    "id": 6665191514150,
+    "text": "Gilded Captain’s Regalia Boots"
+  },
+  {
+    "id": 6665191514151,
+    "text": "Gilded Captain’s Regalia Gloves"
+  },
+  {
+    "id": 6665191514152,
+    "text": "Gilded Captain’s Regalia Helmet"
+  },
+  {
+    "id": 6665191514153,
+    "text": "Harbingers Plate Boots"
+  },
+  {
+    "id": 6665191514154,
+    "text": "Harbingers Plate Chest"
+  },
+  {
+    "id": 6665191514155,
+    "text": "Harbingers Plate Gloves"
+  },
+  {
+    "id": 6665191514156,
+    "text": "Harbingers Plate Helm"
+  },
+  {
+    "id": 6665191514157,
+    "text": "Oblivion's Champion Boots"
+  },
+  {
+    "id": 6665191514158,
+    "text": "Oblivion's Champion Chest"
+  },
+  {
+    "id": 6665191514159,
+    "text": "Oblivion's Champion Gloves"
+  },
+  {
+    "id": 6665191514160,
+    "text": "Oblivion's Champion Helm"
+  },
+  {
+    "id": 6665191514161,
+    "text": "Sea Prowler's Demise Boots"
+  },
+  {
+    "id": 6665191514162,
+    "text": "Sea Prowler's Demise Chest"
+  },
+  {
+    "id": 6665191514163,
+    "text": "Sea Prowler's Demise Gloves"
+  },
+  {
+    "id": 6665191514164,
+    "text": "Sea Prowler's Demise Helmet"
+  },
+  {
+    "id": 6665191514165,
+    "text": "Orenthia's Regret"
+  },
+  {
+    "id": 6665191514166,
+    "text": "Holy Orenthia's Regret"
+  },
+  {
+    "id": 6665191514167,
+    "text": "Sea Tyrant's Maw"
+  },
+  {
+    "id": 6665191514168,
+    "text": "Void Cleaver"
+  },
+  {
+    "id": 6665191514169,
+    "text": "Katana Of Sunken Light"
+  },
+  {
+    "id": 6665191514170,
+    "text": "Edge Of Sunken Light"
+  },
+  {
+    "id": 6665191514171,
+    "text": "Katana Of Sunken Light"
+  },
+  {
+    "id": 6665191514172,
+    "text": "Oblivion Shot"
+  },
+  {
+    "id": 6665191514173,
+    "text": "Knowledge Of The Depths"
+  },
+  {
+    "id": 6665191514174,
+    "text": "Deep Scale Dagger"
+  },
+  {
+    "id": 6665191514175,
+    "text": "Bulwark Of Ruin"
+  },
+  {
+    "id": 6665191514176,
+    "text": "Constellation Mace"
+  },
+  {
+    "id": 6665191514177,
+    "text": "Constellation Polearm"
+  },
+  {
+    "id": 6665191514178,
+    "text": "Constellation Catalyst"
+  },
+  {
+    "id": 6665191514179,
+    "text": "Deep Watchers Helm"
+  },
+  {
+    "id": 6665191514180,
+    "text": "Scourge of the Depths Helm"
+  },
+  {
+    "id": 6665191514181,
+    "text": "Scourge of the Depths Chest"
+  },
+  {
+    "id": 6665191514182,
+    "text": "Scourge of the Depths Gloves"
+  },
+  {
+    "id": 6665191514183,
+    "text": "Scourge of the Depths Boots"
+  },
+  {
+    "id": 6665191514184,
+    "text": "Jeweled Captain's Tricorne"
+  },
+  {
+    "id": 6665191514185,
+    "text": "Gilded Captain’s Regalia Chest"
+  },
+  {
+    "id": 6665191514186,
+    "text": "Halo"
+  },
+  {
+    "id": 6665191514187,
+    "text": "Fiery Halo"
+  },
+  {
+    "id": 6665191514188,
+    "text": "Aberroth's Memento"
+  },
+  {
+    "id": 6665191514189,
+    "text": "Thunderfang Helm"
+  },
+  {
+    "id": 6665191514190,
+    "text": "Thunderfang Chest"
+  },
+  {
+    "id": 6665191514191,
+    "text": "Thunderfang Gloves"
+  },
+  {
+    "id": 6665191514192,
+    "text": "Thunderfang Boots"
+  },
+  {
+    "id": 6665191514193,
+    "text": "Bronzescale Helm"
+  },
+  {
+    "id": 6665191514194,
+    "text": "Bronzescale Chest"
+  },
+  {
+    "id": 6665191514195,
+    "text": "Bronzescale Gloves"
+  },
+  {
+    "id": 6665191514196,
+    "text": "Bronzescale Boots"
+  },
+  {
+    "id": 6665191514197,
+    "text": "Shatterfang Roar"
+  },
+  {
+    "id": 6665191514198,
+    "text": "Dragonspine Maul"
+  },
+  {
+    "id": 6665191514199,
+    "text": "Storm Dragon Staff"
+  },
+  {
+    "id": 6665191514200,
+    "text": "Stormtalon Crown"
+  },
+  {
+    "id": 6665191514201,
+    "text": "Scorchclaw Crown"
+  },
+  {
+    "id": 6665191514202,
+    "text": "Drakeflame Battleaxe"
+  },
+  {
+    "id": 6665191514203,
+    "text": "Drakefrost Battleaxe"
+  },
+  {
+    "id": 6665191514204,
+    "text": "Immortal Emperor's Crown"
+  },
+  {
+    "id": 6665191514205,
+    "text": "Mask Of Immolation"
+  },
+  {
+    "id": 6665191514206,
+    "text": "Arcane Duelist Boots"
+  },
+  {
+    "id": 6665191514207,
+    "text": "Arcane Duelist Chest"
+  },
+  {
+    "id": 6665191514208,
+    "text": "Arcane Duelist Gloves"
+  },
+  {
+    "id": 6665191514209,
+    "text": "Arcane Duelist Helmet"
+  },
+  {
+    "id": 6665191514210,
+    "text": "Voidwalker's Gaze"
+  },
+  {
+    "id": 6665191514211,
+    "text": "Runic Headwrap"
+  },
+  {
+    "id": 6665191514212,
+    "text": "Gorestring Bow"
+  },
+  {
+    "id": 6665191514213,
+    "text": "Lyre's Edge"
+  },
+  {
+    "id": 6665191514214,
+    "text": "Eternal Rest"
+  },
+  {
+    "id": 6665191514215,
+    "text": "Shroud Of The Woven Disciple Helmet"
+  },
+  {
+    "id": 6665191514216,
+    "text": "Shroud Of The Woven Disciple Chest"
+  },
+  {
+    "id": 6665191514217,
+    "text": "Shroud Of The Woven Disciple Gloves"
+  },
+  {
+    "id": 6665191514218,
+    "text": "Shroud Of The Woven Disciple Boots"
+  },
+  {
+    "id": 6665191514219,
+    "text": "Void's Mourning"
+  },
+  {
+    "id": 6665191514220,
+    "text": "Yoshok's Destroyer"
+  },
+  {
+    "id": 6665191514221,
+    "text": "Dragon Rider's Regalia"
+  },
+  {
+    "id": 6665191514222,
+    "text": "Dragon Rider's Regalia"
+  },
+  {
+    "id": 6665191514223,
+    "text": "Dragon Rider's Regalia"
+  },
+  {
+    "id": 6665191514224,
+    "text": "Dragon Rider's Regalia"
+  },
+  {
+    "id": 6665191514225,
+    "text": "Yoshok's Twin Fang"
+  },
+  {
+    "id": 6665191514226,
+    "text": "Yoshok's Edge"
+  },
+  {
+    "id": 6665191514227,
+    "text": "Drakeflame Cleaver"
+  },
+  {
+    "id": 6665191514228,
+    "text": "Drakefrost Cleaver"
+  },
+  {
+    "id": 6665191514229,
+    "text": "Emberclaw Bow"
+  },
+  {
+    "id": 6665191514230,
+    "text": "Clawcaster’s Conduit"
+  },
+  {
+    "id": 6665191514231,
+    "text": "Yoshok's Fang"
+  },
+  {
+    "id": 6665191514232,
+    "text": "Sparktalon Maul"
+  },
+  {
+    "id": 6665191514233,
+    "text": "Void's Fist"
+  },
+  {
+    "id": 6665191514234,
+    "text": "Void's Edge"
+  },
+  {
+    "id": 6665191514235,
+    "text": "Void's Razor"
+  },
+  {
+    "id": 6665191514236,
+    "text": " Yoshok’s Reach"
+  },
+  {
+    "id": 6665191514237,
+    "text": "Crimson Fang"
+  },
+  {
+    "id": 6665191514238,
+    "text": "Frostfang Crown"
+  },
+  {
+    "id": 6665191514239,
+    "text": "Ancestral Howl Maelstrom"
+  },
+  {
+    "id": 6665191514240,
+    "text": "Hawk Spirit Tornado"
+  },
+  {
+    "id": 6665191514241,
+    "text": "Beeteor Meteor"
+  },
+  {
+    "id": 6665191514242,
+    "text": "Void Bound Wandering Spirits"
+  },
+  {
+    "id": 6665191514243,
+    "text": "Cold Flame Fireball"
+  },
+  {
+    "id": 6665191514244,
+    "text": "Blue Multistrike"
+  },
+  {
+    "id": 6665191514245,
+    "text": "Celestial Hammer Throw"
+  },
+  {
+    "id": 6665191514246,
+    "text": "Venomous Fang Serpent Strike"
+  },
+  {
+    "id": 6665191514247,
+    "text": "Cosmic Smite"
+  },
+  {
+    "id": 6665191514248,
+    "text": "Holy Warpath"
+  },
+  {
+    "id": 6665191514249,
+    "text": "Blood Shard Glacier"
+  },
+  {
+    "id": 6665191514250,
+    "text": "Dragon Claw Warpath"
+  },
+  {
+    "id": 6665191514251,
+    "text": "Flamewalker Evade"
+  },
+  {
+    "id": 6665191514252,
+    "text": "Volatile Elixir Acid Flask"
+  },
+  {
+    "id": 6665191514253,
+    "text": "Ethereal Transplant"
+  },
+  {
+    "id": 6665191514254,
+    "text": "Steelblade Multistrike"
+  },
+  {
+    "id": 6665191514255,
+    "text": "Arcane Elemental Nova"
+  },
+  {
+    "id": 6665191514256,
+    "text": "Malicious Lightning Blast"
+  },
+  {
+    "id": 6665191514257,
+    "text": "Malicious Rip Blood"
+  },
+  {
+    "id": 6665195708416,
+    "text": "Abyssal Vortex Tornado"
+  },
+  {
+    "id": 6665195708417,
+    "text": "Shattered Elemental Nova"
+  },
+  {
+    "id": 6665195708418,
+    "text": "Shattered Frost Claw"
+  },
+  {
+    "id": 6665195708419,
+    "text": "Shattered Lightning Blast"
+  },
+  {
+    "id": 6665195708420,
+    "text": "Shattered Meteor"
+  },
+  {
+    "id": 6665195708421,
+    "text": "Whimsey Fireball"
+  },
+  {
+    "id": 6665195708422,
+    "text": "Holy Multishot"
+  },
+  {
+    "id": 6665195708423,
+    "text": "Dragon Claw Rive"
+  },
+  {
+    "id": 6665195708424,
+    "text": "Holy Lightning Blast"
+  },
+  {
+    "id": 6665195708425,
+    "text": "Blue Rip Blood"
+  },
+  {
+    "id": 6665195708426,
+    "text": "Crimson Smite"
+  },
+  {
+    "id": 6665195708427,
+    "text": "Blood Maelstorm"
+  },
+  {
+    "id": 6665195708428,
+    "text": "Holy Shuriken"
+  },
+  {
+    "id": 6665195708429,
+    "text": "Majasa's Fang Thorn Totem"
+  },
+  {
+    "id": 6665195708430,
+    "text": "Pestilent Hound Summon Wolf"
+  },
+  {
+    "id": 6665195708431,
+    "text": "Immortal Summon Scorpion"
+  },
+  {
+    "id": 6665195708432,
+    "text": "Cosmic Volatile Reversal"
+  },
+  {
+    "id": 6665195708433,
+    "text": "Frostwalker Evade"
+  },
+  {
+    "id": 6665195708434,
+    "text": "Bloodwalker Evade"
+  },
+  {
+    "id": 6665195708435,
+    "text": "Lightwalker Evade"
+  },
+  {
+    "id": 6665195708436,
+    "text": "Stormwalker Evade"
+  },
+  {
+    "id": 6665195708437,
+    "text": "Forestwalker Evade"
+  },
+  {
+    "id": 6665195708438,
+    "text": "Wraithwalker Evade"
+  },
+  {
+    "id": 6665195708439,
+    "text": "Blightwalker Evade"
+  },
+  {
+    "id": 6665195708440,
+    "text": "Prismwalker Evade"
+  },
+  {
+    "id": 6665195708441,
+    "text": "Shadewalker Evade"
+  },
+  {
+    "id": 6665195708442,
+    "text": "Voidwalker Evade"
+  },
+  {
+    "id": 6665195708443,
+    "text": "Puppeteer Dread Shade"
+  },
+  {
+    "id": 6665195708444,
+    "text": "Chain Of Torment Heartseeker"
+  },
+  {
+    "id": 6665195708445,
+    "text": "Abominable Cthonic Fissure"
+  },
+  {
+    "id": 6665195708446,
+    "text": "Corrupted Maelstrom"
+  },
+  {
+    "id": 6665195708447,
+    "text": "Gauntlet of Fury Judgement"
+  },
+  {
+    "id": 6665195708448,
+    "text": "Cherry Blossom Smoke Bomb"
+  },
+  {
+    "id": 6665195708449,
+    "text": "Cherry Blossom Evade"
+  },
+  {
+    "id": 6665195708450,
+    "text": "Umbral Crow Evade"
+  },
+  {
+    "id": 6665195708451,
+    "text": "Seismic Evade"
+  },
+  {
+    "id": 6665195708452,
+    "text": "Spirit Hawk Evade"
+  },
+  {
+    "id": 6665195708453,
+    "text": "Fountain of Montagua"
+  },
+  {
+    "id": 6665195708454,
+    "text": "Death Toll"
+  },
+  {
+    "id": 6665195708455,
+    "text": "Black Sun's Gaze"
+  },
+  {
+    "id": 6665195708456,
+    "text": "Iridescent Gold Cloak"
+  },
+  {
+    "id": 6665195708457,
+    "text": "Moltuneplume Veneer"
+  },
+  {
+    "id": 6665195708458,
+    "text": "Traveler's Backpack"
+  },
+  {
+    "id": 6665195708459,
+    "text": "Verdant Shroud"
+  },
+  {
+    "id": 6665195708460,
+    "text": "Winter's Shroud"
+  },
+  {
+    "id": 6665195708461,
+    "text": "Woodland Cloak"
+  },
+  {
+    "id": 6665195708462,
+    "text": "Sunflare Mantle"
+  },
+  {
+    "id": 6665195708463,
+    "text": "Soul Eater Backslot"
+  },
+  {
+    "id": 6665195708464,
+    "text": "Orchirian's Pride"
+  },
+  {
+    "id": 6665195708465,
+    "text": "Fire Warden's Wings"
+  },
+  {
+    "id": 6665195708466,
+    "text": "Imperial Era Backslot"
+  },
+  {
+    "id": 6665195708467,
+    "text": "Voidgaze Mantle"
+  },
+  {
+    "id": 6665195708468,
+    "text": "Shards of Arcanum"
+  },
+  {
+    "id": 6665195708469,
+    "text": "Merchant's Mantle"
+  },
+  {
+    "id": 6665195708470,
+    "text": "Mantle of the Prophesier"
+  },
+  {
+    "id": 6665195708471,
+    "text": "Spring's Bounty"
+  },
+  {
+    "id": 6665195708472,
+    "text": "Midsummer's Dream"
+  },
+  {
+    "id": 6665195708473,
+    "text": "Rime Mantle"
+  },
+  {
+    "id": 6665195708474,
+    "text": "Rime Mantle Variant"
+  },
+  {
+    "id": 6665195708475,
+    "text": "Spring's Bounty Variant"
+  },
+  {
+    "id": 6665195708476,
+    "text": "Midsummer's Dream Variant"
+  },
+  {
+    "id": 6665195708477,
+    "text": "Autumnal Wrap"
+  },
+  {
+    "id": 6665195708478,
+    "text": "Autumnal Wrap Variant"
+  },
+  {
+    "id": 6665195708479,
+    "text": "LE-61"
+  },
+  {
+    "id": 6665195708480,
+    "text": "Deep Crawler's Embrace"
+  },
+  {
+    "id": 6665195708481,
+    "text": "Deep Dweller's Cape"
+  },
+  {
+    "id": 6665195708482,
+    "text": "Darkwater Cloak"
+  },
+  {
+    "id": 6665195708483,
+    "text": "Wings of Oblivion"
+  },
+  {
+    "id": 6665195708484,
+    "text": "Mantle of the Ruined"
+  },
+  {
+    "id": 6665195708485,
+    "text": "Voidbringer's Cloak"
+  },
+  {
+    "id": 6665195708486,
+    "text": "Storm Drake's Wings"
+  },
+  {
+    "id": 6665195708487,
+    "text": "Charged Scale Wings"
+  },
+  {
+    "id": 6665195708488,
+    "text": "Eterra's Messenger Wings"
+  },
+  {
+    "id": 6665195708489,
+    "text": "Huntmaster's Arsenal"
+  },
+  {
+    "id": 6665195708490,
+    "text": "Swordmaster's Arsenal"
+  },
+  {
+    "id": 6665195708491,
+    "text": "Mystic's Arsenal"
+  },
+  {
+    "id": 6665195708492,
+    "text": "Hedgemage's Gear"
+  },
+  {
+    "id": 6665195708493,
+    "text": "Shroud of the Woven Disciple Wings"
+  },
+  {
+    "id": 6665195708494,
+    "text": "Huolong Gate"
+  },
+  {
+    "id": 6665195708495,
+    "text": "Reaper's Call"
+  },
+  {
+    "id": 6665195708496,
+    "text": "Ancient Way"
+  },
+  {
+    "id": 6665195708497,
+    "text": "Champion’s Pass"
+  },
+  {
+    "id": 6665195708498,
+    "text": "Maw of Madness"
+  },
+  {
+    "id": 6665195708499,
+    "text": "Fiery Portal"
+  },
+  {
+    "id": 6665195708500,
+    "text": "Alpha Portal"
+  },
+  {
+    "id": 6665195708501,
+    "text": "Glacial Path"
+  },
+  {
+    "id": 6665195708502,
+    "text": "Arcane Orrery"
+  },
+  {
+    "id": 6665195708503,
+    "text": "Rune Gate"
+  },
+  {
+    "id": 6665195708504,
+    "text": "Damned Portal"
+  },
+  {
+    "id": 6665195708505,
+    "text": "Demon Portal"
+  },
+  {
+    "id": 6665195708506,
+    "text": "Divine Way Portal"
+  },
+  {
+    "id": 6665195708507,
+    "text": "Firefly's Refuge"
+  },
+  {
+    "id": 6665195708508,
+    "text": "Celestial Way"
+  },
+  {
+    "id": 6665195708509,
+    "text": "Jolly Path"
+  },
+  {
+    "id": 6665195708510,
+    "text": "Lagon Moon Tentacle Portal"
+  },
+  {
+    "id": 6665195708511,
+    "text": "Mermaid Portal"
+  },
+  {
+    "id": 6665195708512,
+    "text": "Mointain Spirit Portal"
+  },
+  {
+    "id": 6665195708513,
+    "text": "Rahyeh Wings Portal"
+  },
+  {
+    "id": 6665195708514,
+    "text": "Inner Flame Portal"
+  },
+  {
+    "id": 6665195708515,
+    "text": "Abyssal Pool"
+  },
+  {
+    "id": 6665195708516,
+    "text": "Call Of The Deep"
+  },
+  {
+    "id": 6665195708517,
+    "text": "Crest Of The Voidwalker"
+  },
+  {
+    "id": 6665195708518,
+    "text": "Harbingers Gateway"
+  },
+  {
+    "id": 6665195708519,
+    "text": "Sunken Gatekeeper"
+  },
+  {
+    "id": 6665195708520,
+    "text": "Pyroclastic Egg"
+  },
+  {
+    "id": 6665195708521,
+    "text": "Pyroclastic Gateway"
+  },
+  {
+    "id": 6665195708522,
+    "text": "Pyroclastic Hatchery"
+  },
+  {
+    "id": 6665195708523,
+    "text": "Sanctum Of The Sacred Edge"
+  },
+  {
+    "id": 6665195708524,
+    "text": "Scuttling Blood Gate"
+  },
+  {
+    "id": 6665195708525,
+    "text": "Tempest Gate"
+  },
+  {
+    "id": 6665195708526,
+    "text": "Embermane Tiger"
+  },
+  {
+    "id": 6665195708527,
+    "text": " Armored Chronowyrm"
+  },
+  {
+    "id": 6665195708528,
+    "text": "Chronowyrm"
+  },
+  {
+    "id": 6665195708529,
+    "text": "Crystal Chronowyrm"
+  },
+  {
+    "id": 6665195708530,
+    "text": "Gilded Chronowyrm"
+  },
+  {
+    "id": 6665195708531,
+    "text": "Lightning Chronowyrm"
+  },
+  {
+    "id": 6665195708532,
+    "text": "Armored Sylpine"
+  },
+  {
+    "id": 6665195708533,
+    "text": "Magma Sylpine"
+  },
+  {
+    "id": 6665195708534,
+    "text": "Sylpine"
+  },
+  {
+    "id": 6665195708535,
+    "text": "Winged Sylpine"
+  },
+  {
+    "id": 6665195708536,
+    "text": "Juvenile Skullen"
+  },
+  {
+    "id": 6665195708537,
+    "text": "Skullen Shaman"
+  },
+  {
+    "id": 6665195708538,
+    "text": "Skullen Spirit Elder"
+  },
+  {
+    "id": 6665195708539,
+    "text": "Skullen Warrior"
+  },
+  {
+    "id": 6665195708540,
+    "text": "Juvenile Primordial Turtle"
+  },
+  {
+    "id": 6665195708541,
+    "text": "Molten Primordial Turtle"
+  },
+  {
+    "id": 6665195708542,
+    "text": "Primordial Turtle"
+  },
+  {
+    "id": 6665195708543,
+    "text": "Runed Primordial Turtle"
+  },
+  {
+    "id": 6665195708544,
+    "text": "Volcanic Primordial Turtle"
+  },
+  {
+    "id": 6665195708545,
+    "text": "Crystal Sylpine"
+  },
+  {
+    "id": 6665195708546,
+    "text": "Earthshock Gecko"
+  },
+  {
+    "id": 6665195708547,
+    "text": "Divine YiQi"
+  },
+  {
+    "id": 6665195708548,
+    "text": "Imperial YiQi"
+  },
+  {
+    "id": 6665195708549,
+    "text": "Ruined YiQi"
+  },
+  {
+    "id": 6665195708550,
+    "text": "Ancient YiQi"
+  },
+  {
+    "id": 6665195708551,
+    "text": "Solarum YiQi"
+  },
+  {
+    "id": 6665195708552,
+    "text": "Boreal YiQi"
+  },
+  {
+    "id": 6665195708553,
+    "text": "Brash Skullen"
+  },
+  {
+    "id": 6665195708554,
+    "text": "\"Guppy\" The Baby Chronowyrm"
+  },
+  {
+    "id": 6665195708555,
+    "text": "Adolescent Chronowyrm"
+  },
+  {
+    "id": 6665195708556,
+    "text": "Adult Chronowyrm"
+  },
+  {
+    "id": 6665195708557,
+    "text": "Frosthorn Owl"
+  },
+  {
+    "id": 6665195708558,
+    "text": "Blue Dire-Guana"
+  },
+  {
+    "id": 6665195708559,
+    "text": "Green Dire-Guana"
+  },
+  {
+    "id": 6665195708560,
+    "text": "Purple  Dire-Guana"
+  },
+  {
+    "id": 6665195708561,
+    "text": "Yellow Dire-Guana"
+  },
+  {
+    "id": 6665195708562,
+    "text": "Twilight Fox"
+  },
+  {
+    "id": 6665195708563,
+    "text": "Phase Sphinx"
+  },
+  {
+    "id": 6665195708564,
+    "text": "Blue Seer's Orb"
+  },
+  {
+    "id": 6665195708565,
+    "text": "Golden \"Guppy\" The Baby Chronowyrm"
+  },
+  {
+    "id": 6665195708566,
+    "text": "Jerle's Fire Dragon"
+  },
+  {
+    "id": 6665195708567,
+    "text": "Jerle's Ice Dragon"
+  },
+  {
+    "id": 6665199902720,
+    "text": "White Seer's Orb"
+  },
+  {
+    "id": 6665199902721,
+    "text": "Red Seer's Orb"
+  },
+  {
+    "id": 6665199902722,
+    "text": "Yellow Seer's Orb"
+  },
+  {
+    "id": 6665199902723,
+    "text": "Bees"
+  },
+  {
+    "id": 6665199902724,
+    "text": "More Bees"
+  },
+  {
+    "id": 6665199902725,
+    "text": "Most Bees"
+  },
+  {
+    "id": 6665199902726,
+    "text": "White  Dire-Guana"
+  },
+  {
+    "id": 6665199902727,
+    "text": "Gold Adult Chronowyrm"
+  },
+  {
+    "id": 6665199902728,
+    "text": "Abyssal Lure"
+  },
+  {
+    "id": 6665199902729,
+    "text": "Golden Bees"
+  },
+  {
+    "id": 6665199902730,
+    "text": "Deep Lurker"
+  },
+  {
+    "id": 6665199902731,
+    "text": "Nihilimus"
+  },
+  {
+    "id": 6665199902732,
+    "text": "Voidwing"
+  },
+  {
+    "id": 6665199902733,
+    "text": "Gloomfeather"
+  },
+  {
+    "id": 6665199902734,
+    "text": "Golden Adolescent Chronowyrm"
+  },
+  {
+    "id": 6665199902735,
+    "text": "Barkscale Whelp"
+  },
+  {
+    "id": 6665199902736,
+    "text": "Charged Whelp"
+  },
+  {
+    "id": 6665199902737,
+    "text": "Slackhopper"
+  },
+  {
+    "id": 6665199902738,
+    "text": "Capybara"
+  },
+  {
+    "id": 6665199902739,
+    "text": "Stonetalon Whelp"
+  },
+  {
+    "id": 6665199902740,
+    "text": "Thread Strider"
+  },
+  {
+    "id": 6665199902741,
+    "text": "Otom Otom's Blessing"
+  },
+  {
+    "id": 6665199902742,
+    "text": "Kickstarter Tier 1 - Storm Touched"
+  },
+  {
+    "id": 6665199902743,
+    "text": "Kickstarter Tier 2 - Emporer's Gift"
+  },
+  {
+    "id": 6665199902744,
+    "text": "Kickstarter Tier 1 - Storm Touched"
+  },
+  {
+    "id": 6665199902745,
+    "text": "Kickstarter Tier 2 - Emperor's Gift"
+  },
+  {
+    "id": 6665199902746,
+    "text": "Kickstarter Tier 1 - Storm Touched"
+  },
+  {
+    "id": 6665199902747,
+    "text": "Kickstarter Tier 2 - Emperor's Gift"
+  },
+  {
+    "id": 6665199902748,
+    "text": "Kickstarter Tier 1 - Storm Touched"
+  },
+  {
+    "id": 6665199902749,
+    "text": "Kickstarter Tier 2 - Emperor's Gift"
+  },
+  {
+    "id": 6665199902750,
+    "text": "Kickstarter Tier 1 - Storm Touched"
+  },
+  {
+    "id": 6665199902751,
+    "text": "Kickstarter Tier 1 - Emperor's Gift"
+  },
+  {
+    "id": 6665199902752,
+    "text": "Soul Eater Set"
+  },
+  {
+    "id": 6665199902753,
+    "text": "Argentum Myrmidon Armor Bundle"
+  },
+  {
+    "id": 6665199902754,
+    "text": "Crescent Sage Armor Bundle"
+  },
+  {
+    "id": 6665199902755,
+    "text": "Crystalweave Plate Armor Bundle"
+  },
+  {
+    "id": 6665199902756,
+    "text": "Divinity's Fist Mace Bundle"
+  },
+  {
+    "id": 6665199902757,
+    "text": "Katana Of The Sunken Light"
+  },
+  {
+    "id": 6665199902758,
+    "text": "Oblivions Champion"
+  },
+  {
+    "id": 6665199902759,
+    "text": "Sea Prowelers Demise"
+  },
+  {
+    "id": 6665199902760,
+    "text": "Arcane Duelist Armor Bundle"
+  },
+  {
+    "id": 6665199902761,
+    "text": "Dragon Rider's Regalia Armor Bundle"
+  },
+  {
+    "id": 6665199902762,
+    "text": "Woven Traveler"
+  },
+  {
+    "id": 6665199902763,
+    "text": "Woven Templar"
+  },
+  {
+    "id": 6665199902764,
+    "text": "Woven Vanquisher"
+  },
+  {
+    "id": 6665199902765,
+    "text": "Woven Legend"
+  },
+  {
+    "id": 6665199902766,
+    "text": "Game Director"
+  },
+  {
+    "id": 6665199902767,
+    "text": "Ettera's Saviour Title"
+  },
+  {
+    "id": 6665199902768,
+    "text": "Meteor King"
+  },
+  {
+    "id": 6665199902769,
+    "text": "Orobyss Title"
+  },
+  {
+    "id": 6665199902770,
+    "text": "Jerle's Epoch"
+  },
+  {
+    "id": 6665199902771,
+    "text": "Immortal Title"
+  },
+  {
+    "id": 6665199902772,
+    "text": "BAP's Epoch"
+  },
+  {
+    "id": 6665199902773,
+    "text": "Abyssal Templar"
+  },
+  {
+    "id": 6665199902774,
+    "text": "Abyssal Vanquisher"
+  },
+  {
+    "id": 6665199902775,
+    "text": "Abyssal Legend"
+  },
+  {
+    "id": 6665199902776,
+    "text": "Archive Headmaster"
+  },
+  {
+    "id": 6665199902777,
+    "text": "Archive Librarian"
+  },
+  {
+    "id": 6665199902778,
+    "text": "Archive Researcher"
+  },
+  {
+    "id": 6665199902779,
+    "text": "Archive Student"
+  },
+  {
+    "id": 6665199902780,
+    "text": "Test Footprint"
+  },
+  {
+    "id": 6665199902781,
+    "text": "Fire Footprint"
+  },
+  {
+    "id": 6665199902782,
+    "text": "Ice Footprint"
+  },
+  {
+    "id": 6665199902783,
+    "text": "Lightning Footprint"
+  },
+  {
+    "id": 6665199902784,
+    "text": "Draconic Imprint"
+  },
+  {
+    "id": 6665199902785,
+    "text": "Weaver Footprint"
+  },
+  {
+    "id": 6665199902786,
+    "text": "TestCharacterFX1"
+  },
+  {
+    "id": 6665199902787,
+    "text": "TestCharacterFX2"
+  },
+  {
+    "id": 6665199902788,
+    "text": "Woven Effect"
+  },
+  {
+    "id": 12332935346610176,
+    "text": "Deluxe Edition"
+  },
+  {
+    "id": 12333017047457792,
+    "text": "Ultimate Edition"
+  },
+  {
+    "id": 12333022437138432,
+    "text": "Eternal Traveler"
+  },
+  {
+    "id": 12333071388860416,
+    "text": "Eternal Templar"
+  },
+  {
+    "id": 12708935933353984,
+    "text": "Woven Legend"
+  },
+  {
+    "id": 12708935945936896,
+    "text": "Woven Templar"
+  },
+  {
+    "id": 12708935945936897,
+    "text": "Woven Traveler"
+  },
+  {
+    "id": 12708935945936898,
+    "text": "Woven Vanquisher"
+  },
+  {
+    "id": 12708935945936899,
+    "text": "Woven Watcher"
+  },
+  {
+    "id": 29400860853788672,
+    "text": "Hedgemage's Hat"
+  },
+  {
+    "id": 29400860866371584,
+    "text": "Gauntlet of Fury Judgement v2"
+  },
+  {
+    "id": 29400860866371585,
+    "text": "Temple Attendant"
+  },
+  {
+    "id": 29400860866371586,
+    "text": "Obsidian Temple Attendant"
+  },
+  {
+    "id": 29400860866371587,
+    "text": "Crystalline Crawler"
+  },
+  {
+    "id": 29400860866371588,
+    "text": "Gauntlet Of Fury Judgement Set"
+  },
+  {
+    "id": 29400860866371589,
+    "text": "Jultra Instinct"
+  },
+  {
+    "id": 34495008288006144,
+    "text": "Awesome Helmet 1"
+  },
+  {
+    "id": 34495008304783360,
+    "text": "Temple Familiar"
+  },
+  {
+    "id": 37399167714713600,
+    "text": "Primal Hatchet"
+  },
+  {
+    "id": 37399167727296512,
+    "text": "Primal Cleaver"
+  },
+  {
+    "id": 37399167727296513,
+    "text": "Whispering Wind Evade"
+  },
+  {
+    "id": 37399167727296514,
+    "text": "Abyssal Shadow Summon Skeletal Mage"
+  },
+  {
+    "id": 37399167727296515,
+    "text": "Earth Shaker Footprint"
+  },
+  {
+    "id": 37399167727296516,
+    "text": "Eterra's Path Footprint"
+  },
+  {
+    "id": 37399167727296517,
+    "text": "Ritual Footprint"
+  },
+  {
+    "id": 42517853119176704,
+    "text": "Primal Slicer"
+  },
+  {
+    "id": 42517853135953920,
+    "text": "Temple Knight Boots"
+  },
+  {
+    "id": 42517853135953921,
+    "text": "Temple Knight Helm"
+  },
+  {
+    "id": 42517853135953922,
+    "text": "Temple Knight Gloves"
+  },
+  {
+    "id": 42517853135953923,
+    "text": "Temple Knight Chest"
+  },
+  {
+    "id": 42517853135953924,
+    "text": "Wild Hunter's Leather Boots"
+  },
+  {
+    "id": 42517853135953925,
+    "text": "Wild Hunter's Leather Gloves"
+  },
+  {
+    "id": 42517853140148224,
+    "text": "Wild Hunter's Leather Helm"
+  },
+  {
+    "id": 42517853140148225,
+    "text": "Wild Hunter's Leather Chest"
+  },
+  {
+    "id": 42517853140148226,
+    "text": "Poison Recolour Assemble Abomination"
+  },
+  {
+    "id": 42517853140148227,
+    "text": "Obsidian Summon Skeleton"
+  },
+  {
+    "id": 42517853140148228,
+    "text": "Sanguine Summon Skeleton"
+  },
+  {
+    "id": 42517853140148229,
+    "text": "Ashheart Summon Sabertooth"
+  },
+  {
+    "id": 42517853140148230,
+    "text": "Backsloth"
+  },
+  {
+    "id": 42517853140148231,
+    "text": "Saurian Hide Cloak"
+  },
+  {
+    "id": 42517853140148232,
+    "text": "Realm Hopper's Portal"
+  },
+  {
+    "id": 42517853140148233,
+    "text": "Realm Hopper"
+  },
+  {
+    "id": 42517853140148234,
+    "text": "Nigel Le Toucan"
+  },
+  {
+    "id": 47818475251023872,
+    "text": "Gilded Pestilence"
+  },
+  {
+    "id": 47818475292966912,
+    "text": "Primal Slasher"
+  },
+  {
+    "id": 47818475292966913,
+    "text": "Primal Hammer"
+  },
+  {
+    "id": 47818475292966914,
+    "text": "Primal Dagger"
+  },
+  {
+    "id": 47818475292966915,
+    "text": "Primal Conduit"
+  },
+  {
+    "id": 47818475292966916,
+    "text": "Primal Wisdom"
+  },
+  {
+    "id": 47818475292966917,
+    "text": "Primal Pike"
+  },
+  {
+    "id": 47818475292966918,
+    "text": "Primal Recurve"
+  },
+  {
+    "id": 47818475292966919,
+    "text": "Primal Maul"
+  },
+  {
+    "id": 47818475292966920,
+    "text": "Temple Aegis"
+  },
+  {
+    "id": 47818475292966921,
+    "text": "Temple Authority"
+  },
+  {
+    "id": 47818475292966922,
+    "text": "Carrion Catalyst"
+  },
+  {
+    "id": 47818475292966923,
+    "text": "Carrion Caster"
+  },
+  {
+    "id": 47818475292966924,
+    "text": "Carrion Scythe"
+  },
+  {
+    "id": 47818475292966925,
+    "text": "Carrion Sceptre"
+  },
+  {
+    "id": 47818475292966926,
+    "text": "Primal Catalyst"
+  },
+  {
+    "id": 47818475292966927,
+    "text": "Primal Resilience"
+  },
+  {
+    "id": 47818475292966928,
+    "text": "Toxic Assemble Abomination"
+  },
+  {
+    "id": 47818475292966929,
+    "text": "Emberheart Summon Sabertooth"
+  },
+  {
+    "id": 47818475292966930,
+    "text": "Dark Pursuit Evade"
+  },
+  {
+    "id": 47818475292966931,
+    "text": "Tropical Steel Falconry"
+  },
+  {
+    "id": 47818475292966932,
+    "text": "Nature's Wrath Summon Bone Golem"
+  },
+  {
+    "id": 47818475292966933,
+    "text": "Pale Hunter Summon Raptor"
+  },
+  {
+    "id": 47818475292966934,
+    "text": "Primal Soul Evade"
+  },
+  {
+    "id": 47818475292966935,
+    "text": "Cosmic Warpath"
+  },
+  {
+    "id": 47818475292966936,
+    "text": "Desert Warcry"
+  },
+  {
+    "id": 47818475292966937,
+    "text": "Shadow Arts Dancing Strikes"
+  },
+  {
+    "id": 47818475292966938,
+    "text": "Dragon Scale Cloak"
+  },
+  {
+    "id": 47818475292966939,
+    "text": "Dark Ritual Portal"
+  },
+  {
+    "id": 47818475292966940,
+    "text": "Fossilized Portal"
+  },
+  {
+    "id": 47818475292966941,
+    "text": "Eye Of Eterra Portal"
+  },
+  {
+    "id": 47818475292966942,
+    "text": "Primal Legend"
+  },
+  {
+    "id": 47818475292966943,
+    "text": "Primal Templar"
+  },
+  {
+    "id": 47818475292966944,
+    "text": "Primal Traveler"
+  },
+  {
+    "id": 47818475292966945,
+    "text": "Primal Vanquisher"
+  },
+  {
+    "id": 47818475292966946,
+    "text": "Primal Watcher"
+  },
+  {
+    "id": 50795191103643648,
+    "text": "Carrion Herald Boots"
+  },
+  {
+    "id": 50795191120420864,
+    "text": "Carrion Herald Chest"
+  },
+  {
+    "id": 50795191120420865,
+    "text": "Carrion Herald Gloves"
+  },
+  {
+    "id": 50795191120420866,
+    "text": "Carrion Herald Helm"
+  },
+  {
+    "id": 50795191120420867,
+    "text": "Frozen Fang Mask"
+  },
+  {
+    "id": 50795191120420868,
+    "text": "Polar Bear Summon Bear"
+  },
+  {
+    "id": 50795191120420869,
+    "text": "Wildfire Wyvern Summon Raptor"
+  },
+  {
+    "id": 50795191120420870,
+    "text": "Ichor Rip Blood"
+  },
+  {
+    "id": 50795191120420871,
+    "text": "Matron Of Death Reaper Form"
+  },
+  {
+    "id": 50795191120420872,
+    "text": "Dark Ritual Aura Of Decay"
+  },
+  {
+    "id": 50795191120420873,
+    "text": "Verdant Swipe"
+  },
+  {
+    "id": 50795191120420874,
+    "text": "Amethyst Death Seal"
+  },
+  {
+    "id": 50795191120420875,
+    "text": "Inky Flay"
+  },
+  {
+    "id": 50795191120420876,
+    "text": "Gilded Eclipse Flay"
+  },
+  {
+    "id": 50795191120420877,
+    "text": "Primal Lizard Summon Bear"
+  },
+  {
+    "id": 50795191120420878,
+    "text": "Carrion Casters Cape"
+  },
+  {
+    "id": 50795191120420879,
+    "text": "Temple Knight Wings"
+  },
+  {
+    "id": 55213614640484352,
+    "text": "Primal Acolyte"
+  },
+  {
+    "id": 55213614657261568,
+    "text": "Primal Mage"
+  },
+  {
+    "id": 55213614657261569,
+    "text": "Primal Primalist"
+  },
+  {
+    "id": 55213614657261570,
+    "text": "Primal Rogue"
+  },
+  {
+    "id": 55213614657261571,
+    "text": "Primal Sentinel"
+  },
+  {
+    "id": 91935440955760640,
+    "text": "Fractured Traveler"
+  },
+  {
+    "id": 91935495745953792,
+    "text": "Fractured Templar"
+  },
+  {
+    "id": 91935569817362432,
+    "text": "Fractured Vanquisher"
+  },
+  {
+    "id": 91935611131256832,
+    "text": "Fractured Legend"
+  },
+  {
+    "id": 128029137406779392,
+    "text": "Fractured Legend"
+  },
+  {
+    "id": 128029137427750912,
+    "text": "Fractured Templar"
+  },
+  {
+    "id": 128029137427750913,
+    "text": "Fractured Traveler"
+  },
+  {
+    "id": 128029137427750914,
+    "text": "Fractured Vanquisher"
+  }
+]

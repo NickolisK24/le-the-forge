@@ -1,0 +1,5234 @@
+[
+  {
+    "id": 140001,
+    "text": "Unlocking Skills"
+  },
+  {
+    "id": 140002,
+    "text": "Skills can be unlocked upon reaching certain character levels, after investing a certain number of passive points into a class, or after selecting a Mastery Class."
+  },
+  {
+    "id": 140003,
+    "text": "Opening the Skills Window (bound to the S key by default) allows you to see which skills your character can unlock, and how to do so. You can also click on any skill to view its <link=\"skill specialization\">Specialization Tree</link>."
+  },
+  {
+    "id": 140004,
+    "text": "Clicking one of the 5 skill slots on your Action Bar at the bottom of the screen allows you to change which skill is equipped there."
+  },
+  {
+    "id": 140005,
+    "text": "skills"
+  },
+  {
+    "id": 140006,
+    "text": "Skill Specialization"
+  },
+  {
+    "id": 140007,
+    "text": "Skill Specialization Slots are unlocked as your character levels up, to a maximum of 5 (to match how many skills can be equipped on the Action Bar)."
+  },
+  {
+    "id": 140008,
+    "text": "Upon unlocking a Skill Specialization Slot, you can choose to Specialize in a skill that your character currently knows. Doing so allows you to level up that skill and invest points into its Specialization Tree. Skills have a natural maximum level of 20."
+  },
+  {
+    "id": 140009,
+    "text": "If you would like to specialize in a different skill, you can press the Respec button at the top right of the Skills Window while viewing the tree for a specialized skill."
+  },
+  {
+    "id": 140010,
+    "text": "Newly specialized skills will be automatically set to your <#E5E5E5>Minimum Skill Level</color>, and may receive a bonus to XP so they can catch up to your other skills."
+  },
+  {
+    "id": 140011,
+    "text": "You can see your current Minimum Skill Level on the Respec button inside a skill's tree. Skills currently affected by a XP bonus will state so above their XP bar on the left side of their tree."
+  },
+  {
+    "id": 140012,
+    "text": "specialization"
+  },
+  {
+    "id": 140013,
+    "text": "skills"
+  },
+  {
+    "id": 140014,
+    "text": "+ Skill Level Affixes"
+  },
+  {
+    "id": 140015,
+    "text": "Items can have affixes which grant additional levels to certain skills. These affixes can exceed the normal 20 level limit of skills. These are most commonly found in Helmets, Body Armors and Relics."
+  },
+  {
+    "id": 140016,
+    "text": "Any skill levels currently granted by items will be shown in blue above a skill's XP bar inside its skill tree."
+  },
+  {
+    "id": 140017,
+    "text": "Unequipping an item which grants levels to your skills will remove points from them, unless you have a number of unspent points greater than or equal to the levels lost. <br><br>Nodes which have lost points in this way will be highlighted in red when you next view that skill's tree."
+  },
+  {
+    "id": 140018,
+    "text": "skills"
+  },
+  {
+    "id": 140019,
+    "text": "Implicits"
+  },
+  {
+    "id": 140020,
+    "text": "All equipment has stats that are inherent to it, which are called implicits. For example, all Worn Boots have an increased movement speed implicit."
+  },
+  {
+    "id": 140021,
+    "text": "[0]"
+  },
+  {
+    "id": 140022,
+    "text": "Each item subtype of an item always has the same implicits, but the values of implicits are randomized within a range."
+  },
+  {
+    "id": 140023,
+    "text": "All modifiers from implicits apply globally. For example, the “Increased Physical Damage” from a weapon’s implicit has the same effect as “Increased Physical Damage” from an <link=\"affixes\">affix</link> on a ring or from a passive node."
+  },
+  {
+    "id": 140024,
+    "text": "implicit"
+  },
+  {
+    "id": 140025,
+    "text": "implicits"
+  },
+  {
+    "id": 140026,
+    "text": "Affixes"
+  },
+  {
+    "id": 140027,
+    "text": "Affixes are the modifiers on equipment that exist in addition to <link=\"implicits\">Implicits</link>. They can be present on the item when it is dropped, or they can be added and modified later through <link=\"crafting explanation\">Crafting</link> using <link=\"shards\">Shards</link>. The number of affixes on an item often determines its <link=\"rarity\">Rarity</link>."
+  },
+  {
+    "id": 140028,
+    "text": "[0]"
+  },
+  {
+    "id": 140029,
+    "text": "Affixes have 7 tiers, with tier 1 being the lowest and tier 7 being the highest. However, only tier 1 through 5 can be created through <link=\"crafting\">crafting</link>. Tier 6 and 7 affixes must be on the item when it drops."
+  },
+  {
+    "id": 140030,
+    "text": "The values of an affix at each tier fall within a range, but the lowest roll of a tier is always higher than the tier below it.<br><br>The value an affix has on an item can be re-rolled within its tier using a <link=\"rune of refinement\">Rune of Refinement</link>."
+  },
+  {
+    "id": 140031,
+    "text": "Affixes are broken into two main categories: prefixes and suffixes. An item can have up to 2 prefixes and 2 suffixes."
+  },
+  {
+    "id": 140032,
+    "text": "All stats granted by affixes are global. This means the “Increased Physical Damage” affix on a ring will have the same effect as “Increased Physical Damage” on a weapon’s <link=\"implicit\">implicit</link> or a passive node."
+  },
+  {
+    "id": 140033,
+    "text": "affix"
+  },
+  {
+    "id": 140034,
+    "text": "affixes"
+  },
+  {
+    "id": 140035,
+    "text": "prefix"
+  },
+  {
+    "id": 140036,
+    "text": "prefixes"
+  },
+  {
+    "id": 140037,
+    "text": "suffix"
+  },
+  {
+    "id": 140038,
+    "text": "suffixes"
+  },
+  {
+    "id": 140039,
+    "text": "afix"
+  },
+  {
+    "id": 140040,
+    "text": "afixes"
+  },
+  {
+    "id": 140041,
+    "text": "sufix"
+  },
+  {
+    "id": 140042,
+    "text": "sufixes"
+  },
+  {
+    "id": 140043,
+    "text": "Rarity"
+  },
+  {
+    "id": 140044,
+    "text": "There are 6 different rarities of equipment items in Last Epoch. Rarity is determined by what stats an item has, and can be changed by <link=\"crafting explanation\">crafting</link>."
+  },
+  {
+    "id": 140045,
+    "text": "[0]"
+  },
+  {
+    "id": 140046,
+    "text": "<#E5E5E5>Common (white):</color> The item does not have any <link=\"affixes\">affixes</link>."
+  },
+  {
+    "id": 140047,
+    "text": "<#36A3E2>Magic (blue):</color> The item has either 1 or 2 affixes, which can be prefixes, suffixes, or both."
+  },
+  {
+    "id": 140048,
+    "text": "<#E3D157>Rare (yellow):</color> The item has either 3 or 4 affixes, up to 2 prefixes and 2 suffixes."
+  },
+  {
+    "id": 140049,
+    "text": "<#EB730A>Unique (orange):</color> The item has stats and effects that cannot be found on lower rarity items. Uniques cannot be crafted on."
+  },
+  {
+    "id": 140050,
+    "text": "<#71E87D>Set (green):</color> Set items are uniques that also grant bonuses for having other parts of the same set equipped. Sets will typically have 2 to 4 pieces."
+  },
+  {
+    "id": 140051,
+    "text": "<#C184FF>Exalted (purple):</color> Exalted items have one or more tier 6 or tier 7 affixes.<br><br>Tier 6 and 7 affixes cannot be created through crafting, but crafting otherwise works the same for Exalted items as it does for Magic and Rare items."
+  },
+  {
+    "id": 140052,
+    "text": "<#E80B58>Legendary (red):</color> Legendary items are created in the <link=\"eternity cache\">Eternity Cache</link> and are a combination of a Unique item and an Exalted item."
+  },
+  {
+    "id": 140053,
+    "text": "magic"
+  },
+  {
+    "id": 140054,
+    "text": "rare"
+  },
+  {
+    "id": 140055,
+    "text": "unique"
+  },
+  {
+    "id": 140056,
+    "text": "legendary"
+  },
+  {
+    "id": 140057,
+    "text": "set"
+  },
+  {
+    "id": 140058,
+    "text": "white"
+  },
+  {
+    "id": 140059,
+    "text": "blue"
+  },
+  {
+    "id": 140060,
+    "text": "yellow"
+  },
+  {
+    "id": 140061,
+    "text": "orange"
+  },
+  {
+    "id": 140062,
+    "text": "green"
+  },
+  {
+    "id": 140063,
+    "text": "purple"
+  },
+  {
+    "id": 140064,
+    "text": "exalted"
+  },
+  {
+    "id": 140065,
+    "text": "Increased Item Rarity"
+  },
+  {
+    "id": 140066,
+    "text": "Increased Item Rarity is an effect that increases the average number of <link=\"affixes\">affixes</link> on items, resulting in more rare and exalted items. It also increases the chance of finding unique and set items."
+  },
+  {
+    "id": 140067,
+    "text": "Increased Item Rarity modifier is most commonly seen in the endgame system <link=\"monolith introduction\">Monolith of Fate</link>. "
+  },
+  {
+    "id": 140068,
+    "text": "rarity"
+  },
+  {
+    "id": 140069,
+    "text": "mf"
+  },
+  {
+    "id": 140070,
+    "text": "magic find"
+  },
+  {
+    "id": 140071,
+    "text": "drop rate"
+  },
+  {
+    "id": 140072,
+    "text": "item rarity"
+  },
+  {
+    "id": 140073,
+    "text": "increased item rarity"
+  },
+  {
+    "id": 140074,
+    "text": "Uniques"
+  },
+  {
+    "id": 140075,
+    "text": "[0]"
+  },
+  {
+    "id": 140076,
+    "text": "Uniques are a <link=\"rarity\">rarity</link> of equipment items in Last Epoch.<br><br>Unique items can grant stats and special effects which do not appear as normal <link=\"affixes\">affixes</link> on magic, rare or exalted items. <br>Uniques provide new synergies between existing mechanics, introduce entirely new mechanics, and more."
+  },
+  {
+    "id": 140077,
+    "text": "Uniques cannot be modified through <link=\"crafting\">crafting</link>. They can however have an extra property called Legendary Potential which can be used in the creation of <link=\"Legendary Items\">Legendary Items</link>."
+  },
+  {
+    "id": 140078,
+    "text": "[0]"
+  },
+  {
+    "id": 140079,
+    "text": "Set items are very similar to <link=\"uniques\">uniques</link> in terms of their design and what effects they offer. However, equipping multiple items from the same set grants additional bonuses, which are shown on their tooltips.<br><br>Sets will typically have between 2 and 4 pieces."
+  },
+  {
+    "id": 140080,
+    "text": "Set items are not able to be modified through <link=\"crafting\">crafting</link>, however they can be shattered to Set Affixes in a <link=\"woven echoes\">Woven Echo</link>. The Set Affixes created are dependant on the Set item which was shattered."
+  },
+  {
+    "id": 140081,
+    "text": "unique"
+  },
+  {
+    "id": 140082,
+    "text": "uniques"
+  },
+  {
+    "id": 140083,
+    "text": "set item"
+  },
+  {
+    "id": 140084,
+    "text": "set items"
+  },
+  {
+    "id": 140085,
+    "text": "Legendary Items"
+  },
+  {
+    "id": 140086,
+    "text": "A Legendary item is a composite item made up of a unique and exalted item. Unique items must have atleast 1 Legendary Potential (up to 4), and the exalted item must have exactly 4 unsealed affixes. The exalted item can have a sealed affix, it just cannot be added to the Legendary item."
+  },
+  {
+    "id": 140087,
+    "text": "[0]"
+  },
+  {
+    "id": 140088,
+    "text": "When combined in the Eternity Cache, you are granted a Legendary item. The Eternity Cache is located within the Temporal Sanctum <link=\"dungeon\">dungeon</link>. Running higher tiers of the dungeon will allow you to create Legendaries out of higher level uniques."
+  },
+  {
+    "id": 140089,
+    "text": "[1]"
+  },
+  {
+    "id": 140090,
+    "text": "The Ledendary item is the same as the unique item with affixes added to it from the exalted item. The number of affixes selected is equal to the legendary potential of the unique item used. When using the Eternity Cache at the end of Tier 2 or higher Temporal Sanctum, you can choose one affix to guarantee being moved from the exalted item. If the Unique item had more than 1 Legendary Potential, the rest of the affixes are chosen at random."
+  },
+  {
+    "id": 140091,
+    "text": "[2]"
+  },
+  {
+    "id": 140092,
+    "text": "The quantity of legendary potential that a unique item drops with is influenced mainly by the level of the zone which it drops in, but corruption also increases it slightly. Increased rarity mods, character level or any other modifiers have no effect."
+  },
+  {
+    "id": 140093,
+    "text": "The amount of Legendary Potential that a unique item will generally drop with is relative to the item’s base power. High powered or very well scaling unique items are difficult to find with even one legendary potential, and low powered or leveling items are much more likely to have even more than one legendary potential. This is done so that most unique items have more similar overall power potential."
+  },
+  {
+    "id": 140094,
+    "text": "eternity"
+  },
+  {
+    "id": 140095,
+    "text": "legendary"
+  },
+  {
+    "id": 140096,
+    "text": "dungeon"
+  },
+  {
+    "id": 140097,
+    "text": "cache"
+  },
+  {
+    "id": 140098,
+    "text": "Idols"
+  },
+  {
+    "id": 140099,
+    "text": "Idols are a type of equipment that have many powerful and niche effects."
+  },
+  {
+    "id": 140100,
+    "text": "Idols can be equipped in a special area on the right side of the inventory. You gain more space for equipping Idols by completing quests, up to 20 slots."
+  },
+  {
+    "id": 140101,
+    "text": "[0]"
+  },
+  {
+    "id": 140102,
+    "text": "Idols come in sizes ranging from 1 x 1 all the way to 2 x 2, 1 x 4, and 4 x 1. Larger sizes grant more of each stat, and many stats are restricted to specific sizes."
+  },
+  {
+    "id": 140103,
+    "text": "Most Idols can only be equipped by a specific base class, and class specific Idols have their own sets of possible affixes."
+  },
+  {
+    "id": 140104,
+    "text": "Idols always drop with 1 prefix and 1 suffix and cannot be altered through <link=\"crafting\">crafting</link>."
+  },
+  {
+    "id": 140105,
+    "text": "idol"
+  },
+  {
+    "id": 140106,
+    "text": "idols"
+  },
+  {
+    "id": 140107,
+    "text": "charm"
+  },
+  {
+    "id": 140108,
+    "text": "charms"
+  },
+  {
+    "id": 140109,
+    "text": "Crafting Explanation"
+  },
+  {
+    "id": 140110,
+    "text": "All crafting is done in the Crafting Window (Forge), which is opened with the F key by default. Crafting using Forge can be done anywhere at any time."
+  },
+  {
+    "id": 140111,
+    "text": "[0]"
+  },
+  {
+    "id": 140112,
+    "text": "After placing an item in the slot at the top of the window, you can either add a <link=\"shard\">Shard</link> to the item by selecting one of the affix slots to fill and choosing an available affix or choose a <link=\"runes and glyphs\">Rune</link> by clicking on the Rune icon. You can also choose to use a <link=\"runes and glyphs\">Glyph</link> in the Support Item slot, if applicable."
+  },
+  {
+    "id": 140113,
+    "text": "[1]"
+  },
+  {
+    "id": 140114,
+    "text": "If an item has any <link=\"forging potential\">Forging Potential</link> remaining, you can use Shards and Runes on it. When an item runs out of Forging Potential, you can't alter it further in the Forging Panel."
+  },
+  {
+    "id": 140115,
+    "text": "craft"
+  },
+  {
+    "id": 140116,
+    "text": "Forge"
+  },
+  {
+    "id": 140117,
+    "text": "shard"
+  },
+  {
+    "id": 140118,
+    "text": "affix"
+  },
+  {
+    "id": 140119,
+    "text": "afix"
+  },
+  {
+    "id": 140120,
+    "text": "prefix"
+  },
+  {
+    "id": 140121,
+    "text": "suffix"
+  },
+  {
+    "id": 140122,
+    "text": "sufix"
+  },
+  {
+    "id": 140123,
+    "text": "tier"
+  },
+  {
+    "id": 140124,
+    "text": "rune"
+  },
+  {
+    "id": 140125,
+    "text": "glyph"
+  },
+  {
+    "id": 140126,
+    "text": "forging"
+  },
+  {
+    "id": 140127,
+    "text": "potential"
+  },
+  {
+    "id": 140128,
+    "text": "Affix Shards"
+  },
+  {
+    "id": 140129,
+    "text": "Shards can be used to add new affixes to items or to increase the tier of an existing affix by one. An item can have two prefixes and two suffixes, and each affix can be crafted up to tier 5."
+  },
+  {
+    "id": 140130,
+    "text": "[0]"
+  },
+  {
+    "id": 140131,
+    "text": "When adding a shard to an item you have a chance to achieve a <#E5E5E5>Critical Success</color>, which upgrades the tier of a random affix on the item in addition to the normal upgrade shard provides. A Critical Success does not cost any crafting materials or Forging Potential, and cannot upgrade an affix above tier 5."
+  },
+  {
+    "id": 140132,
+    "text": "Shards drop from enemies and chests like other items, but can also be created by using a <link=\"rune of shattering\">Rune of Shattering</link> or <link=\"runes and glyphs\">Rune of Removal</link> on an item.<br><br>Some shards (and the affixes they represent) only drop in higher level zones, while others are simply less common."
+  },
+  {
+    "id": 140133,
+    "text": "[1]"
+  },
+  {
+    "id": 140134,
+    "text": "Shards that drop as items are placed in your Inventory when picked up, and can be moved to the Crafting Window (Forge) by pressing the Transfer Materials button. Shards gained from Shattering are automatically stored in the Material Storage."
+  },
+  {
+    "id": 140135,
+    "text": "craft"
+  },
+  {
+    "id": 140136,
+    "text": "crafting"
+  },
+  {
+    "id": 140137,
+    "text": "shard"
+  },
+  {
+    "id": 140138,
+    "text": "affix"
+  },
+  {
+    "id": 140139,
+    "text": "afix"
+  },
+  {
+    "id": 140140,
+    "text": "prefix"
+  },
+  {
+    "id": 140141,
+    "text": "suffix"
+  },
+  {
+    "id": 140142,
+    "text": "sufix"
+  },
+  {
+    "id": 140143,
+    "text": "tier"
+  },
+  {
+    "id": 140144,
+    "text": "Runes and Glyphs"
+  },
+  {
+    "id": 140145,
+    "text": "Runes are modifier items that can have various effects on the item they are applied to.<br>"
+  },
+  {
+    "id": 140146,
+    "text": "[0]"
+  },
+  {
+    "id": 140147,
+    "text": "<#E5E5E5>Rune of Shattering:</color> Destroys an item, creating Shards from its affixes. The number of Shards created is random for each affix, equal to the tier of the affix at maximum and 1 at minimum."
+  },
+  {
+    "id": 140148,
+    "text": "<#E5E5E5>Rune of Refinement:</color> Rerolls the values for each affix but does not change their tiers. Each affix is rolled individually, so some may have better values than others."
+  },
+  {
+    "id": 140149,
+    "text": "<#E5E5E5>Rune of Removal:</color> Removes a random affix on an item, returning a number of shards equal to its tier."
+  },
+  {
+    "id": 140150,
+    "text": "<#E5E5E5>Rune of Discovery:</color> Adds random tier 1 affixes to all empty affix slots on an item. Has an increased chance of rolling rarer affixes. Does not cost Forging Potential, but cannot be applied to items with zero Forging Potential.<br>"
+  },
+  {
+    "id": 140151,
+    "text": "<#E5E5E5>Rune of Shaping:</color> Rerolls all of the implicits on an item."
+  },
+  {
+    "id": 140152,
+    "text": "<#E5E5E5>Rune of Ascendance:</color> Changes the item into a unique or set item of the same item type. Using this on a Silver Ring could turn it into any unique ring, including ones that are not Silver Rings. However, the Silver Ring cannot be turned into a Helmet. None of the other properties of the base item are retained. Rune of Ascendance cannot create unique or set items that are exclusive drops. There are many unique and set items that are only obtainable from bosses, for example."
+  },
+  {
+    "id": 140153,
+    "text": "<#E5E5E5>Rune of Creation:</color> Duplicates the item, but reduces the Forging Potential of both the original and the copy to 0."
+  },
+  {
+    "id": 140154,
+    "text": "Glyphs are support items that can be used alongside Runes or <link=\"shards\">Shards</link> to affect the outcome of crafting.<br>"
+  },
+  {
+    "id": 140155,
+    "text": "[1]"
+  },
+  {
+    "id": 140156,
+    "text": "<#E5E5E5>Glyph of Hope:</color> Modifies the outcome of a craft, granting it a 25% chance to have no Forging Potential cost."
+  },
+  {
+    "id": 140157,
+    "text": "<#E5E5E5>Glyph of Chaos:</color> Modifies the outcome of a craft when upgrading an affix. Randomly changes the upgraded affix to a different one that can spawn on that item type. It cannot change a prefix into a suffix or vice versa. <br><br>For example, if you use a fire resistance shard to a raise the tier of a fire resistance suffix the tier would increase as normal and then it would change into a different affix such as cold resistance or increased health."
+  },
+  {
+    "id": 140158,
+    "text": "<#E5E5E5>Glyph of Order:</color> Modifies the outcome of a craft when upgrading an affix. Prevents the roll of an affix within its range changing when it is upgraded."
+  },
+  {
+    "id": 140159,
+    "text": "<#E5E5E5>Glyph of Despair:</color> Has a chance to seal an affix instead of upgrading it. The sealed affix is moved to its own slot, leaving its old slot open for you to add a new affix. The sealed affix cannot be modified further and an item can only have one sealed affix. The chance to seal is higher when crafting on affixes of lower tiers, and is also higher for exalted items and items with more affixes.<br>"
+  },
+  {
+    "id": 140160,
+    "text": "<#E5E5E5>Glyph of Envy:</color> Changes the item’s subtype to a different one with the same class requirement when adding or upgrading an affix."
+  },
+  {
+    "id": 140161,
+    "text": "craft"
+  },
+  {
+    "id": 140162,
+    "text": "crafting"
+  },
+  {
+    "id": 140163,
+    "text": "rune"
+  },
+  {
+    "id": 140164,
+    "text": "shatter"
+  },
+  {
+    "id": 140165,
+    "text": "shattering"
+  },
+  {
+    "id": 140166,
+    "text": "cleanse"
+  },
+  {
+    "id": 140167,
+    "text": "cleansing"
+  },
+  {
+    "id": 140168,
+    "text": "refinement"
+  },
+  {
+    "id": 140169,
+    "text": "refine"
+  },
+  {
+    "id": 140170,
+    "text": "glyph"
+  },
+  {
+    "id": 140171,
+    "text": "glyphs"
+  },
+  {
+    "id": 140172,
+    "text": "stability"
+  },
+  {
+    "id": 140173,
+    "text": "stable"
+  },
+  {
+    "id": 140174,
+    "text": "guardian"
+  },
+  {
+    "id": 140175,
+    "text": "Forging Potential"
+  },
+  {
+    "id": 140176,
+    "text": "Forging Potential is a property that all normal, magic, rare and exalted equipment items have, which is used at the forge to perform crafting actions. Once an item runs out of Forging Potential, it can no longer be crafted on but is still able to be used. Higher rarity items will generally drop with more Forging Potential."
+  },
+  {
+    "id": 140177,
+    "text": "[0]"
+  },
+  {
+    "id": 140178,
+    "text": "Each time you use a shard or rune in the forge, the Forging Potential of the item affected is reduced by a random amount inside a range. The amount of Forging Potential used can be modified through the use of <link=\"runes and glyphs\">Glyphs</link>. As long as you have any amount of Forging Potential remaining, you are able to craft on the item in the forge."
+  },
+  {
+    "id": 140179,
+    "text": "fracture"
+  },
+  {
+    "id": 140180,
+    "text": "fracturing"
+  },
+  {
+    "id": 140181,
+    "text": "potential"
+  },
+  {
+    "id": 140182,
+    "text": "forging"
+  },
+  {
+    "id": 140183,
+    "text": "forge"
+  },
+  {
+    "id": 140184,
+    "text": "instability"
+  },
+  {
+    "id": 140185,
+    "text": "Hit vs Damage over Time"
+  },
+  {
+    "id": 140186,
+    "text": "Damage in Last Epoch can be dealt in two different ways: as a <#E5E5E5>hit</color>, or as <#E5E5E5>damage over time</color>."
+  },
+  {
+    "id": 140187,
+    "text": "A <#E5E5E5>damage over time</color> effect deals damage to a target or area repeatedly over a duration.<br><br>The most common sources of damage over time are <link=\"ailments\">ailments</link> such as ignite, bleed, and poison, which affect individual targets.<br><br>There are also damage over time effects that damage all targets within an area, such as Fire Aura, Tornado, Consecrated Ground, and many more."
+  },
+  {
+    "id": 140188,
+    "text": "Any source of damage that is <#E5E5E5>not</color> damage over time is considered a <#E5E5E5>hit</color>. Most damaging skills include a hit, such as Swipe, Rive, Fireball, Elemental Nova, and Rip Blood.<br>"
+  },
+  {
+    "id": 140189,
+    "text": "Hits can be <link=\"dodged\">dodged</link>, <link=\"blocked\">blocked</link>, or turned into a <link=\"glancing blow\">glancing blow</link>, and there are many other effects that trigger either when you hit something or when you are hit by an enemy."
+  },
+  {
+    "id": 140190,
+    "text": "Damage over time cannot be mitigated by most defense mechanics, except for <link=\"resistances\">resistances</link>. Damage over time cannot <link=\"critical strikes\">critically strike</link> and does not trigger on hit effects such as Health Gained On Hit."
+  },
+  {
+    "id": 140191,
+    "text": "damage over time"
+  },
+  {
+    "id": 140192,
+    "text": "when hit"
+  },
+  {
+    "id": 140193,
+    "text": "dot"
+  },
+  {
+    "id": 140194,
+    "text": "on hit"
+  },
+  {
+    "id": 140195,
+    "text": "hit"
+  },
+  {
+    "id": 140196,
+    "text": "Base Damage"
+  },
+  {
+    "id": 140197,
+    "text": "All skills have a base amount of damage that they would deal without any stats, which is called base damage. Base damage can only be modified by a skill’s tree."
+  },
+  {
+    "id": 140198,
+    "text": "The default base damage for each skill is listed on its tooltip."
+  },
+  {
+    "id": 140199,
+    "text": "Melee skills typically have 2 base damage total because most of their damage comes from weapons.<br><br>Spells and throwing attacks can have much more base damage, but the exact amount varies a lot between skills."
+  },
+  {
+    "id": 140200,
+    "text": "When calculating damage dealt, stats like “<link=\"+5\">+5</link> melee fire damage” are multiplied by the skill’s <link=\"added damage effectiveness\">added damage effectiveness</link>, then added to the base damage before stats like “30% <link=\"increased added more\">increased</link> damage” and “10% <link=\"more\">more</link> damage” are applied."
+  },
+  {
+    "id": 140201,
+    "text": "Added damage without a damage type, such +5 Melee Damage, adds damage of a type that depends on the base damage type of the skill. For example +5 Melee Damage will add 5 Melee Physical Damage to a Physical Melee Attack but 5 Melee Fire Damage to a Fire Melee Attack."
+  },
+  {
+    "id": 140202,
+    "text": "base damage"
+  },
+  {
+    "id": 140203,
+    "text": "Damage Conversion"
+  },
+  {
+    "id": 140204,
+    "text": "The base damage type of specific skills can be converted. For example, a Physical skill could be converted to a Fire skill. Conversions are typically found in skill trees and items, and sometimes in passive trees."
+  },
+  {
+    "id": 140205,
+    "text": "Base damage conversion converts a skill’s <link=\"base damage\">base damage</link> from one type to another, which does not affect damage from stats such as “+5 Melee Fire Damage”, but will change the damage type of added damage stats without a damage type tag such as \"+5 Melee Damage\"."
+  },
+  {
+    "id": 140207,
+    "text": "Damage conversion doesn't affect ailments such as ignite, or any other effects applied or triggered by the skill, unless stated otherwise."
+  },
+  {
+    "id": 140208,
+    "text": "damage conversion"
+  },
+  {
+    "id": 140209,
+    "text": "conversion"
+  },
+  {
+    "id": 140210,
+    "text": "Damage Effectiveness"
+  },
+  {
+    "id": 140211,
+    "text": "All skills have an added damage effectiveness, which is a multiplier that is applied to all damage from stats like “+5 melee fire damage”.<br><br>Skills with large mana costs or cooldowns typically have greater than 100% damage effectiveness, while some skills that hit rapidly have less than 100%."
+  },
+  {
+    "id": 140212,
+    "text": "For example, Elemental Nova has a damage effectiveness of 100%, while Meteor has a damage effectiveness of 900%.<br><br>If you had “+10 spell fire damage” from your passives, 10 fire damage would be added to Elemental Nova, while 90 fire damage would be added to Meteor. You can view the damage effectiveness of skills by holding ALT while hovering on them."
+  },
+  {
+    "id": 140213,
+    "text": "Damage effectiveness does not affect <link=\"base damage\">base damage</link>."
+  },
+  {
+    "id": 140214,
+    "text": "effectiveness"
+  },
+  {
+    "id": 140215,
+    "text": "added damage"
+  },
+  {
+    "id": 140216,
+    "text": "added"
+  },
+  {
+    "id": 140217,
+    "text": "added damage effectiveness"
+  },
+  {
+    "id": 140218,
+    "text": "Resistances"
+  },
+  {
+    "id": 140219,
+    "text": "Resistances apply whenever you take damage, reducing how much damage you take. Resistances are one of the few ways to mitigate <link=\"damage over time\">Damage over Time</link> effects."
+  },
+  {
+    "id": 140220,
+    "text": "[0]"
+  },
+  {
+    "id": 140221,
+    "text": "If you have 10% physical resistance, you will take 10% less physical damage.<br><br>Resistances cap at 75%, so having a resistance value of greater than 75% will not directly reduce the damage you take.<br><br>Resistances can be reduced to negative numbers, with each 1% of negative resistance increasing damage taken of that type by 1%."
+  },
+  {
+    "id": 140222,
+    "text": "Having greater than 75% <link=\"terminology\">uncapped resistance</link> protects against effects that reduce resistances such as Resistance Shreds, Shock or Marked for Death curse.<br><br>A stack of Shock reduces your lightning resistance by 2%, so if you had 75% lightning resistance it would be reduced to 73%. <br><br>If you had 77% lightning resistance, your final lightning resistance would still be 75%."
+  },
+  {
+    "id": 140223,
+    "text": "<link=\"penetration\">Penetration</link> applies after your resistances are capped to 75%."
+  },
+  {
+    "id": 140224,
+    "text": "armor"
+  },
+  {
+    "id": 140225,
+    "text": "armor"
+  },
+  {
+    "id": 140226,
+    "text": "protection"
+  },
+  {
+    "id": 140227,
+    "text": "protections"
+  },
+  {
+    "id": 140228,
+    "text": "resist"
+  },
+  {
+    "id": 140229,
+    "text": "resistance"
+  },
+  {
+    "id": 140230,
+    "text": "resistances"
+  },
+  {
+    "id": 140231,
+    "text": "res"
+  },
+  {
+    "id": 140232,
+    "text": "Armor"
+  },
+  {
+    "id": 140233,
+    "text": "Armor mitigates the damage you take from all <link=\"hits\">hits</link>, but has no effect against <link=\"damage over time\">Damage over Time</link>."
+  },
+  {
+    "id": 140234,
+    "text": "The percentage of damage mitigated by armor depends on how much armor you have and the level of the area you are in.<br><br>The same amount of armor provides less mitigation at higher levels, and the percentage of damage mitigated cannot exceed 85%."
+  },
+  {
+    "id": 140235,
+    "text": "This is according to the following formula, where <#E5E5E5>x</color> is the amount of armor you have and <#E5E5E5>a</color> is the area level."
+  },
+  {
+    "id": 140236,
+    "text": "[0]"
+  },
+  {
+    "id": 140237,
+    "text": "Armor is 70% as effective against non-physical damage."
+  },
+  {
+    "id": 140238,
+    "text": "armor"
+  },
+  {
+    "id": 140239,
+    "text": "armor"
+  },
+  {
+    "id": 140240,
+    "text": "protection"
+  },
+  {
+    "id": 140241,
+    "text": "protections"
+  },
+  {
+    "id": 140242,
+    "text": "resist"
+  },
+  {
+    "id": 140243,
+    "text": "resistance"
+  },
+  {
+    "id": 140244,
+    "text": "resistances"
+  },
+  {
+    "id": 140245,
+    "text": "res"
+  },
+  {
+    "id": 140246,
+    "text": "Penetrations"
+  },
+  {
+    "id": 140247,
+    "text": "Penetration subtracts from <link=\"resistances\">resistances</link>, causing a source of damage to deal more damage.<br>"
+  },
+  {
+    "id": 140248,
+    "text": "Penetration applies after resistances are capped to 75%, and can reduce resistances to negative values.<br><br>For example, 30% lightning penetration against 20% lightning resistance will result in -10% lightning resistance."
+  },
+  {
+    "id": 140249,
+    "text": "All enemies gain 1% of penetration per area level, up to a maximum of 75%.<br><br>Players with less than 75% of each resistance at area level 75 and beyond will take increased damage due to having negative resistance values."
+  },
+  {
+    "id": 140250,
+    "text": "penetration"
+  },
+  {
+    "id": 140251,
+    "text": "penetrate"
+  },
+  {
+    "id": 140252,
+    "text": "pierce"
+  },
+  {
+    "id": 140253,
+    "text": "piercing"
+  },
+  {
+    "id": 140254,
+    "text": "resistance"
+  },
+  {
+    "id": 140255,
+    "text": "res"
+  },
+  {
+    "id": 140256,
+    "text": "Ward"
+  },
+  {
+    "id": 140257,
+    "text": "Ward is a shield above your health that is generated by certain effects and rapidly decays over time."
+  },
+  {
+    "id": 140258,
+    "text": "Ward has no maximum value, but will always decay towards 0 unless you continue to generate more or have a stat called Ward Decay Threshold. "
+  },
+  {
+    "id": 140259,
+    "text": "Ward does not decay below your Ward Decay Threshold. For example, having 500 Ward Decay Threshold means that decay will not lower your Ward below 500, and Ward Decay rate at 1000 Ward is halved."
+  },
+  {
+    "id": 140260,
+    "text": "ward"
+  },
+  {
+    "id": 140261,
+    "text": "energy shield"
+  },
+  {
+    "id": 140262,
+    "text": "shield"
+  },
+  {
+    "id": 140263,
+    "text": "Dodge"
+  },
+  {
+    "id": 140264,
+    "text": "Dodge is a defensive mechanic that grants you a chance to completely avoid taking hits."
+  },
+  {
+    "id": 140265,
+    "text": "Your Dodge Chance is calculated from Dodge Rating and is lower in higher level areas. Dodge chance cannot go above 85%."
+  },
+  {
+    "id": 140266,
+    "text": "[0]"
+  },
+  {
+    "id": 140267,
+    "text": "Where “a” is the zone’s area level and “x” is Dodge Rating."
+  },
+  {
+    "id": 140268,
+    "text": "A good rule of thumb is that having dodge rating equal to 10 times the area level will give you about 50% Dodge Chance.<br><br>A zone's area level can be viewed on the overlay map (tab by default)."
+  },
+  {
+    "id": 140269,
+    "text": "Dodge cannot protect you from <link=\"damage over time\">Damage over Time</link> effects, but dodging does not count as being <link=\"hit\">hit</link>."
+  },
+  {
+    "id": 140270,
+    "text": "dodge"
+  },
+  {
+    "id": 140271,
+    "text": "evasion"
+  },
+  {
+    "id": 140272,
+    "text": "Block"
+  },
+  {
+    "id": 140273,
+    "text": "Block is a defensive mechanic that grants a chance to reduce the damage taken from <link=\"hit vs damage over time\">hits.</link><br>"
+  },
+  {
+    "id": 140274,
+    "text": "Whenever you take a hit, your Block Chance is rolled to determine if you block the hit. On a successful block, a percentage of the damage is mitigated."
+  },
+  {
+    "id": 140275,
+    "text": "This percentage depends on how much Block Effectiveness you have, and the level of the area you are in. The percentage cannot exceed 85%."
+  },
+  {
+    "id": 140276,
+    "text": "[0]"
+  },
+  {
+    "id": 140277,
+    "text": "Where “a” is the zone’s area level and “x” is Block Effectiveness."
+  },
+  {
+    "id": 140278,
+    "text": "You can block all hit (including from spells), but not <link=\"damage over time\">damage over time</link> effects. Blocking a hit counts as being hit."
+  },
+  {
+    "id": 140279,
+    "text": "blocked"
+  },
+  {
+    "id": 140280,
+    "text": "block"
+  },
+  {
+    "id": 140281,
+    "text": "Endurance"
+  },
+  {
+    "id": 140282,
+    "text": "Endurance is a defensive mechanic that allows you to take less damage while below a certain health value."
+  },
+  {
+    "id": 140283,
+    "text": "While your health is less than your Endurance Threshold, you will take less damage equal to your Endurance value. This reduction applies to health, but does not apply to ward."
+  },
+  {
+    "id": 140284,
+    "text": "Endurance has a cap of 60% less damage taken (multiplicative with other modifiers), while Endurance Threshold does not have a cap."
+  },
+  {
+    "id": 140285,
+    "text": "Endurance applies to any damage taken below your Endurance Threshold, even if the instance of damage applied while you were above it. For example, if you take a hit of 100 damage, but 50 of that damage was below your Endurance Threshold, the last 50 damage will have Endurance applied to it."
+  },
+  {
+    "id": 140286,
+    "text": "All characters start with 20% Endurance and have an Endurance Threshold equal to 20% of their maximum health."
+  },
+  {
+    "id": 140287,
+    "text": "Endurance mitigates both <link=\"hits\">hits</link> and <link=\"damage over time\">damage over time</link>."
+  },
+  {
+    "id": 140288,
+    "text": "endurance"
+  },
+  {
+    "id": 140289,
+    "text": "Glancing Blow"
+  },
+  {
+    "id": 140290,
+    "text": "The \"chance to receive a Glancing Blow\" stat grants you a chance to take a Glancing Blow when hit.<br><br>A Glancing Blow reduces the damage you take from a hit by 35%. Having a chance greater than 100% has no additional effect."
+  },
+  {
+    "id": 140291,
+    "text": "Glancing Blow cannot protect you from <link=\"damage over time\">Damage over Time</link> effects and taking a Glancing Blow counts as being <link=\"hit\">hit</link>."
+  },
+  {
+    "id": 140292,
+    "text": "glancing blow"
+  },
+  {
+    "id": 140293,
+    "text": "gb"
+  },
+  {
+    "id": 140294,
+    "text": "glancing"
+  },
+  {
+    "id": 140295,
+    "text": "Critical Strikes"
+  },
+  {
+    "id": 140296,
+    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to critically strike, or “crit”, dealing much more damage than normal. <link=\"hit vs damage over time\">Damage over time</link> effects cannot crit.<br>"
+  },
+  {
+    "id": 140297,
+    "text": "All hits have a base critical strike chance of 5%. This can be improved by items, passives, and skill tree nodes."
+  },
+  {
+    "id": 140298,
+    "text": "The difference between <#E5E5E5>added</color> critical strike chance and <#E5E5E5>increased</color> critical strike chance is very important.<br><br><#E5E5E5>+1% critical strike chance</color> will result in a final chance of 6% (assuming no other modifiers), while <#E5E5E5>1% increased critical strike chance</color> will result in a final chance of 5.05%. Both stats together will result in a final chance of 6.06%."
+  },
+  {
+    "id": 140299,
+    "text": "When a hit crits, the damage dealt is multiplied by a critical strike multiplier, which is multiplicative with other modifiers. The default critical strike multiplier is 200%."
+  },
+  {
+    "id": 140300,
+    "text": "The <#E5E5E5>critical strike avoidance</color> stat grants a chance to cause critical strikes to become normal hits instead. This chance is rolled after the attacker's crit chance.<br><br>If an enemy has 30% critical strike chance and you have 50% critical strike avoidance, the enemy will effectively have a critical strike chance of 15%."
+  },
+  {
+    "id": 140301,
+    "text": "All enemy hits that can critically strike have a critical strike multiplier of 200%, but this can be reduced by <#E5E5E5>less bonus damage taken from critical strikes<#E5E5E5>. You cannot have more than 100% less bonus damage taken from critical strikes, which reduces the damage of a critical strike to that of a regular hit."
+  },
+  {
+    "id": 140302,
+    "text": "crit"
+  },
+  {
+    "id": 140303,
+    "text": "critical"
+  },
+  {
+    "id": 140304,
+    "text": "Increased, Added, and More"
+  },
+  {
+    "id": 140305,
+    "text": "Stats and modifiers in Last Epoch can exist in 3 main categories: <#E5E5E5>added</color>, <#E5E5E5>increased</color>, and <#E5E5E5>more</color>. The category a modifier belongs to determines which step it will be used at in calculations. Not all stats will have modifiers for each category in practice.<br>"
+  },
+  {
+    "id": 140306,
+    "text": "<#E5E5E5>(5 + 2 + 3) = 10<br></color><br><br>First, all <#E5E5E5>added</color> sources of the stat are totaled together.<br>"
+  },
+  {
+    "id": 140307,
+    "text": "<#E5E5E5>(1 + 0.05 + 0.3 + 0.1) = 1.45<br></color><br><br>Second, all <#E5E5E5>increased</color> sources of the stat are totaled together. Increased values are percentages, so they are converted to decimal numbers and an additional 1 is added. <#E5E5E5>Reduced</color> sources are subtracted from this same total.<br>"
+  },
+  {
+    "id": 140308,
+    "text": "<#E5E5E5>(10 x 1.45) = 14.5<br></color><br><br>Third, the total of the <#E5E5E5>added</color> sources is multiplied by the total of the <#E5E5E5>increased</color> sources.<br>"
+  },
+  {
+    "id": 140309,
+    "text": "<#E5E5E5>14.5 x (1 + 0.05) x (1 + 0.3) x (1 + 0.1) = 21.77<br></color><br><br>Finally, the product of the <#E5E5E5>added</color> and <#E5E5E5>increased</color> sources is multiplied by each <#E5E5E5>more</color> source. <#E5E5E5>More</color> values are also percentages, so 1 is added each time. <#E5E5E5>Less</color> sources are also applied here as values subtracted from 1.<br>"
+  },
+  {
+    "id": 140310,
+    "text": "Note that the <#E5E5E5>more</color> sources are not added together first, which would result in a different number. If the <#E5E5E5>more</color> values in this example were totaled first, the final result would be 21.03, not 21.77."
+  },
+  {
+    "id": 140311,
+    "text": "increased"
+  },
+  {
+    "id": 140312,
+    "text": "more"
+  },
+  {
+    "id": 140313,
+    "text": "added"
+  },
+  {
+    "id": 140314,
+    "text": "add"
+  },
+  {
+    "id": 140315,
+    "text": "increase"
+  },
+  {
+    "id": 140316,
+    "text": "reduced"
+  },
+  {
+    "id": 140317,
+    "text": "reduce"
+  },
+  {
+    "id": 140318,
+    "text": "less"
+  },
+  {
+    "id": 140319,
+    "text": "subtract"
+  },
+  {
+    "id": 140320,
+    "text": "Health Leech"
+  },
+  {
+    "id": 140321,
+    "text": "Health Leech is a mechanic that allows you to recover a percentage of the damage you deal as health."
+  },
+  {
+    "id": 140322,
+    "text": "Each time you deal damage (whether from a <link=\"hit\">hit</link> or <link=\"hit vs damage over time\">damage over time</link>), any applicable leech stats are calculated, then the amount of damage is multiplied by this value to get the amount of health you will gain.<br><br>For example, if you deal 100 physical damage with a melee attack and you have “5% of melee damage leeched as health” and “3% of physical damage leeched as health”, you will leech <#E5E5E5>100 x (0.05 + 0.03) = 8 health.</color>"
+  },
+  {
+    "id": 140323,
+    "text": "The damage value used to calculate the health returned is the final damage dealt to the target, meaning defensive mechanics like resistances and block will reduce it.<br><br>If a target takes more damage than it has health remaining, the excess will not be used to calculate leech. For example, if an enemy has 25 health and you deal 100 damage to it, only 25 damage will be used for calculating leech."
+  },
+  {
+    "id": 140324,
+    "text": "Health returned by health leech is granted evenly over 3 seconds. Health from each instance of leech is granted independently, meaning they expire at different times. There is no limit to how much you can leech at once."
+  },
+  {
+    "id": 140325,
+    "text": "leech"
+  },
+  {
+    "id": 140326,
+    "text": "health leech"
+  },
+  {
+    "id": 140327,
+    "text": "Stun"
+  },
+  {
+    "id": 140328,
+    "text": "Stunned enemies and players cannot move or use skills. Stun has a base duration of 0.4 seconds."
+  },
+  {
+    "id": 140329,
+    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to stun if they deal enough damage. Hits that deal more damage are more likely to stun, but enemies that have higher maximum health are harder to stun.<br><br>The Increased Stun Chance stat also makes hits more likely to stun, while the target’s Stun Avoidance stat makes it harder to stun. If the target is <link=\"shock\">shocked</link>, it has an increased chance to be stunned.<br>"
+  },
+  {
+    "id": 140330,
+    "text": "The stun chance of any hit can be calculated using this formula:"
+  },
+  {
+    "id": 140331,
+    "text": "[0]"
+  },
+  {
+    "id": 140332,
+    "text": "When calculating stun chance using the formula above, melee damage dealt by players is multiplied by 3, and other damage dealt by players is multiplied by 2."
+  },
+  {
+    "id": 140333,
+    "text": "Due to the formula above, at 0% increased stun chance and 0 stun avoidance, non-player hits must deal more damage than 5% of a target's maximum health to have a chance to stun them. Every 100 stun avoidance raises this threshold by 1%. This threshold is reduced by increased stun chance, and by the player bonuses described above."
+  },
+  {
+    "id": 140334,
+    "text": "Players have inherent stun avoidance equal to 250 + 5 per character level, and can acquire more through items, passives and blessings."
+  },
+  {
+    "id": 140335,
+    "text": "stun"
+  },
+  {
+    "id": 140336,
+    "text": "stun chance"
+  },
+  {
+    "id": 140337,
+    "text": "stun avoidance"
+  },
+  {
+    "id": 140338,
+    "text": "Freeze"
+  },
+  {
+    "id": 140339,
+    "text": "Enemies and players that are frozen cannot move or use skills. Freeze has a base duration of 1.2 seconds."
+  },
+  {
+    "id": 140340,
+    "text": "To have a chance to freeze, a skill must have a <#E5E5E5>freeze rate</color>. Most Cold skills have a freeze rate, which is listed on their tooltips."
+  },
+  {
+    "id": 140341,
+    "text": "Your skills' base freeze rate listed in their tooltips can be increased by the \"freeze rate per stack of chill\" stat, and that final number is then multiplied by the \"freeze rate multiplier\" stat (which is 100% by default). If the target is <link=\"frostbite\">frostbitten</link>, it has an increased chance to be frozen. It is more difficult to freeze enemies that have more maximum health and current ward."
+  },
+  {
+    "id": 140342,
+    "text": "[0]"
+  },
+  {
+    "id": 140343,
+    "text": "freeze"
+  },
+  {
+    "id": 140344,
+    "text": "Minions"
+  },
+  {
+    "id": 140345,
+    "text": "Minions are allies of the player that are summoned by skills, items, passives, or other effects."
+  },
+  {
+    "id": 140346,
+    "text": "Minions automatically attack enemies and will run towards the player if they’ve strayed too far behind.<br><br>You can also manually tell your minions to target the enemy under your cursor using Minion Attack Command (bound to A by default). If there’s no enemy at the location you target, your minions will move there before picking a new target to attack. You can also use this command to have your minions break things like crates.\n\nMinions have two modes, Protect and Assassinate, which alter the distance they attack enemies or run back to the player. In Assassinate mode minions prioritize attacking targets close to them, especially bosses and rare enemies, and don't return to the player unless they're very far away. In Protect mode minions stay closer to the player and prioritize targets close to the player instead."
+  },
+  {
+    "id": 140347,
+    "text": "Minions summoned by a skill will typically gain additional stats from skill tree nodes. Modifiers your character has (such as from passives and items) <#E5E5E5>will not</color> apply unless minions are specified.<br><br>For example, a passive node that grants <#E5E5E5>increased physical damage</color> will not apply to your minions, but <#E5E5E5>increased minion physical damage</color> will apply."
+  },
+  {
+    "id": 140348,
+    "text": "A minion will prioritize using a skill that has just come off of cooldown if it has multiple to use, assuming there is a valid target in range."
+  },
+  {
+    "id": 140349,
+    "text": "<link=\"companions\">Companions</link> and <link=\"totems\">Totems</link> are two types of minions that have additional mechanics."
+  },
+  {
+    "id": 140350,
+    "text": "minion"
+  },
+  {
+    "id": 140351,
+    "text": "ally"
+  },
+  {
+    "id": 140352,
+    "text": "minions"
+  },
+  {
+    "id": 140353,
+    "text": "Companions"
+  },
+  {
+    "id": 140354,
+    "text": "Companions are a type of <link=\"minions\">minion</link> with special mechanics used primarily the Primalist class. By default, you can have 2 companions active at once.<br><br>All minion stats and effects apply to companions, but there are effects that only benefit companions.<br>"
+  },
+  {
+    "id": 140355,
+    "text": "After using a skill to summon a companion, the summon skill will be replaced by a companion ability, which is specific to the companion summoned. <br><br>If you can summon multiple of the same companion, you must summon the maximum number or reach your companion limit before the ability will change."
+  },
+  {
+    "id": 140356,
+    "text": "When a companion’s health is reduced to zero, it enters a <#E5E5E5>Downed</color> state rather than dying. Being close to a downed companion will revive it, but if you wait too long the companion will die and must be summoned again."
+  },
+  {
+    "id": 140357,
+    "text": "companion"
+  },
+  {
+    "id": 140358,
+    "text": "companions"
+  },
+  {
+    "id": 140359,
+    "text": "Totems"
+  },
+  {
+    "id": 140360,
+    "text": "Totems are a type of <link=\"minions\">minion</link> that is used by the Primalist class."
+  },
+  {
+    "id": 140361,
+    "text": "Totems cannot move and have a fixed duration in addition to health. All minion stats and effects apply to totems, but there are effects that only benefit totems."
+  },
+  {
+    "id": 140362,
+    "text": "totem"
+  },
+  {
+    "id": 140363,
+    "text": "totems"
+  },
+  {
+    "id": 140364,
+    "text": "Potions"
+  },
+  {
+    "id": 140365,
+    "text": "Potions are a special type of item that drops from killing enemies or hitting bosses. Potions can be used on demand for a quick burst of healing. You can pick up a potion by walking near it while you have empty potion slots or you are not at full health. When you pick up a potion while you are at max potions but not full health, the potion will be automatically consumed and you are healed. You can increase your maximum potion carrying capacity by upgrading your belt."
+  },
+  {
+    "id": 140367,
+    "text": "potion"
+  },
+  {
+    "id": 140368,
+    "text": "potions"
+  },
+  {
+    "id": 140369,
+    "text": "Monolith Introduction"
+  },
+  {
+    "id": 140370,
+    "text": "[0]"
+  },
+  {
+    "id": 140371,
+    "text": "The Monolith of Fate is the main endgame system in Last Epoch. Characters can access the Monolith of Fate from the End of Time, though it is designed to be started after the campaign."
+  },
+  {
+    "id": 140372,
+    "text": "The Monolith of Fate consists of multiple <link=\"timeline\">Timelines</link>. All Timelines have a fixed area level and their own set of layouts, enemies and quests to encounter."
+  },
+  {
+    "id": 140373,
+    "text": "[1]"
+  },
+  {
+    "id": 140374,
+    "text": "When you first start a Timeline there are multiple paths from the center island, with an <link=\"echoes\">Echo</link> on each. After you complete an Echo, the Echoes behind are also revealed. You can do any Echo you've unlocked at any time."
+  },
+  {
+    "id": 140375,
+    "text": "Completing Echoes grants Timeline Stability. After you reach a certain threshold, you can select a <link=\"quest echo\">Quest Echo</link> from the top left side of the screen. After completing all Quest Echoes in a Timeline, your run is completed and you can choose a <link=\"blessing\">Blessing</link> that grants different bonuses, such as character power or specific item drop rate benefits."
+  },
+  {
+    "id": 140376,
+    "text": "monolith"
+  },
+  {
+    "id": 140377,
+    "text": "mof"
+  },
+  {
+    "id": 140378,
+    "text": "minilith"
+  },
+  {
+    "id": 140379,
+    "text": "endgame"
+  },
+  {
+    "id": 140380,
+    "text": "map"
+  },
+  {
+    "id": 140381,
+    "text": "rift"
+  },
+  {
+    "id": 140382,
+    "text": "Timelines"
+  },
+  {
+    "id": 140383,
+    "text": "A Timeline represents an alternate reality that never was, or never will be."
+  },
+  {
+    "id": 140384,
+    "text": "All <link=\"echoes\">Echoes</link> you encounter in a Timeline have the same area level, and each Timeline has a unique pool of layouts, enemies and quests."
+  },
+  {
+    "id": 140385,
+    "text": "Completing all <link=\"quest echoes\">Quest Echoes</link> for a Timeline unlocks the next timeline and grants you the opportunity to choose a <link=\"blessing\">Blessing</link>. Additionally, conquering the most difficult Timelines will unlock the <link=\"empowered timelines\">Empowered Timelines</link>."
+  },
+  {
+    "id": 140388,
+    "text": "timeline"
+  },
+  {
+    "id": 140389,
+    "text": "monolith"
+  },
+  {
+    "id": 140390,
+    "text": "Echoes"
+  },
+  {
+    "id": 140391,
+    "text": "Each zone you encounter in a <link=\"timeline\">Timeline</link> is called an Echo."
+  },
+  {
+    "id": 140392,
+    "text": "[0]"
+  },
+  {
+    "id": 140393,
+    "text": "An Echo has a layout based on its name, and a randomly chosen modifier that it will add to enemies. The enemy modifier also affects the rarity of items you will find and how much experience you will earn."
+  },
+  {
+    "id": 140394,
+    "text": "As you conquer more Echoes in a row, the modifiers you select will start to persist for multiple Echoes. This means you will have multiple modifiers active at the same time.<br><br>Conquering each Echo grants Timeline Stability, which is required for unlocking <link=\"quest echo\">Quest Echo</link>."
+  },
+  {
+    "id": 140395,
+    "text": "Echoes have a guaranteed reward for completing them. However, if you die before completing an Echo you won't be able to collect it."
+  },
+  {
+    "id": 140396,
+    "text": "echo"
+  },
+  {
+    "id": 140397,
+    "text": "echoes"
+  },
+  {
+    "id": 140398,
+    "text": "timeline"
+  },
+  {
+    "id": 140399,
+    "text": "monolith"
+  },
+  {
+    "id": 140400,
+    "text": "Corruption and the Shade"
+  },
+  {
+    "id": 140401,
+    "text": "As you progress further from the center of a Timeline, you will start to find echoes with the Shade of Orobyss within."
+  },
+  {
+    "id": 140402,
+    "text": "Defeating the Shade adds Corruption to the timeline, increasing its difficulty and rewards and certain items dropped by the Shade require a minimum amount of Corruption. It also brings the echo web for the timeline back to a fresh state, allowing you to start again with a higher potential for rewards."
+  },
+  {
+    "id": 140403,
+    "text": "Defeating the Shade does not reset your Timeline Stability or the active modifiers you have."
+  },
+  {
+    "id": 140404,
+    "text": "[0]"
+  },
+  {
+    "id": 140405,
+    "text": "Corruption increases item rarity, experience gained, monster health, monster damage and how much Timeline Stability echoes give."
+  },
+  {
+    "id": 140406,
+    "text": "Corruption also increases area level in standard timelines, and increases the rarity of guaranteed echo rewards in Empowered timelines. Corruption also, very slightly, increases the odds of unique items having <link=\"legendary potential\">Legendary Potential</link> or <link=\"weavers will\">Weaver's Will</link>."
+  },
+  {
+    "id": 140407,
+    "text": "corruption"
+  },
+  {
+    "id": 140408,
+    "text": "shade"
+  },
+  {
+    "id": 140409,
+    "text": "orobyss"
+  },
+  {
+    "id": 140410,
+    "text": "Quest Echoes"
+  },
+  {
+    "id": 140411,
+    "text": "After conquering a certain amount of Timeline Stability in a <link=\"timeline\">Timeline</link>, you will have the chance to encounter a Quest Echo, which represents a pivotal moment in the story of a Timeline."
+  },
+  {
+    "id": 140412,
+    "text": "[0]"
+  },
+  {
+    "id": 140413,
+    "text": "The final Quest Echo in a Timeline is a boss fight, and by defeating it the adjacent Timelines will become unlocked."
+  },
+  {
+    "id": 140414,
+    "text": "Quest Echoes appear in the same order each time, and all Quest Echoes for the current Timeline need to be completed to unlock the next Timeline. In <link=\"empowered timelines\">Empowered Timelines</link>, Quest Echoes are optional and are not required for challenging the boss of the Timeline."
+  },
+  {
+    "id": 140415,
+    "text": "Dying in a Quest Echo will reduce your Timeline Stability, but cannot undo your progression through the Quest Echoes."
+  },
+  {
+    "id": 140416,
+    "text": "quest"
+  },
+  {
+    "id": 140417,
+    "text": "echo"
+  },
+  {
+    "id": 140418,
+    "text": "echoes"
+  },
+  {
+    "id": 140419,
+    "text": "monolith"
+  },
+  {
+    "id": 140420,
+    "text": "Blessings"
+  },
+  {
+    "id": 140421,
+    "text": "[0]"
+  },
+  {
+    "id": 140422,
+    "text": "Blessings are permanent increases to your character's stats or chance to find particular types of items.<br><br>Blessings apply throughout the entire game, not just in the Monolith of Fate."
+  },
+  {
+    "id": 140423,
+    "text": "When you conquer a <link=\"timeline\">Timeline</link> you will be presented with 3 Blessings to choose from. If you conquer the same timeline again, you can choose to either keep your current Blessing, or replace it with a new one."
+  },
+  {
+    "id": 140424,
+    "text": "Each <link=\"timeline\">Timeline</link> has its own set of possible Blessings. Some Timelines have Blessings that increase your character's stats, while others have Blessings that increase your chance to find particular types of items.<br><br>You can view every blessing you have discovered and currently have active from the blessings tab in the inventory window. You can also hover on a Timeline in the world map and see your current Blessing from that timeline."
+  },
+  {
+    "id": 140425,
+    "text": "Blessings granted by Empowered Timelines have higher values than the versions granted by normal Timelines. Completing an Empowered Timeline has 4 Blessing options by default, and 5th Blessing option is unlocked at 200 <link=\"corruption and the shade\">Corruption</link>."
+  },
+  {
+    "id": 140426,
+    "text": "blessing"
+  },
+  {
+    "id": 140427,
+    "text": "monolith"
+  },
+  {
+    "id": 140428,
+    "text": "Ailment Mechanics"
+  },
+  {
+    "id": 140429,
+    "text": "An ailment is an effect on a target that lasts for a duration. Most ailments deal damage, apply stat debuffs, or both, and most can be applied to the same target multiple times (or \"stack\")."
+  },
+  {
+    "id": 140430,
+    "text": "Ailments can either be applied by a <link=\"hit\">hit</link>, or by area effects that attempt to apply ailments at a fixed interval."
+  },
+  {
+    "id": 140431,
+    "text": "Most ailment applications are chance based. However, having an ailment chance greater than 100% allows you to apply multiple stacks at once if that ailment can stack. <br><br>For example, if you have 235% ignite chance with Fireball, each Fireball hit will apply 2 stacks of ignite, with a 35% chance to apply a 3rd stack of ignite.<br>"
+  },
+  {
+    "id": 140432,
+    "text": "Each damaging ailment, such as Bleed or Ignite, has a fixed base damage, but is affected by damage modifiers from the skill tree and attribute scaling of the skill that applies it."
+  },
+  {
+    "id": 140433,
+    "text": "Even when an ailment is applied by a melee skill or a hit, that does not make it count as melee damage or hit damage and does not cause it to be affected by stats like increased melee damage."
+  },
+  {
+    "id": 140434,
+    "text": "If a target has the maximum number of stacks for a given ailment, attempting to apply another stack of that ailment will replace the oldest stack."
+  },
+  {
+    "id": 140435,
+    "text": "The most common ailments are described in other pages within this section. If an ailment isn't described here, the tooltip (or alt tooltip) of the node or item that grants it should explain the ailment's functionality."
+  },
+  {
+    "id": 140436,
+    "text": "ailment"
+  },
+  {
+    "id": 140437,
+    "text": "status"
+  },
+  {
+    "id": 140438,
+    "text": "status effect"
+  },
+  {
+    "id": 140439,
+    "text": "status effects"
+  },
+  {
+    "id": 140440,
+    "text": "debuff"
+  },
+  {
+    "id": 140441,
+    "text": "Ailment Duration and Effectiveness"
+  },
+  {
+    "id": 140442,
+    "text": "\nThe duration of an ailment can be lengthened by \"increased ailment duration\" effects. 100% increased bleed duration will make a stack of bleed last 6 seconds, rather than the default 3 seconds. \"Reduced ailment duration\" effects are also possible.<br><br><br>Changing the duration of an ailment that deals damage affects the total amount of damage it will deal, but does not affect damage per second (DPS). This results in its increasing the total damage the ailment deals over its duration.<br><br><br>For example if a stack of Bleed dealt 120 damage over its default 3 second duration, then a 50% increased duration modifier would result in it dealing 180 damage over 4.5 seconds."
+  },
+  {
+    "id": 140443,
+    "text": "Increased ailment effectiveness effects apply to all stat modifiers an ailment grants.<br><br><br>For example, 50% increased armor shred effectiveness would cause stacks of armor shred to reduce armor by 150, instead of the default 100."
+  },
+  {
+    "id": 140444,
+    "text": "ailment"
+  },
+  {
+    "id": 140445,
+    "text": "status"
+  },
+  {
+    "id": 140446,
+    "text": "status effect"
+  },
+  {
+    "id": 140447,
+    "text": "status effects"
+  },
+  {
+    "id": 140448,
+    "text": "debuff"
+  },
+  {
+    "id": 140449,
+    "text": "Resistance Shred"
+  },
+  {
+    "id": 140450,
+    "text": "Each damage type (Physical, Cold, Fire, Lightning, Necrotic, Poison and Void) has a respective Resistance Shred ailment, such as Fire Resistance Shred.<br><br>Resistance Shred ailments reduce the target's resistance for that particular damage type. They subtract 5% resistance against most enemies, but only 2% against players and bosses. They last 4 seconds by default and stack up to 10 times.<br><br>Like penetration, resistance shred can bring effective resistance below 0%, further increasing damage taken. Most enemies have 0% resistance, so 10 stacks of Fire Resistance Shred will result in them having -50% Fire Resistance and consequently taking 50% more fire damage."
+  },
+  {
+    "id": 140451,
+    "text": "shred"
+  },
+  {
+    "id": 140452,
+    "text": "resistance shred\t"
+  },
+  {
+    "id": 140453,
+    "text": "Armor Shred"
+  },
+  {
+    "id": 140454,
+    "text": "[0]"
+  },
+  {
+    "id": 140455,
+    "text": "Armor Shred reduces <link=\"armor\">armor</link> on the target, increasing how much damage it takes from hits. By default it subtracts 100 armor and lasts for 4 seconds."
+  },
+  {
+    "id": 140456,
+    "text": "armor shred"
+  },
+  {
+    "id": 140457,
+    "text": "armor shred"
+  },
+  {
+    "id": 140458,
+    "text": "Bleed"
+  },
+  {
+    "id": 140459,
+    "text": "[0]"
+  },
+  {
+    "id": 140460,
+    "text": "Bleed deals physical damage over time. It can stack an unlimited number of times. By default each stack deals 53 damage over a 3 second duration."
+  },
+  {
+    "id": 140461,
+    "text": "bleed"
+  },
+  {
+    "id": 140462,
+    "text": "Blind"
+  },
+  {
+    "id": 140463,
+    "text": "[0]"
+  },
+  {
+    "id": 140464,
+    "text": "blind"
+  },
+  {
+    "id": 140465,
+    "text": "Chill"
+  },
+  {
+    "id": 140466,
+    "text": "[0]"
+  },
+  {
+    "id": 140467,
+    "text": "Each stack of Chill reduces attack speed, cast speed and movement speed by 12%. This effect is multiplicative with other modifiers and each stack is multiplicative with the other stacks of Chill.<br><br>Chill can stack up to 3 times and lasts 4 seconds by default.<br><br>Chill has 50% less effect against bosses and players (multiplicative with other modifiers), so each stack reduces attack speed, cast speed and movement speed by 6% instead."
+  },
+  {
+    "id": 140468,
+    "text": "chill"
+  },
+  {
+    "id": 140469,
+    "text": "Damned"
+  },
+  {
+    "id": 140470,
+    "text": "[0]"
+  },
+  {
+    "id": 140471,
+    "text": "Damned deals necrotic damage over time and also reduces health regeneration. It can stack an unlimited number of times.<br><br>By default each stack deals 35 damage over a 2.5 second duration and applies a 20% reduced health regeneration modifier."
+  },
+  {
+    "id": 140472,
+    "text": "Frostbite"
+  },
+  {
+    "id": 140473,
+    "text": "[0]"
+  },
+  {
+    "id": 140474,
+    "text": "Frostbite deals cold damage over time and also increases the chance to be frozen. It can stack an unlimited number of times, but only the first 15 stacks on a target increase its chance to be frozen."
+  },
+  {
+    "id": 140475,
+    "text": "frostbite"
+  },
+  {
+    "id": 140476,
+    "text": "Ignite"
+  },
+  {
+    "id": 140477,
+    "text": "[0]"
+  },
+  {
+    "id": 140478,
+    "text": "Ignite deals fire damage over time. It can stack an unlimited number of times. By default each stack deals 40 damage over a 2.5 second duration."
+  },
+  {
+    "id": 140479,
+    "text": "ignite"
+  },
+  {
+    "id": 140480,
+    "text": "burn"
+  },
+  {
+    "id": 140481,
+    "text": "Plague"
+  },
+  {
+    "id": 140482,
+    "text": "[0]"
+  },
+  {
+    "id": 140483,
+    "text": "plague"
+  },
+  {
+    "id": 140484,
+    "text": "Poison"
+  },
+  {
+    "id": 140485,
+    "text": "[0]"
+  },
+  {
+    "id": 140486,
+    "text": "Poison deals poison damage over time and also reduces poison <link=\"resistance\">resistance</link>. It can stack an unlimited number of times, but only the first 30 stacks on a target reduce poison resistance.<br><br>By default each stack deals 28 damage over a 3 second duration and subtracts 5% from the target's poison resistance (up to a maximum of 150% at 30 stacks).<br><br>Against bosses and players poison only subtracts 2% from poison resistance rather than 5% (up to a maximum of 60% at 30 stacks)."
+  },
+  {
+    "id": 140487,
+    "text": "poison"
+  },
+  {
+    "id": 140488,
+    "text": "Shock"
+  },
+  {
+    "id": 140489,
+    "text": "[0]"
+  },
+  {
+    "id": 140490,
+    "text": "Shock reduces lightning <link=\"resistances\">resistance</link> by 5% and increases the chance that the target will be <link=\"stun\">stunned</link> by 20%. Shock can stack up to 10 times and lasts 4 seconds by default.<br><br>Shock is 60% less effective against bosses and players, resulting in it only reducing lightning resistance by 2%, and only increasing chance to be stunned by 8%."
+  },
+  {
+    "id": 140491,
+    "text": "shock"
+  },
+  {
+    "id": 140492,
+    "text": "Slow"
+  },
+  {
+    "id": 140493,
+    "text": "[0]"
+  },
+  {
+    "id": 140494,
+    "text": "Each stack of Slow reduces movement speed by 20%. This effect is multiplicative with other modifiers and each stack is multiplicative with the other stacks of Slow.<br><br>Slow can stack up to 3 times and lasts 4 seconds by default.<br><br>Slow has 50% less effect against bosses and players (multiplicative with other modifiers), so each stack reduces movement speed by 10% instead."
+  },
+  {
+    "id": 140495,
+    "text": "slow"
+  },
+  {
+    "id": 140496,
+    "text": "Time Rot"
+  },
+  {
+    "id": 140497,
+    "text": "[0]"
+  },
+  {
+    "id": 140498,
+    "text": "Time Rot deals void damage over time, while also making stuns last longer. By default each stack deals 60 void damage over a 3 second duration and increases stun duration by 5%.<br><br>Time Rot can stack up to 12 times"
+  },
+  {
+    "id": 140499,
+    "text": "time rot"
+  },
+  {
+    "id": 140500,
+    "text": "timerot"
+  },
+  {
+    "id": 140501,
+    "text": "Electrify"
+  },
+  {
+    "id": 140502,
+    "text": "[0]"
+  },
+  {
+    "id": 140503,
+    "text": "Electrify deals lightning damage over time. It can stack an unlimited number of times. By default each stack deals 44 damage over a 2.5 second duration."
+  },
+  {
+    "id": 140504,
+    "text": "electrify"
+  },
+  {
+    "id": 140505,
+    "text": "electrocute"
+  },
+  {
+    "id": 140506,
+    "text": "Frailty"
+  },
+  {
+    "id": 140507,
+    "text": "[0]"
+  },
+  {
+    "id": 140508,
+    "text": "Frailty makes the affected target deal 6% less damage (multiplicative with other modifiers) and lasts for 4 seconds.<br><br>Frailty can stack 3 times."
+  },
+  {
+    "id": 140509,
+    "text": "frailty"
+  },
+  {
+    "id": 140510,
+    "text": "Terminology"
+  },
+  {
+    "id": 140511,
+    "text": "High Health: Anything is considered to be at high health if it has at least 65% of its maximum health remaining."
+  },
+  {
+    "id": 140512,
+    "text": "Low Health: Anything is considered to be at low health if it has at most 35% of its maximum health remaining."
+  },
+  {
+    "id": 140513,
+    "text": "Recently: Recently refers to a duration of 4 seconds."
+  },
+  {
+    "id": 140514,
+    "text": "terminology"
+  },
+  {
+    "id": 140515,
+    "text": "high health"
+  },
+  {
+    "id": 140516,
+    "text": "low health"
+  },
+  {
+    "id": 140517,
+    "text": "recently"
+  },
+  {
+    "id": 140518,
+    "text": "Dungeons"
+  },
+  {
+    "id": 140519,
+    "text": "Dungeons are special challenges throughout the game with a special mechanic, a boss and unique rewards for each one. Entering a Dungeon requires a specific Key to that Dungeon, and there are 4 tiers for each Dungeon with increasing difficulty and rewards."
+  },
+  {
+    "id": 140520,
+    "text": "Keys for each Dungeon start dropping at a higher level than the Tier 1 level of the Dungeon, so you’re likely to come back to them later for their rewards, or use them on subsequent characters. Right clicking a Dungeon Key will show its location on the world map."
+  },
+  {
+    "id": 140521,
+    "text": "[0]"
+  },
+  {
+    "id": 140522,
+    "text": "dungeon"
+  },
+  {
+    "id": 140523,
+    "text": "dungeons"
+  },
+  {
+    "id": 140524,
+    "text": "legendary"
+  },
+  {
+    "id": 140525,
+    "text": "eternity cache"
+  },
+  {
+    "id": 140526,
+    "text": "+ Skill Level Affixes"
+  },
+  {
+    "id": 140527,
+    "text": "Body Armor, Helmets, Relics, Uniques and Sets can all have affixes which grant additional levels to certain skills. These affixes can exceed the normal 20 level limit of skills."
+  },
+  {
+    "id": 140528,
+    "text": "Any skill levels currently granted by items will be shown in blue above a skill's XP bar inside its skill tree."
+  },
+  {
+    "id": 140529,
+    "text": "Unequipping an item which grants levels to your skills will remove points from them, unless you have a number of unspent points greater than or equal to the levels lost. <br><br>Nodes which have lost points in this way will be highlighted in red when you next view that skill's tree."
+  },
+  {
+    "id": 140530,
+    "text": "skills"
+  },
+  {
+    "id": 95329369165438976,
+    "text": "specialization"
+  },
+  {
+    "id": 95549984621690880,
+    "text": "specialization tree"
+  },
+  {
+    "id": 95553232350969856,
+    "text": "implicit"
+  },
+  {
+    "id": 95553234804637696,
+    "text": "Implicits"
+  },
+  {
+    "id": 95556541707157504,
+    "text": "affix"
+  },
+  {
+    "id": 95556544156631040,
+    "text": "affixes"
+  },
+  {
+    "id": 95558633108766720,
+    "text": "rarity"
+  },
+  {
+    "id": 95558635163975680,
+    "text": "rare"
+  },
+  {
+    "id": 95558637072384000,
+    "text": "exalted"
+  },
+  {
+    "id": 95562456556601344,
+    "text": "unique"
+  },
+  {
+    "id": 95562488668192768,
+    "text": "uniques"
+  },
+  {
+    "id": 95562491444822016,
+    "text": "set"
+  },
+  {
+    "id": 95562493902684160,
+    "text": "sets"
+  },
+  {
+    "id": 95567242379100160,
+    "text": "eternity cache"
+  },
+  {
+    "id": 95567292375203840,
+    "text": "Legendary Items"
+  },
+  {
+    "id": 95571620188094464,
+    "text": "idol"
+  },
+  {
+    "id": 95571663846604800,
+    "text": "idols"
+  },
+  {
+    "id": 95573793496072192,
+    "text": "crafting explanation"
+  },
+  {
+    "id": 95573837670481920,
+    "text": "shard"
+  },
+  {
+    "id": 95575248017784832,
+    "text": "shard"
+  },
+  {
+    "id": 95575780123967488,
+    "text": "shards"
+  },
+  {
+    "id": 95577178651721728,
+    "text": "rune of shattering"
+  },
+  {
+    "id": 95577225934110720,
+    "text": "rune of refinement"
+  },
+  {
+    "id": 95580747069095936,
+    "text": "Forging Potential"
+  },
+  {
+    "id": 95581618100207616,
+    "text": "hit"
+  },
+  {
+    "id": 95581623397613568,
+    "text": "damage over time"
+  },
+  {
+    "id": 95581625519931392,
+    "text": "hits"
+  },
+  {
+    "id": 95587499210670080,
+    "text": "base damage"
+  },
+  {
+    "id": 95589133793853440,
+    "text": "added damage effectiveness"
+  },
+  {
+    "id": 95589711420817408,
+    "text": "damage effectiveness"
+  },
+  {
+    "id": 95590754292563968,
+    "text": "resistance"
+  },
+  {
+    "id": 95590771430490112,
+    "text": "resistances"
+  },
+  {
+    "id": 95591718290423808,
+    "text": "armor"
+  },
+  {
+    "id": 95591728419667968,
+    "text": "armor"
+  },
+  {
+    "id": 95592903864975360,
+    "text": "penetration"
+  },
+  {
+    "id": 95592936488271872,
+    "text": "penetrations"
+  },
+  {
+    "id": 95594270063034368,
+    "text": "ward"
+  },
+  {
+    "id": 95594293509193728,
+    "text": "ward retention"
+  },
+  {
+    "id": 95596284239118336,
+    "text": "dodge"
+  },
+  {
+    "id": 95596535956078592,
+    "text": "dodged"
+  },
+  {
+    "id": 95597218839101440,
+    "text": "block"
+  },
+  {
+    "id": 95597252263510016,
+    "text": "blocked"
+  },
+  {
+    "id": 95598374063669248,
+    "text": "endurance"
+  },
+  {
+    "id": 95598689596964864,
+    "text": "endurance threshold"
+  },
+  {
+    "id": 95600159616630784,
+    "text": "glancing blow"
+  },
+  {
+    "id": 95600672605175808,
+    "text": "critically strike"
+  },
+  {
+    "id": 95601701614747648,
+    "text": "+5"
+  },
+  {
+    "id": 95601976937250816,
+    "text": "increased"
+  },
+  {
+    "id": 95601980103950336,
+    "text": "more"
+  },
+  {
+    "id": 95602771111936000,
+    "text": "leech"
+  },
+  {
+    "id": 95602796181291008,
+    "text": "health leech"
+  },
+  {
+    "id": 95603610274725888,
+    "text": "stun"
+  },
+  {
+    "id": 95603635214057472,
+    "text": "stun chance"
+  },
+  {
+    "id": 95603713077116928,
+    "text": "\n\nstunned"
+  },
+  {
+    "id": 95606110906187776,
+    "text": "freeze"
+  },
+  {
+    "id": 95606561735147520,
+    "text": "minion"
+  },
+  {
+    "id": 95606564004265984,
+    "text": "minions"
+  },
+  {
+    "id": 95607200519258112,
+    "text": "companion"
+  },
+  {
+    "id": 95607210463952896,
+    "text": "companions"
+  },
+  {
+    "id": 95607785003909120,
+    "text": "totem"
+  },
+  {
+    "id": 95607787340136448,
+    "text": "totems"
+  },
+  {
+    "id": 95608244208893952,
+    "text": "potion"
+  },
+  {
+    "id": 95608246343794688,
+    "text": "potions"
+  },
+  {
+    "id": 95608731612184576,
+    "text": "monolith"
+  },
+  {
+    "id": 95608759827267584,
+    "text": "monolith of fate"
+  },
+  {
+    "id": 95610059109400576,
+    "text": "timeline"
+  },
+  {
+    "id": 95610088536637440,
+    "text": "timelines"
+  },
+  {
+    "id": 95612471962468352,
+    "text": "echo"
+  },
+  {
+    "id": 95612498692767744,
+    "text": "echoes"
+  },
+  {
+    "id": 95616141999439872,
+    "text": "Quest Echoes"
+  },
+  {
+    "id": 95616170730422272,
+    "text": "quest echo"
+  },
+  {
+    "id": 95617535368200192,
+    "text": "blessing"
+  },
+  {
+    "id": 95617548777390080,
+    "text": "Blessings"
+  },
+  {
+    "id": 95618506316021760,
+    "text": "ailment"
+  },
+  {
+    "id": 95618539841093632,
+    "text": "ailments"
+  },
+  {
+    "id": 95619673272057856,
+    "text": "resistance shred\t"
+  },
+  {
+    "id": 95620320620937216,
+    "text": "armor shred"
+  },
+  {
+    "id": 95620812650545152,
+    "text": "bleed"
+  },
+  {
+    "id": 95621220190093312,
+    "text": "blind"
+  },
+  {
+    "id": 95621715289931776,
+    "text": "chill"
+  },
+  {
+    "id": 95622281655189504,
+    "text": "electrify"
+  },
+  {
+    "id": 95622718735220736,
+    "text": "frailty"
+  },
+  {
+    "id": 95622974608736256,
+    "text": "frostbite"
+  },
+  {
+    "id": 95623299784736768,
+    "text": "ignite"
+  },
+  {
+    "id": 95623906062991360,
+    "text": "plague"
+  },
+  {
+    "id": 95624590376271872,
+    "text": "poison"
+  },
+  {
+    "id": 95625011362758656,
+    "text": "slow"
+  },
+  {
+    "id": 95625772003983360,
+    "text": "shock"
+  },
+  {
+    "id": 95626171855372288,
+    "text": "time rot"
+  },
+  {
+    "id": 95627506285772800,
+    "text": "terminology"
+  },
+  {
+    "id": 95627991138926592,
+    "text": "dungeons"
+  },
+  {
+    "id": 95628032373129216,
+    "text": "dungeon"
+  },
+  {
+    "id": 107136412564553728,
+    "text": "Region Selection"
+  },
+  {
+    "id": 107136540717318144,
+    "text": "You can change your preferred server region at the login screen, but also in-game in the Gameplay section of the Settings window.\n"
+  },
+  {
+    "id": 107136669289512960,
+    "text": "If you are the leader of a party, you can change what region all servers for your party will be in by going to the Party tab of the Social menu (hotkey H by default). You can use this to pick a region that is between you and your party members to avoid large differences in latency, for example."
+  },
+  {
+    "id": 107136687970942976,
+    "text": "When you change your region setting in-game, the region of your current server won't change. The next time you request a new server it will be in your new preferred region. Monolith and Arena gameplay happens on a single server, so you will need to go to another type of zone first for the change to apply."
+  },
+  {
+    "id": 107136723115016192,
+    "text": "region"
+  },
+  {
+    "id": 107136725056978944,
+    "text": "server"
+  },
+  {
+    "id": 107136726709534720,
+    "text": "region"
+  },
+  {
+    "id": 107136728496308224,
+    "text": "server region"
+  },
+  {
+    "id": 110388496553697280,
+    "text": "Item Factions"
+  },
+  {
+    "id": 110388641773084672,
+    "text": "Circle Of Fortune"
+  },
+  {
+    "id": 110388666490118144,
+    "text": "Merchant's Guild"
+  },
+  {
+    "id": 110388973475422208,
+    "text": "Item Factions provide you different ways to obtain items, and you get the option to align with one of them for the first time during Chapter 9 of the campaign."
+  },
+  {
+    "id": 110389027909099520,
+    "text": "These two Item Factions let you choose to either enable trading with other players, or to improve your ability to find more and better items. While you can only be aligned with one Item Faction at a time, it is not a permanent decision and you can choose to switch your alignment. More information can be found from Factions Window (bound to Y by default)."
+  },
+  {
+    "id": 110389038172561408,
+    "text": "Aligning with the <link=\"merchant's guild\">Merchant's Guild</link> enables trading with other players through the <link=\"merchant's guild\">Bazaar</link> and aligning with the <link=\"circle of fortune\">Circle of Fortune</link> enhances item drops and allows you to seek powerful Prophecies from the <link=\"circle of fortune\">Observatory</link> to help find more and better items. "
+  },
+  {
+    "id": 110389048872230912,
+    "text": "There are restrictions to equipping items depending which Factions’ services were used to obtain them. For example, many items found while aligned with Circle of Fortune will require the player to be aligned with Circle of Fortune to equip them. Similarly, when an item is traded within Merchant’s Guild, no player aligned with Circle of Fortune will be able to equip it.\n"
+  },
+  {
+    "id": 110389060121354240,
+    "text": "While aligned with either Faction and slaying enemies or completing quests you gain a resource called <link=\"terminology\">Favor</link>. You then expend Favor to use that Faction’s services and gain <link=\"terminology\">Reputation</link>, which is your experience with a Faction. As your Reputation grows, you will gain <link=\"terminology\">Ranks</link> within the Faction which unlocks better benefits and rewards within the Faction. Reputation is also gained from experience. The total Reputation gain is equal between the Factions if all Favor is spent, and roughly half of the Reputation comes from spending Favor while the other half comes from just gaining experience."
+  },
+  {
+    "id": 110389360299302912,
+    "text": "Merchant’s Guild is an <link=\"item factions\">Item Faction</link> that enables trading with other players who are also aligned with Merchant’s Guild within the same <link=\"season\">Season</link> and <link=\"game mode\">Game Mode</link> (Normal or Hardcore). You’ll be able to align with them for the first time during Chapter 9 of the campaign. All trades require exchanging gold for items, no item-to-item trades are possible."
+  },
+  {
+    "id": 110389397712494592,
+    "text": "When aligned with the Merchant’s Guild for the first time, you’ll start at rank 1 which enables selling all equippable items that aren’t untradable, and the purchases of Normal, Magic and Rare items. "
+  },
+  {
+    "id": 110389410593202176,
+    "text": "All trades done at the Bazaar require Favor, a currency gained while slaying enemies and completing quests while aligned with Merchant’s Guild. Selling items requires much less Favor than purchasing them.\n"
+  },
+  {
+    "id": 110389420013608960,
+    "text": "Ranks can be increased by gaining Reputation with the Faction, which is done by gaining experience and spending Favor by buying and selling items, or spending it at the Merchant Guild’s representative. Higher ranks unlock more options to purchase valuable items, and maximum rank allows for any equippable item to be purchased. Open the Factions Window for more details (bound to Y by default)."
+  },
+  {
+    "id": 110389429249466368,
+    "text": "The Bazaar is a town area near Maj’elka in Divine Era, visited in Chapter 9 during the campaign. Filled with stalls for different item types, players are able to search and filter precisely what they want to buy from other players. Trading through Bazaar is asynchronous, meaning you will not need to interact with other players to complete trades. Instead, buying an item will send it to your inventory if you have space for it."
+  },
+  {
+    "id": 110389584208027648,
+    "text": "Circle of Fortune is an Item Faction that grants powerful benefits towards finding more and better items. You’ll be able to align with the Circle of Fortune for the first time during Chapter 9. Unlike the <link=\"merchant's guild\">Merchant's Guild</link>, items found while aligned with Circle of Fortune will always be untradable (they can still be <link=\"item gifting\">gifted</link>) and if found from Prophecies or through Rank rewards, will also be bound to Circle of Fortune, making it impossible to equip them if aligned with the Merchant’s Guild. "
+  },
+  {
+    "id": 110389629468762112,
+    "text": "When aligning with the Circle of Fortune for the first time, you’ll start at rank 1. As you gain Reputation from gaining experience or spending Favor with the Faction by either purchasing Prophecies at the Observatory or spending at the Faction’s representative, you’ll gain higher ranks which yields greater benefits from the Faction. For more details on the benefits from ranks gained while aligned with Circle of Fortune, you can open the Factions panel (bound to Y by default)."
+  },
+  {
+    "id": 110389671969644544,
+    "text": "The Observatory is a town area where players aligned with Circle of Fortune are able to seek out Prophecies from Telescopes for Favor. Prophecies cause certain items to drop when completing a specific event, like slaying the boss of a specific <link=\"dungeons\">Dungeon</link>.  "
+  },
+  {
+    "id": 110390141526171648,
+    "text": "Faction"
+  },
+  {
+    "id": 110390174556315648,
+    "text": "Factions"
+  },
+  {
+    "id": 110390184748474368,
+    "text": "Trading"
+  },
+  {
+    "id": 110390569345179648,
+    "text": "Circle Of Fortune"
+  },
+  {
+    "id": 110390572767731712,
+    "text": "CoF"
+  },
+  {
+    "id": 110390659103285248,
+    "text": "Observatory"
+  },
+  {
+    "id": 110390690610896896,
+    "text": "Merchant's Guild"
+  },
+  {
+    "id": 110390712857485312,
+    "text": "MG"
+  },
+  {
+    "id": 110390723867533312,
+    "text": "Bazaar"
+  },
+  {
+    "id": 110390807455817728,
+    "text": "CircleOfFortune"
+  },
+  {
+    "id": 110390827336818688,
+    "text": "Merchants Guild"
+  },
+  {
+    "id": 110390894928027648,
+    "text": "MerchantsGuild"
+  },
+  {
+    "id": 110391719779852288,
+    "text": "Target Farm"
+  },
+  {
+    "id": 147807576706154496,
+    "text": "Faction progress is shared stash-wide, which means that any character that has access to a stash with a character that has any Faction progress, will also share that progress. Once a <link=\"season\">Season</link> ends, all Item Faction progress is moved to the <link=\"game mode\">Legacy</link> environment, keeping the progress from the further progression."
+  },
+  {
+    "id": 147828444316467200,
+    "text": "After you have aligned with an Item Faction with one character, future characters sharing that stash are able to align with a Faction in the first town during Chapter 1, retaining the ranks you’ve gained with that Faction from previous character(s)."
+  },
+  {
+    "id": 147837538871967744,
+    "text": "Items can only be traded once, and any item traded once will become untradable and bound to Merchant’s Guild, making it impossible to equip as a member of the <link=\"circle of fortune\">Circle of Fortune</link> even if you switch Factions."
+  },
+  {
+    "id": 147842630476005376,
+    "text": "The Observatory also contains a Faction representative that can be used to spend Favor by purchasing equippable items and Lenses. Lenses are items that can be used to customize the Prophecies to further target what items are rewarded and types of events Prophecies require to complete. Higher ranks within the Faction allow deeper customization of the Telescope with Lenses."
+  },
+  {
+    "id": 147851722724638720,
+    "text": "In Last Epoch, characters have an attribute or attributes that represent what they excel at. For example, Rogue’s core attribute is Dexterity, while it’s Intelligence for the Mage. Each of these core attributes has a small benefit per point:"
+  },
+  {
+    "id": 147851800315068416,
+    "text": "Strength grants 4% Increased Armor per point and improves the skills that rely on raw strength."
+  },
+  {
+    "id": 147851811618717696,
+    "text": "Dexterity grants 4 Dodge Rating per point and improves the skills that rely on skillful handling of weapons."
+  },
+  {
+    "id": 147851854845214720,
+    "text": "Intelligence grants 2% Ward Retention per point and improves the skills that rely on carefully studied magic."
+  },
+  {
+    "id": 147851869848240128,
+    "text": "Attunement grants 2 Mana per point and improves the skills that rely on the innate magic inside you and your surroundings."
+  },
+  {
+    "id": 147851884566052864,
+    "text": "Vitality grants 6 Health and 1% Poison and Nerotic Resistance per point. "
+  },
+  {
+    "id": 147851906552594432,
+    "text": "As seen in the descriptions of the attributes above, they often improve skills with different expertises, and in most cases skills of a certain class by default benefit from the same stat. In some cases, more than one attribute can also scale a skill, like Primalist’s Gathering Storm that benefits from both Strength and Attunement. You can see what attribute scales a skill by hovering to the skill, and more detailed effect by holding ALT. "
+  },
+  {
+    "id": 147851924634238976,
+    "text": "There are also ways to modify skills, or your character to gain additional benefits from attributes by selecting skill points, passive points or wearing items with those types of effects."
+  },
+  {
+    "id": 147854150199050240,
+    "text": "attribute"
+  },
+  {
+    "id": 147854196558692352,
+    "text": "attributes"
+  },
+  {
+    "id": 147854241379024896,
+    "text": "dex"
+  },
+  {
+    "id": 147854270638489600,
+    "text": "dexterity, "
+  },
+  {
+    "id": 147854278934822912,
+    "text": "str"
+  },
+  {
+    "id": 147854285071089664,
+    "text": "strength"
+  },
+  {
+    "id": 147854294684434432,
+    "text": "int"
+  },
+  {
+    "id": 147854305535098880,
+    "text": "intelligence"
+  },
+  {
+    "id": 147854315660148736,
+    "text": "att"
+  },
+  {
+    "id": 147854326460481536,
+    "text": "attunement"
+  },
+  {
+    "id": 147854336115769344,
+    "text": "vit"
+  },
+  {
+    "id": 147854349394935808,
+    "text": "vitality"
+  },
+  {
+    "id": 147855194392002560,
+    "text": "Attributes"
+  },
+  {
+    "id": 147856719927476224,
+    "text": "While slaying enemies and completing quests, you gain experience and after gaining a certain amount of experience, your character will Level Up. The maximum character level is 100, and different bonuses, skills and unlocks are gained at different levels."
+  },
+  {
+    "id": 147857768029519872,
+    "text": "For each level up, character gains the following stats:\n- 10 Health (total +990 at level 100).\n- 0.5 Mana (total +50 at level 100).\n- 5 Stun Avoidance (total +495 at level 100).\n- 0.125 Health Regeneration (total +12 at level 100).\n- 5 Health Gained on Potion use (total +495 at level 100).\n- Health gained for minions (hold ALT on a Minion Skill to see specifics)."
+  },
+  {
+    "id": 147857776502013952,
+    "text": "Other leveling up benefits are:\n- Passive Skill Point from 3 to 100 (total 98).\n- Skill Specialization unlocks at levels 4, 8, 20, 35 and 50.\n- Minimum Skill Levels increases at levels 8, 12, 17, 24, 32, 40, 50, 60 and 70.\n- Certain Skills unlocked in your base Class.\n- Ability to craft and equip items with a higher level requirement.\n- 0.6 Minion Power from levels 26 to 100 (total 45% at level 100) which multiplicatively increases the damage your Minions deal, and lowers the damage they take."
+  },
+  {
+    "id": 147857913110495232,
+    "text": "Levels"
+  },
+  {
+    "id": 148001600264110080,
+    "text": "lvl"
+  },
+  {
+    "id": 148001666244706304,
+    "text": "lvl up"
+  },
+  {
+    "id": 148001692920479744,
+    "text": "level"
+  },
+  {
+    "id": 148001700440866816,
+    "text": "level up"
+  },
+  {
+    "id": 148001708770754560,
+    "text": "leveling"
+  },
+  {
+    "id": 148001715225788416,
+    "text": "levels"
+  },
+  {
+    "id": 148001724398731264,
+    "text": "bonus"
+  },
+  {
+    "id": 148002729450438656,
+    "text": "Parry is a defensive mechanic that grants a chance to negate all damage taken from <link=\"hits\">hits</link>. However unlike <link=\"dodge\">Dodge</link>, Parrying does still counts as being hit and as a result of that ailments can still be applied to you when you parry a hit."
+  },
+  {
+    "id": 148003192832950272,
+    "text": "Parrying has no effect against <link=\"damage over time\">Damage over Time</link> effects and is capped at 75%."
+  },
+  {
+    "id": 148003344243130368,
+    "text": "parry"
+  },
+  {
+    "id": 148003375280979968,
+    "text": "parrying"
+  },
+  {
+    "id": 148003821580091392,
+    "text": "Parry"
+  },
+  {
+    "id": 148004727147102208,
+    "text": "Item Gifting"
+  },
+  {
+    "id": 148004777994649600,
+    "text": "Equippable items found while playing together with other players in an area are able to be gifted to everyone who was present as the item was found with no time limit, and has no costs unlike <link=\"merchant's guild\">trading</link>. Gifting can be done from the interact-menu for other players. "
+  },
+  {
+    "id": 148004795270987776,
+    "text": "[0]"
+  },
+  {
+    "id": 148004807069564928,
+    "text": "When you have received a gift, an icon in the bottom-right corner of the screen indicates it. Gifting Window can be opened by clicking that icon, or by from your Inventory (bound to I by default) and clicking the Gifting -button."
+  },
+  {
+    "id": 148004836014456832,
+    "text": "gifting"
+  },
+  {
+    "id": 148004849612390400,
+    "text": "gift"
+  },
+  {
+    "id": 148004862358880256,
+    "text": "gifts"
+  },
+  {
+    "id": 148004879727493120,
+    "text": "item gifting"
+  },
+  {
+    "id": 148004895200280576,
+    "text": "resonance"
+  },
+  {
+    "id": 148006963600326656,
+    "text": "Resonances are special items that expand <link=\"item gifting\">Item Gifting</link>, allowing you to gift specific items to players you play with frequently, even if the item didn’t drop while you were playing with them. Resonances are specific to an individual player. For example, a Golden Resonance that resonates with Moxjet200 (can be seen in the tooltip of the Resonance) allows you to gift an item to Moxjet200. "
+  },
+  {
+    "id": 148006986815799296,
+    "text": "There are two different types of Resonance that allow you to gift different varieties of items. Both types of Resonances are rare, but Golden Resonances are the more common of the two. They allow you to gift any normal, magic, rare, set, or unique item. Obsidian Resonance are much rarer, and allow you to gift exalted and <link=\"legendary items\">Legendary items</link>."
+  },
+  {
+    "id": 148007000313069568,
+    "text": "Slaying enemies that grant experience have a chance to grant progress towards a specific Resonance to drop, and once a certain amount of progress is gained, the Resonance will drop. This progress is cumulative between different play sessions and characters within a <link=\"game mode\">Game Mode</link>, so when they share a stash, and only resets for a specific Resonance type when it is found."
+  },
+  {
+    "id": 148007015999766528,
+    "text": "Gifting an item with Resonance that has any restriction does not remove or change that restriction. For example, an item that requires to be aligned with <link=\"circle of fortune\">Circle of Fortune</link> to be equipped will still have that requirement after it was gifted."
+  },
+  {
+    "id": 148007049122185216,
+    "text": "Resonances are stored when you press the “Transfer Materials” button in your inventory, and can be found in your Gifting window. You can open your gifting window by pressing “Gifting” button in your inventory."
+  },
+  {
+    "id": 148007067191246848,
+    "text": "Resonance"
+  },
+  {
+    "id": 148007097134383104,
+    "text": "gift"
+  },
+  {
+    "id": 148007124376387584,
+    "text": "gifting"
+  },
+  {
+    "id": 148007131749974016,
+    "text": "resonance"
+  },
+  {
+    "id": 148007137575862272,
+    "text": "resonances"
+  },
+  {
+    "id": 148007148111953920,
+    "text": "obsidian"
+  },
+  {
+    "id": 148007154378244096,
+    "text": "golden"
+  },
+  {
+    "id": 148007237278662656,
+    "text": "Frequently Asked Questions:\n\nCan I gain experience at max level (100)?\n\n- Yes.\n\nCan I gain experience at high level while playing in a low level area? For example, level 99 in a level 3 area.\n\n- Yes. You won’t get much experience, but slaying any enemy that grants experience can generate progress, and the amount doesn’t matter.\n\nCan I generate progress towards a Resonance just by being in a party with someone?\n- No. You need to be in the same area and within a relatively close proximity. The distance is similar to experience gain range.\n\nCan I track the progress towards a specific Resonance somehow?\n\n- No, the progress towards Resonance drops is hidden."
+  },
+  {
+    "id": 148016192507772928,
+    "text": "Game Mode"
+  },
+  {
+    "id": 148016229094686720,
+    "text": "When creating a new character, on top of deciding whether a character will be a <link=\"season\">Season</link> or <link=\"legacy\">Legacy</link> character, there’s also other options: Game Mode and Challenges."
+  },
+  {
+    "id": 148016236791234560,
+    "text": "There are two Game Modes in Last Epoch, Normal and Hardcore. The differences of the two are that they do not share stashes between eachother, and if a Hardcore character dies, it will become a Normal character of the same challenge and Season.  "
+  },
+  {
+    "id": 148016247570595840,
+    "text": "There’s also additional <link=\"challenges\">Challenges</link> that can be chosen to further customize your experience."
+  },
+  {
+    "id": 148016267795529728,
+    "text": "game mode"
+  },
+  {
+    "id": 148016291761782784,
+    "text": "mode"
+  },
+  {
+    "id": 148016299462524928,
+    "text": "hc"
+  },
+  {
+    "id": 148016304097230848,
+    "text": "hardcore"
+  },
+  {
+    "id": 148016308669022208,
+    "text": "sc"
+  },
+  {
+    "id": 148016313056264192,
+    "text": "softcore"
+  },
+  {
+    "id": 148016319595184128,
+    "text": "normal"
+  },
+  {
+    "id": 148017071369650176,
+    "text": "Challenges"
+  },
+  {
+    "id": 148017092450222080,
+    "text": "When creating a character, on top choosing a <link=\"game mode\">Game Mode</link>, additional challenges can be chosen: Solo Account Found (SAF) or Solo Character Found (SCF). This is not a permanent decision and you can opt-out from challenges in options."
+  },
+  {
+    "id": 148017106656329728,
+    "text": "Solo Account Mode (SAF) characters are unable to party with nor obtain items found by other players. This also includes any items found with Solo Character Found characters even if they share the same game mode and Season. However, items found by other Solo Account Mode characters will share the stash and <link=\"item factions\">Item Faction</link> progress in the same game mode and Season"
+  },
+  {
+    "id": 148017119381848064,
+    "text": "All characters created in Offline are by default Solo Account Found characters, unless opted-in for Solo Character Found. You can opt-out of Solo Account Found and turn the character to just Normal or Hardcore character with no extra challenges if it's an Online character."
+  },
+  {
+    "id": 148017331361972224,
+    "text": "challenge"
+  },
+  {
+    "id": 148017344334954496,
+    "text": "challenges"
+  },
+  {
+    "id": 148017354531307520,
+    "text": "saf"
+  },
+  {
+    "id": 148017359254093824,
+    "text": "scf"
+  },
+  {
+    "id": 148017365465858048,
+    "text": "solo"
+  },
+  {
+    "id": 148017370767458304,
+    "text": "account"
+  },
+  {
+    "id": 148017651840352256,
+    "text": "found"
+  },
+  {
+    "id": 148017840479174656,
+    "text": "Solo Character Found (SCF) is an added challenge to Solo where only items found by that character can be used by it, and no stash or Item Faction progress is shared with any other characters, even by your other Solo Character Found characters. You can opt-out of Solo Account Mode and turn the character to Solo Account Found to gain access to shared progress of other Solo Account Mode characters."
+  },
+  {
+    "id": 148018961583079424,
+    "text": "Legacy"
+  },
+  {
+    "id": 148019025357471744,
+    "text": "Legacy is the permanently existing environment in Last Epoch, where all your previous characters and progress from <link=\"season\">Season</link> will be transferred over to when those Season end. Legacy does not have competitive leaderboards that can be participated in. While a Season is active, some features from that Season may not be included or obtainable in Legacy. An example of that could be Season-restricted items. Currently, there are no Season-restricted items in Last Epoch."
+  },
+  {
+    "id": 148019344942465024,
+    "text": "legacy"
+  },
+  {
+    "id": 148019351359750144,
+    "text": "Season"
+  },
+  {
+    "id": 148019358951440384,
+    "text": "cycles"
+  },
+  {
+    "id": 148019367075807232,
+    "text": "environment"
+  },
+  {
+    "id": 148019372608094208,
+    "text": "season"
+  },
+  {
+    "id": 148019381495824384,
+    "text": "seasons"
+  },
+  {
+    "id": 148019392862388224,
+    "text": "ladder"
+  },
+  {
+    "id": 148019525087821824,
+    "text": "ladders"
+  },
+  {
+    "id": 148020717641695232,
+    "text": "Season"
+  },
+  {
+    "id": 148020747450613760,
+    "text": "Seasons are periods of time with new content additions, changes to game balance and the reset of competitive leaderboards. It is also a fresh start where everyone making a character at the start of a new Season will start from scratch."
+  },
+  {
+    "id": 148020767822348288,
+    "text": "While Season is active, you can choose to create a character in the current Season, or in Legacy. All Seasonal characters will transfer to <link=\"legacy\">Legacy</link> at the end of a Season and all progress will carry over and will not be deleted."
+  },
+  {
+    "id": 148020780422037504,
+    "text": "During a Season, some features may only be available in the Seasonal environment. An example of that could be Season-restricted items."
+  },
+  {
+    "id": 148020793445351424,
+    "text": "If dying with a character that is playing Hardcore <link=\"game mode\">Game Mode</link> in a Season, that character will not become a Normal Legacy character, but instead Normal Season character. "
+  },
+  {
+    "id": 148020815348006912,
+    "text": "legacy"
+  },
+  {
+    "id": 148020835497443328,
+    "text": "cycle"
+  },
+  {
+    "id": 148020841415606272,
+    "text": "season"
+  },
+  {
+    "id": 148020846364884992,
+    "text": "environment"
+  },
+  {
+    "id": 148020851024756736,
+    "text": "season"
+  },
+  {
+    "id": 148020856435408896,
+    "text": "seasons"
+  },
+  {
+    "id": 148020863381176320,
+    "text": "ladder"
+  },
+  {
+    "id": 148020869865570304,
+    "text": "ladders"
+  },
+  {
+    "id": 148021928155578368,
+    "text": "Arena"
+  },
+  {
+    "id": 148021962607591424,
+    "text": "Arena is one of the endgame activies in Last Epoch, and is located in Champion’s Gate. If you have an Arena Key or Arena Key of Memory, you can right click it and it’ll open the world map and show the location of Champion’s Gate."
+  },
+  {
+    "id": 148022022938460160,
+    "text": "There’s two different modes in Arena: Arena Champions and Endless Arena."
+  },
+  {
+    "id": 148022036943241216,
+    "text": "Arena Champions consists of 40 waves with additional rewards that can be chosen, and eventually culminates in fighting an Arena Champion. There are 4 different tiers of Arena Champions with better rewards at higher tiers."
+  },
+  {
+    "id": 148022041712164864,
+    "text": "Endless Arena is a mode with unlimited waves that progressively become more and more difficult, and the best Arena runs will be visible in the Leaderboards (opened by pressing L by default). Leaderboards are only available in Online play in a <link=\"season\">Season</link>. Climb the waves in Endless Arena to show how good you and your builds are!"
+  },
+  {
+    "id": 148022049635205120,
+    "text": "Characters below level 50 will not be able to benefit from experience bonuses in Endless Arena."
+  },
+  {
+    "id": 148022064730505216,
+    "text": "endgame"
+  },
+  {
+    "id": 148022090340925440,
+    "text": "waves"
+  },
+  {
+    "id": 148022104274403328,
+    "text": "wave"
+  },
+  {
+    "id": 148022137984024576,
+    "text": "arenas"
+  },
+  {
+    "id": 148022144787185664,
+    "text": "arena"
+  },
+  {
+    "id": 148022150218809344,
+    "text": "champion"
+  },
+  {
+    "id": 148022156548014080,
+    "text": "champions"
+  },
+  {
+    "id": 148022163216957440,
+    "text": "endless"
+  },
+  {
+    "id": 148023084340641792,
+    "text": "Loot Filter"
+  },
+  {
+    "id": 148023111448428544,
+    "text": "Loot Filter is a tool that helps in filtering out items you might not want to pick up, or to enhance the display of items you do want to pick up. Having a Loot Filter feature in the game helps in allowing the loot drops to be plentiful and customizable to your specific needs. You can open the Loot Filter User Interface by clicking SHIFT + F by default."
+  },
+  {
+    "id": 148023140380737536,
+    "text": "A single Loot Filter can have up to 75 individual rules, and these rules can be freely moved around or disabled without needing to delete them. "
+  },
+  {
+    "id": 148023150937800704,
+    "text": "The rules at the top of the the filter take priority over rules below them. For example, if the top rule in the filter would be “show Unique helmets”, and a rule below it that would be “hide all helmets”, you’d see all Unique helmets while rest of them would be hidden. "
+  },
+  {
+    "id": 148023155710918656,
+    "text": "Loot Filters can be exported and imported directly in the User Interface without closing the game. Filters exist in a folder that can be opened from the UI, and placing another filter there will make it available to be used in-game, but a filter can also be imported directly from copying it if your clipboard has a valid Loot Filter saved on it."
+  },
+  {
+    "id": 148023161205456896,
+    "text": "When a Loot Filter is enabled, it is possible to temporarily disable it by holding a keybind (X by default)."
+  },
+  {
+    "id": 148023166247010304,
+    "text": "loot"
+  },
+  {
+    "id": 148023172316168192,
+    "text": "item"
+  },
+  {
+    "id": 148023222475849728,
+    "text": "items"
+  },
+  {
+    "id": 148023229849436160,
+    "text": "filter"
+  },
+  {
+    "id": 148023235142647808,
+    "text": "filters"
+  },
+  {
+    "id": 148023241870311424,
+    "text": "filtering"
+  },
+  {
+    "id": 148029375360434176,
+    "text": "Community Resources"
+  },
+  {
+    "id": 148029412874289152,
+    "text": "We continue to be humbled by our growing Last Epoch community. If you are looking for even more information about Last Epoch, we would highly recommend checking out this growing list of resources, tools, and guides."
+  },
+  {
+    "id": 148029965280903168,
+    "text": "The below websites and resources are not owned or maintained by Eleventh Hour Games or Last Epoch. We value them and their effort to build a Last Epoch community, but their content and views expressed are their own."
+  },
+  {
+    "id": 148029984050413568,
+    "text": "Featured Community Resource"
+  },
+  {
+    "id": 148030161842765824,
+    "text": "Maxroll - <link=\"https://maxroll.gg/last-epoch\">https://maxroll.gg/last-epoch</link>\n\nBuild guides, Loot filters, Tier lists, Build Planner and News\n"
+  },
+  {
+    "id": 148034579975798784,
+    "text": "Additional Community Resources\n\nLast Epoch Tools - <link=\"https://www.lastepochtools.com/\">https://www.lastepochtools.com/</link>\n\nBuild Planners, Build Guides, Loot Filters and Databases"
+  },
+  {
+    "id": 148035114921525248,
+    "text": "community"
+  },
+  {
+    "id": 148035148215910400,
+    "text": "resource"
+  },
+  {
+    "id": 148035182198161408,
+    "text": "resources"
+  },
+  {
+    "id": 148035189194260480,
+    "text": "maxroll"
+  },
+  {
+    "id": 148035195712208896,
+    "text": "icyveins"
+  },
+  {
+    "id": 148035197096329216,
+    "text": "icy"
+  },
+  {
+    "id": 148035213928071168,
+    "text": "letools"
+  },
+  {
+    "id": 148035215505129472,
+    "text": "lastepochtools"
+  },
+  {
+    "id": 148035217228988416,
+    "text": "tunklab"
+  },
+  {
+    "id": 148035218780880896,
+    "text": "arreatsummit"
+  },
+  {
+    "id": 148035220081115136,
+    "text": "tools"
+  },
+  {
+    "id": 148036065656995840,
+    "text": "Curse"
+  },
+  {
+    "id": 148036141339017216,
+    "text": "Curses are special Ailments with their own scaling tag, do not usually stack with themselves, and have different effects. Some of them do damage which can be increased, while others might just be a debuff on the target, and some having both properties. Some curses are also specific skills with their own <link=\"skill specialization\">specializable skill trees</link>, such as Bone Curse and Spirit Plague."
+  },
+  {
+    "id": 148037281657028608,
+    "text": "Spirit Plague is a specializable curse skill for Acolyte. It curses an enemy with an effect that deals 90 necrotic damage over time and spreads to another nearby enemy if it dies. Does not stack and lasts 3 seconds."
+  },
+  {
+    "id": 148037289361965056,
+    "text": "Bone Curse is a specializable curse skill for Acolyte. It curses enemies with a debuff that causes them to take physical damage when they are hit. Damage dealt by Bone Curse is trippled if you inflicted the hit. Does not stack and lasts 8 seconds."
+  },
+  {
+    "id": 148037294395129856,
+    "text": "Marked for Death is a curse that reduces all resistances by 25 and lasts 8 seconds. Does not stack."
+  },
+  {
+    "id": 148037298518130688,
+    "text": "Decrepify is a curse that causes enemies to take 15% more damage over time (multiplicative with other modifiers), deals physical damage over time based on your flat missing health and lasts 10 seconds. Does not stack."
+  },
+  {
+    "id": 148037303672930304,
+    "text": "Torment is a curse that deals 120 necrotic damage over time, reduces movement speed by 18% (multiplicative with other modifiers) and lasts 3 seconds. Does not stack."
+  },
+  {
+    "id": 148037308588654592,
+    "text": "Acid Skin is a curse that deals 50 poison damage over time, adds a +25% chance to be critically hit and lasts 5 seconds. Does not stack."
+  },
+  {
+    "id": 148037315970629632,
+    "text": "Penance is a curse which deals 20 fire damage to a target when hit and lasts 15 seconds. Penance also gains 5% more damage per 1% of Damage Reflected. Flat reflect does not increase the damage of Penance. Does not stack."
+  },
+  {
+    "id": 148037323960778752,
+    "text": "Anguish is a curse that reduces the damage over time dealt by enemies by 15% (multiplicative with other modifiers). When you kill any enemy, enemies cursed by Anguish take 40 necrotic damage. Does not stack. "
+  },
+  {
+    "id": 148056223012257792,
+    "text": "curse"
+  },
+  {
+    "id": 148056233187639296,
+    "text": "curses"
+  },
+  {
+    "id": 148056241014210560,
+    "text": "anguish"
+  },
+  {
+    "id": 148056246844293120,
+    "text": "penance"
+  },
+  {
+    "id": 148056260828102656,
+    "text": "torment"
+  },
+  {
+    "id": 148056266398138368,
+    "text": "decrepify"
+  },
+  {
+    "id": 148056272916086784,
+    "text": "marked for death"
+  },
+  {
+    "id": 148056278251241472,
+    "text": "death"
+  },
+  {
+    "id": 148056285465444352,
+    "text": "bone"
+  },
+  {
+    "id": 148056296974614528,
+    "text": "spirit"
+  },
+  {
+    "id": 148056317845471232,
+    "text": "plague"
+  },
+  {
+    "id": 148059858861457408,
+    "text": "Echo Modifiers"
+  },
+  {
+    "id": 148060039350747136,
+    "text": "Modifiers in the Monolith of Fate are special effects that make Echoes more difficult in various different ways and more rewarding by providing <link=\"increased item rarity\">Increased Item Rarity</link> and experience gained, similar to Corruption. The difference with modifiers is that they last from 1 to 3 Echoes total instead of globally to all Echoes, have varies different effects and aren't usually simply just more monster damage and health. Stacking several modifiers will further increase the difficult and rewards."
+  },
+  {
+    "id": 148060053963702272,
+    "text": "More challenging modifiers provide higher benefits.\n\nExperience bonuses from Monolith of Fate modifiers and corruption does not apply to characters below level 50."
+  },
+  {
+    "id": 148060055989551104,
+    "text": "modifiers"
+  },
+  {
+    "id": 148060058732625920,
+    "text": "monolith"
+  },
+  {
+    "id": 148060059642789888,
+    "text": "modifier"
+  },
+  {
+    "id": 148060155759460352,
+    "text": "mod"
+  },
+  {
+    "id": 148060156938059776,
+    "text": "mods"
+  },
+  {
+    "id": 148067860821737472,
+    "text": "[0]"
+  },
+  {
+    "id": 148069019821178880,
+    "text": "[0]"
+  },
+  {
+    "id": 148069549352058880,
+    "text": "[2]"
+  },
+  {
+    "id": 148069600811974656,
+    "text": "[1]"
+  },
+  {
+    "id": 148069637436637184,
+    "text": "[0]"
+  },
+  {
+    "id": 148070062298660864,
+    "text": "[0]"
+  },
+  {
+    "id": 148070343514161152,
+    "text": "[1]"
+  },
+  {
+    "id": 148070363449688064,
+    "text": "Items can also be gifted with the use of <link=\"resonance\">Resonance</link> in situations where a player was not present at the time of the item dropping. "
+  },
+  {
+    "id": 148070623790137344,
+    "text": "[0]"
+  },
+  {
+    "id": 148070871396679680,
+    "text": "[0]"
+  },
+  {
+    "id": 148071004528082944,
+    "text": "[0]"
+  },
+  {
+    "id": 148071518862999552,
+    "text": "[0]"
+  },
+  {
+    "id": 148073173348155392,
+    "text": "Standard timelines start at 0 corruption and have a maximum of 50. Empowered timelines start at 100 corruption and have no maximum."
+  },
+  {
+    "id": 148075739876327424,
+    "text": "Empowered Timelines"
+  },
+  {
+    "id": 148075869216079872,
+    "text": "Empowered Timelines are harder versions of normal Timelines that start with 100 <link=\"corruption and the shade\">Corruption</link>, and have no maximum Corruption. This means that Empowered Timelines can be scaled in difficulty until your character can no longer handle the difficulty and is unable to progress further."
+  },
+  {
+    "id": 148075889076109312,
+    "text": "Increasing Corruption increases the damage dealt and health of all enemies, and grants increased experience gained and increased item rarity. "
+  },
+  {
+    "id": 148075899914190848,
+    "text": "Each Timeline has an Exclusive Echo Reward type that makes it easier to target farm those specific item types, and in Empowered Monoliths these are much more likely to spawn as rewards."
+  },
+  {
+    "id": 148075913407266816,
+    "text": "empowered"
+  },
+  {
+    "id": 148075917660291072,
+    "text": "timeline"
+  },
+  {
+    "id": 148075927835672576,
+    "text": "timelines"
+  },
+  {
+    "id": 148075943383957504,
+    "text": "monolith"
+  },
+  {
+    "id": 148076550312329216,
+    "text": "[0]"
+  },
+  {
+    "id": 148079085446135808,
+    "text": "Weaver's Will"
+  },
+  {
+    "id": 148079139116449792,
+    "text": "Weaver’s Will is a special mechanic on certain unique items representing the amount of total Affix Tiers the Unique item will gain at maximum when turned to a <link=\"legendary items\">Legendary item</link>. "
+  },
+  {
+    "id": 148079141008080896,
+    "text": "Instead of combining items in the <link=\"legendary items\">Eternity Cache</link>, Weaver’s WIll uniques gain additional stats when slaying enemies and gaining experience while having it equipped."
+  },
+  {
+    "id": 148079143818264576,
+    "text": "When Weaver’s Will Unique gains a stat, it can either add a new tier 1 affix or upgrade an existing one, limited to tier 7. A Weaver’s WIll item with 28 Weaver’s WIll would eventually become a Legendary version of that unique with 4 tier 7 Affixes."
+  },
+  {
+    "id": 148079144996864000,
+    "text": "Weaver’s WIll Unique items found in higher level areas and higher <link=\"corruption and the shade\">Corruption</link> will have an increased chance in having a higher Weaver’s Will."
+  },
+  {
+    "id": 148079210335731712,
+    "text": "weaver"
+  },
+  {
+    "id": 148079236311056384,
+    "text": "weavers"
+  },
+  {
+    "id": 148079250127093760,
+    "text": "will"
+  },
+  {
+    "id": 148079256766676992,
+    "text": "legendary"
+  },
+  {
+    "id": 148079261548183552,
+    "text": "unique"
+  },
+  {
+    "id": 148084403416760320,
+    "text": "Experimental Items"
+  },
+  {
+    "id": 148084484740120576,
+    "text": "Experimental Items are items that at first glance appear to just be Magic, Rare or Exalted items. However, they have a special <link=\"affixes\">affix</link> that only appears on items found from encountering and defeating <link=\"exiled mages\">Exiled Mages</link>, and cannot be <link=\"crafting explanation\">crafted</link> by conventional means. Experimental affixes only appear on Boots, Belts and Gloves."
+  },
+  {
+    "id": 148084486824689664,
+    "text": "[0]"
+  },
+  {
+    "id": 148084488263335936,
+    "text": "In the <link=\"monolith introduction\">Monolith of Fate</link> you might find a <link=\"woven echoes\">Woven Echo</link>, which could unravel the mechanism for an unconventional crafting method."
+  },
+  {
+    "id": 148084490410819584,
+    "text": "[1]"
+  },
+  {
+    "id": 148085790817026048,
+    "text": "exiled"
+  },
+  {
+    "id": 148085821435445248,
+    "text": "mage"
+  },
+  {
+    "id": 148085832726511616,
+    "text": "experimental"
+  },
+  {
+    "id": 148085837940031488,
+    "text": "affix"
+  },
+  {
+    "id": 148086064105291776,
+    "text": "rune"
+  },
+  {
+    "id": 148086077564813312,
+    "text": "prison"
+  },
+  {
+    "id": 148092043094032384,
+    "text": "capped"
+  },
+  {
+    "id": 148092145531518976,
+    "text": "uncapped"
+  },
+  {
+    "id": 148092155425882112,
+    "text": "favor"
+  },
+  {
+    "id": 148092163135012864,
+    "text": "reputation"
+  },
+  {
+    "id": 148092170332438528,
+    "text": "rank"
+  },
+  {
+    "id": 148092327354597376,
+    "text": "Capped Resistance: The maximum resistance you can have. Resistance is capped at 75%. <link=\"penetrations\">Penetration</link> applies against your capped resistance, so a hit that penetrates 10% of your Fire Resistance for example would deal the same damage to you if you had 75% Fire Resistance, or 200% Fire Resistance."
+  },
+  {
+    "id": 148092356442095616,
+    "text": "Uncapped Resistance: Uncapped resistance is the total amount of resistance you have against a specific damage type, ignoring the cap of 75%. Uncapped resistance can be useful in mitigating the effect of ailments that reduce your resistance, such as <link=\"shock\">Shock</link>, <link=\"resistance shred\">Resistance Shreds</link> or <link=\"curse\">Marked for Death</link>, but does not help against Penetration past the cap of 75%."
+  },
+  {
+    "id": 148092363886985216,
+    "text": "Favor: Currency obtained from slaying enemies and completing quests that can be spent to gain Reputation with <link=\"item factions\">Item Factions</link>."
+  },
+  {
+    "id": 148092412897427456,
+    "text": "Reputation: Your experience with an Item Faction. After gaining enough Reputation you’ll Rank up with your aligned Faction."
+  },
+  {
+    "id": 148092417544716288,
+    "text": "Rank: Your level with an Item Faction. Higher your Rank with an Item Faction, the better benefits and perks within the Faction. For example, when aligned with Merchant’s Guild higher rank allows you to purchase higher tier items."
+  },
+  {
+    "id": 148099704296472576,
+    "text": "Completing Dungeons also provide a skip through certain parts of the campaign, as the entrance point is earlier in the campaign while the exit from the Dungeon will be further ahead in a different point in the campaign. Completing a Dungeon for the first time can also grant two passive skill points and one idol slot upgrade."
+  },
+  {
+    "id": 148099785582084096,
+    "text": "As previously mentioned, each Dungeon has a special mechanic, and in order to complete the Dungeon it is strongly recommended to interact with it. This is done by using the skill that is provided inside each Dungeon (used with D by default)."
+  },
+  {
+    "id": 148099811611934720,
+    "text": "[1]"
+  },
+  {
+    "id": 148099834055655424,
+    "text": "Lightless Arbor is a Dungeon where you traverse through darkness with a burning light source that loses its power when you take damage. Enemies in the darkness also deal substantially higher damage and take less damage. You may slay certain enemies to refresh power of your light source. Should you complete the Dungeon, at the end of it awaits The Vaults of Uncertain Fate that you may spend all your hard earned gold away for great rewards."
+  },
+  {
+    "id": 148099842867888128,
+    "text": "Soulfire Bastion is a Dungeon where you fight through undead hordes with two strong damage types, using a Soulfire Shield that switches protection between the two damage types. It is fueled by Souls that you obtain from slaying enemies. These same Souls are then also used to gamble with the Soulfire Gambler at the end of the Dungeon for powerful items."
+  },
+  {
+    "id": 148099854117011456,
+    "text": "Temporal Sanctum is a Dungeon where you must travel between two different Eras to get through it, and at the end of it you’ll have the option to use The Eternity Cache to create a Legendary item by combining an Exalted and Unique item with Legenary Potential."
+  },
+  {
+    "id": 148102765215645696,
+    "text": "Similarly, there are effects like “Increased Amulet Drop Rate” which are typically granted by Blessings that you can obtain from the Monolith of Fate. This would cause more amulets (including uniques) to drop for you without affecting how many items of other types drop. "
+  },
+  {
+    "id": 148102787218964480,
+    "text": "Modifiers that increase the quality or quantity of found items like “Increased Item Rarity” or “Increased Amulet Drop Rate” do not compete with modifiers that grant character power."
+  },
+  {
+    "id": 148112585322823680,
+    "text": "seal"
+  },
+  {
+    "id": 148114870912319488,
+    "text": "<#E5E5E5>Rune of Havoc:</color> Shuffles the tiers of the non-sealed affixes on an exalted item with 4 non-sealed affixes. For example, an item with tier 2 strength, tier 7 dexterity, tier 3 health and tier 2 endurance might be changed to have tier 7 strength, tier 3 dexterity, tier 2 health, and tier 2 endurance."
+  },
+  {
+    "id": 148120508723789824,
+    "text": "[0]"
+  },
+  {
+    "id": 148120534992715776,
+    "text": "Ward Decays more quickly as you gain more of it, but this decay can be slowed with Ward Retention stat."
+  },
+  {
+    "id": 148120544526368768,
+    "text": "Ward retention can be found on items and the passive tree, and the Intelligence <link=\"attributes\">attribute</link> also grants Ward Retention."
+  },
+  {
+    "id": 148150816361840640,
+    "text": "crafting"
+  },
+  {
+    "id": 148158768737058816,
+    "text": "[0]"
+  },
+  {
+    "id": 148193979705229312,
+    "text": "Defeating Shade in a Timeline that has much lower corruption compared the Timeline with the highest corruption, making it much faster to progress corruption when moving between Timelines. The amount of Bonus Corruption defeating a Shade will be shown on the Echo before entering it.\n\nDefeating Shade with <link=\"gaze of orobyss\">Gaze of Orobyss</link> grants additional Corruption."
+  },
+  {
+    "id": 148194735669805056,
+    "text": "[1]"
+  },
+  {
+    "id": 181515806154063872,
+    "text": "If the Corruption on a timeline has been increased, it can be lowered by completing Sanctuary of Eterra Echo connected to the entry point."
+  },
+  {
+    "id": 181547615491358720,
+    "text": "[2]"
+  },
+  {
+    "id": 181554163621986304,
+    "text": "Defeating the boss of an Empowered Timeline will grant 1 stack of <link=\"gaze of orobyss\">Gaze of Orobyss.</link>"
+  },
+  {
+    "id": 181556705386987520,
+    "text": "Gaze of Orobyss"
+  },
+  {
+    "id": 181556763150942208,
+    "text": "[0]"
+  },
+  {
+    "id": 181556825356664832,
+    "text": "Gaze of Orobyss is a mechanic that increases the amount of Corruption gained from slaying <link=\"Corruption and the Shade\">Shade of Orobyss</link>, and will become available in Empowered <link=\"Empowered Timelines\">Empowered Timelines.</link>"
+  },
+  {
+    "id": 181556842767220736,
+    "text": "Gaze of Orobyss is gained by slaying Timeline Bosses, and each stack grants additional 12 Corruption when Shade of Orobyss is slain. You will consume up to 4 Gazes of Orobyss per Shade of Orobyss fight, and remaining Gaze will be saved for subsequent fights."
+  },
+  {
+    "id": 181556859712208896,
+    "text": "Dying to Shade of Orobyss while having Gaze of Orobyss will reduce your number of Gaze by 1. "
+  },
+  {
+    "id": 181556875671535616,
+    "text": "While playing in a party, each party member that was granted an option to choose a Blessing on Timeline completion will also be granted 1 Gaze of Orobyss."
+  },
+  {
+    "id": 181558914208137216,
+    "text": "gaze"
+  },
+  {
+    "id": 181558944860110848,
+    "text": "orobyss"
+  },
+  {
+    "id": 181558969098993664,
+    "text": "monolith"
+  },
+  {
+    "id": 181558993820221440,
+    "text": "corruption"
+  },
+  {
+    "id": 181559021905281024,
+    "text": "shade"
+  },
+  {
+    "id": 181559074355052544,
+    "text": "empowered"
+  },
+  {
+    "id": 181576328127873024,
+    "text": "Harbingers"
+  },
+  {
+    "id": 181576985048154112,
+    "text": "Harbingers are powerful servants of Orobyss, who you will encounter once you have progressed deep in to the <link=\"Monolith Introduction\">Monolith of Fate</link>. Your battle against them is tracked with the <link=\"Forgotten Knights\">Forgotten Knights</link> Faction."
+  },
+  {
+    "id": 181576991742263296,
+    "text": "Should you succeed in hunting them down, you’ll eventually be able to challenge their leader."
+  },
+  {
+    "id": 181576994246262784,
+    "text": "Harbingers"
+  },
+  {
+    "id": 181576997937250304,
+    "text": "Aberroth"
+  },
+  {
+    "id": 181577004249677824,
+    "text": "Forgotten"
+  },
+  {
+    "id": 181577006959198208,
+    "text": "Knight"
+  },
+  {
+    "id": 181580329984622592,
+    "text": "Endgame Factions"
+  },
+  {
+    "id": 181580336263495680,
+    "text": "Endgame Factions are different factions that track the progression of certain game systems. They can be found in the factions panel (bound to Y by default). "
+  },
+  {
+    "id": 181580353690828800,
+    "text": "Unlike <link=\"Item Factions\">Item Factions</link> where you can only be aligned with one of them per character at once, Endgame Factions are not mutually exclusive. You can belong to an endgame faction and an item faction at the same time, and you can belong to multiple endgame factions at the same time."
+  },
+  {
+    "id": 181580356643618816,
+    "text": "Different Endgame Factions may provide different rewards and challenges from others, and their progression isn’t always as simple as just slaying enemies or gaining and spending a specific currency tied to them."
+  },
+  {
+    "id": 181580358933708800,
+    "text": "<link=\"Forgotten Knights\">Forgotten Knights</link> is an Endgame Faction that guides you through the progression of defeating the <link=\"Harbingers\">Harbingers</link> that you will encounter in <link=\"Monolith Introduction\">Monolith of Fate</link>."
+  },
+  {
+    "id": 181580367246819328,
+    "text": "faction"
+  },
+  {
+    "id": 181580369696292864,
+    "text": "endgame"
+  },
+  {
+    "id": 181580371738918912,
+    "text": "knights"
+  },
+  {
+    "id": 181580375782227968,
+    "text": "knight"
+  },
+  {
+    "id": 181580505520439296,
+    "text": "forgotten"
+  },
+  {
+    "id": 181580509387587584,
+    "text": "harbinger"
+  },
+  {
+    "id": 181581909999910912,
+    "text": "Forgotten Knights"
+  },
+  {
+    "id": 181581914777223168,
+    "text": "[0]"
+  },
+  {
+    "id": 181581918833115136,
+    "text": "Forgotten Knights is an <link=\"Endgame Factions\">Endgame Faction</link> that tracks your battle against the powerful servants of Orobyss - <link=\"Harbingers\">The Harbingers</link>. "
+  },
+  {
+    "id": 181582191135719424,
+    "text": "You will start encountering them once you have progressed deep into the <link=\"monolith introduction\">Monolith of Fate</link>. If you succeed in hunting them all down, you will eventually be able to face their mysterious leader. "
+  },
+  {
+    "id": 181582209427079168,
+    "text": "Faction"
+  },
+  {
+    "id": 181582215286521856,
+    "text": "Endgame"
+  },
+  {
+    "id": 181582218037985280,
+    "text": "Forgotten"
+  },
+  {
+    "id": 181582220688785408,
+    "text": "Knights"
+  },
+  {
+    "id": 181582224706928640,
+    "text": "Harbingers"
+  },
+  {
+    "id": 181582226611142656,
+    "text": "Harbinger"
+  },
+  {
+    "id": 181583677269901312,
+    "text": "Evade"
+  },
+  {
+    "id": 181583679836815360,
+    "text": "[0]"
+  },
+  {
+    "id": 181583681363542016,
+    "text": "Evade is a movement ability that rapidly moves your character forwards (bound to Space by default), and has two charges."
+  },
+  {
+    "id": 181583716943822848,
+    "text": "You are not immune to damage and enemy abilities will still be able to hit you while using Evade. Traversal skills do not share cooldown with Evade."
+  },
+  {
+    "id": 181583756282200064,
+    "text": "Evade has a cooldown of 4 seconds, and it gains 0.5% Increased Cooldown Recovery Speed per Character Level, lowering the cooldown to 2.7 seconds at Level 100 with no other sources of increased cooldown recovery speed. "
+  },
+  {
+    "id": 181583902126538752,
+    "text": "Evade"
+  },
+  {
+    "id": 181583909059723264,
+    "text": "Dodge Roll"
+  },
+  {
+    "id": 181583921588109312,
+    "text": "Roll"
+  },
+  {
+    "id": 181583933894197248,
+    "text": "Evading"
+  },
+  {
+    "id": 181587425539031040,
+    "text": "Exiled Mages"
+  },
+  {
+    "id": 181587547396145152,
+    "text": "[0]"
+  },
+  {
+    "id": 181587563145756672,
+    "text": "Exiled Mages are powerful mages imprisoned and banished through time by the leaders of an order of Runemasters for their crimes."
+  },
+  {
+    "id": 181587568329916416,
+    "text": "[1]"
+  },
+  {
+    "id": 181587593990668288,
+    "text": "Free them from their Rune Prisons if you dare, as untold eons of imprisonment may have driven them mad. The knowledge of the Exiled Mages can be found in the form of powerful items they experimented with, though this knowledge shall remain if you do not accept the risk and free them."
+  },
+  {
+    "id": 181587604077969408,
+    "text": "Through <link=\"woven echoes\">Woven Echoes</link>, you may be able to learn the secret to crafting your own <link=\"experimental items\">Experimental Items</link>."
+  },
+  {
+    "id": 181587617168392192,
+    "text": "Exiled"
+  },
+  {
+    "id": 181588332485967872,
+    "text": "Mage"
+  },
+  {
+    "id": 181588344221630464,
+    "text": "Mages"
+  },
+  {
+    "id": 181588354988408832,
+    "text": "Rune"
+  },
+  {
+    "id": 181588364559810560,
+    "text": "Prison"
+  },
+  {
+    "id": 181588378833027072,
+    "text": "Experimental"
+  },
+  {
+    "id": 181591196230909952,
+    "text": "Nemesis"
+  },
+  {
+    "id": 181591233669267456,
+    "text": "Nemeses are formed from the remaining equipment of powerful warriors slain by the <link=\"Harbingers\">Harbingers</link>. Animated by the Harbingers' lingering aura of despair, their animosity towards those that slew their former bearers extends to all travelers, not just those who serve Orobyss as Harbingers. They lie in wait for one to attempt to claim their items, and then coalesce into a formidable being of metal and wrath to exact vengeance."
+  },
+  {
+    "id": 181591253445410816,
+    "text": "[0]"
+  },
+  {
+    "id": 181591264770031616,
+    "text": "Free them from their torment and use the trapped magic to empower items as your reward. Some Nemeses in the endgame may even allow you to exchange their unique for one of the player's unique items with no <link=\"Legendary Items\">Legendary Potential</link> or <link=\"Weaver's Will\">Weaver's Will</link>, allowing it to be transformed into a Legendary or to be enhanced with Legendary Potential."
+  },
+  {
+    "id": 181591277168394240,
+    "text": "[1]"
+  },
+  {
+    "id": 181591985758306304,
+    "text": "Nemesis"
+  },
+  {
+    "id": 181592023985192960,
+    "text": "Legendary"
+  },
+  {
+    "id": 181592037079810048,
+    "text": "LP"
+  },
+  {
+    "id": 181592092692086784,
+    "text": "Unique"
+  },
+  {
+    "id": 181592117023244288,
+    "text": "Traveler"
+  },
+  {
+    "id": 181592148669267968,
+    "text": "Harbinger"
+  },
+  {
+    "id": 181592170244767744,
+    "text": "Harbingers"
+  },
+  {
+    "id": 181592199172882432,
+    "text": "Weaver"
+  },
+  {
+    "id": 181592218420543488,
+    "text": "Will"
+  },
+  {
+    "id": 181592732667379712,
+    "text": "Health and Health Regeneration"
+  },
+  {
+    "id": 181593042097963008,
+    "text": "Health is the final defensive layer in Last Epoch and If your health reaches 0, your character dies. Combine with other defensive mechanics such as <link=\"resistances\">resistances</link>, <link=\"armor\">armor</link>, <link=\"dodge\">dodge</link>, <link=\"health leech\">leech</link>, <link=\"ward\">ward</link> and many others to make sure you health never reaches 0."
+  },
+  {
+    "id": 181593060758421504,
+    "text": "Health values can be increased through items, passives and by leveling up your character. Each character level grants +8 health. "
+  },
+  {
+    "id": 181593072800268288,
+    "text": "Your character will also have some passive health regeneration, and it can be increased by skills, items, passives and leveling up your character. Each character level grants +0.125 health regeneration."
+  },
+  {
+    "id": 181593800096776192,
+    "text": "Health"
+  },
+  {
+    "id": 181593831549861888,
+    "text": "Regen"
+  },
+  {
+    "id": 181593960105279488,
+    "text": "Regenration"
+  },
+  {
+    "id": 181593995714920448,
+    "text": "HP"
+  },
+  {
+    "id": 181594017483358208,
+    "text": "Life"
+  },
+  {
+    "id": 181594310128336896,
+    "text": "Mana and Mana Regeneration"
+  },
+  {
+    "id": 181594405460672512,
+    "text": "Mana is the main resource that is needed to use most skills. As long as your mana is above 0, you are able to use a skill even if the mana cost is higher than your remaining mana. "
+  },
+  {
+    "id": 181594685556293632,
+    "text": "Mana values can be increased through items, passives and by leveling up your character. Each character level grants 0.5 mana."
+  },
+  {
+    "id": 181594697564585984,
+    "text": "When using skills that cost more mana than the amount of mana you currently have, you will go to negative mana. You can still regen mana and use skills that do not have a mana cost while at negative mana, however skills that cost even 1 mana cannot be used while at negative mana. Some skills have benefits while being at negative mana."
+  },
+  {
+    "id": 181594711766499328,
+    "text": "Your character will also have 8 mana regeneration by default, which can be increased through skills, items and passives, but not by leveling your character up. "
+  },
+  {
+    "id": 181595463650017280,
+    "text": "Mana"
+  },
+  {
+    "id": 181595492452302848,
+    "text": "Regen"
+  },
+  {
+    "id": 181595505672749056,
+    "text": "Regeneration"
+  },
+  {
+    "id": 181595539772440576,
+    "text": "MP"
+  },
+  {
+    "id": 181595565718405120,
+    "text": "Cost"
+  },
+  {
+    "id": 181614949656592384,
+    "text": "World Map"
+  },
+  {
+    "id": 181617045042790400,
+    "text": "[0]"
+  },
+  {
+    "id": 181617071882141696,
+    "text": "The Map of Eterra (bound to M by default) provides lots of useful information about the world. You can find important story locations, keep track of your campaign progression, use waypoints to travel between different areas and Eras, and see how time and the Void has shaped the world from what it once was."
+  },
+  {
+    "id": 181617103981150208,
+    "text": "[1]"
+  },
+  {
+    "id": 181617117998514176,
+    "text": "At the top of the World Map UI, you can see a timeline with four different periods of time, or Eras. Through your travels in Eterra you visit these different Eras many times, and by clicking at any of them you can see the what Eterra looks like in different Eras throughout its history."
+  },
+  {
+    "id": 181617207446241280,
+    "text": "[2]"
+  },
+  {
+    "id": 181617214530420736,
+    "text": "On the left side of the World Map, you have a quest log that consists of your current active main and side quests, completed quests and the ability to pin or unpin quests that are then shown on the right side of your UI while you are playing."
+  },
+  {
+    "id": 181617217982332928,
+    "text": "Clicking on a quest will bring a more detailed quest information and changes the Era of your UI and show where and when that quest is located at."
+  },
+  {
+    "id": 181617221451022336,
+    "text": "Main quests are displayed with golden color, while side quests are in silver."
+  },
+  {
+    "id": 181617224718385152,
+    "text": "[3]"
+  },
+  {
+    "id": 181617227344019456,
+    "text": "You can also hover on a specific area or Era that has quest icons to see the names of those quests, and by right-clicking on an area with a unlocked waypoint you can immediately travel there from anywhere."
+  },
+  {
+    "id": 181617229550223360,
+    "text": "[4]"
+  },
+  {
+    "id": 181617231773204480,
+    "text": "At the bottom left corner you can see how many of the maximum unlockable passive point and idol slot quest rewards you have obtained from completing quests. There are much more quests providing these rewards than the maximum, so you can choose to complete different quests while being able to get the maximum passive point and idol slot rewards."
+  },
+  {
+    "id": 181619663022489600,
+    "text": "World"
+  },
+  {
+    "id": 181619682601500672,
+    "text": "Map"
+  },
+  {
+    "id": 181619684950310912,
+    "text": "Quest"
+  },
+  {
+    "id": 181619686443483136,
+    "text": "Era"
+  },
+  {
+    "id": 181619688016347136,
+    "text": "Eras"
+  },
+  {
+    "id": 181619735256793088,
+    "text": "Passives"
+  },
+  {
+    "id": 181619745876770816,
+    "text": "Idols"
+  },
+  {
+    "id": 181619754177298432,
+    "text": "Slots"
+  },
+  {
+    "id": 181619799131848704,
+    "text": "Pin"
+  },
+  {
+    "id": 181619833667747840,
+    "text": "Eterra"
+  },
+  {
+    "id": 181620947351928832,
+    "text": "Boss Ward"
+  },
+  {
+    "id": 181620988783263744,
+    "text": "Certain enemies have small notches at the bottom section of their health bar, indicating that they are benefitting from the Boss Ward system."
+  },
+  {
+    "id": 181621021020684288,
+    "text": "[0]"
+  },
+  {
+    "id": 181621047822286848,
+    "text": "When enough damage is dealt to these enemies and their health bar reaches a notch, it is consumed and the enemy is granted ward based on their maximum health. When a notch is consumed that grants the boss ward, they will also be stunned for a short duration."
+  },
+  {
+    "id": 181621055485280256,
+    "text": "Unlike the <link=\"ward\">player ward</link> which decays faster the more ward you have, the rate at which the Boss Ward decays speeds up over time."
+  },
+  {
+    "id": 181621740075384832,
+    "text": "Boss"
+  },
+  {
+    "id": 181621760761692160,
+    "text": "Ward"
+  },
+  {
+    "id": 181621773231357952,
+    "text": "Notch"
+  },
+  {
+    "id": 181621804441174016,
+    "text": "Notches"
+  },
+  {
+    "id": 181621824418643968,
+    "text": "Decay"
+  },
+  {
+    "id": 181640557778337792,
+    "text": "endgame factions"
+  },
+  {
+    "id": 181640634181779456,
+    "text": "forgotten knights"
+  },
+  {
+    "id": 181642424038096896,
+    "text": "forgotten knight"
+  },
+  {
+    "id": 181642516501528576,
+    "text": "endgame faction"
+  },
+  {
+    "id": 181645108715618304,
+    "text": "exiled mage"
+  },
+  {
+    "id": 181645225506013184,
+    "text": "exiled mages"
+  },
+  {
+    "id": 181657693439557632,
+    "text": "Evade"
+  },
+  {
+    "id": 181657731746136064,
+    "text": "Dodge Roll"
+  },
+  {
+    "id": 181657779179520000,
+    "text": "Roll"
+  },
+  {
+    "id": 181658995145998336,
+    "text": "Enemies gain 1% penetration per area level, capped at 75% in areas level 75 and above. <link=\"terminology\">Overcapping</link> resistances above 75% does not help mitigating this penetration. "
+  },
+  {
+    "id": 181659812938809344,
+    "text": "Overcapped Resistance: Any resistance above the cap of 75% is considered overcapped resistance. Overcapped resistance is helpful in mitigating debuffs that lower you resistance, but does not mitigate penetrations."
+  },
+  {
+    "id": 181670955308711936,
+    "text": "[1]"
+  },
+  {
+    "id": 181676343324213248,
+    "text": "Plague deals poison damage over time and spreads between enemies. By default it deals 150 damage over 4 seconds. Plague does not stack."
+  },
+  {
+    "id": 181676637613359104,
+    "text": "Plague will attempt to spread to a target within 6m every 0.6 seconds. Plague will also attempt to spread if the entity dies before Plague expires."
+  },
+  {
+    "id": 181677063528153088,
+    "text": "Enemies that are blinded are unable to deal <link=\"critical strikes\">critical strikes</link>."
+  },
+  {
+    "id": 181683761814863872,
+    "text": "Withering causes affected targets to take 10% increased Curse Damage Taken, and lasts 3 secnods. Can stack up to 10 times and has 60% less effect against players and bosses."
+  },
+  {
+    "id": 181684440096735232,
+    "text": "Exposed Flesh is a curse which reduces cold resistance by 15%, reduces armor by 15 per point of inflicter’s dexterity, and increases chance to be frozen by 30%."
+  },
+  {
+    "id": 181685349350539264,
+    "text": "[0]"
+  },
+  {
+    "id": 181685364785577984,
+    "text": "[1]"
+  },
+  {
+    "id": 181685389783629824,
+    "text": "[2]"
+  },
+  {
+    "id": 181685403348008960,
+    "text": "[3]"
+  },
+  {
+    "id": 181685416346157056,
+    "text": "[4]"
+  },
+  {
+    "id": 181685452924682240,
+    "text": "[5]"
+  },
+  {
+    "id": 181685464446435328,
+    "text": "[6]"
+  },
+  {
+    "id": 181685477482332160,
+    "text": "[7]"
+  },
+  {
+    "id": 181685511317782528,
+    "text": "[8]"
+  },
+  {
+    "id": 181685526681518080,
+    "text": "[9]"
+  },
+  {
+    "id": 181691786395025408,
+    "text": "You can view how many Runes and Glyphs you have in the Crafting window or the Crafting Crafting Materials panel by clicking the button in your inventory."
+  },
+  {
+    "id": 181815866507034624,
+    "text": "critical strike"
+  },
+  {
+    "id": 181815917912424448,
+    "text": "critical strikes"
+  },
+  {
+    "id": 182973972528136192,
+    "text": "sanctuary"
+  },
+  {
+    "id": 182974013758144512,
+    "text": "eterra"
+  },
+  {
+    "id": 182974106330628096,
+    "text": "sanctuary of eterra"
+  },
+  {
+    "id": 197045699700752384,
+    "text": "When interacting with the Nemesis, there are 3 options to choose from:\n\n<#E5E5E5>Banish</color> will remove the Nemesis and avoid a fight. Your next Nemesis encounter will be with a new Nemesis that will have a new set of item rewards.\n\n<#E5E5E5>Challenge</color> will start the fight with the Nemesis and if defeated, will grant its items as rewards. Your next Nemesis encounter will be with a new Nemesis that will have a new set of item rewards.\n\n<#E5E5E5>Empower</color> will start the fight with the Nemesis and if defeated, it will escape through a rift. You will then encounter this same Nemesis later, and it and its items have been Empowered. This upgrades items in various ways, such as gaining affixes, increasing tiers of existing affixes, or adding <link=\"forging potential\">Forging Potential</link>. You can choose to Empower the Nemesis and its items twice before you must either Challenge or Banish it."
+  },
+  {
+    "id": 197101749518893056,
+    "text": "banish"
+  },
+  {
+    "id": 197101769009823744,
+    "text": "empower"
+  },
+  {
+    "id": 197101784918818816,
+    "text": "challenge"
+  },
+  {
+    "id": 197103647672139776,
+    "text": "[0]"
+  },
+  {
+    "id": 197103687773880320,
+    "text": "Experience is gained by completing quests, slaying enemies and from other rewards, such as <link=\"monolith introduction\">Monolith</link> Echoes. As you gain experience, your character and skills will <link=\"levels\">level up</link>, allowing you to customize and make your character stronger. The maximum character level in Last Epoch is 100. You can still gain experience at level 100, it just won’t increase character level anymore."
+  },
+  {
+    "id": 197103696498032640,
+    "text": "[1]"
+  },
+  {
+    "id": 197103702713991168,
+    "text": "A common way to increase the amount of experience gained is by increasing Corruption in Monolith of Fate, but there are other ways to increase experience such as Experience Shrines. Items in Last Epoch do not provide bonuses to experience gained. "
+  },
+  {
+    "id": 197103707294171136,
+    "text": "[2]"
+  },
+  {
+    "id": 197103712780320768,
+    "text": "Magic enemies provide 50% more experience gained when slain."
+  },
+  {
+    "id": 197103720640446464,
+    "text": "[3]"
+  },
+  {
+    "id": 197103726931902464,
+    "text": "Rare enemies provide 200% + additional 4% per level, which means that level 100 rare enemies provide 600% more experience when slain."
+  },
+  {
+    "id": 197103737593823232,
+    "text": "[4]"
+  },
+  {
+    "id": 197103743574900736,
+    "text": "Boss enemies do not have an experience gain multiplier, but have a much higher base experience reward when slain than other enemies."
+  },
+  {
+    "id": 197103757286080512,
+    "text": "If a lower level player is in a much higher level area, they gain experience from slaying enemies as if the area was up to 10 levels higher than their character. For example, a level 20 character in a level 40 area would gain experience as if the area was level 30."
+  },
+  {
+    "id": 197103762323439616,
+    "text": "When playing together with other players and there are big level differences, the previous 10 level difference can go down to a minimum of 2, based on the level difference between the characters. For example, if a level 10 character and a level 70 character were playing together in a level 40 area, the level 10 character would gain experience as if the area was level 12, and the level 70 will gain experience from level 40 area as normal. "
+  },
+  {
+    "id": 197103766899425280,
+    "text": "Players that are 5 or more levels below the starting level of a chapter will gain less experience from completing quests relative to their character level. For example, completing quests in Chapter 9 will grant much less experience to a character that is level 5, than to a character that is level 50."
+  },
+  {
+    "id": 197103771618017280,
+    "text": "Additional bonuses which increase the experience gained in <link=\"arena\">Arena</link> and Monolith Echoes won’t apply to characters under level 50, but they will still gain the unmodified amount of experience from slain enemies. "
+  },
+  {
+    "id": 197103779717218304,
+    "text": "The amount of <link=\"terminology\">Favor</link> gained while aligned with an <link=\"item factions\">Item Faction</link> is based on the experience you gain."
+  },
+  {
+    "id": 197105834410278912,
+    "text": "exp"
+  },
+  {
+    "id": 197105847341318144,
+    "text": "xp"
+  },
+  {
+    "id": 197105876630142976,
+    "text": "experience"
+  },
+  {
+    "id": 197105911388340224,
+    "text": "level"
+  },
+  {
+    "id": 197105924029972480,
+    "text": "level up"
+  },
+  {
+    "id": 197105947090255872,
+    "text": "levels"
+  },
+  {
+    "id": 197105956930093056,
+    "text": "penalty"
+  },
+  {
+    "id": 197106629860032512,
+    "text": "Experience"
+  },
+  {
+    "id": 197107277187940352,
+    "text": "Damage Taken From Mana Before Health"
+  },
+  {
+    "id": 197107318606692352,
+    "text": "Damage Taken From Mana Before Health is a defensive mechanic primarily available for Mages, which is mostly obtained through items. Sorcerers, a mastery specialization for Mages, also have this stat available in their passive trees."
+  },
+  {
+    "id": 197107356380594176,
+    "text": "When a character has any % of Damage Taken From Mana Before Health, a portion of the damage will be dealt to their mana instead of health. However, if they are at 0 or negative mana, then all damage is applied to health instead. Damage Taken From Mana Before Health stat does not protect ward, similar to <link=\"endurance\">endurance</link>."
+  },
+  {
+    "id": 197107370699948032,
+    "text": "Having more than 100% Damage Taken From Mana Before Health does not have any additional effect."
+  },
+  {
+    "id": 197107382322364416,
+    "text": "1 Point of mana shields 5 points of health. For example, if a character has 90% of Damage Taken From Mana Before Health and takes 1000 damage after all other reductions to damage taken from other defensive stats, such as <link=\"armor\">armor</link> and <link=\"resistances\">resistances</link> have been applied:\n-100 Damage is dealt to health, as 10% of 1000 is 100."
+  },
+  {
+    "id": 197107391881183232,
+    "text": "-180 Damage is dealt to mana, as 90% of 1000 is 900, which is then reduced by dividing by 5, which results in 180. This means that effectively your mana has 80% damage reduction. "
+  },
+  {
+    "id": 197107899807203328,
+    "text": "damage"
+  },
+  {
+    "id": 197107915430985728,
+    "text": "taken"
+  },
+  {
+    "id": 197107921013604352,
+    "text": "from"
+  },
+  {
+    "id": 197107958577790976,
+    "text": "mana"
+  },
+  {
+    "id": 197107965125099520,
+    "text": "before"
+  },
+  {
+    "id": 197107971487858688,
+    "text": "health"
+  },
+  {
+    "id": 197107982736982016,
+    "text": "mbh"
+  },
+  {
+    "id": 197107990307700736,
+    "text": "dtfmbh"
+  },
+  {
+    "id": 197108881345642496,
+    "text": "By default each stack deals 50 damage over 3 seconds and increases the chance to be frozen by 20% (to a maximum of 300% with 15 stacks)."
+  },
+  {
+    "id": 197108902447185920,
+    "text": "The increase in chance to be frozen is multiplicative with a hit’s chance to freeze.  For example if a hit had 10% chance to freeze by default and the target had 4 stacks of Frostbite the hit would have a 14% chance to freeze instead."
+  },
+  {
+    "id": 197109172111572992,
+    "text": "Increased chance to be stunned from shock is multiplicative with your chance to stun an enemy. If you have a 5% chance to stun a Boss before applying any shocks to it, with 10 stacks of shock (80% increased chance to be stunned) your chance to stun the boss would be 9%."
+  },
+  {
+    "id": 197110021684625408,
+    "text": "Bosses are harder to stun. In the calculation above, their maximum health is 50% higher. So if a boss has 10 000 health, for the stun calculation 15 000 is used instead."
+  },
+  {
+    "id": 197111620259708928,
+    "text": "Bosses are harder to freeze. In the calculation above, their maximum health is 50% higher. So if a boss has 10 000 health, for the freeze calculation 15 000 is used instead."
+  },
+  {
+    "id": 197111644603449344,
+    "text": "A skill with 40 freeze rate and 500% freeze rate multiplier would have a 2.4% chance to freeze an enemy that has 10 000 maximum health and 0 current ward:\n\n\n(40 x 6) / 10 000 = 0.024"
+  },
+  {
+    "id": 197111657102475264,
+    "text": "If you then apply 3 stacks of chill to that enemy with 50% freeze rate per stack of chill for a total of 150%, your chance to freeze would be 6%:\n\n\n(40 x 2.5 x 6) / 10 000 = 0.06"
+  },
+  {
+    "id": 197111669584723968,
+    "text": "If the enemy also has 15 stacks of <link=\"frostbite\">frostbite</link> that add another 300% chance to be frozen, the chance to freeze that enemy would be 24%:\n\n\n((40 x 2.5 x 6) / 10 000) x 4 = 0.24"
+  },
+  {
+    "id": 197111683698556928,
+    "text": "If that enemy was a boss, the chance to freeze it would be 16%, as bosses are harder to <link=\"stun\">stun</link> and freeze due to their health being 50% higher in these calculations.\n\n\n((40 x 2.5 x 6) / (10 000 x 1.50)) x 4 = 0.16"
+  },
+  {
+    "id": 197113467590574080,
+    "text": "Starting from level 26, all minions gain 0.6% more damage and 0.8% damage reduction per level. At level 100, your minions deal 45% more damage and have 60% damage reduction from this level scaling."
+  },
+  {
+    "id": 197118720989888512,
+    "text": "While only Bosses are able to benefit from the Boss Ward mechanic, not all Boss enemies have it. "
+  },
+  {
+    "id": 199249154599190528,
+    "text": "[1]"
+  },
+  {
+    "id": 199258406847938560,
+    "text": "As you complete the quests given by the Forgotten Knight and defeat stronger Harbingers, your rank within the faction raises. Each rank grants different benefits that include better rewards from <link=\"Nemesis\">Nemeses</link> and bonuses that allow you to climb <link=\"corruption and the shade\">Corruption</link> faster in the Monolith of Fate."
+  },
+  {
+    "id": 230056898187976704,
+    "text": "Stash Priority lets you define rules for how certain items should be moved into your stash when quick storing (shift + right click or X / Square on controller). If any tab has a matching priority when quick storing an item, it will be placed in that tab, even if not currently viewed. Manually placing items directly in a slot in a tab bypasses Stash Priority."
+  },
+  {
+    "id": 230056927145451520,
+    "text": "<#E5E5E5>Configuring Stash Priority</color>\nYou can set priority conditions on any tab when configuring it (right click the tab or use the configure tab button while viewing it) by checking the Stash Priority checkbox. To remove priority conditions, uncheck this and save the tab."
+  },
+  {
+    "id": 230056941343170560,
+    "text": "Stash Priority supports the following conditions, similar to <link=\"loot filter\">Loot Filters</link>:\nItem Type\n- Subtype (if only 1 item type is selected)"
+  },
+  {
+    "id": 230056951887650816,
+    "text": "<link=\"Rarity\">Rarity</link>\n- <link=\"legendary items\">Legendary Potential</link> Min/Max (if only Unique is selected)\n- <link=\"weaver's will\">Weaver's Will</link> Min/Max (if only Unique is selected)"
+  },
+  {
+    "id": 230056962847367168,
+    "text": "Class Requirement\n- For example, you can set a tab to only acceptitems if they can be equipped by a Priamlist or a Mage."
+  },
+  {
+    "id": 230056977607122944,
+    "text": "Level Requirement\n- For example, a tab could be set to only accept items if they have a minimum level requrement of 80 to equip, or a maximum level of 70 to equip.\n"
+  },
+  {
+    "id": 230056984422866944,
+    "text": "<link=\"item factions\">Item Faction</link> Requirement\n- For example, some items drop with a Circle of Fortune requirement, and all items traded between players in Merchant's Guild will require to be part of the Merchant's Guild to equip."
+  },
+  {
+    "id": 230056994367561728,
+    "text": "All priority conditions on a tab must match for an item to be automatically placed there."
+  },
+  {
+    "id": 230057007432818688,
+    "text": "For example, a tab with priority conditions of Rarity: Exalted and Item Type: Helmet will match exalted helmets, but not exalted boots or unique helmets."
+  },
+  {
+    "id": 230057016295383040,
+    "text": "<#E5E5E5>How Priority Chooses Tabs To Send Items To </color>\nYou can set priority conditions on any tab when configuring it (right click the tab or use the configure tab button while viewing it) by checking the Stash Priority checkbox. To remove priority conditions, uncheck this and save the tab."
+  },
+  {
+    "id": 230057030967058432,
+    "text": "When multiple stash tabs have a priority that matches an item, it will be placed in the first tab that matches and has space for the item. This respects your custom ordering and will pick the leftmost tab in the leftmost category that matches."
+  },
+  {
+    "id": 230057049178726400,
+    "text": "If there is no stash tab with matching priority, or all tabs with matching priority do not have space to fit the item, it is instead placed in the currently viewed tab if possible."
+  },
+  {
+    "id": 230057058171314176,
+    "text": "[0]"
+  },
+  {
+    "id": 230057727141830656,
+    "text": "Stash Tab Priority"
+  },
+  {
+    "id": 230057849846194176,
+    "text": "stash"
+  },
+  {
+    "id": 230057852002066432,
+    "text": "tab"
+  },
+  {
+    "id": 230057853998555136,
+    "text": "tabs"
+  },
+  {
+    "id": 230057855890186240,
+    "text": "priority"
+  },
+  {
+    "id": 230057857844731904,
+    "text": "prio"
+  },
+  {
+    "id": 230059810427461632,
+    "text": "Shrines"
+  },
+  {
+    "id": 230059859312074752,
+    "text": "Shrines are objects that a player can interact with to activate them. There is a wide variety of different effects and buffs that occur when they are activated. For example, they can spawn creatures to aid you in combat, drop items, buff the player or cast skills while the shrine is active."
+  },
+  {
+    "id": 230059862227116032,
+    "text": "shrine"
+  },
+  {
+    "id": 230059864831778816,
+    "text": "shrines"
+  },
+  {
+    "id": 230059867310612480,
+    "text": "buff"
+  },
+  {
+    "id": 230059870225653760,
+    "text": "[0]"
+  },
+  {
+    "id": 230060338859433984,
+    "text": "Loot Lizard"
+  },
+  {
+    "id": 230060342143574016,
+    "text": "Loot Lizards are peaceful creatures burdened by the weight of items they carry. You can help unburden them by attacking them. They will flee when attacked."
+  },
+  {
+    "id": 230060345448685568,
+    "text": "There are several different types of Loot Lizards that carry different items, and they can be distinguished from each other by their color."
+  },
+  {
+    "id": 230060350335049728,
+    "text": "[0]"
+  },
+  {
+    "id": 230060351899525120,
+    "text": "When reduced to zero health, Loot Lizards will escape. If they have not been damaged for 20 seconds, they will also escape. This timer will reset whenever any damage is dealt to them.\n\n\n\n\n\n\n"
+  },
+  {
+    "id": 230060352612556800,
+    "text": "loot"
+  },
+  {
+    "id": 230060353262673920,
+    "text": "lizard"
+  },
+  {
+    "id": 230060353916985344,
+    "text": "lizards"
+  },
+  {
+    "id": 230060354529353728,
+    "text": "item"
+  },
+  {
+    "id": 230060355221413888,
+    "text": "items"
+  },
+  {
+    "id": 230060355846365184,
+    "text": "tail"
+  },
+  {
+    "id": 288094449029775360,
+    "text": "The Woven"
+  },
+  {
+    "id": 288094485801238528,
+    "text": "Members of The Woven faction are devoted to a mysterious being known as The Weaver. Not much of her is known, other than her goal to weave a new, perfect world."
+  },
+  {
+    "id": 288094577136402432,
+    "text": "The Faction can be joined by talking to Masque inside the Haven of Silk after the completion of a <link=\"terminology\">Cemetery of the Erased</link>.  You can further improve your rank by earning and spending <link=\"terminology\">Memory Amber</link>, which is most commonly found inside <link=\"terminology\">Tombs</link> and Cemeteries of the Erased, or by slaying the Weaver's creations."
+  },
+  {
+    "id": 288094586993016832,
+    "text": "Echoes containing a Tomb or a Cemetery will always have <link=\"terminology\">Silken Cocoons</link>. These destructible objects are found inside and around the entrances to Tombs and Cemeteries. The cocoons can be smashed open to either release a Soul of the Erased, which will empower a nearby enemy, or instead release an enemy trapped inside. "
+  },
+  {
+    "id": 288094596681859072,
+    "text": "Ranks within the Weaver Faction provide two things; Points to spend in the <link=\"weaver tree\">Weaver Tree</link>, and the ability to purchase new <link=\"woven echoes\">Woven Echoes</link> from Masque. Spending points in the Weaver Tree allows players to tailor their preferred rewards and content inside the <link=\"monolith introduction\">Monolith of Fate</link>."
+  },
+  {
+    "id": 288094921492955136,
+    "text": "[0]"
+  },
+  {
+    "id": 288094936445648896,
+    "text": "[1]"
+  },
+  {
+    "id": 288094951624835072,
+    "text": "[2]"
+  },
+  {
+    "id": 288111761208279040,
+    "text": "weaver"
+  },
+  {
+    "id": 288111780619517952,
+    "text": "faction"
+  },
+  {
+    "id": 288111806443847680,
+    "text": "memory amber"
+  },
+  {
+    "id": 288111816644395008,
+    "text": "woven echo"
+  },
+  {
+    "id": 288111866904739840,
+    "text": "cemetery of the erased"
+  },
+  {
+    "id": 288111879454097408,
+    "text": "tombs of the erased"
+  },
+  {
+    "id": 288112037495472128,
+    "text": "weaver tree"
+  },
+  {
+    "id": 288112161168719872,
+    "text": "The Woven"
+  },
+  {
+    "id": 288112256358449152,
+    "text": "The Weaver"
+  },
+  {
+    "id": 288287495495254016,
+    "text": "Woven Echoes"
+  },
+  {
+    "id": 288287497634349056,
+    "text": "[0]"
+  },
+  {
+    "id": 288287499337236480,
+    "text": "Woven Echoes are unfinished glimpses into the new world created by The Weaver. Woven Echoes can be woven in to your <link=\"timelines\">Timeline's</link> Echo Web through the <link=\"terminology\">Altar to The Weaver</link>, which can be found inside <link=\"terminology\">Cemeteries of the Erased</link>. Once woven in to your Echo Web, they can then be entered the same as any other Echo."
+  },
+  {
+    "id": 288287500524224512,
+    "text": "[1]"
+  },
+  {
+    "id": 288287501094649856,
+    "text": "Woven Echoes are most often found inside Tombs and Cemeteries of the Erased, but many can also be bought from Masque inside the Haven of Silk by spending <link=\"terminology\">Memory Amber</link>. "
+  },
+  {
+    "id": 288287501803487232,
+    "text": "There are dozens of unique Woven Echoes and they are stored in their own inventory tab."
+  },
+  {
+    "id": 288287576508235776,
+    "text": "[2]"
+  },
+  {
+    "id": 288287670099935232,
+    "text": "Woven Echoes provide a range of new encounters with powerful rewards, such as the ability to attempt increasing the <link=\"legendary items\">Legendary Potential</link> on Unique items which already have at least 1 Legendary Potential."
+  },
+  {
+    "id": 288287689209184256,
+    "text": "woven echo"
+  },
+  {
+    "id": 288287701896953856,
+    "text": "woven echoes"
+  },
+  {
+    "id": 288287713280294912,
+    "text": "woven echoes"
+  },
+  {
+    "id": 288292509223649280,
+    "text": "woven echo"
+  },
+  {
+    "id": 288293346826158080,
+    "text": "Weaver Tree"
+  },
+  {
+    "id": 288293348554211328,
+    "text": "[0]"
+  },
+  {
+    "id": 288293349313380352,
+    "text": "The Weaver Tree is a passive tree you can use to influence the <link=\"echoes\">Echoes</link> inside the <link=\"monolith introduction\">Monolith of Fate</link>.  Collect points to use in the Weaver Tree by increasing your Rank within the <link=\"the woven\">Woven Faction</link> and by completing <link=\"woven echoes\">Woven Echoes</link>. "
+  },
+  {
+    "id": 288295087139356672,
+    "text": "[1]"
+  },
+  {
+    "id": 288295225110986752,
+    "text": "weaver tree"
+  },
+  {
+    "id": 288295227908587520,
+    "text": "monolith of fate"
+  },
+  {
+    "id": 288295256253693952,
+    "text": "woven"
+  },
+  {
+    "id": 288295270040371200,
+    "text": "weaver tree"
+  },
+  {
+    "id": 288298907546320896,
+    "text": "Champions"
+  },
+  {
+    "id": 288298998805987328,
+    "text": "[0]"
+  },
+  {
+    "id": 288299022524776448,
+    "text": "Champions are a subset of Rare enemies, with proper names and more powerful abilities. They often have their own modifiers, which do not spawn on other enemies. They can be recognized by their names, minimap icon, and an orange highlight. "
+  },
+  {
+    "id": 288299037829791744,
+    "text": "Once defeated, Champions always drop an item with a sealed Champion Affix based on the Champion's modifiers. Champion Affixes only occur on items, they cannot be obtained as shards via <link=\"runes and glyphs\">Rune of Shattering</link> or <link=\"runes and glyphs\">Rune of Removal</link>."
+  },
+  {
+    "id": 288299389912252416,
+    "text": "rare"
+  },
+  {
+    "id": 288299395192881152,
+    "text": "champions"
+  },
+  {
+    "id": 288299403971559424,
+    "text": "enemy"
+  },
+  {
+    "id": 288299426679521280,
+    "text": "champion affix"
+  },
+  {
+    "id": 288299507902218240,
+    "text": "champions"
+  },
+  {
+    "id": 288303725631406080,
+    "text": "Sets"
+  },
+  {
+    "id": 288304112128131072,
+    "text": "reforged set"
+  },
+  {
+    "id": 288304341426536448,
+    "text": "reforged set"
+  },
+  {
+    "id": 288345845759115264,
+    "text": "[1]"
+  },
+  {
+    "id": 288345888612319232,
+    "text": "These Set Affixes can then be crafted onto normal, magic, rare or exalted items of the same type from which that Set Affix came from, creating a Reforged Set item. This Reforged Set item counts as a Set item for the Set bonuses."
+  },
+  {
+    "id": 288345896971567104,
+    "text": "[2]"
+  },
+  {
+    "id": 288347772966305792,
+    "text": "memory amber"
+  },
+  {
+    "id": 288347784597110784,
+    "text": "tombs of the erased"
+  },
+  {
+    "id": 288347863038984192,
+    "text": "cemetery of the erased"
+  },
+  {
+    "id": 288347940407115776,
+    "text": "altar to the weaver"
+  },
+  {
+    "id": 288348002470232064,
+    "text": "silken cocoons"
+  },
+  {
+    "id": 288348183055990784,
+    "text": "Memory Amber: The currency used within the <link=\"the woven\">Woven Faction</link>. It can be used to purchase <link=\"woven echoes\">Woven Echoes</link> or to respec points inside the <link=\"weaver tree\">Weaver Tree</link>."
+  },
+  {
+    "id": 288348523612504064,
+    "text": "Tombs of the Erased: Procedurally generated side zones found inside <link=\"echoes\">Echoes</link>. Completing them usually grants a duplicate Echo reward, and is the primary source for collecting Memory Amber to use within the <link=\"the woven\">Woven Faction</link>."
+  },
+  {
+    "id": 288348981735358464,
+    "text": "Cemeteries of the Erased: Procedurally generated side zones similar to Tombs that can be found in the <link=\"monolith introduction\">Monolith of Fate</link>. Once a Cemetery is completed, you can interact with the Altar to the Weaver to place Woven Echoes on to your <link=\"timelines\">Timeline's</link> Echo Web."
+  },
+  {
+    "id": 288349268801912832,
+    "text": "The Altar to the Weaver: An object found at the end of Cemeteries of the Erased, which allows you to place Woven Echoes directly to your current Echo Web."
+  },
+  {
+    "id": 288349467750334464,
+    "text": "Silken Cocoons: Destructible objects found in Echoes containing a Tomb or Cemetery of the Erased. Once destroyed, they either release a Soul of the Erased to empower a nearby enemy or an enemy called The Incubated Silk. Both are a good source of obtaining Memory Amber."
+  },
+  {
+    "id": 288351999381897216,
+    "text": "<#E5E5E5>Rune of Redemption:</color> Randomly changes the exalted affixes on an item into different affixes. Does not change the tiers of the affixes or the rolls within the tiers."
+  },
+  {
+    "id": 288352026946863104,
+    "text": "<#E5E5E5>Rune of Weaving:</color> Uses a random amount of the remaining <link=\"weaver's will\">Weaver's Will</link> or <link=\"weaver's touch\">Weaver's Touch</link> on an item to add or improve affixes as if you had slain many enemies with the item equipped."
+  },
+  {
+    "id": 288352090645757952,
+    "text": "rune of havoc"
+  },
+  {
+    "id": 288355596849020928,
+    "text": "rune of redemption"
+  },
+  {
+    "id": 288355605371846656,
+    "text": "rune of weaving"
+  },
+  {
+    "id": 288357991633027072,
+    "text": "[2]"
+  },
+  {
+    "id": 288357996255150080,
+    "text": "Dungeon Key Charms are modifier items that can be used to modify your Dungeon experience. For example, you can add lots of <link=\"loot lizards\">Loot Lizards</link> or open a shortcut portal directly to fight the boss. "
+  },
+  {
+    "id": 288358003557433344,
+    "text": "Dungeon Keys can be used to purchase Dungeon Key Charms in Divine Era’s Maj’elka."
+  },
+  {
+    "id": 288358008263442432,
+    "text": "[3]"
+  },
+  {
+    "id": 288358558904254464,
+    "text": "dungeon key charm"
+  },
+  {
+    "id": 288371231347867648,
+    "text": "Among the ability to influence what type and frequency of content you can encounter, the Weaver Tree also provides many other useful perks. Examples include: the option to target farm items in new ways, allowing Woven Echoes to spawn naturally as new types of Echoes, disabling some types of Echoes from spawning entirely (such as Arena Echoes), and increasing the potency of rewards and difficulty of encounters."
+  },
+  {
+    "id": 294812870912147456,
+    "text": "Weaver's Touch is a special mechanic on certain idols representing the total Affix Tiers the idol will gain at maximum when fully revealed by slaying enemies, similar to <link=\"weaver's will\">Weaver's Will.</link>"
+  },
+  {
+    "id": 294813632962658304,
+    "text": "[0]"
+  },
+  {
+    "id": 294813668127703040,
+    "text": "Weaver's Touch can be applied to idols at the end of <link=\"terminology\">Tombs</link> and <link=\"terminology\">Cemeteries of the Erased</link> for no cost, if they do not yet have Weaver's Touch or additional affixes granted by it. When an idol gains Weaver's Touch, it also gets one revealed affix at the same time. When Weaver's Touch is consumed by slaying enemies, it can either reveal a second affix on the idol, or increase the tiers of the first affix. The maximum amount of total affixes an idol can have is 14, which will result in two tier 7 affixes once fully revealed."
+  },
+  {
+    "id": 294815947450908672,
+    "text": "If the resulting affixes or amount of Weaver's Touch on an idol is undesirable, those can be rerolled wiith <link=\"terminology\">Memory Amber</link>."
+  },
+  {
+    "id": 294818876782182400,
+    "text": "weaver's touch"
+  },
+  {
+    "id": 294818896663183360,
+    "text": "touch"
+  },
+  {
+    "id": 294818947640754176,
+    "text": "idols"
+  },
+  {
+    "id": 294819081309028352,
+    "text": "weaver's touch"
+  },
+  {
+    "id": 294819172526751744,
+    "text": "weaver's will"
+  },
+  {
+    "id": 294819546159546368,
+    "text": "Weaver's Touch"
+  },
+  {
+    "id": 297780195080699904,
+    "text": "Weaver's Touch"
+  },
+  {
+    "id": 297780210079531008,
+    "text": "Weaver's Touch is a special mechanic on class specific idols representing the total amount of Affix Tiers the idol will gain at when fully revealed by slaying enemies, similar to <link=\"weaver's will\">Weaver's Will.</link>"
+  },
+  {
+    "id": 297780225078362112,
+    "text": "[0]"
+  },
+  {
+    "id": 297780237313146880,
+    "text": "Weaver's Touch can be applied to idols at the end of <link=\"terminology\">Tombs</link> and <link=\"terminology\">Cemeteries of the Erased</link> for no cost, if they do not yet have Weaver's Touch or additional affixes granted by it. When an idol gains Weaver's Touch, it also gets one revealed affix at the same time. Weaver's Touch is consumed by slaying enemies, and it will either reveal a second affix on the idol, or increase the tiers of the first affix. The maximum amount of total affixes an idol can have is 14, which will result in two tier 7 affixes once fully revealed."
+  },
+  {
+    "id": 297780246033104896,
+    "text": "If the resulting affixes or amount of Weaver's Touch on an idol is undesirable, those can be rerolled with <link=\"terminology\">Memory Amber</link>."
+  },
+  {
+    "id": 297780263791788032,
+    "text": "weaver's touch"
+  },
+  {
+    "id": 297780283148500992,
+    "text": "idol"
+  },
+  {
+    "id": 297780292698931200,
+    "text": "enchanted"
+  },
+  {
+    "id": 297780305894211584,
+    "text": "weaver's touch"
+  },
+  {
+    "id": 302526714421354496,
+    "text": "Icy Veins - <link=\"https://www.icy-veins.com/last-epoch/\">https://www.icy-veins.com/last-epoch/</link>\n\nLeveling Guides, Build Guides, Endgame Guides and News"
+  },
+  {
+    "id": 302526720771530752,
+    "text": "Arreatsummit - <link=\"https://arreatsummit.gg/le\">https://arreatsummit.gg/le</link>\nBuild Guides, Build Planners, Endgame Guides and Databases\n\nTunklab - <link=\"https://lastepoch.tunklab.com/\">https://lastepoch.tunklab.com/</link>\nItem, Skill, Mechanic and Class Databases"
+  },
+  {
+    "id": 302545684918607872,
+    "text": "[1]"
+  },
+  {
+    "id": 346389811015622656,
+    "text": "<#E5E5E5>Rune of Evolution:</color> Evolves an exalted item into a <link=\"primordial items\">Primordial</link> exalted item, upgrading a random tier 7 affix on the item into a tier 8 affix, massively increasing the affix’s power and moving it to its own second sealed affix slot."
+  },
+  {
+    "id": 346392285218775040,
+    "text": "Primordial Items are a powerful type of equipment, with a restriction of only being able to wield one at a time."
+  },
+  {
+    "id": 346392299626209280,
+    "text": "[0]"
+  },
+  {
+    "id": 346392321742774272,
+    "text": "There are two types of Primordial items, Exalted and Unique. Primordial exalted affixes are tier 8, and are primarily created by using a <link=\"runes and glyphs\">Rune of Evolution</link> on an item with at least one tier 7 affix on it. Primordial uniques are similar to other <link=\"uniques\">Unique items</link> in that they can also be crafted to <link=\"Legendary Items\">Legendary items</link>, but usually come with some more extraordinary effects. Most Primordial Unique items are created by Skarven Bloodhorn by giving him <link=\"rift beasts\">Rift Beasts'</link> body parts."
+  },
+  {
+    "id": 346392326629138432,
+    "text": "[2]"
+  },
+  {
+    "id": 346393734862512128,
+    "text": "primordial"
+  },
+  {
+    "id": 346393740738732032,
+    "text": "exalted"
+  },
+  {
+    "id": 346393784585986048,
+    "text": "unique"
+  },
+  {
+    "id": 346393791825354752,
+    "text": "evolution"
+  },
+  {
+    "id": 346393800222351360,
+    "text": "legendary"
+  },
+  {
+    "id": 346393807067455488,
+    "text": "rift"
+  },
+  {
+    "id": 346393813006589952,
+    "text": "beast"
+  },
+  {
+    "id": 346393819939774464,
+    "text": "rift beast"
+  },
+  {
+    "id": 346393828366131200,
+    "text": "skarven"
+  },
+  {
+    "id": 346393835072823296,
+    "text": "primordial items"
+  },
+  {
+    "id": 346395579316084736,
+    "text": "Primordial Items"
+  },
+  {
+    "id": 346398237179420672,
+    "text": "While aligned with Merchant’s Guild, two different tokens can be found that bypass some trade restrictions:\n - Merchant’s Token allows the purchase of an item at the Bazaar while ignoring the Favor cost.\n - Black Market Token allows the purchase of an item at the Bazaar while ignoring the Favor cost and Rank requirement, and any item purchased with a Black Market Token will only require Rank 1 in Merchant’s Guild to equip."
+  },
+  {
+    "id": 346398694236921856,
+    "text": "black market token"
+  },
+  {
+    "id": 346398717020381184,
+    "text": "merchant's token"
+  },
+  {
+    "id": 346398728638603264,
+    "text": "token"
+  },
+  {
+    "id": 346399945611714560,
+    "text": "Rift Beasts"
+  },
+  {
+    "id": 346399990444630016,
+    "text": "[0]"
+  },
+  {
+    "id": 346400022145179648,
+    "text": "Rift Beasts are ancient and powerful creatures that possess the ability to tear rifts between eras. This allows them to hunt down their prey with swift ambushes wherever and whenever they please."
+  },
+  {
+    "id": 346400047407472640,
+    "text": "[1]"
+  },
+  {
+    "id": 346400071868653568,
+    "text": "Sometimes Rift Beasts leave larger rifts behind that lead to their dens in the Ancient Era, where they lay their eggs and prepare for future hunts. After defeating a Rift Beast in its den, you can choose which of its offspring survives, effectively deciding how future Rift Beasts you encounter will have evolved."
+  },
+  {
+    "id": 346400094547255296,
+    "text": "[2]"
+  },
+  {
+    "id": 346400103552425984,
+    "text": "Different evolutions cause the Rift Beasts to gain different abilities and grow different body parts. Some of these body parts can be harvested and exchanged with Skarven Bloodhorn for powerful items such as <link=\"primordial items\">Primordial Unique items</link> and <link=\"runes and glyphs\">Runes of Evolutions</link>."
+  },
+  {
+    "id": 346400112301744128,
+    "text": "[3]"
+  },
+  {
+    "id": 346422419988586496,
+    "text": "protect"
+  },
+  {
+    "id": 346422488271855616,
+    "text": "assassinate"
+  },
+  {
+    "id": 346422511873204224,
+    "text": "stance"
+  },
+  {
+    "id": 346422556823560192,
+    "text": "aggressive"
+  },
+  {
+    "id": 346422575324635136,
+    "text": "mode"
+  },
+  {
+    "id": 346448486111551488,
+    "text": "Stash Searching"
+  },
+  {
+    "id": 346448524959195136,
+    "text": "The stash supports searching for items based on the contents of their tooltip as well as macros, regex, and expressions to compose more specific searches."
+  },
+  {
+    "id": 346448550137602048,
+    "text": "When searching in the Quick View sidebar, your tabs will be filtered to only show those that contain at least one matching item."
+  },
+  {
+    "id": 346448563009921024,
+    "text": "<b>Usage Examples</b>\n- T6+ or 1T6+ matches any exalted item (at least 1 affix is tier 6 or higher)\n- 2T7 matches double T7 exalted items (at least 2 affixes are tier 7)\n- 3T6+&T7 matches triple exalted items where at least 1 affix is T7 (e.g. T7/T7/T7 or T7/T6/T6 would both match)\n- WW&PT20+ would match Weaver's Will items that have 20 or more Weaver's Will and legendary affix tiers\n- LP3+|WW20+ to find high potential uniques\n- prefixes1&T7 to find T7 exalts with an open prefix\n- T7&/boots/ to find boots with at least 1 T7 affix\n- /crit/&/ring/&LP1+ to find LP1+ rings that have crit\r"
+  },
+  {
+    "id": 346452444372705280,
+    "text": "<b>Regex</b>\n- Wrap your search in / to search using case-insensitive regex\n- e.g. /1[4-9] attunement/ to find items with 14-19 attunement\r"
+  },
+  {
+    "id": 346452451108757504,
+    "text": "<b>Macros</b>\n Macros are case-insensitive short hands that match supported properties of items with an optional quantifier e.g.\n- LP0 (is unique with no legendary potential)\n- T6+ (has tier 6 or higher affix)\n- prefixes2 (has 2 prefixes)\n Most macros match a number on the item and are of the form: Macro[number][+/-]\n If a number is provided, the item must exactly match that number.\n If + or - is provided, the item must be greater/less than or equal to that number. For example:\n - WW matches any Weaver’s Will item and the macro matches the amount of Weaver’s Will on the item\n - WW0 matches any Weaver’s Will item with no Weaver’s Will left\n - WW15+ matches any Weaver’s Will item with at least 15 Weaver’s Will"
+  },
+  {
+    "id": 346452457085640704,
+    "text": "<b>Expressions</b>\n Macros and regex can be combined into expressions\n - Combining with | means either the left or right macro must match\n - Combining with & means both the left and right macro must match\r"
+  },
+  {
+    "id": 346452462034919424,
+    "text": "<b>Supported Macros</b>\n- Item Potential\n- LP (is non-WW unique)\n- WW (is WW unique or legendary)\n- WT (is enchantable idol)\n- FP (is forgeable equipment)\n- PT (potential tier) matches items that could be used for unique rerolling in the Gauntlet of Strife."
+  },
+  {
+    "id": 346452468888412160,
+    "text": "Item Types\n- Set (grants set bonus)\n- RealSet (is set item)\n- ReforgedSet (is reforged set item)\n- Experimental (is boots/gloves/belt)\n- WeaverIdol (is a weaver idol)"
+  },
+  {
+    "id": 346452480137535488,
+    "text": "Class Requirement\n- Acolyte, Mage, Primalist, Rogue, Sentinel"
+  },
+  {
+    "id": 346452487473373184,
+    "text": "Equipment Requirements\n- Lvl (required level)\n- CoF (Circle of Fortune tagged)\n- MG (Merchant's Guild tagged)\n- Trade (can be traded)"
+  },
+  {
+    "id": 346453068535472128,
+    "text": "Affix Tier\n- T (at least 1 affix tier matches)"
+  },
+  {
+    "id": 346453074613018624,
+    "text": "Affix Tier Count\n- These work the same as affix tier macros, but instead of matching any affix, they match if at least a certain number of affixes are matching tiers\n- Available affix tier counts are 1-5 (1T, 2T, 3T, 4T, 5T)"
+  },
+  {
+    "id": 346453115532648448,
+    "text": "Affix Type Counts\n- Prefixes\n- Suffixes\n- Affixes\n- Sealed\n- Experimental\n- Personal"
+  },
+  {
+    "id": 346453280490430464,
+    "text": "stash searching"
+  },
+  {
+    "id": 346453313919033344,
+    "text": "stash"
+  },
+  {
+    "id": 346453335196737536,
+    "text": "stash searching"
+  },
+  {
+    "id": 346453361922842624,
+    "text": "searching"
+  },
+  {
+    "id": 346453380755267584,
+    "text": "macros"
+  },
+  {
+    "id": 346453404977373184,
+    "text": "expressions"
+  },
+  {
+    "id": 346453442294095872,
+    "text": "regex"
+  }
+]

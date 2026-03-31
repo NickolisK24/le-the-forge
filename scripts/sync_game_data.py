@@ -962,6 +962,302 @@ def sync_set_items(dry_run: bool = False) -> dict | None:
     return out
 
 
+# ---------------------------------------------------------------------------
+# Passthrough syncs — copy export data into data/ with light normalization
+# ---------------------------------------------------------------------------
+
+def sync_actors(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/actors.json → data/actors.json.
+    Source: {"meta": {...}, "actors": [{id, name, level, actorType, monsterForgeCategory, tags, ...}]}
+    """
+    src_path = SRC_DIR / "actors.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping actors sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    actors = raw.get("actors", [])
+    out_path = DATA_DIR / "actors.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(actors, f, indent=2, ensure_ascii=False)
+        print(f"  actors: {len(actors)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] actors: would write {len(actors)} entries → {out_path.name}")
+    return actors
+
+
+def sync_classes(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/classes.json → data/classes.json.
+    Source: {"meta": {...}, "classes": [{id, name, treeID, baseHealth, baseMana, masteries, ...}]}
+    """
+    src_path = SRC_DIR / "classes.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping classes sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    classes = raw.get("classes", [])
+    out_path = DATA_DIR / "classes.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(classes, f, indent=2, ensure_ascii=False)
+        print(f"  classes: {len(classes)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] classes: would write {len(classes)} entries → {out_path.name}")
+    return classes
+
+
+def sync_community_skill_trees(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/community_skill_trees.json → data/community_skill_trees.json.
+    Source: {"meta": {...}, "skillTrees": [{id, ability, nodes: [...]}]}
+    """
+    src_path = SRC_DIR / "community_skill_trees.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping community_skill_trees sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    trees = raw.get("skillTrees", [])
+    out_path = DATA_DIR / "community_skill_trees.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(trees, f, indent=2, ensure_ascii=False)
+        print(f"  community_skill_trees: {len(trees)} skill trees → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] community_skill_trees: would write {len(trees)} skill trees → {out_path.name}")
+    return trees
+
+
+def sync_dungeons(dry_run: bool = False) -> dict | None:
+    """
+    Copy exports_json/dungeons.json → data/dungeons.json.
+    Source: {"meta": {...}, "dungeons": [{id, name, mods}], "vaultModStrings": [{id, text}]}
+    """
+    src_path = SRC_DIR / "dungeons.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping dungeons sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    out = {
+        "dungeons": raw.get("dungeons", []),
+        "vault_mod_strings": raw.get("vaultModStrings", []),
+    }
+    out_path = DATA_DIR / "dungeons.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  dungeons: {len(out['dungeons'])} dungeons, {len(out['vault_mod_strings'])} vault mods → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] dungeons: would write {len(out['dungeons'])} dungeons → {out_path.name}")
+    return out
+
+
+def sync_items(dry_run: bool = False) -> dict | None:
+    """
+    Copy exports_json/items.json → data/items.json.
+    Source: {"_meta": {...}, "equippable": [{name, displayName, baseTypeID, ...}], "nonEquippable": [...]}
+    This is raw base item type data, distinct from the curated data/base_items.json.
+    """
+    src_path = SRC_DIR / "items.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping items sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    out = {
+        "equippable": raw.get("equippable", []),
+        "non_equippable": raw.get("nonEquippable", []),
+    }
+    out_path = DATA_DIR / "items.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  items: {len(out['equippable'])} equippable, {len(out['non_equippable'])} non-equippable → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] items: would write {len(out['equippable'])} equippable base types → {out_path.name}")
+    return out
+
+
+def sync_loot_tables(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/loot_tables.json → data/loot_tables.json.
+    Source: {"_meta": {...}, "lootTables": [{name, lootGroups, category}]}
+    """
+    src_path = SRC_DIR / "loot_tables.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping loot_tables sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    tables = raw.get("lootTables", [])
+    out_path = DATA_DIR / "loot_tables.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(tables, f, indent=2, ensure_ascii=False)
+        print(f"  loot_tables: {len(tables)} tables → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] loot_tables: would write {len(tables)} tables → {out_path.name}")
+    return tables
+
+
+def sync_quests(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/quests.json → data/quests.json.
+    Source: {"meta": {...}, "quests": [{id, displayName, chapter, mainLine, ...}]}
+    """
+    src_path = SRC_DIR / "quests.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping quests sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    quests = raw.get("quests", [])
+    out_path = DATA_DIR / "quests.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(quests, f, indent=2, ensure_ascii=False)
+        print(f"  quests: {len(quests)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] quests: would write {len(quests)} entries → {out_path.name}")
+    return quests
+
+
+def sync_skills_with_trees(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/skills_with_trees.json → data/skills_with_trees.json.
+    Source: {"meta": {...}, "skills": [{id, name, description, tags, nodes, ...}]}
+    Full skill data including tree node definitions for all 182 skills.
+    """
+    src_path = SRC_DIR / "skills_with_trees.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping skills_with_trees sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    skills = raw.get("skills", [])
+    out_path = DATA_DIR / "skills_with_trees.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(skills, f, indent=2, ensure_ascii=False)
+        print(f"  skills_with_trees: {len(skills)} skills → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] skills_with_trees: would write {len(skills)} skills → {out_path.name}")
+    return skills
+
+
+def sync_unmatched_trees(dry_run: bool = False) -> list[dict] | None:
+    """
+    Copy exports_json/unmatched_trees.json → data/unmatched_trees.json.
+    Source: array of skill tree entries that couldn't be matched to a known skill.
+    """
+    src_path = SRC_DIR / "unmatched_trees.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping unmatched_trees sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        trees = json.load(f)
+
+    if not isinstance(trees, list):
+        trees = []
+
+    out_path = DATA_DIR / "unmatched_trees.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(trees, f, indent=2, ensure_ascii=False)
+        print(f"  unmatched_trees: {len(trees)} entries → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] unmatched_trees: would write {len(trees)} entries → {out_path.name}")
+    return trees
+
+
+def sync_zones(dry_run: bool = False) -> dict | None:
+    """
+    Copy exports_json/zones.json → data/zones.json.
+    Source: {"meta": {...}, "zones": [{id, name}], "mapObjects": [{id, name}]}
+    """
+    src_path = SRC_DIR / "zones.json"
+    if not src_path.exists():
+        print(f"  [WARN] {src_path} not found — skipping zones sync")
+        return None
+
+    with open(src_path, encoding="utf-8") as f:
+        raw = json.load(f)
+
+    out = {
+        "zones": raw.get("zones", []),
+        "map_objects": raw.get("mapObjects", []),
+    }
+    out_path = DATA_DIR / "zones.json"
+    if not dry_run:
+        with open(out_path, "w", encoding="utf-8") as f:
+            json.dump(out, f, indent=2, ensure_ascii=False)
+        print(f"  zones: {len(out['zones'])} zones, {len(out['map_objects'])} map objects → {out_path.name}")
+    else:
+        print(f"  [DRY RUN] zones: would write {len(out['zones'])} zones → {out_path.name}")
+    return out
+
+
+def sync_localization(dry_run: bool = False) -> dict[str, int] | None:
+    """
+    Copy all files from exports_json/localization/ → data/localization/.
+    Handles all 20+ localization files as direct passthroughs.
+    Returns a dict of {filename: entry_count} for reporting.
+    """
+    src_dir = SRC_DIR / "localization"
+    if not src_dir.exists():
+        print(f"  [WARN] {src_dir} not found — skipping localization sync")
+        return None
+
+    out_dir = DATA_DIR / "localization"
+    if not dry_run:
+        out_dir.mkdir(exist_ok=True)
+
+    results: dict[str, int] = {}
+    for src_file in sorted(src_dir.glob("*.json")):
+        with open(src_file, encoding="utf-8") as f:
+            data = json.load(f)
+
+        count = len(data) if isinstance(data, list) else len(data)
+        results[src_file.name] = count
+
+        out_path = out_dir / src_file.name
+        if not dry_run:
+            with open(out_path, "w", encoding="utf-8") as f:
+                json.dump(data, f, indent=2, ensure_ascii=False)
+
+    total_files = len(results)
+    total_entries = sum(results.values())
+    if not dry_run:
+        print(f"  localization: {total_files} files, {total_entries} total entries → data/localization/")
+        for fname, count in results.items():
+            print(f"    {fname}: {count} entries")
+    else:
+        print(f"  [DRY RUN] localization: would write {total_files} files, {total_entries} total entries → data/localization/")
+    return results
+
+
 def main():
     parser = argparse.ArgumentParser(description="Sync game data from last-epoch-data exports.")
     parser.add_argument("--dry-run", action="store_true", help="Preview changes without writing files")
@@ -975,6 +1271,17 @@ def main():
     parser.add_argument("--timelines", action="store_true", help="Sync timelines.json")
     parser.add_argument("--uniques", action="store_true", help="Sync uniques.json")
     parser.add_argument("--set-items", action="store_true", dest="set_items", help="Sync set_items.json")
+    parser.add_argument("--actors", action="store_true", help="Sync actors.json")
+    parser.add_argument("--classes", action="store_true", help="Sync classes.json")
+    parser.add_argument("--community-skill-trees", action="store_true", dest="community_skill_trees", help="Sync community_skill_trees.json")
+    parser.add_argument("--dungeons", action="store_true", help="Sync dungeons.json")
+    parser.add_argument("--items", action="store_true", help="Sync items.json (base item types)")
+    parser.add_argument("--loot-tables", action="store_true", dest="loot_tables", help="Sync loot_tables.json")
+    parser.add_argument("--quests", action="store_true", help="Sync quests.json")
+    parser.add_argument("--skills-with-trees", action="store_true", dest="skills_with_trees", help="Sync skills_with_trees.json")
+    parser.add_argument("--unmatched-trees", action="store_true", dest="unmatched_trees", help="Sync unmatched_trees.json")
+    parser.add_argument("--zones", action="store_true", help="Sync zones.json")
+    parser.add_argument("--localization", action="store_true", help="Sync all localization/ files")
     args = parser.parse_args()
 
     if not SRC_DIR.exists():
@@ -985,7 +1292,10 @@ def main():
     # If no specific flags given, default to running all
     specific_flags = [args.affixes, args.skills, args.passives, args.blessings,
                       args.ailments, args.monster_mods, args.timelines,
-                      args.uniques, args.set_items]
+                      args.uniques, args.set_items, args.actors, args.classes,
+                      args.community_skill_trees, args.dungeons, args.items,
+                      args.loot_tables, args.quests, args.skills_with_trees,
+                      args.unmatched_trees, args.zones, args.localization]
     run_all = args.all or not any(specific_flags)
 
     print(f"{'[DRY RUN] ' if args.dry_run else ''}Syncing game data from {SRC_DIR.name}...\n")
@@ -1045,6 +1355,61 @@ def main():
     # --- Set Items ---
     if run_all or args.set_items:
         sync_set_items(dry_run=args.dry_run)
+        print()
+
+    # --- Actors ---
+    if run_all or args.actors:
+        sync_actors(dry_run=args.dry_run)
+        print()
+
+    # --- Classes ---
+    if run_all or args.classes:
+        sync_classes(dry_run=args.dry_run)
+        print()
+
+    # --- Community Skill Trees ---
+    if run_all or args.community_skill_trees:
+        sync_community_skill_trees(dry_run=args.dry_run)
+        print()
+
+    # --- Dungeons ---
+    if run_all or args.dungeons:
+        sync_dungeons(dry_run=args.dry_run)
+        print()
+
+    # --- Items (base types) ---
+    if run_all or args.items:
+        sync_items(dry_run=args.dry_run)
+        print()
+
+    # --- Loot Tables ---
+    if run_all or args.loot_tables:
+        sync_loot_tables(dry_run=args.dry_run)
+        print()
+
+    # --- Quests ---
+    if run_all or args.quests:
+        sync_quests(dry_run=args.dry_run)
+        print()
+
+    # --- Skills With Trees ---
+    if run_all or args.skills_with_trees:
+        sync_skills_with_trees(dry_run=args.dry_run)
+        print()
+
+    # --- Unmatched Trees ---
+    if run_all or args.unmatched_trees:
+        sync_unmatched_trees(dry_run=args.dry_run)
+        print()
+
+    # --- Zones ---
+    if run_all or args.zones:
+        sync_zones(dry_run=args.dry_run)
+        print()
+
+    # --- Localization ---
+    if run_all or args.localization:
+        sync_localization(dry_run=args.dry_run)
         print()
 
     print("Done.")
