@@ -270,7 +270,7 @@ def sync_skills_metadata(dry_run: bool = False) -> dict | None:
                 "class": skill.get("class", ""),
             }
 
-    out_path = DATA_DIR / "skills_metadata.json"
+    out_path = DATA_DIR / "classes" / "skills_metadata.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(metadata, f, indent=2, ensure_ascii=False)
@@ -476,7 +476,7 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
         if colliding_raw_ids:
             print(f"  [INFO] {cls}: {len(colliding_raw_ids)} raw node ID(s) shared across masteries — disambiguated with mastery prefix")
 
-    out_path = DATA_DIR / "passives.json"
+    out_path = DATA_DIR / "classes" / "passives.json"
     total = len(nodes_out)
 
     if not dry_run:
@@ -548,7 +548,7 @@ def sync_blessings(dry_run: bool = False) -> list[dict] | None:
             "stats": implicits,
         })
 
-    out_path = DATA_DIR / "blessings.json"
+    out_path = DATA_DIR / "progressions" / "blessings.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -609,7 +609,7 @@ def sync_ailments(dry_run: bool = False) -> list[dict] | None:
             "tags": entry.get("tags", 0),
         })
 
-    out_path = DATA_DIR / "ailments.json"
+    out_path = DATA_DIR / "combat" / "ailments.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -681,7 +681,7 @@ def sync_monster_mods(dry_run: bool = False) -> list[dict] | None:
             "stats": stats,
         })
 
-    out_path = DATA_DIR / "monster_mods.json"
+    out_path = DATA_DIR / "combat" / "monster_mods.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -767,7 +767,7 @@ def sync_timelines(dry_run: bool = False) -> list[dict] | None:
             "difficulties": difficulties,
         })
 
-    out_path = DATA_DIR / "timelines.json"
+    out_path = DATA_DIR / "progressions" / "timelines.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -829,7 +829,7 @@ def sync_uniques(dry_run: bool = False) -> dict | None:
     with open(src_path, encoding="utf-8") as f:
         raw = json.load(f)
 
-    existing_path = DATA_DIR / "uniques.json"
+    existing_path = DATA_DIR / "items" / "uniques.json"
     existing: dict = {}
     if existing_path.exists():
         with open(existing_path, encoding="utf-8") as f:
@@ -885,7 +885,7 @@ def sync_uniques(dry_run: bool = False) -> dict | None:
         if slug not in out:
             out[slug] = val
 
-    out_path = DATA_DIR / "uniques.json"
+    out_path = DATA_DIR / "items" / "uniques.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -929,7 +929,7 @@ def sync_set_items(dry_run: bool = False) -> dict | None:
     else:
         print(f"  [WARN] {bonuses_src} not found — set bonus descriptions will be skipped")
 
-    existing_path = DATA_DIR / "set_items.json"
+    existing_path = DATA_DIR / "items" / "set_items.json"
     existing: dict = {}
     if existing_path.exists():
         with open(existing_path, encoding="utf-8") as f:
@@ -1006,7 +1006,7 @@ def sync_set_items(dry_run: bool = False) -> dict | None:
         if slug not in out and slug not in ("_meta", "sets"):
             out[slug] = val
 
-    out_path = DATA_DIR / "set_items.json"
+    out_path = DATA_DIR / "items" / "set_items.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -1043,7 +1043,7 @@ def sync_actors(dry_run: bool = False) -> list[dict] | None:
             seen_ids.add(a["id"])
             actors.append(a)
     dupes_removed = len(actors_raw) - len(actors)
-    out_path = DATA_DIR / "actors.json"
+    out_path = DATA_DIR / "entities" / "actors.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(actors, f, indent=2, ensure_ascii=False)
@@ -1067,7 +1067,7 @@ def sync_classes(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     classes = raw.get("classes", [])
-    out_path = DATA_DIR / "classes.json"
+    out_path = DATA_DIR / "classes" / "classes.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(classes, f, indent=2, ensure_ascii=False)
@@ -1091,7 +1091,7 @@ def sync_community_skill_trees(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     trees = raw.get("skillTrees", [])
-    out_path = DATA_DIR / "community_skill_trees.json"
+    out_path = DATA_DIR / "classes" / "community_skill_trees.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(trees, f, indent=2, ensure_ascii=False)
@@ -1118,7 +1118,7 @@ def sync_dungeons(dry_run: bool = False) -> dict | None:
         "dungeons": raw.get("dungeons", []),
         "vault_mod_strings": raw.get("vaultModStrings", []),
     }
-    out_path = DATA_DIR / "dungeons.json"
+    out_path = DATA_DIR / "world" / "dungeons.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -1146,7 +1146,7 @@ def sync_items(dry_run: bool = False) -> dict | None:
         "equippable": raw.get("equippable", []),
         "non_equippable": raw.get("nonEquippable", []),
     }
-    out_path = DATA_DIR / "items.json"
+    out_path = DATA_DIR / "items" / "items.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -1170,7 +1170,7 @@ def sync_loot_tables(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     tables = raw.get("lootTables", [])
-    out_path = DATA_DIR / "loot_tables.json"
+    out_path = DATA_DIR / "world" / "loot_tables.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(tables, f, indent=2, ensure_ascii=False)
@@ -1194,7 +1194,7 @@ def sync_quests(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     quests = raw.get("quests", [])
-    out_path = DATA_DIR / "quests.json"
+    out_path = DATA_DIR / "world" / "quests.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(quests, f, indent=2, ensure_ascii=False)
@@ -1219,7 +1219,7 @@ def sync_skills_with_trees(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     skills = raw.get("skills", [])
-    out_path = DATA_DIR / "skills_with_trees.json"
+    out_path = DATA_DIR / "classes" / "skills_with_trees.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(skills, f, indent=2, ensure_ascii=False)
@@ -1245,7 +1245,7 @@ def sync_unmatched_trees(dry_run: bool = False) -> list[dict] | None:
     if not isinstance(trees, list):
         trees = []
 
-    out_path = DATA_DIR / "unmatched_trees.json"
+    out_path = DATA_DIR / "classes" / "unmatched_trees.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(trees, f, indent=2, ensure_ascii=False)
@@ -1272,7 +1272,7 @@ def sync_zones(dry_run: bool = False) -> dict | None:
         "zones": raw.get("zones", []),
         "map_objects": raw.get("mapObjects", []),
     }
-    out_path = DATA_DIR / "zones.json"
+    out_path = DATA_DIR / "world" / "zones.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(out, f, indent=2, ensure_ascii=False)
@@ -1365,7 +1365,7 @@ def main():
 
     # --- Affixes ---
     if run_all or args.affixes:
-        affixes_path = DATA_DIR / "affixes.json"
+        affixes_path = DATA_DIR / "items" / "affixes.json"
         with open(affixes_path, encoding="utf-8") as f:
             existing_affixes = json.load(f)
 

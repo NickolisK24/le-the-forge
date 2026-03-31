@@ -55,7 +55,7 @@ def _get_skill_id_map() -> Dict[str, str]:
         # current_app.root_path = .../backend/app
         # go up two levels to reach project root
         project_root = os.path.dirname(os.path.dirname(current_app.root_path))
-        data_path = os.path.join(project_root, "data", "skills_metadata.json")
+        data_path = os.path.join(project_root, "data", "classes", "skills_metadata.json")
         with open(data_path) as f:
             skills_data: dict = json_lib.load(f)
         _SKILL_ID_TO_NAME = {

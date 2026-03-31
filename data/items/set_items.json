@@ -5,148 +5,9 @@
     "set_count": 18,
     "total_items": 47
   },
-  "sets": {
-    "1": {
-      "name": "Isadora's",
-      "items": [
-        "isadoras_revenge",
-        "isadoras_tomb_binding",
-        "isadoras_gravechill"
-      ]
-    },
-    "2": {
-      "name": "The Invoker's",
-      "items": [
-        "the_invokers_frozen_heart",
-        "the_invokers_scorching_grasp",
-        "the_invokers_static_touch"
-      ]
-    },
-    "3": {
-      "name": "Bee Keeper",
-      "items": [
-        "bee_keeper_helmet",
-        "bee_keeper_armor",
-        "bee_keeper_belt"
-      ]
-    },
-    "4": {
-      "name": "Sunforged",
-      "items": [
-        "sunforged_hammer",
-        "sunforged_cuirass",
-        "sunforged_greathelm"
-      ]
-    },
-    "5": {
-      "name": "of the Forgotten Knight",
-      "items": [
-        "blade_of_the_forgotten_knight",
-        "defiance_of_the_forgotten_knight",
-        "locket_of_the_forgotten_knight"
-      ]
-    },
-    "6": {
-      "name": "The Last Bear's",
-      "items": [
-        "the_last_bears_fury",
-        "the_last_bears_scorn",
-        "the_last_bears_lament"
-      ]
-    },
-    "7": {
-      "name": "Halvar's",
-      "items": [
-        "halvars_pledge",
-        "halvars_stand",
-        "last_gift_of_the_mountain"
-      ]
-    },
-    "8": {
-      "name": "Pebbles'",
-      "items": [
-        "pebbles_femur",
-        "pebbles_collar",
-        "pebbles_bitemarked_sash"
-      ]
-    },
-    "9": {
-      "name": "of the Shattered Lance",
-      "items": [
-        "shard_of_the_shattered_lance",
-        "fragments_of_the_shattered_lance"
-      ]
-    },
-    "10": {
-      "name": "Boardman's",
-      "items": [
-        "boardmans_plank",
-        "boardmans_fallacy",
-        "boardmans_legacy"
-      ]
-    },
-    "11": {
-      "name": "Zerrick's",
-      "items": [
-        "zerricks_guile",
-        "zerricks_greed",
-        "zerricks_ambition"
-      ]
-    },
-    "12": {
-      "name": "Gaspar's",
-      "items": [
-        "gaspars_will",
-        "gaspars_acuity",
-        "gaspars_insight"
-      ]
-    },
-    "13": {
-      "name": "Sinathia's",
-      "items": [
-        "sinathias_dying_breath",
-        "sinathias_resurrection"
-      ]
-    },
-    "14": {
-      "name": "Ruby Fang",
-      "items": [
-        "ruby_fang_cleaver",
-        "ruby_fang_aegis"
-      ]
-    },
-    "15": {
-      "name": "Vilatria's",
-      "items": [
-        "vilatrias_storm_crown",
-        "vilatrias_downfall"
-      ]
-    },
-    "16": {
-      "name": "Corsair's",
-      "items": [
-        "corsairs_boarding_shield",
-        "corsairs_blood_cowl"
-      ]
-    },
-    "17": {
-      "name": "Ferebor's",
-      "items": [
-        "ferebors_chisel",
-        "ferebors_persistence"
-      ]
-    },
-    "18": {
-      "name": "Lich's",
-      "items": [
-        "lichs_envy",
-        "lichs_scorn"
-      ]
-    }
-  },
   "isadoras_revenge": {
     "name": "Isadora's Revenge",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 1,
     "set": "Isadora's",
     "base": "Bronze Casque",
@@ -154,6 +15,9 @@
       "+6–12% Necrotic Penetration",
       "+180–300 Stun Avoidance",
       "+40–82 Health"
+    ],
+    "unique_effects": [
+      "36–48% Increased Duration of Chill Applied by Necrotic Spells"
     ],
     "tags": [
       "necrotic",
@@ -173,6 +37,7 @@
       "+0.2–0.35 increased Armour",
       "+80% Physical Lightning Fire Necrotic Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "fire",
       "lightning",
@@ -190,6 +55,9 @@
     "affixes": [
       "+12–20 Cold Spell Damage",
       "+48–80 Health"
+    ],
+    "unique_effects": [
+      "+100% chance to chill with necrotic abilities if you have killed an enemy in the last 5 seconds"
     ],
     "tags": [
       "cold",
@@ -209,6 +77,7 @@
       "+1 Lightning Cold Necrotic Elemental Level Of Skills",
       "+30–60% Physical Melee Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -225,13 +94,13 @@
     "set_id": 2,
     "set": "The Invoker's",
     "base": "Ruby Ring",
-    "level_req": 35,
     "affixes": [
       "+30–75% Ailment Chance",
       "+30–75% increased Fire DoT Damage",
       "+13% increased Fire Cast Speed",
       "+1 Void Poison Spell Level Of Skills"
     ],
+    "unique_effects": [],
     "tags": [
       "dot",
       "fire",
@@ -247,13 +116,13 @@
     "set_id": 2,
     "set": "The Invoker's",
     "base": "Sapphire Ring",
-    "level_req": 29,
     "affixes": [
       "+30–75% Spell Ailment Chance",
       "+5–10% Fire Necrotic Poison Elemental Player Property",
       "+13 Lightning Spell Damage",
       "+1 Lightning Cold Necrotic Spell Level Of Skills"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -267,29 +136,33 @@
   },
   "bee_keeper_helmet": {
     "name": "Bee Keeper Helmet",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 3,
     "set": "Bee Keeper",
     "base": "Refuge Helmet",
     "affixes": [
       "+500% Cold Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold"
-    ]
+    ],
+    "lore": ""
   },
   "bee_keeper_armor": {
     "name": "Bee Keeper Armor",
-    "slot": "body",
+    "slot": "chest",
     "set_id": 3,
     "set": "Bee Keeper",
     "base": "Refuge Armor",
     "affixes": [
       "+7 Cold Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold"
-    ]
+    ],
+    "lore": ""
   },
   "bee_keeper_belt": {
     "name": "Bee Keeper Belt",
@@ -300,17 +173,18 @@
     "affixes": [
       "+300% Cold Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold"
-    ]
+    ],
+    "lore": ""
   },
   "sunforged_hammer": {
     "name": "Sunforged Hammer",
-    "slot": "mace",
+    "slot": "mace_2h",
     "set_id": 4,
     "set": "Sunforged",
     "base": "Great Hammer",
-    "level_req": 68,
     "affixes": [
       "+25–42% Increased Stun Duration",
       "+42–84 Physical Melee Damage",
@@ -318,6 +192,7 @@
       "+25–42% Cold Fire Void Poison Elemental Ability Property",
       "+10–25 Lightning Melee Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -327,21 +202,22 @@
       "physical",
       "poison",
       "void"
-    ]
+    ],
+    "lore": ""
   },
   "sunforged_cuirass": {
     "name": "Sunforged Cuirass",
-    "slot": "body",
+    "slot": "chest",
     "set_id": 4,
     "set": "Sunforged",
     "base": "Solarum Plate",
-    "level_req": 60,
     "affixes": [
       "+500–800 Armour",
       "+50–80% Fire Resistance",
       "+10–20% Physical Cold Necrotic Player Property",
       "+15–25% Cold Fire Void Poison Elemental Ability Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -350,11 +226,12 @@
       "physical",
       "poison",
       "void"
-    ]
+    ],
+    "lore": ""
   },
   "sunforged_greathelm": {
     "name": "Sunforged Greathelm",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 4,
     "set": "Sunforged",
     "base": "Solarum Greathelm",
@@ -364,26 +241,30 @@
       "+10–12% Cold Fire Void Poison Elemental Ability Property",
       "+300–600% Cold Fire Void Poison Elemental Ability Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
       "fire",
       "poison",
       "void"
-    ]
+    ],
+    "lore": ""
   },
   "blade_of_the_forgotten_knight": {
     "name": "Blade of the Forgotten Knight",
-    "slot": "sword",
+    "slot": "sword_1h",
     "set_id": 5,
     "set": "of the Forgotten Knight",
     "base": "Longsword",
-    "level_req": 60,
     "affixes": [
       "+25–35 Void Melee Damage",
       "+35–50 Void Spell Damage",
       "+30–70% increased Void Damage",
       "+15–25% Haste On Hit Chance"
+    ],
+    "unique_effects": [
+      "15% increased Attack and Cast Speed"
     ],
     "tags": [
       "melee",
@@ -398,7 +279,6 @@
     "set_id": 5,
     "set": "of the Forgotten Knight",
     "base": "Tower Shield",
-    "level_req": 40,
     "affixes": [
       "+70–105% increased Void Damage",
       "+14–21% Block Chance",
@@ -407,6 +287,7 @@
       "-50% more Void Damage Taken",
       "+21–28% Ailment Chance"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "lightning",
@@ -428,6 +309,9 @@
       "+21–28% Ailment Chance",
       "+15–20% Fire Necrotic Player Property"
     ],
+    "unique_effects": [
+      "+2–3% Critical Strike Chance with Void Skills"
+    ],
     "tags": [
       "fire",
       "necrotic",
@@ -441,13 +325,13 @@
     "set_id": 6,
     "set": "The Last Bear's",
     "base": "Plated Gauntlets",
-    "level_req": 31,
     "affixes": [
       "+30–75% increased Physical Melee Damage",
       "+3% Physical Cold Fire Necrotic Player Property",
       "+30–100% Melee Increased Stun Chance",
       "+3% Physical Lightning Void Ability Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "fire",
@@ -461,7 +345,7 @@
   },
   "the_last_bears_scorn": {
     "name": "The Last Bear's Scorn",
-    "slot": "body",
+    "slot": "chest",
     "set_id": 6,
     "set": "The Last Bear's",
     "base": "Banded Armor",
@@ -471,6 +355,7 @@
       "+15–30% Physical Health Leech",
       "+20–30% Endurance"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "fire",
@@ -482,17 +367,17 @@
   },
   "the_last_bears_lament": {
     "name": "The Last Bear's Lament",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 6,
     "set": "The Last Bear's",
     "base": "Dome Cap",
-    "level_req": 20,
     "affixes": [
       "+25–45% Void Resistance",
       "+50–150 Endurance Threshold",
       "+10–20 Health Regen",
       "+100% Void Necrotic Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "necrotic",
       "void"
@@ -512,6 +397,7 @@
       "+30 Mana",
       "+5–10% Mana Efficiency"
     ],
+    "unique_effects": [],
     "tags": [
       "physical",
       "spell"
@@ -530,6 +416,7 @@
       "+30–60% Fire Void Necrotic Player Property",
       "+15–30% Poison Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "fire",
       "necrotic",
@@ -544,13 +431,13 @@
     "set_id": 7,
     "set": "Halvar's",
     "base": "Overgrowth Bloom",
-    "level_req": 42,
     "affixes": [
       "+30–60% Physical Cold Void Necrotic Player Property",
       "+30–60% Spell Increased Stun Chance",
       "+50–100% Spell Ailment Chance",
       "+50–100% Spell Ailment Chance"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "necrotic",
@@ -566,11 +453,13 @@
     "set_id": 8,
     "set": "Pebbles'",
     "base": "Ivory Wand",
-    "level_req": 30,
     "affixes": [
       "+80–120% increased Melee Minion Damage",
       "+3 Intelligence",
       "+24–42% Lightning Resistance"
+    ],
+    "unique_effects": [
+      "+3 Melee Lightning Damage for Minions"
     ],
     "tags": [
       "lightning",
@@ -585,11 +474,13 @@
     "set_id": 8,
     "set": "Pebbles'",
     "base": "Reliquary Text",
-    "level_req": 12,
     "affixes": [
       "+24–42% increased Minion Damage",
       "+3 Intelligence",
       "+24–42% Cold Resistance"
+    ],
+    "unique_effects": [
+      "+3 Melee Cold Damage for Minions"
     ],
     "tags": [
       "cold",
@@ -604,11 +495,13 @@
     "set_id": 8,
     "set": "Pebbles'",
     "base": "Sash",
-    "level_req": 12,
     "affixes": [
       "+24–42% increased Minion Damage",
       "+3 Intelligence",
       "+24–42% Fire Resistance"
+    ],
+    "unique_effects": [
+      "+3 Melee Fire Damage for Minions"
     ],
     "tags": [
       "fire",
@@ -619,11 +512,10 @@
   },
   "shard_of_the_shattered_lance": {
     "name": "Shard of the Shattered Lance",
-    "slot": "sword",
+    "slot": "sword_1h",
     "set_id": 9,
     "set": "of the Shattered Lance",
     "base": "Broken Sword",
-    "level_req": 68,
     "affixes": [
       "+100% Physical Cold Fire Poison Player Property",
       "+70–85 Cold Melee Damage",
@@ -631,6 +523,7 @@
       "+100–150% Freeze Rate Multiplier",
       "+5–10 Health Regen"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "fire",
@@ -652,6 +545,7 @@
       "+10–13 Health Gain",
       "+50–70% increased Cold Melee Damage"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "melee"
@@ -664,11 +558,13 @@
     "set_id": 10,
     "set": "Boardman's",
     "base": "Oak Sceptre",
-    "level_req": 63,
     "affixes": [
       "+21% Lightning Cold Fire Spell Ability Property",
       "+21 Physical Lightning Poison Elemental Ability Property",
       "+30–75% Physical Lightning Poison Elemental Ability Property"
+    ],
+    "unique_effects": [
+      "Your companions are Enraged when hit by your Storm Totem"
     ],
     "tags": [
       "cold",
@@ -683,16 +579,19 @@
   },
   "boardmans_fallacy": {
     "name": "Boardman's Fallacy",
-    "slot": "body",
+    "slot": "chest",
     "set_id": 10,
     "set": "Boardman's",
     "base": "Kolheim Armor",
-    "level_req": 63,
     "affixes": [
       "+30–75% Physical Lightning Poison Elemental Ability Property",
       "+2.21–3.21 increased Minion Health",
       "+2.21–3.21 increased Minion Health Regen",
       "+10–21% Lightning Minion Penetration"
+    ],
+    "unique_effects": [
+      "You are Frenzied for 3 seconds when hit by your Storm Totem",
+      "10–21% Increased Area of Storm Totem Aura"
     ],
     "tags": [
       "elemental",
@@ -700,18 +599,23 @@
       "minion",
       "physical",
       "poison"
-    ]
+    ],
+    "lore": ""
   },
   "boardmans_legacy": {
     "name": "Boardman's Legacy",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 10,
     "set": "Boardman's",
     "base": "Darkwolf Pelt",
-    "level_req": 63,
     "affixes": [
       "+30–75% Physical Lightning Poison Elemental Ability Property",
       "-21% more Totem Damage Taken"
+    ],
+    "unique_effects": [
+      "You gain haste for 3 seconds when hit by your Storm Totem",
+      "21% increased minion attack and cast speed",
+      "10–21% Increased Area of Storm Totem Aura"
     ],
     "tags": [
       "elemental",
@@ -720,7 +624,8 @@
       "physical",
       "poison",
       "totem"
-    ]
+    ],
+    "lore": ""
   },
   "zerricks_guile": {
     "name": "Zerrick's Guile",
@@ -728,11 +633,13 @@
     "set_id": 11,
     "set": "Zerrick's",
     "base": "Leather Belt",
-    "level_req": 49,
     "affixes": [
       "+100% Potion Crit Avoidance",
       "+125–375 Dodge Rating",
       "+75% Potion Poison Resistance"
+    ],
+    "unique_effects": [
+      "15–20% increased Melee and Throwing Attack Speed for 4 seconds when you use a Potion"
     ],
     "tags": [
       "melee",
@@ -747,15 +654,18 @@
     "set_id": 11,
     "set": "Zerrick's",
     "base": "Plated Gauntlets",
-    "level_req": 57,
     "affixes": [
       "+30–40% Health Leech",
       "+100–130% increased DoT Damage",
       "+130–390 Dodge Rating"
     ],
+    "unique_effects": [
+      "Cannot Leech Health from Damage over Time"
+    ],
     "tags": [
       "dot"
-    ]
+    ],
+    "lore": ""
   },
   "zerricks_ambition": {
     "name": "Zerrick's Ambition",
@@ -763,13 +673,13 @@
     "set_id": 11,
     "set": "Zerrick's",
     "base": "Brigandine Boots",
-    "level_req": 52,
     "affixes": [
       "+30–50% Melee FullLife Critical Multiplier",
       "+30–50% Throwing FullLife Critical Multiplier",
       "+15–23% increased Movespeed",
       "+23–35% Increased Leech Rate"
     ],
+    "unique_effects": [],
     "tags": [
       "fulllife",
       "melee",
@@ -789,6 +699,7 @@
       "+14–28% increased Fire Cast Speed",
       "+100% Physical Cold Melee Ability Property"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "fire",
@@ -801,11 +712,10 @@
   },
   "gaspars_acuity": {
     "name": "Gaspar's Acuity",
-    "slot": "body",
+    "slot": "chest",
     "set_id": 12,
     "set": "Gaspar's",
     "base": "Noble Raiment",
-    "level_req": 72,
     "affixes": [
       "+35–45% Void Resistance",
       "+235–345% Void Spell Ailment Chance",
@@ -813,6 +723,7 @@
       "+100% Physical Cold Melee Ability Property",
       "+35–45% Lightning Resistance"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "lightning",
@@ -825,11 +736,10 @@
   },
   "gaspars_insight": {
     "name": "Gaspar's Insight",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 12,
     "set": "Gaspar's",
     "base": "Bronze Casque",
-    "level_req": 80,
     "affixes": [
       "+35–45% Void Resistance",
       "+135–185% Freeze Rate Multiplier",
@@ -837,6 +747,7 @@
       "+100% Physical Cold Melee Ability Property",
       "+35–45% Cold Resistance"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "melee",
@@ -846,16 +757,18 @@
   },
   "sinathias_dying_breath": {
     "name": "Sinathia's Dying Breath",
-    "slot": "mace",
+    "slot": "mace_1h",
     "set_id": 13,
     "set": "Sinathia's",
     "base": "Morning Star",
-    "level_req": 60,
     "affixes": [
       "+91–166% increased Curse Damage",
       "+66–91 Spell Curse Damage",
       "+30–33% All Resistances",
       "+16–19% increased Block Effectiveness"
+    ],
+    "unique_effects": [
+      "+30 to 33% to All Resistances for Minions"
     ],
     "tags": [
       "curse",
@@ -870,7 +783,6 @@
     "set_id": 13,
     "set": "Sinathia's",
     "base": "Mountain Shield",
-    "level_req": 60,
     "affixes": [
       "+30–36% increased Curse Cast Speed",
       "+32–46% Fire Void Necrotic Poison Ability Property",
@@ -878,6 +790,7 @@
       "+1–1.66 increased Minion Health",
       "+12–18% Block Chance"
     ],
+    "unique_effects": [],
     "tags": [
       "curse",
       "fire",
@@ -890,11 +803,10 @@
   },
   "ruby_fang_cleaver": {
     "name": "Ruby Fang Cleaver",
-    "slot": "axe",
+    "slot": "axe_1h",
     "set_id": 14,
     "set": "Ruby Fang",
     "base": "Battle Axe",
-    "level_req": 55,
     "affixes": [
       "+55–75 Fire Melee Damage",
       "+55–75% Melee Ailment Chance",
@@ -902,10 +814,12 @@
       "+35–50% Melee Increased Ailment Effect",
       "+75% Poison Resistance"
     ],
+    "unique_effects": [],
     "tags": [
       "fire",
       "melee"
-    ]
+    ],
+    "lore": ""
   },
   "ruby_fang_aegis": {
     "name": "Ruby Fang Aegis",
@@ -913,21 +827,27 @@
     "set_id": 14,
     "set": "Ruby Fang",
     "base": "Ironglass Shield",
-    "level_req": 55,
     "affixes": [
       "-25–-7% more Poison Damage Taken",
       "+75% Fire Resistance"
+    ],
+    "unique_effects": [
+      "+55–75% Chance to Poison on Hit with Fire Skills",
+      "Gain Ruby Venom for 10 seconds on Block",
+      "15% increased Fire Damage per stack of Ruby Venom",
+      "15% increased Poison Damage per stack of Ruby Venom"
     ],
     "tags": [
       "elemental",
       "fire",
       "physical",
       "poison"
-    ]
+    ],
+    "lore": ""
   },
   "vilatrias_storm_crown": {
     "name": "Vilatria's Storm Crown",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 15,
     "set": "Vilatria's",
     "base": "Weathered Crown",
@@ -937,6 +857,7 @@
       "+4–8 Intelligence",
       "+1% Void Elemental Player Property"
     ],
+    "unique_effects": [],
     "tags": [
       "elemental",
       "lightning",
@@ -951,11 +872,13 @@
     "set_id": 15,
     "set": "Vilatria's",
     "base": "Moon Staff",
-    "level_req": 46,
     "affixes": [
       "+200–400% increased Lightning Damage",
       "+100–200 Mana",
       "+1% Physical Void Elemental Player Property"
+    ],
+    "unique_effects": [
+      "Meteor is Converted to Lightning"
     ],
     "tags": [
       "cold",
@@ -972,7 +895,6 @@
     "set_id": 16,
     "set": "Corsair's",
     "base": "Bandit Shield",
-    "level_req": 35,
     "affixes": [
       "+275–575 Block Effectiveness",
       "+35–45% Necrotic Resistance",
@@ -980,6 +902,7 @@
       "+1 Necrotic Poison Elemental Level Of Skills",
       "+1 Cold Void Poison Elemental Spell Level Of Skills"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -992,11 +915,10 @@
   },
   "corsairs_blood_cowl": {
     "name": "Corsair's Blood Cowl",
-    "slot": "helmet",
+    "slot": "helm",
     "set_id": 16,
     "set": "Corsair's",
     "base": "Gorgonscale Coif",
-    "level_req": 57,
     "affixes": [
       "+17–35% Increased Ailment Effect",
       "+17–35% increased Block Effectiveness",
@@ -1004,6 +926,7 @@
       "+35–85% Cold Void Poison Elemental Spell Ability Property",
       "+35–85% Increased Potion Drop Rate"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -1019,7 +942,6 @@
     "set_id": 17,
     "set": "Ferebor's",
     "base": "Rune Dagger",
-    "level_req": 71,
     "affixes": [
       "+10–15 Physical Melee Totem Damage",
       "+10–15 Physical Spell Totem Damage",
@@ -1027,6 +949,7 @@
       "+15–35% Totem Critical Multiplier",
       "+50 Mana"
     ],
+    "unique_effects": [],
     "tags": [
       "cold",
       "elemental",
@@ -1046,7 +969,6 @@
     "set_id": 17,
     "set": "Ferebor's",
     "base": "Ivory Ring",
-    "level_req": 72,
     "affixes": [
       "+100–181 Armour",
       "+100–181 Totem Armour",
@@ -1054,6 +976,7 @@
       "+10–18 Health Regen",
       "+10–18 Totem Health Regen"
     ],
+    "unique_effects": [],
     "tags": [
       "totem"
     ],
@@ -1065,12 +988,14 @@
     "set_id": 18,
     "set": "Lich's",
     "base": "Noble Gloves",
-    "level_req": 64,
     "affixes": [
       "+14–24 Lightning Void Necrotic Poison Spell Ability Property",
       "+28–48% Lightning Void Necrotic Poison Spell Ability Property",
       "-14–-8 Lightning Void Necrotic Poison Spell Ability Property",
       "-14–-8 Physical Lightning Fire Void Elemental Spell Ability Property"
+    ],
+    "unique_effects": [
+      "+14–24 Spell Fire Damage for Damage Over Time Spells"
     ],
     "tags": [
       "dot",
@@ -1082,7 +1007,8 @@
       "poison",
       "spell",
       "void"
-    ]
+    ],
+    "lore": ""
   },
   "lichs_scorn": {
     "name": "Lich's Scorn",
@@ -1090,12 +1016,14 @@
     "set_id": 18,
     "set": "Lich's",
     "base": "Crystal Skull",
-    "level_req": 63,
     "affixes": [
       "+9–13% Physical Lightning Fire Void Elemental Spell Ability Property",
       "+93–153% Physical Lightning Fire Void Elemental Spell Ability Property",
       "+6–15 Physical Lightning Fire Void Elemental Spell Ability Property",
       "+1% Physical Lightning Fire Void Elemental Spell Ability Property"
+    ],
+    "unique_effects": [
+      "Dread Shade is Converted to Cold"
     ],
     "tags": [
       "elemental",
@@ -1104,6 +1032,241 @@
       "physical",
       "spell",
       "void"
-    ]
+    ],
+    "lore": ""
+  },
+  "sets": {
+    "1": {
+      "name": "Isadora's",
+      "items": [
+        "isadoras_revenge",
+        "isadoras_tomb_binding",
+        "isadoras_gravechill"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "+100% Chance to apply Damned on hit with Necrotic Spells",
+          "alt_text": "Damned deals necrotic damage over time and reduces health regen by 20%. An enemy can have multiple stacks of Damned at once."
+        },
+        {
+          "pieces_required": 3,
+          "text": "30% Necrotic Penetration with Damned\n+30% Mana Efficiency with Necrotic Spells",
+          "alt_text": ""
+        }
+      ]
+    },
+    "2": {
+      "name": "The Invoker's",
+      "items": [
+        "the_invokers_frozen_heart",
+        "the_invokers_scorching_grasp",
+        "the_invokers_static_touch"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "15% increased Elemental Cast Speed",
+          "alt_text": ""
+        },
+        {
+          "pieces_required": 3,
+          "text": "+2 to Fire Spells\n+2 to Lightning Spells\n+2 to Cold Spells",
+          "alt_text": ""
+        }
+      ]
+    },
+    "3": {
+      "name": "Bee Keeper",
+      "items": [
+        "bee_keeper_helmet",
+        "bee_keeper_armor",
+        "bee_keeper_belt"
+      ],
+      "bonuses": []
+    },
+    "4": {
+      "name": "Sunforged",
+      "items": [
+        "sunforged_hammer",
+        "sunforged_cuirass",
+        "sunforged_greathelm"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "+3 to Forge Strike\n+3 to Smelter's Wrath",
+          "alt_text": ""
+        },
+        {
+          "pieces_required": 3,
+          "text": "+3 to Maximum Forged Weapons",
+          "alt_text": "Forged Weapons can be summoned by Forge Strike and modified by its tree"
+        }
+      ]
+    },
+    "5": {
+      "name": "of the Forgotten Knight",
+      "items": [
+        "blade_of_the_forgotten_knight",
+        "defiance_of_the_forgotten_knight",
+        "locket_of_the_forgotten_knight"
+      ],
+      "bonuses": []
+    },
+    "6": {
+      "name": "The Last Bear's",
+      "items": [
+        "the_last_bears_fury",
+        "the_last_bears_scorn",
+        "the_last_bears_lament"
+      ],
+      "bonuses": []
+    },
+    "7": {
+      "name": "Halvar's",
+      "items": [
+        "halvars_pledge",
+        "halvars_stand",
+        "last_gift_of_the_mountain"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "+20 Cold Spell Damage\n+20 Physical Spell Damage",
+          "alt_text": ""
+        },
+        {
+          "pieces_required": 3,
+          "text": "+100% Chance to cast Avalanche Boulder at target when you critically hit with a spell.\n+2 to Level of Avalanche",
+          "alt_text": "This is affected by your Avalanche tree and has a 1 second cooldown."
+        }
+      ]
+    },
+    "8": {
+      "name": "Pebbles'",
+      "items": [
+        "pebbles_femur",
+        "pebbles_collar",
+        "pebbles_bitemarked_sash"
+      ],
+      "bonuses": []
+    },
+    "9": {
+      "name": "of the Shattered Lance",
+      "items": [
+        "shard_of_the_shattered_lance",
+        "fragments_of_the_shattered_lance"
+      ],
+      "bonuses": []
+    },
+    "10": {
+      "name": "Boardman's",
+      "items": [
+        "boardmans_plank",
+        "boardmans_fallacy",
+        "boardmans_legacy"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 1,
+          "text": "Limited to One Active Companion",
+          "alt_text": ""
+        },
+        {
+          "pieces_required": 2,
+          "text": "Storm Totem can hit allies to grant 21 health",
+          "alt_text": "Health granted is not affected by minion healing effectiveness"
+        },
+        {
+          "pieces_required": 3,
+          "text": "Storm Totem can hit allies to grant 21 ward",
+          "alt_text": ""
+        }
+      ]
+    },
+    "11": {
+      "name": "Zerrick's",
+      "items": [
+        "zerricks_guile",
+        "zerricks_greed",
+        "zerricks_ambition"
+      ],
+      "bonuses": []
+    },
+    "12": {
+      "name": "Gaspar's",
+      "items": [
+        "gaspars_will",
+        "gaspars_acuity",
+        "gaspars_insight"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "50% Cooldown Reduction for Decimate",
+          "alt_text": "Reduces the cooldown for proccing Decimate"
+        },
+        {
+          "pieces_required": 3,
+          "text": "15% more Void Damage to Bosses and Rare Enemies\n100% Increased Area with Decimate",
+          "alt_text": ""
+        }
+      ]
+    },
+    "13": {
+      "name": "Sinathia's",
+      "items": [
+        "sinathias_dying_breath",
+        "sinathias_resurrection"
+      ],
+      "bonuses": []
+    },
+    "14": {
+      "name": "Ruby Fang",
+      "items": [
+        "ruby_fang_cleaver",
+        "ruby_fang_aegis"
+      ],
+      "bonuses": []
+    },
+    "15": {
+      "name": "Vilatria's",
+      "items": [
+        "vilatrias_storm_crown",
+        "vilatrias_downfall"
+      ],
+      "bonuses": []
+    },
+    "16": {
+      "name": "Corsair's",
+      "items": [
+        "corsairs_boarding_shield",
+        "corsairs_blood_cowl"
+      ],
+      "bonuses": []
+    },
+    "17": {
+      "name": "Ferebor's",
+      "items": [
+        "ferebors_chisel",
+        "ferebors_persistence"
+      ],
+      "bonuses": []
+    },
+    "18": {
+      "name": "Lich's",
+      "items": [
+        "lichs_envy",
+        "lichs_scorn"
+      ],
+      "bonuses": [
+        {
+          "pieces_required": 2,
+          "text": "+4 Maximum Shades",
+          "alt_text": "Affects the maximum number of Infernal and Dread Shades."
+        }
+      ]
+    }
   }
 }

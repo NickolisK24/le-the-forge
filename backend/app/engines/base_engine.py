@@ -1,7 +1,7 @@
 """
 Base Engine — loads base item data and provides FP generation/validation.
 
-Source of truth: /data/base_items.json
+Source of truth: /data/items/base_items.json
 
 base_items.json is keyed by slot category (e.g. "helmet"), each value is a list
 of named base items:
@@ -29,7 +29,7 @@ from app.utils.logging import ForgeLogger
 log = ForgeLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-BASE_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "base_items.json")
+BASE_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "items", "base_items.json")
 
 _base_cache: Optional[dict] = None
 # Secondary lookup: item_name.lower() → item dict

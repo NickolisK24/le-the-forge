@@ -2,7 +2,7 @@
 FP Engine — Forge Potential core logic.
 
 Single source of truth for all FP cost rolling, validation, and event logging.
-Costs are loaded from /data/crafting_rules.json — never hardcoded.
+Costs are loaded from /data/items/crafting_rules.json — never hardcoded.
 
 Design rules:
   - All RNG lives here, nowhere else.
@@ -24,7 +24,7 @@ log = ForgeLogger(__name__)
 # ---------------------------------------------------------------------------
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-RULES_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "crafting_rules.json")
+RULES_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "items", "crafting_rules.json")
 
 _rules_cache: Optional[dict] = None
 
@@ -157,7 +157,7 @@ def get_crafting_rules() -> dict:
 # Phase 2: rarity → {low, mid, high} tiers by item level (forward-compatible)
 # ---------------------------------------------------------------------------
 
-FP_RANGES_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "forging_potential_ranges.json")
+FP_RANGES_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "items", "forging_potential_ranges.json")
 _fp_ranges_cache: Optional[dict] = None
 
 # Item level tier thresholds (Phase 2)
