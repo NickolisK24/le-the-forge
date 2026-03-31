@@ -14,6 +14,7 @@ import json
 import os
 import re
 import sys
+from collections import Counter
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -106,7 +107,14 @@ def sync_affixes(existing: list[dict], dry_run: bool = False) -> list[dict]:
     idol_list: list[dict] = raw.get("idol", [])
 
     # Build lookup from existing curated data (by name for best match)
-    existing_by_name: dict[str, dict] = {a["name"]: a for a in existing}
+    # Only include equipment-type entries — idol entries use numeric ids now
+    # and must not pollute the equipment name→id lookup.
+    existing_by_name: dict[str, dict] = {
+        a["name"]: a for a in existing
+        if a.get("type") != "idol"
+        and not str(a.get("id", "")).startswith("idol_")
+        and a.get("rolls_on") != "idol"
+    }
     updated_names: set[str] = set()
 
     result: list[dict] = []
@@ -129,17 +137,21 @@ def sync_affixes(existing: list[dict], dry_run: bool = False) -> list[dict]:
             tiers.append({"tier": t["tier"], "min": lo, "max": hi})
 
         if is_idol:
-            # Idol affixes have a simplified schema
+            # Idol affixes: use numeric affix_id from export as the canonical key.
+            # Slugs are unreliable because many idol affixes share the same display
+            # name (same stat rolling on different idol sizes = different affix_id).
+            affix_id = raw_affix["id"]
+            canonical_id = f"idol_{affix_id}"
             entry: dict = {
-                "id": slug_id,
+                "id": canonical_id,
                 "name": name,
                 "type": "idol",
                 "tags": cur.get("tags", []),
                 "applicable_to": cur.get("applicable_to", ["idol"]),
                 "class_requirement": None,
                 "tiers": tiers if tiers else cur.get("tiers", []),
-                "stat_key": cur.get("stat_key", slug_id),
-                "affix_id": raw_affix["id"],
+                "stat_key": canonical_id,
+                "affix_id": affix_id,
                 "rolls_on": "idol",
                 "level_requirement": raw_affix.get("levelRequirement", 0),
                 "special_affix_type": 0,
@@ -189,23 +201,42 @@ def sync_affixes(existing: list[dict], dry_run: bool = False) -> list[dict]:
         }
         return entry
 
-    # Process equipment affixes
+    # Process equipment affixes — track used IDs to block legacy slug collisions.
+    # Some idol-named affixes share the same display name but roll on different
+    # idol sizes; use the export's numeric id as a suffix to keep them unique.
+    used_ids: set[str] = set()
     for raw_affix in equipment_list:
         entry = _process_affix(raw_affix, is_idol=False)
+        if entry["id"] in used_ids:
+            numeric = raw_affix.get("id")
+            if numeric is not None:
+                entry["id"] = f"{entry['id']}_{numeric}"
+                if entry.get("stat_key") == entry["id"].rsplit(f"_{numeric}", 1)[0]:
+                    entry["stat_key"] = entry["id"]
         result.append(entry)
         updated_names.add(raw_affix["name"])
+        used_ids.add(entry["id"])
 
-    # Process idol affixes (kept separate, rolls_on=idol)
+    # Process idol affixes — each gets a stable numeric id: idol_{affix_id}
     for raw_affix in idol_list:
         entry = _process_affix(raw_affix, is_idol=True)
+        used_ids.add(entry["id"])
         result.append(entry)
         updated_names.add(raw_affix["name"])
 
-    # Preserve any existing affixes not found in new data (manual entries, etc.)
+    # Preserve legacy affixes not in new data — but never if their slug already
+    # exists in the export output (game data takes priority).
+    # Idol affixes are NEVER preserved from legacy — they all come from the export
+    # with stable idol_{id} keys, so old slug-based idol entries are obsolete.
     preserved = 0
     for affix in existing:
-        if affix["name"] not in updated_names:
+        if (affix.get("type") == "idol"
+                or str(affix.get("id", "")).startswith("idol_")
+                or affix.get("rolls_on") == "idol"):
+            continue
+        if affix["name"] not in updated_names and affix.get("id") not in used_ids:
             result.append(affix)
+            used_ids.add(affix.get("id", ""))
             preserved += 1
 
     print(f"  affixes: {len(equipment_list)} equipment + {len(idol_list)} idol updated, "
@@ -364,41 +395,62 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
 
         prefix = CLASS_PREFIX[cls]
         mastery_map = MASTERY_MAP[cls]
+        all_nodes = tree.get("nodes", [])
 
-        for node in tree.get("nodes", []):
+        # Pass 1: detect raw_node_id collisions (same id used in multiple mastery subtrees)
+        raw_id_counts = Counter(n["id"] for n in all_nodes)
+        colliding_raw_ids: set[int] = {rid for rid, cnt in raw_id_counts.items() if cnt > 1}
+
+        # Build a lookup: raw_id → mastery_index (for connection ID resolution)
+        # When there are collisions, mastery_index is needed to generate the correct id.
+        raw_id_to_mastery: dict[int, int] = {}
+        for n in all_nodes:
+            rid = n["id"]
+            mid = n.get("mastery", 0)
+            if rid not in colliding_raw_ids:
+                raw_id_to_mastery[rid] = 0  # base or unambiguous
+
+        def _node_id(raw_id: int, mastery_idx: int) -> str:
+            if raw_id in colliding_raw_ids:
+                return f"{prefix}_m{mastery_idx}_{raw_id}"
+            return f"{prefix}_{raw_id}"
+
+        for node in all_nodes:
             raw_id: int = node["id"]
-            node_id = f"{prefix}_{raw_id}"
-
             mastery_idx: int = node.get("mastery", 0)
+            node_id = _node_id(raw_id, mastery_idx)
+
             mastery_name: str | None = mastery_map.get(mastery_idx)
 
-            # Connections: requirements is [{node: int, requirement: int}, ...]
-            connections = [
-                f"{prefix}_{r['nodeId']}"
-                for r in node.get("requirements", [])
-            ]
+            # Connections: requirements is [{nodeId: int, requirement: int}, ...]
+            # For colliding raw IDs, resolve the connected node's mastery by scanning.
+            connections = []
+            for r in node.get("requirements", []):
+                req_raw_id = r["nodeId"]
+                if req_raw_id in colliding_raw_ids:
+                    # Find the actual node in this tree to get its mastery
+                    req_node = next((n for n in all_nodes if n["id"] == req_raw_id), None)
+                    req_mastery = req_node.get("mastery", 0) if req_node else 0
+                    connections.append(_node_id(req_raw_id, req_mastery))
+                else:
+                    connections.append(f"{prefix}_{req_raw_id}")
 
-            # Stats: compact {key, value} pairs; source uses "statName" field
+            # Stats
             raw_stats = node.get("stats", [])
             stats = [
                 {"key": s.get("statName", ""), "value": s.get("value", "")}
                 for s in raw_stats
             ]
 
-            # Ability granted by this node (may be null)
             ability_granted = node.get("abilityGrantedByNode") or None
 
-            # x/y: source provides real coordinates in transform dict
             transform = node.get("transform", {})
             x = transform.get("x", 0.0)
             y = transform.get("y", 0.0)
 
-            # Icon: source stores integer sprite ID; stringify for consistent storage
             raw_icon = node.get("icon")
             icon = str(raw_icon) if raw_icon is not None else None
 
-            # node_type: source has no explicit type field; derive from maxPoints
-            # maxPoints==1 → notable (single-point allocatable), >1 → core (investable)
             max_pts = node.get("maxPoints", 1)
             node_type = "core" if max_pts > 1 else "notable"
 
@@ -420,6 +472,9 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
                 "ability_granted": ability_granted,
                 "icon": icon or None,
             })
+
+        if colliding_raw_ids:
+            print(f"  [INFO] {cls}: {len(colliding_raw_ids)} raw node ID(s) shared across masteries — disambiguated with mastery prefix")
 
     out_path = DATA_DIR / "passives.json"
     total = len(nodes_out)
@@ -979,14 +1034,22 @@ def sync_actors(dry_run: bool = False) -> list[dict] | None:
     with open(src_path, encoding="utf-8") as f:
         raw = json.load(f)
 
-    actors = raw.get("actors", [])
+    actors_raw = raw.get("actors", [])
+    # Deduplicate by id (export can contain exact duplicate entries)
+    seen_ids: set = set()
+    actors = []
+    for a in actors_raw:
+        if a["id"] not in seen_ids:
+            seen_ids.add(a["id"])
+            actors.append(a)
+    dupes_removed = len(actors_raw) - len(actors)
     out_path = DATA_DIR / "actors.json"
     if not dry_run:
         with open(out_path, "w", encoding="utf-8") as f:
             json.dump(actors, f, indent=2, ensure_ascii=False)
-        print(f"  actors: {len(actors)} entries → {out_path.name}")
+        print(f"  actors: {len(actors)} entries → {out_path.name}" + (f" ({dupes_removed} duplicates removed)" if dupes_removed else ""))
     else:
-        print(f"  [DRY RUN] actors: would write {len(actors)} entries → {out_path.name}")
+        print(f"  [DRY RUN] actors: would write {len(actors)} entries → {out_path.name}" + (f" ({dupes_removed} duplicates removed)" if dupes_removed else ""))
     return actors
 
 
