@@ -27,7 +27,7 @@ from app.constants.combat import (
     CRIT_CHANCE_CAP,
 )
 from app.domain.skill import SkillStatDef
-from app.domain.calculators.skill_calculator import sum_flat_damage
+from app.domain.calculators.skill_calculator import sum_flat_damage, sum_increased_damage
 from app.domain.calculators.stat_calculator import apply_more_multiplier, apply_percent_bonus
 from app.engines.stat_engine import BuildStats
 
@@ -214,33 +214,9 @@ def _get_skill_def(skill_name: str) -> SkillStatDef | None:
     return SKILL_STATS.get(skill_name)
 
 
-# Elemental stat keys — used to detect elemental skills for elemental_damage_pct
-_ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
-
-
 # ---------------------------------------------------------------------------
-# Helpers — flat added damage and ailment calculation
+# Helpers — ailment calculation
 # ---------------------------------------------------------------------------
-
-
-
-def _sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
-    """Sum all % increased damage bonuses for a skill, including implicit type bonuses."""
-    total = sum(getattr(stats, k, 0.0) for k in skill_def.scaling_stats)
-
-    # Weapon-type % bonuses (additive with other increased damage)
-    if skill_def.is_melee:
-        total += stats.melee_damage_pct
-    if skill_def.is_throwing:
-        total += stats.throwing_damage_pct
-    if skill_def.is_bow:
-        total += stats.bow_damage_pct
-
-    # Elemental damage bonus applies if skill scales with any elemental stat
-    if _ELEMENTAL_STATS.intersection(skill_def.scaling_stats):
-        total += stats.elemental_damage_pct
-
-    return total
 
 
 def _calc_ailment_dps(
@@ -324,7 +300,7 @@ def calculate_dps(
     effective_base = scaled_base + flat_added
 
     # Sum all "increased" % damage bonuses (additive pool)
-    total_damage_pct = _sum_increased_damage(stats, skill_def)
+    total_damage_pct = sum_increased_damage(stats, skill_def)
 
     # "More" damage multiplier: product of base stats multiplier and spec-tree more%
     more_mult = stats.more_damage_multiplier * apply_more_multiplier(1.0, sm.get("more_damage_pct", 0.0))
@@ -413,7 +389,7 @@ def monte_carlo_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    total_pct = _sum_increased_damage(stats, skill_def)
+    total_pct = sum_increased_damage(stats, skill_def)
     more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
     hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
 
