@@ -232,7 +232,7 @@ class TestScaleSkillDamage(unittest.TestCase):
         )
         total = sum(result.values())
         expected = 100 * (1 + 0.15 * (7 - 1))
-        assert math.isclose(total, expected, rel_tol=1e-9)
+        assert math.isclose(total, expected, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_empty_damage_types_returns_empty_dict(self):
         result = scale_skill_damage(100.0, 0.10, 10, ())
