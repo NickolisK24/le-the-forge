@@ -22,6 +22,7 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
 from app.domain.calculators.more_multiplier_calculator import apply_more_multiplier
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
+from app.domain.skill import SkillStatDef
 
 
 # ---------------------------------------------------------------------------
@@ -174,6 +175,23 @@ class TestDamagePipeline(unittest.TestCase):
     def test_debug_flag_does_not_change_result(self):
         c = ctx(100.0, 100.0, [50.0])
         assert calculate_final_damage(c, debug=True) == calculate_final_damage(c, debug=False)
+
+# ---------------------------------------------------------------------------
+# SkillStatDef — damage_types derivation
+# ---------------------------------------------------------------------------
+
+class TestSkillStatDefDamageTypes(unittest.TestCase):
+
+    def test_spell_only_skill_has_no_damage_types(self):
+        # spell_damage_pct is a SkillTag (delivery modifier), not a DamageType channel.
+        # Until skills.json adds explicit damage_types, this skill has none.
+        # UPDATE THIS TEST INTENTIONALLY when JSON is updated — not as a side effect.
+        skill = SkillStatDef.from_dict({
+            "name": "TestSpell",
+            "scaling_stats": ["spell_damage_pct"],
+        })
+        assert skill.damage_types == ()
+
 
 if __name__ == '__main__':
     unittest.main()

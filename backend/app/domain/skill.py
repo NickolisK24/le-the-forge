@@ -37,7 +37,7 @@ class SkillStatDef:
     damage_types: tuple[DamageType, ...] = ()  # explicit damage channels this skill deals
 
     @classmethod
-    def from_dict(cls, name: str, d: dict, *, data_version: str) -> "SkillStatDef":
+    def from_dict(cls, d: dict, *, data_version: str = "") -> "SkillStatDef":
         scaling = tuple(d.get("scaling_stats", []))
         # Accept explicit damage_types from JSON; fall back to deriving from scaling_stats.
         if "damage_types" in d:
@@ -45,9 +45,9 @@ class SkillStatDef:
         else:
             dtypes = tuple(damage_types_for_stats(scaling))
         return cls(
-            base_damage=float(d["base_damage"]),
-            level_scaling=float(d["level_scaling"]),
-            attack_speed=float(d["attack_speed"]),
+            base_damage=float(d.get("base_damage", 0.0)),
+            level_scaling=float(d.get("level_scaling", 0.0)),
+            attack_speed=float(d.get("attack_speed", 1.0)),
             scaling_stats=scaling,
             is_spell=bool(d.get("is_spell", False)),
             is_melee=bool(d.get("is_melee", False)),
