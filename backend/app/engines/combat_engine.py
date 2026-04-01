@@ -28,8 +28,7 @@ from app.constants.combat import (
 )
 from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import sum_flat_damage
-from app.domain.calculators.increased_damage_calculator import sum_increased_damage
-from app.domain.calculators.more_multiplier_calculator import apply_more_multiplier
+from app.domain.calculators.final_damage_calculator import calculate_final_damage
 from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
 from app.domain.stat_groups import BLEED_DAMAGE_INCREASED, IGNITE_DAMAGE_INCREASED, POISON_DAMAGE_INCREASED
 from app.engines.stat_engine import BuildStats
@@ -296,10 +295,7 @@ def calculate_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    # Pipeline: Base → Increased → More → Final
-    total_damage_pct = sum_increased_damage(stats, skill_def)
-    after_increased = apply_percent_bonus(effective_base, total_damage_pct)
-    hit_damage = apply_more_multiplier(after_increased, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
+    hit_damage = calculate_final_damage(effective_base, stats, skill_def, sm.get("more_damage_pct", 0.0))
 
     # Crit chance and multiplier (base + spec tree bonuses)
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
@@ -382,10 +378,7 @@ def monte_carlo_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    # Pipeline: Base → Increased → More → Final
-    total_pct = sum_increased_damage(stats, skill_def)
-    after_increased = apply_percent_bonus(effective_base, total_pct)
-    hit_damage = apply_more_multiplier(after_increased, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
+    hit_damage = calculate_final_damage(effective_base, stats, skill_def, sm.get("more_damage_pct", 0.0))
 
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
