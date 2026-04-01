@@ -276,7 +276,11 @@ AFFIX_STAT_KEYS: dict = get_affix_stat_keys()
 
 def _add_partial(stats: BuildStats, partial: dict) -> None:
     for key, value in partial.items():
-        if hasattr(stats, key):
+        if not hasattr(stats, key):
+            continue
+        if key.endswith("_pct"):
+            setattr(stats, key, combine_additive_percents(getattr(stats, key), value))
+        else:
             setattr(stats, key, getattr(stats, key) + value)
 
 
