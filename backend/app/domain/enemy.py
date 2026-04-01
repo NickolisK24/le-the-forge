@@ -20,11 +20,11 @@ class EnemyProfile:
     resistances: dict[str, float] = field(default_factory=dict)
     crit_chance: float = 0.0
     crit_multiplier: float = 1.0
+    data_version: str         # version of the data file this was loaded from
     tags: list[str] = field(default_factory=list)
-    data_version: str = "unknown"
 
     @classmethod
-    def from_dict(cls, d: dict, *, data_version: str = "unknown") -> "EnemyProfile":
+    def from_dict(cls, d: dict, *, data_version: str) -> "EnemyProfile":
         return cls(
             id=d["id"],
             name=d["name"],
@@ -35,6 +35,6 @@ class EnemyProfile:
             resistances=d.get("resistances", {}),
             crit_chance=float(d.get("crit_chance", 0.0)),
             crit_multiplier=float(d.get("crit_multiplier", 1.0)),
-            tags=d.get("tags", []),
             data_version=data_version,
+            tags=d.get("tags", []),
         )

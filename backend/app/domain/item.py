@@ -57,11 +57,11 @@ class AffixDefinition:
     affix_type: str           # "prefix" or "suffix"
     applicable_to: list[str]  # slot names, e.g. ["head", "body", "hands"]
     tiers: list[AffixTier]
+    data_version: str         # version of the data file this was loaded from
     affix_id: Optional[int] = None
-    data_version: str = "unknown"
 
     @classmethod
-    def from_dict(cls, d: dict, *, data_version: str = "unknown") -> "AffixDefinition":
+    def from_dict(cls, d: dict, *, data_version: str) -> "AffixDefinition":
         raw_id = d.get("affix_id") or d.get("id")
         return cls(
             name=d.get("name", ""),

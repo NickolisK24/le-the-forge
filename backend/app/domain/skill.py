@@ -27,14 +27,14 @@ class SkillStatDef:
     level_scaling: float    # damage multiplier per level above 1
     attack_speed: float     # base casts/attacks per second
     scaling_stats: list     # list of BuildStats field names for % damage bonus
+    data_version: str         # version of the data file this was loaded from
     is_spell: bool = False
     is_melee: bool = False
     is_throwing: bool = False
     is_bow: bool = False
-    data_version: str = "unknown"
 
     @classmethod
-    def from_dict(cls, name: str, d: dict, *, data_version: str = "unknown") -> "SkillStatDef":
+    def from_dict(cls, name: str, d: dict, *, data_version: str) -> "SkillStatDef":
         return cls(
             base_damage=float(d["base_damage"]),
             level_scaling=float(d["level_scaling"]),
