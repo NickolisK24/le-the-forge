@@ -19,6 +19,7 @@ import os
 from typing import Optional
 
 from app.constants.crafting import MAX_PREFIXES, MAX_SUFFIXES
+from app.domain.calculators.affix_calculator import get_max_tier
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
@@ -132,13 +133,6 @@ def get_affix_tier_data(affix: dict, tier: int) -> Optional[dict]:
             return t
     return None
 
-
-def get_max_tier(affix: dict) -> int:
-    """Return the highest tier available for this affix."""
-    tiers = affix.get("tiers", [])
-    if not tiers:
-        return 0
-    return max(t["tier"] for t in tiers)
 
 
 # ---------------------------------------------------------------------------
