@@ -19,7 +19,7 @@ import os
 from typing import Optional
 
 from app.constants.crafting import MAX_PREFIXES, MAX_SUFFIXES
-from app.domain.calculators.affix_calculator import get_max_tier
+from app.domain.calculators.affix_calculator import get_affix_tier_data, get_max_tier, is_max_tier
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
@@ -121,17 +121,6 @@ def get_affix_by_id(affix_id: str) -> Optional[dict]:
 # Tier access
 # ---------------------------------------------------------------------------
 
-def get_affix_tier_data(affix: dict, tier: int) -> Optional[dict]:
-    """
-    Return the tier data dict for the given tier number (1-indexed).
-
-    Returns None if tier is out of range.
-    """
-    tiers = affix.get("tiers", [])
-    for t in tiers:
-        if t["tier"] == tier:
-            return t
-    return None
 
 
 
@@ -192,13 +181,3 @@ def count_affix_types(item: dict) -> dict:
     }
 
 
-def is_max_tier(
-    affix,
-    tier
-):
-
-    max_tier = len(
-        affix["tiers"]
-    )
-
-    return tier >= max_tier
