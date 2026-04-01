@@ -11,12 +11,31 @@ Rules:
 from __future__ import annotations
 
 from app.domain.skill import SkillStatDef
+from app.domain.calculators.damage_type_router import DamageType
 from app.engines.stat_engine import BuildStats
 
 
-def scale_skill_damage(base: float, scaling: float, level: int) -> float:
-    """Apply level scaling to a skill's base damage."""
-    return base * (1 + scaling * (level - 1))
+def scale_skill_damage(
+    base: float,
+    scaling: float,
+    level: int,
+    damage_types: tuple[DamageType, ...] = (),
+) -> dict[DamageType, float]:
+    """
+    Apply level scaling and distribute the total evenly across damage types.
+
+    Returns a dict mapping each DamageType to its portion of the scaled total.
+    For a single-type skill the dict has one entry equal to the full scaled value.
+    For multi-type skills each entry is total / n, so the sum is always preserved.
+
+    Returns an empty dict when damage_types is empty — callers must fall back
+    to the untyped total (e.g. for spell-only skills pending data migration).
+    """
+    total = base * (1 + scaling * (level - 1))
+    if not damage_types:
+        return {}
+    per_type = total / len(damage_types)
+    return {dt: per_type for dt in damage_types}
 
 
 def hits_per_cast(added: int) -> int:

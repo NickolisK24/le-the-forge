@@ -251,7 +251,11 @@ def calculate_dps(
     sm = skill_modifiers or SkillModifiers()
 
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
+    scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    # sum(scaled.values()) == total for any non-empty damage_types (split then re-sum).
+    # Fall back to inline formula only when damage_types is empty (pending data migration).
+    scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
+    effective_base = scaled_total + flat_added
 
     hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
@@ -323,7 +327,9 @@ def monte_carlo_dps(
     sm = skill_modifiers or SkillModifiers()
 
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
+    scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
+    effective_base = scaled_total + flat_added
 
     hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
