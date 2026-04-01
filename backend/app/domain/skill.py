@@ -10,6 +10,7 @@ SkillSpec objects are constructed at the service boundary and passed to engines.
 
 from __future__ import annotations
 from dataclasses import dataclass, field
+from app.domain.calculators.damage_type_router import DamageType, damage_types_for_stats
 
 
 # ---------------------------------------------------------------------------
@@ -33,19 +34,27 @@ class SkillStatDef:
     is_melee: bool = False
     is_throwing: bool = False
     is_bow: bool = False
+    damage_types: tuple[DamageType, ...] = ()  # explicit damage channels this skill deals
 
     @classmethod
     def from_dict(cls, name: str, d: dict, *, data_version: str) -> "SkillStatDef":
+        scaling = tuple(d.get("scaling_stats", []))
+        # Accept explicit damage_types from JSON; fall back to deriving from scaling_stats.
+        if "damage_types" in d:
+            dtypes = tuple(DamageType(v) for v in d["damage_types"] if v in DamageType._value2member_map_)
+        else:
+            dtypes = tuple(damage_types_for_stats(scaling))
         return cls(
             base_damage=float(d["base_damage"]),
             level_scaling=float(d["level_scaling"]),
             attack_speed=float(d["attack_speed"]),
-            scaling_stats=tuple(d.get("scaling_stats", [])),
+            scaling_stats=scaling,
             is_spell=bool(d.get("is_spell", False)),
             is_melee=bool(d.get("is_melee", False)),
             is_throwing=bool(d.get("is_throwing", False)),
             is_bow=bool(d.get("is_bow", False)),
             data_version=data_version,
+            damage_types=dtypes,
         )
 
 

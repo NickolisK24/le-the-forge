@@ -18,6 +18,7 @@ from dataclasses import dataclass, asdict
 from typing import Optional
 
 from app.domain.skill import SkillStatDef
+from app.domain.calculators.damage_type_router import damage_types_for_stats
 from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill_damage, hits_per_cast
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
 from app.domain.calculators.crit_calculator import (
@@ -35,6 +36,8 @@ from app.engines.stat_engine import BuildStats
 # data_version is required on SkillStatDef; "hardcoded" marks these as static
 # definitions rather than values loaded from a versioned data file.
 def _S(bd: float, ls: float, asp: float, ss: list, **kw) -> SkillStatDef:
+    if "damage_types" not in kw:
+        kw["damage_types"] = tuple(damage_types_for_stats(tuple(ss)))
     return SkillStatDef(bd, ls, asp, tuple(ss), data_version="hardcoded", **kw)
 from app.utils.logging import ForgeLogger
 
@@ -423,14 +426,8 @@ def calculate_dps_vs_enemy(
     if not skill_def:
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 
-    # Determine which damage types this skill deals
-    skill_damage_types: set[str] = set()
-    if "physical_damage_pct" in skill_def.scaling_stats or skill_def.is_melee:
-        skill_damage_types.add("physical")
-    for stat in skill_def.scaling_stats:
-        for pen_stat, dmg_type in PENETRATION_MAP.items():
-            if dmg_type + "_damage_pct" == stat:
-                skill_damage_types.add(dmg_type)
+    # Resolve skill's damage channels from the explicit definition
+    skill_damage_types = {dt.value for dt in skill_def.damage_types}
 
     # Calculate effective resistance for each damage type the skill deals
     pen_applied: dict[str, float] = {}
