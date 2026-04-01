@@ -30,15 +30,15 @@ def apply_more_multiplier(base: float, more_pct: float) -> float:
     """
     Apply a multiplicative 'more' modifier.
 
-    Unlike apply_percent_bonus, more_pct is already a decimal fraction
-    (0.25 = 25% more), not a percent point value. Kept separate from
-    apply_percent_bonus because increased% and more% stack differently:
-    increased% bonuses are summed first (additive pool), more% bonuses
-    are multiplied in afterward (multiplicative chain).
+    more_pct is a percent point value (50.0 = 50% more), consistent with
+    apply_percent_bonus and all other pct fields in the codebase.
+    Kept separate from apply_percent_bonus because increased% and more%
+    stack differently: increased% bonuses are summed first (additive pool),
+    more% bonuses are multiplied in afterward (multiplicative chain).
 
     Example:
         base     = 100
-        more_pct = 0.25
-        result   = 125.0
+        more_pct = 50.0
+        result   = 150.0
     """
-    return base * (1 + more_pct)
+    return base * (1 + more_pct / 100)
