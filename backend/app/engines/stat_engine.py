@@ -13,7 +13,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Optional
 
 from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER, CRIT_CHANCE_CAP
-from app.domain.calculators.stat_calculator import apply_percent_bonus
+from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
@@ -307,6 +307,8 @@ def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
     elif stat_key == "_attack_and_cast_speed":
         stats.attack_speed_pct += value
         stats.cast_speed += value
+    elif stat_key == "health_pct":
+        stats.health_pct = combine_additive_percents(stats.health_pct, value)
     elif hasattr(stats, stat_key):
         setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
