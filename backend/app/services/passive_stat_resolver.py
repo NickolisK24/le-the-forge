@@ -14,6 +14,7 @@ numerically in a meaningful way.
 """
 
 import re
+from app.domain.passive import PassiveStats, SpecialEffect
 from app.models import PassiveNode
 from app.utils.logging import ForgeLogger
 
@@ -188,7 +189,7 @@ def _parse_value(raw: str) -> float | None:
 # Main resolver
 # ---------------------------------------------------------------------------
 
-def resolve_passive_stats(node_ids: list[str]) -> dict:
+def resolve_passive_stats(node_ids: list[str]) -> PassiveStats:
     """
     Load PassiveNode rows for the given IDs and accumulate their stats.
 

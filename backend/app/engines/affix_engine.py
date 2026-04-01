@@ -33,8 +33,26 @@ def load_affix_data() -> list[dict]:
         return json.load(f)
 
 
-# Module-level cache — loaded once at import time
-affix_data: list[dict] = load_affix_data()
+def _affix_data() -> list[dict]:
+    """
+    Return the affix list. Uses the app-context AffixRegistry when available
+    (populated from the pipeline at startup), otherwise falls back to the
+    direct file load so tests and scripts keep working.
+    """
+    try:
+        from flask import current_app
+        registry = current_app.extensions.get("affix_registry")
+        if registry is not None:
+            return registry.all()
+    except RuntimeError:
+        pass
+    global _affix_cache
+    if _affix_cache is None:
+        _affix_cache = load_affix_data()
+    return _affix_cache
+
+
+_affix_cache: list[dict] | None = None
 
 
 # ---------------------------------------------------------------------------
@@ -50,7 +68,7 @@ def get_affixes_by_type(item_type: str, affix_type: str) -> list[dict]:
       affix_type:  'prefix' or 'suffix'
     """
     return [
-        a for a in affix_data
+        a for a in _affix_data()
         if a["type"] == affix_type and item_type in a.get("applicable_to", [])
     ]
 
@@ -77,7 +95,14 @@ def get_affix_pool(item_type: str) -> dict:
 
 def get_affix_by_name(name: str) -> Optional[dict]:
     """Look up an affix by its display name."""
-    for affix in affix_data:
+    try:
+        from flask import current_app
+        registry = current_app.extensions.get("affix_registry")
+        if registry is not None and name in registry:
+            return registry.get_by_name(name)
+    except RuntimeError:
+        pass
+    for affix in _affix_data():
         if affix["name"] == name:
             return affix
     return None
@@ -85,7 +110,7 @@ def get_affix_by_name(name: str) -> Optional[dict]:
 
 def get_affix_by_id(affix_id: str) -> Optional[dict]:
     """Look up an affix by its canonical id."""
-    for affix in affix_data:
+    for affix in _affix_data():
         if affix["id"] == affix_id:
             return affix
     return None

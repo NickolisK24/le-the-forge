@@ -34,6 +34,17 @@ def create_app(env: str = "development") -> Flask:
 
     configure_logging(app)
 
+    # Data pipeline + registries
+    from app.game_data.pipeline import GameDataPipeline
+    from app.registries.skill_registry import SkillRegistry
+    from app.registries.affix_registry import AffixRegistry
+
+    pipeline = GameDataPipeline()
+    pipeline.load_all()
+    app.extensions["game_data"]      = pipeline
+    app.extensions["skill_registry"] = SkillRegistry(pipeline.skills)
+    app.extensions["affix_registry"] = AffixRegistry(pipeline.affixes)
+
     # Performance profiling middleware
     @app.before_request
     def _start_timer():

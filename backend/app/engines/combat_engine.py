@@ -200,6 +200,28 @@ class MonteCarloDPS:
         return asdict(self)
 
 
+# ---------------------------------------------------------------------------
+# Skill lookup — registry-first, SKILL_STATS fallback
+# ---------------------------------------------------------------------------
+
+def _get_skill_def(skill_name: str) -> SkillStatDef | None:
+    """
+    Look up a SkillStatDef by name.
+
+    Checks the app-context SkillRegistry first (populated at startup from
+    skills.json). Falls back to the hardcoded SKILL_STATS dict so the engine
+    continues to work in test contexts that don't go through create_app().
+    """
+    try:
+        from flask import current_app
+        registry = current_app.extensions.get("skill_registry")
+        if registry is not None and skill_name in registry:
+            return registry.get(skill_name)
+    except RuntimeError:
+        pass
+    return SKILL_STATS.get(skill_name)
+
+
 # Elemental stat keys — used to detect elemental skills for elemental_damage_pct
 _ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
 
@@ -312,7 +334,7 @@ def calculate_dps(
     """
     log.debug("calculate_dps", skill=skill_name, skill_level=skill_level)
 
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         log.warning("calculate_dps.unknown_skill", skill=skill_name)
         return DPSResult(0, 0, 0, 1.0, 0)
@@ -404,7 +426,7 @@ def monte_carlo_dps(
         seed=seed,
     )
 
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         log.warning("monte_carlo_dps.unknown_skill", skill=skill_name)
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
@@ -519,7 +541,7 @@ def calculate_dps_vs_enemy(
     }
 
     # Resolve skill's primary damage type(s) from scaling_stats
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 
