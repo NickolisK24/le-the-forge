@@ -26,17 +26,11 @@ from app.engines.affix_engine import (
     is_max_tier
 )
 
+from app.constants.crafting import PERFECT_ROLL_THRESHOLD, TARGET_TIER
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
 
-
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
-
-PERFECT_ROLL_THRESHOLD = 95
-TARGET_TIER = 4
 
 # Derived from rules file — used for planning and display only.
 # Actual per-action costs are rolled randomly via fp_engine.roll_fp_cost().

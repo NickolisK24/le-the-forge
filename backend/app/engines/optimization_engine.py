@@ -13,6 +13,7 @@ Pure module — no DB, no HTTP.
 
 from dataclasses import dataclass, asdict
 
+from app.constants.combat import CRIT_CHANCE_CAP
 from app.engines.stat_engine import BuildStats
 from app.engines.combat_engine import calculate_dps
 from app.engines.defense_engine import calculate_defense
@@ -123,7 +124,7 @@ def get_stat_upgrades(
         # Re-derive dependent stats for crit
         if key == "crit_chance_pct":
             base_crit = stats.crit_chance - stats.crit_chance_pct / 100
-            modified.crit_chance = min(0.95, base_crit + modified.crit_chance_pct / 100)
+            modified.crit_chance = min(CRIT_CHANCE_CAP,base_crit + modified.crit_chance_pct / 100)
         elif key == "crit_multiplier_pct":
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
@@ -207,7 +208,7 @@ def _explain_upgrade(upgrade: "StatUpgrade", stats: BuildStats, rank: int) -> st
 
     # Crit context
     if stat == "crit_chance_pct":
-        effective_crit = min(0.95, stats.crit_chance)
+        effective_crit = min(CRIT_CHANCE_CAP,stats.crit_chance)
         parts.append(f"Effective crit is {effective_crit*100:.1f}%.")
     elif stat == "crit_multiplier_pct":
         parts.append(f"Current crit multiplier is {stats.crit_multiplier:.2f}x.")
@@ -270,7 +271,7 @@ def stat_sensitivity(
         # Re-derive crit
         if key == "crit_chance_pct":
             base_crit = stats.crit_chance - stats.crit_chance_pct / 100
-            modified.crit_chance = min(0.95, base_crit + modified.crit_chance_pct / 100)
+            modified.crit_chance = min(CRIT_CHANCE_CAP,base_crit + modified.crit_chance_pct / 100)
         elif key == "crit_multiplier_pct":
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100

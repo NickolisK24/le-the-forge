@@ -12,6 +12,8 @@ already-loaded data objects.
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
+from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER, CRIT_CHANCE_CAP
+from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
@@ -30,8 +32,8 @@ class BuildStats:
     # Offense — base
     base_damage: float = 0.0
     attack_speed: float = 1.0
-    crit_chance: float = 0.05       # 0.0–1.0
-    crit_multiplier: float = 1.5    # total multiplier e.g. 2.0
+    crit_chance: float = BASE_CRIT_CHANCE       # 0.0–1.0
+    crit_multiplier: float = BASE_CRIT_MULTIPLIER    # total multiplier e.g. 2.0
 
     # Offense — percentage increased damage pools
     spell_damage_pct: float = 0.0
@@ -274,7 +276,11 @@ AFFIX_STAT_KEYS: dict = get_affix_stat_keys()
 
 def _add_partial(stats: BuildStats, partial: dict) -> None:
     for key, value in partial.items():
-        if hasattr(stats, key):
+        if not hasattr(stats, key):
+            continue
+        if key.endswith("_pct"):
+            setattr(stats, key, combine_additive_percents(getattr(stats, key), value))
+        else:
             setattr(stats, key, getattr(stats, key) + value)
 
 
@@ -303,10 +309,13 @@ def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
         for res in ("fire_res", "cold_res", "lightning_res"):
             setattr(stats, res, getattr(stats, res) + value)
     elif stat_key == "_attack_and_cast_speed":
-        stats.attack_speed_pct += value
+        stats.attack_speed_pct = combine_additive_percents(stats.attack_speed_pct, value)
         stats.cast_speed += value
     elif hasattr(stats, stat_key):
-        setattr(stats, stat_key, getattr(stats, stat_key) + value)
+        if stat_key.endswith("_pct"):
+            setattr(stats, stat_key, combine_additive_percents(getattr(stats, stat_key), value))
+        else:
+            setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
 
 # ---------------------------------------------------------------------------
@@ -441,22 +450,22 @@ def aggregate_stats(
         _add_partial(stats, passive_stats.get("additive", {}))
 
     # 6. Attribute scaling
-    stats.spell_damage_pct    += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"]
+    stats.spell_damage_pct    = combine_additive_percents(stats.spell_damage_pct,    stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"])
     stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["max_mana"]
-    stats.physical_damage_pct += stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"]
+    stats.physical_damage_pct = combine_additive_percents(stats.physical_damage_pct, stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"])
     stats.armour              += stats.strength     * ATTRIBUTE_SCALING["strength"]["armour"]
-    stats.attack_speed_pct    += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"]
+    stats.attack_speed_pct    = combine_additive_percents(stats.attack_speed_pct,    stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"])
     stats.dodge_rating        += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
 
     # 7. Apply percentage health bonuses
-    stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
+    stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health
 
     # 8. Apply % bonuses to base values
-    stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
+    stats.crit_chance    = min(CRIT_CHANCE_CAP, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
-    stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)
+    stats.attack_speed   = apply_percent_bonus(stats.attack_speed, stats.attack_speed_pct)
 
     log.info(
         "aggregate_stats.end",

@@ -17,139 +17,140 @@ import random
 from dataclasses import dataclass, asdict
 from typing import Optional
 
+from app.constants.combat import (
+    BLEED_BASE_RATIO,
+    BLEED_DURATION,
+    IGNITE_DPS_RATIO,
+    IGNITE_DURATION,
+    POISON_DPS_RATIO,
+    POISON_DURATION,
+    CRIT_CHANCE_CAP,
+)
+from app.domain.skill import SkillStatDef
+from app.domain.calculators.skill_calculator import sum_flat_damage
+from app.domain.calculators.stat_calculator import apply_more_multiplier, apply_percent_bonus
 from app.engines.stat_engine import BuildStats
+
+# Shorthand for hardcoded fallback entries in SKILL_STATS.
+# data_version is required on SkillStatDef; "hardcoded" marks these as static
+# definitions rather than values loaded from a versioned data file.
+def _S(bd: float, ls: float, asp: float, ss: list, **kw) -> SkillStatDef:
+    return SkillStatDef(bd, ls, asp, tuple(ss), data_version="hardcoded", **kw)
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
 from app.game_data.game_data_loader import get_enemy_profile
 
 
-# ---------------------------------------------------------------------------
-# Skill stat definitions — mirrors SKILL_STATS in frontend/src/lib/gameData.ts
-# Only the fields used by the calculation are stored here.
-# ---------------------------------------------------------------------------
-
-@dataclass
-class SkillStatDef:
-    base_damage: float
-    level_scaling: float    # damage multiplier per level above 1
-    attack_speed: float     # base casts/attacks per second
-    scaling_stats: list     # list of BuildStats field names for % damage bonus
-    is_spell: bool = False
-    is_melee: bool = False
-    is_throwing: bool = False
-    is_bow: bool = False
-
-
 SKILL_STATS: dict = {
     # --- Acolyte ---
-    "Rip Blood":              SkillStatDef(80,  0.12, 1.8, ["spell_damage_pct"], is_spell=True),
-    "Bone Curse":             SkillStatDef(60,  0.10, 1.2, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Hungering Souls":        SkillStatDef(90,  0.13, 1.5, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Harvest":                SkillStatDef(100, 0.14, 1.0, ["spell_damage_pct"], is_spell=True, is_melee=True),
-    "Reaper Form":            SkillStatDef(120, 0.15, 1.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Death Seal":             SkillStatDef(150, 0.14, 0.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Drain Life":             SkillStatDef(45,  0.09, 1.0, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Chthonic Fissure":       SkillStatDef(150, 0.14, 0.8, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
-    "Chaos Bolts":            SkillStatDef(100, 0.12, 1.8, ["spell_damage_pct", "fire_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Summon Skeleton":        SkillStatDef(60,  0.10, 1.0, ["minion_damage_pct"]),
-    "Summon Bone Golem":      SkillStatDef(120, 0.12, 0.8, ["minion_damage_pct"]),
-    "Wandering Spirits":      SkillStatDef(50,  0.09, 0.8, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Infernal Shade":         SkillStatDef(40,  0.08, 0.5, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Marrow Shards":          SkillStatDef(70,  0.11, 2.0, ["spell_damage_pct"], is_spell=True),
-    "Transplant":             SkillStatDef(40,  0.08, 0.5, ["spell_damage_pct"], is_spell=True),
-    "Mark for Death":         SkillStatDef(20,  0.06, 0.4, ["necrotic_damage_pct"], is_spell=True),
-    "Spirit Plague":          SkillStatDef(30,  0.08, 0.5, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Summon Volatile Zombie": SkillStatDef(200, 0.15, 0.3, ["minion_damage_pct", "fire_damage_pct"]),
-    "Summon Skeletal Mage":   SkillStatDef(80,  0.11, 1.0, ["minion_damage_pct", "necrotic_damage_pct"]),
-    "Dread Shade":            SkillStatDef(35,  0.08, 0.5, ["minion_damage_pct", "necrotic_damage_pct"]),
-    "Assemble Abomination":   SkillStatDef(180, 0.14, 0.5, ["minion_damage_pct"]),
-    "Summon Wraith":          SkillStatDef(70,  0.10, 1.2, ["minion_damage_pct", "necrotic_damage_pct"]),
-    "Aura of Decay":          SkillStatDef(25,  0.07, 0.5, ["poison_damage_pct"], is_spell=True),
-    "Soul Feast":             SkillStatDef(80,  0.11, 1.2, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
-    "Profane Veil":           SkillStatDef(30,  0.07, 0.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Rip Blood":              _S(80,  0.12, 1.8, ["spell_damage_pct"], is_spell=True),
+    "Bone Curse":             _S(60,  0.10, 1.2, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Hungering Souls":        _S(90,  0.13, 1.5, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Harvest":                _S(100, 0.14, 1.0, ["spell_damage_pct"], is_spell=True, is_melee=True),
+    "Reaper Form":            _S(120, 0.15, 1.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Death Seal":             _S(150, 0.14, 0.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Drain Life":             _S(45,  0.09, 1.0, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Chthonic Fissure":       _S(150, 0.14, 0.8, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
+    "Chaos Bolts":            _S(100, 0.12, 1.8, ["spell_damage_pct", "fire_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Summon Skeleton":        _S(60,  0.10, 1.0, ["minion_damage_pct"]),
+    "Summon Bone Golem":      _S(120, 0.12, 0.8, ["minion_damage_pct"]),
+    "Wandering Spirits":      _S(50,  0.09, 0.8, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Infernal Shade":         _S(40,  0.08, 0.5, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Marrow Shards":          _S(70,  0.11, 2.0, ["spell_damage_pct"], is_spell=True),
+    "Transplant":             _S(40,  0.08, 0.5, ["spell_damage_pct"], is_spell=True),
+    "Mark for Death":         _S(20,  0.06, 0.4, ["necrotic_damage_pct"], is_spell=True),
+    "Spirit Plague":          _S(30,  0.08, 0.5, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Summon Volatile Zombie": _S(200, 0.15, 0.3, ["minion_damage_pct", "fire_damage_pct"]),
+    "Summon Skeletal Mage":   _S(80,  0.11, 1.0, ["minion_damage_pct", "necrotic_damage_pct"]),
+    "Dread Shade":            _S(35,  0.08, 0.5, ["minion_damage_pct", "necrotic_damage_pct"]),
+    "Assemble Abomination":   _S(180, 0.14, 0.5, ["minion_damage_pct"]),
+    "Summon Wraith":          _S(70,  0.10, 1.2, ["minion_damage_pct", "necrotic_damage_pct"]),
+    "Aura of Decay":          _S(25,  0.07, 0.5, ["poison_damage_pct"], is_spell=True),
+    "Soul Feast":             _S(80,  0.11, 1.2, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
+    "Profane Veil":           _S(30,  0.07, 0.4, ["spell_damage_pct", "necrotic_damage_pct"], is_spell=True),
     # --- Mage ---
-    "Glacier":                SkillStatDef(120, 0.13, 0.9, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Fireball":               SkillStatDef(110, 0.12, 1.2, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Lightning Blast":        SkillStatDef(95,  0.11, 1.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Mana Strike":            SkillStatDef(80,  0.10, 2.0, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True, is_melee=True),
-    "Teleport":               SkillStatDef(50,  0.09, 0.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Surge":                  SkillStatDef(90,  0.11, 1.6, ["lightning_damage_pct"], is_melee=True),
-    "Frost Claw":             SkillStatDef(85,  0.11, 1.8, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Static Orb":             SkillStatDef(100, 0.12, 1.0, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Volcanic Orb":           SkillStatDef(130, 0.13, 0.8, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Disintegrate":           SkillStatDef(60,  0.09, 1.0, ["spell_damage_pct", "fire_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Shatter Strike":         SkillStatDef(130, 0.12, 1.3, ["spell_damage_pct", "cold_damage_pct"], is_melee=True),
-    "Meteor":                 SkillStatDef(300, 0.16, 0.4, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Nova":                   SkillStatDef(180, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Snap Freeze":            SkillStatDef(160, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Rune of Winter":         SkillStatDef(140, 0.13, 0.9, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Runic Invocation":       SkillStatDef(200, 0.15, 0.6, ["spell_damage_pct", "cold_damage_pct", "fire_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Runic Bolt":             SkillStatDef(90,  0.11, 1.6, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Flame Ward":             SkillStatDef(50,  0.08, 0.3, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Enchant Weapon":         SkillStatDef(80,  0.10, 1.0, ["fire_damage_pct"], is_spell=True),
+    "Glacier":                _S(120, 0.13, 0.9, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Fireball":               _S(110, 0.12, 1.2, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Lightning Blast":        _S(95,  0.11, 1.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Mana Strike":            _S(80,  0.10, 2.0, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True, is_melee=True),
+    "Teleport":               _S(50,  0.09, 0.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Surge":                  _S(90,  0.11, 1.6, ["lightning_damage_pct"], is_melee=True),
+    "Frost Claw":             _S(85,  0.11, 1.8, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Static Orb":             _S(100, 0.12, 1.0, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Volcanic Orb":           _S(130, 0.13, 0.8, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Disintegrate":           _S(60,  0.09, 1.0, ["spell_damage_pct", "fire_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Shatter Strike":         _S(130, 0.12, 1.3, ["spell_damage_pct", "cold_damage_pct"], is_melee=True),
+    "Meteor":                 _S(300, 0.16, 0.4, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Nova":                   _S(180, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Snap Freeze":            _S(160, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Rune of Winter":         _S(140, 0.13, 0.9, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Runic Invocation":       _S(200, 0.15, 0.6, ["spell_damage_pct", "cold_damage_pct", "fire_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Runic Bolt":             _S(90,  0.11, 1.6, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Flame Ward":             _S(50,  0.08, 0.3, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Enchant Weapon":         _S(80,  0.10, 1.0, ["fire_damage_pct"], is_spell=True),
     # --- Primalist ---
-    "Summon Wolf":            SkillStatDef(75,  0.10, 1.5, ["minion_damage_pct", "physical_damage_pct"]),
-    "Warcry":                 SkillStatDef(30,  0.06, 0.3, ["physical_damage_pct"]),
-    "Entangling Roots":       SkillStatDef(40,  0.08, 0.5, ["spell_damage_pct"], is_spell=True),
-    "Fury Leap":              SkillStatDef(90,  0.11, 0.5, ["physical_damage_pct"], is_melee=True),
-    "Maelstrom":              SkillStatDef(55,  0.09, 0.8, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Avalanche":              SkillStatDef(180, 0.14, 0.5, ["spell_damage_pct", "physical_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Ice Thorns":             SkillStatDef(65,  0.10, 1.2, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
-    "Tornado":                SkillStatDef(65,  0.10, 0.6, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Serpent Strike":         SkillStatDef(70,  0.11, 2.2, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
-    "Gathering Storm":        SkillStatDef(45,  0.08, 0.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
-    "Werebear Form":          SkillStatDef(130, 0.13, 1.3, ["physical_damage_pct", "cold_damage_pct"], is_melee=True),
-    "Spriggan Form":          SkillStatDef(80,  0.10, 1.0, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
-    "Swipe":                  SkillStatDef(110, 0.12, 1.4, ["physical_damage_pct"], is_melee=True),
-    "Thorn Totem":            SkillStatDef(55,  0.09, 1.0, ["minion_damage_pct", "physical_damage_pct", "poison_damage_pct"]),
-    "Summon Raptor":          SkillStatDef(90,  0.11, 1.8, ["minion_damage_pct", "physical_damage_pct"]),
-    "Summon Bear":            SkillStatDef(150, 0.13, 0.9, ["minion_damage_pct"]),
-    "Summon Sabertooth":      SkillStatDef(110, 0.12, 1.5, ["minion_damage_pct", "physical_damage_pct"]),
-    "Earthquake":             SkillStatDef(250, 0.15, 0.4, ["spell_damage_pct", "physical_damage_pct"], is_spell=True),
-    "Vessel of Chaos":        SkillStatDef(100, 0.12, 0.5, ["minion_damage_pct"]),
+    "Summon Wolf":            _S(75,  0.10, 1.5, ["minion_damage_pct", "physical_damage_pct"]),
+    "Warcry":                 _S(30,  0.06, 0.3, ["physical_damage_pct"]),
+    "Entangling Roots":       _S(40,  0.08, 0.5, ["spell_damage_pct"], is_spell=True),
+    "Fury Leap":              _S(90,  0.11, 0.5, ["physical_damage_pct"], is_melee=True),
+    "Maelstrom":              _S(55,  0.09, 0.8, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Avalanche":              _S(180, 0.14, 0.5, ["spell_damage_pct", "physical_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Ice Thorns":             _S(65,  0.10, 1.2, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
+    "Tornado":                _S(65,  0.10, 0.6, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Serpent Strike":         _S(70,  0.11, 2.2, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
+    "Gathering Storm":        _S(45,  0.08, 0.5, ["spell_damage_pct", "lightning_damage_pct"], is_spell=True),
+    "Werebear Form":          _S(130, 0.13, 1.3, ["physical_damage_pct", "cold_damage_pct"], is_melee=True),
+    "Spriggan Form":          _S(80,  0.10, 1.0, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
+    "Swipe":                  _S(110, 0.12, 1.4, ["physical_damage_pct"], is_melee=True),
+    "Thorn Totem":            _S(55,  0.09, 1.0, ["minion_damage_pct", "physical_damage_pct", "poison_damage_pct"]),
+    "Summon Raptor":          _S(90,  0.11, 1.8, ["minion_damage_pct", "physical_damage_pct"]),
+    "Summon Bear":            _S(150, 0.13, 0.9, ["minion_damage_pct"]),
+    "Summon Sabertooth":      _S(110, 0.12, 1.5, ["minion_damage_pct", "physical_damage_pct"]),
+    "Earthquake":             _S(250, 0.15, 0.4, ["spell_damage_pct", "physical_damage_pct"], is_spell=True),
+    "Vessel of Chaos":        _S(100, 0.12, 0.5, ["minion_damage_pct"]),
     # --- Sentinel ---
-    "Lunge":                  SkillStatDef(80,  0.11, 0.8, ["physical_damage_pct"], is_melee=True),
-    "Rive":                   SkillStatDef(100, 0.12, 1.8, ["physical_damage_pct"], is_melee=True),
-    "Warpath":                SkillStatDef(85,  0.11, 1.5, ["physical_damage_pct"], is_melee=True),
-    "Shield Rush":            SkillStatDef(70,  0.10, 0.7, ["physical_damage_pct"], is_melee=True),
-    "Javelin":                SkillStatDef(130, 0.12, 1.4, ["physical_damage_pct", "lightning_damage_pct"], is_throwing=True),
-    "Smite":                  SkillStatDef(120, 0.13, 1.2, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True, is_melee=True),
-    "Smelter's Wrath":        SkillStatDef(110, 0.12, 1.2, ["fire_damage_pct"], is_melee=True),
-    "Manifest Armor":         SkillStatDef(80,  0.10, 0.8, ["minion_damage_pct"]),
-    "Forge Strike":           SkillStatDef(140, 0.13, 1.0, ["fire_damage_pct", "physical_damage_pct"], is_melee=True),
-    "Shield Throw":           SkillStatDef(110, 0.12, 1.5, ["physical_damage_pct"], is_throwing=True),
-    "Volatile Reversal":      SkillStatDef(100, 0.12, 0.6, ["void_damage_pct"], is_spell=True),
-    "Judgement":              SkillStatDef(200, 0.15, 0.6, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True),
-    "Anomaly":                SkillStatDef(160, 0.14, 0.5, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
-    "Devouring Orb":          SkillStatDef(100, 0.12, 1.0, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
-    "Erasing Strike":         SkillStatDef(180, 0.14, 0.9, ["void_damage_pct"], is_melee=True),
-    "Void Cleave":            SkillStatDef(160, 0.13, 1.1, ["void_damage_pct"], is_melee=True),
+    "Lunge":                  _S(80,  0.11, 0.8, ["physical_damage_pct"], is_melee=True),
+    "Rive":                   _S(100, 0.12, 1.8, ["physical_damage_pct"], is_melee=True),
+    "Warpath":                _S(85,  0.11, 1.5, ["physical_damage_pct"], is_melee=True),
+    "Shield Rush":            _S(70,  0.10, 0.7, ["physical_damage_pct"], is_melee=True),
+    "Javelin":                _S(130, 0.12, 1.4, ["physical_damage_pct", "lightning_damage_pct"], is_throwing=True),
+    "Smite":                  _S(120, 0.13, 1.2, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True, is_melee=True),
+    "Smelter's Wrath":        _S(110, 0.12, 1.2, ["fire_damage_pct"], is_melee=True),
+    "Manifest Armor":         _S(80,  0.10, 0.8, ["minion_damage_pct"]),
+    "Forge Strike":           _S(140, 0.13, 1.0, ["fire_damage_pct", "physical_damage_pct"], is_melee=True),
+    "Shield Throw":           _S(110, 0.12, 1.5, ["physical_damage_pct"], is_throwing=True),
+    "Volatile Reversal":      _S(100, 0.12, 0.6, ["void_damage_pct"], is_spell=True),
+    "Judgement":              _S(200, 0.15, 0.6, ["spell_damage_pct", "lightning_damage_pct", "fire_damage_pct"], is_spell=True),
+    "Anomaly":                _S(160, 0.14, 0.5, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
+    "Devouring Orb":          _S(100, 0.12, 1.0, ["spell_damage_pct", "void_damage_pct"], is_spell=True),
+    "Erasing Strike":         _S(180, 0.14, 0.9, ["void_damage_pct"], is_melee=True),
+    "Void Cleave":            _S(160, 0.13, 1.1, ["void_damage_pct"], is_melee=True),
     # --- Rogue ---
-    "Shift":                  SkillStatDef(50,  0.08, 0.5, ["physical_damage_pct"], is_spell=True),
-    "Flurry":                 SkillStatDef(65,  0.10, 3.0, ["physical_damage_pct"], is_melee=True),
-    "Puncture":               SkillStatDef(80,  0.11, 2.0, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
-    "Acid Flask":             SkillStatDef(35,  0.07, 0.6, ["poison_damage_pct"], is_throwing=True),
-    "Arrow Barrage":          SkillStatDef(70,  0.10, 2.5, ["physical_damage_pct"], is_bow=True),
-    "Detonating Arrow":       SkillStatDef(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"], is_bow=True),
-    "Explosive Trap":         SkillStatDef(120, 0.12, 0.5, ["fire_damage_pct"]),
-    "Shurikens":              SkillStatDef(55,  0.09, 3.5, ["physical_damage_pct"], is_throwing=True),
-    "Shadow Cascade":         SkillStatDef(120, 0.13, 1.6, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
-    "Dancing Strikes":        SkillStatDef(90,  0.11, 2.5, ["physical_damage_pct"], is_melee=True),
-    "Blade Flurry":           SkillStatDef(100, 0.12, 2.2, ["physical_damage_pct"], is_melee=True),
-    "Synchronized Strike":    SkillStatDef(150, 0.13, 0.8, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
-    "Multishot":              SkillStatDef(85,  0.11, 1.8, ["physical_damage_pct"], is_bow=True),
-    "Ballista":               SkillStatDef(70,  0.10, 2.0, ["minion_damage_pct", "physical_damage_pct"], is_bow=True),
-    "Rain of Arrows":         SkillStatDef(45,  0.08, 0.8, ["physical_damage_pct"], is_bow=True),
-    "Hail of Arrows":         SkillStatDef(60,  0.09, 1.0, ["physical_damage_pct", "cold_damage_pct"], is_bow=True),
-    "Falcon Strikes":         SkillStatDef(90,  0.11, 2.0, ["minion_damage_pct", "physical_damage_pct"]),
-    "Aerial Assault":         SkillStatDef(130, 0.13, 0.6, ["minion_damage_pct", "physical_damage_pct"]),
-    "Dive Bomb":              SkillStatDef(200, 0.15, 0.4, ["minion_damage_pct", "physical_damage_pct"]),
+    "Shift":                  _S(50,  0.08, 0.5, ["physical_damage_pct"], is_spell=True),
+    "Flurry":                 _S(65,  0.10, 3.0, ["physical_damage_pct"], is_melee=True),
+    "Puncture":               _S(80,  0.11, 2.0, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
+    "Acid Flask":             _S(35,  0.07, 0.6, ["poison_damage_pct"], is_throwing=True),
+    "Arrow Barrage":          _S(70,  0.10, 2.5, ["physical_damage_pct"], is_bow=True),
+    "Detonating Arrow":       _S(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"], is_bow=True),
+    "Explosive Trap":         _S(120, 0.12, 0.5, ["fire_damage_pct"]),
+    "Shurikens":              _S(55,  0.09, 3.5, ["physical_damage_pct"], is_throwing=True),
+    "Shadow Cascade":         _S(120, 0.13, 1.6, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
+    "Dancing Strikes":        _S(90,  0.11, 2.5, ["physical_damage_pct"], is_melee=True),
+    "Blade Flurry":           _S(100, 0.12, 2.2, ["physical_damage_pct"], is_melee=True),
+    "Synchronized Strike":    _S(150, 0.13, 0.8, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
+    "Multishot":              _S(85,  0.11, 1.8, ["physical_damage_pct"], is_bow=True),
+    "Ballista":               _S(70,  0.10, 2.0, ["minion_damage_pct", "physical_damage_pct"], is_bow=True),
+    "Rain of Arrows":         _S(45,  0.08, 0.8, ["physical_damage_pct"], is_bow=True),
+    "Hail of Arrows":         _S(60,  0.09, 1.0, ["physical_damage_pct", "cold_damage_pct"], is_bow=True),
+    "Falcon Strikes":         _S(90,  0.11, 2.0, ["minion_damage_pct", "physical_damage_pct"]),
+    "Aerial Assault":         _S(130, 0.13, 0.6, ["minion_damage_pct", "physical_damage_pct"]),
+    "Dive Bomb":              _S(200, 0.15, 0.4, ["minion_damage_pct", "physical_damage_pct"]),
     # --- Cross-class / missing skills ---
-    "Scorpion Aspect":        SkillStatDef(95,  0.11, 1.6, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
-    "Ring of Shields":        SkillStatDef(60,  0.09, 0.4, ["physical_damage_pct"]),
-    "Healing Hands":          SkillStatDef(40,  0.08, 0.8, ["spell_damage_pct"], is_spell=True),
-    "Smoke Bomb":             SkillStatDef(45,  0.08, 0.5, ["physical_damage_pct", "poison_damage_pct"]),
+    "Scorpion Aspect":        _S(95,  0.11, 1.6, ["physical_damage_pct", "poison_damage_pct"], is_melee=True),
+    "Ring of Shields":        _S(60,  0.09, 0.4, ["physical_damage_pct"]),
+    "Healing Hands":          _S(40,  0.08, 0.8, ["spell_damage_pct"], is_spell=True),
+    "Smoke Bomb":             _S(45,  0.08, 0.5, ["physical_damage_pct", "poison_damage_pct"]),
 }
 
 
@@ -192,20 +193,26 @@ class MonteCarloDPS:
 
 
 # ---------------------------------------------------------------------------
-# Ailment constants (Last Epoch mechanics)
+# Skill lookup — registry-first, SKILL_STATS fallback
 # ---------------------------------------------------------------------------
 
-# Bleed: physical DoT, 70% of hit damage over 4s per stack
-BLEED_BASE_RATIO = 0.70
-BLEED_DURATION = 4.0
+def _get_skill_def(skill_name: str) -> SkillStatDef | None:
+    """
+    Look up a SkillStatDef by name.
 
-# Ignite: fire DoT, 20% of hit damage per second per stack, 3s duration
-IGNITE_DPS_RATIO = 0.20
-IGNITE_DURATION = 3.0
+    Checks the app-context SkillRegistry first (populated at startup from
+    skills.json). Falls back to the hardcoded SKILL_STATS dict so the engine
+    continues to work in test contexts that don't go through create_app().
+    """
+    try:
+        from flask import current_app
+        registry = current_app.extensions.get("skill_registry")
+        if registry is not None and skill_name in registry:
+            return registry.get(skill_name)
+    except RuntimeError:
+        pass
+    return SKILL_STATS.get(skill_name)
 
-# Poison: 30% of hit damage per second per stack, 3s duration
-POISON_DPS_RATIO = 0.30
-POISON_DURATION = 3.0
 
 # Elemental stat keys — used to detect elemental skills for elemental_damage_pct
 _ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
@@ -215,23 +222,6 @@ _ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_d
 # Helpers — flat added damage and ailment calculation
 # ---------------------------------------------------------------------------
 
-def _sum_flat_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
-    """Sum all flat added damage relevant to a skill's type."""
-    total = 0.0
-    if skill_def.is_spell:
-        total += (stats.added_spell_damage + stats.added_spell_fire +
-                  stats.added_spell_cold + stats.added_spell_lightning +
-                  stats.added_spell_necrotic + stats.added_spell_void)
-    if skill_def.is_melee:
-        total += (stats.added_melee_physical + stats.added_melee_fire +
-                  stats.added_melee_cold + stats.added_melee_lightning +
-                  stats.added_melee_void + stats.added_melee_necrotic)
-    if skill_def.is_throwing:
-        total += (stats.added_throw_physical + stats.added_throw_fire +
-                  stats.added_throw_cold)
-    if skill_def.is_bow:
-        total += stats.added_bow_physical + stats.added_bow_fire
-    return total
 
 
 def _sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
@@ -319,7 +309,7 @@ def calculate_dps(
     """
     log.debug("calculate_dps", skill=skill_name, skill_level=skill_level)
 
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         log.warning("calculate_dps.unknown_skill", skill=skill_name)
         return DPSResult(0, 0, 0, 1.0, 0)
@@ -330,20 +320,20 @@ def calculate_dps(
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
 
     # Flat added damage from gear
-    flat_added = _sum_flat_damage(stats, skill_def)
+    flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
     # Sum all "increased" % damage bonuses (additive pool)
     total_damage_pct = _sum_increased_damage(stats, skill_def)
 
     # "More" damage multiplier: product of base stats multiplier and spec-tree more%
-    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
+    more_mult = stats.more_damage_multiplier * apply_more_multiplier(1.0, sm.get("more_damage_pct", 0.0))
 
     # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
-    hit_damage = effective_base * (1 + total_damage_pct / 100) * more_mult
+    hit_damage = apply_percent_bonus(effective_base, total_damage_pct) * more_mult
 
     # Crit chance and multiplier (base + spec tree bonuses)
-    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
 
     # AverageHit = non-crit portion + crit portion
@@ -411,7 +401,7 @@ def monte_carlo_dps(
         seed=seed,
     )
 
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         log.warning("monte_carlo_dps.unknown_skill", skill=skill_name)
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
@@ -420,14 +410,14 @@ def monte_carlo_dps(
     sm = skill_modifiers or {}
 
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-    flat_added = _sum_flat_damage(stats, skill_def)
+    flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
     total_pct = _sum_increased_damage(stats, skill_def)
-    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
-    hit_damage = effective_base * (1 + total_pct / 100) * more_mult
+    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
+    hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
 
-    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
     hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
 
@@ -526,7 +516,7 @@ def calculate_dps_vs_enemy(
     }
 
     # Resolve skill's primary damage type(s) from scaling_stats
-    skill_def = SKILL_STATS.get(skill_name)
+    skill_def = _get_skill_def(skill_name)
     if not skill_def:
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 

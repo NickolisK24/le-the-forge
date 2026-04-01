@@ -30,6 +30,7 @@ Values with "(downside)" are included as negative modifiers.
 import re
 import os
 import json
+from app.domain.passive import SkillTreeStats
 from functools import lru_cache
 
 from app.utils.logging import ForgeLogger
@@ -300,7 +301,7 @@ def _accumulate(field: str, value: float, build_stats: dict, skill_mods: dict) -
 def resolve_skill_tree_stats(
     skill_name: str,
     spec_tree: list[dict],
-) -> dict:
+) -> SkillTreeStats:
     """
     Accumulate all stat bonuses from a skill's allocated spec tree nodes.
 

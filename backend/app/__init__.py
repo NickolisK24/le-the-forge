@@ -34,6 +34,34 @@ def create_app(env: str = "development") -> Flask:
 
     configure_logging(app)
 
+    # Data pipeline + registries
+    from app.game_data.pipeline import GameDataPipeline
+    from app.domain.registries.skill_registry import SkillRegistry
+    from app.domain.registries.affix_registry import AffixRegistry
+    from app.domain.registries.enemy_registry import EnemyRegistry
+
+    pipeline = GameDataPipeline()
+    pipeline.load_all()
+    app.extensions["game_data"] = pipeline
+
+    affix_registry = AffixRegistry(pipeline.affixes)
+    skill_registry = SkillRegistry(pipeline.skills)
+    enemy_registry = EnemyRegistry(pipeline.enemies)
+
+    versions = {
+        affix_registry.data_version,
+        skill_registry.data_version,
+        enemy_registry.data_version,
+    }
+    if len(versions) != 1:
+        raise RuntimeError(
+            f"Registry version mismatch detected: {versions}"
+        )
+
+    app.extensions["affix_registry"] = affix_registry
+    app.extensions["skill_registry"] = skill_registry
+    app.extensions["enemy_registry"] = enemy_registry
+
     # Performance profiling middleware
     @app.before_request
     def _start_timer():
