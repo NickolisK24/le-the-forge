@@ -220,6 +220,19 @@ class TestScaleSkillDamage(unittest.TestCase):
         result = scale_skill_damage(100.0, 0.10, 10, (DamageType.FIRE, DamageType.PHYSICAL))
         self.assertAlmostEqual(sum(result.values()), 190.0, places=9)
 
+    def test_multi_type_rounding_stability(self):
+        # base=100, scaling=0.15, level=7 → 190.0 / 3 = 63.333...
+        # Non-round per-type values; sum must equal expected total within float precision.
+        result = scale_skill_damage(
+            base=100,
+            scaling=0.15,
+            level=7,
+            damage_types=(DamageType.FIRE, DamageType.PHYSICAL, DamageType.COLD),
+        )
+        total = sum(result.values())
+        expected = 100 * (1 + 0.15 * (7 - 1))
+        assert round(total, 6) == round(expected, 6)
+
     def test_empty_damage_types_returns_empty_dict(self):
         result = scale_skill_damage(100.0, 0.10, 10, ())
         self.assertEqual(result, {})
