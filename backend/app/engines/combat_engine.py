@@ -391,7 +391,7 @@ def monte_carlo_dps(
     effective_base = scaled_base + flat_added
 
     total_pct = sum_increased_damage(stats, skill_def)
-    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
+    more_mult = stats.more_damage_multiplier * apply_more_multiplier(1.0, sm.get("more_damage_pct", 0.0))
     hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
 
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
