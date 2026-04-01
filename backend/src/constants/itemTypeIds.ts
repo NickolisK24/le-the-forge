@@ -1,0 +1,30 @@
+export const ITEM_TYPE_IDS = [
+  "amulet",
+  "axe",
+  "belt",
+  "boots",
+  "bow",
+  "chest",
+  "dagger",
+  "gloves",
+  "helm",
+  "idol_1x1",
+  "idol_1x2",
+  "idol_1x3",
+  "idol_1x4",
+  "idol_2x2",
+  "mace",
+  "polearm",
+  "quiver",
+  "relic",
+  "ring",
+  "sceptre",
+  "shield",
+  "spear",
+  "staff",
+  "sword",
+  "wand",
+] as const;
+
+export type ItemTypeId =
+  typeof ITEM_TYPE_IDS[number];
