@@ -27,7 +27,8 @@ from app.constants.combat import (
     CRIT_CHANCE_CAP,
 )
 from app.domain.skill import SkillStatDef
-from app.domain.calculators.skill_calculator import sum_flat_damage, sum_increased_damage
+from app.domain.calculators.skill_calculator import sum_flat_damage
+from app.domain.calculators.increased_damage_calculator import sum_increased_damage
 from app.domain.calculators.stat_calculator import apply_more_multiplier, apply_percent_bonus
 from app.engines.stat_engine import BuildStats
 
