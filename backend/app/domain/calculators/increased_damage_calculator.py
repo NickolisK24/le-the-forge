@@ -13,6 +13,9 @@ from app.domain.skill import SkillStatDef
 from app.domain.calculators.stat_calculator import combine_additive_percents
 from app.domain.calculators.damage_type_router import ELEMENTAL_TYPES
 from app.engines.stat_engine import BuildStats
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 def sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
@@ -22,6 +25,9 @@ def sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
     Combines scaling stats, weapon-type bonuses, and elemental bonuses —
     all of which stack additively before any multiplicative more% is applied.
     """
+    if not skill_def.damage_types:
+        log.warning("sum_increased_damage.no_damage_types", scaling_stats=skill_def.scaling_stats)
+
     total = combine_additive_percents(*[getattr(stats, k, 0.0) for k in skill_def.scaling_stats])
 
     if skill_def.is_melee:

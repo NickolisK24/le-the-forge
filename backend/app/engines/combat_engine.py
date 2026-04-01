@@ -427,6 +427,8 @@ def calculate_dps_vs_enemy(
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 
     # Resolve skill's damage channels from the explicit definition
+    if not skill_def.damage_types:
+        log.warning("calculate_dps_vs_enemy.no_damage_types", skill=skill_name)
     skill_damage_types = {dt.value for dt in skill_def.damage_types}
 
     # Calculate effective resistance for each damage type the skill deals
