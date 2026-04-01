@@ -57,7 +57,7 @@ class BuildStats:
     throwing_attack_speed: float = 0.0
     crit_chance_pct: float = 0.0
     crit_multiplier_pct: float = 0.0
-    more_damage_multiplier: float = 1.0
+    more_damage_pct: float = 0.0
 
     # Offense — flat added damage
     added_melee_physical: float = 0.0

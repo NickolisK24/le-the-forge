@@ -92,20 +92,20 @@ class TestCalculateDPS:
             result = calculate_dps(stats, skill_name, 20)
             assert result.dps >= 0, f"Negative DPS for skill: {skill_name}"
 
-    def test_more_damage_multiplier_scales_dps(self):
-        """'more' multiplier stacks multiplicatively — 1.5× more should give ~1.5× DPS."""
+    def test_more_damage_pct_scales_dps(self):
+        """50% more damage should give ~1.5× DPS (multiplicative)."""
         base = _base_mage_stats()
         more = _base_mage_stats()
-        more.more_damage_multiplier = 1.5
+        more.more_damage_pct = 50.0
         base_dps = calculate_dps(base, "Fireball", 20)
         more_dps = calculate_dps(more, "Fireball", 20)
         ratio = more_dps.dps / base_dps.dps
         assert abs(ratio - 1.5) < 0.01
 
-    def test_more_multiplier_one_is_neutral(self):
-        """Default more_damage_multiplier=1.0 should produce same DPS as not setting it."""
+    def test_more_damage_pct_zero_is_neutral(self):
+        """Default more_damage_pct=0.0 should produce same DPS as not setting it."""
         stats = _base_mage_stats()
-        stats.more_damage_multiplier = 1.0
+        stats.more_damage_pct = 0.0
         r1 = calculate_dps(stats, "Fireball", 20)
         r2 = calculate_dps(_base_mage_stats(), "Fireball", 20)
         assert r1.dps == r2.dps
