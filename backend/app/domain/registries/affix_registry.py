@@ -1,8 +1,9 @@
 """
-Affix Registry — pre-indexed affix lookups for O(1) access.
+Affix Registry — pre-indexed AffixDefinition lookups for O(1) access.
 
-Replaces the O(n) linear scans in affix_engine.py. Seeded from
-data/items/affixes.json via the GameDataPipeline at app startup.
+Seeded from data/items/affixes.json via the GameDataPipeline (which
+normalizes raw JSON → AffixDefinition) at app startup. The registry
+receives pre-normalized domain objects; it does not do normalization itself.
 
 Usage:
     from flask import current_app
@@ -12,6 +13,7 @@ Usage:
 """
 
 from __future__ import annotations
+from app.domain.item import AffixDefinition
 from app.utils.exceptions import ForgeError
 from app.utils.logging import ForgeLogger
 
@@ -30,33 +32,27 @@ class AffixRegistry:
     Three-way indexed map of all affixes loaded from affixes.json.
 
     Lookup by name, by numeric id, or by (slot, type) pair — all O(1).
+    Receives a pre-normalized list[AffixDefinition] from the pipeline.
     Constructed once in create_app() and stored on app.extensions.
     """
 
-    def __init__(self, affix_list: list[dict]) -> None:
+    def __init__(self, affixes: list[AffixDefinition]) -> None:
         """
         Args:
-            affix_list: flat list of affix dicts from the pipeline.
+            affixes: flat list of AffixDefinition domain objects, already
+                     normalized by the pipeline. No further normalization here.
         """
-        self._by_name: dict[str, dict] = {}
-        self._by_id: dict[int, dict] = {}
-        self._by_slot_type: dict[tuple[str, str], list[dict]] = {}
+        self._by_name: dict[str, AffixDefinition] = {}
+        self._by_id: dict[int, AffixDefinition] = {}
+        self._by_slot_type: dict[tuple[str, str], list[AffixDefinition]] = {}
 
-        for affix in affix_list:
-            name = affix.get("name", "")
-            affix_id = affix.get("affix_id") or affix.get("id")
-            affix_type = affix.get("type", "")
-
-            if name:
-                self._by_name[name] = affix
-            if affix_id is not None:
-                try:
-                    self._by_id[int(affix_id)] = affix
-                except (TypeError, ValueError):
-                    pass
-
-            for slot in affix.get("applicable_to", []):
-                key = (slot, affix_type)
+        for affix in affixes:
+            if affix.name:
+                self._by_name[affix.name] = affix
+            if affix.affix_id is not None:
+                self._by_id[affix.affix_id] = affix
+            for slot in affix.applicable_to:
+                key = (slot, affix.affix_type)
                 if key not in self._by_slot_type:
                     self._by_slot_type[key] = []
                 self._by_slot_type[key].append(affix)
@@ -72,25 +68,25 @@ class AffixRegistry:
     # Public API
     # ------------------------------------------------------------------
 
-    def get_by_name(self, name: str) -> dict:
-        """Return an affix dict by display name, or raise AffixNotFoundError."""
+    def get_by_name(self, name: str) -> AffixDefinition:
+        """Return an AffixDefinition by display name, or raise AffixNotFoundError."""
         affix = self._by_name.get(name)
         if affix is None:
             raise AffixNotFoundError(name)
         return affix
 
-    def get_by_id(self, affix_id: int) -> dict:
-        """Return an affix dict by numeric id, or raise AffixNotFoundError."""
+    def get_by_id(self, affix_id: int) -> AffixDefinition:
+        """Return an AffixDefinition by numeric id, or raise AffixNotFoundError."""
         affix = self._by_id.get(affix_id)
         if affix is None:
             raise AffixNotFoundError(str(affix_id))
         return affix
 
-    def for_slot(self, slot: str, affix_type: str) -> list[dict]:
+    def for_slot(self, slot: str, affix_type: str) -> list[AffixDefinition]:
         """Return all affixes valid for the given slot and type (prefix/suffix). O(1)."""
         return self._by_slot_type.get((slot, affix_type), [])
 
-    def all(self) -> list[dict]:
+    def all(self) -> list[AffixDefinition]:
         """Return all affixes as a flat list (by-name values, deduplicated)."""
         return list(self._by_name.values())
 

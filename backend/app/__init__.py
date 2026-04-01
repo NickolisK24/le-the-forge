@@ -36,8 +36,8 @@ def create_app(env: str = "development") -> Flask:
 
     # Data pipeline + registries
     from app.game_data.pipeline import GameDataPipeline
-    from app.registries.skill_registry import SkillRegistry
-    from app.registries.affix_registry import AffixRegistry
+    from app.domain.registries.skill_registry import SkillRegistry
+    from app.domain.registries.affix_registry import AffixRegistry
 
     pipeline = GameDataPipeline()
     pipeline.load_all()

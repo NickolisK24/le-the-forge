@@ -1,8 +1,9 @@
 """
-Skill Registry — indexes all playable skills for O(1) validated lookup.
+Skill Registry — O(1) validated lookup over SkillStatDef domain objects.
 
-Replaces the hardcoded SKILL_STATS dict in combat_engine.py. Seeded from
-backend/app/game_data/skills.json via the GameDataPipeline at app startup.
+Seeded from data/classes/skills.json via the GameDataPipeline (which
+normalizes raw JSON → SkillStatDef) at app startup. The registry receives
+pre-normalized domain objects; it does not do normalization itself.
 
 Usage:
     from flask import current_app
@@ -12,7 +13,7 @@ Usage:
 """
 
 from __future__ import annotations
-from app.engines.combat_engine import SkillStatDef
+from app.domain.skill import SkillStatDef
 from app.utils.exceptions import ForgeError
 from app.utils.logging import ForgeLogger
 
@@ -31,31 +32,17 @@ class SkillRegistry:
     """
     Indexed map of all skills loaded from skills.json.
 
+    Receives a pre-normalized dict[str, SkillStatDef] from the pipeline.
     Constructed once in create_app() and stored on app.extensions.
     """
 
-    def __init__(self, skills_data: dict) -> None:
+    def __init__(self, skills: dict[str, SkillStatDef]) -> None:
         """
         Args:
-            skills_data: dict mapping skill name → raw dict from skills.json.
-                         Shape: {"base_damage": float, "level_scaling": float,
-                                 "attack_speed": float, "scaling_stats": list,
-                                 "is_spell": bool, ...}
+            skills: mapping of skill name → SkillStatDef, already normalized
+                    by the pipeline. No further normalization is done here.
         """
-        self._skills: dict[str, SkillStatDef] = {}
-
-        for name, raw in skills_data.items():
-            self._skills[name] = SkillStatDef(
-                base_damage=float(raw["base_damage"]),
-                level_scaling=float(raw["level_scaling"]),
-                attack_speed=float(raw["attack_speed"]),
-                scaling_stats=list(raw.get("scaling_stats", [])),
-                is_spell=bool(raw.get("is_spell", False)),
-                is_melee=bool(raw.get("is_melee", False)),
-                is_throwing=bool(raw.get("is_throwing", False)),
-                is_bow=bool(raw.get("is_bow", False)),
-            )
-
+        self._skills: dict[str, SkillStatDef] = dict(skills)
         log.info("skill_registry.initialized", count=len(self._skills))
 
     # ------------------------------------------------------------------

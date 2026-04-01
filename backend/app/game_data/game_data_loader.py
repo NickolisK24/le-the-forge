@@ -51,38 +51,39 @@ def get_affix_stat_keys() -> dict:
 
 
 def get_all_affixes() -> list[dict]:
-    """Returns the full flat list of affix definitions."""
-    return _pipeline().affixes
+    """Returns the full flat list of affix definitions as raw dicts (backward compat)."""
+    return [a.to_dict() for a in _pipeline().affixes]
 
 
 def get_affixes_by_category(category: str) -> list[dict]:
     """Returns affix definitions filtered by type (prefix/suffix)."""
-    return [a for a in get_all_affixes() if a.get("type") == category]
+    return [a.to_dict() for a in _pipeline().affixes if a.affix_type == category]
 
 
 def get_affix_categories() -> dict:
     """Returns a summary of affix type counts."""
     from collections import Counter
-    counts = Counter(a["type"] for a in get_all_affixes())
+    counts = Counter(a.affix_type for a in _pipeline().affixes)
     return dict(counts)
 
 
 def get_affixes_by_slot(slot: str) -> list[dict]:
     """Returns all equipment affixes that can roll on the given slot slug (e.g. 'helm')."""
-    return [a for a in get_all_affixes() if slot in a.get("applicable_to", [])]
+    return [a.to_dict() for a in _pipeline().affixes if slot in a.applicable_to]
 
 
 def get_affixes_by_tag(tag: str) -> list[dict]:
     """Returns all affixes that carry the given tag (e.g. 'fire', 'minion')."""
     tag = tag.lower()
+    # Tags are not a first-class field on AffixDefinition; fall through to serialized form.
     return [a for a in get_all_affixes() if tag in [t.lower() for t in a.get("tags", [])]]
 
 
 def get_affix_by_id(affix_id: int) -> dict | None:
     """Returns a single affix by its numeric game id, or None."""
-    for affix in get_all_affixes():
-        if affix.get("affix_id") == affix_id:
-            return affix
+    for affix in _pipeline().affixes:
+        if affix.affix_id == affix_id:
+            return affix.to_dict()
     return None
 
 
@@ -115,8 +116,8 @@ def get_attribute_scaling() -> dict:
     return _pipeline().classes.get("attribute_scaling", {})
 
 
-def get_skill_stats() -> dict:
-    """Returns skill name → stat definition dict."""
+def get_skill_stats() -> dict[str, object]:
+    """Returns skill name → SkillStatDef mapping."""
     return _pipeline().skills
 
 

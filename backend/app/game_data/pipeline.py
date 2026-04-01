@@ -17,11 +17,12 @@ Usage (after initialization in create_app):
 """
 
 import json
-import math
 import os
 from typing import Optional
 
 from app.domain.enemy import EnemyProfile
+from app.domain.item import AffixDefinition
+from app.domain.skill import SkillStatDef
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
@@ -104,7 +105,6 @@ class GameDataPipeline:
         self._cache.clear()
 
         self._cache["affixes"]        = self._load_affixes()
-        self._cache["affix_lookups"]  = self._build_affix_lookups(self._cache["affixes"])
         self._cache["enemies"]        = self._load_enemies()
         self._cache["skills"]         = self._load_skills()
         self._cache["classes"]        = self._load_classes()
@@ -131,23 +131,25 @@ class GameDataPipeline:
     # ------------------------------------------------------------------
 
     @property
-    def affixes(self) -> list[dict]:
+    def affixes(self) -> list[AffixDefinition]:
         return self._cache.get("affixes", [])
 
     @property
     def affix_tier_midpoints(self) -> dict[str, dict[str, float]]:
-        return self._cache.get("affix_lookups", ({}, {}))[0]
+        """Legacy accessor — computes from AffixDefinition objects for backward compat."""
+        return {a.name: a.tier_midpoints() for a in self.affixes if a.name}
 
     @property
     def affix_stat_keys(self) -> dict[str, str]:
-        return self._cache.get("affix_lookups", ({}, {}))[1]
+        """Legacy accessor — computes from AffixDefinition objects for backward compat."""
+        return {a.name: a.stat_key for a in self.affixes if a.name}
 
     @property
     def enemies(self) -> list[EnemyProfile]:
         return self._cache.get("enemies", [])
 
     @property
-    def skills(self) -> dict:
+    def skills(self) -> dict[str, SkillStatDef]:
         return self._cache.get("skills", {})
 
     @property
@@ -185,33 +187,20 @@ class GameDataPipeline:
     # Loaders (private)
     # ------------------------------------------------------------------
 
-    def _load_affixes(self) -> list[dict]:
+    def _load_affixes(self) -> list[AffixDefinition]:
         raw = _load_json("affixes")
         if raw is None:
             log.warning("pipeline.affixes.missing")
             return []
+        raw_list: list[dict]
         if isinstance(raw, list):
             # Legacy flat list format
-            return raw
-        # v2.0 schema: {"_version": "2.0", "affixes": [...]}
-        _require_keys(raw, ["affixes"], "affixes.json")
-        return raw["affixes"]
-
-    def _build_affix_lookups(
-        self, affix_list: list[dict]
-    ) -> tuple[dict[str, dict[str, float]], dict[str, str]]:
-        """Build tier-midpoints and stat-keys dicts in one pass."""
-        midpoints: dict[str, dict[str, float]] = {}
-        stat_keys: dict[str, str] = {}
-        for affix in affix_list:
-            name = affix.get("name", "")
-            stat_keys[name] = affix.get("stat_key", affix.get("id", ""))
-            mp: dict[str, float] = {}
-            for tier_entry in affix.get("tiers", []):
-                lo, hi = tier_entry["min"], tier_entry["max"]
-                mp[f"T{tier_entry['tier']}"] = math.floor((lo + hi) / 2)
-            midpoints[name] = mp
-        return midpoints, stat_keys
+            raw_list = raw
+        else:
+            # v2.0 schema: {"_version": "2.0", "affixes": [...]}
+            _require_keys(raw, ["affixes"], "affixes.json")
+            raw_list = raw["affixes"]
+        return [AffixDefinition.from_dict(a) for a in raw_list]
 
     def _load_enemies(self) -> list[EnemyProfile]:
         raw = _load_json("enemies")
@@ -221,12 +210,15 @@ class GameDataPipeline:
             raise RuntimeError("pipeline: enemy_profiles.json must be a JSON array")
         return [EnemyProfile.from_dict(e) for e in raw]
 
-    def _load_skills(self) -> dict:
+    def _load_skills(self) -> dict[str, SkillStatDef]:
         raw = _load_json("skills")
         if raw is None:
             return {}
         _require_keys(raw, ["skills"], "skills.json")
-        return raw["skills"]
+        return {
+            name: SkillStatDef.from_dict(name, data)
+            for name, data in raw["skills"].items()
+        }
 
     def _load_classes(self) -> dict:
         raw = _load_json("classes")

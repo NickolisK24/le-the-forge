@@ -26,28 +26,12 @@ from app.constants.combat import (
     POISON_DURATION,
     CRIT_CHANCE_CAP,
 )
+from app.domain.skill import SkillStatDef
 from app.engines.stat_engine import BuildStats
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
 from app.game_data.game_data_loader import get_enemy_profile
-
-
-# ---------------------------------------------------------------------------
-# Skill stat definitions — mirrors SKILL_STATS in frontend/src/lib/gameData.ts
-# Only the fields used by the calculation are stored here.
-# ---------------------------------------------------------------------------
-
-@dataclass
-class SkillStatDef:
-    base_damage: float
-    level_scaling: float    # damage multiplier per level above 1
-    attack_speed: float     # base casts/attacks per second
-    scaling_stats: list     # list of BuildStats field names for % damage bonus
-    is_spell: bool = False
-    is_melee: bool = False
-    is_throwing: bool = False
-    is_bow: bool = False
 
 
 SKILL_STATS: dict = {

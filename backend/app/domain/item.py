@@ -1,13 +1,97 @@
 """
 Item domain models — represent a single equipped item and its affixes.
 
-These are constructed at the service boundary from the raw gear list stored
-in Build.gear (JSON array), then passed to engines as typed objects.
+Two distinct layers:
+  - AffixDefinition / AffixTier : template data from affixes.json (what CAN exist)
+  - Affix / Item                : instance data from a Build's gear list (what IS equipped)
+
+AffixDefinition objects are held by AffixRegistry.
+Affix / Item objects are constructed at the service boundary and passed to engines.
 """
 
 from __future__ import annotations
+import math
 from dataclasses import dataclass, field
+from typing import Optional
 
+
+# ---------------------------------------------------------------------------
+# Template / definition layer  (from affixes.json)
+# ---------------------------------------------------------------------------
+
+@dataclass
+class AffixTier:
+    """A single tier range for an affix template."""
+
+    tier: int
+    min: float
+    max: float
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "AffixTier":
+        return cls(
+            tier=int(d.get("tier", 0)),
+            min=float(d.get("min", 0.0)),
+            max=float(d.get("max", 0.0)),
+        )
+
+    @property
+    def midpoint(self) -> float:
+        return math.floor((self.min + self.max) / 2)
+
+    def to_dict(self) -> dict:
+        return {"tier": self.tier, "min": self.min, "max": self.max}
+
+
+@dataclass
+class AffixDefinition:
+    """
+    An affix template — the canonical definition of what an affix is and where
+    it can appear. Sourced from affixes.json and indexed by AffixRegistry.
+
+    Do not confuse with Affix, which is an instance on a specific equipped item.
+    """
+
+    name: str
+    stat_key: str
+    affix_type: str           # "prefix" or "suffix"
+    applicable_to: list[str]  # slot names, e.g. ["head", "body", "hands"]
+    tiers: list[AffixTier]
+    affix_id: Optional[int] = None
+
+    @classmethod
+    def from_dict(cls, d: dict) -> "AffixDefinition":
+        raw_id = d.get("affix_id") or d.get("id")
+        return cls(
+            name=d.get("name", ""),
+            stat_key=d.get("stat_key", d.get("id", "")),
+            affix_type=d.get("type", ""),
+            applicable_to=list(d.get("applicable_to", [])),
+            tiers=[AffixTier.from_dict(t) for t in d.get("tiers", [])],
+            affix_id=int(raw_id) if raw_id is not None else None,
+        )
+
+    def tier_midpoints(self) -> dict[str, float]:
+        """Return {T1: mid, T2: mid, …} — matches the legacy affix_tier_midpoints shape."""
+        return {f"T{t.tier}": t.midpoint for t in self.tiers}
+
+    def to_dict(self) -> dict:
+        """Serialize back to a raw dict (for backward-compat callers)."""
+        d: dict = {
+            "name": self.name,
+            "stat_key": self.stat_key,
+            "type": self.affix_type,
+            "applicable_to": self.applicable_to,
+            "tiers": [t.to_dict() for t in self.tiers],
+        }
+        if self.affix_id is not None:
+            d["affix_id"] = self.affix_id
+        return d
+
+
+# ---------------------------------------------------------------------------
+# Instance layer  (from a Build's gear list)
+# ---------------------------------------------------------------------------
 
 @dataclass
 class Affix:
