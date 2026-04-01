@@ -2,6 +2,7 @@
 
 import pytest
 from app.engines.stat_engine import aggregate_stats, BuildStats
+from app.domain.skill_modifiers import SkillModifiers
 from app.engines.combat_engine import (
     calculate_dps,
     monte_carlo_dps,
@@ -332,7 +333,7 @@ class TestMultiSkillDps:
         r_plain = calculate_dps(stats, "Fireball", 20)
 
         # Modifier applied only to Glacier's calculation
-        glacier_mods = {"more_damage_pct": 50.0}
+        glacier_mods = SkillModifiers(more_damage_pct=50.0)
         r_glacier_boosted = calculate_dps(stats, "Glacier", 20, skill_modifiers=glacier_mods)
         r_fireball_unboosted = calculate_dps(stats, "Fireball", 20)
 

@@ -9,6 +9,8 @@ any object behaviour. TypedDict gives type safety without overhead.
 from __future__ import annotations
 from typing import TypedDict
 
+from app.domain.skill_modifiers import SkillModifiers
+
 
 class SpecialEffect(TypedDict):
     node_id: str
@@ -29,5 +31,5 @@ class SkillTreeStats(TypedDict):
 
     skill_name: str
     build_stat_bonuses: dict[str, float]   # BuildStats field_name → bonus
-    skill_modifiers: dict[str, float]      # per-skill multipliers (more_damage_pct, etc.)
+    skill_modifiers: SkillModifiers
     special_effects: list[SpecialEffect]
