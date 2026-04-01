@@ -445,11 +445,11 @@ def aggregate_stats(
         _add_partial(stats, passive_stats.get("additive", {}))
 
     # 6. Attribute scaling
-    stats.spell_damage_pct    += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"]
+    stats.spell_damage_pct    = combine_additive_percents(stats.spell_damage_pct,    stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"])
     stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["max_mana"]
-    stats.physical_damage_pct += stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"]
+    stats.physical_damage_pct = combine_additive_percents(stats.physical_damage_pct, stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"])
     stats.armour              += stats.strength     * ATTRIBUTE_SCALING["strength"]["armour"]
-    stats.attack_speed_pct    += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"]
+    stats.attack_speed_pct    = combine_additive_percents(stats.attack_speed_pct,    stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"])
     stats.dodge_rating        += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
