@@ -13,6 +13,7 @@ from dataclasses import dataclass, field, asdict
 from typing import Optional
 
 from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER, CRIT_CHANCE_CAP
+from app.domain.calculators.stat_calculator import apply_percent_bonus
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
@@ -452,12 +453,12 @@ def aggregate_stats(
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
 
     # 7. Apply percentage health bonuses
-    stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
+    stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health
 
     # 8. Apply % bonuses to base values
     stats.crit_chance    = min(CRIT_CHANCE_CAP, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
-    stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)
+    stats.attack_speed   = apply_percent_bonus(stats.attack_speed, stats.attack_speed_pct)
 
     log.info(
         "aggregate_stats.end",

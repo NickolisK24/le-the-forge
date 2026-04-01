@@ -28,6 +28,7 @@ from app.constants.combat import (
 )
 from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import sum_flat_damage
+from app.domain.calculators.stat_calculator import apply_percent_bonus
 from app.engines.stat_engine import BuildStats
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
@@ -326,10 +327,10 @@ def calculate_dps(
     total_damage_pct = _sum_increased_damage(stats, skill_def)
 
     # "More" damage multiplier: product of base stats multiplier and spec-tree more%
-    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
+    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
 
     # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
-    hit_damage = effective_base * (1 + total_damage_pct / 100) * more_mult
+    hit_damage = apply_percent_bonus(effective_base, total_damage_pct) * more_mult
 
     # Crit chance and multiplier (base + spec tree bonuses)
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
@@ -413,8 +414,8 @@ def monte_carlo_dps(
     effective_base = scaled_base + flat_added
 
     total_pct = _sum_increased_damage(stats, skill_def)
-    more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
-    hit_damage = effective_base * (1 + total_pct / 100) * more_mult
+    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
+    hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
 
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
