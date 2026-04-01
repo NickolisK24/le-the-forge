@@ -46,6 +46,7 @@ export interface User {
 // ---------------------------------------------------------------------------
 
 export type CharacterClass = "Acolyte" | "Mage" | "Primalist" | "Sentinel" | "Rogue";
+export { type BaseClass, type Mastery, type DamageType, type EquipmentSlot, type ItemRarity } from "@constants";
 export type BuildTier = "S" | "A" | "B" | "C";
 export type VoteDirection = 1 | -1 | 0;
 

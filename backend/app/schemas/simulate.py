@@ -7,15 +7,10 @@ a saved build — the frontend sends stats/class/gear directly.
 
 from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, EXCLUDE
 
+from app.constants import BASE_CLASSES, CLASS_MASTERIES
 
-VALID_CLASSES = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"]
-VALID_MASTERIES = {
-    "Acolyte": ["Necromancer", "Lich", "Warlock"],
-    "Mage": ["Runemaster", "Sorcerer", "Spellblade"],
-    "Primalist": ["Druid", "Beastmaster", "Shaman"],
-    "Sentinel": ["Forge Guard", "Paladin", "Void Knight"],
-    "Rogue": ["Bladedancer", "Marksman", "Falconer"],
-}
+VALID_CLASSES = BASE_CLASSES
+VALID_MASTERIES = CLASS_MASTERIES
 
 
 class StatsInputSchema(Schema):

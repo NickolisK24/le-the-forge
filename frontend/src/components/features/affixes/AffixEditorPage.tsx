@@ -4,6 +4,7 @@ import toast from "react-hot-toast";
 import { adminApi } from "@/lib/api";
 import type { AdminAffix, AdminAffixTier } from "@/lib/api";
 import { Panel, Button, Badge, Spinner } from "@/components/ui";
+import { BASE_CLASSES } from "@constants";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -234,11 +235,7 @@ function EditorPanel({ affix, onSave, onClose }: EditorPanelProps) {
             onChange={(v) => setField("class_requirement", v || null)}
             options={[
               { label: "Any class", value: "" },
-              { label: "Acolyte", value: "Acolyte" },
-              { label: "Mage", value: "Mage" },
-              { label: "Primalist", value: "Primalist" },
-              { label: "Rogue", value: "Rogue" },
-              { label: "Sentinel", value: "Sentinel" },
+              ...BASE_CLASSES.map((c) => ({ label: c, value: c })),
             ]}
           />
         </div>

@@ -6,6 +6,7 @@ export default defineConfig({
   resolve: {
     alias: {
       "@": new URL("./src", import.meta.url).pathname,
+      "@constants": new URL("../backend/src/constants", import.meta.url).pathname,
     },
   },
   server: {

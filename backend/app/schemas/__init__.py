@@ -15,21 +15,16 @@ from app.models import (
     User, Build, BuildSkill, Vote,
     CraftSession, CraftStep,
 )
+from app.constants import BASE_CLASSES, CLASS_MASTERIES, ITEM_RARITIES
 
 # ---------------------------------------------------------------------------
 # Shared validators
 # ---------------------------------------------------------------------------
 
-VALID_CLASSES = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"]
-VALID_MASTERIES = {
-    "Acolyte": ["Necromancer", "Lich", "Warlock"],
-    "Mage": ["Runemaster", "Sorcerer", "Spellblade"],
-    "Primalist": ["Druid", "Beastmaster", "Shaman"],
-    "Sentinel": ["Forge Guard", "Paladin", "Void Knight"],
-    "Rogue": ["Bladedancer", "Marksman", "Falconer"],
-}
+VALID_CLASSES = BASE_CLASSES
+VALID_MASTERIES = CLASS_MASTERIES
 VALID_TIERS = ["S", "A", "B", "C"]
-VALID_RARITIES = ["Normal", "Magic", "Rare", "Exalted", "Unique", "Set"]
+VALID_RARITIES = [r for r in ITEM_RARITIES if r != "Legendary"]  # crafting only
 
 
 # ---------------------------------------------------------------------------

@@ -19,18 +19,13 @@ from app.utils.responses import ok, error
 passives_bp = Blueprint("passives", __name__)
 
 # ---------------------------------------------------------------------------
-# Validation constants  (kept local — single source of truth is schemas/)
+# Validation constants
 # ---------------------------------------------------------------------------
 
-VALID_CLASSES = ["Acolyte", "Mage", "Primalist", "Rogue", "Sentinel"]
+from app.constants import BASE_CLASSES, CLASS_MASTERIES
 
-VALID_MASTERIES: dict[str, list[str]] = {
-    "Acolyte":  ["Necromancer", "Lich", "Warlock"],
-    "Mage":     ["Runemaster", "Sorcerer", "Spellblade"],
-    "Primalist":["Druid", "Beastmaster", "Shaman"],
-    "Sentinel": ["Forge Guard", "Paladin", "Void Knight"],
-    "Rogue":    ["Bladedancer", "Marksman", "Falconer"],
-}
+VALID_CLASSES = BASE_CLASSES
+VALID_MASTERIES: dict[str, list[str]] = CLASS_MASTERIES
 
 
 # ---------------------------------------------------------------------------

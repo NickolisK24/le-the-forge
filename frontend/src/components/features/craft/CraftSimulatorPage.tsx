@@ -23,7 +23,10 @@ const ITEM_TYPES = [
   "Wand","Staff","Sword","Axe","Dagger","Sceptre","Mace","Bow",
   "Shield","Helm","Chest","Gloves","Boots","Belt","Ring","Amulet",
 ];
-const RARITIES = ["Normal","Magic","Rare","Exalted","Unique"];
+import { ITEM_RARITIES } from "@constants";
+
+// Crafting excludes Legendary (not craftable)
+const RARITIES = ITEM_RARITIES.filter((r) => r !== "Legendary");
 const TIERS = [1,2,3,4,5];
 const COMMON_AFFIXES = [
   "Cast Speed","Necrotic Damage","Spell Damage","Minion Damage",

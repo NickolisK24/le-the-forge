@@ -15,6 +15,7 @@
  */
 
 import type { CharacterClass } from "@/types";
+import { CLASS_MASTERIES, BASE_CLASSES } from "@constants";
 
 // ---------------------------------------------------------------------------
 // Class colors
@@ -32,13 +33,9 @@ export const CLASS_COLORS: Record<CharacterClass, string> = {
 // Masteries
 // ---------------------------------------------------------------------------
 
-export const MASTERIES: Record<CharacterClass, string[]> = {
-  Acolyte:   ["Necromancer", "Lich", "Warlock"],
-  Mage:      ["Runemaster", "Sorcerer", "Spellblade"],
-  Primalist: ["Druid", "Beastmaster", "Shaman"],
-  Sentinel:  ["Forge Guard", "Paladin", "Void Knight"],
-  Rogue:     ["Bladedancer", "Marksman", "Falconer"],
-};
+export const MASTERIES: Record<CharacterClass, string[]> = CLASS_MASTERIES as Record<CharacterClass, string[]>;
+
+export { BASE_CLASSES };
 
 // ---------------------------------------------------------------------------
 // Skills — full pool per class

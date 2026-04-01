@@ -7,15 +7,10 @@
 
 import { Button } from "@/components/ui";
 import { MASTERIES } from "@/lib/gameData";
+import { BASE_CLASSES } from "@constants";
 import type { CharacterClass } from "@/types";
 
-const CLASSES: CharacterClass[] = [
-  "Acolyte",
-  "Mage",
-  "Primalist",
-  "Rogue",
-  "Sentinel",
-];
+const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 
 // Cap for base-class passive section (game rule: ~20 base points available)
 const BASE_POINT_CAP = 20;

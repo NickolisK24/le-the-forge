@@ -7,6 +7,7 @@ import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/compo
 import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
+import { BASE_CLASSES } from "@constants";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
 import { versionApi, simulateApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
@@ -19,7 +20,7 @@ import GearEditor from "./GearEditor";
 import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
-const CHARACTER_CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
+const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const MAX_SKILLS = 5;
 const MAX_SKILL_LEVEL = 30; // Base cap is 20; gear can grant additional levels
 

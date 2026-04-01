@@ -24,7 +24,7 @@ log = ForgeLogger(__name__)
 
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
-AFFIX_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "affixes.json")
+AFFIX_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "items", "affixes.json")
 
 MAX_PREFIXES = 2
 MAX_SUFFIXES = 2

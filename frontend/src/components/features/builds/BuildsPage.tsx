@@ -12,6 +12,7 @@ import { Button, Badge, Spinner, EmptyState, ErrorMessage } from "@/components/u
 import { useBuilds, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, MASTERIES } from "@/lib/gameData";
+import { BASE_CLASSES } from "@constants";
 import type { BuildListItem, BuildFilters, CharacterClass, BuildTier } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -27,7 +28,7 @@ const SORT_OPTIONS = [
   { value: "views", label: "Most Viewed"  },
 ] as const;
 
-const CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
+const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 
 const TIER_COLORS: Record<BuildTier, string> = {
   S: "#f5d060",

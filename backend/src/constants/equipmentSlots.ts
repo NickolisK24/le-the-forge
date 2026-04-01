@@ -1,15 +1,14 @@
 export const EQUIPMENT_SLOTS = [
-  "HELM",
-  "BODY_ARMOR",
-  "GLOVES",
-  "BOOTS",
-  "BELT",
-  "AMULET",
-  "RING",
-  "WEAPON",
-  "OFFHAND",
-  "RELIC"
+  "helmet",
+  "body",
+  "gloves",
+  "boots",
+  "belt",
+  "amulet",
+  "ring",
+  "weapon",
+  "offhand",
+  "relic",
 ] as const;
 
-export type EquipmentSlot =
-  typeof EQUIPMENT_SLOTS[number];
+export type EquipmentSlot = typeof EQUIPMENT_SLOTS[number];

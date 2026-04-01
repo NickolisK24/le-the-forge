@@ -1,12 +1,11 @@
 export const ITEM_RARITIES = [
-  "NORMAL",
-  "MAGIC",
-  "RARE",
-  "EXALTED",
-  "UNIQUE",
-  "SET",
-  "LEGENDARY"
+  "Normal",
+  "Magic",
+  "Rare",
+  "Exalted",
+  "Unique",
+  "Set",
+  "Legendary",
 ] as const;
 
-export type ItemRarity =
-  typeof ITEM_RARITIES[number];
+export type ItemRarity = typeof ITEM_RARITIES[number];
