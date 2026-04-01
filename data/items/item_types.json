@@ -1,127 +1,32 @@
 [
-  {
-    "id": "amulet",
-    "name": "Amulet",
-    "slot": "neck"
-  },
-  {
-    "id": "axe",
-    "name": "Axe",
-    "slot": "weapon"
-  },
-  {
-    "id": "belt",
-    "name": "Belt",
-    "slot": "waist"
-  },
-  {
-    "id": "boots",
-    "name": "Boots",
-    "slot": "feet"
-  },
-  {
-    "id": "bow",
-    "name": "Bow",
-    "slot": "weapon"
-  },
-  {
-    "id": "chest",
-    "name": "Chest",
-    "slot": "body"
-  },
-  {
-    "id": "dagger",
-    "name": "Dagger",
-    "slot": "weapon"
-  },
-  {
-    "id": "gloves",
-    "name": "Gloves",
-    "slot": "hands"
-  },
-  {
-    "id": "helm",
-    "name": "Helm",
-    "slot": "head"
-  },
-  {
-    "id": "idol_1x1",
-    "name": "Idol_1X1",
-    "slot": "idol"
-  },
-  {
-    "id": "idol_1x2",
-    "name": "Idol_1X2",
-    "slot": "idol"
-  },
-  {
-    "id": "idol_1x3",
-    "name": "Idol_1X3",
-    "slot": "idol"
-  },
-  {
-    "id": "idol_1x4",
-    "name": "Idol_1X4",
-    "slot": "idol"
-  },
-  {
-    "id": "idol_2x2",
-    "name": "Idol_2X2",
-    "slot": "idol"
-  },
-  {
-    "id": "mace",
-    "name": "Mace",
-    "slot": "weapon"
-  },
-  {
-    "id": "polearm",
-    "name": "Polearm",
-    "slot": "weapon"
-  },
-  {
-    "id": "quiver",
-    "name": "Quiver",
-    "slot": "offhand"
-  },
-  {
-    "id": "relic",
-    "name": "Relic",
-    "slot": "relic"
-  },
-  {
-    "id": "ring",
-    "name": "Ring",
-    "slot": "finger"
-  },
-  {
-    "id": "sceptre",
-    "name": "Sceptre",
-    "slot": "weapon"
-  },
-  {
-    "id": "shield",
-    "name": "Shield",
-    "slot": "offhand"
-  },
-  {
-    "id": "spear",
-    "name": "Spear",
-    "slot": "weapon"
-  },
-  {
-    "id": "staff",
-    "name": "Staff",
-    "slot": "weapon"
-  },
-  {
-    "id": "sword",
-    "name": "Sword",
-    "slot": "weapon"
-  },
-  {
-    "id": "wand",
-    "name": "Wand",
-    "slot": "weapon"
-  }
+  { "id": "amulet",    "name": "Amulet",    "slot": "neck"    },
+  { "id": "axe",       "name": "Axe",       "slot": "weapon"  },
+  { "id": "belt",      "name": "Belt",      "slot": "waist"   },
+  { "id": "boots",     "name": "Boots",     "slot": "feet"    },
+  { "id": "bow",       "name": "Bow",       "slot": "weapon"  },
+  { "id": "catalyst",  "name": "Catalyst",  "slot": "offhand" },
+  { "id": "chest",     "name": "Chest",     "slot": "body"    },
+  { "id": "crossbow",  "name": "Crossbow",  "slot": "weapon"  },
+  { "id": "dagger",    "name": "Dagger",    "slot": "weapon"  },
+  { "id": "fist",      "name": "Fist",      "slot": "weapon"  },
+  { "id": "gloves",    "name": "Gloves",    "slot": "hands"   },
+  { "id": "helm",      "name": "Helm",      "slot": "head"    },
+  { "id": "idol_1x1",  "name": "Idol 1x1",  "slot": "idol"    },
+  { "id": "idol_1x2",  "name": "Idol 1x2",  "slot": "idol"    },
+  { "id": "idol_1x3",  "name": "Idol 1x3",  "slot": "idol"    },
+  { "id": "idol_1x4",  "name": "Idol 1x4",  "slot": "idol"    },
+  { "id": "idol_2x1",  "name": "Idol 2x1",  "slot": "idol"    },
+  { "id": "idol_2x2",  "name": "Idol 2x2",  "slot": "idol"    },
+  { "id": "idol_3x1",  "name": "Idol 3x1",  "slot": "idol"    },
+  { "id": "idol_4x1",  "name": "Idol 4x1",  "slot": "idol"    },
+  { "id": "mace",      "name": "Mace",      "slot": "weapon"  },
+  { "id": "polearm",   "name": "Polearm",   "slot": "weapon"  },
+  { "id": "quiver",    "name": "Quiver",    "slot": "offhand" },
+  { "id": "relic",     "name": "Relic",     "slot": "relic"   },
+  { "id": "ring",      "name": "Ring",      "slot": "finger"  },
+  { "id": "sceptre",   "name": "Sceptre",   "slot": "weapon"  },
+  { "id": "shield",    "name": "Shield",    "slot": "offhand" },
+  { "id": "staff",     "name": "Staff",     "slot": "weapon"  },
+  { "id": "sword",     "name": "Sword",     "slot": "weapon"  },
+  { "id": "wand",      "name": "Wand",      "slot": "weapon"  }
 ]
