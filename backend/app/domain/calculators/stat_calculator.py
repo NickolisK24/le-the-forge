@@ -42,3 +42,17 @@ def apply_more_multiplier(base: float, more_pct: float) -> float:
         result   = 150.0
     """
     return base * (1 + more_pct / 100)
+
+
+def combine_additive_percents(*values: float) -> float:
+    """
+    Combine additive percent-point values into a single total.
+
+    All inputs must be percent-points (25.0 means 25%).
+    Additive bonuses are summed before any multiplicative modifiers
+    are applied — this function enforces that grouping.
+
+    Example:
+        combine_additive_percents(25.0, 10.0, 15.0) → 50.0
+    """
+    return sum(values)
