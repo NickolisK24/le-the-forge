@@ -267,6 +267,8 @@ def calculate_dps(
     skill_name: str,
     skill_level: int = 20,
     skill_modifiers: SkillModifiers | None = None,
+    *,
+    debug: bool = False,
 ) -> DPSResult:
     """
     Calculate expected DPS for a skill at a given level using build stats.
@@ -296,7 +298,7 @@ def calculate_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct))
+    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
     # Crit chance and multiplier (base + spec tree bonuses)
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.crit_chance_pct / 100)
@@ -349,6 +351,8 @@ def monte_carlo_dps(
     n: int = 10_000,
     seed: Optional[int] = None,
     skill_modifiers: SkillModifiers | None = None,
+    *,
+    debug: bool = False,
 ) -> MonteCarloDPS:
     """
     Simulate n attacks and measure DPS variance from random crit outcomes.
@@ -379,7 +383,7 @@ def monte_carlo_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct))
+    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.crit_chance_pct / 100)
     effective_crit_mult = stats.crit_multiplier + sm.crit_multiplier_pct / 100

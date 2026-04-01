@@ -17,6 +17,9 @@ from app.domain.calculators.more_multiplier_calculator import apply_more_multipl
 from app.domain.calculators.stat_calculator import apply_percent_bonus
 from app.domain.skill import SkillStatDef
 from app.engines.stat_engine import BuildStats
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 @dataclass
@@ -52,11 +55,24 @@ class DamageContext:
         )
 
 
-def calculate_final_damage(ctx: DamageContext) -> float:
+def calculate_final_damage(ctx: DamageContext, *, debug: bool = False) -> float:
     """
     Apply the full pipeline to the values stored in ctx.
 
     Returns final per-hit damage, ready for crit and attack-speed application.
+
+    Pass debug=True to emit a structured trace log of each pipeline stage:
+        base → increased_pct → after_increased → more_values → final
     """
     after_increased = apply_percent_bonus(ctx.base_damage, ctx.increased_damage)
-    return apply_more_multiplier(after_increased, ctx.more_damage)
+    final = apply_more_multiplier(after_increased, ctx.more_damage)
+    if debug:
+        log.debug(
+            "damage_pipeline",
+            base=round(ctx.base_damage, 2),
+            increased_pct=ctx.increased_damage,
+            after_increased=round(after_increased, 2),
+            more_values=ctx.more_damage,
+            final=round(final, 2),
+        )
+    return final
