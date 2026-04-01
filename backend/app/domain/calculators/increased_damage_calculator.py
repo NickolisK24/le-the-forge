@@ -11,9 +11,8 @@ from __future__ import annotations
 
 from app.domain.skill import SkillStatDef
 from app.domain.calculators.stat_calculator import combine_additive_percents
+from app.domain.stat_groups import ELEMENTAL_DAMAGE_INCREASED
 from app.engines.stat_engine import BuildStats
-
-_ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
 
 
 def sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
@@ -31,7 +30,7 @@ def sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
         total = combine_additive_percents(total, stats.throwing_damage_pct)
     if skill_def.is_bow:
         total = combine_additive_percents(total, stats.bow_damage_pct)
-    if _ELEMENTAL_STATS.intersection(skill_def.scaling_stats):
+    if ELEMENTAL_DAMAGE_INCREASED.intersection(skill_def.scaling_stats):
         total = combine_additive_percents(total, stats.elemental_damage_pct)
 
     return total

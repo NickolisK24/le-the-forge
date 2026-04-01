@@ -30,7 +30,8 @@ from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import sum_flat_damage
 from app.domain.calculators.increased_damage_calculator import sum_increased_damage
 from app.domain.calculators.more_multiplier_calculator import apply_more_multiplier
-from app.domain.calculators.stat_calculator import apply_percent_bonus
+from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
+from app.domain.stat_groups import BLEED_DAMAGE_INCREASED, IGNITE_DAMAGE_INCREASED, POISON_DAMAGE_INCREASED
 from app.engines.stat_engine import BuildStats
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
@@ -238,8 +239,8 @@ def _calc_ailment_dps(
         chance = min(1.0, stats.bleed_chance_pct / 100)
         base_per_stack = hit_damage * BLEED_BASE_RATIO / BLEED_DURATION
         maintained = effective_as * chance * BLEED_DURATION
-        increased = 1 + (stats.physical_damage_pct + stats.dot_damage_pct +
-                         stats.bleed_damage_pct) / 100
+        increased = apply_percent_bonus(1.0, combine_additive_percents(
+            *[getattr(stats, k) for k in BLEED_DAMAGE_INCREASED]))
         bleed_dps = round(base_per_stack * maintained * increased)
 
     # Ignite: fire DoT
@@ -247,8 +248,8 @@ def _calc_ailment_dps(
         chance = min(1.0, stats.ignite_chance_pct / 100)
         base_per_stack = hit_damage * IGNITE_DPS_RATIO
         maintained = effective_as * chance * IGNITE_DURATION
-        increased = 1 + (stats.fire_damage_pct + stats.dot_damage_pct +
-                         stats.ignite_damage_pct) / 100
+        increased = apply_percent_bonus(1.0, combine_additive_percents(
+            *[getattr(stats, k) for k in IGNITE_DAMAGE_INCREASED]))
         ignite_dps = round(base_per_stack * maintained * increased)
 
     # Poison: poison DoT
@@ -256,8 +257,8 @@ def _calc_ailment_dps(
         chance = min(1.0, stats.poison_chance_pct / 100)
         base_per_stack = hit_damage * POISON_DPS_RATIO
         maintained = effective_as * chance * POISON_DURATION
-        increased = 1 + (stats.poison_damage_pct + stats.dot_damage_pct +
-                         stats.poison_dot_damage_pct) / 100
+        increased = apply_percent_bonus(1.0, combine_additive_percents(
+            *[getattr(stats, k) for k in POISON_DAMAGE_INCREASED]))
         poison_dps = round(base_per_stack * maintained * increased)
 
     return bleed_dps, ignite_dps, poison_dps
