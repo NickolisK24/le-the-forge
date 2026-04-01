@@ -31,6 +31,7 @@ import re
 import os
 import json
 from app.domain.passive import SkillTreeStats
+from app.domain.skill_modifiers import SkillModifiers
 from functools import lru_cache
 
 from app.utils.logging import ForgeLogger
@@ -231,7 +232,7 @@ def _parse_description(description: str, points_allocated: int, max_points: int)
       }
     """
     build_stats: dict[str, float] = {}
-    skill_mods: dict[str, float] = {}
+    skill_mods = SkillModifiers()
     special_effects: list[str] = []
 
     if not description or "|" not in description:
@@ -277,16 +278,16 @@ def _parse_description(description: str, points_allocated: int, max_points: int)
     return {"build_stats": build_stats, "skill_mods": skill_mods, "special_effects": special_effects}
 
 
-def _accumulate(field: str, value: float, build_stats: dict, skill_mods: dict) -> None:
+def _accumulate(field: str, value: float, build_stats: dict, skill_mods: SkillModifiers) -> None:
     """Route a field to either build_stats or skill_mods bucket."""
     if field == "_more_damage":
-        skill_mods["more_damage_pct"] = skill_mods.get("more_damage_pct", 0.0) + value
+        skill_mods.more_damage_pct += value
     elif field == "_skill_attack_speed_pct":
-        skill_mods["attack_speed_pct"] = skill_mods.get("attack_speed_pct", 0.0) + value
+        skill_mods.attack_speed_pct += value
     elif field == "_skill_cast_speed_pct":
-        skill_mods["cast_speed_pct"] = skill_mods.get("cast_speed_pct", 0.0) + value
+        skill_mods.cast_speed_pct += value
     elif field == "_added_hits_per_cast":
-        skill_mods["added_hits_per_cast"] = skill_mods.get("added_hits_per_cast", 0.0) + value
+        skill_mods.added_hits_per_cast += int(value)
     elif field == "_elemental_res":
         for res in ("fire_res", "cold_res", "lightning_res"):
             build_stats[res] = build_stats.get(res, 0.0) + value
@@ -336,7 +337,7 @@ def resolve_skill_tree_stats(
     node_by_id: dict[int, dict] = {n["id"]: n for n in tree_data["nodes"]}
 
     build_stat_bonuses: dict[str, float] = {}
-    skill_modifiers: dict[str, float] = {}
+    skill_modifiers = SkillModifiers()
     special_effects: list[str] = []
 
     for allocation in spec_tree:
@@ -362,8 +363,13 @@ def resolve_skill_tree_stats(
         for field, val in result["build_stats"].items():
             build_stat_bonuses[field] = build_stat_bonuses.get(field, 0.0) + val
 
-        for key, val in result["skill_mods"].items():
-            skill_modifiers[key] = skill_modifiers.get(key, 0.0) + val
+        sm = result["skill_mods"]  # SkillModifiers from _parse_description
+        skill_modifiers.more_damage_pct += sm.more_damage_pct
+        skill_modifiers.added_hits_per_cast += sm.added_hits_per_cast
+        skill_modifiers.attack_speed_pct += sm.attack_speed_pct
+        skill_modifiers.cast_speed_pct += sm.cast_speed_pct
+        skill_modifiers.crit_chance_pct += sm.crit_chance_pct
+        skill_modifiers.crit_multiplier_pct += sm.crit_multiplier_pct
 
         special_effects.extend(result["special_effects"])
 
@@ -379,6 +385,6 @@ def _empty_result(skill_name: str) -> dict:
     return {
         "skill_name": skill_name,
         "build_stat_bonuses": {},
-        "skill_modifiers": {},
+        "skill_modifiers": SkillModifiers(),
         "special_effects": [],
     }

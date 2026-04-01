@@ -14,6 +14,16 @@ from app.domain.skill import SkillStatDef
 from app.engines.stat_engine import BuildStats
 
 
+def scale_skill_damage(base: float, scaling: float, level: int) -> float:
+    """Apply level scaling to a skill's base damage."""
+    return base * (1 + scaling * (level - 1))
+
+
+def hits_per_cast(added: int) -> int:
+    """Total hits per cast: base 1 plus any spec-tree additions."""
+    return max(1, 1 + added)
+
+
 def sum_flat_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
     """Sum all flat added damage relevant to a skill's attack type."""
     total = 0.0

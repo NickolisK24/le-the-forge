@@ -20,6 +20,7 @@ from typing import Optional
 
 from app.constants.crafting import MAX_PREFIXES, MAX_SUFFIXES
 from app.domain.calculators.affix_calculator import get_affix_tier_data, get_max_tier, is_max_tier
+from app.domain.item import AffixDefinition
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
@@ -94,7 +95,7 @@ def get_affix_pool(item_type: str) -> dict:
 # Lookup
 # ---------------------------------------------------------------------------
 
-def get_affix_by_name(name: str) -> Optional[dict]:
+def get_affix_by_name(name: str) -> Optional[AffixDefinition]:
     """Look up an affix by its display name."""
     try:
         from flask import current_app
@@ -105,15 +106,15 @@ def get_affix_by_name(name: str) -> Optional[dict]:
         pass
     for affix in _affix_data():
         if affix["name"] == name:
-            return affix
+            return AffixDefinition.from_dict(affix, data_version="file")
     return None
 
 
-def get_affix_by_id(affix_id: str) -> Optional[dict]:
+def get_affix_by_id(affix_id: str) -> Optional[AffixDefinition]:
     """Look up an affix by its canonical id."""
     for affix in _affix_data():
         if affix["id"] == affix_id:
-            return affix
+            return AffixDefinition.from_dict(affix, data_version="file")
     return None
 
 

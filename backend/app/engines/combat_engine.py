@@ -17,18 +17,18 @@ import random
 from dataclasses import dataclass, asdict
 from typing import Optional
 
-from app.constants.combat import (
-    BLEED_BASE_RATIO,
-    BLEED_DURATION,
-    IGNITE_DPS_RATIO,
-    IGNITE_DURATION,
-    POISON_DPS_RATIO,
-    POISON_DURATION,
-    CRIT_CHANCE_CAP,
-)
 from app.domain.skill import SkillStatDef
-from app.domain.calculators.skill_calculator import sum_flat_damage
-from app.domain.calculators.stat_calculator import apply_more_multiplier, apply_percent_bonus
+from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill_damage, hits_per_cast
+from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
+from app.domain.calculators.crit_calculator import (
+    effective_crit_chance,
+    effective_crit_multiplier,
+    calculate_average_hit,
+    crit_contribution_pct,
+)
+from app.domain.calculators.speed_calculator import effective_attack_speed
+from app.domain.calculators.ailment_calculator import calc_ailment_dps
+from app.domain.skill_modifiers import SkillModifiers
 from app.engines.stat_engine import BuildStats
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
@@ -214,77 +214,6 @@ def _get_skill_def(skill_name: str) -> SkillStatDef | None:
     return SKILL_STATS.get(skill_name)
 
 
-# Elemental stat keys — used to detect elemental skills for elemental_damage_pct
-_ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
-
-
-# ---------------------------------------------------------------------------
-# Helpers — flat added damage and ailment calculation
-# ---------------------------------------------------------------------------
-
-
-
-def _sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
-    """Sum all % increased damage bonuses for a skill, including implicit type bonuses."""
-    total = sum(getattr(stats, k, 0.0) for k in skill_def.scaling_stats)
-
-    # Weapon-type % bonuses (additive with other increased damage)
-    if skill_def.is_melee:
-        total += stats.melee_damage_pct
-    if skill_def.is_throwing:
-        total += stats.throwing_damage_pct
-    if skill_def.is_bow:
-        total += stats.bow_damage_pct
-
-    # Elemental damage bonus applies if skill scales with any elemental stat
-    if _ELEMENTAL_STATS.intersection(skill_def.scaling_stats):
-        total += stats.elemental_damage_pct
-
-    return total
-
-
-def _calc_ailment_dps(
-    hit_damage: float,
-    effective_as: float,
-    stats: BuildStats,
-) -> tuple[int, int, int]:
-    """
-    Calculate per-ailment DPS from proc chance, base hit, and DoT scaling.
-
-    Returns (bleed_dps, ignite_dps, poison_dps).
-    """
-    bleed_dps = ignite_dps = poison_dps = 0
-
-    # Bleed: physical DoT
-    if stats.bleed_chance_pct > 0:
-        chance = min(1.0, stats.bleed_chance_pct / 100)
-        base_per_stack = hit_damage * BLEED_BASE_RATIO / BLEED_DURATION
-        maintained = effective_as * chance * BLEED_DURATION
-        increased = 1 + (stats.physical_damage_pct + stats.dot_damage_pct +
-                         stats.bleed_damage_pct) / 100
-        bleed_dps = round(base_per_stack * maintained * increased)
-
-    # Ignite: fire DoT
-    if stats.ignite_chance_pct > 0:
-        chance = min(1.0, stats.ignite_chance_pct / 100)
-        base_per_stack = hit_damage * IGNITE_DPS_RATIO
-        maintained = effective_as * chance * IGNITE_DURATION
-        increased = 1 + (stats.fire_damage_pct + stats.dot_damage_pct +
-                         stats.ignite_damage_pct) / 100
-        ignite_dps = round(base_per_stack * maintained * increased)
-
-    # Poison: poison DoT
-    if stats.poison_chance_pct > 0:
-        chance = min(1.0, stats.poison_chance_pct / 100)
-        base_per_stack = hit_damage * POISON_DPS_RATIO
-        maintained = effective_as * chance * POISON_DURATION
-        increased = 1 + (stats.poison_damage_pct + stats.dot_damage_pct +
-                         stats.poison_dot_damage_pct) / 100
-        poison_dps = round(base_per_stack * maintained * increased)
-
-    return bleed_dps, ignite_dps, poison_dps
-
-
 # ---------------------------------------------------------------------------
 # DPS calculation
 # ---------------------------------------------------------------------------
@@ -293,7 +222,9 @@ def calculate_dps(
     stats: BuildStats,
     skill_name: str,
     skill_level: int = 20,
-    skill_modifiers: dict | None = None,
+    skill_modifiers: SkillModifiers | None = None,
+    *,
+    debug: bool = False,
 ) -> DPSResult:
     """
     Calculate expected DPS for a skill at a given level using build stats.
@@ -314,47 +245,24 @@ def calculate_dps(
         log.warning("calculate_dps.unknown_skill", skill=skill_name)
         return DPSResult(0, 0, 0, 1.0, 0)
 
-    sm = skill_modifiers or {}
+    sm = skill_modifiers or SkillModifiers()
 
-    # Base damage scaled by level
-    scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-
-    # Flat added damage from gear
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scaled_base + flat_added
+    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
 
-    # Sum all "increased" % damage bonuses (additive pool)
-    total_damage_pct = _sum_increased_damage(stats, skill_def)
+    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
-    # "More" damage multiplier: product of base stats multiplier and spec-tree more%
-    more_mult = stats.more_damage_multiplier * apply_more_multiplier(1.0, sm.get("more_damage_pct", 0.0))
+    eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+    eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
+    average_hit = calculate_average_hit(hit_damage, eff_crit_chance, eff_crit_mult)
 
-    # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
-    hit_damage = apply_percent_bonus(effective_base, total_damage_pct) * more_mult
+    effective_as = effective_attack_speed(skill_def, stats, sm)
+    hpc = hits_per_cast(sm.added_hits_per_cast)
 
-    # Crit chance and multiplier (base + spec tree bonuses)
-    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
-    effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
+    hit_dps = average_hit * effective_as * hpc
+    crit_contrib = crit_contribution_pct(hit_damage, eff_crit_chance, eff_crit_mult, average_hit)
 
-    # AverageHit = non-crit portion + crit portion
-    non_crit = (1 - effective_crit_chance) * hit_damage
-    crit_hit = effective_crit_chance * hit_damage * effective_crit_mult
-    average_hit = non_crit + crit_hit
-
-    # Effective attack speed (base + build stats + spec tree bonuses)
-    cast_speed_bonus = (stats.cast_speed + sm.get("cast_speed_pct", 0.0)) / 100 if skill_def.is_spell else 0.0
-    attack_speed_bonus = (stats.attack_speed_pct + sm.get("attack_speed_pct", 0.0)) / 100 if not skill_def.is_spell else 0.0
-    throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
-    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
-
-    # Hits per cast: base 1 + spec tree extra projectiles/chains
-    hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
-
-    hit_dps = average_hit * effective_as * hits_per_cast
-    crit_contrib = round((crit_hit * effective_as * hits_per_cast) / hit_dps * 100) if hit_dps > 0 else 0
-
-    # Ailment DPS
-    bleed_dps, ignite_dps, poison_dps = _calc_ailment_dps(hit_damage, effective_as, stats)
+    bleed_dps, ignite_dps, poison_dps = calc_ailment_dps(hit_damage, effective_as, stats)
     ailment_total = bleed_dps + ignite_dps + poison_dps
 
     return DPSResult(
@@ -382,7 +290,9 @@ def monte_carlo_dps(
     skill_level: int = 20,
     n: int = 10_000,
     seed: Optional[int] = None,
-    skill_modifiers: dict | None = None,
+    skill_modifiers: SkillModifiers | None = None,
+    *,
+    debug: bool = False,
 ) -> MonteCarloDPS:
     """
     Simulate n attacks and measure DPS variance from random crit outcomes.
@@ -407,32 +317,25 @@ def monte_carlo_dps(
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
 
     rng = random.Random(seed)
-    sm = skill_modifiers or {}
+    sm = skill_modifiers or SkillModifiers()
 
-    scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scaled_base + flat_added
+    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
 
-    total_pct = _sum_increased_damage(stats, skill_def)
-    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
-    hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
+    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
 
-    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
-    effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
-    hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
-
-    cast_speed_bonus = (stats.cast_speed + sm.get("cast_speed_pct", 0.0)) / 100 if skill_def.is_spell else 0.0
-    attack_speed_bonus = (stats.attack_speed_pct + sm.get("attack_speed_pct", 0.0)) / 100 if not skill_def.is_spell else 0.0
-    throw_speed_bonus = stats.throwing_attack_speed / 100 if skill_def.is_throwing else 0.0
-    effective_as = skill_def.attack_speed * (1 + cast_speed_bonus + attack_speed_bonus + throw_speed_bonus)
+    eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+    eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
+    hpc = hits_per_cast(sm.added_hits_per_cast)
+    effective_as = effective_attack_speed(skill_def, stats, sm)
 
     damages = []
     for _ in range(n):
-        if rng.random() < effective_crit_chance:
-            dmg = hit_damage * effective_crit_mult
+        if rng.random() < eff_crit_chance:
+            dmg = hit_damage * eff_crit_mult
         else:
             dmg = hit_damage
-        damages.append(dmg * effective_as * hits_per_cast)
+        damages.append(dmg * effective_as * hpc)
 
     damages.sort()
     mean = sum(damages) / n

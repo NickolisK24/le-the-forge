@@ -48,7 +48,7 @@ class StatsInputSchema(Schema):
     throwing_attack_speed = fields.Float(load_default=0.0)
     crit_chance_pct = fields.Float(load_default=0.0)
     crit_multiplier_pct = fields.Float(load_default=0.0)
-    more_damage_multiplier = fields.Float(load_default=1.0, validate=validate.Range(min=0.01, max=100.0))
+    more_damage_pct = fields.Float(load_default=0.0, validate=validate.Range(min=0.0))
 
     # Offense — flat added damage
     added_melee_physical = fields.Float(load_default=0.0)

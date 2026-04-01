@@ -12,8 +12,9 @@ already-loaded data objects.
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
-from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER, CRIT_CHANCE_CAP
+from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER
 from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
+from app.domain.calculators.crit_calculator import effective_crit_chance, effective_crit_multiplier
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
@@ -57,7 +58,7 @@ class BuildStats:
     throwing_attack_speed: float = 0.0
     crit_chance_pct: float = 0.0
     crit_multiplier_pct: float = 0.0
-    more_damage_multiplier: float = 1.0
+    more_damage_pct: float = 0.0
 
     # Offense — flat added damage
     added_melee_physical: float = 0.0
@@ -463,8 +464,8 @@ def aggregate_stats(
     stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health
 
     # 8. Apply % bonuses to base values
-    stats.crit_chance    = min(CRIT_CHANCE_CAP, stats.crit_chance + stats.crit_chance_pct / 100)
-    stats.crit_multiplier += stats.crit_multiplier_pct / 100
+    stats.crit_chance = effective_crit_chance(stats.crit_chance, stats.crit_chance_pct)
+    stats.crit_multiplier = effective_crit_multiplier(stats.crit_multiplier, stats.crit_multiplier_pct)
     stats.attack_speed   = apply_percent_bonus(stats.attack_speed, stats.attack_speed_pct)
 
     log.info(

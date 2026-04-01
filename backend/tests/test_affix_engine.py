@@ -97,24 +97,25 @@ class TestAffixLookup(unittest.TestCase):
 
 
 class TestTierAccess(unittest.TestCase):
+    def _get_affix_def(self):
+        return get_affix_by_name(affix_data[0]["name"])
+
     def test_get_affix_tier_data_valid(self):
-        affix = affix_data[0]
-        tier_data = get_affix_tier_data(affix, 1)
+        affix_def = self._get_affix_def()
+        tier_data = get_affix_tier_data(affix_def, 1)
         self.assertIsNotNone(tier_data)
-        self.assertIn("min", tier_data)
-        self.assertIn("max", tier_data)
+        self.assertIsInstance(tier_data.min, float)
+        self.assertIsInstance(tier_data.max, float)
 
     def test_get_affix_tier_data_out_of_range(self):
-        affix = affix_data[0]
-        self.assertIsNone(get_affix_tier_data(affix, 999))
+        affix_def = self._get_affix_def()
+        self.assertIsNone(get_affix_tier_data(affix_def, 999))
 
     def test_get_max_tier(self):
-        affix = affix_data[0]
-        max_t = get_max_tier(affix)
+        affix_def = self._get_affix_def()
+        max_t = get_max_tier(affix_def)
         self.assertGreater(max_t, 0)
-        # Verify all tiers exist in data
-        tier_nums = [t["tier"] for t in affix["tiers"]]
-        self.assertEqual(max_t, max(tier_nums))
+        self.assertEqual(max_t, max(t.tier for t in affix_def.tiers))
 
 
 class TestSlotValidation(unittest.TestCase):
