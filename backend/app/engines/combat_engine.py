@@ -33,7 +33,7 @@ from app.engines.stat_engine import BuildStats
 # data_version is required on SkillStatDef; "hardcoded" marks these as static
 # definitions rather than values loaded from a versioned data file.
 def _S(bd: float, ls: float, asp: float, ss: list, **kw) -> SkillStatDef:
-    return _S(bd, ls, asp, ss, data_version="hardcoded", **kw)
+    return SkillStatDef(bd, ls, asp, tuple(ss), data_version="hardcoded", **kw)
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)

@@ -19,7 +19,7 @@ from typing import Optional
 # Template / definition layer  (from affixes.json)
 # ---------------------------------------------------------------------------
 
-@dataclass
+@dataclass(frozen=True)
 class AffixTier:
     """A single tier range for an affix template."""
 
@@ -43,21 +43,22 @@ class AffixTier:
         return {"tier": self.tier, "min": self.min, "max": self.max}
 
 
-@dataclass
+@dataclass(frozen=True)
 class AffixDefinition:
     """
     An affix template — the canonical definition of what an affix is and where
     it can appear. Sourced from affixes.json and indexed by AffixRegistry.
 
     Do not confuse with Affix, which is an instance on a specific equipped item.
+    Frozen: fields are immutable after construction.
     """
 
     name: str
     stat_key: str
-    affix_type: str           # "prefix" or "suffix"
-    applicable_to: list[str]  # slot names, e.g. ["head", "body", "hands"]
-    tiers: list[AffixTier]
-    data_version: str         # version of the data file this was loaded from
+    affix_type: str                 # "prefix" or "suffix"
+    applicable_to: tuple[str, ...]  # slot names, e.g. ("head", "body", "hands")
+    tiers: tuple[AffixTier, ...]
+    data_version: str               # version of the data file this was loaded from
     affix_id: Optional[int] = None
 
     @classmethod
@@ -67,8 +68,8 @@ class AffixDefinition:
             name=d.get("name", ""),
             stat_key=d.get("stat_key", d.get("id", "")),
             affix_type=d.get("type", ""),
-            applicable_to=list(d.get("applicable_to", [])),
-            tiers=[AffixTier.from_dict(t) for t in d.get("tiers", [])],
+            applicable_to=tuple(d.get("applicable_to", [])),
+            tiers=tuple(AffixTier.from_dict(t) for t in d.get("tiers", [])),
             affix_id=int(raw_id) if raw_id is not None else None,
             data_version=data_version,
         )
@@ -83,7 +84,7 @@ class AffixDefinition:
             "name": self.name,
             "stat_key": self.stat_key,
             "type": self.affix_type,
-            "applicable_to": self.applicable_to,
+            "applicable_to": list(self.applicable_to),
             "tiers": [t.to_dict() for t in self.tiers],
         }
         if self.affix_id is not None:

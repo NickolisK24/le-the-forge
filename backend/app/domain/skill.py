@@ -16,18 +16,19 @@ from dataclasses import dataclass, field
 # Template / definition layer  (from skills.json)
 # ---------------------------------------------------------------------------
 
-@dataclass
+@dataclass(frozen=True)
 class SkillStatDef:
     """
     Static per-skill tuning values. Sourced from skills.json and indexed by
     SkillRegistry. Mirrors SKILL_STATS in frontend/src/lib/gameData.ts.
+    Frozen: fields are immutable after construction.
     """
 
     base_damage: float
-    level_scaling: float    # damage multiplier per level above 1
-    attack_speed: float     # base casts/attacks per second
-    scaling_stats: list     # list of BuildStats field names for % damage bonus
-    data_version: str         # version of the data file this was loaded from
+    level_scaling: float          # damage multiplier per level above 1
+    attack_speed: float           # base casts/attacks per second
+    scaling_stats: tuple[str, ...]  # BuildStats field names for % damage bonus
+    data_version: str             # version of the data file this was loaded from
     is_spell: bool = False
     is_melee: bool = False
     is_throwing: bool = False
@@ -39,7 +40,7 @@ class SkillStatDef:
             base_damage=float(d["base_damage"]),
             level_scaling=float(d["level_scaling"]),
             attack_speed=float(d["attack_speed"]),
-            scaling_stats=list(d.get("scaling_stats", [])),
+            scaling_stats=tuple(d.get("scaling_stats", [])),
             is_spell=bool(d.get("is_spell", False)),
             is_melee=bool(d.get("is_melee", False)),
             is_throwing=bool(d.get("is_throwing", False)),
