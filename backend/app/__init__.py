@@ -38,12 +38,14 @@ def create_app(env: str = "development") -> Flask:
     from app.game_data.pipeline import GameDataPipeline
     from app.domain.registries.skill_registry import SkillRegistry
     from app.domain.registries.affix_registry import AffixRegistry
+    from app.domain.registries.enemy_registry import EnemyRegistry
 
     pipeline = GameDataPipeline()
     pipeline.load_all()
     app.extensions["game_data"]      = pipeline
     app.extensions["skill_registry"] = SkillRegistry(pipeline.skills)
     app.extensions["affix_registry"] = AffixRegistry(pipeline.affixes)
+    app.extensions["enemy_registry"] = EnemyRegistry(pipeline.enemies)
 
     # Performance profiling middleware
     @app.before_request

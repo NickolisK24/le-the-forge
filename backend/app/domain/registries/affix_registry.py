@@ -41,7 +41,21 @@ class AffixRegistry:
         Args:
             affixes: flat list of AffixDefinition domain objects, already
                      normalized by the pipeline. No further normalization here.
+        Raises:
+            ValueError: if affixes is empty or contains mixed data versions.
         """
+        if not affixes:
+            raise ValueError("AffixRegistry requires at least one definition")
+
+        version = affixes[0].data_version
+        for d in affixes:
+            if d.data_version != version:
+                raise ValueError(
+                    f"Mixed data versions in AffixRegistry: "
+                    f"expected {version!r}, got {d.data_version!r} on affix {d.name!r}"
+                )
+        self.data_version = version
+
         self._by_name: dict[str, AffixDefinition] = {}
         self._by_id: dict[int, AffixDefinition] = {}
         self._by_slot_type: dict[tuple[str, str], list[AffixDefinition]] = {}
@@ -59,6 +73,7 @@ class AffixRegistry:
 
         log.info(
             "affix_registry.initialized",
+            data_version=self.data_version,
             by_name=len(self._by_name),
             by_id=len(self._by_id),
             slot_type_buckets=len(self._by_slot_type),

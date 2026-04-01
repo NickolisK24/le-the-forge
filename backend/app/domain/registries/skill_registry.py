@@ -41,9 +41,24 @@ class SkillRegistry:
         Args:
             skills: mapping of skill name → SkillStatDef, already normalized
                     by the pipeline. No further normalization is done here.
+        Raises:
+            ValueError: if skills is empty or contains mixed data versions.
         """
+        if not skills:
+            raise ValueError("SkillRegistry requires at least one definition")
+
+        defs = list(skills.values())
+        version = defs[0].data_version
+        for name, d in skills.items():
+            if d.data_version != version:
+                raise ValueError(
+                    f"Mixed data versions in SkillRegistry: "
+                    f"expected {version!r}, got {d.data_version!r} on skill {name!r}"
+                )
+        self.data_version = version
+
         self._skills: dict[str, SkillStatDef] = dict(skills)
-        log.info("skill_registry.initialized", count=len(self._skills))
+        log.info("skill_registry.initialized", data_version=self.data_version, count=len(self._skills))
 
     # ------------------------------------------------------------------
     # Public API

@@ -13,10 +13,13 @@ app.extensions. Access them via current_app:
 
 from app.domain.registries.skill_registry import SkillRegistry, SkillNotFoundError
 from app.domain.registries.affix_registry import AffixRegistry, AffixNotFoundError
+from app.domain.registries.enemy_registry import EnemyRegistry, EnemyNotFoundError
 
 __all__ = [
     "SkillRegistry",
     "SkillNotFoundError",
     "AffixRegistry",
     "AffixNotFoundError",
+    "EnemyRegistry",
+    "EnemyNotFoundError",
 ]
