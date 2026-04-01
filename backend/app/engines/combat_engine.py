@@ -27,6 +27,7 @@ from app.constants.combat import (
     CRIT_CHANCE_CAP,
 )
 from app.domain.skill import SkillStatDef
+from app.domain.calculators.skill_calculator import sum_flat_damage
 from app.engines.stat_engine import BuildStats
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
@@ -220,23 +221,6 @@ _ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_d
 # Helpers — flat added damage and ailment calculation
 # ---------------------------------------------------------------------------
 
-def _sum_flat_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
-    """Sum all flat added damage relevant to a skill's type."""
-    total = 0.0
-    if skill_def.is_spell:
-        total += (stats.added_spell_damage + stats.added_spell_fire +
-                  stats.added_spell_cold + stats.added_spell_lightning +
-                  stats.added_spell_necrotic + stats.added_spell_void)
-    if skill_def.is_melee:
-        total += (stats.added_melee_physical + stats.added_melee_fire +
-                  stats.added_melee_cold + stats.added_melee_lightning +
-                  stats.added_melee_void + stats.added_melee_necrotic)
-    if skill_def.is_throwing:
-        total += (stats.added_throw_physical + stats.added_throw_fire +
-                  stats.added_throw_cold)
-    if skill_def.is_bow:
-        total += stats.added_bow_physical + stats.added_bow_fire
-    return total
 
 
 def _sum_increased_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
@@ -335,7 +319,7 @@ def calculate_dps(
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
 
     # Flat added damage from gear
-    flat_added = _sum_flat_damage(stats, skill_def)
+    flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
     # Sum all "increased" % damage bonuses (additive pool)
@@ -425,7 +409,7 @@ def monte_carlo_dps(
     sm = skill_modifiers or {}
 
     scaled_base = skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-    flat_added = _sum_flat_damage(stats, skill_def)
+    flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
     total_pct = _sum_increased_damage(stats, skill_def)
