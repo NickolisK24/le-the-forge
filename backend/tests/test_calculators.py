@@ -23,6 +23,8 @@ from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_
 from app.domain.calculators.more_multiplier_calculator import apply_more_multiplier
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
 from app.domain.skill import SkillStatDef
+from app.domain.calculators.skill_calculator import scale_skill_damage
+from app.domain.calculators.damage_type_router import DamageType
 
 
 # ---------------------------------------------------------------------------
@@ -191,6 +193,36 @@ class TestSkillStatDefDamageTypes(unittest.TestCase):
             "scaling_stats": ["spell_damage_pct"],
         })
         assert skill.damage_types == ()
+
+
+# ---------------------------------------------------------------------------
+# scale_skill_damage — multi-type distribution
+# ---------------------------------------------------------------------------
+
+class TestScaleSkillDamage(unittest.TestCase):
+
+    def test_single_type_returns_full_value(self):
+        # Single type: the full scaled total maps to one key.
+        # 100 × (1 + 0.10 × 9) = 190.0
+        result = scale_skill_damage(100.0, 0.10, 10, (DamageType.FIRE,))
+        self.assertEqual(result, {DamageType.FIRE: 190.0})
+
+    def test_multi_type_splits_evenly(self):
+        # FIRE + PHYSICAL: each gets base/2.
+        # 100 × (1 + 0.10 × 9) = 190.0 → 95.0 each
+        result = scale_skill_damage(100.0, 0.10, 10, (DamageType.FIRE, DamageType.PHYSICAL))
+        self.assertAlmostEqual(result[DamageType.FIRE],     95.0, places=9)
+        self.assertAlmostEqual(result[DamageType.PHYSICAL], 95.0, places=9)
+
+    def test_multi_type_sum_equals_total_scaled_damage(self):
+        # The sum of all per-type values must equal the untyped total.
+        # 100 × (1 + 0.10 × 9) = 190.0
+        result = scale_skill_damage(100.0, 0.10, 10, (DamageType.FIRE, DamageType.PHYSICAL))
+        self.assertAlmostEqual(sum(result.values()), 190.0, places=9)
+
+    def test_empty_damage_types_returns_empty_dict(self):
+        result = scale_skill_damage(100.0, 0.10, 10, ())
+        self.assertEqual(result, {})
 
 
 if __name__ == '__main__':
