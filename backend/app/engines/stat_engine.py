@@ -311,10 +311,11 @@ def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
     elif stat_key == "_attack_and_cast_speed":
         stats.attack_speed_pct = combine_additive_percents(stats.attack_speed_pct, value)
         stats.cast_speed += value
-    elif stat_key == "health_pct":
-        stats.health_pct = combine_additive_percents(stats.health_pct, value)
     elif hasattr(stats, stat_key):
-        setattr(stats, stat_key, getattr(stats, stat_key) + value)
+        if stat_key.endswith("_pct"):
+            setattr(stats, stat_key, combine_additive_percents(getattr(stats, stat_key), value))
+        else:
+            setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
 
 # ---------------------------------------------------------------------------
