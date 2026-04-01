@@ -28,7 +28,7 @@ from app.constants.combat import (
 )
 from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import sum_flat_damage
-from app.domain.calculators.stat_calculator import apply_percent_bonus
+from app.domain.calculators.stat_calculator import apply_more_multiplier, apply_percent_bonus
 from app.engines.stat_engine import BuildStats
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
@@ -327,7 +327,7 @@ def calculate_dps(
     total_damage_pct = _sum_increased_damage(stats, skill_def)
 
     # "More" damage multiplier: product of base stats multiplier and spec-tree more%
-    more_mult = stats.more_damage_multiplier * apply_percent_bonus(1.0, sm.get("more_damage_pct", 0.0))
+    more_mult = stats.more_damage_multiplier * apply_more_multiplier(1.0, sm.get("more_damage_pct", 0.0))
 
     # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
     hit_damage = apply_percent_bonus(effective_base, total_damage_pct) * more_mult
