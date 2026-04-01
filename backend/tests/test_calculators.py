@@ -127,33 +127,33 @@ class TestApplyMoreMultiplier(unittest.TestCase):
 class TestDamagePipeline(unittest.TestCase):
     def test_base_only(self):
         # No bonuses → output equals input
-        assert calculate_final_damage(ctx(100.0, 0.0, [])) == 100.0
+        assert calculate_final_damage(ctx(100.0, 0.0, [])).total == 100.0
 
     def test_increased_only(self):
         # 100 × (1 + 100/100) = 200
-        assert calculate_final_damage(ctx(100.0, 100.0, [])) == 200.0
+        assert calculate_final_damage(ctx(100.0, 100.0, [])).total == 200.0
 
     def test_more_only(self):
         # 100 × 1.5 = 150
-        assert calculate_final_damage(ctx(100.0, 0.0, [50.0])) == 150.0
+        assert calculate_final_damage(ctx(100.0, 0.0, [50.0])).total == 150.0
 
     def test_increased_then_more(self):
         # Base 100, 100% increased, 50% more:
         #   100 × (1 + 100/100) × (1 + 50/100) = 100 × 2.0 × 1.5 = 300
-        assert calculate_final_damage(ctx(100.0, 100.0, [50.0])) == 300.0
+        assert calculate_final_damage(ctx(100.0, 100.0, [50.0])).total == 300.0
 
     def test_pipeline_order_not_additive_mixing(self):
         # If increased and more were naively added as a single pool:
         #   100 × (1 + (100 + 50)/100) = 100 × 2.5 = 250  ← WRONG
         # Correct separate-stage result is 300, not 250.
-        result = calculate_final_damage(ctx(100.0, 100.0, [50.0]))
+        result = calculate_final_damage(ctx(100.0, 100.0, [50.0])).total
         assert result == 300.0
         assert result != 250.0
 
     def test_multiple_more_sources_compound_after_increased(self):
         # Base 100, 100% increased, 50% more + 20% more:
         #   100 × 2.0 × 1.5 × 1.2 = 360
-        assert calculate_final_damage(ctx(100.0, 100.0, [50.0, 20.0])) == 360.0
+        assert calculate_final_damage(ctx(100.0, 100.0, [50.0, 20.0])).total == 360.0
 
     def test_additive_increased_pool_stacks_before_more(self):
         # Two 50% increased sources must combine additively to 100% total,
@@ -161,7 +161,7 @@ class TestDamagePipeline(unittest.TestCase):
         # Correct:  combine(50, 50) = 100% increased → 100 × 2.0 × 1.5 = 300
         # Wrong:    treat as two 1.5x more → 100 × 1.5 × 1.5 = 225
         total_increased = combine_additive_percents(50.0, 50.0)  # = 100.0
-        result = calculate_final_damage(ctx(100.0, total_increased, [50.0]))
+        result = calculate_final_damage(ctx(100.0, total_increased, [50.0])).total
         assert result == 300.0
         assert result != 225.0  # would be wrong if increased sources compounded
 
@@ -169,15 +169,15 @@ class TestDamagePipeline(unittest.TestCase):
         # Simulate a realistic high-investment build:
         # Base 500, 300% increased, two 40% more sources
         # 500 × (1 + 300/100) × 1.4 × 1.4 = 500 × 4.0 × 1.96 = 3920
-        result = calculate_final_damage(ctx(500.0, 300.0, [40.0, 40.0]))
+        result = calculate_final_damage(ctx(500.0, 300.0, [40.0, 40.0])).total
         assert abs(result - 3920.0) < 0.01
 
     def test_zero_base_produces_zero(self):
-        assert calculate_final_damage(ctx(0.0, 200.0, [50.0])) == 0.0
+        assert calculate_final_damage(ctx(0.0, 200.0, [50.0])).total == 0.0
 
     def test_debug_flag_does_not_change_result(self):
         c = ctx(100.0, 100.0, [50.0])
-        assert calculate_final_damage(c, debug=True) == calculate_final_damage(c, debug=False)
+        assert calculate_final_damage(c, debug=True).total == calculate_final_damage(c, debug=False).total
 
 # ---------------------------------------------------------------------------
 # SkillStatDef — damage_types derivation
