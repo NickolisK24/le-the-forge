@@ -18,6 +18,7 @@ import json
 import os
 from typing import Optional
 
+from app.constants.crafting import MAX_PREFIXES, MAX_SUFFIXES
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
@@ -25,9 +26,6 @@ log = ForgeLogger(__name__)
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 AFFIX_PATH = os.path.join(BASE_DIR, "..", "..", "..", "data", "items", "affixes.json")
-
-MAX_PREFIXES = 2
-MAX_SUFFIXES = 2
 
 
 def load_affix_data() -> list[dict]:

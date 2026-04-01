@@ -21,14 +21,21 @@ Pure module — no DB, no HTTP.
 
 from dataclasses import dataclass, asdict
 
+from app.constants.defense import (
+    RES_CAP,
+    WARD_BASE_DECAY_RATE,
+    ENDURANCE_CAP,
+    ARMOR_DIVISOR,
+    DODGE_DIVISOR,
+    BLOCK_DIVISOR,
+    STUN_AVOIDANCE_DIVISOR,
+    ENEMY_CRIT_RATE,
+    ENEMY_CRIT_MULTIPLIER,
+)
 from app.engines.stat_engine import BuildStats
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
-
-
-RES_CAP = 75                  # Last Epoch resistance cap
-WARD_BASE_DECAY_RATE = 0.25   # Ward decays at 25%/s before retention modifiers
 
 
 @dataclass
@@ -88,7 +95,7 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
         ward=stats.ward,
     )
     # Armour mitigation
-    armor_reduction = stats.armour / (stats.armour + 1000)
+    armor_reduction = stats.armour / (stats.armour + ARMOR_DIVISOR)
 
     # Cap each resistance at 75%
     fire_res    = min(RES_CAP, stats.fire_res)
@@ -114,36 +121,33 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
 
     # Block: reduces incoming hit damage by block_mitigation on block_chance% of hits
     block_chance = min(100, stats.block_chance) / 100
-    block_mitigation = stats.block_effectiveness / (stats.block_effectiveness + 1000) if stats.block_effectiveness > 0 else 0
+    block_mitigation = stats.block_effectiveness / (stats.block_effectiveness + BLOCK_DIVISOR) if stats.block_effectiveness > 0 else 0
     # Average damage taken factor with block: (1 - block_chance * block_mitigation)
     block_factor = max(0.01, 1 - block_chance * block_mitigation)
 
     # Dodge: avoidance layer
-    dodge_chance = stats.dodge_rating / (stats.dodge_rating + 1000)
+    dodge_chance = stats.dodge_rating / (stats.dodge_rating + DODGE_DIVISOR)
     dodge_chance_pct = round(dodge_chance * 100, 1)
     dodge_factor = max(0.01, 1 - dodge_chance)
 
     # Glancing blow: reduces crit damage taken (assume 35% of incoming hits are crits)
     glancing_blow_chance = min(100, stats.glancing_blow) / 100
     # Glancing blow converts crits to normal hits — effective damage reduction on crits
-    # Assuming enemy crit multiplier ~1.5x, 35% of hits are crits
-    enemy_crit_rate = 0.35
     crit_avoidance = min(100, stats.crit_avoidance) / 100
     # Effective crit rate against us after crit avoidance
-    effective_enemy_crit = enemy_crit_rate * (1 - crit_avoidance)
+    effective_enemy_crit = ENEMY_CRIT_RATE * (1 - crit_avoidance)
     # Glancing blow then converts remaining crits
     crits_after_glancing = effective_enemy_crit * (1 - glancing_blow_chance)
     # Damage multiplier from enemy crits: normal hits + reduced crit hits
-    enemy_crit_mult = 1.5
-    crit_damage_factor = (1 - effective_enemy_crit) + crits_after_glancing * enemy_crit_mult + \
+    crit_damage_factor = (1 - effective_enemy_crit) + crits_after_glancing * ENEMY_CRIT_MULTIPLIER + \
                          (effective_enemy_crit - crits_after_glancing) * 1.0
-    # Normalize: without avoidance it would be (1 - enemy_crit_rate) + enemy_crit_rate * 1.5
-    base_crit_factor = (1 - enemy_crit_rate) + enemy_crit_rate * enemy_crit_mult
+    # Normalize: without avoidance it would be (1 - ENEMY_CRIT_RATE) + ENEMY_CRIT_RATE * ENEMY_CRIT_MULTIPLIER
+    base_crit_factor = (1 - ENEMY_CRIT_RATE) + ENEMY_CRIT_RATE * ENEMY_CRIT_MULTIPLIER
     crit_reduction_factor = crit_damage_factor / base_crit_factor if base_crit_factor > 0 else 1.0
 
     # Endurance: reduces damage by endurance% when below threshold% health
     # Model as weighted average: fraction of time below threshold benefits from reduction
-    endurance_pct = min(60, stats.endurance)  # LE caps endurance at 60%
+    endurance_pct = min(ENDURANCE_CAP, stats.endurance)
     endurance_threshold = min(100, stats.endurance_threshold)
     # Simplified: endurance adds effective HP to the portion below threshold
     endurance_factor = 1.0
@@ -167,7 +171,7 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
     net_ward_per_second   = round(ward_regen_per_second - ward_decay_per_second, 1)
 
     # Stun avoidance (diminishing returns like dodge)
-    stun_avoidance_pct = round(stats.stun_avoidance / (stats.stun_avoidance + 1000) * 100, 1) if stats.stun_avoidance > 0 else 0.0
+    stun_avoidance_pct = round(stats.stun_avoidance / (stats.stun_avoidance + STUN_AVOIDANCE_DIVISOR) * 100, 1) if stats.stun_avoidance > 0 else 0.0
 
     # Sustain score (0-100)
     leech_score = min(30, stats.leech * 3)  # 10% leech = 30pts

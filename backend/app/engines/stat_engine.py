@@ -12,6 +12,7 @@ already-loaded data objects.
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
+from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER, CRIT_CHANCE_CAP
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
@@ -30,8 +31,8 @@ class BuildStats:
     # Offense — base
     base_damage: float = 0.0
     attack_speed: float = 1.0
-    crit_chance: float = 0.05       # 0.0–1.0
-    crit_multiplier: float = 1.5    # total multiplier e.g. 2.0
+    crit_chance: float = BASE_CRIT_CHANCE       # 0.0–1.0
+    crit_multiplier: float = BASE_CRIT_MULTIPLIER    # total multiplier e.g. 2.0
 
     # Offense — percentage increased damage pools
     spell_damage_pct: float = 0.0
@@ -454,7 +455,7 @@ def aggregate_stats(
     stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
 
     # 8. Apply % bonuses to base values
-    stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
+    stats.crit_chance    = min(CRIT_CHANCE_CAP, stats.crit_chance + stats.crit_chance_pct / 100)
     stats.crit_multiplier += stats.crit_multiplier_pct / 100
     stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)
 

@@ -17,6 +17,15 @@ import random
 from dataclasses import dataclass, asdict
 from typing import Optional
 
+from app.constants.combat import (
+    BLEED_BASE_RATIO,
+    BLEED_DURATION,
+    IGNITE_DPS_RATIO,
+    IGNITE_DURATION,
+    POISON_DPS_RATIO,
+    POISON_DURATION,
+    CRIT_CHANCE_CAP,
+)
 from app.engines.stat_engine import BuildStats
 from app.utils.logging import ForgeLogger
 
@@ -191,22 +200,6 @@ class MonteCarloDPS:
         return asdict(self)
 
 
-# ---------------------------------------------------------------------------
-# Ailment constants (Last Epoch mechanics)
-# ---------------------------------------------------------------------------
-
-# Bleed: physical DoT, 70% of hit damage over 4s per stack
-BLEED_BASE_RATIO = 0.70
-BLEED_DURATION = 4.0
-
-# Ignite: fire DoT, 20% of hit damage per second per stack, 3s duration
-IGNITE_DPS_RATIO = 0.20
-IGNITE_DURATION = 3.0
-
-# Poison: 30% of hit damage per second per stack, 3s duration
-POISON_DPS_RATIO = 0.30
-POISON_DURATION = 3.0
-
 # Elemental stat keys — used to detect elemental skills for elemental_damage_pct
 _ELEMENTAL_STATS = frozenset({"fire_damage_pct", "cold_damage_pct", "lightning_damage_pct"})
 
@@ -343,7 +336,7 @@ def calculate_dps(
     hit_damage = effective_base * (1 + total_damage_pct / 100) * more_mult
 
     # Crit chance and multiplier (base + spec tree bonuses)
-    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
 
     # AverageHit = non-crit portion + crit portion
@@ -427,7 +420,7 @@ def monte_carlo_dps(
     more_mult = stats.more_damage_multiplier * (1 + sm.get("more_damage_pct", 0.0) / 100)
     hit_damage = effective_base * (1 + total_pct / 100) * more_mult
 
-    effective_crit_chance = min(0.95, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
+    effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
     hits_per_cast = max(1, 1 + sm.get("added_hits_per_cast", 0))
 
