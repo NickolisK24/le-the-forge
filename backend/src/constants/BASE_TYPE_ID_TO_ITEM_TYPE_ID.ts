@@ -10,7 +10,7 @@ import type { ItemTypeId } from "./itemTypeIds";
  *
  * Non-equipment base types (BLESSING=34, *_LENS=35-39) are omitted.
  */
-export const SUBTYPE_ID_TO_ITEM_TYPE_ID: Record<number, ItemTypeId> = {
+export const BASE_TYPE_ID_TO_ITEM_TYPE_ID: Record<number, ItemTypeId> = {
   0: "helm",  // HELMET
   1: "chest",  // BODY_ARMOR
   2: "belt",  // BELT
@@ -47,4 +47,4 @@ export const SUBTYPE_ID_TO_ITEM_TYPE_ID: Record<number, ItemTypeId> = {
   33: "idol_2x2",  // IDOL_2x2
 };
 
-export type BaseTypeId = keyof typeof SUBTYPE_ID_TO_ITEM_TYPE_ID;
+export type BaseTypeId = keyof typeof BASE_TYPE_ID_TO_ITEM_TYPE_ID;

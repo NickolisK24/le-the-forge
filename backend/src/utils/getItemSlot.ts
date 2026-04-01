@@ -1,6 +1,6 @@
 import { ITEM_TYPE_TO_SLOT } from "../constants/itemTypeToSlot";
 import { GAME_TYPE_TO_ITEM_TYPE_ID } from "../constants/gameTypeToItemTypeId";
-import { SUBTYPE_ID_TO_ITEM_TYPE_ID } from "../constants/SUBTYPE_ID_TO_ITEM_TYPE_ID";
+import { BASE_TYPE_ID_TO_ITEM_TYPE_ID } from "../constants/BASE_TYPE_ID_TO_ITEM_TYPE_ID";
 import type { EquipmentSlot } from "../constants/equipmentSlots";
 import type { ItemTypeId } from "../constants/itemTypeIds";
 
@@ -26,7 +26,7 @@ export function getItemSlot(gameType: string): EquipmentSlot | undefined {
  *   getItemSlotByBaseTypeId(23) // → "weapon" (BOW)
  */
 export function getItemSlotByBaseTypeId(baseTypeId: number): EquipmentSlot | undefined {
-  const itemTypeId = SUBTYPE_ID_TO_ITEM_TYPE_ID[baseTypeId] as ItemTypeId | undefined;
+  const itemTypeId = BASE_TYPE_ID_TO_ITEM_TYPE_ID[baseTypeId] as ItemTypeId | undefined;
   if (!itemTypeId) return undefined;
   return ITEM_TYPE_TO_SLOT[itemTypeId];
 }
