@@ -234,32 +234,26 @@ def _calc_ailment_dps(
     """
     bleed_dps = ignite_dps = poison_dps = 0
 
-    # Bleed: physical DoT
+    # Bleed: physical DoT — pipeline: Base → Increased → Final
     if stats.bleed_chance_pct > 0:
         chance = min(1.0, stats.bleed_chance_pct / 100)
-        base_per_stack = hit_damage * BLEED_BASE_RATIO / BLEED_DURATION
-        maintained = effective_as * chance * BLEED_DURATION
-        increased = apply_percent_bonus(1.0, combine_additive_percents(
-            *[getattr(stats, k) for k in BLEED_DAMAGE_INCREASED]))
-        bleed_dps = round(base_per_stack * maintained * increased)
+        bleed_base = hit_damage * BLEED_BASE_RATIO / BLEED_DURATION * effective_as * chance * BLEED_DURATION
+        bleed_dps = round(apply_percent_bonus(bleed_base, combine_additive_percents(
+            *[getattr(stats, k) for k in BLEED_DAMAGE_INCREASED])))
 
-    # Ignite: fire DoT
+    # Ignite: fire DoT — pipeline: Base → Increased → Final
     if stats.ignite_chance_pct > 0:
         chance = min(1.0, stats.ignite_chance_pct / 100)
-        base_per_stack = hit_damage * IGNITE_DPS_RATIO
-        maintained = effective_as * chance * IGNITE_DURATION
-        increased = apply_percent_bonus(1.0, combine_additive_percents(
-            *[getattr(stats, k) for k in IGNITE_DAMAGE_INCREASED]))
-        ignite_dps = round(base_per_stack * maintained * increased)
+        ignite_base = hit_damage * IGNITE_DPS_RATIO * effective_as * chance * IGNITE_DURATION
+        ignite_dps = round(apply_percent_bonus(ignite_base, combine_additive_percents(
+            *[getattr(stats, k) for k in IGNITE_DAMAGE_INCREASED])))
 
-    # Poison: poison DoT
+    # Poison: poison DoT — pipeline: Base → Increased → Final
     if stats.poison_chance_pct > 0:
         chance = min(1.0, stats.poison_chance_pct / 100)
-        base_per_stack = hit_damage * POISON_DPS_RATIO
-        maintained = effective_as * chance * POISON_DURATION
-        increased = apply_percent_bonus(1.0, combine_additive_percents(
-            *[getattr(stats, k) for k in POISON_DAMAGE_INCREASED]))
-        poison_dps = round(base_per_stack * maintained * increased)
+        poison_base = hit_damage * POISON_DPS_RATIO * effective_as * chance * POISON_DURATION
+        poison_dps = round(apply_percent_bonus(poison_base, combine_additive_percents(
+            *[getattr(stats, k) for k in POISON_DAMAGE_INCREASED])))
 
     return bleed_dps, ignite_dps, poison_dps
 
@@ -302,14 +296,10 @@ def calculate_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
-    # Sum all "increased" % damage bonuses (additive pool)
+    # Pipeline: Base → Increased → More → Final
     total_damage_pct = sum_increased_damage(stats, skill_def)
-
-    # "More" damage multiplier: product of base stats multiplier and spec-tree more%
-    more_mult = apply_more_multiplier(1.0, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
-
-    # HitDamage = EffectiveBase * (1 + IncreasedDamage%) * MoreDamage
-    hit_damage = apply_percent_bonus(effective_base, total_damage_pct) * more_mult
+    after_increased = apply_percent_bonus(effective_base, total_damage_pct)
+    hit_damage = apply_more_multiplier(after_increased, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
 
     # Crit chance and multiplier (base + spec tree bonuses)
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
@@ -392,9 +382,10 @@ def monte_carlo_dps(
     flat_added = sum_flat_damage(stats, skill_def)
     effective_base = scaled_base + flat_added
 
+    # Pipeline: Base → Increased → More → Final
     total_pct = sum_increased_damage(stats, skill_def)
-    more_mult = apply_more_multiplier(1.0, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
-    hit_damage = apply_percent_bonus(effective_base, total_pct) * more_mult
+    after_increased = apply_percent_bonus(effective_base, total_pct)
+    hit_damage = apply_more_multiplier(after_increased, [stats.more_damage_pct, sm.get("more_damage_pct", 0.0)])
 
     effective_crit_chance = min(CRIT_CHANCE_CAP, stats.crit_chance + sm.get("crit_chance_pct", 0.0) / 100)
     effective_crit_mult = stats.crit_multiplier + sm.get("crit_multiplier_pct", 0.0) / 100
