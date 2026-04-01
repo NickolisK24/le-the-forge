@@ -1,14 +1,15 @@
 """Equipment slot identifiers."""
 
 EQUIPMENT_SLOTS: list[str] = [
-    "helmet",
     "body",
-    "gloves",
-    "boots",
-    "belt",
-    "amulet",
-    "ring",
-    "weapon",
+    "feet",
+    "finger",
+    "hands",
+    "head",
+    "idol",
+    "neck",
     "offhand",
     "relic",
+    "waist",
+    "weapon",
 ]
