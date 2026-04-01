@@ -58,9 +58,10 @@ class AffixDefinition:
     applicable_to: list[str]  # slot names, e.g. ["head", "body", "hands"]
     tiers: list[AffixTier]
     affix_id: Optional[int] = None
+    data_version: str = "unknown"
 
     @classmethod
-    def from_dict(cls, d: dict) -> "AffixDefinition":
+    def from_dict(cls, d: dict, *, data_version: str = "unknown") -> "AffixDefinition":
         raw_id = d.get("affix_id") or d.get("id")
         return cls(
             name=d.get("name", ""),
@@ -69,6 +70,7 @@ class AffixDefinition:
             applicable_to=list(d.get("applicable_to", [])),
             tiers=[AffixTier.from_dict(t) for t in d.get("tiers", [])],
             affix_id=int(raw_id) if raw_id is not None else None,
+            data_version=data_version,
         )
 
     def tier_midpoints(self) -> dict[str, float]:

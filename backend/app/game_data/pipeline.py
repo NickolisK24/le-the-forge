@@ -104,9 +104,12 @@ class GameDataPipeline:
         log.info("pipeline.load_all.start")
         self._cache.clear()
 
-        self._cache["affixes"]        = self._load_affixes()
-        self._cache["enemies"]        = self._load_enemies()
-        self._cache["skills"]         = self._load_skills()
+        # Detect version before loading so it can be stamped on every domain object.
+        self._version = self._detect_version()
+
+        self._cache["affixes"]        = self._load_affixes(self._version)
+        self._cache["enemies"]        = self._load_enemies(self._version)
+        self._cache["skills"]         = self._load_skills(self._version)
         self._cache["classes"]        = self._load_classes()
         self._cache["skills_meta"]    = self._load_optional("skills_meta", {})
         self._cache["uniques"]        = self._load_optional("uniques", {})
@@ -114,7 +117,6 @@ class GameDataPipeline:
         self._cache["damage_types"]   = self._load_optional("damage_types", {})
         self._cache["implicit_stats"] = self._load_optional("implicit_stats", {})
 
-        self._version = self._detect_version()
         log.info("pipeline.load_all.done", version=self._version)
 
     def reload(self) -> None:
@@ -187,36 +189,34 @@ class GameDataPipeline:
     # Loaders (private)
     # ------------------------------------------------------------------
 
-    def _load_affixes(self) -> list[AffixDefinition]:
+    def _load_affixes(self, data_version: str) -> list[AffixDefinition]:
         raw = _load_json("affixes")
         if raw is None:
             log.warning("pipeline.affixes.missing")
             return []
         raw_list: list[dict]
         if isinstance(raw, list):
-            # Legacy flat list format
             raw_list = raw
         else:
-            # v2.0 schema: {"_version": "2.0", "affixes": [...]}
             _require_keys(raw, ["affixes"], "affixes.json")
             raw_list = raw["affixes"]
-        return [AffixDefinition.from_dict(a) for a in raw_list]
+        return [AffixDefinition.from_dict(a, data_version=data_version) for a in raw_list]
 
-    def _load_enemies(self) -> list[EnemyProfile]:
+    def _load_enemies(self, data_version: str) -> list[EnemyProfile]:
         raw = _load_json("enemies")
         if not raw:
             return []
         if not isinstance(raw, list):
             raise RuntimeError("pipeline: enemy_profiles.json must be a JSON array")
-        return [EnemyProfile.from_dict(e) for e in raw]
+        return [EnemyProfile.from_dict(e, data_version=data_version) for e in raw]
 
-    def _load_skills(self) -> dict[str, SkillStatDef]:
+    def _load_skills(self, data_version: str) -> dict[str, SkillStatDef]:
         raw = _load_json("skills")
         if raw is None:
             return {}
         _require_keys(raw, ["skills"], "skills.json")
         return {
-            name: SkillStatDef.from_dict(name, data)
+            name: SkillStatDef.from_dict(name, data, data_version=data_version)
             for name, data in raw["skills"].items()
         }
 

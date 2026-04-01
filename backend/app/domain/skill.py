@@ -31,9 +31,10 @@ class SkillStatDef:
     is_melee: bool = False
     is_throwing: bool = False
     is_bow: bool = False
+    data_version: str = "unknown"
 
     @classmethod
-    def from_dict(cls, name: str, d: dict) -> "SkillStatDef":
+    def from_dict(cls, name: str, d: dict, *, data_version: str = "unknown") -> "SkillStatDef":
         return cls(
             base_damage=float(d["base_damage"]),
             level_scaling=float(d["level_scaling"]),
@@ -43,6 +44,7 @@ class SkillStatDef:
             is_melee=bool(d.get("is_melee", False)),
             is_throwing=bool(d.get("is_throwing", False)),
             is_bow=bool(d.get("is_bow", False)),
+            data_version=data_version,
         )
 
 
