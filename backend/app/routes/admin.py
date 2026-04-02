@@ -23,8 +23,11 @@ AFFIXES_PATH = DATA_DIR / "items" / "affixes.json"
 
 
 def _load_affixes() -> list:
-    with open(AFFIXES_PATH, encoding="utf-8") as f:
-        return json.load(f)
+    try:
+        with open(AFFIXES_PATH, encoding="utf-8") as f:
+            return json.load(f)
+    except FileNotFoundError:
+        return []
 
 
 def _save_affixes(affixes: list) -> None:
