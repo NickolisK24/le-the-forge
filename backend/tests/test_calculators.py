@@ -1022,6 +1022,14 @@ class TestPenetrationMechanics(unittest.TestCase):
         mult = weighted_damage_multiplier(enemy, damage_by_type, pen_map={"fire": 30.0})
         assert math.isclose(mult, 0.70, rel_tol=1e-9, abs_tol=1e-12)
 
+    def test_penetration_equals_cap(self):
+        # 75% fire res (exactly at RES_CAP), 75% pen → eff res = max(0, 75-75) = 0.
+        # Multiplier must be exactly 1.0 — boundary subtraction must not round.
+        enemy = _make_enemy(armor=0, resistances={"fire": 75.0})
+        damage_by_type = {DamageType.FIRE: 100.0}
+        mult = weighted_damage_multiplier(enemy, damage_by_type, pen_map={"fire": 75.0})
+        assert math.isclose(mult, 1.0, rel_tol=1e-9, abs_tol=1e-12)
+
 
 class TestEffectiveResistance(unittest.TestCase):
 
