@@ -10,6 +10,7 @@ from app.engines.combat_engine import (
     MonteCarloDPS,
     SKILL_STATS,
 )
+from app.utils.profiling import profile_call
 
 
 def _base_mage_stats() -> BuildStats:
@@ -151,6 +152,101 @@ class TestMonteCarloDPS:
         stats = _base_mage_stats()
         mc = monte_carlo_dps(stats, "Fireball", 20, n=777)
         assert mc.n_simulations == 777
+
+
+class TestMonteCarloDPSParallel:
+    """Structural and determinism tests for the parallel workers path."""
+
+    def test_parallel_n_matches_requested(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.n_simulations == 400
+
+    def test_parallel_n_not_divisible_by_workers(self):
+        # 401 / 4 → chunks of 101, 100, 100, 100
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=401, workers=4)
+        assert mc.n_simulations == 401
+
+    def test_total_samples_preserved(self):
+        # Prime n forces uneven chunk distribution: 997 = 4×249 + 1
+        # (first worker gets 250, remaining three get 249 each).
+        # Guards the remainder path in chunk-splitting logic.
+        stats = _base_mage_stats()
+        r = monte_carlo_dps(stats, "Fireball", 20, n=997, seed=3, workers=4)
+        assert r.n_simulations == 997
+
+    def test_parallel_ordering_invariants(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.min_dps <= mc.mean_dps
+        assert mc.mean_dps <= mc.max_dps
+        assert mc.percentile_25 <= mc.percentile_75
+
+    def test_parallel_seeded_is_reproducible(self):
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+        assert r1.n_simulations == r2.n_simulations
+
+    def test_invalid_workers_raises(self):
+        stats = _base_mage_stats()
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=0)
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=-1)
+
+    def test_single_worker_matches_default(self):
+        # workers=1 must produce the same sequence as the default (no-parallel) path.
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42, workers=1)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+
+    def test_parallel_unknown_skill_returns_zeros(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "FakeSkill", 20, n=50, workers=2)
+        assert mc.mean_dps == 0
+
+    def test_parallel_matches_single_worker_approx(self):
+        # workers=1 and workers=4 sample from different sub-seeds so their
+        # values are not bit-identical, but they draw from the same distribution.
+        # With n=10_000 the means converge to within 2% of each other.
+        stats = _base_mage_stats()
+        single = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=1)
+        multi  = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=4)
+        assert single.mean_dps > 0
+        rel = abs(single.mean_dps - multi.mean_dps) / single.mean_dps
+        assert rel < 0.02, (
+            f"Relative drift too large: "
+            f"single={single.mean_dps:.3f}, "
+            f"multi={multi.mean_dps:.3f}, "
+            f"rel={rel:.4%}"
+        )
+
+
+class TestMonteCarloDPSPerformance:
+    """Smoke test — catches accidental slowdowns in the hot loop."""
+
+    def test_simulation_does_not_regress_speed(self):
+        # Budget: 50ms mean for n=5_000 (measured baseline ~1.5ms).
+        # The 33x headroom accommodates CI load and cold-start variance
+        # without making the test flaky.
+        stats = _base_mage_stats()
+        r = profile_call(
+            monte_carlo_dps,
+            stats,
+            "Fireball",
+            n=5_000,
+            workers=1,
+        )
+        assert r.mean_ms < 50, (
+            f"Monte Carlo n=5000 regressed: mean={r.mean_ms:.2f}ms "
+            f"(budget 50ms, p50={r.p50_ms:.2f}ms p95={r.p95_ms:.2f}ms p99={r.p99_ms:.2f}ms)"
+        )
 
 
 class TestFlatAddedDamage:

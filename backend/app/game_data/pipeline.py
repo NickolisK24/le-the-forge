@@ -216,7 +216,7 @@ class GameDataPipeline:
             return {}
         _require_keys(raw, ["skills"], "skills.json")
         return {
-            name: SkillStatDef.from_dict(name, data, data_version=data_version)
+            name: SkillStatDef.from_dict(data, data_version=data_version)
             for name, data in raw["skills"].items()
         }
 

@@ -14,12 +14,22 @@ Pure module — no DB, no HTTP.
 """
 
 import random
-from dataclasses import dataclass, asdict
+from concurrent.futures import ProcessPoolExecutor
+from dataclasses import dataclass, asdict, field
 from typing import Optional
 
 from app.domain.skill import SkillStatDef
+from app.domain.enemy import EnemyProfile
+from app.domain.calculators.damage_type_router import damage_types_for_stats
 from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill_damage, hits_per_cast
+from app.domain.calculators.enemy_mitigation_calculator import (
+    armor_mitigation,
+    effective_resistance,
+    damage_multiplier as enemy_damage_multiplier,
+    weighted_damage_multiplier,
+)
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
+from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.crit_calculator import (
     effective_crit_chance,
     effective_crit_multiplier,
@@ -35,6 +45,8 @@ from app.engines.stat_engine import BuildStats
 # data_version is required on SkillStatDef; "hardcoded" marks these as static
 # definitions rather than values loaded from a versioned data file.
 def _S(bd: float, ls: float, asp: float, ss: list, **kw) -> SkillStatDef:
+    if "damage_types" not in kw:
+        kw["damage_types"] = tuple(damage_types_for_stats(tuple(ss)))
     return SkillStatDef(bd, ls, asp, tuple(ss), data_version="hardcoded", **kw)
 from app.utils.logging import ForgeLogger
 
@@ -173,6 +185,8 @@ class DPSResult:
     poison_dps: int = 0
     ailment_dps: int = 0
     total_dps: int = 0      # hit dps + ailment dps
+    # Per-type damage amounts (post-increased, pre-crit) — string keys for JSON
+    damage_by_type: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -223,6 +237,7 @@ def calculate_dps(
     skill_name: str,
     skill_level: int = 20,
     skill_modifiers: SkillModifiers | None = None,
+    conversions: list[DamageConversion] | None = None,
     *,
     debug: bool = False,
 ) -> DPSResult:
@@ -248,9 +263,15 @@ def calculate_dps(
     sm = skill_modifiers or SkillModifiers()
 
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
+    scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    scaled = apply_conversions(scaled, conversions or [])
+    # sum(scaled.values()) == total for any non-empty damage_types (split then re-sum).
+    # Fall back to inline formula only when damage_types is empty (pending data migration).
+    scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
+    effective_base = scaled_total + flat_added
 
-    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
+    damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
+    hit_damage = damage.total
 
     eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
     eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
@@ -265,6 +286,9 @@ def calculate_dps(
     bleed_dps, ignite_dps, poison_dps = calc_ailment_dps(hit_damage, effective_as, stats)
     ailment_total = bleed_dps + ignite_dps + poison_dps
 
+    # Convert DamageType-keyed dict to string-keyed for JSON serialization
+    damage_by_type_str = {dt.value: v for dt, v in damage.damage_by_type.items()}
+
     return DPSResult(
         hit_damage=round(hit_damage),
         average_hit=round(average_hit),
@@ -277,12 +301,43 @@ def calculate_dps(
         poison_dps=poison_dps,
         ailment_dps=ailment_total,
         total_dps=round(hit_dps) + ailment_total,
+        damage_by_type=damage_by_type_str,
     )
 
 
 # ---------------------------------------------------------------------------
 # Monte Carlo DPS simulation
 # ---------------------------------------------------------------------------
+
+def _simulate_chunk(
+    hit_damage: float,
+    eff_crit_chance: float,
+    eff_crit_mult: float,
+    effective_as: float,
+    hpc: float,
+    n: int,
+    seed: Optional[int],
+) -> list:
+    """
+    Run n independent hit rolls and return per-hit DPS values.
+
+    Module-level so it is picklable by ProcessPoolExecutor workers.
+    Each call creates its own Random instance from seed, giving full
+    isolation between chunks when running in parallel.
+    """
+    rng = random.Random(seed)
+    # Pre-compute values used every iteration outside the loop.
+    crit_dmg = hit_damage * eff_crit_mult
+    scale    = effective_as * hpc
+    # Cache bound method to skip attribute lookup on every call.
+    rand = rng.random
+    # Pre-allocate exact size — avoids the ~log2(n) capacity doublings that
+    # [] + append triggers as the list grows.
+    results = [0.0] * n
+    for i in range(n):
+        results[i] = (crit_dmg if rand() < eff_crit_chance else hit_damage) * scale
+    return results
+
 
 def monte_carlo_dps(
     stats: BuildStats,
@@ -291,7 +346,9 @@ def monte_carlo_dps(
     n: int = 10_000,
     seed: Optional[int] = None,
     skill_modifiers: SkillModifiers | None = None,
+    conversions: list[DamageConversion] | None = None,
     *,
+    workers: int = 1,
     debug: bool = False,
 ) -> MonteCarloDPS:
     """
@@ -302,13 +359,22 @@ def monte_carlo_dps(
 
     Pass ``seed`` for a fully reproducible run — useful for regression tests
     and deterministic comparison between build variants.
+
+    workers (default 1): number of parallel processes. When > 1, n is split
+    evenly across workers via ProcessPoolExecutor. Each worker receives a
+    deterministic sub-seed derived from seed (seed+i) so that seeded runs
+    are fully reproducible. Pass workers=None to auto-select based on CPU count.
     """
+    if workers < 1:
+        raise ValueError(f"monte_carlo_dps: workers must be >= 1, got {workers}")
+
     log.info(
         "monte_carlo_dps.start",
         skill=skill_name,
         skill_level=skill_level,
         n=n,
         seed=seed,
+        workers=workers,
     )
 
     skill_def = _get_skill_def(skill_name)
@@ -316,26 +382,53 @@ def monte_carlo_dps(
         log.warning("monte_carlo_dps.unknown_skill", skill=skill_name)
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
 
-    rng = random.Random(seed)
     sm = skill_modifiers or SkillModifiers()
 
     flat_added = sum_flat_damage(stats, skill_def)
-    effective_base = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level) + flat_added
+    scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    scaled = apply_conversions(scaled, conversions or [])
+    scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
+    effective_base = scaled_total + flat_added
 
-    hit_damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct), debug=debug)
+    damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
+    hit_damage = damage.total
 
     eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
     eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
     hpc = hits_per_cast(sm.added_hits_per_cast)
     effective_as = effective_attack_speed(skill_def, stats, sm)
 
-    damages = []
-    for _ in range(n):
-        if rng.random() < eff_crit_chance:
-            dmg = hit_damage * eff_crit_mult
-        else:
-            dmg = hit_damage
-        damages.append(dmg * effective_as * hpc)
+    # Build per-worker (chunk_size, sub_seed) pairs.
+    # Remainder hits go to the first (n % workers) workers.
+    chunk_size = n // workers
+    remainder  = n % workers
+    chunk_args = [
+        (
+            hit_damage,
+            eff_crit_chance,
+            eff_crit_mult,
+            effective_as,
+            hpc,
+            chunk_size + (1 if i < remainder else 0),
+            (seed + i) if seed is not None else None,
+        )
+        for i in range(workers)
+    ]
+
+    if workers == 1:
+        damages = _simulate_chunk(*chunk_args[0])
+    else:
+        with ProcessPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(_simulate_chunk, *args) for args in chunk_args]
+            # Pre-allocate the full output buffer once; fill each chunk's
+            # slice in place to avoid repeated copies from extend().
+            damages = [0.0] * n
+            offset = 0
+            for f in futures:
+                chunk = f.result()
+                end = offset + len(chunk)
+                damages[offset:end] = chunk
+                offset = end
 
     damages.sort()
     mean = sum(damages) / n
@@ -383,7 +476,7 @@ def calculate_dps_vs_enemy(
     Calculates effective DPS against a specific enemy profile from enemy_profiles.json.
 
     Applies:
-    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 300)
+    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 1000)
     - Enemy resistances minus character penetration for matching damage types
     - Resistance cap at 75%
 
@@ -392,7 +485,7 @@ def calculate_dps_vs_enemy(
     base_result = calculate_dps(stats, skill_name, skill_level)
     raw_dps = base_result.total_dps
 
-    enemy = get_enemy_profile(enemy_id)
+    enemy: EnemyProfile | None = get_enemy_profile(enemy_id)
     if not enemy:
         return EnemyAwareDPS(
             skill_name=skill_name,
@@ -404,59 +497,50 @@ def calculate_dps_vs_enemy(
             penetration_applied={},
         )
 
-    # Armor reduction
-    armor = enemy["armor"]
-    armor_mitigation = armor / (armor + 1000)
-
-    # Penetration dict — maps BuildStats field → damage type id
-    PENETRATION_MAP = {
-        "physical_penetration": "physical",
-        "fire_penetration": "fire",
-        "cold_penetration": "cold",
-        "lightning_penetration": "lightning",
-        "void_penetration": "void",
-        "necrotic_penetration": "necrotic",
-    }
-
-    # Resolve skill's primary damage type(s) from scaling_stats
     skill_def = _get_skill_def(skill_name)
     if not skill_def:
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 
-    # Determine which damage types this skill deals
-    skill_damage_types: set[str] = set()
-    if "physical_damage_pct" in skill_def.scaling_stats or skill_def.is_melee:
-        skill_damage_types.add("physical")
-    for stat in skill_def.scaling_stats:
-        for pen_stat, dmg_type in PENETRATION_MAP.items():
-            if dmg_type + "_damage_pct" == stat:
-                skill_damage_types.add(dmg_type)
+    if not skill_def.damage_types:
+        log.warning("calculate_dps_vs_enemy.no_damage_types", skill=skill_name)
+    skill_damage_types = {dt.value for dt in skill_def.damage_types} or {"physical"}
 
-    # Calculate effective resistance for each damage type the skill deals
-    pen_applied: dict[str, float] = {}
-    res_reductions: list[float] = []
+    # Build penetration map: damage_type_str → pen value from BuildStats
+    pen_map: dict[str, float] = {
+        dt: pen
+        for dt in skill_damage_types
+        if (pen := getattr(stats, f"{dt}_penetration", 0.0)) > 0
+    }
 
-    for dmg_type in (skill_damage_types or {"physical"}):
-        enemy_res = enemy["resistances"].get(dmg_type, 0)
-        pen_stat = dmg_type + "_penetration"
-        pen = getattr(stats, pen_stat, 0.0)
-        effective_res = max(0, min(75, enemy_res - pen))
-        if pen > 0:
-            pen_applied[dmg_type] = pen
-        res_reductions.append(effective_res)
+    # Use proportion-weighted resistance when per-type damage breakdown is
+    # available (populated by calculate_dps via DamageResult.damage_by_type).
+    # Falls back to equal-weight average when breakdown is absent.
+    if base_result.damage_by_type:
+        from app.domain.calculators.damage_type_router import DamageType as _DT
+        damage_by_type_typed = {
+            _DT(k): v for k, v in base_result.damage_by_type.items()
+        }
+        multiplier = weighted_damage_multiplier(enemy, damage_by_type_typed, pen_map)
+        # avg_res for reporting: back-compute from the weighted multiplier + armor
+        armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        res_factor = multiplier / armor_factor if armor_factor > 0 else 1.0
+        avg_res = (1.0 - res_factor) * 100.0
+    else:
+        res_values = [
+            effective_resistance(enemy, dt, pen_map.get(dt, 0.0))
+            for dt in skill_damage_types
+        ]
+        avg_res = sum(res_values) / len(res_values) if res_values else 0.0
+        multiplier = enemy_damage_multiplier(enemy, skill_damage_types, pen_map)
 
-    avg_res = sum(res_reductions) / len(res_reductions) if res_reductions else 0.0
-
-    # Apply both reductions multiplicatively
-    effective_multiplier = (1 - armor_mitigation) * (1 - avg_res / 100)
-    effective_dps = round(raw_dps * effective_multiplier)
+    effective_dps = round(raw_dps * multiplier)
 
     return EnemyAwareDPS(
         skill_name=skill_name,
         enemy_id=enemy_id,
         raw_dps=raw_dps,
         effective_dps=effective_dps,
-        armor_reduction_pct=round(armor_mitigation * 100, 1),
+        armor_reduction_pct=round(armor_mitigation(enemy.armor) * 100, 1),
         avg_res_reduction_pct=round(avg_res, 1),
-        penetration_applied=pen_applied,
+        penetration_applied=pen_map,
     )

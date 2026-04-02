@@ -299,7 +299,7 @@ def get_fp_range_endpoint(rarity: str):
 def get_enemy_profiles_endpoint():
     """Return all enemy profiles from data/enemy_profiles.json."""
     from app.game_data.game_data_loader import get_enemy_profiles
-    return ok(data=get_enemy_profiles())
+    return ok(data=[e.to_dict() for e in get_enemy_profiles()])
 
 
 @ref_bp.get("/enemy-profiles/<enemy_id>")
@@ -309,7 +309,7 @@ def get_enemy_profile_endpoint(enemy_id: str):
     profile = get_enemy_profile(enemy_id)
     if not profile:
         return ok(data={"error": f"Enemy profile '{enemy_id}' not found"}, status=404)
-    return ok(data=profile)
+    return ok(data=profile.to_dict())
 
 
 @ref_bp.get("/damage-types")

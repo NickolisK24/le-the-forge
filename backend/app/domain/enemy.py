@@ -26,6 +26,21 @@ class EnemyProfile:
     crit_multiplier: float = 1.0
     tags: tuple[str, ...] = ()
 
+    def to_dict(self) -> dict:
+        return {
+            "id":              self.id,
+            "name":            self.name,
+            "category":        self.category,
+            "description":     self.description,
+            "health":          self.health,
+            "armor":           self.armor,
+            "resistances":     dict(self.resistances),
+            "crit_chance":     self.crit_chance,
+            "crit_multiplier": self.crit_multiplier,
+            "tags":            list(self.tags),
+            "data_version":    self.data_version,
+        }
+
     @classmethod
     def from_dict(cls, d: dict, *, data_version: str) -> "EnemyProfile":
         return cls(

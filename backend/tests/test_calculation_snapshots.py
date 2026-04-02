@@ -249,7 +249,7 @@ class TestPipelineSnapshots(unittest.TestCase):
         scaled_base = _FIREBALL.base_damage * (1 + _FIREBALL.level_scaling * 19)
 
         ctx = DamageContext.from_build(scaled_base, stats, _FIREBALL, extra_more)
-        hit = calculate_final_damage(ctx)
+        hit = calculate_final_damage(ctx).total
 
         name = snap["name"]
         self.assertAlmostEqual(

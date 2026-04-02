@@ -63,7 +63,7 @@ class AffixDefinition:
 
     @classmethod
     def from_dict(cls, d: dict, *, data_version: str) -> "AffixDefinition":
-        raw_id = d.get("affix_id") or d.get("id")
+        raw_id = d["affix_id"] if "affix_id" in d and d["affix_id"] is not None else d.get("id")
         return cls(
             name=d.get("name", ""),
             stat_key=d.get("stat_key", d.get("id", "")),
