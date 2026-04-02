@@ -88,6 +88,7 @@ class BuildStats:
     slow_chance_pct: float = 0.0
 
     # Offense — ailment / DoT damage
+    ailment_damage_pct: float = 0.0      # increased damage for ALL ailment types
     bleed_damage_pct: float = 0.0
     ignite_damage_pct: float = 0.0
     poison_dot_damage_pct: float = 0.0
