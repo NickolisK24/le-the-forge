@@ -332,9 +332,12 @@ export default function AffixEditorPage() {
 
   const load = useCallback(async () => {
     setLoading(true);
-    const res = await adminApi.affixes();
-    if (res.data) setAffixes(res.data);
-    setLoading(false);
+    try {
+      const res = await adminApi.affixes();
+      if (res.data) setAffixes(res.data);
+    } finally {
+      setLoading(false);
+    }
   }, []);
 
   useEffect(() => { load(); }, [load]);

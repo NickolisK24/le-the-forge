@@ -46,7 +46,12 @@ export interface PassiveTreeResponse {
 
 async function _get(path: string): Promise<PassiveTreeResponse> {
   const res = await fetch(`${BASE}${path}`);
-  const json = await res.json();
+  let json: any;
+  try {
+    json = await res.json();
+  } catch {
+    throw new Error(`Server error (${res.status}) — invalid response from ${path}`);
+  }
   if (!res.ok) {
     throw new Error(json.errors?.[0]?.message ?? `Request failed: ${path}`);
   }
