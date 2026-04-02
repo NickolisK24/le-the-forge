@@ -134,9 +134,12 @@ def get_affixes():
     # Map old DB affix_type values to canonical prefix/suffix
     TYPE_NORMALIZE = {"experimental": "prefix", "personal": "prefix"}
 
-    affixes = AffixDef.query.filter(
-        AffixDef.affix_type.in_(CRAFTABLE_TYPES)
-    ).order_by(AffixDef.name).all()
+    try:
+        affixes = AffixDef.query.filter(
+            AffixDef.affix_type.in_(CRAFTABLE_TYPES)
+        ).order_by(AffixDef.name).all()
+    except Exception:
+        affixes = []
 
     if not affixes:
         # Static fallback from canonical JSON

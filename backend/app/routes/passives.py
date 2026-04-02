@@ -112,7 +112,10 @@ def list_passives():
             q = q.filter(
                 (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
             )
-    nodes = q.order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id).all()
+    try:
+        nodes = q.order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id).all()
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=cls, mastery=mastery)
 
 
@@ -122,12 +125,15 @@ def get_class_tree(character_class: str):
     if character_class not in VALID_CLASSES:
         return error(f"Unknown class: {character_class}")
 
-    nodes = (
-        PassiveNode.query
-        .filter_by(character_class=character_class)
-        .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
-        .all()
-    )
+    try:
+        nodes = (
+            PassiveNode.query
+            .filter_by(character_class=character_class)
+            .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
+            .all()
+        )
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=character_class)
 
 
@@ -143,13 +149,16 @@ def get_mastery_tree(character_class: str, mastery: str):
     if mastery not in VALID_MASTERIES.get(character_class, []):
         return error(f"Unknown mastery '{mastery}' for class {character_class}")
 
-    nodes = (
-        PassiveNode.query
-        .filter_by(character_class=character_class)
-        .filter(
-            (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
+    try:
+        nodes = (
+            PassiveNode.query
+            .filter_by(character_class=character_class)
+            .filter(
+                (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
+            )
+            .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
+            .all()
         )
-        .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
-        .all()
-    )
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=character_class, mastery=mastery)
