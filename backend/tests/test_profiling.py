@@ -216,6 +216,30 @@ class TestProfileCall(unittest.TestCase):
         assert r.min_ms == r.max_ms
         assert math.isclose(r.mean_ms, r.min_ms, rel_tol=1e-9, abs_tol=1e-12)
 
+    # --- warmup ---
+
+    def test_default_warmup_is_10(self):
+        # n still equals the measured sample count, not n+warmup.
+        r = profile_call(self._noop, n=20)
+        assert r.n == 20
+
+    def test_explicit_warmup_does_not_inflate_n(self):
+        r = profile_call(self._noop, n=30, warmup=50)
+        assert r.n == 30
+
+    def test_zero_warmup_accepted(self):
+        r = profile_call(self._noop, n=10, warmup=0)
+        assert r.n == 10
+
+    def test_negative_warmup_raises(self):
+        with self.assertRaises(ValueError):
+            profile_call(self._noop, n=10, warmup=-1)
+
+    def test_warmup_runs_fn_with_correct_args(self):
+        # Warmup must forward args/kwargs — would raise TypeError if not.
+        r = profile_call(self._add, 1, 2, n=5, warmup=3)
+        assert r.n == 5
+
 
 if __name__ == "__main__":
     unittest.main()

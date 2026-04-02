@@ -125,25 +125,31 @@ def _compute_stats(samples_ms: list[float]) -> ProfilerResult:
 # profile_call — benchmark a callable over N runs
 # ---------------------------------------------------------------------------
 
-def profile_call(fn, *args, n: int = 100, **kwargs) -> ProfilerResult:
+def profile_call(fn, *args, n: int = 100, warmup: int = 10, **kwargs) -> ProfilerResult:
     """
     Run fn(*args, **kwargs) n times and return aggregate timing statistics.
 
-    Use for micro-benchmarking calculator functions or engine hot paths.
-    The function's return value is discarded; only timing is recorded.
+    warmup (default 10): number of un-timed calls before measurement begins.
+    Warmup discards cold-start bias, interpreter JIT effects, and cache
+    initialization noise so that the timed samples reflect steady-state
+    performance. Pass warmup=0 to disable.
 
-    Example:
-        from app.engines.combat_engine import calculate_dps
+    Use for micro-benchmarking calculator functions or engine hot paths:
         result = profile_call(calculate_dps, stats, "Fireball", 20, n=1000)
         print(f"mean={result.mean_ms:.3f}ms  p99={result.p99_ms:.3f}ms")
     """
     if n < 1:
         raise ValueError(f"profile_call: n must be >= 1, got {n}")
+    if warmup < 0:
+        raise ValueError(f"profile_call: warmup must be >= 0, got {warmup}")
+
+    for _ in range(warmup):
+        fn(*args, **kwargs)
 
     samples: list[float] = []
     for _ in range(n):
-        t0 = time.perf_counter()
-        fn(*args, **kwargs)
-        samples.append((time.perf_counter() - t0) * 1000.0)
+        with Timer() as t:
+            fn(*args, **kwargs)
+        samples.append(t.elapsed_ms)
 
     return _compute_stats(samples)
