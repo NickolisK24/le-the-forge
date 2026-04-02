@@ -6,6 +6,11 @@ Skill domain models — two distinct layers.
 
 SkillStatDef objects are held by SkillRegistry.
 SkillSpec objects are constructed at the service boundary and passed to engines.
+
+Multi-hit support (Step 6):
+  hit_count    — number of distinct hits produced per cast/activation (default 1)
+  hit_interval — seconds between successive hits within one cast (0 = simultaneous)
+  calculate_multi_hit_dps() — DPS accounting for hit count and attack speed
 """
 
 from __future__ import annotations
@@ -23,6 +28,10 @@ class SkillStatDef:
     Static per-skill tuning values. Sourced from skills.json and indexed by
     SkillRegistry. Mirrors SKILL_STATS in frontend/src/lib/gameData.ts.
     Frozen: fields are immutable after construction.
+
+    Multi-hit fields:
+      hit_count    — hits produced per cast (e.g. 3 for a 3-hit melee flurry)
+      hit_interval — seconds between hits within one cast (0 = simultaneous)
     """
 
     base_damage: float
@@ -35,6 +44,8 @@ class SkillStatDef:
     is_throwing: bool = False
     is_bow: bool = False
     damage_types: tuple[DamageType, ...] = ()  # explicit damage channels this skill deals
+    hit_count:    int   = 1    # hits per cast activation
+    hit_interval: float = 0.0  # seconds between hits (0 = simultaneous)
 
     @classmethod
     def from_dict(cls, d: dict, *, data_version: str = "") -> "SkillStatDef":
@@ -55,6 +66,8 @@ class SkillStatDef:
             is_bow=bool(d.get("is_bow", False)),
             data_version=data_version,
             damage_types=dtypes,
+            hit_count=int(d.get("hit_count", 1)),
+            hit_interval=float(d.get("hit_interval", 0.0)),
         )
 
 
@@ -79,3 +92,33 @@ class SkillSpec:
             spec_tree=d.get("spec_tree", []),
             hud_slot=int(d.get("hud_slot", d.get("slot_index", 0))),
         )
+
+
+# ---------------------------------------------------------------------------
+# Multi-hit DPS helper
+# ---------------------------------------------------------------------------
+
+def calculate_multi_hit_dps(
+    skill: SkillStatDef,
+    per_hit_damage: float,
+) -> float:
+    """
+    Compute DPS for a multi-hit skill given the damage dealt per individual hit.
+
+    Formula:
+        total_damage_per_cast = per_hit_damage * hit_count
+        dps = total_damage_per_cast * attack_speed
+
+    ``per_hit_damage`` is the fully-computed damage for one hit (after all
+    modifiers, resistances, etc.). ``attack_speed`` is casts per second.
+
+    hit_interval is informational (used by timeline scheduling) and does not
+    affect steady-state DPS — all hits within a cast still occur once per cast.
+
+    Raises ValueError if hit_count < 1 or attack_speed <= 0.
+    """
+    if skill.hit_count < 1:
+        raise ValueError(f"hit_count must be >= 1, got {skill.hit_count}")
+    if skill.attack_speed <= 0:
+        raise ValueError(f"attack_speed must be > 0, got {skill.attack_speed}")
+    return per_hit_damage * skill.hit_count * skill.attack_speed
