@@ -40,6 +40,7 @@ frontend/.vite/
 
 # Docker
 *.log
+backend/wheels/
 
 # OS
 .DS_Store

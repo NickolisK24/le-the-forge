@@ -3,8 +3,7 @@ FROM python:3.11-slim
 WORKDIR /app
 
 COPY requirements.txt .
-COPY wheels/ /tmp/wheels/
-RUN pip install --no-cache-dir --no-index --find-links=/tmp/wheels/ -r requirements.txt
+RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
