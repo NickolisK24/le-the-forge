@@ -99,10 +99,15 @@ def apply_conversions(
                 factor = 100.0 / total_pct
                 targets = [(t, p * factor) for t, p in targets]
 
-            for target, pct in targets:
-                amount = source_amount * pct / 100.0
-                result[source] -= amount
+            # Compute all amounts first, then subtract the total once.
+            # A single subtraction preserves the remainder more accurately
+            # than N accumulated subtractions when pct is a repeating fraction.
+            amounts = [(target, source_amount * pct / 100.0) for target, pct in targets]
+            total_converted = sum(a for _, a in amounts)
+            result[source] -= total_converted
+            for target, amount in amounts:
                 result[target] = result.get(target, 0.0) + amount
 
-    # Drop exhausted entries (also catches float underflow negatives)
-    return {dt: v for dt, v in result.items() if v > 0}
+    # 1e-12 tolerance: drop fully-converted types and float underflow negatives
+    # without discarding legitimate fractional remainders near (but above) zero.
+    return {dt: v for dt, v in result.items() if v > 1e-12}

@@ -675,5 +675,98 @@ class TestConversionPriority(unittest.TestCase):
         assert math.isclose(result[DamageType.COLD], 50.0, rel_tol=1e-9, abs_tol=1e-12)
 
 
+# ---------------------------------------------------------------------------
+# Partial conversion — fractional pct, remainder preservation
+# ---------------------------------------------------------------------------
+
+class TestPartialConversion(unittest.TestCase):
+    """
+    Tests that fractional (non-integer) pct values are handled correctly and
+    that the unconverted remainder is not dropped or distorted.
+
+    Acceptance: remaining = source * (1 - pct/100) to float precision.
+    """
+
+    def test_one_third_conversion_preserves_remainder(self):
+        # pct = 100/3 ≈ 33.333...%
+        # converted  = 100 * (1/3) ≈ 33.333...
+        # remaining  = 100 * (2/3) ≈ 66.666...
+        pct = 100.0 / 3.0
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, pct)
+        result = apply_conversions(scaled, [conv])
+        expected_remaining = 100.0 * (1.0 - pct / 100.0)
+        expected_converted = 100.0 * pct / 100.0
+        assert math.isclose(result[DamageType.PHYSICAL], expected_remaining, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     expected_converted, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_three_way_fractional_split_exhausts_source(self):
+        # Three equal thirds (each 100/3 %) — together they sum to 100%.
+        # The source should be fully consumed (remainder ≈ 0, dropped by filter).
+        pct = 100.0 / 3.0
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE,      pct),
+            DamageConversion(DamageType.PHYSICAL, DamageType.COLD,      pct),
+            DamageConversion(DamageType.PHYSICAL, DamageType.LIGHTNING, pct),
+        ]
+        result = apply_conversions(scaled, convs)
+        # Source should be absent (exhausted within float tolerance).
+        assert DamageType.PHYSICAL not in result
+        # Each target should receive approximately 1/3 of 100.
+        for dt in (DamageType.FIRE, DamageType.COLD, DamageType.LIGHTNING):
+            assert math.isclose(result[dt], 100.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_fractional_pct_total_conservation(self):
+        # sum(result.values()) == sum(scaled.values()) for any fractional pct.
+        pct = 7.77  # arbitrary non-round percentage
+        scaled = {DamageType.PHYSICAL: 173.5, DamageType.FIRE: 26.5}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.COLD, pct)
+        before = sum(scaled.values())
+        result = apply_conversions(scaled, [conv])
+        after = sum(result.values())
+        assert math.isclose(before, after, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_small_pct_remainder_not_dropped(self):
+        # 0.5% conversion — almost all damage stays as source.
+        # The remainder (99.5%) must survive the post-conversion filter.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 0.5)
+        result = apply_conversions(scaled, [conv])
+        assert DamageType.PHYSICAL in result, "remainder was incorrectly dropped"
+        assert math.isclose(result[DamageType.PHYSICAL], 99.5, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],      0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_multi_type_base_partial_conversion(self):
+        # Skill base is already split: 50 physical + 50 fire (from scale_skill_damage).
+        # 33.33% of physical → cold. Fire stays untouched.
+        pct = 100.0 / 3.0
+        scaled = {DamageType.PHYSICAL: 50.0, DamageType.FIRE: 50.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.COLD, pct)
+        result = apply_conversions(scaled, [conv])
+        expected_phys = 50.0 * (1.0 - pct / 100.0)
+        expected_cold = 50.0 * pct / 100.0
+        assert math.isclose(result[DamageType.PHYSICAL], expected_phys, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     50.0,          rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.COLD],     expected_cold, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_remainder_matches_complement_formula(self):
+        # For any pct, remaining should equal source_amount * (100 - pct) / 100
+        # within float precision — not just "approximately correct".
+        for pct in (10.0, 25.0, 100.0 / 7.0, 99.9, 0.1):
+            source = 200.0
+            scaled = {DamageType.PHYSICAL: source}
+            conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, pct)
+            result = apply_conversions(scaled, [conv])
+            expected_remaining = source * (100.0 - pct) / 100.0
+            if expected_remaining > 1e-9:
+                assert math.isclose(
+                    result.get(DamageType.PHYSICAL, 0.0),
+                    expected_remaining,
+                    rel_tol=1e-9,
+                    abs_tol=1e-12,
+                ), f"pct={pct}: expected remaining {expected_remaining}, got {result.get(DamageType.PHYSICAL, 0.0)}"
+
+
 if __name__ == '__main__':
     unittest.main()
