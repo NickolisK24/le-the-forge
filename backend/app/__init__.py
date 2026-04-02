@@ -90,6 +90,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.profile import profile_bp
     from app.routes.simulate import simulate_bp
     from app.routes.optimize import optimize_bp
+    from app.routes.rotation import rotation_bp
     from app.routes.admin import admin_bp
     from app.routes.jobs import jobs_bp
     from app.routes.version import version_bp
@@ -104,6 +105,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(profile_bp, url_prefix="/api/profile")
     app.register_blueprint(simulate_bp, url_prefix="/api/simulate")
     app.register_blueprint(optimize_bp, url_prefix="/api/optimize")
+    app.register_blueprint(rotation_bp, url_prefix="/api/simulate")
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")

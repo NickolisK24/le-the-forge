@@ -41,7 +41,7 @@ log = ForgeLogger(__name__)
 _DATA_DIR = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "..", "data")
 )
-_SKILL_TREE_NODES_PATH = os.path.join(_DATA_DIR, "skill_tree_nodes.json")
+_SKILL_TREE_NODES_PATH = os.path.join(_DATA_DIR, "classes", "skill_tree_nodes.json")
 
 
 # ---------------------------------------------------------------------------
