@@ -135,15 +135,15 @@ def get_all_skills_metadata() -> dict:
 # Enemy profiles
 # ---------------------------------------------------------------------------
 
-def get_enemy_profiles() -> list[dict]:
-    """Returns all enemy profile definitions as dicts."""
-    return [vars(e) for e in _pipeline().enemies]
+def get_enemy_profiles() -> list["EnemyProfile"]:
+    """Returns all enemy profile definitions as typed EnemyProfile objects."""
+    from app.domain.enemy import EnemyProfile  # noqa: F401 — re-export for callers
+    return list(_pipeline().enemies)
 
 
-def get_enemy_profile(enemy_id: str) -> dict | None:
-    """Returns a single enemy profile by id, or None if not found."""
-    enemy = _pipeline().get_enemy(enemy_id)
-    return vars(enemy) if enemy is not None else None
+def get_enemy_profile(enemy_id: str) -> "EnemyProfile | None":
+    """Returns a single EnemyProfile by id, or None if not found."""
+    return _pipeline().get_enemy(enemy_id)
 
 
 # ---------------------------------------------------------------------------

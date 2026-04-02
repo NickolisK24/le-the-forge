@@ -18,8 +18,14 @@ from dataclasses import dataclass, asdict
 from typing import Optional
 
 from app.domain.skill import SkillStatDef
+from app.domain.enemy import EnemyProfile
 from app.domain.calculators.damage_type_router import damage_types_for_stats
 from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill_damage, hits_per_cast
+from app.domain.calculators.enemy_mitigation_calculator import (
+    armor_mitigation,
+    effective_resistance,
+    damage_multiplier as enemy_damage_multiplier,
+)
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.crit_calculator import (
@@ -399,7 +405,7 @@ def calculate_dps_vs_enemy(
     Calculates effective DPS against a specific enemy profile from enemy_profiles.json.
 
     Applies:
-    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 300)
+    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 1000)
     - Enemy resistances minus character penetration for matching damage types
     - Resistance cap at 75%
 
@@ -408,7 +414,7 @@ def calculate_dps_vs_enemy(
     base_result = calculate_dps(stats, skill_name, skill_level)
     raw_dps = base_result.total_dps
 
-    enemy = get_enemy_profile(enemy_id)
+    enemy: EnemyProfile | None = get_enemy_profile(enemy_id)
     if not enemy:
         return EnemyAwareDPS(
             skill_name=skill_name,
@@ -420,55 +426,36 @@ def calculate_dps_vs_enemy(
             penetration_applied={},
         )
 
-    # Armor reduction
-    armor = enemy["armor"]
-    armor_mitigation = armor / (armor + 1000)
-
-    # Penetration dict — maps BuildStats field → damage type id
-    PENETRATION_MAP = {
-        "physical_penetration": "physical",
-        "fire_penetration": "fire",
-        "cold_penetration": "cold",
-        "lightning_penetration": "lightning",
-        "void_penetration": "void",
-        "necrotic_penetration": "necrotic",
-    }
-
-    # Resolve skill's primary damage type(s) from scaling_stats
     skill_def = _get_skill_def(skill_name)
     if not skill_def:
         return EnemyAwareDPS(skill_name, enemy_id, 0, 0, 0.0, 0.0, {})
 
-    # Resolve skill's damage channels from the explicit definition
     if not skill_def.damage_types:
         log.warning("calculate_dps_vs_enemy.no_damage_types", skill=skill_name)
-    skill_damage_types = {dt.value for dt in skill_def.damage_types}
+    skill_damage_types = {dt.value for dt in skill_def.damage_types} or {"physical"}
 
-    # Calculate effective resistance for each damage type the skill deals
-    pen_applied: dict[str, float] = {}
-    res_reductions: list[float] = []
+    # Build penetration map: damage_type_str → pen value from BuildStats
+    pen_map: dict[str, float] = {
+        dt: pen
+        for dt in skill_damage_types
+        if (pen := getattr(stats, f"{dt}_penetration", 0.0)) > 0
+    }
 
-    for dmg_type in (skill_damage_types or {"physical"}):
-        enemy_res = enemy["resistances"].get(dmg_type, 0)
-        pen_stat = dmg_type + "_penetration"
-        pen = getattr(stats, pen_stat, 0.0)
-        effective_res = max(0, min(75, enemy_res - pen))
-        if pen > 0:
-            pen_applied[dmg_type] = pen
-        res_reductions.append(effective_res)
+    # Per-type effective resistance for reporting
+    res_values = [
+        effective_resistance(enemy, dt, pen_map.get(dt, 0.0))
+        for dt in skill_damage_types
+    ]
+    avg_res = sum(res_values) / len(res_values) if res_values else 0.0
 
-    avg_res = sum(res_reductions) / len(res_reductions) if res_reductions else 0.0
-
-    # Apply both reductions multiplicatively
-    effective_multiplier = (1 - armor_mitigation) * (1 - avg_res / 100)
-    effective_dps = round(raw_dps * effective_multiplier)
+    effective_dps = round(raw_dps * enemy_damage_multiplier(enemy, skill_damage_types, pen_map))
 
     return EnemyAwareDPS(
         skill_name=skill_name,
         enemy_id=enemy_id,
         raw_dps=raw_dps,
         effective_dps=effective_dps,
-        armor_reduction_pct=round(armor_mitigation * 100, 1),
+        armor_reduction_pct=round(armor_mitigation(enemy.armor) * 100, 1),
         avg_res_reduction_pct=round(avg_res, 1),
-        penetration_applied=pen_applied,
+        penetration_applied=pen_map,
     )

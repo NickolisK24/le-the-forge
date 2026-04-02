@@ -30,6 +30,11 @@ from app.domain.calculators.increased_damage_calculator import sum_increased_dam
 from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_ailment_dps
 from app.domain.calculators.damage_type_router import source_type_for_ailment
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
+from app.domain.calculators.enemy_mitigation_calculator import (
+    armor_mitigation, effective_resistance, damage_multiplier as enemy_damage_multiplier,
+    RES_CAP,
+)
+from app.domain.enemy import EnemyProfile
 from app.constants.combat import BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION, POISON_DPS_RATIO, POISON_DURATION
 from app.engines.stat_engine import BuildStats
 
@@ -766,6 +771,183 @@ class TestPartialConversion(unittest.TestCase):
                     rel_tol=1e-9,
                     abs_tol=1e-12,
                 ), f"pct={pct}: expected remaining {expected_remaining}, got {result.get(DamageType.PHYSICAL, 0.0)}"
+
+
+# ---------------------------------------------------------------------------
+# EnemyProfile domain model
+# ---------------------------------------------------------------------------
+
+def _make_enemy(**overrides) -> EnemyProfile:
+    """Minimal valid EnemyProfile for tests."""
+    defaults = {
+        "id": "test_enemy",
+        "name": "Test Enemy",
+        "category": "normal",
+        "data_version": "test",
+        "health": 1000,
+        "armor": 0,
+        "resistances": {
+            "physical": 0.0,
+            "fire": 0.0,
+            "cold": 0.0,
+            "lightning": 0.0,
+        },
+    }
+    defaults.update(overrides)
+    return EnemyProfile(**defaults)
+
+
+class TestEnemyProfileModel(unittest.TestCase):
+    """Verify EnemyProfile construction and serialization."""
+
+    def test_from_dict_populates_required_fields(self):
+        d = {
+            "id": "boss_1",
+            "name": "Lagon",
+            "category": "boss",
+            "health": 50000,
+            "armor": 800,
+            "resistances": {"fire": 40.0, "cold": 25.0},
+        }
+        ep = EnemyProfile.from_dict(d, data_version="1.0")
+        assert ep.id == "boss_1"
+        assert ep.name == "Lagon"
+        assert ep.health == 50000
+        assert ep.armor == 800
+        assert ep.resistances["fire"] == 40.0
+
+    def test_from_dict_defaults_optional_fields(self):
+        ep = EnemyProfile.from_dict({"id": "x", "name": "X"}, data_version="1.0")
+        assert ep.health == 0
+        assert ep.armor == 0
+        assert ep.resistances == {}
+        assert ep.crit_chance == 0.0
+        assert ep.crit_multiplier == 1.0
+        assert ep.tags == ()
+
+    def test_to_dict_round_trips(self):
+        d = {
+            "id": "goblin",
+            "name": "Goblin",
+            "category": "normal",
+            "health": 500,
+            "armor": 100,
+            "resistances": {"physical": 10.0},
+        }
+        ep = EnemyProfile.from_dict(d, data_version="2.0")
+        out = ep.to_dict()
+        assert out["id"] == "goblin"
+        assert out["armor"] == 100
+        assert out["resistances"] == {"physical": 10.0}
+        assert out["data_version"] == "2.0"
+
+    def test_frozen_prevents_mutation(self):
+        ep = _make_enemy()
+        with self.assertRaises((AttributeError, TypeError)):
+            ep.armor = 999  # type: ignore[misc]
+
+
+# ---------------------------------------------------------------------------
+# Enemy mitigation calculator
+# ---------------------------------------------------------------------------
+
+class TestArmorMitigation(unittest.TestCase):
+
+    def test_zero_armor_gives_zero_mitigation(self):
+        assert armor_mitigation(0) == 0.0
+
+    def test_negative_armor_gives_zero_mitigation(self):
+        assert armor_mitigation(-50) == 0.0
+
+    def test_formula_1000_armor(self):
+        # 1000 / (1000 + 1000) = 0.5
+        assert math.isclose(armor_mitigation(1000), 0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_formula_500_armor(self):
+        # 500 / (500 + 1000) = 1/3
+        assert math.isclose(armor_mitigation(500), 1.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_higher_armor_gives_higher_mitigation(self):
+        assert armor_mitigation(2000) > armor_mitigation(1000) > armor_mitigation(0)
+
+    def test_mitigation_below_one(self):
+        # Armor can never fully absorb damage
+        assert armor_mitigation(999_999) < 1.0
+
+
+class TestEffectiveResistance(unittest.TestCase):
+
+    def test_zero_resistance_zero_pen(self):
+        ep = _make_enemy(resistances={"fire": 0.0})
+        assert effective_resistance(ep, "fire") == 0.0
+
+    def test_base_resistance_no_pen(self):
+        ep = _make_enemy(resistances={"fire": 40.0})
+        assert math.isclose(effective_resistance(ep, "fire"), 40.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_penetration_reduces_resistance(self):
+        ep = _make_enemy(resistances={"fire": 40.0})
+        assert math.isclose(effective_resistance(ep, "fire", penetration=15.0), 25.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_resistance_capped_at_res_cap(self):
+        ep = _make_enemy(resistances={"fire": 90.0})
+        assert math.isclose(effective_resistance(ep, "fire"), RES_CAP, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_penetration_cannot_go_below_zero(self):
+        ep = _make_enemy(resistances={"fire": 10.0})
+        # More penetration than resistance → clamp to 0
+        assert effective_resistance(ep, "fire", penetration=50.0) == 0.0
+
+    def test_unknown_damage_type_defaults_zero(self):
+        ep = _make_enemy(resistances={})
+        assert effective_resistance(ep, "void") == 0.0
+
+
+class TestEnemyDamageMultiplier(unittest.TestCase):
+
+    def test_training_dummy_multiplier_is_one(self):
+        # 0 armor, 0 resistance → full damage passes through
+        dummy = _make_enemy(armor=0, resistances={"fire": 0.0})
+        mult = enemy_damage_multiplier(dummy, {"fire"})
+        assert math.isclose(mult, 1.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_armor_only_reduces_multiplier(self):
+        # 1000 armor → 50% mitigation → multiplier = 0.5
+        enemy = _make_enemy(armor=1000, resistances={"physical": 0.0})
+        mult = enemy_damage_multiplier(enemy, {"physical"})
+        assert math.isclose(mult, 0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_resistance_only_reduces_multiplier(self):
+        # 0 armor, 50% fire res → multiplier = 0.5
+        enemy = _make_enemy(armor=0, resistances={"fire": 50.0})
+        mult = enemy_damage_multiplier(enemy, {"fire"})
+        assert math.isclose(mult, 0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_armor_and_resistance_stack_multiplicatively(self):
+        # 1000 armor (50% mit) × 50% fire res → 0.5 × 0.5 = 0.25
+        enemy = _make_enemy(armor=1000, resistances={"fire": 50.0})
+        mult = enemy_damage_multiplier(enemy, {"fire"})
+        assert math.isclose(mult, 0.25, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_penetration_improves_multiplier(self):
+        enemy = _make_enemy(armor=0, resistances={"fire": 40.0})
+        without_pen = enemy_damage_multiplier(enemy, {"fire"})
+        with_pen    = enemy_damage_multiplier(enemy, {"fire"}, pen_map={"fire": 20.0})
+        assert with_pen > without_pen
+
+    def test_empty_damage_types_uses_armor_only(self):
+        enemy = _make_enemy(armor=1000, resistances={"fire": 50.0})
+        mult = enemy_damage_multiplier(enemy, set())
+        # No resistance applied — only armor
+        assert math.isclose(mult, 0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_multi_type_resistance_is_averaged(self):
+        # fire=0%, cold=100% (capped to 75%) → avg = 37.5% → mult = 0.625
+        enemy = _make_enemy(armor=0, resistances={"fire": 0.0, "cold": 100.0})
+        mult = enemy_damage_multiplier(enemy, {"fire", "cold"})
+        expected_avg_res = (0.0 + 75.0) / 2.0   # 37.5%
+        expected_mult = 1.0 - expected_avg_res / 100.0
+        assert math.isclose(mult, expected_mult, rel_tol=1e-9, abs_tol=1e-12)
 
 
 if __name__ == '__main__':
