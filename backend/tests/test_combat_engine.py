@@ -245,7 +245,7 @@ class TestMonteCarloDPSPerformance:
         )
         assert r.mean_ms < 50, (
             f"Monte Carlo n=5000 regressed: mean={r.mean_ms:.2f}ms "
-            f"(budget 50ms, p99={r.p99_ms:.2f}ms)"
+            f"(budget 50ms, p50={r.p50_ms:.2f}ms p95={r.p95_ms:.2f}ms p99={r.p99_ms:.2f}ms)"
         )
 
 
