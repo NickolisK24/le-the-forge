@@ -1,155 +1,116 @@
-"""
-Tests for Multi-Enemy Simulation (Step 66).
-"""
+"""Tests for multi-target combat engine (Step 101)."""
 
 import pytest
-from app.domain.multi_target import HitMode, TargetGroup
-from app.domain.enemy import EnemyArchetype, EnemyInstance, EnemyStats
+from encounter.enemy import EncounterEnemy
+from encounter.multi_target import HitDistribution, MultiHitConfig, MultiTargetEngine
 
 
-def make_enemy(health: float = 1000.0) -> EnemyInstance:
-    return EnemyInstance.from_stats(EnemyStats(health=int(health), armor=0))
+def _enemy(health=1000.0, name="e"):
+    return EncounterEnemy(max_health=health, current_health=health,
+                          armor=0.0, name=name)
+
+def _dead():
+    e = _enemy(health=100.0, name="dead")
+    e.apply_damage(100.0)
+    return e
+
+def _cfg(dist, **kw):
+    return MultiHitConfig(distribution=dist, rng_hit=0.0, rng_crit=99.0, **kw)
 
 
-def make_group(*healths: float) -> TargetGroup:
-    return TargetGroup([make_enemy(h) for h in healths])
+class TestSingle:
+    def test_only_primary_hit(self):
+        enemies = [_enemy(name="a"), _enemy(name="b")]
+        eng = MultiTargetEngine()
+        results = eng.apply_hit(enemies, 100.0, _cfg(HitDistribution.SINGLE), primary_idx=0)
+        assert results[0] is not None
+        assert results[1] is None
+        assert enemies[0].current_health == pytest.approx(900.0)
+        assert enemies[1].current_health == pytest.approx(1000.0)
+
+    def test_empty_returns_empty(self):
+        assert MultiTargetEngine().apply_hit([], 100.0) == []
+
+    def test_dead_primary_skipped(self):
+        d = _dead()
+        e = _enemy(name="b")
+        results = MultiTargetEngine().apply_hit([d, e], 100.0,
+                  _cfg(HitDistribution.SINGLE), primary_idx=0)
+        assert results[0] is None
 
 
-class TestTargetGroupConstruction:
-    def test_single_enemy(self):
-        g = TargetGroup([make_enemy()])
-        assert g.count == 1
+class TestCleave:
+    def test_all_alive_hit(self):
+        enemies = [_enemy(name="a"), _enemy(name="b"), _enemy(name="c")]
+        eng = MultiTargetEngine()
+        eng.apply_hit(enemies, 100.0, _cfg(HitDistribution.CLEAVE))
+        for e in enemies:
+            assert e.current_health == pytest.approx(900.0)
 
-    def test_empty_raises(self):
-        with pytest.raises(ValueError):
-            TargetGroup([])
+    def test_dead_enemy_skipped(self):
+        alive = _enemy(name="a")
+        dead  = _dead()
+        results = MultiTargetEngine().apply_hit([alive, dead], 100.0,
+                                                 _cfg(HitDistribution.CLEAVE))
+        assert results[0] is not None
+        assert results[1] is None
 
-    def test_living_all_alive(self):
-        g = make_group(100.0, 200.0)
-        assert len(g.living) == 2
-
-    def test_all_dead_false_when_alive(self):
-        g = make_group(100.0)
-        assert g.all_dead is False
-
-
-class TestHitModeSingle:
-    def test_only_first_alive_hit(self):
-        g = make_group(500.0, 500.0)
-        results = g.apply_hit(100.0, HitMode.SINGLE)
-        assert results[0] == pytest.approx(100.0)
-        assert results[1] == pytest.approx(0.0)
-
-    def test_skips_dead_primary(self):
-        g = make_group(100.0, 500.0)
-        g.enemies[0].take_damage(100.0)   # kill first
-        results = g.apply_hit(50.0, HitMode.SINGLE)
-        assert results[0] == pytest.approx(0.0)
-        assert results[1] == pytest.approx(50.0)
-
-    def test_no_living_targets(self):
-        g = make_group(100.0)
-        g.enemies[0].take_damage(100.0)
-        results = g.apply_hit(50.0, HitMode.SINGLE)
-        assert results == [pytest.approx(0.0)]
-
-    def test_default_mode_is_single(self):
-        g = make_group(500.0, 500.0)
-        results = g.apply_hit(100.0)
-        assert results[0] == pytest.approx(100.0)
-        assert results[1] == pytest.approx(0.0)
+    def test_total_damage_correct(self):
+        enemies = [_enemy(name="a"), _enemy(name="b")]
+        eng = MultiTargetEngine()
+        results = eng.apply_hit(enemies, 100.0, _cfg(HitDistribution.CLEAVE))
+        assert MultiTargetEngine.total_damage(results) == pytest.approx(200.0)
 
 
-class TestHitModeCleave:
-    def test_all_targets_take_full_damage(self):
-        g = make_group(500.0, 500.0, 500.0)
-        results = g.apply_hit(100.0, HitMode.CLEAVE)
-        assert all(r == pytest.approx(100.0) for r in results)
+class TestSplit:
+    def test_damage_divided_equally(self):
+        enemies = [_enemy(name="a"), _enemy(name="b")]
+        eng = MultiTargetEngine()
+        eng.apply_hit(enemies, 100.0, _cfg(HitDistribution.SPLIT))
+        for e in enemies:
+            assert e.current_health == pytest.approx(950.0)
 
-    def test_dead_enemy_takes_zero(self):
-        g = make_group(100.0, 500.0)
-        g.enemies[0].take_damage(100.0)
-        results = g.apply_hit(50.0, HitMode.CLEAVE)
-        assert results[0] == pytest.approx(0.0)
-        assert results[1] == pytest.approx(50.0)
+    def test_single_target_split_full_damage(self):
+        e = _enemy(name="a")
+        MultiTargetEngine().apply_hit([e], 100.0, _cfg(HitDistribution.SPLIT))
+        assert e.current_health == pytest.approx(900.0)
 
-    def test_total_damage_equals_per_enemy_sum(self):
-        g = make_group(300.0, 300.0)
-        results = g.apply_hit(100.0, HitMode.CLEAVE)
-        assert g.total_damage_dealt(results) == pytest.approx(200.0)
-
-
-class TestHitModeSplit:
-    def test_two_enemies_split_equally(self):
-        g = make_group(500.0, 500.0)
-        results = g.apply_hit(100.0, HitMode.SPLIT)
-        assert results[0] == pytest.approx(50.0)
-        assert results[1] == pytest.approx(50.0)
-
-    def test_three_enemies_split_equally(self):
-        g = make_group(500.0, 500.0, 500.0)
-        results = g.apply_hit(90.0, HitMode.SPLIT)
-        assert all(r == pytest.approx(30.0) for r in results)
-
-    def test_split_excludes_dead_from_divisor(self):
-        # 3 enemies, 1 dead → split among 2 living
-        g = make_group(500.0, 500.0, 500.0)
-        g.enemies[2].take_damage(500.0)
-        results = g.apply_hit(100.0, HitMode.SPLIT)
-        assert results[0] == pytest.approx(50.0)
-        assert results[1] == pytest.approx(50.0)
-        assert results[2] == pytest.approx(0.0)
-
-    def test_single_living_enemy_gets_full_damage(self):
-        g = make_group(500.0, 100.0)
-        g.enemies[1].take_damage(100.0)
-        results = g.apply_hit(80.0, HitMode.SPLIT)
-        assert results[0] == pytest.approx(80.0)
-        assert results[1] == pytest.approx(0.0)
-
-    def test_all_dead_split_returns_zeros(self):
-        g = make_group(100.0)
-        g.enemies[0].take_damage(100.0)
-        results = g.apply_hit(50.0, HitMode.SPLIT)
-        assert results == [pytest.approx(0.0)]
+    def test_total_damage_same_as_base(self):
+        enemies = [_enemy(name=f"e{i}") for i in range(4)]
+        results = MultiTargetEngine().apply_hit(enemies, 100.0,
+                                                 _cfg(HitDistribution.SPLIT))
+        assert MultiTargetEngine.total_damage(results) == pytest.approx(100.0)
 
 
-class TestHitModeChain:
-    def test_each_living_enemy_takes_full_damage(self):
-        g = make_group(500.0, 500.0, 500.0)
-        results = g.apply_hit(100.0, HitMode.CHAIN)
-        assert all(r == pytest.approx(100.0) for r in results)
+class TestChain:
+    def test_primary_takes_full_damage(self):
+        enemies = [_enemy(name="a"), _enemy(name="b")]
+        MultiTargetEngine().apply_hit(enemies, 100.0,
+            _cfg(HitDistribution.CHAIN, chain_falloff_pct=50.0))
+        assert enemies[0].current_health == pytest.approx(900.0)
+        assert enemies[1].current_health == pytest.approx(950.0)
 
-    def test_dead_enemy_skipped_in_chain(self):
-        g = make_group(100.0, 500.0)
-        g.enemies[0].take_damage(100.0)
-        results = g.apply_hit(50.0, HitMode.CHAIN)
-        assert results[0] == pytest.approx(0.0)
-        assert results[1] == pytest.approx(50.0)
+    def test_chain_falloff_reduces_damage(self):
+        enemies = [_enemy(name=f"e{i}") for i in range(3)]
+        MultiTargetEngine().apply_hit(enemies, 100.0,
+            _cfg(HitDistribution.CHAIN, chain_falloff_pct=50.0))
+        # e0=100, e1=50, e2=25
+        assert enemies[0].current_health == pytest.approx(900.0)
+        assert enemies[1].current_health == pytest.approx(950.0)
+        assert enemies[2].current_health == pytest.approx(975.0)
 
-    def test_chain_total_higher_than_split(self):
-        g = make_group(500.0, 500.0)
-        chain = sum(g.apply_hit(100.0, HitMode.CHAIN))
-        g2 = make_group(500.0, 500.0)
-        split = sum(g2.apply_hit(100.0, HitMode.SPLIT))
-        assert chain > split  # 200 vs 100
-
-
-class TestNegativeDamageRaises:
-    def test_all_modes_reject_negative_damage(self):
-        g = make_group(500.0)
-        for mode in HitMode:
-            with pytest.raises(ValueError, match="damage"):
-                g.apply_hit(-10.0, mode)
+    def test_results_length_matches_enemies(self):
+        enemies = [_enemy(name=f"e{i}") for i in range(3)]
+        results = MultiTargetEngine().apply_hit(enemies, 100.0,
+                    _cfg(HitDistribution.CHAIN))
+        assert len(results) == 3
 
 
-class TestLivingAndAllDead:
-    def test_living_updates_after_kill(self):
-        g = make_group(100.0, 200.0)
-        g.apply_hit(100.0, HitMode.SINGLE)
-        assert len(g.living) == 1
-
-    def test_all_dead_after_cleave(self):
-        g = make_group(50.0, 50.0)
-        g.apply_hit(100.0, HitMode.CLEAVE)
-        assert g.all_dead is True
+class TestMiss:
+    def test_miss_deals_no_damage(self):
+        e = _enemy(name="a")
+        cfg = MultiHitConfig(distribution=HitDistribution.SINGLE,
+                              rng_hit=1.0)  # always miss
+        results = MultiTargetEngine().apply_hit([e], 100.0, cfg)
+        assert results[0].hit_result.landed is False
+        assert e.current_health == pytest.approx(1000.0)
