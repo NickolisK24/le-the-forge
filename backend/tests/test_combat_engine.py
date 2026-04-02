@@ -218,9 +218,12 @@ class TestMonteCarloDPSParallel:
         single = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=1)
         multi  = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=4)
         assert single.mean_dps > 0
-        delta_pct = abs(single.mean_dps - multi.mean_dps) / single.mean_dps
-        assert delta_pct < 0.02, (
-            f"means diverged by {delta_pct:.1%}: single={single.mean_dps} multi={multi.mean_dps}"
+        rel = abs(single.mean_dps - multi.mean_dps) / single.mean_dps
+        assert rel < 0.02, (
+            f"Relative drift too large: "
+            f"single={single.mean_dps:.3f}, "
+            f"multi={multi.mean_dps:.3f}, "
+            f"rel={rel:.4%}"
         )
 
 
