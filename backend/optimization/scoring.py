@@ -12,7 +12,8 @@ dps            → score = dps
 total_damage   → score = total_damage
 ttk            → score = 1 / elapsed_time  (faster TTK = higher score; 0 if enemy not dead)
 uptime         → score = uptime_fraction   (1 - downtime_ticks/ticks_simulated)
-composite      → weighted average of DPS (50%), uptime (30%), TTK (20%)
+composite      → DPS scaled by uptime and TTK factors:
+                 0.50·dps + 0.30·uptime_fraction·dps + 0.20·ttk_norm·dps
 """
 
 from __future__ import annotations
@@ -65,9 +66,10 @@ def score_result(simulation_output: dict, metric: str) -> float:
         return uptime_fraction
 
     if metric == "composite":
-        # Weighted: 50% DPS, 30% uptime, 20% TTK
+        # DPS scaled by uptime and TTK factors (all terms proportional to DPS
+        # so the result stays in the same unit as dps, not a dimensionless [0,1]).
+        # TTK factor: normalised to [0,1] assuming worst-case = 60 s fight.
         ttk_component = (1.0 / elapsed if dead and elapsed > 0 else 0.0)
-        # Normalise TTK into [0, 1] range by assuming worst-case TTK = fight_duration (60s)
         ttk_norm = min(ttk_component * 60.0, 1.0)
         return 0.50 * dps + 0.30 * uptime_fraction * dps + 0.20 * ttk_norm * dps
 

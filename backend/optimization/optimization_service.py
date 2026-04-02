@@ -98,18 +98,21 @@ def optimize(
     passed_constraints = len(passing)
 
     # 3. Run simulations in batch
-    builds   = [v for v, _ in passing]
-    mutations_map = {id(v): m for v, m in passing}
+    # Keep (build, mutations) pairs in order so we can zip by position after
+    # the batch run — using id() to correlate would be brittle if the runner
+    # ever copies or wraps objects.
+    builds_ordered    = [v for v, _ in passing]
+    mutations_ordered = [m for _, m in passing]
 
     if progress is not None:
-        progress.total = len(builds)
+        progress.total = len(builds_ordered)
 
-    batch_results = runner.run_batch(builds, progress=progress)
+    batch_results = runner.run_batch(builds_ordered, progress=progress)
 
-    # 4. Build the full batch list with mutations attached
+    # 4. Build the full batch list with mutations attached (positional zip)
     full_batch: list[tuple[BuildDefinition, dict | None, list[str]]] = [
-        (b, r, mutations_map.get(id(b), []))
-        for b, r in batch_results
+        (b, r, muts)
+        for (b, r), muts in zip(batch_results, mutations_ordered)
     ]
 
     failed_sims = sum(1 for _, r, _ in full_batch if r is None)

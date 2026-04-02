@@ -46,10 +46,19 @@ export default function OptimizationResultsTable({
             return (
               <tr
                 key={r.rank}
+                role="button"
+                tabIndex={0}
+                aria-selected={isSelected}
                 onClick={() => onSelectRank(r.rank)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    onSelectRank(r.rank);
+                  }
+                }}
                 className={`
                   cursor-pointer border-b border-forge-border/50 transition-colors
-                  hover:bg-forge-border/20
+                  hover:bg-forge-border/20 focus:outline-none focus:ring-1 focus:ring-forge-accent/50
                   ${isSelected ? "bg-forge-accent/10 ring-1 ring-inset ring-forge-accent/30" : ""}
                 `}
               >

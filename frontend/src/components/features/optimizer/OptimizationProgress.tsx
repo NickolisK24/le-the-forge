@@ -12,7 +12,7 @@ interface Props {
 
 export default function OptimizationProgress({ total, completed, failed }: Props) {
   const fraction = total > 0 ? completed / total : 0;
-  const pct = Math.round(fraction * 100);
+  const pct = Math.max(0, Math.min(100, Math.round(fraction * 100)));
 
   return (
     <div className="space-y-1">

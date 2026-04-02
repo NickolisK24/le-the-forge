@@ -12,6 +12,10 @@ time per variant, isolating the optimization overhead rather than encounter math
 import time
 import pytest
 
+# Mark the whole module as slow so it can be skipped in fast CI runs:
+#   pytest -m "not slow"
+pytestmark = pytest.mark.slow
+
 from builds.build_definition import BuildDefinition
 from optimization.models.optimization_config import OptimizationConfig
 from optimization.optimization_service import optimize

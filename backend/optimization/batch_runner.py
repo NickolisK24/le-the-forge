@@ -10,7 +10,10 @@ crashing the whole batch.
 
 from __future__ import annotations
 import concurrent.futures
+import logging
 from dataclasses import dataclass, field
+
+_log = logging.getLogger(__name__)
 
 from builds.build_definition   import BuildDefinition
 from builds.build_stats_engine import BuildStatsEngine
@@ -68,7 +71,8 @@ class BatchRunner:
                 crit_multiplier = params["crit_multiplier"],
                 **self._enc_kwargs,
             )
-        except Exception:
+        except Exception as exc:
+            _log.debug("variant simulation failed: %s", exc)
             return None
 
     def run_batch(

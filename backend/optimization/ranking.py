@@ -9,6 +9,7 @@ build fingerprint for full determinism.
 """
 
 from __future__ import annotations
+import json
 
 from builds.build_definition import BuildDefinition
 from optimization.scoring    import score_result
@@ -43,8 +44,8 @@ def rank_results(
             continue
         s = score_result(result, metric)
         td = float(result.get("total_damage", 0.0))
-        # Use build repr as deterministic tiebreaker
-        fingerprint = str(sorted(build.to_dict().items()))
+        # Stable JSON fingerprint handles nested dicts/lists correctly
+        fingerprint = json.dumps(build.to_dict(), sort_keys=True)
         scored.append((s, td, fingerprint, build, result, mutations))
 
     # Sort: primary = score desc, secondary = total_damage desc, tertiary = fingerprint asc
