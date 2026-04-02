@@ -207,6 +207,34 @@ class SimulateSensitivitySchema(Schema):
     )
 
 
+VALID_TEMPLATES = [
+    "TRAINING_DUMMY",
+    "STANDARD_BOSS",
+    "SHIELDED_BOSS",
+    "ADD_FIGHT",
+    "MOVEMENT_BOSS",
+]
+
+VALID_DISTRIBUTIONS = ["SINGLE", "CLEAVE", "SPLIT", "CHAIN"]
+
+
+class SimulateEncounterSchema(Schema):
+    """POST /api/simulate/encounter — run Phase C encounter simulation."""
+    base_damage = fields.Float(required=True, validate=validate.Range(min=0.01))
+    fight_duration = fields.Float(load_default=60.0, validate=validate.Range(min=1.0, max=3600.0))
+    tick_size = fields.Float(load_default=0.1, validate=validate.Range(min=0.01, max=10.0))
+    enemy_template = fields.Str(
+        load_default="TRAINING_DUMMY",
+        validate=validate.OneOf(VALID_TEMPLATES),
+    )
+    distribution = fields.Str(
+        load_default="SINGLE",
+        validate=validate.OneOf(VALID_DISTRIBUTIONS),
+    )
+    crit_chance = fields.Float(load_default=0.05, validate=validate.Range(min=0.0, max=1.0))
+    crit_multiplier = fields.Float(load_default=2.0, validate=validate.Range(min=1.0, max=20.0))
+
+
 class SimulateBuildSchema(Schema):
     """POST /api/simulate/build — full pipeline from raw build data."""
     character_class = fields.Str(

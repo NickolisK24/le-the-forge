@@ -38,6 +38,7 @@ from app.schemas.simulate import (
     SimulateOptimizeSchema,
     SimulateSensitivitySchema,
     SimulateBuildSchema,
+    SimulateEncounterSchema,
 )
 from app.services import simulation_service
 from app.utils.responses import ok, error, validation_error
@@ -46,7 +47,8 @@ from app.utils.cache import get, set as cache_set, make_hash
 
 simulate_bp = Blueprint("simulate", __name__)
 
-stats_schema = SimulateStatsSchema()
+stats_schema     = SimulateStatsSchema()
+encounter_schema = SimulateEncounterSchema()
 combat_schema = SimulateCombatSchema()
 defense_schema = SimulateDefenseSchema()
 optimize_schema = SimulateOptimizeSchema()
@@ -216,6 +218,23 @@ def simulate_sensitivity():
         delta=data.get("delta", 10.0),
     )
     cache_set(cache_key, result, _SIM_CACHE_TTL)
+    return ok(data=result)
+
+
+@simulate_bp.post("/encounter")
+@limiter.limit("30 per minute")
+def simulate_encounter():
+    """Run the Phase C encounter engine for a given boss template and build stats."""
+    try:
+        data = encounter_schema.load(request.get_json() or {})
+    except ValidationError as e:
+        return validation_error(e)
+
+    try:
+        result = simulation_service.run_encounter_simulation(**data)
+    except KeyError as e:
+        return error(f"Unknown template or distribution: {e}", status=400)
+
     return ok(data=result)
 
 

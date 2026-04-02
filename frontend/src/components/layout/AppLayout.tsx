@@ -7,9 +7,10 @@ const NAV_LINKS = [
   { to: "/builds",   label: "Builds"   },
   { to: "/build",    label: "Planner"  },
   { to: "/passives", label: "Passives" },
-  { to: "/craft",    label: "Craft Sim"},
-  { to: "/affixes",  label: "Affixes"  },
-  { to: "/meta",     label: "Meta"     },
+  { to: "/craft",     label: "Craft Sim"  },
+  { to: "/encounter", label: "Encounter" },
+  { to: "/affixes",   label: "Affixes"   },
+  { to: "/meta",      label: "Meta"      },
 ];
 
 export default function AppLayout() {

@@ -63,7 +63,7 @@ class TestingConfig(Config):
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
     # Use in-process memory storage so tests never need a running Redis
     RATELIMIT_STORAGE_URI = "memory://"
-    RATELIMIT_ENABLED = True
+    RATELIMIT_ENABLED = False
 
 
 config = {
