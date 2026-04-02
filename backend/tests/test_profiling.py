@@ -105,6 +105,16 @@ class TestComputeStats(unittest.TestCase):
         with self.assertRaises((AttributeError, TypeError)):
             r.mean_ms = 999.0  # type: ignore[misc]
 
+    def test_percentiles_single_value(self):
+        # All samples identical — every percentile must return that value.
+        # Guards against off-by-one in nearest-rank producing an index error
+        # or returning 0.0 on uniform input.
+        samples = [5.0] * 10
+        r = _compute_stats(samples)
+        assert r.p50_ms == 5.0
+        assert r.p95_ms == 5.0
+        assert r.p99_ms == 5.0
+
 
 # ---------------------------------------------------------------------------
 # Timer — structural / non-negative (not exact timing)
