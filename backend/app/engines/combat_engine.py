@@ -326,10 +326,16 @@ def _simulate_chunk(
     isolation between chunks when running in parallel.
     """
     rng = random.Random(seed)
-    results = []
-    for _ in range(n):
-        dmg = hit_damage * eff_crit_mult if rng.random() < eff_crit_chance else hit_damage
-        results.append(dmg * effective_as * hpc)
+    # Pre-compute values used every iteration outside the loop.
+    crit_dmg = hit_damage * eff_crit_mult
+    scale    = effective_as * hpc
+    # Cache bound method to skip attribute lookup on every call.
+    rand = rng.random
+    # Pre-allocate exact size — avoids the ~log2(n) capacity doublings that
+    # [] + append triggers as the list grows.
+    results = [0.0] * n
+    for i in range(n):
+        results[i] = (crit_dmg if rand() < eff_crit_chance else hit_damage) * scale
     return results
 
 
@@ -414,9 +420,15 @@ def monte_carlo_dps(
     else:
         with ProcessPoolExecutor(max_workers=workers) as pool:
             futures = [pool.submit(_simulate_chunk, *args) for args in chunk_args]
-            damages = []
+            # Pre-allocate the full output buffer once; fill each chunk's
+            # slice in place to avoid repeated copies from extend().
+            damages = [0.0] * n
+            offset = 0
             for f in futures:
-                damages.extend(f.result())
+                chunk = f.result()
+                end = offset + len(chunk)
+                damages[offset:end] = chunk
+                offset = end
 
     damages.sort()
     mean = sum(damages) / n
