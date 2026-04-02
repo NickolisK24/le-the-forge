@@ -14,6 +14,7 @@ Pure module — no DB, no HTTP.
 """
 
 import random
+from concurrent.futures import ProcessPoolExecutor
 from dataclasses import dataclass, asdict, field
 from typing import Optional
 
@@ -308,6 +309,30 @@ def calculate_dps(
 # Monte Carlo DPS simulation
 # ---------------------------------------------------------------------------
 
+def _simulate_chunk(
+    hit_damage: float,
+    eff_crit_chance: float,
+    eff_crit_mult: float,
+    effective_as: float,
+    hpc: float,
+    n: int,
+    seed: Optional[int],
+) -> list:
+    """
+    Run n independent hit rolls and return per-hit DPS values.
+
+    Module-level so it is picklable by ProcessPoolExecutor workers.
+    Each call creates its own Random instance from seed, giving full
+    isolation between chunks when running in parallel.
+    """
+    rng = random.Random(seed)
+    results = []
+    for _ in range(n):
+        dmg = hit_damage * eff_crit_mult if rng.random() < eff_crit_chance else hit_damage
+        results.append(dmg * effective_as * hpc)
+    return results
+
+
 def monte_carlo_dps(
     stats: BuildStats,
     skill_name: str,
@@ -317,6 +342,7 @@ def monte_carlo_dps(
     skill_modifiers: SkillModifiers | None = None,
     conversions: list[DamageConversion] | None = None,
     *,
+    workers: int = 1,
     debug: bool = False,
 ) -> MonteCarloDPS:
     """
@@ -327,13 +353,22 @@ def monte_carlo_dps(
 
     Pass ``seed`` for a fully reproducible run — useful for regression tests
     and deterministic comparison between build variants.
+
+    workers (default 1): number of parallel processes. When > 1, n is split
+    evenly across workers via ProcessPoolExecutor. Each worker receives a
+    deterministic sub-seed derived from seed (seed+i) so that seeded runs
+    are fully reproducible. Pass workers=None to auto-select based on CPU count.
     """
+    if workers < 1:
+        raise ValueError(f"monte_carlo_dps: workers must be >= 1, got {workers}")
+
     log.info(
         "monte_carlo_dps.start",
         skill=skill_name,
         skill_level=skill_level,
         n=n,
         seed=seed,
+        workers=workers,
     )
 
     skill_def = _get_skill_def(skill_name)
@@ -341,7 +376,6 @@ def monte_carlo_dps(
         log.warning("monte_carlo_dps.unknown_skill", skill=skill_name)
         return MonteCarloDPS(0, 0, 0, 0.0, 0, 0, n)
 
-    rng = random.Random(seed)
     sm = skill_modifiers or SkillModifiers()
 
     flat_added = sum_flat_damage(stats, skill_def)
@@ -358,13 +392,31 @@ def monte_carlo_dps(
     hpc = hits_per_cast(sm.added_hits_per_cast)
     effective_as = effective_attack_speed(skill_def, stats, sm)
 
-    damages = []
-    for _ in range(n):
-        if rng.random() < eff_crit_chance:
-            dmg = hit_damage * eff_crit_mult
-        else:
-            dmg = hit_damage
-        damages.append(dmg * effective_as * hpc)
+    # Build per-worker (chunk_size, sub_seed) pairs.
+    # Remainder hits go to the first (n % workers) workers.
+    chunk_size = n // workers
+    remainder  = n % workers
+    chunk_args = [
+        (
+            hit_damage,
+            eff_crit_chance,
+            eff_crit_mult,
+            effective_as,
+            hpc,
+            chunk_size + (1 if i < remainder else 0),
+            (seed + i) if seed is not None else None,
+        )
+        for i in range(workers)
+    ]
+
+    if workers == 1:
+        damages = _simulate_chunk(*chunk_args[0])
+    else:
+        with ProcessPoolExecutor(max_workers=workers) as pool:
+            futures = [pool.submit(_simulate_chunk, *args) for args in chunk_args]
+            damages = []
+            for f in futures:
+                damages.extend(f.result())
 
     damages.sort()
     mean = sum(damages) / n

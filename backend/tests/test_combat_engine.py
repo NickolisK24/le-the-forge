@@ -153,6 +153,56 @@ class TestMonteCarloDPS:
         assert mc.n_simulations == 777
 
 
+class TestMonteCarloDPSParallel:
+    """Structural and determinism tests for the parallel workers path."""
+
+    def test_parallel_n_matches_requested(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.n_simulations == 400
+
+    def test_parallel_n_not_divisible_by_workers(self):
+        # 401 / 4 → chunks of 101, 100, 100, 100
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=401, workers=4)
+        assert mc.n_simulations == 401
+
+    def test_parallel_ordering_invariants(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.min_dps <= mc.mean_dps
+        assert mc.mean_dps <= mc.max_dps
+        assert mc.percentile_25 <= mc.percentile_75
+
+    def test_parallel_seeded_is_reproducible(self):
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+        assert r1.n_simulations == r2.n_simulations
+
+    def test_invalid_workers_raises(self):
+        stats = _base_mage_stats()
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=0)
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=-1)
+
+    def test_single_worker_matches_default(self):
+        # workers=1 must produce the same sequence as the default (no-parallel) path.
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42, workers=1)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+
+    def test_parallel_unknown_skill_returns_zeros(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "FakeSkill", 20, n=50, workers=2)
+        assert mc.mean_dps == 0
+
+
 class TestFlatAddedDamage:
     def test_flat_spell_damage_increases_dps(self):
         base = _base_mage_stats()
