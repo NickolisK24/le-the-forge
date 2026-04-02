@@ -40,6 +40,23 @@ def armor_mitigation(armor: int) -> float:
     return armor / (armor + 1000)
 
 
+def apply_armor(damage: float, armor: int) -> float:
+    """
+    Apply armor mitigation to a raw damage value.
+
+    Returns the portion of damage that passes through after armor reduction.
+    Equivalent to damage × (1 − armor_mitigation(armor)).
+
+    Key breakpoints:
+        armor=0    → 100% of damage passes through
+        armor=500  → 66.67% passes through (1/3 absorbed)
+        armor=1000 → 50%    passes through
+        armor=2000 → 33.33% passes through (2/3 absorbed)
+        armor=3000 → 25%    passes through (3/4 absorbed)
+    """
+    return damage * (1.0 - armor_mitigation(armor))
+
+
 def effective_resistance(
     enemy: EnemyProfile,
     damage_type: str,

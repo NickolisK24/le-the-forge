@@ -31,7 +31,7 @@ from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_
 from app.domain.calculators.damage_type_router import source_type_for_ailment
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.enemy_mitigation_calculator import (
-    armor_mitigation, effective_resistance,
+    armor_mitigation, apply_armor, effective_resistance,
     damage_multiplier as enemy_damage_multiplier,
     weighted_damage_multiplier,
     RES_CAP,
@@ -882,6 +882,61 @@ class TestArmorMitigation(unittest.TestCase):
         mit = armor_mitigation(1_000_000)
         assert mit < 1.0
         assert mit > 0.999
+
+    def test_formula_2000_armor(self):
+        # 2000 / (2000 + 1000) = 2/3
+        assert math.isclose(armor_mitigation(2000), 2.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_formula_3000_armor(self):
+        # 3000 / (3000 + 1000) = 3/4 = 0.75
+        assert math.isclose(armor_mitigation(3000), 0.75, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_formula_general(self):
+        # For any armor a > 0: mitigation = a / (a + 1000)
+        for a in (100, 250, 750, 1500, 4000):
+            expected = a / (a + 1000)
+            assert math.isclose(armor_mitigation(a), expected, rel_tol=1e-9, abs_tol=1e-12)
+
+
+class TestApplyArmor(unittest.TestCase):
+    """
+    Deterministic tests for apply_armor(damage, armor).
+
+    Each case uses a round damage value and a breakpoint armor value so the
+    expected post-armor damage is exactly computable.
+    """
+
+    def test_zero_armor_passes_full_damage(self):
+        assert apply_armor(100.0, 0) == 100.0
+
+    def test_1000_armor_halves_damage(self):
+        # mitigation = 0.5 → 100 × 0.5 = 50
+        assert math.isclose(apply_armor(100.0, 1000), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_2000_armor_reduces_to_one_third(self):
+        # mitigation = 2/3 → 300 × (1 - 2/3) = 100
+        assert math.isclose(apply_armor(300.0, 2000), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_3000_armor_reduces_to_one_quarter(self):
+        # mitigation = 3/4 → 200 × 0.25 = 50
+        assert math.isclose(apply_armor(200.0, 3000), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_500_armor_reduces_to_two_thirds(self):
+        # mitigation = 1/3 → 150 × (2/3) = 100
+        assert math.isclose(apply_armor(150.0, 500), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_negative_armor_is_same_as_zero(self):
+        # Negative armor treated as 0 — no buff to damage.
+        assert math.isclose(apply_armor(100.0, -200), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_result_never_exceeds_input(self):
+        # Post-armor damage is always ≤ raw damage.
+        for armor in (0, 100, 500, 1000, 5000):
+            assert apply_armor(100.0, armor) <= 100.0
+
+    def test_result_always_positive(self):
+        # Even extreme armor cannot produce zero or negative damage.
+        assert apply_armor(1.0, 1_000_000) > 0.0
 
 
 class TestEffectiveResistance(unittest.TestCase):
