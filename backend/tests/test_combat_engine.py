@@ -202,6 +202,19 @@ class TestMonteCarloDPSParallel:
         mc = monte_carlo_dps(stats, "FakeSkill", 20, n=50, workers=2)
         assert mc.mean_dps == 0
 
+    def test_parallel_matches_single_worker_approx(self):
+        # workers=1 and workers=4 sample from different sub-seeds so their
+        # values are not bit-identical, but they draw from the same distribution.
+        # With n=10_000 the means converge to within 2% of each other.
+        stats = _base_mage_stats()
+        single = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=1)
+        multi  = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=4)
+        assert single.mean_dps > 0
+        delta_pct = abs(single.mean_dps - multi.mean_dps) / single.mean_dps
+        assert delta_pct < 0.02, (
+            f"means diverged by {delta_pct:.1%}: single={single.mean_dps} multi={multi.mean_dps}"
+        )
+
 
 class TestFlatAddedDamage:
     def test_flat_spell_damage_increases_dps(self):
