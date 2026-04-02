@@ -31,7 +31,8 @@ from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_
 from app.domain.calculators.damage_type_router import source_type_for_ailment
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.enemy_mitigation_calculator import (
-    armor_mitigation, apply_armor, effective_resistance,
+    armor_mitigation, apply_armor,
+    apply_penetration, effective_resistance,
     damage_multiplier as enemy_damage_multiplier,
     weighted_damage_multiplier,
     RES_CAP,
@@ -946,6 +947,80 @@ class TestApplyArmor(unittest.TestCase):
         result = apply_armor(damage, 1_000_000)
         assert result > 0
         assert result < damage * 0.001
+
+
+class TestPenetrationMechanics(unittest.TestCase):
+    """
+    Deterministic tests for penetration logic.
+
+    Penetration subtracts from the enemy's CAPPED resistance.
+    It cannot push effective resistance below 0 (no damage amplification).
+    """
+
+    # --- apply_penetration (pure function) ---
+
+    def test_partial_penetration_reduces_resistance(self):
+        assert math.isclose(apply_penetration(40.0, 15.0), 25.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_full_penetration_reaches_zero(self):
+        assert apply_penetration(30.0, 30.0) == 0.0
+
+    def test_over_penetration_floors_at_zero(self):
+        # More pen than resistance → 0%, not negative (no damage bonus).
+        assert apply_penetration(20.0, 50.0) == 0.0
+
+    def test_penetration_on_zero_resistance(self):
+        # 0% base res + any pen → still 0%.
+        assert apply_penetration(0.0, 25.0) == 0.0
+
+    def test_zero_penetration_leaves_resistance_unchanged(self):
+        assert apply_penetration(55.0, 0.0) == 55.0
+
+    # --- effective_resistance — ordering: cap THEN pen ---
+
+    def test_cap_applies_before_penetration(self):
+        # 90% raw res → capped to 75% first → 20% pen → 55% effective.
+        # Wrong order (pen first): min(75, 90−20) = 70.
+        enemy = _make_enemy(resistances={"fire": 90.0})
+        eff = effective_resistance(enemy, "fire", penetration=20.0)
+        assert math.isclose(eff, 55.0, rel_tol=1e-9, abs_tol=1e-12)
+        # Explicitly confirm the wrong answer is not returned.
+        assert not math.isclose(eff, 70.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_pen_on_uncapped_resistance(self):
+        # 40% raw res (below cap), 15% pen → 25% effective.
+        enemy = _make_enemy(resistances={"cold": 40.0})
+        assert math.isclose(effective_resistance(enemy, "cold", 15.0), 25.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_pen_exceeds_capped_resistance(self):
+        # 90% raw res → 75% capped; 90% pen → max(0, 75−90) = 0.
+        enemy = _make_enemy(resistances={"fire": 90.0})
+        assert effective_resistance(enemy, "fire", penetration=90.0) == 0.0
+
+    def test_pen_on_missing_resistance_stays_zero(self):
+        enemy = _make_enemy(resistances={})
+        assert effective_resistance(enemy, "void", penetration=30.0) == 0.0
+
+    # --- Integration: penetration through damage_multiplier ---
+
+    def test_pen_increases_damage_multiplier(self):
+        enemy = _make_enemy(armor=0, resistances={"fire": 50.0})
+        without = enemy_damage_multiplier(enemy, {"fire"})
+        with_pen = enemy_damage_multiplier(enemy, {"fire"}, pen_map={"fire": 25.0})
+        assert with_pen > without
+
+    def test_full_pen_gives_multiplier_one(self):
+        # 0 armor, 40% fire res, 40% pen → effective res=0 → multiplier=1.0
+        enemy = _make_enemy(armor=0, resistances={"fire": 40.0})
+        mult = enemy_damage_multiplier(enemy, {"fire"}, pen_map={"fire": 40.0})
+        assert math.isclose(mult, 1.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_pen_in_weighted_multiplier(self):
+        # 100% fire, 60% fire res, 30% pen → eff res=30 → mult=0.7
+        enemy = _make_enemy(armor=0, resistances={"fire": 60.0})
+        damage_by_type = {DamageType.FIRE: 100.0}
+        mult = weighted_damage_multiplier(enemy, damage_by_type, pen_map={"fire": 30.0})
+        assert math.isclose(mult, 0.70, rel_tol=1e-9, abs_tol=1e-12)
 
 
 class TestEffectiveResistance(unittest.TestCase):

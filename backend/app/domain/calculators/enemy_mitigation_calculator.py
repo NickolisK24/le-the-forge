@@ -6,7 +6,8 @@ Outputs: individual mitigation factors and the combined damage multiplier.
 
 Formulas (Last Epoch):
   Armor mitigation = armor / (armor + 1000)   → fraction [0, 1)
-  Effective res    = clamp(enemy_res − pen, 0, RES_CAP)  → pct [0, 75]
+  Effective res    = max(0, min(enemy_res, RES_CAP) − pen)  → pct [0, 75]
+                   Cap applies to BASE resistance first; pen subtracts after.
 
 Two multiplier functions:
   damage_multiplier(enemy, type_set, pen_map)
@@ -57,19 +58,40 @@ def apply_armor(damage: float, armor: int) -> float:
     return damage * (1.0 - armor_mitigation(armor))
 
 
+def apply_penetration(capped_resistance: float, penetration: float) -> float:
+    """
+    Subtract penetration from an already-capped resistance value.
+
+    Penetration reduces effective resistance but cannot push it below 0.
+    Negative resistance would amplify damage, which Last Epoch does not do.
+
+    ``capped_resistance`` must be pre-capped to RES_CAP before calling.
+    Returns a value in [0, capped_resistance].
+    """
+    return max(0.0, capped_resistance - penetration)
+
+
 def effective_resistance(
     enemy: EnemyProfile,
     damage_type: str,
     penetration: float = 0.0,
 ) -> float:
     """
-    Effective resistance percentage for one damage type after penetration and cap.
+    Effective resistance percentage for one damage type after cap and penetration.
+
+    Order of operations:
+      1. Read raw resistance from enemy profile (missing types default to 0).
+      2. Cap to RES_CAP — the base cannot exceed the hard cap.
+      3. Subtract penetration, floor at 0 — pen reduces from the capped value.
+
+    Example: 90% raw resistance, 20% pen → min(75, 90)=75 → 75−20=55 effective.
+    (NOT min(75, 90−20)=70, which applies cap after pen — incorrect.)
 
     Returns a value in [0, RES_CAP].
-    Unknown damage types default to 0 resistance.
     """
     raw = float(enemy.resistances.get(damage_type, 0.0))
-    return max(0.0, min(RES_CAP, raw - penetration))
+    capped = min(RES_CAP, raw)
+    return apply_penetration(capped, penetration)
 
 
 def damage_multiplier(
