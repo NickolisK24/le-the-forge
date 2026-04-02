@@ -273,7 +273,7 @@ class TestEdgeCases:
         enemy = _enemy(resistances={"fire": 200.0})
         assert effective_resistance(enemy, "fire") == RES_CAP
 
-    def test_negative_resistance_floored_to_zero(self):
+    def test_negative_resistance_is_floored_to_zero(self):
         # apply_penetration floors at 0: min(-50, 75)=-50 → max(0, -50)=0.
         # Negative raw resistance does not create a vulnerability — it is
         # treated as zero effective resistance (no bonus damage to the enemy).
