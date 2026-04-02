@@ -938,6 +938,15 @@ class TestApplyArmor(unittest.TestCase):
         # Even extreme armor cannot produce zero or negative damage.
         assert apply_armor(1.0, 1_000_000) > 0.0
 
+    def test_extreme_armor_never_reaches_full_block(self):
+        # 1_000_000 armor: mitigation = 1_000_000 / 1_001_000 ≈ 0.999001
+        # Remaining damage ≈ 0.0999 — well above zero, well below 0.1% of input.
+        # Guards against overflow/rounding causing full absorption in Monte Carlo.
+        damage = 100.0
+        result = apply_armor(damage, 1_000_000)
+        assert result > 0
+        assert result < damage * 0.001
+
 
 class TestEffectiveResistance(unittest.TestCase):
 
