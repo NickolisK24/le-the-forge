@@ -874,6 +874,13 @@ class TestArmorMitigation(unittest.TestCase):
         # Armor can never fully absorb damage
         assert armor_mitigation(999_999) < 1.0
 
+    def test_extreme_armor_approaches_one(self):
+        # Asymptotic saturation: 1_000_000 / (1_000_000 + 1000) ≈ 0.999001
+        # Must be < 1.0 (never full absorption) and > 0.999 (saturating).
+        mit = armor_mitigation(1_000_000)
+        assert mit < 1.0
+        assert mit > 0.999
+
 
 class TestEffectiveResistance(unittest.TestCase):
 
