@@ -36,8 +36,10 @@ class TestPercentile(unittest.TestCase):
         assert _percentile([10, 20, 30], 0) == 10
 
     def test_single_element(self):
-        assert _percentile([42.0], 50) == 42.0
-        assert _percentile([42.0], 99) == 42.0
+        assert _percentile([42.0], 50)  == 42.0
+        assert _percentile([42.0], 95)  == 42.0
+        assert _percentile([42.0], 99)  == 42.0
+        assert _percentile([42.0], 100) == 42.0
 
     def test_empty_returns_zero(self):
         assert _percentile([], 50) == 0.0
