@@ -1024,6 +1024,17 @@ class TestWeightedDamageMultiplier(unittest.TestCase):
         # Should be less than 1 (some mitigation present)
         assert mult < 1.0
 
+    def test_full_resistant_minor_type(self):
+        # 90% physical (0% res) + 10% fire (75% res).
+        # Weighted: 0.9×1.0 + 0.1×0.25 = 0.925 — minor fire doesn't drag total.
+        # Naive average would give (0+75)/2 = 37.5% avg res → 0.625 (wrong).
+        enemy = _make_enemy(armor=0, resistances={"physical": 0.0, "fire": 75.0})
+        damage_by_type = {DamageType.PHYSICAL: 900.0, DamageType.FIRE: 100.0}
+        mult = weighted_damage_multiplier(enemy, damage_by_type, pen_map={})
+        assert mult > 0.9
+        # Also pin the exact value so regressions are obvious
+        assert math.isclose(mult, 0.925, rel_tol=1e-9, abs_tol=1e-12)
+
     def test_weighted_multiplier_never_exceeds_one(self):
         # Zero armor + zero resistance = full damage, multiplier exactly 1.0.
         # No combination of zero mitigation should accidentally amplify damage.
