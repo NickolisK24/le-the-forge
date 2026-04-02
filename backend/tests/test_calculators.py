@@ -30,6 +30,9 @@ from app.domain.calculators.increased_damage_calculator import sum_increased_dam
 from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_ailment_dps
 from app.domain.calculators.damage_type_router import source_type_for_ailment
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
+from app.domain.calculators.conditional_modifier_calculator import (
+    Condition, ConditionContext, ConditionalModifier, evaluate_modifiers,
+)
 from app.domain.calculators.enemy_mitigation_calculator import (
     armor_mitigation, apply_armor,
     apply_penetration, effective_resistance,
@@ -337,6 +340,165 @@ class TestScaleSkillDamage(unittest.TestCase):
     def test_empty_damage_types_returns_empty_dict(self):
         result = scale_skill_damage(100.0, 0.10, 10, ())
         self.assertEqual(result, {})
+
+
+# ---------------------------------------------------------------------------
+# Conditional modifiers — situational damage bonuses
+# ---------------------------------------------------------------------------
+
+class TestConditionalModifiers(unittest.TestCase):
+    """
+    Tests for evaluate_modifiers() against ConditionContext.
+
+    Each test uses the minimal context that isolates one variable.
+    """
+
+    def test_empty_modifier_list_gives_zero(self):
+        ctx = ConditionContext()
+        assert evaluate_modifiers([], ctx) == 0.0
+
+    def test_no_active_conditions_gives_zero(self):
+        # All conditions inactive — no modifiers should fire.
+        mods = [
+            ConditionalModifier(Condition.ON_CRIT,        30.0),
+            ConditionalModifier(Condition.TARGET_STUNNED, 20.0),
+            ConditionalModifier(Condition.TARGET_FROZEN,  25.0),
+        ]
+        ctx = ConditionContext()  # defaults: no crit, full health, no statuses
+        assert evaluate_modifiers(mods, ctx) == 0.0
+
+    # --- ON_CRIT ---
+
+    def test_on_crit_applies_when_crit(self):
+        mod = ConditionalModifier(Condition.ON_CRIT, 30.0)
+        ctx = ConditionContext(is_crit=True)
+        assert math.isclose(evaluate_modifiers([mod], ctx), 30.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_on_crit_not_applied_when_not_crit(self):
+        mod = ConditionalModifier(Condition.ON_CRIT, 30.0)
+        ctx = ConditionContext(is_crit=False)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    # --- LOW_HEALTH ---
+
+    def test_low_health_applies_below_threshold(self):
+        mod = ConditionalModifier(Condition.LOW_HEALTH, 50.0, threshold=35.0)
+        ctx = ConditionContext(target_health_pct=20.0)
+        assert math.isclose(evaluate_modifiers([mod], ctx), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_low_health_not_applied_above_threshold(self):
+        mod = ConditionalModifier(Condition.LOW_HEALTH, 50.0, threshold=35.0)
+        ctx = ConditionContext(target_health_pct=60.0)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    def test_low_health_applies_at_exact_threshold(self):
+        # Threshold is inclusive (≤).
+        mod = ConditionalModifier(Condition.LOW_HEALTH, 50.0, threshold=35.0)
+        ctx = ConditionContext(target_health_pct=35.0)
+        assert math.isclose(evaluate_modifiers([mod], ctx), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_low_health_not_applied_one_above_threshold(self):
+        mod = ConditionalModifier(Condition.LOW_HEALTH, 50.0, threshold=35.0)
+        ctx = ConditionContext(target_health_pct=35.01)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    # --- Multiple conditions stacking ---
+
+    def test_multiple_active_conditions_stack_additively(self):
+        # Crit (30%) + stun (20%) both active → 50% total.
+        mods = [
+            ConditionalModifier(Condition.ON_CRIT,        30.0),
+            ConditionalModifier(Condition.TARGET_STUNNED, 20.0),
+        ]
+        ctx = ConditionContext(is_crit=True, target_stunned=True)
+        assert math.isclose(evaluate_modifiers(mods, ctx), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_inactive_modifier_does_not_contribute(self):
+        # Crit (30%) active, frozen (25%) inactive → only 30%.
+        mods = [
+            ConditionalModifier(Condition.ON_CRIT,       30.0),
+            ConditionalModifier(Condition.TARGET_FROZEN, 25.0),
+        ]
+        ctx = ConditionContext(is_crit=True, target_frozen=False)
+        assert math.isclose(evaluate_modifiers(mods, ctx), 30.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_same_condition_multiple_modifiers_stack(self):
+        # Two separate ON_CRIT modifiers (e.g. from different gear pieces).
+        mods = [
+            ConditionalModifier(Condition.ON_CRIT, 20.0),
+            ConditionalModifier(Condition.ON_CRIT, 15.0),
+        ]
+        ctx = ConditionContext(is_crit=True)
+        assert math.isclose(evaluate_modifiers(mods, ctx), 35.0, rel_tol=1e-9, abs_tol=1e-12)
+
+
+# ---------------------------------------------------------------------------
+# Status effect modifiers — stunned / frozen targets
+# ---------------------------------------------------------------------------
+
+class TestStatusEffectModifiers(unittest.TestCase):
+    """
+    Tests focused specifically on TARGET_STUNNED and TARGET_FROZEN conditions.
+
+    Status bonuses must not leak across status types.
+    """
+
+    def test_stunned_applies_when_target_is_stunned(self):
+        mod = ConditionalModifier(Condition.TARGET_STUNNED, 40.0)
+        ctx = ConditionContext(target_stunned=True)
+        assert math.isclose(evaluate_modifiers([mod], ctx), 40.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_stunned_not_applied_when_not_stunned(self):
+        mod = ConditionalModifier(Condition.TARGET_STUNNED, 40.0)
+        ctx = ConditionContext(target_stunned=False)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    def test_frozen_applies_when_target_is_frozen(self):
+        mod = ConditionalModifier(Condition.TARGET_FROZEN, 35.0)
+        ctx = ConditionContext(target_frozen=True)
+        assert math.isclose(evaluate_modifiers([mod], ctx), 35.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_frozen_not_applied_when_not_frozen(self):
+        mod = ConditionalModifier(Condition.TARGET_FROZEN, 35.0)
+        ctx = ConditionContext(target_frozen=False)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    def test_stunned_bonus_does_not_apply_to_frozen_condition(self):
+        # A STUNNED modifier must not fire when only frozen is active.
+        mod = ConditionalModifier(Condition.TARGET_STUNNED, 40.0)
+        ctx = ConditionContext(target_frozen=True, target_stunned=False)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    def test_frozen_bonus_does_not_apply_to_stunned_condition(self):
+        mod = ConditionalModifier(Condition.TARGET_FROZEN, 35.0)
+        ctx = ConditionContext(target_stunned=True, target_frozen=False)
+        assert evaluate_modifiers([mod], ctx) == 0.0
+
+    def test_both_statuses_stack_independently(self):
+        # Stunned (40%) + frozen (35%) active at the same time → 75%.
+        mods = [
+            ConditionalModifier(Condition.TARGET_STUNNED, 40.0),
+            ConditionalModifier(Condition.TARGET_FROZEN,  35.0),
+        ]
+        ctx = ConditionContext(target_stunned=True, target_frozen=True)
+        assert math.isclose(evaluate_modifiers(mods, ctx), 75.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_full_context_all_statuses_and_crit(self):
+        # All conditions active simultaneously — total is sum of all bonuses.
+        mods = [
+            ConditionalModifier(Condition.ON_CRIT,        30.0),
+            ConditionalModifier(Condition.TARGET_STUNNED, 20.0),
+            ConditionalModifier(Condition.TARGET_FROZEN,  15.0),
+            ConditionalModifier(Condition.LOW_HEALTH,     25.0, threshold=35.0),
+        ]
+        ctx = ConditionContext(
+            is_crit=True,
+            target_stunned=True,
+            target_frozen=True,
+            target_health_pct=10.0,
+        )
+        expected = 30.0 + 20.0 + 15.0 + 25.0
+        assert math.isclose(evaluate_modifiers(mods, ctx), expected, rel_tol=1e-9, abs_tol=1e-12)
 
 
 # ---------------------------------------------------------------------------
