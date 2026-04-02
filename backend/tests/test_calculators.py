@@ -29,6 +29,7 @@ from app.domain.calculators.damage_type_router import DamageType
 from app.domain.calculators.increased_damage_calculator import sum_increased_damage
 from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_ailment_dps
 from app.domain.calculators.damage_type_router import source_type_for_ailment
+from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.constants.combat import BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION, POISON_DPS_RATIO, POISON_DURATION
 from app.engines.stat_engine import BuildStats
 
@@ -477,6 +478,111 @@ class TestCalcAilmentDps(unittest.TestCase):
         assert bleed == 0
         assert ignite == 0
         assert poison == 0
+
+
+# ---------------------------------------------------------------------------
+# Damage conversion pipeline — apply_conversions
+# ---------------------------------------------------------------------------
+
+class TestApplyConversions(unittest.TestCase):
+    """
+    Deterministic tests for the conversion pipeline.
+
+    Each test uses clean, hand-computable inputs so failures are unambiguous.
+    """
+
+    # --- No-ops ---
+
+    def test_empty_conversions_returns_unchanged(self):
+        scaled = {DamageType.PHYSICAL: 100.0}
+        result = apply_conversions(scaled, [])
+        assert result == {DamageType.PHYSICAL: 100.0}
+
+    def test_self_conversion_is_ignored(self):
+        # phys → phys should not change anything.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.PHYSICAL, 50.0)
+        result = apply_conversions(scaled, [conv])
+        assert result == {DamageType.PHYSICAL: 100.0}
+
+    def test_zero_pct_conversion_is_ignored(self):
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 0.0)
+        result = apply_conversions(scaled, [conv])
+        assert result == {DamageType.PHYSICAL: 100.0}
+
+    def test_source_not_in_scaled_is_ignored(self):
+        # Conversion references COLD, but scaled only has PHYSICAL.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.COLD, DamageType.FIRE, 50.0)
+        result = apply_conversions(scaled, [conv])
+        assert result == {DamageType.PHYSICAL: 100.0}
+
+    # --- Single conversion ---
+
+    def test_full_conversion_removes_source_type(self):
+        # 100% phys → fire: physical disappears, fire gains full amount.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0)
+        result = apply_conversions(scaled, [conv])
+        assert DamageType.PHYSICAL not in result
+        assert math.isclose(result[DamageType.FIRE], 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_partial_conversion_splits_correctly(self):
+        # 50% phys → fire: 50 stays physical, 50 becomes fire.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0)
+        result = apply_conversions(scaled, [conv])
+        assert math.isclose(result[DamageType.PHYSICAL], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_conversion_adds_to_existing_target(self):
+        # Skill already has FIRE damage; 50% phys → fire stacks on top.
+        scaled = {DamageType.PHYSICAL: 100.0, DamageType.FIRE: 40.0}
+        conv = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0)
+        result = apply_conversions(scaled, [conv])
+        assert math.isclose(result[DamageType.PHYSICAL], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     90.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    # --- Multi-target conversion ---
+
+    def test_two_targets_within_cap(self):
+        # 40% phys → fire, 30% phys → cold → total 70%, within 100%.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 40.0),
+            DamageConversion(DamageType.PHYSICAL, DamageType.COLD, 30.0),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert math.isclose(result[DamageType.PHYSICAL], 30.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     40.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.COLD],     30.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_over_cap_scales_proportionally(self):
+        # 60% phys → fire, 60% phys → cold → total 120%, over cap.
+        # Each should be scaled to 50% (100% total).
+        # Physical should be fully consumed.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 60.0),
+            DamageConversion(DamageType.PHYSICAL, DamageType.COLD, 60.0),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert DamageType.PHYSICAL not in result
+        assert math.isclose(result[DamageType.FIRE], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.COLD], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_total_damage_conserved(self):
+        # The sum of all damage after conversion must equal the sum before.
+        scaled = {DamageType.PHYSICAL: 80.0, DamageType.FIRE: 40.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0),
+            DamageConversion(DamageType.PHYSICAL, DamageType.COLD, 25.0),
+        ]
+        before = sum(scaled.values())
+        result = apply_conversions(scaled, convs)
+        after = sum(result.values())
+        assert math.isclose(before, after, rel_tol=1e-9, abs_tol=1e-12)
 
 
 if __name__ == '__main__':

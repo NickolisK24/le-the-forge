@@ -21,6 +21,7 @@ from app.domain.skill import SkillStatDef
 from app.domain.calculators.damage_type_router import damage_types_for_stats
 from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill_damage, hits_per_cast
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
+from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.crit_calculator import (
     effective_crit_chance,
     effective_crit_multiplier,
@@ -226,6 +227,7 @@ def calculate_dps(
     skill_name: str,
     skill_level: int = 20,
     skill_modifiers: SkillModifiers | None = None,
+    conversions: list[DamageConversion] | None = None,
     *,
     debug: bool = False,
 ) -> DPSResult:
@@ -252,6 +254,7 @@ def calculate_dps(
 
     flat_added = sum_flat_damage(stats, skill_def)
     scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    scaled = apply_conversions(scaled, conversions or [])
     # sum(scaled.values()) == total for any non-empty damage_types (split then re-sum).
     # Fall back to inline formula only when damage_types is empty (pending data migration).
     scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
@@ -299,6 +302,7 @@ def monte_carlo_dps(
     n: int = 10_000,
     seed: Optional[int] = None,
     skill_modifiers: SkillModifiers | None = None,
+    conversions: list[DamageConversion] | None = None,
     *,
     debug: bool = False,
 ) -> MonteCarloDPS:
@@ -329,6 +333,7 @@ def monte_carlo_dps(
 
     flat_added = sum_flat_damage(stats, skill_def)
     scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
+    scaled = apply_conversions(scaled, conversions or [])
     scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
     effective_base = scaled_total + flat_added
 
