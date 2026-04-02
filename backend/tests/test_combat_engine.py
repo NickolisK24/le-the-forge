@@ -10,6 +10,7 @@ from app.engines.combat_engine import (
     MonteCarloDPS,
     SKILL_STATS,
 )
+from app.utils.profiling import profile_call
 
 
 def _base_mage_stats() -> BuildStats:
@@ -224,6 +225,27 @@ class TestMonteCarloDPSParallel:
             f"single={single.mean_dps:.3f}, "
             f"multi={multi.mean_dps:.3f}, "
             f"rel={rel:.4%}"
+        )
+
+
+class TestMonteCarloDPSPerformance:
+    """Smoke test — catches accidental slowdowns in the hot loop."""
+
+    def test_simulation_does_not_regress_speed(self):
+        # Budget: 50ms mean for n=5_000 (measured baseline ~1.5ms).
+        # The 33x headroom accommodates CI load and cold-start variance
+        # without making the test flaky.
+        stats = _base_mage_stats()
+        r = profile_call(
+            monte_carlo_dps,
+            stats,
+            "Fireball",
+            n=5_000,
+            workers=1,
+        )
+        assert r.mean_ms < 50, (
+            f"Monte Carlo n=5000 regressed: mean={r.mean_ms:.2f}ms "
+            f"(budget 50ms, p99={r.p99_ms:.2f}ms)"
         )
 
 
