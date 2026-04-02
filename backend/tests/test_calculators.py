@@ -27,6 +27,9 @@ from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import scale_skill_damage
 from app.domain.calculators.damage_type_router import DamageType
 from app.domain.calculators.increased_damage_calculator import sum_increased_damage
+from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_ailment_dps
+from app.domain.calculators.damage_type_router import source_type_for_ailment
+from app.constants.combat import BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION, POISON_DPS_RATIO, POISON_DURATION
 from app.engines.stat_engine import BuildStats
 
 
@@ -325,6 +328,155 @@ class TestScaleSkillDamage(unittest.TestCase):
     def test_empty_damage_types_returns_empty_dict(self):
         result = scale_skill_damage(100.0, 0.10, 10, ())
         self.assertEqual(result, {})
+
+
+# ---------------------------------------------------------------------------
+# Ailment routing — source_type_for_ailment
+# ---------------------------------------------------------------------------
+
+class TestAilmentRouting(unittest.TestCase):
+    """
+    Deterministic tests for ailment → source hit-type mapping.
+
+    The table is the single source of truth; these tests lock it.
+    Update intentionally if LE changes the trigger mechanic.
+    """
+
+    def test_bleed_source_is_physical(self):
+        assert source_type_for_ailment(DamageType.BLEED) == DamageType.PHYSICAL
+
+    def test_ignite_source_is_fire(self):
+        assert source_type_for_ailment(DamageType.IGNITE) == DamageType.FIRE
+
+    def test_poison_source_is_poison(self):
+        assert source_type_for_ailment(DamageType.POISON) == DamageType.POISON
+
+    def test_non_ailment_raises(self):
+        # FIRE is not an ailment type; the lookup must fail rather than silently return.
+        with self.assertRaises(KeyError):
+            source_type_for_ailment(DamageType.FIRE)
+
+    def test_physical_raises(self):
+        # PHYSICAL is a hit type, not an ailment type.
+        with self.assertRaises(KeyError):
+            source_type_for_ailment(DamageType.PHYSICAL)
+
+
+# ---------------------------------------------------------------------------
+# Ailment stack modeling — ailment_stack_count + calc_ailment_dps
+# ---------------------------------------------------------------------------
+
+class TestAilmentStackCount(unittest.TestCase):
+    """
+    Deterministic tests for steady-state ailment stack math.
+
+    Formula: stacks = effective_as × chance × duration
+    """
+
+    def test_unit_values_equal_duration(self):
+        # as=1, chance=1.0 → stacks = 1 × 1 × duration
+        assert ailment_stack_count(1.0, 1.0, BLEED_DURATION) == BLEED_DURATION
+
+    def test_half_chance_halves_stacks(self):
+        # as=2, chance=0.5 → proc_rate=1.0 → same stacks as as=1, chance=1.0
+        assert ailment_stack_count(2.0, 0.5, 3.0) == ailment_stack_count(1.0, 1.0, 3.0)
+
+    def test_zero_chance_gives_zero_stacks(self):
+        assert ailment_stack_count(2.0, 0.0, 3.0) == 0.0
+
+    def test_zero_as_gives_zero_stacks(self):
+        assert ailment_stack_count(0.0, 1.0, 3.0) == 0.0
+
+    def test_proportional_to_attack_speed(self):
+        # Doubling attack speed doubles stacks.
+        assert ailment_stack_count(2.0, 0.5, 4.0) == 2 * ailment_stack_count(1.0, 0.5, 4.0)
+
+    def test_proportional_to_duration(self):
+        # Doubling duration doubles stacks.
+        assert ailment_stack_count(1.5, 0.4, 6.0) == 2 * ailment_stack_count(1.5, 0.4, 3.0)
+
+    def test_exact_numeric(self):
+        # 1.5 as × 0.4 chance × 3.0 duration = 1.8
+        assert math.isclose(ailment_stack_count(1.5, 0.4, 3.0), 1.8, rel_tol=1e-9, abs_tol=1e-12)
+
+
+class TestCalcAilmentDps(unittest.TestCase):
+    """
+    Deterministic tests for calc_ailment_dps output.
+
+    Expected values derived from the stack model:
+        stacks       = effective_as × chance × duration
+        per_stack_dps = hit_damage × ratio [/ duration for bleed]
+        base_dps     = per_stack_dps × stacks
+        final_dps    = round(base_dps × (1 + increased_pct / 100))
+    """
+
+    def test_bleed_only_no_bonuses(self):
+        # hit=100, as=1.0, bleed_chance=100% → chance=1.0
+        # stacks = 1.0 × 1.0 × BLEED_DURATION = BLEED_DURATION
+        # per_stack = 100 × BLEED_BASE_RATIO / BLEED_DURATION
+        # base = per_stack × BLEED_DURATION = 100 × BLEED_BASE_RATIO = 70
+        # increased = 0 → final = 70
+        stats = BuildStats(bleed_chance_pct=100.0)
+        bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
+        expected = round(100.0 * BLEED_BASE_RATIO)
+        assert bleed == expected
+        assert ignite == 0
+        assert poison == 0
+
+    def test_ignite_only_no_bonuses(self):
+        # hit=100, as=1.0, ignite_chance=100%
+        # stacks = 1.0 × 1.0 × IGNITE_DURATION
+        # per_stack = 100 × IGNITE_DPS_RATIO = 20
+        # base = 20 × IGNITE_DURATION = 60
+        # final = 60
+        stats = BuildStats(ignite_chance_pct=100.0)
+        bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
+        expected = round(100.0 * IGNITE_DPS_RATIO * IGNITE_DURATION)
+        assert bleed == 0
+        assert ignite == expected
+        assert poison == 0
+
+    def test_poison_only_no_bonuses(self):
+        # hit=100, as=1.0, poison_chance=100%
+        # base = 100 × POISON_DPS_RATIO × POISON_DURATION = 90
+        stats = BuildStats(poison_chance_pct=100.0)
+        bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
+        expected = round(100.0 * POISON_DPS_RATIO * POISON_DURATION)
+        assert bleed == 0
+        assert ignite == 0
+        assert poison == expected
+
+    def test_bleed_chance_capped_at_100pct(self):
+        # 150% chance is capped to 1.0 — same result as 100%.
+        stats_100 = BuildStats(bleed_chance_pct=100.0)
+        stats_150 = BuildStats(bleed_chance_pct=150.0)
+        b100, _, _ = calc_ailment_dps(100.0, 1.0, stats_100)
+        b150, _, _ = calc_ailment_dps(100.0, 1.0, stats_150)
+        assert b100 == b150
+
+    def test_bleed_scales_with_attack_speed(self):
+        # Doubling effective_as doubles bleed DPS (linearly via stack count).
+        stats = BuildStats(bleed_chance_pct=50.0)
+        b1, _, _ = calc_ailment_dps(100.0, 1.0, stats)
+        b2, _, _ = calc_ailment_dps(100.0, 2.0, stats)
+        assert b2 == b1 * 2
+
+    def test_increased_bleed_applies(self):
+        # bleed_damage_pct=100 doubles bleed DPS.
+        stats_base = BuildStats(bleed_chance_pct=100.0)
+        stats_inc  = BuildStats(bleed_chance_pct=100.0, bleed_damage_pct=100.0)
+        b_base, _, _ = calc_ailment_dps(100.0, 1.0, stats_base)
+        b_inc,  _, _ = calc_ailment_dps(100.0, 1.0, stats_inc)
+        assert b_inc == b_base * 2
+
+    def test_zero_chance_produces_zero(self):
+        # No proc chance → all ailment DPS is zero regardless of other stats.
+        stats = BuildStats(bleed_damage_pct=200.0, ignite_damage_pct=200.0)
+        bleed, ignite, poison = calc_ailment_dps(500.0, 2.0, stats)
+        assert bleed == 0
+        assert ignite == 0
+        assert poison == 0
 
 
 if __name__ == '__main__':

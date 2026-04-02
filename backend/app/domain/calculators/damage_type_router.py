@@ -18,6 +18,7 @@ Routing functions:
   tag_stats_for(skill_tag)               → frozenset of tag-modifier stat fields
   combined_increased_stats(types, tags)  → union of both pools
   ailment_increased_stats(damage_type)   → frozenset for ailment DoT pools
+  source_type_for_ailment(ailment)       → hit DamageType that triggers this ailment
 
 Rules:
 - Pure data — no logic beyond dict lookup
@@ -145,6 +146,14 @@ _AILMENT_INCREASED_STATS: dict[DamageType, frozenset[str]] = {
     DamageType.POISON: frozenset({"poison_damage_pct", "dot_damage_pct", "poison_dot_damage_pct"}),
 }
 
+# Ailment source types: which hit damage type triggers each ailment.
+# bleed ← physical hit, ignite ← fire hit, poison ← poison hit.
+AILMENT_SOURCE_TYPE: dict[DamageType, DamageType] = {
+    DamageType.BLEED:  DamageType.PHYSICAL,
+    DamageType.IGNITE: DamageType.FIRE,
+    DamageType.POISON: DamageType.POISON,
+}
+
 
 # ---------------------------------------------------------------------------
 # Routing functions
@@ -197,6 +206,19 @@ def ailment_increased_stats(damage_type: DamageType) -> frozenset[str]:
     Raises KeyError for non-ailment types.
     """
     return _AILMENT_INCREASED_STATS[damage_type]
+
+
+def source_type_for_ailment(ailment: DamageType) -> DamageType:
+    """
+    Return the hit damage type that triggers this ailment.
+
+    BLEED  ← PHYSICAL hit
+    IGNITE ← FIRE hit
+    POISON ← POISON hit
+
+    Raises KeyError for non-ailment types.
+    """
+    return AILMENT_SOURCE_TYPE[ailment]
 
 
 def damage_types_for_stats(stat_names: tuple[str, ...]) -> set[DamageType]:
