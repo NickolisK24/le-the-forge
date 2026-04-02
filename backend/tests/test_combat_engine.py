@@ -167,6 +167,14 @@ class TestMonteCarloDPSParallel:
         mc = monte_carlo_dps(stats, "Fireball", 20, n=401, workers=4)
         assert mc.n_simulations == 401
 
+    def test_total_samples_preserved(self):
+        # Prime n forces uneven chunk distribution: 997 = 4×249 + 1
+        # (first worker gets 250, remaining three get 249 each).
+        # Guards the remainder path in chunk-splitting logic.
+        stats = _base_mage_stats()
+        r = monte_carlo_dps(stats, "Fireball", 20, n=997, seed=3, workers=4)
+        assert r.n_simulations == 997
+
     def test_parallel_ordering_invariants(self):
         stats = _base_mage_stats()
         mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
