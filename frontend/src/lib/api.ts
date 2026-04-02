@@ -79,7 +79,16 @@ async function request<T>(
     return { data: null, meta: null, errors: null };
   }
 
-  const json = await res.json();
+  let json: any;
+  try {
+    json = await res.json();
+  } catch {
+    return {
+      data: null,
+      meta: null,
+      errors: [{ message: res.ok ? "Invalid response from server" : `Server error (${res.status})` }],
+    };
+  }
 
   if (!res.ok) {
     // Backend always returns { errors: [...] } on error

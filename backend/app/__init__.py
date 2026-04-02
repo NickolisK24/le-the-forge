@@ -110,13 +110,24 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")
 
-    # Global error handler for domain exceptions
+    # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError
 
     @app.errorhandler(ForgeError)
     def handle_forge_error(exc):
         from app.utils.responses import error as error_response
         return error_response(exc.message, status=exc.status_code)
+
+    @app.errorhandler(Exception)
+    def handle_unexpected_error(exc):
+        from flask import jsonify
+        app.logger.exception("Unhandled exception: %s", exc)
+        return jsonify({"data": None, "meta": None, "errors": [{"message": "Internal server error"}]}), 500
+
+    @app.errorhandler(404)
+    def handle_not_found(_exc):
+        from flask import jsonify
+        return jsonify({"data": None, "meta": None, "errors": [{"message": "Not found"}]}), 404
 
     # Register CLI commands
     from app.utils.cli import register_commands
