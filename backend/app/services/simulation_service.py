@@ -147,6 +147,36 @@ def simulate_sensitivity(
     )
 
 
+def run_encounter_from_build(
+    build_dict: dict,
+    encounter_dict: dict | None = None,
+) -> dict:
+    """
+    Compile a BuildDefinition dict → stats → encounter simulation.
+
+    build_dict:     validated BuildDefinitionSchema payload
+    encounter_dict: validated SimulateEncounterSchema payload (optional overrides)
+    """
+    from builds.build_definition  import BuildDefinition
+    from builds.build_stats_engine import BuildStatsEngine
+
+    build   = BuildDefinition.from_dict(build_dict)
+    engine  = BuildStatsEngine()
+    params  = engine.to_encounter_params(build)
+
+    # Merge encounter overrides (template, duration, distribution, etc.)
+    enc = encounter_dict or {}
+    return run_encounter_simulation(
+        base_damage     = params["base_damage"],
+        crit_chance     = params["crit_chance"],
+        crit_multiplier = params["crit_multiplier"],
+        enemy_template  = enc.get("enemy_template",  "STANDARD_BOSS"),
+        fight_duration  = enc.get("fight_duration",  60.0),
+        tick_size       = enc.get("tick_size",        0.1),
+        distribution    = enc.get("distribution",    "SINGLE"),
+    )
+
+
 def run_encounter_simulation(
     base_damage: float,
     enemy_template: str = "TRAINING_DUMMY",

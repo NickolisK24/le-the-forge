@@ -207,6 +207,55 @@ class SimulateSensitivitySchema(Schema):
     )
 
 
+class GearAffixSchema(Schema):
+    name = fields.Str(required=True, validate=validate.Length(min=1, max=128))
+    tier = fields.Int(load_default=1, validate=validate.Range(min=1, max=10))
+
+
+class GearItemSchema(Schema):
+    slot    = fields.Str(required=True, validate=validate.Length(min=1, max=32))
+    affixes = fields.List(fields.Nested(GearAffixSchema), load_default=[])
+    rarity  = fields.Str(load_default="magic",
+                         validate=validate.OneOf(["normal", "magic", "rare", "exalted"]))
+
+
+class BuffModifiersSchema(Schema):
+    class Meta:
+        unknown = EXCLUDE
+
+    def load(self, data, **kwargs):
+        # Accept any string-keyed float map
+        if not isinstance(data, dict):
+            raise ValidationError("Buff modifiers must be an object.")
+        return {k: float(v) for k, v in data.items()}
+
+
+class BuffSchema(Schema):
+    buff_id   = fields.Str(required=True, validate=validate.Length(min=1, max=64))
+    duration  = fields.Float(load_default=None, allow_none=True)
+    modifiers = fields.Dict(keys=fields.Str(), values=fields.Float(), load_default={})
+
+
+class BuildDefinitionSchema(Schema):
+    class Meta:
+        unknown = EXCLUDE  # ignore metadata, version, etc.
+
+    character_class = fields.Str(required=True,
+                                  validate=validate.OneOf(BASE_CLASSES))
+    mastery         = fields.Str(required=True)
+    skill_id        = fields.Str(load_default="Rip Blood")
+    skill_level     = fields.Int(load_default=20, validate=validate.Range(min=1, max=40))
+    gear            = fields.List(fields.Nested(GearItemSchema), load_default=[])
+    passive_ids     = fields.List(fields.Int(), load_default=[])
+    buffs           = fields.List(fields.Nested(BuffSchema), load_default=[])
+
+    @validates("mastery")
+    def validate_mastery(self, value, **kwargs):
+        all_masteries = [m for ms in CLASS_MASTERIES.values() for m in ms]
+        if value not in all_masteries:
+            raise ValidationError(f"Unknown mastery: {value}")
+
+
 VALID_TEMPLATES = [
     "TRAINING_DUMMY",
     "STANDARD_BOSS",
@@ -233,6 +282,25 @@ class SimulateEncounterSchema(Schema):
     )
     crit_chance = fields.Float(load_default=0.05, validate=validate.Range(min=0.0, max=1.0))
     crit_multiplier = fields.Float(load_default=2.0, validate=validate.Range(min=1.0, max=20.0))
+
+
+class EncounterOverrideSchema(Schema):
+    """Encounter settings when base_damage comes from a BuildDefinition (optional).
+    Unknown fields (e.g. crit_chance from the build) are silently ignored.
+    """
+    class Meta:
+        unknown = EXCLUDE
+
+    fight_duration  = fields.Float(load_default=60.0,  validate=validate.Range(min=1.0, max=3600.0))
+    tick_size       = fields.Float(load_default=0.1,   validate=validate.Range(min=0.01, max=10.0))
+    enemy_template  = fields.Str(load_default="STANDARD_BOSS", validate=validate.OneOf(VALID_TEMPLATES))
+    distribution    = fields.Str(load_default="SINGLE",         validate=validate.OneOf(VALID_DISTRIBUTIONS))
+
+
+class SimulateEncounterBuildSchema(Schema):
+    """POST /api/simulate/encounter-build — run encounter simulation from a build definition."""
+    build     = fields.Nested(BuildDefinitionSchema, required=True)
+    encounter = fields.Nested(EncounterOverrideSchema, load_default=None, allow_none=True)
 
 
 class SimulateBuildSchema(Schema):

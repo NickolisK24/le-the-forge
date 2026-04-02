@@ -8,7 +8,8 @@ const NAV_LINKS = [
   { to: "/build",    label: "Planner"  },
   { to: "/passives", label: "Passives" },
   { to: "/craft",     label: "Craft Sim"  },
-  { to: "/encounter", label: "Encounter" },
+  { to: "/encounter",     label: "Encounter"     },
+  { to: "/build-editor",  label: "Build Editor"  },
   { to: "/affixes",   label: "Affixes"   },
   { to: "/meta",      label: "Meta"      },
 ];
