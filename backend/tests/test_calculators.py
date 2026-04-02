@@ -500,6 +500,18 @@ class TestStatusEffectModifiers(unittest.TestCase):
         expected = 30.0 + 20.0 + 15.0 + 25.0
         assert math.isclose(evaluate_modifiers(mods, ctx), expected, rel_tol=1e-9, abs_tol=1e-12)
 
+    def test_low_health_multiple_thresholds(self):
+        # Two LOW_HEALTH modifiers with different thresholds.
+        # At health=40%: threshold=50 fires (40 ≤ 50), threshold=35 does not (40 > 35).
+        # Each modifier evaluates its own threshold independently.
+        mods = [
+            ConditionalModifier(Condition.LOW_HEALTH, 20.0, threshold=50.0),
+            ConditionalModifier(Condition.LOW_HEALTH, 30.0, threshold=35.0),
+        ]
+        ctx = ConditionContext(target_health_pct=40.0)
+        total = evaluate_modifiers(mods, ctx)
+        assert math.isclose(total, 20.0, rel_tol=1e-9, abs_tol=1e-12)
+
 
 # ---------------------------------------------------------------------------
 # Ailment routing — source_type_for_ailment
