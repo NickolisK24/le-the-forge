@@ -35,11 +35,17 @@ _ROOT = os.path.abspath(
     os.path.join(os.path.dirname(__file__), "..", "..", "..")
 )
 
+# skills.json and classes.json live alongside pipeline.py in the game_data
+# package directory. Using __file__-relative paths works both on the host
+# (backend/app/game_data/) and inside Docker (where the backend is mounted
+# at /app, making _ROOT resolve to / rather than the project root).
+_HERE = os.path.dirname(os.path.abspath(__file__))
+
 _PATHS = {
     "affixes":        os.path.join(_ROOT, "data", "items", "affixes.json"),
     "enemies":        os.path.join(_ROOT, "data", "entities", "enemy_profiles.json"),
-    "skills":         os.path.join(_ROOT, "backend", "app", "game_data", "skills.json"),
-    "classes":        os.path.join(_ROOT, "backend", "app", "game_data", "classes.json"),
+    "skills":         os.path.join(_HERE, "skills.json"),
+    "classes":        os.path.join(_HERE, "classes.json"),
     "skills_meta":    os.path.join(_ROOT, "data", "classes", "skills_metadata.json"),
     "uniques":        os.path.join(_ROOT, "data", "items", "uniques.json"),
     "rarities":       os.path.join(_ROOT, "data", "items", "rarities.json"),
