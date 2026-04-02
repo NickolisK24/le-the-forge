@@ -19,7 +19,7 @@ from app.utils.responses import ok
 admin_bp = Blueprint("admin", __name__)
 
 DATA_DIR = Path(__file__).resolve().parents[3] / "data"
-AFFIXES_PATH = DATA_DIR / "affixes.json"
+AFFIXES_PATH = DATA_DIR / "items" / "affixes.json"
 
 
 def _load_affixes() -> list:
