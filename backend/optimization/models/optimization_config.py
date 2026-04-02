@@ -8,7 +8,7 @@ All fields have safe defaults; callers override only what they need.
 from __future__ import annotations
 from dataclasses import dataclass, field
 
-VALID_METRICS = ("dps", "total_damage", "ttk", "uptime")
+VALID_METRICS = ("dps", "total_damage", "ttk", "uptime", "composite")
 
 
 @dataclass
@@ -17,7 +17,7 @@ class OptimizationConfig:
     Configuration for a single optimization run.
 
     target_metric:
-        Objective function for scoring. One of: dps, total_damage, ttk, uptime.
+        Objective function for scoring. One of: dps, total_damage, ttk, uptime, composite.
         "ttk" (time-to-kill) is minimized; all others are maximized.
 
     max_variants:
