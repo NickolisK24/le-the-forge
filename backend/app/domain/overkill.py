@@ -35,11 +35,11 @@ def apply_overkill_bonus(
     overkill: float,
 ) -> float:
     """
-    Return bonus damage scaled from the overkill amount.
+    Return total damage after applying a bonus scaled from the overkill amount.
 
         bonus = overkill * clamp(overkill_pct, 0, 100) / 100
+        total = base_damage + bonus
 
-    base_damage is returned unchanged; caller adds the bonus on top.
     Raises ValueError if base_damage < 0 or overkill < 0.
     """
     if base_damage < 0:

@@ -14,8 +14,11 @@ This module is pure Python — no Flask imports.
 """
 
 from __future__ import annotations
+import logging
 
 from builds.build_definition                  import BuildDefinition
+
+_log = logging.getLogger(__name__)
 from builds.build_stats_engine                import BuildStatsEngine
 from optimization.models.optimization_config  import OptimizationConfig
 from optimization.models.optimization_result  import OptimizationResult
@@ -92,8 +95,8 @@ def optimize(
             ok, _  = constraint_engine.check(variant, stats, params)
             if ok:
                 passing.append((variant, mutations))
-        except Exception:
-            pass  # compile error → treat as constraint failure
+        except Exception as exc:
+            _log.debug("variant compile/constraint error (treated as failure): %s", exc)
 
     passed_constraints = len(passing)
 

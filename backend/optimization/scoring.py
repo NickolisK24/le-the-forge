@@ -48,7 +48,7 @@ def score_result(simulation_output: dict, metric: str) -> float:
     downtime     = int(simulation_output.get("downtime_ticks", 0))
     dead         = bool(simulation_output.get("all_enemies_dead", False))
 
-    uptime_fraction = (1.0 - downtime / ticks) if ticks > 0 else 1.0
+    uptime_fraction = max(0.0, min(1.0, (1.0 - downtime / ticks) if ticks > 0 else 1.0))
 
     if metric == "dps":
         return dps

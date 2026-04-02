@@ -102,21 +102,27 @@ class BatchRunner:
                     if r is None:
                         progress.failed += 1
         else:
-            # Parallel
+            # Parallel — preserve input order so callers can zip by position.
+            # Map future → original index; fill a pre-sized list by index.
+            ordered: list[tuple[BuildDefinition, dict | None]] = [(None, None)] * len(variants)  # type: ignore[list-item]
             with concurrent.futures.ThreadPoolExecutor(
                 max_workers=self._max_workers
             ) as executor:
-                future_map = {executor.submit(self.run_one, v): v for v in variants}
+                future_map = {
+                    executor.submit(self.run_one, v): i
+                    for i, v in enumerate(variants)
+                }
                 for future in concurrent.futures.as_completed(future_map):
-                    v = future_map[future]
+                    idx = future_map[future]
                     try:
                         r = future.result()
                     except Exception:
                         r = None
-                    results.append((v, r))
+                    ordered[idx] = (variants[idx], r)
                     if progress is not None:
                         progress.completed += 1
                         if r is None:
                             progress.failed += 1
+            results = ordered
 
         return results
