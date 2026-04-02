@@ -26,6 +26,8 @@ from app.domain.calculators.final_damage_calculator import DamageContext, calcul
 from app.domain.skill import SkillStatDef
 from app.domain.calculators.skill_calculator import scale_skill_damage
 from app.domain.calculators.damage_type_router import DamageType
+from app.domain.calculators.increased_damage_calculator import sum_increased_damage
+from app.engines.stat_engine import BuildStats
 
 
 # ---------------------------------------------------------------------------
@@ -178,6 +180,92 @@ class TestDamagePipeline(unittest.TestCase):
     def test_debug_flag_does_not_change_result(self):
         c = ctx(100.0, 100.0, [50.0])
         assert calculate_final_damage(c, debug=True).total == calculate_final_damage(c, debug=False).total
+
+# ---------------------------------------------------------------------------
+# Damage scaling consistency — per-type routing
+# ---------------------------------------------------------------------------
+
+def _skill(damage_types: tuple, scaling_stats: tuple = (), **flags) -> SkillStatDef:
+    """Minimal SkillStatDef for routing tests — exact damage_types, no level math."""
+    return SkillStatDef(
+        base_damage=100.0,
+        level_scaling=0.10,
+        attack_speed=1.0,
+        scaling_stats=scaling_stats,
+        data_version="test",
+        damage_types=damage_types,
+        **flags,
+    )
+
+
+class TestDamageScalingConsistency(unittest.TestCase):
+    """
+    Deterministic tests for per-type increased damage routing.
+
+    Each test asserts the exact output of sum_increased_damage so that any
+    change to elemental routing, type→stat mapping, or the additive pool
+    immediately surfaces as a numeric diff.
+    """
+
+    # --- Single type ---
+
+    def test_single_fire_routes_elemental(self):
+        # FIRE damage: fire_damage_pct and elemental_damage_pct both apply.
+        # fire(100) + elemental(50) = 150
+        skill = _skill((DamageType.FIRE,), ("fire_damage_pct",))
+        stats = BuildStats(fire_damage_pct=100.0, elemental_damage_pct=50.0)
+        assert sum_increased_damage(stats, skill) == 150.0
+
+    def test_single_cold_routes_elemental(self):
+        # COLD damage: same pattern — cold and elemental stack additively.
+        # cold(80) + elemental(40) = 120
+        skill = _skill((DamageType.COLD,), ("cold_damage_pct",))
+        stats = BuildStats(cold_damage_pct=80.0, elemental_damage_pct=40.0)
+        assert sum_increased_damage(stats, skill) == 120.0
+
+    def test_single_lightning_routes_elemental(self):
+        # LIGHTNING damage: lightning and elemental stack additively.
+        # lightning(60) + elemental(30) = 90
+        skill = _skill((DamageType.LIGHTNING,), ("lightning_damage_pct",))
+        stats = BuildStats(lightning_damage_pct=60.0, elemental_damage_pct=30.0)
+        assert sum_increased_damage(stats, skill) == 90.0
+
+    # --- Mixed type ---
+
+    def test_mixed_fire_physical_elemental_in_shared_pool(self):
+        # FIRE + PHYSICAL: FIRE pulls elemental_damage_pct into the combined
+        # increased pool for the whole skill.
+        # fire(100) + physical(50) + elemental(30) = 180
+        skill = _skill(
+            (DamageType.FIRE, DamageType.PHYSICAL),
+            ("fire_damage_pct", "physical_damage_pct"),
+        )
+        stats = BuildStats(fire_damage_pct=100.0, physical_damage_pct=50.0, elemental_damage_pct=30.0)
+        assert sum_increased_damage(stats, skill) == 180.0
+
+    # --- Elemental stacking ---
+
+    def test_elemental_excluded_for_non_elemental_type(self):
+        # NECROTIC damage: elemental_damage_pct must NOT be included.
+        # necrotic(50) only; elemental(30) is excluded.
+        skill = _skill((DamageType.NECROTIC,), ("necrotic_damage_pct",))
+        stats = BuildStats(necrotic_damage_pct=50.0, elemental_damage_pct=30.0)
+        assert sum_increased_damage(stats, skill) == 50.0
+
+    def test_elemental_excluded_for_void(self):
+        # VOID damage: same exclusion applies.
+        # void(70) only; elemental(40) is excluded.
+        skill = _skill((DamageType.VOID,), ("void_damage_pct",))
+        stats = BuildStats(void_damage_pct=70.0, elemental_damage_pct=40.0)
+        assert sum_increased_damage(stats, skill) == 70.0
+
+    def test_elemental_zero_does_not_affect_result(self):
+        # elemental_damage_pct=0 is neutral — routing it in must not change the total.
+        # fire(100) + elemental(0) = 100
+        skill = _skill((DamageType.FIRE,), ("fire_damage_pct",))
+        stats = BuildStats(fire_damage_pct=100.0, elemental_damage_pct=0.0)
+        assert sum_increased_damage(stats, skill) == 100.0
+
 
 # ---------------------------------------------------------------------------
 # SkillStatDef — damage_types derivation
