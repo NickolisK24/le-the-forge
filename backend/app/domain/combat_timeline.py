@@ -130,13 +130,18 @@ class CombatTimeline:
         """
         Advance the simulation by ``duration`` seconds in tick_size steps.
 
+        Tick ordering: COMPUTE DAMAGE FIRST, then advance time (intentional).
+        A buff or ailment that is still active at the START of a tick
+        contributes its full damage for that tick, even if it expires
+        partway through. This matches the Last Epoch feel: if a buff was
+        active when the hit landed, you get the benefit. The alternative
+        (advance-then-compute) would silently drop the last partial tick of
+        every expiring buff, producing counterintuitive under-counting.
+
         Each tick:
-          1. Advance ailments (collect raw tick damage, expire stacks).
-          2. Apply status effect interactions (shock, frostbite, etc.) to
-             scale each stack's contribution.
-          3. Apply DAMAGE_MULTIPLIER buff bonus from the BuffEngine.
-          4. Advance the buff engine (expire buffs).
-          5. Account for enemy behavior uptime if a profile is attached.
+          1. Compute damage from current ailment/buff state.
+          2. Expire ailments whose duration reached zero.
+          3. Expire buffs whose duration reached zero.
         """
         if duration < 0:
             raise ValueError(f"duration must be >= 0, got {duration}")
