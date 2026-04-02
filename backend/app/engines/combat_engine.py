@@ -14,7 +14,7 @@ Pure module — no DB, no HTTP.
 """
 
 import random
-from dataclasses import dataclass, asdict
+from dataclasses import dataclass, asdict, field
 from typing import Optional
 
 from app.domain.skill import SkillStatDef
@@ -25,6 +25,7 @@ from app.domain.calculators.enemy_mitigation_calculator import (
     armor_mitigation,
     effective_resistance,
     damage_multiplier as enemy_damage_multiplier,
+    weighted_damage_multiplier,
 )
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
@@ -183,6 +184,8 @@ class DPSResult:
     poison_dps: int = 0
     ailment_dps: int = 0
     total_dps: int = 0      # hit dps + ailment dps
+    # Per-type damage amounts (post-increased, pre-crit) — string keys for JSON
+    damage_by_type: dict = field(default_factory=dict)
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -282,6 +285,9 @@ def calculate_dps(
     bleed_dps, ignite_dps, poison_dps = calc_ailment_dps(hit_damage, effective_as, stats)
     ailment_total = bleed_dps + ignite_dps + poison_dps
 
+    # Convert DamageType-keyed dict to string-keyed for JSON serialization
+    damage_by_type_str = {dt.value: v for dt, v in damage.damage_by_type.items()}
+
     return DPSResult(
         hit_damage=round(hit_damage),
         average_hit=round(average_hit),
@@ -294,6 +300,7 @@ def calculate_dps(
         poison_dps=poison_dps,
         ailment_dps=ailment_total,
         total_dps=round(hit_dps) + ailment_total,
+        damage_by_type=damage_by_type_str,
     )
 
 
@@ -441,14 +448,28 @@ def calculate_dps_vs_enemy(
         if (pen := getattr(stats, f"{dt}_penetration", 0.0)) > 0
     }
 
-    # Per-type effective resistance for reporting
-    res_values = [
-        effective_resistance(enemy, dt, pen_map.get(dt, 0.0))
-        for dt in skill_damage_types
-    ]
-    avg_res = sum(res_values) / len(res_values) if res_values else 0.0
+    # Use proportion-weighted resistance when per-type damage breakdown is
+    # available (populated by calculate_dps via DamageResult.damage_by_type).
+    # Falls back to equal-weight average when breakdown is absent.
+    if base_result.damage_by_type:
+        from app.domain.calculators.damage_type_router import DamageType as _DT
+        damage_by_type_typed = {
+            _DT(k): v for k, v in base_result.damage_by_type.items()
+        }
+        multiplier = weighted_damage_multiplier(enemy, damage_by_type_typed, pen_map)
+        # avg_res for reporting: back-compute from the weighted multiplier + armor
+        armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        res_factor = multiplier / armor_factor if armor_factor > 0 else 1.0
+        avg_res = (1.0 - res_factor) * 100.0
+    else:
+        res_values = [
+            effective_resistance(enemy, dt, pen_map.get(dt, 0.0))
+            for dt in skill_damage_types
+        ]
+        avg_res = sum(res_values) / len(res_values) if res_values else 0.0
+        multiplier = enemy_damage_multiplier(enemy, skill_damage_types, pen_map)
 
-    effective_dps = round(raw_dps * enemy_damage_multiplier(enemy, skill_damage_types, pen_map))
+    effective_dps = round(raw_dps * multiplier)
 
     return EnemyAwareDPS(
         skill_name=skill_name,

@@ -31,7 +31,9 @@ from app.domain.calculators.ailment_calculator import ailment_stack_count, calc_
 from app.domain.calculators.damage_type_router import source_type_for_ailment
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
 from app.domain.calculators.enemy_mitigation_calculator import (
-    armor_mitigation, effective_resistance, damage_multiplier as enemy_damage_multiplier,
+    armor_mitigation, effective_resistance,
+    damage_multiplier as enemy_damage_multiplier,
+    weighted_damage_multiplier,
     RES_CAP,
 )
 from app.domain.enemy import EnemyProfile
@@ -955,6 +957,72 @@ class TestEnemyDamageMultiplier(unittest.TestCase):
         expected_avg_res = (0.0 + 75.0) / 2.0   # 37.5%
         expected_mult = 1.0 - expected_avg_res / 100.0
         assert math.isclose(mult, expected_mult, rel_tol=1e-9, abs_tol=1e-12)
+
+
+class TestWeightedDamageMultiplier(unittest.TestCase):
+    """
+    Tests for weighted_damage_multiplier — resistance applied proportionally
+    to actual per-type damage amounts rather than equally across all types.
+    """
+
+    def test_equal_split_matches_unweighted(self):
+        # When both types contribute equally, weighted == unweighted.
+        enemy = _make_enemy(armor=0, resistances={"physical": 0.0, "fire": 40.0})
+        damage_by_type = {DamageType.PHYSICAL: 50.0, DamageType.FIRE: 50.0}
+        weighted = weighted_damage_multiplier(enemy, damage_by_type)
+        unweighted = enemy_damage_multiplier(enemy, {"physical", "fire"})
+        assert math.isclose(weighted, unweighted, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_unequal_split_differs_from_unweighted(self):
+        # 90% physical (0% res), 10% fire (75% res).
+        # Weighted: 0.9×1.0 + 0.1×0.25 = 0.925
+        # Unweighted average: (0 + 75)/2 = 37.5% → 0.625
+        enemy = _make_enemy(armor=0, resistances={"physical": 0.0, "fire": 75.0})
+        damage_by_type = {DamageType.PHYSICAL: 90.0, DamageType.FIRE: 10.0}
+        weighted = weighted_damage_multiplier(enemy, damage_by_type)
+        assert math.isclose(weighted, 0.925, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_unequal_split_exact_formula(self):
+        # p=phys amount, f=fire amount, total=p+f
+        # res_factor = (p/total)×(1-phys_res/100) + (f/total)×(1-fire_res/100)
+        enemy = _make_enemy(armor=0, resistances={"physical": 20.0, "fire": 60.0})
+        p, f = 60.0, 40.0
+        total = p + f
+        damage_by_type = {DamageType.PHYSICAL: p, DamageType.FIRE: f}
+        weighted = weighted_damage_multiplier(enemy, damage_by_type)
+        expected = (p / total) * (1 - 20.0 / 100.0) + (f / total) * (1 - 60.0 / 100.0)
+        assert math.isclose(weighted, expected, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_single_type_matches_direct_resistance(self):
+        # Single type: weighted == 1 - eff_res/100
+        enemy = _make_enemy(armor=0, resistances={"cold": 30.0})
+        damage_by_type = {DamageType.COLD: 100.0}
+        weighted = weighted_damage_multiplier(enemy, damage_by_type)
+        assert math.isclose(weighted, 0.70, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_armor_applies_regardless_of_weighting(self):
+        # 1000 armor (50% mit), 0% resistance on all types.
+        enemy = _make_enemy(armor=1000, resistances={"fire": 0.0})
+        damage_by_type = {DamageType.FIRE: 100.0}
+        weighted = weighted_damage_multiplier(enemy, damage_by_type)
+        assert math.isclose(weighted, 0.5, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_empty_damage_by_type_returns_armor_only(self):
+        # No per-type data → fall back to armor factor only.
+        enemy = _make_enemy(armor=1000, resistances={"fire": 50.0})
+        weighted = weighted_damage_multiplier(enemy, {})
+        expected = 1.0 - armor_mitigation(1000)
+        assert math.isclose(weighted, expected, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_total_damage_conservation_with_high_res(self):
+        # Total effective damage = raw × weighted_multiplier.
+        # Verify the multiplier is in (0, 1] and damage is always reduced.
+        enemy = _make_enemy(armor=200, resistances={"fire": 50.0, "cold": 30.0})
+        damage_by_type = {DamageType.FIRE: 70.0, DamageType.COLD: 30.0}
+        mult = weighted_damage_multiplier(enemy, damage_by_type)
+        assert 0 < mult <= 1.0
+        # Should be less than 1 (some mitigation present)
+        assert mult < 1.0
 
 
 if __name__ == '__main__':
