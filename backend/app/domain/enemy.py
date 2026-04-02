@@ -1,6 +1,6 @@
 """
 Enemy domain model — typed representation of enemy_profiles.json entries,
-plus gameplay simulation types (EnemyStats, EnemyArchetype).
+plus gameplay simulation types (EnemyStats, EnemyArchetype, EnemyInstance).
 """
 
 from __future__ import annotations
@@ -8,6 +8,8 @@ import enum
 from dataclasses import dataclass, field
 
 from app.constants.defense import RES_CAP
+from app.domain.penetration import apply_shred as _apply_shred
+from app.domain.resistance import RES_MIN, _clamp_resistance
 
 
 # ---------------------------------------------------------------------------
@@ -120,3 +122,121 @@ class EnemyProfile:
             crit_multiplier=float(d.get("crit_multiplier", 1.0)),
             tags=tuple(d.get("tags", [])),
         )
+
+
+# ---------------------------------------------------------------------------
+# EnemyInstance — mutable combat state derived from EnemyStats (Step 65)
+# ---------------------------------------------------------------------------
+
+class EnemyInstance:
+    """
+    Mutable combat instance for a single enemy encounter.
+
+    Wraps an EnemyStats snapshot and tracks current health, accumulated
+    resistance shred, and death state. One EnemyStats can spawn many
+    independent instances.
+
+    Resistances use string keys ("fire", "cold", ...) to match EnemyStats.
+    """
+
+    def __init__(self, stats: EnemyStats) -> None:
+        self._stats          = stats
+        self._current_health = float(stats.health)
+        self._shred: dict[str, float] = {}
+
+    # ------------------------------------------------------------------
+    # Factory
+    # ------------------------------------------------------------------
+
+    @classmethod
+    def from_stats(cls, stats: EnemyStats) -> "EnemyInstance":
+        """Create a fresh EnemyInstance at full health from EnemyStats."""
+        return cls(stats)
+
+    @classmethod
+    def from_archetype(cls, archetype: EnemyArchetype) -> "EnemyInstance":
+        """Create a fresh EnemyInstance from an archetype's base stats."""
+        return cls(archetype.base_stats())
+
+    # ------------------------------------------------------------------
+    # Properties
+    # ------------------------------------------------------------------
+
+    @property
+    def stats(self) -> EnemyStats:
+        return self._stats
+
+    @property
+    def current_health(self) -> float:
+        return self._current_health
+
+    @property
+    def max_health(self) -> float:
+        return float(self._stats.health)
+
+    @property
+    def armor(self) -> int:
+        return self._stats.armor
+
+    @property
+    def is_alive(self) -> bool:
+        return self._current_health > 0.0
+
+    @property
+    def health_pct(self) -> float:
+        if self._stats.health <= 0:
+            return 0.0
+        return (self._current_health / float(self._stats.health)) * 100.0
+
+    # ------------------------------------------------------------------
+    # Shred management
+    # ------------------------------------------------------------------
+
+    def apply_shred(self, damage_type: str, amount: float) -> None:
+        """Accumulate resistance shred (string key, e.g. 'fire')."""
+        current = self._shred.get(damage_type, 0.0)
+        self._shred[damage_type] = _apply_shred(current, amount)
+
+    def current_shred(self, damage_type: str) -> float:
+        """Return accumulated shred for a damage type."""
+        return self._shred.get(damage_type, 0.0)
+
+    # ------------------------------------------------------------------
+    # Resistance query
+    # ------------------------------------------------------------------
+
+    def effective_resistance(
+        self,
+        damage_type: str,
+        penetration: float = 0.0,
+    ) -> float:
+        """
+        Return effective clamped resistance after shred and penetration.
+
+            effective = clamp(base_res - shred - pen, RES_MIN, RES_CAP)
+        """
+        base_res = self._stats.capped_resistances.get(damage_type, 0.0)
+        shred    = self._shred.get(damage_type, 0.0)
+        total_reduction = max(0.0, penetration) + max(0.0, shred)
+        raw = base_res - total_reduction
+        return _clamp_resistance(raw)
+
+    # ------------------------------------------------------------------
+    # Damage application
+    # ------------------------------------------------------------------
+
+    def take_damage(self, amount: float) -> float:
+        """
+        Apply *amount* post-mitigation damage to this enemy.
+
+        Returns the actual damage dealt (capped at current health).
+        Dead enemies cannot take further damage (returns 0.0).
+        Raises ValueError if amount < 0.
+        """
+        if amount < 0:
+            raise ValueError(f"damage amount must be >= 0, got {amount}")
+        if not self.is_alive:
+            return 0.0
+        actual = min(amount, self._current_health)
+        self._current_health = max(0.0, self._current_health - amount)
+        return actual

@@ -147,6 +147,107 @@ def simulate_sensitivity(
     )
 
 
+def run_encounter_from_build(
+    build_dict: dict,
+    encounter_dict: dict | None = None,
+) -> dict:
+    """
+    Compile a BuildDefinition dict → stats → encounter simulation.
+
+    build_dict:     validated BuildDefinitionSchema payload
+    encounter_dict: validated SimulateEncounterSchema payload (optional overrides)
+    """
+    from builds.build_definition  import BuildDefinition
+    from builds.build_stats_engine import BuildStatsEngine
+
+    build   = BuildDefinition.from_dict(build_dict)
+    engine  = BuildStatsEngine()
+    params  = engine.to_encounter_params(build)
+
+    # Merge encounter overrides (template, duration, distribution, etc.)
+    enc = encounter_dict or {}
+    return run_encounter_simulation(
+        base_damage     = params["base_damage"],
+        crit_chance     = params["crit_chance"],
+        crit_multiplier = params["crit_multiplier"],
+        enemy_template  = enc.get("enemy_template",  "STANDARD_BOSS"),
+        fight_duration  = enc.get("fight_duration",  60.0),
+        tick_size       = enc.get("tick_size",        0.1),
+        distribution    = enc.get("distribution",    "SINGLE"),
+    )
+
+
+def run_encounter_simulation(
+    base_damage: float,
+    enemy_template: str = "TRAINING_DUMMY",
+    fight_duration: float = 60.0,
+    tick_size: float = 0.1,
+    distribution: str = "SINGLE",
+    crit_chance: float = 0.05,
+    crit_multiplier: float = 2.0,
+) -> dict:
+    """Run a Phase C encounter simulation and return serialised results."""
+    from encounter.boss_templates import (
+        TRAINING_DUMMY, STANDARD_BOSS, SHIELDED_BOSS, ADD_FIGHT, MOVEMENT_BOSS,
+        load_template,
+    )
+    from encounter.multi_target import HitDistribution, MultiHitConfig
+    from encounter.state_machine import EncounterMachine
+
+    _template_map = {
+        "TRAINING_DUMMY": TRAINING_DUMMY,
+        "STANDARD_BOSS":  STANDARD_BOSS,
+        "SHIELDED_BOSS":  SHIELDED_BOSS,
+        "ADD_FIGHT":      ADD_FIGHT,
+        "MOVEMENT_BOSS":  MOVEMENT_BOSS,
+    }
+    template = _template_map[enemy_template]
+
+    _dist_map = {
+        "SINGLE": HitDistribution.SINGLE,
+        "CLEAVE": HitDistribution.CLEAVE,
+        "SPLIT":  HitDistribution.SPLIT,
+        "CHAIN":  HitDistribution.CHAIN,
+    }
+    hit_config = MultiHitConfig(
+        distribution=_dist_map[distribution],
+        crit_chance=crit_chance,
+        crit_multiplier=crit_multiplier,
+        # rng_hit/rng_crit left at None so the engine uses real random rolls
+    )
+
+    cfg = load_template(template, base_damage=base_damage, hit_config=hit_config)
+    # Override fight_duration/tick_size when caller provides explicit values
+    from dataclasses import replace
+    cfg = replace(cfg, fight_duration=fight_duration, tick_size=tick_size)
+
+    result = EncounterMachine(cfg).run()
+
+    elapsed_ticks = result.ticks_simulated
+    dps = result.total_damage / result.elapsed_time if result.elapsed_time > 0 else 0.0
+
+    log.info(
+        "run_encounter_simulation",
+        template=enemy_template,
+        base_damage=base_damage,
+        total_damage=result.total_damage,
+        dps=round(dps, 2),
+    )
+
+    return {
+        "total_damage":    result.total_damage,
+        "dps":             dps,
+        "elapsed_time":    result.elapsed_time,
+        "ticks_simulated": elapsed_ticks,
+        "all_enemies_dead": result.all_enemies_dead,
+        "enemies_killed":  result.enemies_killed,
+        "total_casts":     result.total_casts,
+        "downtime_ticks":  result.downtime_ticks,
+        "active_phase_id": result.active_phase_id,
+        "damage_per_tick": result.damage_per_tick,
+    }
+
+
 def _build_stats_from_dict(d: dict) -> BuildStats:
     """Construct a BuildStats dataclass from a flat dict, ignoring unknown keys."""
     stats = BuildStats()

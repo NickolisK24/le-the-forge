@@ -1,14 +1,18 @@
 """
-Enemy Behavior Profiles (Step 8).
+Enemy Behavior Profiles (Steps 8 & 75).
 
 Models how an enemy spends time during combat — moving, attacking, and
 being stunned — so downstream simulations can account for downtime when
 computing effective DPS exposure.
 
-  EnemyBehaviorProfile — frozen dataclass encoding an enemy's action cadence
-  simulate_enemy_behavior() — project behavior over a given fight duration,
-                               returning phase timings
-  BehaviorSummary      — aggregated result of the simulation
+  EnemyBehaviorProfile  — frozen dataclass encoding an enemy's action cadence
+  simulate_enemy_behavior() — project behavior over a given fight duration
+  BehaviorSummary       — aggregated result of the simulation
+
+Step 75 — Conditional Enemy Behavior:
+  BehaviorPhaseEntry    — a profile with a health threshold trigger
+  ConditionalBehavior   — selects the active profile based on enemy health%
+  select_behavior(conditional, health_pct) -> EnemyBehaviorProfile
 """
 
 from __future__ import annotations
@@ -159,3 +163,70 @@ def simulate_enemy_behavior(
         full_cycles=full_cycles,
         partial_cycle=partial,
     )
+
+
+# ---------------------------------------------------------------------------
+# Step 75 — Conditional Enemy Behavior
+# ---------------------------------------------------------------------------
+
+@dataclass(frozen=True)
+class BehaviorPhaseEntry:
+    """
+    An (EnemyBehaviorProfile, health_threshold) pair.
+
+    The profile becomes active when enemy health_pct drops AT OR BELOW
+    health_threshold. Entries should be ordered from highest to lowest
+    threshold.
+
+    health_threshold  — health% at which this behavior activates (0–100)
+    profile           — the EnemyBehaviorProfile to use in this phase
+    """
+    health_threshold: float
+    profile:          EnemyBehaviorProfile
+
+    def __post_init__(self) -> None:
+        if not (0.0 <= self.health_threshold <= 100.0):
+            raise ValueError(
+                f"health_threshold must be in [0, 100], got {self.health_threshold}"
+            )
+
+
+@dataclass(frozen=True)
+class ConditionalBehavior:
+    """
+    Selects an EnemyBehaviorProfile based on the enemy's current health %.
+
+    phases       — list of BehaviorPhaseEntry sorted highest threshold first
+    default      — fallback profile when health_pct is above all thresholds
+
+    Example (boss enrages below 50% health)::
+
+        normal  = EnemyBehaviorProfile(attack_duration=2.0, move_duration=1.0)
+        enraged = EnemyBehaviorProfile(attack_duration=3.0, move_duration=0.5)
+        cb = ConditionalBehavior(
+            phases=[BehaviorPhaseEntry(50.0, enraged)],
+            default=normal,
+        )
+        active = select_behavior(cb, health_pct=40.0)   # → enraged
+    """
+    phases:  tuple[BehaviorPhaseEntry, ...]
+    default: EnemyBehaviorProfile
+
+
+def select_behavior(
+    conditional: ConditionalBehavior,
+    health_pct: float,
+) -> EnemyBehaviorProfile:
+    """
+    Return the EnemyBehaviorProfile active at *health_pct*.
+
+    Scans phases from lowest health_threshold to highest; the first
+    phase whose threshold is >= health_pct activates. Returns default
+    if health_pct is above all thresholds.
+    """
+    # Sort by ascending threshold so we find the tightest matching phase
+    sorted_phases = sorted(conditional.phases, key=lambda p: p.health_threshold)
+    for entry in sorted_phases:
+        if health_pct <= entry.health_threshold:
+            return entry.profile
+    return conditional.default

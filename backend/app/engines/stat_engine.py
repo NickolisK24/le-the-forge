@@ -88,6 +88,7 @@ class BuildStats:
     slow_chance_pct: float = 0.0
 
     # Offense — ailment / DoT damage
+    ailment_damage_pct: float = 0.0      # increased damage for ALL ailment types
     bleed_damage_pct: float = 0.0
     ignite_damage_pct: float = 0.0
     poison_dot_damage_pct: float = 0.0
@@ -181,6 +182,7 @@ class BuildStats:
     area_pct: float = 0.0
     stun_duration_pct: float = 0.0
     buff_effect_pct: float = 0.0
+    buff_duration_pct: float = 0.0       # increased duration for all buffs
     ailment_effect_pct: float = 0.0
     ailment_duration_pct: float = 0.0
 

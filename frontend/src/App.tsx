@@ -21,6 +21,9 @@ import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
 import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
 import PassiveTreePage from "@/pages/PassiveTreePage";
 import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
+import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
+import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
+import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -153,6 +156,9 @@ export default function App() {
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
                 <Route path="/meta" element={<MetaSnapshotPage />} />
+                <Route path="/encounter"     element={<EncounterSimulatorPage />} />
+                <Route path="/build-editor" element={<BuildEditorPage />} />
+                <Route path="/optimizer"    element={<OptimizerPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>

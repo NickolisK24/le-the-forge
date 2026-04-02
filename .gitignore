@@ -13,6 +13,7 @@ __pycache__/
 dist/
 build/
 !frontend/src/**/build/
+!backend/build/
 .eggs/
 .pytest_cache/
 .mypy_cache/

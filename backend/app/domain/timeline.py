@@ -109,9 +109,14 @@ class TimelineEngine:
         """
         Sum of `value` across all active buffs of the given type.
 
-        For additive modifiers (e.g. DAMAGE_MULTIPLIER) this is the total
-        additive bonus percentage. Caller is responsible for interpreting
-        the result in context.
+        Stacking model: ADDITIVE (intentional, not a bug).
+        Multiple DAMAGE_MULTIPLIER buffs are summed before applying:
+            total_bonus = Σ value  →  multiplier = 1 + total_bonus / 100
+
+        This mirrors Last Epoch's "increased damage" category, where all
+        additive sources pool together before the final multiply.
+        "More damage" sources (multiplicative) are handled as separate
+        multiplier chains at the calculator layer, not here.
         """
         return sum(b.value for b in self._active if b.buff_type is buff_type)
 

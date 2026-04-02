@@ -141,9 +141,18 @@ _SKILL_TAG_STATS: dict[SkillTag, frozenset[str]] = {
 # POISON as DoT includes dot_damage_pct and poison_dot_damage_pct in addition
 # to the shared poison_damage_pct.
 _AILMENT_INCREASED_STATS: dict[DamageType, frozenset[str]] = {
-    DamageType.BLEED:  frozenset({"physical_damage_pct", "dot_damage_pct", "bleed_damage_pct"}),
-    DamageType.IGNITE: frozenset({"fire_damage_pct", "dot_damage_pct", "ignite_damage_pct"}),
-    DamageType.POISON: frozenset({"poison_damage_pct", "dot_damage_pct", "poison_dot_damage_pct"}),
+    DamageType.BLEED:  frozenset({
+        "physical_damage_pct", "dot_damage_pct",
+        "ailment_damage_pct", "bleed_damage_pct",
+    }),
+    DamageType.IGNITE: frozenset({
+        "fire_damage_pct", "dot_damage_pct",
+        "ailment_damage_pct", "ignite_damage_pct",
+    }),
+    DamageType.POISON: frozenset({
+        "poison_damage_pct", "dot_damage_pct",
+        "ailment_damage_pct", "poison_dot_damage_pct",
+    }),
 }
 
 # Ailment source types: which hit damage type triggers each ailment.
