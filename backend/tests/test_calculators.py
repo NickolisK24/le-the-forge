@@ -585,5 +585,95 @@ class TestApplyConversions(unittest.TestCase):
         assert math.isclose(before, after, rel_tol=1e-9, abs_tol=1e-12)
 
 
+# ---------------------------------------------------------------------------
+# Conversion priority ordering
+# ---------------------------------------------------------------------------
+
+class TestConversionPriority(unittest.TestCase):
+    """
+    Tests that priority controls the order conversions are applied and that
+    higher-priority tiers feed their output into lower-priority tiers.
+
+    Priority model: higher integer = runs first.
+    Same-priority same-source entries are grouped and capped together (same
+    as the no-priority tests above). Different priority levels are separate
+    passes applied sequentially.
+    """
+
+    def test_default_priority_is_zero(self):
+        # No priority argument → same result as priority=0.
+        conv_default  = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0)
+        conv_explicit = DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0, priority=0)
+        scaled = {DamageType.PHYSICAL: 100.0}
+        assert apply_conversions(scaled, [conv_default]) == apply_conversions(scaled, [conv_explicit])
+
+    def test_chain_phys_to_fire_to_cold(self):
+        # phys→fire (priority=1) runs first; fire→cold (priority=0) runs second
+        # and sees the fire produced by the first tier.
+        # 100 phys → 100 fire (tier 1) → 100 cold (tier 0)
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0, priority=1),
+            DamageConversion(DamageType.FIRE,     DamageType.COLD, 100.0, priority=0),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert DamageType.PHYSICAL not in result
+        assert DamageType.FIRE     not in result
+        assert math.isclose(result[DamageType.COLD], 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_wrong_priority_order_breaks_chain(self):
+        # fire→cold (priority=1) runs before phys→fire (priority=0).
+        # No fire exists yet when fire→cold runs → no cold produced.
+        # After phys→fire (priority=0), we end up with fire only.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.FIRE,     DamageType.COLD, 100.0, priority=1),
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0, priority=0),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert DamageType.PHYSICAL not in result
+        assert DamageType.COLD     not in result
+        assert math.isclose(result[DamageType.FIRE], 100.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_partial_chain(self):
+        # 50% phys → fire (priority=1); 50% fire → cold (priority=0).
+        # Tier 1: 50 phys → fire. Result: {PHYSICAL: 50, FIRE: 50}
+        # Tier 0: 50% of FIRE → cold. 50 × 0.5 = 25. Result: {PHYSICAL: 50, FIRE: 25, COLD: 25}
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 50.0, priority=1),
+            DamageConversion(DamageType.FIRE,     DamageType.COLD, 50.0, priority=0),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert math.isclose(result[DamageType.PHYSICAL], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.FIRE],     25.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.COLD],     25.0, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_chain_total_damage_conserved(self):
+        # Regardless of how many tiers fire, total damage must be unchanged.
+        scaled = {DamageType.PHYSICAL: 120.0, DamageType.FIRE: 30.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 75.0, priority=2),
+            DamageConversion(DamageType.FIRE,     DamageType.COLD, 50.0, priority=1),
+            DamageConversion(DamageType.COLD,     DamageType.LIGHTNING, 40.0, priority=0),
+        ]
+        before = sum(scaled.values())
+        result = apply_conversions(scaled, convs)
+        after = sum(result.values())
+        assert math.isclose(before, after, rel_tol=1e-9, abs_tol=1e-12)
+
+    def test_same_priority_capping_still_works(self):
+        # Two over-cap conversions at the same priority → existing cap behavior.
+        scaled = {DamageType.PHYSICAL: 100.0}
+        convs = [
+            DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 60.0, priority=1),
+            DamageConversion(DamageType.PHYSICAL, DamageType.COLD, 60.0, priority=1),
+        ]
+        result = apply_conversions(scaled, convs)
+        assert DamageType.PHYSICAL not in result
+        assert math.isclose(result[DamageType.FIRE], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(result[DamageType.COLD], 50.0, rel_tol=1e-9, abs_tol=1e-12)
+
+
 if __name__ == '__main__':
     unittest.main()
