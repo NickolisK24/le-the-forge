@@ -1024,6 +1024,20 @@ class TestWeightedDamageMultiplier(unittest.TestCase):
         # Should be less than 1 (some mitigation present)
         assert mult < 1.0
 
+    def test_weighted_multiplier_never_exceeds_one(self):
+        # Zero armor + zero resistance = full damage, multiplier exactly 1.0.
+        # No combination of zero mitigation should accidentally amplify damage.
+        # (Resistance keys are strings; DamageType enum values are the string ids.)
+        enemy = _make_enemy(
+            armor=0,
+            resistances={"fire": 0.0, "cold": 0.0},
+        )
+        damage_by_type = {DamageType.FIRE: 100.0, DamageType.COLD: 50.0}
+        mult = weighted_damage_multiplier(enemy, damage_by_type, pen_map={})
+        assert mult <= 1.0
+        # With zero mitigation the multiplier should be exactly 1.0
+        assert math.isclose(mult, 1.0, rel_tol=1e-9, abs_tol=1e-12)
+
 
 if __name__ == '__main__':
     unittest.main()
