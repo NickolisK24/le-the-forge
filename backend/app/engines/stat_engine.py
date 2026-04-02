@@ -182,6 +182,7 @@ class BuildStats:
     area_pct: float = 0.0
     stun_duration_pct: float = 0.0
     buff_effect_pct: float = 0.0
+    buff_duration_pct: float = 0.0       # increased duration for all buffs
     ailment_effect_pct: float = 0.0
     ailment_duration_pct: float = 0.0
 
