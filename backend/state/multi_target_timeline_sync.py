@@ -11,6 +11,7 @@ a MultiTargetState. On each tick:
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 from state.multi_target_state import MultiTargetState
@@ -55,14 +56,15 @@ class MultiTargetTimelineSynchronizer:
         _registry  = registry  or TriggerRegistry()
         _lifecycle = lifecycle or LifecycleManager()
         records: list[MultiTargetTickRecord] = []
-        elapsed = 0.0
 
-        while elapsed < duration:
+        n_ticks = math.ceil(duration / self.tick_size)
+        for i in range(n_ticks):
             if state.is_cleared():
                 break
-            step = min(self.tick_size, duration - elapsed)
+            step = min(self.tick_size, duration - i * self.tick_size)
+            if step <= 0:
+                break
             state.advance_time(step)
-            elapsed += step
             now = state.elapsed_time
 
             expired: dict[str, list[str]] = {}
