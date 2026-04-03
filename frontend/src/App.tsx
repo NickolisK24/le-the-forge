@@ -31,6 +31,10 @@ import DataManagerPage from "@/pages/DataManagerPage";
 import MovementDebugPage from "@/pages/movement/MovementDebugPage";
 import MonteCarloPage from "@/pages/MonteCarloPage";
 import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
+import SharedBuildPage from "@/pages/shared/SharedBuildPage";
+import BuildLibraryPage from "@/pages/library/BuildLibraryPage";
+import UserBuildDashboard from "@/pages/user/UserBuildDashboard";
+import IntegrationDebugPage from "@/pages/debug/IntegrationDebugPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -173,6 +177,10 @@ export default function App() {
                 <Route path="/movement-debug" element={<MovementDebugPage />} />
                 <Route path="/monte-carlo" element={<MonteCarloPage />} />
                 <Route path="/viz-debug" element={<VisualizationDebugPage />} />
+                <Route path="/shared/:buildId" element={<SharedBuildPage />} />
+                <Route path="/build-library" element={<BuildLibraryPage />} />
+                <Route path="/my-builds" element={<UserBuildDashboard />} />
+                <Route path="/integration-debug" element={<IntegrationDebugPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
