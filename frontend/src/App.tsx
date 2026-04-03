@@ -31,6 +31,8 @@ import DataManagerPage from "@/pages/DataManagerPage";
 import MovementDebugPage from "@/pages/movement/MovementDebugPage";
 import MonteCarloPage from "@/pages/MonteCarloPage";
 import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
+import CraftingPage from "@/pages/crafting/CraftingPage";
+import CraftDebugPage from "@/pages/debug/CraftDebugPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -173,6 +175,8 @@ export default function App() {
                 <Route path="/movement-debug" element={<MovementDebugPage />} />
                 <Route path="/monte-carlo" element={<MonteCarloPage />} />
                 <Route path="/viz-debug" element={<VisualizationDebugPage />} />
+                <Route path="/crafting" element={<CraftingPage />} />
+                <Route path="/craft-debug" element={<CraftDebugPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
