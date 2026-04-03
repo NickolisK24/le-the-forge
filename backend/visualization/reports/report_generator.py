@@ -96,28 +96,28 @@ class ReportGenerator:
 
         # --- DPS Breakdown ---
         dps_rows: list[dict] = []
-        for source, src_data in getattr(summary, "damage_by_source", {}).items():
+        for entry in getattr(summary, "dps_breakdown", []):
             dps_rows.append(
                 {
-                    "source": source,
-                    "total_damage": getattr(src_data, "total_damage", 0.0),
-                    "dps": getattr(src_data, "dps", 0.0),
-                    "hit_count": getattr(src_data, "hit_count", 0),
-                    "crit_count": getattr(src_data, "crit_count", 0),
-                    "crit_rate": getattr(src_data, "crit_rate", 0.0),
+                    "source": getattr(entry, "source", ""),
+                    "total_damage": getattr(entry, "total_damage", 0.0),
+                    "dps": getattr(entry, "dps", 0.0),
+                    "hit_count": getattr(entry, "hit_count", 0),
+                    "crit_count": getattr(entry, "crit_count", 0),
+                    "crit_rate": getattr(entry, "crit_rate", 0.0),
                 }
             )
         self.add_section(report, "DPS Breakdown", dps_rows)
 
         # --- Buff Uptimes ---
         buff_rows: list[dict] = []
-        for buff_name, buff_data in getattr(summary, "buff_uptimes", {}).items():
+        for entry in getattr(summary, "buff_uptimes", []):
             buff_rows.append(
                 {
-                    "buff_name": buff_name,
-                    "total_uptime": getattr(buff_data, "total_uptime", 0.0),
-                    "uptime_pct": getattr(buff_data, "uptime_pct", 0.0),
-                    "application_count": getattr(buff_data, "application_count", 0),
+                    "buff_name": getattr(entry, "buff_name", ""),
+                    "total_uptime": getattr(entry, "total_uptime", 0.0),
+                    "uptime_pct": getattr(entry, "uptime_pct", 0.0),
+                    "application_count": getattr(entry, "application_count", 0),
                 }
             )
         self.add_section(report, "Buff Uptimes", buff_rows)
