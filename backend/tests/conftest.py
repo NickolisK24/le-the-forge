@@ -56,6 +56,27 @@ def auth_headers(app, user):
 
 
 @pytest.fixture
+def forge_sim_state():
+    """A fresh SimulationState (1000 hp player, 5000 hp target)."""
+    from tests.factories import sim_state
+    return sim_state()
+
+
+@pytest.fixture
+def forge_target_manager():
+    """A TargetManager with 3 targets at sequential positions."""
+    from tests.factories import target_manager
+    return target_manager(n=3)
+
+
+@pytest.fixture
+def forge_multi_target_state():
+    """A MultiTargetState with 3 targets."""
+    from tests.factories import multi_target_state
+    return multi_target_state(n=3)
+
+
+@pytest.fixture
 def sample_build(db, user):
     from app.services.build_service import create_build
     return create_build(
