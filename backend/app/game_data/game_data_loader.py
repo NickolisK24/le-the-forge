@@ -179,3 +179,7 @@ def get_damage_types() -> dict:
 
 def get_implicit_stat(item_type: str) -> dict | None:
     return _pipeline().implicit_stats.get(item_type.lower())
+
+
+def get_all_implicit_stats() -> dict:
+    return _pipeline().implicit_stats

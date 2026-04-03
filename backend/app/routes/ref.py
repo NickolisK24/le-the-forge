@@ -251,12 +251,21 @@ def get_base_items_endpoint():
     """
     Return base item definitions.
 
-    ?slot=helmet  → flat list of named items for that slot
-    (no param)    → full dict keyed by slot category
+    ?slot=helmet   → flat list of named items for that slot
+    ?slot=weapon   → merged list across all weapon slots
+    ?slot=offhand  → merged list across shield/quiver/catalyst
+    (no param)     → full dict keyed by slot category
     """
     slot = request.args.get("slot", "").strip().lower()
     if slot:
-        items = get_bases_for_slot(slot)
+        expanded = _SLOT_CATEGORIES.get(slot)
+        if expanded:
+            all_bases = get_all_bases()
+            items = []
+            for s in expanded:
+                items.extend(all_bases.get(s, []))
+        else:
+            items = get_bases_for_slot(slot)
         return ok(data=items)
     return ok(data=get_all_bases())
 
@@ -331,8 +340,8 @@ def get_rarities_endpoint():
 @cached_route("ref:implicit-stats", ttl=REF_STATIC_CACHE_TTL)
 def get_implicit_stats_endpoint():
     """Return all implicit stat definitions keyed by item type."""
-    from app.game_data.game_data_loader import _implicit_stats_raw
-    return ok(data=_implicit_stats_raw())
+    from app.game_data.game_data_loader import get_all_implicit_stats
+    return ok(data=get_all_implicit_stats())
 
 
 @ref_bp.get("/implicit-stats/<item_type>")
