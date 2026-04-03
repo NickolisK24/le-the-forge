@@ -39,6 +39,10 @@ class ItemModel:
             raise ValueError("item_id must not be empty")
         if not self.slot_type:
             raise ValueError("slot_type must not be empty")
+        if self.slot_type not in _VALID_SLOTS:
+            raise ValueError(
+                f"Invalid slot_type {self.slot_type!r}. Must be one of: {sorted(_VALID_SLOTS)}"
+            )
         object.__setattr__(self, "implicit_stats", dict(self.implicit_stats))
         object.__setattr__(
             self, "explicit_affixes", tuple(str(a) for a in self.explicit_affixes)
