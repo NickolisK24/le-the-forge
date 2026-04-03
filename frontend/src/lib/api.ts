@@ -393,6 +393,8 @@ export const simulateApi = {
     post<BuildSimulationResult>(`/builds/${slug}/simulate`),
   conditional: (payload: object) =>
     post<ConditionalResult>("/simulate/conditional", payload),
+  multiTarget: (payload: object) =>
+    post<MultiTargetResult>("/simulate/multi-target", payload),
 };
 
 export interface ConditionalResult {
@@ -401,6 +403,30 @@ export interface ConditionalResult {
   damage_multiplier:   number;
   active_modifier_ids: string[];
   stat_deltas:         Record<string, number>;
+}
+
+export interface DamageEvent {
+  time:      number;
+  target_id: string;
+  damage:    number;
+  overkill:  number;
+  killed:    boolean;
+}
+
+export interface MultiTargetMetrics {
+  total_kills:        number;
+  time_to_clear:      number | null;
+  damage_per_target:  Record<string, number>;
+  overkill_waste:     Record<string, number>;
+  kill_times:         Record<string, number>;
+}
+
+export interface MultiTargetResult {
+  cleared:       boolean;
+  time_to_clear: number | null;
+  total_kills:   number;
+  metrics:       MultiTargetMetrics;
+  damage_events: DamageEvent[];
 }
 
 // ---------------------------------------------------------------------------
