@@ -3,8 +3,10 @@
  *
  * Visualises cumulative damage per target over fight time using Recharts.
  * Each target gets its own coloured line. Down-samples to 300 points max.
+ * Includes a checkbox list above the chart to toggle individual targets on/off.
  */
 
+import { useState } from "react";
 import {
   LineChart,
   Line,
@@ -56,6 +58,30 @@ function buildChartData(
 }
 
 export default function MultiTargetChart({ events }: Props) {
+  const allTargetIds = Array.from(new Set(events.map(e => e.target_id)));
+
+  // Track which targets are visible; default all on
+  const [visibleTargets, setVisibleTargets] = useState<Set<string>>(
+    () => new Set(allTargetIds)
+  );
+
+  // Keep visible set in sync when new targets appear
+  const targetIds = allTargetIds;
+  const visibleIds = targetIds.filter(id => visibleTargets.has(id));
+
+  const toggleTarget = (id: string) => {
+    setVisibleTargets(prev => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        // Don't allow hiding all targets
+        if (next.size > 1) next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   if (events.length === 0) {
     return (
       <div className="flex items-center justify-center h-48 text-forge-muted text-sm rounded border border-forge-border">
@@ -64,7 +90,6 @@ export default function MultiTargetChart({ events }: Props) {
     );
   }
 
-  const targetIds = Array.from(new Set(events.map(e => e.target_id)));
   const data = buildChartData(events, targetIds);
 
   return (
@@ -72,6 +97,47 @@ export default function MultiTargetChart({ events }: Props) {
       <h3 className="mb-3 text-sm font-semibold text-forge-accent uppercase tracking-wider">
         Cumulative Damage per Target
       </h3>
+
+      {/* Target toggles */}
+      {targetIds.length > 1 && (
+        <div className="flex flex-wrap gap-3 mb-3">
+          {targetIds.map((id, i) => {
+            const isVisible = visibleTargets.has(id);
+            const color = PALETTE[i % PALETTE.length];
+            return (
+              <label
+                key={id}
+                className="flex items-center gap-1.5 cursor-pointer select-none"
+              >
+                <input
+                  type="checkbox"
+                  checked={isVisible}
+                  onChange={() => toggleTarget(id)}
+                  className="sr-only"
+                />
+                <div
+                  className={[
+                    "w-4 h-4 rounded-sm border-2 flex items-center justify-center transition-all",
+                    isVisible ? "opacity-100" : "opacity-40",
+                  ].join(" ")}
+                  style={{ borderColor: color, background: isVisible ? color + "33" : "transparent" }}
+                >
+                  {isVisible && (
+                    <span style={{ color, fontSize: 10, fontWeight: "bold", lineHeight: 1 }}>✓</span>
+                  )}
+                </div>
+                <span
+                  className="font-mono text-xs"
+                  style={{ color: isVisible ? color : "#5a6580" }}
+                >
+                  {id}
+                </span>
+              </label>
+            );
+          })}
+        </div>
+      )}
+
       <ResponsiveContainer width="100%" height={240}>
         <LineChart data={data} margin={{ top: 4, right: 8, left: 0, bottom: 0 }}>
           <CartesianGrid strokeDasharray="3 3" stroke="#2a3050" />
@@ -113,6 +179,7 @@ export default function MultiTargetChart({ events }: Props) {
               strokeWidth={1.5}
               dot={false}
               isAnimationActive={false}
+              hide={!visibleIds.includes(id)}
             />
           ))}
         </LineChart>
