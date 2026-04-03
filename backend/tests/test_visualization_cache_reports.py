@@ -558,8 +558,10 @@ class TestReportGeneratorFromMetricSummary:
     def test_from_metric_summary_dps_section_rows(self):
         gen = ReportGenerator()
         dps_src = self._make_dps_source()
-        summary = _make_metric_summary(
-            damage_by_source={"fireball": dps_src}
+        summary = MetricSummary(
+            duration=10.0, total_damage=5000.0, overall_dps=500.0,
+            dps_breakdown=[dps_src], buff_uptimes=[], kill_times=[],
+            peak_dps=0.0, mean_dps=0.0,
         )
         report = gen.from_metric_summary(summary)
         dps_section = next(s for s in report.sections if s.title == "DPS Breakdown")
@@ -570,8 +572,10 @@ class TestReportGeneratorFromMetricSummary:
     def test_from_metric_summary_buff_section_rows(self):
         gen = ReportGenerator()
         buff_src = self._make_buff_source()
-        summary = _make_metric_summary(
-            buff_uptimes={"haste": buff_src}
+        summary = MetricSummary(
+            duration=10.0, total_damage=0.0, overall_dps=0.0,
+            dps_breakdown=[], buff_uptimes=[buff_src], kill_times=[],
+            peak_dps=0.0, mean_dps=0.0,
         )
         report = gen.from_metric_summary(summary)
         buff_section = next(s for s in report.sections if s.title == "Buff Uptimes")
@@ -605,7 +609,12 @@ class TestReportGeneratorFromMetricSummary:
     def test_from_metric_summary_dps_row_has_crit_rate(self):
         gen = ReportGenerator()
         dps_src = self._make_dps_source(crit_rate=0.45)
-        summary = _make_metric_summary(damage_by_source={"skill": dps_src})
+        dps_src.source = "skill"
+        summary = MetricSummary(
+            duration=10.0, total_damage=0.0, overall_dps=0.0,
+            dps_breakdown=[dps_src], buff_uptimes=[], kill_times=[],
+            peak_dps=0.0, mean_dps=0.0,
+        )
         report = gen.from_metric_summary(summary)
         dps_section = next(s for s in report.sections if s.title == "DPS Breakdown")
         assert dps_section.data[0]["crit_rate"] == pytest.approx(0.45)
