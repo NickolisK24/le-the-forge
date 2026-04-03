@@ -51,3 +51,14 @@ class TestDamageFalloff:
         ts = _targets([0, 1])
         with pytest.raises(ValueError):
             engine.execute(1000.0, ts, ts[0], falloff=1.5)
+
+
+class TestSamePositionTargets:
+    def test_same_position_distance_zero_full_damage(self):
+        """Two targets at the same position_index=0 → distance=0 → full damage."""
+        t1 = TargetEntity("t1", max_health=1000.0, position_index=0)
+        t2 = TargetEntity("t2", max_health=1000.0, position_index=0)
+        result = engine.execute(500.0, [t1, t2], t1, radius=5, falloff=0.5)
+        by_id = {e.target_id: e.damage_dealt for e in result.events}
+        assert by_id["t1"] == pytest.approx(500.0)
+        assert by_id["t2"] == pytest.approx(500.0)

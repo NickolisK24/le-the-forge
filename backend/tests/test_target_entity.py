@@ -97,3 +97,21 @@ class TestStatusContainer:
         assert t2.target_id == "t1"
         assert t2.current_health == 300.0
         assert "ignite" in t2.status_list
+
+
+class TestPositionIndexValidation:
+    def test_default_position_index_zero(self):
+        t = _t()
+        assert t.position_index == 0
+
+    def test_positive_position_index_accepted(self):
+        t = _t(position_index=5)
+        assert t.position_index == 5
+
+    def test_negative_position_index_raises(self):
+        with pytest.raises(ValueError, match="position_index"):
+            _t(position_index=-1)
+
+    def test_zero_position_index_accepted(self):
+        t = _t(position_index=0)
+        assert t.position_index == 0
