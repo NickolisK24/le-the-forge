@@ -30,6 +30,7 @@ import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
 import MovementDebugPage from "@/pages/movement/MovementDebugPage";
 import MonteCarloPage from "@/pages/MonteCarloPage";
+import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -171,6 +172,7 @@ export default function App() {
                 <Route path="/data-manager" element={<DataManagerPage />} />
                 <Route path="/movement-debug" element={<MovementDebugPage />} />
                 <Route path="/monte-carlo" element={<MonteCarloPage />} />
+                <Route path="/viz-debug" element={<VisualizationDebugPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
