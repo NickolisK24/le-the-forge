@@ -92,6 +92,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.optimize import optimize_bp
     from app.routes.rotation import rotation_bp
     from app.routes.conditional import conditional_bp
+    from app.routes.multi_target import multi_target_bp
     from app.routes.admin import admin_bp
     from app.routes.jobs import jobs_bp
     from app.routes.version import version_bp
@@ -108,6 +109,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(optimize_bp, url_prefix="/api/optimize")
     app.register_blueprint(rotation_bp, url_prefix="/api/simulate")
     app.register_blueprint(conditional_bp, url_prefix="/api/simulate")
+    app.register_blueprint(multi_target_bp, url_prefix="/api/simulate")
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")
