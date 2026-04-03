@@ -5,10 +5,15 @@ from dataclasses import dataclass, field
 __all__ = ["ItemModel"]
 
 _VALID_SLOTS = {
-    "helm", "chest", "gloves", "boots", "belt", "ring", "amulet",
+    # Armour slots — real game data names
+    "helmet", "body", "gloves", "boots", "belt", "ring", "amulet", "relic",
+    # Weapon slots — real game data names
     "sword", "axe", "mace", "dagger", "sceptre", "wand", "staff",
-    "bow", "spear", "shield", "quiver", "catalyst",
+    "bow", "two_handed_spear", "shield", "quiver", "catalyst",
+    # Idol slots
     "idol_small", "idol_large", "idol_grand", "idol_stout",
+    # Legacy aliases kept for backward compatibility with unit tests
+    "helm", "chest", "spear",
 }
 
 
@@ -51,7 +56,7 @@ class ItemModel:
     def is_weapon(self) -> bool:
         return self.slot_type in {
             "sword", "axe", "mace", "dagger", "sceptre", "wand",
-            "staff", "bow", "spear",
+            "staff", "bow", "spear", "two_handed_spear",
         }
 
     def to_dict(self) -> dict:
