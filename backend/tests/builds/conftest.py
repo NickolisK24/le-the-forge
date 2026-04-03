@@ -6,4 +6,4 @@ import sys
 import os
 
 # Add backend root so `builds`, `encounter`, `app` are all importable
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), "..", ".."))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
