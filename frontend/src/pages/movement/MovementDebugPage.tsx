@@ -192,7 +192,7 @@ export default function MovementDebugPage() {
     entityId: "player",
     points: result?.kite_results
       ? (() => {
-          let px = 0, py = 0;
+          let px = 0; const py = 0;
           const pts: [number, number][] = [[0, 0]];
           for (const k of result.kite_results) {
             if (k.action === "retreat") {
