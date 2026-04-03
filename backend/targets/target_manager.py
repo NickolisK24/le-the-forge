@@ -70,6 +70,13 @@ class TargetManager:
     def all_targets(self) -> list[TargetEntity]:
         return list(self._targets.values())
 
+    def targets_by_position(self) -> list[TargetEntity]:
+        """Return alive targets sorted ascending by position_index (closest first)."""
+        return sorted(
+            (t for t in self._targets.values() if t.is_alive),
+            key=lambda t: t.position_index,
+        )
+
     @property
     def alive_count(self) -> int:
         return sum(1 for t in self._targets.values() if t.is_alive)

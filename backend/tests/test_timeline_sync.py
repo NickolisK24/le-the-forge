@@ -23,7 +23,7 @@ class TestStateAlignment:
     def test_records_count(self):
         sync = TimelineSynchronizer(tick_size=0.1)
         records = sync.run(_state(), duration=1.0)
-        assert len(records) >= 10  # float accumulation may produce one extra sub-tick
+        assert len(records) == 10
 
     def test_no_records_when_disabled(self):
         sync = TimelineSynchronizer(tick_size=0.1, record_snapshots=False)
@@ -62,3 +62,17 @@ class TestEventTimingAccuracy:
         sync = TimelineSynchronizer()
         with pytest.raises(ValueError):
             sync.run(_state(), duration=0.0)
+
+
+class TestExactTickCounting:
+    def test_exactly_10_ticks_for_1s_at_0_1(self):
+        """tick_size=0.1, duration=1.0 must produce exactly 10 ticks (no float drift)."""
+        sync = TimelineSynchronizer(tick_size=0.1)
+        records = sync.run(_state(), duration=1.0)
+        assert len(records) == 10
+
+    def test_elapsed_time_exact_after_run(self):
+        sync = TimelineSynchronizer(tick_size=0.1)
+        state = _state()
+        sync.run(state, duration=1.0)
+        assert abs(state.elapsed_time - 1.0) < 1e-9

@@ -16,7 +16,7 @@ class TestTickAlignment:
         state = MultiTargetState(manager=mob_swarm(2, 1e9))
         sync = MultiTargetTimelineSynchronizer(tick_size=1.0)
         records = sync.run(state, duration=3.0)
-        assert len(records) >= 3
+        assert len(records) == 3
 
     def test_no_records_when_disabled(self):
         state = MultiTargetState(manager=mob_swarm(2, 1e9))
@@ -44,3 +44,18 @@ class TestMultiTargetStateAccuracy:
         sync = MultiTargetTimelineSynchronizer()
         with pytest.raises(ValueError):
             sync.run(state, duration=0.0)
+
+
+class TestExactTickCounting:
+    def test_exactly_10_ticks_for_1s_at_0_1(self):
+        """tick_size=0.1, duration=1.0 must produce exactly 10 ticks (no float drift)."""
+        state = MultiTargetState(manager=mob_swarm(1, 1e9))
+        sync = MultiTargetTimelineSynchronizer(tick_size=0.1)
+        records = sync.run(state, duration=1.0)
+        assert len(records) == 10
+
+    def test_elapsed_time_exact_after_run(self):
+        state = MultiTargetState(manager=mob_swarm(1, 1e9))
+        sync = MultiTargetTimelineSynchronizer(tick_size=0.1)
+        sync.run(state, duration=1.0)
+        assert abs(state.elapsed_time - 1.0) < 1e-9

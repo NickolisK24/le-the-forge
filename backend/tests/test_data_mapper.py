@@ -57,3 +57,53 @@ class TestReferenceResolution:
         enemies = DataMapper.enemies_from_bundle(bundle)
         assert len(enemies) > 0
         assert all(e.max_health > 0 for e in enemies)
+
+
+class TestNewFieldMapping:
+    def test_enemy_crit_fields_mapped(self):
+        from data.mappers.data_mapper import DataMapper
+        raw = {
+            "id": "boss",
+            "health": 5000,
+            "armor": 50,
+            "crit_chance": 0.2,
+            "crit_multiplier": 2.5,
+            "name": "The Boss",
+            "category": "demon",
+        }
+        e = DataMapper.enemy_from_raw(raw)
+        assert e.crit_chance == 0.2
+        assert e.crit_multiplier == 2.5
+        assert e.name == "The Boss"
+        assert e.category == "demon"
+
+    def test_enemy_crit_defaults(self):
+        from data.mappers.data_mapper import DataMapper
+        raw = {"id": "goblin", "health": 200, "armor": 0}
+        e = DataMapper.enemy_from_raw(raw)
+        assert e.crit_chance == 0.0
+        assert e.crit_multiplier == 1.5
+
+    def test_skill_attack_speed_mapped(self):
+        from data.mappers.data_mapper import DataMapper
+        raw = {
+            "base_damage": 80,
+            "cooldown": 0.5,
+            "mana_cost": 5,
+            "attack_speed": 1.8,
+            "is_spell": True,
+            "scaling_stats": ["intelligence"],
+        }
+        s = DataMapper.skill_from_raw("fast_spell", raw)
+        assert s.attack_speed == 1.8
+        assert s.is_spell is True
+        assert "intelligence" in s.scaling_stats
+
+    def test_skill_new_field_defaults(self):
+        from data.mappers.data_mapper import DataMapper
+        raw = {"base_damage": 50, "cooldown": 1.0, "mana_cost": 8}
+        s = DataMapper.skill_from_raw("basic_attack", raw)
+        assert s.attack_speed == 1.0
+        assert s.is_spell is False
+        assert s.is_melee is False
+        assert s.level_scaling == 0.0

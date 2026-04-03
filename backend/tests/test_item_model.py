@@ -43,3 +43,25 @@ class TestSlotValidation:
         d = item.to_dict()
         assert d["item_id"] == "i1"
         assert d["slot_type"] == "chest"
+
+
+class TestSlotEnforcement:
+    def test_invalid_slot_type_raises(self):
+        with pytest.raises(ValueError, match="slot_type"):
+            from data.models.item_model import ItemModel
+            ItemModel(item_id="x", slot_type="unknown_slot")
+
+    def test_valid_slot_helm_accepted(self):
+        from data.models.item_model import ItemModel
+        item = ItemModel(item_id="x", slot_type="helm")
+        assert item.slot_type == "helm"
+
+    def test_valid_slot_idol_small_accepted(self):
+        from data.models.item_model import ItemModel
+        item = ItemModel(item_id="x", slot_type="idol_small")
+        assert item.slot_type == "idol_small"
+
+    def test_valid_slot_catalyst_accepted(self):
+        from data.models.item_model import ItemModel
+        item = ItemModel(item_id="x", slot_type="catalyst")
+        assert item.slot_type == "catalyst"

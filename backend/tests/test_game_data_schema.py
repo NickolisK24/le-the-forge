@@ -84,3 +84,53 @@ class TestEnemySchema:
         with pytest.raises(ValidationError) as exc:
             EnemySchema().load({"max_health": 100, "armor": 0})
         assert "enemy_id" in exc.value.messages
+
+
+class TestSchemaNewFields:
+    def test_item_invalid_slot_rejected(self):
+        from data.schemas.game_data_schema import ItemSchema, ValidationError
+        with pytest.raises(ValidationError) as exc:
+            ItemSchema().load({"item_id": "x", "slot_type": "garbage_slot"})
+        assert "slot_type" in exc.value.messages
+
+    def test_item_valid_slot_accepted(self):
+        from data.schemas.game_data_schema import ItemSchema
+        result = ItemSchema().load({"item_id": "x", "slot_type": "helm"})
+        assert result["slot_type"] == "helm"
+
+    def test_skill_attack_speed_validated(self):
+        from data.schemas.game_data_schema import SkillSchema, ValidationError
+        with pytest.raises(ValidationError):
+            SkillSchema().load({
+                "skill_id": "x",
+                "base_damage": 10.0,
+                "cooldown": 0.0,
+                "mana_cost": 0.0,
+                "attack_speed": 0.0,  # must be > 0
+            })
+
+    def test_skill_attack_speed_default_1(self):
+        from data.schemas.game_data_schema import SkillSchema
+        result = SkillSchema().load({
+            "skill_id": "x",
+            "base_damage": 10.0,
+            "cooldown": 0.0,
+            "mana_cost": 0.0,
+        })
+        assert result["attack_speed"] == 1.0
+
+    def test_enemy_crit_chance_out_of_range_rejected(self):
+        from data.schemas.game_data_schema import EnemySchema, ValidationError
+        with pytest.raises(ValidationError):
+            EnemySchema().load({
+                "enemy_id": "x",
+                "max_health": 100.0,
+                "armor": 0.0,
+                "crit_chance": 1.5,
+            })
+
+    def test_enemy_crit_fields_defaults(self):
+        from data.schemas.game_data_schema import EnemySchema
+        result = EnemySchema().load({"enemy_id": "x", "max_health": 100.0, "armor": 0.0})
+        assert result["crit_chance"] == 0.0
+        assert result["crit_multiplier"] == 1.5

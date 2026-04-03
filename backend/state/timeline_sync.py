@@ -14,6 +14,7 @@ This provides the integration glue between the time-aware subsystems.
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass, field
 
 from state.state_engine import SimulationState
@@ -74,12 +75,13 @@ class TimelineSynchronizer:
 
         _registry = registry or TriggerRegistry()
         records: list[TickRecord] = []
-        elapsed = 0.0
 
-        while elapsed < duration:
-            step = min(self.tick_size, duration - elapsed)
+        n_ticks = math.ceil(duration / self.tick_size)
+        for i in range(n_ticks):
+            step = min(self.tick_size, duration - i * self.tick_size)
+            if step <= 0:
+                break
             state.advance_time(step)
-            elapsed += step
             now = state.elapsed_time
 
             expired_statuses: list[str] = []

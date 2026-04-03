@@ -51,3 +51,55 @@ class TestTagValidation:
         d = s.to_dict()
         assert d["skill_id"] == "fireball"
         assert isinstance(d["tags"], list)
+
+
+class TestAttackSpeedAndFlags:
+    def test_default_attack_speed(self):
+        s = SkillModel("x", 100, 1.0, 10.0)
+        assert s.attack_speed == 1.0
+
+    def test_custom_attack_speed(self):
+        s = SkillModel("x", 100, 1.0, 10.0, attack_speed=1.5)
+        assert s.attack_speed == 1.5
+
+    def test_zero_attack_speed_raises(self):
+        with pytest.raises(ValueError, match="attack_speed"):
+            SkillModel("x", 100, 1.0, 10.0, attack_speed=0.0)
+
+    def test_negative_attack_speed_raises(self):
+        with pytest.raises(ValueError, match="attack_speed"):
+            SkillModel("x", 100, 1.0, 10.0, attack_speed=-1.0)
+
+    def test_is_spell_default_false(self):
+        s = SkillModel("x", 100, 1.0, 10.0)
+        assert s.is_spell is False
+
+    def test_is_spell_true(self):
+        s = SkillModel("x", 100, 1.0, 10.0, is_spell=True)
+        assert s.is_spell is True
+
+    def test_is_melee_default_false(self):
+        s = SkillModel("x", 100, 1.0, 10.0)
+        assert s.is_melee is False
+
+    def test_is_melee_true(self):
+        s = SkillModel("x", 100, 1.0, 10.0, is_melee=True)
+        assert s.is_melee is True
+
+    def test_scaling_stats_normalised_to_tuple(self):
+        s = SkillModel("x", 100, 1.0, 10.0, scaling_stats=["intelligence", "spell_damage"])
+        assert isinstance(s.scaling_stats, tuple)
+        assert "intelligence" in s.scaling_stats
+
+    def test_level_scaling_default_zero(self):
+        s = SkillModel("x", 100, 1.0, 10.0)
+        assert s.level_scaling == 0.0
+
+    def test_to_dict_includes_new_fields(self):
+        s = SkillModel("x", 100, 1.0, 10.0, attack_speed=1.2, is_spell=True,
+                        level_scaling=5.0, scaling_stats=("int",))
+        d = s.to_dict()
+        assert d["attack_speed"] == 1.2
+        assert d["is_spell"] is True
+        assert d["level_scaling"] == 5.0
+        assert "int" in d["scaling_stats"]

@@ -83,3 +83,28 @@ class TestManagerReset:
         mgr.spawn(_t("t2"))
         mgr.reset()
         assert mgr.total_count == 0
+
+
+class TestTargetsByPosition:
+    def test_returns_alive_sorted_by_position(self):
+        mgr = TargetManager()
+        mgr.spawn(TargetEntity("t3", max_health=1000.0, position_index=2))
+        mgr.spawn(TargetEntity("t1", max_health=1000.0, position_index=0))
+        mgr.spawn(TargetEntity("t2", max_health=1000.0, position_index=1))
+        ordered = mgr.targets_by_position()
+        assert [t.target_id for t in ordered] == ["t1", "t2", "t3"]
+
+    def test_dead_targets_excluded(self):
+        mgr = TargetManager()
+        t1 = TargetEntity("t1", max_health=1000.0, position_index=0)
+        t2 = TargetEntity("t2", max_health=1000.0, position_index=1)
+        mgr.spawn(t1)
+        mgr.spawn(t2)
+        t1.apply_damage(1000.0)  # kill t1
+        ordered = mgr.targets_by_position()
+        assert len(ordered) == 1
+        assert ordered[0].target_id == "t2"
+
+    def test_empty_returns_empty_list(self):
+        mgr = TargetManager()
+        assert mgr.targets_by_position() == []

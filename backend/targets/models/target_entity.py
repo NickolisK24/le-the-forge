@@ -35,6 +35,8 @@ class TargetEntity:
             raise ValueError("target_id must not be empty")
         if self.max_health <= 0:
             raise ValueError("max_health must be > 0")
+        if self.position_index < 0:
+            raise ValueError("position_index must be >= 0")
         if self.current_health == 0.0:
             # Default to full health when not explicitly set
             object.__setattr__(self, "current_health", self.max_health) \
