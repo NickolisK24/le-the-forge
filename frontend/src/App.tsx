@@ -37,6 +37,7 @@ import SharedBuildPage from "@/pages/shared/SharedBuildPage";
 import BuildLibraryPage from "@/pages/library/BuildLibraryPage";
 import UserBuildDashboard from "@/pages/user/UserBuildDashboard";
 import IntegrationDebugPage from "@/pages/debug/IntegrationDebugPage";
+import BisSearchPage from "@/pages/bis/BisSearchPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -185,6 +186,7 @@ export default function App() {
                 <Route path="/build-library" element={<BuildLibraryPage />} />
                 <Route path="/my-builds" element={<UserBuildDashboard />} />
                 <Route path="/integration-debug" element={<IntegrationDebugPage />} />
+                <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
