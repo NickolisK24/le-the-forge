@@ -28,6 +28,7 @@ import RotationBuilderPage from "@/pages/RotationBuilderPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
+import MonteCarloPage from "@/pages/MonteCarloPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -167,6 +168,7 @@ export default function App() {
                 <Route path="/conditional"  element={<ConditionalBuilderPage />} />
                 <Route path="/multi-target"  element={<MultiTargetSimulatorPage />} />
                 <Route path="/data-manager" element={<DataManagerPage />} />
+                <Route path="/monte-carlo" element={<MonteCarloPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
