@@ -430,6 +430,41 @@ export interface MultiTargetResult {
 }
 
 // ---------------------------------------------------------------------------
+// Game Data Management
+// ---------------------------------------------------------------------------
+
+export interface GameDataIntegrity {
+  total:    number;
+  errors:   number;
+  warnings: number;
+  infos:    number;
+}
+
+export interface GameDataIssue {
+  severity: "info" | "warning" | "error";
+  category: string;
+  item_id:  string;
+  message:  string;
+}
+
+export interface GameDataLoadResult {
+  version:        string;
+  version_source: string;
+  counts: {
+    skills:   number;
+    affixes:  number;
+    enemies:  number;
+    passives: number;
+  };
+  integrity: GameDataIntegrity;
+  issues:    GameDataIssue[];
+}
+
+export const gameDataApi = {
+  loadGameData: () => post<GameDataLoadResult>("/load/game-data"),
+};
+
+// ---------------------------------------------------------------------------
 // Import API
 // ---------------------------------------------------------------------------
 
