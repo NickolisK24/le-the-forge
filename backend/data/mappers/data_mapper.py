@@ -50,6 +50,11 @@ class DataMapper:
                 cooldown=float(raw.get("cooldown", 0)),
                 mana_cost=float(raw.get("mana_cost", 0)),
                 tags=tuple(raw.get("tags", [])),
+                attack_speed=float(raw.get("attack_speed", 1.0)),
+                level_scaling=float(raw.get("level_scaling", 0.0)),
+                scaling_stats=tuple(raw.get("scaling_stats", [])),
+                is_spell=bool(raw.get("is_spell", False)),
+                is_melee=bool(raw.get("is_melee", False)),
             )
         except (TypeError, ValueError) as exc:
             raise ValueError(
@@ -217,6 +222,10 @@ class DataMapper:
                 max_health=float(raw.get("health", raw.get("max_health", 1))),
                 resistances=dict(raw.get("resistances", {})),
                 armor=float(raw.get("armor", 0)),
+                name=str(raw.get("name", "")),
+                category=str(raw.get("category", "")),
+                crit_chance=float(raw.get("crit_chance", 0.0)),
+                crit_multiplier=float(raw.get("crit_multiplier", 1.5)),
             )
         except (TypeError, ValueError) as exc:
             raise ValueError(f"Cannot map enemy {enemy_id!r}: {exc}") from exc

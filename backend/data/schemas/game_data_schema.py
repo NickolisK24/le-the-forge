@@ -32,13 +32,26 @@ class SkillSchema(Schema):
     cooldown = fields.Float(required=True, validate=validate.Range(min=0))
     mana_cost = fields.Float(required=True, validate=validate.Range(min=0))
     tags = fields.List(fields.Str(), load_default=[])
+    attack_speed = fields.Float(load_default=1.0, validate=validate.Range(min=0, min_inclusive=False))
+    level_scaling = fields.Float(load_default=0.0)
+
+
+_ITEM_VALID_SLOTS = {
+    "helm", "chest", "gloves", "boots", "belt", "ring", "amulet",
+    "sword", "axe", "mace", "dagger", "sceptre", "wand", "staff",
+    "bow", "spear", "shield", "quiver", "catalyst",
+    "idol_small", "idol_large", "idol_grand", "idol_stout",
+}
 
 
 class ItemSchema(Schema):
     """Schema for a base item definition."""
 
     item_id = fields.Str(required=True)
-    slot_type = fields.Str(required=True)
+    slot_type = fields.Str(
+        required=True,
+        validate=validate.OneOf(_ITEM_VALID_SLOTS),
+    )
     implicit_stats = fields.Dict(
         keys=fields.Str(),
         values=fields.Float(),
@@ -87,3 +100,7 @@ class EnemySchema(Schema):
         load_default={},
     )
     armor = fields.Float(required=True, validate=validate.Range(min=0))
+    name = fields.Str(load_default="")
+    category = fields.Str(load_default="")
+    crit_chance = fields.Float(load_default=0.0, validate=validate.Range(min=0.0, max=1.0))
+    crit_multiplier = fields.Float(load_default=1.5, validate=validate.Range(min=1.0))
