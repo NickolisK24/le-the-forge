@@ -391,7 +391,17 @@ export interface BuildSimulationResult {
 export const simulateApi = {
   build: (slug: string) =>
     post<BuildSimulationResult>(`/builds/${slug}/simulate`),
+  conditional: (payload: object) =>
+    post<ConditionalResult>("/simulate/conditional", payload),
 };
+
+export interface ConditionalResult {
+  base_damage:         number;
+  adjusted_damage:     number;
+  damage_multiplier:   number;
+  active_modifier_ids: string[];
+  stat_deltas:         Record<string, number>;
+}
 
 // ---------------------------------------------------------------------------
 // Import API

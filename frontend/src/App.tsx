@@ -25,6 +25,7 @@ import EncounterSimulatorPage from "@/components/features/encounter/EncounterSim
 import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
 import RotationBuilderPage from "@/pages/RotationBuilderPage";
+import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -160,7 +161,8 @@ export default function App() {
                 <Route path="/encounter"     element={<EncounterSimulatorPage />} />
                 <Route path="/build-editor" element={<BuildEditorPage />} />
                 <Route path="/optimizer"    element={<OptimizerPage />} />
-                <Route path="/rotation"    element={<RotationBuilderPage />} />
+                <Route path="/rotation"      element={<RotationBuilderPage />} />
+                <Route path="/conditional"  element={<ConditionalBuilderPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
