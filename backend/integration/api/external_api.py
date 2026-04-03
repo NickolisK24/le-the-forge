@@ -35,8 +35,8 @@ class ExternalApi:
         repository: BuildRepository | None = None,
         auth: AuthManager | None = None,
     ):
-        self._repo = repository or BuildRepository()
-        self._auth = auth or AuthManager()
+        self._repo = repository if repository is not None else BuildRepository()
+        self._auth = auth if auth is not None else AuthManager()
         self._parser = BuildImportParser()
         self._exporter = BuildExporter()
         self._share_gen = ShareLinkGenerator()
