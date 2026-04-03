@@ -24,6 +24,7 @@ import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
 import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
 import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
+import RotationBuilderPage from "@/pages/RotationBuilderPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -159,6 +160,7 @@ export default function App() {
                 <Route path="/encounter"     element={<EncounterSimulatorPage />} />
                 <Route path="/build-editor" element={<BuildEditorPage />} />
                 <Route path="/optimizer"    element={<OptimizerPage />} />
+                <Route path="/rotation"    element={<RotationBuilderPage />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="*" element={<NotFoundPage />} />
               </Route>

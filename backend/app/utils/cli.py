@@ -166,7 +166,7 @@ def register_commands(app: Flask) -> None:
         from pathlib import Path
         from app.models import PassiveNode
 
-        data_path = Path(__file__).resolve().parent.parent.parent.parent / "data" / "passives.json"
+        data_path = Path(__file__).resolve().parent.parent.parent.parent / "data" / "classes" / "passives.json"
         if not data_path.exists():
             click.echo(f"ERROR: {data_path} not found. Run sync_game_data.py first.", err=True)
             return

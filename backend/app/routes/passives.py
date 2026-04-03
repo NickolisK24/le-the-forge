@@ -11,12 +11,28 @@ All responses share the same envelope:
   { "class": str|null, "mastery": str|null, "count": int, "nodes": [...] }
 """
 
+import json
+from pathlib import Path
+
 from flask import Blueprint, request
 
 from app.models import PassiveNode
 from app.utils.responses import ok, error
 
 passives_bp = Blueprint("passives", __name__)
+
+_PASSIVES_JSON = Path(__file__).resolve().parents[3] / "data" / "classes" / "passives.json"
+
+
+def _load_json_fallback(character_class: str | None = None, mastery: str | None = None) -> list[dict]:
+    """Read passive nodes from the JSON export when the DB is empty."""
+    with open(_PASSIVES_JSON, encoding="utf-8") as f:
+        nodes: list[dict] = json.load(f)
+    if character_class:
+        nodes = [n for n in nodes if n.get("character_class") == character_class]
+        if mastery:
+            nodes = [n for n in nodes if n.get("mastery") == mastery or n.get("mastery") is None]
+    return nodes
 
 # ---------------------------------------------------------------------------
 # Validation constants
@@ -54,11 +70,15 @@ def _serialize(node: PassiveNode) -> dict:
 
 
 def _nodes_response(nodes: list[PassiveNode], character_class=None, mastery=None) -> tuple:
+    serialized = [_serialize(n) for n in nodes]
+    if not serialized:
+        # DB table empty — fall back to the JSON export so the page still works
+        serialized = _load_json_fallback(character_class, mastery)
     return ok(data={
         "class": character_class,
         "mastery": mastery,
-        "count": len(nodes),
-        "nodes": [_serialize(n) for n in nodes],
+        "count": len(serialized),
+        "nodes": serialized,
     })
 
 
@@ -92,7 +112,10 @@ def list_passives():
             q = q.filter(
                 (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
             )
-    nodes = q.order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id).all()
+    try:
+        nodes = q.order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id).all()
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=cls, mastery=mastery)
 
 
@@ -102,12 +125,15 @@ def get_class_tree(character_class: str):
     if character_class not in VALID_CLASSES:
         return error(f"Unknown class: {character_class}")
 
-    nodes = (
-        PassiveNode.query
-        .filter_by(character_class=character_class)
-        .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
-        .all()
-    )
+    try:
+        nodes = (
+            PassiveNode.query
+            .filter_by(character_class=character_class)
+            .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
+            .all()
+        )
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=character_class)
 
 
@@ -123,13 +149,16 @@ def get_mastery_tree(character_class: str, mastery: str):
     if mastery not in VALID_MASTERIES.get(character_class, []):
         return error(f"Unknown mastery '{mastery}' for class {character_class}")
 
-    nodes = (
-        PassiveNode.query
-        .filter_by(character_class=character_class)
-        .filter(
-            (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
+    try:
+        nodes = (
+            PassiveNode.query
+            .filter_by(character_class=character_class)
+            .filter(
+                (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
+            )
+            .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
+            .all()
         )
-        .order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id)
-        .all()
-    )
+    except Exception:
+        nodes = []
     return _nodes_response(nodes, character_class=character_class, mastery=mastery)

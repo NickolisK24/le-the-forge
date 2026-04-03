@@ -90,6 +90,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.profile import profile_bp
     from app.routes.simulate import simulate_bp
     from app.routes.optimize import optimize_bp
+    from app.routes.rotation import rotation_bp
     from app.routes.admin import admin_bp
     from app.routes.jobs import jobs_bp
     from app.routes.version import version_bp
@@ -104,17 +105,29 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(profile_bp, url_prefix="/api/profile")
     app.register_blueprint(simulate_bp, url_prefix="/api/simulate")
     app.register_blueprint(optimize_bp, url_prefix="/api/optimize")
+    app.register_blueprint(rotation_bp, url_prefix="/api/simulate")
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")
 
-    # Global error handler for domain exceptions
+    # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError
 
     @app.errorhandler(ForgeError)
     def handle_forge_error(exc):
         from app.utils.responses import error as error_response
         return error_response(exc.message, status=exc.status_code)
+
+    @app.errorhandler(Exception)
+    def handle_unexpected_error(exc):
+        from flask import jsonify
+        app.logger.exception("Unhandled exception: %s", exc)
+        return jsonify({"data": None, "meta": None, "errors": [{"message": "Internal server error"}]}), 500
+
+    @app.errorhandler(404)
+    def handle_not_found(_exc):
+        from flask import jsonify
+        return jsonify({"data": None, "meta": None, "errors": [{"message": "Not found"}]}), 404
 
     # Register CLI commands
     from app.utils.cli import register_commands
