@@ -44,6 +44,7 @@ services:
     volumes:
       - ./backend:/app
       - ./data:/data
+      - backend_venv:/venv
     command: flask run --host=0.0.0.0 --port=5000 --debug
 
   frontend:
@@ -64,3 +65,4 @@ services:
 volumes:
   postgres_data:
   frontend_node_modules:
+  backend_venv:

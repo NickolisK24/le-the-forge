@@ -18,6 +18,7 @@ from app.domain.calculators.crit_calculator import effective_crit_chance, effect
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
+    get_affix_types,
 )
 from app.utils.logging import ForgeLogger
 
@@ -271,6 +272,75 @@ NOTABLE_MULTIPLIER = 3
 # Affix lookups — loaded from canonical affixes.json via game_data_loader
 AFFIX_TIER_MIDPOINTS: dict = get_affix_tier_midpoints()
 AFFIX_STAT_KEYS: dict = get_affix_stat_keys()
+AFFIX_TYPES: dict = get_affix_types()
+
+
+# ---------------------------------------------------------------------------
+# Stat Pool — flat / increased / more bucket system
+# ---------------------------------------------------------------------------
+
+class StatPool:
+    """Accumulates stat modifiers in separate buckets by modifier type.
+
+    flat      — additive base values (e.g. +40 Health, +12 Fire Resistance)
+    increased — additive % modifiers (e.g. +25% Spell Damage, +10% Attack Speed)
+    more      — multiplicative modifiers (e.g. ×1.20 More Damage)
+
+    Final damage = (base + flat) * (1 + sum(increased)/100) * product(more)
+    """
+    __slots__ = ("flat", "increased", "more")
+
+    def __init__(self) -> None:
+        self.flat: dict[str, float] = {}
+        self.increased: dict[str, float] = {}
+        self.more: dict[str, float] = {}
+
+    def add_flat(self, stat: str, value: float) -> None:
+        self.flat[stat] = self.flat.get(stat, 0.0) + value
+
+    def add_increased(self, stat: str, value: float) -> None:
+        self.increased[stat] = self.increased.get(stat, 0.0) + value
+
+    def add_more(self, stat: str, value: float) -> None:
+        current = self.more.get(stat, 1.0)
+        self.more[stat] = current * (1 + value / 100)
+
+    def resolve_to(self, stats: "BuildStats") -> None:
+        """Apply all accumulated pool values to a BuildStats instance."""
+        for stat, value in self.flat.items():
+            if hasattr(stats, stat):
+                setattr(stats, stat, getattr(stats, stat) + value)
+        for stat, value in self.increased.items():
+            if hasattr(stats, stat):
+                setattr(stats, stat, getattr(stats, stat) + value)
+        for stat, value in self.more.items():
+            if stat == "damage":
+                stats.more_damage_multiplier *= value
+
+
+# ---------------------------------------------------------------------------
+# apply_affix — routes an affix value into the correct stat bucket
+# ---------------------------------------------------------------------------
+
+def apply_affix(pool: StatPool, affix_name: str, tier: int) -> None:
+    """Apply a single affix at a given tier into the appropriate stat bucket.
+
+    Reads the affix type (flat/increased/more) from the canonical data
+    and routes the tier midpoint value into the correct pool.
+    """
+    stat_key = AFFIX_STAT_KEYS.get(affix_name)
+    if not stat_key:
+        return
+    value = get_affix_value(affix_name, tier)
+    if not value:
+        return
+    affix_type = AFFIX_TYPES.get(affix_name, "flat")
+    if affix_type == "increased":
+        pool.add_increased(stat_key, value)
+    elif affix_type == "more":
+        pool.add_more(stat_key, value)
+    else:
+        pool.add_flat(stat_key, value)
 
 
 # ---------------------------------------------------------------------------
@@ -428,10 +498,8 @@ def aggregate_stats(
         bonus = _get_node_bonus(node["id"], node_type, node_name)
         _add_partial(stats, bonus)
 
-    # 4. Gear affix values (sealed affixes still contribute stats)
-    # Accepts two formats:
-    #   a) Normal crafted affixes: {"name": str, "tier": int} — looked up via AFFIX_STAT_KEYS
-    #   b) Synthetic unique stats: {"stat_key": str, "value": float} — applied directly
+    # 4. Gear affix values — route through StatPool for proper type bucketing
+    pool = StatPool()
     for affix in gear_affixes:
         # Format b: synthetic unique item stats injected by build_analysis_service
         if "stat_key" in affix:
@@ -441,12 +509,8 @@ def aggregate_stats(
         # Format a: normal gear affix by name + tier
         affix_name = affix.get("name", "")
         tier = int(affix.get("tier", 3))
-        stat_key = AFFIX_STAT_KEYS.get(affix_name)
-        if not stat_key:
-            continue
-        value = get_affix_value(affix_name, tier)
-        if value:
-            _apply_stat_key(stats, stat_key, value)
+        apply_affix(pool, affix_name, tier)
+    pool.resolve_to(stats)
 
     # 5. Resolved passive tree stats (from passive_stat_resolver)
     if passive_stats:

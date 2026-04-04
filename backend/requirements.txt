@@ -7,7 +7,7 @@ flask-limiter==3.7.0
 flask-jwt-extended==4.6.0
 marshmallow==3.21.3
 marshmallow-sqlalchemy==1.1.0
-psycopg2-binary==2.9.9
+psycopg2-binary==2.9.10
 python-dotenv==1.0.1
 redis==5.0.7
 pytest==8.2.2

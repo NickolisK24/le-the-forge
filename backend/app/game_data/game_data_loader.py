@@ -36,10 +36,6 @@ def _pipeline() -> GameDataPipeline:
     return _fallback
 
 
-# ---------------------------------------------------------------------------
-# Affix data
-# ---------------------------------------------------------------------------
-
 def get_affix_tier_midpoints() -> dict:
     """Returns affix name → {T1: mid, T2: mid, …} mapping."""
     return _pipeline().affix_tier_midpoints
@@ -48,6 +44,11 @@ def get_affix_tier_midpoints() -> dict:
 def get_affix_stat_keys() -> dict:
     """Returns affix display name → BuildStats field name mapping."""
     return _pipeline().affix_stat_keys
+
+
+def get_affix_types() -> dict:
+    """Returns affix display name → modifier type (flat/increased/more) mapping."""
+    return {a.to_dict()["name"]: a.to_dict().get("type", "flat") for a in _pipeline().affixes}
 
 
 def get_all_affixes() -> list[dict]:
