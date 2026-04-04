@@ -100,6 +100,7 @@ def _get_affix_seed_data() -> list[dict]:
             "tags": a.get("tags", []),
         }
         for a in raw_list
+        if a.get("type", "") in ("prefix", "suffix", "experimental", "personal")
     ]
 
 
