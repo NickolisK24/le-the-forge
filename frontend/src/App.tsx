@@ -1,10 +1,13 @@
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Toaster } from "react-hot-toast";
+import toast from "react-hot-toast";
 import { useEffect } from "react";
 
 import { useAuthStore } from "@/store";
 import { authApi, setToken } from "@/lib/api";
 
+import ErrorBoundary from "@/components/ErrorBoundary";
 import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "@/components/features/HomePage";
 import BuildsPage from "@/components/features/builds/BuildsPage";
@@ -12,6 +15,32 @@ import BuildPlannerPage from "@/components/features/build/BuildPlannerPage";
 import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
+import NotFoundPage from "@/components/features/NotFoundPage";
+import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
+
+import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
+import PassiveTreePage from "@/pages/PassiveTreePage";
+import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
+import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
+import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
+import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
+import RotationBuilderPage from "@/pages/RotationBuilderPage";
+import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
+import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
+import DataManagerPage from "@/pages/DataManagerPage";
+import MovementDebugPage from "@/pages/movement/MovementDebugPage";
+import MonteCarloPage from "@/pages/MonteCarloPage";
+import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
+import CraftingPage from "@/pages/crafting/CraftingPage";
+import CraftDebugPage from "@/pages/debug/CraftDebugPage";
+import SharedBuildPage from "@/pages/shared/SharedBuildPage";
+import BuildLibraryPage from "@/pages/library/BuildLibraryPage";
+import UserBuildDashboard from "@/pages/user/UserBuildDashboard";
+import IntegrationDebugPage from "@/pages/debug/IntegrationDebugPage";
+import BisSearchPage from "@/pages/bis/BisSearchPage";
+import BuildWorkspace from "@/pages/build/BuildWorkspace";
+import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
+import BisWorkspace from "@/pages/bis/BisWorkspace";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -25,52 +54,151 @@ const queryClient = new QueryClient({
 // Boot: attempt to restore session from URL token (OAuth callback)
 // or from a previously stored token.
 function AuthBootstrapper({ children }: { children: React.ReactNode }) {
-  const { login, logout, setUser } = useAuthStore();
+  const { login, logout } = useAuthStore();
 
   useEffect(() => {
-    // Check for token in URL (OAuth callback handled in AuthCallbackPage)
-    // Fall back to fetching /api/auth/me if a token was already set
     const stored = sessionStorage.getItem("forge_token");
-    if (stored) {
-      setToken(stored);
-      authApi.me().then((res) => {
-        if (res.data) {
-          login(stored, res.data);
-        } else {
-          sessionStorage.removeItem("forge_token");
-          logout();
-        }
-      });
-    } else {
+    if (!stored) {
       useAuthStore.setState({ isLoading: false });
+      return;
     }
+
+    const controller = new AbortController();
+    setToken(stored);
+    authApi.me(controller.signal).then((res) => {
+      if (controller.signal.aborted) return;
+      if (res.data) {
+        login(stored, res.data);
+      } else {
+        sessionStorage.removeItem("forge_token");
+        setToken(null);
+        logout();
+      }
+    });
+
+    return () => controller.abort();
   }, []);
 
   return <>{children}</>;
+}
+
+const AUTH_FAIL_MESSAGES: Record<string, string> = {
+  discord_unreachable: "Could not reach Discord. Please try again.",
+  discord_timeout: "Discord login timed out. Please try again.",
+  token_exchange: "Discord login failed. Please try again.",
+  profile_fetch: "Could not fetch your Discord profile. Please try again.",
+  no_code: "Discord login was cancelled.",
+  no_access_token: "Discord did not return an access token. Please try again.",
+};
+
+const IS_DEV = import.meta.env.DEV;
+
+function AuthErrorHandler() {
+  const [params, setParams] = useSearchParams();
+
+  useEffect(() => {
+    const failed = params.get("auth");
+    const reason = params.get("reason") ?? "";
+    if (failed === "failed") {
+      const msg = AUTH_FAIL_MESSAGES[reason] ?? "Login failed. Please try again.";
+
+      if (IS_DEV && reason === "discord_unreachable") {
+        // In dev, offer a bypass link since Discord may be unreachable in local environments
+        toast.error(
+          (t) => (
+            <span>
+              {msg}{" "}
+              <a
+                href="/api/auth/dev-login"
+                style={{ color: "#f5a623", textDecoration: "underline", cursor: "pointer" }}
+                onClick={() => toast.dismiss(t.id)}
+              >
+                Dev login
+              </a>
+            </span>
+          ),
+          { duration: 12000 }
+        );
+      } else {
+        toast.error(msg, { duration: 6000 });
+      }
+
+      params.delete("auth");
+      params.delete("reason");
+      setParams(params, { replace: true });
+    }
+  }, []);
+
+  return null;
 }
 
 export default function App() {
   return (
     <QueryClientProvider client={queryClient}>
       <BrowserRouter>
-        <AuthBootstrapper>
-          <Routes>
-            {/* OAuth callback — no layout wrapper */}
-            <Route path="/auth/callback" element={<AuthCallbackPage />} />
+        <ErrorBoundary>
+          <Toaster
+            position="bottom-right"
+            toastOptions={{
+              style: {
+                background: "#10152a",
+                color: "#c8d0e0",
+                border: "1px solid #2a3050",
+                fontFamily: "var(--font-body, sans-serif)",
+                fontSize: "14px",
+              },
+              error: {
+                iconTheme: { primary: "#ef4444", secondary: "#10152a" },
+              },
+              success: {
+                iconTheme: { primary: "#f5a623", secondary: "#10152a" },
+              },
+            }}
+          />
+          <AuthBootstrapper>
+            <AuthErrorHandler />
+            <Routes>
+              {/* OAuth callback — no layout wrapper */}
+              <Route path="/auth/callback" element={<AuthCallbackPage />} />
 
-            {/* Main app shell */}
-            <Route element={<AppLayout />}>
-              <Route index element={<HomePage />} />
-              <Route path="/builds" element={<BuildsPage />} />
-              <Route path="/build" element={<BuildPlannerPage />} />
-              <Route path="/build/:slug" element={<BuildPlannerPage />} />
-              <Route path="/craft" element={<CraftSimulatorPage />} />
-              <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
-              <Route path="/profile" element={<UserProfilePage />} />
-              <Route path="*" element={<Navigate to="/" replace />} />
-            </Route>
-          </Routes>
-        </AuthBootstrapper>
+              {/* Main app shell */}
+              <Route element={<AppLayout />}>
+                <Route index element={<HomePage />} />
+                <Route path="/builds" element={<BuildsPage />} />
+                <Route path="/build" element={<BuildPlannerPage />} />
+                <Route path="/build/:slug" element={<BuildPlannerPage />} />
+                <Route path="/craft" element={<CraftSimulatorPage />} />
+                <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
+                <Route path="/affixes" element={<AffixEditorPage />} />
+                <Route path="/passives" element={<PassiveTreePage />} />
+                <Route path="/compare" element={<BuildComparisonPage />} />
+                <Route path="/meta" element={<MetaSnapshotPage />} />
+                <Route path="/encounter"     element={<EncounterSimulatorPage />} />
+                <Route path="/build-editor" element={<BuildEditorPage />} />
+                <Route path="/optimizer"    element={<OptimizerPage />} />
+                <Route path="/rotation"      element={<RotationBuilderPage />} />
+                <Route path="/conditional"  element={<ConditionalBuilderPage />} />
+                <Route path="/multi-target"  element={<MultiTargetSimulatorPage />} />
+                <Route path="/data-manager" element={<DataManagerPage />} />
+                <Route path="/movement-debug" element={<MovementDebugPage />} />
+                <Route path="/monte-carlo" element={<MonteCarloPage />} />
+                <Route path="/viz-debug" element={<VisualizationDebugPage />} />
+                <Route path="/crafting" element={<CraftingPage />} />
+                <Route path="/craft-debug" element={<CraftDebugPage />} />
+                <Route path="/shared/:buildId" element={<SharedBuildPage />} />
+                <Route path="/build-library" element={<BuildLibraryPage />} />
+                <Route path="/my-builds" element={<UserBuildDashboard />} />
+                <Route path="/integration-debug" element={<IntegrationDebugPage />} />
+                <Route path="/bis-search" element={<BisSearchPage />} />
+                <Route path="/build-workspace" element={<BuildWorkspace />} />
+                <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
+                <Route path="/bis-workspace" element={<BisWorkspace />} />
+                <Route path="/profile" element={<UserProfilePage />} />
+                <Route path="*" element={<NotFoundPage />} />
+              </Route>
+            </Routes>
+          </AuthBootstrapper>
+        </ErrorBoundary>
       </BrowserRouter>
     </QueryClientProvider>
   );

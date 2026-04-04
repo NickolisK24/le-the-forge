@@ -1,0 +1,291 @@
+[
+  {
+    "id": "increased_health",
+    "name": "Increased Health",
+    "description": "More Health",
+    "title": "of the Ox",
+    "minimum_level": 3,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 7,
+        "added_value": 0.0,
+        "increased_value": 0.6,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "added_crit_chance",
+    "name": "Added Crit Chance",
+    "description": "High Critical Strike Chance",
+    "title": "of Loathing",
+    "minimum_level": 36,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 4,
+        "added_value": 0.25,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "fractures",
+    "name": "Fractures",
+    "description": "Reinforcements on Death",
+    "title": "Fracturing",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "increased_attack_speed",
+    "name": "Increased Attack Speed",
+    "description": "Increased Attack Speed",
+    "title": "of the Lynx",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 2,
+        "added_value": 0.0,
+        "increased_value": 0.4,
+        "more_values": []
+      },
+      {
+        "property": 3,
+        "added_value": 0.0,
+        "increased_value": 0.4,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "shorter_cooldowns",
+    "name": "Shorter Cooldowns",
+    "description": "Has Shorter Cooldowns",
+    "title": "Unrelenting",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 70,
+        "added_value": 0.7,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "auto_heal_self_monolith",
+    "name": "Auto Heal Self Monolith",
+    "description": "",
+    "title": "",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "enrages",
+    "name": "Enrages",
+    "description": "Enrages at Half Health",
+    "title": "of Rage",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "heals_after_not_taking_damage",
+    "name": "Heals After Not Taking Damage",
+    "description": "Heals if Not Damaged Recently",
+    "title": "Healing",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "rampancy",
+    "name": "Rampancy",
+    "description": "Periodically Becomes Rampant",
+    "title": "of Rampancy",
+    "minimum_level": 8,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "added_stun_avoidance",
+    "name": "Added Stun Avoidance",
+    "description": "High Stun Avoidance",
+    "title": "of Tenacity",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 12,
+        "added_value": 1.0,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "crit_until_approached",
+    "name": "Crit Until Approached",
+    "description": "High Speed and Crit Chance Until Approached",
+    "title": "of the Hawk",
+    "minimum_level": 8,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "added_dodge_rating",
+    "name": "Added Dodge Rating",
+    "description": "Has a Chance to Dodge Hits",
+    "title": "of Shadows",
+    "minimum_level": 4,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 11,
+        "added_value": 5.0,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "twinned",
+    "name": "Twinned",
+    "description": "Summons a Twin at Half Health",
+    "title": "Twinned",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "added_health_regen",
+    "name": "Added Health Regen",
+    "description": "Regenerates Health",
+    "title": "of the Lizard",
+    "minimum_level": 2,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 17,
+        "added_value": 4.0,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "fire_shred",
+    "name": "Fire Shred",
+    "description": "Shreds Fire Resistance on Hit",
+    "title": "of Wildfire",
+    "minimum_level": 28,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 1,
+        "added_value": 1.0,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "summoning",
+    "name": "Summoning",
+    "description": "Summons Ethereal Reflections",
+    "title": "Summoning",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "dodge_monolith",
+    "name": "Dodge Monolith",
+    "description": "",
+    "title": "",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": [
+      {
+        "property": 11,
+        "added_value": 4.0,
+        "increased_value": 0.0,
+        "more_values": []
+      }
+    ]
+  },
+  {
+    "id": "rare_crit_until_approached_monolith",
+    "name": "Rare Crit Until Approached Monolith",
+    "description": "high speed and crit chance until approached",
+    "title": "of the Hawk",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "enrages_monolith",
+    "name": "Enrages Monolith",
+    "description": "enrages at half health",
+    "title": "of Rage",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  },
+  {
+    "id": "resurrects_self",
+    "name": "Resurrects Self",
+    "description": "Revives After Two Seconds",
+    "title": "Familiar",
+    "minimum_level": 0,
+    "has_bonus_drop": false,
+    "bonus_drop_min": 1,
+    "bonus_drop_max": 1,
+    "stats": []
+  }
+]

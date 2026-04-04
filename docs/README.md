@@ -8,12 +8,12 @@ The Forge is a **simulation-driven analysis platform** for Last Epoch, designed 
 
 ## 📚 Documentation Index
 
-* system-overview.md → High-level architecture and data flow
-* data-models.md → Core data structures used across the system
-* engine-architecture.md → Backend engine structure and responsibilities
-* simulation-design.md → Mathematical and simulation logic
-* development-roadmap.md → Step-by-step implementation plan
-* passive-tree.md → Passive tree system design
+* [architecture.md](architecture.md) → System overview, engine structure, and simulation math
+* [data_models.md](data_models.md) → Core data structures used across the system
+* [api_reference.md](api_reference.md) → Full REST API reference with request/response schemas
+* [passive_tree.md](passive_tree.md) → Passive tree system design
+* [development_roadmap.md](development_roadmap.md) → Master development roadmap and feature plan
+* [development_phases.md](development_phases.md) → GitHub workflow phases guide
 
 ---
 

@@ -1,0 +1,205 @@
+{
+  "dungeons": [
+    {
+      "id": 0,
+      "name": "Temporal Sanctum",
+      "mods": []
+    },
+    {
+      "id": 1,
+      "name": "Lightless Arbor",
+      "mods": []
+    },
+    {
+      "id": 2,
+      "name": "Soulfire Bastion",
+      "mods": []
+    }
+  ],
+  "vault_mod_strings": [
+    {
+      "id": 230002,
+      "text": "All chests drop 15% more items (multiplicative with other modifiers)"
+    },
+    {
+      "id": 230003,
+      "text": "All chests drop 20% more exalted items (multiplicative with other modifiers)"
+    },
+    {
+      "id": 230004,
+      "text": "A random chests drops 25% more items (multiplicative with other modifiers)"
+    },
+    {
+      "id": 230005,
+      "text": "All chests drop 30% more items (multiplicative with other modifiers)"
+    },
+    {
+      "id": 230006,
+      "text": "A random chests drops 45% more items (multiplicative with other modifiers)"
+    },
+    {
+      "id": 230007,
+      "text": "Adds a Chest that drops many Affix Shards."
+    },
+    {
+      "id": 230008,
+      "text": "Adds a Chest that drops an exalted helmet, exalted body armour, exalted gloves, and exalted boots."
+    },
+    {
+      "id": 230009,
+      "text": "Adds a Chest that drops several exalted helmets."
+    },
+    {
+      "id": 230010,
+      "text": "Adds a Chest that drops several exalted items."
+    },
+    {
+      "id": 230011,
+      "text": "Adds a Chest that drops many Runes and Glyphs."
+    },
+    {
+      "id": 230012,
+      "text": "Adds a Chest that drops several Idols."
+    },
+    {
+      "id": 230013,
+      "text": "Adds a Chest that drops a magic item, a rare item, and a unique item."
+    },
+    {
+      "id": 230014,
+      "text": "Adds a Chest that drops several rare pairs of boots."
+    },
+    {
+      "id": 230015,
+      "text": "Adds a Chest that drops a rare item, an exalted item, a unique item, and a set item."
+    },
+    {
+      "id": 230016,
+      "text": "Adds a Chest that drops a rare weapon, an exalted weapon, and a unique weapon."
+    },
+    {
+      "id": 230017,
+      "text": "Adds a Chest that drops a rare helmet, rare body armour, rare gloves, and rare boots."
+    },
+    {
+      "id": 230018,
+      "text": "Adds a Chest that drops several rare helmets."
+    },
+    {
+      "id": 230019,
+      "text": "Adds a Chest that drops several rare items."
+    },
+    {
+      "id": 230020,
+      "text": "Duplicates all items from a Random Chest\n\nThis is additive with other item duplication effects"
+    },
+    {
+      "id": 230021,
+      "text": "Duplicates every chest\n\nThis occurs after modifiers that apply to a random chest have already been applied"
+    },
+    {
+      "id": 230022,
+      "text": "Duplicates all unique items from every Chest\n\nThis is additive with other item duplication effects"
+    },
+    {
+      "id": 230023,
+      "text": "All items from Every Chest have a 20% chance to be duplicated.\n\nThis is additive with other item duplication effects. Duplication chance above 100% can result in even more copies."
+    },
+    {
+      "id": 230024,
+      "text": "All items from Every Chest have a 50% chance to be duplicated.\n\nThis is additive with other item duplication effects. Duplication chance above 100% can result in even more copies."
+    },
+    {
+      "id": 230025,
+      "text": "Adds an additional Exalted Item to All Chests"
+    },
+    {
+      "id": 230026,
+      "text": "Adds several pieces of Exalted Jewellery to a Random Chest"
+    },
+    {
+      "id": 230027,
+      "text": "Adds additional Exalted Relic to All Chests"
+    },
+    {
+      "id": 230028,
+      "text": "Adds several Exalted Weapons to a Random Chest"
+    },
+    {
+      "id": 230029,
+      "text": "Adds an additional Glyph of Chaos to All Chests"
+    },
+    {
+      "id": 230030,
+      "text": "Adds an additional Glyph of Despair to All Chests"
+    },
+    {
+      "id": 230031,
+      "text": "Adds an additional Glyph of Hope to All Chests"
+    },
+    {
+      "id": 230032,
+      "text": "Adds many Glyphs to a Random Chest"
+    },
+    {
+      "id": 230033,
+      "text": "Adds an idol to Every Chest"
+    },
+    {
+      "id": 230034,
+      "text": "Adds a Lightless Arbor Key to a Random Chest"
+    },
+    {
+      "id": 230035,
+      "text": "Adds additional Rare pair of Boots to All Chests"
+    },
+    {
+      "id": 230036,
+      "text": "Adds an additional Rare Item to All Chests"
+    },
+    {
+      "id": 230037,
+      "text": "Adds several pieces of Rare Jewellery to a Random Chest"
+    },
+    {
+      "id": 230038,
+      "text": "Adds several Rare Weapons to a Random Chest"
+    },
+    {
+      "id": 230039,
+      "text": "Adds an additional Rune of Ascendance to All Chests"
+    },
+    {
+      "id": 230040,
+      "text": "Adds an additional Rune of Shattering to All Chests"
+    },
+    {
+      "id": 230041,
+      "text": "Adds many Runes to a Random Chest"
+    },
+    {
+      "id": 230042,
+      "text": "Adds a Set Item to a Random Chest"
+    },
+    {
+      "id": 230043,
+      "text": "Adds an additional Set Item to All Chests"
+    },
+    {
+      "id": 230044,
+      "text": "Triplicates every chest\n\nThis occurs after modifiers that apply to a random chest have already been applied"
+    },
+    {
+      "id": 230045,
+      "text": "Adds a Unique Item to a Random Chest"
+    },
+    {
+      "id": 230046,
+      "text": "Adds a Unique Item to Every Chest"
+    },
+    {
+      "id": 230047,
+      "text": "Adds a Unique Weapon to a Random Chest"
+    }
+  ]
+}

@@ -14,7 +14,7 @@ Each phase represents a **major system milestone**, not just tasks.
 
 ---
 
-# 🚀 Phase 1 — Backend Foundation
+# ✅ Phase 1 — Backend Foundation (Complete)
 
 ## Goal
 
@@ -48,7 +48,7 @@ Establish the backend as the **single source of truth**.
 
 ---
 
-# ⚙️ Phase 2 — Stat Engine
+# ✅ Phase 2 — Stat Engine (Complete)
 
 ## Goal
 
@@ -81,7 +81,7 @@ Accurately calculate all character stats.
 
 ---
 
-# ⚔️ Phase 3 — Simulation Engine
+# ✅ Phase 3 — Simulation Engine (Complete)
 
 ## Goal
 
@@ -114,7 +114,7 @@ Simulate combat and survivability.
 
 ---
 
-# 🔨 Phase 4 — Crafting Engine
+# ✅ Phase 4 — Crafting Engine (Complete)
 
 ## Goal
 
@@ -147,7 +147,7 @@ Simulate crafting outcomes and probabilities.
 
 ---
 
-# 🧠 Phase 5 — Optimization & Analysis
+# 🔧 Phase 5 — Optimization & Analysis (In Progress)
 
 ## Goal
 

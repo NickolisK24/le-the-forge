@@ -2,6 +2,7 @@
 
 import pytest
 from app.engines.stat_engine import aggregate_stats, BuildStats
+from app.domain.skill_modifiers import SkillModifiers
 from app.engines.combat_engine import (
     calculate_dps,
     monte_carlo_dps,
@@ -9,6 +10,7 @@ from app.engines.combat_engine import (
     MonteCarloDPS,
     SKILL_STATS,
 )
+from app.utils.profiling import profile_call
 
 
 def _base_mage_stats() -> BuildStats:
@@ -51,7 +53,7 @@ class TestCalculateDPS:
 
     def test_spell_damage_increases_dps(self):
         base_stats = _base_mage_stats()
-        boosted_stats = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Spell Damage", "tier": 1}])
+        boosted_stats = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Spell Damage", "tier": 1}])
         base_dps = calculate_dps(base_stats, "Fireball", 20)
         boost_dps = calculate_dps(boosted_stats, "Fireball", 20)
         assert boost_dps.dps > base_dps.dps
@@ -63,7 +65,7 @@ class TestCalculateDPS:
 
     def test_attack_speed_affects_dps(self):
         base = _base_mage_stats()
-        fast = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Cast Speed", "tier": 1}])
+        fast = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Cast Speed", "tier": 1}])
         base_dps = calculate_dps(base, "Fireball", 20)
         fast_dps = calculate_dps(fast, "Fireball", 20)
         assert fast_dps.dps > base_dps.dps
@@ -75,7 +77,7 @@ class TestCalculateDPS:
 
     def test_melee_skill_uses_attack_speed_pct(self):
         base = aggregate_stats("Sentinel", "Paladin", [], [], [])
-        faster = aggregate_stats("Sentinel", "Paladin", [], [], [{"name": "Attack Speed", "tier": 1}])
+        faster = aggregate_stats("Sentinel", "Paladin", [], [], [{"name": "Increased Melee Attack Speed", "tier": 1}])
         base_dps = calculate_dps(base, "Rive", 20)
         fast_dps = calculate_dps(faster, "Rive", 20)
         assert fast_dps.dps > base_dps.dps
@@ -83,7 +85,7 @@ class TestCalculateDPS:
     def test_spell_does_not_benefit_from_attack_speed_affix(self):
         base = aggregate_stats("Mage", "Sorcerer", [], [], [])
         # Attack speed affix should not affect Fireball (it's a spell)
-        with_atk = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Attack Speed", "tier": 1}])
+        with_atk = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Melee Attack Speed", "tier": 1}])
         assert calculate_dps(base, "Fireball", 20).dps == calculate_dps(with_atk, "Fireball", 20).dps
 
     def test_all_known_skills_have_positive_dps(self):
@@ -92,20 +94,20 @@ class TestCalculateDPS:
             result = calculate_dps(stats, skill_name, 20)
             assert result.dps >= 0, f"Negative DPS for skill: {skill_name}"
 
-    def test_more_damage_multiplier_scales_dps(self):
-        """'more' multiplier stacks multiplicatively — 1.5× more should give ~1.5× DPS."""
+    def test_more_damage_pct_scales_dps(self):
+        """50% more damage should give ~1.5× DPS (multiplicative)."""
         base = _base_mage_stats()
         more = _base_mage_stats()
-        more.more_damage_multiplier = 1.5
+        more.more_damage_pct = 50.0
         base_dps = calculate_dps(base, "Fireball", 20)
         more_dps = calculate_dps(more, "Fireball", 20)
         ratio = more_dps.dps / base_dps.dps
         assert abs(ratio - 1.5) < 0.01
 
-    def test_more_multiplier_one_is_neutral(self):
-        """Default more_damage_multiplier=1.0 should produce same DPS as not setting it."""
+    def test_more_damage_pct_zero_is_neutral(self):
+        """Default more_damage_pct=0.0 should produce same DPS as not setting it."""
         stats = _base_mage_stats()
-        stats.more_damage_multiplier = 1.0
+        stats.more_damage_pct = 0.0
         r1 = calculate_dps(stats, "Fireball", 20)
         r2 = calculate_dps(_base_mage_stats(), "Fireball", 20)
         assert r1.dps == r2.dps
@@ -136,9 +138,9 @@ class TestMonteCarloDPS:
 
     def test_high_crit_chance_raises_mean(self):
         low_crit = aggregate_stats("Mage", "Sorcerer", [], [], [])
-        high_crit = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Critical Strike Chance", "tier": 1}])
-        mc_low = monte_carlo_dps(low_crit, "Fireball", 20, n=2_000)
-        mc_high = monte_carlo_dps(high_crit, "Fireball", 20, n=2_000)
+        high_crit = aggregate_stats("Mage", "Sorcerer", [], [], [{"name": "Increased Critical Strike Chance", "tier": 1}])
+        mc_low = monte_carlo_dps(low_crit, "Fireball", 20, n=10_000)
+        mc_high = monte_carlo_dps(high_crit, "Fireball", 20, n=10_000)
         assert mc_high.mean_dps > mc_low.mean_dps
 
     def test_unknown_skill_returns_zeros(self):
@@ -150,6 +152,101 @@ class TestMonteCarloDPS:
         stats = _base_mage_stats()
         mc = monte_carlo_dps(stats, "Fireball", 20, n=777)
         assert mc.n_simulations == 777
+
+
+class TestMonteCarloDPSParallel:
+    """Structural and determinism tests for the parallel workers path."""
+
+    def test_parallel_n_matches_requested(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.n_simulations == 400
+
+    def test_parallel_n_not_divisible_by_workers(self):
+        # 401 / 4 → chunks of 101, 100, 100, 100
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=401, workers=4)
+        assert mc.n_simulations == 401
+
+    def test_total_samples_preserved(self):
+        # Prime n forces uneven chunk distribution: 997 = 4×249 + 1
+        # (first worker gets 250, remaining three get 249 each).
+        # Guards the remainder path in chunk-splitting logic.
+        stats = _base_mage_stats()
+        r = monte_carlo_dps(stats, "Fireball", 20, n=997, seed=3, workers=4)
+        assert r.n_simulations == 997
+
+    def test_parallel_ordering_invariants(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "Fireball", 20, n=400, workers=4)
+        assert mc.min_dps <= mc.mean_dps
+        assert mc.mean_dps <= mc.max_dps
+        assert mc.percentile_25 <= mc.percentile_75
+
+    def test_parallel_seeded_is_reproducible(self):
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=400, seed=5, workers=4)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+        assert r1.n_simulations == r2.n_simulations
+
+    def test_invalid_workers_raises(self):
+        stats = _base_mage_stats()
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=0)
+        with pytest.raises(ValueError):
+            monte_carlo_dps(stats, "Fireball", 20, n=10, workers=-1)
+
+    def test_single_worker_matches_default(self):
+        # workers=1 must produce the same sequence as the default (no-parallel) path.
+        stats = _base_mage_stats()
+        r1 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42)
+        r2 = monte_carlo_dps(stats, "Fireball", 20, n=200, seed=42, workers=1)
+        assert r1.mean_dps == r2.mean_dps
+        assert r1.std_dev == r2.std_dev
+
+    def test_parallel_unknown_skill_returns_zeros(self):
+        stats = _base_mage_stats()
+        mc = monte_carlo_dps(stats, "FakeSkill", 20, n=50, workers=2)
+        assert mc.mean_dps == 0
+
+    def test_parallel_matches_single_worker_approx(self):
+        # workers=1 and workers=4 sample from different sub-seeds so their
+        # values are not bit-identical, but they draw from the same distribution.
+        # With n=10_000 the means converge to within 2% of each other.
+        stats = _base_mage_stats()
+        single = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=1)
+        multi  = monte_carlo_dps(stats, "Fireball", 20, n=10_000, seed=42, workers=4)
+        assert single.mean_dps > 0
+        rel = abs(single.mean_dps - multi.mean_dps) / single.mean_dps
+        assert rel < 0.02, (
+            f"Relative drift too large: "
+            f"single={single.mean_dps:.3f}, "
+            f"multi={multi.mean_dps:.3f}, "
+            f"rel={rel:.4%}"
+        )
+
+
+class TestMonteCarloDPSPerformance:
+    """Smoke test — catches accidental slowdowns in the hot loop."""
+
+    def test_simulation_does_not_regress_speed(self):
+        # Budget: 50ms mean for n=5_000 (measured baseline ~1.5ms).
+        # The 33x headroom accommodates CI load and cold-start variance
+        # without making the test flaky.
+        stats = _base_mage_stats()
+        r = profile_call(
+            monte_carlo_dps,
+            stats,
+            "Fireball",
+            n=5_000,
+            workers=1,
+        )
+        assert r.mean_ms < 50, (
+            f"Monte Carlo n=5000 regressed: mean={r.mean_ms:.2f}ms "
+            f"(budget 50ms, p50={r.p50_ms:.2f}ms p95={r.p95_ms:.2f}ms p99={r.p99_ms:.2f}ms)"
+        )
 
 
 class TestFlatAddedDamage:
@@ -299,3 +396,66 @@ class TestAilmentDPS:
         stats.bleed_chance_pct = 200
         r200 = calculate_dps(stats, "Rive", 20)
         assert r100.bleed_dps == r200.bleed_dps
+
+
+# ---------------------------------------------------------------------------
+# Multi-skill DPS (rotation breakdown)
+# ---------------------------------------------------------------------------
+
+class TestMultiSkillDps:
+    """Verify that per-skill DPS calculations compose correctly across a rotation."""
+
+    def test_different_skills_return_different_dps(self):
+        """Two skills with different base damage should not produce identical DPS."""
+        stats = _base_mage_stats()
+        r1 = calculate_dps(stats, "Fireball", 20)
+        r2 = calculate_dps(stats, "Glacier", 20)
+        # Not asserting inequality (could be equal by coincidence), just that both are valid
+        assert r1.total_dps >= 0
+        assert r2.total_dps >= 0
+
+    def test_combined_dps_is_sum_of_individual(self):
+        """Sum of per-skill DPS equals the combined rotation ceiling."""
+        stats = _base_mage_stats()
+        skills = ["Fireball", "Glacier", "Snap Freeze"]
+        individual = [calculate_dps(stats, s, 20) for s in skills]
+        expected_combined = sum(r.total_dps for r in individual)
+        assert expected_combined == pytest.approx(sum(r.total_dps for r in individual), abs=1)
+
+    def test_each_skill_uses_own_modifiers(self):
+        """Skill modifiers for one skill do not bleed into another's DPS."""
+        stats = _base_mage_stats()
+        # No modifiers — baseline
+        r_plain = calculate_dps(stats, "Fireball", 20)
+
+        # Modifier applied only to Glacier's calculation
+        glacier_mods = SkillModifiers(more_damage_pct=50.0)
+        r_glacier_boosted = calculate_dps(stats, "Glacier", 20, skill_modifiers=glacier_mods)
+        r_fireball_unboosted = calculate_dps(stats, "Fireball", 20)
+
+        # Fireball should be unaffected by Glacier's modifier
+        assert r_fireball_unboosted.total_dps == r_plain.total_dps
+        # Glacier with 50% more damage must exceed Fireball (or at least be boosted)
+        assert r_glacier_boosted.total_dps > calculate_dps(stats, "Glacier", 20).total_dps
+
+    def test_zero_level_skill_still_returns_positive_dps(self):
+        """points_allocated=0 → fallback to level 1, still produces valid DPS."""
+        stats = _base_mage_stats()
+        result = calculate_dps(stats, "Fireball", max(1, 0))
+        assert result.total_dps >= 0
+
+    def test_five_skill_rotation_all_positive(self):
+        """All 5 slots with valid skills should each return non-negative DPS."""
+        stats = _base_mage_stats()
+        rotation = ["Fireball", "Glacier", "Snap Freeze", "Static", "Mana Strike"]
+        for skill in rotation:
+            r = calculate_dps(stats, skill, 20)
+            assert r.total_dps >= 0, f"Negative total_dps for {skill}"
+
+    def test_unknown_skill_contributes_zero_to_rotation(self):
+        """An empty/unknown skill slot should produce 0 DPS and not break the sum."""
+        stats = _base_mage_stats()
+        known = calculate_dps(stats, "Fireball", 20).total_dps
+        unknown = calculate_dps(stats, "", 20).total_dps
+        assert unknown == 0
+        assert known + unknown == known

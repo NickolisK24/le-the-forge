@@ -4,6 +4,7 @@
  * background refetching.
  */
 
+import { useState, useCallback, useEffect, useRef } from "react";
 import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { buildsApi, craftApi, refApi } from "@/lib/api";
 import type {
@@ -51,9 +52,25 @@ export function useVote() {
   return useMutation({
     mutationFn: ({ slug, direction }: { slug: string; direction: 1 | -1 }) =>
       buildsApi.vote(slug, direction),
-    onSuccess: (_data, { slug }) => {
-      qc.invalidateQueries({ queryKey: qk.builds.all });
-      qc.invalidateQueries({ queryKey: qk.builds.detail(slug) });
+    onSuccess: (data, { slug }) => {
+      // Update cache directly — do NOT invalidate detail (would re-fetch and increment views)
+      if (data.data) {
+        qc.setQueryData(qk.builds.detail(slug), (old: any) => {
+          if (!old?.data) return old;
+          return {
+            ...old,
+            data: {
+              ...old.data,
+              vote_count: data.data!.vote_count,
+              user_vote: data.data!.user_vote,
+              tier: data.data!.tier,
+            },
+          };
+        });
+      }
+      // Only invalidate list queries — NOT builds.all, which would also match
+      // the detail query and trigger a re-fetch that increments view_count.
+      qc.invalidateQueries({ queryKey: ["builds", "list"] });
     },
   });
 }
@@ -75,6 +92,23 @@ export function useCreateBuild() {
     },
   });
 }
+
+export function useUpdateBuild() {
+  const qc = useQueryClient();
+  return useMutation({
+    mutationFn: ({ slug, payload }: { slug: string; payload: Partial<BuildCreatePayload> }) =>
+      buildsApi.update(slug, payload),
+    onSuccess: (_data, { slug }) => {
+      // Update detail cache directly (no re-fetch = no view increment)
+      qc.setQueryData(qk.builds.detail(slug), (old: any) => {
+        if (!old?.data || !_data.data) return old;
+        return { ...old, data: _data.data };
+      });
+      qc.invalidateQueries({ queryKey: ["builds", "list"] });
+    },
+  });
+}
+
 
 export function useDeleteBuild() {
   const qc = useQueryClient();
@@ -162,6 +196,22 @@ export function useItemTypes() {
   });
 }
 
+export function useBaseItems() {
+  return useQuery({
+    queryKey: ["ref", "base-items"],
+    queryFn: () => refApi.baseItems(),
+    staleTime: Infinity,
+  });
+}
+
+export function useFpRanges() {
+  return useQuery({
+    queryKey: ["ref", "fp-ranges"],
+    queryFn: () => refApi.fpRanges(),
+    staleTime: Infinity,
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Profile
 // ---------------------------------------------------------------------------
@@ -190,4 +240,116 @@ export function useProfileSessions(page = 1) {
     queryFn: () => profileApi.sessions(page),
     staleTime: 30_000,
   });
+}
+
+// ---------------------------------------------------------------------------
+// UI24 — Undo / Redo
+// ---------------------------------------------------------------------------
+
+interface UndoRedoOptions {
+  maxHistory?: number;
+}
+
+export function useUndoRedo<T>(initialState: T, options: UndoRedoOptions = {}) {
+  const { maxHistory = 50 } = options;
+  const [past, setPast] = useState<T[]>([]);
+  const [present, setPresent] = useState<T>(initialState);
+  const [future, setFuture] = useState<T[]>([]);
+
+  const canUndo = past.length > 0;
+  const canRedo = future.length > 0;
+
+  const push = useCallback(
+    (newState: T) => {
+      setPast((p) => [...p.slice(-(maxHistory - 1)), present]);
+      setPresent(newState);
+      setFuture([]);
+    },
+    [present, maxHistory]
+  );
+
+  const undo = useCallback(() => {
+    if (!canUndo) return;
+    const prev = past[past.length - 1];
+    setPast((p) => p.slice(0, -1));
+    setFuture((f) => [present, ...f]);
+    setPresent(prev);
+  }, [past, present, canUndo]);
+
+  const redo = useCallback(() => {
+    if (!canRedo) return;
+    const next = future[0];
+    setFuture((f) => f.slice(1));
+    setPast((p) => [...p, present]);
+    setPresent(next);
+  }, [future, present, canRedo]);
+
+  const reset = useCallback((state: T) => {
+    setPast([]);
+    setPresent(state);
+    setFuture([]);
+  }, []);
+
+  return { state: present, push, undo, redo, reset, canUndo, canRedo };
+}
+
+// ---------------------------------------------------------------------------
+// UI25 — Autosave
+// ---------------------------------------------------------------------------
+
+type SaveStatus = "idle" | "saving" | "saved" | "error";
+
+interface AutosaveOptions {
+  debounceMs?: number;
+  onSave: (data: unknown) => Promise<void>;
+  enabled?: boolean;
+}
+
+export function useAutosave(
+  data: unknown,
+  options: AutosaveOptions
+): SaveStatus {
+  const { debounceMs = 1500, onSave, enabled = true } = options;
+  const [status, setStatus] = useState<SaveStatus>("idle");
+  const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const dataRef = useRef(data);
+  const mountedRef = useRef(true);
+
+  useEffect(() => {
+    dataRef.current = data;
+  }, [data]);
+
+  useEffect(() => {
+    mountedRef.current = true;
+    return () => {
+      mountedRef.current = false;
+    };
+  }, []);
+
+  useEffect(() => {
+    if (!enabled) return;
+
+    if (timerRef.current) clearTimeout(timerRef.current);
+
+    timerRef.current = setTimeout(async () => {
+      if (!mountedRef.current) return;
+      setStatus("saving");
+      try {
+        await onSave(dataRef.current);
+        if (mountedRef.current) setStatus("saved");
+        // Reset to idle after 2s
+        setTimeout(() => {
+          if (mountedRef.current) setStatus("idle");
+        }, 2000);
+      } catch {
+        if (mountedRef.current) setStatus("error");
+      }
+    }, debounceMs);
+
+    return () => {
+      if (timerRef.current) clearTimeout(timerRef.current);
+    };
+  }, [data, debounceMs, onSave, enabled]);
+
+  return status;
 }

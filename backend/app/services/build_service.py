@@ -69,7 +69,7 @@ def create_build(data: dict, user_id: Optional[str] = None) -> Build:
     for idx, skill_data in enumerate(data.get("skills", [])[:5]):
         skill = BuildSkill(
             build=build,
-            slot=idx,
+            slot=idx + 1,
             skill_name=skill_data.get("skill_name", ""),
             points_allocated=skill_data.get("points_allocated", 0),
             spec_tree=skill_data.get("spec_tree", []),
@@ -92,7 +92,7 @@ def get_build(build_id_or_slug: str, increment_views: bool = False) -> Optional[
 
 def update_build(build: Build, data: dict) -> Build:
     updatable = [
-        "name", "description", "passive_tree", "gear",
+        "name", "description", "level", "passive_tree", "gear",
         "is_ssf", "is_hc", "is_ladder_viable", "is_budget",
         "patch_version", "is_public",
     ]
@@ -106,7 +106,7 @@ def update_build(build: Build, data: dict) -> Build:
         for idx, skill_data in enumerate(data["skills"][:5]):
             skill = BuildSkill(
                 build_id=build.id,
-                slot=idx,
+                slot=idx + 1,
                 skill_name=skill_data.get("skill_name", ""),
                 points_allocated=skill_data.get("points_allocated", 0),
                 spec_tree=skill_data.get("spec_tree", []),
@@ -239,40 +239,55 @@ def simulate_build(build: Build) -> dict:
 
 def meta_snapshot() -> dict:
     """Aggregate stats for the meta tracker sidebar."""
-    from sqlalchemy import func, text
+    from sqlalchemy import func
 
-    total = Build.query.filter_by(is_public=True).count()
+    _empty = {
+        "total_builds": 0,
+        "most_played_class": "N/A",
+        "top_mastery": "N/A",
+        "class_distribution": [],
+        "s_tier_builds": [],
+    }
 
-    class_counts = (
-        db.session.query(Build.character_class, func.count(Build.id))
-        .filter_by(is_public=True)
-        .group_by(Build.character_class)
-        .order_by(desc(func.count(Build.id)))
-        .all()
-    )
+    try:
+        total = Build.query.filter_by(is_public=True).count()
 
-    most_played = class_counts[0][0] if class_counts else "N/A"
+        class_counts = (
+            db.session.query(Build.character_class, func.count(Build.id))
+            .filter_by(is_public=True)
+            .group_by(Build.character_class)
+            .order_by(desc(func.count(Build.id)))
+            .all()
+        )
 
-    top_mastery = (
-        db.session.query(Build.mastery, func.count(Build.id))
-        .filter_by(is_public=True)
-        .group_by(Build.mastery)
-        .order_by(desc(func.count(Build.id)))
-        .first()
-    )
+        most_played = class_counts[0][0] if class_counts else "N/A"
 
-    return {
-        "total_builds": total,
-        "most_played_class": most_played,
-        "top_mastery": top_mastery[0] if top_mastery else "N/A",
-        "class_distribution": [
-            {"class": cls, "count": cnt} for cls, cnt in class_counts
-        ],
-        "s_tier_builds": [
-            {"id": b.id, "slug": b.slug, "name": b.name, "mastery": b.mastery}
-            for b in Build.query.filter_by(tier="S", is_public=True)
+        top_mastery = (
+            db.session.query(Build.mastery, func.count(Build.id))
+            .filter_by(is_public=True)
+            .group_by(Build.mastery)
+            .order_by(desc(func.count(Build.id)))
+            .first()
+        )
+
+        s_tier = (
+            Build.query.filter_by(tier="S", is_public=True)
             .order_by(desc(Build.vote_count))
             .limit(5)
             .all()
-        ],
-    }
+        )
+
+        return {
+            "total_builds": total,
+            "most_played_class": most_played,
+            "top_mastery": top_mastery[0] if top_mastery else "N/A",
+            "class_distribution": [
+                {"class": cls, "count": cnt} for cls, cnt in class_counts
+            ],
+            "s_tier_builds": [
+                {"id": b.id, "slug": b.slug, "name": b.name, "mastery": b.mastery}
+                for b in s_tier
+            ],
+        }
+    except Exception:
+        return _empty

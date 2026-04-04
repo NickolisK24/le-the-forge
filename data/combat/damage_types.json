@@ -1,0 +1,65 @@
+[
+  {
+    "id": "physical",
+    "name": "Physical",
+    "tags": ["physical"],
+    "description": "Physical damage. Reduced by armor and physical resistance.",
+    "stat_key": "physical_damage_pct",
+    "resistance_stat": "physical_res",
+    "penetration_stat": "physical_penetration"
+  },
+  {
+    "id": "fire",
+    "name": "Fire",
+    "tags": ["elemental", "fire"],
+    "description": "Fire damage. Reduced by fire resistance. Can ignite.",
+    "stat_key": "fire_damage_pct",
+    "resistance_stat": "fire_res",
+    "penetration_stat": "fire_penetration"
+  },
+  {
+    "id": "cold",
+    "name": "Cold",
+    "tags": ["elemental", "cold"],
+    "description": "Cold damage. Reduced by cold resistance. Can chill and freeze.",
+    "stat_key": "cold_damage_pct",
+    "resistance_stat": "cold_res",
+    "penetration_stat": "cold_penetration"
+  },
+  {
+    "id": "lightning",
+    "name": "Lightning",
+    "tags": ["elemental", "lightning"],
+    "description": "Lightning damage. Reduced by lightning resistance. Can shock.",
+    "stat_key": "lightning_damage_pct",
+    "resistance_stat": "lightning_res",
+    "penetration_stat": "lightning_penetration"
+  },
+  {
+    "id": "void",
+    "name": "Void",
+    "tags": ["void"],
+    "description": "Void damage. Reduced by void resistance.",
+    "stat_key": "void_damage_pct",
+    "resistance_stat": "void_res",
+    "penetration_stat": "void_penetration"
+  },
+  {
+    "id": "necrotic",
+    "name": "Necrotic",
+    "tags": ["necrotic"],
+    "description": "Necrotic damage. Reduced by necrotic resistance.",
+    "stat_key": "necrotic_damage_pct",
+    "resistance_stat": "necrotic_res",
+    "penetration_stat": "necrotic_penetration"
+  },
+  {
+    "id": "poison",
+    "name": "Poison",
+    "tags": ["poison", "ailment", "dot"],
+    "description": "Poison damage over time. Reduced by poison resistance.",
+    "stat_key": "poison_damage_pct",
+    "resistance_stat": "poison_res",
+    "penetration_stat": null
+  }
+]

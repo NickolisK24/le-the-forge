@@ -1,0 +1,157 @@
+{
+  "helmet": [
+    {"name": "Rusted Coif",      "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 20,  "implicit": "20-35 Armour",      "tags": ["armour", "helmet"]},
+    {"name": "Iron Helm",        "level_req": 9,  "min_fp": 14, "max_fp": 22, "armor": 45,  "implicit": "35-55 Armour",      "tags": ["armour", "helmet"]},
+    {"name": "Visored Helm",     "level_req": 18, "min_fp": 17, "max_fp": 26, "armor": 75,  "implicit": "55-80 Armour",      "tags": ["armour", "helmet"]},
+    {"name": "Bascinet",         "level_req": 28, "min_fp": 20, "max_fp": 30, "armor": 115, "implicit": "80-115 Armour",     "tags": ["armour", "helmet"]},
+    {"name": "Gladiator's Helm", "level_req": 40, "min_fp": 24, "max_fp": 34, "armor": 165, "implicit": "115-155 Armour",    "tags": ["armour", "helmet"]},
+    {"name": "Ornate Helm",      "level_req": 52, "min_fp": 28, "max_fp": 38, "armor": 220, "implicit": "155-205 Armour",    "tags": ["armour", "helmet"]},
+    {"name": "Imperial Helm",    "level_req": 65, "min_fp": 32, "max_fp": 44, "armor": 285, "implicit": "205-265 Armour",    "tags": ["armour", "helmet"]}
+  ],
+  "body": [
+    {"name": "Ruined Tunic",  "level_req": 1,  "min_fp": 12, "max_fp": 22, "armor": 50,  "implicit": "50-90 Armour",      "tags": ["armour", "body"]},
+    {"name": "Leather Vest",  "level_req": 9,  "min_fp": 16, "max_fp": 26, "armor": 100, "implicit": "90-145 Armour",     "tags": ["armour", "body"]},
+    {"name": "Brigandine",    "level_req": 20, "min_fp": 20, "max_fp": 30, "armor": 165, "implicit": "145-215 Armour",    "tags": ["armour", "body"]},
+    {"name": "Hauberk",       "level_req": 32, "min_fp": 24, "max_fp": 36, "armor": 240, "implicit": "215-295 Armour",    "tags": ["armour", "body"]},
+    {"name": "Chain Mail",    "level_req": 44, "min_fp": 28, "max_fp": 40, "armor": 325, "implicit": "295-385 Armour",    "tags": ["armour", "body"]},
+    {"name": "Plate Mail",    "level_req": 56, "min_fp": 32, "max_fp": 44, "armor": 425, "implicit": "385-490 Armour",    "tags": ["armour", "body"]},
+    {"name": "Full Plate",    "level_req": 68, "min_fp": 36, "max_fp": 50, "armor": 540, "implicit": "490-610 Armour",    "tags": ["armour", "body"]}
+  ],
+  "gloves": [
+    {"name": "Fingerless Gloves",  "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 12,  "implicit": "12-22 Armour",   "tags": ["armour", "gloves"]},
+    {"name": "Leather Gloves",     "level_req": 10, "min_fp": 13, "max_fp": 21, "armor": 28,  "implicit": "22-38 Armour",   "tags": ["armour", "gloves"]},
+    {"name": "Chain Gloves",       "level_req": 22, "min_fp": 16, "max_fp": 24, "armor": 52,  "implicit": "38-62 Armour",   "tags": ["armour", "gloves"]},
+    {"name": "Plate Gauntlets",    "level_req": 36, "min_fp": 20, "max_fp": 28, "armor": 85,  "implicit": "62-95 Armour",   "tags": ["armour", "gloves"]},
+    {"name": "Vanguard Gauntlets", "level_req": 50, "min_fp": 24, "max_fp": 34, "armor": 125, "implicit": "95-140 Armour",  "tags": ["armour", "gloves"]},
+    {"name": "Imperial Gauntlets", "level_req": 65, "min_fp": 28, "max_fp": 40, "armor": 175, "implicit": "140-195 Armour", "tags": ["armour", "gloves"]}
+  ],
+  "boots": [
+    {"name": "Sandals",        "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 10,  "implicit": "15% Movement Speed", "tags": ["armour", "boots"]},
+    {"name": "Leather Boots",  "level_req": 10, "min_fp": 13, "max_fp": 21, "armor": 25,  "implicit": "15% Movement Speed", "tags": ["armour", "boots"]},
+    {"name": "Chain Boots",    "level_req": 22, "min_fp": 16, "max_fp": 24, "armor": 48,  "implicit": "15% Movement Speed", "tags": ["armour", "boots"]},
+    {"name": "Plate Boots",    "level_req": 36, "min_fp": 20, "max_fp": 28, "armor": 78,  "implicit": "15% Movement Speed", "tags": ["armour", "boots"]},
+    {"name": "Vanguard Boots", "level_req": 50, "min_fp": 24, "max_fp": 34, "armor": 115, "implicit": "15% Movement Speed", "tags": ["armour", "boots"]},
+    {"name": "Imperial Boots", "level_req": 65, "min_fp": 28, "max_fp": 40, "armor": 160, "implicit": "15% Movement Speed", "tags": ["armour", "boots"]}
+  ],
+  "belt": [
+    {"name": "Leather Belt",  "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "50-65 Endurance Threshold",   "tags": ["accessories", "belt"]},
+    {"name": "Heavy Belt",    "level_req": 15, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "65-85 Endurance Threshold",   "tags": ["accessories", "belt"]},
+    {"name": "Studded Belt",  "level_req": 30, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": "85-110 Endurance Threshold",  "tags": ["accessories", "belt"]},
+    {"name": "Ornate Belt",   "level_req": 48, "min_fp": 22, "max_fp": 32, "armor": 0, "implicit": "110-140 Endurance Threshold", "tags": ["accessories", "belt"]},
+    {"name": "Imperial Belt", "level_req": 65, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": "140-175 Endurance Threshold", "tags": ["accessories", "belt"]}
+  ],
+  "amulet": [
+    {"name": "Crude Amulet",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": null, "tags": ["accessories", "amulet"]},
+    {"name": "Twisted Amulet",  "level_req": 15, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": null, "tags": ["accessories", "amulet"]},
+    {"name": "Polished Amulet", "level_req": 30, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": null, "tags": ["accessories", "amulet"]},
+    {"name": "Gold Amulet",     "level_req": 48, "min_fp": 22, "max_fp": 32, "armor": 0, "implicit": null, "tags": ["accessories", "amulet"]},
+    {"name": "Imperial Amulet", "level_req": 65, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": null, "tags": ["accessories", "amulet"]}
+  ],
+  "ring": [
+    {"name": "Unset Ring",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]},
+    {"name": "Coral Ring",    "level_req": 10, "min_fp": 12, "max_fp": 20, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]},
+    {"name": "Twisted Ring",  "level_req": 22, "min_fp": 15, "max_fp": 23, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]},
+    {"name": "Amethyst Ring", "level_req": 36, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]},
+    {"name": "Diamond Ring",  "level_req": 50, "min_fp": 22, "max_fp": 32, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]},
+    {"name": "Imperial Ring", "level_req": 65, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": null, "tags": ["accessories", "ring"]}
+  ],
+  "relic": [
+    {"name": "Crude Relic",       "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": null, "tags": ["accessories", "relic"]},
+    {"name": "Scarred Relic",     "level_req": 15, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": null, "tags": ["accessories", "relic"]},
+    {"name": "Rune-Carved Relic", "level_req": 32, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": null, "tags": ["accessories", "relic"]},
+    {"name": "Ancient Relic",     "level_req": 52, "min_fp": 22, "max_fp": 32, "armor": 0, "implicit": null, "tags": ["accessories", "relic"]},
+    {"name": "Imperial Relic",    "level_req": 65, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": null, "tags": ["accessories", "relic"]}
+  ],
+  "sword": [
+    {"name": "Corroded Sword", "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "8-15 Added Melee Physical Damage",  "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Short Sword",    "level_req": 10, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "12-20 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Arming Sword",   "level_req": 22, "min_fp": 17, "max_fp": 26, "armor": 0, "implicit": "18-28 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Long Sword",     "level_req": 35, "min_fp": 20, "max_fp": 30, "armor": 0, "implicit": "25-38 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Sabre",          "level_req": 48, "min_fp": 24, "max_fp": 34, "armor": 0, "implicit": "35-50 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Elegant Sword",  "level_req": 60, "min_fp": 28, "max_fp": 40, "armor": 0, "implicit": "47-65 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]},
+    {"name": "Imperial Sword", "level_req": 70, "min_fp": 32, "max_fp": 44, "armor": 0, "implicit": "60-82 Added Melee Physical Damage", "tags": ["weapon", "melee", "one_hand", "sword"]}
+  ],
+  "axe": [
+    {"name": "Hatchet",          "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "20-30% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]},
+    {"name": "Woodcutter's Axe", "level_req": 10, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "25-38% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]},
+    {"name": "Broad Axe",        "level_req": 22, "min_fp": 17, "max_fp": 26, "armor": 0, "implicit": "32-46% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]},
+    {"name": "War Axe",          "level_req": 36, "min_fp": 21, "max_fp": 30, "armor": 0, "implicit": "42-58% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]},
+    {"name": "Great Axe",        "level_req": 52, "min_fp": 25, "max_fp": 36, "armor": 0, "implicit": "54-72% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]},
+    {"name": "Imperial Axe",     "level_req": 65, "min_fp": 29, "max_fp": 42, "armor": 0, "implicit": "68-88% Physical Damage", "tags": ["weapon", "melee", "one_hand", "axe"]}
+  ],
+  "mace": [
+    {"name": "Club",            "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "20-35% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]},
+    {"name": "Flanged Mace",    "level_req": 12, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "28-45% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]},
+    {"name": "Morningstar",     "level_req": 25, "min_fp": 18, "max_fp": 27, "armor": 0, "implicit": "38-55% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]},
+    {"name": "War Maul",        "level_req": 40, "min_fp": 22, "max_fp": 31, "armor": 0, "implicit": "48-68% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]},
+    {"name": "Overlord's Mace", "level_req": 55, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": "62-82% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]},
+    {"name": "Imperial Mace",   "level_req": 65, "min_fp": 30, "max_fp": 44, "armor": 0, "implicit": "75-95% Stun Duration",  "tags": ["weapon", "melee", "one_hand", "mace"]}
+  ],
+  "dagger": [
+    {"name": "Crude Knife",     "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "3-5% Critical Strike Chance",  "tags": ["weapon", "melee", "one_hand", "dagger"]},
+    {"name": "Skinning Knife",  "level_req": 10, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "4-6% Critical Strike Chance",  "tags": ["weapon", "melee", "one_hand", "dagger"]},
+    {"name": "Stiletto",        "level_req": 22, "min_fp": 17, "max_fp": 26, "armor": 0, "implicit": "5-7% Critical Strike Chance",  "tags": ["weapon", "melee", "one_hand", "dagger"]},
+    {"name": "Ornate Dagger",   "level_req": 36, "min_fp": 20, "max_fp": 29, "armor": 0, "implicit": "6-8% Critical Strike Chance",  "tags": ["weapon", "melee", "one_hand", "dagger"]},
+    {"name": "Void Knife",      "level_req": 50, "min_fp": 24, "max_fp": 35, "armor": 0, "implicit": "7-9% Critical Strike Chance",  "tags": ["weapon", "melee", "one_hand", "dagger"]},
+    {"name": "Imperial Dagger", "level_req": 65, "min_fp": 28, "max_fp": 40, "armor": 0, "implicit": "8-10% Critical Strike Chance", "tags": ["weapon", "melee", "one_hand", "dagger"]}
+  ],
+  "sceptre": [
+    {"name": "Crude Sceptre",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "20-30% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]},
+    {"name": "Bone Sceptre",     "level_req": 12, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "25-38% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]},
+    {"name": "Spiked Sceptre",   "level_req": 25, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": "32-46% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]},
+    {"name": "Jade Sceptre",     "level_req": 40, "min_fp": 22, "max_fp": 31, "armor": 0, "implicit": "40-55% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]},
+    {"name": "Crystal Sceptre",  "level_req": 55, "min_fp": 26, "max_fp": 38, "armor": 0, "implicit": "50-68% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]},
+    {"name": "Imperial Sceptre", "level_req": 68, "min_fp": 30, "max_fp": 44, "armor": 0, "implicit": "62-82% Spell Damage",  "tags": ["weapon", "melee", "one_hand", "caster", "sceptre"]}
+  ],
+  "wand": [
+    {"name": "Crude Wand",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "4-6% Cast Speed",   "tags": ["weapon", "one_hand", "caster", "wand"]},
+    {"name": "Imbued Wand",   "level_req": 10, "min_fp": 13, "max_fp": 21, "armor": 0, "implicit": "5-7% Cast Speed",   "tags": ["weapon", "one_hand", "caster", "wand"]},
+    {"name": "Crystal Wand",  "level_req": 22, "min_fp": 16, "max_fp": 25, "armor": 0, "implicit": "6-8% Cast Speed",   "tags": ["weapon", "one_hand", "caster", "wand"]},
+    {"name": "Gilded Wand",   "level_req": 36, "min_fp": 20, "max_fp": 29, "armor": 0, "implicit": "7-9% Cast Speed",   "tags": ["weapon", "one_hand", "caster", "wand"]},
+    {"name": "Arcane Wand",   "level_req": 52, "min_fp": 24, "max_fp": 34, "armor": 0, "implicit": "8-10% Cast Speed",  "tags": ["weapon", "one_hand", "caster", "wand"]},
+    {"name": "Imperial Wand", "level_req": 65, "min_fp": 28, "max_fp": 40, "armor": 0, "implicit": "9-11% Cast Speed",  "tags": ["weapon", "one_hand", "caster", "wand"]}
+  ],
+  "staff": [
+    {"name": "Gnarled Staff",   "level_req": 1,  "min_fp": 12, "max_fp": 22, "armor": 0, "implicit": "30-45% Spell Damage",   "tags": ["weapon", "two_hand", "caster", "staff"]},
+    {"name": "Wooden Staff",    "level_req": 10, "min_fp": 16, "max_fp": 26, "armor": 0, "implicit": "40-58% Spell Damage",   "tags": ["weapon", "two_hand", "caster", "staff"]},
+    {"name": "Composite Staff", "level_req": 22, "min_fp": 20, "max_fp": 30, "armor": 0, "implicit": "52-72% Spell Damage",   "tags": ["weapon", "two_hand", "caster", "staff"]},
+    {"name": "Arcane Staff",    "level_req": 36, "min_fp": 24, "max_fp": 34, "armor": 0, "implicit": "66-88% Spell Damage",   "tags": ["weapon", "two_hand", "caster", "staff"]},
+    {"name": "Imperial Staff",  "level_req": 52, "min_fp": 28, "max_fp": 40, "armor": 0, "implicit": "82-108% Spell Damage",  "tags": ["weapon", "two_hand", "caster", "staff"]},
+    {"name": "Divine Staff",    "level_req": 68, "min_fp": 32, "max_fp": 46, "armor": 0, "implicit": "100-130% Spell Damage", "tags": ["weapon", "two_hand", "caster", "staff"]}
+  ],
+  "bow": [
+    {"name": "Crude Bow",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "25-38% Bow Damage",   "tags": ["weapon", "two_hand", "ranged", "bow"]},
+    {"name": "Short Bow",    "level_req": 10, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "32-48% Bow Damage",   "tags": ["weapon", "two_hand", "ranged", "bow"]},
+    {"name": "Hunter's Bow", "level_req": 22, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": "42-58% Bow Damage",   "tags": ["weapon", "two_hand", "ranged", "bow"]},
+    {"name": "Long Bow",     "level_req": 35, "min_fp": 21, "max_fp": 31, "armor": 0, "implicit": "52-72% Bow Damage",   "tags": ["weapon", "two_hand", "ranged", "bow"]},
+    {"name": "Recurve Bow",  "level_req": 50, "min_fp": 25, "max_fp": 36, "armor": 0, "implicit": "65-88% Bow Damage",   "tags": ["weapon", "two_hand", "ranged", "bow"]},
+    {"name": "Imperial Bow", "level_req": 65, "min_fp": 29, "max_fp": 42, "armor": 0, "implicit": "80-105% Bow Damage",  "tags": ["weapon", "two_hand", "ranged", "bow"]}
+  ],
+  "quiver": [
+    {"name": "Arrow Quiver",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "5-8% Throwing Attack Speed",   "tags": ["offhand", "ranged", "quiver"]},
+    {"name": "Thick Quiver",    "level_req": 18, "min_fp": 14, "max_fp": 22, "armor": 0, "implicit": "6-10% Throwing Attack Speed",  "tags": ["offhand", "ranged", "quiver"]},
+    {"name": "Ornate Quiver",   "level_req": 38, "min_fp": 18, "max_fp": 26, "armor": 0, "implicit": "8-12% Throwing Attack Speed",  "tags": ["offhand", "ranged", "quiver"]},
+    {"name": "Imperial Quiver", "level_req": 58, "min_fp": 22, "max_fp": 32, "armor": 0, "implicit": "10-14% Throwing Attack Speed", "tags": ["offhand", "ranged", "quiver"]}
+  ],
+  "shield": [
+    {"name": "Splintered Buckler", "level_req": 1,  "min_fp": 12, "max_fp": 20, "armor": 25,  "implicit": "20-25% Block Chance", "tags": ["offhand", "armour", "shield"]},
+    {"name": "Round Shield",       "level_req": 12, "min_fp": 15, "max_fp": 24, "armor": 60,  "implicit": "22-27% Block Chance", "tags": ["offhand", "armour", "shield"]},
+    {"name": "Kite Shield",        "level_req": 26, "min_fp": 19, "max_fp": 28, "armor": 110, "implicit": "23-28% Block Chance", "tags": ["offhand", "armour", "shield"]},
+    {"name": "Tower Shield",       "level_req": 42, "min_fp": 23, "max_fp": 33, "armor": 175, "implicit": "24-29% Block Chance", "tags": ["offhand", "armour", "shield"]},
+    {"name": "Sentinel Shield",    "level_req": 58, "min_fp": 27, "max_fp": 38, "armor": 255, "implicit": "25-30% Block Chance", "tags": ["offhand", "armour", "shield"]},
+    {"name": "Imperial Shield",    "level_req": 72, "min_fp": 31, "max_fp": 44, "armor": 345, "implicit": "26-31% Block Chance", "tags": ["offhand", "armour", "shield"]}
+  ],
+  "catalyst": [
+    {"name": "Crude Catalyst",    "level_req": 1,  "min_fp": 10, "max_fp": 18, "armor": 0, "implicit": "4-8% Cast Speed",   "tags": ["offhand", "caster", "catalyst"]},
+    {"name": "Twisted Catalyst",  "level_req": 22, "min_fp": 15, "max_fp": 24, "armor": 0, "implicit": "6-10% Cast Speed",  "tags": ["offhand", "caster", "catalyst"]},
+    {"name": "Imbued Catalyst",   "level_req": 42, "min_fp": 20, "max_fp": 30, "armor": 0, "implicit": "8-12% Cast Speed",  "tags": ["offhand", "caster", "catalyst"]},
+    {"name": "Imperial Catalyst", "level_req": 62, "min_fp": 25, "max_fp": 36, "armor": 0, "implicit": "10-14% Cast Speed", "tags": ["offhand", "caster", "catalyst"]}
+  ],
+  "two_handed_spear": [
+    {"name": "Crude Spear",    "level_req": 1,  "min_fp": 12, "max_fp": 20, "armor": 0, "implicit": "12-20 Added Melee Physical Damage", "tags": ["weapon", "two_hand", "melee", "spear"]},
+    {"name": "Hunting Spear",  "level_req": 14, "min_fp": 16, "max_fp": 24, "armor": 0, "implicit": "20-32 Added Melee Physical Damage", "tags": ["weapon", "two_hand", "melee", "spear"]},
+    {"name": "Winged Spear",   "level_req": 30, "min_fp": 20, "max_fp": 30, "armor": 0, "implicit": "32-48 Added Melee Physical Damage", "tags": ["weapon", "two_hand", "melee", "spear"]},
+    {"name": "Imperial Spear", "level_req": 50, "min_fp": 25, "max_fp": 36, "armor": 0, "implicit": "48-68 Added Melee Physical Damage", "tags": ["weapon", "two_hand", "melee", "spear"]},
+    {"name": "Dragonlance",    "level_req": 68, "min_fp": 30, "max_fp": 44, "armor": 0, "implicit": "65-90 Added Melee Physical Damage", "tags": ["weapon", "two_hand", "melee", "spear"]}
+  ]
+}

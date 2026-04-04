@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, Navigate } from "react-router-dom";
 import { clsx } from "clsx";
 
-import { Panel, Button, Badge, Spinner, EmptyState, ConfirmModal } from "@/components/ui";
+import { Panel, Button, Badge, Spinner, EmptyState, ConfirmModal, ErrorMessage } from "@/components/ui";
 import {
   useProfile, useProfileBuilds,
   useProfileSessions, useDeleteBuild,
@@ -46,7 +46,7 @@ type Tab = "overview" | "builds" | "sessions";
 
 function BuildsTab() {
   const [page, setPage] = useState(1);
-  const { data: res, isLoading } = useProfileBuilds(page);
+  const { data: res, isLoading, isError, refetch } = useProfileBuilds(page);
   const deleteBuild = useDeleteBuild();
   const [deleteTarget, setDeleteTarget] = useState<{ slug: string; name: string } | null>(null);
 
@@ -60,6 +60,7 @@ function BuildsTab() {
   }
 
   if (isLoading) return <div className="flex justify-center py-12"><Spinner size={28} /></div>;
+  if (isError) return <ErrorMessage message="Could not load builds." onRetry={refetch} />;
 
   return (
     <div>
@@ -149,12 +150,13 @@ function BuildsTab() {
 
 function SessionsTab() {
   const [page, setPage] = useState(1);
-  const { data: res, isLoading } = useProfileSessions(page);
+  const { data: res, isLoading, isError, refetch } = useProfileSessions(page);
 
   const sessions = res?.data ?? [];
   const meta = res?.meta;
 
   if (isLoading) return <div className="flex justify-center py-12"><Spinner size={28} /></div>;
+  if (isError) return <ErrorMessage message="Could not load sessions." onRetry={refetch} />;
 
   return (
     <div>
@@ -184,9 +186,9 @@ function SessionsTab() {
                   <div className="flex items-center gap-4 flex-shrink-0">
                     <div
                       className="font-display text-sm font-bold"
-                      style={{ color: session.is_fractured ? "#ff5050" : session.instability > 55 ? "#f0a020" : "#3dca74" }}
+                      style={{ color: "#3dca74" }}
                     >
-                      {session.is_fractured ? "Fractured" : `${session.instability} inst.`}
+                      {session.forge_potential} FP
                     </div>
                     <div className="font-mono text-xs uppercase tracking-widest text-forge-muted border border-forge-border rounded-sm px-3 py-1.5 hover:border-forge-amber hover:text-forge-amber transition-colors">
                       Resume →
@@ -265,9 +267,9 @@ function OverviewTab({ profileData }: { profileData: any }) {
               </div>
               <span
                 className="font-mono text-xs font-semibold"
-                style={{ color: s.is_fractured ? "#ff5050" : "#3dca74" }}
+                style={{ color: "#3dca74" }}
               >
-                {s.is_fractured ? "⚠ Frac." : `${s.instability}i`}
+                {s.forge_potential} FP
               </span>
             </div>
           </Link>
@@ -283,7 +285,7 @@ function OverviewTab({ profileData }: { profileData: any }) {
 
 export default function UserProfilePage() {
   const { user } = useAuthStore();
-  const { data: profileRes, isLoading } = useProfile();
+  const { data: profileRes, isLoading, isError, refetch } = useProfile();
   const [tab, setTab] = useState<Tab>("overview");
 
   if (!user) return <Navigate to="/" replace />;
@@ -292,9 +294,11 @@ export default function UserProfilePage() {
     return <div className="flex items-center justify-center py-24"><Spinner size={32} /></div>;
   }
 
-  const profile = profileRes?.data;
-  if (!profile) return null;
+  if (isError || !profileRes?.data) {
+    return <ErrorMessage title="Could not load profile" message="Please try again." onRetry={refetch} />;
+  }
 
+  const profile = profileRes.data;
   const stats = profile.stats;
 
   const TABS: { id: Tab; label: string; count?: number }[] = [

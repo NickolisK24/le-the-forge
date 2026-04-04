@@ -12,7 +12,7 @@ class Config:
     )
 
     SQLALCHEMY_DATABASE_URI = os.environ.get(
-        "DATABASE_URL", "postgresql://forge:forgedev@localhost:5432/the_forge"
+        "DATABASE_URL", "postgresql://forge:forgedev@127.0.0.1:5433/the_forge"
     )
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     SQLALCHEMY_ENGINE_OPTIONS = {
@@ -22,8 +22,16 @@ class Config:
 
     REDIS_URL = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
 
+    # Reference data version — bump when affixes.json / game data changes.
+    DATA_VERSION = os.environ.get("DATA_VERSION", "1.0.0")
+    # Last Epoch patch string tracked by this instance.
+    CURRENT_PATCH = os.environ.get("CURRENT_PATCH", "1.2")
+
     DISCORD_CLIENT_ID = os.environ.get("DISCORD_CLIENT_ID", "")
     DISCORD_CLIENT_SECRET = os.environ.get("DISCORD_CLIENT_SECRET", "")
+    DISCORD_REDIRECT_URI = os.environ.get(
+        "DISCORD_REDIRECT_URI", "http://localhost:5050/api/auth/discord/authorized"
+    )
 
     FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 
@@ -53,6 +61,9 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     WTF_CSRF_ENABLED = False
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
+    # Use in-process memory storage so tests never need a running Redis
+    RATELIMIT_STORAGE_URI = "memory://"
+    RATELIMIT_ENABLED = False
 
 
 config = {

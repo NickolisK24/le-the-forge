@@ -16,7 +16,7 @@ const FEATURES = [
     to: "/craft",
     title: "Craft Simulator",
     description:
-      "Calculate fracture risk before committing your shards. Find the optimal path to your target item.",
+      "Plan your crafting sequence with FP cost simulation. Find the optimal path to your target item.",
     status: "Live",
     statusVariant: "live",
     icon: "🔥",
@@ -90,7 +90,7 @@ export default function HomePage() {
           What The Forge Offers
         </div>
 
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
           {FEATURES.map((f) => (
             <Link
               key={f.to}

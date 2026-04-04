@@ -33,7 +33,7 @@ class TestCalculateDefense:
     def test_high_armour_increases_ehp(self):
         base = _base_sentinel()
         armoured = aggregate_stats("Sentinel", "Paladin", [], [],
-                                   [{"name": "Armour", "tier": 1}])
+                                   [{"name": "Increased Armor", "tier": 1}])
         base_r = calculate_defense(base)
         arm_r  = calculate_defense(armoured)
         assert arm_r.effective_hp > base_r.effective_hp

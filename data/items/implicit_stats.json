@@ -1,0 +1,85 @@
+{
+  "helmet": {
+    "stat": "armour",
+    "values": {"min": 30, "max": 60},
+    "description": "Armour"
+  },
+  "body": {
+    "stat": "armour",
+    "values": {"min": 80, "max": 160},
+    "description": "Armour"
+  },
+  "gloves": {
+    "stat": "armour",
+    "values": {"min": 20, "max": 40},
+    "description": "Armour"
+  },
+  "boots": {
+    "stat": "movement_speed",
+    "values": {"min": 15, "max": 15},
+    "description": "Movement Speed"
+  },
+  "belt": {
+    "stat": "endurance_threshold",
+    "values": {"min": 50, "max": 100},
+    "description": "Endurance Threshold"
+  },
+  "ring": null,
+  "amulet": null,
+  "relic": null,
+  "wand": {
+    "stat": "cast_speed",
+    "values": {"min": 4, "max": 8},
+    "description": "Cast Speed"
+  },
+  "staff": {
+    "stat": "spell_damage_pct",
+    "values": {"min": 30, "max": 60},
+    "description": "Spell Damage"
+  },
+  "sceptre": {
+    "stat": "spell_damage_pct",
+    "values": {"min": 20, "max": 40},
+    "description": "Spell Damage"
+  },
+  "sword": {
+    "stat": "added_melee_physical",
+    "values": {"min": 10, "max": 25},
+    "description": "Added Melee Physical Damage"
+  },
+  "axe": {
+    "stat": "physical_damage_pct",
+    "values": {"min": 20, "max": 35},
+    "description": "Physical Damage"
+  },
+  "mace": {
+    "stat": "stun_duration_pct",
+    "values": {"min": 20, "max": 40},
+    "description": "Stun Duration"
+  },
+  "dagger": {
+    "stat": "crit_chance_pct",
+    "values": {"min": 3, "max": 6},
+    "description": "Critical Strike Chance"
+  },
+  "shield": {
+    "stat": "block_chance",
+    "values": {"min": 20, "max": 30},
+    "description": "Block Chance"
+  },
+  "bow": {
+    "stat": "bow_damage_pct",
+    "values": {"min": 25, "max": 50},
+    "description": "Bow Damage"
+  },
+  "quiver": {
+    "stat": "throwing_attack_speed",
+    "values": {"min": 5, "max": 12},
+    "description": "Throwing Attack Speed"
+  },
+  "focus": {
+    "stat": "cast_speed",
+    "values": {"min": 4, "max": 8},
+    "description": "Cast Speed"
+  }
+}

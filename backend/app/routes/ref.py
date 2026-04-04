@@ -11,13 +11,18 @@ GET  /api/ref/passives            → Passive tree nodes (filterable by class/ma
 GET  /api/ref/skills              → Skill definitions (filterable by class)
 GET  /api/ref/classes             → Class + mastery metadata
 GET  /api/ref/affix-categories    → Available affix category descriptions
+GET  /api/ref/crafting-rules      → FP cost ranges from crafting_rules.json
 """
 
 from flask import Blueprint, request, jsonify
 
+from app.constants.cache import REF_STATIC_CACHE_TTL, REF_SEMISTATIC_CACHE_TTL
 from app.models import ItemType, AffixDef, PassiveNode
 from app.game_data.game_data_loader import get_all_affixes, get_affix_categories
+from app.engines.fp_engine import get_crafting_rules, get_all_fp_ranges, get_fp_range_by_rarity
+from app.engines.base_engine import get_all_bases, get_bases_for_slot, get_fp_range
 from app.utils.responses import ok
+from app.utils.cache import cached_route, delete_pattern
 
 ref_bp = Blueprint("ref", __name__)
 
@@ -88,13 +93,18 @@ def _get_affix_seed_data() -> list[dict]:
 
 
 @ref_bp.get("/classes")
+@cached_route("ref:classes", ttl=REF_STATIC_CACHE_TTL)
 def get_classes():
     return ok(data=CLASS_META)
 
 
 @ref_bp.get("/item-types")
+@cached_route("ref:item-types", ttl=REF_STATIC_CACHE_TTL)
 def get_item_types():
-    item_types = ItemType.query.order_by(ItemType.category, ItemType.name).all()
+    try:
+        item_types = ItemType.query.order_by(ItemType.category, ItemType.name).all()
+    except Exception:
+        item_types = []
     if not item_types:
         # Return static fallback if DB not seeded yet
         return ok(data=[
@@ -116,24 +126,32 @@ def get_item_types():
 
 
 @ref_bp.get("/affixes")
+@cached_route("ref:affixes", ttl=REF_SEMISTATIC_CACHE_TTL)
 def get_affixes():
     category = request.args.get("category") or request.args.get("type")
     item_slot = request.args.get("slot")
     class_req = request.args.get("class")
     tag = request.args.get("tag")
 
-    affixes = AffixDef.query
-    if category:
-        affixes = affixes.filter_by(affix_type=category)
-    affixes = affixes.order_by(AffixDef.name).all()
+    # Craftable affix types only — skip idol/set/champion types
+    CRAFTABLE_TYPES = ["prefix", "suffix", "experimental", "personal"]
+    # Map old DB affix_type values to canonical prefix/suffix
+    TYPE_NORMALIZE = {"experimental": "prefix", "personal": "prefix"}
+
+    try:
+        affixes = AffixDef.query.filter(
+            AffixDef.affix_type.in_(CRAFTABLE_TYPES)
+        ).order_by(AffixDef.name).all()
+    except Exception:
+        affixes = []
 
     if not affixes:
         # Static fallback from canonical JSON
         data = _get_affix_seed_data()
         if category:
-            data = [a for a in data if a["type"] == category]
+            data = [a for a in data if a["type"] == category or category in a.get("tags", [])]
         if item_slot:
-            data = [a for a in data if item_slot in a.get("applicable", [])]
+            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", a.get("applicable", []))]]
         if class_req:
             data = [a for a in data if a.get("class_requirement") in (None, class_req)]
         if tag:
@@ -142,31 +160,49 @@ def get_affixes():
 
     result = []
     for a in affixes:
-        if item_slot and item_slot not in (a.applicable_types or []):
+        if item_slot and item_slot.lower() not in [s.lower() for s in (a.applicable_types or [])]:
             continue
         if class_req and a.class_requirement and a.class_requirement != class_req:
             continue
-        if tag and tag not in (a.tags or []):
+
+        # Normalize type to prefix/suffix; keep original as a tag if experimental/personal
+        raw_type = a.affix_type
+        canonical_type = TYPE_NORMALIZE.get(raw_type, raw_type)
+        tags = list(a.tags or [])
+        if raw_type in TYPE_NORMALIZE and raw_type not in tags:
+            tags.append(raw_type)
+
+        if tag and tag not in tags:
             continue
+        if category and category not in (canonical_type, raw_type) and category not in tags:
+            continue
+
+        # Convert tier_ranges dict {"1": [lo,hi]} to [{tier, min, max}] array
+        tier_ranges = a.tier_ranges or {}
+        tiers = sorted(
+            [{"tier": int(k), "min": v[0], "max": v[1]} for k, v in tier_ranges.items()],
+            key=lambda t: t["tier"],
+        )
         result.append({
-            "id": a.id,
+            "id": str(a.id),
             "name": a.name,
-            "type": a.affix_type,
-            "stat_key": a.stat_key,
-            "tier_ranges": a.tier_ranges,
-            "applicable_types": a.applicable_types,
+            "type": canonical_type,
+            "applicable_to": a.applicable_types or [],
+            "tiers": tiers,
+            "tags": tags,
             "class_requirement": a.class_requirement,
-            "tags": a.tags,
         })
     return ok(data=result)
 
 
 @ref_bp.get("/affix-categories")
+@cached_route("ref:affix-categories", ttl=REF_STATIC_CACHE_TTL)
 def get_affix_categories_endpoint():
     return ok(data=get_affix_categories())
 
 
 @ref_bp.get("/passives")
+@cached_route("ref:passives", ttl=REF_SEMISTATIC_CACHE_TTL)
 def get_passives():
     char_class = request.args.get("class")
     mastery = request.args.get("mastery")
@@ -197,6 +233,7 @@ def get_passives():
 
 
 @ref_bp.get("/skills")
+@cached_route("ref:skills", ttl=REF_STATIC_CACHE_TTL)
 def get_skills():
     char_class = request.args.get("class")
     if char_class and char_class in CLASS_META:
@@ -208,3 +245,184 @@ def get_skills():
     for cls, meta in CLASS_META.items():
         all_skills[cls] = meta["skills"]
     return ok(data=all_skills)
+
+
+@ref_bp.get("/crafting-rules")
+@cached_route("ref:crafting-rules", ttl=REF_STATIC_CACHE_TTL)
+def get_crafting_rules_endpoint():
+    """Return FP cost ranges. Source: data/crafting_rules.json."""
+    return ok(data=get_crafting_rules())
+
+
+@ref_bp.get("/base-items")
+def get_base_items_endpoint():
+    """
+    Return base item definitions.
+
+    ?slot=helmet   → flat list of named items for that slot
+    ?slot=weapon   → merged list across all weapon slots
+    ?slot=offhand  → merged list across shield/quiver/catalyst
+    (no param)     → full dict keyed by slot category
+    """
+    slot = request.args.get("slot", "").strip().lower()
+    if slot:
+        expanded = _SLOT_CATEGORIES.get(slot)
+        if expanded:
+            all_bases = get_all_bases()
+            items = []
+            for s in expanded:
+                items.extend(all_bases.get(s, []))
+        else:
+            items = get_bases_for_slot(slot)
+        return ok(data=items)
+    return ok(data=get_all_bases())
+
+
+@ref_bp.get("/base-items/<base_type>")
+def get_base_item_endpoint(base_type: str):
+    """Return all named base items for a specific slot category."""
+    key = base_type.lower()
+    items = get_bases_for_slot(key)
+    if not items:
+        return ok(data=None, status=404)
+    return ok(data=items)
+
+
+@ref_bp.get("/fp-ranges")
+@cached_route("ref:fp-ranges", ttl=REF_STATIC_CACHE_TTL)
+def get_fp_ranges_endpoint():
+    """Return FP ranges by rarity. Source: data/forging_potential_ranges.json."""
+    return ok(data=get_all_fp_ranges())
+
+
+@ref_bp.get("/fp-ranges/<rarity>")
+def get_fp_range_endpoint(rarity: str):
+    """Return FP range for a specific rarity (+ optional ?ilvl= for Phase 2 tiers)."""
+    try:
+        item_level = int(request.args.get("ilvl", 84))
+        lo, hi = get_fp_range_by_rarity(rarity, item_level)
+        return ok(data={"rarity": rarity.lower(), "min_fp": lo, "max_fp": hi, "item_level": item_level})
+    except ValueError as e:
+        return ok(data={"error": str(e)}, status=400)
+
+
+# ---------------------------------------------------------------------------
+# New dataset endpoints
+# ---------------------------------------------------------------------------
+
+@ref_bp.get("/enemy-profiles")
+@cached_route("ref:enemy-profiles", ttl=REF_STATIC_CACHE_TTL)
+def get_enemy_profiles_endpoint():
+    """Return all enemy profiles from data/enemy_profiles.json."""
+    from app.game_data.game_data_loader import get_enemy_profiles
+    return ok(data=[e.to_dict() for e in get_enemy_profiles()])
+
+
+@ref_bp.get("/enemy-profiles/<enemy_id>")
+def get_enemy_profile_endpoint(enemy_id: str):
+    """Return a single enemy profile by id."""
+    from app.game_data.game_data_loader import get_enemy_profile
+    profile = get_enemy_profile(enemy_id)
+    if not profile:
+        return ok(data={"error": f"Enemy profile '{enemy_id}' not found"}, status=404)
+    return ok(data=profile.to_dict())
+
+
+@ref_bp.get("/damage-types")
+@cached_route("ref:damage-types", ttl=REF_STATIC_CACHE_TTL)
+def get_damage_types_endpoint():
+    """Return all damage type definitions from data/damage_types.json."""
+    from app.game_data.game_data_loader import get_damage_types
+    return ok(data=get_damage_types())
+
+
+@ref_bp.get("/rarities")
+@cached_route("ref:rarities", ttl=REF_STATIC_CACHE_TTL)
+def get_rarities_endpoint():
+    """Return all rarity tier definitions from data/rarities.json."""
+    from app.game_data.game_data_loader import get_rarities
+    return ok(data=get_rarities())
+
+
+@ref_bp.get("/implicit-stats")
+@cached_route("ref:implicit-stats", ttl=REF_STATIC_CACHE_TTL)
+def get_implicit_stats_endpoint():
+    """Return all implicit stat definitions keyed by item type."""
+    from app.game_data.game_data_loader import get_all_implicit_stats
+    return ok(data=get_all_implicit_stats())
+
+
+@ref_bp.get("/implicit-stats/<item_type>")
+def get_implicit_stat_endpoint(item_type: str):
+    """Return implicit stat for a specific item type."""
+    from app.game_data.game_data_loader import get_implicit_stat
+    stat = get_implicit_stat(item_type.lower())
+    if stat is None:
+        return ok(data=None)
+    return ok(data=stat)
+
+
+# ---------------------------------------------------------------------------
+# Unique items
+# ---------------------------------------------------------------------------
+
+
+# Meta-slot categories for the paper-doll picker
+_WEAPON_SLOTS = frozenset([
+    "sword", "axe", "mace", "dagger", "sceptre",
+    "wand", "staff", "bow", "two_handed_spear",
+])
+_OFFHAND_SLOTS = frozenset(["shield", "quiver", "catalyst"])
+_IDOL_SLOTS = frozenset([
+    "idol_1x1_eterra", "idol_1x3", "idol_1x4", "idol_2x2",
+])
+_SLOT_CATEGORIES: dict = {
+    "weapon":  _WEAPON_SLOTS,
+    "offhand": _OFFHAND_SLOTS,
+    "idol":    _IDOL_SLOTS,
+}
+
+
+@ref_bp.get("/uniques")
+@cached_route("ref:uniques", ttl=REF_STATIC_CACHE_TTL)
+def get_uniques_endpoint():
+    """
+    GET /api/ref/uniques
+    Optional query params:
+      ?slot=helmet       — exact slot name, OR meta-category:
+                           weapon  → all 1H/2H weapon slots
+                           offhand → shield, quiver, catalyst
+                           idol    → all idol sizes
+      ?q=exsang          — case-insensitive name/tag search
+    """
+    from app.game_data.game_data_loader import get_all_uniques
+    uniques = get_all_uniques()
+
+    slot = request.args.get("slot", "").strip().lower()
+    query = request.args.get("q", "").strip().lower()
+
+    if slot:
+        expanded = _SLOT_CATEGORIES.get(slot)
+        if expanded:
+            uniques = [u for u in uniques if u.get("slot", "").lower() in expanded]
+        else:
+            uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
+
+    if query:
+        uniques = [
+            u for u in uniques
+            if query in u.get("name", "").lower()
+            or any(query in t.lower() for t in u.get("tags", []))
+        ]
+
+    return ok(data=uniques)
+
+
+@ref_bp.get("/uniques/<slug>")
+def get_unique_endpoint(slug: str):
+    """Return a single unique item by slug."""
+    from app.game_data.game_data_loader import get_unique_by_id
+    item = get_unique_by_id(slug)
+    if item is None:
+        return ok(data={"error": f"Unique '{slug}' not found"}, status=404)
+    return ok(data=item)

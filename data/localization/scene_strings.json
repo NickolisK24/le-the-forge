@@ -1,0 +1,1474 @@
+[
+  {
+    "id": 120002,
+    "text": "Last Epoch"
+  },
+  {
+    "id": 120003,
+    "text": "Last Refuge Outskirts"
+  },
+  {
+    "id": 120004,
+    "text": "The Council Chambers"
+  },
+  {
+    "id": 120005,
+    "text": "The Last Archive"
+  },
+  {
+    "id": 120006,
+    "text": "The Upper District"
+  },
+  {
+    "id": 120007,
+    "text": "The Precipice"
+  },
+  {
+    "id": 120008,
+    "text": "The Armory"
+  },
+  {
+    "id": 120009,
+    "text": "The Lower District"
+  },
+  {
+    "id": 120010,
+    "text": "The Sheltered Wood"
+  },
+  {
+    "id": 120011,
+    "text": "Desert Arena"
+  },
+  {
+    "id": 120012,
+    "text": "Woodland Arena"
+  },
+  {
+    "id": 120013,
+    "text": "Tower Arena"
+  },
+  {
+    "id": 120014,
+    "text": "The Surface"
+  },
+  {
+    "id": 120015,
+    "text": "The Forsaken Trail"
+  },
+  {
+    "id": 120016,
+    "text": "The Ruins of Welryn"
+  },
+  {
+    "id": 120017,
+    "text": "The Shattered Valley"
+  },
+  {
+    "id": 120018,
+    "text": "The Lower Archive"
+  },
+  {
+    "id": 120019,
+    "text": "Erza's Library"
+  },
+  {
+    "id": 120020,
+    "text": "The Abandoned Tunnel"
+  },
+  {
+    "id": 120021,
+    "text": "The Lost Refuge"
+  },
+  {
+    "id": 120022,
+    "text": "The Ruined College"
+  },
+  {
+    "id": 120023,
+    "text": "The Courtyard"
+  },
+  {
+    "id": 120024,
+    "text": "The Temple of Eterra"
+  },
+  {
+    "id": 120025,
+    "text": "The Temple Gardens"
+  },
+  {
+    "id": 120026,
+    "text": "The Lotus Halls"
+  },
+  {
+    "id": 120027,
+    "text": "The Sanctum Bastille"
+  },
+  {
+    "id": 120028,
+    "text": "The Outcast Camp"
+  },
+  {
+    "id": 120029,
+    "text": "Welryn Outskirts"
+  },
+  {
+    "id": 120030,
+    "text": "Imperial Welryn"
+  },
+  {
+    "id": 120031,
+    "text": "The Great College"
+  },
+  {
+    "id": 120032,
+    "text": "The End of Time"
+  },
+  {
+    "id": 120033,
+    "text": "Ruined Shrine"
+  },
+  {
+    "id": 120034,
+    "text": "The Forest Trail"
+  },
+  {
+    "id": 120035,
+    "text": "The Travellers' Camp"
+  },
+  {
+    "id": 120036,
+    "text": "The Southern Plateau"
+  },
+  {
+    "id": 120037,
+    "text": "The Ulatri Cliffs"
+  },
+  {
+    "id": 120038,
+    "text": "The Ulatri Cliffs"
+  },
+  {
+    "id": 120039,
+    "text": "The Mountain Cave"
+  },
+  {
+    "id": 120040,
+    "text": "The Mushroom Farm"
+  },
+  {
+    "id": 120041,
+    "text": "The Soul Wardens' Road"
+  },
+  {
+    "id": 120042,
+    "text": "The Risen Lake"
+  },
+  {
+    "id": 120043,
+    "text": "The Fallen Tower"
+  },
+  {
+    "id": 120044,
+    "text": "Imperial Thetima"
+  },
+  {
+    "id": 120045,
+    "text": "The Imperial Dreadnought"
+  },
+  {
+    "id": 120046,
+    "text": "The Dreadnought's Deck"
+  },
+  {
+    "id": 120047,
+    "text": "The Majasan Desert"
+  },
+  {
+    "id": 120048,
+    "text": "The Wraith Dunes"
+  },
+  {
+    "id": 120049,
+    "text": "Maj'elka"
+  },
+  {
+    "id": 120050,
+    "text": "The Oracle's Abode"
+  },
+  {
+    "id": 120051,
+    "text": "The Maj'elkan Catacombs"
+  },
+  {
+    "id": 120052,
+    "text": "Titan's Canyon"
+  },
+  {
+    "id": 120053,
+    "text": "The Waystation Complex"
+  },
+  {
+    "id": 120054,
+    "text": "The Maj'elka Waystation"
+  },
+  {
+    "id": 120055,
+    "text": "The Desert Waystation"
+  },
+  {
+    "id": 120056,
+    "text": "Devoured Armory"
+  },
+  {
+    "id": 120057,
+    "text": "Flooded Cavern"
+  },
+  {
+    "id": 120058,
+    "text": "Shrouded Plateau"
+  },
+  {
+    "id": 120059,
+    "text": "Serpentine Desert"
+  },
+  {
+    "id": 120060,
+    "text": "Echo of a World"
+  },
+  {
+    "id": 120061,
+    "text": "Burning Forest"
+  },
+  {
+    "id": 120062,
+    "text": "Volcanic City"
+  },
+  {
+    "id": 120063,
+    "text": "The Shining Cove"
+  },
+  {
+    "id": 120064,
+    "text": "Fallen Harbor"
+  },
+  {
+    "id": 120065,
+    "text": "The Ruins of Etendell"
+  },
+  {
+    "id": 120066,
+    "text": "The Darkling Pier"
+  },
+  {
+    "id": 120067,
+    "text": "Gladiator's Rest"
+  },
+  {
+    "id": 120068,
+    "text": "The Rust Lands"
+  },
+  {
+    "id": 120069,
+    "text": "The Lower Sewers"
+  },
+  {
+    "id": 120070,
+    "text": "The Barren Aqueduct"
+  },
+  {
+    "id": 120071,
+    "text": "Necropolis of the Deep"
+  },
+  {
+    "id": 120072,
+    "text": "Yulia's Haven"
+  },
+  {
+    "id": 120073,
+    "text": "The Upper Necropolis"
+  },
+  {
+    "id": 120074,
+    "text": "The Gates of Solarum"
+  },
+  {
+    "id": 120075,
+    "text": "The Burning Forest"
+  },
+  {
+    "id": 120076,
+    "text": "The Scorched Grove"
+  },
+  {
+    "id": 120077,
+    "text": "Heoborea"
+  },
+  {
+    "id": 120078,
+    "text": "The Heoborean Forest"
+  },
+  {
+    "id": 120079,
+    "text": "The Nomad Camp"
+  },
+  {
+    "id": 120080,
+    "text": "The Wengari Fortress"
+  },
+  {
+    "id": 120081,
+    "text": "The Tundra"
+  },
+  {
+    "id": 120082,
+    "text": "The Ice Caverns"
+  },
+  {
+    "id": 120083,
+    "text": "The Wartorn Path"
+  },
+  {
+    "id": 120084,
+    "text": "Frozen Roots"
+  },
+  {
+    "id": 120085,
+    "text": "The Solemn Path"
+  },
+  {
+    "id": 120086,
+    "text": "Smoldering Grove"
+  },
+  {
+    "id": 120087,
+    "text": "The Northern Stream"
+  },
+  {
+    "id": 120088,
+    "text": "Deep Harbor"
+  },
+  {
+    "id": 120089,
+    "text": "The Burning Pier"
+  },
+  {
+    "id": 120090,
+    "text": "Lake Liath"
+  },
+  {
+    "id": 120091,
+    "text": "Liath's Road"
+  },
+  {
+    "id": 120092,
+    "text": "Thetima"
+  },
+  {
+    "id": 120093,
+    "text": "Lagon's Isle"
+  },
+  {
+    "id": 120094,
+    "text": "Moonlit Shrine"
+  },
+  {
+    "id": 120095,
+    "text": "Frozen Woodland"
+  },
+  {
+    "id": 120096,
+    "text": "Broken Hills"
+  },
+  {
+    "id": 120097,
+    "text": "Forlorn Streets"
+  },
+  {
+    "id": 120098,
+    "text": "Majasan Slums"
+  },
+  {
+    "id": 120099,
+    "text": "Forest Trails"
+  },
+  {
+    "id": 120100,
+    "text": "The Citadel Sewers"
+  },
+  {
+    "id": 120101,
+    "text": "The Immortal Summit"
+  },
+  {
+    "id": 120102,
+    "text": "Nests of the Fallen"
+  },
+  {
+    "id": 120103,
+    "text": "The Sapphire Quarter"
+  },
+  {
+    "id": 120104,
+    "text": "The Ancient Cavern"
+  },
+  {
+    "id": 120105,
+    "text": "The Ancient Forest"
+  },
+  {
+    "id": 120106,
+    "text": "The Corrupted Lake"
+  },
+  {
+    "id": 120107,
+    "text": "The Ruined Coast"
+  },
+  {
+    "id": 120108,
+    "text": "The Ruins of Maj'elka"
+  },
+  {
+    "id": 120109,
+    "text": "The Verdant Lakes"
+  },
+  {
+    "id": 120110,
+    "text": "Realm of the Forgotten"
+  },
+  {
+    "id": 120111,
+    "text": "The Temple of Heorot"
+  },
+  {
+    "id": 120112,
+    "text": "Farwood"
+  },
+  {
+    "id": 120113,
+    "text": "The Frozen Roots"
+  },
+  {
+    "id": 120114,
+    "text": "The Tomb of Morditas"
+  },
+  {
+    "id": 120115,
+    "text": "The Heoborean Shrine"
+  },
+  {
+    "id": 120116,
+    "text": "The Fractured Drain"
+  },
+  {
+    "id": 120117,
+    "text": "The Sealed Shrine"
+  },
+  {
+    "id": 120118,
+    "text": "The Overgrown Alcove"
+  },
+  {
+    "id": 120119,
+    "text": "Rustlands Arena"
+  },
+  {
+    "id": 120120,
+    "text": "Etendell"
+  },
+  {
+    "id": 120121,
+    "text": "Liath's Tower"
+  },
+  {
+    "id": 120122,
+    "text": "The Western Shore"
+  },
+  {
+    "id": 120123,
+    "text": "The Coral Maze"
+  },
+  {
+    "id": 120124,
+    "text": "Heorot's Arena"
+  },
+  {
+    "id": 120125,
+    "text": "The Ulatri Cliffs"
+  },
+  {
+    "id": 120126,
+    "text": "Magma Arena"
+  },
+  {
+    "id": 120127,
+    "text": "The Strand of Storms"
+  },
+  {
+    "id": 120128,
+    "text": "The Coral Pools"
+  },
+  {
+    "id": 120129,
+    "text": "The Temple of Lagon"
+  },
+  {
+    "id": 120130,
+    "text": "The Temple Depths"
+  },
+  {
+    "id": 120131,
+    "text": "Sanctum of the Architect"
+  },
+  {
+    "id": 120132,
+    "text": "Seafloor Colosseum"
+  },
+  {
+    "id": 120133,
+    "text": "The Ransacked Camp"
+  },
+  {
+    "id": 120134,
+    "text": "Maj'elka Streets"
+  },
+  {
+    "id": 120135,
+    "text": "The Altar of Flesh"
+  },
+  {
+    "id": 120136,
+    "text": "Forsaken Hamlet"
+  },
+  {
+    "id": 120137,
+    "text": "Fallen Refuge"
+  },
+  {
+    "id": 120138,
+    "text": "Lost Catacombs"
+  },
+  {
+    "id": 120139,
+    "text": "Ruined City"
+  },
+  {
+    "id": 120140,
+    "text": "Corrupted Temple"
+  },
+  {
+    "id": 120141,
+    "text": "Halls of Sorrow"
+  },
+  {
+    "id": 120142,
+    "text": "Jagged Outskirts"
+  },
+  {
+    "id": 120143,
+    "text": "Willow Marsh"
+  },
+  {
+    "id": 120144,
+    "text": "Arid Wastes"
+  },
+  {
+    "id": 120145,
+    "text": "Imperial Maj’elka"
+  },
+  {
+    "id": 120146,
+    "text": "Canyon Stronghold"
+  },
+  {
+    "id": 120147,
+    "text": "Waste Pools"
+  },
+  {
+    "id": 120148,
+    "text": "Necropolis Caverns"
+  },
+  {
+    "id": 120149,
+    "text": "Necropolis Streets"
+  },
+  {
+    "id": 120150,
+    "text": "Festering Sewers"
+  },
+  {
+    "id": 120151,
+    "text": "Frozen Tunnels"
+  },
+  {
+    "id": 120152,
+    "text": "Solarum Ascent"
+  },
+  {
+    "id": 120153,
+    "text": "Boreal Forest"
+  },
+  {
+    "id": 120154,
+    "text": "Rotting Fortress"
+  },
+  {
+    "id": 120155,
+    "text": "Imperial Warcamp"
+  },
+  {
+    "id": 120156,
+    "text": "Devoured Sanctum"
+  },
+  {
+    "id": 120157,
+    "text": "Lakeside Trail"
+  },
+  {
+    "id": 120158,
+    "text": "Storm Swept Isle"
+  },
+  {
+    "id": 120159,
+    "text": "Midnight Strand"
+  },
+  {
+    "id": 120160,
+    "text": "Monolith of Fate"
+  },
+  {
+    "id": 120161,
+    "text": "Wengari Battleground"
+  },
+  {
+    "id": 120162,
+    "text": "Occupied Heoborea"
+  },
+  {
+    "id": 120163,
+    "text": "The Lair of Formosus"
+  },
+  {
+    "id": 120164,
+    "text": "The Fall of Ledria"
+  },
+  {
+    "id": 120165,
+    "text": "The Dark Ascent"
+  },
+  {
+    "id": 120166,
+    "text": "The Ruins of Solarum"
+  },
+  {
+    "id": 120167,
+    "text": "Voidscarred Necropolis"
+  },
+  {
+    "id": 120168,
+    "text": "Path of Despair"
+  },
+  {
+    "id": 120169,
+    "text": "Dreadnought's Wreckage"
+  },
+  {
+    "id": 120170,
+    "text": "Wengari Stronghold"
+  },
+  {
+    "id": 120171,
+    "text": "The Siege of Farwood"
+  },
+  {
+    "id": 120172,
+    "text": "Argentum Spire"
+  },
+  {
+    "id": 120173,
+    "text": "Drowned Thetima"
+  },
+  {
+    "id": 120174,
+    "text": "Island Battlefield"
+  },
+  {
+    "id": 120175,
+    "text": "Eye of the Storm"
+  },
+  {
+    "id": 120176,
+    "text": "Heorot's Sanctum"
+  },
+  {
+    "id": 120177,
+    "text": "Dragons' Grotto"
+  },
+  {
+    "id": 120178,
+    "text": "The Rotting Hoard"
+  },
+  {
+    "id": 120179,
+    "text": "Pannion's Study"
+  },
+  {
+    "id": 120180,
+    "text": "Cultist Camp"
+  },
+  {
+    "id": 120181,
+    "text": "Welryn Undercity"
+  },
+  {
+    "id": 120182,
+    "text": "The Ritual Site"
+  },
+  {
+    "id": 120183,
+    "text": "Welryn Docks"
+  },
+  {
+    "id": 120184,
+    "text": "The Immortal Citadel"
+  },
+  {
+    "id": 120185,
+    "text": "The End of Ruin"
+  },
+  {
+    "id": 120186,
+    "text": "Lagonian Arena"
+  },
+  {
+    "id": 120187,
+    "text": "Docklands Arena"
+  },
+  {
+    "id": 120188,
+    "text": "Lakeside Arena"
+  },
+  {
+    "id": 120189,
+    "text": "Solarum Arena"
+  },
+  {
+    "id": 120190,
+    "text": "Airborne Arena"
+  },
+  {
+    "id": 120191,
+    "text": "Desert Canyons"
+  },
+  {
+    "id": 120192,
+    "text": "Defiled Valley"
+  },
+  {
+    "id": 120193,
+    "text": "Frigid Hinterland"
+  },
+  {
+    "id": 120194,
+    "text": "Buried City"
+  },
+  {
+    "id": 120195,
+    "text": "The Defiled Wood"
+  },
+  {
+    "id": 120196,
+    "text": "The Voidscarred Archive"
+  },
+  {
+    "id": 120197,
+    "text": "The Chambers of Ruin"
+  },
+  {
+    "id": 120198,
+    "text": "The Frozen Fortress"
+  },
+  {
+    "id": 120199,
+    "text": "The Frozen Harbor"
+  },
+  {
+    "id": 120200,
+    "text": "The Frozen Citadel"
+  },
+  {
+    "id": 120201,
+    "text": "Sealed Archive"
+  },
+  {
+    "id": 120202,
+    "text": "Forgotten Graves"
+  },
+  {
+    "id": 120203,
+    "text": "Verdant Outskirts"
+  },
+  {
+    "id": 120204,
+    "text": "Harvested Titan"
+  },
+  {
+    "id": 120205,
+    "text": "Burning Harbor"
+  },
+  {
+    "id": 120206,
+    "text": "Ash Covered Maj'elka"
+  },
+  {
+    "id": 120207,
+    "text": "The Magma Caverns"
+  },
+  {
+    "id": 120208,
+    "text": "The Caldera of Souls"
+  },
+  {
+    "id": 120209,
+    "text": "Twisted Mire"
+  },
+  {
+    "id": 120210,
+    "text": "Wrecked Fleet"
+  },
+  {
+    "id": 120211,
+    "text": "Sheltered Abyss"
+  },
+  {
+    "id": 120212,
+    "text": "Echo of a World"
+  },
+  {
+    "id": 120213,
+    "text": "Solarum Arena"
+  },
+  {
+    "id": 120214,
+    "text": "Abandoned Arena"
+  },
+  {
+    "id": 120215,
+    "text": "Ancient Arena"
+  },
+  {
+    "id": 120216,
+    "text": "Sanctuary Arena"
+  },
+  {
+    "id": 120217,
+    "text": "Abyssal Arena"
+  },
+  {
+    "id": 120218,
+    "text": "Desert Arena"
+  },
+  {
+    "id": 120219,
+    "text": "Woodland Arena"
+  },
+  {
+    "id": 120220,
+    "text": "Tower Arena"
+  },
+  {
+    "id": 120221,
+    "text": "Rustlands Arena"
+  },
+  {
+    "id": 120222,
+    "text": "Heorot's Arena"
+  },
+  {
+    "id": 120223,
+    "text": "Magma Arena"
+  },
+  {
+    "id": 120224,
+    "text": "Lagonian Arena"
+  },
+  {
+    "id": 120225,
+    "text": "Docklands Arena"
+  },
+  {
+    "id": 120226,
+    "text": "Lakeside Arena"
+  },
+  {
+    "id": 120227,
+    "text": "Airborne Arena"
+  },
+  {
+    "id": 120228,
+    "text": "Ancient Arena"
+  },
+  {
+    "id": 120229,
+    "text": "Abandoned Arena"
+  },
+  {
+    "id": 120230,
+    "text": "Sanctuary Arena"
+  },
+  {
+    "id": 120231,
+    "text": "Abyssal Arena"
+  },
+  {
+    "id": 120232,
+    "text": "Soreth'ka"
+  },
+  {
+    "id": 120233,
+    "text": "The Crossroads"
+  },
+  {
+    "id": 120234,
+    "text": "The Dry River"
+  },
+  {
+    "id": 120235,
+    "text": "The Radiant Dunes"
+  },
+  {
+    "id": 120236,
+    "text": "Maj'elka Upper District"
+  },
+  {
+    "id": 120237,
+    "text": "Maj'elka Lower District"
+  },
+  {
+    "id": 120238,
+    "text": "Maj'elka Slums"
+  },
+  {
+    "id": 120239,
+    "text": "The Oasis"
+  },
+  {
+    "id": 120240,
+    "text": "The Crystal Mines"
+  },
+  {
+    "id": 120241,
+    "text": "The Aerie"
+  },
+  {
+    "id": 120242,
+    "text": "Majasan Heights"
+  },
+  {
+    "id": 120243,
+    "text": "The Temple Rooftops"
+  },
+  {
+    "id": 120244,
+    "text": "The Upper Temple"
+  },
+  {
+    "id": 120245,
+    "text": "The Lower Temple"
+  },
+  {
+    "id": 120246,
+    "text": "The Chamber of Vessels"
+  },
+  {
+    "id": 120247,
+    "text": "The Temporal Sanctum"
+  },
+  {
+    "id": 120248,
+    "text": "The Sanctum Cloisters"
+  },
+  {
+    "id": 120249,
+    "text": "The Sanctum Archive"
+  },
+  {
+    "id": 120250,
+    "text": "Autumnal Highlands"
+  },
+  {
+    "id": 120251,
+    "text": "Autumnal Grove"
+  },
+  {
+    "id": 120252,
+    "text": "Coastal Village"
+  },
+  {
+    "id": 120253,
+    "text": "Hidden Oasis"
+  },
+  {
+    "id": 120254,
+    "text": "Bloodworks"
+  },
+  {
+    "id": 120255,
+    "text": "Alpine Halls"
+  },
+  {
+    "id": 120256,
+    "text": "Lightless Pits"
+  },
+  {
+    "id": 120257,
+    "text": "Sinking City"
+  },
+  {
+    "id": 120258,
+    "text": "Barren Slums"
+  },
+  {
+    "id": 120259,
+    "text": "Sandswept Temple"
+  },
+  {
+    "id": 120260,
+    "text": "Mountain Aerie"
+  },
+  {
+    "id": 120261,
+    "text": "The Shrouded Ridge"
+  },
+  {
+    "id": 120262,
+    "text": "The Felled Wood"
+  },
+  {
+    "id": 120263,
+    "text": "Kolheim Pass"
+  },
+  {
+    "id": 120264,
+    "text": "Champions' Gate"
+  },
+  {
+    "id": 120265,
+    "text": "Lightless Arbor"
+  },
+  {
+    "id": 120266,
+    "text": "Titan's Hollow"
+  },
+  {
+    "id": 120267,
+    "text": "Titan's Rest"
+  },
+  {
+    "id": 120268,
+    "text": "Soulfire Bastion"
+  },
+  {
+    "id": 120269,
+    "text": "Soulfire Keep"
+  },
+  {
+    "id": 120270,
+    "text": "The Soul Furnace"
+  },
+  {
+    "id": 120271,
+    "text": "Wolfjaw Arena"
+  },
+  {
+    "id": 120272,
+    "text": "Arsenal Arena"
+  },
+  {
+    "id": 120273,
+    "text": "Crimson Arena"
+  },
+  {
+    "id": 120274,
+    "text": "Hi Sam!!!"
+  },
+  {
+    "id": 120275,
+    "text": "Character Select"
+  },
+  {
+    "id": 84050448428081152,
+    "text": "Sapphire Refuge"
+  },
+  {
+    "id": 84050490887020544,
+    "text": "Underground Palace"
+  },
+  {
+    "id": 84050554124541952,
+    "text": "Sunless Coast"
+  },
+  {
+    "id": 84050581001641984,
+    "text": "Haunted Reef"
+  },
+  {
+    "id": 84050628338556928,
+    "text": "Ritual Lake"
+  },
+  {
+    "id": 84050698228244480,
+    "text": "Imperial Metropolis"
+  },
+  {
+    "id": 84050729773604864,
+    "text": "Snowbound City"
+  },
+  {
+    "id": 84050770319941632,
+    "text": "The Old Road"
+  },
+  {
+    "id": 84050800133054464,
+    "text": "The Keepers' Camp"
+  },
+  {
+    "id": 84050833788149760,
+    "text": "The Fortress Gardens"
+  },
+  {
+    "id": 84050869515231232,
+    "text": "The Fortress Walls"
+  },
+  {
+    "id": 84050903384236032,
+    "text": "The Storerooms"
+  },
+  {
+    "id": 84050937144188928,
+    "text": "The Keepers' Vault"
+  },
+  {
+    "id": 84050968312061952,
+    "text": "The Northern Road"
+  },
+  {
+    "id": 84051019675508736,
+    "text": "Ulatri Highlands"
+  },
+  {
+    "id": 84051039183216640,
+    "text": "The Summit"
+  },
+  {
+    "id": 84051667779362816,
+    "text": "Sanctuary of Eterra"
+  },
+  {
+    "id": 84051730215772160,
+    "text": "The Crumbling Ruins"
+  },
+  {
+    "id": 84874669672669184,
+    "text": "Character Select"
+  },
+  {
+    "id": 84874669681057792,
+    "text": "The Burning Forest"
+  },
+  {
+    "id": 84874669681057793,
+    "text": "The Osprix Warcamp"
+  },
+  {
+    "id": 84874669681057794,
+    "text": "Login"
+  },
+  {
+    "id": 111615460801409024,
+    "text": "The Observatory"
+  },
+  {
+    "id": 111615460839157760,
+    "text": "The Bazaar"
+  },
+  {
+    "id": 130840293262643200,
+    "text": "Preserved Sanctuary"
+  },
+  {
+    "id": 130840293279420416,
+    "text": "Pristine Gardens"
+  },
+  {
+    "id": 130840293283614720,
+    "text": "Frozen Sea"
+  },
+  {
+    "id": 130840293283614721,
+    "text": "Bleak Steppe"
+  },
+  {
+    "id": 130840293287809024,
+    "text": "Underground Lakes"
+  },
+  {
+    "id": 130840293287809025,
+    "text": "Mudflats"
+  },
+  {
+    "id": 130840293287809026,
+    "text": "Snowbound Graves"
+  },
+  {
+    "id": 130840293292003328,
+    "text": "Burned Fields"
+  },
+  {
+    "id": 149150982402097152,
+    "text": "Hallowed Graveyard"
+  },
+  {
+    "id": 183307684758409216,
+    "text": "Altar of Orobyss"
+  },
+  {
+    "id": 183309691779010560,
+    "text": "Shattered Road"
+  },
+  {
+    "id": 251460638329335808,
+    "text": "Conquered Tower"
+  },
+  {
+    "id": 251460638333530112,
+    "text": "Tomb of Vessels"
+  },
+  {
+    "id": 251460638333530113,
+    "text": "Tower of the Weaver"
+  },
+  {
+    "id": 251460638333530114,
+    "text": "The Ancient Oasis"
+  },
+  {
+    "id": 251460638333530115,
+    "text": "The Crystal Cave"
+  },
+  {
+    "id": 251460638333530116,
+    "text": "The Fungal Tunnels"
+  },
+  {
+    "id": 251460638333530117,
+    "text": "The Lush Grove"
+  },
+  {
+    "id": 251460638333530118,
+    "text": "The Mountain Ascent"
+  },
+  {
+    "id": 251460638333530119,
+    "text": "The Draal Hive"
+  },
+  {
+    "id": 251460638333530120,
+    "text": "Draal Queen's Lair"
+  },
+  {
+    "id": 251460638333530121,
+    "text": "The Silent Coast"
+  },
+  {
+    "id": 251460638333530122,
+    "text": "The Garden"
+  },
+  {
+    "id": 251460638333530123,
+    "text": "The Untamed Forest"
+  },
+  {
+    "id": 251460638333530124,
+    "text": "The Dragon Grotto"
+  },
+  {
+    "id": 251460638333530125,
+    "text": "The Sky Chains"
+  },
+  {
+    "id": 251460638333530126,
+    "text": "The Temple in the Sky"
+  },
+  {
+    "id": 251460638333530127,
+    "text": "Eterra's Arboretum"
+  },
+  {
+    "id": 251460638333530128,
+    "text": "The Halls of Preservation"
+  },
+  {
+    "id": 251460638333530129,
+    "text": "The Observer's Prison"
+  },
+  {
+    "id": 260507852222062592,
+    "text": "Haven of Silk"
+  },
+  {
+    "id": 274266383653384192,
+    "text": "The Great Bridge"
+  },
+  {
+    "id": 277520323463458816,
+    "text": "Gauntlet of Strife"
+  },
+  {
+    "id": 277520323484430336,
+    "text": "Champions' Colosseum"
+  },
+  {
+    "id": 277520323484430337,
+    "text": "The Seeker's Summit"
+  },
+  {
+    "id": 277520323484430338,
+    "text": "Soul Foundry"
+  },
+  {
+    "id": 277520323484430339,
+    "text": "Antipode Rift"
+  },
+  {
+    "id": 277520323484430340,
+    "text": "Heart of the Hive"
+  },
+  {
+    "id": 277520323484430341,
+    "text": "Lostwood Folly"
+  },
+  {
+    "id": 277520323484430342,
+    "text": "Overgrown Graveyard"
+  },
+  {
+    "id": 283367582637363200,
+    "text": "Tomb of the Erased"
+  },
+  {
+    "id": 283367654380933120,
+    "text": "Cemetery of the Erased"
+  },
+  {
+    "id": 287364620962607104,
+    "text": "Confluence of Oblivion"
+  },
+  {
+    "id": 287364620970995712,
+    "text": "Threshold of Eternity"
+  },
+  {
+    "id": 287364620970995713,
+    "text": "The Forgotten Keep"
+  },
+  {
+    "id": 287364620970995714,
+    "text": "The Grand Brewery"
+  },
+  {
+    "id": 287364620970995715,
+    "text": "Farsight Turtle"
+  },
+  {
+    "id": 287364620970995716,
+    "text": "Rune Prison Complex"
+  },
+  {
+    "id": 292772386044731392,
+    "text": "Oerden's Watch"
+  },
+  {
+    "id": 292772386078285824,
+    "text": "Sepulchre of the Lost"
+  },
+  {
+    "id": 292772386078285825,
+    "text": "Cenotaph of Worlds"
+  },
+  {
+    "id": 292772386078285826,
+    "text": "Collapsing Horizon"
+  },
+  {
+    "id": 292772386078285827,
+    "text": "Pillar of Skulls"
+  },
+  {
+    "id": 292772386078285828,
+    "text": "Vault of the Barnacle King"
+  },
+  {
+    "id": 292772386078285829,
+    "text": "Defiled Fortress"
+  },
+  {
+    "id": 292772386078285830,
+    "text": "Bountiful Wilds"
+  },
+  {
+    "id": 292772386078285831,
+    "text": "Frostfire Caverns"
+  },
+  {
+    "id": 292772386078285832,
+    "text": "Dead Forest"
+  },
+  {
+    "id": 294407693238628352,
+    "text": "The Fading Brink"
+  },
+  {
+    "id": 325317722118807552,
+    "text": "The Honey Chambers"
+  },
+  {
+    "id": 330411869540442112,
+    "text": "Cave"
+  },
+  {
+    "id": 346712052326719488,
+    "text": "Bloodline Glade"
+  },
+  {
+    "id": 346712052343496704,
+    "text": "Nesting Grove"
+  },
+  {
+    "id": 346712052343496705,
+    "text": "Rampant Coast"
+  },
+  {
+    "id": 350277379350323200,
+    "text": "Serene Isles"
+  },
+  {
+    "id": 350277379379683328,
+    "text": "Nightbloom Forest"
+  },
+  {
+    "id": 350277379379683329,
+    "text": "Mushroom Caves"
+  },
+  {
+    "id": 350277379379683330,
+    "text": "Crystal Lakes"
+  },
+  {
+    "id": 350277379379683331,
+    "text": "Sky Garden"
+  },
+  {
+    "id": 350277379379683332,
+    "text": "Tidal Sands"
+  }
+]

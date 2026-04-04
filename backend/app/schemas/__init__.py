@@ -7,7 +7,7 @@ Convention:
   - <Model>UpdateSchema → input validation for PATCH (all fields optional)
 """
 
-from marshmallow import Schema, fields, validate, validates, ValidationError, post_load
+from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, EXCLUDE
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 from app import db
@@ -15,21 +15,16 @@ from app.models import (
     User, Build, BuildSkill, Vote,
     CraftSession, CraftStep,
 )
+from app.constants import BASE_CLASSES, CLASS_MASTERIES, ITEM_RARITIES
 
 # ---------------------------------------------------------------------------
 # Shared validators
 # ---------------------------------------------------------------------------
 
-VALID_CLASSES = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"]
-VALID_MASTERIES = {
-    "Acolyte": ["Necromancer", "Lich", "Warlock"],
-    "Mage": ["Runemaster", "Sorcerer", "Spellblade"],
-    "Primalist": ["Druid", "Beastmaster", "Shaman"],
-    "Sentinel": ["Forge Guard", "Paladin", "Void Knight"],
-    "Rogue": ["Bladedancer", "Marksman", "Falconer"],
-}
+VALID_CLASSES = BASE_CLASSES
+VALID_MASTERIES = CLASS_MASTERIES
 VALID_TIERS = ["S", "A", "B", "C"]
-VALID_RARITIES = ["Normal", "Magic", "Rare", "Exalted", "Unique", "Set"]
+VALID_RARITIES = [r for r in ITEM_RARITIES if r != "Legendary"]  # crafting only
 
 
 # ---------------------------------------------------------------------------
@@ -76,7 +71,8 @@ class BuildCreateSchema(Schema):
     )
     mastery = fields.Str(required=True)
     level = fields.Int(validate=validate.Range(min=1, max=100), load_default=100)
-    passive_tree = fields.List(fields.Int(), load_default=[])
+    # Accept both legacy integer IDs and modern namespaced string IDs (e.g. "ac_0")
+    passive_tree = fields.List(fields.Raw(), load_default=[])
     gear = fields.List(fields.Dict(), load_default=[])
     skills = fields.List(fields.Dict(), load_default=[])
     is_ssf = fields.Bool(load_default=False)
@@ -111,9 +107,13 @@ class BuildCreateSchema(Schema):
 
 
 class BuildUpdateSchema(Schema):
+    class Meta:
+        unknown = EXCLUDE
+
     name = fields.Str(validate=validate.Length(min=3, max=120))
     description = fields.Str(validate=validate.Length(max=2000))
-    passive_tree = fields.List(fields.Int())
+    level = fields.Int(validate=validate.Range(min=1, max=100))
+    passive_tree = fields.List(fields.Raw())
     gear = fields.List(fields.Dict())
     skills = fields.List(fields.Dict())
     is_ssf = fields.Bool()
@@ -186,11 +186,14 @@ class CraftSessionCreateSchema(Schema):
     rarity = fields.Str(
         validate=validate.OneOf(VALID_RARITIES), load_default="Exalted"
     )
-    instability = fields.Int(
-        validate=validate.Range(min=0, max=80), load_default=0
-    )
     forge_potential = fields.Int(
-        validate=validate.Range(min=0, max=60), load_default=28
+        validate=validate.Range(min=0, max=60), load_default=None
+    )
+    fp_mode = fields.Str(
+        validate=validate.OneOf(["random", "manual", "fixed"]), load_default="random"
+    )
+    manual_fp = fields.Int(
+        validate=validate.Range(min=0, max=60), load_default=None
     )
     affixes = fields.List(fields.Dict(), load_default=[])
 
@@ -209,11 +212,21 @@ class CraftActionSchema(Schema):
 
 class CraftPredictSchema(Schema):
     """Body for POST /api/craft/predict (stateless — no session required)."""
-    instability = fields.Int(validate=validate.Range(min=0, max=80), load_default=0)
     forge_potential = fields.Int(validate=validate.Range(min=0, max=60), load_default=28)
     affixes = fields.List(fields.Dict(), load_default=[])
     n_simulations = fields.Int(
         validate=validate.Range(min=100, max=50_000), load_default=10_000
     )
+    seed = fields.Int(load_default=None, allow_none=True)
+
+
+class CraftSimulateSchema(Schema):
+    """Body for POST /api/craft/simulate — high-fidelity path simulation."""
+    forge_potential = fields.Int(validate=validate.Range(min=0, max=60), load_default=28)
+    steps = fields.List(fields.Dict(), required=True)
+    n_simulations = fields.Int(
+        validate=validate.Range(min=100, max=50_000), load_default=1_000
+    )
+    seed = fields.Int(load_default=None, allow_none=True)
 
 

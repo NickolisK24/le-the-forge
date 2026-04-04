@@ -41,10 +41,3 @@ class InsufficientForgePotentialError(CraftingError):
         )
         self.needed = needed
         self.available = available
-
-
-class ItemFracturedError(CraftingError):
-    """Raised when trying to craft on a fractured item."""
-
-    def __init__(self):
-        super().__init__("Item is fractured. Start a new session.")

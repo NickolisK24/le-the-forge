@@ -1,0 +1,5134 @@
+[
+  {
+    "id": 2532392632311808,
+    "text": "Armor"
+  },
+  {
+    "id": 2532392678449152,
+    "text": "Mana"
+  },
+  {
+    "id": 2532392682643456,
+    "text": "Increased Spell Damage"
+  },
+  {
+    "id": 2532392691032064,
+    "text": "Increased Health Regen"
+  },
+  {
+    "id": 2532392699420672,
+    "text": "Poison Resistance"
+  },
+  {
+    "id": 2532392703614976,
+    "text": "Increased Stun Chance"
+  },
+  {
+    "id": 2532392707809280,
+    "text": "Spell Damage"
+  },
+  {
+    "id": 2532392716197888,
+    "text": "Fire Resistance"
+  },
+  {
+    "id": 2532392716197889,
+    "text": "Strength"
+  },
+  {
+    "id": 2532392720392192,
+    "text": "Increased Critical Strike Chance"
+  },
+  {
+    "id": 2532392724586496,
+    "text": "Increased Mana Regen"
+  },
+  {
+    "id": 2532392728780800,
+    "text": "Ward per Second"
+  },
+  {
+    "id": 2532392732975104,
+    "text": "Increased Bow Attack Speed"
+  },
+  {
+    "id": 2532392737169408,
+    "text": "Increased Throwing Attack Speed"
+  },
+  {
+    "id": 2532392737169409,
+    "text": "Physical Resistance"
+  },
+  {
+    "id": 2532392741363712,
+    "text": "Increased Physical Damage"
+  },
+  {
+    "id": 2532392745558016,
+    "text": "Necrotic Resistance"
+  },
+  {
+    "id": 2532392745558017,
+    "text": "Critical Strike Chance"
+  },
+  {
+    "id": 2532392749752320,
+    "text": "Minion Critical Strike Chance"
+  },
+  {
+    "id": 2532392749752321,
+    "text": "Stun Avoidance"
+  },
+  {
+    "id": 2532392753946624,
+    "text": "Increased Movement Speed"
+  },
+  {
+    "id": 2532392758140928,
+    "text": "Increased Bow Damage"
+  },
+  {
+    "id": 2532392758140929,
+    "text": "Increased Throwing Damage"
+  },
+  {
+    "id": 2532392762335232,
+    "text": "Critical Strike Avoidance"
+  },
+  {
+    "id": 2532392766529536,
+    "text": "Endurance"
+  },
+  {
+    "id": 2532392766529537,
+    "text": "Critical Strike Multiplier"
+  },
+  {
+    "id": 2532392770723840,
+    "text": "Lightning Resistance"
+  },
+  {
+    "id": 2532392774918144,
+    "text": "Cold Resistance"
+  },
+  {
+    "id": 2532392779112448,
+    "text": "Freeze Rate Multiplier"
+  },
+  {
+    "id": 2532392779112449,
+    "text": "Increased Minion Physical Damage"
+  },
+  {
+    "id": 2532392787501056,
+    "text": "increased Area for Area Skills"
+  },
+  {
+    "id": 2532392787501057,
+    "text": "Increased Area for Minion Area Skills"
+  },
+  {
+    "id": 2532392791695360,
+    "text": "Increased Cooldown Recovery Speed"
+  },
+  {
+    "id": 2532392791695361,
+    "text": "Void Resistance"
+  },
+  {
+    "id": 2532392791695362,
+    "text": "of Damage Leeched as Health"
+  },
+  {
+    "id": 2532392795889664,
+    "text": "of Mana Spent Gained as Ward"
+  },
+  {
+    "id": 2532392800083968,
+    "text": "reduced Bonus Damage Taken from Critical Strikes"
+  },
+  {
+    "id": 2532392804278272,
+    "text": "Dexterity"
+  },
+  {
+    "id": 2532392816861184,
+    "text": "Melee and Throwing Damage for your Falcon"
+  },
+  {
+    "id": 2532392821055488,
+    "text": "Endurance Threshold"
+  },
+  {
+    "id": 2532392821055489,
+    "text": "Increased Fire Damage"
+  },
+  {
+    "id": 2532392825249792,
+    "text": "Increased Health"
+  },
+  {
+    "id": 2532392825249793,
+    "text": "of Damage Leeched as Health on Hit"
+  },
+  {
+    "id": 2532392829444096,
+    "text": "Ward Decay Threshold"
+  },
+  {
+    "id": 2532392833638400,
+    "text": "Ward Gain on Kill"
+  },
+  {
+    "id": 2532392837832704,
+    "text": "Increased Damage Over Time"
+  },
+  {
+    "id": 2532392842027008,
+    "text": "Increased Bleed Duration"
+  },
+  {
+    "id": 2532392854609920,
+    "text": "of Elemental Damage Leeched as Health"
+  },
+  {
+    "id": 2532392858804224,
+    "text": "Increased Minion Cooldown Recovery Speed"
+  },
+  {
+    "id": 2532392858804225,
+    "text": "Vitality"
+  },
+  {
+    "id": 2532392871387136,
+    "text": "increased Echo Damage when a skill is Echoed"
+  },
+  {
+    "id": 2532392875581440,
+    "text": "Increased Mana"
+  },
+  {
+    "id": 2532392879775744,
+    "text": "Minion Spell Damage"
+  },
+  {
+    "id": 2532392879775745,
+    "text": "of Maximum Health gained as Endurance Threshold"
+  },
+  {
+    "id": 2536321394925568,
+    "text": "Melee Damage"
+  },
+  {
+    "id": 2542361154936832,
+    "text": "Potion Slots"
+  },
+  {
+    "id": 2542370650841088,
+    "text": "Upheaval"
+  },
+  {
+    "id": 2542370655035392,
+    "text": "Increased Melee Damage"
+  },
+  {
+    "id": 2542417685766144,
+    "text": "Detonating Arrow"
+  },
+  {
+    "id": 2542417761263616,
+    "text": "Minion Melee Damage"
+  },
+  {
+    "id": 2542417765457920,
+    "text": "Minion Bow Damage"
+  },
+  {
+    "id": 2542425130655744,
+    "text": "Multishot"
+  },
+  {
+    "id": 2542429396262912,
+    "text": "Multistrike"
+  },
+  {
+    "id": 2543644960088064,
+    "text": "Increased Minion Damage"
+  },
+  {
+    "id": 2543665348599808,
+    "text": "Intelligence"
+  },
+  {
+    "id": 2543695719555072,
+    "text": "Chance to replenish one potion when Bone Golem hits an enemy"
+  },
+  {
+    "id": 2545483336114176,
+    "text": "Manifest Armor"
+  },
+  {
+    "id": 2545487480086528,
+    "text": "Block Chance"
+  },
+  {
+    "id": 2545487484280832,
+    "text": "Block Effectiveness"
+  },
+  {
+    "id": 2545956537491456,
+    "text": "Snap Freeze"
+  },
+  {
+    "id": 2545956541685760,
+    "text": "increased Freeze Duration with Snap Freeze"
+  },
+  {
+    "id": 2545956541685761,
+    "text": "increased Cold Spell Cast Speed"
+  },
+  {
+    "id": 2545956545880064,
+    "text": "increased Elemental Spell Cast Speed"
+  },
+  {
+    "id": 2546751806889984,
+    "text": "Spell Mana Cost"
+  },
+  {
+    "id": 2546837613961216,
+    "text": "Increased Melee Attack Speed"
+  },
+  {
+    "id": 2546837618155520,
+    "text": "Chance to Inflict Bleed on Melee Hit"
+  },
+  {
+    "id": 2546837626544128,
+    "text": "Lightning Penetration"
+  },
+  {
+    "id": 2546837630738432,
+    "text": "Minion Lightning Penetration"
+  },
+  {
+    "id": 2546837630738433,
+    "text": "Melee Lightning Damage"
+  },
+  {
+    "id": 2546837634932736,
+    "text": "Ward Retention"
+  },
+  {
+    "id": 2546837634932737,
+    "text": "Elemental Resistance"
+  },
+  {
+    "id": 2546837639127040,
+    "text": "Necrotic Penetration"
+  },
+  {
+    "id": 2546837639127041,
+    "text": "Minion Necrotic Penetration"
+  },
+  {
+    "id": 2546837647515648,
+    "text": "Increased Dodge Rating"
+  },
+  {
+    "id": 2546837651709952,
+    "text": "Increased Melee Stun Chance"
+  },
+  {
+    "id": 2546837655904256,
+    "text": "Health"
+  },
+  {
+    "id": 2546837660098560,
+    "text": "Block Chance per stack of Golden Aegis"
+  },
+  {
+    "id": 2546837664292864,
+    "text": "Block Effectiveness per 1% Total Uncapped Resistance"
+  },
+  {
+    "id": 2546837668487168,
+    "text": "Ward Gain on Block"
+  },
+  {
+    "id": 2546837668487169,
+    "text": "Void Spells"
+  },
+  {
+    "id": 2546837672681472,
+    "text": "Void Spell Mana Cost"
+  },
+  {
+    "id": 2546837676875776,
+    "text": "increased Void Spell Cast Speed"
+  },
+  {
+    "id": 2546837676875777,
+    "text": "of Damage Reflected"
+  },
+  {
+    "id": 2546837681070080,
+    "text": "Increased Spell Void Damage"
+  },
+  {
+    "id": 2546837681070081,
+    "text": "Mana Gained on Potion Use"
+  },
+  {
+    "id": 2546837685264384,
+    "text": "increased Mana Regen for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546837689458688,
+    "text": "increased Melee Physical Damage"
+  },
+  {
+    "id": 2546837689458689,
+    "text": "of Damage Dealt to Mana Before Health"
+  },
+  {
+    "id": 2546837693652992,
+    "text": "Increased Minion Fire Damage"
+  },
+  {
+    "id": 2546838498959360,
+    "text": "Melee Cold Damage"
+  },
+  {
+    "id": 2546838503153664,
+    "text": "Increased Cold Damage"
+  },
+  {
+    "id": 2546838507347968,
+    "text": "Evade Charge"
+  },
+  {
+    "id": 2546838515736576,
+    "text": "of Melee Damage Leeched as Health"
+  },
+  {
+    "id": 2546838515736577,
+    "text": "Chance to Chill on Hit"
+  },
+  {
+    "id": 2546838524125184,
+    "text": "Primalist Skills"
+  },
+  {
+    "id": 2546838524125185,
+    "text": "less Damage over Time Taken from Slowed Enemies"
+  },
+  {
+    "id": 2546838528319488,
+    "text": "chance on Hit to grant one of your minions Aspect of the Spider (2 second cooldown)"
+  },
+  {
+    "id": 2546838528319489,
+    "text": "Increased Minion Health"
+  },
+  {
+    "id": 2546838532513792,
+    "text": "Spell Cold Damage"
+  },
+  {
+    "id": 2546838536708096,
+    "text": "Ward Gained on Potion Use per 10 Intelligence"
+  },
+  {
+    "id": 2546838536708097,
+    "text": "Spell Void Damage"
+  },
+  {
+    "id": 2546838540902400,
+    "text": "Chance to cast Void Rift on Kill"
+  },
+  {
+    "id": 2546838847086592,
+    "text": "Less Damage over Time Taken"
+  },
+  {
+    "id": 2546838851280896,
+    "text": "Increased Cast Speed"
+  },
+  {
+    "id": 2546838851280897,
+    "text": "Arcane Ascendance"
+  },
+  {
+    "id": 2546838855475200,
+    "text": "Health Regen"
+  },
+  {
+    "id": 2546838859669504,
+    "text": "Spell Necrotic Damage"
+  },
+  {
+    "id": 2546838863863808,
+    "text": "increased Curse Damage"
+  },
+  {
+    "id": 2546838868058112,
+    "text": "All Attributes"
+  },
+  {
+    "id": 2546838868058113,
+    "text": "Runic Invocation"
+  },
+  {
+    "id": 2546838872252416,
+    "text": "Spell Damage per Active Rune"
+  },
+  {
+    "id": 2546838872252417,
+    "text": "Armor per Rah Rune"
+  },
+  {
+    "id": 2546838876446720,
+    "text": "Dodge Rating per Heo Rune"
+  },
+  {
+    "id": 2546838876446721,
+    "text": "Ward per Second per Gon Rune"
+  },
+  {
+    "id": 2546838880641024,
+    "text": "Spell Damage with Runic Invocation per 10 Armor, Dodge Rating, or Ward, whichever is lowest"
+  },
+  {
+    "id": 2546838880641025,
+    "text": "more Melee Damage to High Health Enemies"
+  },
+  {
+    "id": 2546838884835328,
+    "text": "more Spell Damage to Low Health Enemies"
+  },
+  {
+    "id": 2546838889029632,
+    "text": "Chance to Poison on Minion Hit"
+  },
+  {
+    "id": 2546838889029633,
+    "text": "Increased Poison Damage"
+  },
+  {
+    "id": 2546838893223936,
+    "text": "Seconds of Traversal Skill Cooldowns Recovered on Potion Use"
+  },
+  {
+    "id": 2546838893223937,
+    "text": "Increased Chance To Find Potions"
+  },
+  {
+    "id": 2546838897418240,
+    "text": "Chance to Poison on Spell Hit"
+  },
+  {
+    "id": 2546838897418241,
+    "text": "Spell Fire Damage"
+  },
+  {
+    "id": 2546838897418242,
+    "text": "Chance to cast Fire Aura on Kill with Fire Skills (1 second cooldown)"
+  },
+  {
+    "id": 2546838901612544,
+    "text": "Increased Minion Cold Damage"
+  },
+  {
+    "id": 2546839174242304,
+    "text": "Increased Necrotic Damage"
+  },
+  {
+    "id": 2546839178436608,
+    "text": "Increased Minion Necrotic Damage"
+  },
+  {
+    "id": 2546839182630912,
+    "text": "Chance to Poison on Hit"
+  },
+  {
+    "id": 2546839182630913,
+    "text": "Melee Void Damage"
+  },
+  {
+    "id": 2546839182630914,
+    "text": "Void Penetration"
+  },
+  {
+    "id": 2546839186825216,
+    "text": "Increased Elemental Damage"
+  },
+  {
+    "id": 2546839191019520,
+    "text": "increased Damage Taken"
+  },
+  {
+    "id": 2546839191019521,
+    "text": "Health Gain on Kill"
+  },
+  {
+    "id": 2546839195213824,
+    "text": "Bone Curse"
+  },
+  {
+    "id": 2546839199408128,
+    "text": "Summon Frenzy Totem"
+  },
+  {
+    "id": 2546839203602432,
+    "text": "Seconds of Haste after you use a Traversal Skill"
+  },
+  {
+    "id": 2546839203602433,
+    "text": "increased Effect of Haste on You"
+  },
+  {
+    "id": 2546839207796736,
+    "text": "less Fire Damage Taken on Block"
+  },
+  {
+    "id": 2546839484620800,
+    "text": "Melee Critical Strike Chance"
+  },
+  {
+    "id": 2546839488815104,
+    "text": "Spell Lightning Damage"
+  },
+  {
+    "id": 2546839493009408,
+    "text": "of Lightning Damage Leeched as Health"
+  },
+  {
+    "id": 2546839493009409,
+    "text": "Chance to Shred Armor on Melee Hit"
+  },
+  {
+    "id": 2546839497203712,
+    "text": "Maximum Wraiths"
+  },
+  {
+    "id": 2546839497203713,
+    "text": "Summon Wraith"
+  },
+  {
+    "id": 2546839501398016,
+    "text": "Increased Minion Melee Damage"
+  },
+  {
+    "id": 2546839501398017,
+    "text": "Increased Minion Movement Speed"
+  },
+  {
+    "id": 2546839505592320,
+    "text": "Melee Attacks"
+  },
+  {
+    "id": 2546839505592321,
+    "text": "Melee Minion Skills"
+  },
+  {
+    "id": 2546839509786624,
+    "text": "reduced Raptor Size"
+  },
+  {
+    "id": 2546839509786625,
+    "text": "less Raptor Damage"
+  },
+  {
+    "id": 2546839513980928,
+    "text": "Health Gained on Potion Use"
+  },
+  {
+    "id": 2546839513980929,
+    "text": "of Potion Health Converted to Ward"
+  },
+  {
+    "id": 2546839518175232,
+    "text": "Minions teleported around you after you use a Traversal Skill"
+  },
+  {
+    "id": 2546839522369536,
+    "text": "Increased Minion Critical Strike Chance"
+  },
+  {
+    "id": 2546839522369537,
+    "text": "to 75% less Damage depending on Area Level for You and your Minions"
+  },
+  {
+    "id": 2546839526563840,
+    "text": "to 200% more Damage Taken depending on Area Level for You and your Minions"
+  },
+  {
+    "id": 2546839794999296,
+    "text": "Chance to Inflict Bleed on Hit"
+  },
+  {
+    "id": 2546839807582208,
+    "text": "Increased Armor"
+  },
+  {
+    "id": 2546839807582209,
+    "text": "Increased Minion Armor"
+  },
+  {
+    "id": 2546839811776512,
+    "text": "Rogue Skills"
+  },
+  {
+    "id": 2546839811776513,
+    "text": "Dodge Rating"
+  },
+  {
+    "id": 2546839815970816,
+    "text": "increased Fire Spell Cast Speed"
+  },
+  {
+    "id": 2546839815970817,
+    "text": "Physical Penetration"
+  },
+  {
+    "id": 2546839820165120,
+    "text": "Minion Physical Penetration"
+  },
+  {
+    "id": 2546839820165121,
+    "text": "Chance to Electrify on Hit"
+  },
+  {
+    "id": 2546839824359424,
+    "text": "Chance to cast Smite on hit with throwing attacks (up to 10 times per 2 seconds)"
+  },
+  {
+    "id": 2546840080211968,
+    "text": "Increased Chill Duration"
+  },
+  {
+    "id": 2546840084406272,
+    "text": "Increased Shock Duration"
+  },
+  {
+    "id": 2546840084406273,
+    "text": "Increased Ignite Duration"
+  },
+  {
+    "id": 2546840088600576,
+    "text": "Chance to Poison on Melee Hit"
+  },
+  {
+    "id": 2546840088600577,
+    "text": "Increased Poison Duration"
+  },
+  {
+    "id": 2546840092794880,
+    "text": "Spell Critical Strike Chance"
+  },
+  {
+    "id": 2546840096989184,
+    "text": "more Spell Damage to Ignited Enemies"
+  },
+  {
+    "id": 2546840101183488,
+    "text": "of Hungering Souls Base Damage Converted to Fire"
+  },
+  {
+    "id": 2546840101183489,
+    "text": "Chance to Ignite on Hit"
+  },
+  {
+    "id": 2546840105377792,
+    "text": "Mage Skills"
+  },
+  {
+    "id": 2546840105377793,
+    "text": "Chance to Shock Attackers"
+  },
+  {
+    "id": 2546840109572096,
+    "text": "more Armor against Shocked Enemies"
+  },
+  {
+    "id": 2546840109572097,
+    "text": "more Lightning Damage to Shocked Enemies"
+  },
+  {
+    "id": 2546840113766400,
+    "text": "Chance to gain 15 Static Charges when Hit"
+  },
+  {
+    "id": 2546840113766401,
+    "text": "Chance to cast Static when Hit"
+  },
+  {
+    "id": 2546840117960704,
+    "text": "Less Frequency of expending Storm Stacks"
+  },
+  {
+    "id": 2546840122155008,
+    "text": "Spell Damage for Storm Bolt"
+  },
+  {
+    "id": 2546840122155009,
+    "text": "Less Necrotic Damage Taken"
+  },
+  {
+    "id": 2546840126349312,
+    "text": "more Cold Damage Taken"
+  },
+  {
+    "id": 2546840386396160,
+    "text": "Elemental Penetration"
+  },
+  {
+    "id": 2546840390590464,
+    "text": "Increased Bow Stun Chance"
+  },
+  {
+    "id": 2546840394784768,
+    "text": "Throwing Damage"
+  },
+  {
+    "id": 2546840398979072,
+    "text": "Throwing Attack Mana Cost"
+  },
+  {
+    "id": 2546840403173376,
+    "text": "Fire Spells"
+  },
+  {
+    "id": 2546840403173377,
+    "text": "Projectiles for Fireball"
+  },
+  {
+    "id": 2546840407367680,
+    "text": "of Armor Mitigation also applies to Damage over Time"
+  },
+  {
+    "id": 2546840411561984,
+    "text": "Increased Void Damage"
+  },
+  {
+    "id": 2546840415756288,
+    "text": "Increased Minion Void Damage"
+  },
+  {
+    "id": 2546840688386048,
+    "text": "Melee Fire Damage"
+  },
+  {
+    "id": 2546840692580352,
+    "text": "Fire Penetration"
+  },
+  {
+    "id": 2546840696774656,
+    "text": "increased Minion Bow Attack Speed"
+  },
+  {
+    "id": 2546840700968960,
+    "text": "Increased Minion Cast Speed"
+  },
+  {
+    "id": 2546840705163264,
+    "text": "Sentinel Skills"
+  },
+  {
+    "id": 2546840709357568,
+    "text": "Melee Attack Mana Cost"
+  },
+  {
+    "id": 2546840709357569,
+    "text": "Puncture"
+  },
+  {
+    "id": 2546840713551872,
+    "text": "Avalanche"
+  },
+  {
+    "id": 2546840977793024,
+    "text": "Melee Physical Damage"
+  },
+  {
+    "id": 2546840981987328,
+    "text": "Health Gained on Companion Hit"
+  },
+  {
+    "id": 2546840981987329,
+    "text": "Increased Companion Revive Range"
+  },
+  {
+    "id": 2546840986181632,
+    "text": "Increased Companion Revive Speed"
+  },
+  {
+    "id": 2546840986181633,
+    "text": "Acolyte Skills"
+  },
+  {
+    "id": 2546840990375936,
+    "text": "Ward Gained on Potion Use"
+  },
+  {
+    "id": 2546840990375937,
+    "text": "increased Spell Fire Damage"
+  },
+  {
+    "id": 2546841254617088,
+    "text": "Minion Melee Cold Damage"
+  },
+  {
+    "id": 2546841258811392,
+    "text": "Minion Void Penetration"
+  },
+  {
+    "id": 2546841263005696,
+    "text": "All Minion Skills"
+  },
+  {
+    "id": 2546841267200000,
+    "text": "Poison Resistance While Transformed"
+  },
+  {
+    "id": 2546841267200001,
+    "text": "Rage gained every 3 seconds while in Spriggan Form"
+  },
+  {
+    "id": 2546841271394304,
+    "text": "Primalist Melee Attacks"
+  },
+  {
+    "id": 2546841271394305,
+    "text": "Physical Skills"
+  },
+  {
+    "id": 2546841275588608,
+    "text": "Spell Physical Damage"
+  },
+  {
+    "id": 2546841275588609,
+    "text": "Chaos Bolts"
+  },
+  {
+    "id": 2546841279782912,
+    "text": "Bees Summoned on Potion Use"
+  },
+  {
+    "id": 2546841535635456,
+    "text": "Melee Critical Strike Multiplier"
+  },
+  {
+    "id": 2546841539829760,
+    "text": "Chance to Shred Armor on Hit"
+  },
+  {
+    "id": 2546841539829761,
+    "text": "chance to gain Haste for 3 seconds when a nearby enemy dies"
+  },
+  {
+    "id": 2546841544024064,
+    "text": "less Damage over Time taken while you have Haste"
+  },
+  {
+    "id": 2546841548218368,
+    "text": "of Current Health Lost per second"
+  },
+  {
+    "id": 2546841548218369,
+    "text": "Health Gain on Block"
+  },
+  {
+    "id": 2546841552412672,
+    "text": "Chance to inflict Spirit Plague on Melee Hit"
+  },
+  {
+    "id": 2546841556606976,
+    "text": "Earthquake"
+  },
+  {
+    "id": 2546841556606977,
+    "text": "Increased Stun Duration"
+  },
+  {
+    "id": 2546841560801280,
+    "text": "Charge for Void Cleave"
+  },
+  {
+    "id": 2546841816653824,
+    "text": "Mana Strike"
+  },
+  {
+    "id": 2546841820848128,
+    "text": "Increased Lightning Damage"
+  },
+  {
+    "id": 2546841825042432,
+    "text": "of Current Mana gained as Ward on Block"
+  },
+  {
+    "id": 2546841829236736,
+    "text": "of Missing Health gained as Ward per second"
+  },
+  {
+    "id": 2546841833431040,
+    "text": "Enemies Pierced with Multishot"
+  },
+  {
+    "id": 2546842110255104,
+    "text": "Increased Melee Elemental Damage"
+  },
+  {
+    "id": 2546842114449408,
+    "text": "increased Elemental Melee Attack Speed"
+  },
+  {
+    "id": 2546842118643712,
+    "text": "Minion Critical Strike Multiplier"
+  },
+  {
+    "id": 2546842118643713,
+    "text": "Sacrifice"
+  },
+  {
+    "id": 2546842122838016,
+    "text": "Increased Melee Stun Duration"
+  },
+  {
+    "id": 2546842127032320,
+    "text": "Seconds of Haste after you use Evade"
+  },
+  {
+    "id": 2546842127032321,
+    "text": "Dodge Rating while using Evade"
+  },
+  {
+    "id": 2546842127032322,
+    "text": "Ward Gained when you use a Traversal Skill"
+  },
+  {
+    "id": 2546842135420928,
+    "text": "Ward gained per 10 Missing Mana when you use a Traversal Skill"
+  },
+  {
+    "id": 2546842135420929,
+    "text": "Maximum Skeletons"
+  },
+  {
+    "id": 2546842399662080,
+    "text": "increased Curse Spell Cast Speed"
+  },
+  {
+    "id": 2546842399662081,
+    "text": "Mana Gained when you use Harvest"
+  },
+  {
+    "id": 2546842672291840,
+    "text": "Shield Throw"
+  },
+  {
+    "id": 2546842676486144,
+    "text": "Chance to retaliate with Shield Throw on Block (up to 2 times per second)"
+  },
+  {
+    "id": 2546842680680448,
+    "text": "Damage Reflected to Attackers"
+  },
+  {
+    "id": 2546842680680449,
+    "text": "Throwing Damage for Shield Throw per 10 Damage Reflected to Attackers"
+  },
+  {
+    "id": 2546842684874752,
+    "text": "Chance to gain Deicide for 15 seconds when you kill a rare or boss enemy"
+  },
+  {
+    "id": 2546842689069056,
+    "text": "Increased Melee Cold Damage"
+  },
+  {
+    "id": 2546842693263360,
+    "text": "Increased Melee Cold Damage per 10 Health Regen, up to 1500%"
+  },
+  {
+    "id": 2546842693263361,
+    "text": "Endurance Threshold if you have not been Hit Recently"
+  },
+  {
+    "id": 2546842697457664,
+    "text": "Ward per second per Active Maelstrom"
+  },
+  {
+    "id": 2546842965893120,
+    "text": "Chance to Poison on Throwing Hit"
+  },
+  {
+    "id": 2546842978476032,
+    "text": "Throwing Critical Strike Multiplier"
+  },
+  {
+    "id": 2546842982670336,
+    "text": "Projectiles with Shurikens"
+  },
+  {
+    "id": 2546842986864640,
+    "text": "Attunement"
+  },
+  {
+    "id": 2546842986864641,
+    "text": "All Resistances"
+  },
+  {
+    "id": 2546843251105792,
+    "text": "Chance to inflict Spreading Flames on Hit"
+  },
+  {
+    "id": 2546843255300096,
+    "text": "Increased Fire Damage Over Time"
+  },
+  {
+    "id": 2546843255300097,
+    "text": "Fire Spell Mana Cost"
+  },
+  {
+    "id": 2546843259494400,
+    "text": "Flame Reave"
+  },
+  {
+    "id": 2546843259494401,
+    "text": "Surge"
+  },
+  {
+    "id": 2546843263688704,
+    "text": "Enchant Weapon"
+  },
+  {
+    "id": 2546843263688705,
+    "text": "Rip Blood"
+  },
+  {
+    "id": 2546843267883008,
+    "text": "Rive"
+  },
+  {
+    "id": 2546843519541248,
+    "text": "Health Gain on Melee Hit"
+  },
+  {
+    "id": 2546843523735552,
+    "text": "Chance to Cast Lightning Blast on Crit with Frost Claw (up to 3 casts per second)"
+  },
+  {
+    "id": 2546843527929856,
+    "text": "Ward Gained on Crit with Frost Claw"
+  },
+  {
+    "id": 2546843532124160,
+    "text": "Spell Critical Strike Multiplier"
+  },
+  {
+    "id": 2546843532124161,
+    "text": "more Damage to Stunned Enemies"
+  },
+  {
+    "id": 2546843536318464,
+    "text": "Chance to Cast Rip Blood at 5 nearby targets on Melee Hit (2 second cooldown)"
+  },
+  {
+    "id": 2546843536318465,
+    "text": "Health Gained from Rip Blood"
+  },
+  {
+    "id": 2546843540512768,
+    "text": "Glyph of Dominion"
+  },
+  {
+    "id": 2546843540512769,
+    "text": "Melee Necrotic Damage"
+  },
+  {
+    "id": 2546843544707072,
+    "text": "increased Melee Necrotic Damage"
+  },
+  {
+    "id": 2546843548901376,
+    "text": "Maximum Companions"
+  },
+  {
+    "id": 2546843808948224,
+    "text": "Bow Damage"
+  },
+  {
+    "id": 2546843817336832,
+    "text": "Frost Wall"
+  },
+  {
+    "id": 2546843821531136,
+    "text": "increased Frost Wall Duration"
+  },
+  {
+    "id": 2546843821531137,
+    "text": "increased Cold Damage Over Time"
+  },
+  {
+    "id": 2546843825725440,
+    "text": "more Cold Damage Over Time to Frozen Enemies"
+  },
+  {
+    "id": 2546843825725441,
+    "text": "Increased Spreading Flames Duration"
+  },
+  {
+    "id": 2546843829919744,
+    "text": "Seconds of Frenzy after you use a Traversal Skill"
+  },
+  {
+    "id": 2546843829919745,
+    "text": "increased Effect of Frenzy on You"
+  },
+  {
+    "id": 2546844110938112,
+    "text": "chance to cast Freezing Concoction on Potion Use"
+  },
+  {
+    "id": 2546844115132416,
+    "text": "Volcanic Orb"
+  },
+  {
+    "id": 2546844119326720,
+    "text": "Throwing Attacks"
+  },
+  {
+    "id": 2546844123521024,
+    "text": "chance to recover 8% of Aerial Assault's remaining cooldown on Throwing Hit (up to 3 times)"
+  },
+  {
+    "id": 2546844123521025,
+    "text": "Increased Bleed Duration for Minions"
+  },
+  {
+    "id": 2546844379373568,
+    "text": "Health Gain on Freeze"
+  },
+  {
+    "id": 2546844383567872,
+    "text": "less Cold Damage Taken on Block"
+  },
+  {
+    "id": 2546844383567873,
+    "text": "Explosive Trap"
+  },
+  {
+    "id": 2546844387762176,
+    "text": "of Bleed Chance Converted to Ignite Chance"
+  },
+  {
+    "id": 2546844660391936,
+    "text": "increased Cooldown Recovery Speed for Evade"
+  },
+  {
+    "id": 2546844660391937,
+    "text": "Critical Strike Multiplier while Dual Wielding"
+  },
+  {
+    "id": 2546844664586240,
+    "text": "Increased Area with Dancing Strikes"
+  },
+  {
+    "id": 2546844664586241,
+    "text": "Melee Critical Strike Chance while in Dancing Strikes' Fighting Arena"
+  },
+  {
+    "id": 2546844668780544,
+    "text": "Soul Feast"
+  },
+  {
+    "id": 2546844672974848,
+    "text": "of Current Health converted to Ward when you directly cast a Necrotic Spell"
+  },
+  {
+    "id": 2546844672974849,
+    "text": "Max Traps with Explosive Trap"
+  },
+  {
+    "id": 2546844937216000,
+    "text": "Reduced Health Cost of Spells"
+  },
+  {
+    "id": 2546844937216001,
+    "text": "more Damage to Feared Enemies"
+  },
+  {
+    "id": 2546844941410304,
+    "text": "Increased Attack Speed"
+  },
+  {
+    "id": 2546844941410305,
+    "text": "Chance to Slow Attackers"
+  },
+  {
+    "id": 2546844945604608,
+    "text": "Melee cold damage in Werebear Form"
+  },
+  {
+    "id": 2546844949798912,
+    "text": "Rage Gained on Kill in Werebear Form"
+  },
+  {
+    "id": 2546845281148928,
+    "text": "Increased Armor per Forged Weapon"
+  },
+  {
+    "id": 2546845285343232,
+    "text": "Health Regen per Forged Weapon"
+  },
+  {
+    "id": 2546845285343233,
+    "text": "Maximum Forged Weapons"
+  },
+  {
+    "id": 2546845289537536,
+    "text": "Meteor"
+  },
+  {
+    "id": 2546845566361600,
+    "text": "increased Increased Melee Stun Chance"
+  },
+  {
+    "id": 2546845578944512,
+    "text": "Chance to Cast Thorn Shield on yourself when you directly use a Physical Skill"
+  },
+  {
+    "id": 2546845578944513,
+    "text": "Spell Physical Damage per 3 Attunement"
+  },
+  {
+    "id": 2546845583138816,
+    "text": "Physical Penetration with Bleed"
+  },
+  {
+    "id": 2546845587333120,
+    "text": "increased Block Effectiveness"
+  },
+  {
+    "id": 2546845587333121,
+    "text": "Increased Area of mirage attacks with Lethal Mirage"
+  },
+  {
+    "id": 2546845591527424,
+    "text": "of Glancing Blow Chance Converted to Block Chance"
+  },
+  {
+    "id": 2546845591527425,
+    "text": "less Necrotic Damage Taken on Block"
+  },
+  {
+    "id": 2546845595721728,
+    "text": "Lethal Mirage"
+  },
+  {
+    "id": 2546845889323008,
+    "text": "Bow Fire Damage"
+  },
+  {
+    "id": 2546845893517312,
+    "text": "Increased Minion Lightning Damage"
+  },
+  {
+    "id": 2546846233255936,
+    "text": "Focus"
+  },
+  {
+    "id": 2546846237450240,
+    "text": "All Skills"
+  },
+  {
+    "id": 2546846241644544,
+    "text": "Ward gained on hit per 10 missing mana if your current ward is lower than your missing health"
+  },
+  {
+    "id": 2546846245838848,
+    "text": "less Melee Attack Speed"
+  },
+  {
+    "id": 2546846245838849,
+    "text": "Poison Melee Attacks"
+  },
+  {
+    "id": 2546846245838850,
+    "text": "chance to Cleanse All Ailments on Potion Use"
+  },
+  {
+    "id": 2546846518468608,
+    "text": "Shift"
+  },
+  {
+    "id": 2546846526857216,
+    "text": "Glacier"
+  },
+  {
+    "id": 2546846531051520,
+    "text": "Cinder Strike Melee Damage per Level of Falconry While Unarmed"
+  },
+  {
+    "id": 2546846531051521,
+    "text": "increased Cinder Strike Area per Level of Falconry While Unarmed"
+  },
+  {
+    "id": 2546846535245824,
+    "text": "Cinder Strike"
+  },
+  {
+    "id": 2546846535245825,
+    "text": "Falconry"
+  },
+  {
+    "id": 2546846539440128,
+    "text": "Chance to Blind on Bow Hit"
+  },
+  {
+    "id": 2546846539440129,
+    "text": "Bow Void Damage while at Low Health"
+  },
+  {
+    "id": 2546846543634432,
+    "text": "more hit damage to Blinded Enemies with Multishot"
+  },
+  {
+    "id": 2546846543634433,
+    "text": "increased Bow Attack Speed while at Low Health"
+  },
+  {
+    "id": 2546846543634434,
+    "text": "Increased Blind Duration"
+  },
+  {
+    "id": 2546846547828736,
+    "text": "Fire Penetration with Fire Invocations"
+  },
+  {
+    "id": 2546846547828737,
+    "text": "Chance to Slow on Bow Hit"
+  },
+  {
+    "id": 2546846552023040,
+    "text": "more Damage to Slowed Enemies"
+  },
+  {
+    "id": 2546846828847104,
+    "text": "of Current Mana gained as Ward when you stop moving (2 second cooldown)"
+  },
+  {
+    "id": 2546846833041408,
+    "text": "Increased Healing Effectiveness"
+  },
+  {
+    "id": 2546847093088256,
+    "text": "Ice Barrage"
+  },
+  {
+    "id": 2546847097282560,
+    "text": "Poison Penetration with Plague"
+  },
+  {
+    "id": 2546847101476864,
+    "text": "of Current Health Drained per Second"
+  },
+  {
+    "id": 2546847105671168,
+    "text": "increased area for Throwing Area Skills"
+  },
+  {
+    "id": 2546847382495232,
+    "text": "Poison Penetration"
+  },
+  {
+    "id": 2546847386689536,
+    "text": "Minion Poison Penetration"
+  },
+  {
+    "id": 2546847650930688,
+    "text": "Bow Lightning Damage"
+  },
+  {
+    "id": 2546847919366144,
+    "text": "Cold Penetration"
+  },
+  {
+    "id": 2546847923560448,
+    "text": "Minion Cold Penetration"
+  },
+  {
+    "id": 2546847923560449,
+    "text": "Static"
+  },
+  {
+    "id": 2546847927754752,
+    "text": "Ward Gain on Melee Hit"
+  },
+  {
+    "id": 2546847931949056,
+    "text": "Chance per 20 Ward to gain Haste for 2 seconds when you directly use a Melee Attack"
+  },
+  {
+    "id": 2546847931949057,
+    "text": "Flame Ward"
+  },
+  {
+    "id": 2546847940337664,
+    "text": "Chance to receive a Glancing Blow when hit"
+  },
+  {
+    "id": 2546848200384512,
+    "text": "Dodge Rating if you have been hit recently"
+  },
+  {
+    "id": 2546848204578816,
+    "text": "less Damage Taken While Moving"
+  },
+  {
+    "id": 2546848204578817,
+    "text": "Maximum Ballistae"
+  },
+  {
+    "id": 2546848208773120,
+    "text": "Symbols of Hope"
+  },
+  {
+    "id": 2546848485597184,
+    "text": "Minion Armor"
+  },
+  {
+    "id": 2546848489791488,
+    "text": "Melee Critical Strike Multiplier while at Full Health"
+  },
+  {
+    "id": 2546848489791489,
+    "text": "Throwing Critical Strike Multiplier while at Full Health"
+  },
+  {
+    "id": 2546848493985792,
+    "text": "Increased Leech Rate"
+  },
+  {
+    "id": 2546848758226944,
+    "text": "Mana Efficiency"
+  },
+  {
+    "id": 2546848762421248,
+    "text": "Chance to cast Avalanche Boulder at target when you critically hit with a spell."
+  },
+  {
+    "id": 2546848762421249,
+    "text": "increased Damage for Totems"
+  },
+  {
+    "id": 2546849148297216,
+    "text": "Warpath"
+  },
+  {
+    "id": 2546849152491520,
+    "text": "Lightning Damage with Shurikens"
+  },
+  {
+    "id": 2546849156685824,
+    "text": "of Shurikens Base Damage converted to Lightning"
+  },
+  {
+    "id": 2546849160880128,
+    "text": "Fire Skills"
+  },
+  {
+    "id": 2546849160880129,
+    "text": "Damage Over Time Skills"
+  },
+  {
+    "id": 2546849165074432,
+    "text": "Critical Strike Multiplier with Flame Whip per 10% Uncapped Necrotic Resistance"
+  },
+  {
+    "id": 2546849169268736,
+    "text": "of Frost Wall Damage converted to Fire"
+  },
+  {
+    "id": 2546849169268737,
+    "text": "Ignite Chance per Second with Frost Wall"
+  },
+  {
+    "id": 2546849454481408,
+    "text": "Elemental Skills"
+  },
+  {
+    "id": 2546849462870016,
+    "text": "Spell Fire Damage for Infernal Shade per Active Dread Shade"
+  },
+  {
+    "id": 2546849462870017,
+    "text": "Increased Area for Infernal Shade per Active Dread Shade"
+  },
+  {
+    "id": 2546849467064320,
+    "text": "Mana Cost for Infernal Shade"
+  },
+  {
+    "id": 2546849467064321,
+    "text": "Mana Cost for Dread Shade"
+  },
+  {
+    "id": 2546849467064322,
+    "text": "Maximum Shades"
+  },
+  {
+    "id": 2546849815191552,
+    "text": "Increased Minion Spell Damage"
+  },
+  {
+    "id": 2546849819385856,
+    "text": "Damage Over Time Minion Skills"
+  },
+  {
+    "id": 2546849823580160,
+    "text": "Minion Fire Resistance"
+  },
+  {
+    "id": 2546850075238400,
+    "text": "chance to Invoke Hydrahedron on kill with fire skills (9 second cooldown)"
+  },
+  {
+    "id": 2546850079432704,
+    "text": "increased Hydrahedron Area"
+  },
+  {
+    "id": 2546850079432705,
+    "text": "increased Hydrahedron Cast Rate"
+  },
+  {
+    "id": 2546850083627008,
+    "text": "Ward Gained on Hit with Hydrahedron"
+  },
+  {
+    "id": 2546850087821312,
+    "text": "Smoke Bomb"
+  },
+  {
+    "id": 2546850087821313,
+    "text": "Critical Strike Chance for Skeletons"
+  },
+  {
+    "id": 2546850092015616,
+    "text": "Critical Strike Chance for Skeletal Mages"
+  },
+  {
+    "id": 2546850456920064,
+    "text": "Wandering Spirits"
+  },
+  {
+    "id": 2546850461114368,
+    "text": "Hungering Souls"
+  },
+  {
+    "id": 2546850465308672,
+    "text": "Ward gained each second per Active Wandering Spirit"
+  },
+  {
+    "id": 2546850465308673,
+    "text": "Chance to inflict Damned on Hit with Hungering Souls per Active Wandering Spirit"
+  },
+  {
+    "id": 2546850469502976,
+    "text": "Chance to Reveal a Wandering Spirit on Kill (1 Second Cooldown)"
+  },
+  {
+    "id": 2546850477891584,
+    "text": "Chance for Lightning Blast to Chain 4 Additional Times"
+  },
+  {
+    "id": 2546850754715648,
+    "text": "more Damage to Ignited Enemies"
+  },
+  {
+    "id": 2546850758909952,
+    "text": "Throwing Fire Damage with Burning Daggers per 2% increased chance to find potions"
+  },
+  {
+    "id": 2546850758909953,
+    "text": "chance to throw a Burning Dagger on hit (1 second cooldown)"
+  },
+  {
+    "id": 2546850763104256,
+    "text": "Chance to throw a Burning Dagger when you drink a Potion"
+  },
+  {
+    "id": 2546850767298560,
+    "text": "increased Damage Leeched as Health"
+  },
+  {
+    "id": 2546850767298561,
+    "text": "Charge for Shift"
+  },
+  {
+    "id": 2546850771492864,
+    "text": "Ward gained when you use Shift"
+  },
+  {
+    "id": 2546850775687168,
+    "text": "Charge for Smoke Bomb"
+  },
+  {
+    "id": 2546850775687169,
+    "text": "Ward gained when you use Smoke Bomb"
+  },
+  {
+    "id": 2546851098648576,
+    "text": "Swipe"
+  },
+  {
+    "id": 2546851102842880,
+    "text": "Synchronized Strike"
+  },
+  {
+    "id": 2546851358695424,
+    "text": "Firebrand"
+  },
+  {
+    "id": 2546851362889728,
+    "text": "Summon Spriggan"
+  },
+  {
+    "id": 2546851362889729,
+    "text": "Spriggan Form"
+  },
+  {
+    "id": 2546851367084032,
+    "text": "Rage Gained per Second per Summoned Vine"
+  },
+  {
+    "id": 2546851371278336,
+    "text": "increased Movement Speed While Transformed"
+  },
+  {
+    "id": 2546851371278337,
+    "text": "increased Armor While Transformed"
+  },
+  {
+    "id": 2546851719405568,
+    "text": "of Chance to Inflict Bleed on Hit gained as Bleed Chance per second with Hail of Arrows"
+  },
+  {
+    "id": 2546851723599872,
+    "text": "of Damage Over Time Damage Leeched as Health"
+  },
+  {
+    "id": 2546851723599873,
+    "text": "Hail of Arrows Mana Cost"
+  },
+  {
+    "id": 2546851727794176,
+    "text": "Chance to Inflict Bleed on Bow Hit"
+  },
+  {
+    "id": 2546851731988480,
+    "text": "Increased Minion Poison Damage"
+  },
+  {
+    "id": 2546852013006848,
+    "text": "Entangling Roots"
+  },
+  {
+    "id": 2546852017201152,
+    "text": "Chance to gain Haste for 1 second on Hit"
+  },
+  {
+    "id": 2546852021395456,
+    "text": "Dexterity Skills"
+  },
+  {
+    "id": 2546852025589760,
+    "text": "increased Shock Duration per Intelligence"
+  },
+  {
+    "id": 2546852025589761,
+    "text": "Spell Lightning Damage per 2 Intelligence"
+  },
+  {
+    "id": 2546852369522688,
+    "text": "of Minion Damage Leeched as Health on Hit"
+  },
+  {
+    "id": 2546852373716992,
+    "text": "Minion Poison Resistance"
+  },
+  {
+    "id": 2546852377911296,
+    "text": "Chance to apply Damned on Hit"
+  },
+  {
+    "id": 2546852377911297,
+    "text": "Chance to Ignite yourself on Kill"
+  },
+  {
+    "id": 2546852382105600,
+    "text": "Forge Strike"
+  },
+  {
+    "id": 2546852386299904,
+    "text": "Increased damage with Vengeance"
+  },
+  {
+    "id": 2546852386299905,
+    "text": "Increased Damage with Smite"
+  },
+  {
+    "id": 2546852663123968,
+    "text": "Chance to Shock on Spell Hit"
+  },
+  {
+    "id": 2546852667318272,
+    "text": "Chance to taunt nearby enemies for 2 seconds when you stun an enemy"
+  },
+  {
+    "id": 2546852671512576,
+    "text": "Health Gain On Stun"
+  },
+  {
+    "id": 2546852973502464,
+    "text": "Ward gained when damage leaves you at low health"
+  },
+  {
+    "id": 2546852977696768,
+    "text": "Maximum Shadows"
+  },
+  {
+    "id": 2546853359378432,
+    "text": "Chance to Chill on Melee Hit"
+  },
+  {
+    "id": 2546853367767040,
+    "text": "Bees Per 10 Seconds"
+  },
+  {
+    "id": 2546853640396800,
+    "text": "Chance per Intelligence for 33% increased Elemental Damage with Three Rune Invocations"
+  },
+  {
+    "id": 2546853644591104,
+    "text": "increased Elemental Critical Strike Chance"
+  },
+  {
+    "id": 2546853648785408,
+    "text": "Chance to cast Fire Aura on Crit (1 second cooldown)"
+  },
+  {
+    "id": 2546853992718336,
+    "text": "Chance to throw Shurikens on Block"
+  },
+  {
+    "id": 2546853996912640,
+    "text": "chance for Shurikens to Ricochet 3 additional times"
+  },
+  {
+    "id": 2546853996912641,
+    "text": "Shurikens"
+  },
+  {
+    "id": 2546854001106944,
+    "text": "more Throwing Damage to Bosses and Rare Enemies"
+  },
+  {
+    "id": 2546854001106945,
+    "text": "Holy Aura"
+  },
+  {
+    "id": 2546854248570880,
+    "text": "Cold Penetration with Cold Invocations"
+  },
+  {
+    "id": 2546854256959488,
+    "text": "of Physical Damage Taken as Fire"
+  },
+  {
+    "id": 2546854256959489,
+    "text": "Increased Spell Stun Chance"
+  },
+  {
+    "id": 2546854261153792,
+    "text": "Chance to Ignite yourself when you use a Fire or Necrotic Skill"
+  },
+  {
+    "id": 2546854261153793,
+    "text": "Spell Damage for Fire and Necrotic skills per stack of Ignite on You (up to 20 stacks)"
+  },
+  {
+    "id": 2546854265348096,
+    "text": "Chance to gain Frenzy for 2 seconds when you directly use a Fire or Necrotic skill per stack of Ignite on You"
+  },
+  {
+    "id": 2546854265348097,
+    "text": "Summon Storm Totem"
+  },
+  {
+    "id": 2546854273736704,
+    "text": "of Damage Reflected for Skeletons"
+  },
+  {
+    "id": 2546854273736705,
+    "text": "of Damage Reflected for Skeletal Mages"
+  },
+  {
+    "id": 2546854600892416,
+    "text": "Swarmblade Form"
+  },
+  {
+    "id": 2546854600892417,
+    "text": "Increased Damage While Transformed"
+  },
+  {
+    "id": 2546854609281024,
+    "text": "Crossbow Mercenaries"
+  },
+  {
+    "id": 2546854609281025,
+    "text": "Increased Minion Bow Damage"
+  },
+  {
+    "id": 2546854613475328,
+    "text": "Minion Bow Critical Strike Chance"
+  },
+  {
+    "id": 2546854613475329,
+    "text": "Shield Rush"
+  },
+  {
+    "id": 2546854886105088,
+    "text": "Damage Over Time Spells"
+  },
+  {
+    "id": 2546854894493696,
+    "text": "of Poison Damage Leeched as Health"
+  },
+  {
+    "id": 2546854898688000,
+    "text": "increased area for Damage Over Time Area Spells"
+  },
+  {
+    "id": 2546854902882304,
+    "text": "Increased Cooldown Recovery Speed for Decoy"
+  },
+  {
+    "id": 2546854907076608,
+    "text": "Chance to Ignite on Throwing Hit"
+  },
+  {
+    "id": 2546855246815232,
+    "text": "Bow Cold Damage"
+  },
+  {
+    "id": 2546855251009536,
+    "text": "Bow Physical Damage if you have at least 40 Dexterity"
+  },
+  {
+    "id": 2546855251009537,
+    "text": "of Bow Damage Leeched as Health"
+  },
+  {
+    "id": 2546855255203840,
+    "text": "chance to take 0 Damage when Hit"
+  },
+  {
+    "id": 2546855255203841,
+    "text": "of Endurance Threshold added as Ward Decay Threshold"
+  },
+  {
+    "id": 2546855259398144,
+    "text": "Frostbite Chance per Second with Frost Wall"
+  },
+  {
+    "id": 2546855540416512,
+    "text": "Marrow Shards"
+  },
+  {
+    "id": 2546855548805120,
+    "text": "Chance to apply Frailty on Hit"
+  },
+  {
+    "id": 2546855548805121,
+    "text": "Spell Physical Damage with Sacrifice"
+  },
+  {
+    "id": 2546855552999424,
+    "text": "Increased Area with Sacrifice"
+  },
+  {
+    "id": 2546855557193728,
+    "text": "less Health Regen"
+  },
+  {
+    "id": 2546856429608960,
+    "text": "Minion Fire Penetration"
+  },
+  {
+    "id": 2546856702238720,
+    "text": "Recurve Chance with Heartseeker"
+  },
+  {
+    "id": 2546856702238721,
+    "text": "Increased Damage while wielding a Bow"
+  },
+  {
+    "id": 2546857041977344,
+    "text": "Seconds Cooldown Duration for Summon Vines"
+  },
+  {
+    "id": 2546857046171648,
+    "text": "Increased Vines Summoned when you directly cast Summon Vines"
+  },
+  {
+    "id": 2546857046171649,
+    "text": "Increased Attack and Cast Speed for Summoned Vines"
+  },
+  {
+    "id": 2546857050365952,
+    "text": "Summon Thorn Totem"
+  },
+  {
+    "id": 2546857645957120,
+    "text": "Chance to inflict Time Rot on Hit"
+  },
+  {
+    "id": 2546857645957121,
+    "text": "Chance to create a Void Rift when you hit an enemy (2 second cooldown)"
+  },
+  {
+    "id": 2546857650151424,
+    "text": "Void Penetration with Time Rot"
+  },
+  {
+    "id": 2546857650151425,
+    "text": "more more Void Damage per stack of Time Rot"
+  },
+  {
+    "id": 2546857918586880,
+    "text": "Mirages created by Lethal Mirage"
+  },
+  {
+    "id": 2546857922781184,
+    "text": "Mana Efficiency with Lethal Mirage"
+  },
+  {
+    "id": 2546858505789440,
+    "text": "Runebolt"
+  },
+  {
+    "id": 2546858514178048,
+    "text": "Mana Gain on Block"
+  },
+  {
+    "id": 2546858518372352,
+    "text": "Increased Mana Cost"
+  },
+  {
+    "id": 2546858518372353,
+    "text": "Shield Bash"
+  },
+  {
+    "id": 2546858522566656,
+    "text": "Elemental Nova"
+  },
+  {
+    "id": 2546858862305280,
+    "text": "Bow Critical Strike Multiplier"
+  },
+  {
+    "id": 2546858866499584,
+    "text": "Drain Life"
+  },
+  {
+    "id": 2546858870693888,
+    "text": "Increased Movement Speed per Added Melee Void Damage"
+  },
+  {
+    "id": 2546858870693889,
+    "text": "of Cold Damage Leeched as Health"
+  },
+  {
+    "id": 2546858874888192,
+    "text": "Cold Melee Penetration"
+  },
+  {
+    "id": 2546858879082496,
+    "text": "Spirit Plague"
+  },
+  {
+    "id": 2546858883276800,
+    "text": "Critical Strike Multiplier with Judgement"
+  },
+  {
+    "id": 2546858883276801,
+    "text": "Critical Strike Multiplier with Rive"
+  },
+  {
+    "id": 2546859491450880,
+    "text": "Elemental Critical Strike Multiplier"
+  },
+  {
+    "id": 2546859499839488,
+    "text": "Cold Penetration with Shatter Strike per stack of bleed on you"
+  },
+  {
+    "id": 2546859499839489,
+    "text": "Shatter Strike"
+  },
+  {
+    "id": 2546859764080640,
+    "text": "of Current Health Drained per Second for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546859768274944,
+    "text": "reduced Health Regen"
+  },
+  {
+    "id": 2546859772469248,
+    "text": "Chance to Blind on Melee Hit"
+  },
+  {
+    "id": 2546859772469249,
+    "text": "Reduced Shift Distance"
+  },
+  {
+    "id": 2546859776663552,
+    "text": "Increased Cooldown Recovery Speed for Shift"
+  },
+  {
+    "id": 2546860137373696,
+    "text": "Increased Flat Damage Reflected to Attackers per Attunement"
+  },
+  {
+    "id": 2546860141568000,
+    "text": "increased Volatile Zombie Damage"
+  },
+  {
+    "id": 2546860145762304,
+    "text": "increased Volatile Zombie Explosion Area"
+  },
+  {
+    "id": 2546860149956608,
+    "text": "Chance to gain Dusk Shroud when you use a Melee Attack that hits"
+  },
+  {
+    "id": 2546860485500928,
+    "text": "reduced Block Chance"
+  },
+  {
+    "id": 2546860489695232,
+    "text": "of Melee Physical Damage Leeched as Health"
+  },
+  {
+    "id": 2546860489695233,
+    "text": "Acid Flask"
+  },
+  {
+    "id": 2546860770713600,
+    "text": "Lightning Skills"
+  },
+  {
+    "id": 2546860779102208,
+    "text": "Werebear Form"
+  },
+  {
+    "id": 2546861135618048,
+    "text": "more Armor against Blinded Enemies"
+  },
+  {
+    "id": 2546861135618049,
+    "text": "more Armor against Chilled Enemies"
+  },
+  {
+    "id": 2546861139812352,
+    "text": "less Damage Taken while Leeching"
+  },
+  {
+    "id": 2546861139812353,
+    "text": "Increased Damage"
+  },
+  {
+    "id": 2546861144006656,
+    "text": "Summon Sabertooth"
+  },
+  {
+    "id": 2546861416636416,
+    "text": "increased Dodge Rating for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546861420830720,
+    "text": "More Dodge Rating for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546861739597824,
+    "text": "Increased Volcanic Orb Damage"
+  },
+  {
+    "id": 2546861743792128,
+    "text": "Reduced Volcanic Orb Speed"
+  },
+  {
+    "id": 2546862343577600,
+    "text": "Chance to cast Jade Dust on Hit with Harvest"
+  },
+  {
+    "id": 2546862347771904,
+    "text": "Throwing Minion Skills"
+  },
+  {
+    "id": 2546862603624448,
+    "text": "Increased Symbol Gain Rate"
+  },
+  {
+    "id": 2546862607818752,
+    "text": "Bow Critical Strike Chance"
+  },
+  {
+    "id": 2546862607818753,
+    "text": "Increased Minion Damage Over Time"
+  },
+  {
+    "id": 2546863203409920,
+    "text": "Increased damage with Rip Blood"
+  },
+  {
+    "id": 2546863207604224,
+    "text": "Increased damage with Blood Splatter"
+  },
+  {
+    "id": 2546863543148544,
+    "text": "Vengeance"
+  },
+  {
+    "id": 2546863547342848,
+    "text": "more hit damage with Vengeance against bosses and rare enemies (multiplicative with other modifiers)"
+  },
+  {
+    "id": 2546864436535296,
+    "text": "Mana Efficiency with Frost Claw"
+  },
+  {
+    "id": 2546864440729600,
+    "text": "Elemental Penetration with Frost Claw"
+  },
+  {
+    "id": 2546864700776448,
+    "text": "of Void Damage Leeched as Health"
+  },
+  {
+    "id": 2546864704970752,
+    "text": "Chance to apply Doom on Hit"
+  },
+  {
+    "id": 2546864704970753,
+    "text": "Void Penetration with Doom"
+  },
+  {
+    "id": 2546865040515072,
+    "text": "of Minion Damage Reflected"
+  },
+  {
+    "id": 2546865287979008,
+    "text": "Throwing Cold Damage"
+  },
+  {
+    "id": 2546865292173312,
+    "text": "Chance to Throw an Axe at a nearby enemy on hit (1 second cooldown)"
+  },
+  {
+    "id": 2546865292173313,
+    "text": "Chance to use Earthquake after using a Non-Channelled Movement Ability, up to 2 times every 5 seconds"
+  },
+  {
+    "id": 2546865296367616,
+    "text": "Ghostflame"
+  },
+  {
+    "id": 2546865296367617,
+    "text": "of your Bleed Chance granted to your Falcon"
+  },
+  {
+    "id": 2546865300561920,
+    "text": "of your Poison Chance granted to your Falcon"
+  },
+  {
+    "id": 2546865304756224,
+    "text": "Serpent Strike"
+  },
+  {
+    "id": 2546865896153088,
+    "text": "Lightning Spells"
+  },
+  {
+    "id": 2546865896153089,
+    "text": "Tendrils with Static Orb"
+  },
+  {
+    "id": 2546866802122752,
+    "text": "Chance to Ignite on Minion Hit"
+  },
+  {
+    "id": 2546866806317056,
+    "text": "Chance for the nearest minion to the target location to cast Dragonflame Nova when you use a minion skill (1 second cooldown)"
+  },
+  {
+    "id": 2546866810511360,
+    "text": "Hammer Throw"
+  },
+  {
+    "id": 2546867070558208,
+    "text": "Chance to Shock on Void Spell Hit"
+  },
+  {
+    "id": 2546867074752512,
+    "text": "increased Lightning Spell Cast Speed"
+  },
+  {
+    "id": 2546867074752513,
+    "text": "Chance to cast Decimate when you directly use a Lightning Spell (4 second cooldown)"
+  },
+  {
+    "id": 2546867078946816,
+    "text": "Cooldown Reduction for Decimate"
+  },
+  {
+    "id": 2546867078946817,
+    "text": "more Void Damage to Bosses and Rare Enemies"
+  },
+  {
+    "id": 2546867083141120,
+    "text": "Increased Area with Decimate"
+  },
+  {
+    "id": 2546867418685440,
+    "text": "Summon Skeletal Mage"
+  },
+  {
+    "id": 2546867670343680,
+    "text": "Mana consumed by Grim Harvest"
+  },
+  {
+    "id": 2546867674537984,
+    "text": "of Current Health consumed by Grim Harvest"
+  },
+  {
+    "id": 2546867678732288,
+    "text": "Dancing Strikes"
+  },
+  {
+    "id": 2546868014276608,
+    "text": "increased Fire Damage Taken"
+  },
+  {
+    "id": 2546868018470912,
+    "text": "of Overkill Damage Leeched as Health"
+  },
+  {
+    "id": 2546868022665216,
+    "text": "Increased Damage for skills used by Shadows"
+  },
+  {
+    "id": 2546868261740544,
+    "text": "Throwing Damage with Heartseeker Per 5 Dexterity"
+  },
+  {
+    "id": 2546868265934848,
+    "text": "Minion Critical Strike Avoidance"
+  },
+  {
+    "id": 2546868597284864,
+    "text": "Teleport"
+  },
+  {
+    "id": 2546868601479168,
+    "text": "Spell Minion Skills"
+  },
+  {
+    "id": 2546868853137408,
+    "text": "Aura Of Decay"
+  },
+  {
+    "id": 2546869192876032,
+    "text": "of Mana Strike Base Damage Converted to Cold"
+  },
+  {
+    "id": 2546869197070336,
+    "text": "of Fury Leap Base Damage Converted to Cold"
+  },
+  {
+    "id": 2546869197070337,
+    "text": "Freeze Rate per stack of Chill"
+  },
+  {
+    "id": 2546869461311488,
+    "text": "Melee Damage per Attunement for Judgement while Unarmed"
+  },
+  {
+    "id": 2546869465505792,
+    "text": "increased Area per Attunement for Judgement while Unarmed"
+  },
+  {
+    "id": 2546869465505793,
+    "text": "Judgement Mana Cost while Unarmed"
+  },
+  {
+    "id": 2546869469700096,
+    "text": "Increased Cooldown Recovery Speed for Judgement"
+  },
+  {
+    "id": 2546869796855808,
+    "text": "Dodge Rating While Channelling"
+  },
+  {
+    "id": 2546869801050112,
+    "text": "increased Dodge Rating While Channelling"
+  },
+  {
+    "id": 2546869801050113,
+    "text": "Ward gained when you Dodge While Channelling"
+  },
+  {
+    "id": 2546869805244416,
+    "text": "Mana gained when you Dodge While Channelling"
+  },
+  {
+    "id": 2546869809438720,
+    "text": "Increased Symbols of Hope Active Duration"
+  },
+  {
+    "id": 2546870077874176,
+    "text": "Increased Aspect of the Shark Effect"
+  },
+  {
+    "id": 2546870086262784,
+    "text": "of Max Health gained as Ward Decay Threshold"
+  },
+  {
+    "id": 2546870090457088,
+    "text": "of Max Health gained as Ward per Second"
+  },
+  {
+    "id": 2546870409224192,
+    "text": "chance for Wolves to Retaliate with Lightning Strike when hit"
+  },
+  {
+    "id": 2546870413418496,
+    "text": "Chance to Shock on Melee Hit"
+  },
+  {
+    "id": 2546870413418497,
+    "text": "chance on hit with Lightning Skills to grant your Wolves additional Melee Lightning Damage equal to your Melee Lightning Damage"
+  },
+  {
+    "id": 2546870417612800,
+    "text": "Chance to apply Frostbite on Bow Hit"
+  },
+  {
+    "id": 2546870417612801,
+    "text": "of Bleed and Poison Chance converted to Frostbite Chance with Puncture"
+  },
+  {
+    "id": 2546870426001408,
+    "text": "Black Arrows Dropped by Dark Quiver"
+  },
+  {
+    "id": 2546871642349568,
+    "text": "increased Axe Throw Frequency per 10% increased physical damage"
+  },
+  {
+    "id": 2546871646543872,
+    "text": "Increased Physical Damage while Dual Wielding"
+  },
+  {
+    "id": 2546871969505280,
+    "text": "increased Freeze Rate Multiplier"
+  },
+  {
+    "id": 2546872225357824,
+    "text": "less Block Effectiveness"
+  },
+  {
+    "id": 2546872225357825,
+    "text": "Health gained when you Dodge"
+  },
+  {
+    "id": 2546872808366080,
+    "text": "Increased Time Rot Duration"
+  },
+  {
+    "id": 2546872808366081,
+    "text": "Chance to Slow on Hit"
+  },
+  {
+    "id": 2546872812560384,
+    "text": "Increased Slow Duration"
+  },
+  {
+    "id": 2546872816754688,
+    "text": "Summon Bone Golem"
+  },
+  {
+    "id": 2546873148104704,
+    "text": "reduced Duration of Stuns Received"
+  },
+  {
+    "id": 2546873445900288,
+    "text": "Rebuke"
+  },
+  {
+    "id": 2546873735307264,
+    "text": "Devouring Orb"
+  },
+  {
+    "id": 2546873743695872,
+    "text": "Necrotic Penetration with Possess per stack of Damned on You (up to 7)"
+  },
+  {
+    "id": 2546873747890176,
+    "text": "reduced Health"
+  },
+  {
+    "id": 2546874007937024,
+    "text": "increased Spell Mana Cost"
+  },
+  {
+    "id": 2546874347675648,
+    "text": "chance to cast Voidwinter Bolts when you hit an enemy with Javelin or a Melee Attack (up to 3 times per 2 seconds)"
+  },
+  {
+    "id": 2546874351869952,
+    "text": "Voidwinter Bolt Critcal Strike Multiplier per 10% uncapped Chill Chance with Melee Attacks"
+  },
+  {
+    "id": 2546874356064256,
+    "text": "more Voidwinter Bolt Damage per 10% uncapped Time Rot Chance with Melee Attacks"
+  },
+  {
+    "id": 2546874356064257,
+    "text": "of Cold Damage Taken as Physical"
+  },
+  {
+    "id": 2546874356064258,
+    "text": "of Added Melee Damage applied as Added Spell Damage to Cold and Void Spells"
+  },
+  {
+    "id": 2546874360258560,
+    "text": "Anomaly"
+  },
+  {
+    "id": 2546874607722496,
+    "text": "Health Gain On Crit"
+  },
+  {
+    "id": 2546874611916800,
+    "text": "Smite"
+  },
+  {
+    "id": 2546874955849728,
+    "text": "Mana Cost for Detonating Arrow"
+  },
+  {
+    "id": 2546874955849729,
+    "text": "Melee Damage for directly used Detonating Arrow"
+  },
+  {
+    "id": 2546875257839616,
+    "text": "Ward per Second for each Curse affecting you"
+  },
+  {
+    "id": 2546875513692160,
+    "text": "of Physical Damage Over Time Damage Leeched as Health"
+  },
+  {
+    "id": 2546875513692161,
+    "text": "Health gained on Kill per stack of Bleed on the Target"
+  },
+  {
+    "id": 2546876100894720,
+    "text": "Chance per Intelligence for 11% more Elemental Damage with One Rune Invocations"
+  },
+  {
+    "id": 2546876109283328,
+    "text": "more Physical Damage while at Full Health"
+  },
+  {
+    "id": 2546876113477632,
+    "text": "Flurry"
+  },
+  {
+    "id": 2546876449021952,
+    "text": "of Current Mana gained as Ward when you cast a Fire Spell"
+  },
+  {
+    "id": 2546876453216256,
+    "text": "Ward gained when you cast Flame Ward"
+  },
+  {
+    "id": 2546876453216257,
+    "text": "less Damage Taken if you have at least 1000 Ward"
+  },
+  {
+    "id": 2546876457410560,
+    "text": "Increased Ballista Attack Speed"
+  },
+  {
+    "id": 2546876713263104,
+    "text": "Chance to Summon a Primal Serpent on kill with Serpent Strike"
+  },
+  {
+    "id": 2546877598261248,
+    "text": "of Acid Flask Base Damage converted to Cold"
+  },
+  {
+    "id": 2546877602455552,
+    "text": "Chance to apply Frostbite on Cold Hit"
+  },
+  {
+    "id": 2546877602455553,
+    "text": "increased area for Cold Area Skills"
+  },
+  {
+    "id": 2546877606649856,
+    "text": "Block Chance per Shock on the Attacker"
+  },
+  {
+    "id": 2546877610844160,
+    "text": "less Lightning Damage Taken on Block"
+  },
+  {
+    "id": 2546877933805568,
+    "text": "Chance to Poison on Bow Hit"
+  },
+  {
+    "id": 2546877942194176,
+    "text": "Necrotic Spells"
+  },
+  {
+    "id": 2546877942194177,
+    "text": "of Necrotic Damage Leeched as Health"
+  },
+  {
+    "id": 2546878235795456,
+    "text": "Critical Strike Chance with the Third Strike of Flurry"
+  },
+  {
+    "id": 2546878827192320,
+    "text": "of Fire Damage Leeched as Health"
+  },
+  {
+    "id": 2546879418589184,
+    "text": "Parry Chance"
+  },
+  {
+    "id": 2546879422783488,
+    "text": "chance on Parry to restore you and a random minion to full health and grant Frenzy for 5 seconds"
+  },
+  {
+    "id": 2546879422783489,
+    "text": "Melee Damage while you have Frenzy"
+  },
+  {
+    "id": 2546879426977792,
+    "text": "less Damage Taken for Totems"
+  },
+  {
+    "id": 2546879431172096,
+    "text": "Lightning resistance to allies nearby Storm Totem"
+  },
+  {
+    "id": 2546879720579072,
+    "text": "Poison Spells"
+  },
+  {
+    "id": 2546880009986048,
+    "text": "Maximum Bone Golems per 4 maximum Skeletons"
+  },
+  {
+    "id": 2546880014180352,
+    "text": "Minion Health"
+  },
+  {
+    "id": 2546880018374656,
+    "text": "Fireball"
+  },
+  {
+    "id": 2546880441999360,
+    "text": "more Damage while using a Wand for Invocations with Heo as their first Rune"
+  },
+  {
+    "id": 2546880446193664,
+    "text": "more Damage while using a Staff for Invocations with Gon as their first Rune"
+  },
+  {
+    "id": 2546880450387968,
+    "text": "more Damage while using a Sceptre for Invocations with Rah as their first Rune"
+  },
+  {
+    "id": 2546880454582272,
+    "text": "more Damage per Strength for Invocations with Heo as their second Rune"
+  },
+  {
+    "id": 2546880458776576,
+    "text": "more Damage per Dexterity for Invocations with Gon as their second Rune"
+  },
+  {
+    "id": 2546880462970880,
+    "text": "more Damage per Attunement for Invocations with Rah as their second Rune"
+  },
+  {
+    "id": 2546880781737984,
+    "text": "increased Volatile Zombie Movement Speed"
+  },
+  {
+    "id": 2546880790126592,
+    "text": "Minion Freeze Rate per stack of Chill"
+  },
+  {
+    "id": 2546881117282304,
+    "text": "Summon Skeleton"
+  },
+  {
+    "id": 2546881561878528,
+    "text": "Javelin"
+  },
+  {
+    "id": 2546881889034240,
+    "text": "Lunge"
+  },
+  {
+    "id": 2546882526568448,
+    "text": "Bow Physical Damage"
+  },
+  {
+    "id": 2546882530762752,
+    "text": "Bow Attack Mana Cost"
+  },
+  {
+    "id": 2546882534957056,
+    "text": "Arrows with Multishot"
+  },
+  {
+    "id": 2546882992136192,
+    "text": "More Infernal Shade Damage per active Wraith against Bosses and Rare Enemies"
+  },
+  {
+    "id": 2546884481114112,
+    "text": "Ward gained when you Dodge"
+  },
+  {
+    "id": 2546884485308416,
+    "text": "Increased Cooldown Recovery Speed for Fury Leap"
+  },
+  {
+    "id": 2546884485308417,
+    "text": "Increased Haste Effect"
+  },
+  {
+    "id": 2546884757938176,
+    "text": "Chance to cast Lightning Blast when you use a Melee Attack and hit at least one enemy"
+  },
+  {
+    "id": 2546885131231232,
+    "text": "Static Orb"
+  },
+  {
+    "id": 2546885420638208,
+    "text": "of Damage Leeched as Health on Crit"
+  },
+  {
+    "id": 2546885424832512,
+    "text": "Lightning Penetration with Lightning Invocations"
+  },
+  {
+    "id": 2546885705850880,
+    "text": "Minion All Resistances"
+  },
+  {
+    "id": 2546885714239488,
+    "text": "Chance to Ignite on Void Spell Hit"
+  },
+  {
+    "id": 2546885718433792,
+    "text": "Chance to cast Decimate when you directly use a Fire Spell (4 second cooldown)"
+  },
+  {
+    "id": 2546885722628096,
+    "text": "Increased Projectile Speed with Marrow Shards"
+  },
+  {
+    "id": 2546885722628097,
+    "text": "Increased Projectile Speed with Bone Nova"
+  },
+  {
+    "id": 2546886083338240,
+    "text": "Increased Elemental Damage Over Time"
+  },
+  {
+    "id": 2546886678929408,
+    "text": "increased Bow Elemental Damage"
+  },
+  {
+    "id": 2546886683123712,
+    "text": "of Missing Health regained on Potion Use"
+  },
+  {
+    "id": 2546886687318016,
+    "text": "Increased area of effect with Acid Flask"
+  },
+  {
+    "id": 2546887282909184,
+    "text": "Increased Fire Aura Area"
+  },
+  {
+    "id": 2546887282909185,
+    "text": "Chance to Ignite on Hit While Channelling"
+  },
+  {
+    "id": 2546887568121856,
+    "text": "Harvest"
+  },
+  {
+    "id": 2546887870111744,
+    "text": "Dive Bomb"
+  },
+  {
+    "id": 2546887870111745,
+    "text": "Aerial Assault"
+  },
+  {
+    "id": 2546888146935808,
+    "text": "Summon Bear"
+  },
+  {
+    "id": 2546888151130112,
+    "text": "Increased Damage with Dive Bomb"
+  },
+  {
+    "id": 2546888155324416,
+    "text": "Increased Area with Dive Bomb"
+  },
+  {
+    "id": 2546888478285824,
+    "text": "increased Physical Resistance"
+  },
+  {
+    "id": 2546889069682688,
+    "text": "of Maelstrom base damage converted to Necrotic"
+  },
+  {
+    "id": 2546889367478272,
+    "text": "Tornado"
+  },
+  {
+    "id": 2546889627525120,
+    "text": "Chance to Shock on Hit"
+  },
+  {
+    "id": 2546889971458048,
+    "text": "Chance to cast Icicle on Bow Hit"
+  },
+  {
+    "id": 2546889971458049,
+    "text": "Gathering Storm"
+  },
+  {
+    "id": 2546890248282112,
+    "text": "Heartseeker"
+  },
+  {
+    "id": 2546890575437824,
+    "text": "Chance to apply Future Strike on Melee Hit"
+  },
+  {
+    "id": 2546890579632128,
+    "text": "Chance to Cast Water Orb when you hit a Boss or Rare Enemy (3 second cooldown)"
+  },
+  {
+    "id": 2546890583826432,
+    "text": "Shock Chance per Intelligence"
+  },
+  {
+    "id": 2546891183611904,
+    "text": "Profane Veil"
+  },
+  {
+    "id": 2546891183611905,
+    "text": "less Elemental Damage Taken"
+  },
+  {
+    "id": 2546891187806208,
+    "text": "of Elemental Damage Leeched as Health on Crit"
+  },
+  {
+    "id": 2546892643229696,
+    "text": "Increased Area with Elemental Nova"
+  },
+  {
+    "id": 2546892647424000,
+    "text": "Elemental Penetration with Elemental Nova per 10% uncapped Total Elemental Resistance"
+  },
+  {
+    "id": 2546892647424001,
+    "text": "Less Damage Taken from Ignited Shocked or Chilled Enemies"
+  },
+  {
+    "id": 2546892978774016,
+    "text": "Melee Damage per 2 Attunement"
+  },
+  {
+    "id": 2546892982968320,
+    "text": "Spell Damage per 2 Strength"
+  },
+  {
+    "id": 2546892982968321,
+    "text": "chance to cast Smite on Melee hit (up to 3 times per second)"
+  },
+  {
+    "id": 2546892987162624,
+    "text": "chance to cast Smite at two additional targets when you cast it directly"
+  },
+  {
+    "id": 2546893578559488,
+    "text": "Chance to cast Smite after you use Multistrike and hit a Boss or Rare enemy"
+  },
+  {
+    "id": 2546893582753792,
+    "text": "Chance to Electrify on Melee Hit"
+  },
+  {
+    "id": 2546893582753793,
+    "text": "Lightning Penetration with Electrify"
+  },
+  {
+    "id": 2546893838606336,
+    "text": "Chance to inflict Plague on Hit"
+  },
+  {
+    "id": 2546894786519040,
+    "text": "Summon Volatile Zombie"
+  },
+  {
+    "id": 2546895071731712,
+    "text": "Throwing Lightning Damage"
+  },
+  {
+    "id": 2546895369527296,
+    "text": "Chance to cast Decimate when you directly use a Cold Spell (4 second cooldown)"
+  },
+  {
+    "id": 2546895734431744,
+    "text": "Ring Of Shields"
+  },
+  {
+    "id": 2546895998672896,
+    "text": "Void Skills"
+  },
+  {
+    "id": 2546896002867200,
+    "text": "increased area for Void Area Spells"
+  },
+  {
+    "id": 2546896002867201,
+    "text": "Chance to transport Devouring Orbs around the target location when you use Erasing Strike"
+  },
+  {
+    "id": 2546896007061504,
+    "text": "Erasing Strike Mana Cost"
+  },
+  {
+    "id": 2546896619429888,
+    "text": "Parry Chance with Traitor's Tongue equipped in the mainhand"
+  },
+  {
+    "id": 2546896623624192,
+    "text": "Critical Strike Chance with Traitor's Tongue equipped in the offhand"
+  },
+  {
+    "id": 2546896623624193,
+    "text": "Intelligence Skills"
+  },
+  {
+    "id": 2546897227603968,
+    "text": "increased Meteor Fall Speed"
+  },
+  {
+    "id": 2546897231798272,
+    "text": "Chance to Cast Meteor on Crit if above 0 Mana"
+  },
+  {
+    "id": 2546897235992576,
+    "text": "less Damage Taken for each Meteor you have cast recently (up to 18)"
+  },
+  {
+    "id": 2546897235992577,
+    "text": "Mana gained on Potion Use for each Meteor you have cast recently"
+  },
+  {
+    "id": 2546897240186880,
+    "text": "Potion Slots if you have at least 900 Mana"
+  },
+  {
+    "id": 2546897240186881,
+    "text": "Increased Necrotic Damage if you have been Hit Recently"
+  },
+  {
+    "id": 2546897244381184,
+    "text": "Necrotic Penetration with Damned"
+  },
+  {
+    "id": 2546898527838208,
+    "text": "Disintegrate"
+  },
+  {
+    "id": 2546898527838209,
+    "text": "Judgement"
+  },
+  {
+    "id": 2546899115040768,
+    "text": "Melee Necrotic Damage for Forged Weapons"
+  },
+  {
+    "id": 2546899119235072,
+    "text": "increased Forged Weapon Duration"
+  },
+  {
+    "id": 2546899379281920,
+    "text": "Abyssal Echoes"
+  },
+  {
+    "id": 2546899387670528,
+    "text": "Chance to cast Abyssal Echoes on Melee Kill or Melee Hit Boss or Rare Enemy (3 second cooldown)"
+  },
+  {
+    "id": 2546899387670529,
+    "text": "of Void Damage Leeched as Health on Hit"
+  },
+  {
+    "id": 2546899731603456,
+    "text": "Chance to Inflict Bleed on Minion Hit"
+  },
+  {
+    "id": 2546900323000320,
+    "text": "Physical Penetration with Shadow Daggers"
+  },
+  {
+    "id": 2546900327194624,
+    "text": "Chance to apply a Shadow Dagger on Hit with Lethal Mirage"
+  },
+  {
+    "id": 2546902390792192,
+    "text": "Chance to Summon a Locust on hit with Serpent Strike (max 3 per 2 seconds)"
+  },
+  {
+    "id": 2546902394986496,
+    "text": "Maximum Locusts"
+  },
+  {
+    "id": 2546902399180800,
+    "text": "Increased attack, cast, and movement speed for Locusts"
+  },
+  {
+    "id": 2546902403375104,
+    "text": "Melee Physical Damage for Locusts"
+  },
+  {
+    "id": 2546902403375105,
+    "text": "Poison Skills"
+  },
+  {
+    "id": 2546902998966272,
+    "text": "Chance to summon Arek's Flesh when a hit leaves you below half health"
+  },
+  {
+    "id": 2546903271596032,
+    "text": "Frost Claw"
+  },
+  {
+    "id": 2546903623917568,
+    "text": "Less Damage Taken while wielding a Two Handed Melee Weapon"
+  },
+  {
+    "id": 2546904227897344,
+    "text": "increased Spell Lightning Damage"
+  },
+  {
+    "id": 2546904232091648,
+    "text": "increased Lightning Spell Critical Strike Chance"
+  },
+  {
+    "id": 2546905083535360,
+    "text": "of Void Damage Taken as Fire"
+  },
+  {
+    "id": 2546905087729664,
+    "text": "less Fire Damage Taken"
+  },
+  {
+    "id": 2546905423273984,
+    "text": "Smelter's Wrath"
+  },
+  {
+    "id": 2546905427468288,
+    "text": "Increased Cooldown Recovery Speed for Volcanic Orb"
+  },
+  {
+    "id": 2546905431662592,
+    "text": "Increased Volcanic Orb Speed"
+  },
+  {
+    "id": 2546905431662593,
+    "text": "Increased Volcanic Orb Shrapnel Speed"
+  },
+  {
+    "id": 2546906014670848,
+    "text": "Summon Scorpion"
+  },
+  {
+    "id": 2546906014670849,
+    "text": "Increased Area with Caltrops"
+  },
+  {
+    "id": 2546906018865152,
+    "text": "Chance to shred Armor on hit with Caltrops"
+  },
+  {
+    "id": 2546907189075968,
+    "text": "Increased Doom Duration"
+  },
+  {
+    "id": 2546908032131072,
+    "text": "More Hit Damage if you have only one Singularity equipped"
+  },
+  {
+    "id": 2546908036325376,
+    "text": "Block Chance per Strength against enemies within 4 metres"
+  },
+  {
+    "id": 2546908682248192,
+    "text": "increased Area for Area Skills per 3 Dexterity"
+  },
+  {
+    "id": 2546910133477376,
+    "text": "Slow and Chill Immunity"
+  },
+  {
+    "id": 2546910133477377,
+    "text": "less Damage Taken while using Erasing Strike"
+  },
+  {
+    "id": 2546910724874240,
+    "text": "less Poison Damage Taken"
+  },
+  {
+    "id": 2546910729068544,
+    "text": "Melee Poison Chance per 1% uncapped Fire Resistance"
+  },
+  {
+    "id": 2546910729068545,
+    "text": "Hail of Arrows"
+  },
+  {
+    "id": 2546911073001472,
+    "text": "Increased Lightning Damage per Active Maelstrom"
+  },
+  {
+    "id": 2546912557785088,
+    "text": "of Minion Damage Leeched as Health"
+  },
+  {
+    "id": 2546913124016128,
+    "text": "Increased Health Regen per point of Strength"
+  },
+  {
+    "id": 2546913128210432,
+    "text": "Critical Strike Chance with Swipe"
+  },
+  {
+    "id": 2546913757356032,
+    "text": "Lightning Damage with Lethal Mirage"
+  },
+  {
+    "id": 2546913761550336,
+    "text": "Increased Cooldown Recovery Speed with Lethal Mirage"
+  },
+  {
+    "id": 2546914369724416,
+    "text": "of Fireball Base Damage Converted to Lightning"
+  },
+  {
+    "id": 2546914369724417,
+    "text": "Chance to apply a Spark Charge on Hit with Fireball"
+  },
+  {
+    "id": 2546914373918720,
+    "text": "of Ignite Chance Converted to Shock Chance for Fireball"
+  },
+  {
+    "id": 2546914378113024,
+    "text": "Ward per Second per 3% uncapped Necrotic Resistance"
+  },
+  {
+    "id": 2546914663325696,
+    "text": "Fire Critical Strike Chance"
+  },
+  {
+    "id": 2546914667520000,
+    "text": "of Fire Damage Leeched as Health on Crit"
+  },
+  {
+    "id": 2546914671714304,
+    "text": "Fire Minion Skills"
+  },
+  {
+    "id": 2546915024035840,
+    "text": "Maelstrom"
+  },
+  {
+    "id": 2546915300859904,
+    "text": "Eterra's Blessing"
+  },
+  {
+    "id": 2546915300859905,
+    "text": "Increased Minion Dodge Rating"
+  },
+  {
+    "id": 2546915305054208,
+    "text": "Summon Wolf"
+  },
+  {
+    "id": 2546915305054209,
+    "text": "Chance to Inflict Bleed on Hit for Squirrels"
+  },
+  {
+    "id": 2546915309248512,
+    "text": "Chance to Shred Physical Resistance on Hit for Squirrels"
+  },
+  {
+    "id": 2546915917422592,
+    "text": "of Lethal Mirage's remaining cooldown recovered on Melee Hit (up to 12 times)"
+  },
+  {
+    "id": 2546915921616896,
+    "text": "Lightning Penetration per 5 Dexterity"
+  },
+  {
+    "id": 2546915921616897,
+    "text": "Void Penetration per 5 Dexterity"
+  },
+  {
+    "id": 2546917674835968,
+    "text": "Frostbite Chance for Minions affected by Dread Shade"
+  },
+  {
+    "id": 2546917679030272,
+    "text": "Freeze Rate Multiplier for Minions affected by Dread Shade"
+  },
+  {
+    "id": 2546917683224576,
+    "text": "Cold Damage with Spells and Attacks per Attached Infernal Shade for Minions affected by Dread Shade"
+  },
+  {
+    "id": 2546917683224577,
+    "text": "Cold Penetration for Minions affected by Dread Shade per Intelligence"
+  },
+  {
+    "id": 2546917951660032,
+    "text": "Increased health regen if you have stunned an enemy recently"
+  },
+  {
+    "id": 2546917955854336,
+    "text": "of Physical Damage Leeched as Health on Hit"
+  },
+  {
+    "id": 2546918283010048,
+    "text": "Flame Rush"
+  },
+  {
+    "id": 2546918283010049,
+    "text": "Decoy"
+  },
+  {
+    "id": 2546918555639808,
+    "text": "Chance to Ignite on Melee Hit"
+  },
+  {
+    "id": 2546918555639809,
+    "text": "Flame Reave Mana Cost"
+  },
+  {
+    "id": 2546918845046784,
+    "text": "Net"
+  },
+  {
+    "id": 2546920640208896,
+    "text": "of Minion Melee Damage Leeched as Health on Hit"
+  },
+  {
+    "id": 2546920644403200,
+    "text": "Minion Increased Leech Rate"
+  },
+  {
+    "id": 2546920992530432,
+    "text": "Reaper Form"
+  },
+  {
+    "id": 2546921260965888,
+    "text": "Erasing Strike"
+  },
+  {
+    "id": 2546921894305792,
+    "text": "Summon Raptor"
+  },
+  {
+    "id": 2546923676884992,
+    "text": "Chance to Blind on Hit"
+  },
+  {
+    "id": 2546923681079296,
+    "text": "Chance to cast Fire Aura when Hit (1 second cooldown)"
+  },
+  {
+    "id": 2546923681079297,
+    "text": "Increased Void Damage per Fire Aura"
+  },
+  {
+    "id": 2546923962097664,
+    "text": "Increased Minion Health Regen"
+  },
+  {
+    "id": 2546923966291968,
+    "text": "Cold resistance to allies nearby Storm Totem"
+  },
+  {
+    "id": 2546924247310336,
+    "text": "Charge for Flame Ward"
+  },
+  {
+    "id": 2546924608020480,
+    "text": "Death Seal"
+  },
+  {
+    "id": 2546924859678720,
+    "text": "Lightning Blast"
+  },
+  {
+    "id": 2546925232971776,
+    "text": "Health Gained when you receive a Glancing Blow"
+  },
+  {
+    "id": 2546925237166080,
+    "text": "Ward per Second While Channelling"
+  },
+  {
+    "id": 2546925241360384,
+    "text": "Chance to apply Damned on Hit While Channelling"
+  },
+  {
+    "id": 2546925245554688,
+    "text": "increased Stygian Beam frequency per Intelligence"
+  },
+  {
+    "id": 2546925249748992,
+    "text": "more Stygian Beam Damage per 10 Current Mana"
+  },
+  {
+    "id": 2546925979557888,
+    "text": "Pierce Chance with Fireball"
+  },
+  {
+    "id": 2546927061688320,
+    "text": "Chance to apply Frostbite on Hit"
+  },
+  {
+    "id": 2546927065882624,
+    "text": "Cold Penetration with Frostbite per 10% Freeze Rate Multiplier"
+  },
+  {
+    "id": 2546927070076928,
+    "text": "Increased Movement Speed per 2 Dexterity (up to 20%)"
+  },
+  {
+    "id": 2546929670545408,
+    "text": "chance to cast Fire Aura each second while standing on your Glyph of Dominion"
+  },
+  {
+    "id": 2546929674739712,
+    "text": "Spell Damage with Flame Rush per stack of Fire Aura"
+  },
+  {
+    "id": 2546930027061248,
+    "text": "Chance to Shock on Lightning Hit"
+  },
+  {
+    "id": 2546930035449856,
+    "text": "Physical Penetration for Bleed inflicted by Minions"
+  },
+  {
+    "id": 2546930631041024,
+    "text": "Chance to Gain 75 Ward when you hit a Shocked Enemy (up to 3 times per 2 seconds)"
+  },
+  {
+    "id": 2546932082270208,
+    "text": "Chance to apply a Spark Charge on Hit"
+  },
+  {
+    "id": 2546932086464512,
+    "text": "Lightning Damage for Spark Charge per Intelligence"
+  },
+  {
+    "id": 2546932090658816,
+    "text": "increased Spark Charge Explosion Area"
+  },
+  {
+    "id": 2546932090658817,
+    "text": "of Current Health converted to Ward when you directly cast an Elemental Spell"
+  },
+  {
+    "id": 2546932094853120,
+    "text": "Elemental Spells"
+  },
+  {
+    "id": 2546933281841152,
+    "text": "more Physical Ailment Damage to Moving Enemies"
+  },
+  {
+    "id": 2546934464634880,
+    "text": "increased Spell Damage While Transformed"
+  },
+  {
+    "id": 2546934468829184,
+    "text": "Cold Skills"
+  },
+  {
+    "id": 2546934800179200,
+    "text": "Chance to Slow on Spell Hit"
+  },
+  {
+    "id": 2546934800179201,
+    "text": "Chance to apply Frailty on Spell Hit"
+  },
+  {
+    "id": 2546934804373504,
+    "text": "Chance to Shred Armor on Spell Hit"
+  },
+  {
+    "id": 2546934804373505,
+    "text": "Chance to Electrify on Spell Hit"
+  },
+  {
+    "id": 2546934808567808,
+    "text": "more Spell Damage per Negative Ailment on the Target (up to 8)"
+  },
+  {
+    "id": 2546934808567809,
+    "text": "increased Cast Speed per 2 Intelligence"
+  },
+  {
+    "id": 2546934812762112,
+    "text": "Mana Gained on Potion Use per 4 Intelligence"
+  },
+  {
+    "id": 2546935114752000,
+    "text": "of Physical Damage Leeched as Health"
+  },
+  {
+    "id": 2546935378993152,
+    "text": "Dread Shade"
+  },
+  {
+    "id": 2546936314322944,
+    "text": "All Resistances While Transformed"
+  },
+  {
+    "id": 2546937803300864,
+    "text": "chance to cast Smite at a nearby enemy on Kill"
+  },
+  {
+    "id": 2546939657183232,
+    "text": "chance when one of your Skeletons dies to resummon a new one after 3 seconds"
+  },
+  {
+    "id": 2546939950784512,
+    "text": "increased Ward Gained on Potion Use"
+  },
+  {
+    "id": 2546940563152896,
+    "text": "Fury Leap"
+  },
+  {
+    "id": 2546940567347200,
+    "text": "Ward per Second for you or your allies while standing on your Glyph of Dominion"
+  },
+  {
+    "id": 2546940571541504,
+    "text": "Buff Skills"
+  },
+  {
+    "id": 2546940949028864,
+    "text": "Max Prism Shards"
+  },
+  {
+    "id": 2546941901135872,
+    "text": "Increased Cast Speed with Smite per 2% Missing Mana"
+  },
+  {
+    "id": 2546941905330176,
+    "text": "Spell Damage with Smite per 5 Missing Mana"
+  },
+  {
+    "id": 2546942526087168,
+    "text": "Acolyte Spells"
+  },
+  {
+    "id": 2546942530281472,
+    "text": "Necrotic Penetration with Torment"
+  },
+  {
+    "id": 2546942530281473,
+    "text": "Chance to cast Chthonic Fissure when you hit a boss or rare enemy with Soul Feast and don't have an active Fissure"
+  },
+  {
+    "id": 2546943117484032,
+    "text": "of Hit Damage Taken from Bosses and Rare enemies is dealt over 4 seconds instead"
+  },
+  {
+    "id": 2546943121678336,
+    "text": "Chance to Inflict Bleed on Spell Hit"
+  },
+  {
+    "id": 2546943121678337,
+    "text": "of Spell Damage Leeched as Health"
+  },
+  {
+    "id": 2546943125872640,
+    "text": "of Mana Spent Reflected to you as Damage"
+  },
+  {
+    "id": 2546943385919488,
+    "text": "Projectiles with Spirit Thorns"
+  },
+  {
+    "id": 2546943390113792,
+    "text": "Increased damage while in Spriggan Form"
+  },
+  {
+    "id": 2546943394308096,
+    "text": "Health Regen while in Spriggan Form"
+  },
+  {
+    "id": 2546944266723328,
+    "text": "Volatile Reversal"
+  },
+  {
+    "id": 2546945487265792,
+    "text": "Chance to Apply Frailty and Slow to nearby enemies every second for Infernal Shade"
+  },
+  {
+    "id": 2546945827004416,
+    "text": "Acolyte Minion Skills"
+  },
+  {
+    "id": 2546945827004417,
+    "text": "Chance to gain 50 Health on Minion Hit"
+  },
+  {
+    "id": 2546945831198720,
+    "text": "Chance to gain 50 Health on Minion Death"
+  },
+  {
+    "id": 2546947630555136,
+    "text": "Tempest Strike"
+  },
+  {
+    "id": 2546948234534912,
+    "text": "Increased Frostbite Duration"
+  },
+  {
+    "id": 2546948234534913,
+    "text": "Ward Gain on Freeze"
+  },
+  {
+    "id": 2546948502970368,
+    "text": "Chance to cast Tidal Wave when you use a Melee Attack (2 second cooldown)"
+  },
+  {
+    "id": 2546949442494464,
+    "text": "Transplant"
+  },
+  {
+    "id": 2546950335881216,
+    "text": "Ballista"
+  },
+  {
+    "id": 2546952118460416,
+    "text": "increased Lightning Critical Strike Chance"
+  },
+  {
+    "id": 2546952122654720,
+    "text": "increased Minion Lightning Critical Strike Chance"
+  },
+  {
+    "id": 2546954341441536,
+    "text": "Critical Strike Avoidance for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546954345635840,
+    "text": "Poison Resistance for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2546954706345984,
+    "text": "Infernal Shade"
+  },
+  {
+    "id": 2546956258238464,
+    "text": "Elemental Resistance While Channelling"
+  },
+  {
+    "id": 2546956258238465,
+    "text": "Chance to Gain 30 Ward when Hit While Channelling"
+  },
+  {
+    "id": 2546956262432768,
+    "text": "increased Spell Physical Damage"
+  },
+  {
+    "id": 2546956543451136,
+    "text": "Umbral Blades"
+  },
+  {
+    "id": 2546957482975232,
+    "text": "Melee Physical Damage with Swarm Strike"
+  },
+  {
+    "id": 2546958393139200,
+    "text": "Fire Penetration with Ignite"
+  },
+  {
+    "id": 2546958393139201,
+    "text": "Chance to cast Fire Trail when you are crit"
+  },
+  {
+    "id": 2546958397333504,
+    "text": "Chance to Receive a Critical Strike"
+  },
+  {
+    "id": 2546958397333505,
+    "text": "Chance to forge a weapon when hit"
+  },
+  {
+    "id": 2546958397333506,
+    "text": "Increased Fire Damage per Forged Weapon"
+  },
+  {
+    "id": 2546960205078528,
+    "text": "Chance to apply Frailty on hit for Bees"
+  },
+  {
+    "id": 2546960205078529,
+    "text": "Bees per 10 seconds while in Spriggan Form"
+  },
+  {
+    "id": 2546960213467136,
+    "text": "Increased area with Rive"
+  },
+  {
+    "id": 2546960213467137,
+    "text": "Increased Area with Forge Strike"
+  },
+  {
+    "id": 2546960951664640,
+    "text": "Chthonic Fissure"
+  },
+  {
+    "id": 2546962985902080,
+    "text": "less Void Damage Taken"
+  },
+  {
+    "id": 2546962990096384,
+    "text": "of Physical Damage Taken as Void"
+  },
+  {
+    "id": 2546963342417920,
+    "text": "less Critical Strike Chance if you have dealt a Critical Strike Recently"
+  },
+  {
+    "id": 2546965443764224,
+    "text": "Mana Efficiency with Soul Feast"
+  },
+  {
+    "id": 2546965447958528,
+    "text": "Chance to Wither on Hit with Soul Feast"
+  },
+  {
+    "id": 2546965720588288,
+    "text": "Dark Quiver"
+  },
+  {
+    "id": 2546966672695296,
+    "text": "Chance to Cast Dragon Fire on Crit"
+  },
+  {
+    "id": 2546966932742144,
+    "text": "of Hail of Arrows Damage converted to Poison"
+  },
+  {
+    "id": 2546966936936448,
+    "text": "increased Hail of Arrows Duration"
+  },
+  {
+    "id": 2546966936936449,
+    "text": "Chance to Shred Armor on Bow Hit"
+  },
+  {
+    "id": 2546966941130752,
+    "text": "Increased Armor Shred Effect"
+  },
+  {
+    "id": 2546968170061824,
+    "text": "of Damage Redirected to your Highest Health Minion"
+  },
+  {
+    "id": 2546968174256128,
+    "text": "Strength Minion Skills"
+  },
+  {
+    "id": 2546975963078656,
+    "text": "Ward Gain on Crit"
+  },
+  {
+    "id": 2546975967272960,
+    "text": "Necrotic Skills"
+  },
+  {
+    "id": 2546977414307840,
+    "text": "Increased Area with Thorn Shield"
+  },
+  {
+    "id": 2546977418502144,
+    "text": "Chance to summon a Storm Totem on hit with Tempest Strike"
+  },
+  {
+    "id": 2546977418502145,
+    "text": "Lightning damage to spells and attacks when you are hit by Lightning from Storm Totem for 4 seconds. (stacks up to 3 times)"
+  },
+  {
+    "id": 2546977422696448,
+    "text": "Physical resistance to allies nearby Storm Totem"
+  },
+  {
+    "id": 2546985886801920,
+    "text": "Health per Vitality"
+  },
+  {
+    "id": 2546985890996224,
+    "text": "of Current Health and Ward lost when you directly cast a Spell"
+  },
+  {
+    "id": 2546985890996225,
+    "text": "Ward per Second per 1% uncapped Physical Resistance while channelling Rebuke"
+  },
+  {
+    "id": 2546985895190528,
+    "text": "more Damage to Bosses and Rare Enemies"
+  },
+  {
+    "id": 2546986163625984,
+    "text": "Increased cold spell damage if you have directly cast a physical spell recently"
+  },
+  {
+    "id": 2546986163625985,
+    "text": "Chance to apply Frostbite on Spell Hit"
+  },
+  {
+    "id": 2546986507558912,
+    "text": "of Endurance applies to all damage dealt to mana"
+  },
+  {
+    "id": 2546990936743936,
+    "text": "Block Chance per 2% Endurance above the Cap"
+  },
+  {
+    "id": 2546990940938240,
+    "text": "less Physical Damage Taken on Block"
+  },
+  {
+    "id": 2546991549112320,
+    "text": "increased Area for Melee Area Skills per 1 Mana Cost"
+  },
+  {
+    "id": 2546991553306624,
+    "text": "Critical Strike Chance for Melee Attacks per 1 Mana Cost"
+  },
+  {
+    "id": 2546991557500928,
+    "text": "Melee Critical Strike multiplier per 10 Max Mana"
+  },
+  {
+    "id": 2546991825936384,
+    "text": "Melee Damage for Shield Bash"
+  },
+  {
+    "id": 2546991830130688,
+    "text": "Melee Damage for Shield Rush"
+  },
+  {
+    "id": 2546991834324992,
+    "text": "reduced Movement Speed"
+  },
+  {
+    "id": 2546993071644672,
+    "text": "Warcry"
+  },
+  {
+    "id": 2546995755999232,
+    "text": "Curse Spell Damage"
+  },
+  {
+    "id": 2546996976541696,
+    "text": "Assemble Abomination"
+  },
+  {
+    "id": 2546998486491136,
+    "text": "Melee Physical Damage for Totems"
+  },
+  {
+    "id": 2546998486491137,
+    "text": "Spell Physical Damage for Totems"
+  },
+  {
+    "id": 2546998490685440,
+    "text": "Critical Strike Chance for Totems per Intelligence"
+  },
+  {
+    "id": 2546998490685441,
+    "text": "Critical Strike Multiplier for Totems"
+  },
+  {
+    "id": 2546998490685442,
+    "text": "All Totem Skills"
+  },
+  {
+    "id": 2547002248781824,
+    "text": "Mana efficiency for Decoy"
+  },
+  {
+    "id": 2547015213375488,
+    "text": "Chance per Intelligence for +22% Elemental Penetration with Two Rune Invocations"
+  },
+  {
+    "id": 2547015800578048,
+    "text": "increased Duration of Stuns Received"
+  },
+  {
+    "id": 2547017604128768,
+    "text": "Black Hole"
+  },
+  {
+    "id": 2547020917628928,
+    "text": "More Armor"
+  },
+  {
+    "id": 2547020917628929,
+    "text": "of Current Health and Ward lost when you use Evade"
+  },
+  {
+    "id": 2547020921823232,
+    "text": "Seconds of Frenzy after you use Evade"
+  },
+  {
+    "id": 2547027943088128,
+    "text": "Shadow Cascade"
+  },
+  {
+    "id": 2547031306919936,
+    "text": "of Mana spent gained as Maximum Mana for 5 seconds (up to 500)"
+  },
+  {
+    "id": 2547031306919937,
+    "text": "Spell Damage per 10 Max Mana for Doom Pulse"
+  },
+  {
+    "id": 2547031311114240,
+    "text": "Critical Strike Multiplier per 1% increased Mana Regen for Doom Pulse"
+  },
+  {
+    "id": 2547033538289664,
+    "text": "Spell Fire Damage for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 2547033550872576,
+    "text": "Chance to cast Fire Aura on Potion Use"
+  },
+  {
+    "id": 2547044481228800,
+    "text": "chance to gain Corrupted Heraldry when you cast Volcanic Orb"
+  },
+  {
+    "id": 2547044485423104,
+    "text": "chance to gain Corrupted Heraldry when hit by Shrapnel from Volcanic Orb"
+  },
+  {
+    "id": 2547044489617408,
+    "text": "of Remaining Volcanic Orb Cooldown Recovered when you use a Melee Attack and hit at least one Enemy"
+  },
+  {
+    "id": 2547045391392768,
+    "text": "Vengeance Range"
+  },
+  {
+    "id": 2547045391392769,
+    "text": "more Damage with Vengeance per 10% Block Chance"
+  },
+  {
+    "id": 2547045395587072,
+    "text": "Block Chance while preparing to Riposte"
+  },
+  {
+    "id": 2547045395587073,
+    "text": "Block Effectiveness while preparing to Riposte"
+  },
+  {
+    "id": 2547045399781376,
+    "text": "Chance to use Javelin when you Riposte"
+  },
+  {
+    "id": 2547046343499776,
+    "text": "Increased Cooldown Recovery Speed for Summon Storm Totem"
+  },
+  {
+    "id": 2547046347694080,
+    "text": "Lightning Penetration for Totems"
+  },
+  {
+    "id": 2547049367592960,
+    "text": "Melee Fire Damage with Smelter's Wrath per Forged Weapon"
+  },
+  {
+    "id": 2547049367592961,
+    "text": "Melee Fire Damage with Forge Strike per Forged Weapon"
+  },
+  {
+    "id": 2547049367592962,
+    "text": "Ignite Chance per Forged Weapon"
+  },
+  {
+    "id": 2547052148416512,
+    "text": "Increased physical spell damage if you have directly cast a cold spell recently"
+  },
+  {
+    "id": 2547052152610816,
+    "text": "Chance to gain Haste when you kill an enemy with a spell"
+  },
+  {
+    "id": 2547054149099520,
+    "text": "Healing Hands"
+  },
+  {
+    "id": 2547054954405888,
+    "text": "Void Cleave"
+  },
+  {
+    "id": 2547065586966528,
+    "text": "Chance to cast Maelstrom every 3 seconds"
+  },
+  {
+    "id": 2547068644614144,
+    "text": "Chance to gain a stack of Abyssal Rite on Crit"
+  },
+  {
+    "id": 2547076827701248,
+    "text": "Totem Mana Cost"
+  },
+  {
+    "id": 2547078090186752,
+    "text": "less Damage Taken from Chilled Enemies"
+  },
+  {
+    "id": 2547078090186753,
+    "text": "more more Damage per stack of Shock"
+  },
+  {
+    "id": 2547088303316992,
+    "text": "Chance to gain a stack of Viscera on Kill"
+  },
+  {
+    "id": 2547089259618304,
+    "text": "more more Melee Damage per stack of Doom"
+  },
+  {
+    "id": 2547093810438144,
+    "text": "chance to gain Dusk Shroud on Dodge"
+  },
+  {
+    "id": 2547093810438145,
+    "text": "Chance to gain a Black Arrow on Dodge"
+  },
+  {
+    "id": 2547093814632448,
+    "text": "Bow Void Damage per Dusk Shroud when using a Black Arrow"
+  },
+  {
+    "id": 2547095651737600,
+    "text": "of Wandering Spirits Base Damage Converted to Fire"
+  },
+  {
+    "id": 2547098440949760,
+    "text": "less Physical Damage Over Time Taken"
+  },
+  {
+    "id": 2547098784882688,
+    "text": "Increased Skeleton Damage"
+  },
+  {
+    "id": 2547099086872576,
+    "text": "increased Spell Damage per 1% increased Movement Speed"
+  },
+  {
+    "id": 2547099367890944,
+    "text": "Lightning Throwing Damage with Javelin"
+  },
+  {
+    "id": 2547099372085248,
+    "text": "of Javelin Damage Converted To Lightning"
+  },
+  {
+    "id": 2547107446120448,
+    "text": "Chance to summon a Storm Totem on hit (8 second cooldown)"
+  },
+  {
+    "id": 2547109123842048,
+    "text": "Increased Melee Fire Damage"
+  },
+  {
+    "id": 2547109128036352,
+    "text": "Fire Melee Attacks"
+  },
+  {
+    "id": 2547109132230656,
+    "text": "Cold Melee Attacks"
+  },
+  {
+    "id": 2547124873453568,
+    "text": "Chance to gain a stack of Reen's Ire for 5 seconds when you crit with a melee attack, up to 30 times per 5 seconds"
+  },
+  {
+    "id": 2547129097117696,
+    "text": "Health gained per Dexterity when your Falcon hits an enemy"
+  },
+  {
+    "id": 2547132825853952,
+    "text": "Armor for Totems"
+  },
+  {
+    "id": 2547132830048256,
+    "text": "Health Regen for Totems"
+  },
+  {
+    "id": 2547138945343488,
+    "text": "Chance to cast stationary fire Tornado at a nearby enemy on hit (up to 2 times per 3 seconds)"
+  },
+  {
+    "id": 2547138945343489,
+    "text": "Chance to shred fire resistance each second with Tornado"
+  },
+  {
+    "id": 2547290376495104,
+    "text": "increased Fire Damage Taken on Hit"
+  },
+  {
+    "id": 2547290380689408,
+    "text": "increased Necrotic Damage Taken on Hit"
+  },
+  {
+    "id": 2547290384883712,
+    "text": "increased Void Damage Taken on Hit"
+  },
+  {
+    "id": 2547302711943168,
+    "text": "of Health Regen also applies to Ward"
+  },
+  {
+    "id": 2547316783833088,
+    "text": "of added Critical Strike Multiplier Converted to Physical Penetration with Bleed"
+  },
+  {
+    "id": 2547316783833089,
+    "text": "of added Critical Strike Multiplier Converted to Poison Penetration with Poison"
+  },
+  {
+    "id": 2547341286957056,
+    "text": "Chance to apply Time Rot to Attackers when Hit"
+  },
+  {
+    "id": 2547341286957057,
+    "text": "less Void Damage Taken on Block"
+  },
+  {
+    "id": 2547348002037760,
+    "text": "Increased Cooldown Recovery Speed for Teleport"
+  },
+  {
+    "id": 2547348002037761,
+    "text": "Increased Cooldown Recovery Speed for Lunge"
+  },
+  {
+    "id": 2547348006232064,
+    "text": "Increased Cooldown Recovery Speed for Transplant"
+  },
+  {
+    "id": 2547395678691328,
+    "text": "Poison Penetration with Poison inflicted by Melee Attacks"
+  },
+  {
+    "id": 2547711904047104,
+    "text": "reduced Mana Regen"
+  },
+  {
+    "id": 2547711908241408,
+    "text": "less Armor"
+  },
+  {
+    "id": 2547724478570496,
+    "text": "Freeze Rate Multiplier while at Low Health"
+  },
+  {
+    "id": 2956744712511488,
+    "text": "reduced Melee Fire Damage"
+  },
+  {
+    "id": 2956744729288704,
+    "text": "reduced Melee Cold Damage"
+  },
+  {
+    "id": 2956744733483008,
+    "text": "more Damage Taken While Moving"
+  },
+  {
+    "id": 2957802281099264,
+    "text": "reduced Damage Over Time"
+  },
+  {
+    "id": 3621972638949376,
+    "text": "Increased Critical Strike Chance"
+  },
+  {
+    "id": 3621972743806976,
+    "text": "of Melee Damage Leeched as Health"
+  },
+  {
+    "id": 3621973217763328,
+    "text": "Chance to Chill on Hit"
+  },
+  {
+    "id": 3621973217763329,
+    "text": "Increased Damage Over Time"
+  },
+  {
+    "id": 3621973221957632,
+    "text": "Increased Stun Chance"
+  },
+  {
+    "id": 3621973221957633,
+    "text": "Melee Fire Damage"
+  },
+  {
+    "id": 3623397905391616,
+    "text": "Increased Cast Speed"
+  },
+  {
+    "id": 3623423540977664,
+    "text": "Increased Health Regeneration"
+  },
+  {
+    "id": 3624361861308416,
+    "text": "Increased Lightning Damage"
+  },
+  {
+    "id": 3624361953583104,
+    "text": "Increased Necrotic Damage"
+  },
+  {
+    "id": 3624361957777408,
+    "text": "Increased Cold Damage"
+  },
+  {
+    "id": 3624361957777409,
+    "text": "Increased Movement Speed"
+  },
+  {
+    "id": 3624361961971712,
+    "text": "Increased Melee Attack Speed"
+  },
+  {
+    "id": 3624361966166016,
+    "text": "Increased Poison Damage"
+  },
+  {
+    "id": 3624361970360320,
+    "text": "Increased Physical Damage"
+  },
+  {
+    "id": 3624361974554624,
+    "text": "Increased Elemental Damage Over Time"
+  },
+  {
+    "id": 3624361978748928,
+    "text": "Increased Spell Damage"
+  },
+  {
+    "id": 3624363807465472,
+    "text": "Increased Void Damage"
+  },
+  {
+    "id": 3624363815854080,
+    "text": "Increased Melee Damage"
+  },
+  {
+    "id": 3624363815854081,
+    "text": "Increased Mana"
+  },
+  {
+    "id": 3624363824242688,
+    "text": "Increased Damage Over Time"
+  },
+  {
+    "id": 3624364184952832,
+    "text": "Increased Fire Damage"
+  },
+  {
+    "id": 3624364189147136,
+    "text": "Increased Mana Regeneration"
+  },
+  {
+    "id": 3624364193341440,
+    "text": "Increased Elemental Damage"
+  },
+  {
+    "id": 3624364482748416,
+    "text": "increased Health Regen While Transformed"
+  },
+  {
+    "id": 3624364742795264,
+    "text": "Increased Minion Damage"
+  },
+  {
+    "id": 3624365011230720,
+    "text": "Increased Dodge Rating"
+  },
+  {
+    "id": 3624365506158592,
+    "text": "reduced Damage Taken on Block"
+  },
+  {
+    "id": 3624365510352896,
+    "text": "Increased Minion Health"
+  },
+  {
+    "id": 3624365762011136,
+    "text": "Increased Armor"
+  },
+  {
+    "id": 3624366001086464,
+    "text": "Increased Health"
+  },
+  {
+    "id": 3624366739283968,
+    "text": "increased Damage While Channelling"
+  },
+  {
+    "id": 3624366743478272,
+    "text": "increased Damage Over Time while at Low Health"
+  },
+  {
+    "id": 3624367456509952,
+    "text": "Increased Totem Damage"
+  },
+  {
+    "id": 3624367943049216,
+    "text": "increased Spell Critical Strike Chance"
+  },
+  {
+    "id": 3624367947243520,
+    "text": "Increased Totem Health"
+  },
+  {
+    "id": 3624367951437824,
+    "text": "increased Physical Damage Over Time"
+  },
+  {
+    "id": 3624368437977088,
+    "text": "increased Damage Over Time for Minions"
+  },
+  {
+    "id": 3624368916127744,
+    "text": "Increased Throwing Attack Speed"
+  },
+  {
+    "id": 3624369171980288,
+    "text": "Increased Bow Damage"
+  },
+  {
+    "id": 3624369956315136,
+    "text": "Increased Fire Damage Over Time"
+  },
+  {
+    "id": 3624370447048704,
+    "text": "Increased Health"
+  },
+  {
+    "id": 3624370686124032,
+    "text": "Increased Fire Damage Over Time"
+  },
+  {
+    "id": 3624371894083584,
+    "text": "increased Melee Damage While Transformed"
+  },
+  {
+    "id": 3624371898277888,
+    "text": "increased Physical Damage Over Time"
+  },
+  {
+    "id": 3624373609553920,
+    "text": "Increased Totem Damage"
+  },
+  {
+    "id": 3624374582632448,
+    "text": "Increased Bow Attack Speed"
+  },
+  {
+    "id": 3624374591021056,
+    "text": "reduced Channel Cost"
+  },
+  {
+    "id": 3624374591021057,
+    "text": "Less Damage over Time Taken"
+  },
+  {
+    "id": 3624374599409664,
+    "text": "Increased Void Damage Over Time"
+  },
+  {
+    "id": 3624375337607168,
+    "text": "less Damage Over Time Taken While Channelling"
+  },
+  {
+    "id": 3624375585071104,
+    "text": "increased Physical Damage While Transformed"
+  },
+  {
+    "id": 3624375824146432,
+    "text": "Increased Health Regeneration"
+  },
+  {
+    "id": 3624378483335168,
+    "text": "Increased Critical Strike Chance"
+  },
+  {
+    "id": 3624378491723776,
+    "text": "increased Spell Damage While Transformed"
+  },
+  {
+    "id": 3624378739187712,
+    "text": "Increased Damage Over Time While Transformed"
+  },
+  {
+    "id": 3624379729043456,
+    "text": "Increased Melee Void Damage"
+  },
+  {
+    "id": 3624382849605632,
+    "text": "Increased Abyssal Decay Duration"
+  },
+  {
+    "id": 3624385739481088,
+    "text": "increased Cold Damage Over Time"
+  },
+  {
+    "id": 3624386964217856,
+    "text": "less Damage Over Time Taken While Transformed"
+  },
+  {
+    "id": 3624387459145728,
+    "text": "Increased Void Damage Over Time"
+  },
+  {
+    "id": 3624387735969792,
+    "text": "increased Spell Damage While Transformed"
+  },
+  {
+    "id": 3624388239286272,
+    "text": "Increased Health"
+  },
+  {
+    "id": 3624388746797056,
+    "text": "Increased Minion Melee Attack Speed"
+  },
+  {
+    "id": 3624389493383168,
+    "text": "increased Bow Critical Strike Chance"
+  },
+  {
+    "id": 3624389979922432,
+    "text": "increased Cast Speed for Totems"
+  },
+  {
+    "id": 3624392186126336,
+    "text": "Increased Melee Elemental Damage"
+  },
+  {
+    "id": 3624392190320640,
+    "text": "increased Melee Damage While Transformed"
+  },
+  {
+    "id": 3624392928518144,
+    "text": "Increased Minion Cold Damage"
+  },
+  {
+    "id": 3624393708658688,
+    "text": "Increased Armor"
+  },
+  {
+    "id": 3624395520598016,
+    "text": "Increased Minion Critical Strike Chance"
+  },
+  {
+    "id": 3624395520598017,
+    "text": "increased Cast Speed for Totems"
+  },
+  {
+    "id": 3624398884429824,
+    "text": "increased Physical Spell Critical Strike Chance"
+  },
+  {
+    "id": 3624398888624128,
+    "text": "increased Physical Spell Critical Strike Chance"
+  },
+  {
+    "id": 3624403565273088,
+    "text": "Increased Bow Damage"
+  },
+  {
+    "id": 3624404546740224,
+    "text": "increased Bow Elemental Damage"
+  },
+  {
+    "id": 3624405284937728,
+    "text": "Increased Damage While Transformed"
+  },
+  {
+    "id": 3624405784059904,
+    "text": "Increased Throwing Damage"
+  },
+  {
+    "id": 3624406761332736,
+    "text": "Increased Melee Elemental Damage"
+  },
+  {
+    "id": 3624407491141632,
+    "text": "increased Bow Elemental Damage"
+  },
+  {
+    "id": 3624416936714240,
+    "text": "increased Throwing Physical Damage"
+  },
+  {
+    "id": 3624419155501056,
+    "text": "increased Minion Spell Critical Strike Chance"
+  },
+  {
+    "id": 3624421533671424,
+    "text": "increased Throwing Physical Damage"
+  },
+  {
+    "id": 3624438730317824,
+    "text": "Increased Minion Fire Damage"
+  },
+  {
+    "id": 3624438734512128,
+    "text": "increased Spell Damage while at Low Health"
+  },
+  {
+    "id": 3624452638629888,
+    "text": "Increased Fire Damage Over Time"
+  },
+  {
+    "id": 3624455549476864,
+    "text": "increased Totem Critical Strike Chance"
+  },
+  {
+    "id": 3624457558548480,
+    "text": "increased Critical Strike Chance With Lightning Skills"
+  },
+  {
+    "id": 3624463891947520,
+    "text": "Increased Damage Over Time While Transformed"
+  },
+  {
+    "id": 3624469592006656,
+    "text": "increased Necrotic Damage While Transformed"
+  },
+  {
+    "id": 3624478374879232,
+    "text": "increased Cold Damage Over Time"
+  },
+  {
+    "id": 3624484754415616,
+    "text": "Increased Fire Damage Over Time"
+  },
+  {
+    "id": 3624489531727872,
+    "text": "Increased Throwing Attack Critical Strike Chance"
+  },
+  {
+    "id": 5408829550878720,
+    "text": "increased Melee Attack Speed for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 5408829580238848,
+    "text": "increased Throwing Attack Speed for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 5408833992646656,
+    "text": "seconds of Enrage granted to companions hit by your Storm Totem"
+  },
+  {
+    "id": 5408841676611584,
+    "text": "Melee Fire Damage per Forged Weapon"
+  },
+  {
+    "id": 5408845250158592,
+    "text": "Chance to not consume Runes when Invoking per Unique Rune"
+  },
+  {
+    "id": 5408851432562688,
+    "text": "Chance to Poison on Fire Hit"
+  },
+  {
+    "id": 5408858407690240,
+    "text": "Chance to Slow Bosses and Rare Enemies on hit per stack of Crystalwind consumed"
+  },
+  {
+    "id": 5408858411884544,
+    "text": "Chance to Petrify other enemies on hit per stack of Crystalwind consumed"
+  },
+  {
+    "id": 5408866804686848,
+    "text": "Minion Melee Fire Damage"
+  },
+  {
+    "id": 5408887176421376,
+    "text": "of Meteor Base Damage Converted to Lightning"
+  },
+  {
+    "id": 5408908261187584,
+    "text": "Curse Damage"
+  },
+  {
+    "id": 5408978406727680,
+    "text": "seconds of Haste gained when hit by your Storm Totem"
+  },
+  {
+    "id": 5409005866835968,
+    "text": "seconds of Frenzy gained when hit by your Storm Totem"
+  },
+  {
+    "id": 5409163300036608,
+    "text": "Cold Spell Cast Speed"
+  },
+  {
+    "id": 5409163300036609,
+    "text": "Chance to cast Smite on hit (max 6 per 10 seconds, this cooldown resets when you use a potion)"
+  },
+  {
+    "id": 5409237438554112,
+    "text": "of Dread Shade Damage and Effects Converted to Cold"
+  },
+  {
+    "id": 5409289972211712,
+    "text": "Minion Melee Lightning Damage"
+  },
+  {
+    "id": 7514555429675008,
+    "text": "of Potion Health Converted to Ward"
+  },
+  {
+    "id": 7514559070330880,
+    "text": "of Damage Reflected"
+  },
+  {
+    "id": 7514559074525184,
+    "text": "of Cold Damage Taken as Physical"
+  },
+  {
+    "id": 7514562144755712,
+    "text": "of Potion Health Converted to Ward"
+  },
+  {
+    "id": 7514563151388672,
+    "text": "of Damage Reflected while you have Lightning Aegis"
+  },
+  {
+    "id": 7514571456110592,
+    "text": "of Mana Spent Gained as Ward"
+  },
+  {
+    "id": 7514572236251136,
+    "text": "of Lightning Damage Taken as Physical"
+  },
+  {
+    "id": 7514576413777920,
+    "text": "of Spell Damage Leeched While Channelling"
+  },
+  {
+    "id": 7514578217328640,
+    "text": "of Damage Leeched as Health While Transformed"
+  },
+  {
+    "id": 7514579760832512,
+    "text": "of Minion Melee Damage Leeched As Health"
+  },
+  {
+    "id": 7514581304336384,
+    "text": "of Mana Spent Gained as Ward"
+  },
+  {
+    "id": 7514597158805504,
+    "text": "of Shield Throw Base Damage Converted to Void"
+  },
+  {
+    "id": 7514602095501312,
+    "text": "of Damage To Minions Reflected to Attackers"
+  },
+  {
+    "id": 7514616112865280,
+    "text": "of Spell Damage Leeched as Health While Channelling"
+  },
+  {
+    "id": 7514618340040704,
+    "text": "of Fire Damage Taken as Physical"
+  },
+  {
+    "id": 7514620210700288,
+    "text": "of Damage Dealt to Mana Before Health"
+  },
+  {
+    "id": 7514620223283200,
+    "text": "of Minion Melee Damage Leeched As Health"
+  },
+  {
+    "id": 7514623108964352,
+    "text": "of Void Damage Taken as Physical"
+  },
+  {
+    "id": 7514636170027008,
+    "text": "of Necrotic Damage Taken as Physical"
+  },
+  {
+    "id": 7514660752842752,
+    "text": "of Poison Damage Taken as Physical"
+  },
+  {
+    "id": 7514678637355008,
+    "text": "of Harvest Damage Leeched As Health"
+  },
+  {
+    "id": 7514690276548608,
+    "text": "of Damage Leeched as Health While Transformed"
+  },
+  {
+    "id": 19771015786127360,
+    "text": "Increased Duration of Bleed, Poison, and Electrify per equipped Weaver's Will item (up to 5)"
+  },
+  {
+    "id": 19771017635815424,
+    "text": "Chance to not consume Silver Shrouds when hit"
+  },
+  {
+    "id": 19771017635815425,
+    "text": "Ward granted by Silver Shroud per stack"
+  },
+  {
+    "id": 19771021377134592,
+    "text": "chance to gain Frenzy for 3 seconds when you Echo an ability"
+  },
+  {
+    "id": 19771022178246656,
+    "text": "Chance to inflict Spiders on Melee Hit per equipped Weaver's Will Item"
+  },
+  {
+    "id": 19771025135230976,
+    "text": "Minion Cold Resistance"
+  },
+  {
+    "id": 19771030164201472,
+    "text": "of Fire Damage Over Time Damage Leeched as Health"
+  },
+  {
+    "id": 19771030168395776,
+    "text": "of Necrotic Damage Over Time Damage Leeched as Health"
+  },
+  {
+    "id": 19771033834217472,
+    "text": "increased Evade distance"
+  },
+  {
+    "id": 19771035306418176,
+    "text": "Chance to Electrify on Lightning Hit"
+  },
+  {
+    "id": 19771036661178368,
+    "text": "Increased Reveal Rate for Wandering Spirits"
+  },
+  {
+    "id": 19771041904058368,
+    "text": "Critical Strike Multiplier against Frozen Enemies"
+  },
+  {
+    "id": 19771042612895744,
+    "text": "Increased Cooldown Recovery Speed of Reap"
+  },
+  {
+    "id": 19771042617090048,
+    "text": "Chance to cast Harvest at 3 nearby enemies when you use Reap"
+  },
+  {
+    "id": 19771044106067968,
+    "text": "Less Damage Over Time taken while using a Shield"
+  },
+  {
+    "id": 19771044647133184,
+    "text": "Endurance Threshold per Strength"
+  },
+  {
+    "id": 19771045108506624,
+    "text": "of Block Effectiveness applies to Damage over Time as if it had been Blocked"
+  },
+  {
+    "id": 19771045343387648,
+    "text": "Minion Health Regen"
+  },
+  {
+    "id": 19771047193075712,
+    "text": "Increased Minion Melee Attack Speed"
+  },
+  {
+    "id": 19771048627527680,
+    "text": "Ward gained when you use Evade"
+  },
+  {
+    "id": 19771052645670912,
+    "text": "Spell Damage while using a Shield"
+  },
+  {
+    "id": 19771052645670913,
+    "text": "Spell Damage while wielding a 2 Handed Axe"
+  },
+  {
+    "id": 19771054440833024,
+    "text": "Chance to repeat Bow Ability"
+  },
+  {
+    "id": 19771057032912896,
+    "text": "Melee Critical Strike Multiplier per meter from the target (up to 5 meters)"
+  },
+  {
+    "id": 19771058442199040,
+    "text": "Max Vale Spirits per 15 Attunement"
+  },
+  {
+    "id": 19771061998968832,
+    "text": "Poison Penetration with Poison"
+  },
+  {
+    "id": 19771062724583424,
+    "text": "of Critical Strike Multiplier applies to Potions"
+  },
+  {
+    "id": 19771064465219584,
+    "text": "Increased Damage while Dual Wielding"
+  },
+  {
+    "id": 19771065639624704,
+    "text": "increased Increased Healing Effectiveness"
+  },
+  {
+    "id": 19771067262820352,
+    "text": "Spell Damage while weilding a Staff"
+  },
+  {
+    "id": 19771067262820353,
+    "text": "Ward gained per second while wielding a Staff"
+  },
+  {
+    "id": 19771067732582400,
+    "text": "Seconds of Frenzy when you gain Poison Overload"
+  },
+  {
+    "id": 19771067954880512,
+    "text": "Increased Stun Immunity Duration"
+  },
+  {
+    "id": 19771072941907968,
+    "text": "Chance to Gain 30 Ward when Hit"
+  },
+  {
+    "id": 19771075991166976,
+    "text": "Melee Fire Damage per Forged Weapon"
+  },
+  {
+    "id": 19771075995361280,
+    "text": "random Totems teleported to your location after you use a traversal skill"
+  },
+  {
+    "id": 19771076947468288,
+    "text": "Increased Mana regeneration while you control a minion"
+  },
+  {
+    "id": 19771095062667264,
+    "text": "Chance to not consume a Potion on Potion use"
+  },
+  {
+    "id": 19771097134653440,
+    "text": "Minion Elemental Resistance"
+  },
+  {
+    "id": 19771098078371840,
+    "text": "Chance to apply a Spark Charge on Lightning Melee Hit"
+  },
+  {
+    "id": 19771098082566144,
+    "text": "increased area for Lightning Area Skills"
+  },
+  {
+    "id": 19771102343979008,
+    "text": "Less Damage Taken"
+  },
+  {
+    "id": 19771104478879744,
+    "text": "Minion Lightning Resistance"
+  },
+  {
+    "id": 19771105976246272,
+    "text": "Ward Decay Threshold for 4 seconds when you use a Potion"
+  },
+  {
+    "id": 19771114515849216,
+    "text": "increased Minion Elemental Resistance"
+  },
+  {
+    "id": 19771115006582784,
+    "text": "of Max Health gained as Endurance Threshold for 4 seconds when you use a potion"
+  },
+  {
+    "id": 19771115988049920,
+    "text": "Chance to inflict Time Rot on Void Hit"
+  },
+  {
+    "id": 19771116722053120,
+    "text": "Increased Stun Chance"
+  },
+  {
+    "id": 19771122971566080,
+    "text": "Increased Crimson Shroud Duration"
+  },
+  {
+    "id": 19771122971566081,
+    "text": "Bleed chance per active Crimson Shroud"
+  },
+  {
+    "id": 19771123965616128,
+    "text": "Minion Necrotic Resistance"
+  },
+  {
+    "id": 19771134619148288,
+    "text": "Increased Frenzy Effect"
+  },
+  {
+    "id": 19771134623342592,
+    "text": "increased Melee Damage while you have Frenzy"
+  },
+  {
+    "id": 19771135772581888,
+    "text": "Increased Electrify Duration"
+  },
+  {
+    "id": 19771135772581889,
+    "text": "of Elemental Damage Over Time Damage Leeched as Health"
+  },
+  {
+    "id": 19771136523362304,
+    "text": "Minion Void Resistance"
+  },
+  {
+    "id": 19771136527556608,
+    "text": "Armor while Transformed"
+  },
+  {
+    "id": 19771136527556609,
+    "text": "Rage gained per second while Transformed"
+  },
+  {
+    "id": 19771140130463744,
+    "text": "Increased Silver Shroud Duration"
+  },
+  {
+    "id": 19771142001123328,
+    "text": "Increased Movement Speed while Transformed"
+  },
+  {
+    "id": 19771142009511936,
+    "text": "seconds of Haste after you transform"
+  },
+  {
+    "id": 19771169230544896,
+    "text": "Increased Critical Strike Chance while using a Catalyst"
+  },
+  {
+    "id": 19771169234739200,
+    "text": "Critical Strike Multiplier while using a Catalyst"
+  },
+  {
+    "id": 19771192450211840,
+    "text": "increased Minion Throwing Attack Speed"
+  },
+  {
+    "id": 19771192450211841,
+    "text": "Minion Throwing Damage"
+  },
+  {
+    "id": 19771195541413888,
+    "text": "Minion Physical Resistance"
+  },
+  {
+    "id": 19771227623645184,
+    "text": "chance to throw Acid Flask on Bow Hit"
+  },
+  {
+    "id": 19771249006206976,
+    "text": "Ward Gained when you use Enchant Weapon"
+  },
+  {
+    "id": 19771257252208640,
+    "text": "Endurance Threshold against Shocked enemies"
+  },
+  {
+    "id": 19771267033325568,
+    "text": "Maximum Skeletal Mages"
+  },
+  {
+    "id": 19771267037519872,
+    "text": "Necrotic Minion Skills"
+  },
+  {
+    "id": 19771267037519873,
+    "text": "Cold Minion Skills"
+  },
+  {
+    "id": 19771267041714176,
+    "text": "Lightning Minion Skills"
+  },
+  {
+    "id": 19771267041714177,
+    "text": "Chance to Electrify on Minion Hit"
+  },
+  {
+    "id": 28966842677059584,
+    "text": "Armor While Transformed"
+  },
+  {
+    "id": 45590169403252736,
+    "text": "of Minion Physical Damage Leeched as Health"
+  },
+  {
+    "id": 45590184460804096,
+    "text": "Chance to inflict Bleed on Minion Melee Hit"
+  },
+  {
+    "id": 45590204354387968,
+    "text": "Summon Storm Crows"
+  },
+  {
+    "id": 67391946804944896,
+    "text": "Strength Skills"
+  },
+  {
+    "id": 67391948767879168,
+    "text": "All Attributes per Complete Set"
+  },
+  {
+    "id": 67391948772073472,
+    "text": "All Resistances per Complete Set"
+  },
+  {
+    "id": 67391948772073473,
+    "text": "All Skills per Complete Set"
+  },
+  {
+    "id": 67391952685359104,
+    "text": "of added melee damage on equipped weapons applied as added spell damage for Chaos Bolts"
+  },
+  {
+    "id": 67391952689553408,
+    "text": "of your maximum mana restored when Harvest hits a rare or boss enemy"
+  },
+  {
+    "id": 67391952697942016,
+    "text": "of your maximum mana restored when Harvest kills an enemy"
+  },
+  {
+    "id": 67391953574551552,
+    "text": "chance to cast Flame Ward after using a movement skill within 16 metres of a boss or rare enemy (max 2 per 16 seconds)"
+  },
+  {
+    "id": 67391969911365632,
+    "text": "Main Hand Weapon Stat Multiplier per equipped non-idol Magic Item"
+  },
+  {
+    "id": 67391985245741056,
+    "text": "of Void Damage Taken as Physical"
+  },
+  {
+    "id": 67391985249935360,
+    "text": "of Necrotic Damage Taken as Physical"
+  },
+  {
+    "id": 67391985254129664,
+    "text": "of Poison Damage Taken as Physical"
+  },
+  {
+    "id": 67392027964727296,
+    "text": "more Damage Reflected to Bosses and Rare Enemies"
+  },
+  {
+    "id": 67392027973115904,
+    "text": "Damage Reflected to Attackers per 10% uncapped Physical Resistance"
+  },
+  {
+    "id": 67392099569885184,
+    "text": "of Ignite Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392099574079488,
+    "text": "of Frostbite Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392099582468096,
+    "text": "of Shock Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392099582468097,
+    "text": "of Time Rot Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392099586662400,
+    "text": "of Damned Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392099590856704,
+    "text": "of Poison Chance Converted to Bleed Chance"
+  },
+  {
+    "id": 67392103709663232,
+    "text": "Chance to Ignite on Hit per 10% uncapped Fire Resistance"
+  },
+  {
+    "id": 70539526548217856,
+    "text": "less Spell Mana Cost"
+  },
+  {
+    "id": 70539526686629888,
+    "text": "less Mana"
+  },
+  {
+    "id": 70539526686629889,
+    "text": "less Mana Regen"
+  },
+  {
+    "id": 70539548517982208,
+    "text": "Flay"
+  },
+  {
+    "id": 70539549843382272,
+    "text": "more Melee Damage while you have Frenzy"
+  },
+  {
+    "id": 70539549851770880,
+    "text": "increased Damage Taken while you have Frenzy"
+  },
+  {
+    "id": 70539549855965184,
+    "text": "of Melee Damage leeched as Health while you have Frenzy"
+  },
+  {
+    "id": 70539549864353792,
+    "text": "of Health Leech also drains the health of the nearest enemy within 6 meters"
+  },
+  {
+    "id": 70539549868548096,
+    "text": "of Health Leech also drains the health of the nearest enemy within 6 meters while you have Frenzy"
+  },
+  {
+    "id": 70539549876936704,
+    "text": "increased Effect of Frenzy while Dual Wielding"
+  },
+  {
+    "id": 70539549881131008,
+    "text": "increased Effect of Frenzy per Strength"
+  },
+  {
+    "id": 70539617442979840,
+    "text": "increased Movement Speed per 10 Dexterity"
+  },
+  {
+    "id": 70539618780962816,
+    "text": "of Maximum Health gained as Ward Decay Threshold"
+  },
+  {
+    "id": 70539618789351424,
+    "text": "of Maximum Health applied as a Ward Limit"
+  },
+  {
+    "id": 70539631078662144,
+    "text": "increased Endurance Threshold"
+  },
+  {
+    "id": 70539639018479616,
+    "text": "less Damage Taken from the First Hit Received from each enemy"
+  },
+  {
+    "id": 70539639022673920,
+    "text": "increased effect of stats on your Non-Unique Idols that are a different shape to all other equipped Non-Unique Idols"
+  },
+  {
+    "id": 70539648237559808,
+    "text": "Attunement Skills"
+  },
+  {
+    "id": 70539648245948416,
+    "text": "reduced Spell Mana Cost"
+  },
+  {
+    "id": 70539648250142720,
+    "text": "more Damage to Bosses and Rare Enemies while above half mana"
+  },
+  {
+    "id": 70539648254337024,
+    "text": "less Damage Taken from Bosses and Rare Enemies while below half mana"
+  },
+  {
+    "id": 70539658110951424,
+    "text": "Maximum Companions if this is your only equipped Unique Idol"
+  },
+  {
+    "id": 70539714264293376,
+    "text": "increased Hit Damage"
+  },
+  {
+    "id": 70539714272681984,
+    "text": "Critical Strike Multiplier per 2 Strength"
+  }
+]

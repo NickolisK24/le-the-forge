@@ -1,0 +1,894 @@
+[
+  {
+    "id": 220002,
+    "text": "Beacon"
+  },
+  {
+    "id": 220004,
+    "text": "Sun Gate"
+  },
+  {
+    "id": 220005,
+    "text": "Soul Gate"
+  },
+  {
+    "id": 220006,
+    "text": "Ice Gate"
+  },
+  {
+    "id": 220007,
+    "text": "Void Gate"
+  },
+  {
+    "id": 220008,
+    "text": "Vile Gate"
+  },
+  {
+    "id": 220009,
+    "text": "Gate of Sacrifice"
+  },
+  {
+    "id": 220010,
+    "text": "Ash Gate"
+  },
+  {
+    "id": 220011,
+    "text": "Reef Gate"
+  },
+  {
+    "id": 220012,
+    "text": "Storm Gate"
+  },
+  {
+    "id": 220013,
+    "text": "Savage Gate"
+  },
+  {
+    "id": 220014,
+    "text": "Wild Gate"
+  },
+  {
+    "id": 220015,
+    "text": "Skittering Gate"
+  },
+  {
+    "id": 220017,
+    "text": "Siege Golem"
+  },
+  {
+    "id": 220018,
+    "text": "Siege Golems"
+  },
+  {
+    "id": 220019,
+    "text": "Meruna Ogre"
+  },
+  {
+    "id": 220020,
+    "text": "Meruna Ogres"
+  },
+  {
+    "id": 220021,
+    "text": "Ice Goliath"
+  },
+  {
+    "id": 220022,
+    "text": "Ice Goliaths"
+  },
+  {
+    "id": 220023,
+    "text": "Imperial Watcher"
+  },
+  {
+    "id": 220024,
+    "text": "Imperial Watchers"
+  },
+  {
+    "id": 220025,
+    "text": "Void Horror"
+  },
+  {
+    "id": 220026,
+    "text": "Void Horrors"
+  },
+  {
+    "id": 220027,
+    "text": "Profane Flesh"
+  },
+  {
+    "id": 220028,
+    "text": "Profane Fleshes"
+  },
+  {
+    "id": 220029,
+    "text": "Infernal Husk"
+  },
+  {
+    "id": 220030,
+    "text": "Infernal Husks"
+  },
+  {
+    "id": 220031,
+    "text": "Diamond Matron"
+  },
+  {
+    "id": 220032,
+    "text": "Diamond Matrons"
+  },
+  {
+    "id": 220033,
+    "text": "Gold Elemental"
+  },
+  {
+    "id": 220034,
+    "text": "Gold Elementals"
+  },
+  {
+    "id": 220036,
+    "text": "Bone Spire"
+  },
+  {
+    "id": 220037,
+    "text": "Bone Spires"
+  },
+  {
+    "id": 220038,
+    "text": "Blood Spire"
+  },
+  {
+    "id": 220039,
+    "text": "Blood Spires"
+  },
+  {
+    "id": 220040,
+    "text": "Moon Spire"
+  },
+  {
+    "id": 220041,
+    "text": "Moon Spires"
+  },
+  {
+    "id": 220042,
+    "text": "Flame Spire"
+  },
+  {
+    "id": 220043,
+    "text": "Flame Spires"
+  },
+  {
+    "id": 220044,
+    "text": "Venom Spire"
+  },
+  {
+    "id": 220045,
+    "text": "Venom Spires"
+  },
+  {
+    "id": 220046,
+    "text": "Siege Spire"
+  },
+  {
+    "id": 220047,
+    "text": "Siege Spires"
+  },
+  {
+    "id": 220048,
+    "text": "Soul Spire"
+  },
+  {
+    "id": 220049,
+    "text": "Soul Spires"
+  },
+  {
+    "id": 220050,
+    "text": "Void Spire"
+  },
+  {
+    "id": 220051,
+    "text": "Void Spires"
+  },
+  {
+    "id": 220052,
+    "text": "Wengari Spire"
+  },
+  {
+    "id": 220053,
+    "text": "Wengari Spires"
+  },
+  {
+    "id": 220054,
+    "text": "Imprisoned Spire"
+  },
+  {
+    "id": 220055,
+    "text": "Imprisoned Spires"
+  },
+  {
+    "id": 220057,
+    "text": "Vessel of Chaos"
+  },
+  {
+    "id": 220058,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 220061,
+    "text": "Slay enemies to locate"
+  },
+  {
+    "id": 220062,
+    "text": "Slay"
+  },
+  {
+    "id": 220063,
+    "text": "Slay enemies to locate the"
+  },
+  {
+    "id": 220064,
+    "text": "Seal the"
+  },
+  {
+    "id": 220065,
+    "text": "Destroy"
+  },
+  {
+    "id": 220066,
+    "text": "Destroy the"
+  },
+  {
+    "id": 220067,
+    "text": "Charge the"
+  },
+  {
+    "id": 220068,
+    "text": "Defeat all"
+  },
+  {
+    "id": 220069,
+    "text": "waves of enemies"
+  },
+  {
+    "id": 220070,
+    "text": "Reset the Timeline"
+  },
+  {
+    "id": 220071,
+    "text": "Use your Portal to travel onwards"
+  },
+  {
+    "id": 95027944401182720,
+    "text": "the patrolling"
+  },
+  {
+    "id": 95028280524316672,
+    "text": "both patrolling"
+  },
+  {
+    "id": 95029092109557760,
+    "text": "Slay enemies to lure out an ambush"
+  },
+  {
+    "id": 95029269750915072,
+    "text": "Defeat the ambush"
+  },
+  {
+    "id": 95029772379529216,
+    "text": "Remain in the Circle to Charge the Beacon"
+  },
+  {
+    "id": 95030087669555200,
+    "text": "Charged"
+  },
+  {
+    "id": 95030153574653952,
+    "text": "Reset the Timeline and cleanse it of Corruption"
+  },
+  {
+    "id": 95030157437607936,
+    "text": "Defeat the Shade of Orobyss"
+  },
+  {
+    "id": 95031751524786176,
+    "text": "Defeat the Sanctuary Guardians"
+  },
+  {
+    "id": 95031918898487296,
+    "text": "Pray to the Statue of Eterra to reduce Corruption"
+  },
+  {
+    "id": 95051233597104128,
+    "text": "In this timeline, the Immortal Empire advances into the north to recruit Wengari to their efforts. Two tribes of Wengari are split as they struggle to survive against the Immortal Empire's attacks.\n\nChoose an ally and turn the tide against the empire.\n"
+  },
+  {
+    "id": 95051392615751680,
+    "text": "In this timeline, the Immortal Empire advances into the north to recruit Wengari to their efforts. The two Wengari clans are split, one side falling in with the Empire, the other resisting. \n\nUndead Wengari ravage Heoborea. Protect the city and save its remaining inhabitants.\n"
+  },
+  {
+    "id": 95051436123267072,
+    "text": "In this timeline, the Immortal Empire advances into the north to recruit Wengari to their efforts. The two Wengari clans are split, one side falling in with the Empire, the other resisting. \n\nDescend into the heart of Formosus’ Lair and rescue the living Wengari."
+  },
+  {
+    "id": 95051523402539008,
+    "text": "In this timeline, the Shard that granted protection to Last Refuge was lost. The Void invaded and ravaged the city, leaving only a few survivors."
+  },
+  {
+    "id": 95051660531113984,
+    "text": "In this timeline, Last Refuge has fallen to the Void. Elder Gaspar has barricaded himself in the Council Chambers and destroyed all of its entrances."
+  },
+  {
+    "id": 95051707251466240,
+    "text": "In this timeline, Last Refuge has fallen to the Void. Elder Gaspar has lost hope and betrayed the survivors. Little is left of him but a husk of despair."
+  },
+  {
+    "id": 95051783025762304,
+    "text": "In this timeline, Heorot has slain Rahyeh. In the wake of his victory, he has unleashed an unending winter on the world and marches upon his rivals."
+  },
+  {
+    "id": 95051859286597632,
+    "text": "In this timeline, Heorot has slain Rahyeh. Grael has led an army of Heoborean warriors to Thetima under Heorot’s orders, leaving nothing but destruction in his wake."
+  },
+  {
+    "id": 95051909119123456,
+    "text": "In this timeline, Heorot has slain Rahyeh and brought destruction to the people of Solarum, cementing his victory in ice. He must be stopped.\n"
+  },
+  {
+    "id": 95051986080407552,
+    "text": "In this timeline, Lagon is attacked by Rahyeh’s forces and driven to unleash a storm on the coast to destroy his enemies, but also his own people in the process. \n\nSave survivors in a flooded, Meruna infested Thetima.\n"
+  },
+  {
+    "id": 95052027801149440,
+    "text": "In this timeline, Lagon is attacked by Rahyeh’s forces and driven to unleash a storm on the coast to destroy his enemies, but also his own people in the process. \n\nFind a way into Lagon’s temple in the aftermath of the failed Osprix invasion of Lagon’s Isle.\n"
+  },
+  {
+    "id": 95052051704487936,
+    "text": "In this timeline, Lagon is attacked by Rahyeh’s forces and driven to unleash a storm on the coast to destroy his enemies, but also his own people in the process.  \n\nSlay Lagon to end the storm.\n"
+  },
+  {
+    "id": 95052201755713536,
+    "text": "In this timeline, Osprix forces interfere with the retrieval of the Lance of Heorot. \n\nRace Rahyeh's forces to claim the Blessed Horn.\n"
+  },
+  {
+    "id": 95052280000454656,
+    "text": "In this timeline, Osprix forces interfere with the retrieval of the Lance of Heorot. \n\nRahyeh's forces approach the Lance of Heorot. Stop them before they can take it.\n"
+  },
+  {
+    "id": 95052338540355584,
+    "text": "In this timeline, Osprix forces interfere with the retrieval of the Lance of Heorot and take it for themselves. \n\nDefeat God Hunter Argentus and reclaim the Lance of Heorot."
+  },
+  {
+    "id": 95052431813287936,
+    "text": "In this timeline, the gods failed to exterminate the dragons in the Ancient Era. Instead, the dragons continue to terrorize humanity.\n\nSearch for Heorot inside his temple at the behest of a shaman.\n"
+  },
+  {
+    "id": 95052517217705984,
+    "text": "In this timeline, the gods failed to exterminate the dragons in the Ancient Era. Instead, the dragons overcame them and usurped the role of the gods in history.\n\nFind and destroy a clutch of Storm Dragon eggs.\n"
+  },
+  {
+    "id": 95052566324617216,
+    "text": "In this timeline, the dragons overcame the gods and usurped their role in history. Eventually, they get a taste of necrotic power and create their own reign of undead. \n\nSlay the Emperor of Corpses.\n"
+  },
+  {
+    "id": 95052636663095296,
+    "text": "In this timeline, the Immortal Empire secures a decisive victory over the living Outcasts to quell the rebellion. \n\nReturn to the remains of the Outcast Camp to find any survivors."
+  },
+  {
+    "id": 95052701381206016,
+    "text": "In this timeline, the Immortal Empire secures a decisive victory over the living Outcasts to quell the rebellion. \n\nThe final stand takes place in Maj’elka between the living and the undead. Fight for the survival of the living."
+  },
+  {
+    "id": 95052755739385856,
+    "text": "In this timeline, the Immortal Empire secures a decisive victory over the living Outcasts to quell the rebellion. \n\nTheir bodies are going to be used to create an abomination for further research into immortality. Rescue the captured Outcasts before it is too late."
+  },
+  {
+    "id": 95052834722324480,
+    "text": "In this timeline, the Immortal Empire is in its final days as the Void overwhelms it. \n\nHelp Yulia break Soul Vessels of the hopeless undead so the Void doesn’t take them first.\n"
+  },
+  {
+    "id": 95052900606451712,
+    "text": "In this timeline, the Immortal Empire is in its final days as the Void overwhelms it. \n\nChase the Imperial Caravan transporting prisoners to save them from the remnants of the Empire and the Void.\n"
+  },
+  {
+    "id": 95052947154837504,
+    "text": "In this timeline, the Immortal Empire is in its final days as the Void overwhelms it. However, to survive, Admiral Harton has turned to embrace the Void. \n\nFight this Void-infused Harton among the wreckage of the Dreadnought.\n"
+  },
+  {
+    "id": 95053044550770688,
+    "text": "In this timeline, the Void attacks the world before much of humanity was able to escape. Instead, more of the Fallen Osprix survived and plan to use the Void for nefarious purposes. \n\nThe Fallen Osprix and Void cultists have descended upon the town of Ledria.\n"
+  },
+  {
+    "id": 95053147378327552,
+    "text": "In this timeline, the Void attacks the world before much of humanity was able to escape. Instead, more of the Fallen Osprix survived and plan to use the Void to bring back their god.\n\nScale the mountain and confront the cultists and Fallen Osprix before they can resurrect Rahyeh.\n"
+  },
+  {
+    "id": 95053200893452288,
+    "text": "In this timeline, the Void attacks the world before much of humanity was able to escape. Instead, more of the Fallen Osprix survived and use the Void to summon their god. \n\nRahyeh's husk soars above the waning world like a black sun. Forestall the end. Slay Rahyeh.\n"
+  },
+  {
+    "id": 95053375204532224,
+    "text": "In this timeline, the Immortal Shamans rule with necromancy and fire. They have brought destruction to Maj’elka, and soon to the rest of Eterra."
+  },
+  {
+    "id": 95053439251554304,
+    "text": "In this timeline, the Immortal Shamans rule with necromancy and fire. Their minions toil in the fires below in an apocalyptic ritual."
+  },
+  {
+    "id": 95053485204348928,
+    "text": "In this timeline, the Immortal Shamans, Bhuldar, Herkir, and Logi, stand atop the caldera. Their world-shattering ritual is nearly complete."
+  },
+  {
+    "id": 95054329362554880,
+    "text": "In this Timeline echoes can have rewards that grant unique or set body armor."
+  },
+  {
+    "id": 95054477073358848,
+    "text": "In this Timeline echoes can have rewards that grant unique or set relics."
+  },
+  {
+    "id": 95054535940415488,
+    "text": "In this Timeline echoes can have rewards that grant unique or set rings or amulets."
+  },
+  {
+    "id": 95054649991929856,
+    "text": "In this Timeline echoes can have rewards that grant unique or set gloves."
+  },
+  {
+    "id": 95054764404154368,
+    "text": "In this Timeline echoes can have rewards that grant unique or set caster weapons (wands, sceptres, staves, or catalysts)."
+  },
+  {
+    "id": 95054841680011264,
+    "text": "In this Timeline echoes can have rewards that grant unique or set melee weapons (swords, axes, maces, daggers, or spears)."
+  },
+  {
+    "id": 95054909992640512,
+    "text": "In this Timeline echoes can have rewards that grant unique or set bows or quivers."
+  },
+  {
+    "id": 95054982407299072,
+    "text": "In this Timeline echoes can have rewards that grant unique or set belts."
+  },
+  {
+    "id": 95055067002216448,
+    "text": "In this Timeline echoes can have rewards that grant unique or set helmets or shields."
+  },
+  {
+    "id": 95055255783645184,
+    "text": "In this Timeline echoes can have rewards that grant unique or set boots."
+  },
+  {
+    "id": 95059104183394304,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 95235793865711616,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 95304371088433152,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 95312522965721088,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 95318542718902272,
+    "text": "Vessel of Memory"
+  },
+  {
+    "id": 140539738925674496,
+    "text": "Desecrated Flesh"
+  },
+  {
+    "id": 140539738950840320,
+    "text": "Desecrated Flesh"
+  },
+  {
+    "id": 249982062322651136,
+    "text": "Find a way to access the Cemetery"
+  },
+  {
+    "id": 249982115644837888,
+    "text": "Defeat the Woven Firstborn"
+  },
+  {
+    "id": 260166489370062848,
+    "text": "Champion"
+  },
+  {
+    "id": 260166526862946304,
+    "text": "Champions"
+  },
+  {
+    "id": 264467579406184448,
+    "text": "Slay enemies until the {0} drops"
+  },
+  {
+    "id": 264495896477888512,
+    "text": "cocooned item"
+  },
+  {
+    "id": 265500522689916928,
+    "text": "Find the rune prison and slay the exiled mage"
+  },
+  {
+    "id": 265500525009367040,
+    "text": "Find the rune prisons and slay the exiled mages"
+  },
+  {
+    "id": 268085813317529600,
+    "text": "Activate shrines to lure out the ambush"
+  },
+  {
+    "id": 274586901982015488,
+    "text": "Slay enemies to locate the unstable rifts"
+  },
+  {
+    "id": 274622031396139008,
+    "text": "Defeat the void creatures to close the rift"
+  },
+  {
+    "id": 277491927700271104,
+    "text": "Defeat the spire guardian"
+  },
+  {
+    "id": 288029711994851328,
+    "text": "Enter the Cemetery"
+  },
+  {
+    "id": 292762528641802240,
+    "text": "Defeat or Banish the Nemesis on each floor to scale the tower"
+  },
+  {
+    "id": 292762528662773760,
+    "text": "Ascend to the roof and destroy Vengeance Incarnate"
+  },
+  {
+    "id": 292762528662773761,
+    "text": "Slay Majasa"
+  },
+  {
+    "id": 292762528662773762,
+    "text": "Slay all 7 bosses and their champions"
+  },
+  {
+    "id": 292762528662773763,
+    "text": "A new champion spawns each time you defeat a boss"
+  },
+  {
+    "id": 292762528662773764,
+    "text": "Access the Sacrificial Altar"
+  },
+  {
+    "id": 292762528662773765,
+    "text": "Defeat all 3 Arena Champions"
+  },
+  {
+    "id": 292762528662773766,
+    "text": "Slay all 9 champions"
+  },
+  {
+    "id": 292762528662773767,
+    "text": "Slay Haruspex Orian"
+  },
+  {
+    "id": 292762528662773768,
+    "text": "Collect Soul Embers"
+  },
+  {
+    "id": 292762528662773769,
+    "text": "Bonus stability increases over time. You will be transported once it is full."
+  },
+  {
+    "id": 292762528662773770,
+    "text": "Spend Soul Embers at the Soul Gambler. The first purchase is always a unique."
+  },
+  {
+    "id": 292762528662773771,
+    "text": "Slay the Antipode Dragon"
+  },
+  {
+    "id": 292762528662773772,
+    "text": "Slay the Draal Queen"
+  },
+  {
+    "id": 292762528666968064,
+    "text": "Slay all three Fateweavers"
+  },
+  {
+    "id": 292762528666968065,
+    "text": "Slay all three Fateweavers (1/3)"
+  },
+  {
+    "id": 292762528666968066,
+    "text": "Slay all three Fateweavers (2/3)"
+  },
+  {
+    "id": 292762528666968067,
+    "text": "Break through the fortifications"
+  },
+  {
+    "id": 292762528666968068,
+    "text": "Slay the Osprix guarding the Forge of Fates"
+  },
+  {
+    "id": 292762528666968069,
+    "text": "Use the Forge of Fates to shatter Set Items"
+  },
+  {
+    "id": 292762528666968070,
+    "text": "Repel the wave of invasive plants"
+  },
+  {
+    "id": 292762528666968071,
+    "text": "Destroy the Sunflower in the North East"
+  },
+  {
+    "id": 292762528666968072,
+    "text": "Destroy the Sunflower in the East"
+  },
+  {
+    "id": 292762528666968073,
+    "text": "Destroy the Sunflower in the South"
+  },
+  {
+    "id": 292762528666968074,
+    "text": "Destroy the Sunflower in the West"
+  },
+  {
+    "id": 292762528666968075,
+    "text": "Destroy the Sunflower in the North West"
+  },
+  {
+    "id": 292762528666968076,
+    "text": "Destroy all the Invasive Overgrowths"
+  },
+  {
+    "id": 292762528666968077,
+    "text": "Activate the Corrupted Timeline Gates "
+  },
+  {
+    "id": 292762528666968078,
+    "text": "Slay Five Shades of Orobyss"
+  },
+  {
+    "id": 292762528666968079,
+    "text": "Defeat Aberroth"
+  },
+  {
+    "id": 292762528666968080,
+    "text": "Find and Slay the Baroness"
+  },
+  {
+    "id": 292762528666968081,
+    "text": "Defeat the Brewer"
+  },
+  {
+    "id": 292762528666968082,
+    "text": "Access the Transmuting Gem"
+  },
+  {
+    "id": 292762528666968083,
+    "text": "Repel the Lagonian Forces"
+  },
+  {
+    "id": 292762528666968084,
+    "text": "Use the Transmuting Gem"
+  },
+  {
+    "id": 292762528666968085,
+    "text": "Open Rune Prisons to lure out Rune Wardens (0/5)"
+  },
+  {
+    "id": 292762528666968086,
+    "text": "Slay Rune Wardens (0/5)"
+  },
+  {
+    "id": 292762528666968087,
+    "text": "Open Rune Prisons to lure out Rune Wardens (1/5)"
+  },
+  {
+    "id": 292762528666968088,
+    "text": "Slay Rune Wardens (1/5)"
+  },
+  {
+    "id": 292762528666968089,
+    "text": "Open Rune Prisons to lure out Rune Wardens (2/5)"
+  },
+  {
+    "id": 292762528666968090,
+    "text": "Slay Rune Wardens (2/5)"
+  },
+  {
+    "id": 292762528666968091,
+    "text": "Open Rune Prisons to lure out Rune Wardens (3/5)"
+  },
+  {
+    "id": 292762528666968092,
+    "text": "Slay Rune Wardens (3/5)"
+  },
+  {
+    "id": 292762528666968093,
+    "text": "Open Rune Prisons to lure out Rune Wardens (4/5)"
+  },
+  {
+    "id": 292762528666968094,
+    "text": "Slay Rune Wardens (4/5)"
+  },
+  {
+    "id": 292762528666968095,
+    "text": "Return to the Thaumaturgy Device"
+  },
+  {
+    "id": 292762528666968096,
+    "text": "Repel the Osprix and Imperial Forces from the Relic"
+  },
+  {
+    "id": 292762528666968097,
+    "text": "Use your Temporal Rift Ability to travel between eras"
+  },
+  {
+    "id": 292762528666968098,
+    "text": "Champions in either era prevent progress"
+  },
+  {
+    "id": 292762528666968099,
+    "text": "Access the Relic"
+  },
+  {
+    "id": 292762528666968100,
+    "text": "Find the Barnacle King's Vault"
+  },
+  {
+    "id": 292762528666968101,
+    "text": "Open the caches to free all 10 lizards"
+  },
+  {
+    "id": 292762528666968102,
+    "text": "Open the caches to free all 10 lizards (1/10)"
+  },
+  {
+    "id": 292762528666968103,
+    "text": "Open the caches to free all 10 lizards (2/10)"
+  },
+  {
+    "id": 292762528666968104,
+    "text": "Open the caches to free all 10 lizards (3/10)"
+  },
+  {
+    "id": 292762528666968105,
+    "text": "Open the caches to free all 10 lizards (4/10)"
+  },
+  {
+    "id": 292762528666968106,
+    "text": "Open the caches to free all 10 lizards (5/10)"
+  },
+  {
+    "id": 292762528666968107,
+    "text": "Open the caches to free all 10 lizards (6/10)"
+  },
+  {
+    "id": 292762528666968108,
+    "text": "Open the caches to free all 10 lizards (7/10)"
+  },
+  {
+    "id": 292762528666968109,
+    "text": "Open the caches to free all 10 lizards (8/10)"
+  },
+  {
+    "id": 292762528666968110,
+    "text": "Open the caches to free all 10 lizards (9/10)"
+  },
+  {
+    "id": 292762528666968111,
+    "text": "Open the cache to free the lizard"
+  },
+  {
+    "id": 292762528666968112,
+    "text": "Destroy the Void Nemesis"
+  },
+  {
+    "id": 293273620568694784,
+    "text": "Inspect the Collapsing Horizon"
+  },
+  {
+    "id": 293273620589666304,
+    "text": "Slay the Harbinger"
+  },
+  {
+    "id": 293273620589666305,
+    "text": "Inspect the Collapsing Horizon"
+  },
+  {
+    "id": 293273620589666306,
+    "text": "Slay all 10 Harbingers"
+  },
+  {
+    "id": 293273620593860608,
+    "text": "Slay all 10 Harbingers (1/10)"
+  },
+  {
+    "id": 293273620593860609,
+    "text": "Slay all 10 Harbingers (2/10)"
+  },
+  {
+    "id": 293273620593860610,
+    "text": "Slay all 10 Harbingers (3/10)"
+  },
+  {
+    "id": 293273620593860611,
+    "text": "Slay all 10 Harbingers (4/10)"
+  },
+  {
+    "id": 293273620593860612,
+    "text": "Slay all 10 Harbingers (5/10)"
+  },
+  {
+    "id": 293273620593860613,
+    "text": "Slay all 10 Harbingers (6/10)"
+  },
+  {
+    "id": 293273620593860614,
+    "text": "Slay all 10 Harbingers (7/10)"
+  },
+  {
+    "id": 293273620593860615,
+    "text": "Slay all 10 Harbingers (8/10)"
+  },
+  {
+    "id": 293273620593860616,
+    "text": "Slay all 10 Harbingers (9/10)"
+  },
+  {
+    "id": 293947282636496896,
+    "text": "Open caches to lure out the ambush"
+  },
+  {
+    "id": 294397835772784640,
+    "text": "Find and slay the Fate Weavers"
+  },
+  {
+    "id": 294397835797950464,
+    "text": "Find and slay the Ascendant Firstborn"
+  },
+  {
+    "id": 299633143516106752,
+    "text": "Use the altar to weave tombs in surrounding echoes"
+  },
+  {
+    "id": 299633206199980032,
+    "text": "Claim the Tomb's reward"
+  },
+  {
+    "id": 300378140624904192,
+    "text": "Find the Altar of the Weaver"
+  },
+  {
+    "id": 315235186253819904,
+    "text": "Slay enemies to locate the unstable rift"
+  },
+  {
+    "id": 346702194907013120,
+    "text": "Slay all 8 Rift Beast Champions"
+  },
+  {
+    "id": 346702194923790336,
+    "text": "Find and protect the Western Rift Beast Nest"
+  },
+  {
+    "id": 346702194923790337,
+    "text": "Find and protect the Central Rift Beast Nest"
+  },
+  {
+    "id": 346702194923790338,
+    "text": "Find and protect the Northern Rift Beast Nest"
+  },
+  {
+    "id": 346702194923790339,
+    "text": "Find and protect the Eastern Rift Beast Nest"
+  },
+  {
+    "id": 346702194923790340,
+    "text": "Slay the Rift Beast"
+  }
+]

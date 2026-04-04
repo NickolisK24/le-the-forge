@@ -3,99 +3,211 @@ Craft Engine — pure crafting math extracted from craft_service.py.
 
 All functions here are stateless and have no DB or HTTP dependencies.
 craft_service.py imports from here for its calculations.
+
+FP costs are loaded from crafting_rules.json via fp_engine.
 """
 
 import copy
 import random
 from typing import Optional
 
+import numpy as np
 
-# ---------------------------------------------------------------------------
-# Constants
-# ---------------------------------------------------------------------------
+from app.engines.fp_engine import (
+    expected_fp_cost,
+    fp_cost_range,
+    roll_fp_cost,
+    load_fp_rules,
+)
 
-MAX_INSTABILITY = 80
-FP_COSTS = {
-    "add_affix": 4,
-    "upgrade_affix": 5,
-    "seal_affix": 8,
-    "unseal_affix": 2,
-    "remove_affix": 3,
-}
-INSTABILITY_GAINS = {
-    "add_affix": (3, 7),
-    "upgrade_affix": (4, 10),
-    "seal_affix": (0, 0),
-    "unseal_affix": (1, 3),
-    "remove_affix": (2, 5),
-}
-PERFECT_ROLL_THRESHOLD = 95
-SEAL_RISK_THRESHOLD = 0.20
-TARGET_TIER = 4
+from app.engines.affix_engine import (
+    get_affix_by_name,
+    can_add_affix,
+    is_max_tier
+)
+
+from app.constants.crafting import PERFECT_ROLL_THRESHOLD, TARGET_TIER
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
+
+
+# Derived from rules file — used for planning and display only.
+# Actual per-action costs are rolled randomly via fp_engine.roll_fp_cost().
+def _build_fp_cost_table() -> dict:
+    rules = load_fp_rules()
+    return {k: int((v["min"] + v["max"]) / 2) for k, v in rules["fp_costs"].items()}
+
+# Keep FP_COSTS as expected (mean) values for backward-compat imports
+FP_COSTS = _build_fp_cost_table()
+
+
+def fp_cost(action: str) -> int:
+    """Expected FP cost for an action (mean of range). Used for path planning."""
+    return FP_COSTS.get(action, 4)
 
 
 # ---------------------------------------------------------------------------
 # Pure math helpers
 # ---------------------------------------------------------------------------
 
-def fracture_risk(instability: int, sealed_count: int = 0) -> float:
+
+# ---------------------------------------------------------------------------
+# Unified Craft Pipeline
+# ---------------------------------------------------------------------------
+
+def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None,
+                      target_tier: Optional[int] = None) -> dict:
     """
-    Returns fracture probability (0.0–1.0).
+    Modern Last Epoch craft action pipeline (post-0.8.4).
+    Items NEVER fracture. Crafting simply stops when FP runs out.
 
-    Formula: (effective_instability / MAX_INSTABILITY)²
-    Each sealed affix reduces effective instability by 12.
+    Pipeline Order (MANDATORY):
+    1. Validate action
+    2. Roll FP cost
+    3. Apply craft effect
+    4. Reduce FP
+    5. Check FP remaining
+    6. Return result
+
+    Item structure:
+    {
+        "forge_potential": int,
+        "affixes": list[dict]  # [{name, tier, sealed}]
+    }
     """
-    effective = max(0, instability - (sealed_count * 12))
-    base = (effective / MAX_INSTABILITY) ** 2
-    return min(base, 1.0)
+    # 1. Validate action — check FP first
+    # 2. Roll FP cost
+    cost = roll_fp_cost(action)
+    if item["forge_potential"] < cost:
+        log.warning(
+            "craft_action.insufficient_fp",
+            action=action,
+            needed=cost,
+            available=item["forge_potential"],
+        )
+        return {
+            "success": False,
+            "outcome": "error",
+            "message": f"Insufficient FP. Need {cost}, have {item['forge_potential']}.",
+            "item": item
+        }
+
+    log.info(
+        "craft_action.apply",
+        action=action,
+        affix=affix_name,
+        target_tier=target_tier,
+        fp_before=item["forge_potential"],
+        fp_cost=cost,
+    )
+
+    # 3. Apply craft effect
+    roll = random.uniform(0, 100)
+    _apply_craft_effect(item, action, affix_name, target_tier, roll)
+
+    # 4. Reduce FP
+    item["forge_potential"] -= cost
+
+    # 5. Check FP remaining (crafting stops when FP = 0)
+    fp_remaining = item["forge_potential"]
+
+    # 6. Return result
+    outcome = "success"  # No risk mechanics in modern Last Epoch
+
+    log.info("craft_action.success", action=action, fp_remaining=fp_remaining)
+
+    return {
+        "success": True,
+        "outcome": outcome,
+        "roll": None,  # No rolls in FP-only system
+        "fp_cost": cost,
+        "fp_remaining": fp_remaining,
+        "message": f"Craft successful. FP remaining: {fp_remaining}.",
+        "item": item
+    }
 
 
-def fracture_risk_pct(instability: int, sealed_count: int = 0) -> float:
-    """Same as fracture_risk but returns 0–100 float rounded to 1 decimal."""
-    return round(fracture_risk(instability, sealed_count) * 100, 1)
+def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
+                       target_tier: Optional[int], roll: float):
+    """Apply the actual craft effect to the item."""
+    affixes = item["affixes"]
 
+    if action == "add_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for add_affix")
+        # Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
+        prefix_count = sum(1 for a in affixes if a.get("type") == "prefix" and not a.get("sealed"))
+        suffix_count = sum(1 for a in affixes if a.get("type") == "suffix" and not a.get("sealed"))
+        active_count = sum(1 for a in affixes if not a.get("sealed"))
+        # Get affix type from affix_engine
+        affix_def = get_affix_by_name(affix_name)
+        affix_type = affix_def.get("type") if affix_def else None
+        if affix_type == "prefix" and prefix_count >= 2:
+            raise ValueError("Prefix slots full (max 2 active prefixes).")
+        if affix_type == "suffix" and suffix_count >= 2:
+            raise ValueError("Suffix slots full (max 2 active suffixes).")
+        if active_count >= 4:
+            raise ValueError("Item already has 4 active affixes.")
+        affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
 
-def instability_gain(action: str, roll: Optional[float] = None) -> int:
-    """Returns instability gained for an action."""
-    lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
-    if lo == hi:
-        return lo
-    if roll and roll > PERFECT_ROLL_THRESHOLD:
-        return lo
-    return random.randint(lo, hi)
+    elif action == "upgrade_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for upgrade_affix")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        if affix.get("sealed"):
+            raise ValueError("Cannot upgrade sealed affix")
+        current_tier = affix.get("tier", 1)
+        affix_def = get_affix_by_name(affix_name)
+        if not affix_def:
+            raise ValueError(f"Affix definition not found for {affix_name}")
+        if is_max_tier(affix_def, current_tier):
+            raise ValueError("Affix already at max tier")
+        affix["tier"] = current_tier + 1
 
+    elif action == "seal_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for seal_affix")
+        sealed_count = sum(1 for a in affixes if a.get("sealed"))
+        if sealed_count >= 1:
+            raise ValueError("Only 1 affix can be sealed at a time.")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        affix["sealed"] = True
 
-def expected_instability_gain(action: str) -> float:
-    """Expected (mean) instability gain accounting for 5% perfect rolls."""
-    lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
-    if lo == hi:
-        return float(lo)
-    perfect_prob = 0.05
-    normal_mean = (lo + hi) / 2.0
-    return perfect_prob * lo + (1 - perfect_prob) * normal_mean
+    elif action == "unseal_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for unseal_affix")
+        affix = next((a for a in affixes if a["name"] == affix_name), None)
+        if not affix:
+            raise ValueError(f"Affix {affix_name} not found")
+        if not affix.get("sealed"):
+            raise ValueError("Affix not sealed")
+        affix["sealed"] = False
 
-
-def fp_cost(action: str) -> int:
-    return FP_COSTS.get(action, 4)
+    elif action == "remove_affix":
+        if not affix_name:
+            raise ValueError("affix_name required for remove_affix")
+        item["affixes"] = [a for a in affixes if a["name"] != affix_name]
 
 
 # ---------------------------------------------------------------------------
 # Optimal path search
 # ---------------------------------------------------------------------------
 
-def optimal_path_search(instability: int, affixes: list, forge_potential: int) -> list:
+def optimal_path_search(affixes: list, forge_potential: int) -> list:
     """
     Finds the optimal crafting sequence for upgrading all unsealed affixes to T4.
+    Modern Last Epoch: No instability or fractures, just FP management.
 
-    Uses iterative lookahead with expected-value instability tracking.
-    Seals an affix when fracture risk exceeds SEAL_RISK_THRESHOLD (20%).
+    Uses simple greedy approach: upgrade lowest tier affixes first, seal when beneficial.
     """
     steps = []
-    inst = float(instability)
     fp = forge_potential
     current_affixes = copy.deepcopy(affixes)
-    sealed_count = sum(1 for a in current_affixes if a.get("sealed"))
-    cumulative_survival = 1.0
 
     to_upgrade = [
         a for a in current_affixes
@@ -105,75 +217,23 @@ def optimal_path_search(instability: int, affixes: list, forge_potential: int) -
     if not to_upgrade:
         return steps
 
+    # Sort by current tier (lowest first) to upgrade weakest affixes first
+    to_upgrade.sort(key=lambda a: a.get("tier", 1))
+
     for target_affix in to_upgrade:
-        current_risk = fracture_risk(int(inst), sealed_count)
-
-        if current_risk > SEAL_RISK_THRESHOLD:
-            candidates = [
-                a for a in current_affixes
-                if not a.get("sealed") and a["name"] != target_affix["name"]
-            ]
-            if candidates and fp >= FP_COSTS["seal_affix"]:
-                to_seal = max(candidates, key=lambda a: a.get("tier", 0))
-                steps.append({
-                    "action": "seal_affix",
-                    "affix": to_seal["name"],
-                    "risk_pct": 0.0,
-                    "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                    "sealed_count_at_step": sealed_count,
-                    "note": (
-                        f"Seal \"{to_seal['name']}\" (T{to_seal['tier']}) — "
-                        f"risk at {fracture_risk_pct(int(inst), sealed_count):.1f}%, "
-                        f"drops to {fracture_risk_pct(int(inst), sealed_count + 1):.1f}% after seal"
-                    ),
-                })
-                to_seal["sealed"] = True
-                sealed_count += 1
-                fp -= FP_COSTS["seal_affix"]
-
         while target_affix.get("tier", 1) < TARGET_TIER and fp >= FP_COSTS["upgrade_affix"]:
-            current_risk = fracture_risk(int(inst), sealed_count)
-
-            if current_risk > SEAL_RISK_THRESHOLD:
-                candidates = [
-                    a for a in current_affixes
-                    if not a.get("sealed") and a["name"] != target_affix["name"]
-                ]
-                if candidates and fp >= FP_COSTS["seal_affix"]:
-                    to_seal = max(candidates, key=lambda a: a.get("tier", 0))
-                    steps.append({
-                        "action": "seal_affix",
-                        "affix": to_seal["name"],
-                        "risk_pct": 0.0,
-                        "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                        "sealed_count_at_step": sealed_count,
-                        "note": (
-                            f"Seal \"{to_seal['name']}\" — instability climbing, "
-                            f"protect T{to_seal['tier']} gains before continuing"
-                        ),
-                    })
-                    to_seal["sealed"] = True
-                    sealed_count += 1
-                    fp -= FP_COSTS["seal_affix"]
-                    current_risk = fracture_risk(int(inst), sealed_count)
-
-            cumulative_survival *= (1.0 - current_risk)
             new_tier = min(5, target_affix.get("tier", 1) + 1)
             target_affix["tier"] = new_tier
 
             steps.append({
                 "action": "upgrade_affix",
                 "affix": f"{target_affix['name']} → T{new_tier}",
-                "risk_pct": round(current_risk * 100, 1),
-                "cumulative_survival_pct": round(cumulative_survival * 100, 1),
-                "sealed_count_at_step": sealed_count,
-                "note": (
-                    f"Upgrade to T{new_tier} — "
-                    f"{round(current_risk * 100, 1)}% fracture risk at this step"
-                ),
+                "risk_pct": 0.0,  # No risk in modern system
+                "cumulative_survival_pct": 100.0,  # Always survives
+                "sealed_count_at_step": sum(1 for a in current_affixes if a.get("sealed")),
+                "note": f"Upgrade to T{new_tier}",
             })
 
-            inst = min(MAX_INSTABILITY, inst + expected_instability_gain("upgrade_affix"))
             fp -= FP_COSTS["upgrade_affix"]
 
     return steps
@@ -184,97 +244,76 @@ def optimal_path_search(instability: int, affixes: list, forge_potential: int) -
 # ---------------------------------------------------------------------------
 
 def simulate_sequence(
-    instability: int,
     forge_potential: int,
     proposed_steps: list,
     n_simulations: int = 10_000,
+    seed: Optional[int] = None,
 ) -> dict:
     """
-    Monte Carlo simulation of a proposed action sequence.
+    Monte Carlo simulation of a proposed action sequence for modern Last Epoch.
+    No instability or fractures — just FP exhaustion and completion rates.
+
+    Pass ``seed`` for a fully reproducible run — identical inputs + seed always
+    produce identical output, which is required for regression testing and
+    stable comparison between crafting strategies.
 
     Returns:
-      brick_chance, perfect_item_chance, step_survival_curve,
-      step_fracture_rates, median_instability, n_simulations
+      completion_chance, step_survival_curve, n_simulations, seed
     """
+    log.info(
+        "simulate_sequence.start",
+        forge_potential=forge_potential,
+        steps=len(proposed_steps),
+        n=n_simulations,
+        seed=seed,
+    )
+
+    rng = random.Random(seed)
     n = n_simulations
-    fracture_at_step = [0] * len(proposed_steps)
-    survived_all = 0
-    final_instabilities = []
-    # Severity counters — fraction of fracture events per type
-    # Minor: roll in top third of risk window (barely fractured)
-    # Major: roll in middle third
-    # Destructive: roll in bottom third (worst outcome)
-    severity_minor = 0
-    severity_major = 0
-    severity_destructive = 0
+    fp_exhausted_at_step = [0] * len(proposed_steps)
+    completed_all = 0
+    fp_remaining_distribution = []
 
     for _ in range(n):
-        inst = instability
         fp = forge_potential
-        fractured = False
+        completed = True
 
         for step_idx, step in enumerate(proposed_steps):
             action = step.get("action", "upgrade_affix")
-            sealed_ct = step.get("sealed_count_at_step", 0)
             cost = FP_COSTS.get(action, 4)
 
             if fp < cost:
+                fp_exhausted_at_step[step_idx] += 1
+                completed = False
+                fp_remaining_distribution.append(fp)
                 break
 
-            risk = fracture_risk(inst, sealed_ct)
-            roll = random.random()
-
-            if roll < risk:
-                fracture_at_step[step_idx] += 1
-                fractured = True
-                # Classify severity by roll position within the fracture window:
-                # roll near 0 → worst (destructive), roll near risk boundary → best (minor)
-                relative = roll / risk if risk > 0 else 0
-                if relative < 0.33:
-                    severity_destructive += 1
-                elif relative < 0.67:
-                    severity_major += 1
-                else:
-                    severity_minor += 1
-                break
-
-            lo, hi = INSTABILITY_GAINS.get(action, (3, 8))
-            if lo == hi:
-                gain = lo
-            elif roll > (PERFECT_ROLL_THRESHOLD / 100.0):
-                gain = lo
-            else:
-                gain = random.randint(lo, hi)
-
-            inst = min(MAX_INSTABILITY, inst + gain)
             fp -= cost
 
-        if not fractured:
-            survived_all += 1
-            final_instabilities.append(inst)
+        if completed:
+            completed_all += 1
+            fp_remaining_distribution.append(fp)
 
-    cumulative_fractures = 0
+    # Calculate survival curve (steps completed)
+    cumulative_exhaustion = 0
     step_survival = []
-    for count in fracture_at_step:
-        cumulative_fractures += count
-        step_survival.append(round(1.0 - cumulative_fractures / n, 4))
+    for count in fp_exhausted_at_step:
+        cumulative_exhaustion += count
+        step_survival.append(round(1.0 - cumulative_exhaustion / n, 4))
 
-    total_fractures = sum(fracture_at_step)
-    sorted_finals = sorted(final_instabilities)
-    median_inst = sorted_finals[len(sorted_finals) // 2] if sorted_finals else instability
+    completion_chance = round(completed_all / n, 4)
+    log.info(
+        "simulate_sequence.end",
+        completion_chance=completion_chance,
+        n=n,
+        seed=seed,
+    )
 
     return {
-        "brick_chance": round(total_fractures / n, 4),
-        "perfect_item_chance": round(survived_all / n, 4),
+        "completion_chance": completion_chance,
         "step_survival_curve": step_survival,
-        "step_fracture_rates": [round(f / n, 4) for f in fracture_at_step],
-        "median_instability": median_inst,
         "n_simulations": n,
-        "fracture_severity": {
-            "minor_fracture_chance":       round(severity_minor / n, 4),
-            "major_fracture_chance":       round(severity_major / n, 4),
-            "destructive_fracture_chance": round(severity_destructive / n, 4),
-        },
+        "seed": seed,
     }
 
 
@@ -282,61 +321,32 @@ def simulate_sequence(
 # Strategy comparison
 # ---------------------------------------------------------------------------
 
-def compare_strategies(instability: int, affixes: list, forge_potential: int) -> list:
+def compare_strategies(affixes: list, forge_potential: int) -> list:
     """
-    Evaluate three crafting strategies via Monte Carlo:
-      Aggressive:   Upgrade without sealing
-      Balanced:     Seal when risk > 20% (optimal path)
-      Conservative: Seal all before any upgrade
+    Evaluate crafting strategies for modern Last Epoch (no instability/fractures).
+    Since there's no risk, strategies differ only in FP efficiency and completion rates.
     """
     unsealed = [
         a for a in affixes
         if not a.get("sealed") and a.get("tier", 1) < TARGET_TIER
     ]
-    existing_sealed_count = sum(1 for a in affixes if a.get("sealed"))
 
-    # Aggressive
-    aggressive_steps = []
-    running_inst = float(instability)
-    for affix in unsealed:
-        tier = affix.get("tier", 1)
-        while tier < TARGET_TIER:
-            aggressive_steps.append({
-                "action": "upgrade_affix",
-                "sealed_count_at_step": existing_sealed_count,
-            })
-            running_inst = min(MAX_INSTABILITY, running_inst + expected_instability_gain("upgrade_affix"))
-            tier += 1
+    if not unsealed:
+        return []
 
-    # Balanced
-    balanced_raw = optimal_path_search(instability, copy.deepcopy(affixes), forge_potential)
-    balanced_steps = [
-        {"action": s["action"], "sealed_count_at_step": s["sealed_count_at_step"]}
-        for s in balanced_raw
-    ]
+    # Calculate upgrade steps needed
+    total_upgrades_needed = sum(TARGET_TIER - a.get("tier", 1) for a in unsealed)
 
-    # Conservative
-    conservative_steps = []
-    cons_sealed = existing_sealed_count
-    for affix in unsealed:
-        conservative_steps.append({
-            "action": "seal_affix",
-            "sealed_count_at_step": cons_sealed,
-        })
-        cons_sealed += 1
-    for affix in unsealed:
-        tier = affix.get("tier", 1)
-        while tier < TARGET_TIER:
-            conservative_steps.append({
-                "action": "upgrade_affix",
-                "sealed_count_at_step": cons_sealed,
-            })
-            tier += 1
+    # Strategy 1: Direct upgrades (most FP efficient)
+    direct_steps = [{"action": "upgrade_affix", "sealed_count_at_step": 0} for _ in range(total_upgrades_needed)]
+
+    # Strategy 2: Seal then upgrade (uses more FP but allows more control)
+    seal_steps = [{"action": "seal_affix", "sealed_count_at_step": i} for i in range(len(unsealed))]
+    seal_then_upgrade_steps = seal_steps + [{"action": "upgrade_affix", "sealed_count_at_step": len(unsealed)} for _ in range(total_upgrades_needed)]
 
     strategies = [
-        ("Aggressive",   "Upgrade without sealing — high risk, no FP spent on seals",   aggressive_steps),
-        ("Balanced",     "Seal strategically when fracture risk exceeds 20%",            balanced_steps),
-        ("Conservative", "Seal all affixes before any upgrade — maximum protection",     conservative_steps),
+        ("Direct Upgrade", "Upgrade affixes directly — most FP efficient", direct_steps),
+        ("Seal First", "Seal all affixes first, then upgrade — more FP cost but maximum control", seal_then_upgrade_steps),
     ]
 
     results = []
@@ -344,20 +354,126 @@ def compare_strategies(instability: int, affixes: list, forge_potential: int) ->
         if not steps:
             results.append({
                 "name": name, "description": description,
-                "brick_chance": 0.0, "perfect_item_chance": 1.0,
                 "expected_steps": 0, "expected_fp_cost": 0,
+                "completion_chance": 1.0,
             })
             continue
 
-        sim = simulate_sequence(instability, forge_potential, steps, n_simulations=5_000)
+        sim = simulate_sequence(forge_potential, steps, n_simulations=5_000)
         fp_cost_total = sum(FP_COSTS.get(s["action"], 4) for s in steps)
         results.append({
             "name": name,
             "description": description,
-            "brick_chance": sim["brick_chance"],
-            "perfect_item_chance": sim["perfect_item_chance"],
+            "completion_chance": sim["completion_chance"],
             "expected_steps": len(steps),
             "expected_fp_cost": fp_cost_total,
         })
 
     return results
+
+
+
+
+
+
+def add_affix(item, affix_name, tier):
+    """Add an affix to an item. Returns structured {success, reason} response."""
+    affix = get_affix_by_name(affix_name)
+    if affix is None:
+        return {"success": False, "reason": "Affix not found"}
+
+    affix_type = affix["type"]
+    if not can_add_affix(item, affix_type):
+        return {"success": False, "reason": "Slot limit reached"}
+
+    cost = roll_fp_cost("add_affix")
+    if item["forging_potential"] < cost:
+        return {"success": False, "reason": "Not enough FP"}
+
+    item["forging_potential"] -= cost
+    affix_data = {"name": affix_name, "tier": tier}
+    if affix_type == "prefix":
+        item["prefixes"].append(affix_data)
+    else:
+        item["suffixes"].append(affix_data)
+
+    return {"success": True, "reason": "Affix added"}
+
+
+def upgrade_affix(item, affix_name):
+    """Upgrade an affix tier by 1. Returns structured {success, reason} response."""
+    for affix_list in [item["prefixes"], item["suffixes"]]:
+        for affix in affix_list:
+            if affix["name"] == affix_name:
+                affix_data = get_affix_by_name(affix_name)
+                if is_max_tier(affix_data, affix["tier"]):
+                    return {"success": False, "reason": "Already at max tier"}
+
+                cost = roll_fp_cost("upgrade_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
+
+                item["forging_potential"] -= cost
+                affix["tier"] += 1
+                return {"success": True, "reason": "Affix upgraded"}
+
+    return {"success": False, "reason": "Affix not found"}
+
+
+def remove_affix(item, affix_name):
+    """Remove an affix from an item. Returns structured {success, reason} response."""
+    for affix_list in [item["prefixes"], item["suffixes"]]:
+        for affix in affix_list:
+            if affix["name"] == affix_name:
+                cost = roll_fp_cost("remove_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
+
+                item["forging_potential"] -= cost
+                affix_list.remove(affix)
+                return {"success": True, "reason": "Affix removed"}
+
+    return {"success": False, "reason": "Affix not found"}
+
+
+def unseal_affix(item):
+    """Return the sealed affix back to its prefix/suffix slot.
+    Returns structured {success, reason} response."""
+    if item["sealed_affix"] is None:
+        return {"success": False, "reason": "No sealed affix"}
+
+    cost = roll_fp_cost("unseal_affix")
+    if item["forging_potential"] < cost:
+        return {"success": False, "reason": "Not enough FP"}
+
+    item["forging_potential"] -= cost
+    affix = item["sealed_affix"]
+    item["sealed_affix"] = None
+
+    affix_data = get_affix_by_name(affix["name"])
+    if affix_data and affix_data["type"] == "prefix":
+        item["prefixes"].append(affix)
+    else:
+        item["suffixes"].append(affix)
+
+    return {"success": True, "reason": "Affix unsealed"}
+
+
+def seal_affix(item, affix_name):
+    """Seal an affix (max 1 sealed). Returns structured {success, reason} response."""
+    if item["sealed_affix"]:
+        return {"success": False, "reason": "Already has sealed affix"}
+
+    for affix_list in [item["prefixes"], item["suffixes"]]:
+        for affix in affix_list:
+            if affix["name"] == affix_name:
+                cost = roll_fp_cost("seal_affix")
+                if item["forging_potential"] < cost:
+                    return {"success": False, "reason": "Not enough FP"}
+
+                item["forging_potential"] -= cost
+                item["sealed_affix"] = affix
+                affix_list.remove(affix)
+                return {"success": True, "reason": "Affix sealed"}
+
+    return {"success": False, "reason": "Affix not found"}

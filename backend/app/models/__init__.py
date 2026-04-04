@@ -195,15 +195,11 @@ class CraftSession(TimestampMixin, db.Model):
     item_level = db.Column(db.SmallInteger, nullable=False, default=84)
     rarity = db.Column(db.String(16), nullable=False, default="Exalted")
 
-    # Current instability value (0-80)
-    instability = db.Column(db.SmallInteger, default=0, nullable=False)
     # Forge potential remaining
     forge_potential = db.Column(db.SmallInteger, default=28, nullable=False)
 
     # Current affixes — JSON array of { name, tier, sealed }
     affixes = db.Column(db.JSON, nullable=False, default=list)
-
-    is_fractured = db.Column(db.Boolean, default=False, nullable=False)
 
     steps = db.relationship(
         "CraftStep", back_populates="session", cascade="all, delete-orphan",
@@ -211,7 +207,7 @@ class CraftSession(TimestampMixin, db.Model):
     )
 
     def __repr__(self):
-        return f"<CraftSession {self.item_name or self.item_type} inst={self.instability}>"
+        return f"<CraftSession {self.item_name or self.item_type} fp={self.forge_potential}>"
 
 
 class CraftStep(db.Model):
@@ -232,16 +228,15 @@ class CraftStep(db.Model):
     tier_before = db.Column(db.SmallInteger, nullable=True)
     tier_after = db.Column(db.SmallInteger, nullable=True)
 
-    instability_before = db.Column(db.SmallInteger, nullable=False)
-    instability_after = db.Column(db.SmallInteger, nullable=False)
-
-    fracture_risk_pct = db.Column(db.Float, nullable=False)
     roll = db.Column(db.Float, nullable=True)  # The actual RNG roll (0-100)
     outcome = db.Column(db.String(16), nullable=False)
-    # "success" | "fracture" | "perfect"
+    # "success" | "perfect"
 
     fp_before = db.Column(db.SmallInteger, nullable=False)
     fp_after = db.Column(db.SmallInteger, nullable=False)
+
+    # Affixes state before this action (for undo)
+    affixes_before = db.Column(db.JSON, nullable=True)
 
     session = db.relationship("CraftSession", back_populates="steps")
 
@@ -266,10 +261,10 @@ class AffixDef(db.Model):
     __tablename__ = "affix_defs"
 
     id = db.Column(db.Integer, primary_key=True, autoincrement=True)
-    name = db.Column(db.String(80), nullable=False)
+    name = db.Column(db.String(256), nullable=False)
     # "prefix"|"suffix"|"experimental"|"personal"|"champion"|"set"|"idol_enchant"|"idol_weaver"
     affix_type = db.Column(db.String(16), nullable=False)
-    stat_key = db.Column(db.String(64), nullable=False)
+    stat_key = db.Column(db.String(256), nullable=False)
 
     # Min/max values per tier (T1..T7), stored as JSON
     # e.g. {"1": [5, 9], "2": [10, 15], ...}
@@ -278,8 +273,8 @@ class AffixDef(db.Model):
     # Which item types can roll this affix
     applicable_types = db.Column(db.JSON, nullable=False, default=list)
 
-    # Class restriction (null = any class)
-    class_requirement = db.Column(db.String(32), nullable=True)
+    # Class restriction (null = any class; comma-separated for multi-class)
+    class_requirement = db.Column(db.String(128), nullable=True)
 
     # Searchable tags
     tags = db.Column(db.JSON, nullable=False, default=list)
@@ -289,9 +284,12 @@ class PassiveNode(db.Model):
     """Passive tree node definition. Seeded from LE game data."""
     __tablename__ = "passive_nodes"
 
-    id = db.Column(db.Integer, primary_key=True)  # matches in-game node ID
+    id = db.Column(db.String(16), primary_key=True)  # namespaced: e.g. "ac_0"
+    raw_node_id = db.Column(db.Integer, nullable=False)  # original in-game integer id
     character_class = db.Column(db.String(32), nullable=False)
-    mastery = db.Column(db.String(32), nullable=True)  # null = base class tree
+    mastery = db.Column(db.String(32), nullable=True)   # null = base class tree
+    mastery_index = db.Column(db.SmallInteger, nullable=False, default=0)
+    mastery_requirement = db.Column(db.SmallInteger, nullable=False, default=0)
     name = db.Column(db.String(64), nullable=False)
     description = db.Column(db.Text, nullable=True)
     node_type = db.Column(db.String(16), nullable=False)
@@ -300,5 +298,14 @@ class PassiveNode(db.Model):
     y = db.Column(db.Float, nullable=False)
     max_points = db.Column(db.SmallInteger, default=1, nullable=False)
 
-    # Connected node IDs
+    # Connected node IDs (namespaced strings, e.g. ["ac_1", "ac_5"])
     connections = db.Column(db.JSON, nullable=False, default=list)
+
+    # Stat effects as a JSON array of {key, value} dicts
+    stats = db.Column(db.JSON, nullable=True, default=list)
+
+    # Ability or skill unlocked by allocating this node (nullable)
+    ability_granted = db.Column(db.String(128), nullable=True)
+
+    # Icon sprite identifier (e.g. "a-r-42")
+    icon = db.Column(db.String(32), nullable=True)

@@ -1,0 +1,159 @@
+"""
+Enemy Mitigation Calculator — armor and resistance reduction formulas.
+
+Inputs:  EnemyProfile (typed domain object), hit damage types, penetration stats.
+Outputs: individual mitigation factors and the combined damage multiplier.
+
+Formulas (Last Epoch):
+  Armor mitigation = armor / (armor + 1000)   → fraction [0, 1)
+  Effective res    = max(0, min(enemy_res, RES_CAP) − pen)  → pct [0, 75]
+                   Cap applies to BASE resistance first; pen subtracts after.
+
+Two multiplier functions:
+  damage_multiplier(enemy, type_set, pen_map)
+      Simple average — use when damage proportions are unknown.
+      Assumes every type in the set contributes equally.
+
+  weighted_damage_multiplier(enemy, damage_by_type, pen_map)
+      Proportion-weighted — use when DamageResult.damage_by_type is available.
+      Applies each type's resistance only to the fraction of damage it represents.
+      Correct for multi-type skills after conversion.
+
+All functions are pure: no registry access, no Flask context, no I/O.
+"""
+
+from __future__ import annotations
+
+from app.domain.calculators.damage_type_router import DamageType
+from app.domain.enemy import EnemyProfile
+
+RES_CAP: float = 75.0  # Hard cap on effective resistance (%)
+
+
+def armor_mitigation(armor: int) -> float:
+    """
+    Fraction of damage absorbed by armor.
+
+    Returns a value in [0, 1). Zero or negative armor returns 0.0.
+    """
+    if armor <= 0:
+        return 0.0
+    return armor / (armor + 1000)
+
+
+def apply_armor(damage: float, armor: int) -> float:
+    """
+    Apply armor mitigation to a raw damage value.
+
+    Returns the portion of damage that passes through after armor reduction.
+    Equivalent to damage × (1 − armor_mitigation(armor)).
+
+    Key breakpoints:
+        armor=0    → 100% of damage passes through
+        armor=500  → 66.67% passes through (1/3 absorbed)
+        armor=1000 → 50%    passes through
+        armor=2000 → 33.33% passes through (2/3 absorbed)
+        armor=3000 → 25%    passes through (3/4 absorbed)
+    """
+    return damage * (1.0 - armor_mitigation(armor))
+
+
+def apply_penetration(capped_resistance: float, penetration: float) -> float:
+    """
+    Subtract penetration from an already-capped resistance value.
+
+    Penetration reduces effective resistance but cannot push it below 0.
+    Negative resistance would amplify damage, which Last Epoch does not do.
+
+    ``capped_resistance`` must be pre-capped to RES_CAP before calling.
+    Returns a value in [0, capped_resistance].
+    """
+    return max(0.0, capped_resistance - penetration)
+
+
+def effective_resistance(
+    enemy: EnemyProfile,
+    damage_type: str,
+    penetration: float = 0.0,
+) -> float:
+    """
+    Effective resistance percentage for one damage type after cap and penetration.
+
+    Order of operations:
+      1. Read raw resistance from enemy profile (missing types default to 0).
+      2. Cap to RES_CAP — the base cannot exceed the hard cap.
+      3. Subtract penetration, floor at 0 — pen reduces from the capped value.
+
+    Example: 90% raw resistance, 20% pen → min(75, 90)=75 → 75−20=55 effective.
+    (NOT min(75, 90−20)=70, which applies cap after pen — incorrect.)
+
+    Returns a value in [0, RES_CAP].
+    """
+    raw = float(enemy.resistances.get(damage_type, 0.0))
+    capped = min(RES_CAP, raw)
+    return apply_penetration(capped, penetration)
+
+
+def damage_multiplier(
+    enemy: EnemyProfile,
+    damage_types: set[str],
+    pen_map: dict[str, float] | None = None,
+) -> float:
+    """
+    Combined damage multiplier using equal-weight resistance averaging.
+
+    Use this when the exact per-type damage proportions are not known.
+    For more accurate results when DamageResult.damage_by_type is available,
+    use weighted_damage_multiplier() instead.
+
+    Returns a value in (0, 1].
+    """
+    pen = pen_map or {}
+    armor_factor = 1.0 - armor_mitigation(enemy.armor)
+
+    if not damage_types:
+        return armor_factor
+
+    res_values = [
+        effective_resistance(enemy, dt, pen.get(dt, 0.0))
+        for dt in damage_types
+    ]
+    avg_res = sum(res_values) / len(res_values)
+    return armor_factor * (1.0 - avg_res / 100.0)
+
+
+def weighted_damage_multiplier(
+    enemy: EnemyProfile,
+    damage_by_type: dict[DamageType, float],
+    pen_map: dict[str, float] | None = None,
+) -> float:
+    """
+    Proportion-weighted damage multiplier using actual per-type damage amounts.
+
+    For each damage type, applies resistance only to that type's share of total
+    damage, then sums the results. More accurate than simple averaging when
+    damage is distributed unevenly across types (e.g. after conversion).
+
+    Formula:
+        armor_factor = 1 − armor_mitigation(enemy.armor)
+        res_factor   = Σ (amount[dt] / total) × (1 − eff_res[dt] / 100)
+        multiplier   = armor_factor × res_factor
+
+    Falls back to armor-only if damage_by_type is empty or total is zero.
+    Returns a value in (0, 1].
+    """
+    if not damage_by_type:
+        return 1.0 - armor_mitigation(enemy.armor)
+
+    total = sum(damage_by_type.values())
+    if total <= 0:
+        return 1.0 - armor_mitigation(enemy.armor)
+
+    pen = pen_map or {}
+    armor_factor = 1.0 - armor_mitigation(enemy.armor)
+
+    res_factor = sum(
+        (amount / total) * (1.0 - effective_resistance(enemy, dt.value, pen.get(dt.value, 0.0)) / 100.0)
+        for dt, amount in damage_by_type.items()
+    )
+    return armor_factor * res_factor

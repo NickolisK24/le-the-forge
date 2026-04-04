@@ -1,0 +1,739 @@
+/**
+ * SimulationDashboard — renders the full results of /api/builds/<slug>/simulate.
+ *
+ * Sections:
+ *   1. Summary strip (DPS, EHP, survivability score, sustain score)
+ *   2. DPS breakdown bar chart (hit, ailment, total)
+ *   3. Monte Carlo distribution (p25/mean/p75 with std dev range)
+ *   4. EHP layers stacked bar (health, ward buffer, avoidance bonus)
+ *   5. Resistance heptagon bar chart (7 resist types)
+ *   6. Stat upgrade recommendations bar chart (top 5 by DPS gain)
+ *   7. Strengths & weaknesses
+ */
+
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip,
+  ResponsiveContainer, Cell, ReferenceLine, ErrorBar,
+  ScatterChart, Scatter,
+} from "recharts";
+import type { BuildSimulationResult, DefenseResult, StatUpgrade, SkillDpsEntry } from "@/lib/api";
+import { Panel } from "@/components/ui";
+
+// ---------------------------------------------------------------------------
+// Colour tokens (match Tailwind forge palette)
+// ---------------------------------------------------------------------------
+const C = {
+  amber:   "#f0a020",
+  amberHot:"#ffb83f",
+  cyan:    "#22d3ee",
+  green:   "#4ade80",
+  red:     "#f87171",
+  muted:   "#6b7280",
+  surface: "#1a1a2e",
+  border:  "rgba(255,255,255,0.08)",
+  text:    "#e5e7eb",
+};
+
+// ---------------------------------------------------------------------------
+// Helpers
+// ---------------------------------------------------------------------------
+
+function fmt(n: number): string {
+  if (n >= 1_000_000) return `${(n / 1_000_000).toFixed(1)}M`;
+  if (n >= 1_000)     return `${(n / 1_000).toFixed(1)}K`;
+  return String(Math.round(n));
+}
+
+function ScoreRing({ label, value, color }: { label: string; value: number; color: string }) {
+  const r = 28;
+  const circ = 2 * Math.PI * r;
+  const filled = (value / 100) * circ;
+  return (
+    <div className="flex flex-col items-center gap-1">
+      <svg width="72" height="72" viewBox="0 0 72 72">
+        <circle cx="36" cy="36" r={r} fill="none" stroke={C.border} strokeWidth="6" />
+        <circle
+          cx="36" cy="36" r={r}
+          fill="none"
+          stroke={color}
+          strokeWidth="6"
+          strokeDasharray={`${filled} ${circ - filled}`}
+          strokeLinecap="round"
+          transform="rotate(-90 36 36)"
+          style={{ transition: "stroke-dasharray 0.6s ease" }}
+        />
+        <text x="36" y="40" textAnchor="middle" fill={color} fontSize="14" fontWeight="bold" fontFamily="monospace">
+          {value}
+        </text>
+      </svg>
+      <span className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">{label}</span>
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// DPS Breakdown
+// ---------------------------------------------------------------------------
+
+function DpsBreakdown({ dps }: { dps: BuildSimulationResult["dps"] }) {
+  const data = [
+    { name: "Hit DPS",     value: dps.dps,        fill: C.amber },
+    { name: "Ailment DPS", value: dps.ailment_dps, fill: C.cyan  },
+    { name: "Total DPS",   value: dps.total_dps,  fill: C.green  },
+  ].filter(d => d.value > 0);
+
+  return (
+    <Panel title="DPS Breakdown">
+      <div className="space-y-3">
+        {data.map(d => (
+          <div key={d.name}>
+            <div className="flex justify-between font-mono text-xs mb-1">
+              <span style={{ color: d.fill }}>{d.name}</span>
+              <span className="text-forge-text">{fmt(d.value)}</span>
+            </div>
+            <div className="h-1.5 rounded-full bg-forge-surface3 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-700"
+                style={{
+                  width: `${Math.min(100, (d.value / dps.total_dps) * 100)}%`,
+                  backgroundColor: d.fill,
+                }}
+              />
+            </div>
+          </div>
+        ))}
+        <div className="pt-2 border-t border-forge-border/30 grid grid-cols-3 gap-2 text-center">
+          <div>
+            <div className="font-mono text-[10px] text-forge-muted">Atk Speed</div>
+            <div className="font-display text-sm font-bold text-forge-text">
+              {dps.effective_attack_speed.toFixed(2)}/s
+            </div>
+          </div>
+          <div>
+            <div className="font-mono text-[10px] text-forge-muted">Avg Hit</div>
+            <div className="font-display text-sm font-bold text-forge-text">{fmt(dps.average_hit)}</div>
+          </div>
+          <div>
+            <div className="font-mono text-[10px] text-forge-muted">Crit Contrib</div>
+            <div className="font-display text-sm font-bold text-forge-amber">{dps.crit_contribution_pct}%</div>
+          </div>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Monte Carlo Distribution
+// ---------------------------------------------------------------------------
+
+function MonteCarloPanel({ mc }: { mc: BuildSimulationResult["monte_carlo"] }) {
+  const data = [
+    { label: "Min",  value: mc.min_dps,       fill: C.red    },
+    { label: "P25",  value: mc.percentile_25,  fill: C.muted  },
+    { label: "Mean", value: mc.mean_dps,       fill: C.amber  },
+    { label: "P75",  value: mc.percentile_75,  fill: C.cyan   },
+    { label: "Max",  value: mc.max_dps,        fill: C.green  },
+  ];
+
+  const maxVal = mc.max_dps || 1;
+
+  return (
+    <Panel title="DPS Distribution" action={
+      <span className="font-mono text-[10px] text-forge-dim">{mc.n_simulations.toLocaleString()} sims</span>
+    }>
+      <div className="space-y-2">
+        {data.map(d => (
+          <div key={d.label} className="flex items-center gap-2">
+            <span className="font-mono text-[10px] w-8 text-right" style={{ color: d.fill }}>{d.label}</span>
+            <div className="flex-1 h-2 rounded-full bg-forge-surface3 overflow-hidden">
+              <div
+                className="h-full rounded-full transition-all duration-700"
+                style={{ width: `${(d.value / maxVal) * 100}%`, backgroundColor: d.fill }}
+              />
+            </div>
+            <span className="font-mono text-[10px] w-14 text-right text-forge-muted">{fmt(d.value)}</span>
+          </div>
+        ))}
+        <div className="flex justify-between pt-2 border-t border-forge-border/30 font-mono text-[10px] text-forge-dim">
+          <span>Std Dev: {fmt(mc.std_dev)}</span>
+          <span>Variance: {mc.std_dev > 0 ? `±${((mc.std_dev / mc.mean_dps) * 100).toFixed(0)}%` : "0%"}</span>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// EHP Breakdown
+// ---------------------------------------------------------------------------
+
+function EhpBreakdown({ def }: { def: DefenseResult }) {
+  const total = def.total_ehp || 1;
+  const layers = [
+    { name: "Base Health", value: def.max_health,       color: C.amber  },
+    { name: "EHP Bonus",   value: Math.max(0, def.effective_hp - def.max_health), color: C.cyan },
+    { name: "Ward Buffer", value: def.ward_buffer,       color: C.green  },
+  ].filter(l => l.value > 0);
+
+  return (
+    <Panel title="Effective HP Layers">
+      <div className="space-y-2">
+        <div className="flex h-5 rounded overflow-hidden gap-px">
+          {layers.map(l => (
+            <div
+              key={l.name}
+              title={`${l.name}: ${fmt(l.value)}`}
+              className="transition-all duration-700"
+              style={{ flex: l.value / total, backgroundColor: l.color }}
+            />
+          ))}
+        </div>
+        <div className="flex justify-center gap-4">
+          {layers.map(l => (
+            <div key={l.name} className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: l.color }} />
+              <span className="font-mono text-[10px] text-forge-dim">{l.name}</span>
+              <span className="font-mono text-[10px] text-forge-text">{fmt(l.value)}</span>
+            </div>
+          ))}
+        </div>
+        <div className="text-center font-display text-lg font-bold text-forge-text">
+          {fmt(def.total_ehp)} <span className="text-forge-dim font-mono text-xs">total EHP</span>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Resistance Chart
+// ---------------------------------------------------------------------------
+
+function ResistanceChart({ def }: { def: DefenseResult }) {
+  const resistances = [
+    { name: "Fire",      value: def.fire_res,        fill: "#ef4444" },
+    { name: "Cold",      value: def.cold_res,        fill: "#60a5fa" },
+    { name: "Lightning", value: def.lightning_res,   fill: "#fbbf24" },
+    { name: "Void",      value: def.void_res,        fill: "#8b5cf6" },
+    { name: "Necrotic",  value: def.necrotic_res,    fill: "#a3e635" },
+    { name: "Physical",  value: def.physical_res,    fill: "#94a3b8" },
+    { name: "Poison",    value: def.poison_res,      fill: "#4ade80" },
+  ];
+
+  return (
+    <Panel title="Resistances">
+      <ResponsiveContainer width="100%" height={160}>
+        <BarChart data={resistances} margin={{ top: 4, right: 8, bottom: 4, left: -16 }}>
+          <CartesianGrid strokeDasharray="3 3" stroke={C.border} vertical={false} />
+          <XAxis dataKey="name" tick={{ fill: C.muted, fontSize: 10, fontFamily: "monospace" }} axisLine={false} tickLine={false} />
+          <YAxis domain={[0, 75]} tick={{ fill: C.muted, fontSize: 10 }} axisLine={false} tickLine={false} />
+          <ReferenceLine y={75} stroke={C.amber} strokeDasharray="4 2" label={{ value: "cap", fill: C.amber, fontSize: 9 }} />
+          <Tooltip
+            contentStyle={{ background: "#1a1a2e", border: `1px solid ${C.border}`, borderRadius: 4, fontSize: 11 }}
+            labelStyle={{ color: C.text }}
+            formatter={(v: number) => [`${v}%`, ""]}
+          />
+          <Bar dataKey="value" radius={[2, 2, 0, 0]}>
+            {resistances.map((r) => <Cell key={r.name} fill={r.fill} opacity={r.value >= 70 ? 1 : r.value >= 50 ? 0.75 : 0.5} />)}
+          </Bar>
+        </BarChart>
+      </ResponsiveContainer>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Stat Upgrade Recommendations
+// ---------------------------------------------------------------------------
+
+function UpgradeChart({ upgrades }: { upgrades: StatUpgrade[] }) {
+  const top = [...upgrades]
+    .sort((a, b) => b.dps_gain_pct - a.dps_gain_pct)
+    .slice(0, 6);
+
+  const DEAD_STAT_THRESHOLD = 1.0; // <1% DPS gain = dead stat
+
+  return (
+    <Panel title="Stat Upgrade Priorities">
+      <div className="space-y-2">
+        {top.map((u, i) => {
+          const isDead = u.dps_gain_pct < DEAD_STAT_THRESHOLD && u.ehp_gain_pct < DEAD_STAT_THRESHOLD;
+          const isDiminishing = u.explanation?.includes("diminishing");
+          return (
+            <div key={u.stat}>
+              <div className="grid gap-2 items-center" style={{ gridTemplateColumns: "18px 1fr 50px 50px" }}>
+                <span className={`font-display text-xs font-bold ${isDead ? "text-forge-dim" : "text-forge-amber"}`}>{i + 1}</span>
+                <div className="min-w-0">
+                  <div className="flex items-center gap-1.5">
+                    <span className={`font-body text-xs truncate ${isDead ? "text-forge-dim line-through" : "text-forge-text"}`}>
+                      {u.label}
+                    </span>
+                    {isDead && (
+                      <span className="shrink-0 font-mono text-[8px] uppercase tracking-wider text-forge-dim bg-forge-surface3 px-1 py-px rounded">
+                        low impact
+                      </span>
+                    )}
+                    {isDiminishing && !isDead && (
+                      <span className="shrink-0 font-mono text-[8px] uppercase tracking-wider text-yellow-500/80 bg-yellow-500/10 px-1 py-px rounded">
+                        diminishing
+                      </span>
+                    )}
+                  </div>
+                  <div className="mt-0.5 h-1 rounded-full bg-forge-surface3 overflow-hidden">
+                    <div
+                      className="h-full rounded-full"
+                      style={{
+                        width: `${Math.min(100, top[0].dps_gain_pct > 0 ? (u.dps_gain_pct / top[0].dps_gain_pct) * 100 : 0)}%`,
+                        background: isDead
+                          ? C.muted
+                          : `linear-gradient(90deg, ${C.amber}, ${C.amberHot})`,
+                        opacity: isDead ? 0.4 : 1,
+                      }}
+                    />
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-mono text-[10px] text-forge-dim">DPS</div>
+                  <div className={`font-mono text-xs ${isDead ? "text-forge-dim" : "text-forge-amber"}`}>
+                    +{u.dps_gain_pct.toFixed(1)}%
+                  </div>
+                </div>
+                <div className="text-right">
+                  <div className="font-mono text-[10px] text-forge-dim">EHP</div>
+                  <div className={`font-mono text-xs ${isDead ? "text-forge-dim" : "text-forge-cyan"}`}>
+                    +{u.ehp_gain_pct.toFixed(1)}%
+                  </div>
+                </div>
+              </div>
+              {u.explanation && !isDead && (
+                <div className="ml-5 mt-0.5 font-mono text-[9px] text-forge-dim/70 leading-snug truncate">
+                  {u.explanation}
+                </div>
+              )}
+            </div>
+          );
+        })}
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Avoidance Layers
+// ---------------------------------------------------------------------------
+
+// ---------------------------------------------------------------------------
+// Upgrade Priority Matrix  (4-quadrant scatter: DPS gain% vs EHP gain%)
+// ---------------------------------------------------------------------------
+
+type Quad = "balanced" | "offensive" | "defensive" | "dead";
+const QUAD_COLOR: Record<Quad, string> = {
+  balanced:  C.amber,
+  offensive: "#f97316",
+  defensive: C.cyan,
+  dead:      C.muted,
+};
+
+function classifyQuad(dps: number, ehp: number): Quad {
+  const THRESH = 0.5;
+  if (dps >= THRESH && ehp >= THRESH) return "balanced";
+  if (dps >= THRESH)                  return "offensive";
+  if (ehp >= THRESH)                  return "defensive";
+  return "dead";
+}
+
+function UpgradePriorityMatrix({ upgrades }: { upgrades: StatUpgrade[] }) {
+  const data = upgrades.map(u => ({
+    dps:   u.dps_gain_pct,
+    ehp:   u.ehp_gain_pct,
+    label: u.label,
+    short: u.label.length > 14 ? u.label.slice(0, 13) + "…" : u.label,
+    quad:  classifyQuad(u.dps_gain_pct, u.ehp_gain_pct),
+  }));
+
+  const maxDps = Math.max(...data.map(d => d.dps), 2);
+  const maxEhp = Math.max(...data.map(d => d.ehp), 2);
+
+  return (
+    <Panel title="Upgrade Priority Matrix">
+      <div className="space-y-2">
+        <ResponsiveContainer width="100%" height={210}>
+          <ScatterChart margin={{ top: 10, right: 24, bottom: 24, left: 4 }}>
+            <CartesianGrid strokeDasharray="3 3" stroke={C.border} />
+            <XAxis
+              type="number" dataKey="dps" name="DPS Gain"
+              domain={[0, maxDps * 1.1]}
+              tick={{ fill: C.muted, fontSize: 9, fontFamily: "monospace" }}
+              axisLine={false} tickLine={false}
+              label={{ value: "DPS Gain %", position: "insideBottom", offset: -12, fill: C.muted, fontSize: 9 }}
+            />
+            <YAxis
+              type="number" dataKey="ehp" name="EHP Gain"
+              domain={[0, maxEhp * 1.1]}
+              tick={{ fill: C.muted, fontSize: 9, fontFamily: "monospace" }}
+              axisLine={false} tickLine={false}
+              label={{ value: "EHP %", angle: -90, position: "insideLeft", offset: 12, fill: C.muted, fontSize: 9 }}
+            />
+            <Tooltip
+              cursor={{ strokeDasharray: "3 3", stroke: C.border }}
+              contentStyle={{ background: C.surface, border: `1px solid ${C.border}`, borderRadius: 4, fontSize: 10 }}
+              formatter={(v: number) => [`${(v as number).toFixed(1)}%`]}
+              labelFormatter={(_, payload) => payload?.[0]?.payload?.label ?? ""}
+            />
+            <ReferenceLine x={0.5} stroke={C.border} strokeDasharray="4 2" />
+            <ReferenceLine y={0.5} stroke={C.border} strokeDasharray="4 2" />
+            <Scatter
+              data={data}
+              shape={(props: any) => {
+                const color = QUAD_COLOR[props.payload.quad as Quad] ?? C.muted;
+                return (
+                  <g key={props.payload.label}>
+                    <circle cx={props.cx} cy={props.cy} r={5} fill={color} opacity={0.85} />
+                    <text x={props.cx + 8} y={props.cy + 4} fontSize={8} fill={color} fontFamily="monospace">
+                      {props.payload.short}
+                    </text>
+                  </g>
+                );
+              }}
+            />
+          </ScatterChart>
+        </ResponsiveContainer>
+
+        {/* Quadrant legend */}
+        <div className="flex gap-4 justify-center pt-1">
+          {(["balanced", "offensive", "defensive", "dead"] as Quad[]).map(q => (
+            <div key={q} className="flex items-center gap-1.5">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: QUAD_COLOR[q] }} />
+              <span className="font-mono text-[9px] capitalize" style={{ color: QUAD_COLOR[q] }}>
+                {q === "dead" ? "Low Impact" : q}
+              </span>
+            </div>
+          ))}
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Avoidance & Sustain
+// ---------------------------------------------------------------------------
+
+function AvoidancePanel({ def, dpsValue }: { def: DefenseResult; dpsValue: number }) {
+  const layers = [
+    { label: "Dodge",         value: def.dodge_chance_pct,      color: C.cyan  },
+    { label: "Block",         value: def.block_chance_pct,      color: C.amber },
+    { label: "Crit Avoid",    value: def.crit_avoidance_pct,   color: C.green },
+    { label: "Glancing Blow", value: def.glancing_blow_pct,    color: C.muted },
+    { label: "Endurance",     value: def.endurance_pct,        color: "#a78bfa"},
+    { label: "Stun Avoid",    value: def.stun_avoidance_pct,   color: "#f472b6"},
+  ].filter(l => l.value > 0);
+
+  // Sustain gap: compute total HP/s absorbed from all sources
+  const leechPerSec  = (dpsValue * def.leech_pct) / 100;
+  const wardNet      = Math.max(0, def.net_ward_per_second);
+  const totalSustain = leechPerSec + def.health_regen + wardNet;
+
+  const sustainRows = [
+    { label: "Leech",        value: def.leech_pct > 0 ? `${def.leech_pct}%` : "—",
+      sub: leechPerSec > 0 ? `${fmt(leechPerSec)}/s` : "" },
+    { label: "Health Regen", value: def.health_regen > 0 ? `${def.health_regen}/s` : "—", sub: "" },
+    { label: "Ward Net",     value: def.net_ward_per_second !== 0
+      ? `${def.net_ward_per_second > 0 ? "+" : ""}${def.net_ward_per_second}/s` : "—", sub: "" },
+    { label: "On Kill (HP)", value: def.health_on_kill > 0 ? fmt(def.health_on_kill) : "—", sub: "" },
+  ];
+
+  return (
+    <Panel title="Avoidance & Sustain">
+      <div className="grid grid-cols-2 gap-4">
+        <div className="space-y-2">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted mb-2">Avoidance</div>
+          {layers.length > 0 ? layers.map(l => (
+            <div key={l.label} className="flex items-center gap-2">
+              <div className="w-2 h-2 rounded-full shrink-0" style={{ backgroundColor: l.color }} />
+              <span className="font-mono text-[10px] text-forge-dim flex-1">{l.label}</span>
+              <span className="font-mono text-xs" style={{ color: l.color }}>{l.value.toFixed(1)}%</span>
+            </div>
+          )) : (
+            <p className="font-mono text-[10px] text-forge-dim italic">No avoidance layers</p>
+          )}
+        </div>
+        <div className="space-y-2">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted mb-2">Sustain</div>
+          {sustainRows.map(r => (
+            <div key={r.label} className="flex items-center justify-between gap-2">
+              <span className="font-mono text-[10px] text-forge-dim">{r.label}</span>
+              <div className="text-right">
+                <span className={`font-mono text-xs ${r.value === "—" ? "text-forge-dim" : "text-forge-green"}`}>
+                  {r.value}
+                </span>
+                {r.sub && (
+                  <div className="font-mono text-[9px] text-forge-dim/60">{r.sub}</div>
+                )}
+              </div>
+            </div>
+          ))}
+          {totalSustain > 0 && (
+            <div className="mt-2 pt-2 border-t border-forge-border/30 flex items-center justify-between">
+              <span className="font-mono text-[10px] text-forge-muted">Total HP/s</span>
+              <span className="font-display text-sm font-bold text-forge-green">{fmt(totalSustain)}</span>
+            </div>
+          )}
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Burst Vulnerability Warnings
+// ---------------------------------------------------------------------------
+
+/** Common burst damage thresholds in Last Epoch endgame content. */
+const BURST_SCENARIOS = [
+  { label: "Empowered Boss Slam",  damage: 3000, element: "physical" as const },
+  { label: "Void Eruption",        damage: 4000, element: "void" as const },
+  { label: "Lagon Lunar Beam",     damage: 5000, element: "cold" as const },
+  { label: "Julra Void Meteor",    damage: 6000, element: "void" as const },
+  { label: "Shade of Orobyss",     damage: 8000, element: "necrotic" as const },
+];
+
+const RES_KEY_MAP: Record<string, keyof DefenseResult> = {
+  physical: "armor_reduction_pct",
+  fire: "fire_res",
+  cold: "cold_res",
+  lightning: "lightning_res",
+  void: "void_res",
+  necrotic: "necrotic_res",
+  poison: "poison_res",
+};
+
+function BurstVulnerabilityPanel({ def }: { def: DefenseResult }) {
+  const totalPool = def.total_ehp;
+
+  const checks = BURST_SCENARIOS.map(scenario => {
+    // Effective resistance for this element (armor for physical, res for elemental)
+    const resKey = RES_KEY_MAP[scenario.element];
+    const resPct = resKey ? (def[resKey] as number) ?? 0 : 0;
+    const mitigation = Math.min(resPct, 75) / 100; // cap at 75%
+    const effectiveDamage = scenario.damage * (1 - mitigation);
+    const survives = totalPool >= effectiveDamage;
+    const margin = totalPool - effectiveDamage;
+    const marginPct = totalPool > 0 ? (margin / totalPool) * 100 : -100;
+
+    return {
+      ...scenario,
+      effectiveDamage: Math.round(effectiveDamage),
+      survives,
+      margin: Math.round(margin),
+      marginPct: Math.round(marginPct),
+    };
+  });
+
+  const failures = checks.filter(c => !c.survives);
+  const tight = checks.filter(c => c.survives && c.marginPct < 20);
+
+  if (failures.length === 0 && tight.length === 0) return null;
+
+  return (
+    <Panel title="Burst Vulnerability">
+      <div className="space-y-1.5">
+        {failures.map(c => (
+          <div key={c.label} className="flex items-center gap-2 font-mono text-[10px]">
+            <span className="text-red-400 shrink-0">✗</span>
+            <span className="text-red-400 font-bold">{c.label}</span>
+            <span className="text-forge-dim">({fmt(c.effectiveDamage)} after {c.element} mitigation)</span>
+            <span className="ml-auto text-red-400">
+              {fmt(Math.abs(c.margin))} over EHP
+            </span>
+          </div>
+        ))}
+        {tight.map(c => (
+          <div key={c.label} className="flex items-center gap-2 font-mono text-[10px]">
+            <span className="text-yellow-500 shrink-0">⚠</span>
+            <span className="text-yellow-500">{c.label}</span>
+            <span className="text-forge-dim">({fmt(c.effectiveDamage)} after {c.element} mitigation)</span>
+            <span className="ml-auto text-yellow-500">
+              {c.marginPct}% margin
+            </span>
+          </div>
+        ))}
+        {failures.length > 0 && (
+          <div className="mt-2 font-body text-[10px] text-forge-dim/70 leading-snug">
+            Your build cannot survive {failures.length} burst scenario{failures.length > 1 ? "s" : ""}.
+            Prioritize Health, Resistances, or Ward to close the gap.
+          </div>
+        )}
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Strengths / Weaknesses
+// ---------------------------------------------------------------------------
+
+function InsightsPanel({ def }: { def: DefenseResult }) {
+  return (
+    <Panel title="Build Insights">
+      <div className="grid grid-cols-2 gap-4 text-sm">
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-green mb-2">✓ Strengths</div>
+          {def.strengths.length > 0 ? (
+            <ul className="space-y-1">
+              {def.strengths.map((s, i) => (
+                <li key={i} className="font-body text-xs text-forge-muted flex gap-1.5">
+                  <span className="text-forge-green shrink-0">·</span>{s}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="font-mono text-[10px] text-forge-dim italic">None detected</p>
+          )}
+        </div>
+        <div>
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-red mb-2">✗ Weaknesses</div>
+          {def.weaknesses.length > 0 ? (
+            <ul className="space-y-1">
+              {def.weaknesses.map((w, i) => (
+                <li key={i} className="font-body text-xs text-forge-muted flex gap-1.5">
+                  <span className="text-forge-red shrink-0">·</span>{w}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p className="font-mono text-[10px] text-forge-dim italic">No critical weaknesses</p>
+          )}
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Per-Skill DPS Breakdown
+// ---------------------------------------------------------------------------
+
+const SLOT_COLORS = [C.amber, C.cyan, C.green, "#c084fc", "#fb923c"] as const;
+
+function SkillDpsPanel({ skills, combinedDps }: { skills: SkillDpsEntry[]; combinedDps: number }) {
+  if (!skills || skills.length === 0) return null;
+  const maxDps = Math.max(...skills.map(s => s.total_dps), 1);
+
+  return (
+    <Panel title="Skill DPS Breakdown" action={
+      <span className="font-mono text-[10px] text-forge-dim">
+        Combined ceiling: <span className="text-forge-text">{fmt(combinedDps)}</span>
+      </span>
+    }>
+      <div className="space-y-3">
+        {skills.map((s, i) => {
+          const color = SLOT_COLORS[i % SLOT_COLORS.length];
+          const pct = (s.total_dps / maxDps) * 100;
+          return (
+            <div key={s.slot}>
+              <div className="flex justify-between font-mono text-xs mb-1">
+                <span style={{ color }} className="flex items-center gap-1.5">
+                  {s.skill_name}
+                  {s.is_primary && (
+                    <span className="font-mono text-[8px] uppercase tracking-wider bg-forge-surface3 text-forge-amber px-1 py-px rounded">
+                      primary
+                    </span>
+                  )}
+                </span>
+                <span className="text-forge-text">{fmt(s.total_dps)}</span>
+              </div>
+              <div className="h-1.5 rounded-full bg-forge-surface3 overflow-hidden">
+                <div
+                  className="h-full rounded-full transition-all duration-700"
+                  style={{ width: `${pct}%`, backgroundColor: color }}
+                />
+              </div>
+            </div>
+          );
+        })}
+        <div className="pt-2 border-t border-forge-border/30 flex justify-between font-mono text-[10px] text-forge-dim">
+          <span>{skills.length} skill{skills.length !== 1 ? "s" : ""} active</span>
+          <span>Levels: {skills.map(s => s.skill_level).join(" · ")}</span>
+        </div>
+      </div>
+    </Panel>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// Root export
+// ---------------------------------------------------------------------------
+
+export default function SimulationDashboard({ result }: { result: BuildSimulationResult }) {
+  const { dps, monte_carlo: mc, defense: def, stat_upgrades: upgrades, dps_per_skill, combined_dps } = result;
+  const hasMultipleSkills = dps_per_skill && dps_per_skill.length > 1;
+
+  return (
+    <div className="space-y-4">
+      {/* Summary strip */}
+      <div className="flex items-center justify-between rounded border border-forge-border bg-forge-surface2 px-6 py-3">
+        <div className="text-center">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">
+            {hasMultipleSkills ? "Primary DPS" : "Total DPS"}
+          </div>
+          <div className="font-display text-2xl font-bold text-forge-amber">{fmt(dps.total_dps)}</div>
+        </div>
+        {hasMultipleSkills && (
+          <div className="text-center">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Combined DPS</div>
+            <div className="font-display text-2xl font-bold text-forge-amber/70">{fmt(combined_dps)}</div>
+          </div>
+        )}
+        <div className="text-center">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Mean DPS (sim)</div>
+          <div className="font-display text-2xl font-bold text-forge-text">{fmt(mc.mean_dps)}</div>
+        </div>
+        <div className="text-center">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Total EHP</div>
+          <div className="font-display text-2xl font-bold text-forge-cyan">{fmt(def.total_ehp)}</div>
+        </div>
+        <div className="flex gap-6">
+          <ScoreRing label="Survivability" value={def.survivability_score} color={C.amber} />
+          <ScoreRing label="Sustain" value={def.sustain_score} color={C.cyan} />
+        </div>
+        <div className="text-center">
+          <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted">Skill</div>
+          <div className="font-body text-sm text-forge-text">{result.primary_skill}</div>
+          <div className="font-mono text-[10px] text-forge-dim">Lv {result.skill_level}</div>
+        </div>
+      </div>
+
+      {/* Per-skill DPS breakdown (shown when build has 2+ skills) */}
+      {hasMultipleSkills && (
+        <SkillDpsPanel skills={dps_per_skill} combinedDps={combined_dps ?? 0} />
+      )}
+
+      {/* Grid: DPS + Monte Carlo */}
+      <div className="grid grid-cols-2 gap-4">
+        <DpsBreakdown dps={dps} />
+        <MonteCarloPanel mc={mc} />
+      </div>
+
+      {/* Grid: EHP + Resistances */}
+      <div className="grid grid-cols-2 gap-4">
+        <EhpBreakdown def={def} />
+        <ResistanceChart def={def} />
+      </div>
+
+      {/* Grid: Avoidance + Upgrades */}
+      <div className="grid grid-cols-2 gap-4">
+        <AvoidancePanel def={def} dpsValue={dps.total_dps} />
+        <UpgradeChart upgrades={upgrades} />
+      </div>
+
+      {/* Upgrade Priority Matrix */}
+      {upgrades.length > 0 && <UpgradePriorityMatrix upgrades={upgrades} />}
+
+      {/* Burst vulnerability + insights */}
+      <BurstVulnerabilityPanel def={def} />
+      <InsightsPanel def={def} />
+    </div>
+  );
+}

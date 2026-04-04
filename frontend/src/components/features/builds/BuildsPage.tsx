@@ -5,13 +5,14 @@
  */
 
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
-import { Button, Badge, Spinner, EmptyState } from "@/components/ui";
+import { Button, Badge, Spinner, EmptyState, ErrorMessage } from "@/components/ui";
 import { useBuilds, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, MASTERIES } from "@/lib/gameData";
+import { BASE_CLASSES } from "@constants";
 import type { BuildListItem, BuildFilters, CharacterClass, BuildTier } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -27,7 +28,7 @@ const SORT_OPTIONS = [
   { value: "views", label: "Most Viewed"  },
 ] as const;
 
-const CLASSES: CharacterClass[] = ["Acolyte", "Mage", "Primalist", "Sentinel", "Rogue"];
+const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 
 const TIER_COLORS: Record<BuildTier, string> = {
   S: "#f5d060",
@@ -40,7 +41,15 @@ const TIER_COLORS: Record<BuildTier, string> = {
 // Build card
 // ---------------------------------------------------------------------------
 
-function BuildCard({ build }: { build: BuildListItem }) {
+function BuildCard({
+  build,
+  isCompareSelected,
+  onCompareToggle,
+}: {
+  build: BuildListItem;
+  isCompareSelected: boolean;
+  onCompareToggle: (slug: string) => void;
+}) {
   const { user } = useAuthStore();
   const vote = useVote();
 
@@ -122,6 +131,18 @@ function BuildCard({ build }: { build: BuildListItem }) {
                   by {build.author.username}
                 </span>
               )}
+              <button
+                onClick={() => onCompareToggle(build.slug)}
+                title={isCompareSelected ? "Remove from comparison" : "Add to comparison"}
+                className={clsx(
+                  "font-mono text-[10px] uppercase tracking-widest px-2 py-1 border rounded-sm cursor-pointer transition-all",
+                  isCompareSelected
+                    ? "border-forge-cyan text-forge-cyan bg-forge-cyan/12"
+                    : "border-forge-border text-forge-dim hover:border-forge-cyan/60 hover:text-forge-cyan"
+                )}
+              >
+                {isCompareSelected ? "✓ Compare" : "+ Compare"}
+              </button>
             </div>
           </div>
         </div>
@@ -158,13 +179,29 @@ function FilterChip({
 
 export default function BuildsPage() {
   const { user } = useAuthStore();
+  const navigate = useNavigate();
   const [filters, setFilters] = useState<ActiveFilters>({ sort: "votes", page: 1 });
   const [search, setSearch] = useState("");
   const [searchInput, setSearchInput] = useState("");
+  const [compareSelection, setCompareSelection] = useState<string[]>([]);
 
-  const { data: res, isLoading } = useBuilds({ ...filters, q: search || undefined });
+  const { data: res, isLoading, isError, refetch } = useBuilds({ ...filters, q: search || undefined });
   const builds = res?.data ?? [];
   const meta = res?.meta;
+
+  function toggleCompare(slug: string) {
+    setCompareSelection((prev) => {
+      if (prev.includes(slug)) return prev.filter((s) => s !== slug);
+      if (prev.length >= 2) return [prev[1], slug]; // drop oldest, add new
+      return [...prev, slug];
+    });
+  }
+
+  function goCompare() {
+    if (compareSelection.length === 2) {
+      navigate(`/compare?a=${compareSelection[0]}&b=${compareSelection[1]}`);
+    }
+  }
 
   function setFilter<K extends keyof BuildFilters>(key: K, value: BuildFilters[K] | undefined) {
     setFilters((f) => {
@@ -333,6 +370,12 @@ export default function BuildsPage() {
         <div className="flex justify-center py-16">
           <Spinner size={32} />
         </div>
+      ) : isError ? (
+        <ErrorMessage
+          title="Could not load builds"
+          message="Check your connection and try again."
+          onRetry={refetch}
+        />
       ) : builds.length === 0 ? (
         <EmptyState
           title="No builds found"
@@ -352,7 +395,12 @@ export default function BuildsPage() {
         <>
           <div className="flex flex-col gap-2.5">
             {builds.map((build) => (
-              <BuildCard key={build.id} build={build} />
+              <BuildCard
+                key={build.id}
+                build={build}
+                isCompareSelected={compareSelection.includes(build.slug)}
+                onCompareToggle={toggleCompare}
+              />
             ))}
           </div>
 
@@ -387,6 +435,33 @@ export default function BuildsPage() {
             </p>
           )}
         </>
+      )}
+
+      {/* Sticky compare bar */}
+      {compareSelection.length > 0 && (
+        <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 flex items-center gap-4 bg-forge-surface2 border border-forge-cyan/40 rounded shadow-2xl px-5 py-3"
+          style={{ boxShadow: "0 0 24px rgba(0,212,245,0.20)" }}
+        >
+          <span className="font-mono text-sm text-forge-cyan">
+            {compareSelection.length === 1
+              ? "1 build selected — select one more"
+              : "2 builds selected"}
+          </span>
+          <div className="flex items-center gap-2">
+            <Button
+              variant="outline"
+              size="sm"
+              onClick={() => setCompareSelection([])}
+            >
+              Clear
+            </Button>
+            {compareSelection.length === 2 && (
+              <Button variant="ghost" size="sm" onClick={goCompare}>
+                Compare →
+              </Button>
+            )}
+          </div>
+        </div>
       )}
     </div>
   );

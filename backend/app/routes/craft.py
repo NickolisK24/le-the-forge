@@ -3,6 +3,7 @@ Craft Blueprint — /api/craft
 
 POST   /api/craft                  → Create a new craft session
 POST   /api/craft/predict          → Stateless optimal path + Monte Carlo (no session)
+POST   /api/craft/simulate         → Monte Carlo path simulation with random FP rolls
 GET    /api/craft/<slug>           → Get session with step log
 POST   /api/craft/<slug>/action    → Apply a forge action
 GET    /api/craft/<slug>/summary   → Get session summary + optimal path + simulation
@@ -15,14 +16,17 @@ Auth is required only to persist and share sessions.
 from flask import Blueprint, request
 from marshmallow import ValidationError
 
+from app import limiter
 from app.models import CraftSession
 from app.schemas import (
     CraftSessionSchema,
     CraftSessionCreateSchema,
     CraftActionSchema,
     CraftPredictSchema,
+    CraftSimulateSchema,
 )
 from app.services import craft_service
+from app.engines.craft_engine import simulate_sequence
 from app.utils.auth import get_current_user
 from app.utils.responses import (
     ok, created, no_content, error,
@@ -35,9 +39,11 @@ session_schema = CraftSessionSchema()
 session_create_schema = CraftSessionCreateSchema()
 action_schema = CraftActionSchema()
 predict_schema = CraftPredictSchema()
+simulate_schema = CraftSimulateSchema()
 
 
 @craft_bp.post("")
+@limiter.limit("30 per minute")
 def create_session():
     try:
         data = session_create_schema.load(request.get_json() or {})
@@ -50,6 +56,7 @@ def create_session():
 
 
 @craft_bp.post("/predict")
+@limiter.limit("30 per minute")
 def predict():
     """
     Stateless crafting outcome predictor — no session required.
@@ -61,29 +68,26 @@ def predict():
     except ValidationError as e:
         return validation_error(e)
 
-    instability = data["instability"]
     forge_potential = data["forge_potential"]
     affixes = data.get("affixes", [])
     n_simulations = data.get("n_simulations", 10_000)
 
-    path = craft_service.optimal_path_search(instability, affixes, forge_potential)
+    path = craft_service.optimal_path_search(affixes, forge_potential)
 
     sim_steps = [
         {"action": s["action"], "sealed_count_at_step": s["sealed_count_at_step"]}
         for s in path
     ]
-    sim_result = craft_service.simulate_sequence(
-        instability, forge_potential, sim_steps, n_simulations
+    sim_result = simulate_sequence(
+        forge_potential, sim_steps, n_simulations, seed=data.get("seed")
     ) if sim_steps else {
-        "brick_chance": 0.0,
-        "perfect_item_chance": 1.0,
+        "completion_chance": 1.0,
         "step_survival_curve": [],
-        "step_fracture_rates": [],
-        "median_instability": instability,
         "n_simulations": 0,
+        "seed": data.get("seed"),
     }
 
-    strategies = craft_service.compare_strategies(instability, affixes, forge_potential)
+    strategies = craft_service.compare_strategies(affixes, forge_potential)
 
     return ok(data={
         "optimal_path": path,
@@ -92,22 +96,38 @@ def predict():
     })
 
 
+@craft_bp.post("/simulate")
+@limiter.limit("20 per minute")
+def simulate():
+    """
+    Monte Carlo crafting path simulator — rolls random FP costs each iteration
+    for accurate probability distributions of FP consumption and completion rates.
+    """
+    try:
+        data = simulate_schema.load(request.get_json() or {})
+    except ValidationError as e:
+        return validation_error(e)
+
+    result = simulate_sequence(
+        forge_potential=data["forge_potential"],
+        proposed_steps=data["steps"],
+        n_simulations=data["n_simulations"],
+        seed=data.get("seed"),
+    )
+    return ok(data=result)
+
+
 @craft_bp.get("/<slug>")
 def get_session(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
         return not_found("Craft session")
 
-    # If session has an owner, only the owner can view it
-    if session.user_id:
-        user = get_current_user()
-        if not user or session.user_id != user.id:
-            return forbidden()
-
     return ok(data=session_schema.dump(session))
 
 
 @craft_bp.post("/<slug>/action")
+@limiter.limit("60 per minute")
 def apply_action(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
@@ -132,6 +152,41 @@ def apply_action(slug: str):
     )
 
     return ok(data=result)
+
+
+@craft_bp.post("/<slug>/undo")
+def undo_action(slug: str):
+    session = CraftSession.query.filter_by(slug=slug).first()
+    if not session:
+        return not_found("Craft session")
+
+    # If session has an owner, only the owner can modify it
+    if session.user_id:
+        user = get_current_user()
+        if not user or session.user_id != user.id:
+            return forbidden()
+
+    # Check if there are steps to undo
+    if not session.steps:
+        return error("No actions to undo", 400)
+
+    # Get the last step
+    last_step = max(session.steps, key=lambda s: s.step_number)
+
+    # Reverse the changes
+    session.forge_potential += last_step.fp_before - last_step.fp_after
+    session.affixes = last_step.affixes_before or []
+
+    # Remove the last step
+    db.session.delete(last_step)
+    db.session.commit()
+
+    return ok(data={
+        "success": True,
+        "message": "Last action undone",
+        "forge_potential": session.forge_potential,
+        "affixes": session.affixes
+    })
 
 
 @craft_bp.get("/<slug>/summary")

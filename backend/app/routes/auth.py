@@ -5,10 +5,14 @@ GET  /api/auth/discord              → Redirects to Discord OAuth page
 GET  /api/auth/discord/authorized   → OAuth callback; issues JWT; redirects to frontend
 GET  /api/auth/me                   → Returns current user profile
 POST /api/auth/logout               → Client-side token discard (stateless)
+GET  /api/auth/dev-login            → Dev-only bypass (FLASK_ENV=development only)
 """
+
+import requests as _requests
 
 from flask import Blueprint, redirect, current_app, request
 
+from app import limiter
 from app.utils.auth import (
     upsert_user_from_discord,
     issue_token,
@@ -23,13 +27,14 @@ user_schema = UserSchema()
 
 
 @auth_bp.get("/discord")
+@limiter.limit("20 per minute")
 def discord_login():
     """
     Initiates Discord OAuth2 PKCE flow.
     In production, replace with actual Flask-Dance OAuth redirect.
     """
     client_id = current_app.config["DISCORD_CLIENT_ID"]
-    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+    redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
     scope = "identify"
     url = (
         f"https://discord.com/api/oauth2/authorize"
@@ -42,6 +47,7 @@ def discord_login():
 
 
 @auth_bp.get("/discord/authorized")
+@limiter.limit("20 per minute")
 def discord_authorized():
     """
     OAuth2 callback. Full flow:
@@ -51,28 +57,36 @@ def discord_authorized():
       4. Upsert our User row from the profile
       5. Issue a signed JWT and redirect to the frontend with it
     """
-    import requests as http
-
     code = request.args.get("code")
     if not code:
         current_app.logger.warning("Discord OAuth callback received no code.")
         return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_code")
 
-    redirect_uri = request.host_url.rstrip("/") + "/api/auth/discord/authorized"
+    redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
 
     # ── 1. Exchange authorization code for access token ──────────────────
-    token_response = http.post(
-        "https://discord.com/api/oauth2/token",
-        data={
-            "client_id":     current_app.config["DISCORD_CLIENT_ID"],
-            "client_secret": current_app.config["DISCORD_CLIENT_SECRET"],
-            "grant_type":    "authorization_code",
-            "code":          code,
-            "redirect_uri":  redirect_uri,
-        },
-        headers={"Content-Type": "application/x-www-form-urlencoded"},
-        timeout=10,
-    )
+    try:
+        token_response = _requests.post(
+            "https://discord.com/api/oauth2/token",
+            data={
+                "client_id":     current_app.config["DISCORD_CLIENT_ID"],
+                "client_secret": current_app.config["DISCORD_CLIENT_SECRET"],
+                "grant_type":    "authorization_code",
+                "code":          code,
+                "redirect_uri":  redirect_uri,
+            },
+            headers={"Content-Type": "application/x-www-form-urlencoded"},
+            timeout=10,
+        )
+    except _requests.exceptions.ConnectionError as exc:
+        current_app.logger.error("Discord token exchange failed: ConnectionError: %s", exc)
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_unreachable")
+    except _requests.exceptions.Timeout:
+        current_app.logger.error("Discord token exchange timed out")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_timeout")
+    except Exception as exc:
+        current_app.logger.error("Discord token exchange unexpected error (%s): %s", type(exc).__name__, exc)
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=token_exchange")
 
     if not token_response.ok:
         current_app.logger.error(
@@ -87,11 +101,21 @@ def discord_authorized():
         return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=no_access_token")
 
     # ── 2. Fetch Discord user profile ─────────────────────────────────────
-    profile_response = http.get(
-        "https://discord.com/api/users/@me",
-        headers={"Authorization": f"Bearer {discord_token}"},
-        timeout=10,
-    )
+    try:
+        profile_response = _requests.get(
+            "https://discord.com/api/users/@me",
+            headers={"Authorization": f"Bearer {discord_token}"},
+            timeout=10,
+        )
+    except _requests.exceptions.ConnectionError as exc:
+        current_app.logger.error("Discord profile fetch failed: ConnectionError: %s", exc)
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_unreachable")
+    except _requests.exceptions.Timeout:
+        current_app.logger.error("Discord profile fetch timed out")
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=discord_timeout")
+    except Exception as exc:
+        current_app.logger.error("Discord profile fetch unexpected error (%s): %s", type(exc).__name__, exc)
+        return redirect(current_app.config["FRONTEND_URL"] + "?auth=failed&reason=profile_fetch")
 
     if not profile_response.ok:
         current_app.logger.error(
@@ -108,6 +132,40 @@ def discord_authorized():
     jwt_token = issue_token(user)
 
     current_app.logger.info("User %s authenticated via Discord.", user.username)
+    return redirect(
+        f"{current_app.config['FRONTEND_URL']}/auth/callback?token={jwt_token}"
+    )
+
+
+@auth_bp.get("/dev-login")
+def dev_login():
+    """
+    Development-only login bypass — skips Discord OAuth entirely.
+    Issues a JWT for the first user in the DB (or creates a placeholder dev user).
+    ONLY available when FLASK_ENV=development. Returns 404 in production.
+    """
+    from flask import current_app
+    if not current_app.debug:
+        from app.utils.responses import not_found
+        return not_found()
+
+    from app import db
+    from app.models import User
+
+    user = User.query.first()
+    if not user:
+        # Create a dev placeholder user if none exists
+        user = User(
+            discord_id="dev-local-000000000",
+            username="DevUser",
+            discriminator="0",
+            avatar_url=None,
+        )
+        db.session.add(user)
+        db.session.commit()
+
+    jwt_token = issue_token(user)
+    current_app.logger.info("Dev login issued for user %s", user.username)
     return redirect(
         f"{current_app.config['FRONTEND_URL']}/auth/callback?token={jwt_token}"
     )

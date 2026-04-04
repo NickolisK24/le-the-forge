@@ -1,121 +1,109 @@
-import { Outlet, NavLink, useNavigate, Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Outlet, useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 import { useAuthStore } from "@/store";
+import { versionApi } from "@/lib/api";
 
-const NAV_LINKS = [
-  { to: "/builds", label: "Builds"   },
-  { to: "/build",  label: "Planner"  },
-  { to: "/craft",  label: "Craft Sim"},
-];
+import Sidebar, { SIDEBAR_WIDTH_COLLAPSED, SIDEBAR_WIDTH_EXPANDED } from "@/components/navigation/Sidebar";
+import TopBar from "@/components/navigation/TopBar";
+import GlobalSearch from "@/components/search/GlobalSearch";
+
+const SIDEBAR_STORAGE_KEY = "forge_sidebar_open";
 
 export default function AppLayout() {
-  const { user, logout } = useAuthStore();
-  const navigate = useNavigate();
+  const { data: versionRes } = useQuery({
+    queryKey: ["version"],
+    queryFn: () => versionApi.get(),
+    staleTime: 5 * 60 * 1000,
+    retry: false,
+  });
+  const version = versionRes?.data;
 
-  function handleLogout() {
-    logout();
-    navigate("/");
-  }
+  const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
+    try {
+      const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
+      return stored === null ? false : stored === "true";
+    } catch {
+      return false;
+    }
+  });
+
+  const [searchOpen, setSearchOpen] = useState(false);
+
+  // Sync sidebar state to localStorage when toggled from TopBar
+  useEffect(() => {
+    try {
+      localStorage.setItem(SIDEBAR_STORAGE_KEY, String(sidebarOpen));
+    } catch {
+      // ignore
+    }
+  }, [sidebarOpen]);
+
+  // Register Cmd/Ctrl+K globally
+  useEffect(() => {
+    function handleKeyDown(e: KeyboardEvent) {
+      if ((e.metaKey || e.ctrlKey) && e.key === "k") {
+        e.preventDefault();
+        setSearchOpen((v) => !v);
+      }
+    }
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const sidebarWidth = sidebarOpen ? SIDEBAR_WIDTH_EXPANDED : SIDEBAR_WIDTH_COLLAPSED;
 
   return (
-    <div className="min-h-screen bg-forge-bg text-forge-text font-body">
-      {/* Nav */}
-      <nav
-        className="sticky top-0 z-50 border-b border-forge-border bg-forge-surface/95 backdrop-blur-md"
-        style={{ boxShadow: "0 1px 20px rgba(0,0,0,0.60)" }}
+    <div className="min-h-screen bg-forge-bg text-forge-text font-body overflow-x-hidden flex">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main column */}
+      <div
+        className="flex flex-col flex-1 min-w-0 transition-all duration-200"
+        style={{ marginLeft: 0 }}
       >
-        <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
+        {/* Top bar */}
+        <TopBar
+          onSearchOpen={() => setSearchOpen(true)}
+          onSidebarToggle={() => setSidebarOpen((v) => !v)}
+        />
 
-          {/* Logo */}
-          <NavLink to="/" className="flex items-center gap-3 no-underline group">
-            <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-              <path
-                d="M14 2 L24 8 L24 20 L14 26 L4 20 L4 8 Z"
-                stroke="#f0a020"
-                strokeWidth="1.2"
-                fill="rgba(240,160,32,0.07)"
-              />
-              <path
-                d="M14 9 L19 14 L14 21 L9 14 Z"
-                fill="#f0a020"
-                opacity="0.85"
-              />
-              <circle cx="14" cy="14" r="2.5" fill="#ffb83f" />
-              <circle cx="14" cy="14" r="5" fill="none" stroke="#f0a020" strokeWidth="0.5" opacity="0.4" />
-            </svg>
-            <span
-              className="font-display text-lg font-bold tracking-[0.18em] text-forge-amber group-hover:text-forge-amber-hot transition-colors"
-              style={{ textShadow: "0 0 20px rgba(240,160,32,0.35)" }}
-            >
-              THE FORGE
+        {/* Page content */}
+        <main className="flex-1 overflow-x-hidden px-6 py-8">
+          <div className="mx-auto max-w-7xl">
+            <Outlet />
+          </div>
+        </main>
+
+        {/* Footer */}
+        <footer className="border-t border-forge-border py-4 px-6 shrink-0">
+          <div className="mx-auto max-w-7xl flex items-center justify-between">
+            <span className="font-mono text-xs text-forge-dim">
+              The Forge — Last Epoch Build Analyzer
             </span>
-          </NavLink>
-
-          {/* Nav links */}
-          <ul className="flex items-center gap-1 list-none">
-            {NAV_LINKS.map(({ to, label }) => (
-              <li key={to}>
-                <NavLink
-                  to={to}
-                  className={({ isActive }) =>
-                    `font-mono text-xs tracking-widest uppercase transition-all no-underline px-3 py-2 rounded-sm ${
-                      isActive
-                        ? "text-forge-cyan bg-forge-cyan/8 border border-forge-cyan/30"
-                        : "text-forge-muted hover:text-forge-text hover:bg-forge-surface2"
-                    }`
-                  }
-                >
-                  {label}
-                </NavLink>
-              </li>
-            ))}
-          </ul>
-
-          {/* Auth */}
-          <div className="flex items-center gap-3">
-            {user ? (
-              <>
-                <Link to="/profile" className="flex items-center gap-2.5 no-underline group">
-                  {user.avatar_url ? (
-                    <img
-                      src={user.avatar_url}
-                      alt={user.username}
-                      className="h-8 w-8 rounded-full border border-forge-border group-hover:border-forge-amber transition-colors"
-                      style={{ boxShadow: "0 0 8px rgba(240,160,32,0)" }}
-                    />
-                  ) : (
-                    <div className="h-8 w-8 rounded-full border border-forge-border bg-forge-surface3 flex items-center justify-center group-hover:border-forge-amber transition-colors">
-                      <span className="font-display text-xs font-bold text-forge-amber">
-                        {user.username[0].toUpperCase()}
-                      </span>
-                    </div>
-                  )}
-                  <span className="font-mono text-xs text-forge-muted group-hover:text-forge-amber transition-colors">
-                    {user.username}
-                  </span>
-                </Link>
-                <button
-                  onClick={handleLogout}
-                  className="font-mono text-xs uppercase tracking-widest text-forge-dim hover:text-forge-red transition-colors border-none bg-transparent cursor-pointer"
-                >
-                  Logout
-                </button>
-              </>
-            ) : (
-              <a
-                href="http://localhost:5000/api/auth/discord"
-                className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-4 py-2 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
-              >
-                Sign In
-              </a>
+            {version && (
+              <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
+                <span className="text-forge-muted">v{version.version}</span>
+                <span className="text-forge-border">·</span>
+                <span title={`git ${version.commit}`} className="text-forge-dim">
+                  {version.commit}
+                </span>
+                <span className="text-forge-border">·</span>
+                <span title="Last Epoch patch" className="text-forge-amber/60">
+                  patch {version.current_patch}
+                </span>
+              </span>
             )}
           </div>
-        </div>
-      </nav>
+        </footer>
+      </div>
 
-      {/* Page content */}
-      <main className="mx-auto max-w-7xl px-6 py-8">
-        <Outlet />
-      </main>
+      {/* Global search modal */}
+      <GlobalSearch isOpen={searchOpen} onClose={() => setSearchOpen(false)} />
     </div>
   );
 }
+
+// Suppress unused import warnings — these are exported for consumers
+export { SIDEBAR_WIDTH_COLLAPSED, SIDEBAR_WIDTH_EXPANDED };

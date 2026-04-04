@@ -2,17 +2,17 @@ import { useState, useEffect, useMemo } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
-import { Panel, Button, RiskBar, SectionLabel, Spinner } from "@/components/ui";
+import { Panel, Button, SectionLabel, Spinner } from "@/components/ui";
 import {
-  fractureRiskPct, successPct, riskLevel, optimalPath, simulateSequence,
-  compareStrategies, instabilityColor, MAX_INSTABILITY, fpCost, RISK_COLORS,
+  optimalPath, simulateSequence,
+  compareStrategies, fpCost, FP_COSTS,
 } from "@/lib/crafting";
 import { useCraftStore } from "@/store";
-import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary } from "@/hooks";
+import { useCreateCraftSession, useCraftSession, useCraftAction, useCraftSummary, useAffixes, useBaseItems, useFpRanges } from "@/hooks";
 import { useAuthStore } from "@/store";
 import type {
-  CraftAffix, CraftAction, CraftOutcome,
-  OptimalPathStep, SimulationResult, StrategyComparison,
+  CraftAffix, CraftAction, CraftOutcome, AffixDef,
+  OptimalPathStep, SimulationResult, LocalSimulationResult, StrategyComparison,
 } from "@/types";
 
 // ---------------------------------------------------------------------------
@@ -23,7 +23,10 @@ const ITEM_TYPES = [
   "Wand","Staff","Sword","Axe","Dagger","Sceptre","Mace","Bow",
   "Shield","Helm","Chest","Gloves","Boots","Belt","Ring","Amulet",
 ];
-const RARITIES = ["Normal","Magic","Rare","Exalted","Unique"];
+import { ITEM_RARITIES } from "@constants";
+
+// Crafting excludes Legendary (not craftable)
+const RARITIES = ITEM_RARITIES.filter((r) => r !== "Legendary");
 const TIERS = [1,2,3,4,5];
 const COMMON_AFFIXES = [
   "Cast Speed","Necrotic Damage","Spell Damage","Minion Damage",
@@ -40,10 +43,25 @@ const ACTION_LABELS: Record<CraftAction, string> = {
   remove_affix:  "Remove Affix",
 };
 
-const ACTION_FP: Record<CraftAction, number> = {
-  add_affix: 4, upgrade_affix: 5, seal_affix: 8,
-  unseal_affix: 2, remove_affix: 3,
+// FP cost ranges loaded from crafting_rules.json (mirrored here for local sim).
+// These match /data/crafting_rules.json exactly — update both if costs change.
+const FP_COST_RANGES: Record<CraftAction, [number, number]> = {
+  add_affix:     [2, 6],
+  upgrade_affix: [1, 5],
+  seal_affix:    [4, 12],
+  unseal_affix:  [1, 3],
+  remove_affix:  [2, 8],
 };
+
+function rollFpCost(action: CraftAction): number {
+  const [lo, hi] = FP_COST_RANGES[action];
+  return Math.floor(Math.random() * (hi - lo + 1)) + lo;
+}
+
+// Expected (mean) FP cost — used for UI display
+const ACTION_FP: Record<CraftAction, number> = Object.fromEntries(
+  Object.entries(FP_COST_RANGES).map(([k, [lo, hi]]) => [k, Math.round((lo + hi) / 2)])
+) as Record<CraftAction, number>;
 
 // ---------------------------------------------------------------------------
 // Types
@@ -54,8 +72,6 @@ interface LogEntry {
   message: string;
   outcome: CraftOutcome | "info";
   roll?: number;
-  riskPct?: number;
-  instabilityAfter?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -67,91 +83,56 @@ function localSimulate(
   action: CraftAction,
   affixName: string | undefined,
   targetTier: number | undefined,
-  instability: number,
   fp: number,
   affixes: CraftAffix[],
-  isFractured: boolean,
 ): {
-  outcome: CraftOutcome | "error";
+  outcome: CraftOutcome;
   message: string;
-  newInstability: number;
   newFp: number;
   newAffixes: CraftAffix[];
   roll: number;
-  riskPct: number;
 } {
-  if (isFractured) return {
-    outcome: "error", message: "Item is fractured.", roll: 0, riskPct: 0,
-    newInstability: instability, newFp: fp, newAffixes: affixes,
-  };
-
-  const cost = ACTION_FP[action];
+  // Roll random FP cost (mirrors backend fp_engine.roll_fp_cost)
+  const cost = rollFpCost(action);
   if (fp < cost) return {
-    outcome: "error",
+    outcome: "success", // In modern LE, insufficient FP just means can't craft
     message: `Not enough Forge Potential. Need ${cost} FP, have ${fp}.`,
-    roll: 0, riskPct: 0,
-    newInstability: instability, newFp: fp, newAffixes: affixes,
+    roll: 0,
+    newFp: fp,
+    newAffixes: affixes,
   };
 
-  const sealedCount = affixes.filter((a) => a.sealed).length;
-  const riskPct = fractureRiskPct(instability, sealedCount);
-  const roll = Math.random() * 100;
-  const fractured = roll < riskPct;
-
-  let instGain = 0;
-  let outcome: CraftOutcome;
-
-  if (fractured) {
-    outcome = "fracture";
-    instGain = 0;
-  } else if (roll > 95) {
-    outcome = "perfect";
-    instGain = Math.floor(Math.random() * 3) + 1;
-  } else {
-    outcome = "success";
-    const gainRanges: Record<CraftAction, [number, number]> = {
-      add_affix: [3, 7], upgrade_affix: [4, 10], seal_affix: [0, 0],
-      unseal_affix: [1, 3], remove_affix: [2, 5],
-    };
-    const [lo, hi] = gainRanges[action];
-    instGain = lo === hi ? lo : Math.floor(Math.random() * (hi - lo + 1)) + lo;
-  }
-
-  const newInstability = Math.min(MAX_INSTABILITY, instability + instGain);
+  // In modern Last Epoch, all successful crafts are "success" (no quality distinction)
+  const outcome: CraftOutcome = "success";
   const newFp = fp - cost;
 
   let newAffixes = [...affixes];
-  if (!fractured) {
-    if (action === "add_affix" && affixName && newAffixes.length < 4) {
-      newAffixes.push({ name: affixName, tier: targetTier ?? 1, sealed: false });
-    } else if (action === "upgrade_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName && !a.sealed
-          ? { ...a, tier: Math.min(5, a.tier + 1) }
-          : a
-      );
-    } else if (action === "seal_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName ? { ...a, sealed: true } : a
-      );
-    } else if (action === "unseal_affix" && affixName) {
-      newAffixes = newAffixes.map((a) =>
-        a.name === affixName ? { ...a, sealed: false } : a
-      );
-    } else if (action === "remove_affix" && affixName) {
-      newAffixes = newAffixes.filter((a) => a.name !== affixName);
-    }
+  if (action === "add_affix" && affixName && newAffixes.filter((a) => !a.sealed).length < 4) {
+    newAffixes.push({ name: affixName, tier: targetTier ?? 1, sealed: false });
+  } else if (action === "upgrade_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName && !a.sealed
+        ? { ...a, tier: Math.min(5, a.tier + 1) }
+        : a
+    );
+  } else if (action === "seal_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName ? { ...a, sealed: true } : a
+    );
+  } else if (action === "unseal_affix" && affixName) {
+    newAffixes = newAffixes.map((a) =>
+      a.name === affixName ? { ...a, sealed: false } : a
+    );
+  } else if (action === "remove_affix" && affixName) {
+    newAffixes = newAffixes.filter((a) => a.name !== affixName);
   }
 
-  const messages: Record<CraftOutcome, string> = {
-    success: `${ACTION_LABELS[action]} succeeded. +${instGain} instability.`,
-    perfect: `Perfect craft! ${ACTION_LABELS[action]} with minimal instability gain (+${instGain}).`,
-    fracture: `Item fractured! Roll: ${roll.toFixed(1)} vs ${riskPct.toFixed(1)}% threshold.`,
-  };
-
   return {
-    outcome, message: messages[outcome], roll: parseFloat(roll.toFixed(2)),
-    riskPct, newInstability, newFp, newAffixes,
+    outcome,
+    message: "Success!",
+    newFp,
+    newAffixes,
+    roll: null, // No rolls in FP-only system
   };
 }
 
@@ -294,49 +275,96 @@ function OutcomePredictorPanel({
   simResult,
 }: {
   optPath: OptimalPathStep[];
-  simResult: SimulationResult;
+  simResult: LocalSimulationResult;
 }) {
-  const brickPct = Math.round(simResult.brick_chance * 1000) / 10;
-  const perfectPct = Math.round(simResult.perfect_item_chance * 1000) / 10;
-
   return (
-    <Panel title="Outcome Predictor">
+    <Panel title="Crafting Statistics">
       <div className="flex flex-col gap-3">
-        {/* Survival curve */}
+        {/* FP Consumption stats */}
         <div>
-          <SectionLabel>Survival Curve</SectionLabel>
-          <SurvivalCurve curve={simResult.step_survival_curve} steps={optPath} />
+          <SectionLabel>FP Consumption</SectionLabel>
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p25}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                25th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p50}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                50th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-amber block">
+                {simResult.fp_consumed.p75}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                75th %
+              </span>
+            </div>
+          </div>
+        </div>
+
+        {/* Steps Completed stats */}
+        <div>
+          <SectionLabel>Steps Completed</SectionLabel>
+          <div className="grid grid-cols-3 gap-2 mt-2">
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p25}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                25th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p50}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                50th %
+              </span>
+            </div>
+            <div className="text-center py-2 border border-forge-border rounded-sm">
+              <span className="font-display text-lg font-bold text-forge-green block">
+                {simResult.steps_completed.p75}
+              </span>
+              <span className="font-mono text-[11px] uppercase tracking-wider text-forge-dim">
+                75th %
+              </span>
+            </div>
+          </div>
         </div>
 
         {/* Summary stats */}
         <div className="grid grid-cols-2 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
           <div className="bg-forge-surface text-center py-3 px-2">
-            <span
-              className="font-display text-xl font-bold block mb-0.5"
-              style={{ color: brickPct < 20 ? "#3dca74" : brickPct < 40 ? "#f0a020" : "#ff5050" }}
-            >
-              {brickPct.toFixed(1)}%
+            <span className="font-display text-xl font-bold block mb-0.5 text-forge-green">
+              {optPath.length}
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-forge-dim">
-              Brick Chance
+              Total Steps
             </span>
           </div>
           <div className="bg-forge-surface text-center py-3 px-2">
-            <span
-              className="font-display text-xl font-bold block mb-0.5"
-              style={{ color: perfectPct >= 75 ? "#3dca74" : perfectPct >= 50 ? "#f0a020" : "#ff5050" }}
-            >
-              {perfectPct.toFixed(1)}%
+            <span className="font-display text-xl font-bold block mb-0.5 text-forge-amber">
+              {optPath.reduce((sum, step) => sum + (FP_COSTS[step.action as keyof typeof FP_COSTS] ?? 0), 0)}
             </span>
             <span className="font-mono text-[11px] uppercase tracking-[0.18em] text-forge-dim">
-              Perfect Item Chance
+              Total FP Cost
             </span>
           </div>
         </div>
 
         {simResult.n_simulations > 0 && (
           <p className="font-mono text-[11px] text-forge-dim text-center">
-            {simResult.n_simulations.toLocaleString()} simulations · median instability: {simResult.median_instability}
+            {simResult.n_simulations.toLocaleString()} simulations
           </p>
         )}
       </div>
@@ -351,7 +379,7 @@ function OutcomePredictorPanel({
 function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
   if (steps.length === 0) {
     return (
-      <Panel title="Optimal Craft Path">
+      <Panel title="Recommended Next Steps">
         <p className="font-body text-sm italic text-forge-dim py-1 text-center">
           No upgrades needed — all affixes at T4 or sealed.
         </p>
@@ -360,16 +388,20 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
   }
 
   return (
-    <Panel title="Optimal Craft Path">
+    <Panel
+      title="Recommended Next Steps"
+      action={
+        <span className="font-mono text-[10px] text-forge-dim italic">updates as you craft</span>
+      }
+    >
       <div className="flex flex-col">
         {steps.map((step, i) => {
-          const rl = riskLevel(step.risk_pct);
           const isSeal = step.action === "seal_affix";
           return (
             <div
               key={i}
               className="grid gap-2 py-2 border-b border-forge-border/40 last:border-b-0"
-              style={{ gridTemplateColumns: "20px 1fr 52px 60px" }}
+              style={{ gridTemplateColumns: "20px 1fr 60px" }}
             >
               {/* Step number */}
               <span className="font-display text-xs font-bold text-forge-amber self-start pt-0.5">
@@ -389,31 +421,12 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
                 </div>
               </div>
 
-              {/* Risk at step */}
-              <div className="text-right self-start pt-0.5">
-                <span className={clsx(
-                  "font-mono text-[11px] px-1 py-0.5 border rounded-sm",
-                  isSeal ? "text-forge-green border-forge-green/40" :
-                  rl === "safe" ? "text-forge-green border-forge-green/40" :
-                  rl === "moderate" ? "text-forge-amber border-forge-amber/40" :
-                  "text-forge-red border-forge-red/40"
-                )}>
-                  {isSeal ? "0%" : `~${step.risk_pct.toFixed(0)}%`}
-                </span>
-              </div>
-
               {/* Cumulative survival */}
               <div className="text-right self-start pt-0.5">
-                <span
-                  className="font-mono text-[11px]"
-                  style={{
-                    color: step.cumulative_survival_pct >= 70 ? "#3dca74" :
-                           step.cumulative_survival_pct >= 40 ? "#f0a020" : "#ff5050",
-                  }}
-                >
-                  {step.cumulative_survival_pct.toFixed(1)}%
+                <span className="font-mono text-[11px] text-forge-green">
+                  {step.cumulative_survival_pct?.toFixed(1)}%
                 </span>
-                <div className="font-mono text-[7px] text-forge-dim">survival</div>
+                <div className="font-mono text-[7px] text-forge-dim">success</div>
               </div>
             </div>
           );
@@ -426,15 +439,8 @@ function OptimalPathPanel({ steps }: { steps: OptimalPathStep[] }) {
           <span className="font-mono text-[11px] text-forge-dim uppercase tracking-wider">
             {steps.length} steps · {steps.reduce((s, step) => s + fpCost(step.action), 0)} FP total
           </span>
-          <span
-            className="font-mono text-[11px]"
-            style={{
-              color: (steps[steps.length - 1]?.cumulative_survival_pct ?? 100) >= 70
-                ? "#3dca74"
-                : "#f0a020",
-            }}
-          >
-            {(steps[steps.length - 1]?.cumulative_survival_pct ?? 100).toFixed(1)}% overall survival
+          <span className="font-mono text-[11px] text-forge-green">
+            100% success rate
           </span>
         </div>
       )}
@@ -452,7 +458,7 @@ function StrategyComparisonPanel({
   strategies: StrategyComparison[];
 }) {
   const recommended = strategies.reduce((best, s) =>
-    s.perfect_item_chance > best.perfect_item_chance ? s : best,
+    s.expected_fp_cost < best.expected_fp_cost ? s : best,
     strategies[0],
   );
 
@@ -461,8 +467,6 @@ function StrategyComparisonPanel({
       <div className="grid grid-cols-3 gap-2">
         {strategies.map((s) => {
           const isRec = s.name === recommended?.name;
-          const brickPct = Math.round(s.brick_chance * 1000) / 10;
-          const perfectPct = Math.round(s.perfect_item_chance * 1000) / 10;
 
           return (
             <div
@@ -494,32 +498,26 @@ function StrategyComparisonPanel({
 
               <div className="grid grid-cols-2 gap-1 mt-1">
                 <div>
-                  <div
-                    className="font-display text-sm font-bold"
-                    style={{ color: perfectPct >= 75 ? "#3dca74" : perfectPct >= 50 ? "#f0a020" : "#ff5050" }}
-                  >
-                    {perfectPct.toFixed(0)}%
+                  <div className="font-display text-sm font-bold text-forge-green">
+                    {s.expected_steps}
                   </div>
                   <div className="font-mono text-[7px] text-forge-dim uppercase tracking-wider">
-                    Perfect
+                    Steps
                   </div>
                 </div>
                 <div>
-                  <div
-                    className="font-display text-sm font-bold"
-                    style={{ color: brickPct < 15 ? "#3dca74" : brickPct < 35 ? "#f0a020" : "#ff5050" }}
-                  >
-                    {brickPct.toFixed(0)}%
+                  <div className="font-display text-sm font-bold text-forge-amber">
+                    {s.expected_fp_cost}
                   </div>
                   <div className="font-mono text-[7px] text-forge-dim uppercase tracking-wider">
-                    Brick
+                    FP Cost
                   </div>
                 </div>
               </div>
 
               {s.expected_steps > 0 && (
                 <div className="font-mono text-[11px] text-forge-dim border-t border-forge-border/40 pt-1.5">
-                  {s.expected_steps} steps · {s.expected_fp_cost} FP
+                  100% success rate
                 </div>
               )}
             </div>
@@ -537,37 +535,57 @@ function StrategyComparisonPanel({
 interface ActionPanelProps {
   affixes: CraftAffix[];
   fp: number;
-  isFractured: boolean;
   isLive: boolean;
   isPending: boolean;
-  onAction: (action: CraftAction, affixName?: string, targetTier?: number) => void;
+  itemType: string;
+  onAction: (action: CraftAction, affixName?: string, targetTier?: number, affixType?: "prefix" | "suffix") => void;
 }
 
-function ActionPanel({ affixes, fp, isFractured, isLive, isPending, onAction }: ActionPanelProps) {
+function ActionPanel({ affixes, fp, isLive, isPending, itemType, onAction }: ActionPanelProps) {
   const [action, setAction] = useState<CraftAction>("upgrade_affix");
-  const [targetAffix, setTargetAffix] = useState(affixes[0]?.name ?? "");
-  const [newAffixName, setNewAffixName] = useState(COMMON_AFFIXES[0]);
+  const [targetAffix, setTargetAffix] = useState(Array.isArray(affixes) && affixes[0]?.name ? affixes[0].name : "");
   const [targetTier, setTargetTier] = useState(1);
+  const [affixFilter, setAffixFilter] = useState<"prefix" | "suffix" | "experimental" | "personal" | "">("");
+
+  // Fetch real affixes from the backend, filtered by item slot
+  const { data: affixRes, isPending: affixesPending, isError: affixesError } = useAffixes({ slot: itemType.toLowerCase() });
+  const availableAffixes: AffixDef[] = affixRes?.data ?? [];
+
+  // Slot counts — sealed affixes don't count toward prefix/suffix limits
+  const safeAffixes = Array.isArray(affixes) ? affixes : [];
+  const prefixCount = safeAffixes.filter((a) => a.type === "prefix" && !a.sealed).length;
+  const suffixCount = safeAffixes.filter((a) => a.type === "suffix" && !a.sealed).length;
+  const sealedCount = safeAffixes.filter((a) => a.sealed).length;
+
+  // The affix name selected for add_affix — defaults to first available
+  const [newAffixName, setNewAffixName] = useState("");
+  useEffect(() => {
+    if (!newAffixName && availableAffixes.length > 0) {
+      setNewAffixName(availableAffixes[0].name);
+    }
+  }, [availableAffixes]);
 
   useEffect(() => {
-    if (affixes.length > 0 && !affixes.find((a) => a.name === targetAffix)) {
-      setTargetAffix(affixes[0].name);
+    if (safeAffixes.length > 0 && !safeAffixes.find((a) => a.name === targetAffix)) {
+      setTargetAffix(safeAffixes[0].name);
     }
-  }, [affixes]);
+  }, [safeAffixes, targetAffix]);
 
-  const cost = ACTION_FP[action];
-  const canAct = !isFractured && fp >= cost && !isPending;
+  // canAct: enabled if fp covers at least the minimum possible roll
+  const [minCost] = FP_COST_RANGES[action];
+  const canAct = fp >= minCost && !isPending;
 
   const needsExistingAffix = action !== "add_affix";
   const affixOptions = action === "seal_affix"
-    ? affixes.filter((a) => !a.sealed)
+    ? safeAffixes.filter((a) => !a.sealed)
     : action === "unseal_affix"
-    ? affixes.filter((a) => a.sealed)
-    : affixes;
+    ? safeAffixes.filter((a) => a.sealed)
+    : safeAffixes;
 
   function handleSubmit() {
     if (action === "add_affix") {
-      onAction(action, newAffixName, targetTier);
+      const def = availableAffixes.find((a) => a.name === newAffixName);
+      onAction(action, newAffixName, targetTier, def?.type);
     } else {
       onAction(action, targetAffix);
     }
@@ -591,34 +609,157 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, onAction }: 
                 )}
               >
                 <span className="block">{ACTION_LABELS[a]}</span>
-                <span className="text-forge-dim font-mono text-[11px]">{ACTION_FP[a]} FP</span>
+                <span className="text-forge-dim font-mono text-[11px]">{FP_COST_RANGES[a][0]}–{FP_COST_RANGES[a][1]} FP</span>
               </button>
             ))}
           </div>
         </div>
 
         {action === "add_affix" ? (
-          <div className="grid grid-cols-2 gap-2">
-            <div>
-              <SectionLabel>Affix</SectionLabel>
-              <select
-                className="w-full bg-forge-surface2 border border-forge-border text-forge-text font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber"
-                value={newAffixName}
-                onChange={(e) => setNewAffixName(e.target.value)}
-              >
-                {COMMON_AFFIXES.map((a) => <option key={a}>{a}</option>)}
-              </select>
+          <div className="flex flex-col gap-3">
+            {/* Slot capacity indicator */}
+            <div className="grid grid-cols-2 gap-2 rounded-sm border border-forge-border bg-forge-bg px-3 py-2">
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Prefix</div>
+                <div className={`font-display text-lg ${prefixCount >= 2 ? "text-red-400" : "text-forge-text"}`}>
+                  {prefixCount} <span className="text-forge-dim text-sm">/ 2</span>
+                </div>
+              </div>
+              <div>
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Suffix</div>
+                <div className={`font-display text-lg ${suffixCount >= 2 ? "text-red-400" : "text-forge-text"}`}>
+                  {suffixCount} <span className="text-forge-dim text-sm">/ 2</span>
+                </div>
+              </div>
             </div>
+
+            {/* Filter bar */}
+            <div className="flex flex-col gap-1">
+              <SectionLabel>Add Affix</SectionLabel>
+              <div className="flex flex-wrap gap-1">
+                {([
+                  { key: "", label: "All" },
+                  { key: "prefix", label: "Prefix" },
+                  { key: "suffix", label: "Suffix" },
+                  { key: "experimental", label: "Experimental" },
+                  { key: "personal", label: "Personal" },
+                ] as const).map(({ key, label }) => {
+                  const full = key === "prefix" ? prefixCount >= 2 : key === "suffix" ? suffixCount >= 2 : false;
+                  return (
+                    <button
+                      key={key || "all"}
+                      type="button"
+                      onClick={() => setAffixFilter(key)}
+                      disabled={full}
+                      className={`px-2 py-0.5 rounded-sm font-mono text-[10px] uppercase border transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                        affixFilter === key
+                          ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
+                          : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                      }`}
+                    >
+                      {label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            {/* Clickable affix grid */}
+            <div className="max-h-40 overflow-y-auto rounded-sm border border-forge-border bg-forge-bg p-1">
+              {affixesPending ? (
+                <p className="p-2 font-mono text-xs text-forge-dim italic">Loading affixes…</p>
+              ) : affixesError ? (
+                <p className="p-2 font-mono text-xs text-forge-red italic">Failed to load affixes. Is the server running?</p>
+              ) : availableAffixes.length === 0 ? (
+                <p className="p-2 font-mono text-xs text-forge-dim italic">No affixes found for {itemType}.</p>
+              ) : (
+                <div className="flex flex-col gap-0.5">
+                  {availableAffixes
+                    .filter((a) => {
+                      if (!affixFilter) return true;
+                      if (affixFilter === "experimental" || affixFilter === "personal") {
+                        return (a.tags ?? []).includes(affixFilter);
+                      }
+                      return a.type === affixFilter && !(a.tags ?? []).includes("experimental") && !(a.tags ?? []).includes("personal");
+                    })
+                    .filter((a) => !safeAffixes.find((ex) => ex.name === a.name))
+                    .map((a) => {
+                      const slotFull = (a.type === "prefix" && prefixCount >= 2) || (a.type === "suffix" && suffixCount >= 2);
+                      // Label: show experimental/personal tag if present, else type
+                      const specialTag = (a.tags ?? []).find((t) => t === "experimental" || t === "personal");
+                      const label = specialTag ?? a.type;
+                      const labelColor = specialTag === "experimental"
+                        ? "text-yellow-400"
+                        : specialTag === "personal"
+                        ? "text-emerald-400"
+                        : a.type === "prefix"
+                        ? "text-blue-400"
+                        : "text-purple-400";
+                      return (
+                        <button
+                          key={a.id}
+                          type="button"
+                          disabled={slotFull}
+                          onClick={() => !slotFull && setNewAffixName(a.name)}
+                          className={`flex items-center justify-between w-full px-2 py-1 rounded-sm text-left transition-colors disabled:opacity-40 disabled:cursor-not-allowed ${
+                            newAffixName === a.name
+                              ? "bg-forge-amber/20 border border-forge-amber/40 text-forge-amber"
+                              : slotFull
+                              ? "border border-transparent text-forge-dim"
+                              : "hover:bg-forge-surface2 text-forge-text border border-transparent"
+                          }`}
+                        >
+                          <span className="font-body text-xs">{a.name}</span>
+                          <span className={`font-mono text-[9px] uppercase ${labelColor}`}>
+                            {slotFull ? "full" : label}
+                          </span>
+                        </button>
+                      );
+                    })}
+                </div>
+              )}
+            </div>
+
+            {/* Tier picker */}
             <div>
               <SectionLabel>Starting Tier</SectionLabel>
-              <select
-                className="w-full bg-forge-surface2 border border-forge-border text-forge-text font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber"
-                value={targetTier}
-                onChange={(e) => setTargetTier(Number(e.target.value))}
-              >
-                {TIERS.map((t) => <option key={t} value={t}>T{t}</option>)}
-              </select>
+              <div className="mt-1 flex gap-1">
+                {TIERS.map((t) => (
+                  <button
+                    key={t}
+                    type="button"
+                    onClick={() => setTargetTier(t)}
+                    className={`flex-1 py-1 rounded-sm font-mono text-xs border transition-colors ${
+                      targetTier === t
+                        ? "border-forge-amber bg-forge-amber/15 text-forge-amber"
+                        : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                    }`}
+                  >
+                    T{t}
+                  </button>
+                ))}
+              </div>
             </div>
+
+            {/* Selected affixes on this item */}
+            {Array.isArray(affixes) && affixes.length > 0 && (
+              <div>
+                <SectionLabel>Selected Affixes</SectionLabel>
+                <div className="mt-1 flex flex-col gap-0.5">
+                  {affixes.map((a) => (
+                    <div
+                      key={a.name}
+                      className="flex items-center justify-between rounded-sm border border-forge-border bg-forge-surface2 px-2 py-1"
+                    >
+                      <span className="font-body text-xs text-forge-text">{a.name}</span>
+                      <span className="font-mono text-[10px] text-forge-dim">
+                        T{a.tier}{a.sealed ? " · 🔒" : ""}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         ) : (
           <div>
@@ -644,19 +785,19 @@ function ActionPanel({ affixes, fp, isFractured, isLive, isPending, onAction }: 
         )}
 
         <div className="flex justify-between font-mono text-[11px] uppercase tracking-wider">
-          <span className="text-forge-dim">FP Required</span>
-          <span className={fp >= cost ? "text-forge-green" : "text-forge-red"}>
-            {cost} / {fp} available
+          <span className="text-forge-dim">FP Cost Range</span>
+          <span className={fp >= FP_COST_RANGES[action][0] ? "text-forge-green" : "text-forge-red"}>
+            {FP_COST_RANGES[action][0]}–{FP_COST_RANGES[action][1]} / {fp} available
           </span>
         </div>
 
         <Button
-          variant={isFractured ? "danger" : "primary"}
+          variant="primary"
           className="w-full"
           disabled={!canAct || (needsExistingAffix && affixOptions.length === 0)}
           onClick={handleSubmit}
         >
-          {isPending ? "Forging..." : isFractured ? "Item Fractured" : `${ACTION_LABELS[action]}`}
+          {isPending ? "Forging..." : `${ACTION_LABELS[action]}`}
         </Button>
 
         {!isLive && (
@@ -694,7 +835,7 @@ function AffixList({
         </button>
       ) : undefined
     }>
-      {affixes.length === 0 ? (
+      {(!Array.isArray(affixes) || affixes.length === 0) ? (
         <p className="font-body text-sm italic text-forge-dim text-center py-2">
           No affixes — use the Action panel to add one
         </p>
@@ -762,34 +903,35 @@ export default function CraftSimulatorPage() {
   const store = useCraftStore();
   const createSession = useCreateCraftSession();
   const craftAction = useCraftAction();
+  const { data: baseItemsRes } = useBaseItems();
+  const baseItems = baseItemsRes?.data ?? {};
+  const { data: fpRangesRes } = useFpRanges();
+  const fpRanges = fpRangesRes?.data ?? {};
 
   const { data: sessionRes, isLoading: sessionLoading } = useCraftSession(slug ?? "");
   const { data: summaryRes } = useCraftSummary(slug ?? "");
 
   const [log, setLog] = useState<LogEntry[]>([]);
   const [copied, setCopied] = useState(false);
+  const [fpMode, setFpMode] = useState<"random" | "manual">("random");
+  const [manualFp, setManualFp] = useState<number | "">("");
 
   const isLive = Boolean(slug);
   const session = sessionRes?.data;
   const summary = summaryRes?.data;
 
-  const instability = isLive ? (session?.instability ?? 0) : store.instability;
   const fp = isLive ? (session?.forge_potential ?? 0) : store.forgePotential;
-  const affixes: CraftAffix[] = isLive ? (session?.affixes ?? []) : store.affixes;
-  const isFractured = isLive ? (session?.is_fractured ?? false) : store.isFractured;
+  const affixes: CraftAffix[] = isLive ? (session?.affixes ?? []) : (store.affixes ?? []);
 
-  const sealedCount = affixes.filter((a) => a.sealed).length;
-  const riskPct = fractureRiskPct(instability, sealedCount);
-  const successP = successPct(instability, sealedCount);
-  const rl = riskLevel(riskPct);
+  const sealedCount = Array.isArray(affixes) ? affixes.filter((a) => a.sealed).length : 0;
 
   // ---------------------------------------------------------------------------
   // Prediction data — from backend (live) or computed locally (local mode)
   // ---------------------------------------------------------------------------
 
   const localOptPath = useMemo(
-    () => optimalPath(instability, affixes, fp),
-    [instability, fp, affixes],
+    () => optimalPath(Array.isArray(affixes) ? affixes : [], fp),
+    [fp, affixes],
   );
 
   const localSimResult = useMemo(() => {
@@ -799,20 +941,17 @@ export default function CraftSimulatorPage() {
     }));
     if (simSteps.length === 0) {
       return {
-        brick_chance: 0,
-        perfect_item_chance: 1,
-        step_survival_curve: [],
-        step_fracture_rates: [],
-        median_instability: instability,
+        fp_consumed: { p25: 0, p50: 0, p75: 0 },
+        steps_completed: { p25: 0, p50: 0, p75: 0 },
         n_simulations: 0,
       };
     }
-    return simulateSequence(instability, fp, simSteps, 3_000);
-  }, [localOptPath, instability, fp]);
+    return simulateSequence(fp, simSteps, 3_000);
+  }, [localOptPath, fp]);
 
   const localStrategies = useMemo(
-    () => compareStrategies(instability, affixes, fp),
-    [instability, fp, affixes],
+    () => compareStrategies(Array.isArray(affixes) ? affixes : [], fp),
+    [fp, affixes],
   );
 
   const optPath: OptimalPathStep[] = isLive
@@ -820,8 +959,8 @@ export default function CraftSimulatorPage() {
     : localOptPath;
 
   const simResult: SimulationResult = isLive
-    ? (summary?.simulation_result ?? localSimResult)
-    : localSimResult;
+    ? (summary?.simulation_result ?? { completion_chance: 1, step_survival_curve: [], n_simulations: 0 })
+    : { completion_chance: 1, step_survival_curve: [], n_simulations: localSimResult.n_simulations };
 
   const strategies: StrategyComparison[] = isLive
     ? (summary?.strategy_comparison ?? localStrategies)
@@ -838,7 +977,7 @@ export default function CraftSimulatorPage() {
     setLog((prev) => [{ ts, ...entry }, ...prev.slice(0, 14)]);
   }
 
-  async function handleAction(action: CraftAction, affixName?: string, targetTier?: number) {
+  async function handleAction(action: CraftAction, affixName?: string, targetTier?: number, affixType?: "prefix" | "suffix") {
     if (isLive && session) {
       const res = await craftAction.mutateAsync({ slug: slug!, action, affixName, targetTier });
       if (res.data) {
@@ -846,17 +985,32 @@ export default function CraftSimulatorPage() {
           message: res.data.message,
           outcome: res.data.outcome,
           roll: res.data.roll,
-          riskPct: res.data.fracture_risk_pct,
-          instabilityAfter: res.data.instability,
         });
-        if (res.data.is_fractured) store.setFractured(true);
       } else if (res.errors) {
         addLog({ message: res.errors[0].message, outcome: "info" });
       }
     } else {
+      // Enforce affix slot limits locally before simulating
+      if (action === "add_affix" && affixName) {
+        const prefixCount = store.affixes.filter((a) => a.type === "prefix" && !a.sealed).length;
+        const suffixCount = store.affixes.filter((a) => a.type === "suffix" && !a.sealed).length;
+        if (affixType === "prefix" && prefixCount >= 2) {
+          addLog({ message: "Prefix slots full (max 2 active prefixes).", outcome: "info" }); return;
+        }
+        if (affixType === "suffix" && suffixCount >= 2) {
+          addLog({ message: "Suffix slots full (max 2 active suffixes).", outcome: "info" }); return;
+        }
+      }
+      if (action === "seal_affix") {
+        const sealedCount = store.affixes.filter((a) => a.sealed).length;
+        if (sealedCount >= 1) {
+          addLog({ message: "Only 1 affix can be sealed at a time.", outcome: "info" }); return;
+        }
+      }
+
       const result = localSimulate(
         action, affixName, targetTier,
-        store.instability, store.forgePotential, store.affixes, store.isFractured,
+        store.forgePotential, store.affixes,
       );
 
       if (result.outcome === "error") {
@@ -864,17 +1018,18 @@ export default function CraftSimulatorPage() {
         return;
       }
 
-      store.setInstability(result.newInstability);
+      // Attach type to newly added affix
+      const newAffixes = result.newAffixes.map((a) =>
+        a.name === affixName && !a.type ? { ...a, type: affixType } : a
+      );
+
       store.setForgePotential(result.newFp);
-      store.setAffixes(result.newAffixes);
-      if (result.outcome === "fracture") store.setFractured(true);
+      store.setAffixes(newAffixes);
 
       addLog({
         message: result.message,
-        outcome: result.outcome as CraftOutcome,
+        outcome: result.outcome,
         roll: result.roll,
-        riskPct: result.riskPct,
-        instabilityAfter: result.newInstability,
       });
     }
   }
@@ -885,8 +1040,9 @@ export default function CraftSimulatorPage() {
       item_name: store.itemName || undefined,
       item_level: store.itemLevel,
       rarity: store.rarity,
-      instability: store.instability,
-      forge_potential: store.forgePotential,
+      // Use "fixed" mode so backend accepts the exact FP without rarity-range validation
+      fp_mode: "fixed",
+      manual_fp: store.forgePotential,
       affixes: store.affixes,
     });
     if (res.data) {
@@ -969,7 +1125,7 @@ export default function CraftSimulatorPage() {
         </div>
       </div>
 
-      <div className="grid gap-4" style={{ gridTemplateColumns: "300px 1fr" }}>
+      <div className="grid gap-4 lg:grid-cols-[300px_1fr]">
         {/* ── LEFT COLUMN ── */}
         <div className="flex flex-col gap-3">
 
@@ -1033,25 +1189,102 @@ export default function CraftSimulatorPage() {
             </div>
           </Panel>
 
-          {/* Instability panel */}
+          {/* Forge Potential panel */}
           <Panel title="Forge Potential">
             <div className="mb-3">
               <div className="flex justify-between items-baseline mb-1.5">
-                <span className="font-display text-xl font-bold" style={{ color: instabilityColor(instability) }}>
-                  {instability}
+                <span className="font-display text-xl font-bold text-forge-amber">
+                  {fp}
                 </span>
-                <span className="font-body text-sm text-forge-dim">/ {MAX_INSTABILITY} instability</span>
+                <span className="font-body text-sm text-forge-dim">FP remaining</span>
               </div>
-              <RiskBar pct={(instability / MAX_INSTABILITY) * 100} level={rl} />
               {!isLive && (
                 <input
-                  type="range" min={0} max={80} step={1}
-                  value={instability}
-                  onChange={(e) => store.setInstability(Number(e.target.value))}
+                  type="range" min={0} max={100} step={1}
+                  value={fp}
+                  onChange={(e) => store.setForgePotential(Number(e.target.value))}
                   className="w-full mt-2 accent-forge-amber"
                 />
               )}
             </div>
+
+            {/* FP range + mode selector (local only) */}
+            {!isLive && (() => {
+              const rarityKey = store.rarity.toLowerCase();
+              const rarityMeta = fpRanges[rarityKey];
+              const fpMin = rarityMeta?.min_fp ?? 20;
+              const fpMax = rarityMeta?.max_fp ?? 40;
+              const manualFpNum = typeof manualFp === "number" ? manualFp : null;
+              const manualValid = manualFpNum !== null && manualFpNum >= fpMin && manualFpNum <= fpMax;
+              return (
+                <div className="border-t border-forge-border pt-3 flex flex-col gap-2">
+                  {/* Range badge — driven by rarity */}
+                  <div className="flex items-center justify-between">
+                    <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">FP Range ({store.rarity})</span>
+                    <span className="font-mono text-xs text-forge-muted">{fpMin}–{fpMax}</span>
+                  </div>
+
+                  {/* Mode toggle */}
+                  <div className="flex gap-1">
+                    {(["random", "manual"] as const).map((m) => (
+                      <button
+                        key={m}
+                        type="button"
+                        onClick={() => setFpMode(m)}
+                        className={`flex-1 py-1 font-mono text-[10px] uppercase tracking-wider border rounded-sm transition-colors ${
+                          fpMode === m
+                            ? "border-forge-amber bg-forge-amber/10 text-forge-amber"
+                            : "border-forge-border text-forge-dim hover:border-forge-amber/50"
+                        }`}
+                      >
+                        {m}
+                      </button>
+                    ))}
+                  </div>
+
+                  {fpMode === "random" ? (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="w-full"
+                      onClick={() => {
+                        const rolled = Math.floor(Math.random() * (fpMax - fpMin + 1)) + fpMin;
+                        store.setForgePotential(rolled);
+                      }}
+                    >
+                      🎲 Randomize FP
+                    </Button>
+                  ) : (
+                    <div>
+                      <input
+                        type="number"
+                        min={fpMin}
+                        max={fpMax}
+                        value={manualFp}
+                        placeholder={`${fpMin}–${fpMax}`}
+                        onChange={(e) => {
+                          const v = e.target.value === "" ? "" : Number(e.target.value);
+                          setManualFp(v);
+                          if (typeof v === "number" && v >= fpMin && v <= fpMax) {
+                            store.setForgePotential(v);
+                          }
+                        }}
+                        className={`w-full bg-forge-surface2 border font-body text-sm px-2 py-1.5 rounded-sm outline-none focus:border-forge-amber ${
+                          manualFp !== "" && !manualValid
+                            ? "border-forge-red text-forge-red"
+                            : "border-forge-border text-forge-text"
+                        }`}
+                      />
+                      {manualFp !== "" && !manualValid && (
+                        <p className="font-mono text-[10px] text-forge-red mt-1">
+                          Must be {fpMin}–{fpMax}
+                        </p>
+                      )}
+                    </div>
+                  )}
+                </div>
+              );
+            })()}
 
             <div className="flex justify-between items-center py-2 border-t border-forge-border">
               <span className="font-mono text-xs uppercase tracking-wider text-forge-dim">
@@ -1070,22 +1303,16 @@ export default function CraftSimulatorPage() {
                 Sealed Affixes
               </span>
               <span className="font-display text-base font-bold text-forge-text">
-                {sealedCount} / {affixes.length}
+                {sealedCount} / 1
               </span>
             </div>
-
-            {isFractured && (
-              <div className="mt-2 border border-forge-red/40 bg-forge-red/8 rounded-sm px-3 py-2 text-forge-red font-mono text-xs tracking-wider uppercase text-center">
-                ⚠ Item Fractured
-              </div>
-            )}
           </Panel>
 
           {/* Affix list */}
           <AffixList
             affixes={affixes}
             disabled={isLive}
-            onAdd={() => store.addAffix({ name: COMMON_AFFIXES[0], tier: 1, sealed: false })}
+            onAdd={() => store.addAffix({ name: "Health", tier: 1, sealed: false })}
             onRemove={(name) => store.removeAffix(name)}
             onUpdate={(name, updates) => store.updateAffix(name, updates)}
           />
@@ -1094,13 +1321,12 @@ export default function CraftSimulatorPage() {
         {/* ── RIGHT COLUMN ── */}
         <div className="flex flex-col gap-3">
 
-          {/* Risk stat cards */}
-          <div className="grid grid-cols-4 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
+          {/* Craft Stats */}
+          <div className="grid grid-cols-3 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
             {[
-              { label: "Fracture Risk", value: `${riskPct.toFixed(1)}%`, color: RISK_COLORS[rl] },
-              { label: "Success Rate", value: `${successP.toFixed(1)}%`, color: "#3dca74" },
-              { label: "With 1 Seal", value: `${fractureRiskPct(instability, sealedCount + 1).toFixed(1)}%`, color: "#3dca74" },
               { label: "FP Remaining", value: `${fp}`, color: fp > 15 ? "#3dca74" : fp > 8 ? "#f0a020" : "#ff5050" },
+              { label: "Sealed Affixes", value: `${sealedCount}/1`, color: "#3dca74" },
+              { label: "Completion", value: `${Math.round((affixes.filter(a => a.tier >= 4).length / Math.max(affixes.length, 1)) * 100)}%`, color: "#3dca74" },
             ].map((card) => (
               <div key={card.label} className="bg-forge-surface text-center py-4 px-2">
                 <span className="font-display text-2xl font-bold block mb-1" style={{ color: card.color }}>
@@ -1118,20 +1344,78 @@ export default function CraftSimulatorPage() {
             <ActionPanel
               affixes={affixes}
               fp={fp}
-              isFractured={isFractured}
               isLive={isLive}
               isPending={craftAction.isPending || createSession.isPending}
+              itemType={isLive ? (session?.item_type ?? store.itemType) : store.itemType}
               onAction={handleAction}
             />
-            <OutcomePredictorPanel optPath={optPath} simResult={simResult} />
+            <OutcomePredictorPanel optPath={optPath} simResult={localSimResult} />
           </div>
 
           {/* Optimal path table */}
+          {optPath.length > 0 && (
+            <div className="rounded border border-forge-amber/40 bg-forge-amber/8 px-4 py-3 flex items-start gap-4">
+              <span className="text-xl">⚡</span>
+              <div className="min-w-0">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted mb-0.5">Smart Advisor · Your Next Action</div>
+                <div className="font-display text-sm font-bold text-forge-amber capitalize">
+                  {optPath[0].action.replace(/_/g, " ")} — {optPath[0].affix}
+                </div>
+                {optPath[0].note && (
+                  <p className="font-body text-xs text-forge-dim mt-0.5">{optPath[0].note}</p>
+                )}
+                <div className="font-mono text-[10px] text-forge-muted mt-1">
+                  Risk: {optPath[0].risk_pct.toFixed(1)}% · Survival after step: {optPath[0].cumulative_survival_pct.toFixed(1)}%
+                </div>
+              </div>
+            </div>
+          )}
           <OptimalPathPanel steps={optPath} />
 
           {/* Strategy comparison */}
           {strategies.length > 0 && (
             <StrategyComparisonPanel strategies={strategies} />
+          )}
+
+          {/* Craft Timeline - Live sessions only */}
+          {isLive && session?.steps && session.steps.length > 0 && (
+            <Panel title="Craft Timeline">
+              <div className="flex flex-col max-h-80 overflow-y-auto">
+                {session.steps.map((step, i) => (
+                  <div
+                    key={step.id}
+                    className="grid gap-2 py-3 border-b border-forge-border/40 last:border-b-0"
+                    style={{ gridTemplateColumns: "24px 1fr 60px" }}
+                  >
+                    {/* Step number */}
+                    <span className="font-display text-sm font-bold text-forge-amber self-start">
+                      {step.step_number}
+                    </span>
+
+                    {/* Action details */}
+                    <div className="min-w-0">
+                      <div className="font-body text-sm">
+                        {ACTION_LABELS[step.action]}
+                        {step.affix_name && (
+                          <span className="text-forge-dim"> · {step.affix_name}</span>
+                        )}
+                      </div>
+                      <div className="font-mono text-xs text-forge-dim mt-1">
+                        {step.outcome === "success" && "✓ Success"}
+                        {step.outcome === "perfect" && "★ Perfect"}
+                      </div>
+                    </div>
+
+                    {/* FP change */}
+                    <div className="text-right self-start">
+                      <span className="font-mono text-xs text-forge-dim">
+                        {step.fp_before} → {step.fp_after}
+                      </span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </Panel>
           )}
 
           {/* Craft log */}
@@ -1149,14 +1433,13 @@ export default function CraftSimulatorPage() {
                       <span className={clsx(
                         "font-mono text-xs",
                         entry.outcome === "success" || entry.outcome === "perfect" ? "text-forge-green" :
-                        entry.outcome === "fracture" ? "text-forge-red" :
                         "text-forge-muted"
                       )}>
                         {entry.message}
                       </span>
-                      {entry.roll !== undefined && (
+                      {entry.roll != null && (
                         <div className="font-mono text-[11px] text-forge-dim mt-0.5">
-                          Roll: {entry.roll.toFixed(1)} · Risk: {entry.riskPct?.toFixed(1)}% · Inst: {entry.instabilityAfter}
+                          Roll: {entry.roll.toFixed(1)}
                         </div>
                       )}
                     </div>
@@ -1174,14 +1457,13 @@ export default function CraftSimulatorPage() {
                   { label: "Total Actions", value: summary.total_actions },
                   { label: "Successes", value: summary.successes },
                   { label: "Perfects", value: summary.perfects },
-                  { label: "Fractures", value: summary.fractures, danger: summary.fractures > 0 },
                   { label: "FP Spent", value: summary.fp_spent },
-                  { label: "Current Risk", value: `${summary.current_risk_pct.toFixed(1)}%` },
+                  { label: "Completion Rate", value: `${Math.round((summary.successes + summary.perfects) / Math.max(summary.total_actions, 1) * 100)}%` },
                 ].map((s) => (
                   <div key={s.label} className="text-center py-2 border border-forge-border rounded-sm">
                     <span className={clsx(
                       "font-display text-lg font-bold block",
-                      s.danger ? "text-forge-red" : "text-forge-amber"
+                      "text-forge-amber"
                     )}>
                       {s.value}
                     </span>

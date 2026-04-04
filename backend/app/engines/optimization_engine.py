@@ -13,9 +13,13 @@ Pure module — no DB, no HTTP.
 
 from dataclasses import dataclass, asdict
 
+from app.constants.combat import CRIT_CHANCE_CAP
 from app.engines.stat_engine import BuildStats
 from app.engines.combat_engine import calculate_dps
 from app.engines.defense_engine import calculate_defense
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 @dataclass
@@ -24,6 +28,7 @@ class StatUpgrade:
     label: str
     dps_gain_pct: float
     ehp_gain_pct: float
+    explanation: str = ""
 
     def to_dict(self) -> dict:
         return asdict(self)
@@ -99,6 +104,7 @@ def get_stat_upgrades(
     Returns:
         List of StatUpgrade sorted by dps_gain_pct descending, length top_n.
     """
+    log.info("get_stat_upgrades.start", skill=primary_skill, top_n=top_n)
     base_dps = calculate_dps(stats, primary_skill, skill_level).dps
     base_ehp = calculate_defense(stats).effective_hp
 
@@ -118,7 +124,7 @@ def get_stat_upgrades(
         # Re-derive dependent stats for crit
         if key == "crit_chance_pct":
             base_crit = stats.crit_chance - stats.crit_chance_pct / 100
-            modified.crit_chance = min(0.95, base_crit + modified.crit_chance_pct / 100)
+            modified.crit_chance = min(CRIT_CHANCE_CAP,base_crit + modified.crit_chance_pct / 100)
         elif key == "crit_multiplier_pct":
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
@@ -138,4 +144,156 @@ def get_stat_upgrades(
 
     # Sort by DPS gain descending, return top N
     results.sort(key=lambda r: r.dps_gain_pct, reverse=True)
-    return results[:top_n]
+    top = results[:top_n]
+
+    # Generate explanations for the top results
+    for rank, upgrade in enumerate(top, 1):
+        upgrade.explanation = _explain_upgrade(upgrade, stats, rank)
+
+    return top
+
+
+# ---------------------------------------------------------------------------
+# Explanation generation
+# ---------------------------------------------------------------------------
+
+_OFFENSE_STATS = {
+    "crit_multiplier_pct", "crit_chance_pct", "attack_speed_pct", "cast_speed",
+    "spell_damage_pct", "physical_damage_pct", "fire_damage_pct", "cold_damage_pct",
+    "lightning_damage_pct", "necrotic_damage_pct", "void_damage_pct", "poison_damage_pct",
+    "melee_damage_pct", "throwing_damage_pct", "bow_damage_pct", "elemental_damage_pct",
+    "dot_damage_pct", "minion_damage_pct", "added_spell_damage", "added_melee_physical",
+    "bleed_chance_pct", "ignite_chance_pct", "poison_chance_pct",
+    "bleed_damage_pct", "ignite_damage_pct",
+}
+
+_DEFENSE_STATS = {
+    "max_health", "armour", "dodge_rating", "block_chance", "block_effectiveness",
+    "endurance", "crit_avoidance", "glancing_blow",
+    "fire_res", "cold_res", "lightning_res", "void_res", "necrotic_res", "physical_res",
+    "leech", "health_regen",
+}
+
+# Rough thresholds where % damage scaling starts to see diminishing returns
+_DIMINISHING_THRESHOLD = 300.0
+
+
+def _explain_upgrade(upgrade: "StatUpgrade", stats: BuildStats, rank: int) -> str:
+    """Generate a short contextual explanation for why a stat upgrade is valuable."""
+    stat = upgrade.stat
+    current = getattr(stats, stat, 0.0)
+    parts = []
+
+    if upgrade.dps_gain_pct > 0 and upgrade.ehp_gain_pct > 0:
+        parts.append(f"Improves both offense (+{upgrade.dps_gain_pct}% DPS) and defense (+{upgrade.ehp_gain_pct}% EHP).")
+    elif upgrade.dps_gain_pct > 0:
+        parts.append(f"Pure offense boost at +{upgrade.dps_gain_pct}% DPS.")
+    elif upgrade.ehp_gain_pct > 0:
+        parts.append(f"Defensive upgrade at +{upgrade.ehp_gain_pct}% EHP.")
+
+    # Diminishing return warning for % damage stats
+    if stat.endswith("_damage_pct") and current >= _DIMINISHING_THRESHOLD:
+        parts.append(f"Current {stat} is {current:.0f}% — approaching diminishing returns.")
+    elif stat.endswith("_damage_pct") and current < _DIMINISHING_THRESHOLD:
+        parts.append(f"Current {stat} is only {current:.0f}% — well below the diminishing return threshold, making this highly efficient.")
+
+    # Resistance context
+    if stat.endswith("_res"):
+        if current >= 75:
+            parts.append("Already at resistance cap (75%). No further benefit.")
+        elif current < 30:
+            parts.append(f"Currently at {current:.0f}% — very low. Priority defensive gap.")
+        elif current < 60:
+            parts.append(f"Currently at {current:.0f}% — below comfortable levels.")
+
+    # Crit context
+    if stat == "crit_chance_pct":
+        effective_crit = min(CRIT_CHANCE_CAP,stats.crit_chance)
+        parts.append(f"Effective crit is {effective_crit*100:.1f}%.")
+    elif stat == "crit_multiplier_pct":
+        parts.append(f"Current crit multiplier is {stats.crit_multiplier:.2f}x.")
+
+    # Health context
+    if stat == "max_health" and stats.max_health < 1500:
+        parts.append(f"Base health is low ({stats.max_health:.0f}). This is a high-priority survivability upgrade.")
+
+    return " ".join(parts) if parts else f"Ranked #{rank} by marginal DPS gain."
+
+
+# ---------------------------------------------------------------------------
+# Stat sensitivity analysis
+# ---------------------------------------------------------------------------
+
+def stat_sensitivity(
+    stats: BuildStats,
+    primary_skill: str,
+    skill_level: int = 20,
+    stat_keys: list[str] | None = None,
+    delta: float = 10.0,
+) -> list[dict]:
+    """
+    Sensitivity analysis: for each stat, compute the DPS and EHP change per
+    unit of that stat (normalized to a fixed delta).
+
+    This answers "which stats give the most marginal value right now?"
+
+    Args:
+        stats: current aggregated BuildStats
+        primary_skill: skill for DPS calculation
+        skill_level: skill level
+        stat_keys: specific stats to test (default: all from STAT_TEST_INCREMENTS)
+        delta: the amount to bump each stat by (default 10)
+
+    Returns:
+        List of dicts sorted by dps_per_unit descending:
+        [{"stat", "current_value", "delta", "dps_gain_pct", "ehp_gain_pct",
+          "dps_per_unit", "ehp_per_unit", "category"}]
+    """
+    base_dps = calculate_dps(stats, primary_skill, skill_level).dps
+    base_ehp = calculate_defense(stats).effective_hp
+
+    # Build the stat list to test
+    if stat_keys:
+        increments = [{"key": k, "delta": delta} for k in stat_keys if hasattr(stats, k)]
+    else:
+        increments = [{"key": inc["key"], "delta": delta} for inc in STAT_TEST_INCREMENTS]
+
+    results = []
+    for inc in increments:
+        key = inc["key"]
+        d = inc["delta"]
+
+        from copy import copy as _copy
+        modified = _copy(stats)
+        current_val = getattr(modified, key, 0.0)
+        setattr(modified, key, current_val + d)
+
+        # Re-derive crit
+        if key == "crit_chance_pct":
+            base_crit = stats.crit_chance - stats.crit_chance_pct / 100
+            modified.crit_chance = min(CRIT_CHANCE_CAP,base_crit + modified.crit_chance_pct / 100)
+        elif key == "crit_multiplier_pct":
+            base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
+            modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
+
+        new_dps = calculate_dps(modified, primary_skill, skill_level).dps
+        new_ehp = calculate_defense(modified).effective_hp
+
+        dps_gain = ((new_dps - base_dps) / base_dps * 100) if base_dps > 0 else 0.0
+        ehp_gain = ((new_ehp - base_ehp) / base_ehp * 100) if base_ehp > 0 else 0.0
+
+        category = "offense" if key in _OFFENSE_STATS else "defense" if key in _DEFENSE_STATS else "utility"
+
+        results.append({
+            "stat": key,
+            "current_value": round(current_val, 2),
+            "delta": d,
+            "dps_gain_pct": round(dps_gain, 2),
+            "ehp_gain_pct": round(ehp_gain, 2),
+            "dps_per_unit": round(dps_gain / d, 4) if d else 0,
+            "ehp_per_unit": round(ehp_gain / d, 4) if d else 0,
+            "category": category,
+        })
+
+    results.sort(key=lambda r: r["dps_per_unit"], reverse=True)
+    return results

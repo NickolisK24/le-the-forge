@@ -11,41 +11,62 @@ import click
 from flask import Flask
 
 from app import db
+from app.game_data.game_data_loader import get_all_affixes
 
 
 def register_commands(app: Flask) -> None:
 
+    def _build_affix_seed_data():
+        result = []
+        for affix in get_all_affixes():
+            cr = affix.get("class_requirement")
+            # DB column is a single VARCHAR; if the JSON gives a list, join it
+            if isinstance(cr, list):
+                cr = ",".join(cr) if cr else None
+            # Convert tiers list to dict for DB storage
+            tiers_dict = {str(t["tier"]): [t["min"], t["max"]] for t in affix["tiers"]}
+            result.append({
+                "name": affix["name"],
+                "type": affix.get("type", affix.get("category", "prefix")),
+                "stat_key": affix.get("stat_key", ""),
+                "tiers": tiers_dict,
+                "applicable": affix.get("applicable_to", []),
+                "class_requirement": cr,
+                "tags": affix.get("tags", []),
+            })
+        return result
+
+    _ITEM_TYPES = [
+        ("Wand", "weapon", "+X% Spell Damage"),
+        ("Staff", "weapon", "+X% Spell Damage"),
+        ("Sword", "weapon", "+X% Melee Damage"),
+        ("Axe", "weapon", "+X% Melee Damage"),
+        ("Dagger", "weapon", "+X% Critical Strike Chance"),
+        ("Mace", "weapon", "+X% Melee Damage"),
+        ("Sceptre", "weapon", "+X Mana"),
+        ("Bow", "weapon", "+X% Bow Damage"),
+        ("Shield", "off_hand", "+X Armour"),
+        ("Helm", "armour", None),
+        ("Chest", "armour", None),
+        ("Gloves", "armour", None),
+        ("Boots", "armour", None),
+        ("Belt", "accessory", None),
+        ("Ring", "accessory", None),
+        ("Amulet", "accessory", None),
+    ]
+
     @app.cli.command("seed")
     def seed():
-        """Seed reference data: item types, affix defs."""
+        """Seed reference data: item types, affix defs (skips existing rows)."""
         from app.models import ItemType, AffixDef
-        from app.routes.ref import AFFIX_SEED_DATA
 
         click.echo("Seeding item types...")
-        item_types = [
-            ("Wand", "weapon", "+X% Spell Damage"),
-            ("Staff", "weapon", "+X% Spell Damage"),
-            ("Sword", "weapon", "+X% Melee Damage"),
-            ("Axe", "weapon", "+X% Melee Damage"),
-            ("Dagger", "weapon", "+X% Critical Strike Chance"),
-            ("Mace", "weapon", "+X% Melee Damage"),
-            ("Sceptre", "weapon", "+X Mana"),
-            ("Bow", "weapon", "+X% Bow Damage"),
-            ("Shield", "off_hand", "+X Armour"),
-            ("Helm", "armour", None),
-            ("Chest", "armour", None),
-            ("Gloves", "armour", None),
-            ("Boots", "armour", None),
-            ("Belt", "accessory", None),
-            ("Ring", "accessory", None),
-            ("Amulet", "accessory", None),
-        ]
-        for name, category, implicit in item_types:
+        for name, category, implicit in _ITEM_TYPES:
             if not ItemType.query.filter_by(name=name).first():
                 db.session.add(ItemType(name=name, category=category, base_implicit=implicit))
 
         click.echo("Seeding affix definitions...")
-        for a in AFFIX_SEED_DATA:
+        for a in _build_affix_seed_data():
             if not AffixDef.query.filter_by(name=a["name"]).first():
                 db.session.add(AffixDef(
                     name=a["name"],
@@ -53,10 +74,38 @@ def register_commands(app: Flask) -> None:
                     stat_key=a["stat_key"],
                     tier_ranges=a["tiers"],
                     applicable_types=a["applicable"],
+                    class_requirement=a["class_requirement"],
+                    tags=a["tags"],
                 ))
 
         db.session.commit()
         click.echo("✓ Reference data seeded.")
+
+    @app.cli.command("reseed-affixes")
+    def reseed_affixes():
+        """Wipe and re-seed AffixDef table from data/affixes.json."""
+        from app.models import AffixDef
+
+        click.echo("Clearing existing affix definitions...")
+        AffixDef.query.delete()
+        db.session.commit()
+
+        click.echo("Seeding affix definitions...")
+        count = 0
+        for a in _build_affix_seed_data():
+            db.session.add(AffixDef(
+                name=a["name"],
+                affix_type=a["type"],
+                stat_key=a["stat_key"],
+                tier_ranges=a["tiers"],
+                applicable_types=a["applicable"],
+                class_requirement=a["class_requirement"],
+                tags=a["tags"],
+            ))
+            count += 1
+
+        db.session.commit()
+        click.echo(f"✓ {count} affix definitions seeded.")
 
     @app.cli.command("seed-builds")
     def seed_builds():
@@ -109,6 +158,77 @@ def register_commands(app: Flask) -> None:
 
         db.session.commit()
         click.echo(f"✓ {len(sample_builds)} sample builds seeded.")
+
+    @app.cli.command("seed-passives")
+    def seed_passives():
+        """Upsert passive nodes from data/passives.json into passive_nodes table."""
+        import json
+        from pathlib import Path
+        from app.models import PassiveNode
+
+        data_path = Path(__file__).resolve().parent.parent.parent.parent / "data" / "classes" / "passives.json"
+        if not data_path.exists():
+            click.echo(f"ERROR: {data_path} not found. Run sync_game_data.py first.", err=True)
+            return
+
+        with open(data_path, encoding="utf-8") as f:
+            nodes = json.load(f)
+
+        # Build a set of all node IDs in the file for connection validation
+        all_ids: set[str] = {n["id"] for n in nodes}
+
+        inserted = updated = warnings = 0
+
+        for node in nodes:
+            # Warn about any connection IDs that reference a non-existent node
+            for conn_id in node.get("connections", []):
+                if conn_id not in all_ids:
+                    click.echo(f"  [WARN] Node {node['id']}: connection '{conn_id}' not found in passives.json")
+                    warnings += 1
+
+            existing = PassiveNode.query.get(node["id"])
+            if existing:
+                existing.raw_node_id = node["raw_node_id"]
+                existing.character_class = node["character_class"]
+                existing.mastery = node.get("mastery")
+                existing.mastery_index = node.get("mastery_index", 0)
+                existing.mastery_requirement = node.get("mastery_requirement", 0)
+                existing.name = node["name"]
+                existing.description = node.get("description")
+                existing.node_type = node.get("node_type", "core")
+                existing.x = node.get("x", 0.0)
+                existing.y = node.get("y", 0.0)
+                existing.max_points = node.get("max_points", 1)
+                existing.connections = node.get("connections", [])
+                existing.stats = node.get("stats")
+                existing.ability_granted = node.get("ability_granted")
+                existing.icon = node.get("icon")
+                updated += 1
+            else:
+                db.session.add(PassiveNode(
+                    id=node["id"],
+                    raw_node_id=node["raw_node_id"],
+                    character_class=node["character_class"],
+                    mastery=node.get("mastery"),
+                    mastery_index=node.get("mastery_index", 0),
+                    mastery_requirement=node.get("mastery_requirement", 0),
+                    name=node["name"],
+                    description=node.get("description"),
+                    node_type=node.get("node_type", "core"),
+                    x=node.get("x", 0.0),
+                    y=node.get("y", 0.0),
+                    max_points=node.get("max_points", 1),
+                    connections=node.get("connections", []),
+                    stats=node.get("stats"),
+                    ability_granted=node.get("ability_granted"),
+                    icon=node.get("icon"),
+                ))
+                inserted += 1
+
+        db.session.commit()
+        click.echo(f"✓ Passive nodes seeded: {inserted} inserted, {updated} updated.")
+        if warnings:
+            click.echo(f"  {warnings} dangling connection ID(s) logged above.")
 
     @app.cli.command("create-admin")
     @click.argument("username")

@@ -1,155 +1,186 @@
 """
-Game Data Loader — loads and caches game constants from JSON files.
+Game Data Loader — thin public API over the GameDataPipeline.
 
-Engines import from here when they want authoritative data from the JSON
-files rather than their inline constants.  The JSON files are the canonical
-reference for future patch updates.
+All existing callers continue to work unchanged. The pipeline owns the actual
+loading and caching; these functions are stable wrappers.
 
-Usage:
-    from app.game_data.game_data_loader import (
-        get_class_base_stats,
-        get_mastery_bonuses,
-        get_keystone_bonuses,
-        get_attribute_scaling,
-        get_affix_tier_midpoints,
-        get_affix_stat_keys,
-        get_all_affixes,
-        get_affixes_by_category,
-        get_skill_stats,
-    )
+Prefer using the pipeline directly for new code:
+    from flask import current_app
+    pipeline = current_app.extensions["game_data"]
 """
 
-import json
-import math
-import os
-from functools import lru_cache
+from __future__ import annotations
+from app.game_data.pipeline import GameDataPipeline
 
-_DATA_DIR = os.path.dirname(__file__)
+# ---------------------------------------------------------------------------
+# Module-level fallback pipeline — used before app context is available,
+# e.g. in tests or scripts that don't go through create_app().
+# ---------------------------------------------------------------------------
 
-
-def _load(filename: str) -> dict:
-    path = os.path.join(_DATA_DIR, filename)
-    with open(path, "r", encoding="utf-8") as f:
-        return json.load(f)
+_fallback: GameDataPipeline | None = None
 
 
-@lru_cache(maxsize=1)
-def _classes() -> dict:
-    return _load("classes.json")
-
-
-@lru_cache(maxsize=1)
-def _affixes_raw() -> dict:
-    return _load("affixes.json")
-
-
-@lru_cache(maxsize=1)
-def _skills() -> dict:
-    return _load("skills.json")
-
-
-# ------------------------------------------------------------------
-# Derived affix lookups — built once from the v3.0 affixes.json
-# ------------------------------------------------------------------
-
-@lru_cache(maxsize=1)
-def _build_affix_lookups() -> tuple[dict, dict, dict]:
-    """Build tier-midpoints, stat-keys, and type dicts from affix list.
-
-    Returns:
-        (midpoints, stat_keys, affix_types)
-        midpoints: {name: {"T1": val, "T2": val, ...}}
-        stat_keys: {name: "stat_field_name"}
-        affix_types: {name: "flat" | "increased" | "more"}
-    """
-    raw = _affixes_raw()
-    affix_list = raw.get("affixes", [])
-
-    midpoints: dict[str, dict[str, float]] = {}
-    stat_keys: dict[str, str] = {}
-    affix_types: dict[str, str] = {}
-
-    for affix in affix_list:
-        name = affix["name"]
-        # v3.0 uses "stat", v2.0 used "stat_key" — support both
-        stat_keys[name] = affix.get("stat", affix.get("stat_key", ""))
-        affix_types[name] = affix.get("type", "flat")
-        tiers = affix.get("tiers", [])
-        mp: dict[str, float] = {}
-        if isinstance(tiers, list):
-            # v3.0 format: [{"tier": 1, "value": 10, "min": 5, "max": 15}, ...]
-            for entry in tiers:
-                tier_num = entry["tier"]
-                mp[f"T{tier_num}"] = entry.get("value", math.floor((entry.get("min", 0) + entry.get("max", 0)) / 2))
-        else:
-            # v2.0 fallback: {"1": [lo, hi], ...}
-            for tier_key, bounds in tiers.items():
-                lo, hi = bounds
-                mp[f"T{tier_key}"] = math.floor((lo + hi) / 2)
-        midpoints[name] = mp
-
-    return midpoints, stat_keys, affix_types
+def _pipeline() -> GameDataPipeline:
+    """Return the app-context pipeline if available, else the fallback."""
+    try:
+        from flask import current_app
+        p = current_app.extensions.get("game_data")
+        if p is not None:
+            return p
+    except RuntimeError:
+        pass
+    global _fallback
+    if _fallback is None:
+        _fallback = GameDataPipeline()
+        _fallback.load_all()
+    return _fallback
 
 
 def get_affix_tier_midpoints() -> dict:
-    """Returns affix name → {T1: mid, T2: mid, …} mapping (all categories)."""
-    return _build_affix_lookups()[0]
+    """Returns affix name → {T1: mid, T2: mid, …} mapping."""
+    return _pipeline().affix_tier_midpoints
 
 
 def get_affix_stat_keys() -> dict:
     """Returns affix display name → BuildStats field name mapping."""
-    return _build_affix_lookups()[1]
+    return _pipeline().affix_stat_keys
 
 
 def get_affix_types() -> dict:
     """Returns affix display name → modifier type (flat/increased/more) mapping."""
-    return _build_affix_lookups()[2]
+    return {a.to_dict()["name"]: a.to_dict().get("type", "flat") for a in _pipeline().affixes}
 
 
 def get_all_affixes() -> list[dict]:
-    """Returns the full list of affix definitions from the canonical JSON."""
-    return _affixes_raw().get("affixes", [])
+    """Returns the full flat list of affix definitions as raw dicts (backward compat)."""
+    return [a.to_dict() for a in _pipeline().affixes]
 
 
 def get_affixes_by_category(category: str) -> list[dict]:
-    """Returns affix definitions filtered by category."""
-    return [a for a in get_all_affixes() if a.get("category") == category]
+    """Returns affix definitions filtered by type (prefix/suffix)."""
+    return [a.to_dict() for a in _pipeline().affixes if a.affix_type == category]
 
 
 def get_affix_categories() -> dict:
-    """Returns the category descriptions dict."""
-    return _affixes_raw().get("_categories", {})
+    """Returns a summary of affix type counts."""
+    from collections import Counter
+    counts = Counter(a.affix_type for a in _pipeline().affixes)
+    return dict(counts)
 
 
-# ------------------------------------------------------------------
+def get_affixes_by_slot(slot: str) -> list[dict]:
+    """Returns all equipment affixes that can roll on the given slot slug (e.g. 'helm')."""
+    return [a.to_dict() for a in _pipeline().affixes if slot in a.applicable_to]
+
+
+def get_affixes_by_tag(tag: str) -> list[dict]:
+    """Returns all affixes that carry the given tag (e.g. 'fire', 'minion')."""
+    tag = tag.lower()
+    # Tags are not a first-class field on AffixDefinition; fall through to serialized form.
+    return [a for a in get_all_affixes() if tag in [t.lower() for t in a.get("tags", [])]]
+
+
+def get_affix_by_id(affix_id: int) -> dict | None:
+    """Returns a single affix by its numeric game id, or None."""
+    for affix in _pipeline().affixes:
+        if affix.affix_id == affix_id:
+            return affix.to_dict()
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Class / skill data
-# ------------------------------------------------------------------
+# ---------------------------------------------------------------------------
 
 def get_class_base_stats() -> dict:
     """Returns base stats dict keyed by class name."""
-    return _classes()["base_stats"]
+    return _pipeline().classes.get("base_stats", {})
 
 
 def get_mastery_bonuses() -> dict:
     """Returns flat mastery bonus dicts keyed by mastery name."""
-    return _classes()["mastery_bonuses"]
+    return _pipeline().classes.get("mastery_bonuses", {})
 
 
 def get_mastery_per_point() -> dict:
     """Returns per-passive-point bonuses for masteries that scale with points used."""
-    return _classes()["mastery_per_point"]
+    return _pipeline().classes.get("mastery_per_point", {})
 
 
 def get_keystone_bonuses() -> dict:
     """Returns keystone passive bonus dicts keyed by keystone name."""
-    return _classes()["keystone_bonuses"]
+    return _pipeline().classes.get("keystone_bonuses", {})
 
 
 def get_attribute_scaling() -> dict:
     """Returns attribute → BuildStats field scaling ratios."""
-    return _classes()["attribute_scaling"]
+    return _pipeline().classes.get("attribute_scaling", {})
 
 
-def get_skill_stats() -> dict:
-    """Returns skill name → stat definition dict."""
-    return _skills()["skills"]
+def get_skill_stats() -> dict[str, object]:
+    """Returns skill name → SkillStatDef mapping."""
+    return _pipeline().skills
+
+
+def get_skill_metadata(skill_name: str) -> dict | None:
+    """Returns metadata dict for a skill (description, lore, class) or None."""
+    return _pipeline().skills_metadata.get(skill_name)
+
+
+def get_all_skills_metadata() -> dict:
+    """Returns the full skill name → metadata dict."""
+    return _pipeline().skills_metadata
+
+
+# ---------------------------------------------------------------------------
+# Enemy profiles
+# ---------------------------------------------------------------------------
+
+def get_enemy_profiles() -> list["EnemyProfile"]:
+    """Returns all enemy profile definitions as typed EnemyProfile objects."""
+    from app.domain.enemy import EnemyProfile  # noqa: F401 — re-export for callers
+    return list(_pipeline().enemies)
+
+
+def get_enemy_profile(enemy_id: str) -> "EnemyProfile | None":
+    """Returns a single EnemyProfile by id, or None if not found."""
+    return _pipeline().get_enemy(enemy_id)
+
+
+# ---------------------------------------------------------------------------
+# Unique items
+# ---------------------------------------------------------------------------
+
+def get_all_uniques() -> list:
+    """Return all unique items as a list of dicts (with 'id' = slug key)."""
+    raw = _pipeline().uniques
+    return [{"id": slug, **item} for slug, item in raw.items() if slug != "_meta"]
+
+
+def get_unique_by_id(slug: str) -> dict | None:
+    """Return a single unique item by its slug, or None."""
+    raw = _pipeline().uniques
+    item = raw.get(slug)
+    if item is None or slug == "_meta":
+        return None
+    return {"id": slug, **item}
+
+
+# ---------------------------------------------------------------------------
+# Static reference data
+# ---------------------------------------------------------------------------
+
+def get_rarities() -> dict:
+    return _pipeline().rarities
+
+
+def get_damage_types() -> dict:
+    return _pipeline().damage_types
+
+
+def get_implicit_stat(item_type: str) -> dict | None:
+    return _pipeline().implicit_stats.get(item_type.lower())
+
+
+def get_all_implicit_stats() -> dict:
+    return _pipeline().implicit_stats

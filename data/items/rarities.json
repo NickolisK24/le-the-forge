@@ -1,0 +1,52 @@
+[
+  {
+    "id": "normal",
+    "name": "Normal",
+    "max_prefixes": 0,
+    "max_suffixes": 0,
+    "description": "No affixes. Base item stats only.",
+    "color": "#ffffff",
+    "min_fp": 0,
+    "max_fp": 20
+  },
+  {
+    "id": "magic",
+    "name": "Magic",
+    "max_prefixes": 1,
+    "max_suffixes": 1,
+    "description": "Up to 1 prefix and 1 suffix.",
+    "color": "#4169e1",
+    "min_fp": 10,
+    "max_fp": 30
+  },
+  {
+    "id": "rare",
+    "name": "Rare",
+    "max_prefixes": 3,
+    "max_suffixes": 3,
+    "description": "Up to 3 prefixes and 3 suffixes. Can be crafted freely.",
+    "color": "#ffd700",
+    "min_fp": 20,
+    "max_fp": 50
+  },
+  {
+    "id": "exalted",
+    "name": "Exalted",
+    "max_prefixes": 3,
+    "max_suffixes": 3,
+    "description": "Rare with at least one sealed affix. Very high FP.",
+    "color": "#ff4500",
+    "min_fp": 35,
+    "max_fp": 55
+  },
+  {
+    "id": "legendary",
+    "name": "Legendary",
+    "max_prefixes": 3,
+    "max_suffixes": 3,
+    "description": "Exalted + unique passive. Cannot be crafted.",
+    "color": "#ff8c00",
+    "min_fp": 0,
+    "max_fp": 0
+  }
+]

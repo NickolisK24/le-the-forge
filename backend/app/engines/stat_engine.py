@@ -12,11 +12,17 @@ already-loaded data objects.
 from dataclasses import dataclass, field, asdict
 from typing import Optional
 
+from app.constants.combat import BASE_CRIT_CHANCE, BASE_CRIT_MULTIPLIER
+from app.domain.calculators.stat_calculator import apply_percent_bonus, combine_additive_percents
+from app.domain.calculators.crit_calculator import effective_crit_chance, effective_crit_multiplier
 from app.game_data.game_data_loader import (
     get_affix_tier_midpoints,
     get_affix_stat_keys,
     get_affix_types,
 )
+from app.utils.logging import ForgeLogger
+
+log = ForgeLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -28,8 +34,8 @@ class BuildStats:
     # Offense — base
     base_damage: float = 0.0
     attack_speed: float = 1.0
-    crit_chance: float = 0.05       # 0.0–1.0
-    crit_multiplier: float = 1.5    # total multiplier e.g. 2.0
+    crit_chance: float = BASE_CRIT_CHANCE       # 0.0–1.0
+    crit_multiplier: float = BASE_CRIT_MULTIPLIER    # total multiplier e.g. 2.0
 
     # Offense — percentage increased damage pools
     spell_damage_pct: float = 0.0
@@ -53,7 +59,7 @@ class BuildStats:
     throwing_attack_speed: float = 0.0
     crit_chance_pct: float = 0.0
     crit_multiplier_pct: float = 0.0
-    more_damage_multiplier: float = 1.0
+    more_damage_pct: float = 0.0
 
     # Offense — flat added damage
     added_melee_physical: float = 0.0
@@ -83,6 +89,7 @@ class BuildStats:
     slow_chance_pct: float = 0.0
 
     # Offense — ailment / DoT damage
+    ailment_damage_pct: float = 0.0      # increased damage for ALL ailment types
     bleed_damage_pct: float = 0.0
     ignite_damage_pct: float = 0.0
     poison_dot_damage_pct: float = 0.0
@@ -112,6 +119,7 @@ class BuildStats:
     ward: float = 0.0
     ward_retention_pct: float = 0.0
     ward_regen: float = 0.0
+    mana_to_ward_pct: float = 0.0      # % of mana spent converted to ward
 
     # Defense — resistances
     fire_res: float = 0.0
@@ -122,16 +130,51 @@ class BuildStats:
     poison_res: float = 0.0
     physical_res: float = 0.0
 
+    # Offense — penetration (bypasses enemy resistance)
+    physical_penetration: float = 0.0
+    fire_penetration: float = 0.0
+    cold_penetration: float = 0.0
+    lightning_penetration: float = 0.0
+    void_penetration: float = 0.0
+    necrotic_penetration: float = 0.0
+    poison_penetration: float = 0.0
+
+    # Offense — debuff application chances
+    armour_shred_chance: float = 0.0
+    fire_shred_chance: float = 0.0
+    cold_shred_chance: float = 0.0
+    lightning_shred_chance: float = 0.0
+
+    # Offense — channelling
+    channelling_damage_pct: float = 0.0
+
+    # Offense — specific damage types
+    shadow_damage_pct: float = 0.0
+    dagger_damage_pct: float = 0.0
+    overkill_damage_pct: float = 0.0
+
+    # Offense — minion/companion/totem
+    minion_crit_chance_pct: float = 0.0
+    companion_damage_pct: float = 0.0
+    companion_health_pct: float = 0.0
+    totem_damage_pct: float = 0.0
+    totem_health_pct: float = 0.0
+
     # Resources
     max_mana: float = 0.0
     mana_regen: float = 0.0
     health_regen: float = 0.0
+    mana_efficiency_pct: float = 0.0
 
     # Sustain
     leech: float = 0.0
     health_on_kill: float = 0.0
     mana_on_kill: float = 0.0
     ward_on_kill: float = 0.0
+    health_on_block: float = 0.0
+    health_on_potion: float = 0.0
+    ward_on_potion: float = 0.0
+    healing_effectiveness_pct: float = 0.0
 
     # Utility
     movement_speed: float = 0.0
@@ -139,6 +182,10 @@ class BuildStats:
     channelling_cost_reduction: float = 0.0
     area_pct: float = 0.0
     stun_duration_pct: float = 0.0
+    buff_effect_pct: float = 0.0
+    buff_duration_pct: float = 0.0       # increased duration for all buffs
+    ailment_effect_pct: float = 0.0
+    ailment_duration_pct: float = 0.0
 
     # Attributes
     strength: float = 0.0
@@ -302,8 +349,46 @@ def apply_affix(pool: StatPool, affix_name: str, tier: int) -> None:
 
 def _add_partial(stats: BuildStats, partial: dict) -> None:
     for key, value in partial.items():
-        if hasattr(stats, key):
+        if not hasattr(stats, key):
+            continue
+        if key.endswith("_pct"):
+            setattr(stats, key, combine_additive_percents(getattr(stats, key), value))
+        else:
             setattr(stats, key, getattr(stats, key) + value)
+
+
+# ---------------------------------------------------------------------------
+# Helper — apply a single stat_key (direct or composite) to BuildStats
+# ---------------------------------------------------------------------------
+
+def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
+    """
+    Apply a stat_key value to BuildStats.  Handles both simple field names
+    and special composite keys that distribute to multiple fields:
+      _all_attributes      → strength, intelligence, dexterity, vitality, attunement
+      _all_res / _all_resistances → fire_res, cold_res, lightning_res, void_res, necrotic_res, poison_res
+      _elemental_res       → fire_res, cold_res, lightning_res
+      _attack_and_cast_speed → attack_speed_pct, cast_speed
+    """
+    if value == 0:
+        return
+    if stat_key == "_all_attributes":
+        for attr in ("strength", "intelligence", "dexterity", "vitality", "attunement"):
+            setattr(stats, attr, getattr(stats, attr) + value)
+    elif stat_key in ("_all_res", "_all_resistances"):
+        for res in ("fire_res", "cold_res", "lightning_res", "void_res", "necrotic_res", "poison_res"):
+            setattr(stats, res, getattr(stats, res) + value)
+    elif stat_key == "_elemental_res":
+        for res in ("fire_res", "cold_res", "lightning_res"):
+            setattr(stats, res, getattr(stats, res) + value)
+    elif stat_key == "_attack_and_cast_speed":
+        stats.attack_speed_pct = combine_additive_percents(stats.attack_speed_pct, value)
+        stats.cast_speed += value
+    elif hasattr(stats, stat_key):
+        if stat_key.endswith("_pct"):
+            setattr(stats, stat_key, combine_additive_percents(getattr(stats, stat_key), value))
+        else:
+            setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
 
 # ---------------------------------------------------------------------------
@@ -341,6 +426,7 @@ def aggregate_stats(
     allocated_node_ids: list[int],
     nodes: list[dict],        # list of {"id", "type", "name"}
     gear_affixes: list[dict], # list of {"name", "tier", "sealed"} — same as CraftAffix
+    passive_stats: Optional[dict] = None,  # output of resolve_passive_stats()
 ) -> BuildStats:
     """
     Aggregate all character stats from every source.
@@ -351,10 +437,22 @@ def aggregate_stats(
         allocated_node_ids: list of passive node IDs the player has allocated
         nodes: all available passive nodes for the class (id, type, name)
         gear_affixes: flat list of affixes across all gear slots (name, tier)
+        passive_stats: resolved passive tree stats from passive_stat_resolver
+            ({"additive": {...}, "special_effects": [...]}). When provided,
+            the additive values are merged into the stat totals.
 
     Returns:
         BuildStats with all values accumulated and derived stats applied.
     """
+    log.info(
+        "aggregate_stats.start",
+        character_class=character_class,
+        mastery=mastery,
+        nodes=len(allocated_node_ids),
+        gear_affixes=len(gear_affixes),
+        has_passive_stats=passive_stats is not None,
+    )
+
     stats = BuildStats()
     allocated_set = set(allocated_node_ids)
 
@@ -384,36 +482,63 @@ def aggregate_stats(
         stats.armour += pts_used * 15
 
     # 3. Passive node bonuses
+    # Nodes dict now has "id" = raw_node_id (int) so set comparison works correctly.
+    # When real passive_stats are available from the DB resolver, only apply keystones
+    # here (their effects aren't in the DB stats column). For regular/notable nodes the
+    # resolver data is authoritative and we skip the modulo fallback to avoid double-counting.
+    has_real_passive_data = bool(passive_stats and passive_stats.get("additive"))
     for node in nodes:
         if node["id"] not in allocated_set:
             continue
-        bonus = _get_node_bonus(node["id"], node.get("type", "core"), node.get("name", ""))
+        node_type = node.get("type", "core")
+        node_name = node.get("name", "")
+        if has_real_passive_data and node_type != "keystone":
+            # Real data from passive_stat_resolver covers this node; skip modulo fallback.
+            continue
+        bonus = _get_node_bonus(node["id"], node_type, node_name)
         _add_partial(stats, bonus)
 
     # 4. Gear affix values — route through StatPool for proper type bucketing
     pool = StatPool()
     for affix in gear_affixes:
+        # Format b: synthetic unique item stats injected by build_analysis_service
+        if "stat_key" in affix:
+            _apply_stat_key(stats, affix["stat_key"], float(affix.get("value", 0)))
+            continue
+
+        # Format a: normal gear affix by name + tier
         affix_name = affix.get("name", "")
         tier = int(affix.get("tier", 3))
         apply_affix(pool, affix_name, tier)
     pool.resolve_to(stats)
 
-    # 5. Attribute scaling
-    stats.spell_damage_pct    += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"]
+    # 5. Resolved passive tree stats (from passive_stat_resolver)
+    if passive_stats:
+        _add_partial(stats, passive_stats.get("additive", {}))
+
+    # 6. Attribute scaling
+    stats.spell_damage_pct    = combine_additive_percents(stats.spell_damage_pct,    stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"])
     stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["max_mana"]
-    stats.physical_damage_pct += stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"]
+    stats.physical_damage_pct = combine_additive_percents(stats.physical_damage_pct, stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"])
     stats.armour              += stats.strength     * ATTRIBUTE_SCALING["strength"]["armour"]
-    stats.attack_speed_pct    += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"]
+    stats.attack_speed_pct    = combine_additive_percents(stats.attack_speed_pct,    stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"])
     stats.dodge_rating        += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
     stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
 
-    # 6. Apply percentage health bonuses
-    stats.max_health = stats.max_health * (1 + stats.health_pct / 100) + stats.hybrid_health
+    # 7. Apply percentage health bonuses
+    stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health
 
-    # 7. Apply % bonuses to base values
-    stats.crit_chance    = min(0.95, stats.crit_chance + stats.crit_chance_pct / 100)
-    stats.crit_multiplier += stats.crit_multiplier_pct / 100
-    stats.attack_speed   = stats.attack_speed * (1 + stats.attack_speed_pct / 100)
+    # 8. Apply % bonuses to base values
+    stats.crit_chance = effective_crit_chance(stats.crit_chance, stats.crit_chance_pct)
+    stats.crit_multiplier = effective_crit_multiplier(stats.crit_multiplier, stats.crit_multiplier_pct)
+    stats.attack_speed   = apply_percent_bonus(stats.attack_speed, stats.attack_speed_pct)
+
+    log.info(
+        "aggregate_stats.end",
+        base_damage=stats.base_damage,
+        max_health=stats.max_health,
+        crit_chance=round(stats.crit_chance, 4),
+    )
 
     return stats

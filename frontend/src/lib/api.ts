@@ -58,19 +58,37 @@ async function request<T>(
     headers["Authorization"] = `Bearer ${_token}`;
   }
 
-  const res = await fetch(`${BASE_URL}${path}`, {
-    method,
-    headers,
-    body: body !== undefined ? JSON.stringify(body) : undefined,
-    signal,
-  });
+  let res: Response;
+  try {
+    res = await fetch(`${BASE_URL}${path}`, {
+      method,
+      headers,
+      body: body !== undefined ? JSON.stringify(body) : undefined,
+      signal,
+    });
+  } catch (err) {
+    const message =
+      err instanceof DOMException && err.name === "AbortError"
+        ? "Request cancelled"
+        : "Network error — check your connection";
+    return { data: null, meta: null, errors: [{ message }] };
+  }
 
   // 204 No Content
   if (res.status === 204) {
     return { data: null, meta: null, errors: null };
   }
 
-  const json = await res.json();
+  let json: any;
+  try {
+    json = await res.json();
+  } catch {
+    return {
+      data: null,
+      meta: null,
+      errors: [{ message: res.ok ? "Invalid response from server" : `Server error (${res.status})` }],
+    };
+  }
 
   if (!res.ok) {
     // Backend always returns { errors: [...] } on error
@@ -126,6 +144,26 @@ function buildQueryString(filters: BuildFilters & { page?: number; per_page?: nu
   return qs ? `?${qs}` : "";
 }
 
+export interface MetaSnapshotEntry {
+  class: string;
+  count: number;
+}
+
+export interface STierBuild {
+  id: string;
+  slug: string;
+  name: string;
+  mastery: string;
+}
+
+export interface MetaSnapshot {
+  total_builds: number;
+  most_played_class: string;
+  top_mastery: string;
+  class_distribution: MetaSnapshotEntry[];
+  s_tier_builds: STierBuild[];
+}
+
 export const buildsApi = {
   list: (filters: BuildFilters & { page?: number; per_page?: number } = {}) =>
     get<BuildListItem[]>(`/builds${buildQueryString(filters)}`),
@@ -141,6 +179,8 @@ export const buildsApi = {
 
   vote: (slug: string, direction: 1 | -1) =>
     post<VoteResult>(`/builds/${slug}/vote`, { direction }),
+
+  metaSnapshot: () => get<MetaSnapshot>("/builds/meta/snapshot"),
 };
 
 // ---------------------------------------------------------------------------
@@ -168,7 +208,6 @@ export const craftApi = {
   summary: (slug: string) => get<CraftSummary>(`/craft/${slug}/summary`),
 
   predict: (state: {
-    instability: number;
     forge_potential: number;
     affixes: CraftAffix[];
     n_simulations?: number;
@@ -194,6 +233,9 @@ export const refApi = {
   },
   skills: (charClass?: string) =>
     get<Record<string, string[]>>(`/ref/skills${charClass ? `?class=${charClass}` : ""}`),
+  baseItems: () => get<Record<string, BaseItemDef[]>>("/ref/base-items"),
+  baseItemsBySlot: (slot: string) => get<BaseItemDef[]>(`/ref/base-items?slot=${encodeURIComponent(slot)}`),
+  fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
 };
 
 // ---------------------------------------------------------------------------
@@ -205,3 +247,297 @@ export const profileApi = {
   builds: (page = 1) => get<any>(`/profile/builds?page=${page}&sort=new`),
   sessions: (page = 1) => get<any>(`/profile/sessions?page=${page}`),
 };
+// ---------------------------------------------------------------------------
+// Admin — affix management
+// ---------------------------------------------------------------------------
+
+export interface AdminAffixTier {
+  tier: number;
+  min: number;
+  max: number;
+}
+
+export interface AdminAffix {
+  id: string;
+  name: string;
+  type: string;
+  tags: string[];
+  applicable_to: string[];
+  class_requirement: string | null;
+  stat_key: string | null;
+  tiers: AdminAffixTier[];
+}
+
+export const adminApi = {
+  affixes: (params: { q?: string; type?: string; tag?: string; slot?: string } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
+      )
+    ).toString();
+    return get<AdminAffix[]>(`/admin/affixes${qs ? "?" + qs : ""}`);
+  },
+
+  updateAffix: (id: string, payload: Partial<Omit<AdminAffix, "id">>) =>
+    patch<AdminAffix>(`/admin/affixes/${id}`, payload),
+};
+
+export interface VersionInfo {
+  version: string;
+  commit: string;
+  data_version: string;
+  current_patch: string;
+}
+
+export const versionApi = {
+  get: () => get<VersionInfo>("/version"),
+};
+
+// ---------------------------------------------------------------------------
+// Simulation results
+// ---------------------------------------------------------------------------
+
+export interface DPSResult {
+  hit_damage: number;
+  average_hit: number;
+  dps: number;
+  effective_attack_speed: number;
+  crit_contribution_pct: number;
+  flat_damage_added: number;
+  bleed_dps: number;
+  ignite_dps: number;
+  poison_dps: number;
+  ailment_dps: number;
+  total_dps: number;
+}
+
+export interface MonteCarloDPS {
+  mean_dps: number;
+  min_dps: number;
+  max_dps: number;
+  std_dev: number;
+  percentile_25: number;
+  percentile_75: number;
+  n_simulations: number;
+}
+
+export interface StatUpgrade {
+  stat: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  explanation?: string;
+}
+
+export interface DefenseResult {
+  max_health: number;
+  effective_hp: number;
+  armor_reduction_pct: number;
+  avg_resistance: number;
+  fire_res: number;
+  cold_res: number;
+  lightning_res: number;
+  void_res: number;
+  necrotic_res: number;
+  physical_res: number;
+  poison_res: number;
+  dodge_chance_pct: number;
+  block_chance_pct: number;
+  block_mitigation_pct: number;
+  endurance_pct: number;
+  endurance_threshold_pct: number;
+  crit_avoidance_pct: number;
+  glancing_blow_pct: number;
+  stun_avoidance_pct: number;
+  ward_buffer: number;
+  total_ehp: number;
+  ward_regen_per_second: number;
+  ward_decay_per_second: number;
+  net_ward_per_second: number;
+  leech_pct: number;
+  health_on_kill: number;
+  mana_on_kill: number;
+  ward_on_kill: number;
+  health_regen: number;
+  mana_regen: number;
+  survivability_score: number;
+  sustain_score: number;
+  weaknesses: string[];
+  strengths: string[];
+}
+
+export interface SkillDpsEntry {
+  skill_name: string;
+  skill_level: number;
+  slot: number;
+  dps: number;
+  total_dps: number;
+  is_primary: boolean;
+}
+
+export interface BuildSimulationResult {
+  primary_skill: string;
+  skill_level: number;
+  stats: Record<string, number>;
+  dps: DPSResult;
+  monte_carlo: MonteCarloDPS;
+  defense: DefenseResult;
+  stat_upgrades: StatUpgrade[];
+  seed: number | null;
+  dps_per_skill: SkillDpsEntry[];
+  combined_dps: number;
+}
+
+export const simulateApi = {
+  build: (slug: string) =>
+    post<BuildSimulationResult>(`/builds/${slug}/simulate`),
+  conditional: (payload: object) =>
+    post<ConditionalResult>("/simulate/conditional", payload),
+  multiTarget: (payload: object) =>
+    post<MultiTargetResult>("/simulate/multi-target", payload),
+};
+
+export interface ConditionalResult {
+  base_damage:         number;
+  adjusted_damage:     number;
+  damage_multiplier:   number;
+  active_modifier_ids: string[];
+  stat_deltas:         Record<string, number>;
+}
+
+export interface DamageEvent {
+  time:      number;
+  target_id: string;
+  damage:    number;
+  overkill:  number;
+  killed:    boolean;
+}
+
+export interface MultiTargetMetrics {
+  total_kills:        number;
+  time_to_clear:      number | null;
+  damage_per_target:  Record<string, number>;
+  overkill_waste:     Record<string, number>;
+  kill_times:         Record<string, number>;
+}
+
+export interface MultiTargetResult {
+  cleared:       boolean;
+  time_to_clear: number | null;
+  total_kills:   number;
+  metrics:       MultiTargetMetrics;
+  damage_events: DamageEvent[];
+}
+
+// ---------------------------------------------------------------------------
+// Game Data Management
+// ---------------------------------------------------------------------------
+
+export interface GameDataIntegrity {
+  total:    number;
+  errors:   number;
+  warnings: number;
+  infos:    number;
+}
+
+export interface GameDataIssue {
+  severity: "info" | "warning" | "error";
+  category: string;
+  item_id:  string;
+  message:  string;
+}
+
+export interface GameDataLoadResult {
+  version:        string;
+  version_source: string;
+  counts: {
+    skills:   number;
+    affixes:  number;
+    enemies:  number;
+    passives: number;
+  };
+  integrity: GameDataIntegrity;
+  issues:    GameDataIssue[];
+}
+
+export const gameDataApi = {
+  loadGameData: () => post<GameDataLoadResult>("/load/game-data"),
+};
+
+// ---------------------------------------------------------------------------
+// Import API
+// ---------------------------------------------------------------------------
+
+export interface ImportedBuild {
+  name: string;
+  description: string;
+  character_class: string;
+  mastery: string;
+  level: number;
+  passive_tree: number[];
+  skills: Array<{
+    skill_name: string;
+    slot: number;
+    points_allocated: number;
+    spec_tree: number[];
+  }>;
+  gear: unknown[];
+  _import_meta?: {
+    source: string;
+    char_class_id: number;
+    mastery_id: number;
+    skill_count: number;
+    passive_nodes: number;
+    gear_note: string;
+  };
+}
+
+export const importApi = {
+  fromUrl: (url: string) =>
+    post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
+};
+
+// ---------------------------------------------------------------------------
+// Unique items reference
+// ---------------------------------------------------------------------------
+
+export interface BaseItemDef {
+  name: string;
+  level_req: number;
+  min_fp: number;
+  max_fp: number;
+  armor: number;
+  implicit: string | null;
+  tags: string[];
+}
+
+export interface UniqueItem {
+  id: string;
+  name: string;
+  slot: string;
+  base: string;
+  level_req?: number;
+  implicit: string | null;
+  affixes: string[];
+  unique_effects: string[];
+  tags: string[];
+  lore?: string;
+}
+
+/** Meta-slot categories understood by the backend */
+export const WEAPON_META_SLOT  = "weapon";   // sword/axe/mace/dagger/sceptre/wand/staff/bow/spear
+export const OFFHAND_META_SLOT = "offhand";  // shield/quiver/catalyst
+export const IDOL_META_SLOT    = "idol";     // all idol sizes
+
+export const uniquesApi = {
+  list: (params: { slot?: string; q?: string } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params).filter(([, v]) => v !== undefined && v !== "") as [string, string][]
+      )
+    ).toString();
+    return get<UniqueItem[]>(`/ref/uniques${qs ? "?" + qs : ""}`);
+  },
+  get: (slug: string) => get<UniqueItem>(`/ref/uniques/${slug}`),
+};
+

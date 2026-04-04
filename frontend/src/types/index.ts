@@ -46,6 +46,7 @@ export interface User {
 // ---------------------------------------------------------------------------
 
 export type CharacterClass = "Acolyte" | "Mage" | "Primalist" | "Sentinel" | "Rogue";
+export { type BaseClass, type Mastery, type DamageType, type EquipmentSlot, type ItemRarity } from "@constants";
 export type BuildTier = "S" | "A" | "B" | "C";
 export type VoteDirection = 1 | -1 | 0;
 
@@ -161,6 +162,7 @@ export interface CraftAffix {
   name: string;
   tier: number;
   sealed: boolean;
+  type?: "prefix" | "suffix";
 }
 
 export interface CraftStep {
@@ -171,10 +173,7 @@ export interface CraftStep {
   affix_name?: string;
   tier_before?: number;
   tier_after?: number;
-  instability_before: number;
-  instability_after: number;
-  fracture_risk_pct: number;
-  roll?: number;
+  roll?: number | null;
   outcome: CraftOutcome;
   fp_before: number;
   fp_after: number;
@@ -187,10 +186,8 @@ export interface CraftSession {
   item_name?: string;
   item_level: number;
   rarity: string;
-  instability: number;
   forge_potential: number;
   affixes: CraftAffix[];
-  is_fractured: boolean;
   created_at: string;
   steps: CraftStep[];
 }
@@ -198,11 +195,8 @@ export interface CraftSession {
 export interface CraftActionResult {
   success: boolean;
   outcome: CraftOutcome;
-  fracture_risk_pct: number;
-  roll: number;
-  instability: number;
+  roll: number | null;
   forge_potential: number;
-  is_fractured: boolean;
   message: string;
   step_number: number;
   error?: string;
@@ -218,19 +212,21 @@ export interface OptimalPathStep {
 }
 
 export interface SimulationResult {
-  brick_chance: number;
-  perfect_item_chance: number;
+  completion_chance: number;
   step_survival_curve: number[];
-  step_fracture_rates: number[];
-  median_instability: number;
+  n_simulations: number;
+}
+
+export interface LocalSimulationResult {
+  fp_consumed: { p25: number; p50: number; p75: number };
+  steps_completed: { p25: number; p50: number; p75: number };
   n_simulations: number;
 }
 
 export interface StrategyComparison {
   name: string;
   description: string;
-  brick_chance: number;
-  perfect_item_chance: number;
+  completion_chance: number;
   expected_steps: number;
   expected_fp_cost: number;
 }
@@ -245,9 +241,7 @@ export interface CraftSummary {
   total_actions: number;
   successes: number;
   perfects: number;
-  fractures: number;
   fp_spent: number;
-  current_risk_pct: number;
   optimal_path: OptimalPathStep[];
   simulation_result: SimulationResult;
   strategy_comparison: StrategyComparison[];
@@ -258,8 +252,9 @@ export interface CraftSessionCreatePayload {
   item_name?: string;
   item_level?: number;
   rarity?: string;
-  instability?: number;
   forge_potential?: number;
+  fp_mode?: "random" | "manual" | "fixed";
+  manual_fp?: number;
   affixes?: CraftAffix[];
 }
 
@@ -273,14 +268,19 @@ export interface ClassMeta {
   skills: string[];
 }
 
+export interface AffixTier {
+  tier: number;
+  min: number;
+  max: number;
+}
+
 export interface AffixDef {
-  id?: number;
+  id: string;
   name: string;
-  type: "prefix" | "suffix" | "experimental" | "personal" | "champion" | "set" | "idol_enchant" | "idol_weaver";
-  stat_key: string;
-  tier_ranges: Record<string, [number, number]>;
-  applicable_types: string[];
-  class_requirement?: string | null;
+  type: "prefix" | "suffix";
+  applicable_to: string[];
+  tiers: AffixTier[];
   tags?: string[];
+  class_requirement?: string | null;
 }
 
