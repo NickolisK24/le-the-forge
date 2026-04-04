@@ -170,11 +170,11 @@ def get_unique_by_id(slug: str) -> dict | None:
 # Static reference data
 # ---------------------------------------------------------------------------
 
-def get_rarities() -> dict:
+def get_rarities() -> list[dict]:
     return _pipeline().rarities
 
 
-def get_damage_types() -> dict:
+def get_damage_types() -> list[dict]:
     return _pipeline().damage_types
 
 
