@@ -9,6 +9,7 @@
  */
 
 import { useState, useCallback } from "react";
+import toast from "react-hot-toast";
 
 import SlotSelector       from "@/components/bis/SlotSelector";
 import AffixTargetPanel   from "@/components/bis/AffixTargetPanel";
@@ -17,6 +18,7 @@ import SearchControls     from "@/components/bis/SearchControls";
 import BisResultsTable    from "@/components/bis/BisResultsTable";
 import ComparisonViewer   from "@/components/bis/ComparisonViewer";
 import SearchVisualization from "@/components/bis/SearchVisualization";
+import { runBisSearch }   from "@/services/bisApi";
 
 // ---------------------------------------------------------------------------
 // Exported types
@@ -71,28 +73,6 @@ const DEFAULT_SLOTS: SlotConfig[] = ALL_SLOT_TYPES.map((s) => ({ slot_type: s, e
 const DEFAULT_WEIGHTS: WeightConfig = { tier: 0.4, coverage: 0.3, fp: 0.15, feasibility: 0.15 };
 
 // ---------------------------------------------------------------------------
-// Mock generator
-// ---------------------------------------------------------------------------
-
-function generateMockResults(count = 20): BisSearchResult[] {
-  const results: BisSearchResult[] = [];
-  const scores = Array.from({ length: count }, () => 0.4 + Math.random() * 0.55);
-  scores.sort((a, b) => b - a); // highest first
-
-  for (let i = 0; i < count; i++) {
-    const rank = i + 1;
-    const score = scores[i];
-    results.push({
-      rank,
-      build_id:   `build-${Math.random().toString(36).slice(2, 10).toUpperCase()}`,
-      score:      +score.toFixed(4),
-      percentile: Math.round(((count - rank) / count) * 100),
-    });
-  }
-  return results;
-}
-
-// ---------------------------------------------------------------------------
 // Page component
 // ---------------------------------------------------------------------------
 
@@ -104,25 +84,44 @@ export default function BisSearchPage() {
   const [isSearching,     setIsSearching]     = useState(false);
   const [result,          setResult]          = useState<BisSearchResponse | null>(null);
   const [selectedResult,  setSelectedResult]  = useState<BisSearchResult | null>(null);
+  const [error,           setError]           = useState<string | null>(null);
 
-  const runSearch = useCallback(() => {
+  const runSearch = useCallback(async () => {
     setIsSearching(true);
     setSelectedResult(null);
+    setError(null);
 
-    setTimeout(() => {
-      const results   = generateMockResults(20);
-      const bestScore = results[0]?.score ?? 0;
+    try {
+      const enabledSlots = slots.filter((s) => s.enabled).map((s) => s.slot_type);
+      const affixIds = targetAffixes.map((a) => a.affix_id);
+      const tierMap: Record<string, number> = {};
+      for (const a of targetAffixes) {
+        tierMap[a.affix_id] = a.target_tier;
+      }
+
+      const response = await runBisSearch({
+        slots: enabledSlots,
+        target_affixes: affixIds,
+        target_tiers: tierMap,
+        top_n: 20,
+        max_candidates: maxCandidates,
+      });
 
       setResult({
-        search_id:       `srch-${Date.now()}`,
-        total_evaluated: maxCandidates,
-        best_score:      bestScore,
-        duration_s:      +(maxCandidates / 200).toFixed(2),
-        results,
+        search_id: response.search_id,
+        total_evaluated: response.total_evaluated,
+        best_score: response.best_score,
+        duration_s: response.duration_s,
+        results: response.results,
       });
+    } catch (err) {
+      const msg = err instanceof Error ? err.message : "BIS search failed";
+      setError(msg);
+      toast.error(msg);
+    } finally {
       setIsSearching(false);
-    }, 800);
-  }, [maxCandidates]);
+    }
+  }, [slots, targetAffixes, maxCandidates]);
 
   const allResults = result?.results ?? [];
 
@@ -156,6 +155,13 @@ export default function BisSearchPage() {
             <span className="text-forge-muted">Search ID: </span>
             <span className="font-mono text-xs text-[#22d3ee]">{result.search_id}</span>
           </div>
+        </div>
+      )}
+
+      {/* Error banner */}
+      {error && !isSearching && (
+        <div className="mb-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-2 text-sm text-red-400">
+          {error}
         </div>
       )}
 
