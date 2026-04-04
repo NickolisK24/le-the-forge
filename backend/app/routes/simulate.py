@@ -63,7 +63,7 @@ _SIM_CACHE_TTL = 300  # 5 minutes for simulation results
 def _load_passive_nodes(character_class: str) -> list[dict]:
     """Load passive nodes for a class from the database."""
     db_nodes = PassiveNode.query.filter_by(character_class=character_class).all()
-    return [{"id": n.id, "type": n.node_type, "name": n.name} for n in db_nodes]
+    return [{"id": n.raw_node_id, "type": n.node_type, "name": n.name} for n in db_nodes]
 
 
 def _sim_cache_key(prefix: str, data: dict) -> str:
