@@ -58,16 +58,13 @@ def _const(section: str, key: str, default: Any = None) -> Any:
     return _load_constants().get(section, {}).get(key, default)
 
 
-# Derived-stat scaling coefficients (tuned to Last Epoch approximations)
-# Strength → max_health (per point above base)
+# Derived-stat scaling coefficients — ONLY for expansions NOT already in
+# aggregate_stats ATTRIBUTE_SCALING (dex→dodge and vit→health are handled there).
+# Strength → max_health (per point) — not in ATTRIBUTE_SCALING
 STR_TO_HEALTH: float = 1.0
-# Dexterity → dodge_rating (per point)
-DEX_TO_DODGE: float = 2.0
-# Intelligence → ward_retention_pct (per point, fractional)
+# Intelligence → ward_retention_pct (per point) — not in ATTRIBUTE_SCALING
 INT_TO_WARD_RETENTION: float = 0.1
-# Vitality → max_health (per point)
-VIT_TO_HEALTH: float = 2.0
-# Attunement → mana_regen (per point)
+# Attunement → mana_regen (per point) — not in ATTRIBUTE_SCALING
 ATT_TO_MANA_REGEN: float = 0.2
 
 
@@ -78,24 +75,21 @@ ATT_TO_MANA_REGEN: float = 0.2
 def apply_derived_stats(stats: BuildStats) -> None:
     """Expand primary attributes into secondary stats (Layer 6).
 
-    This implements the plan-required function and is the last layer in the
-    resolution pipeline.  All attribute scaling uses the coefficients above
-    which are based on Last Epoch approximations.
+    Handles ONLY the derived expansions that are NOT already covered by
+    aggregate_stats() ATTRIBUTE_SCALING (Step 6).  Those are:
+      dex → dodge_rating  (3/pt via ATTRIBUTE_SCALING["dexterity"]["dodge_rating"])
+      vit → max_health    (10/pt via ATTRIBUTE_SCALING["vitality"]["max_health"])
+
+    Expansions applied here (absent from ATTRIBUTE_SCALING):
+    - Strength     → max_health (+STR_TO_HEALTH per point)
+    - Intelligence → ward_retention_pct (+INT_TO_WARD_RETENTION per point)
+    - Attunement   → mana_regen (+ATT_TO_MANA_REGEN per point)
 
     Modifies *stats* in place.
-
-    Derived expansions:
-    - Strength  → max_health (+STR_TO_HEALTH per point)
-    - Dexterity → dodge_rating (+DEX_TO_DODGE per point)
-    - Intelligence → ward_retention_pct (+INT_TO_WARD_RETENTION per point)
-    - Vitality  → max_health (+VIT_TO_HEALTH per point above zero)
-    - Attunement → mana_regen (+ATT_TO_MANA_REGEN per point)
     """
-    stats.max_health      += stats.strength * STR_TO_HEALTH
-    stats.dodge_rating    += stats.dexterity * DEX_TO_DODGE
+    stats.max_health         += stats.strength     * STR_TO_HEALTH
     stats.ward_retention_pct += stats.intelligence * INT_TO_WARD_RETENTION
-    stats.max_health      += stats.vitality * VIT_TO_HEALTH
-    stats.mana_regen      += stats.attunement * ATT_TO_MANA_REGEN
+    stats.mana_regen         += stats.attunement   * ATT_TO_MANA_REGEN
 
 
 # ---------------------------------------------------------------------------
