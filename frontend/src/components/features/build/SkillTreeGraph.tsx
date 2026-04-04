@@ -2,12 +2,7 @@ import { useState, useMemo, useRef, useEffect } from "react";
 import { clsx } from "clsx";
 import type { SkillNode } from "@/data/skillTrees";
 import { cleanNodeName, getSkillCode } from "@/data/skillTrees";
-import iconSpriteMap from "@/data/iconSpriteMap.json";
-
-// Sprite sheet from lastepochtools CDN
-const SPRITE_URL =
-  "https://www.lastepochtools.com/data/version140/planner/res/d285216918221e26ef5d5b32f3407c4a.webp";
-const SPRITE_ICON_SIZE = 64;
+import TreeIcon from "@/components/TreeIcon";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -25,37 +20,6 @@ function hexPoints(r: number): string {
     const a = (i * 60) * Math.PI / 180;
     return `${(Math.cos(a) * r).toFixed(2)},${(Math.sin(a) * r).toFixed(2)}`;
   }).join(" ");
-}
-
-// Sprite icon rendered via foreignObject inside SVG
-function SpriteIcon({ iconId, size }: { iconId: string | undefined; size: number }) {
-  if (!iconId) return null;
-  const pos = (iconSpriteMap as Record<string, [number, number]>)[iconId];
-  if (!pos) return null;
-  const [bx, by] = pos;
-  const scaleFactor = size / SPRITE_ICON_SIZE;
-  return (
-    <foreignObject
-      x={-size / 2}
-      y={-size / 2}
-      width={size}
-      height={size}
-      pointerEvents="none"
-    >
-      <div
-        style={{
-          width: size,
-          height: size,
-          backgroundImage: `url(${SPRITE_URL})`,
-          backgroundPosition: `-${bx * scaleFactor}px -${by * scaleFactor}px`,
-          backgroundSize: `${2387 * scaleFactor}px auto`,
-          backgroundRepeat: "no-repeat",
-          borderRadius: "50%",
-          imageRendering: "auto",
-        }}
-      />
-    </foreignObject>
-  );
 }
 
 const DISPLAY_H = 520;
@@ -362,7 +326,7 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly,
                   <polygon points={hexPoints(r * 0.72)} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
 
                   {/* Node icon from sprite sheet */}
-                  <SpriteIcon iconId={node.iconId} size={r * 1.6} />
+                  <TreeIcon iconId={node.iconId} size={r * 1.6} nodeName={node.name} />
 
                   {/* Point counter (skip for auto-allocated root) */}
                   {!isRoot && (
