@@ -5,7 +5,7 @@
  * each with a min_tier and target_tier. Fetches real affix data from API.
  */
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useAffixes } from "@/hooks";
 import type { AffixTarget } from "@/pages/bis/BisSearchPage";
 
@@ -25,7 +25,8 @@ interface Props {
 // ---------------------------------------------------------------------------
 
 export default function AffixTargetPanel({ affixes, onChange }: Props) {
-  const { data: allAffixes, isLoading } = useAffixes();
+  const { data: affixRes, isLoading } = useAffixes();
+  const allAffixes = affixRes?.data ?? [];
   const [selectedId, setSelectedId] = useState("");
   const [minTier,    setMinTier]    = useState(1);
   const [targetTier, setTargetTier] = useState(5);
@@ -34,7 +35,7 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
 
   // Filter affixes for the dropdown
   const filteredAffixes = useMemo(() => {
-    if (!allAffixes) return [];
+    if (!allAffixes.length) return [];
     let list = allAffixes;
     if (search) {
       const q = search.toLowerCase();
@@ -44,9 +45,11 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
   }, [allAffixes, search]);
 
   // Auto-select first
-  if (!selectedId && filteredAffixes.length > 0) {
-    setSelectedId(filteredAffixes[0].id);
-  }
+  useEffect(() => {
+    if (!selectedId && filteredAffixes.length > 0) {
+      setSelectedId(filteredAffixes[0].id);
+    }
+  }, [filteredAffixes, selectedId]);
 
   function addAffix() {
     if (affixes.length >= MAX_AFFIXES) {
@@ -58,7 +61,7 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
       return;
     }
     setError("");
-    const meta = allAffixes?.find((a) => a.id === selectedId);
+    const meta = allAffixes.find((a) => a.id === selectedId);
     if (!meta) return;
     onChange([
       ...affixes,

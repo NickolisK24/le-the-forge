@@ -19,7 +19,8 @@ interface Props {
 }
 
 export default function BaseItemSelector({ onSelect, selected }: Props) {
-  const { data: baseItemsRaw, isLoading } = useBaseItems();
+  const { data: baseItemsRes, isLoading } = useBaseItems();
+  const baseItemsRaw = baseItemsRes?.data ?? null;
   const [filter, setFilter] = useState<string>("All");
 
   // Flatten the API response (dict of slot -> items[]) into a flat list
