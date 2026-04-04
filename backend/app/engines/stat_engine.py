@@ -60,6 +60,7 @@ class BuildStats:
     crit_chance_pct: float = 0.0
     crit_multiplier_pct: float = 0.0
     more_damage_pct: float = 0.0
+    more_damage_multiplier: float = 1.0  # product of all "more" damage multipliers (starts at 1×)
 
     # Offense — flat added damage
     added_melee_physical: float = 0.0
@@ -282,18 +283,20 @@ AFFIX_TYPES: dict = get_affix_types()
 class StatPool:
     """Accumulates stat modifiers in separate buckets by modifier type.
 
-    flat      — additive base values (e.g. +40 Health, +12 Fire Resistance)
-    increased — additive % modifiers (e.g. +25% Spell Damage, +10% Attack Speed)
-    more      — multiplicative modifiers (e.g. ×1.20 More Damage)
+    flat        — additive base values (e.g. +40 Health, +12 Fire Resistance)
+    increased   — additive % modifiers (e.g. +25% Spell Damage, +10% Attack Speed)
+    more        — multiplicative modifiers (e.g. ×1.20 More Damage)
+    multipliers — additional named multipliers applied after more (e.g. double-dip sources)
 
-    Final damage = (base + flat) * (1 + sum(increased)/100) * product(more)
+    Final damage = (base + flat) * (1 + sum(increased)/100) * product(more) * product(multipliers)
     """
-    __slots__ = ("flat", "increased", "more")
+    __slots__ = ("flat", "increased", "more", "multipliers")
 
     def __init__(self) -> None:
         self.flat: dict[str, float] = {}
         self.increased: dict[str, float] = {}
         self.more: dict[str, float] = {}
+        self.multipliers: dict[str, float] = {}
 
     def add_flat(self, stat: str, value: float) -> None:
         self.flat[stat] = self.flat.get(stat, 0.0) + value
@@ -304,6 +307,11 @@ class StatPool:
     def add_more(self, stat: str, value: float) -> None:
         current = self.more.get(stat, 1.0)
         self.more[stat] = current * (1 + value / 100)
+
+    def add_multiplier(self, stat: str, value: float) -> None:
+        """Add a named multiplicative scalar (value is already a multiplier, e.g. 1.15)."""
+        current = self.multipliers.get(stat, 1.0)
+        self.multipliers[stat] = current * value
 
     def resolve_to(self, stats: "BuildStats") -> None:
         """Apply all accumulated pool values to a BuildStats instance."""
@@ -316,6 +324,30 @@ class StatPool:
         for stat, value in self.more.items():
             if stat == "damage":
                 stats.more_damage_multiplier *= value
+        for stat, value in self.multipliers.items():
+            if stat == "damage":
+                stats.more_damage_multiplier *= value
+            elif hasattr(stats, stat):
+                setattr(stats, stat, getattr(stats, stat) * value)
+
+    def to_dict(self) -> dict:
+        """Serialise all buckets for debugging and deterministic validation."""
+        return {
+            "flat": dict(self.flat),
+            "increased": dict(self.increased),
+            "more": dict(self.more),
+            "multipliers": dict(self.multipliers),
+        }
+
+
+def create_empty_stat_pool() -> StatPool:
+    """Return a fresh, empty StatPool with all four buckets initialised.
+
+    This is the canonical factory function for the plan's data layer.
+    Callers should use this rather than constructing StatPool() directly
+    so that future bucket additions are picked up automatically.
+    """
+    return StatPool()
 
 
 # ---------------------------------------------------------------------------
@@ -325,8 +357,13 @@ class StatPool:
 def apply_affix(pool: StatPool, affix_name: str, tier: int) -> None:
     """Apply a single affix at a given tier into the appropriate stat bucket.
 
-    Reads the affix type (flat/increased/more) from the canonical data
-    and routes the tier midpoint value into the correct pool.
+    Modifier-type routing is inferred from the stat key convention because
+    AFFIX_TYPES stores the slot type (prefix/suffix/idol), not the modifier type:
+
+    - Stat keys ending in ``_pct``               → ``increased`` bucket
+    - Stat keys starting with ``more_`` or equal to ``"more_damage_multiplier"``
+                                                  → ``more`` bucket
+    - Everything else                             → ``flat`` bucket
     """
     stat_key = AFFIX_STAT_KEYS.get(affix_name)
     if not stat_key:
@@ -334,10 +371,9 @@ def apply_affix(pool: StatPool, affix_name: str, tier: int) -> None:
     value = get_affix_value(affix_name, tier)
     if not value:
         return
-    affix_type = AFFIX_TYPES.get(affix_name, "flat")
-    if affix_type == "increased":
+    if stat_key.endswith("_pct"):
         pool.add_increased(stat_key, value)
-    elif affix_type == "more":
+    elif stat_key.startswith("more_") or stat_key == "more_damage_multiplier":
         pool.add_more(stat_key, value)
     else:
         pool.add_flat(stat_key, value)

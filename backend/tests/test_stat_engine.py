@@ -251,14 +251,14 @@ class TestApplyAffix:
     def test_apply_flat_affix(self):
         from app.engines.stat_engine import StatPool, apply_affix
         pool = StatPool()
-        apply_affix(pool, "Health", 1)
+        apply_affix(pool, "Added Health", 1)
         assert "max_health" in pool.flat
         assert pool.flat["max_health"] > 0
 
     def test_apply_increased_affix(self):
         from app.engines.stat_engine import StatPool, apply_affix
         pool = StatPool()
-        apply_affix(pool, "Spell Damage", 1)
+        apply_affix(pool, "Increased Spell Damage", 1)
         assert "spell_damage_pct" in pool.increased
         assert pool.increased["spell_damage_pct"] > 0
 
@@ -274,9 +274,9 @@ class TestApplyAffix:
         """Flat affixes go to flat bucket, increased go to increased."""
         from app.engines.stat_engine import StatPool, apply_affix
         pool = StatPool()
-        apply_affix(pool, "Health", 3)          # flat
-        apply_affix(pool, "Spell Damage", 3)    # increased
-        apply_affix(pool, "Fire Resistance", 3) # flat
+        apply_affix(pool, "Added Health", 3)             # flat
+        apply_affix(pool, "Increased Spell Damage", 3)   # increased
+        apply_affix(pool, "Fire Resistance", 3)           # flat
         assert "max_health" in pool.flat
         assert "fire_res" in pool.flat
         assert "spell_damage_pct" in pool.increased

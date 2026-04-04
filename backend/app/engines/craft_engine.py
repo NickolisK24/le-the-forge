@@ -142,7 +142,13 @@ def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
         active_count = sum(1 for a in affixes if not a.get("sealed"))
         # Get affix type from affix_engine
         affix_def = get_affix_by_name(affix_name)
-        affix_type = affix_def.get("type") if affix_def else None
+        # affix_def may be an AffixDefinition dataclass or a dict depending on loader version
+        if affix_def is None:
+            affix_type = None
+        elif isinstance(affix_def, dict):
+            affix_type = affix_def.get("type")
+        else:
+            affix_type = getattr(affix_def, "type", None)
         if affix_type == "prefix" and prefix_count >= 2:
             raise ValueError("Prefix slots full (max 2 active prefixes).")
         if affix_type == "suffix" and suffix_count >= 2:
@@ -477,3 +483,219 @@ def seal_affix(item, affix_name):
                 return {"success": True, "reason": "Affix sealed"}
 
     return {"success": False, "reason": "Affix not found"}
+
+
+# ---------------------------------------------------------------------------
+# Architecture-plan required functions (probability foundation)
+# ---------------------------------------------------------------------------
+
+def calculate_success_probability(
+    item: dict,
+    action: str,
+    target_tier: int | None = None,
+) -> float:
+    """Return the probability (0.0–1.0) that the given craft *action* succeeds.
+
+    This is the canonical interface from architecture_implementation_plan.md.
+
+    Rules:
+    - ``add_affix``: 1.0 if FP ≥ expected cost and a prefix/suffix slot is open,
+      otherwise 0.0.
+    - ``upgrade_affix``: 1.0 if FP ≥ expected cost and the target affix exists
+      and is not already at max tier, otherwise 0.0.
+    - ``remove_affix``: 1.0 if FP ≥ expected cost and any affix is present,
+      otherwise 0.0.
+    - ``seal_affix``: 1.0 if FP ≥ expected cost and no sealed slot is occupied,
+      otherwise 0.0.
+    - Any other action: 0.0.
+
+    Args:
+        item: Craft item dict with ``forging_potential``, ``prefixes``,
+              ``suffixes``, and ``sealed_affix`` keys.
+        action: One of ``add_affix``, ``upgrade_affix``, ``remove_affix``,
+                ``seal_affix``.
+        target_tier: Required for ``upgrade_affix`` — the tier being targeted.
+
+    Returns:
+        Probability as a float in [0.0, 1.0].
+    """
+    fp = item.get("forging_potential", 0)
+    expected = fp_cost(action)
+
+    if fp < expected:
+        return 0.0
+
+    if action == "add_affix":
+        prefix_full = len(item.get("prefixes", [])) >= 3
+        suffix_full = len(item.get("suffixes", [])) >= 3
+        return 0.0 if (prefix_full and suffix_full) else 1.0
+
+    if action == "upgrade_affix":
+        all_affixes = item.get("prefixes", []) + item.get("suffixes", [])
+        if not all_affixes:
+            return 0.0
+        if target_tier is not None:
+            upgradeable = [a for a in all_affixes if a.get("tier", 1) < target_tier]
+            return 1.0 if upgradeable else 0.0
+        # No specific target — any non-max-tier affix is upgradeable
+        upgradeable = [a for a in all_affixes if not is_max_tier(a.get("name", ""), a.get("tier", 1))]
+        return 1.0 if upgradeable else 0.0
+
+    if action == "remove_affix":
+        has_affixes = bool(item.get("prefixes") or item.get("suffixes"))
+        return 1.0 if has_affixes else 0.0
+
+    if action == "seal_affix":
+        already_sealed = item.get("sealed_affix") is not None
+        has_affixes = bool(item.get("prefixes") or item.get("suffixes"))
+        return 0.0 if already_sealed else (1.0 if has_affixes else 0.0)
+
+    return 0.0
+
+
+def calculate_fracture_probability(item: dict) -> float:
+    """Return the probability (0.0–1.0) that the next craft attempt fractures the item.
+
+    Fracture risk is determined by remaining forging potential — the lower the FP,
+    the higher the risk.  Formula:
+
+        base_rate = 0.05 (5% baseline when FP ≥ 20)
+        For every FP below 20: add 1% (capped at 50%)
+
+    This is the architecture-plan canonical function for fracture probability.
+
+    Args:
+        item: Craft item dict with a ``forging_potential`` key.
+
+    Returns:
+        Fracture probability in [0.0, 0.50].
+    """
+    fp = max(0, item.get("forging_potential", 0))
+    base_rate = 0.05
+    if fp >= 20:
+        return base_rate
+    # Each missing FP below 20 adds 1% risk, capped at 50%
+    extra = (20 - fp) * 0.01
+    return min(0.50, base_rate + extra)
+
+
+def _get_fp(item: dict) -> int:
+    """Return FP from an item that may use either key name."""
+    return int(item.get("forging_potential", item.get("forge_potential", 0)))
+
+
+def _to_pipeline_item(item: dict) -> dict:
+    """Convert a plan-format item (forging_potential + prefixes/suffixes/sealed_affix)
+    into the modern pipeline format (forge_potential + affixes list).
+
+    This allows simulate_craft_attempt to accept both item schemas.
+    """
+    fp = _get_fp(item)
+    # Merge prefixes and suffixes into flat affixes list; mark sealed separately
+    prefixes = item.get("prefixes", [])
+    suffixes = item.get("suffixes", [])
+    sealed  = item.get("sealed_affix")
+    affixes = list(prefixes) + list(suffixes)
+    if sealed:
+        sealed_copy = dict(sealed)
+        sealed_copy["sealed"] = True
+        affixes.append(sealed_copy)
+    return {
+        "forge_potential": fp,
+        "item_type": item.get("item_type", ""),
+        "affixes": affixes,
+        # Keep original keys for traceability
+        "_original": item,
+    }
+
+
+def simulate_craft_attempt(
+    item: dict,
+    action: str,
+    affix_name: str | None = None,
+    target_tier: int | None = None,
+    seed: int | None = None,
+) -> dict:
+    """Execute a single deterministic craft attempt, returning a full result dict.
+
+    This is the architecture-plan canonical function for craft simulation.
+    Unlike :func:`apply_craft_action` (which mutates in place), this function
+    works on a deep copy and always returns a structured result regardless of
+    success or failure.
+
+    Accepts items in **either** format:
+    - Plan format:    ``forging_potential`` + ``prefixes``/``suffixes``/``sealed_affix``
+    - Pipeline format: ``forge_potential`` + ``affixes``
+
+    The optional *seed* parameter makes the attempt fully deterministic for
+    testing and reproducibility.
+
+    Args:
+        item: Current craft item dict (will not be mutated).
+        action: Craft action to attempt.
+        affix_name: Affix to add/upgrade/remove/seal (required for most actions).
+        target_tier: Target tier for upgrade actions.
+        seed: Optional RNG seed for deterministic output.
+
+    Returns:
+        Dict with keys:
+        - ``success`` (bool)
+        - ``action`` (str)
+        - ``fracture_probability`` (float)
+        - ``fractured`` (bool)
+        - ``fp_spent`` (int)
+        - ``fp_remaining`` (int)
+        - ``item_before`` (dict)
+        - ``item_after`` (dict)
+        - ``reason`` (str)
+    """
+    if seed is not None:
+        random.seed(seed)
+
+    fp_before = _get_fp(item)
+    item_before = copy.deepcopy(item)
+
+    fracture_prob = calculate_fracture_probability(item)
+    fractured = random.random() < fracture_prob
+
+    if fractured:
+        item_after = copy.deepcopy(item)
+        item_after["fractured"] = True
+        return {
+            "success": False,
+            "action": action,
+            "fracture_probability": round(fracture_prob, 4),
+            "fractured": True,
+            "fp_spent": 0,
+            "fp_remaining": fp_before,
+            "item_before": item_before,
+            "item_after": item_after,
+            "reason": f"Item fractured (probability was {fracture_prob:.1%})",
+        }
+
+    # Normalise to pipeline format for apply_craft_action
+    pipeline_item = _to_pipeline_item(item)
+    result = apply_craft_action(pipeline_item, action, affix_name, target_tier)
+    success = result.get("success", False)
+    reason  = result.get("reason", result.get("message", ""))
+    fp_after = int(pipeline_item.get("forge_potential", fp_before))
+    fp_spent = max(0, fp_before - fp_after)
+
+    # Return with the original item schema
+    item_after = copy.deepcopy(item)
+    if "forging_potential" in item_after:
+        item_after["forging_potential"] = fp_after
+    else:
+        item_after["forge_potential"] = fp_after
+
+    return {
+        "success": success,
+        "action": action,
+        "fracture_probability": round(fracture_prob, 4),
+        "fractured": False,
+        "fp_spent": fp_spent,
+        "fp_remaining": fp_after,
+        "item_before": item_before,
+        "item_after": item_after,
+        "reason": reason,
+    }

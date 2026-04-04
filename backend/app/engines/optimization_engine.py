@@ -297,3 +297,78 @@ def stat_sensitivity(
 
     results.sort(key=lambda r: r["dps_per_unit"], reverse=True)
     return results
+
+
+# ---------------------------------------------------------------------------
+# Architecture-plan required function
+# ---------------------------------------------------------------------------
+
+def find_best_affix_upgrade(
+    build: dict,
+    primary_skill: str | None = None,
+    skill_level: int = 20,
+    top_n: int = 5,
+) -> list[StatUpgrade]:
+    """Find the single best affix upgrade for each slot in the build.
+
+    This is the canonical interface from architecture_implementation_plan.md.
+    It wraps :func:`get_stat_upgrades` with a build-dict–oriented API so
+    callers don't need to construct a :class:`BuildStats` themselves.
+
+    Algorithm:
+    1. Aggregate build stats via the stat engine.
+    2. Delegate to :func:`get_stat_upgrades` to test every candidate increment.
+    3. Return the top *top_n* upgrades ranked by DPS gain.
+
+    Args:
+        build: Build dict with keys ``character_class``, ``mastery``,
+               ``passive_tree``, ``gear`` (list of item dicts with affixes),
+               and optionally ``primary_skill``.
+        primary_skill: Skill to use as DPS reference; falls back to
+                       ``build.get("primary_skill")`` then ``"Fireball"``.
+        skill_level: Level of the primary skill (default 20).
+        top_n: Number of upgrade recommendations to return (default 5).
+
+    Returns:
+        List of :class:`StatUpgrade` sorted by ``dps_gain_pct`` descending.
+    """
+    from app.engines.stat_engine import aggregate_stats
+
+    # Resolve skill
+    skill = primary_skill or build.get("primary_skill") or "Fireball"
+
+    # Build the keyword dict aggregate_stats expects
+    gear = build.get("gear", [])
+    passive_tree = build.get("passive_tree", [])
+    character_class = build.get("character_class", "")
+    mastery = build.get("mastery", "")
+
+    # aggregate_stats positional signature:
+    #   (character_class, mastery, allocated_node_ids, nodes, gear_affixes, passive_stats=None)
+    # passive_tree may be a list of ints (node IDs) or a list of dicts; normalise to int IDs.
+    if passive_tree and isinstance(passive_tree[0], dict):
+        allocated_ids = [int(n.get("id", n.get("node_id", 0))) for n in passive_tree]
+        nodes_dicts   = passive_tree  # already in {id, type, name} format
+    else:
+        allocated_ids = [int(n) for n in passive_tree]
+        nodes_dicts   = []
+
+    # gear_affixes: flat list of {name, tier} dicts extracted from all gear slots
+    gear_affixes: list[dict] = []
+    for slot_item in gear:
+        for affix in slot_item.get("affixes", []):
+            gear_affixes.append(affix)
+        for affix in slot_item.get("prefixes", []):
+            gear_affixes.append(affix)
+        for affix in slot_item.get("suffixes", []):
+            gear_affixes.append(affix)
+
+    stats = aggregate_stats(
+        character_class,
+        mastery,
+        allocated_ids,
+        nodes_dicts,
+        gear_affixes,
+    )
+
+    return get_stat_upgrades(stats, skill, skill_level, top_n=top_n)
