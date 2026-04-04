@@ -210,6 +210,19 @@ export default function PassiveTreeRenderer({
     }
   };
 
+  if (!nodes.length) {
+    return (
+      <div
+        className="flex items-center justify-center"
+        style={{ background: "#0b0e1a", height: CANVAS_H }}
+      >
+        <p className="font-mono text-sm text-forge-dim">
+          No passive nodes available. Select a class to load the tree.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col overflow-hidden" style={{ background: "#0b0e1a" }}>
       {/* SVG canvas */}
