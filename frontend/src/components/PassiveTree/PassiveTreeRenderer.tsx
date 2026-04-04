@@ -12,7 +12,12 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import type { PassiveNode } from "@/services/passiveTreeService";
-import TreeIcon from "@/components/TreeIcon";
+import iconSpriteMap from "@/data/iconSpriteMap.json";
+
+// Sprite sheet URL from lastepochtools CDN
+const SPRITE_URL =
+  "https://www.lastepochtools.com/data/version140/planner/res/d285216918221e26ef5d5b32f3407c4a.webp";
+const SPRITE_ICON_SIZE = 64; // each icon is 64x64 in the sheet
 
 // ---------------------------------------------------------------------------
 // Palette — indexed by mastery_index (0 = base, 1/2/3 = masteries)
@@ -64,6 +69,38 @@ const R_KEYSTONE  = 20; // max_points === 1 (single-invest keystone/notable)
 // ---------------------------------------------------------------------------
 function diamondPath(r: number): string {
   return `M0,${-r} L${r},0 L0,${r} L${-r},0 Z`;
+}
+
+// Sprite icon rendered via foreignObject inside SVG
+function SpriteIcon({ iconId, size }: { iconId: string | null; size: number }) {
+  if (!iconId) return null;
+  const pos = (iconSpriteMap as Record<string, [number, number]>)[iconId];
+  if (!pos) return null;
+  const [bx, by] = pos;
+  // Scale: we want to display at `size` px, sprite icons are 64x64
+  const scaleFactor = size / SPRITE_ICON_SIZE;
+  return (
+    <foreignObject
+      x={-size / 2}
+      y={-size / 2}
+      width={size}
+      height={size}
+      pointerEvents="none"
+    >
+      <div
+        style={{
+          width: size,
+          height: size,
+          backgroundImage: `url(${SPRITE_URL})`,
+          backgroundPosition: `-${bx * scaleFactor}px -${by * scaleFactor}px`,
+          backgroundSize: `${2387 * scaleFactor}px auto`,
+          backgroundRepeat: "no-repeat",
+          borderRadius: "50%",
+          imageRendering: "auto",
+        }}
+      />
+    </foreignObject>
+  );
 }
 
 const CANVAS_H = 560;
@@ -353,8 +390,8 @@ export default function PassiveTreeRenderer({
                       strokeWidth={active ? 1.5 : 1}
                     />
                   )}
-                  {/* Node icon from game data */}
-                  <TreeIcon iconId={node.icon} size={r * 1.6} nodeName={node.name} />
+                  {/* Sprite icon from game data */}
+                  <SpriteIcon iconId={node.icon} size={r * 1.6} />
                   {/* Points label beneath the node */}
                   {node.max_points > 1 && (
                     <text

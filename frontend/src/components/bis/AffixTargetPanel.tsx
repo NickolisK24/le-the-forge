@@ -2,12 +2,28 @@
  * Q23 — AffixTargetPanel
  *
  * Allows the user to specify up to 4 affix targets for the BIS search,
- * each with a min_tier and target_tier. Fetches real affix data from API.
+ * each with a min_tier and target_tier.
  */
 
-import { useState, useMemo, useEffect } from "react";
-import { useAffixes } from "@/hooks";
+import { useState } from "react";
 import type { AffixTarget } from "@/pages/bis/BisSearchPage";
+
+// ---------------------------------------------------------------------------
+// Available affixes
+// ---------------------------------------------------------------------------
+
+const AVAILABLE_AFFIXES: { id: string; name: string }[] = [
+  { id: "max_life",          name: "Max Life" },
+  { id: "flat_fire_damage",  name: "Flat Fire Damage" },
+  { id: "crit_chance",       name: "Crit Chance" },
+  { id: "cast_speed",        name: "Cast Speed" },
+  { id: "resistances",       name: "Resistances" },
+  { id: "armour",            name: "Armour" },
+  { id: "spell_damage",      name: "Spell Damage" },
+  { id: "attack_speed",      name: "Attack Speed" },
+  { id: "mana",              name: "Mana" },
+  { id: "dodge_rating",      name: "Dodge Rating" },
+];
 
 const MAX_AFFIXES = 4;
 
@@ -25,31 +41,10 @@ interface Props {
 // ---------------------------------------------------------------------------
 
 export default function AffixTargetPanel({ affixes, onChange }: Props) {
-  const { data: affixRes, isLoading } = useAffixes();
-  const allAffixes = affixRes?.data ?? [];
-  const [selectedId, setSelectedId] = useState("");
+  const [selectedId, setSelectedId] = useState(AVAILABLE_AFFIXES[0].id);
   const [minTier,    setMinTier]    = useState(1);
   const [targetTier, setTargetTier] = useState(5);
   const [error,      setError]      = useState("");
-  const [search,     setSearch]     = useState("");
-
-  // Filter affixes for the dropdown
-  const filteredAffixes = useMemo(() => {
-    if (!allAffixes.length) return [];
-    let list = allAffixes;
-    if (search) {
-      const q = search.toLowerCase();
-      list = list.filter((a) => a.name.toLowerCase().includes(q));
-    }
-    return list.slice(0, 100);
-  }, [allAffixes, search]);
-
-  // Auto-select first
-  useEffect(() => {
-    if (!selectedId && filteredAffixes.length > 0) {
-      setSelectedId(filteredAffixes[0].id);
-    }
-  }, [filteredAffixes, selectedId]);
 
   function addAffix() {
     if (affixes.length >= MAX_AFFIXES) {
@@ -61,8 +56,7 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
       return;
     }
     setError("");
-    const meta = allAffixes.find((a) => a.id === selectedId);
-    if (!meta) return;
+    const meta = AVAILABLE_AFFIXES.find((a) => a.id === selectedId)!;
     onChange([
       ...affixes,
       {
@@ -87,41 +81,19 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
 
       {/* Add row */}
       <div className="space-y-2">
-        {/* Search filter */}
-        <div className="flex flex-col gap-1">
-          <label className="text-xs uppercase tracking-wide text-forge-muted">Search</label>
-          <input
-            type="text"
-            value={search}
-            onChange={(e) => setSearch(e.target.value)}
-            placeholder="Filter affixes..."
-            className="w-full rounded border border-forge-border bg-forge-input px-3 py-1.5 text-sm text-forge-text placeholder:text-forge-dim
-              focus:border-forge-accent focus:outline-none"
-          />
-        </div>
-
         {/* Affix select */}
         <div className="flex flex-col gap-1">
           <label className="text-xs uppercase tracking-wide text-forge-muted">Affix</label>
-          {isLoading ? (
-            <div className="text-xs text-forge-dim py-2">Loading affixes...</div>
-          ) : (
-            <select
-              value={selectedId}
-              onChange={(e) => setSelectedId(e.target.value)}
-              className="w-full rounded border border-forge-border bg-forge-input px-3 py-1.5 text-sm text-forge-text
-                focus:border-forge-accent focus:outline-none"
-            >
-              {filteredAffixes.map((a) => (
-                <option key={a.id} value={a.id}>
-                  {a.name} ({a.type})
-                </option>
-              ))}
-              {filteredAffixes.length === 0 && (
-                <option disabled>No matching affixes</option>
-              )}
-            </select>
-          )}
+          <select
+            value={selectedId}
+            onChange={(e) => setSelectedId(e.target.value)}
+            className="w-full rounded border border-forge-border bg-forge-input px-3 py-1.5 text-sm text-forge-text
+              focus:border-forge-accent focus:outline-none"
+          >
+            {AVAILABLE_AFFIXES.map((a) => (
+              <option key={a.id} value={a.id}>{a.name}</option>
+            ))}
+          </select>
         </div>
 
         {/* Tier sliders */}
@@ -158,7 +130,7 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
         {/* Add button */}
         <button
           onClick={addAffix}
-          disabled={affixes.length >= MAX_AFFIXES || !selectedId}
+          disabled={affixes.length >= MAX_AFFIXES}
           className="w-full rounded border border-forge-border px-3 py-1.5 text-xs font-medium text-forge-muted
             hover:border-[#f5a623] hover:text-[#f5a623] transition-colors
             disabled:cursor-not-allowed disabled:opacity-40"
@@ -189,7 +161,7 @@ export default function AffixTargetPanel({ affixes, onChange }: Props) {
                   className="text-forge-muted hover:text-red-400 transition-colors font-bold"
                   aria-label={`Remove ${a.affix_name}`}
                 >
-                  x
+                  ×
                 </button>
               </div>
             </div>

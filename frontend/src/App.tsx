@@ -23,7 +23,6 @@ import PassiveTreePage from "@/pages/PassiveTreePage";
 import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
 import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
 import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
-import SimulationPage from "@/pages/simulation/SimulationPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
 import RotationBuilderPage from "@/pages/RotationBuilderPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
@@ -174,7 +173,7 @@ export default function App() {
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
                 <Route path="/meta" element={<MetaSnapshotPage />} />
-                <Route path="/encounter"     element={<SimulationPage />} />
+                <Route path="/encounter"     element={<EncounterSimulatorPage />} />
                 <Route path="/build-editor" element={<BuildEditorPage />} />
                 <Route path="/optimizer"    element={<OptimizerPage />} />
                 <Route path="/rotation"      element={<RotationBuilderPage />} />

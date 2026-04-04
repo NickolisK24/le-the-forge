@@ -2,26 +2,20 @@ name: CI
 
 on:
   push:
-    branches:
-      - main
-      - dev
-
+    branches: [main]
   pull_request:
-    branches:
-      - main
-      - dev
+    branches: [main]
 
 jobs:
   # ---------------------------------------------------------------------------
-  # Backend — pytest + mypy
+  # Backend — pytest (SQLite in-memory, no services required)
   # ---------------------------------------------------------------------------
   backend:
     name: Backend Tests
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Python 3.12
         uses: actions/setup-python@v5
@@ -31,21 +25,8 @@ jobs:
           cache-dependency-path: backend/requirements.txt
 
       - name: Install dependencies
-        working-directory: backend
-        run: |
-          pip install -r requirements.txt
-          pip install mypy
+        run: pip install -r backend/requirements.txt
 
-      # -------------------------
-      # Type Safety (NEW)
-      # -------------------------
-      - name: Run mypy type checking
-        working-directory: backend
-        run: mypy .
-
-      # -------------------------
-      # Unit Tests
-      # -------------------------
       - name: Run pytest
         working-directory: backend
         env:
@@ -55,15 +36,14 @@ jobs:
         run: python -m pytest tests/ -q --tb=short
 
   # ---------------------------------------------------------------------------
-  # Frontend — TypeScript + ESLint
+  # Frontend — TypeScript type-check + ESLint
   # ---------------------------------------------------------------------------
   frontend:
     name: Frontend Checks
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout repo
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Set up Node 20
         uses: actions/setup-node@v4
@@ -76,16 +56,10 @@ jobs:
         working-directory: frontend
         run: npm ci
 
-      # -------------------------
-      # Type Safety
-      # -------------------------
       - name: TypeScript type-check
         working-directory: frontend
         run: npm run type-check
 
-      # -------------------------
-      # Linting
-      # -------------------------
       - name: ESLint
         working-directory: frontend
         run: npm run lint

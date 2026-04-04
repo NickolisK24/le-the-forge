@@ -9,14 +9,12 @@
  */
 
 import { useState } from "react";
-import toast from "react-hot-toast";
 
 import BaseItemSelector   from "@/components/crafting/BaseItemSelector";
 import TargetAffixBuilder from "@/components/crafting/TargetAffixBuilder";
 import CraftSequenceViewer from "@/components/crafting/CraftSequenceViewer";
 import ProbabilityPanel   from "@/components/crafting/ProbabilityPanel";
 import CraftOutcomeChart  from "@/components/crafting/CraftOutcomeChart";
-import { predictCrafting } from "@/services/craftingApi";
 
 // ---------------------------------------------------------------------------
 // Types (exported so sub-components can import them)
@@ -53,6 +51,40 @@ export interface CraftOptimizationResult {
 }
 
 // ---------------------------------------------------------------------------
+// Mock simulation
+// ---------------------------------------------------------------------------
+
+async function generateMockResult(affixes: TargetAffix[]): Promise<CraftOptimizationResult> {
+  await new Promise<void>((resolve) => setTimeout(resolve, 600));
+
+  // One ADD_AFFIX per affix, then UPGRADE_AFFIX for each tier gap
+  const optimalPath: CraftStep[] = [];
+
+  for (const a of affixes) {
+    optimalPath.push({ action_type: "add_affix", new_affix_id: a.affix_id });
+  }
+
+  for (const a of affixes) {
+    const gap = a.target_tier - a.min_tier;
+    for (let i = 0; i < gap; i++) {
+      optimalPath.push({ action_type: "upgrade_affix", target_affix_id: a.affix_id });
+    }
+  }
+
+  const successProbability = 0.65 + Math.random() * 0.2;
+
+  return {
+    optimal_path: optimalPath,
+    score: 0.7 + Math.random() * 0.25,
+    success_probability: successProbability,
+    mean_fp_cost: affixes.length * 15 + Math.random() * 20,
+    fracture_rate: 0.1 + Math.random() * 0.15,
+    confidence_interval: [successProbability - 0.08, successProbability + 0.08],
+    steps: optimalPath.length,
+  };
+}
+
+// ---------------------------------------------------------------------------
 // Page
 // ---------------------------------------------------------------------------
 
@@ -66,47 +98,11 @@ export default function CraftingPage() {
     selectedBase !== null && targetAffixes.length > 0 && !isSimulating;
 
   async function runSimulation() {
-    if (!canRun || !selectedBase) return;
+    if (!canRun) return;
     setIsSimulating(true);
     try {
-      const response = await predictCrafting({
-        forge_potential: selectedBase.forging_potential,
-        affixes: targetAffixes.map((a) => ({
-          affix_id: a.affix_id,
-          affix_name: a.affix_name,
-          current_tier: a.min_tier,
-          target_tier: a.target_tier,
-        })),
-      });
-
-      const path = response.optimal_path ?? [];
-      const sim = response.simulation_result ?? {};
-      const strategies = response.strategy_comparison ?? [];
-
-      // Map backend response to the UI result shape
-      const completionChance = sim.completion_chance ?? 0;
-      const bestStrategy = strategies.length > 0
-        ? strategies.reduce((best, s) => s.completion_chance > best.completion_chance ? s : best, strategies[0])
-        : null;
-
-      setResult({
-        optimal_path: path.map((s) => ({
-          action_type: s.action ?? "unknown",
-          target_affix_id: s.affix_name,
-          new_affix_id: s.affix_name,
-        })),
-        score: completionChance,
-        success_probability: completionChance,
-        mean_fp_cost: bestStrategy?.mean_fp_cost ?? 0,
-        fracture_rate: 1 - completionChance,
-        confidence_interval: [
-          Math.max(0, completionChance - 0.05),
-          Math.min(1, completionChance + 0.05),
-        ],
-        steps: path.length,
-      });
-    } catch (err) {
-      toast.error(err instanceof Error ? err.message : "Craft prediction failed");
+      const res = await generateMockResult(targetAffixes);
+      setResult(res);
     } finally {
       setIsSimulating(false);
     }

@@ -90,42 +90,6 @@ function SettingsIcon() {
   );
 }
 
-function BuildsIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <rect x="3" y="3" width="14" height="14" rx="2" />
-      <path d="M3 8 L17 8" />
-      <path d="M8 8 L8 17" />
-    </svg>
-  );
-}
-
-function PassiveTreeIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <circle cx="10" cy="4" r="2" />
-      <circle cx="5" cy="11" r="2" />
-      <circle cx="15" cy="11" r="2" />
-      <circle cx="10" cy="17" r="2" />
-      <path d="M10 6 L5 9" />
-      <path d="M10 6 L15 9" />
-      <path d="M5 13 L10 15" />
-      <path d="M15 13 L10 15" />
-    </svg>
-  );
-}
-
-function MetaIcon() {
-  return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-      <path d="M3 17 L3 10 L7 10 L7 17" />
-      <path d="M8 17 L8 6 L12 6 L12 17" />
-      <path d="M13 17 L13 3 L17 3 L17 17" />
-      <path d="M2 17 L18 17" />
-    </svg>
-  );
-}
-
 function ChevronRightIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -146,13 +110,10 @@ function ForgeLogoSmall() {
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/",            label: "Dashboard",     icon: <DashboardIcon /> },
-  { to: "/builds",      label: "Builds",        icon: <BuildsIcon /> },
   { to: "/build",       label: "Build Planner", icon: <BuildPlannerIcon /> },
-  { to: "/passives",    label: "Passive Tree",  icon: <PassiveTreeIcon /> },
   { to: "/craft",       label: "Crafting Lab",  icon: <CraftingLabIcon /> },
   { to: "/bis-search",  label: "BIS Search",    icon: <BisSearchIcon /> },
   { to: "/encounter",   label: "Simulation",    icon: <SimulationIcon /> },
-  { to: "/meta",        label: "Meta",          icon: <MetaIcon /> },
   { to: "/data-manager",label: "Data Manager",  icon: <DataManagerIcon /> },
   { to: "/profile",     label: "Settings",      icon: <SettingsIcon /> },
 ];

@@ -75,32 +75,20 @@ CLASS_META = {
 }
 
 def _get_affix_seed_data() -> list[dict]:
-    """Build seed-compatible dicts directly from the canonical affixes.json.
-
-    Reads the raw JSON so we get every field (tags, class_requirement, id,
-    modifier_type, applicable_to) without depending on the ORM or domain layer.
-    """
-    import json
-    from pathlib import Path
-
-    affixes_path = Path(__file__).resolve().parents[3] / "data" / "items" / "affixes.json"
-    with open(affixes_path, encoding="utf-8") as f:
-        raw_list: list[dict] = json.load(f)
-
+    """Build seed-compatible dicts from the canonical affixes.json."""
     return [
         {
-            "id": a.get("id", a.get("affix_id", a.get("name", ""))),
-            "name": a.get("name", ""),
-            "type": a.get("type", ""),                       # "prefix" or "suffix"
-            "modifier_type": a.get("modifier_type", "flat"),
-            "stat_key": a.get("stat_key", ""),
-            "tiers": a.get("tiers", []),
-            "applicable_to": a.get("applicable_to", []),
+            "id": a["id"],
+            "name": a["name"],
+            "type": a["category"],
+            "modifier_type": a.get("type", "flat"),
+            "stat": a.get("stat", a.get("stat_key", "")),
+            "tiers": a["tiers"],
+            "applicable": a.get("applicable", []),
             "class_requirement": a.get("class_requirement"),
             "tags": a.get("tags", []),
         }
-        for a in raw_list
-        if a.get("type", "") in ("prefix", "suffix", "experimental", "personal")
+        for a in get_all_affixes()
     ]
 
 
@@ -163,7 +151,7 @@ def get_affixes():
         if category:
             data = [a for a in data if a["type"] == category or category in a.get("tags", [])]
         if item_slot:
-            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", [])]]
+            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", a.get("applicable", []))]]
         if class_req:
             data = [a for a in data if a.get("class_requirement") in (None, class_req)]
         if tag:

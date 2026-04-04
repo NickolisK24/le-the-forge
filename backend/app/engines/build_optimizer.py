@@ -243,20 +243,9 @@ def optimize_build(
         c.rank = i + 1
 
     elapsed = time.perf_counter() - t_start
+    best    = results[0]
 
-    if not results:
-        return OptimizationResult(
-            best_upgrade  = {},
-            score         = 0.0,
-            stat_changes  = {},
-            all_upgrades  = [],
-            goals         = dict(goals),
-            iterations    = 0,
-            execution_time = round(elapsed, 4),
-        )
-
-    best = results[0]
-    stat_changes = {best.stat: best.delta}
+    stat_changes = {best.stat: best.delta} if results else {}
 
     opt_result = OptimizationResult(
         best_upgrade  = best.to_dict(),

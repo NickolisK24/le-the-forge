@@ -164,13 +164,7 @@ def _simulate_one_combat(
     t             = 0.0
     skill_idx     = 0
 
-    max_ticks = int(duration / tick) + 2  # safety cap: prevents infinite loop on degenerate inputs
-    tick_count = 0
     while t < duration:
-        if tick_count >= max_ticks:
-            log.warning("_simulate_one_combat.tick_cap_reached", duration=duration, tick=tick)
-            break
-        tick_count += 1
         # --- Player attacks enemy ---
         if rng.random() < BASE_HIT_CHANCE:
             roll    = rng.uniform(DAMAGE_ROLL_MIN, DAMAGE_ROLL_MAX)

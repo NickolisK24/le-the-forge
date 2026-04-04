@@ -49,20 +49,16 @@ def reload_fp_rules() -> dict:
 # Core FP functions
 # ---------------------------------------------------------------------------
 
-def roll_fp_cost(action_type: str, rng: Optional[random.Random] = None) -> int:
+def roll_fp_cost(action_type: str) -> int:
     """
     Roll a random FP cost for the given action.
     Range is defined in crafting_rules.json — never hardcoded.
-
-    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
-    When omitted, falls back to the module-level global random state.
     """
     rules = load_fp_rules()
     action = rules["fp_costs"].get(action_type)
     if action is None:
         raise ValueError(f"Unknown action type: {action_type!r}")
-    _rng = rng if rng is not None else random
-    return _rng.randint(action["min"], action["max"])
+    return random.randint(action["min"], action["max"])
 
 
 def fp_cost_range(action_type: str) -> tuple[int, int]:
@@ -80,13 +76,12 @@ def expected_fp_cost(action_type: str) -> float:
     return (lo + hi) / 2.0
 
 
-def roll_base_fp(item_type: str, rng: Optional[random.Random] = None) -> int:
+def roll_base_fp(item_type: str) -> int:
     """Roll the starting FP for a new item of the given type."""
     rules = load_fp_rules()
     base_fp = rules.get("base_item_fp", {})
     slot = base_fp.get(item_type.lower(), base_fp.get("default", {"min": 16, "max": 24}))
-    _rng = rng if rng is not None else random
-    return _rng.randint(slot["min"], slot["max"])
+    return random.randint(slot["min"], slot["max"])
 
 
 # ---------------------------------------------------------------------------
@@ -210,15 +205,13 @@ def _resolve_rarity_fp_range(rarity: str, item_level: int = 84) -> tuple[int, in
     return tier["min_fp"], tier["max_fp"]
 
 
-def generate_fp_by_rarity(rarity: str, item_level: int = 84,
-                          rng: Optional[random.Random] = None) -> int:
+def generate_fp_by_rarity(rarity: str, item_level: int = 84) -> int:
     """
     Generate random FP based on item rarity (and optionally item level).
     This is the primary FP generation function for new items.
     """
     lo, hi = _resolve_rarity_fp_range(rarity, item_level)
-    _rng = rng if rng is not None else random
-    return _rng.randint(lo, hi)
+    return random.randint(lo, hi)
 
 
 def validate_fp_by_rarity(rarity: str, user_fp: int, item_level: int = 84) -> bool:
