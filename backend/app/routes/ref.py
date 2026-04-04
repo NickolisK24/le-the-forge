@@ -75,13 +75,21 @@ CLASS_META = {
 }
 
 def _get_affix_seed_data() -> list[dict]:
-    """Load affixes directly from the canonical JSON file (not the domain model)."""
-    import json
-    from pathlib import Path
-    affix_path = Path(__file__).resolve().parents[3] / "data" / "items" / "affixes.json"
-    with open(affix_path, encoding="utf-8") as f:
-        raw: list[dict] = json.load(f)
-    return raw
+    """Build seed-compatible dicts from the canonical affixes.json."""
+    return [
+        {
+            "id": a["id"],
+            "name": a["name"],
+            "type": a["category"],
+            "modifier_type": a.get("type", "flat"),
+            "stat": a.get("stat", a.get("stat_key", "")),
+            "tiers": a["tiers"],
+            "applicable": a.get("applicable", []),
+            "class_requirement": a.get("class_requirement"),
+            "tags": a.get("tags", []),
+        }
+        for a in get_all_affixes()
+    ]
 
 
 @ref_bp.get("/classes")
