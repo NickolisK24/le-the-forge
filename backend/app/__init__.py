@@ -16,6 +16,23 @@ jwt = JWTManager()
 limiter = Limiter(key_func=get_remote_address)
 
 
+def _init_limiter(app: Flask) -> None:
+    """Initialize rate limiter with Redis, falling back to in-memory if unavailable."""
+    redis_url = app.config.get("RATELIMIT_STORAGE_URI", "")
+    if redis_url and redis_url != "memory://":
+        try:
+            import redis as _redis
+            r = _redis.from_url(redis_url, socket_connect_timeout=2)
+            r.ping()
+        except Exception:
+            app.logger.warning(
+                "Redis unavailable for rate limiting — falling back to in-memory storage. "
+                "This is fine for development but not recommended for production."
+            )
+            app.config["RATELIMIT_STORAGE_URI"] = "memory://"
+    limiter.init_app(app)
+
+
 def create_app(env: str = "development") -> Flask:
     app = Flask(__name__)
     app.config.from_object(config[env])
@@ -24,7 +41,7 @@ def create_app(env: str = "development") -> Flask:
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
-    limiter.init_app(app)
+    _init_limiter(app)
 
     CORS(
         app,
