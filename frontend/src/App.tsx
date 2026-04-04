@@ -42,6 +42,7 @@ import BisSearchPage from "@/pages/bis/BisSearchPage";
 import BuildWorkspace from "@/pages/build/BuildWorkspace";
 import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
 import BisWorkspace from "@/pages/bis/BisWorkspace";
+import BackendDebugDashboard from "@/pages/debug/BackendDebugDashboard";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -164,7 +165,8 @@ export default function App() {
 
               {/* Main app shell */}
               <Route element={<AppLayout />}>
-                <Route index element={<HomePage />} />
+                <Route index element={<BackendDebugDashboard />} />
+                <Route path="/home" element={<HomePage />} />
                 <Route path="/builds" element={<BuildsPage />} />
                 <Route path="/build" element={<BuildPlannerPage />} />
                 <Route path="/build/:slug" element={<BuildPlannerPage />} />
@@ -190,6 +192,7 @@ export default function App() {
                 <Route path="/build-library" element={<BuildLibraryPage />} />
                 <Route path="/my-builds" element={<UserBuildDashboard />} />
                 <Route path="/integration-debug" element={<IntegrationDebugPage />} />
+                <Route path="/debug" element={<BackendDebugDashboard />} />
                 <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/build-workspace" element={<BuildWorkspace />} />
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
