@@ -11,20 +11,15 @@
  */
 
 import { useState } from "react";
+import toast from "react-hot-toast";
 import { Panel, Button, Badge, Spinner } from "@/components/ui";
+import { predictCrafting, type CraftPredictResponse } from "@/services/craftingApi";
 
 // ---------------------------------------------------------------------------
 // Types
 // ---------------------------------------------------------------------------
 
 type Step = 1 | 2 | 3 | 4;
-
-interface SimulationResult {
-  attempt: number;
-  success: boolean;
-  fpUsed: number;
-  affixes: string;
-}
 
 const BASE_ITEMS = [
   { id: "helm",  label: "Helm" },
@@ -33,12 +28,6 @@ const BASE_ITEMS = [
   { id: "boots", label: "Boots" },
   { id: "ring",  label: "Ring" },
   { id: "staff", label: "Staff" },
-];
-
-const MOCK_RESULTS: SimulationResult[] = [
-  { attempt: 1, success: true,  fpUsed: 42, affixes: "T7 Fire Res, T6 Health" },
-  { attempt: 2, success: false, fpUsed: 18, affixes: "T5 Fire Res" },
-  { attempt: 3, success: true,  fpUsed: 55, affixes: "T7 Fire Res, T7 Health" },
 ];
 
 // ---------------------------------------------------------------------------
@@ -223,20 +212,37 @@ function Step2({
 function Step3({
   onBack,
   onNext,
+  targetAffixes,
+  onResult,
 }: {
   onBack: () => void;
   onNext: () => void;
+  targetAffixes: string[];
+  onResult: (result: CraftPredictResponse) => void;
 }) {
   const [isRunning, setIsRunning] = useState(false);
   const [isDone, setIsDone] = useState(false);
 
-  const handleRun = () => {
+  const handleRun = async () => {
     setIsRunning(true);
     setIsDone(false);
-    setTimeout(() => {
-      setIsRunning(false);
+    try {
+      const result = await predictCrafting({
+        forge_potential: 28,
+        affixes: targetAffixes.map((name, i) => ({
+          affix_id: `affix_${i}`,
+          affix_name: name,
+          current_tier: 0,
+          target_tier: 5,
+        })),
+      });
+      onResult(result);
       setIsDone(true);
-    }, 1800);
+    } catch (err) {
+      toast.error(err instanceof Error ? err.message : "Simulation failed");
+    } finally {
+      setIsRunning(false);
+    }
   };
 
   return (
@@ -279,42 +285,98 @@ function Step3({
   );
 }
 
-function Step4({ onRestart }: { onRestart: () => void }) {
+function Step4({
+  onRestart,
+  result,
+}: {
+  onRestart: () => void;
+  result: CraftPredictResponse | null;
+}) {
+  const sim = result?.simulation_result;
+  const path = result?.optimal_path ?? [];
+  const strategies = result?.strategy_comparison ?? [];
+
   return (
     <Panel title="Review Result">
-      <div className="overflow-x-auto mb-6">
-        <table className="w-full font-mono text-xs">
-          <thead>
-            <tr className="border-b border-forge-border">
-              {["Attempt", "Success", "FP Used", "Affixes"].map((col) => (
-                <th
-                  key={col}
-                  className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim"
-                >
-                  {col}
-                </th>
-              ))}
-            </tr>
-          </thead>
-          <tbody>
-            {MOCK_RESULTS.map((row) => (
-              <tr
-                key={row.attempt}
-                className="border-b border-forge-border/50 hover:bg-forge-surface2 transition-colors"
-              >
-                <td className="px-3 py-2 text-forge-muted">{row.attempt}</td>
-                <td className="px-3 py-2">
-                  <Badge variant={row.success ? "ladder" : "hc"}>
-                    {row.success ? "Yes" : "No"}
-                  </Badge>
-                </td>
-                <td className="px-3 py-2 text-forge-amber">{row.fpUsed}</td>
-                <td className="px-3 py-2 text-forge-text">{row.affixes}</td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
-      </div>
+      {/* Simulation summary */}
+      {sim && (
+        <div className="grid grid-cols-2 gap-4 mb-6">
+          <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-3">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Completion Chance</div>
+            <div className="mt-1 font-display text-lg font-bold text-forge-green">
+              {(sim.completion_chance * 100).toFixed(1)}%
+            </div>
+          </div>
+          <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-3">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Craft Steps</div>
+            <div className="mt-1 font-display text-lg font-bold text-forge-amber">{path.length}</div>
+          </div>
+          <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-3">
+            <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">Simulations</div>
+            <div className="mt-1 font-display text-lg font-bold text-forge-cyan">{sim.n_simulations.toLocaleString()}</div>
+          </div>
+        </div>
+      )}
+
+      {/* Optimal path */}
+      {path.length > 0 && (
+        <div className="mb-6">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-forge-dim mb-2">Optimal Path</div>
+          <div className="overflow-x-auto">
+            <table className="w-full font-mono text-xs">
+              <thead>
+                <tr className="border-b border-forge-border">
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Step</th>
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Action</th>
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Target</th>
+                </tr>
+              </thead>
+              <tbody>
+                {path.map((step, i) => (
+                  <tr key={i} className="border-b border-forge-border/50 hover:bg-forge-surface2 transition-colors">
+                    <td className="px-3 py-2 text-forge-muted">{i + 1}</td>
+                    <td className="px-3 py-2 text-forge-text">{step.action}</td>
+                    <td className="px-3 py-2 text-forge-amber">{step.affix_name ?? "—"}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
+
+      {/* Strategy comparison */}
+      {strategies.length > 0 && (
+        <div className="mb-6">
+          <div className="font-mono text-[11px] uppercase tracking-widest text-forge-dim mb-2">Strategy Comparison</div>
+          <div className="overflow-x-auto">
+            <table className="w-full font-mono text-xs">
+              <thead>
+                <tr className="border-b border-forge-border">
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Strategy</th>
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Success</th>
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Avg FP</th>
+                  <th className="text-left px-3 py-2 uppercase tracking-widest text-forge-dim">Steps</th>
+                </tr>
+              </thead>
+              <tbody>
+                {strategies.map((s, i) => (
+                  <tr key={i} className="border-b border-forge-border/50 hover:bg-forge-surface2 transition-colors">
+                    <td className="px-3 py-2 text-forge-text">{s.name}</td>
+                    <td className="px-3 py-2">
+                      <Badge variant={s.completion_chance > 0.5 ? "ladder" : "hc"}>
+                        {(s.completion_chance * 100).toFixed(1)}%
+                      </Badge>
+                    </td>
+                    <td className="px-3 py-2 text-forge-amber">{s.mean_fp_cost.toFixed(1)}</td>
+                    <td className="px-3 py-2 text-forge-muted">{s.steps}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      )}
 
       <div className="flex gap-3">
         <Button variant="ghost" onClick={onRestart}>← Start Over</Button>
@@ -332,7 +394,7 @@ export default function CraftingWorkspace() {
   const [currentStep, setCurrentStep] = useState<Step>(1);
   const [selectedBase, setSelectedBase] = useState<string | null>(null);
   const [targetAffixes, setTargetAffixes] = useState<string[]>([]);
-  const [, setSimulationResult] = useState<SimulationResult[] | null>(null);
+  const [craftResult, setCraftResult] = useState<CraftPredictResponse | null>(null);
 
   const goTo = (step: Step) => setCurrentStep(step);
 
@@ -348,7 +410,7 @@ export default function CraftingWorkspace() {
     setCurrentStep(1);
     setSelectedBase(null);
     setTargetAffixes([]);
-    setSimulationResult(null);
+    setCraftResult(null);
   };
 
   return (
@@ -386,14 +448,13 @@ export default function CraftingWorkspace() {
       {currentStep === 3 && (
         <Step3
           onBack={() => goTo(2)}
-          onNext={() => {
-            setSimulationResult(MOCK_RESULTS);
-            goTo(4);
-          }}
+          onNext={() => goTo(4)}
+          targetAffixes={targetAffixes}
+          onResult={(result) => setCraftResult(result)}
         />
       )}
       {currentStep === 4 && (
-        <Step4 onRestart={handleRestart} />
+        <Step4 onRestart={handleRestart} result={craftResult} />
       )}
     </div>
   );
