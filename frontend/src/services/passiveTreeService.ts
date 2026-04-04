@@ -1,9 +1,11 @@
 /**
  * Passive tree service — fetches live passive node data from the backend API.
+ *
+ * Uses the shared API client for auth token injection and error handling.
  * Types mirror the PassiveNode ORM model returned by /api/passives.
  */
 
-const BASE = import.meta.env.VITE_API_URL ?? "/api";
+import { apiGet } from "@/lib/api";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -23,7 +25,7 @@ export interface PassiveNode {
   mastery_requirement: number;
   name: string;
   description: string | null;
-  node_type: string;      // "core" (max_points > 1) or "notable" (max_points === 1)
+  node_type: string;      // "core" or "notable"
   x: number;
   y: number;
   max_points: number;
@@ -45,17 +47,14 @@ export interface PassiveTreeResponse {
 // ---------------------------------------------------------------------------
 
 async function _get(path: string): Promise<PassiveTreeResponse> {
-  const res = await fetch(`${BASE}${path}`);
-  let json: any;
-  try {
-    json = await res.json();
-  } catch {
-    throw new Error(`Server error (${res.status}) — invalid response from ${path}`);
+  const res = await apiGet<PassiveTreeResponse>(path);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? `Request failed: ${path}`);
   }
-  if (!res.ok) {
-    throw new Error(json.errors?.[0]?.message ?? `Request failed: ${path}`);
+  if (!res.data) {
+    throw new Error(`Empty response from ${path}`);
   }
-  return json.data as PassiveTreeResponse;
+  return res.data;
 }
 
 /** Fetch the full passive tree for a character class (all masteries). */

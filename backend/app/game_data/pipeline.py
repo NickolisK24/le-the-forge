@@ -119,8 +119,8 @@ class GameDataPipeline:
         self._cache["classes"]        = self._load_classes()
         self._cache["skills_meta"]    = self._load_optional("skills_meta", {})
         self._cache["uniques"]        = self._load_optional("uniques", {})
-        self._cache["rarities"]       = self._load_optional("rarities", {})
-        self._cache["damage_types"]   = self._load_optional("damage_types", {})
+        self._cache["rarities"]       = self._load_optional("rarities", [])
+        self._cache["damage_types"]   = self._load_optional("damage_types", [])
         self._cache["implicit_stats"] = self._load_optional("implicit_stats", {})
 
         log.info("pipeline.load_all.done", version=self._version)
@@ -173,12 +173,12 @@ class GameDataPipeline:
         return self._cache.get("uniques", {})
 
     @property
-    def rarities(self) -> dict:
-        return self._cache.get("rarities", {})
+    def rarities(self) -> list[dict]:
+        return self._cache.get("rarities", [])
 
     @property
-    def damage_types(self) -> dict:
-        return self._cache.get("damage_types", {})
+    def damage_types(self) -> list[dict]:
+        return self._cache.get("damage_types", [])
 
     @property
     def implicit_stats(self) -> dict:

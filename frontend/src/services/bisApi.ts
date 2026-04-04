@@ -1,8 +1,10 @@
 /**
  * BIS Search API service — connects the BIS search UI to the backend engine.
+ *
+ * Uses the shared API client for auth token injection and error handling.
  */
 
-const BASE = import.meta.env.VITE_API_URL ?? "/api";
+import { apiPost } from "@/lib/api";
 
 export interface BisSearchRequest {
   slots: string[];
@@ -30,16 +32,12 @@ export interface BisSearchResponse {
 export async function runBisSearch(
   req: BisSearchRequest,
 ): Promise<BisSearchResponse> {
-  const res = await fetch(`${BASE}/bis/search`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-  });
-
-  if (!res.ok) {
-    const body = await res.json().catch(() => ({}));
-    throw new Error(body.error ?? `BIS search failed (${res.status})`);
+  const res = await apiPost<BisSearchResponse>("/bis/search", req);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "BIS search failed");
   }
-
-  return res.json();
+  if (!res.data) {
+    throw new Error("Empty response from BIS search");
+  }
+  return res.data;
 }
