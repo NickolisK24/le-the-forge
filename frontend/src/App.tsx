@@ -35,7 +35,7 @@ import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
 import CraftingPage from "@/pages/crafting/CraftingPage";
 import CraftDebugPage from "@/pages/debug/CraftDebugPage";
 // Removed: SharedBuildPage (mock data), BuildLibraryPage (mock data)
-import UserBuildDashboard from "@/pages/user/UserBuildDashboard";
+// Removed: UserBuildDashboard (mock data with wrong class names)
 // Removed: IntegrationDebugPage, BuildWorkspace (stub), BisWorkspace (duplicate)
 import BisSearchPage from "@/pages/bis/BisSearchPage";
 import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
@@ -186,7 +186,7 @@ export default function App() {
                 <Route path="/viz-debug" element={<VisualizationDebugPage />} />
                 <Route path="/crafting" element={<CraftingPage />} />
                 <Route path="/craft-debug" element={<CraftDebugPage />} />
-                <Route path="/my-builds" element={<UserBuildDashboard />} />
+                {/* Removed: /my-builds — UserBuildDashboard uses mock data with wrong class names */}
                 <Route path="/debug" element={<BackendDebugDashboard />} />
                 <Route path="/data-flow" element={<DataFlowHarness />} />
                 <Route path="/bis-search" element={<BisSearchPage />} />
