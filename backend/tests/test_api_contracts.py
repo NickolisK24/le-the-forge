@@ -113,6 +113,54 @@ class TestAffixContract:
 
 
 # ---------------------------------------------------------------------------
+# Slot normalization contract
+# ---------------------------------------------------------------------------
+
+class TestSlotNormalization:
+    """Frontend and DB slot names must both return results."""
+
+    @pytest.mark.parametrize("frontend_slot,db_slot", [
+        ("helmet", "helm"),
+        ("head", "helm"),
+        ("body", "chest"),
+    ])
+    def test_affix_slot_aliases_match(self, client, frontend_slot, db_slot):
+        """Frontend slot name and DB slot name must return identical affix sets."""
+        r1 = _get_json(client, f"/api/ref/affixes?slot={frontend_slot}")
+        r2 = _get_json(client, f"/api/ref/affixes?slot={db_slot}")
+        ids1 = sorted(a["id"] for a in r1["data"])
+        ids2 = sorted(a["id"] for a in r2["data"])
+        assert ids1 == ids2, f"slot={frontend_slot} returned {len(ids1)} affixes, slot={db_slot} returned {len(ids2)}"
+
+    @pytest.mark.parametrize("slot", ["helmet", "helm", "chest", "boots", "gloves", "belt", "ring", "amulet"])
+    def test_affix_slot_returns_results(self, client, slot):
+        """Common slot names must return non-empty affix lists."""
+        data = _get_json(client, f"/api/ref/affixes?slot={slot}")
+        assert len(data["data"]) > 0, f"slot={slot} returned 0 affixes"
+
+    @pytest.mark.parametrize("slot", ["helmet", "helm", "boots", "gloves", "belt"])
+    def test_unique_slot_returns_results(self, client, slot):
+        """Common slot names must return non-empty unique item lists."""
+        data = _get_json(client, f"/api/ref/uniques?slot={slot}")
+        assert len(data["data"]) > 0, f"slot={slot} returned 0 uniques"
+
+    def test_base_items_helmet_alias(self, client):
+        """?slot=helmet should return results (maps to 'helmet' key in base items)."""
+        data = _get_json(client, "/api/ref/base-items?slot=helmet")
+        assert len(data["data"]) > 0, "slot=helmet returned 0 base items"
+
+    def test_meta_slot_weapon(self, client):
+        """?slot=weapon should return items across all weapon types."""
+        data = _get_json(client, "/api/ref/affixes?slot=weapon")
+        assert len(data["data"]) > 50, f"slot=weapon returned only {len(data['data'])} affixes"
+
+    def test_meta_slot_offhand(self, client):
+        """?slot=offhand should return items across shield/quiver/catalyst."""
+        data = _get_json(client, "/api/ref/affixes?slot=offhand")
+        assert len(data["data"]) > 0, f"slot=offhand returned 0 affixes"
+
+
+# ---------------------------------------------------------------------------
 # Passive node contract
 # ---------------------------------------------------------------------------
 

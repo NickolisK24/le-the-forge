@@ -28,6 +28,46 @@ ref_bp = Blueprint("ref", __name__)
 
 
 # ---------------------------------------------------------------------------
+# Slot name normalization — maps frontend-friendly names to DB values
+# ---------------------------------------------------------------------------
+# Frontend/UI may use human-readable names (helmet, chest, boots) while the
+# database applicable_to arrays use game-internal names (helm, chest, feet).
+# This mapping is applied at the API boundary so callers can use either form.
+
+_SLOT_ALIASES: dict[str, list[str]] = {
+    # Frontend name  →  DB applicable_to values to match against
+    "helmet":         ["helm"],
+    "head":           ["helm"],
+    "body":           ["chest"],
+    "feet":           ["boots"],
+    "hands":          ["gloves"],
+    "neck":           ["amulet"],
+    "finger":         ["ring"],
+    "waist":          ["belt"],
+    "weapon":         ["sword_1h", "sword_2h", "axe_1h", "axe_2h", "mace_1h", "mace_2h",
+                       "dagger", "sceptre", "wand", "staff", "bow", "polearm", "spear",
+                       "crossbow", "fist"],
+    "offhand":        ["shield", "quiver", "catalyst"],
+    "off_hand":       ["shield", "quiver", "catalyst"],
+    "idol":           ["idol", "idol_1x1_eterra", "idol_1x1_lagon", "idol_1x2", "idol_1x3",
+                       "idol_1x4", "idol_2x1", "idol_2x2", "idol_3x1", "idol_4x1"],
+}
+
+
+def _normalize_slot(raw_slot: str) -> list[str]:
+    """Convert a frontend slot name to a list of DB applicable_to values.
+
+    If the slot is already a valid DB value, returns it as a single-item list.
+    If it's an alias, returns all mapped DB values.
+    """
+    key = raw_slot.strip().lower()
+    if key in _SLOT_ALIASES:
+        return _SLOT_ALIASES[key]
+    # Already a DB value — return as-is
+    return [key]
+
+
+# ---------------------------------------------------------------------------
 # Static class metadata (no DB needed)
 # ---------------------------------------------------------------------------
 
@@ -166,13 +206,18 @@ def get_affixes():
         current_app.logger.exception("DB query failed in get_affixes")
         affixes = []
 
+    # Normalize slot parameter to DB vocabulary
+    slot_matches = _normalize_slot(item_slot) if item_slot else []
+
     if not affixes:
         # Static fallback from canonical JSON
         data = _get_affix_seed_data()
         if category:
             data = [a for a in data if a["type"] == category or category in a.get("tags", [])]
-        if item_slot:
-            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", [])]]
+        if slot_matches:
+            data = [a for a in data if any(
+                s.lower() in slot_matches for s in a.get("applicable_to", [])
+            )]
         if class_req:
             data = [a for a in data if a.get("class_requirement") in (None, class_req)]
         if tag:
@@ -181,7 +226,9 @@ def get_affixes():
 
     result = []
     for a in affixes:
-        if item_slot and item_slot.lower() not in [s.lower() for s in (a.applicable_types or [])]:
+        if slot_matches and not any(
+            s.lower() in slot_matches for s in (a.applicable_types or [])
+        ):
             continue
         if class_req and a.class_requirement and a.class_requirement != class_req:
             continue
@@ -295,7 +342,14 @@ def get_base_items_endpoint():
             for s in expanded:
                 items.extend(all_bases.get(s, []))
         else:
-            items = get_bases_for_slot(slot)
+            # Try normalized slot names, then fall back to direct lookup
+            all_bases = get_all_bases()
+            normalized = _normalize_slot(slot)
+            items = []
+            for s in normalized:
+                items.extend(all_bases.get(s, []))
+            if not items:
+                items = get_bases_for_slot(slot)
         return ok(data=items)
     return ok(data=get_all_bases())
 
@@ -426,9 +480,10 @@ def get_uniques_endpoint():
     if slot:
         expanded = _SLOT_CATEGORIES.get(slot)
         if expanded:
-            uniques = [u for u in uniques if u.get("slot", "").lower() in expanded]
+            slot_set = expanded
         else:
-            uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
+            slot_set = frozenset(_normalize_slot(slot))
+        uniques = [u for u in uniques if u.get("slot", "").lower() in slot_set]
 
     if query:
         uniques = [
