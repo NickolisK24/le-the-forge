@@ -1,0 +1,67 @@
+{
+  "_version": "1.0",
+  "_description": "Global simulation constants for The Forge. All engines reference this file for caps, defaults, and formula parameters.",
+
+  "combat": {
+    "crit_chance_cap": 1.0,
+    "crit_chance_default": 0.05,
+    "crit_multiplier_default": 1.5,
+    "base_hit_chance": 0.92,
+    "glancing_blow_damage_multiplier": 0.35,
+    "base_attack_speed": 1.0,
+    "base_cast_speed": 1.0
+  },
+
+  "defense": {
+    "resistance_cap": 75,
+    "overcap_resistance_cap": 90,
+    "armor_reduction_formula": "armor / (armor + 300)",
+    "armor_cap": 0.80,
+    "endurance_threshold_default": 0,
+    "endurance_damage_reduction": 0.6,
+    "block_effectiveness_scale": 0.01,
+    "dodge_diminishing_returns_base": 1000,
+    "dodge_diminishing_returns_factor": 0.5
+  },
+
+  "crafting": {
+    "max_prefixes": 3,
+    "max_suffixes": 3,
+    "max_sealed_affixes": 1,
+    "fp_cost_add": 4,
+    "fp_cost_upgrade": 6,
+    "fp_cost_remove": 2,
+    "fp_cost_seal": 8,
+    "fp_min_roll": 0.8,
+    "fp_max_roll": 1.2,
+    "fracture_base_chance": 0.05,
+    "fracture_fp_scaling": 0.01,
+    "max_affix_tier": 7,
+    "success_probability_base": 1.0
+  },
+
+  "simulation": {
+    "default_fight_duration": 60.0,
+    "default_monte_carlo_iterations": 1000,
+    "min_monte_carlo_iterations": 100,
+    "max_monte_carlo_iterations": 100000,
+    "default_tick_size": 0.1
+  },
+
+  "optimization": {
+    "default_top_n": 5,
+    "default_delta": 10.0,
+    "dps_weight": 1.0,
+    "ehp_weight": 0.5,
+    "diminishing_return_threshold": 300.0
+  },
+
+  "passives": {
+    "max_allocated_nodes": 113
+  },
+
+  "skills": {
+    "max_level": 20,
+    "level_scaling_default": 0.04
+  }
+}

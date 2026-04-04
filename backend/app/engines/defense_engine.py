@@ -281,3 +281,24 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
         mana_regen=round(stats.mana_regen, 1),
         sustain_score=sustain_score,
     )
+
+
+# ---------------------------------------------------------------------------
+# calculate_ehp — plan-specified alias
+# ---------------------------------------------------------------------------
+
+def calculate_ehp(stats: BuildStats) -> float:
+    """Return the effective health pool for *stats*.
+
+    This is the canonical interface specified in architecture_implementation_plan.md.
+    Delegates to :func:`calculate_defense` and returns the ``total_ehp`` value,
+    which includes the ward buffer on top of the armour/resistance-adjusted EHP.
+
+    Args:
+        stats: Aggregated :class:`~app.engines.stat_engine.BuildStats`.
+
+    Returns:
+        ``total_ehp`` as a float (health adjusted for all mitigation layers + ward).
+    """
+    result = calculate_defense(stats)
+    return float(result.total_ehp)

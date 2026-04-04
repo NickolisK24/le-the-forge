@@ -1,0 +1,134 @@
+{
+  "_version": "1.0",
+  "_description": "Base item definitions for The Forge. Each entry defines a craftable base with its slot, implicit stats, and affix pool tags.",
+  "items": {
+    "rusted_helm": {
+      "name": "Rusted Helm",
+      "slot": "helmet",
+      "base_type": "armor",
+      "tags": ["armor", "helmet"],
+      "implicit_stats": { "armour": 20 },
+      "affix_tags": ["helmet", "armor", "defense"]
+    },
+    "plated_helm": {
+      "name": "Plated Helm",
+      "slot": "helmet",
+      "base_type": "armor",
+      "tags": ["armor", "helmet"],
+      "implicit_stats": { "armour": 60 },
+      "affix_tags": ["helmet", "armor", "defense"]
+    },
+    "leather_vest": {
+      "name": "Leather Vest",
+      "slot": "body",
+      "base_type": "armor",
+      "tags": ["armor", "body"],
+      "implicit_stats": { "armour": 30 },
+      "affix_tags": ["body", "armor", "defense"]
+    },
+    "chain_vest": {
+      "name": "Chain Vest",
+      "slot": "body",
+      "base_type": "armor",
+      "tags": ["armor", "body"],
+      "implicit_stats": { "armour": 80 },
+      "affix_tags": ["body", "armor", "defense"]
+    },
+    "heavy_gauntlets": {
+      "name": "Heavy Gauntlets",
+      "slot": "gloves",
+      "base_type": "armor",
+      "tags": ["armor", "gloves"],
+      "implicit_stats": { "armour": 15 },
+      "affix_tags": ["gloves", "armor", "offense", "defense"]
+    },
+    "steel_sabatons": {
+      "name": "Steel Sabatons",
+      "slot": "boots",
+      "base_type": "armor",
+      "tags": ["armor", "boots"],
+      "implicit_stats": { "armour": 15 },
+      "affix_tags": ["boots", "armor", "defense", "movement"]
+    },
+    "leather_belt": {
+      "name": "Leather Belt",
+      "slot": "belt",
+      "base_type": "armor",
+      "tags": ["belt"],
+      "implicit_stats": { "max_health": 20 },
+      "affix_tags": ["belt", "defense", "utility"]
+    },
+    "iron_ring": {
+      "name": "Iron Ring",
+      "slot": "ring",
+      "base_type": "jewelry",
+      "tags": ["ring", "jewelry"],
+      "implicit_stats": {},
+      "affix_tags": ["ring", "offense", "defense", "utility"]
+    },
+    "gold_amulet": {
+      "name": "Gold Amulet",
+      "slot": "amulet",
+      "base_type": "jewelry",
+      "tags": ["amulet", "jewelry"],
+      "implicit_stats": {},
+      "affix_tags": ["amulet", "offense", "defense", "utility"]
+    },
+    "rusted_sword": {
+      "name": "Rusted Sword",
+      "slot": "sword",
+      "base_type": "weapon",
+      "tags": ["weapon", "sword", "melee", "one_handed"],
+      "implicit_stats": { "physical_damage_pct": 10 },
+      "affix_tags": ["weapon", "sword", "offense", "melee"]
+    },
+    "iron_sword": {
+      "name": "Iron Sword",
+      "slot": "sword",
+      "base_type": "weapon",
+      "tags": ["weapon", "sword", "melee", "one_handed"],
+      "implicit_stats": { "physical_damage_pct": 20 },
+      "affix_tags": ["weapon", "sword", "offense", "melee"]
+    },
+    "apprentice_wand": {
+      "name": "Apprentice Wand",
+      "slot": "wand",
+      "base_type": "weapon",
+      "tags": ["weapon", "wand", "caster", "one_handed"],
+      "implicit_stats": { "spell_damage_pct": 12 },
+      "affix_tags": ["weapon", "wand", "offense", "spell"]
+    },
+    "carved_staff": {
+      "name": "Carved Staff",
+      "slot": "staff",
+      "base_type": "weapon",
+      "tags": ["weapon", "staff", "caster", "two_handed"],
+      "implicit_stats": { "spell_damage_pct": 20, "cast_speed": 5 },
+      "affix_tags": ["weapon", "staff", "offense", "spell"]
+    },
+    "hunting_bow": {
+      "name": "Hunting Bow",
+      "slot": "bow",
+      "base_type": "weapon",
+      "tags": ["weapon", "bow", "ranged", "two_handed"],
+      "implicit_stats": { "bow_damage_pct": 15 },
+      "affix_tags": ["weapon", "bow", "offense", "ranged"]
+    },
+    "kite_shield": {
+      "name": "Kite Shield",
+      "slot": "shield",
+      "base_type": "armor",
+      "tags": ["shield", "armor"],
+      "implicit_stats": { "block_chance": 20, "armour": 20 },
+      "affix_tags": ["shield", "defense"]
+    },
+    "relic_shard": {
+      "name": "Relic Shard",
+      "slot": "relic",
+      "base_type": "relic",
+      "tags": ["relic"],
+      "implicit_stats": {},
+      "affix_tags": ["relic", "utility"]
+    }
+  }
+}

@@ -1,0 +1,139 @@
+{
+  "_version": "1.0",
+  "_description": "Enemy template definitions for The Forge. Used for combat simulation and survivability calculations.",
+  "enemies": {
+    "training_dummy": {
+      "name": "Training Dummy",
+      "category": "dummy",
+      "max_health": 10000,
+      "armor": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "void": 0,
+        "necrotic": 0
+      },
+      "crit_chance": 0.0,
+      "crit_multiplier": 1.5,
+      "damage_per_hit": 0,
+      "attack_speed": 0,
+      "tags": ["dummy"]
+    },
+    "undead_archer": {
+      "name": "Undead Archer",
+      "category": "undead",
+      "max_health": 800,
+      "armor": 50,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 25,
+        "lightning": 0,
+        "void": 0,
+        "necrotic": 50
+      },
+      "crit_chance": 0.05,
+      "crit_multiplier": 1.5,
+      "damage_per_hit": 45,
+      "attack_speed": 1.2,
+      "tags": ["undead", "ranged"]
+    },
+    "sentinel_golem": {
+      "name": "Sentinel Golem",
+      "category": "construct",
+      "max_health": 5000,
+      "armor": 400,
+      "resistances": {
+        "physical": 20,
+        "fire": 0,
+        "cold": 40,
+        "lightning": 0,
+        "void": 0,
+        "necrotic": 0
+      },
+      "crit_chance": 0.0,
+      "crit_multiplier": 1.5,
+      "damage_per_hit": 200,
+      "attack_speed": 0.5,
+      "tags": ["construct", "melee", "boss"]
+    },
+    "void_touched_cultist": {
+      "name": "Void-Touched Cultist",
+      "category": "human",
+      "max_health": 1200,
+      "armor": 80,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "void": 50,
+        "necrotic": 25
+      },
+      "crit_chance": 0.1,
+      "crit_multiplier": 2.0,
+      "damage_per_hit": 120,
+      "attack_speed": 1.0,
+      "tags": ["human", "caster"]
+    },
+    "fire_elemental": {
+      "name": "Fire Elemental",
+      "category": "elemental",
+      "max_health": 2000,
+      "armor": 0,
+      "resistances": {
+        "physical": 0,
+        "fire": 75,
+        "cold": -25,
+        "lightning": 25,
+        "void": 0,
+        "necrotic": 0
+      },
+      "crit_chance": 0.05,
+      "crit_multiplier": 1.5,
+      "damage_per_hit": 150,
+      "attack_speed": 1.5,
+      "tags": ["elemental", "fire"]
+    },
+    "lagon_boss": {
+      "name": "Lagon",
+      "category": "boss",
+      "max_health": 50000,
+      "armor": 600,
+      "resistances": {
+        "physical": 25,
+        "fire": 0,
+        "cold": 50,
+        "lightning": 0,
+        "void": 0,
+        "necrotic": 0
+      },
+      "crit_chance": 0.15,
+      "crit_multiplier": 2.5,
+      "damage_per_hit": 500,
+      "attack_speed": 0.8,
+      "tags": ["boss", "unique", "water"]
+    },
+    "empowered_lich": {
+      "name": "Empowered Lich",
+      "category": "undead",
+      "max_health": 30000,
+      "armor": 200,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 25,
+        "lightning": 0,
+        "void": 25,
+        "necrotic": 75
+      },
+      "crit_chance": 0.2,
+      "crit_multiplier": 2.0,
+      "damage_per_hit": 350,
+      "attack_speed": 1.2,
+      "tags": ["undead", "boss", "caster"]
+    }
+  }
+}

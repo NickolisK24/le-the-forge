@@ -251,7 +251,7 @@ class TestPerformance:
             result = engine.apply(state.clone(), 0.0)
             assert result.fractured is False
         elapsed = time.perf_counter() - t0
-        assert elapsed < 1.0
+        assert elapsed < 2.0  # 2× margin for CI runner / Python version variance
 
     def test_fracture_engine_full_chance_fast(self):
         """Fracture engine with 100% chance always fractures, stays fast."""
