@@ -1,12 +1,11 @@
 /**
  * Crafting API service — connects the Crafting Lab UI to the backend engine.
  *
+ * Uses the shared API client for auth token injection and error handling.
  * Primary endpoint: POST /api/craft/predict (stateless optimizer)
- *   - Takes: forge_potential, affixes (target list), n_simulations
- *   - Returns: optimal_path, simulation_result, strategy_comparison
  */
 
-const BASE = import.meta.env.VITE_API_URL ?? "/api";
+import { apiPost } from "@/lib/api";
 
 // ---------------------------------------------------------------------------
 // Request types
@@ -63,27 +62,21 @@ export interface CraftPredictResponse {
 export async function predictCrafting(
   req: CraftPredictRequest,
 ): Promise<CraftPredictResponse> {
-  const res = await fetch(`${BASE}/craft/predict`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      forge_potential: req.forge_potential,
-      affixes: req.affixes.map((a) => ({
-        affix_name: a.affix_name,
-        current_tier: a.current_tier,
-        target_tier: a.target_tier,
-      })),
-      n_simulations: req.n_simulations ?? 10_000,
-    }),
+  const res = await apiPost<CraftPredictResponse>("/craft/predict", {
+    forge_potential: req.forge_potential,
+    affixes: req.affixes.map((a) => ({
+      affix_name: a.affix_name,
+      current_tier: a.current_tier,
+      target_tier: a.target_tier,
+    })),
+    n_simulations: req.n_simulations ?? 10_000,
   });
 
-  const json = await res.json().catch(() => ({}));
-
-  if (!res.ok) {
-    throw new Error(
-      json.errors?.[0]?.message ?? json.error ?? `Craft prediction failed (${res.status})`,
-    );
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "Craft prediction failed");
   }
-
-  return json.data ?? json;
+  if (!res.data) {
+    throw new Error("Empty response from craft prediction");
+  }
+  return res.data;
 }

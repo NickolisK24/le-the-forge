@@ -108,6 +108,13 @@ const post = <T>(path: string, body?: unknown) => request<T>("POST", path, body)
 const patch = <T>(path: string, body?: unknown) => request<T>("PATCH", path, body);
 const del = <T>(path: string) => request<T>("DELETE", path);
 
+/**
+ * Shared fetch helpers — use these in all service files instead of raw fetch().
+ * They inject the auth token, handle errors, and return typed ApiResponse<T>.
+ */
+export const apiGet = get;
+export const apiPost = post;
+
 // ---------------------------------------------------------------------------
 // Auth
 // ---------------------------------------------------------------------------
