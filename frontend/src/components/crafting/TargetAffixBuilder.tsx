@@ -1,29 +1,13 @@
 /**
  * P23 — TargetAffixBuilder
  *
- * Lets the user pick affixes with tier goals. Validates against duplicates and
- * a max of 4 affixes, then exposes the list via onChange.
+ * Lets the user pick affixes with tier goals. Fetches real affix data from the
+ * backend API. Validates against duplicates and a max of 4 affixes.
  */
 
-import { useState } from "react";
+import { useState, useMemo, useEffect } from "react";
+import { useAffixes } from "@/hooks";
 import type { TargetAffix } from "@/pages/crafting/CraftingPage";
-
-// ---------------------------------------------------------------------------
-// Available affixes catalogue
-// ---------------------------------------------------------------------------
-
-const AVAILABLE_AFFIXES = [
-  { id: "max_life",          name: "+Max Life",          type: "prefix" },
-  { id: "flat_fire_damage",  name: "Flat Fire Damage",   type: "prefix" },
-  { id: "crit_chance",       name: "Crit Chance",        type: "prefix" },
-  { id: "spell_damage",      name: "Spell Damage",       type: "prefix" },
-  { id: "attack_speed",      name: "Attack Speed",       type: "prefix" },
-  { id: "resistances",       name: "+Resistances",       type: "suffix" },
-  { id: "cast_speed",        name: "Cast Speed",         type: "suffix" },
-  { id: "mana_regen",        name: "Mana Regeneration",  type: "suffix" },
-  { id: "movement_speed",    name: "Movement Speed",     type: "suffix" },
-  { id: "life_on_hit",       name: "Life on Hit",        type: "suffix" },
-] as const;
 
 const MAX_AFFIXES = 4;
 const TIER_MIN = 1;
@@ -39,10 +23,35 @@ interface Props {
 }
 
 export default function TargetAffixBuilder({ affixes, onChange }: Props) {
-  const [selectedId, setSelectedId] = useState(AVAILABLE_AFFIXES[0].id);
+  const { data: affixRes, isLoading } = useAffixes();
+  const allAffixes = affixRes?.data ?? [];
+  const [selectedId, setSelectedId] = useState("");
   const [minTier,    setMinTier]    = useState(1);
   const [targetTier, setTargetTier] = useState(4);
   const [error,      setError]      = useState<string | null>(null);
+  const [search,     setSearch]     = useState("");
+
+  // Filter and sort affixes for the dropdown
+  const filteredAffixes = useMemo(() => {
+    if (!allAffixes.length) return [];
+    let list = allAffixes;
+    if (search) {
+      const q = search.toLowerCase();
+      list = list.filter(
+        (a) =>
+          a.name.toLowerCase().includes(q) ||
+          a.type?.toLowerCase().includes(q),
+      );
+    }
+    return list.slice(0, 100); // Cap dropdown size for performance
+  }, [allAffixes, search]);
+
+  // Auto-select first item when data loads
+  useEffect(() => {
+    if (!selectedId && filteredAffixes.length > 0) {
+      setSelectedId(filteredAffixes[0].id);
+    }
+  }, [filteredAffixes, selectedId]);
 
   function handleAdd() {
     setError(null);
@@ -57,11 +66,13 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
       return;
     }
 
-    const def = AVAILABLE_AFFIXES.find((a) => a.id === selectedId)!;
+    const def = allAffixes.find((a) => a.id === selectedId);
+    if (!def) return;
+
     const next: TargetAffix = {
-      affix_id:   def.id,
-      affix_name: def.name,
-      min_tier:   minTier,
+      affix_id:    def.id,
+      affix_name:  def.name,
+      min_tier:    minTier,
       target_tier: targetTier,
     };
     onChange([...affixes, next]);
@@ -79,19 +90,38 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
 
       {/* Add section */}
       <div className="space-y-3 rounded-md bg-[#0d1123] border border-[#2a3050] p-3">
+        {/* Search filter */}
+        <div className="space-y-1">
+          <label className="text-[11px] text-gray-400 uppercase tracking-wider">Search Affixes</label>
+          <input
+            type="text"
+            value={search}
+            onChange={(e) => setSearch(e.target.value)}
+            placeholder="Type to filter..."
+            className="w-full rounded border border-[#2a3050] bg-[#10152a] px-2 py-1.5 text-xs text-gray-100 placeholder:text-gray-600 focus:outline-none focus:border-[#f5a623]"
+          />
+        </div>
+
         <div className="space-y-1">
           <label className="text-[11px] text-gray-400 uppercase tracking-wider">Affix</label>
-          <select
-            value={selectedId}
-            onChange={(e) => setSelectedId(e.target.value)}
-            className="w-full rounded border border-[#2a3050] bg-[#10152a] px-2 py-1.5 text-xs text-gray-100 focus:outline-none focus:border-[#f5a623]"
-          >
-            {AVAILABLE_AFFIXES.map((a) => (
-              <option key={a.id} value={a.id}>
-                {a.name} ({a.type})
-              </option>
-            ))}
-          </select>
+          {isLoading ? (
+            <div className="text-xs text-gray-500 py-2">Loading affixes...</div>
+          ) : (
+            <select
+              value={selectedId}
+              onChange={(e) => setSelectedId(e.target.value)}
+              className="w-full rounded border border-[#2a3050] bg-[#10152a] px-2 py-1.5 text-xs text-gray-100 focus:outline-none focus:border-[#f5a623]"
+            >
+              {filteredAffixes.map((a) => (
+                <option key={a.id} value={a.id}>
+                  {a.name} ({a.type})
+                </option>
+              ))}
+              {filteredAffixes.length === 0 && (
+                <option disabled>No matching affixes</option>
+              )}
+            </select>
+          )}
         </div>
 
         <div className="grid grid-cols-2 gap-3">
@@ -142,7 +172,7 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
 
         <button
           onClick={handleAdd}
-          disabled={affixes.length >= MAX_AFFIXES}
+          disabled={affixes.length >= MAX_AFFIXES || !selectedId}
           className="w-full rounded bg-[#f5a623] px-3 py-1.5 text-xs font-semibold text-[#10152a] transition hover:bg-[#f5a623cc] disabled:opacity-40 disabled:cursor-not-allowed"
         >
           Add Affix
