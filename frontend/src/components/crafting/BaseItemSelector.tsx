@@ -32,10 +32,10 @@ export default function BaseItemSelector({ onSelect, selected }: Props) {
     if (Array.isArray(baseItemsRaw)) {
       for (const item of baseItemsRaw) {
         items.push({
-          id: item.id ?? item.name ?? `item-${items.length}`,
+          id: item.name ?? `item-${items.length}`,
           name: item.name ?? "Unknown",
-          item_class: item.slot ?? item.category ?? "Other",
-          forging_potential: item.forging_potential ?? item.fp ?? 50,
+          item_class: "Other",
+          forging_potential: item.max_fp ?? item.min_fp ?? 50,
         });
       }
     } else if (typeof baseItemsRaw === "object") {
@@ -43,10 +43,10 @@ export default function BaseItemSelector({ onSelect, selected }: Props) {
         if (!Array.isArray(slotItems)) continue;
         for (const item of slotItems) {
           items.push({
-            id: item.id ?? item.name ?? `${slot}-${items.length}`,
+            id: item.name ?? `${slot}-${items.length}`,
             name: item.name ?? "Unknown",
             item_class: slot.charAt(0).toUpperCase() + slot.slice(1),
-            forging_potential: item.forging_potential ?? item.fp ?? 50,
+            forging_potential: item.max_fp ?? item.min_fp ?? 50,
           });
         }
       }

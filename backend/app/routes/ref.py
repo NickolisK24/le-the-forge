@@ -14,7 +14,7 @@ GET  /api/ref/affix-categories    → Available affix category descriptions
 GET  /api/ref/crafting-rules      → FP cost ranges from crafting_rules.json
 """
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, current_app, request, jsonify
 
 from app.constants.cache import REF_STATIC_CACHE_TTL, REF_SEMISTATIC_CACHE_TTL
 from app.models import ItemType, AffixDef, PassiveNode
@@ -87,21 +87,28 @@ def _get_affix_seed_data() -> list[dict]:
     with open(affixes_path, encoding="utf-8") as f:
         raw_list: list[dict] = json.load(f)
 
-    return [
-        {
+    # Normalize experimental/personal → prefix to match the DB path
+    type_normalize = {"experimental": "prefix", "personal": "prefix"}
+    result = []
+    for a in raw_list:
+        raw_type = a.get("type", "")
+        if raw_type not in ("prefix", "suffix", "experimental", "personal"):
+            continue
+        canonical_type = type_normalize.get(raw_type, raw_type)
+        tags = list(a.get("tags", []))
+        if raw_type in type_normalize and raw_type not in tags:
+            tags.append(raw_type)
+        result.append({
             "id": a.get("id", a.get("affix_id", a.get("name", ""))),
             "name": a.get("name", ""),
-            "type": a.get("type", ""),                       # "prefix" or "suffix"
-            "modifier_type": a.get("modifier_type", "flat"),
+            "type": canonical_type,
             "stat_key": a.get("stat_key", ""),
             "tiers": a.get("tiers", []),
             "applicable_to": a.get("applicable_to", []),
             "class_requirement": a.get("class_requirement"),
-            "tags": a.get("tags", []),
-        }
-        for a in raw_list
-        if a.get("type", "") in ("prefix", "suffix", "experimental", "personal")
-    ]
+            "tags": tags,
+        })
+    return result
 
 
 @ref_bp.get("/classes")
@@ -116,6 +123,7 @@ def get_item_types():
     try:
         item_types = ItemType.query.order_by(ItemType.category, ItemType.name).all()
     except Exception:
+        current_app.logger.exception("DB query failed in get_item_types")
         item_types = []
     if not item_types:
         # Return static fallback if DB not seeded yet
@@ -155,6 +163,7 @@ def get_affixes():
             AffixDef.affix_type.in_(CRAFTABLE_TYPES)
         ).order_by(AffixDef.name).all()
     except Exception:
+        current_app.logger.exception("DB query failed in get_affixes")
         affixes = []
 
     if not affixes:
@@ -199,6 +208,7 @@ def get_affixes():
             "id": str(a.id),
             "name": a.name,
             "type": canonical_type,
+            "stat_key": a.stat_key or "",
             "applicable_to": a.applicable_types or [],
             "tiers": tiers,
             "tags": tags,
