@@ -8,8 +8,11 @@ FP costs are loaded from crafting_rules.json via fp_engine.
 """
 
 import copy
+import json
+import os
 import random
-from typing import Optional
+from functools import lru_cache
+from typing import Any, Optional
 
 import numpy as np
 
@@ -30,6 +33,20 @@ from app.constants.crafting import PERFECT_ROLL_THRESHOLD, TARGET_TIER
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
+
+_CONSTANTS_PATH = os.path.join(
+    os.path.dirname(__file__), "..", "game_data", "constants.json"
+)
+
+
+@lru_cache(maxsize=1)
+def _load_constants() -> dict:
+    with open(_CONSTANTS_PATH) as f:
+        return json.load(f)
+
+
+def _const(section: str, key: str, default: Any = None) -> Any:
+    return _load_constants().get(section, {}).get(key, default)
 
 
 # Derived from rules file — used for planning and display only.
@@ -102,9 +119,16 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
         fp_cost=cost,
     )
 
-    # 3. Apply craft effect
-    roll = random.uniform(0, 100)
-    _apply_craft_effect(item, action, affix_name, target_tier, roll)
+    # 3. Apply craft effect — ValueError means the action is invalid for this item
+    try:
+        _apply_craft_effect(item, action, affix_name, target_tier)
+    except ValueError as e:
+        return {
+            "success": False,
+            "outcome": "invalid",
+            "message": str(e),
+            "item": item,
+        }
 
     # 4. Reduce FP
     item["forge_potential"] -= cost
@@ -129,13 +153,15 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
 
 
 def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
-                       target_tier: Optional[int], roll: float):
+                       target_tier: Optional[int]):
     """Apply the actual craft effect to the item."""
     affixes = item["affixes"]
 
     if action == "add_affix":
         if not affix_name:
             raise ValueError("affix_name required for add_affix")
+        max_pfx = _const("crafting", "max_prefixes", 3)
+        max_sfx = _const("crafting", "max_suffixes", 3)
         # Only unsealed affixes count toward prefix/suffix limits; sealed is a separate slot (max 1)
         prefix_count = sum(1 for a in affixes if a.get("type") == "prefix" and not a.get("sealed"))
         suffix_count = sum(1 for a in affixes if a.get("type") == "suffix" and not a.get("sealed"))
@@ -149,12 +175,12 @@ def _apply_craft_effect(item: dict, action: str, affix_name: Optional[str],
             affix_type = affix_def.get("type")
         else:
             affix_type = getattr(affix_def, "type", None)
-        if affix_type == "prefix" and prefix_count >= 2:
-            raise ValueError("Prefix slots full (max 2 active prefixes).")
-        if affix_type == "suffix" and suffix_count >= 2:
-            raise ValueError("Suffix slots full (max 2 active suffixes).")
-        if active_count >= 4:
-            raise ValueError("Item already has 4 active affixes.")
+        if affix_type == "prefix" and prefix_count >= max_pfx:
+            raise ValueError(f"Prefix slots full (max {max_pfx} active prefixes).")
+        if affix_type == "suffix" and suffix_count >= max_sfx:
+            raise ValueError(f"Suffix slots full (max {max_sfx} active suffixes).")
+        if active_count >= max_pfx + max_sfx:
+            raise ValueError(f"Item already has {max_pfx + max_sfx} active affixes.")
         affixes.append({"name": affix_name, "tier": target_tier or 1, "sealed": False, "type": affix_type})
 
     elif action == "upgrade_affix":
@@ -519,7 +545,7 @@ def calculate_success_probability(
     Returns:
         Probability as a float in [0.0, 1.0].
     """
-    fp = item.get("forging_potential", 0)
+    fp = item.get("forging_potential", item.get("forge_potential", 0))
     expected = fp_cost(action)
 
     if fp < expected:
@@ -649,14 +675,13 @@ def simulate_craft_attempt(
         - ``item_after`` (dict)
         - ``reason`` (str)
     """
-    if seed is not None:
-        random.seed(seed)
+    rng = random.Random(seed)
 
     fp_before = _get_fp(item)
     item_before = copy.deepcopy(item)
 
     fracture_prob = calculate_fracture_probability(item)
-    fractured = random.random() < fracture_prob
+    fractured = rng.random() < fracture_prob
 
     if fractured:
         item_after = copy.deepcopy(item)

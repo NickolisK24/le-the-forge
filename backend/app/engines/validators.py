@@ -70,7 +70,7 @@ VALID_SLOTS = {
 }
 
 VALID_CLASSES = {
-    "Acolyte", "Mage", "Primalist", "Rogue", "Sentinel", "Runemaster",
+    "Acolyte", "Mage", "Primalist", "Rogue", "Sentinel",
 }
 
 VALID_MASTERIES: dict[str, set[str]] = {
@@ -79,7 +79,6 @@ VALID_MASTERIES: dict[str, set[str]] = {
     "Primalist": {"Shaman", "Druid", "Beastmaster"},
     "Rogue":     {"Bladedancer", "Marksman", "Falconer"},
     "Sentinel":  {"Forge Guard", "Paladin", "Void Knight"},
-    "Runemaster":{""},
 }
 
 
@@ -170,7 +169,7 @@ def validate_item(item: dict, slot_index: int = 0) -> ValidationResult:
     suffixes = item.get("suffixes", [])
     all_active = list(affixes) + list(prefixes) + list(suffixes)
 
-    prefix_count = sum(1 for a in all_active if a.get("type") in ("prefix", None) and not a.get("sealed"))
+    prefix_count = sum(1 for a in all_active if a.get("type") == "prefix" and not a.get("sealed"))
     suffix_count = sum(1 for a in all_active if a.get("type") == "suffix" and not a.get("sealed"))
 
     if len(prefixes) > max_pfx:

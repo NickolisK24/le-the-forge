@@ -125,7 +125,7 @@ def _normalise_passive_tree(passive_tree) -> list[int]:
             result.append(node)
         elif isinstance(node, dict):
             result.append(int(node.get("id", node.get("node_id", 0))))
-    return sorted(set(result))  # deduplicate and sort for determinism
+    return sorted(result)  # sort for determinism; duplicates preserved (multi-point nodes)
 
 
 # ---------------------------------------------------------------------------
