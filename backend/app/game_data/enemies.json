@@ -1,6 +1,6 @@
 {
-  "_version": "1.0",
-  "_description": "Enemy template definitions for The Forge. Used for combat simulation and survivability calculations.",
+  "_version": "2.0",
+  "_description": "Enemy template definitions for The Forge. Version 2 adds attack_speed, damage_range, and skill_pattern for behavior-driven simulation.",
   "enemies": {
     "training_dummy": {
       "name": "Training Dummy",
@@ -19,6 +19,8 @@
       "crit_multiplier": 1.5,
       "damage_per_hit": 0,
       "attack_speed": 0,
+      "damage_range": [0, 0],
+      "skill_pattern": ["basic"],
       "tags": ["dummy"]
     },
     "undead_archer": {
@@ -38,6 +40,8 @@
       "crit_multiplier": 1.5,
       "damage_per_hit": 45,
       "attack_speed": 1.2,
+      "damage_range": [35, 60],
+      "skill_pattern": ["basic", "basic", "heavy"],
       "tags": ["undead", "ranged"]
     },
     "sentinel_golem": {
@@ -57,6 +61,8 @@
       "crit_multiplier": 1.5,
       "damage_per_hit": 200,
       "attack_speed": 0.5,
+      "damage_range": [160, 240],
+      "skill_pattern": ["basic", "heavy"],
       "tags": ["construct", "melee", "boss"]
     },
     "void_touched_cultist": {
@@ -76,6 +82,8 @@
       "crit_multiplier": 2.0,
       "damage_per_hit": 120,
       "attack_speed": 1.0,
+      "damage_range": [90, 150],
+      "skill_pattern": ["basic", "basic", "heavy", "basic"],
       "tags": ["human", "caster"]
     },
     "fire_elemental": {
@@ -95,6 +103,8 @@
       "crit_multiplier": 1.5,
       "damage_per_hit": 150,
       "attack_speed": 1.5,
+      "damage_range": [110, 190],
+      "skill_pattern": ["basic", "heavy", "basic", "basic", "heavy"],
       "tags": ["elemental", "fire"]
     },
     "lagon_boss": {
@@ -114,6 +124,8 @@
       "crit_multiplier": 2.5,
       "damage_per_hit": 500,
       "attack_speed": 0.8,
+      "damage_range": [380, 620],
+      "skill_pattern": ["basic", "basic", "heavy", "heavy", "basic", "heavy"],
       "tags": ["boss", "unique", "water"]
     },
     "empowered_lich": {
@@ -133,7 +145,51 @@
       "crit_multiplier": 2.0,
       "damage_per_hit": 350,
       "attack_speed": 1.2,
+      "damage_range": [270, 430],
+      "skill_pattern": ["basic", "heavy", "basic", "heavy"],
       "tags": ["undead", "boss", "caster"]
+    },
+    "blood_knight": {
+      "name": "Blood Knight",
+      "category": "human",
+      "max_health": 3500,
+      "armor": 350,
+      "resistances": {
+        "physical": 30,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "void": 0,
+        "necrotic": 15
+      },
+      "crit_chance": 0.12,
+      "crit_multiplier": 1.8,
+      "damage_per_hit": 220,
+      "attack_speed": 1.1,
+      "damage_range": [175, 265],
+      "skill_pattern": ["basic", "basic", "heavy"],
+      "tags": ["human", "melee"]
+    },
+    "void_spider": {
+      "name": "Void Spider",
+      "category": "beast",
+      "max_health": 600,
+      "armor": 20,
+      "resistances": {
+        "physical": 0,
+        "fire": 0,
+        "cold": 0,
+        "lightning": 0,
+        "void": 40,
+        "necrotic": 0
+      },
+      "crit_chance": 0.08,
+      "crit_multiplier": 1.5,
+      "damage_per_hit": 55,
+      "attack_speed": 2.0,
+      "damage_range": [40, 70],
+      "skill_pattern": ["basic", "basic"],
+      "tags": ["beast", "fast"]
     }
   }
 }
