@@ -5,7 +5,7 @@
  * backend API. Validates against duplicates and a max of 4 affixes.
  */
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { useAffixes } from "@/hooks";
 import type { TargetAffix } from "@/pages/crafting/CraftingPage";
 
@@ -23,7 +23,8 @@ interface Props {
 }
 
 export default function TargetAffixBuilder({ affixes, onChange }: Props) {
-  const { data: allAffixes, isLoading } = useAffixes();
+  const { data: affixRes, isLoading } = useAffixes();
+  const allAffixes = affixRes?.data ?? [];
   const [selectedId, setSelectedId] = useState("");
   const [minTier,    setMinTier]    = useState(1);
   const [targetTier, setTargetTier] = useState(4);
@@ -32,7 +33,7 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
 
   // Filter and sort affixes for the dropdown
   const filteredAffixes = useMemo(() => {
-    if (!allAffixes) return [];
+    if (!allAffixes.length) return [];
     let list = allAffixes;
     if (search) {
       const q = search.toLowerCase();
@@ -46,9 +47,11 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
   }, [allAffixes, search]);
 
   // Auto-select first item when data loads
-  if (!selectedId && filteredAffixes.length > 0) {
-    setSelectedId(filteredAffixes[0].id);
-  }
+  useEffect(() => {
+    if (!selectedId && filteredAffixes.length > 0) {
+      setSelectedId(filteredAffixes[0].id);
+    }
+  }, [filteredAffixes, selectedId]);
 
   function handleAdd() {
     setError(null);
@@ -63,7 +66,7 @@ export default function TargetAffixBuilder({ affixes, onChange }: Props) {
       return;
     }
 
-    const def = allAffixes?.find((a) => a.id === selectedId);
+    const def = allAffixes.find((a) => a.id === selectedId);
     if (!def) return;
 
     const next: TargetAffix = {
