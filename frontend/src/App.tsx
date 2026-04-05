@@ -41,6 +41,7 @@ import BisSearchPage from "@/pages/bis/BisSearchPage";
 import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
 import BackendDebugDashboard from "@/pages/debug/BackendDebugDashboard";
 import DataFlowHarness from "@/pages/debug/DataFlowHarness";
+import ClassesPage from "@/pages/classes/ClassesPage";
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -188,6 +189,7 @@ export default function App() {
                 <Route path="/craft-debug" element={<CraftDebugPage />} />
                 {/* Removed: /my-builds — UserBuildDashboard uses mock data with wrong class names */}
                 <Route path="/debug" element={<BackendDebugDashboard />} />
+                <Route path="/classes" element={<ClassesPage />} />
                 <Route path="/data-flow" element={<DataFlowHarness />} />
                 <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
