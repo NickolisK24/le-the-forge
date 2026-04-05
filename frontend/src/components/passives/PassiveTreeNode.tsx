@@ -36,12 +36,13 @@ interface Props {
   state: NodeState;
   allocatedPoints: number;
   onNodeClick: (nodeId: string) => void;
+  onNodeRightClick: (nodeId: string) => void;
   onHover: (node: PassiveNode, screenX: number, screenY: number) => void;
   onLeave: () => void;
 }
 
 function PassiveTreeNodeInner({
-  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onHover, onLeave,
+  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave,
 }: Props) {
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
@@ -64,6 +65,7 @@ function PassiveTreeNodeInner({
     <g
       transform={`translate(${sx},${sy})`}
       onClick={() => onNodeClick(node.id)}
+      onContextMenu={(e) => { e.preventDefault(); onNodeRightClick(node.id); }}
       onMouseEnter={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseMove={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseLeave={onLeave}
