@@ -1,45 +1,99 @@
 /**
  * PassiveTreeNode — renders a single passive node in the SVG tree.
  *
- * Responsibilities:
- *   - Render a positioned circle/diamond at the node's scaled coordinates
- *   - Display the TreeIcon inside the shape
- *   - Show a tooltip on hover with name, description, stats
- *   - Color by mastery_index (base vs mastery tiers)
+ * Supports three visual states:
+ *   ALLOCATED  — node is selected (bright highlight)
+ *   AVAILABLE  — node can be allocated (normal appearance, pointer cursor)
+ *   LOCKED     — node is not reachable yet (dimmed, not-allowed cursor)
+ *
+ * Wrapped in React.memo to avoid re-rendering nodes whose state hasn't changed.
  */
 
+import { memo } from "react";
 import TreeIcon from "@/components/TreeIcon";
 import type { PassiveNode } from "@/services/passiveTreeService";
 
+export type NodeState = "allocated" | "available" | "locked";
+
 // Mastery palette — index 0 = base, 1/2/3 = masteries
-const PALETTE: Record<number, { fill: string; stroke: string; label: string }> = {
-  0: { fill: "#181c30", stroke: "#3a4070", label: "Base" },
-  1: { fill: "#0a1e26", stroke: "#1a5570", label: "Mastery I" },
-  2: { fill: "#221a08", stroke: "#664410", label: "Mastery II" },
-  3: { fill: "#180d2a", stroke: "#4c1880", label: "Mastery III" },
+const PALETTE: Record<number, {
+  fill: string;
+  strokeIdle: string;
+  strokeAllocated: string;
+  strokeAvailable: string;
+}> = {
+  0: { fill: "#181c30", strokeIdle: "#3a4070", strokeAllocated: "#8890b8", strokeAvailable: "#5a6090" },
+  1: { fill: "#0a1e26", strokeIdle: "#1a5570", strokeAllocated: "#00d4f5", strokeAvailable: "#0a8aaa" },
+  2: { fill: "#221a08", strokeIdle: "#664410", strokeAllocated: "#f0a020", strokeAvailable: "#a07018" },
+  3: { fill: "#180d2a", strokeIdle: "#4c1880", strokeAllocated: "#b870ff", strokeAvailable: "#7040b0" },
 };
 
 interface Props {
   node: PassiveNode;
-  sx: number;  // screen X (already scaled)
-  sy: number;  // screen Y (already scaled)
+  sx: number;
+  sy: number;
   radius: number;
+  state: NodeState;
+  allocatedPoints: number;
+  onNodeClick: (nodeId: string) => void;
   onHover: (node: PassiveNode, screenX: number, screenY: number) => void;
   onLeave: () => void;
 }
 
-export default function PassiveTreeNode({ node, sx, sy, radius, onHover, onLeave }: Props) {
+function PassiveTreeNodeInner({
+  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onHover, onLeave,
+}: Props) {
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
+
+  const isAllocated = state === "allocated";
+  const isAvailable = state === "available";
+  const isLocked = state === "locked";
+
+  const stroke = isAllocated
+    ? pal.strokeAllocated
+    : isAvailable
+      ? pal.strokeAvailable
+      : pal.strokeIdle;
+
+  const strokeWidth = isAllocated ? 2 : 1;
+  const opacity = isLocked ? 0.35 : 1;
+  const cursor = isAllocated ? "pointer" : isAvailable ? "pointer" : "not-allowed";
 
   return (
     <g
       transform={`translate(${sx},${sy})`}
+      onClick={() => onNodeClick(node.id)}
       onMouseEnter={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseMove={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseLeave={onLeave}
-      style={{ cursor: "default" }}
+      style={{ cursor }}
+      opacity={opacity}
     >
+      {/* Glow halo when allocated */}
+      {isAllocated && (
+        isNotable ? (
+          <rect
+            x={-(radius + 4)}
+            y={-(radius + 4)}
+            width={(radius + 4) * 2}
+            height={(radius + 4) * 2}
+            rx={3}
+            transform="rotate(45)"
+            fill={pal.strokeAllocated}
+            opacity={0.15}
+            pointerEvents="none"
+          />
+        ) : (
+          <circle
+            r={radius + 4}
+            fill={pal.strokeAllocated}
+            opacity={0.15}
+            pointerEvents="none"
+          />
+        )
+      )}
+
       {/* Node shape */}
       {isNotable ? (
         <rect
@@ -50,37 +104,48 @@ export default function PassiveTreeNode({ node, sx, sy, radius, onHover, onLeave
           rx={3}
           transform="rotate(45)"
           fill={pal.fill}
-          stroke={pal.stroke}
-          strokeWidth={1}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
         />
       ) : (
         <circle
           r={radius}
           fill={pal.fill}
-          stroke={pal.stroke}
-          strokeWidth={1}
+          stroke={stroke}
+          strokeWidth={strokeWidth}
         />
       )}
 
       {/* Icon */}
       <TreeIcon iconId={node.icon} size={radius * 1.5} nodeName={node.name} />
 
-      {/* Points label for multi-point nodes */}
+      {/* Points label */}
       {node.max_points > 1 && (
         <text
           textAnchor="middle"
           dominantBaseline="hanging"
           y={radius + 3}
           fontSize={8}
-          fill={pal.stroke}
+          fill={isAllocated ? pal.strokeAllocated : stroke}
           fontFamily="monospace"
           fontWeight="bold"
           pointerEvents="none"
-          opacity={0.7}
+          opacity={0.85}
         >
-          0/{node.max_points}
+          {allocatedPoints}/{node.max_points}
         </text>
       )}
     </g>
   );
 }
+
+export default memo(PassiveTreeNodeInner, (prev, next) => {
+  return (
+    prev.node.id === next.node.id &&
+    prev.sx === next.sx &&
+    prev.sy === next.sy &&
+    prev.radius === next.radius &&
+    prev.state === next.state &&
+    prev.allocatedPoints === next.allocatedPoints
+  );
+});
