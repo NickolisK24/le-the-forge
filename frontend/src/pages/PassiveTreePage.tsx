@@ -2,10 +2,11 @@
  * PassiveTreePage — interactive passive tree viewer with node allocation.
  *
  * Implements graph-valid selection:
- *   - Nodes are allocatable only if reachable from a start node
- *   - Deallocation is blocked if it would orphan other allocated nodes
- *   - Uses BFS via passiveGraph utilities for connectivity validation
- *   - Visual states: allocated (bright), available (normal), locked (dimmed)
+ *   - Left-click to allocate (+1 point, or shift+click for max)
+ *   - Right-click to deallocate (-1 point, or shift+right-click for full remove)
+ *   - Deallocation blocked if it would orphan other allocated nodes (BFS check)
+ *   - Uses BFS seeded ONLY from startIds (not all tier roots)
+ *   - Dev-mode integrity validation after every allocation change
  */
 
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
@@ -20,17 +21,17 @@ import {
 import { MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
-import type { NodeState } from "@/components/passives/PassiveTreeNode";
 import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
 import {
-  buildAdjacency,
+  NodeState,
+  buildBidirectionalAdjacency,
   findStartNodes,
   computeAvailableNodes,
   canRemoveNode,
+  validateTreeIntegrity,
 } from "@/utils/passiveGraph";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
-const EXPECTED_TOTAL = 542;
 const CANVAS_H = 560;
 const NODE_R_CORE = 14;
 const NODE_R_NOTABLE = 20;
@@ -45,17 +46,11 @@ interface LayoutResult {
   scale: number;
 }
 
-function computeLayout(
-  nodes: PassiveNode[],
-  canvasW: number,
-  canvasH: number,
-): LayoutResult {
+function computeLayout(nodes: PassiveNode[], canvasW: number, canvasH: number): LayoutResult {
   const positions = new Map<string, { sx: number; sy: number; masteryIndex: number }>();
   const edges: Array<{ fromId: string; toId: string }> = [];
 
-  if (nodes.length === 0) {
-    return { positions, edges, scale: 1 };
-  }
+  if (nodes.length === 0) return { positions, edges, scale: 1 };
 
   const xs = nodes.map((n) => n.x);
   const ys = nodes.map((n) => n.y);
@@ -65,30 +60,20 @@ function computeLayout(
   const midY = (minY + maxY) / 2;
   const treeW = maxX - minX || 1;
   const treeH = maxY - minY || 1;
-
   const pad = 60;
-  const scale = Math.min(
-    (canvasW - pad * 2) / treeW,
-    (canvasH - pad * 2) / treeH,
-  );
+  const scale = Math.min((canvasW - pad * 2) / treeW, (canvasH - pad * 2) / treeH);
 
   const idSet = new Set(nodes.map((n) => n.id));
   for (const node of nodes) {
     const lx = node.x - midX;
     const ly = -(node.y - midY);
-    const sx = lx * scale + canvasW / 2;
-    const sy = ly * scale + canvasH / 2;
-    positions.set(node.id, { sx, sy, masteryIndex: node.mastery_index });
+    positions.set(node.id, { sx: lx * scale + canvasW / 2, sy: ly * scale + canvasH / 2, masteryIndex: node.mastery_index });
   }
-
   for (const node of nodes) {
     for (const connId of node.connections) {
-      if (idSet.has(connId)) {
-        edges.push({ fromId: connId, toId: node.id });
-      }
+      if (idSet.has(connId)) edges.push({ fromId: connId, toId: node.id });
     }
   }
-
   return { positions, edges, scale };
 }
 
@@ -96,59 +81,32 @@ function computeLayout(
 // Tooltip
 // ---------------------------------------------------------------------------
 
-interface TooltipData {
-  node: PassiveNode;
-  x: number;
-  y: number;
-}
+interface TooltipData { node: PassiveNode; x: number; y: number }
 
 function NodeTooltip({ data, containerRect, allocated, canDealloc }: {
-  data: TooltipData;
-  containerRect: DOMRect | null;
-  allocated: boolean;
-  canDealloc: boolean;
+  data: TooltipData; containerRect: DOMRect | null; allocated: boolean; canDealloc: boolean;
 }) {
   if (!containerRect) return null;
   const n = data.node;
   const tx = data.x - containerRect.left + 16;
   const ty = data.y - containerRect.top - 12;
-
   return (
-    <div
-      className="pointer-events-none absolute z-20 w-64 rounded border border-forge-border bg-forge-bg/95 p-3 shadow-2xl"
-      style={{ left: Math.min(tx, containerRect.width - 272), top: Math.max(4, ty) }}
-    >
+    <div className="pointer-events-none absolute z-20 w-64 rounded border border-forge-border bg-forge-bg/95 p-3 shadow-2xl"
+      style={{ left: Math.min(tx, containerRect.width - 272), top: Math.max(4, ty) }}>
       <div className="font-display text-sm font-bold text-forge-amber">{n.name || "Passive Node"}</div>
       <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-forge-dim">
-        {n.node_type} · {n.max_points} pts
-        {n.mastery && <span> · {n.mastery}</span>}
+        {n.node_type} · {n.max_points} pts{n.mastery && <span> · {n.mastery}</span>}
       </div>
-      {n.description && (
-        <p className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">
-          {n.description}
-        </p>
-      )}
+      {n.description && <p className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">{n.description}</p>}
       {n.stats.length > 0 && (
         <ul className="mt-1.5 space-y-0.5">
-          {n.stats.map((s, i) => (
-            <li key={i} className="font-mono text-[10px] text-forge-cyan/80">
-              {s.key}: {s.value}
-            </li>
-          ))}
+          {n.stats.map((s, i) => <li key={i} className="font-mono text-[10px] text-forge-cyan/80">{s.key}: {s.value}</li>)}
         </ul>
       )}
-      {n.ability_granted && (
-        <div className="mt-1 font-mono text-[10px] text-forge-amber/80">
-          Grants: {n.ability_granted}
-        </div>
-      )}
-      {allocated && !canDealloc && (
-        <div className="mt-1.5 font-mono text-[10px] text-red-400/80">
-          Cannot remove — other nodes depend on this
-        </div>
-      )}
+      {n.ability_granted && <div className="mt-1 font-mono text-[10px] text-forge-amber/80">Grants: {n.ability_granted}</div>}
+      {allocated && !canDealloc && <div className="mt-1.5 font-mono text-[10px] text-red-400/80">Cannot remove — other nodes depend on this</div>}
       <div className="mt-1.5 font-mono text-[10px] text-forge-dim/50">
-        {allocated ? "Left-click: add point · Right-click: remove point" : "Left-click to allocate"}
+        {allocated ? "L-click: +1 · Shift+L: max · R-click: -1 · Shift+R: remove" : "Left-click to allocate · Shift+click for max"}
       </div>
     </div>
   );
@@ -171,9 +129,7 @@ export default function PassiveTreePage() {
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      setCanvasSize({ w: entry.contentRect.width, h: CANVAS_H });
-    });
+    const ro = new ResizeObserver(([entry]) => setCanvasSize({ w: entry.contentRect.width, h: CANVAS_H }));
     ro.observe(el);
     setCanvasSize({ w: el.clientWidth, h: CANVAS_H });
     return () => ro.disconnect();
@@ -195,9 +151,16 @@ export default function PassiveTreePage() {
     return all.filter((n) => n.mastery === selectedMastery || n.mastery === null);
   }, [treeData, selectedMastery]);
 
-  // Graph structures (recomputed when nodes change)
-  const adjacency = useMemo(() => buildAdjacency(filteredNodes), [filteredNodes]);
+  // Part 3: Precomputed bidirectional adjacency — rebuilt only when nodes change
+  const adjacency = useMemo(() => buildBidirectionalAdjacency(filteredNodes), [filteredNodes]);
   const startIds = useMemo(() => findStartNodes(filteredNodes), [filteredNodes]);
+
+  // Node lookup for O(1) access
+  const nodeById = useMemo(() => {
+    const m = new Map<string, PassiveNode>();
+    for (const n of filteredNodes) m.set(n.id, n);
+    return m;
+  }, [filteredNodes]);
 
   // Total base points spent (for mastery_requirement gating)
   const totalBasePointsSpent = useMemo(() => {
@@ -210,70 +173,78 @@ export default function PassiveTreePage() {
     return total;
   }, [filteredNodes, allocatedIds, allocatedPoints]);
 
-  // Available nodes
+  // Part 6: Available nodes cached via useMemo
   const availableIds = useMemo(
-    () => computeAvailableNodes(filteredNodes, allocatedIds, startIds, adjacency, totalBasePointsSpent),
-    [filteredNodes, allocatedIds, startIds, adjacency, totalBasePointsSpent],
+    () => computeAvailableNodes(filteredNodes, allocatedIds, totalBasePointsSpent),
+    [filteredNodes, allocatedIds, totalBasePointsSpent],
   );
 
-  // Node state resolver
+  // Node state resolver using enum
   const getNodeState = useCallback(
     (nodeId: string): NodeState => {
-      if (allocatedIds.has(nodeId)) return "allocated";
-      if (availableIds.has(nodeId)) return "available";
-      return "locked";
+      if (allocatedIds.has(nodeId)) return NodeState.ALLOCATED;
+      if (availableIds.has(nodeId)) return NodeState.AVAILABLE;
+      return NodeState.LOCKED;
     },
     [allocatedIds, availableIds],
   );
 
-  // Left-click: allocate points
+  // Part 7: Dev-mode integrity check after every allocation change
+  useEffect(() => {
+    validateTreeIntegrity(allocatedIds, startIds, adjacency);
+  }, [allocatedIds, startIds, adjacency]);
+
+  // -------------------------------------------------------------------
+  // Part 4: Left-click allocate (+ shift for max)
+  // Part 9: Prevent redundant state updates
+  // Part 10: Prevent exceeding max_points
+  // -------------------------------------------------------------------
   const handleNodeClick = useCallback(
-    (nodeId: string) => {
-      const node = filteredNodes.find((n) => n.id === nodeId);
+    (nodeId: string, shiftKey: boolean) => {
+      const node = nodeById.get(nodeId);
       if (!node) return;
 
       if (allocatedIds.has(nodeId)) {
-        // Already allocated — add another point if under max
-        const pts = allocatedPoints.get(nodeId) ?? 1;
-        if (pts < node.max_points) {
-          setAllocatedPoints((prev) => {
-            const next = new Map(prev);
-            next.set(nodeId, pts + 1);
-            return next;
-          });
-        }
-      } else if (availableIds.has(nodeId)) {
-        // First point — allocate
-        setAllocatedIds((prev) => new Set(prev).add(nodeId));
+        // Already allocated — add more points
+        const current = allocatedPoints.get(nodeId) ?? 1;
+        if (current >= node.max_points) return; // Part 10: overflow guard
+        const target = shiftKey ? node.max_points : current + 1; // Part 4: shift = max
+        const clamped = Math.min(target, node.max_points); // Part 10: safety clamp
+        if (clamped === current) return; // Part 9: no change
         setAllocatedPoints((prev) => {
           const next = new Map(prev);
-          next.set(nodeId, 1);
+          next.set(nodeId, clamped);
+          return next;
+        });
+      } else if (availableIds.has(nodeId)) {
+        // First allocation
+        const pts = shiftKey ? node.max_points : 1; // Part 4: shift = max
+        setAllocatedIds((prev) => {
+          if (prev.has(nodeId)) return prev; // Part 9: redundancy guard
+          return new Set(prev).add(nodeId);
+        });
+        setAllocatedPoints((prev) => {
+          const next = new Map(prev);
+          next.set(nodeId, Math.min(pts, node.max_points)); // Part 10: clamp
           return next;
         });
       }
-      // Locked nodes: click ignored
     },
-    [filteredNodes, allocatedIds, allocatedPoints, availableIds],
+    [nodeById, allocatedIds, allocatedPoints, availableIds],
   );
 
-  // Right-click: deallocate points
+  // -------------------------------------------------------------------
+  // Part 5: Right-click deallocate (+ shift for full remove)
+  // -------------------------------------------------------------------
   const handleNodeRightClick = useCallback(
-    (nodeId: string) => {
+    (nodeId: string, shiftKey: boolean) => {
       if (!allocatedIds.has(nodeId)) return;
 
       const pts = allocatedPoints.get(nodeId) ?? 1;
-      if (pts > 1) {
-        // Remove one point (still allocated)
-        setAllocatedPoints((prev) => {
-          const next = new Map(prev);
-          next.set(nodeId, pts - 1);
-          return next;
-        });
-      } else {
-        // Last point — fully remove if safe
-        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency, filteredNodes)) {
-          return; // Blocked — would orphan nodes
-        }
+
+      if (shiftKey || pts === 1) {
+        // Shift+right-click: remove ALL, or regular right-click on last point
+        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency)) return;
         setAllocatedIds((prev) => {
           const next = new Set(prev);
           next.delete(nodeId);
@@ -284,9 +255,16 @@ export default function PassiveTreePage() {
           next.delete(nodeId);
           return next;
         });
+      } else {
+        // Regular right-click: remove 1 point
+        setAllocatedPoints((prev) => {
+          const next = new Map(prev);
+          next.set(nodeId, pts - 1);
+          return next;
+        });
       }
     },
-    [allocatedIds, allocatedPoints, startIds, adjacency, filteredNodes],
+    [allocatedIds, allocatedPoints, startIds, adjacency],
   );
 
   // Layout
@@ -302,94 +280,58 @@ export default function PassiveTreePage() {
     requestAnimationFrame(() => {
       const elapsed = Math.round(performance.now() - start);
       setRenderTimeMs(elapsed);
-      if (elapsed > 500) {
-        console.warn(`[PassiveTreePage] Render time ${elapsed}ms exceeds 500ms`);
-      }
+      if (elapsed > 500) console.warn(`[PassiveTreePage] Render time ${elapsed}ms exceeds 500ms`);
     });
   }, [filteredNodes, allocatedIds]);
 
-  const handleHover = useCallback((node: PassiveNode, screenX: number, screenY: number) => {
-    setTooltip({ node, x: screenX, y: screenY });
-  }, []);
+  const handleHover = useCallback((node: PassiveNode, x: number, y: number) => setTooltip({ node, x, y }), []);
   const handleLeave = useCallback(() => setTooltip(null), []);
 
-  // Reset allocations on class/mastery change
   const handleClassChange = (cls: CharacterClass) => {
     setSelectedClass(cls);
     setSelectedMastery("__all__");
     setAllocatedIds(new Set());
     setAllocatedPoints(new Map());
   };
+  const handleReset = () => { setAllocatedIds(new Set()); setAllocatedPoints(new Map()); };
 
-  const handleReset = () => {
-    setAllocatedIds(new Set());
-    setAllocatedPoints(new Map());
-  };
-
-  // Derived stats
   const masteries = selectedClass ? (MASTERIES[selectedClass] ?? []) : [];
-  const allNodeCount = treeData?.nodes?.length ?? 0;
-  const totalPointsSpent = Array.from(allocatedPoints.values()).reduce((a, b) => a + b, 0);
+  const totalPointsSpent = useMemo(
+    () => Array.from(allocatedPoints.values()).reduce((a, b) => a + b, 0),
+    [allocatedPoints],
+  );
 
-  // --- No class selected ---
+  // --- States ---
   if (!selectedClass) {
-    return (
-      <Page>
-        <PageHeader />
-        <ClassSelector selected={null} onSelect={handleClassChange} />
-        <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
-          <p className="font-mono text-sm text-forge-dim">Select a class above to load the passive tree.</p>
-        </div>
-      </Page>
-    );
+    return (<Page><PageHeader /><ClassSelector selected={null} onSelect={handleClassChange} />
+      <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
+        <p className="font-mono text-sm text-forge-dim">Select a class above to load the passive tree.</p>
+      </div></Page>);
   }
-
   if (isLoading) {
-    return (
-      <Page>
-        <PageHeader />
-        <ClassSelector selected={selectedClass} onSelect={handleClassChange} />
-        <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
-          <div className="flex flex-col items-center gap-3">
-            <Spinner size={32} />
-            <span className="font-mono text-xs text-forge-dim">Loading passive tree…</span>
-          </div>
-        </div>
-      </Page>
-    );
+    return (<Page><PageHeader /><ClassSelector selected={selectedClass} onSelect={handleClassChange} />
+      <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
+        <div className="flex flex-col items-center gap-3"><Spinner size={32} /><span className="font-mono text-xs text-forge-dim">Loading passive tree…</span></div>
+      </div></Page>);
   }
-
   if (isError) {
-    return (
-      <Page>
-        <PageHeader />
-        <ClassSelector selected={selectedClass} onSelect={handleClassChange} />
-        <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
-          <p className="text-sm text-red-400 font-medium">Error loading passive tree</p>
-          <p className="text-xs text-red-400/70 mt-1">{(error as Error)?.message ?? "Unknown error"}</p>
-        </div>
-      </Page>
-    );
+    return (<Page><PageHeader /><ClassSelector selected={selectedClass} onSelect={handleClassChange} />
+      <div className="mt-4 rounded-lg border border-red-500/30 bg-red-500/10 px-4 py-3">
+        <p className="text-sm text-red-400 font-medium">Error loading passive tree</p>
+        <p className="text-xs text-red-400/70 mt-1">{(error as Error)?.message ?? "Unknown error"}</p>
+      </div></Page>);
   }
-
   if (filteredNodes.length === 0) {
-    return (
-      <Page>
-        <PageHeader />
-        <ClassSelector selected={selectedClass} onSelect={handleClassChange} />
-        <MasterySelector masteries={masteries} selected={selectedMastery} onSelect={setSelectedMastery} />
-        <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
-          <p className="font-mono text-sm text-forge-dim">No passive nodes for this selection.</p>
-        </div>
-      </Page>
-    );
+    return (<Page><PageHeader /><ClassSelector selected={selectedClass} onSelect={handleClassChange} />
+      <MasterySelector masteries={masteries} selected={selectedMastery} onSelect={setSelectedMastery} />
+      <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
+        <p className="font-mono text-sm text-forge-dim">No passive nodes for this selection.</p>
+      </div></Page>);
   }
 
   const containerRect = containerRef.current?.getBoundingClientRect() ?? null;
   const tooltipAllocated = tooltip ? allocatedIds.has(tooltip.node.id) : false;
-  const tooltipCanDealloc = tooltip && tooltipAllocated
-    ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, filteredNodes)
-    : false;
+  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency) : false;
 
   return (
     <Page>
@@ -405,81 +347,42 @@ export default function PassiveTreePage() {
         <Badge label={`Available: ${availableIds.size}`} ok />
         <Badge label={`Connections: ${layout.edges.length}`} ok />
         {renderTimeMs !== null && (
-          <span className={`rounded px-2 py-0.5 font-mono text-[10px] ${
-            renderTimeMs > 500 ? "bg-yellow-500/15 text-yellow-400" : "bg-forge-surface2 text-forge-dim"
-          }`}>
+          <span className={`rounded px-2 py-0.5 font-mono text-[10px] ${renderTimeMs > 500 ? "bg-yellow-500/15 text-yellow-400" : "bg-forge-surface2 text-forge-dim"}`}>
             Render: {renderTimeMs}ms
           </span>
         )}
         {allocatedIds.size > 0 && (
-          <button
-            onClick={handleReset}
-            className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors"
-          >
-            Reset
-          </button>
+          <button onClick={handleReset} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors">Reset</button>
         )}
       </div>
 
       {/* SVG canvas */}
-      <div
-        ref={containerRef}
-        className="relative overflow-hidden rounded border border-forge-border select-none"
-        style={{ height: CANVAS_H, background: "#0b0e1a" }}
-      >
+      <div ref={containerRef} className="relative overflow-hidden rounded border border-forge-border select-none" style={{ height: CANVAS_H, background: "#0b0e1a" }}>
         <svg width={canvasSize.w} height={canvasSize.h} style={{ display: "block" }}>
           <rect width={canvasSize.w} height={canvasSize.h} fill="#0b0e1a" />
-
-          <PassiveTreeConnections
-            edges={layout.edges}
-            positions={layout.positions}
-            allocatedIds={allocatedIds}
-          />
-
+          <PassiveTreeConnections edges={layout.edges} positions={layout.positions} allocatedIds={allocatedIds} />
           {filteredNodes.map((node) => {
             const pos = layout.positions.get(node.id);
             if (!pos) return null;
             const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.3, layout.scale);
             return (
-              <PassiveTreeNode
-                key={node.id}
-                node={node}
-                sx={pos.sx}
-                sy={pos.sy}
-                radius={Math.max(5, radius)}
-                state={getNodeState(node.id)}
+              <PassiveTreeNode key={node.id} node={node} sx={pos.sx} sy={pos.sy}
+                radius={Math.max(5, radius)} state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
-                onNodeClick={handleNodeClick}
-                onNodeRightClick={handleNodeRightClick}
-                onHover={handleHover}
-                onLeave={handleLeave}
-              />
+                onNodeClick={handleNodeClick} onNodeRightClick={handleNodeRightClick}
+                onHover={handleHover} onLeave={handleLeave} />
             );
           })}
         </svg>
-
-        {tooltip && (
-          <NodeTooltip
-            data={tooltip}
-            containerRect={containerRect}
-            allocated={tooltipAllocated}
-            canDealloc={tooltipCanDealloc}
-          />
-        )}
+        {tooltip && <NodeTooltip data={tooltip} containerRect={containerRect} allocated={tooltipAllocated} canDealloc={tooltipCanDealloc} />}
       </div>
 
       {/* Legend */}
       <div className="mt-2 flex flex-wrap items-center gap-4 font-mono text-[10px] text-forge-dim">
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full border-2" style={{ borderColor: "#8890b8", background: "#181c30" }} /> Allocated
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: "#5a6090", background: "#181c30" }} /> Available
-        </span>
-        <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full border opacity-40" style={{ borderColor: "#3a4070", background: "#181c30" }} /> Locked
-        </span>
-        <span className="text-forge-dim/50 ml-auto">left-click to invest · right-click to refund</span>
+        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border-2" style={{ borderColor: "#8890b8", background: "#181c30" }} /> Allocated</span>
+        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: "#5a6090", background: "#181c30" }} /> Available</span>
+        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border opacity-40" style={{ borderColor: "#3a4070", background: "#181c30" }} /> Locked</span>
+        <span className="text-forge-dim/50 ml-auto">L-click: invest · Shift+L: max · R-click: refund · Shift+R: remove all</span>
       </div>
     </Page>
   );
@@ -497,9 +400,7 @@ function PageHeader() {
   return (
     <div className="mb-4">
       <h1 className="font-display text-2xl font-bold text-forge-amber">Passive Tree</h1>
-      <p className="mt-1 font-body text-sm text-forge-muted">
-        Click nodes to allocate points. Nodes must be reachable through connections.
-      </p>
+      <p className="mt-1 font-body text-sm text-forge-muted">Click nodes to allocate points. Nodes must be reachable through connections.</p>
     </div>
   );
 }
@@ -508,15 +409,8 @@ function ClassSelector({ selected, onSelect }: { selected: CharacterClass | null
   return (
     <div className="flex flex-wrap gap-2">
       {CLASSES.map((cls) => (
-        <button
-          key={cls}
-          onClick={() => onSelect(cls)}
-          className={`rounded px-3 py-1.5 font-body text-sm transition-colors ${
-            selected === cls
-              ? "bg-forge-amber/20 text-forge-amber font-semibold"
-              : "bg-forge-surface2 text-forge-muted hover:text-forge-text"
-          }`}
-        >
+        <button key={cls} onClick={() => onSelect(cls)}
+          className={`rounded px-3 py-1.5 font-body text-sm transition-colors ${selected === cls ? "bg-forge-amber/20 text-forge-amber font-semibold" : "bg-forge-surface2 text-forge-muted hover:text-forge-text"}`}>
           {cls}
         </button>
       ))}
@@ -528,15 +422,8 @@ function MasterySelector({ masteries, selected, onSelect }: { masteries: string[
   return (
     <div className="mt-2 flex flex-wrap gap-1.5">
       {["__all__", "__base__", ...masteries].map((m) => (
-        <button
-          key={m}
-          onClick={() => onSelect(m)}
-          className={`rounded px-2.5 py-1 font-mono text-xs transition-colors ${
-            selected === m
-              ? "bg-forge-cyan/20 text-forge-cyan font-semibold"
-              : "bg-forge-surface2 text-forge-dim hover:text-forge-muted"
-          }`}
-        >
+        <button key={m} onClick={() => onSelect(m)}
+          className={`rounded px-2.5 py-1 font-mono text-xs transition-colors ${selected === m ? "bg-forge-cyan/20 text-forge-cyan font-semibold" : "bg-forge-surface2 text-forge-dim hover:text-forge-muted"}`}>
           {m === "__all__" ? "All" : m === "__base__" ? "Base" : m}
         </button>
       ))}
@@ -545,11 +432,5 @@ function MasterySelector({ masteries, selected, onSelect }: { masteries: string[
 }
 
 function Badge({ label, ok }: { label: string; ok: boolean }) {
-  return (
-    <span className={`rounded px-2.5 py-1 font-mono text-xs font-semibold ${
-      ok ? "bg-green-500/15 text-green-400" : "bg-forge-surface2 text-forge-dim"
-    }`}>
-      {label}
-    </span>
-  );
+  return <span className={`rounded px-2.5 py-1 font-mono text-xs font-semibold ${ok ? "bg-green-500/15 text-green-400" : "bg-forge-surface2 text-forge-dim"}`}>{label}</span>;
 }
