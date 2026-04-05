@@ -148,7 +148,7 @@ function NodeTooltip({ data, containerRect, allocated, canDealloc }: {
         </div>
       )}
       <div className="mt-1.5 font-mono text-[10px] text-forge-dim/50">
-        {allocated ? "Click to deallocate" : "Click to allocate"}
+        {allocated ? "Left-click: add point · Right-click: remove point" : "Left-click to allocate"}
       </div>
     </div>
   );
@@ -226,25 +226,51 @@ export default function PassiveTreePage() {
     [allocatedIds, availableIds],
   );
 
-  // Click handler
+  // Left-click: allocate points
   const handleNodeClick = useCallback(
     (nodeId: string) => {
       const node = filteredNodes.find((n) => n.id === nodeId);
       if (!node) return;
 
       if (allocatedIds.has(nodeId)) {
-        // --- Deallocation ---
+        // Already allocated — add another point if under max
         const pts = allocatedPoints.get(nodeId) ?? 1;
-        if (pts > 1) {
-          // Multi-point: remove one point first
+        if (pts < node.max_points) {
           setAllocatedPoints((prev) => {
             const next = new Map(prev);
-            next.set(nodeId, pts - 1);
+            next.set(nodeId, pts + 1);
             return next;
           });
-          return;
         }
-        // Single point remaining: check if safe to fully remove
+      } else if (availableIds.has(nodeId)) {
+        // First point — allocate
+        setAllocatedIds((prev) => new Set(prev).add(nodeId));
+        setAllocatedPoints((prev) => {
+          const next = new Map(prev);
+          next.set(nodeId, 1);
+          return next;
+        });
+      }
+      // Locked nodes: click ignored
+    },
+    [filteredNodes, allocatedIds, allocatedPoints, availableIds],
+  );
+
+  // Right-click: deallocate points
+  const handleNodeRightClick = useCallback(
+    (nodeId: string) => {
+      if (!allocatedIds.has(nodeId)) return;
+
+      const pts = allocatedPoints.get(nodeId) ?? 1;
+      if (pts > 1) {
+        // Remove one point (still allocated)
+        setAllocatedPoints((prev) => {
+          const next = new Map(prev);
+          next.set(nodeId, pts - 1);
+          return next;
+        });
+      } else {
+        // Last point — fully remove if safe
         if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency, filteredNodes)) {
           return; // Blocked — would orphan nodes
         }
@@ -258,28 +284,9 @@ export default function PassiveTreePage() {
           next.delete(nodeId);
           return next;
         });
-      } else if (availableIds.has(nodeId)) {
-        // --- Allocation ---
-        if (allocatedIds.has(nodeId) && (allocatedPoints.get(nodeId) ?? 0) < node.max_points) {
-          // Add another point to existing allocation
-          setAllocatedPoints((prev) => {
-            const next = new Map(prev);
-            next.set(nodeId, (prev.get(nodeId) ?? 0) + 1);
-            return next;
-          });
-        } else {
-          // First point
-          setAllocatedIds((prev) => new Set(prev).add(nodeId));
-          setAllocatedPoints((prev) => {
-            const next = new Map(prev);
-            next.set(nodeId, 1);
-            return next;
-          });
-        }
       }
-      // Locked nodes: click ignored
     },
-    [filteredNodes, allocatedIds, allocatedPoints, availableIds, startIds, adjacency],
+    [allocatedIds, allocatedPoints, startIds, adjacency, filteredNodes],
   );
 
   // Layout
@@ -443,6 +450,7 @@ export default function PassiveTreePage() {
                 state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={handleNodeClick}
+                onNodeRightClick={handleNodeRightClick}
                 onHover={handleHover}
                 onLeave={handleLeave}
               />
@@ -471,7 +479,7 @@ export default function PassiveTreePage() {
         <span className="flex items-center gap-1.5">
           <span className="inline-block h-2.5 w-2.5 rounded-full border opacity-40" style={{ borderColor: "#3a4070", background: "#181c30" }} /> Locked
         </span>
-        <span className="text-forge-dim/50 ml-auto">left-click to allocate/deallocate</span>
+        <span className="text-forge-dim/50 ml-auto">left-click to invest · right-click to refund</span>
       </div>
     </Page>
   );
