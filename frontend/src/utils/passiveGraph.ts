@@ -173,45 +173,77 @@ export function computeAvailableNodes(
 // ---------------------------------------------------------------------------
 
 /**
- * Check whether removing a node would disconnect other allocated nodes.
+ * Check whether removing a node would disconnect other allocated nodes
+ * from their start nodes.
  *
- * For each remaining allocated node, verifies it can still reach at least
- * one of its parent connections (or has no parents — tier root).
+ * Uses FULL BFS reachability validation:
+ *   1. Simulate removal (clone allocated set, delete target)
+ *   2. Find all tier-root nodes in remaining set (no parent connections)
+ *   3. BFS outward from tier roots through bidirectional adjacency
+ *   4. If every remaining allocated node is visited → safe to remove
+ *   5. If any remaining node is unreachable → removal blocked
  *
- * A node is "orphaned" if:
- *   - It has parent connections, AND
- *   - None of its parents are in the remaining allocated set
+ * This guarantees no allocated node becomes disconnected from a valid
+ * root, even in complex multi-path graph topologies.
  *
- * Returns true if removal is safe (no orphaned nodes).
+ * Returns true if removal is safe.
  */
 export function canRemoveNode(
   nodeId: string,
   allocatedIds: Set<string>,
-  _startIds: Set<string>,
-  _adjacency: Map<string, Set<string>>,
+  startIds: Set<string>,
+  adjacency: Map<string, Set<string>>,
   nodes?: PassiveNode[],
 ): boolean {
   if (!allocatedIds.has(nodeId)) return false;
 
+  // Simulate removal
   const remaining = new Set(allocatedIds);
   remaining.delete(nodeId);
 
   if (remaining.size === 0) return true;
 
-  // If we have the full node list, check parent dependency directly
+  // Find all valid roots in the remaining set:
+  // - Start nodes (req=0, no connections) that are still allocated
+  // - Tier root nodes (no parent connections) that are still allocated
+  const roots = new Set<string>();
+
   if (nodes) {
     for (const node of nodes) {
       if (!remaining.has(node.id)) continue;
-      // Tier roots (no parents) are never orphaned
-      if (node.connections.length === 0) continue;
-      // Check if at least one parent is still allocated
-      const hasParent = node.connections.some((pid) => remaining.has(pid));
-      if (!hasParent) return false; // This node would be orphaned
+      if (node.connections.length === 0) {
+        roots.add(node.id);
+      }
     }
-    return true;
+  } else {
+    // Fallback: use startIds
+    for (const sid of startIds) {
+      if (remaining.has(sid)) roots.add(sid);
+    }
   }
 
-  // Fallback: use BFS through bidirectional adjacency (less precise but safe)
-  const reachable = getReachableNodes(_startIds, remaining, _adjacency);
-  return reachable.size === remaining.size;
+  // BFS from all roots through remaining allocated nodes via bidirectional adjacency
+  const visited = new Set<string>();
+  const queue: string[] = [];
+
+  for (const rootId of roots) {
+    visited.add(rootId);
+    queue.push(rootId);
+  }
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    const neighbors = adjacency.get(current);
+    if (!neighbors) continue;
+
+    for (const neighborId of neighbors) {
+      if (remaining.has(neighborId) && !visited.has(neighborId)) {
+        visited.add(neighborId);
+        queue.push(neighborId);
+      }
+    }
+  }
+
+  // Safe only if every remaining allocated node was reached
+  return visited.size === remaining.size;
 }
