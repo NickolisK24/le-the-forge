@@ -188,6 +188,18 @@ def get_item_types():
 @ref_bp.get("/affixes")
 @cached_route("ref:affixes", ttl=REF_SEMISTATIC_CACHE_TTL)
 def get_affixes():
+    try:
+        return _get_affixes_inner()
+    except Exception:
+        current_app.logger.exception("Unhandled error in get_affixes — falling back to JSON")
+        try:
+            return ok(data=_get_affix_seed_data())
+        except Exception:
+            current_app.logger.exception("JSON fallback also failed in get_affixes")
+            return ok(data=[])
+
+
+def _get_affixes_inner():
     category = request.args.get("category") or request.args.get("type")
     item_slot = request.args.get("slot")
     class_req = request.args.get("class")
