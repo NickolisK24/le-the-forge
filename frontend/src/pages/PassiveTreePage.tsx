@@ -22,6 +22,8 @@ import { MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
 import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
+import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
+import { computePassiveStats } from "@/logic/computePassiveStats";
 import {
   NodeState,
   buildBidirectionalAdjacency,
@@ -177,6 +179,12 @@ export default function PassiveTreePage() {
   const availableIds = useMemo(
     () => computeAvailableNodes(filteredNodes, allocatedIds, totalBasePointsSpent),
     [filteredNodes, allocatedIds, totalBasePointsSpent],
+  );
+
+  // Passive stat aggregation — recomputes when allocations change
+  const passiveStats = useMemo(
+    () => computePassiveStats(allocatedPoints, nodeById),
+    [allocatedPoints, nodeById],
   );
 
   // Node state resolver using enum
@@ -384,6 +392,13 @@ export default function PassiveTreePage() {
         <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border opacity-40" style={{ borderColor: "#3a4070", background: "#181c30" }} /> Locked</span>
         <span className="text-forge-dim/50 ml-auto">L-click: invest · Shift+L: max · R-click: refund · Shift+R: remove all</span>
       </div>
+
+      {/* Stat debug panel */}
+      <PassiveStatsDebugPanel
+        stats={passiveStats}
+        totalPoints={totalPointsSpent}
+        allocatedCount={allocatedIds.size}
+      />
     </Page>
   );
 }
