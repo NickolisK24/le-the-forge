@@ -1,19 +1,22 @@
 /**
  * PassiveTreeNode — renders a single passive node in the SVG tree.
  *
- * Supports three visual states:
- *   ALLOCATED  — node is selected (bright highlight)
- *   AVAILABLE  — node can be allocated (normal appearance, pointer cursor)
- *   LOCKED     — node is not reachable yet (dimmed, not-allowed cursor)
+ * Visual states via NodeState enum:
+ *   ALLOCATED  — bright highlight + glow halo
+ *   AVAILABLE  — normal appearance, pointer cursor
+ *   LOCKED     — dimmed (0.35 opacity), not-allowed cursor
  *
- * Wrapped in React.memo to avoid re-rendering nodes whose state hasn't changed.
+ * Click events forward shiftKey for max-allocate / full-remove.
+ * Wrapped in React.memo with custom comparator for performance.
  */
 
 import { memo } from "react";
 import TreeIcon from "@/components/TreeIcon";
 import type { PassiveNode } from "@/services/passiveTreeService";
+import { NodeState } from "@/utils/passiveGraph";
 
-export type NodeState = "allocated" | "available" | "locked";
+// Re-export for consumers that import from this file
+export { NodeState };
 
 // Mastery palette — index 0 = base, 1/2/3 = masteries
 const PALETTE: Record<number, {
@@ -35,8 +38,8 @@ interface Props {
   radius: number;
   state: NodeState;
   allocatedPoints: number;
-  onNodeClick: (nodeId: string) => void;
-  onNodeRightClick: (nodeId: string) => void;
+  onNodeClick: (nodeId: string, shiftKey: boolean) => void;
+  onNodeRightClick: (nodeId: string, shiftKey: boolean) => void;
   onHover: (node: PassiveNode, screenX: number, screenY: number) => void;
   onLeave: () => void;
 }
@@ -47,9 +50,9 @@ function PassiveTreeNodeInner({
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
 
-  const isAllocated = state === "allocated";
-  const isAvailable = state === "available";
-  const isLocked = state === "locked";
+  const isAllocated = state === NodeState.ALLOCATED;
+  const isAvailable = state === NodeState.AVAILABLE;
+  const isLocked = state === NodeState.LOCKED;
 
   const stroke = isAllocated
     ? pal.strokeAllocated
@@ -59,13 +62,13 @@ function PassiveTreeNodeInner({
 
   const strokeWidth = isAllocated ? 2 : 1;
   const opacity = isLocked ? 0.35 : 1;
-  const cursor = isAllocated ? "pointer" : isAvailable ? "pointer" : "not-allowed";
+  const cursor = isLocked ? "not-allowed" : "pointer";
 
   return (
     <g
       transform={`translate(${sx},${sy})`}
-      onClick={() => onNodeClick(node.id)}
-      onContextMenu={(e) => { e.preventDefault(); onNodeRightClick(node.id); }}
+      onClick={(e) => onNodeClick(node.id, e.shiftKey)}
+      onContextMenu={(e) => { e.preventDefault(); onNodeRightClick(node.id, e.shiftKey); }}
       onMouseEnter={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseMove={(e) => onHover(node, e.clientX, e.clientY)}
       onMouseLeave={onLeave}

@@ -5,6 +5,7 @@
  *   - Computing which nodes are available for allocation
  *   - Validating that deallocation won't break graph connectivity
  *   - Finding all reachable nodes from start positions
+ *   - Dev-mode integrity validation
  *
  * All functions are pure — no mutation of input Sets or Maps.
  */
@@ -12,48 +13,56 @@
 import type { PassiveNode } from "@/services/passiveTreeService";
 
 // ---------------------------------------------------------------------------
-// Adjacency builder
+// Node state enum — used by PassiveTreeNode for visual states
+// ---------------------------------------------------------------------------
+
+export const enum NodeState {
+  LOCKED = 0,
+  AVAILABLE = 1,
+  ALLOCATED = 2,
+}
+
+// ---------------------------------------------------------------------------
+// Bidirectional adjacency builder
 // ---------------------------------------------------------------------------
 
 /**
  * Build a bidirectional adjacency map from the node list.
+ * Computed once per tree load via useMemo in the page.
  *
- * The API `connections` field lists a node's PARENTS. We need bidirectional
- * edges so that traversal works in both directions (parent→child, child→parent).
+ * The API `connections` field lists a node's PARENTS. We add edges in
+ * both directions so BFS can traverse parent→child and child→parent.
  */
-export function buildAdjacency(nodes: PassiveNode[]): Map<string, Set<string>> {
+export function buildBidirectionalAdjacency(nodes: PassiveNode[]): Map<string, Set<string>> {
   const adj = new Map<string, Set<string>>();
 
-  // Initialize all nodes
   for (const node of nodes) {
     if (!adj.has(node.id)) adj.set(node.id, new Set());
   }
 
-  // Add bidirectional edges from connections (connections = parent IDs)
   for (const node of nodes) {
     for (const parentId of node.connections) {
-      adj.get(node.id)?.add(parentId);
-      adj.get(parentId)?.add(node.id);
+      if (!adj.has(parentId)) adj.set(parentId, new Set());
+      adj.get(node.id)!.add(parentId);
+      adj.get(parentId)!.add(node.id);
     }
   }
 
   return adj;
 }
 
+// Keep old name as alias for backwards compat
+export const buildAdjacency = buildBidirectionalAdjacency;
+
 // ---------------------------------------------------------------------------
 // Start node detection
 // ---------------------------------------------------------------------------
 
 /**
- * Find starting nodes for a set of passive nodes.
+ * Find starting nodes — the true graph roots.
  *
- * Starting nodes are base class nodes (mastery === null) with
- * mastery_requirement === 0. These are always selectable when
- * the mastery_requirement gate is met (which is trivially true for req=0).
- *
- * Additionally, any node whose mastery_requirement is met AND has no
- * parent connections is a "tier root" — selectable without needing
- * an allocated neighbor.
+ * Start nodes: mastery_requirement === 0 AND no parent connections.
+ * These are the BFS seeds for reachability checks.
  */
 export function findStartNodes(nodes: PassiveNode[]): Set<string> {
   const starts = new Set<string>();
@@ -70,10 +79,7 @@ export function findStartNodes(nodes: PassiveNode[]): Set<string> {
 // ---------------------------------------------------------------------------
 
 /**
- * Get all nodes reachable from a set of start IDs via allocated nodes.
- *
- * Traverses only through nodes present in `allocatedIds`.
- * Returns the set of all reachable allocated node IDs.
+ * Get all nodes reachable from startIds via allocated nodes using BFS.
  */
 export function getReachableNodes(
   startIds: Set<string>,
@@ -83,7 +89,6 @@ export function getReachableNodes(
   const visited = new Set<string>();
   const queue: string[] = [];
 
-  // Seed BFS from allocated start nodes
   for (const startId of startIds) {
     if (allocatedIds.has(startId)) {
       visited.add(startId);
@@ -91,7 +96,6 @@ export function getReachableNodes(
     }
   }
 
-  // BFS through allocated neighbors
   while (queue.length > 0) {
     const current = queue.shift()!;
     const neighbors = adjacency.get(current);
@@ -108,55 +112,35 @@ export function getReachableNodes(
   return visited;
 }
 
-/**
- * Check whether a specific node is reachable from start nodes through allocated nodes.
- */
-export function isNodeReachable(
-  targetId: string,
-  startIds: Set<string>,
-  allocatedIds: Set<string>,
-  adjacency: Map<string, Set<string>>,
-): boolean {
-  return getReachableNodes(startIds, allocatedIds, adjacency).has(targetId);
-}
-
 // ---------------------------------------------------------------------------
 // Available nodes computation
 // ---------------------------------------------------------------------------
 
 /**
- * Compute which nodes are currently available for allocation.
+ * Compute which unallocated nodes are currently available for allocation.
  *
  * A node is available if:
  *   1. mastery_requirement <= totalBasePointsSpent (tier gate met)
  *   2. AND one of:
- *      a. Node has no parent connections (tier root — freely selectable)
+ *      a. No parent connections (tier root — freely selectable at this tier)
  *      b. At least one parent connection is already allocated
  */
 export function computeAvailableNodes(
   nodes: PassiveNode[],
   allocatedIds: Set<string>,
-  _startIds: Set<string>,
-  adjacency: Map<string, Set<string>>,
   totalBasePointsSpent: number,
 ): Set<string> {
   const available = new Set<string>();
 
   for (const node of nodes) {
-    // Skip already allocated nodes
     if (allocatedIds.has(node.id)) continue;
-
-    // Check mastery requirement gate
     if (totalBasePointsSpent < node.mastery_requirement) continue;
 
-    // Nodes with no parent connections are tier roots — always available
-    // when their mastery_requirement is met
     if (node.connections.length === 0) {
       available.add(node.id);
       continue;
     }
 
-    // Check if any parent (connection) is allocated
     for (const parentId of node.connections) {
       if (allocatedIds.has(parentId)) {
         available.add(node.id);
@@ -174,76 +158,62 @@ export function computeAvailableNodes(
 
 /**
  * Check whether removing a node would disconnect other allocated nodes
- * from their start nodes.
+ * from the start nodes.
  *
- * Uses FULL BFS reachability validation:
- *   1. Simulate removal (clone allocated set, delete target)
- *   2. Find all tier-root nodes in remaining set (no parent connections)
- *   3. BFS outward from tier roots through bidirectional adjacency
- *   4. If every remaining allocated node is visited → safe to remove
- *   5. If any remaining node is unreachable → removal blocked
+ * Algorithm:
+ *   1. Simulate removal (clone set, delete target)
+ *   2. If nothing remains → safe
+ *   3. BFS from startIds (NOT tier roots) through remaining allocated nodes
+ *   4. Safe only if every remaining node was visited
  *
- * This guarantees no allocated node becomes disconnected from a valid
- * root, even in complex multi-path graph topologies.
- *
- * Returns true if removal is safe.
+ * IMPORTANT: BFS roots are ONLY nodes in startIds — not all connectionless
+ * nodes. Tier roots at higher mastery_requirements are not valid BFS seeds.
  */
 export function canRemoveNode(
   nodeId: string,
   allocatedIds: Set<string>,
   startIds: Set<string>,
   adjacency: Map<string, Set<string>>,
-  nodes?: PassiveNode[],
 ): boolean {
   if (!allocatedIds.has(nodeId)) return false;
 
-  // Simulate removal
   const remaining = new Set(allocatedIds);
   remaining.delete(nodeId);
 
+  // Part 2: empty removal is always safe
   if (remaining.size === 0) return true;
 
-  // Find all valid roots in the remaining set:
-  // - Start nodes (req=0, no connections) that are still allocated
-  // - Tier root nodes (no parent connections) that are still allocated
-  const roots = new Set<string>();
+  // Part 1: BFS ONLY from real start nodes that are still allocated
+  const reachable = getReachableNodes(startIds, remaining, adjacency);
 
-  if (nodes) {
-    for (const node of nodes) {
-      if (!remaining.has(node.id)) continue;
-      if (node.connections.length === 0) {
-        roots.add(node.id);
-      }
-    }
-  } else {
-    // Fallback: use startIds
-    for (const sid of startIds) {
-      if (remaining.has(sid)) roots.add(sid);
-    }
+  return reachable.size === remaining.size;
+}
+
+// ---------------------------------------------------------------------------
+// Dev-mode integrity check
+// ---------------------------------------------------------------------------
+
+/**
+ * Validate that all allocated nodes are reachable from start nodes.
+ * Logs console.error if the tree is in an invalid state.
+ *
+ * Only runs in development — no-op in production.
+ */
+export function validateTreeIntegrity(
+  allocatedIds: Set<string>,
+  startIds: Set<string>,
+  adjacency: Map<string, Set<string>>,
+): void {
+  if (process.env.NODE_ENV === "production") return;
+  if (allocatedIds.size === 0) return;
+
+  const reachable = getReachableNodes(startIds, allocatedIds, adjacency);
+  if (reachable.size !== allocatedIds.size) {
+    const orphans = [...allocatedIds].filter((id) => !reachable.has(id));
+    console.error(
+      "[PassiveTree] Invalid tree state detected — orphaned nodes:",
+      orphans,
+      `(${reachable.size} reachable / ${allocatedIds.size} allocated)`,
+    );
   }
-
-  // BFS from all roots through remaining allocated nodes via bidirectional adjacency
-  const visited = new Set<string>();
-  const queue: string[] = [];
-
-  for (const rootId of roots) {
-    visited.add(rootId);
-    queue.push(rootId);
-  }
-
-  while (queue.length > 0) {
-    const current = queue.shift()!;
-    const neighbors = adjacency.get(current);
-    if (!neighbors) continue;
-
-    for (const neighborId of neighbors) {
-      if (remaining.has(neighborId) && !visited.has(neighborId)) {
-        visited.add(neighborId);
-        queue.push(neighborId);
-      }
-    }
-  }
-
-  // Safe only if every remaining allocated node was reached
-  return visited.size === remaining.size;
 }
