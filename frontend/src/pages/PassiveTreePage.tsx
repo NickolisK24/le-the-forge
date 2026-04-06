@@ -26,6 +26,12 @@ import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
 import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
+import {
+  findPathToNode,
+  findAllAllocatedPaths,
+  collectPathNodes,
+  collectPathEdges,
+} from "@/logic/findPassivePath";
 import { createPassiveStatSnapshot } from "@/logic/debugStatSnapshot";
 import { resolveCharacterStats } from "@/logic/resolveCharacterStats";
 import { computePassiveStats } from "@/logic/computePassiveStats";
@@ -134,6 +140,7 @@ export default function PassiveTreePage() {
   const [allocatedIds, setAllocatedIds] = useState<Set<string>>(new Set());
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
+  const [showAllocPaths, setShowAllocPaths] = useState(false);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
   const [exportMsg, setExportMsg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -221,6 +228,43 @@ export default function PassiveTreePage() {
     () => validatePassiveBuild(allocatedPoints, nodeById),
     [allocatedPoints, nodeById],
   );
+
+  // --- Path highlighting ---
+  // Hover path: BFS from starts to the hovered node
+  const hoverPath = useMemo(() => {
+    if (!tooltip) return [];
+    return findPathToNode(tooltip.node.id, adjacency, startIds);
+  }, [tooltip, adjacency, startIds]);
+
+  const hoverPathNodes = useMemo(() => new Set(hoverPath), [hoverPath]);
+  const hoverPathEdges = useMemo(() => {
+    const edges = new Set<string>();
+    for (let i = 0; i < hoverPath.length - 1; i++) {
+      edges.add(`${hoverPath[i]}-${hoverPath[i + 1]}`);
+      edges.add(`${hoverPath[i + 1]}-${hoverPath[i]}`);
+    }
+    return edges;
+  }, [hoverPath]);
+
+  // Allocated paths: all paths from starts to allocated nodes (toggle-controlled)
+  const allocatedPathData = useMemo(() => {
+    if (!showAllocPaths || allocatedIds.size === 0) return { nodes: new Set<string>(), edges: new Set<string>() };
+    const paths = findAllAllocatedPaths(allocatedIds, adjacency, startIds);
+    return { nodes: collectPathNodes(paths), edges: collectPathEdges(paths) };
+  }, [showAllocPaths, allocatedIds, adjacency, startIds]);
+
+  // Combined highlight sets (hover takes priority)
+  const highlightedNodes = useMemo(() => {
+    const set = new Set(allocatedPathData.nodes);
+    for (const id of hoverPathNodes) set.add(id);
+    return set;
+  }, [hoverPathNodes, allocatedPathData.nodes]);
+
+  const highlightedEdges = useMemo(() => {
+    const set = new Set(allocatedPathData.edges);
+    for (const e of hoverPathEdges) set.add(e);
+    return set;
+  }, [hoverPathEdges, allocatedPathData.edges]);
 
   // Node state resolver using enum
   const getNodeState = useCallback(
@@ -497,6 +541,12 @@ export default function PassiveTreePage() {
         <button onClick={handleLoadBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-amber bg-forge-surface2 transition-colors">Load</button>
         <button onClick={handleExportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Export</button>
         <button onClick={handleImportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Import</button>
+        <button
+          onClick={() => setShowAllocPaths((v) => !v)}
+          className={`rounded px-2.5 py-1 font-mono text-xs transition-colors ${showAllocPaths ? "bg-amber-500/20 text-amber-400" : "bg-forge-surface2 text-forge-dim hover:text-forge-muted"}`}
+        >
+          {showAllocPaths ? "Hide Paths" : "Show Paths"}
+        </button>
         {exportMsg && <span className="font-mono text-xs text-forge-cyan">{exportMsg}</span>}
       </div>
 
@@ -504,7 +554,7 @@ export default function PassiveTreePage() {
       <div ref={containerRef} className="relative overflow-hidden rounded border border-forge-border select-none" style={{ height: CANVAS_H, background: "#0b0e1a" }}>
         <svg width={canvasSize.w} height={canvasSize.h} style={{ display: "block" }}>
           <rect width={canvasSize.w} height={canvasSize.h} fill="#0b0e1a" />
-          <PassiveTreeConnections edges={layout.edges} positions={layout.positions} allocatedIds={allocatedIds} />
+          <PassiveTreeConnections edges={layout.edges} positions={layout.positions} allocatedIds={allocatedIds} highlightedEdges={highlightedEdges} />
           {filteredNodes.map((node) => {
             const pos = layout.positions.get(node.id);
             if (!pos) return null;
@@ -514,7 +564,8 @@ export default function PassiveTreePage() {
                 radius={Math.max(5, radius)} state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={handleNodeClick} onNodeRightClick={handleNodeRightClick}
-                onHover={handleHover} onLeave={handleLeave} />
+                onHover={handleHover} onLeave={handleLeave}
+                highlighted={highlightedNodes.has(node.id)} />
             );
           })}
         </svg>

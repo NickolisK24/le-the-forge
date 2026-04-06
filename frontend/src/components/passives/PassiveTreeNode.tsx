@@ -42,10 +42,12 @@ interface Props {
   onNodeRightClick: (nodeId: string, shiftKey: boolean) => void;
   onHover: (node: PassiveNode, screenX: number, screenY: number) => void;
   onLeave: () => void;
+  /** Whether this node is part of the currently highlighted path */
+  highlighted?: boolean;
 }
 
 function PassiveTreeNodeInner({
-  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave,
+  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave, highlighted,
 }: Props) {
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
@@ -60,8 +62,8 @@ function PassiveTreeNodeInner({
       ? pal.strokeAvailable
       : pal.strokeIdle;
 
-  const strokeWidth = isAllocated ? 2 : 1;
-  const opacity = isLocked ? 0.35 : 1;
+  const strokeWidth = isAllocated ? 2 : highlighted ? 1.5 : 1;
+  const opacity = isLocked ? (highlighted ? 0.6 : 0.35) : 1;
   const cursor = isLocked ? "not-allowed" : "pointer";
 
   return (
@@ -97,6 +99,18 @@ function PassiveTreeNodeInner({
             pointerEvents="none"
           />
         )
+      )}
+
+      {/* Path highlight ring (when node is on the hover path) */}
+      {highlighted && !isAllocated && (
+        <circle
+          r={radius + 2}
+          fill="none"
+          stroke="#f0a020"
+          strokeWidth={1}
+          opacity={0.5}
+          pointerEvents="none"
+        />
       )}
 
       {/* Node shape */}
@@ -151,6 +165,7 @@ export default memo(PassiveTreeNodeInner, (prev, next) => {
     prev.sy === next.sy &&
     prev.radius === next.radius &&
     prev.state === next.state &&
-    prev.allocatedPoints === next.allocatedPoints
+    prev.allocatedPoints === next.allocatedPoints &&
+    prev.highlighted === next.highlighted
   );
 });
