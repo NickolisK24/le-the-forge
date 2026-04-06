@@ -24,6 +24,8 @@ import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
 import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
+import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
+import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
 import { createPassiveStatSnapshot } from "@/logic/debugStatSnapshot";
 import { resolveCharacterStats } from "@/logic/resolveCharacterStats";
 import { computePassiveStats } from "@/logic/computePassiveStats";
@@ -212,6 +214,12 @@ export default function PassiveTreePage() {
   const characterStats = useMemo(
     () => resolveCharacterStats(passiveStats),
     [passiveStats],
+  );
+
+  // Build validation — point economy, tiers, mastery rules
+  const buildValidation = useMemo(
+    () => validatePassiveBuild(allocatedPoints, nodeById),
+    [allocatedPoints, nodeById],
   );
 
   // Node state resolver using enum
@@ -533,6 +541,8 @@ export default function PassiveTreePage() {
         snapshot={statSnapshot}
         resolvedCharStats={characterStats}
       />
+
+      <PointEconomyPanel validation={buildValidation} />
     </Page>
   );
 }
