@@ -42,10 +42,12 @@ interface Props {
   onNodeRightClick: (nodeId: string, shiftKey: boolean) => void;
   onHover: (node: PassiveNode, screenX: number, screenY: number) => void;
   onLeave: () => void;
+  /** Dev-only: render a red dot at the exact node center coordinate */
+  showDebugCenter?: boolean;
 }
 
 function PassiveTreeNodeInner({
-  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave,
+  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave, showDebugCenter,
 }: Props) {
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
@@ -123,6 +125,11 @@ function PassiveTreeNodeInner({
 
       {/* Icon */}
       <TreeIcon iconId={node.icon} size={radius * 1.5} nodeName={node.name} />
+
+      {/* Debug center marker — red dot at exact (0,0) of this node's coordinate */}
+      {showDebugCenter && (
+        <circle r={2} fill="#ff0000" opacity={0.9} pointerEvents="none" />
+      )}
 
       {/* Points label */}
       {node.max_points > 1 && (
