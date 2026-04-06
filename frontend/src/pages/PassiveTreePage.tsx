@@ -48,6 +48,8 @@ import { serializeBuild, saveBuildToLocalStorage, clearBuildFromLocalStorage } f
 import { deserializeBuild, loadBuildFromLocalStorage } from "@/logic/loadBuild";
 import { copyBuildToClipboard } from "@/logic/exportBuild";
 import { importBuildFromString } from "@/logic/importBuild";
+import { analyzeNodeDependencies, type DependencyReport } from "@/logic/analyzeNodeDependencies";
+import DependencyInspector from "@/components/passives/DependencyInspector";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const CANVAS_H = 650;
@@ -141,6 +143,7 @@ export default function PassiveTreePage() {
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [showAllocPaths, setShowAllocPaths] = useState(false);
+  const [inspectorReport, setInspectorReport] = useState<{ report: DependencyReport; x: number; y: number } | null>(null);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
   const [exportMsg, setExportMsg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -252,6 +255,22 @@ export default function PassiveTreePage() {
     const paths = findAllAllocatedPaths(allocatedIds, adjacency, startIds);
     return { nodes: collectPathNodes(paths), edges: collectPathEdges(paths) };
   }, [showAllocPaths, allocatedIds, adjacency, startIds]);
+
+  // Blocking nodes: nodes that prevent the inspected node from being allocated/removed
+  const blockingNodeIds = useMemo(() => {
+    if (!inspectorReport) return new Set<string>();
+    const r = inspectorReport.report;
+    const blocking = new Set<string>();
+    // If locked: missing parents are the blockers
+    if (!r.isAllocated) {
+      for (const pid of r.missingParents) blocking.add(pid);
+    }
+    // If can't remove: blocking children are the blockers
+    if (r.isAllocated && !r.canRemove) {
+      for (const cid of r.blockingChildren) blocking.add(cid);
+    }
+    return blocking;
+  }, [inspectorReport]);
 
   // Combined highlight sets (hover takes priority)
   const highlightedNodes = useMemo(() => {
@@ -371,8 +390,32 @@ export default function PassiveTreePage() {
     });
   }, [filteredNodes, allocatedIds]);
 
-  const handleHover = useCallback((node: PassiveNode, x: number, y: number) => setTooltip({ node, x, y }), []);
-  const handleLeave = useCallback(() => setTooltip(null), []);
+  const handleHover = useCallback((node: PassiveNode, x: number, y: number) => {
+    setTooltip({ node, x, y });
+  }, []);
+  const handleLeave = useCallback(() => {
+    setTooltip(null);
+    setInspectorReport(null);
+  }, []);
+
+  // Shift-hover: show dependency inspector
+  useEffect(() => {
+    const onKey = (e: KeyboardEvent) => {
+      if (e.key === "Shift" && tooltip) {
+        const report = analyzeNodeDependencies(
+          tooltip.node.id, filteredNodes, allocatedIds, allocatedPoints,
+          adjacency, startIds, totalBasePointsSpent,
+        );
+        setInspectorReport({ report, x: tooltip.x, y: tooltip.y });
+      }
+      if (e.type === "keyup" && e.key === "Shift") {
+        setInspectorReport(null);
+      }
+    };
+    window.addEventListener("keydown", onKey);
+    window.addEventListener("keyup", onKey);
+    return () => { window.removeEventListener("keydown", onKey); window.removeEventListener("keyup", onKey); };
+  }, [tooltip, filteredNodes, allocatedIds, allocatedPoints, adjacency, startIds, totalBasePointsSpent]);
 
   const handleClassChange = (cls: CharacterClass) => {
     setSelectedClass(cls);
@@ -565,11 +608,13 @@ export default function PassiveTreePage() {
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={handleNodeClick} onNodeRightClick={handleNodeRightClick}
                 onHover={handleHover} onLeave={handleLeave}
-                highlighted={highlightedNodes.has(node.id)} />
+                highlighted={highlightedNodes.has(node.id)}
+                blocked={blockingNodeIds.has(node.id)} />
             );
           })}
         </svg>
-        {tooltip && <NodeTooltip data={tooltip} containerRect={containerRect} allocated={tooltipAllocated} canDealloc={tooltipCanDealloc} />}
+        {tooltip && !inspectorReport && <NodeTooltip data={tooltip} containerRect={containerRect} allocated={tooltipAllocated} canDealloc={tooltipCanDealloc} />}
+        {inspectorReport && <DependencyInspector report={inspectorReport.report} screenX={inspectorReport.x} screenY={inspectorReport.y} containerRect={containerRect} />}
       </div>
 
       {/* Legend */}

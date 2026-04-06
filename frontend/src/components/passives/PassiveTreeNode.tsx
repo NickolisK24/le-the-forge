@@ -44,10 +44,12 @@ interface Props {
   onLeave: () => void;
   /** Whether this node is part of the currently highlighted path */
   highlighted?: boolean;
+  /** Whether this node is a dependency blocker (shown with red outline) */
+  blocked?: boolean;
 }
 
 function PassiveTreeNodeInner({
-  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave, highlighted,
+  node, sx, sy, radius, state, allocatedPoints, onNodeClick, onNodeRightClick, onHover, onLeave, highlighted, blocked,
 }: Props) {
   const pal = PALETTE[node.mastery_index ?? 0] ?? PALETTE[0];
   const isNotable = node.node_type === "notable" || node.max_points === 1;
@@ -113,6 +115,18 @@ function PassiveTreeNodeInner({
         />
       )}
 
+      {/* Blocking indicator (red outline when this node is a dependency blocker) */}
+      {blocked && (
+        <circle
+          r={radius + 3}
+          fill="none"
+          stroke="#ef4444"
+          strokeWidth={1.5}
+          opacity={0.7}
+          pointerEvents="none"
+        />
+      )}
+
       {/* Node shape */}
       {isNotable ? (
         <rect
@@ -166,6 +180,7 @@ export default memo(PassiveTreeNodeInner, (prev, next) => {
     prev.radius === next.radius &&
     prev.state === next.state &&
     prev.allocatedPoints === next.allocatedPoints &&
-    prev.highlighted === next.highlighted
+    prev.highlighted === next.highlighted &&
+    prev.blocked === next.blocked
   );
 });
