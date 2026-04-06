@@ -158,35 +158,78 @@ export function computeAvailableNodes(
 
 /**
  * Check whether removing a node would disconnect other allocated nodes
- * from the start nodes.
+ * from their valid roots.
  *
  * Algorithm:
  *   1. Simulate removal (clone set, delete target)
  *   2. If nothing remains → safe
- *   3. BFS from startIds (NOT tier roots) through remaining allocated nodes
- *   4. Safe only if every remaining node was visited
+ *   3. Find all valid BFS roots in the remaining set:
+ *      - Any remaining node with connections.length === 0 (tier root)
+ *      These are independently valid — they don't need a path from startIds
+ *   4. BFS outward from all roots through remaining allocated nodes
+ *   5. Safe only if every remaining node was visited
  *
- * IMPORTANT: BFS roots are ONLY nodes in startIds — not all connectionless
- * nodes. Tier roots at higher mastery_requirements are not valid BFS seeds.
+ * This correctly handles:
+ *   - Leaf nodes (always removable)
+ *   - Start nodes (removable if no dependents)
+ *   - Tier roots at any mastery_requirement (independently valid)
+ *   - Mid-chain nodes that would orphan descendants
  */
 export function canRemoveNode(
   nodeId: string,
   allocatedIds: Set<string>,
   startIds: Set<string>,
   adjacency: Map<string, Set<string>>,
+  nodes?: PassiveNode[],
 ): boolean {
   if (!allocatedIds.has(nodeId)) return false;
 
   const remaining = new Set(allocatedIds);
   remaining.delete(nodeId);
 
-  // Part 2: empty removal is always safe
   if (remaining.size === 0) return true;
 
-  // Part 1: BFS ONLY from real start nodes that are still allocated
-  const reachable = getReachableNodes(startIds, remaining, adjacency);
+  // Find ALL valid roots in the remaining set.
+  // A root is any node with no parent connections (connections.length === 0).
+  // These are independently valid at their tier and don't need a path from startIds.
+  const roots = new Set<string>();
 
-  return reachable.size === remaining.size;
+  if (nodes) {
+    for (const node of nodes) {
+      if (remaining.has(node.id) && node.connections.length === 0) {
+        roots.add(node.id);
+      }
+    }
+  } else {
+    // Fallback: use startIds (less accurate but safe)
+    for (const sid of startIds) {
+      if (remaining.has(sid)) roots.add(sid);
+    }
+  }
+
+  // BFS from all roots through remaining allocated nodes
+  const visited = new Set<string>();
+  const queue: string[] = [];
+
+  for (const rootId of roots) {
+    visited.add(rootId);
+    queue.push(rootId);
+  }
+
+  while (queue.length > 0) {
+    const current = queue.shift()!;
+    const neighbors = adjacency.get(current);
+    if (!neighbors) continue;
+
+    for (const neighborId of neighbors) {
+      if (remaining.has(neighborId) && !visited.has(neighborId)) {
+        visited.add(neighborId);
+        queue.push(neighborId);
+      }
+    }
+  }
+
+  return visited.size === remaining.size;
 }
 
 // ---------------------------------------------------------------------------

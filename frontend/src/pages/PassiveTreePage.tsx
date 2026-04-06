@@ -33,6 +33,10 @@ import {
   canRemoveNode,
   validateTreeIntegrity,
 } from "@/utils/passiveGraph";
+import { serializeBuild, saveBuildToLocalStorage, clearBuildFromLocalStorage } from "@/logic/saveBuild";
+import { deserializeBuild, loadBuildFromLocalStorage } from "@/logic/loadBuild";
+import { copyBuildToClipboard } from "@/logic/exportBuild";
+import { importBuildFromString } from "@/logic/importBuild";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const CANVAS_H = 650;
@@ -126,6 +130,7 @@ export default function PassiveTreePage() {
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
+  const [exportMsg, setExportMsg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState({ w: 900, h: CANVAS_H });
 
@@ -259,7 +264,7 @@ export default function PassiveTreePage() {
 
       if (shiftKey || pts === 1) {
         // Shift+right-click: remove ALL, or regular right-click on last point
-        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency)) return;
+        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency, filteredNodes)) return;
         setAllocatedIds((prev) => {
           const next = new Set(prev);
           next.delete(nodeId);
@@ -308,7 +313,103 @@ export default function PassiveTreePage() {
     setAllocatedIds(new Set());
     setAllocatedPoints(new Map());
   };
-  const handleReset = () => { setAllocatedIds(new Set()); setAllocatedPoints(new Map()); };
+  const handleReset = () => {
+    setAllocatedIds(new Set());
+    setAllocatedPoints(new Map());
+    clearBuildFromLocalStorage();
+  };
+
+  // --- Auto-save to localStorage on every allocation change ---
+  useEffect(() => {
+    if (!selectedClass || allocatedPoints.size === 0) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    saveBuildToLocalStorage(build);
+  }, [allocatedPoints, selectedClass, selectedMastery]);
+
+  // --- Auto-load from localStorage on mount ---
+  useEffect(() => {
+    const saved = loadBuildFromLocalStorage();
+    if (!saved) return;
+    // Only auto-load if we haven't already selected a class
+    if (selectedClass) return;
+    setSelectedClass(saved.classId as CharacterClass);
+    if (saved.masteryId) setSelectedMastery(saved.masteryId);
+  }, []);
+
+  // --- Restore allocations once tree data loads and matches saved build ---
+  useEffect(() => {
+    if (!treeData || !selectedClass) return;
+    const saved = loadBuildFromLocalStorage();
+    if (!saved || saved.classId !== selectedClass) return;
+    // Only restore if we currently have zero allocations (fresh load)
+    if (allocatedIds.size > 0) return;
+
+    const result = deserializeBuild(saved, treeData.nodes);
+    if (result.success && result.allocatedIds.size > 0) {
+      setAllocatedIds(result.allocatedIds);
+      setAllocatedPoints(result.allocatedPoints);
+      if (result.warnings.length > 0) {
+        console.warn("[Build Load] Warnings:", result.warnings);
+      }
+    }
+  }, [treeData, selectedClass]);
+
+  // --- Manual save/load handlers ---
+  const handleSaveBuild = () => {
+    if (!selectedClass) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    saveBuildToLocalStorage(build);
+  };
+
+  const handleLoadBuild = () => {
+    const saved = loadBuildFromLocalStorage();
+    if (!saved) return;
+    if (saved.classId !== selectedClass) {
+      setSelectedClass(saved.classId as CharacterClass);
+      if (saved.masteryId) setSelectedMastery(saved.masteryId);
+      // Allocations will be restored by the treeData effect above
+      return;
+    }
+    if (!treeData) return;
+    const result = deserializeBuild(saved, treeData.nodes);
+    if (result.success) {
+      setAllocatedIds(result.allocatedIds);
+      setAllocatedPoints(result.allocatedPoints);
+    }
+  };
+
+  const handleExportBuild = async () => {
+    if (!selectedClass) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    const ok = await copyBuildToClipboard(build);
+    if (ok) {
+      setExportMsg("Copied!");
+      setTimeout(() => setExportMsg(null), 2000);
+    }
+  };
+
+  const handleImportBuild = () => {
+    const encoded = prompt("Paste build string:");
+    if (!encoded) return;
+    const build = importBuildFromString(encoded);
+    if (!build) {
+      setExportMsg("Invalid build string");
+      setTimeout(() => setExportMsg(null), 3000);
+      return;
+    }
+    if (build.classId !== selectedClass) {
+      setSelectedClass(build.classId as CharacterClass);
+      if (build.masteryId) setSelectedMastery(build.masteryId);
+    }
+    saveBuildToLocalStorage(build);
+    if (treeData) {
+      const result = deserializeBuild(build, treeData.nodes);
+      if (result.success) {
+        setAllocatedIds(result.allocatedIds);
+        setAllocatedPoints(result.allocatedPoints);
+      }
+    }
+  };
 
   const masteries = selectedClass ? (MASTERIES[selectedClass] ?? []) : [];
   const totalPointsSpent = useMemo(
@@ -346,7 +447,7 @@ export default function PassiveTreePage() {
 
   const containerRect = containerRef.current?.getBoundingClientRect() ?? null;
   const tooltipAllocated = tooltip ? allocatedIds.has(tooltip.node.id) : false;
-  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency) : false;
+  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, filteredNodes) : false;
 
   return (
     <Page>
@@ -366,9 +467,14 @@ export default function PassiveTreePage() {
             Render: {renderTimeMs}ms
           </span>
         )}
-        {allocatedIds.size > 0 && (
+        {allocatedIds.size > 0 && (<>
           <button onClick={handleReset} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors">Reset</button>
-        )}
+        </>)}
+        <button onClick={handleSaveBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-cyan bg-forge-surface2 transition-colors">Save</button>
+        <button onClick={handleLoadBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-amber bg-forge-surface2 transition-colors">Load</button>
+        <button onClick={handleExportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Export</button>
+        <button onClick={handleImportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Import</button>
+        {exportMsg && <span className="font-mono text-xs text-forge-cyan">{exportMsg}</span>}
       </div>
 
       {/* SVG canvas */}
