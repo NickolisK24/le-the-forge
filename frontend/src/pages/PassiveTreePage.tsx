@@ -35,9 +35,9 @@ import {
 } from "@/utils/passiveGraph";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
-const CANVAS_H = 560;
-const NODE_R_CORE = 14;
-const NODE_R_NOTABLE = 20;
+const CANVAS_H = 650;
+const NODE_R_CORE = 18;
+const NODE_R_NOTABLE = 24;
 
 // ---------------------------------------------------------------------------
 // Layout
@@ -386,7 +386,7 @@ export default function PassiveTreePage() {
           {filteredNodes.map((node) => {
             const pos = layout.positions.get(node.id);
             if (!pos) return null;
-            const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.3, layout.scale);
+            const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.5, layout.scale);
             return (
               <PassiveTreeNode key={node.id} node={node} sx={pos.sx} sy={pos.sy}
                 radius={Math.max(5, radius)} state={getNodeState(node.id)}

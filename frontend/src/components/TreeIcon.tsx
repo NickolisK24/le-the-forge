@@ -63,7 +63,6 @@ export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
             alignItems: "center",
             justifyContent: "center",
             overflow: "hidden",
-            borderRadius: "50%",
           }}
         >
           <img
