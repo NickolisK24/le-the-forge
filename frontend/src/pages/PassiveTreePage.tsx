@@ -25,6 +25,8 @@ import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
+import MergedStatsPanel from "@/components/passives/MergedStatsPanel";
+import { mergeStatSnapshots, resolveCharacterStatsUnified } from "@/logic/mergeCharacterStats";
 import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
 import {
   findPathToNode,
@@ -224,6 +226,18 @@ export default function PassiveTreePage() {
   const characterStats = useMemo(
     () => resolveCharacterStats(passiveStats),
     [passiveStats],
+  );
+
+  // Merged stats: passive + skill (skill stats are empty until skill tree is wired)
+  const emptySkillStats = useMemo(() => new Map<string, import("@/types/passiveEffects").AggregatedStat>(), []);
+  const emptySkillSnapshot = useMemo(() => ({} as Record<string, number>), []);
+  const mergedSnapshot = useMemo(
+    () => mergeStatSnapshots(statSnapshot, emptySkillSnapshot),
+    [statSnapshot, emptySkillSnapshot],
+  );
+  const unifiedFinalStats = useMemo(
+    () => resolveCharacterStatsUnified(passiveStats, emptySkillStats),
+    [passiveStats, emptySkillStats],
   );
 
   // Build validation — point economy, tiers, mastery rules
@@ -639,6 +653,13 @@ export default function PassiveTreePage() {
       />
 
       <PointEconomyPanel validation={buildValidation} />
+
+      <MergedStatsPanel
+        passiveSnapshot={statSnapshot}
+        skillSnapshot={emptySkillSnapshot}
+        mergedSnapshot={mergedSnapshot}
+        finalStats={unifiedFinalStats}
+      />
     </Page>
   );
 }
