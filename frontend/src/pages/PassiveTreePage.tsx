@@ -35,9 +35,9 @@ import {
 } from "@/utils/passiveGraph";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
-const CANVAS_H = 650;
-const NODE_R_CORE = 18;
-const NODE_R_NOTABLE = 24;
+const CANVAS_H = 560;
+const NODE_R_CORE = 14;
+const NODE_R_NOTABLE = 20;
 
 // ---------------------------------------------------------------------------
 // Layout
@@ -126,7 +126,6 @@ export default function PassiveTreePage() {
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
-  const [showDebugCenters, setShowDebugCenters] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState({ w: 900, h: CANVAS_H });
 
@@ -367,15 +366,9 @@ export default function PassiveTreePage() {
             Render: {renderTimeMs}ms
           </span>
         )}
-        {allocatedIds.size > 0 && (<>
+        {allocatedIds.size > 0 && (
           <button onClick={handleReset} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors">Reset</button>
-          <button
-            onClick={() => setShowDebugCenters((v) => !v)}
-            className={`rounded px-2.5 py-1 font-mono text-xs transition-colors ${showDebugCenters ? "bg-red-500/20 text-red-400" : "bg-forge-surface2 text-forge-dim hover:text-forge-muted"}`}
-          >
-            {showDebugCenters ? "Hide Centers" : "Show Centers"}
-          </button>
-        </>)}
+        )}
       </div>
 
       {/* SVG canvas */}
@@ -386,14 +379,13 @@ export default function PassiveTreePage() {
           {filteredNodes.map((node) => {
             const pos = layout.positions.get(node.id);
             if (!pos) return null;
-            const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.5, layout.scale);
+            const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.3, layout.scale);
             return (
               <PassiveTreeNode key={node.id} node={node} sx={pos.sx} sy={pos.sy}
                 radius={Math.max(5, radius)} state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={handleNodeClick} onNodeRightClick={handleNodeRightClick}
-                onHover={handleHover} onLeave={handleLeave}
-                showDebugCenter={showDebugCenters} />
+                onHover={handleHover} onLeave={handleLeave} />
             );
           })}
         </svg>

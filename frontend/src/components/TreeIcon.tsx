@@ -4,12 +4,15 @@
  * Uses local PNG files from /assets/passive-icons/ when available.
  * Falls back to a colored abbreviation placeholder when no local file exists.
  *
- * Icons are rendered inside SVG foreignObject with explicit centering
- * to handle varying PNG source sizes (54px–334px) consistently.
+ * Icon IDs are strings like "a-r-292" matching filenames in public/assets/passive-icons/.
  */
 
 import { useMemo } from "react";
 
+// Pre-built set of known local icon files.
+// This avoids runtime 404s — if the icon isn't in this set, show a placeholder.
+// The set is populated by importing the sprite map keys that follow the a-r-* pattern,
+// since all local PNGs correspond to sprite map entries.
 import iconSpriteMap from "@/data/iconSpriteMap.json";
 
 const LOCAL_ICONS: Set<string> = new Set(
@@ -29,16 +32,13 @@ interface TreeIconProps {
 
 /**
  * SVG foreignObject icon for use inside tree renderers.
- *
- * The foreignObject is positioned at (-size/2, -size/2) relative to the
- * parent <g> transform origin, centering it exactly on the node coordinate.
- * The inner container uses flexbox centering to handle any PNG aspect ratio.
  */
 export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
   if (!iconId) return null;
 
   const hasLocal = LOCAL_ICONS.has(iconId);
 
+  // Placeholder letter(s) derived from node name
   const abbr = useMemo(() => {
     if (!nodeName) return "?";
     const words = nodeName.split(/\s+/).filter(Boolean);
@@ -55,29 +55,18 @@ export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
         height={size}
         pointerEvents="none"
       >
-        <div
+        <img
+          src={`/assets/passive-icons/${iconId}.png`}
+          alt=""
+          width={size}
+          height={size}
           style={{
-            width: size,
-            height: size,
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
+            borderRadius: "50%",
+            objectFit: "cover",
+            display: "block",
           }}
-        >
-          <img
-            src={`/assets/passive-icons/${iconId}.png`}
-            alt=""
-            width={size}
-            height={size}
-            style={{
-              objectFit: "contain",
-              display: "block",
-              imageRendering: "auto",
-            }}
-            loading="lazy"
-          />
-        </div>
+          loading="lazy"
+        />
       </foreignObject>
     );
   }
@@ -103,7 +92,11 @@ export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
 /**
  * Standalone HTML icon (not in SVG context) for use in tooltips/lists.
  */
-export function TreeIconHtml({ iconId, size, nodeName }: TreeIconProps) {
+export function TreeIconHtml({
+  iconId,
+  size,
+  nodeName,
+}: TreeIconProps) {
   if (!iconId) return null;
 
   const hasLocal = LOCAL_ICONS.has(iconId);
@@ -115,7 +108,7 @@ export function TreeIconHtml({ iconId, size, nodeName }: TreeIconProps) {
         alt={nodeName ?? ""}
         width={size}
         height={size}
-        style={{ borderRadius: "50%", objectFit: "contain" }}
+        style={{ borderRadius: "50%", objectFit: "cover" }}
         loading="lazy"
       />
     );
