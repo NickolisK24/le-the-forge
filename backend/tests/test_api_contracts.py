@@ -8,10 +8,19 @@ These tests run against a live database and verify:
   - Expected record counts (sanity checks)
 
 Run with: pytest tests/test_api_contracts.py -v
+
+NOTE: These tests require a seeded PostgreSQL database. They are skipped
+automatically when FLASK_ENV=testing (which uses in-memory SQLite).
 """
 
 import os
 import pytest
+
+# Skip the entire module in CI testing mode (no seeded DB available)
+pytestmark = pytest.mark.skipif(
+    os.environ.get("FLASK_ENV") == "testing",
+    reason="Contract tests require a seeded PostgreSQL database, not SQLite"
+)
 
 # Use the dev database for contract tests (not sqlite)
 os.environ.setdefault("DATABASE_URL", "postgresql://forge:forgedev@127.0.0.1:5432/the_forge")

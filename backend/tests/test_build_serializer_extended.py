@@ -133,10 +133,11 @@ def test_passive_tree_fbs_round_trip(passive_tree):
     [5, 5, 5],
     [1, 1, 1, 1],
 ])
-def test_duplicates_removed_in_export(passive_tree):
+def test_multipoint_duplicates_preserved_in_export(passive_tree):
+    """Duplicate IDs represent multi-point allocations and must be preserved."""
     b = _build(passive_tree=passive_tree)
     sb = export_build(b)
-    assert len(sb.passive_tree) == len(set(passive_tree))
+    assert sb.passive_tree == sorted(passive_tree)
 
 
 @pytest.mark.parametrize("passive_tree", [
