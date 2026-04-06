@@ -24,6 +24,7 @@ import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
 import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
 import { computePassiveStats } from "@/logic/computePassiveStats";
+import { resolveStats } from "@/logic/statResolutionPipeline";
 import {
   NodeState,
   buildBidirectionalAdjacency,
@@ -185,6 +186,12 @@ export default function PassiveTreePage() {
   const passiveStats = useMemo(
     () => computePassiveStats(allocatedPoints, nodeById),
     [allocatedPoints, nodeById],
+  );
+
+  // Resolve stats through the pipeline (flat → percent scaling → derived)
+  const resolvedStats = useMemo(
+    () => resolveStats(passiveStats),
+    [passiveStats],
   );
 
   // Node state resolver using enum
@@ -396,6 +403,7 @@ export default function PassiveTreePage() {
       {/* Stat debug panel */}
       <PassiveStatsDebugPanel
         stats={passiveStats}
+        resolvedStats={resolvedStats}
         totalPoints={totalPointsSpent}
         allocatedCount={allocatedIds.size}
       />
