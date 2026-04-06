@@ -33,7 +33,9 @@ import {
   evaluateConditionalModifiers,
   createEmptyBuildContext,
   EXAMPLE_CONDITIONAL_MODIFIERS,
+  CONTEXT_CONDITIONAL_MODIFIERS,
 } from "@/logic/conditionalStatEngine";
+import { createPlannerContext, type RuntimeContext } from "@/types/runtimeContext";
 import { mergeStatSnapshots, resolveCharacterStatsUnified } from "@/logic/mergeCharacterStats";
 import { generateStatMergeSnapshot } from "@/logic/debugStatMerge";
 import { generateResolutionSnapshot } from "@/logic/debugStatResolution";
@@ -264,10 +266,15 @@ export default function PassiveTreePage() {
   );
 
   // Conditional stat evaluation (using resolved pool as context)
+  // Runtime context for conditional evaluation (planner defaults)
+  const runtimeCtx = useMemo<RuntimeContext>(() => createPlannerContext(), []);
+
+  // Evaluate both basic and context-based conditional modifiers
   const conditionalResults = useMemo(() => {
     const context = createEmptyBuildContext(resolvedStats);
-    return evaluateConditionalModifiers(EXAMPLE_CONDITIONAL_MODIFIERS, context);
-  }, [resolvedStats]);
+    const allMods = [...EXAMPLE_CONDITIONAL_MODIFIERS, ...CONTEXT_CONDITIONAL_MODIFIERS];
+    return evaluateConditionalModifiers(allMods, context, runtimeCtx);
+  }, [resolvedStats, runtimeCtx]);
 
   // Build validation — point economy, tiers, mastery rules
   const buildValidation = useMemo(
