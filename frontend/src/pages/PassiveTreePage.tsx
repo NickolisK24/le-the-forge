@@ -33,6 +33,8 @@ import {
   canRemoveNode,
   validateTreeIntegrity,
 } from "@/utils/passiveGraph";
+import { serializeBuild, saveBuildToLocalStorage, clearBuildFromLocalStorage } from "@/logic/saveBuild";
+import { deserializeBuild, loadBuildFromLocalStorage } from "@/logic/loadBuild";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const CANVAS_H = 650;
@@ -308,7 +310,70 @@ export default function PassiveTreePage() {
     setAllocatedIds(new Set());
     setAllocatedPoints(new Map());
   };
-  const handleReset = () => { setAllocatedIds(new Set()); setAllocatedPoints(new Map()); };
+  const handleReset = () => {
+    setAllocatedIds(new Set());
+    setAllocatedPoints(new Map());
+    clearBuildFromLocalStorage();
+  };
+
+  // --- Auto-save to localStorage on every allocation change ---
+  useEffect(() => {
+    if (!selectedClass || allocatedPoints.size === 0) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    saveBuildToLocalStorage(build);
+  }, [allocatedPoints, selectedClass, selectedMastery]);
+
+  // --- Auto-load from localStorage on mount ---
+  useEffect(() => {
+    const saved = loadBuildFromLocalStorage();
+    if (!saved) return;
+    // Only auto-load if we haven't already selected a class
+    if (selectedClass) return;
+    setSelectedClass(saved.classId as CharacterClass);
+    if (saved.masteryId) setSelectedMastery(saved.masteryId);
+  }, []);
+
+  // --- Restore allocations once tree data loads and matches saved build ---
+  useEffect(() => {
+    if (!treeData || !selectedClass) return;
+    const saved = loadBuildFromLocalStorage();
+    if (!saved || saved.classId !== selectedClass) return;
+    // Only restore if we currently have zero allocations (fresh load)
+    if (allocatedIds.size > 0) return;
+
+    const result = deserializeBuild(saved, treeData.nodes);
+    if (result.success && result.allocatedIds.size > 0) {
+      setAllocatedIds(result.allocatedIds);
+      setAllocatedPoints(result.allocatedPoints);
+      if (result.warnings.length > 0) {
+        console.warn("[Build Load] Warnings:", result.warnings);
+      }
+    }
+  }, [treeData, selectedClass]);
+
+  // --- Manual save/load handlers ---
+  const handleSaveBuild = () => {
+    if (!selectedClass) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    saveBuildToLocalStorage(build);
+  };
+
+  const handleLoadBuild = () => {
+    const saved = loadBuildFromLocalStorage();
+    if (!saved) return;
+    if (saved.classId !== selectedClass) {
+      setSelectedClass(saved.classId as CharacterClass);
+      if (saved.masteryId) setSelectedMastery(saved.masteryId);
+      // Allocations will be restored by the treeData effect above
+      return;
+    }
+    if (!treeData) return;
+    const result = deserializeBuild(saved, treeData.nodes);
+    if (result.success) {
+      setAllocatedIds(result.allocatedIds);
+      setAllocatedPoints(result.allocatedPoints);
+    }
+  };
 
   const masteries = selectedClass ? (MASTERIES[selectedClass] ?? []) : [];
   const totalPointsSpent = useMemo(
@@ -366,9 +431,11 @@ export default function PassiveTreePage() {
             Render: {renderTimeMs}ms
           </span>
         )}
-        {allocatedIds.size > 0 && (
+        {allocatedIds.size > 0 && (<>
           <button onClick={handleReset} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors">Reset</button>
-        )}
+        </>)}
+        <button onClick={handleSaveBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-cyan bg-forge-surface2 transition-colors">Save</button>
+        <button onClick={handleLoadBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-amber bg-forge-surface2 transition-colors">Load</button>
       </div>
 
       {/* SVG canvas */}
