@@ -26,7 +26,9 @@ import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
 import MergedStatsPanel from "@/components/passives/MergedStatsPanel";
+import StatSourceInspector from "@/components/passives/StatSourceInspector";
 import { mergeStatSnapshots, resolveCharacterStatsUnified } from "@/logic/mergeCharacterStats";
+import { generateStatMergeSnapshot } from "@/logic/debugStatMerge";
 import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
 import {
   findPathToNode,
@@ -231,6 +233,7 @@ export default function PassiveTreePage() {
   // Merged stats: passive + skill (skill stats are empty until skill tree is wired)
   const emptySkillStats = useMemo(() => new Map<string, import("@/types/passiveEffects").AggregatedStat>(), []);
   const emptySkillSnapshot = useMemo(() => ({} as Record<string, number>), []);
+  const emptyGearSnapshot = useMemo(() => ({} as Record<string, number>), []);
   const mergedSnapshot = useMemo(
     () => mergeStatSnapshots(statSnapshot, emptySkillSnapshot),
     [statSnapshot, emptySkillSnapshot],
@@ -238,6 +241,12 @@ export default function PassiveTreePage() {
   const unifiedFinalStats = useMemo(
     () => resolveCharacterStatsUnified(passiveStats, emptySkillStats),
     [passiveStats, emptySkillStats],
+  );
+
+  // Hardened merge snapshot (passive + skill + gear with validation)
+  const statMergeSnapshot = useMemo(
+    () => generateStatMergeSnapshot(statSnapshot, emptySkillSnapshot, emptyGearSnapshot),
+    [statSnapshot, emptySkillSnapshot, emptyGearSnapshot],
   );
 
   // Build validation — point economy, tiers, mastery rules
@@ -660,6 +669,8 @@ export default function PassiveTreePage() {
         mergedSnapshot={mergedSnapshot}
         finalStats={unifiedFinalStats}
       />
+
+      <StatSourceInspector snapshot={statMergeSnapshot} />
     </Page>
   );
 }
