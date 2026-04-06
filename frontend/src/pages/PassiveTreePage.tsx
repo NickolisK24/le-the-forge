@@ -23,6 +23,9 @@ import { BASE_CLASSES } from "@constants";
 import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
 import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
+import StatValidationPanel from "@/components/passives/StatValidationPanel";
+import { createPassiveStatSnapshot } from "@/logic/debugStatSnapshot";
+import { resolveCharacterStats } from "@/logic/resolveCharacterStats";
 import { computePassiveStats } from "@/logic/computePassiveStats";
 import { resolveStats } from "@/logic/statResolutionPipeline";
 import {
@@ -196,6 +199,18 @@ export default function PassiveTreePage() {
   // Resolve stats through the pipeline (flat → percent scaling → derived)
   const resolvedStats = useMemo(
     () => resolveStats(passiveStats),
+    [passiveStats],
+  );
+
+  // Raw snapshot for debug display
+  const statSnapshot = useMemo(
+    () => createPassiveStatSnapshot(allocatedPoints, nodeById),
+    [allocatedPoints, nodeById],
+  );
+
+  // Final character stats with base stats + derived
+  const characterStats = useMemo(
+    () => resolveCharacterStats(passiveStats),
     [passiveStats],
   );
 
@@ -512,6 +527,11 @@ export default function PassiveTreePage() {
         resolvedStats={resolvedStats}
         totalPoints={totalPointsSpent}
         allocatedCount={allocatedIds.size}
+      />
+
+      <StatValidationPanel
+        snapshot={statSnapshot}
+        resolvedCharStats={characterStats}
       />
     </Page>
   );
