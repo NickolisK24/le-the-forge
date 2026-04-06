@@ -28,6 +28,12 @@ import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
 import MergedStatsPanel from "@/components/passives/MergedStatsPanel";
 import StatSourceInspector from "@/components/passives/StatSourceInspector";
 import ResolutionPipelineViewer from "@/components/passives/ResolutionPipelineViewer";
+import ConditionalStatViewer from "@/components/passives/ConditionalStatViewer";
+import {
+  evaluateConditionalModifiers,
+  createEmptyBuildContext,
+  EXAMPLE_CONDITIONAL_MODIFIERS,
+} from "@/logic/conditionalStatEngine";
 import { mergeStatSnapshots, resolveCharacterStatsUnified } from "@/logic/mergeCharacterStats";
 import { generateStatMergeSnapshot } from "@/logic/debugStatMerge";
 import { generateResolutionSnapshot } from "@/logic/debugStatResolution";
@@ -256,6 +262,12 @@ export default function PassiveTreePage() {
     () => generateResolutionSnapshot(passiveStats),
     [passiveStats],
   );
+
+  // Conditional stat evaluation (using resolved pool as context)
+  const conditionalResults = useMemo(() => {
+    const context = createEmptyBuildContext(resolvedStats);
+    return evaluateConditionalModifiers(EXAMPLE_CONDITIONAL_MODIFIERS, context);
+  }, [resolvedStats]);
 
   // Build validation — point economy, tiers, mastery rules
   const buildValidation = useMemo(
@@ -681,6 +693,8 @@ export default function PassiveTreePage() {
       <StatSourceInspector snapshot={statMergeSnapshot} />
 
       <ResolutionPipelineViewer snapshot={resolutionSnapshot} />
+
+      <ConditionalStatViewer results={conditionalResults} />
     </Page>
   );
 }
