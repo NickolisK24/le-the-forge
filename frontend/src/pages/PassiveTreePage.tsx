@@ -259,7 +259,7 @@ export default function PassiveTreePage() {
 
       if (shiftKey || pts === 1) {
         // Shift+right-click: remove ALL, or regular right-click on last point
-        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency)) return;
+        if (!canRemoveNode(nodeId, allocatedIds, startIds, adjacency, filteredNodes)) return;
         setAllocatedIds((prev) => {
           const next = new Set(prev);
           next.delete(nodeId);
@@ -346,7 +346,7 @@ export default function PassiveTreePage() {
 
   const containerRect = containerRef.current?.getBoundingClientRect() ?? null;
   const tooltipAllocated = tooltip ? allocatedIds.has(tooltip.node.id) : false;
-  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency) : false;
+  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, filteredNodes) : false;
 
   return (
     <Page>
