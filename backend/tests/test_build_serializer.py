@@ -499,10 +499,11 @@ class TestPassiveTreeNormalisation:
         exported = export_build(b)
         assert exported.passive_tree == sorted(exported.passive_tree)
 
-    def test_passive_tree_deduplicated(self):
+    def test_passive_tree_preserves_multipoint(self):
+        """Duplicate IDs represent multi-point allocations and must be preserved."""
         b = _build(passive_tree=[1, 1, 2, 2, 3])
         exported = export_build(b)
-        assert len(exported.passive_tree) == len(set(exported.passive_tree))
+        assert exported.passive_tree == [1, 1, 2, 2, 3]
 
     def test_empty_passive_tree_preserved(self):
         b = _build(passive_tree=[])
