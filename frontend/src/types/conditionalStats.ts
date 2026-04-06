@@ -40,11 +40,40 @@ export interface TagPresentCondition {
   tag: string;
 }
 
+// --- Context-based conditions (require RuntimeContext) ---
+
+export interface HealthPercentCondition {
+  type: "health_percentage_threshold";
+  operator: ComparisonOperator;
+  /** Threshold as percentage 0-100 */
+  value: number;
+}
+
+export interface EnemyTypeCondition {
+  type: "enemy_type";
+  enemyType: string;
+}
+
+export interface MinionCountCondition {
+  type: "minion_count";
+  operator: ComparisonOperator;
+  value: number;
+}
+
+export interface MovementStateCondition {
+  type: "movement_state";
+  isMoving: boolean;
+}
+
 export type ConditionDefinition =
   | StatThresholdCondition
   | ItemEquippedCondition
   | SkillAllocatedCondition
-  | TagPresentCondition;
+  | TagPresentCondition
+  | HealthPercentCondition
+  | EnemyTypeCondition
+  | MinionCountCondition
+  | MovementStateCondition;
 
 // ---------------------------------------------------------------------------
 // Conditional modifier
