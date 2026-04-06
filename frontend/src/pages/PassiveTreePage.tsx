@@ -467,7 +467,7 @@ export default function PassiveTreePage() {
             Render: {renderTimeMs}ms
           </span>
         )}
-        {allocatedIds.size > 0 && (
+        {allocatedIds.size > 0 && (<>
           <button onClick={handleReset} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-red-400 bg-forge-surface2 transition-colors">Reset</button>
         </>)}
         <button onClick={handleSaveBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-cyan bg-forge-surface2 transition-colors">Save</button>
