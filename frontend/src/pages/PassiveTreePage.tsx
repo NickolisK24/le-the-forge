@@ -27,8 +27,10 @@ import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
 import MergedStatsPanel from "@/components/passives/MergedStatsPanel";
 import StatSourceInspector from "@/components/passives/StatSourceInspector";
+import ResolutionPipelineViewer from "@/components/passives/ResolutionPipelineViewer";
 import { mergeStatSnapshots, resolveCharacterStatsUnified } from "@/logic/mergeCharacterStats";
 import { generateStatMergeSnapshot } from "@/logic/debugStatMerge";
+import { generateResolutionSnapshot } from "@/logic/debugStatResolution";
 import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
 import {
   findPathToNode,
@@ -247,6 +249,12 @@ export default function PassiveTreePage() {
   const statMergeSnapshot = useMemo(
     () => generateStatMergeSnapshot(statSnapshot, emptySkillSnapshot, emptyGearSnapshot),
     [statSnapshot, emptySkillSnapshot, emptyGearSnapshot],
+  );
+
+  // Resolution pipeline snapshot (per-stage instrumentation)
+  const resolutionSnapshot = useMemo(
+    () => generateResolutionSnapshot(passiveStats),
+    [passiveStats],
   );
 
   // Build validation — point economy, tiers, mastery rules
@@ -671,6 +679,8 @@ export default function PassiveTreePage() {
       />
 
       <StatSourceInspector snapshot={statMergeSnapshot} />
+
+      <ResolutionPipelineViewer snapshot={resolutionSnapshot} />
     </Page>
   );
 }
