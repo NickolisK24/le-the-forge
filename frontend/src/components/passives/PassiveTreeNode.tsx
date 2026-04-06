@@ -123,8 +123,13 @@ function PassiveTreeNodeInner({
         />
       )}
 
-      {/* Icon */}
-      <TreeIcon iconId={node.icon} size={radius * 1.5} nodeName={node.name} />
+      {/* Icon — sized to fill the node shape (radius * 2 = full diameter) */}
+      <TreeIcon iconId={node.icon} size={radius * 2} nodeName={node.name} />
+
+      {/* Debug center marker — red dot at exact (0,0) of this node's coordinate */}
+      {showDebugCenter && (
+        <circle r={2} fill="#ff0000" opacity={0.9} pointerEvents="none" />
+      )}
 
       {/* Debug center marker — red dot at exact (0,0) of this node's coordinate */}
       {showDebugCenter && (
