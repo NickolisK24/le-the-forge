@@ -35,6 +35,8 @@ import {
 } from "@/utils/passiveGraph";
 import { serializeBuild, saveBuildToLocalStorage, clearBuildFromLocalStorage } from "@/logic/saveBuild";
 import { deserializeBuild, loadBuildFromLocalStorage } from "@/logic/loadBuild";
+import { copyBuildToClipboard } from "@/logic/exportBuild";
+import { importBuildFromString } from "@/logic/importBuild";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const CANVAS_H = 650;
@@ -128,6 +130,7 @@ export default function PassiveTreePage() {
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
+  const [exportMsg, setExportMsg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState({ w: 900, h: CANVAS_H });
 
@@ -375,6 +378,39 @@ export default function PassiveTreePage() {
     }
   };
 
+  const handleExportBuild = async () => {
+    if (!selectedClass) return;
+    const build = serializeBuild(allocatedPoints, selectedClass, selectedMastery);
+    const ok = await copyBuildToClipboard(build);
+    if (ok) {
+      setExportMsg("Copied!");
+      setTimeout(() => setExportMsg(null), 2000);
+    }
+  };
+
+  const handleImportBuild = () => {
+    const encoded = prompt("Paste build string:");
+    if (!encoded) return;
+    const build = importBuildFromString(encoded);
+    if (!build) {
+      setExportMsg("Invalid build string");
+      setTimeout(() => setExportMsg(null), 3000);
+      return;
+    }
+    if (build.classId !== selectedClass) {
+      setSelectedClass(build.classId as CharacterClass);
+      if (build.masteryId) setSelectedMastery(build.masteryId);
+    }
+    saveBuildToLocalStorage(build);
+    if (treeData) {
+      const result = deserializeBuild(build, treeData.nodes);
+      if (result.success) {
+        setAllocatedIds(result.allocatedIds);
+        setAllocatedPoints(result.allocatedPoints);
+      }
+    }
+  };
+
   const masteries = selectedClass ? (MASTERIES[selectedClass] ?? []) : [];
   const totalPointsSpent = useMemo(
     () => Array.from(allocatedPoints.values()).reduce((a, b) => a + b, 0),
@@ -436,6 +472,9 @@ export default function PassiveTreePage() {
         </>)}
         <button onClick={handleSaveBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-cyan bg-forge-surface2 transition-colors">Save</button>
         <button onClick={handleLoadBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-amber bg-forge-surface2 transition-colors">Load</button>
+        <button onClick={handleExportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Export</button>
+        <button onClick={handleImportBuild} className="rounded px-2.5 py-1 font-mono text-xs text-forge-dim hover:text-forge-text bg-forge-surface2 transition-colors">Import</button>
+        {exportMsg && <span className="font-mono text-xs text-forge-cyan">{exportMsg}</span>}
       </div>
 
       {/* SVG canvas */}
