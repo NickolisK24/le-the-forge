@@ -9,6 +9,10 @@ The loop advances in fixed ticks. At each tick, skills whose cooldown
 has elapsed are cast in priority order. Damage is computed via the
 existing engines — no math is duplicated here.
 
+Mana integration: skills with mana_cost > 0 require sufficient mana
+to cast. Insufficient mana skips the cast without triggering cooldown.
+Mana regenerates every tick after the casting phase.
+
 All state is deterministic: same inputs → same outputs, no randomness.
 """
 
@@ -66,6 +70,9 @@ class SimulationResult:
         timeline:           Ordered list of cast events (if captured).
         ticks_simulated:    Number of ticks advanced.
         raw_dps:            DPS before enemy defenses.
+        total_mana_spent:   Total mana consumed across all casts.
+        total_mana_regenerated: Total mana restored via regen.
+        casts_skipped_oom:  Number of casts skipped due to insufficient mana.
     """
     total_damage: float
     effective_dps: float
