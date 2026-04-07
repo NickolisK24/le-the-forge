@@ -46,6 +46,7 @@ class SkillStatDef:
     damage_types: tuple[DamageType, ...] = ()  # explicit damage channels this skill deals
     hit_count:    int   = 1    # hits per cast activation
     hit_interval: float = 0.0  # seconds between hits (0 = simultaneous)
+    mana_cost:    float = 0.0  # mana required per cast (0 = free)
 
     @classmethod
     def from_dict(cls, d: dict, *, data_version: str = "") -> "SkillStatDef":
@@ -68,6 +69,7 @@ class SkillStatDef:
             damage_types=dtypes,
             hit_count=int(d.get("hit_count", 1)),
             hit_interval=float(d.get("hit_interval", 0.0)),
+            mana_cost=float(d.get("mana_cost", 0.0)),
         )
 
 
