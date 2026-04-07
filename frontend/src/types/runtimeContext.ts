@@ -37,6 +37,10 @@ export interface RuntimeContext {
 
   // Ward
   currentWard: number;
+
+  // Active buffs/debuffs
+  activeBuffIds: string[];
+  activeDebuffIds: string[];
 }
 
 // ---------------------------------------------------------------------------
@@ -77,6 +81,8 @@ export const DEFAULT_PLANNER_CONTEXT: RuntimeContext = {
   minionCount: 0,
   activeTags: new Set(),
   currentWard: 0,
+  activeBuffIds: [],
+  activeDebuffIds: [],
 };
 
 /**

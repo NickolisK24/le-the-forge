@@ -83,6 +83,13 @@ export function evaluateCondition(
       return { passed, reason: `moving=${runtimeCtx.isMoving}, want=${condition.isMoving}: ${passed}` };
     }
 
+    case "buff_active": {
+      if (!runtimeCtx) return { passed: false, reason: "No runtime context (buffs unavailable)" };
+      const allBuffs = [...runtimeCtx.activeBuffIds, ...runtimeCtx.activeDebuffIds];
+      const passed = allBuffs.includes(condition.buffId);
+      return { passed, reason: `buff "${condition.buffId}" active: ${passed}` };
+    }
+
     default: {
       return { passed: false, reason: `Unknown condition type: ${(condition as any).type}` };
     }
