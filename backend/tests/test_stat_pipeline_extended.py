@@ -187,9 +187,9 @@ def test_snapshot_6_derived_has_max_health(char_class, mastery):
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("char_class,mastery", _CLASSES)
-def test_resolution_order_7_layers(char_class, mastery):
+def test_resolution_order_8_layers(char_class, mastery):
     r = resolve_final_stats(_build(char_class=char_class, mastery=mastery))
-    assert len(r.resolution_order) == 7
+    assert len(r.resolution_order) == 8
 
 
 @pytest.mark.parametrize("i,expected_prefix", [
