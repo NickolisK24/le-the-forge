@@ -1,24 +1,21 @@
 """
 apply_buff — Pure function for applying a BuffDefinition to an active buff dict.
 
-Handles all four StackBehavior modes deterministically:
-
-    ADD_STACK       — increment stack_count up to definition.max_stacks
-    REFRESH_DURATION — reset remaining_duration to definition.duration_seconds
-    IGNORE          — leave the existing instance unchanged
-    REPLACE         — overwrite with a fresh BuffInstance
+Delegates all stacking logic to stack_resolver.resolve_stack, which enforces
+strict stack/duration invariants for all four StackBehavior modes.
 
 No side effects; always returns a new dict (shallow copy with the affected
 entry replaced). The input dict is never mutated.
 
 Public API:
-    apply_buff(active_buffs, definition, timestamp) -> dict[str, BuffInstance]
+    apply_buff(active_buffs, definition, timestamp, source) -> dict[str, BuffInstance]
 """
 
 from __future__ import annotations
 
-from buffs.buff_definition import BuffDefinition, StackBehavior
+from buffs.buff_definition import BuffDefinition
 from buffs.buff_instance import BuffInstance
+from buffs.stack_resolver import resolve_stack
 
 
 def apply_buff(
@@ -44,43 +41,7 @@ def apply_buff(
     buff_id = definition.buff_id
 
     if buff_id in result:
-        existing = result[buff_id]
-        behavior = definition.stack_behavior
-
-        if behavior is StackBehavior.ADD_STACK:
-            new_stacks = min(existing.stack_count + 1, definition.max_stacks)
-            updated = BuffInstance(
-                definition=existing.definition,
-                stack_count=new_stacks,
-                applied_timestamp=existing.applied_timestamp,
-                source=existing.source,
-            )
-            # Preserve remaining duration; only stack count changes.
-            updated.remaining_duration = existing.remaining_duration
-            result[buff_id] = updated
-
-        elif behavior is StackBehavior.REFRESH_DURATION:
-            updated = BuffInstance(
-                definition=existing.definition,
-                stack_count=existing.stack_count,
-                applied_timestamp=existing.applied_timestamp,
-                source=existing.source,
-            )
-            # Re-initialize duration from definition (same as a fresh instance).
-            updated.remaining_duration = definition.duration_seconds
-            result[buff_id] = updated
-
-        elif behavior is StackBehavior.IGNORE:
-            pass  # Return active_buffs unchanged.
-
-        elif behavior is StackBehavior.REPLACE:
-            result[buff_id] = BuffInstance(
-                definition=definition,
-                stack_count=1,
-                applied_timestamp=timestamp,
-                source=source,
-            )
-
+        result[buff_id] = resolve_stack(result[buff_id], definition, timestamp, source)
     else:
         result[buff_id] = BuffInstance(
             definition=definition,
