@@ -29,14 +29,17 @@ from conditions.models.condition import Condition
 class StackBehavior(enum.Enum):
     """How a buff handles re-application while already active."""
 
-    REFRESH = "refresh"
-    """Re-applying resets duration. Stack count stays at 1."""
+    ADD_STACK = "add_stack"
+    """Increment stack count up to max_stacks. Duration is unchanged."""
 
-    INDEPENDENT = "independent"
-    """Each application creates a separate instance with its own timer."""
+    REFRESH_DURATION = "refresh_duration"
+    """Reset remaining duration to definition.duration_seconds. Stack count unchanged."""
 
-    MAX_ONLY = "max_only"
-    """Only the highest-value instance is kept. Duration refreshed."""
+    IGNORE = "ignore"
+    """Do nothing; the existing instance is left untouched."""
+
+    REPLACE = "replace"
+    """Overwrite the existing instance with a fresh BuffInstance."""
 
 
 # ---------------------------------------------------------------------------
@@ -114,7 +117,7 @@ class BuffDefinition:
     stat_modifiers: tuple[StatModifier, ...]
     duration_seconds: Optional[float] = None
     max_stacks: int = 1
-    stack_behavior: StackBehavior = StackBehavior.REFRESH
+    stack_behavior: StackBehavior = StackBehavior.REFRESH_DURATION
     activation_condition: Optional[Condition] = None
     tags: tuple[str, ...] = ()
     is_debuff: bool = False
@@ -173,7 +176,7 @@ class BuffDefinition:
             stat_modifiers=tuple(StatModifier.from_dict(m) for m in d["stat_modifiers"]),
             duration_seconds=d.get("duration_seconds"),
             max_stacks=d.get("max_stacks", 1),
-            stack_behavior=StackBehavior(d.get("stack_behavior", "refresh")),
+            stack_behavior=StackBehavior(d.get("stack_behavior", "refresh_duration")),
             activation_condition=Condition.from_dict(d["activation_condition"]) if d.get("activation_condition") else None,
             tags=tuple(d.get("tags", [])),
             is_debuff=d.get("is_debuff", False),
