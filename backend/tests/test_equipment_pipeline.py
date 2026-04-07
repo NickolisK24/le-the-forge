@@ -1,8 +1,9 @@
 """
-Integration tests for the equipment → stat pipeline.
+Integration tests for the equipment + passive → stat pipeline.
 
 Tests the end-to-end flow:
   Item.apply_to_stat_pool()  →  EquipmentSet  →  BuildState.recompute()
+  PassiveSystem.apply_to_stat_pool()  →  BuildState.recompute()
 
 All tests use mock affixes with direct stat_key/value — no DB, no Flask
 context required.  The stat_engine game_data_loader uses module-level
@@ -14,6 +15,7 @@ import pytest
 from app.domain.item import Affix, Item
 from app.domain.equipment_set import EquipmentSet, VALID_EQUIPMENT_SLOTS
 from app.engines.stat_engine import StatPool, create_empty_stat_pool
+from builds.passive_system import PassiveNode, PassiveSystem
 
 
 # ---------------------------------------------------------------------------
@@ -276,3 +278,201 @@ class TestBuildStateRecompute:
         assert state2.mastery == "Sorcerer"
         assert len(state2.equipment) == 1
         assert state2.passive_node_ids == {1, 5}
+
+
+# ---------------------------------------------------------------------------
+# PassiveSystem → StatPool
+# ---------------------------------------------------------------------------
+
+def _make_passive_system(*nodes: PassiveNode, allocate_ids: list[int] | None = None) -> PassiveSystem:
+    """Helper to create a PassiveSystem with registered and allocated nodes."""
+    ps = PassiveSystem(list(nodes))
+    for nid in (allocate_ids or []):
+        ps.allocate(nid)
+    return ps
+
+
+class TestPassiveSystemStatPool:
+    def test_minor_node_emits_flat_stat(self):
+        """Minor node 0 → CORE_STAT_CYCLE[0] = ("max_health", 8)."""
+        node = PassiveNode(node_id=0, name="Vitality I", node_type="minor")
+        ps = _make_passive_system(node, allocate_ids=[0])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat.get("max_health", 0) == 8.0
+
+    def test_notable_node_emits_3x_stat(self):
+        """Notable node 0 → ("max_health", 8 * 3 = 24)."""
+        node = PassiveNode(node_id=0, name="Vitality II", node_type="notable")
+        ps = _make_passive_system(node, allocate_ids=[0])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat.get("max_health", 0) == 24.0
+
+    def test_keystone_emits_known_bonus(self):
+        """Keystone 'Juggernaut' → armour=200, max_health=100."""
+        node = PassiveNode(node_id=99, name="Juggernaut", node_type="keystone")
+        ps = _make_passive_system(node, allocate_ids=[99])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat.get("armour", 0) == 200.0
+        assert pool.flat.get("max_health", 0) == 100.0
+
+    def test_pct_stat_routes_to_increased_bucket(self):
+        """Minor node 1 → CORE_STAT_CYCLE[1] = ("spell_damage_pct", 1)."""
+        node = PassiveNode(node_id=1, name="Arcane I", node_type="minor")
+        ps = _make_passive_system(node, allocate_ids=[1])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.increased.get("spell_damage_pct", 0) == 1.0
+
+    def test_unallocated_node_not_emitted(self):
+        """Only allocated nodes contribute stats."""
+        node = PassiveNode(node_id=0, name="Vit", node_type="minor")
+        ps = PassiveSystem([node])  # registered but NOT allocated
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat == {}
+
+    def test_unregistered_allocated_node_skipped(self):
+        """Allocated nodes without registry metadata are silently skipped."""
+        ps = PassiveSystem()
+        ps.allocate(42)  # allowed for unknown nodes
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat == {}
+
+    def test_mastery_gate_emits_nothing(self):
+        node = PassiveNode(node_id=50, name="Gate", node_type="mastery-gate")
+        ps = _make_passive_system(node, allocate_ids=[50])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat == {}
+        assert pool.increased == {}
+
+    def test_multiple_nodes_accumulate(self):
+        """Two minor nodes with same stat_key should sum."""
+        # node_id=0 and node_id=10 both → max_health (0 % 10 == 10 % 10 == 0)
+        n0 = PassiveNode(node_id=0, name="Vit I", node_type="minor")
+        n10 = PassiveNode(node_id=10, name="Vit II", node_type="minor")
+        ps = _make_passive_system(n0, n10, allocate_ids=[0, 10])
+        pool = create_empty_stat_pool()
+        ps.apply_to_stat_pool(pool)
+        assert pool.flat.get("max_health", 0) == 16.0  # 8 + 8
+
+
+# ---------------------------------------------------------------------------
+# BuildState.recompute() with PassiveSystem
+# ---------------------------------------------------------------------------
+
+class TestBuildStatePassiveIntegration:
+    def test_passives_change_final_stats(self):
+        """Allocating passives should produce different BuildStats than without."""
+        from app.domain.build_state import BuildState
+
+        # Baseline — no passives
+        state_no_passives = BuildState(character_class="Sentinel")
+        stats_base = state_no_passives.recompute()
+
+        # With passives — 3 minor health nodes (ids 0, 10, 20 all → max_health)
+        nodes = [
+            PassiveNode(node_id=0, name="V1", node_type="minor"),
+            PassiveNode(node_id=10, name="V2", node_type="minor"),
+            PassiveNode(node_id=20, name="V3", node_type="minor"),
+        ]
+        ps = _make_passive_system(*nodes, allocate_ids=[0, 10, 20])
+        state_with_passives = BuildState(
+            character_class="Sentinel",
+            passive_node_ids={0, 10, 20},
+            passive_system=ps,
+        )
+        stats_passive = state_with_passives.recompute()
+
+        # Passives should increase max_health
+        assert stats_passive.max_health > stats_base.max_health
+
+    def test_keystone_changes_stats(self):
+        """Keystone 'Juggernaut' should add 200 armour + 100 health."""
+        from app.domain.build_state import BuildState
+
+        state_base = BuildState(character_class="Sentinel")
+        base_stats = state_base.recompute()
+
+        node = PassiveNode(node_id=99, name="Juggernaut", node_type="keystone")
+        ps = _make_passive_system(node, allocate_ids=[99])
+        state = BuildState(
+            character_class="Sentinel",
+            passive_node_ids={99},
+            passive_system=ps,
+        )
+        stats = state.recompute()
+
+        assert stats.armour > base_stats.armour
+        assert stats.max_health > base_stats.max_health
+
+    def test_passive_pool_snapshot_includes_passives(self):
+        """Pool snapshot should contain passive contributions."""
+        from app.domain.build_state import BuildState
+
+        node = PassiveNode(node_id=0, name="Vit", node_type="minor")
+        ps = _make_passive_system(node, allocate_ids=[0])
+        state = BuildState(
+            character_class="Sentinel",
+            passive_node_ids={0},
+            passive_system=ps,
+        )
+        state.recompute(capture_pool=True)
+        snapshot = state.last_pool_snapshot
+        assert snapshot is not None
+        # node 0 → max_health flat
+        assert snapshot["flat"].get("max_health", 0) >= 8.0
+
+    def test_equipment_and_passives_combined(self):
+        """Both equipment and passives should contribute to final stats."""
+        from app.domain.build_state import BuildState
+
+        helm = _make_item("head", "Helm", [_make_affix("h", "armour", 50.0)])
+        gear = EquipmentSet()
+        gear.equip_item(helm)
+
+        # Juggernaut adds 200 armour
+        node = PassiveNode(node_id=99, name="Juggernaut", node_type="keystone")
+        ps = _make_passive_system(node, allocate_ids=[99])
+
+        state = BuildState(
+            character_class="Sentinel",
+            equipment=gear,
+            passive_node_ids={99},
+            passive_system=ps,
+        )
+        stats = state.recompute()
+
+        # Should have both gear armour (50) and keystone armour (200) plus base
+        base_state = BuildState(character_class="Sentinel")
+        base_armour = base_state.recompute().armour
+        assert stats.armour >= base_armour + 50 + 200
+
+    def test_serialization_preserves_passive_system(self):
+        """Roundtrip should preserve passive system and node allocations."""
+        from app.domain.build_state import BuildState
+
+        nodes = [
+            PassiveNode(node_id=0, name="V1", node_type="minor"),
+            PassiveNode(node_id=1, name="A1", node_type="minor"),
+        ]
+        ps = _make_passive_system(*nodes, allocate_ids=[0, 1])
+        state = BuildState(
+            character_class="Mage",
+            passive_node_ids={0, 1},
+            passive_system=ps,
+        )
+        state.recompute()
+
+        d = state.to_dict()
+        state2 = BuildState.from_dict(d)
+        assert state2.passive_system is not None
+        assert set(state2.passive_system.get_allocated_ids()) == {0, 1}
+
+        # Recompute from deserialized state should produce same health
+        stats2 = state2.recompute()
+        assert stats2.max_health == state.resolved_stats.max_health
