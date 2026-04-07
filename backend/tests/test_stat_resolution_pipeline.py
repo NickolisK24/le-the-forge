@@ -66,9 +66,9 @@ class TestResolveReturnType:
         r = resolve_final_stats(_build())
         assert isinstance(r.stats, BuildStats)
 
-    def test_resolution_order_has_6_layers(self):
+    def test_resolution_order_has_7_layers(self):
         r = resolve_final_stats(_build())
-        assert len(r.resolution_order) == 6
+        assert len(r.resolution_order) == 7
 
     def test_resolution_order_labels(self):
         r = resolve_final_stats(_build())

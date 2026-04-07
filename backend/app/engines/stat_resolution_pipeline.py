@@ -1,7 +1,7 @@
 """
-Stat Resolution Pipeline — Upgrade 1
+Stat Resolution Pipeline — Upgrade 1 + Derived Stat Registry (Layer 7)
 
-Implements strict 6-layer stat resolution as specified in the Engine Upgrade
+Implements strict 7-layer stat resolution as specified in the Engine Upgrade
 Specification. Every call to resolve_final_stats() applies layers in this
 exact sequence:
 
@@ -11,6 +11,7 @@ exact sequence:
     4 → More Multipliers  (multiplicative pool, product of all "more" sources)
     5 → Conversion        (damage type conversions, currently pass-through)
     6 → Derived Stats     (attribute → secondary stat expansion)
+    7 → Registry Derived  (extensible derived stats: EHP, armor mit, dodge chance)
 
 Rules enforced:
 - No magic numbers — all caps and defaults loaded from constants.json
@@ -183,6 +184,7 @@ def resolve_final_stats(
         4. More Multipliers — multiplicative damage pool
         5. Conversion       — damage type redirections
         6. Derived Stats    — attribute → secondary stat expansion
+        7. Registry Derived — extensible derived stats (EHP, armor mit, etc.)
     """
     character_class = build.get("character_class", "Sentinel")
     mastery         = build.get("mastery", "")
@@ -221,6 +223,7 @@ def resolve_final_stats(
         "4_more_multipliers",
         "5_conversions",
         "6_derived_stats",
+        "7_registry_derived",
     ]
 
     log.info(
@@ -279,6 +282,22 @@ def resolve_final_stats(
     if capture_snapshots:
         from dataclasses import asdict as _ad
         snapshots["6_derived_stats"] = _ad(stats)
+
+    # ------------------------------------------------------------------
+    # Layer 7 — Registry Derived Stats (extensible derived computations)
+    # ------------------------------------------------------------------
+    from app.stats.derived_stats import apply_derived_stat_registry
+
+    derived_snapshots = apply_derived_stat_registry(stats, capture=capture_snapshots)
+    if capture_snapshots:
+        from dataclasses import asdict as _ad
+        layer_7_snapshot = _ad(stats)
+        # Attach per-entry debug snapshots to the layer snapshot
+        layer_7_snapshot["_derived_entries"] = [
+            {"name": s.name, "inputs": s.inputs, "outputs": s.outputs}
+            for s in derived_snapshots
+        ]
+        snapshots["7_registry_derived"] = layer_7_snapshot
 
     # Resistance cap enforcement
     res_cap = _const("defense", "resistance_cap", 75)
