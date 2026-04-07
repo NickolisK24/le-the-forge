@@ -201,7 +201,9 @@ export interface BuffTestResult {
 
 export function runBuffTests(): BuffTestResult[] {
   const results: BuffTestResult[] = [];
-  const { EXAMPLE_BUFFS } = require("@/types/buff");
+  // Import inline to avoid circular dependency issues
+  // eslint-disable-next-line @typescript-eslint/no-var-requires
+  const EXAMPLE_BUFFS = _getTestBuffs();
 
   // Test 1: Apply buff appears in active list
   {
@@ -262,4 +264,20 @@ export function runBuffTests(): BuffTestResult[] {
   }
 
   return results;
+}
+
+/** Inline test buff definitions to avoid require() in browser. */
+function _getTestBuffs(): Record<string, BuffDefinition> {
+  return {
+    berserk: {
+      id: "berserk", name: "Berserk",
+      modifiers: [{ statId: "Damage", type: "percent", value: 30 }, { statId: "Attack Speed", type: "percent", value: 15 }],
+      durationSeconds: 8, maxStacks: 1, tags: ["melee"], isDebuff: false,
+    },
+    frenzy: {
+      id: "frenzy", name: "Frenzy",
+      modifiers: [{ statId: "Attack Speed", type: "percent", value: 5 }],
+      durationSeconds: 4, maxStacks: 5, tags: ["stackable"], isDebuff: false,
+    },
+  };
 }
