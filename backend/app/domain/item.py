@@ -12,7 +12,14 @@ Affix / Item objects are constructed at the service boundary and passed to engin
 from __future__ import annotations
 import math
 from dataclasses import dataclass, field
-from typing import Optional
+from typing import TYPE_CHECKING, Optional
+
+from app.utils.logging import ForgeLogger
+
+if TYPE_CHECKING:
+    from app.engines.stat_engine import StatPool
+
+log = ForgeLogger(__name__)
 
 
 # ---------------------------------------------------------------------------
@@ -125,12 +132,76 @@ class Item:
     item_name: str
     rarity: str
     affixes: list[Affix] = field(default_factory=list)
+    implicit_stats: dict[str, float] = field(default_factory=dict)
+
+    # ------------------------------------------------------------------
+    # Stat integration
+    # ------------------------------------------------------------------
+
+    def apply_to_stat_pool(self, pool: "StatPool") -> None:
+        """Emit all stat modifiers from this item into the given StatPool.
+
+        Processes:
+          1. Each affix → flat modifier via stat_key + value
+          2. Each implicit stat → flat modifier
+
+        Sealed affixes are included (their value is already resolved).
+        Modifier-type routing (flat vs increased vs more) is determined by
+        stat_key convention — same rules as stat_engine.apply_affix:
+          - ``_pct`` suffix  → ``increased`` bucket
+          - ``more_`` prefix → ``more`` bucket
+          - everything else  → ``flat`` bucket
+        """
+        for affix in self.affixes:
+            if not affix.stat_key or affix.value == 0.0:
+                continue
+            self._route_to_pool(pool, affix.stat_key, affix.value)
+            log.debug(
+                "item.apply_affix",
+                item=self.item_name,
+                slot=self.slot,
+                affix=affix.name,
+                stat_key=affix.stat_key,
+                value=affix.value,
+            )
+
+        for stat_key, value in self.implicit_stats.items():
+            if value == 0.0:
+                continue
+            self._route_to_pool(pool, stat_key, value)
+            log.debug(
+                "item.apply_implicit",
+                item=self.item_name,
+                slot=self.slot,
+                stat_key=stat_key,
+                value=value,
+            )
+
+    @staticmethod
+    def _route_to_pool(pool: "StatPool", stat_key: str, value: float) -> None:
+        """Route a stat value into the correct StatPool bucket."""
+        if stat_key.endswith("_pct"):
+            pool.add_increased(stat_key, value)
+        elif stat_key.startswith("more_") or stat_key == "more_damage_multiplier":
+            pool.add_more(stat_key, value)
+        else:
+            pool.add_flat(stat_key, value)
+
+    # ------------------------------------------------------------------
+    # Construction
+    # ------------------------------------------------------------------
 
     @classmethod
     def from_dict(cls, d: dict) -> "Item":
+        raw_implicits = d.get("implicit_stats", {})
+        implicits = {
+            k: float(v) for k, v in raw_implicits.items()
+            if isinstance(v, (int, float))
+        }
         return cls(
             slot=d.get("slot", ""),
             item_name=d.get("item_name", d.get("name", "")),
             rarity=d.get("rarity", "Normal"),
             affixes=[Affix.from_dict(a) for a in d.get("affixes", [])],
+            implicit_stats=implicits,
         )
