@@ -29,6 +29,8 @@ import MergedStatsPanel from "@/components/passives/MergedStatsPanel";
 import StatSourceInspector from "@/components/passives/StatSourceInspector";
 import ResolutionPipelineViewer from "@/components/passives/ResolutionPipelineViewer";
 import ConditionalStatViewer from "@/components/passives/ConditionalStatViewer";
+import BuffDebugPanel from "@/components/passives/BuffDebugPanel";
+import { createBuffState, getActiveBuffs, runBuffTests, type BuffState } from "@/logic/buffManager";
 import {
   evaluateConditionalModifiers,
   createEmptyBuildContext,
@@ -268,6 +270,11 @@ export default function PassiveTreePage() {
   // Conditional stat evaluation (using resolved pool as context)
   // Runtime context for conditional evaluation (planner defaults)
   const runtimeCtx = useMemo<RuntimeContext>(() => createPlannerContext(), []);
+
+  // Buff state (empty in planner mode — buffs applied during simulation)
+  const buffState = useMemo<BuffState>(() => createBuffState(), []);
+  const activeBuffs = useMemo(() => getActiveBuffs(buffState), [buffState]);
+  const buffTestResults = useMemo(() => runBuffTests(), []);
 
   // Evaluate both basic and context-based conditional modifiers
   const conditionalResults = useMemo(() => {
@@ -702,6 +709,8 @@ export default function PassiveTreePage() {
       <ResolutionPipelineViewer snapshot={resolutionSnapshot} />
 
       <ConditionalStatViewer results={conditionalResults} />
+
+      <BuffDebugPanel activeBuffs={activeBuffs} testResults={buffTestResults} />
     </Page>
   );
 }

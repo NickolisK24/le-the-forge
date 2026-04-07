@@ -65,6 +65,11 @@ export interface MovementStateCondition {
   isMoving: boolean;
 }
 
+export interface BuffActiveCondition {
+  type: "buff_active";
+  buffId: string;
+}
+
 export type ConditionDefinition =
   | StatThresholdCondition
   | ItemEquippedCondition
@@ -73,7 +78,8 @@ export type ConditionDefinition =
   | HealthPercentCondition
   | EnemyTypeCondition
   | MinionCountCondition
-  | MovementStateCondition;
+  | MovementStateCondition
+  | BuffActiveCondition;
 
 // ---------------------------------------------------------------------------
 // Conditional modifier
