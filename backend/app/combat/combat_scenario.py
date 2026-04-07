@@ -6,6 +6,7 @@ A CombatScenario specifies:
   - Enemy target (what defenses apply)
   - Skill rotation (which skills fire and when)
   - Tick size (time resolution)
+  - Mana configuration (max mana, regen rate)
 
 This is a pure data object — no logic, no side effects.
 """
@@ -16,6 +17,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from app.domain.enemy import EnemyArchetype, EnemyInstance, EnemyStats
+from app.domain.mana import ManaPool
 from app.domain.skill import SkillStatDef
 from app.domain.skill_modifiers import SkillModifiers
 
@@ -67,6 +69,8 @@ class CombatScenario:
     rotation: tuple[SkillRotationEntry, ...] = ()
     tick_size: float = 0.1
     penetration: dict[str, float] = field(default_factory=dict)
+    max_mana: float = 0.0
+    mana_regen_rate: float = 0.0
 
     def __post_init__(self) -> None:
         if self.duration_seconds <= 0:
@@ -75,6 +79,16 @@ class CombatScenario:
             raise ValueError("tick_size must be > 0")
         if not self.rotation:
             raise ValueError("rotation must contain at least one skill")
+
+    def create_mana_pool(self) -> Optional[ManaPool]:
+        """Create a fresh ManaPool from scenario config, or None if mana is disabled."""
+        if self.max_mana <= 0:
+            return None
+        return ManaPool(
+            max_mana=self.max_mana,
+            current_mana=self.max_mana,
+            mana_regeneration_rate=self.mana_regen_rate,
+        )
 
     @classmethod
     def quick(
@@ -85,6 +99,8 @@ class CombatScenario:
         skill_name: str = "",
         archetype: EnemyArchetype = EnemyArchetype.TRAINING_DUMMY,
         skill_mods: SkillModifiers | None = None,
+        max_mana: float = 0.0,
+        mana_regen_rate: float = 0.0,
     ) -> "CombatScenario":
         """Create a single-skill scenario for quick testing."""
         entry = SkillRotationEntry(
@@ -97,4 +113,6 @@ class CombatScenario:
             duration_seconds=duration,
             enemy=EnemyInstance.from_archetype(archetype),
             rotation=(entry,),
+            max_mana=max_mana,
+            mana_regen_rate=mana_regen_rate,
         )

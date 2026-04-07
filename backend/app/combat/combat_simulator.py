@@ -76,9 +76,12 @@ class SimulationResult:
     timeline: list[TimelineEvent] = field(default_factory=list)
     ticks_simulated: int = 0
     raw_dps: float = 0.0
+    total_mana_spent: float = 0.0
+    total_mana_regenerated: float = 0.0
+    casts_skipped_oom: int = 0
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "total_damage": round(self.total_damage, 2),
             "effective_dps": round(self.effective_dps, 2),
             "fight_duration": round(self.fight_duration, 3),
@@ -88,6 +91,11 @@ class SimulationResult:
             "ticks_simulated": self.ticks_simulated,
             "raw_dps": round(self.raw_dps, 2),
         }
+        if self.total_mana_spent > 0 or self.total_mana_regenerated > 0:
+            d["total_mana_spent"] = round(self.total_mana_spent, 2)
+            d["total_mana_regenerated"] = round(self.total_mana_regenerated, 2)
+            d["casts_skipped_oom"] = self.casts_skipped_oom
+        return d
 
 
 # ---------------------------------------------------------------------------
@@ -128,16 +136,23 @@ class CombatSimulator:
         tick = scenario.tick_size
         rotation = sorted(scenario.rotation, key=lambda e: e.priority)
 
+        # Create mana pool for this simulation run (fresh per run)
+        mana_pool = scenario.create_mana_pool()
+        mana_enabled = mana_pool is not None
+
         log.debug(
             "combat_sim.start",
             duration=duration,
             tick=tick,
             n_skills=len(rotation),
+            mana_enabled=mana_enabled,
+            max_mana=mana_pool.max_mana if mana_pool else 0,
         )
 
         # Pre-compute skill execution results (deterministic — same every cast)
         skill_results: dict[str, object] = {}
         defense_results: dict[str, object] = {}
+        skill_mana_costs: dict[str, float] = {}
 
         for entry in rotation:
             key = entry.skill_name or id(entry)
@@ -149,6 +164,7 @@ class CombatSimulator:
                 skill_name=entry.skill_name,
             )
             skill_results[key] = sr
+            skill_mana_costs[key] = entry.skill_def.mana_cost
 
             if scenario.enemy is not None:
                 dr = self._defense_engine.apply_defenses(
@@ -169,6 +185,9 @@ class CombatSimulator:
         total_damage = 0.0
         total_raw_damage = 0.0
         total_casts = 0
+        total_mana_spent = 0.0
+        total_mana_regenerated = 0.0
+        casts_skipped_oom = 0
         skill_usage: dict[str, int] = {}
         skill_damage: dict[str, float] = {}
         timeline: list[TimelineEvent] = []
@@ -183,6 +202,18 @@ class CombatSimulator:
 
                 if cooldowns[key] > 1e-9:
                     continue  # still on cooldown
+
+                # Mana check — skip cast if insufficient mana
+                cost = skill_mana_costs[key]
+                if mana_enabled and cost > 0:
+                    if not mana_pool.can_afford(cost):
+                        casts_skipped_oom += 1
+                        continue  # skip — no cooldown triggered
+
+                # Spend mana
+                if mana_enabled and cost > 0:
+                    mana_pool.spend(cost)
+                    total_mana_spent += cost
 
                 # Cast this skill
                 sr = skill_results[key]
@@ -227,6 +258,11 @@ class CombatSimulator:
             for key in cooldowns:
                 cooldowns[key] = max(0.0, cooldowns[key] - tick)
 
+            # Mana regeneration (after casting phase, every tick)
+            if mana_enabled:
+                restored = mana_pool.regenerate(tick)
+                total_mana_regenerated += restored
+
         fight_duration = elapsed
         effective_dps = total_damage / fight_duration if fight_duration > 0 else 0.0
         raw_dps = total_raw_damage / fight_duration if fight_duration > 0 else 0.0
@@ -237,6 +273,9 @@ class CombatSimulator:
             effective_dps=round(effective_dps, 2),
             total_casts=total_casts,
             ticks=ticks,
+            mana_spent=round(total_mana_spent, 2),
+            mana_regenerated=round(total_mana_regenerated, 2),
+            casts_skipped_oom=casts_skipped_oom,
         )
 
         return SimulationResult(
@@ -249,4 +288,7 @@ class CombatSimulator:
             timeline=timeline if capture_timeline else [],
             ticks_simulated=ticks,
             raw_dps=raw_dps,
+            total_mana_spent=total_mana_spent,
+            total_mana_regenerated=total_mana_regenerated,
+            casts_skipped_oom=casts_skipped_oom,
         )
