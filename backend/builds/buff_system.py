@@ -72,6 +72,23 @@ class BuffSystem:
                 totals[stat_key] = totals.get(stat_key, 0.0) + value
         return totals
 
+    def apply_to_stat_pool(self, pool: object, elapsed: float = 0.0) -> None:
+        """Emit all active buff modifiers into a StatPool.
+
+        Routes modifiers through the same stat_key convention as Item:
+          - ``_pct`` suffix  → ``increased`` bucket
+          - ``more_`` prefix → ``more`` bucket
+          - everything else  → ``flat`` bucket
+        """
+        for buff in self.get_active_buffs(elapsed):
+            for stat_key, value in buff.modifiers.items():
+                if stat_key.endswith("_pct"):
+                    pool.add_increased(stat_key, value)  # type: ignore[attr-defined]
+                elif stat_key.startswith("more_") or stat_key == "more_damage_multiplier":
+                    pool.add_more(stat_key, value)  # type: ignore[attr-defined]
+                else:
+                    pool.add_flat(stat_key, value)  # type: ignore[attr-defined]
+
     def all_buffs(self) -> list[Buff]:
         return list(self._buffs.values())
 
