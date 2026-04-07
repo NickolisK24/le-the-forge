@@ -8,7 +8,7 @@ Uses existing StatModifier and Condition infrastructure:
 
 Supports:
   - Duration-based expiry (None = permanent)
-  - Stacking with configurable behavior (REFRESH, INDEPENDENT, MAX_ONLY)
+  - Stacking with configurable behavior (ADD_STACK, REFRESH_DURATION, IGNORE, REPLACE)
   - Conditional activation using the existing Condition system
   - Validation on construction (no invalid buffs can exist)
 """
