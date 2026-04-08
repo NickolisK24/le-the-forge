@@ -132,6 +132,10 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.skills import skills_bp
     from app.routes.analysis import analysis_bp
     from app.routes.entities import entities_bp
+    from app.routes.compare import compare_bp
+    from app.routes.meta import meta_bp
+    from app.routes.views import views_bp
+    from app.routes.report import report_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -153,6 +157,10 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(skills_bp, url_prefix="/api")
     app.register_blueprint(analysis_bp, url_prefix="/api/builds")
     app.register_blueprint(entities_bp, url_prefix="/api/entities")
+    app.register_blueprint(compare_bp, url_prefix="/api/compare")
+    app.register_blueprint(meta_bp, url_prefix="/api/meta")
+    app.register_blueprint(views_bp, url_prefix="/api/builds")
+    app.register_blueprint(report_bp, url_prefix="/api/builds")
 
     # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError

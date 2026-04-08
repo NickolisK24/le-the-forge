@@ -109,6 +109,7 @@ class Build(TimestampMixin, db.Model):
     # Cached vote total — updated on each vote for fast reads
     vote_count = db.Column(db.Integer, default=0, nullable=False)
     view_count = db.Column(db.Integer, default=0, nullable=False)
+    last_viewed_at = db.Column(db.DateTime(timezone=True), nullable=True)
 
     is_public = db.Column(db.Boolean, default=True, nullable=False)
 
@@ -332,3 +333,19 @@ class ImportFailure(TimestampMixin, db.Model):
 
     def __repr__(self):
         return f"<ImportFailure {self.source} {self.error_message or 'partial'}>"
+
+
+# ---------------------------------------------------------------------------
+# Build View Tracking (time-series)
+# ---------------------------------------------------------------------------
+
+class BuildView(db.Model):
+    """Individual view record for time-series analytics."""
+    __tablename__ = "build_views"
+
+    id = db.Column(db.String(36), primary_key=True, default=_uuid)
+    build_id = db.Column(db.String(36), db.ForeignKey("builds.id"), nullable=False, index=True)
+    viewed_at = db.Column(db.DateTime(timezone=True), default=_now, nullable=False)
+    viewer_ip_hash = db.Column(db.String(64), nullable=False)  # SHA-256 hash, never raw IP
+
+    build = db.relationship("Build", backref="views")

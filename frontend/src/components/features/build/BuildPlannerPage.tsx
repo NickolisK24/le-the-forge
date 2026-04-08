@@ -9,7 +9,7 @@ import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
-import { versionApi, simulateApi, buildsApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
+import { versionApi, simulateApi, buildsApi, viewApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
 import type { OptimizeMode } from "@/types";
 import SimulationDashboard from "./SimulationDashboard";
@@ -853,6 +853,13 @@ export default function BuildPlannerPage() {
     }, 1500);
     return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
   }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree]);
+
+  // Track view on mount (fire and forget — no loading/error state)
+  useEffect(() => {
+    if (slug) {
+      viewApi.track(slug).catch(() => {});
+    }
+  }, [slug]);
 
   function clearDraft() {
     localStorage.removeItem(DRAFT_KEY);
