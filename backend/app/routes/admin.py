@@ -12,9 +12,10 @@ import json
 import os
 from pathlib import Path
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 
-from app.utils.responses import ok
+from app import limiter
+from app.utils.responses import ok, error, not_found
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -63,17 +64,18 @@ def list_affixes():
 
 
 @admin_bp.patch("/affixes/<affix_id>")
+@limiter.limit("30 per minute")
 def update_affix(affix_id: str):
     """Update a single affix by its id field. Writes directly to affixes.json."""
     payload = request.get_json(force=True, silent=True) or {}
     if not payload:
-        return jsonify({"errors": [{"message": "Empty payload"}]}), 400
+        return error("Empty payload", status=400)
 
     affixes = _load_affixes()
     idx = next((i for i, a in enumerate(affixes) if a.get("id") == affix_id), None)
 
     if idx is None:
-        return jsonify({"errors": [{"message": f"Affix '{affix_id}' not found"}]}), 404
+        return not_found(f"Affix '{affix_id}'")
 
     # Allowlist of editable fields
     allowed = {"name", "type", "tags", "applicable_to", "class_requirement", "tiers", "stat_key"}

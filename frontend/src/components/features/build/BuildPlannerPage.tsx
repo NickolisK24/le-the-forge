@@ -826,7 +826,7 @@ export default function BuildPlannerPage() {
     // Drop skills that belong to a different mastery
     setDraftSkills((prev) =>
       prev.filter((ds) => {
-        const def = CLASS_SKILLS[characterClass].find((s) => s.skill_name === ds.skill_name);
+        const def = CLASS_SKILLS[characterClass].find((s) => s.name === ds.skill_name);
         return !def?.mastery || def.mastery === next;
       })
     );

@@ -14,7 +14,7 @@ import type React from "react";
 import iconSpriteMap from "@/data/iconSpriteMap.json";
 import { spriteStyle } from "@/data/atlasConfig";
 
-const spriteMapTyped = iconSpriteMap as Record<string, [number, number]>;
+const spriteMapTyped = iconSpriteMap as unknown as Record<string, [number, number]>;
 
 interface TreeIconProps {
   /** Icon asset ID, e.g. "a-r-292" */

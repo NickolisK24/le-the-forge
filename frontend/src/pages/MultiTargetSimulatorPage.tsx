@@ -218,7 +218,7 @@ export default function MultiTargetSimulatorPage() {
       {/* Submit */}
       <div className="flex justify-end">
         <Button onClick={handleSubmit} disabled={mutation.isPending}>
-          {mutation.isPending ? <Spinner size="sm" /> : "Run Simulation"}
+          {mutation.isPending ? <Spinner size={16} /> : "Run Simulation"}
         </Button>
       </div>
 

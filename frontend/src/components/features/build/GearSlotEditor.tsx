@@ -58,7 +58,7 @@ export default function GearSlotEditor({
   }
 
   function handleSave() {
-    onSave({ slot, slotType, rarity, affixes });
+    onSave({ slot, rarity, affixes });
   }
 
   return (

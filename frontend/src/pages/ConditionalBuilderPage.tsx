@@ -201,7 +201,7 @@ export default function ConditionalBuilderPage() {
       return res;
     },
     onSuccess: data => {
-      setResult(data);
+      setResult(data.data!);
     },
     onError: (err: Error) => {
       toast.error(err.message || "Simulation failed");
@@ -307,7 +307,7 @@ export default function ConditionalBuilderPage() {
           onClick={() => mutation.mutate()}
           disabled={mutation.isPending}
         >
-          {mutation.isPending ? <Spinner size="sm" /> : "Simulate"}
+          {mutation.isPending ? <Spinner size={16} /> : "Simulate"}
         </Button>
       </div>
 

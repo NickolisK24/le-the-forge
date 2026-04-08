@@ -3,7 +3,7 @@
  * Bookmark commonly used objects (items, skills, builds, affixes).
  */
 
-export type FavoriteType = "build" | "item" | "skill" | "affix" | "enemy";
+export type FavoriteType = "build" | "item" | "skill" | "affix" | "enemy" | "preset";
 
 export interface Favorite {
   id: string;

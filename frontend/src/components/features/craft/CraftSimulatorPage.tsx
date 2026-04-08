@@ -943,6 +943,7 @@ export default function CraftSimulatorPage() {
       return {
         fp_consumed: { p25: 0, p50: 0, p75: 0 },
         steps_completed: { p25: 0, p50: 0, p75: 0 },
+        completion_rate: 0,
         n_simulations: 0,
       };
     }
