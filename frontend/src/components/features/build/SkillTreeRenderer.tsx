@@ -9,6 +9,7 @@
 import { useState, useMemo, useRef, useEffect, useCallback } from "react";
 import { clsx } from "clsx";
 import type { SkillNode, SkillNodeRequirement } from "@/types";
+import TreeIcon from "@/components/TreeIcon";
 
 // ---------------------------------------------------------------------------
 // Constants
@@ -465,6 +466,13 @@ export default function SkillTreeRenderer({
                   <polygon points={outerShapePts} fill="none" stroke={borderCol} strokeWidth={active ? 2 : 1} opacity={active ? 0.9 : 0.45}/>
                   <polygon points={shapePts} fill={fillGrad}/>
                   <polygon points={innerPts} fill="none" stroke="rgba(255,255,255,0.07)" strokeWidth={1}/>
+
+                  {/* Node icon from sprite sheet */}
+                  <TreeIcon
+                    iconId={node.icon != null ? String(node.icon) : null}
+                    size={r * 1.6}
+                    nodeName={node.name}
+                  />
 
                   {/* Point counter (skip for root) */}
                   {!isRoot && (

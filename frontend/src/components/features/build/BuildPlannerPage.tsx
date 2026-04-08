@@ -479,36 +479,18 @@ function BuildSummary({ build }: { build: Build }) {
 
         <Panel title="Skills" className="lg:col-span-2">
           {build.skills.length ? (
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {build.skills.map((skill, i) => {
-                const nodes = getSkillTree(skill.skill_name);
-                const allocMap: AllocMap = {};
-                for (const id of (skill.spec_tree ?? [])) allocMap[id] = (allocMap[id] ?? 0) + 1;
-                const totalNodes = Object.values(allocMap).reduce((a, b) => a + b, 0);
-                return (
-                  <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4 flex flex-col gap-3">
-                    <div>
-                      <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
-                      <div className="mt-1 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
-                        Slot {i + 1} · {skill.points_allocated} pts
-                        {totalNodes > 0 && <span className="ml-2 text-forge-amber">· {totalNodes} tree nodes</span>}
-                      </div>
-                    </div>
-                    {nodes.length > 0 ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setTreeModal({ skillIndex: i, readOnly: true })}
-                      >
-                        🌿 View Skill Tree
-                      </Button>
-                    ) : (
-                      <span className="font-mono text-[10px] text-forge-dim italic">No tree data yet</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <SkillSelector
+              skills={build.skills.map((s) => ({
+                skill_name: s.skill_name,
+                slot: s.slot,
+                points_allocated: s.points_allocated,
+                spec_tree: s.spec_tree,
+              }))}
+              characterClass={build.character_class}
+              mastery={build.mastery}
+              buildSlug={build.slug}
+              readOnly={!isOwner || !editing}
+            />
           ) : (
             <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
           )}
@@ -535,21 +517,6 @@ function BuildSummary({ build }: { build: Build }) {
               />
             </div>
           )}
-        </Panel>
-
-        {/* Skill tree selector — API-driven interactive trees */}
-        <Panel title="Skill Trees" className="lg:col-span-2">
-          <SkillSelector
-            skills={build.skills.map((s) => ({
-              skill_name: s.skill_name,
-              slot: s.slot,
-              points_allocated: s.points_allocated,
-            }))}
-            characterClass={build.character_class}
-            mastery={build.mastery}
-            buildSlug={build.slug}
-            readOnly={!isOwner || !editing}
-          />
         </Panel>
 
         {/* Skill tree modal (view-only) */}
