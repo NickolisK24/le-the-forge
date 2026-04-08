@@ -27,6 +27,7 @@ import type {
   PaginationMeta,
   OptimizeResponse,
   OptimizeMode,
+  ImportBuildResponse,
   SkillTreeResponse,
   SkillAllocationsResponse,
   SkillAllocation,
@@ -519,6 +520,8 @@ export interface ImportedBuild {
 export const importApi = {
   fromUrl: (url: string) =>
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
+  importBuild: (url: string) =>
+    post<ImportBuildResponse>("/import/build", { url }),
 };
 
 // ---------------------------------------------------------------------------

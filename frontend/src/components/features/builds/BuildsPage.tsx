@@ -255,9 +255,14 @@ export default function BuildsPage() {
             {meta ? `${meta.total.toLocaleString()} builds available` : "Browse and vote on community builds"}
           </p>
         </div>
-        <Link to="/build">
-          <Button variant="primary" size="sm">+ New Build</Button>
-        </Link>
+        <div className="flex gap-2">
+          <Link to="/build">
+            <Button variant="primary" size="sm">+ New Build</Button>
+          </Link>
+          <Link to="/build?import=true">
+            <Button variant="outline" size="sm">↑ Import Build</Button>
+          </Link>
+        </div>
       </div>
 
       {/* Filters */}

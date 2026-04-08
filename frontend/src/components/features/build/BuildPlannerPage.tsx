@@ -749,8 +749,10 @@ export default function BuildPlannerPage() {
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
 
-  // Import / preset modal state
-  const [showImportModal, setShowImportModal] = useState(false);
+  // Import / preset modal state — auto-open if ?import=true in URL
+  const [showImportModal, setShowImportModal] = useState(
+    () => new URLSearchParams(window.location.search).get("import") === "true"
+  );
   const [showPresets, setShowPresets] = useState(false);
 
   function handleApplyImport(imported: ImportedBuild) {

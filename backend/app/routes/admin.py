@@ -1,11 +1,11 @@
 """
 Admin Blueprint — /api/admin
 
-Endpoints for managing game data files directly.
-These are NOT protected by auth in dev; add auth middleware before shipping prod.
+Endpoints for managing game data files and monitoring.
 
-GET   /api/admin/affixes          → all affixes from affixes.json
-PATCH /api/admin/affixes/<id>     → update one affix by id
+GET   /api/admin/affixes            → all affixes from affixes.json
+PATCH /api/admin/affixes/<id>       → update one affix by id
+GET   /api/admin/import-failures    → paginated import failure log (admin only)
 """
 
 import json
@@ -14,8 +14,10 @@ from pathlib import Path
 
 from flask import Blueprint, request
 
-from app import limiter
-from app.utils.responses import ok, error, not_found
+from app import db, limiter
+from app.models import ImportFailure
+from app.utils.auth import login_required, get_current_user
+from app.utils.responses import ok, error, not_found, forbidden, paginate_meta
 
 admin_bp = Blueprint("admin", __name__)
 
@@ -85,3 +87,51 @@ def update_affix(affix_id: str):
 
     _save_affixes(affixes)
     return ok(affixes[idx])
+
+
+# ---------------------------------------------------------------------------
+# Import failure tracking
+# ---------------------------------------------------------------------------
+
+@admin_bp.get("/import-failures")
+@login_required
+@limiter.limit("60 per minute")
+def list_import_failures():
+    """
+    GET /api/admin/import-failures
+    Query params: page (default 1), per_page (default 20)
+
+    Returns paginated ImportFailure records, sorted by created_at desc.
+    Admin-only — returns 403 for non-admin users.
+    """
+    user = get_current_user()
+    if not user or not getattr(user, "is_admin", False):
+        return forbidden()
+
+    try:
+        page = int(request.args.get("page", 1))
+        per_page = min(int(request.args.get("per_page", 20)), 100)
+    except (TypeError, ValueError):
+        return error("page and per_page must be integers.")
+
+    query = ImportFailure.query.order_by(ImportFailure.created_at.desc())
+    pagination = query.paginate(page=page, per_page=per_page, error_out=False)
+
+    items = [
+        {
+            "id": f.id,
+            "source": f.source,
+            "raw_url": f.raw_url,
+            "missing_fields": f.missing_fields,
+            "partial_data": f.partial_data,
+            "user_id": f.user_id,
+            "error_message": f.error_message,
+            "created_at": f.created_at.isoformat() if f.created_at else None,
+        }
+        for f in pagination.items
+    ]
+
+    return ok(
+        items,
+        meta=paginate_meta(page, per_page, pagination.total, pagination.pages),
+    )
