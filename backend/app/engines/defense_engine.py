@@ -63,6 +63,7 @@ class DefenseResult:
     block_mitigation_pct: float = 0.0
     endurance_pct: float = 0.0
     endurance_threshold_pct: float = 0.0
+    endurance_damage_reduction: float = 0.0  # % damage reduced when below threshold
     crit_avoidance_pct: float = 0.0
     glancing_blow_pct: float = 0.0
     stun_avoidance_pct: float = 0.0
@@ -145,16 +146,19 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
     base_crit_factor = (1 - ENEMY_CRIT_RATE) + ENEMY_CRIT_RATE * ENEMY_CRIT_MULTIPLIER
     crit_reduction_factor = crit_damage_factor / base_crit_factor if base_crit_factor > 0 else 1.0
 
-    # Endurance: reduces damage by endurance% when below threshold% health
-    # Model as weighted average: fraction of time below threshold benefits from reduction
+    # Endurance: reduces damage taken by endurance% when health is below
+    # the endurance threshold.  This is NOT a max_health increase — it is
+    # a conditional damage reduction layer.  We model it as an EHP multiplier
+    # to express its defensive value in a single number.
     endurance_pct = min(ENDURANCE_CAP, stats.endurance)
     endurance_threshold = min(100, stats.endurance_threshold)
-    # Simplified: endurance adds effective HP to the portion below threshold
+    endurance_dmg_reduction = endurance_pct  # flat % damage reduction below threshold
     endurance_factor = 1.0
     if endurance_pct > 0 and endurance_threshold > 0:
         threshold_frac = endurance_threshold / 100
         reduction = endurance_pct / 100
-        # Below threshold, damage is reduced → that portion of health is worth more
+        # Below threshold, incoming damage is reduced by endurance% →
+        # that portion of the health pool is effectively worth more.
         endurance_factor = 1 / (1 - threshold_frac * reduction)
 
     # Combined EHP with all layers
@@ -268,6 +272,7 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
         block_mitigation_pct=round(block_mitigation * 100, 1),
         endurance_pct=round(endurance_pct, 1),
         endurance_threshold_pct=round(endurance_threshold, 1),
+        endurance_damage_reduction=round(endurance_dmg_reduction, 1),
         crit_avoidance_pct=round(crit_avoidance * 100, 1),
         glancing_blow_pct=round(glancing_blow_chance * 100, 1),
         stun_avoidance_pct=stun_avoidance_pct,

@@ -88,10 +88,9 @@ def compute_armor_mitigation(stats: BuildStats) -> None:
         return
     raw = armour / (armour + ARMOR_K * _REFERENCE_HIT)
     mitigation_pct = min(raw, ARMOR_MITIGATION_CAP) * 100.0
-    # Store as a flat field — consumers can read it for build summaries.
-    # We use endurance_threshold as a proxy since BuildStats doesn't have
-    # a dedicated armor_mitigation field.  Instead, log it for now and
-    # accumulate into a debug-visible output.
+    # Store as a dynamic attribute — consumers can read it for build summaries.
+    # Note: endurance_threshold is a separate mechanic (damage reduction below
+    # health threshold) and must NOT be confused with armor mitigation.
     stats._armor_mitigation_pct = mitigation_pct  # type: ignore[attr-defined]
 
 
