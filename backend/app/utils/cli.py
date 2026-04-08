@@ -261,6 +261,18 @@ def register_commands(app: Flask) -> None:
         db.session.commit()
         click.echo(f"✓ Admin user '{username}' created. ID: {user.id}")
 
+    @app.cli.command("refresh-meta")
+    def refresh_meta():
+        """Force-refresh all meta analytics caches regardless of TTL."""
+        from app.services import meta_analytics_service
+        try:
+            snapshot = meta_analytics_service.refresh_all()
+            classes = len(snapshot.get("class_distribution", []))
+            skills = len(snapshot.get("popular_skills", []))
+            click.echo(f"✓ Meta analytics refreshed — {classes} classes, {skills} popular skills.")
+        except Exception as e:
+            click.echo(f"✗ Failed to refresh meta analytics: {e}", err=True)
+
     @app.cli.command("validate-data")
     def validate_data():
         """Validate all data files in /data/. Exits with code 1 if any are malformed."""

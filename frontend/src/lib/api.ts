@@ -35,6 +35,10 @@ import type {
   CorruptionAnalysisResponse,
   GearUpgradeResponse,
   BossListItem,
+  ComparisonResult,
+  FullMetaSnapshot,
+  TrendingBuild,
+  BuildReport,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -593,5 +597,27 @@ export const analysisApi = {
     ),
 
   bosses: () => get<BossListItem[]>("/entities/bosses"),
+};
+
+// ---------------------------------------------------------------------------
+// Community Tools (Phase 8)
+// ---------------------------------------------------------------------------
+
+export const compareApi = {
+  compare: (slugA: string, slugB: string) =>
+    get<ComparisonResult>(`/compare/${slugA}/${slugB}`),
+};
+
+export const metaApi = {
+  snapshot: () => get<FullMetaSnapshot>("/meta/snapshot"),
+  trending: () => get<TrendingBuild[]>("/meta/trending"),
+};
+
+export const reportApi = {
+  get: (slug: string) => get<BuildReport>(`/builds/${slug}/report`),
+};
+
+export const viewApi = {
+  track: (slug: string) => post<null>(`/builds/${slug}/view`),
 };
 

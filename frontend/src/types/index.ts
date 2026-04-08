@@ -473,3 +473,186 @@ export interface BossListItem {
   category: string;
 }
 
+// ---------------------------------------------------------------------------
+// Phase 8 — Community Tools
+// ---------------------------------------------------------------------------
+
+// Build Comparison
+export interface DPSComparisonData {
+  raw_dps_a: number;
+  raw_dps_b: number;
+  crit_contribution_a: number;
+  crit_contribution_b: number;
+  ailment_dps_a: number;
+  ailment_dps_b: number;
+  total_dps_a: number;
+  total_dps_b: number;
+  winner: "a" | "b" | "tie";
+}
+
+export interface EHPComparisonData {
+  max_health_a: number;
+  max_health_b: number;
+  effective_hp_a: number;
+  effective_hp_b: number;
+  armor_reduction_pct_a: number;
+  armor_reduction_pct_b: number;
+  avg_resistance_a: number;
+  avg_resistance_b: number;
+  survivability_score_a: number;
+  survivability_score_b: number;
+  winner: "a" | "b" | "tie";
+}
+
+export interface StatDelta {
+  stat_key: string;
+  value_a: number;
+  value_b: number;
+  delta: number;
+}
+
+export interface SkillComparisonData {
+  skills_a: Array<{ skill_name: string; points_allocated: number; slot: number }>;
+  skills_b: Array<{ skill_name: string; points_allocated: number; slot: number }>;
+  shared: string[];
+  unique_to_a: string[];
+  unique_to_b: string[];
+}
+
+export interface GearSlotComparisonData {
+  slot: string;
+  item_a: string | null;
+  rarity_a: string | null;
+  item_b: string | null;
+  rarity_b: string | null;
+}
+
+export interface ComparisonResult {
+  slug_a: string;
+  slug_b: string;
+  name_a: string;
+  name_b: string;
+  dps: DPSComparisonData;
+  ehp: EHPComparisonData;
+  stat_deltas: StatDelta[];
+  overall_winner: "a" | "b" | "tie";
+  overall_score_a: number;
+  overall_score_b: number;
+  skill_comparison: SkillComparisonData;
+  gear_comparison: GearSlotComparisonData[];
+}
+
+// Meta Analytics
+export interface ClassDistEntry {
+  class: string;
+  count: number;
+  percentage: number;
+}
+
+export interface MasteryDistEntry {
+  mastery: string;
+  count: number;
+  percentage: number;
+}
+
+export interface PopularSkillEntry {
+  skill_name: string;
+  usage_count: number;
+}
+
+export interface PopularAffixEntry {
+  affix_name: string;
+  usage_count: number;
+}
+
+export interface TrendingBuild {
+  id: string;
+  slug: string;
+  name: string;
+  character_class: string;
+  mastery: string;
+  tier: string | null;
+  vote_count: number;
+  view_count: number;
+  trending_score: number;
+  author: string | null;
+}
+
+export interface FullMetaSnapshot {
+  class_distribution: ClassDistEntry[];
+  mastery_distribution: Record<string, MasteryDistEntry[]>;
+  popular_skills: PopularSkillEntry[];
+  popular_affixes: PopularAffixEntry[];
+  average_stats_by_class: Array<{
+    class: string;
+    build_count: number;
+    avg_votes: number;
+    avg_views: number;
+  }>;
+  patch_breakdown: Array<{ patch_version: string; count: number }>;
+  last_updated: string;
+  current_patch: string;
+}
+
+// Build Report
+export interface BuildReportIdentity {
+  name: string;
+  character_class: string;
+  mastery: string;
+  level: number;
+  patch_version: string;
+  author: string | null;
+  slug: string;
+}
+
+export interface BuildReport {
+  identity: BuildReportIdentity;
+  stat_summary: Record<string, number>;
+  dps_summary: {
+    total_dps: number;
+    raw_dps: number;
+    crit_contribution_pct: number;
+    ailment_dps: number;
+    hit_damage: number;
+    average_hit: number;
+  };
+  ehp_summary: {
+    effective_hp: number;
+    max_health: number;
+    armor_reduction_pct: number;
+    avg_resistance: number;
+    survivability_score: number;
+    dodge_chance_pct: number;
+    block_chance_pct: number;
+  };
+  top_upgrades: Array<{
+    stat: string;
+    label: string;
+    dps_gain_pct: number;
+    ehp_gain_pct: number;
+    explanation?: string;
+  }>;
+  skills: Array<{
+    skill_name: string;
+    slot: number;
+    points_allocated: number;
+    node_count: number;
+  }>;
+  gear: Array<{
+    slot: string;
+    item_name: string | null;
+    rarity: string | null;
+    affix_count: number;
+  }>;
+  generated_at: string;
+  og_title: string;
+  og_description: string;
+  og_url: string;
+}
+
+export interface OpenGraphMeta {
+  og_title: string;
+  og_description: string;
+  og_url: string;
+}
+
