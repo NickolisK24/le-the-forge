@@ -58,6 +58,7 @@ class User(TimestampMixin, db.Model):
     discriminator = db.Column(db.String(8), nullable=True)  # legacy Discord tags
     avatar_url = db.Column(db.String(512), nullable=True)
     is_active = db.Column(db.Boolean, default=True, nullable=False)
+    is_admin = db.Column(db.Boolean, default=False, nullable=False)
 
     # Relationships
     builds = db.relationship("Build", back_populates="author", lazy="dynamic")
@@ -309,3 +310,25 @@ class PassiveNode(db.Model):
 
     # Icon sprite identifier (e.g. "a-r-42")
     icon = db.Column(db.String(32), nullable=True)
+
+
+# ---------------------------------------------------------------------------
+# Import Failure Tracking
+# ---------------------------------------------------------------------------
+
+class ImportFailure(TimestampMixin, db.Model):
+    """Tracks failed or partial build imports for debugging and monitoring."""
+    __tablename__ = "import_failures"
+
+    id = db.Column(db.String(36), primary_key=True, default=_uuid)
+    source = db.Column(db.String(32), nullable=False)  # "lastepochtools" | "maxroll"
+    raw_url = db.Column(db.String(2048), nullable=False)
+    missing_fields = db.Column(db.JSON, nullable=False, default=list)
+    partial_data = db.Column(db.JSON, nullable=True)
+    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True)
+    error_message = db.Column(db.String(1024), nullable=True)
+
+    user = db.relationship("User", backref="import_failures")
+
+    def __repr__(self):
+        return f"<ImportFailure {self.source} {self.error_message or 'partial'}>"

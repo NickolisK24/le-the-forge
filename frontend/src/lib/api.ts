@@ -27,6 +27,7 @@ import type {
   PaginationMeta,
   OptimizeResponse,
   OptimizeMode,
+  ImportBuildResponse,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -507,6 +508,8 @@ export interface ImportedBuild {
 export const importApi = {
   fromUrl: (url: string) =>
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
+  importBuild: (url: string) =>
+    post<ImportBuildResponse>("/import/build", { url }),
 };
 
 // ---------------------------------------------------------------------------

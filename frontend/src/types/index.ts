@@ -321,3 +321,31 @@ export interface OptimizeResponse {
   generated_at: string;
 }
 
+// ---------------------------------------------------------------------------
+// Phase 6 — Build Import
+// ---------------------------------------------------------------------------
+
+export interface ImportBuildRequest {
+  url: string;
+}
+
+export interface ImportBuildResponse {
+  slug: string;
+  build_name: string;
+  source: string;
+  imported_fields: string[];
+  missing_fields: string[];
+  warnings: string[];
+}
+
+export interface ImportFailure {
+  id: string;
+  source: string;
+  raw_url: string;
+  missing_fields: string[];
+  partial_data: Record<string, unknown> | null;
+  user_id: string | null;
+  error_message: string | null;
+  created_at: string | null;
+}
+
