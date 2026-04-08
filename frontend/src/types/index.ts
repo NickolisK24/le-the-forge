@@ -322,6 +322,60 @@ export interface OptimizeResponse {
 }
 
 // ---------------------------------------------------------------------------
+// Phase 5 — Skill Tree API
+// ---------------------------------------------------------------------------
+
+export interface SkillNodeStat {
+  statName: string;
+  value: string;
+  noScaling: boolean;
+  downside: boolean;
+}
+
+export interface SkillNodeRequirement {
+  node: number;
+  requirement: number;
+}
+
+export interface SkillNodeTransform {
+  x: number;
+  y: number;
+  scale?: number;
+  rotation?: number;
+}
+
+export interface SkillNode {
+  id: number;
+  name: string;
+  description: string;
+  maxPoints: number;
+  stats: SkillNodeStat[];
+  requirements: SkillNodeRequirement[];
+  transform: SkillNodeTransform;
+  icon: string | number | null;
+  abilityGrantedByNode: string | null;
+}
+
+export interface SkillTreeResponse {
+  skill_id: string;
+  skill_name: string;
+  nodes: SkillNode[];
+  root_node_id: number;
+}
+
+export interface SkillAllocation {
+  skill_id: string;
+  skill_name: string;
+  slot: number;
+  allocated_nodes: Record<string, number>;
+  total_points: number;
+}
+
+export interface SkillAllocationsResponse {
+  skills: SkillAllocation[];
+}
+
+// ---------------------------------------------------------------------------
 // Phase 6 — Build Import
 // ---------------------------------------------------------------------------
 
