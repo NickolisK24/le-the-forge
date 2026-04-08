@@ -2,14 +2,13 @@
  * TreeIcon — renders a game asset icon for passive/skill tree nodes.
  *
  * Renders icons from the planner sprite atlas (planner_skill_passive_icons_v142.webp)
- * using CSS background-position for all a-r-* icon IDs. Falls back to a
- * colored abbreviation placeholder when the icon ID is unknown.
+ * using CSS background-position for all a-r-* icon IDs. Returns null when
+ * the icon ID is unknown, allowing the underlying node shape to show through.
  *
  * Icon coordinates are sourced from iconSpriteMap.json.
  * Atlas metadata (dimensions, icon cell size) lives in atlasConfig.ts.
  */
 
-import { useMemo } from "react";
 import type React from "react";
 import iconSpriteMap from "@/data/iconSpriteMap.json";
 import { spriteStyle } from "@/data/atlasConfig";
@@ -35,9 +34,7 @@ function getAbbr(nodeName?: string): string {
 /**
  * SVG foreignObject icon for use inside tree renderers.
  */
-export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
-  const abbr = useMemo(() => getAbbr(nodeName), [nodeName]);
-
+export default function TreeIcon({ iconId, size }: TreeIconProps) {
   if (!iconId) return null;
 
   const coords = spriteMapTyped[iconId];
@@ -63,22 +60,10 @@ export default function TreeIcon({ iconId, size, nodeName }: TreeIconProps) {
     );
   }
 
-  // Fallback: colored circle with text abbreviation
-  return (
-    <g pointerEvents="none">
-      <circle r={size / 2 - 1} fill="#1a2040" stroke="#3a4070" strokeWidth={0.5} />
-      <text
-        textAnchor="middle"
-        dominantBaseline="central"
-        fontSize={size * 0.35}
-        fill="#8890b8"
-        fontFamily="monospace"
-        fontWeight="bold"
-      >
-        {abbr}
-      </text>
-    </g>
-  );
+  // Icon not in sprite map — return null so the underlying node shape shows through.
+  // The geometric shapes (hexagons/diamonds with radial gradients) already provide
+  // clean type-differentiated visuals.
+  return null;
 }
 
 /**
