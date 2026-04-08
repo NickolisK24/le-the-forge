@@ -18,6 +18,7 @@ interface SkillSlot {
   skill_name: string;
   slot: number;
   points_allocated: number;
+  spec_tree?: number[];
 }
 
 interface Props {
@@ -89,7 +90,14 @@ export default function SkillSelector({
               </span>
               {skill && (
                 <span className="font-mono text-[10px] text-forge-dim flex-shrink-0">
-                  {skill.points_allocated}
+                  Slot {i + 1} · {skill.points_allocated} pts
+                  {(() => {
+                    if (!skill.spec_tree?.length) return null;
+                    const counts: Record<number, number> = {};
+                    for (const id of skill.spec_tree) counts[id] = (counts[id] ?? 0) + 1;
+                    const total = Object.values(counts).reduce((a, b) => a + b, 0);
+                    return total > 0 ? <span className="ml-1 text-forge-amber">· {total} nodes</span> : null;
+                  })()}
                 </span>
               )}
               {hasTree && (
