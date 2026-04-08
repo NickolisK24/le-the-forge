@@ -155,6 +155,7 @@ def apply_action(slug: str):
 
 
 @craft_bp.post("/<slug>/undo")
+@limiter.limit("30 per minute")
 def undo_action(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:
@@ -198,6 +199,7 @@ def get_summary(slug: str):
 
 
 @craft_bp.delete("/<slug>")
+@limiter.limit("10 per minute")
 def delete_session(slug: str):
     session = CraftSession.query.filter_by(slug=slug).first()
     if not session:

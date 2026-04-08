@@ -128,7 +128,7 @@ function isReachable(
 ): boolean {
   const visited = new Set<string>();
   const queue = [...startIds];
-  visited.add(...startIds);
+  for (const id of startIds) visited.add(id);
   while (queue.length > 0) {
     const current = queue.shift()!;
     if (current === targetId) return true;

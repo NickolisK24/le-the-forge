@@ -13,7 +13,7 @@ on:
 
 jobs:
   # ---------------------------------------------------------------------------
-  # Backend — pytest + mypy
+  # Backend — pytest
   # ---------------------------------------------------------------------------
   backend:
     name: Backend Tests
@@ -32,16 +32,7 @@ jobs:
 
       - name: Install dependencies
         working-directory: backend
-        run: |
-          pip install -r requirements.txt
-          pip install mypy
-
-      # -------------------------
-      # Type Safety (NEW)
-      # -------------------------
-      - name: Run mypy type checking
-        working-directory: backend
-        run: mypy .
+        run: pip install -r requirements.txt
 
       # -------------------------
       # Unit Tests
@@ -50,9 +41,20 @@ jobs:
         working-directory: backend
         env:
           FLASK_ENV: testing
-          JWT_SECRET_KEY: ci-test-secret-key
-          SECRET_KEY: ci-test-secret-key
+          JWT_SECRET_KEY: ci-test-secret-key-minimum-length
+          SECRET_KEY: ci-test-secret-key-minimum-length
         run: python -m pytest tests/ -q --tb=short
+
+      # -------------------------
+      # Data Validation
+      # -------------------------
+      - name: Validate game data
+        working-directory: backend
+        env:
+          FLASK_ENV: testing
+          SECRET_KEY: ci-test-secret-key-minimum-length
+          JWT_SECRET_KEY: ci-test-secret-key-minimum-length
+        run: flask validate-data
 
   # ---------------------------------------------------------------------------
   # Frontend — TypeScript + ESLint

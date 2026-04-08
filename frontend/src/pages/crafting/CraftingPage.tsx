@@ -80,7 +80,7 @@ export default function CraftingPage() {
       });
 
       const path = response.optimal_path ?? [];
-      const sim = response.simulation_result ?? {};
+      const sim = response.simulation_result ?? {} as Partial<typeof response.simulation_result>;
       const strategies = response.strategy_comparison ?? [];
 
       // Map backend response to the UI result shape

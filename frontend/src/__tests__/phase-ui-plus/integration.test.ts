@@ -228,7 +228,7 @@ describe("SessionRestore + BuildManager — state persistence", () => {
   it("form draft saved and restored", async () => {
     const SR = await freshModule<any>("../../services/session/session_restore", "SessionRestore");
     SR.saveDraft("build-editor", { name: "Draft Name", notes: "WIP" });
-    const draft = SR.getDraft<{ name: string; notes: string }>("build-editor");
+    const draft = SR.getDraft("build-editor") as { name: string; notes: string } | null;
     expect(draft?.name).toBe("Draft Name");
   });
 

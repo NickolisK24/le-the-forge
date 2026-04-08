@@ -201,8 +201,6 @@ export interface BuffTestResult {
 
 export function runBuffTests(): BuffTestResult[] {
   const results: BuffTestResult[] = [];
-  // Import inline to avoid circular dependency issues
-  // eslint-disable-next-line @typescript-eslint/no-var-requires
   const EXAMPLE_BUFFS = _getTestBuffs();
 
   // Test 1: Apply buff appears in active list

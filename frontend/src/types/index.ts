@@ -156,7 +156,7 @@ export type CraftAction =
   | "unseal_affix"
   | "remove_affix";
 
-export type CraftOutcome = "success" | "perfect" | "fracture";
+export type CraftOutcome = "success" | "perfect" | "fracture" | "error";
 
 export interface CraftAffix {
   name: string;
@@ -220,6 +220,7 @@ export interface SimulationResult {
 export interface LocalSimulationResult {
   fp_consumed: { p25: number; p50: number; p75: number };
   steps_completed: { p25: number; p50: number; p75: number };
+  completion_rate: number;
   n_simulations: number;
 }
 

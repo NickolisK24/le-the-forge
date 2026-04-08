@@ -21,6 +21,31 @@ ROOT = Path(__file__).resolve().parent.parent
 SRC_DIR = ROOT / "last-epoch-data" / "exports_json"
 DATA_DIR = ROOT / "data"
 
+
+def _detect_patch_version() -> str:
+    """Try to detect the game patch version from the source data."""
+    meta_path = SRC_DIR / "metadata.json"
+    if meta_path.exists():
+        with open(meta_path, encoding="utf-8") as f:
+            meta = json.load(f)
+            return meta.get("version", meta.get("patchVersion", "unknown"))
+    return "unknown"
+
+
+def _write_version_stamp(files_updated: list[str]) -> None:
+    """Write data/version.json after a sync with patch and timestamp info."""
+    from datetime import datetime, timezone
+
+    stamp = {
+        "patch_version": _detect_patch_version(),
+        "synced_at": datetime.now(timezone.utc).isoformat(),
+        "files_updated": files_updated,
+    }
+    version_path = DATA_DIR / "version.json"
+    with open(version_path, "w", encoding="utf-8") as f:
+        json.dump(stamp, f, indent=2, ensure_ascii=False)
+    print(f"  → Version stamp written: {version_path}")
+
 # Slot name mapping: raw game UPPER_CASE → backend lowercase slugs
 SLOT_MAP = {
     "AMULET": "amulet",
@@ -1363,6 +1388,8 @@ def main():
 
     print(f"{'[DRY RUN] ' if args.dry_run else ''}Syncing game data from {SRC_DIR.name}...\n")
 
+    files_updated: list[str] = []
+
     # --- Affixes ---
     if run_all or args.affixes:
         affixes_path = DATA_DIR / "items" / "affixes.json"
@@ -1375,6 +1402,7 @@ def main():
             with open(affixes_path, "w", encoding="utf-8") as f:
                 json.dump(updated_affixes, f, indent=2, ensure_ascii=False)
             print(f"  → Written: {affixes_path}")
+            files_updated.append(str(affixes_path.relative_to(ROOT)))
         else:
             print(f"  [DRY RUN] Would write {len(updated_affixes)} affixes → {affixes_path}")
 
@@ -1474,6 +1502,12 @@ def main():
     if run_all or args.localization:
         sync_localization(dry_run=args.dry_run)
         print()
+
+    # --- Write version stamp ---
+    if not args.dry_run:
+        _write_version_stamp(files_updated)
+    else:
+        print("[DRY RUN] Would write version stamp to data/version.json")
 
     print("Done.")
 
