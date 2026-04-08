@@ -21,6 +21,9 @@ import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
 import SkillSelector from "./SkillSelector";
+import BossEncounterPanel from "./BossEncounterPanel";
+import CorruptionScalingPanel from "./CorruptionScalingPanel";
+import GearUpgradePanel from "./GearUpgradePanel";
 import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
@@ -585,6 +588,19 @@ function BuildSummary({ build }: { build: Build }) {
               onRetry={() => optimizeQuery.refetch()}
             />
           </div>
+        )}
+
+        {/* Phase 7: Advanced analysis panels */}
+        {showDashboard && simResult && build.slug && (
+          <>
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <BossEncounterPanel slug={build.slug} />
+              <CorruptionScalingPanel slug={build.slug} />
+            </div>
+            <div className="mt-4">
+              <GearUpgradePanel slug={build.slug} />
+            </div>
+          </>
         )}
       </div>
     );

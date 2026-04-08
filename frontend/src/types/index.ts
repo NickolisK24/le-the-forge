@@ -403,3 +403,73 @@ export interface ImportFailure {
   created_at: string | null;
 }
 
+// ---------------------------------------------------------------------------
+// Phase 7 — Advanced Analysis
+// ---------------------------------------------------------------------------
+
+export interface BossPhaseResult {
+  phase: number;
+  health_threshold: number;
+  dps: number;
+  ttk_seconds: number;
+  survival_score: number;
+  mana_sustainable: boolean;
+  warnings: string[];
+}
+
+export interface BossSummary {
+  total_ttk_seconds: number;
+  can_kill_before_enrage: boolean;
+  overall_survival_score: number;
+  weakest_phase: number;
+}
+
+export interface BossAnalysisResponse {
+  boss_id: string;
+  boss_name: string;
+  corruption: number;
+  phases: BossPhaseResult[];
+  summary: BossSummary;
+  warnings: string[];
+}
+
+export interface CorruptionDataPoint {
+  corruption: number;
+  dps_efficiency: number;
+  survivability_score: number;
+}
+
+export interface CorruptionAnalysisResponse {
+  boss_id: string;
+  recommended_max_corruption: number;
+  curve: CorruptionDataPoint[];
+}
+
+export interface GearUpgradeCandidate {
+  item_name: string;
+  base_type: string;
+  slot: string;
+  affixes: Record<string, unknown>[];
+  dps_delta_pct: number;
+  ehp_delta_pct: number;
+  fp_cost: number;
+  efficiency_score: number;
+  rank: number;
+}
+
+export interface SlotUpgradeResult {
+  slot: string;
+  candidates: GearUpgradeCandidate[];
+}
+
+export interface GearUpgradeResponse {
+  slots: SlotUpgradeResult[];
+  top_10_overall: GearUpgradeCandidate[];
+}
+
+export interface BossListItem {
+  id: string;
+  name: string;
+  category: string;
+}
+
