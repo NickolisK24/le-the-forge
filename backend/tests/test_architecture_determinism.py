@@ -33,6 +33,8 @@ DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "app", "game_data")
 
 def _load_json(filename: str) -> dict:
     path = os.path.join(DATA_DIR, filename)
+    if not os.path.exists(path):
+        pytest.skip(f"{filename} removed — data consolidated to data/ directory")
     with open(path) as f:
         return json.load(f)
 

@@ -83,6 +83,8 @@ class SimulationResult:
     timeline: list[TimelineEvent] = field(default_factory=list)
     ticks_simulated: int = 0
     raw_dps: float = 0.0
+    ailment_dps: dict[str, float] = field(default_factory=dict)
+    total_dps_with_ailments: float = 0.0
     total_mana_spent: float = 0.0
     total_mana_regenerated: float = 0.0
     casts_skipped_oom: int = 0
@@ -98,6 +100,9 @@ class SimulationResult:
             "ticks_simulated": self.ticks_simulated,
             "raw_dps": round(self.raw_dps, 2),
         }
+        if self.ailment_dps:
+            d["ailment_dps"] = {k: round(v, 2) for k, v in self.ailment_dps.items()}
+            d["total_dps_with_ailments"] = round(self.total_dps_with_ailments, 2)
         if self.total_mana_spent > 0 or self.total_mana_regenerated > 0:
             d["total_mana_spent"] = round(self.total_mana_spent, 2)
             d["total_mana_regenerated"] = round(self.total_mana_regenerated, 2)
@@ -274,10 +279,21 @@ class CombatSimulator:
         effective_dps = total_damage / fight_duration if fight_duration > 0 else 0.0
         raw_dps = total_raw_damage / fight_duration if fight_duration > 0 else 0.0
 
+        # Aggregate ailment DPS from all skills (steady-state, additive)
+        agg_ailment_dps: dict[str, float] = {}
+        for entry in rotation:
+            key = entry.skill_name or id(entry)
+            sr = skill_results[key]
+            for atype, adps in sr.ailment_dps.items():
+                agg_ailment_dps[atype] = agg_ailment_dps.get(atype, 0.0) + adps
+        total_ailment_dps = sum(agg_ailment_dps.values())
+        total_dps_with_ailments = effective_dps + total_ailment_dps
+
         log.debug(
             "combat_sim.done",
             total_damage=round(total_damage, 2),
             effective_dps=round(effective_dps, 2),
+            ailment_dps=round(total_ailment_dps, 2),
             total_casts=total_casts,
             ticks=ticks,
             mana_spent=round(total_mana_spent, 2),
@@ -292,6 +308,8 @@ class CombatSimulator:
             total_casts=total_casts,
             skill_usage=skill_usage,
             skill_damage=skill_damage,
+            ailment_dps=agg_ailment_dps,
+            total_dps_with_ailments=total_dps_with_ailments,
             timeline=timeline if capture_timeline else [],
             ticks_simulated=ticks,
             raw_dps=raw_dps,

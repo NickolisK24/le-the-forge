@@ -98,6 +98,19 @@ def create_app(env: str = "development") -> Flask:
                 )
         return response
 
+    # Rate limit violation handler — log and return structured JSON
+    @app.errorhandler(429)
+    def _rate_limit_exceeded(e):
+        from flask import jsonify, request as req
+        app.logger.warning(
+            f"rate_limit_exceeded ip={req.remote_addr} "
+            f"path={req.path} method={req.method}"
+        )
+        return jsonify({
+            "error": "rate_limit_exceeded",
+            "message": str(e.description),
+        }), 429
+
     # Register blueprints
     from app.routes.auth import auth_bp
     from app.routes.builds import builds_bp
