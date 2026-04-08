@@ -27,6 +27,9 @@ import type {
   PaginationMeta,
   OptimizeResponse,
   OptimizeMode,
+  SkillTreeResponse,
+  SkillAllocationsResponse,
+  SkillAllocation,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -407,6 +410,15 @@ export const simulateApi = {
     post<ConditionalResult>("/simulate/conditional", payload),
   multiTarget: (payload: object) =>
     post<MultiTargetResult>("/simulate/multi-target", payload),
+};
+
+export const skillsApi = {
+  getTree: (skillId: string) =>
+    get<SkillTreeResponse>(`/skills/${skillId}/tree`),
+  getBuildSkills: (slug: string) =>
+    get<SkillAllocationsResponse>(`/builds/${slug}/skills`),
+  allocateNode: (slug: string, skillId: string, nodeId: number, points: number) =>
+    patch<SkillAllocation>(`/builds/${slug}/skills/${skillId}/nodes/${nodeId}`, { points }),
 };
 
 export interface ConditionalResult {
