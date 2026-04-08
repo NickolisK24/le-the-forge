@@ -129,6 +129,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.version import version_bp
     from app.routes.import_route import import_bp
     from app.routes.bis_search import bis_bp
+    from app.routes.skills import skills_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -147,6 +148,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")
     app.register_blueprint(bis_bp, url_prefix="/api/bis")
+    app.register_blueprint(skills_bp, url_prefix="/api")
 
     # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError

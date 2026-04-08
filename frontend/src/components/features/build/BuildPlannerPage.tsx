@@ -20,6 +20,7 @@ import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
+import SkillSelector from "./SkillSelector";
 import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
@@ -533,6 +534,21 @@ function BuildSummary({ build }: { build: Build }) {
           )}
         </Panel>
 
+        {/* Skill tree selector — API-driven interactive trees */}
+        <Panel title="Skill Trees" className="lg:col-span-2">
+          <SkillSelector
+            skills={build.skills.map((s) => ({
+              skill_name: s.skill_name,
+              slot: s.slot,
+              points_allocated: s.points_allocated,
+            }))}
+            characterClass={build.character_class}
+            mastery={build.mastery}
+            buildSlug={build.slug}
+            readOnly={!isOwner || !editing}
+          />
+        </Panel>
+
         {/* Skill tree modal (view-only) */}
         {treeModal !== null && (
           <SkillTreeModal
@@ -659,6 +675,19 @@ function BuildSummary({ build }: { build: Build }) {
               onRewindTo={rewindPassiveTo}
             />
           </div>
+        </Panel>
+
+        <Panel title="Skill Trees">
+          <SkillSelector
+            skills={draftSkills.map((s) => ({
+              skill_name: s.skill_name,
+              slot: s.slot,
+              points_allocated: s.points_allocated,
+            }))}
+            characterClass={characterClass}
+            mastery={mastery}
+            buildSlug={build.slug}
+          />
         </Panel>
       </div>
 
@@ -1181,6 +1210,20 @@ export default function BuildPlannerPage() {
             />
           </div>
         </Panel>
+
+        {draftSkills.length > 0 && (
+          <Panel title="Skill Trees">
+            <SkillSelector
+              skills={draftSkills.map((s) => ({
+                skill_name: s.skill_name,
+                slot: s.slot,
+                points_allocated: s.points_allocated,
+              }))}
+              characterClass={characterClass}
+              mastery={mastery}
+            />
+          </Panel>
+        )}
       </div>
 
       {/* ── RIGHT: preview + gear + save ── */}
