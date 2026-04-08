@@ -53,7 +53,7 @@ backend/
 ├── modifiers/              Conditional modifier engine
 ├── services/               Integration services
 ├── state/                  Simulation state engine
-└── tests/                  Test suite (800+ tests)
+└── tests/                  Test suite (9900+ tests)
 ```
 
 ---
@@ -163,6 +163,8 @@ SkillStatDef + BuildStats + SkillModifiers
      5. effective_crit_chance() + calculate_average_hit()
      6. effective_attack_speed()
      7. DPS = avg_hit × hits_per_cast × casts/sec
+     8. calc_ailment_dps() — Bleed/Ignite/Poison steady-state DPS
+     9. total_dps = hit_dps + ailment_dps
                     ↓
           SkillExecutionResult
 ```
@@ -181,6 +183,7 @@ SkillStatDef + BuildStats + SkillModifiers
 | `app/domain/calculators/more_multiplier_calculator.py` | apply_more_multiplier() — multiplicative stacking |
 | `app/domain/calculators/crit_calculator.py` | effective_crit_chance(), effective_crit_multiplier(), calculate_average_hit() |
 | `app/domain/calculators/speed_calculator.py` | effective_attack_speed() — spell cast speed vs melee attack speed routing |
+| `app/domain/calculators/ailment_calculator.py` | calc_ailment_dps() — Bleed/Ignite/Poison steady-state DPS from proc chance + scaling |
 
 ### Pipeline Contract
 
@@ -248,6 +251,7 @@ SkillExecutionResult + EnemyInstance
 | File | Purpose |
 |------|---------|
 | `app/enemies/enemy_defense.py` | EnemyDefenseEngine.apply_defenses(), DefensedDamageResult |
+| `app/engines/defense_engine.py` | calculate_defense() → DefenseResult with endurance_damage_reduction, EHP, survivability score |
 | `app/domain/enemy.py` | EnemyStats, EnemyArchetype (TRAINING_DUMMY/NORMAL/ELITE/BOSS), EnemyProfile, EnemyInstance |
 | `app/domain/resistance.py` | apply_resistance(), RES_CAP (75%), RES_MIN (-100%) |
 | `app/domain/armor.py` | armor_mitigation_pct(), apply_armor(), ARMOR_K=10, ARMOR_MITIGATION_CAP=0.75 |
@@ -326,7 +330,7 @@ CombatScenario + BuildStats
 
 | File | Purpose |
 |------|---------|
-| `app/combat/combat_simulator.py` | CombatSimulator.simulate() — tick loop, SimulationResult, TimelineEvent |
+| `app/combat/combat_simulator.py` | CombatSimulator.simulate() — tick loop, SimulationResult (includes ailment_dps, mana tracking), TimelineEvent |
 | `app/combat/combat_scenario.py` | CombatScenario (duration, enemy, rotation, mana config), SkillRotationEntry |
 | `app/domain/mana.py` | ManaPool — can_afford(), spend(), regenerate(), InsufficientManaError |
 
@@ -379,6 +383,31 @@ CombatScenario + BuildStats
 - **Pre-computation:** Skill execution and defense results computed once upfront (O(S) setup), then O(1) lookup per cast
 - **Memory:** O(D/T) for timeline events if captured; O(S) for cooldown/mana tracking
 - **Scaling risk:** Very small tick_size (e.g. 0.01) with long duration (e.g. 300s) → 30,000 ticks; timeline capture at that scale produces large event lists
+
+### Ailment Integration
+
+The combat simulator aggregates steady-state ailment DPS from all skills in the rotation.
+Ailment DPS is computed per-skill by `SkillExecutionEngine` (via `calc_ailment_dps()`) and
+summed across the rotation into `SimulationResult.ailment_dps` and `total_dps_with_ailments`.
+
+| Ailment | Application Stat | Stack Limit | Base Ratio | Duration | Damage Scaling |
+|---------|-----------------|-------------|------------|----------|----------------|
+| Ignite  | `ignite_chance_pct` | 1 (strongest) | 20% DPS/stack | 3s | `fire_damage_pct + dot_damage_pct + ailment_damage_pct + ignite_damage_pct` |
+| Bleed   | `bleed_chance_pct`  | 8 | 70% total/duration | 4s | `physical_damage_pct + dot_damage_pct + ailment_damage_pct + bleed_damage_pct` |
+| Poison  | `poison_chance_pct` | 8 | 30% DPS/stack | 3s | `poison_damage_pct + dot_damage_pct + ailment_damage_pct + poison_dot_damage_pct` |
+| Shock   | `shock_chance_pct`  | 1 | — (utility) | — | +20% damage taken by target |
+| Chill   | `chill_chance_pct`  | 1 | — (utility) | — | +25% cold damage taken by target |
+
+### Key Ailment Files
+
+| File | Purpose |
+|------|---------|
+| `app/domain/ailments.py` | AilmentType enum, AilmentInstance, apply_ailment(), tick_ailments() |
+| `app/domain/ailment_scaling.py` | scale_ailment_damage() — routes ailment types to stat pools |
+| `app/domain/ailment_stacking.py` | STACK_LIMITS, enforce_stack_limit(), apply_ailment_with_limit() |
+| `app/domain/ailment_duration_scaling.py` | scale_ailment_duration() — duration modifier application |
+| `app/domain/calculators/ailment_calculator.py` | calc_ailment_dps() — steady-state Bleed/Ignite/Poison DPS |
+| `app/domain/status_interactions.py` | Shock/Frostbite damage-taken multipliers, ailment synergies |
 
 ---
 
@@ -613,20 +642,21 @@ Multi-enemy encounter simulation with phases, spawning, and downtime.
 
 ## Data Layer
 
+> **Note:** `data/` is the single source of truth for game data. The `app/game_data/` directory
+> retains only files unique to the backend (skills.json, constants.json, classes.json).
+> Affixes, enemies, base items, and crafting rules are loaded from `data/` via the GameDataPipeline.
+
 ### Game Data Files
 
 | File | Contents |
 |------|----------|
-| `app/game_data/skills.json` | 80+ skill definitions (damage, speed, scaling, type) |
-| `app/game_data/affixes.json` | 34+ affix definitions with tiers and slot applicability |
-| `app/game_data/items.json` | Base items per slot with FP ranges |
+| `app/game_data/skills.json` | 80+ skill definitions (damage, speed, scaling, mana_cost, type) |
 | `app/game_data/constants.json` | Crafting limits, defense caps, passive limits |
-| `app/game_data/enemies.json` | Enemy profile data |
-| `app/game_data/classes.json` | Class/mastery definitions |
+| `app/game_data/classes.json` | Class/mastery definitions (curated backend config) |
 | `data/entities/enemy_profiles.json` | 8 enemy profiles (training dummy → pinnacle boss) |
 | `data/classes/skill_tree_nodes.json` | Skill tree node definitions |
 | `data/items/base_items.json` | 100+ base items |
-| `data/items/affixes.json` | Full affix dataset |
+| `data/items/affixes.json` | 1000+ affix definitions with tiers and slot applicability |
 
 ### Data Pipeline
 
@@ -643,7 +673,7 @@ Multi-enemy encounter simulation with phases, spawning, and downtime.
 
 | Route File | Endpoints |
 |------------|-----------|
-| `app/routes/simulate.py` | POST /api/simulate/stats, /build, /encounter |
+| `app/routes/simulate.py` | POST /api/simulate/stats (60/min), /build (30/min), /encounter (15/min) — rate limits configurable via env vars |
 | `app/routes/builds.py` | CRUD for builds |
 | `app/routes/craft.py` | POST /api/craft, /predict, /action |
 | `app/routes/passives.py` | Passive tree data |
@@ -707,12 +737,19 @@ frontend/src/
 | MAX_PREFIXES | 2 | `app/constants/crafting.py` |
 | MAX_SUFFIXES | 2 | `app/constants/crafting.py` |
 | MAX_AFFIX_TIER | 7 | `app/game_data/constants.json` |
+| ENDURANCE_CAP | 60 | `app/constants/defense.py` |
+| BLEED_BASE_RATIO | 0.70 | `app/constants/combat.py` |
+| BLEED_DURATION | 4.0s | `app/constants/combat.py` |
+| IGNITE_DPS_RATIO | 0.20 | `app/constants/combat.py` |
+| IGNITE_DURATION | 3.0s | `app/constants/combat.py` |
+| POISON_DPS_RATIO | 0.30 | `app/constants/combat.py` |
+| POISON_DURATION | 3.0s | `app/constants/combat.py` |
 
 ---
 
 ## Test Coverage
 
-800+ tests across all systems. Key test files:
+9900+ tests across all systems. Key test files:
 
 | Test File | Tests | System |
 |-----------|-------|--------|
@@ -726,6 +763,8 @@ frontend/src/
 | `test_stat_engine.py` | 100+ | BuildStats, StatPool, aggregate_stats |
 | `test_stat_resolution_pipeline.py` | 40+ | 8-layer pipeline |
 | `test_validators.py` | 70+ | Input validation |
+| `test_ailment_integration.py` | 13 | Ailment DPS in skill execution + combat sim |
+| `test_rate_limiting.py` | 4 | Rate limit enforcement on simulation endpoints |
 
 ---
 
