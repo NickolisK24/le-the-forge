@@ -102,6 +102,51 @@ AffixDefinition → Affix → Item → EquipmentSet → StatPool
 | `app/stats/conditional_stats.py` | Layer 8: apply_conditional_stats() — context-driven bonuses (moving, ward, frozen, boss) |
 | `app/stats/runtime_context.py` | RuntimeContext — bridges build-planning flags to SimulationState |
 
+### Pipeline Contract
+
+**Inputs:**
+- `build: dict` — character_class (str), mastery (str), passive_tree (list[int] | list[dict]), gear (list[dict]), gear_affixes (list[dict]), passive_stats (dict | None)
+- `conversions: list[dict] | None` — damage type redirections `{"from": str, "to": str, "pct": float}`
+- `conditional_modifiers: list[ConditionalModifier] | None` — Layer 8 context-gated modifiers
+- `runtime_context: RuntimeContext | None` — assumed conditions for Layer 8
+
+**Outputs:**
+- `ResolutionResult.stats: BuildStats` — fully resolved character stats (200+ fields)
+- `ResolutionResult.layer_snapshots: dict[str, dict]` — per-layer BuildStats snapshots (when capture_snapshots=True)
+- `ResolutionResult.resolution_order: list[str]` — ordered layer labels (8 entries)
+- `ResolutionResult.warnings: list[str]` — resistance cap warnings, validation notes
+
+**Invariants:**
+- Layer execution order is strict: 1→2→3→4→5→6→7→8, never reordered
+- All "increased" modifiers are summed additively before application
+- All "more" modifiers are compounded multiplicatively after "increased"
+- Derived stats (Layer 7) resolve after conversions (Layer 5) and attribute expansion (Layer 6)
+- Conditional stats (Layer 8) apply after all base math is final
+- Resistances are capped at RES_CAP (75) after all layers complete
+- Identical inputs always produce identical outputs (deterministic)
+- Input dicts are never mutated
+
+**Failure Conditions:**
+- Unknown stat_key in affix → silently skipped (no crash, value lost)
+- Circular derived stat dependency → detected by `_validate_no_circular_deps()` at registration time
+- Missing character_class → defaults to "Sentinel"
+- Empty gear_affixes → valid (zero gear contribution)
+
+### Observability Hooks
+
+- **Layer snapshots:** `capture_snapshots=True` records `dataclasses.asdict(stats)` after each layer (keys: `1_base_stats` through `8_conditional_stats`)
+- **Derived entry trace:** Layer 7 snapshot includes `_derived_entries` list with per-function `{name, inputs, outputs}`
+- **Conditional trace:** Layer 8 snapshot includes `_conditional` dict with `{context, evaluated, active_ids, stat_deltas}`
+- **Resolution warnings:** Resistance cap events logged as structured warnings in `ResolutionResult.warnings`
+- **Structured logging:** `ForgeLogger` emits `resolve_final_stats.start` and `.done` events with class, mastery, affix count, node count
+
+### Performance Characteristics
+
+- **Complexity:** O(A + N + D + C) where A=affixes, N=passive nodes, D=derived stat entries, C=conditional modifiers
+- **StatPool bucketing:** O(1) per modifier insertion, O(F) for resolve_to where F=unique stat fields
+- **Memory:** One BuildStats instance (~200 floats) per resolution + optional snapshot copies (8× when capturing)
+- **Scaling risk:** Large passive_stats dicts with 100+ keys increase Layer 5 merge time linearly
+
 ---
 
 ## Pipeline 2: Skill Damage Execution
@@ -137,6 +182,49 @@ SkillStatDef + BuildStats + SkillModifiers
 | `app/domain/calculators/crit_calculator.py` | effective_crit_chance(), effective_crit_multiplier(), calculate_average_hit() |
 | `app/domain/calculators/speed_calculator.py` | effective_attack_speed() — spell cast speed vs melee attack speed routing |
 
+### Pipeline Contract
+
+**Inputs:**
+- `skill_def: SkillStatDef` — base_damage, level_scaling, attack_speed, scaling_stats, damage_types, mana_cost, hit_count, is_spell/melee/throwing/bow
+- `stats: BuildStats` — fully resolved character stats (read-only, never mutated)
+- `level: int` — skill level (1–20)
+- `skill_mods: SkillModifiers | None` — more_damage_pct, added_hits_per_cast, attack_speed_pct, cast_speed_pct, crit_chance_pct, crit_multiplier_pct
+
+**Outputs:**
+- `SkillExecutionResult.hit_damage: float` — raw per-hit damage before crit
+- `SkillExecutionResult.average_hit: float` — crit-weighted per-hit damage
+- `SkillExecutionResult.dps: float` — sustained damage per second
+- `SkillExecutionResult.crit_chance: float` — effective crit (0.0–0.95)
+- `SkillExecutionResult.crit_multiplier: float` — effective multiplier
+- `SkillExecutionResult.casts_per_second: float` — effective attack/cast speed
+- `SkillExecutionResult.hits_per_cast: int` — total hits per activation
+- `SkillExecutionResult.damage_by_type: dict[str, float]` — per-DamageType breakdown
+
+**Invariants:**
+- BuildStats is never modified (read-only consumption)
+- Level scaling: `base × (1 + level_scaling × (level - 1))`
+- Increased % sources are summed additively, then applied as single multiplier
+- More multipliers applied sequentially after increased
+- Crit chance capped at CRIT_CHANCE_CAP (0.95)
+- DPS = average_hit × hits_per_cast × casts_per_second (exact formula)
+- Deterministic: no randomness in any stage
+
+**Failure Conditions:**
+- Unknown scaling_stat → silently produces 0 increased% for that stat
+- Zero attack_speed → defaults to 1.0 in SkillStatDef.from_dict()
+- Empty damage_types → untyped total (no per-type breakdown)
+
+### Observability Hooks
+
+- **Debug trace:** `capture_debug=True` populates `SkillExecutionResult.debug` dict with: scaled_total, flat_added, effective_base, increased_damage_pct, more_damage_sources, hit_damage, crit_chance, crit_multiplier, average_hit, casts_per_second, hits_per_cast, dps
+- **Structured logging:** `skill_execution.start` and `.done` events with skill name, level, base_damage, hit_damage, dps
+
+### Performance Characteristics
+
+- **Complexity:** O(S + T) where S=scaling_stats count, T=damage_types count
+- **Memory:** One SkillExecutionResult per call (~12 scalars + small dict)
+- **Hot path:** Pre-computable — combat simulator caches results since same skill+stats=same output
+
 ---
 
 ## Pipeline 3: Enemy Defense Application
@@ -166,6 +254,47 @@ SkillExecutionResult + EnemyInstance
 | `app/domain/dodge.py` | dodge_chance(), DODGE_CAP=0.75 |
 | `app/domain/penetration.py` | effective_resistance() with penetration + shred |
 | `app/domain/registries/enemy_registry.py` | EnemyRegistry — O(1) enemy profile lookup |
+
+### Pipeline Contract
+
+**Inputs:**
+- `skill_result: SkillExecutionResult` — pre-computed skill damage output (read-only)
+- `enemy: EnemyInstance` — mutable combat instance with resistances, armor, shred state
+- `penetration: dict[str, float] | None` — per-type penetration from BuildStats
+
+**Outputs:**
+- `DefensedDamageResult.damage_dealt: float` — final damage after all defenses
+- `DefensedDamageResult.damage_mitigated: float` — total absorbed by defenses
+- `DefensedDamageResult.mitigation_pct: float` — overall % mitigated
+- `DefensedDamageResult.effective_dps: float` — DPS after defenses
+- `DefensedDamageResult.per_type_damage: dict[str, float]` — post-defense per-type breakdown
+- `DefensedDamageResult.resistance_reduction: float` — damage lost to resistances
+- `DefensedDamageResult.armor_reduction: float` — damage lost to armor (physical only)
+- `DefensedDamageResult.dodge_reduction: float` — damage lost to dodge (expected value)
+
+**Invariants:**
+- damage_dealt + damage_mitigated = damage_before (conservation law)
+- Armor applies only to "physical" damage type — all others bypass
+- Resistance clamped to [RES_MIN (-100%), RES_CAP (75%)] after penetration/shred
+- Penetration reduces effective resistance: `eff = clamp(base - shred - pen)`
+- Dodge is expected-value: `final = post_armor × (1 - dodge_chance)`
+- Training dummy (zero defenses) produces damage_dealt == damage_before
+
+**Failure Conditions:**
+- Negative armor → raises ValueError in armor_mitigation_pct()
+- Unknown damage_type key → 0% resistance applied (no crash)
+- SkillExecutionResult with empty damage_by_type → treated as untyped
+
+### Observability Hooks
+
+- **Debug trace:** `capture_debug=True` populates `DefensedDamageResult.debug` with: damage_by_type_before, resistance_detail (per-type effective_res/before/after), armor_mitigation (enemy_armor/physical_before/physical_after), dodge (dodge_chance/dodge_reduction)
+- **Structured logging:** `enemy_defense.start`, `.resistance_done`, `.armor_done`, `.done` events
+
+### Performance Characteristics
+
+- **Complexity:** O(T) where T=damage types in the skill (typically 1–3)
+- **Memory:** One DefensedDamageResult per call (~10 scalars + small dict)
+- **Hot path:** Pre-computable per (skill, enemy) pair — combat simulator caches this
 
 ---
 
@@ -201,6 +330,56 @@ CombatScenario + BuildStats
 | `app/combat/combat_scenario.py` | CombatScenario (duration, enemy, rotation, mana config), SkillRotationEntry |
 | `app/domain/mana.py` | ManaPool — can_afford(), spend(), regenerate(), InsufficientManaError |
 
+### Pipeline Contract
+
+**Inputs:**
+- `scenario: CombatScenario` — duration_seconds, enemy (EnemyInstance), rotation (tuple[SkillRotationEntry]), tick_size, max_mana, mana_regen_rate, penetration
+- `stats: BuildStats` — fully resolved character stats (read-only)
+- `capture_timeline: bool` — whether to record per-cast TimelineEvents
+
+**Outputs:**
+- `SimulationResult.total_damage: float` — sum of all post-defense damage
+- `SimulationResult.effective_dps: float` — total_damage / fight_duration
+- `SimulationResult.raw_dps: float` — DPS before enemy defenses
+- `SimulationResult.total_casts: int` — total skill activations
+- `SimulationResult.skill_usage: dict[str, int]` — per-skill cast counts
+- `SimulationResult.skill_damage: dict[str, float]` — per-skill total damage
+- `SimulationResult.total_mana_spent: float` — total mana consumed
+- `SimulationResult.total_mana_regenerated: float` — total mana restored
+- `SimulationResult.casts_skipped_oom: int` — casts skipped due to insufficient mana
+- `SimulationResult.timeline: list[TimelineEvent]` — per-cast event log (if captured)
+
+**Invariants:**
+- Fully deterministic: same inputs → same outputs, zero randomness
+- Skill execution results pre-computed once (same skill + stats = same damage every cast)
+- Cooldown only starts on successful cast (OOM skip does NOT trigger cooldown)
+- Mana regeneration occurs after all casting in each tick
+- Skills evaluated in priority order (lower priority number = higher priority)
+- ManaPool created fresh per simulate() call (no cross-run state leakage)
+- max_mana=0 disables mana system entirely (backward compatible)
+- sum(skill_damage.values()) == total_damage
+- sum(skill_usage.values()) == total_casts
+
+**Failure Conditions:**
+- duration_seconds <= 0 → raises ValueError
+- Empty rotation → raises ValueError
+- tick_size <= 0 → raises ValueError
+- Negative mana_cost on skill → skipped by ManaPool validation
+
+### Observability Hooks
+
+- **Timeline events:** Each cast recorded as `TimelineEvent(time, skill_name, damage_before_defense, damage_after_defense, mitigation_pct)` when `capture_timeline=True`
+- **Mana telemetry:** `total_mana_spent`, `total_mana_regenerated`, `casts_skipped_oom` always tracked in SimulationResult
+- **Structured logging:** `combat_sim.start` (duration, tick, n_skills, mana_enabled, max_mana) and `combat_sim.done` (total_damage, effective_dps, total_casts, ticks, mana_spent, mana_regenerated, casts_skipped_oom)
+- **Serialization:** `SimulationResult.to_dict()` omits mana fields when mana was not used
+
+### Performance Characteristics
+
+- **Complexity:** O((D/T) × S) where D=duration, T=tick_size, S=skills in rotation — linear in fight length
+- **Pre-computation:** Skill execution and defense results computed once upfront (O(S) setup), then O(1) lookup per cast
+- **Memory:** O(D/T) for timeline events if captured; O(S) for cooldown/mana tracking
+- **Scaling risk:** Very small tick_size (e.g. 0.01) with long duration (e.g. 300s) → 30,000 ticks; timeline capture at that scale produces large event lists
+
 ---
 
 ## Pipeline 5: Crafting Simulation
@@ -229,6 +408,44 @@ Base Item + Crafting Action
 | `app/engines/base_engine.py` | Base item data, FP ranges |
 | `app/engines/item_engine.py` | Item creation with FP resolution |
 | `app/domain/registries/affix_registry.py` | AffixRegistry — O(1) affix lookup by name/id/slot |
+
+### Pipeline Contract
+
+**Inputs:**
+- `base_type: str` — base item slot/type
+- `rarity: str` — Normal/Magic/Rare/Exalted
+- `action_type: str` — crafting action (e.g. "add_affix", "upgrade_tier")
+- `item: dict` — item state with prefixes, suffixes, sealed_affix, forging_potential
+- `n_simulations: int` — Monte Carlo iteration count (for craft_simulator)
+
+**Outputs:**
+- Crafted item dict with updated affixes, FP, history
+- `craft_simulator` → probability distributions, success rates, expected costs
+
+**Invariants:**
+- FP cost is always non-negative
+- FP cannot go below 0 (craft fails if cost > remaining FP)
+- Prefix count <= MAX_PREFIXES (2), suffix count <= MAX_SUFFIXES (2)
+- Sealed affixes do not count toward prefix/suffix limits
+- Affix tier range: [1, MAX_AFFIX_TIER (7)]
+- FP cost rolls use seeded RNG for reproducibility when seed is provided
+
+**Failure Conditions:**
+- Insufficient FP for action → craft fails, item unchanged
+- Invalid affix for item slot → rejected by is_affix_valid_for_item()
+- Affix slot overflow → rejected by validate_affix_slots()
+
+### Observability Hooks
+
+- **FP history:** Each craft action appends `{action, fp_cost, remaining_fp}` to item["history"]
+- **Monte Carlo logging:** craft_simulator records attempt distributions
+- **Structured logging:** FP events logged via `log_fp_event()`
+
+### Performance Characteristics
+
+- **Single craft:** O(1) per action
+- **Monte Carlo:** O(N) where N=n_simulations — linear in iteration count
+- **Memory:** O(N) for result distributions; O(H) for per-item FP history where H=craft attempts
 
 ---
 
@@ -276,6 +493,43 @@ Condition (model) → ConditionEvaluator → ConditionalModifier → Conditional
 | `app/domain/timeline.py` | TimelineEngine — tick-based buff tracking for combat |
 | `app/domain/buff_snapshot.py` | SnapshotBuff vs DynamicBuff resolution modes |
 
+### Buff & Condition Pipeline Contract
+
+**Condition Inputs:**
+- `condition: Condition` — condition_id, condition_type (target_health_pct | player_health_pct | buff_active | status_present | time_elapsed), threshold_value, comparison_operator
+- `state: SimulationState` — player_health, target_health, elapsed_time, active_buffs (set[str]), active_status_effects (dict[str, int])
+
+**Condition Outputs:**
+- `bool` — True when condition is satisfied
+
+**Buff Engine Inputs:**
+- `definition: BuffDefinition` — buff_id, stat_modifiers, duration_seconds, max_stacks, stack_behavior, activation_condition
+- `timestamp: float` — application time
+- `delta_time: float` — tick advancement
+
+**Buff Engine Outputs:**
+- `BuffFrameResult` — aggregated stat deltas, active buff list, debug snapshot
+
+**Invariants:**
+- Condition evaluation is stateless and pure (no side effects)
+- Numeric conditions (health_pct, time_elapsed) use explicit comparison operators (lt, le, eq, ge, gt)
+- Buff stacking obeys StackBehavior: ADD_STACK increments, REFRESH_DURATION resets timer, IGNORE is no-op, REPLACE overwrites
+- BuffEngine execution order is strict: apply → tick → resolve
+- Duration=None buffs are permanent (never expire)
+- Deterministic: `BuffEngine.run_determinism_check()` validates this
+
+**Failure Conditions:**
+- Invalid condition_type → raises ValueError on construction
+- Numeric condition without threshold_value → raises ValueError
+- Negative duration → raises ValueError
+- Invalid modifier_type → raises ValueError (must be additive | multiplicative | override)
+
+### Observability Hooks
+
+- **Buff debug export:** `export_active_buffs()` produces per-buff debug entries (id, stacks, remaining_duration, modifiers)
+- **Condition evaluation logging:** ConditionalModifierEngine logs per-modifier active/inactive status
+- **ConditionalLogger:** `debug/conditional_logger.py` records tick-level evaluation history with state snapshots
+
 ---
 
 ## Encounter System
@@ -292,6 +546,68 @@ Multi-enemy encounter simulation with phases, spawning, and downtime.
 | `encounter/downtime.py` | DowntimeTracker — movement/dodge windows |
 | `encounter/result_aggregator.py` | AggregatedResult — multi-run statistics |
 | `encounter/boss_templates.py` | Pre-built boss encounter configs |
+
+### Encounter Pipeline Contract
+
+**Inputs:**
+- `EncounterConfig` — enemies (list[EncounterEnemy]), fight_duration, tick_size, base_damage, hit_config (MultiHitConfig), phases, spawn_waves, downtime_windows, timeline_events, stop_on_all_dead
+
+**Outputs:**
+- `EncounterRunResult` — total_damage, elapsed_time, ticks_simulated, all_enemies_dead, enemies_killed, total_casts, downtime_ticks, active_phase_id, damage_per_tick (list[float])
+- `AggregatedResult` (from result_aggregator) — multi-run statistics (avg/min/max/std for damage, dps, kills)
+
+**Invariants:**
+- Tick loop advances in fixed tick_size increments
+- Downtime windows suppress all casting during their active period
+- Phase transitions trigger at health thresholds
+- Spawn waves introduce enemies at scheduled times
+- stop_on_all_dead=True terminates early when all enemies die
+- Dead enemies cannot take further damage
+
+**Failure Conditions:**
+- Empty enemy list → no targets (zero damage)
+- fight_duration <= 0 → invalid config
+- Enemy health <= 0 → immediately dead on spawn
+
+### Observability Hooks
+
+- **damage_per_tick:** Full tick-level damage history in EncounterRunResult
+- **Phase tracking:** active_phase_id in result shows final phase state
+- **Result aggregation:** aggregate_results() computes statistical summaries across multiple runs
+
+### Performance Characteristics
+
+- **Complexity:** O((D/T) × E) where D=duration, T=tick_size, E=alive enemies per tick
+- **Memory:** O(D/T) for damage_per_tick list; O(E) for target tracking
+- **Scaling risk:** Large enemy counts (50+ via MAX_ENEMIES) with small tick_size
+
+---
+
+## Rotation System
+
+### Key Files
+
+| File | Purpose |
+|------|---------|
+| `app/domain/rotation.py` | SkillEntry, RotationEngine, select_next() — priority-based skill selection |
+| `app/domain/cooldown.py` | CooldownManager — per-skill cooldown tracking |
+| `app/domain/full_combat_loop.py` | FullCombatLoop — integrates rotation + cooldowns + mana + ailments + buffs + triggers |
+
+### Rotation Pipeline Contract
+
+**Inputs:**
+- `entries: list[SkillEntry]` — skills with name, mana_cost, cooldown, priority
+- `current_mana: float` — available mana
+- `cooldown_remaining: dict[str, float]` — per-skill cooldown timers
+
+**Outputs:**
+- `SkillEntry | None` — highest-priority ready skill, or None if all on cooldown/OOM
+
+**Invariants:**
+- Skills evaluated in priority order (lower number = higher priority)
+- A skill is "ready" when: cooldown_remaining <= 0 AND current_mana >= mana_cost
+- select_next() is a pure function — no side effects
+- Cooldown only starts after successful cast
 
 ---
 
@@ -410,3 +726,189 @@ frontend/src/
 | `test_stat_engine.py` | 100+ | BuildStats, StatPool, aggregate_stats |
 | `test_stat_resolution_pipeline.py` | 40+ | 8-layer pipeline |
 | `test_validators.py` | 70+ | Input validation |
+
+---
+
+## System Boundaries & Responsibilities
+
+Strict ownership rules govern what each layer is allowed to do.
+
+### `app/domain/` — Pure Domain Models
+
+- **MUST:** Be pure Python dataclasses/classes with no side effects
+- **MUST:** Accept typed domain objects or primitives as inputs
+- **MUST:** Return computed values without mutating inputs
+- **MUST NOT:** Import Flask, SQLAlchemy, or any HTTP/DB modules
+- **MUST NOT:** Perform I/O (file reads, network calls, database queries)
+- **MUST NOT:** Access `current_app`, `request`, or any Flask globals
+- **Side effects:** None permitted. All functions are referentially transparent.
+
+### `app/domain/calculators/` — Pure Math Functions
+
+- **MUST:** Be stateless functions (no class state, no globals)
+- **MUST:** Accept primitives or domain objects, return primitives
+- **MUST NOT:** Import anything outside `app/domain/` and `app/constants/`
+- **Side effects:** None. These are the innermost pure core.
+
+### `app/engines/` — Computation Engines
+
+- **MUST:** Orchestrate domain calculators into higher-level computations
+- **MAY:** Load game data from JSON files (via `game_data_loader`)
+- **MAY:** Use `@lru_cache` for data file memoization
+- **MUST NOT:** Import Flask, SQLAlchemy, or HTTP modules
+- **MUST NOT:** Write to disk or make network calls
+- **Side effects:** File reads for game data loading (cached). No writes.
+
+### `app/services/` — Service Layer
+
+- **MUST:** Orchestrate engines + DB access for API consumption
+- **MAY:** Import Flask extensions (current_app, db)
+- **MAY:** Perform database reads and writes
+- **MAY:** Call multiple engines in sequence
+- **MUST NOT:** Contain game logic or damage math
+- **Side effects:** Database mutations, cache updates.
+
+### `app/routes/` — API Endpoints
+
+- **MUST:** Handle HTTP request/response only
+- **MUST:** Validate input via Marshmallow schemas
+- **MUST:** Delegate all logic to services or engines
+- **MUST NOT:** Contain business logic, math, or data transformation
+- **MUST NOT:** Directly instantiate domain objects
+- **Side effects:** HTTP responses, request logging.
+
+### `builds/` — Build Subsystems
+
+- **MUST:** Be pure Python (no Flask, no DB)
+- **MAY:** Import from `app/domain/` and `app/engines/`
+- **Purpose:** Build-level abstractions (definition, gear, passives, buffs, stat compilation)
+- **Side effects:** None.
+
+### `buffs/`, `conditions/`, `modifiers/`, `state/` — Runtime Systems
+
+- **MUST:** Be pure Python with mutable state containers
+- **MUST:** Provide deterministic behavior (verifiable via determinism checks)
+- **MAY:** Import from `app/domain/` for type references
+- **MUST NOT:** Import Flask, DB, or HTTP modules
+- **Side effects:** Internal state mutation only (buff stacks, cooldowns, health).
+
+### `data/` — Data Pipeline
+
+- **MUST:** Load, validate, and transform raw game data files
+- **MAY:** Perform file I/O (read-only)
+- **MUST NOT:** Import Flask or depend on application context
+- **Side effects:** File reads only.
+
+---
+
+## Known Failure Modes & Safeguards
+
+### Invalid Stat Reference
+
+- **Detection:** `hasattr(stats, stat_key)` check before `setattr` in StatPool.resolve_to() and aggregate_stats
+- **Recovery:** Unknown stat keys are silently skipped. Value is lost but no crash occurs.
+- **Risk:** Typo in affix stat_key → silently ineffective gear. Mitigated by affix registry validation.
+
+### Missing Skill Scaling Stats
+
+- **Detection:** `AFFIX_STAT_KEYS.get(affix_name)` returns None for unknown affixes
+- **Recovery:** apply_affix() returns early with no effect
+- **Risk:** New affixes added to JSON but not to stat_key mappings → zero contribution
+
+### Cooldown Desync
+
+- **Detection:** Cooldown tracking uses `max(0.0, cd - tick)` clamping every tick
+- **Recovery:** Floating-point drift cannot produce negative cooldowns
+- **Risk:** Very small tick_size with many skills → accumulated float error. Mitigated by 1e-9 epsilon in ready check.
+
+### Negative Resource Drift
+
+- **Detection:** ManaPool.spend() raises InsufficientManaError if cost > current
+- **Recovery:** Combat loop checks can_afford() before spend() — exception should never fire
+- **Risk:** ManaPool.regenerate() clamps to max_mana — overshoot impossible
+
+### Infinite Rotation Loop
+
+- **Detection:** Combat simulator outer loop bounds: `while elapsed < duration`
+- **Recovery:** Loop always terminates — elapsed advances by tick_size every iteration regardless of casting outcome
+- **Risk:** Zero tick_size → infinite loop. Prevented by CombatScenario.__post_init__() validation.
+
+### Circular Buff Dependencies
+
+- **Detection:** BuffEngine.run_determinism_check() verifies identical outputs for identical inputs
+- **Recovery:** Buff conditions evaluate against SimulationState, not against other buffs' stat outputs
+- **Risk:** A buff that modifies health_pct could theoretically affect another buff's health_pct condition. Mitigated by strict apply→tick→resolve ordering (resolve reads state from before this frame's apply).
+
+### Circular Derived Stat Dependencies
+
+- **Detection:** `_validate_no_circular_deps()` in derived_stats.py checks at registration time
+- **Recovery:** Warnings logged. Registry execution order is explicit (by `order` field).
+- **Risk:** An entry that writes a field read by an earlier entry → stale data. Detected and warned.
+
+### Resistance Over-Penetration
+
+- **Detection:** `_clamp_resistance()` enforces [RES_MIN, RES_CAP] bounds
+- **Recovery:** Penetration beyond enemy resistance produces negative effective resistance (more damage taken), clamped at RES_MIN (-100%)
+- **Risk:** None — intentional game mechanic.
+
+---
+
+## Extension Safety Rules
+
+Guidelines for adding new mechanics without architectural erosion.
+
+### Adding a New Stat
+
+1. Add the field to `BuildStats` in `app/engines/stat_engine.py` with a default value
+2. If the stat comes from gear affixes: ensure the stat_key exists in `AFFIX_STAT_KEYS` (game_data_loader) and follows naming convention (`_pct` for increased, `more_` for multiplicative)
+3. If the stat is derived: add a `DerivedStatEntry` to `DERIVED_STAT_REGISTRY` in `app/stats/derived_stats.py` with explicit reads/writes/order
+4. Never modify existing stat field names — downstream consumers depend on them
+5. Add test coverage for the new stat's pipeline path
+
+### Adding a New Modifier Type
+
+1. Extend `StatPool` buckets only if the new type has genuinely different math (not just a new stat key)
+2. New modifier routing must go through `_route_to_pool()` or `apply_affix()` — never bypass StatPool
+3. If the modifier is conditional: use the existing `ConditionalModifier` + `Condition` system
+4. Add the modifier to `builds/stat_modifiers.py` ModifierType enum if it's a new category
+
+### Adding a New Buff
+
+1. Create a `BuffDefinition` with appropriate `StackBehavior`
+2. Use existing `StatModifier` for stat effects — do not create parallel modifier systems
+3. If the buff has activation conditions: use existing `Condition` model
+4. Register via `BuffEngine.apply()` — do not directly mutate BuildStats
+5. Test stacking behavior and duration decay independently
+
+### Adding a New Enemy Type
+
+1. Add profile to `data/entities/enemy_profiles.json` with all 7 resistance types
+2. Register in `EnemyRegistry` at app startup
+3. Use existing `EnemyArchetype` for preset tiers, or `EnemyProfile` for custom
+4. Create `EnemyInstance` for mutable combat state — never modify EnemyProfile
+5. EnemyDefenseEngine already handles arbitrary resistance/armor values — no engine changes needed
+
+### Adding a New Resource System
+
+1. Follow the `ManaPool` pattern: mutable dataclass with `can_afford()`, `spend()`, `regenerate()`
+2. Add resource config to `CombatScenario` as immutable fields
+3. Create fresh resource instance per `simulate()` call — never share across runs
+4. Gate skill casting in the combat loop with the same `if can_afford → spend → cast` pattern
+5. Track resource telemetry in `SimulationResult`
+
+### Adding a New Pipeline Layer
+
+1. Assign an explicit layer number (e.g. Layer 9)
+2. Insert in `resolve_final_stats()` between the appropriate existing layers
+3. Update `resolution_order` list
+4. Add snapshot capture under `capture_snapshots` flag
+5. Update all tests that assert layer count
+6. Document the layer in this file with inputs, outputs, and invariants
+
+### General Rules
+
+- **Never bypass the pipeline.** All stat modifications must flow through StatPool or a designated pipeline layer.
+- **Never add global mutable state.** All simulation state must be scoped to a single run.
+- **Never import upward.** domain/ must not import from engines/. engines/ must not import from services/. services/ must not import from routes/.
+- **Always default to backward-compatible.** New fields must have defaults. New parameters must be optional.
+- **Always add tests.** No pipeline change ships without test coverage for the new path AND regression tests for the existing path.
