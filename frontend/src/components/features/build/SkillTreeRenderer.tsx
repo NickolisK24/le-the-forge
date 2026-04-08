@@ -96,7 +96,8 @@ function toLayoutNodes(nodes: SkillNode[], rootId: number): LayoutNode[] {
   return nodes.map(n => ({
     ...n,
     lx: (n.transform?.x ?? 0) - midX,
-    ly: (n.transform?.y ?? 0) - midY,
+    // Negate Y: API data uses positive-Y-up (math coords), SVG uses positive-Y-down
+    ly: -(((n.transform?.y ?? 0) - midY)),
     nodeType: getNodeType(n, rootId),
   }));
 }
