@@ -9,9 +9,12 @@ import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
-import { versionApi, simulateApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
+import { versionApi, simulateApi, buildsApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
+import type { OptimizeMode } from "@/types";
 import SimulationDashboard from "./SimulationDashboard";
+import StatUpgradePanel from "./StatUpgradePanel";
+import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
 import SkillTreeGraph from "./SkillTreeGraph";
 import PassiveTreeGraph from "./PassiveTreeGraph";
 import PassiveProgressBar from "./PassiveProgressBar";
@@ -165,6 +168,7 @@ function BuildSummary({ build }: { build: Build }) {
 
   const [simResult, setSimResult] = useState<BuildSimulationResult | null>(null);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [optimizeMode, setOptimizeMode] = useState<OptimizeMode>("balanced");
   const simulateMutation = useMutation({
     mutationFn: () => simulateApi.build(build.slug),
     onSuccess: (res) => {
@@ -176,6 +180,14 @@ function BuildSummary({ build }: { build: Build }) {
       }
     },
     onError: () => toast.error("Simulation failed — backend may be unavailable"),
+  });
+
+  const optimizeQuery = useQuery({
+    queryKey: ["optimize", build.slug, optimizeMode],
+    queryFn: () => buildsApi.optimize(build.slug, optimizeMode),
+    enabled: showDashboard && simResult !== null,
+    staleTime: 30 * 60 * 1000,
+    select: (res) => res.data,
   });
 
   function handleExport() {
@@ -536,6 +548,26 @@ function BuildSummary({ build }: { build: Build }) {
         {showDashboard && simResult && (
           <div className="mt-2">
             <SimulationDashboard result={simResult} />
+          </div>
+        )}
+
+        {/* Phase 4: Optimization panels */}
+        {showDashboard && simResult && (
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <StatUpgradePanel
+              rankings={optimizeQuery.data?.stat_rankings ?? []}
+              mode={optimizeMode}
+              onModeChange={setOptimizeMode}
+              isLoading={optimizeQuery.isLoading}
+              error={optimizeQuery.error}
+              onRetry={() => optimizeQuery.refetch()}
+            />
+            <UpgradeCandidatesPanel
+              candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
+              isLoading={optimizeQuery.isLoading}
+              error={optimizeQuery.error}
+              onRetry={() => optimizeQuery.refetch()}
+            />
           </div>
         )}
       </div>

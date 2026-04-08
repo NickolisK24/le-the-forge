@@ -25,6 +25,8 @@ import type {
   AffixDef,
   User,
   PaginationMeta,
+  OptimizeResponse,
+  OptimizeMode,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -188,6 +190,9 @@ export const buildsApi = {
     post<VoteResult>(`/builds/${slug}/vote`, { direction }),
 
   metaSnapshot: () => get<MetaSnapshot>("/builds/meta/snapshot"),
+
+  optimize: (slug: string, mode: OptimizeMode = "balanced") =>
+    get<OptimizeResponse>(`/builds/${slug}/optimize?mode=${mode}`),
 };
 
 // ---------------------------------------------------------------------------

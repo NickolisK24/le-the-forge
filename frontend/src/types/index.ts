@@ -285,3 +285,39 @@ export interface AffixDef {
   class_requirement?: string | null;
 }
 
+// ---------------------------------------------------------------------------
+// Phase 4 — Optimization (sensitivity + ranking + efficiency)
+// ---------------------------------------------------------------------------
+
+export type OptimizeMode = "balanced" | "offense" | "defense";
+
+export interface StatRankingEntry {
+  stat_key: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  impact_score: number;
+  rank: number;
+}
+
+export interface UpgradeCandidate {
+  affix_id: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  fp_cost: number;
+  efficiency_score: number;
+  rank: number;
+}
+
+export interface OptimizeResponse {
+  stat_rankings: StatRankingEntry[];
+  top_upgrade_candidates: UpgradeCandidate[];
+  mode: OptimizeMode;
+  offense_weight: number;
+  defense_weight: number;
+  base_dps: number;
+  base_ehp: number;
+  generated_at: string;
+}
+
