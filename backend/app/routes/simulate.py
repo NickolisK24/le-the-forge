@@ -25,12 +25,25 @@ submitted to the background job pool and the response is:
 The client then polls GET /api/jobs/<job_id> until status == "done".
 """
 
+import os
+
 from flask import Blueprint, request
 from marshmallow import ValidationError
 
 from app import limiter
 from app.models import PassiveNode
 from app.services.passive_stat_resolver import resolve_passive_stats
+from app.utils.logging import ForgeLogger
+
+_log = ForgeLogger(__name__)
+
+# ---------------------------------------------------------------------------
+# Rate limit configuration — overridable via environment variables
+# ---------------------------------------------------------------------------
+
+_LIMIT_STATS     = os.environ.get("RATE_LIMIT_SIMULATE_STATS",     "60 per minute")
+_LIMIT_BUILD     = os.environ.get("RATE_LIMIT_SIMULATE_BUILD",     "30 per minute")
+_LIMIT_ENCOUNTER = os.environ.get("RATE_LIMIT_SIMULATE_ENCOUNTER", "15 per minute")
 from app.schemas.simulate import (
     SimulateStatsSchema,
     SimulateCombatSchema,
@@ -71,7 +84,7 @@ def _sim_cache_key(prefix: str, data: dict) -> str:
 
 
 @simulate_bp.post("/stats")
-@limiter.limit("30 per minute")
+@limiter.limit(_LIMIT_STATS)
 def simulate_stats():
     """Aggregate all character stats from class, mastery, passives, and gear."""
     try:
@@ -224,7 +237,7 @@ def simulate_sensitivity():
 
 
 @simulate_bp.post("/encounter")
-@limiter.limit("30 per minute")
+@limiter.limit(_LIMIT_ENCOUNTER)
 def simulate_encounter():
     """Run the Phase C encounter engine for a given boss template and build stats."""
     try:
@@ -261,7 +274,7 @@ def simulate_encounter_from_build():
 
 
 @simulate_bp.post("/build")
-@limiter.limit("10 per minute")
+@limiter.limit(_LIMIT_BUILD)
 def simulate_build():
     """Full pipeline: aggregate stats → DPS → defense → optimization.
 

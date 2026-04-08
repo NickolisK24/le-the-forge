@@ -4,15 +4,23 @@ E3 — Build Stats Engine
 Converts a BuildDefinition into numeric BuildStats by delegating to
 app.engines.stat_engine.aggregate_stats().
 
+Also supports compiling from BuildState (the new equipment-set-aware
+domain model) via compile_from_state().
+
 The game data loader uses a module-level fallback pipeline, so this
 works both inside and outside a Flask application context.
 """
 
 from __future__ import annotations
 from dataclasses import asdict
+from typing import TYPE_CHECKING
 
 from builds.build_definition import BuildDefinition
 from builds.passive_system   import PassiveNode
+
+if TYPE_CHECKING:
+    from app.domain.build_state import BuildState
+    from app.engines.stat_engine import BuildStats
 
 
 class BuildStatsEngine:
@@ -95,3 +103,15 @@ class BuildStatsEngine:
             "crit_chance":     stats.crit_chance,
             "crit_multiplier": stats.crit_multiplier,
         }
+
+    # ------------------------------------------------------------------
+    # BuildState integration (equipment-set-aware path)
+    # ------------------------------------------------------------------
+
+    def compile_from_state(self, state: "BuildState") -> "BuildStats":
+        """Compile stats from a BuildState using its recompute pipeline.
+
+        This delegates to BuildState.recompute() which runs the full
+        6-layer resolution pipeline with equipment, passives, and buffs.
+        """
+        return state.recompute()

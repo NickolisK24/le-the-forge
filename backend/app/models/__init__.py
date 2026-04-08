@@ -75,7 +75,7 @@ class Build(TimestampMixin, db.Model):
     __tablename__ = "builds"
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
-    author_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True)
+    author_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True, index=True)
     slug = db.Column(db.String(64), unique=True, nullable=False, index=True)
 
     name = db.Column(db.String(120), nullable=False)
@@ -164,7 +164,7 @@ class Vote(TimestampMixin, db.Model):
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
     user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=False)
-    build_id = db.Column(db.String(36), db.ForeignKey("builds.id"), nullable=False)
+    build_id = db.Column(db.String(36), db.ForeignKey("builds.id"), nullable=False, index=True)
     direction = db.Column(db.SmallInteger, nullable=False)  # +1 or -1
 
     user = db.relationship("User", back_populates="votes")
@@ -187,7 +187,7 @@ class CraftSession(TimestampMixin, db.Model):
     __tablename__ = "craft_sessions"
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
-    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True)
+    user_id = db.Column(db.String(36), db.ForeignKey("users.id"), nullable=True, index=True)
     slug = db.Column(db.String(64), unique=True, nullable=False, index=True)
 
     item_type = db.Column(db.String(32), nullable=False)
@@ -216,7 +216,7 @@ class CraftStep(db.Model):
 
     id = db.Column(db.String(36), primary_key=True, default=_uuid)
     session_id = db.Column(
-        db.String(36), db.ForeignKey("craft_sessions.id"), nullable=False
+        db.String(36), db.ForeignKey("craft_sessions.id"), nullable=False, index=True
     )
     step_number = db.Column(db.SmallInteger, nullable=False)
     timestamp = db.Column(db.DateTime(timezone=True), default=_now, nullable=False)

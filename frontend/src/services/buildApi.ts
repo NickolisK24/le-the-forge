@@ -4,10 +4,8 @@
  * Calls POST /api/simulate/encounter-build and returns typed encounter results.
  */
 
-import type { ApiResponse } from "@/types";
+import { apiPost } from "@/lib/api";
 import type { EncounterResult } from "@/services/encounterApi";
-
-const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
 
 // ---------------------------------------------------------------------------
 // Types
@@ -86,24 +84,11 @@ export const TEMPLATE_LABELS: Record<EnemyTemplateOpt, string> = {
 
 export async function simulateBuild(
   req: BuildSimRequest,
-  signal?: AbortSignal
 ): Promise<EncounterResult> {
-  const res = await fetch(`${BASE_URL}/simulate/encounter-build`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-    signal,
-  });
-
-  if (!res.ok) {
-    const body: ApiResponse<null> = await res.json().catch(() => ({
-      data: null, meta: null, errors: [{ message: `HTTP ${res.status}` }],
-    }));
-    const msg = body.errors?.[0]?.message ?? `Request failed (${res.status})`;
-    throw new Error(typeof msg === "string" ? msg : JSON.stringify(msg));
+  const res = await apiPost<EncounterResult>("/simulate/encounter-build", req);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "Build simulation failed");
   }
-
-  const body: ApiResponse<EncounterResult> = await res.json();
-  if (!body.data) throw new Error("Empty response from server");
-  return body.data;
+  if (!res.data) throw new Error("Empty response from server");
+  return res.data;
 }

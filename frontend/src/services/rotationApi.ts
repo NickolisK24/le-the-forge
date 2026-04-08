@@ -4,9 +4,7 @@
  * Calls POST /api/simulate/rotation and returns typed results.
  */
 
-import type { ApiResponse } from "@/types";
-
-const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
+import { apiPost } from "@/lib/api";
 
 // ---------------------------------------------------------------------------
 // Request types
@@ -89,24 +87,11 @@ export interface RotationResult {
 
 export async function runRotation(
   req: RotationRequest,
-  signal?: AbortSignal
 ): Promise<RotationResult> {
-  const res = await fetch(`${BASE_URL}/simulate/rotation`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-    signal,
-  });
-
-  if (!res.ok) {
-    const body: ApiResponse<null> = await res.json().catch(() => ({
-      data: null, meta: null, errors: [{ message: `HTTP ${res.status}` }],
-    }));
-    const msg = body.errors?.[0]?.message ?? `Request failed (${res.status})`;
-    throw new Error(msg);
+  const res = await apiPost<RotationResult>("/simulate/rotation", req);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "Rotation simulation failed");
   }
-
-  const body: ApiResponse<RotationResult> = await res.json();
-  if (!body.data) throw new Error("Empty response from server");
-  return body.data;
+  if (!res.data) throw new Error("Empty response from server");
+  return res.data;
 }

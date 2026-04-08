@@ -184,6 +184,19 @@ export default function SkillTreeGraph({ nodes, allocated, onAllocate, readOnly,
     return result;
   }, [layoutNodes, byId]);
 
+  if (!nodes.length) {
+    return (
+      <div
+        className="flex items-center justify-center rounded border border-forge-border bg-forge-surface"
+        style={{ height: DISPLAY_H, background: "#0b0e1a" }}
+      >
+        <p className="font-mono text-sm text-forge-dim">
+          No skill tree data available for this skill.
+        </p>
+      </div>
+    );
+  }
+
   return (
     <div className="flex flex-col gap-0 rounded border border-forge-border bg-forge-surface overflow-hidden">
 

@@ -115,6 +115,15 @@ function PassiveTreeIcon() {
   );
 }
 
+function ClassesIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <circle cx="10" cy="7" r="3" />
+      <path d="M4 17 C4 13.5 7 12 10 12 C13 12 16 13.5 16 17" />
+    </svg>
+  );
+}
+
 function MetaIcon() {
   return (
     <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -146,6 +155,7 @@ function ForgeLogoSmall() {
 
 const NAV_ITEMS: NavItem[] = [
   { to: "/",            label: "Dashboard",     icon: <DashboardIcon /> },
+  { to: "/classes",     label: "Classes",       icon: <ClassesIcon /> },
   { to: "/builds",      label: "Builds",        icon: <BuildsIcon /> },
   { to: "/build",       label: "Build Planner", icon: <BuildPlannerIcon /> },
   { to: "/passives",    label: "Passive Tree",  icon: <PassiveTreeIcon /> },

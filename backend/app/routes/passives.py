@@ -14,7 +14,7 @@ All responses share the same envelope:
 import json
 from pathlib import Path
 
-from flask import Blueprint, request
+from flask import Blueprint, current_app, request
 
 from app.models import PassiveNode
 from app.utils.responses import ok, error
@@ -115,6 +115,7 @@ def list_passives():
     try:
         nodes = q.order_by(PassiveNode.mastery_index, PassiveNode.raw_node_id).all()
     except Exception:
+        current_app.logger.exception("DB query failed in list_passives")
         nodes = []
     return _nodes_response(nodes, character_class=cls, mastery=mastery)
 
@@ -133,6 +134,7 @@ def get_class_tree(character_class: str):
             .all()
         )
     except Exception:
+        current_app.logger.exception("DB query failed in get_class_tree")
         nodes = []
     return _nodes_response(nodes, character_class=character_class)
 
@@ -160,5 +162,6 @@ def get_mastery_tree(character_class: str, mastery: str):
             .all()
         )
     except Exception:
+        current_app.logger.exception("DB query failed in get_mastery_tree")
         nodes = []
     return _nodes_response(nodes, character_class=character_class, mastery=mastery)

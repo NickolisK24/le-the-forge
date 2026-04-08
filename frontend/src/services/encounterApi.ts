@@ -1,12 +1,11 @@
 /**
- * D7 — Encounter simulation API client.
+ * Encounter simulation API client.
  *
+ * Uses the shared API client for auth token injection and error handling.
  * Calls POST /api/simulate/encounter and returns typed results.
  */
 
-import type { ApiResponse } from "@/types";
-
-const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
+import { apiPost } from "@/lib/api";
 
 export type HitDistribution = "SINGLE" | "CLEAVE" | "SPLIT" | "CHAIN";
 export type EnemyTemplate =
@@ -56,24 +55,13 @@ export const DISTRIBUTION_LABELS: Record<HitDistribution, string> = {
 
 export async function runSimulation(
   req: EncounterRequest,
-  signal?: AbortSignal
 ): Promise<EncounterResult> {
-  const res = await fetch(`${BASE_URL}/simulate/encounter`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-    signal,
-  });
-
-  if (!res.ok) {
-    const body: ApiResponse<null> = await res.json().catch(() => ({
-      data: null, meta: null, errors: [{ message: `HTTP ${res.status}` }],
-    }));
-    const msg = body.errors?.[0]?.message ?? `Request failed (${res.status})`;
-    throw new Error(msg);
+  const res = await apiPost<EncounterResult>("/simulate/encounter", req);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "Simulation failed");
   }
-
-  const body: ApiResponse<EncounterResult> = await res.json();
-  if (!body.data) throw new Error("Empty response from server");
-  return body.data;
+  if (!res.data) {
+    throw new Error("Empty response from simulation");
+  }
+  return res.data;
 }

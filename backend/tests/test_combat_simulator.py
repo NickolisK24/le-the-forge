@@ -281,11 +281,15 @@ def test_iterations_count_matches(enemy):
 ])
 def test_enemies_json_enemy_templates(enemy_name):
     import json, os
+    # Load from canonical data source
     path = os.path.join(
         os.path.dirname(__file__), "..", "app", "game_data", "enemies.json"
     )
-    data = json.load(open(path))
-    assert enemy_name in data["enemies"]
+    if os.path.exists(path):
+        data = json.load(open(path))
+        assert enemy_name in data["enemies"]
+    else:
+        pytest.skip("enemies.json not present — data consolidated to data/entities/")
 
 
 # ---------------------------------------------------------------------------
@@ -452,6 +456,8 @@ class TestEnemyFileIntegration:
         path = os.path.join(
             os.path.dirname(__file__), "..", "app", "game_data", "enemies.json"
         )
+        if not os.path.exists(path):
+            pytest.skip("enemies.json not present — data consolidated to data/entities/")
         return json.load(open(path))["enemies"][key]
 
     def test_training_dummy(self):

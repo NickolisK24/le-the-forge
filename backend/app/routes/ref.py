@@ -14,7 +14,7 @@ GET  /api/ref/affix-categories    → Available affix category descriptions
 GET  /api/ref/crafting-rules      → FP cost ranges from crafting_rules.json
 """
 
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, current_app, request, jsonify
 
 from app.constants.cache import REF_STATIC_CACHE_TTL, REF_SEMISTATIC_CACHE_TTL
 from app.models import ItemType, AffixDef, PassiveNode
@@ -25,6 +25,46 @@ from app.utils.responses import ok
 from app.utils.cache import cached_route, delete_pattern
 
 ref_bp = Blueprint("ref", __name__)
+
+
+# ---------------------------------------------------------------------------
+# Slot name normalization — maps frontend-friendly names to DB values
+# ---------------------------------------------------------------------------
+# Frontend/UI may use human-readable names (helmet, chest, boots) while the
+# database applicable_to arrays use game-internal names (helm, chest, feet).
+# This mapping is applied at the API boundary so callers can use either form.
+
+_SLOT_ALIASES: dict[str, list[str]] = {
+    # Frontend name  →  DB applicable_to values to match against
+    "helmet":         ["helm"],
+    "head":           ["helm"],
+    "body":           ["chest"],
+    "feet":           ["boots"],
+    "hands":          ["gloves"],
+    "neck":           ["amulet"],
+    "finger":         ["ring"],
+    "waist":          ["belt"],
+    "weapon":         ["sword_1h", "sword_2h", "axe_1h", "axe_2h", "mace_1h", "mace_2h",
+                       "dagger", "sceptre", "wand", "staff", "bow", "polearm", "spear",
+                       "crossbow", "fist"],
+    "offhand":        ["shield", "quiver", "catalyst"],
+    "off_hand":       ["shield", "quiver", "catalyst"],
+    "idol":           ["idol", "idol_1x1_eterra", "idol_1x1_lagon", "idol_1x2", "idol_1x3",
+                       "idol_1x4", "idol_2x1", "idol_2x2", "idol_3x1", "idol_4x1"],
+}
+
+
+def _normalize_slot(raw_slot: str) -> list[str]:
+    """Convert a frontend slot name to a list of DB applicable_to values.
+
+    If the slot is already a valid DB value, returns it as a single-item list.
+    If it's an alias, returns all mapped DB values.
+    """
+    key = raw_slot.strip().lower()
+    if key in _SLOT_ALIASES:
+        return _SLOT_ALIASES[key]
+    # Already a DB value — return as-is
+    return [key]
 
 
 # ---------------------------------------------------------------------------
@@ -87,21 +127,28 @@ def _get_affix_seed_data() -> list[dict]:
     with open(affixes_path, encoding="utf-8") as f:
         raw_list: list[dict] = json.load(f)
 
-    return [
-        {
+    # Normalize experimental/personal → prefix to match the DB path
+    type_normalize = {"experimental": "prefix", "personal": "prefix"}
+    result = []
+    for a in raw_list:
+        raw_type = a.get("type", "")
+        if raw_type not in ("prefix", "suffix", "experimental", "personal"):
+            continue
+        canonical_type = type_normalize.get(raw_type, raw_type)
+        tags = list(a.get("tags", []))
+        if raw_type in type_normalize and raw_type not in tags:
+            tags.append(raw_type)
+        result.append({
             "id": a.get("id", a.get("affix_id", a.get("name", ""))),
             "name": a.get("name", ""),
-            "type": a.get("type", ""),                       # "prefix" or "suffix"
-            "modifier_type": a.get("modifier_type", "flat"),
+            "type": canonical_type,
             "stat_key": a.get("stat_key", ""),
             "tiers": a.get("tiers", []),
             "applicable_to": a.get("applicable_to", []),
             "class_requirement": a.get("class_requirement"),
-            "tags": a.get("tags", []),
-        }
-        for a in raw_list
-        if a.get("type", "") in ("prefix", "suffix", "experimental", "personal")
-    ]
+            "tags": tags,
+        })
+    return result
 
 
 @ref_bp.get("/classes")
@@ -116,6 +163,7 @@ def get_item_types():
     try:
         item_types = ItemType.query.order_by(ItemType.category, ItemType.name).all()
     except Exception:
+        current_app.logger.exception("DB query failed in get_item_types")
         item_types = []
     if not item_types:
         # Return static fallback if DB not seeded yet
@@ -140,6 +188,18 @@ def get_item_types():
 @ref_bp.get("/affixes")
 @cached_route("ref:affixes", ttl=REF_SEMISTATIC_CACHE_TTL)
 def get_affixes():
+    try:
+        return _get_affixes_inner()
+    except Exception:
+        current_app.logger.exception("Unhandled error in get_affixes — falling back to JSON")
+        try:
+            return ok(data=_get_affix_seed_data())
+        except Exception:
+            current_app.logger.exception("JSON fallback also failed in get_affixes")
+            return ok(data=[])
+
+
+def _get_affixes_inner():
     category = request.args.get("category") or request.args.get("type")
     item_slot = request.args.get("slot")
     class_req = request.args.get("class")
@@ -155,15 +215,21 @@ def get_affixes():
             AffixDef.affix_type.in_(CRAFTABLE_TYPES)
         ).order_by(AffixDef.name).all()
     except Exception:
+        current_app.logger.exception("DB query failed in get_affixes")
         affixes = []
+
+    # Normalize slot parameter to DB vocabulary
+    slot_matches = _normalize_slot(item_slot) if item_slot else []
 
     if not affixes:
         # Static fallback from canonical JSON
         data = _get_affix_seed_data()
         if category:
             data = [a for a in data if a["type"] == category or category in a.get("tags", [])]
-        if item_slot:
-            data = [a for a in data if item_slot.lower() in [s.lower() for s in a.get("applicable_to", [])]]
+        if slot_matches:
+            data = [a for a in data if any(
+                s.lower() in slot_matches for s in a.get("applicable_to", [])
+            )]
         if class_req:
             data = [a for a in data if a.get("class_requirement") in (None, class_req)]
         if tag:
@@ -172,7 +238,9 @@ def get_affixes():
 
     result = []
     for a in affixes:
-        if item_slot and item_slot.lower() not in [s.lower() for s in (a.applicable_types or [])]:
+        if slot_matches and not any(
+            s.lower() in slot_matches for s in (a.applicable_types or [])
+        ):
             continue
         if class_req and a.class_requirement and a.class_requirement != class_req:
             continue
@@ -199,6 +267,7 @@ def get_affixes():
             "id": str(a.id),
             "name": a.name,
             "type": canonical_type,
+            "stat_key": a.stat_key or "",
             "applicable_to": a.applicable_types or [],
             "tiers": tiers,
             "tags": tags,
@@ -285,7 +354,14 @@ def get_base_items_endpoint():
             for s in expanded:
                 items.extend(all_bases.get(s, []))
         else:
-            items = get_bases_for_slot(slot)
+            # Try normalized slot names, then fall back to direct lookup
+            all_bases = get_all_bases()
+            normalized = _normalize_slot(slot)
+            items = []
+            for s in normalized:
+                items.extend(all_bases.get(s, []))
+            if not items:
+                items = get_bases_for_slot(slot)
         return ok(data=items)
     return ok(data=get_all_bases())
 
@@ -416,9 +492,10 @@ def get_uniques_endpoint():
     if slot:
         expanded = _SLOT_CATEGORIES.get(slot)
         if expanded:
-            uniques = [u for u in uniques if u.get("slot", "").lower() in expanded]
+            slot_set = expanded
         else:
-            uniques = [u for u in uniques if u.get("slot", "").lower() == slot]
+            slot_set = frozenset(_normalize_slot(slot))
+        uniques = [u for u in uniques if u.get("slot", "").lower() in slot_set]
 
     if query:
         uniques = [

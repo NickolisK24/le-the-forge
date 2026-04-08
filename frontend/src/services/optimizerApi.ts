@@ -4,11 +4,9 @@
  * Calls POST /api/optimize/build and returns typed optimization results.
  */
 
-import type { ApiResponse } from "@/types";
+import { apiPost } from "@/lib/api";
 import type { BuildDefinition, EncounterOverride } from "@/services/buildApi";
 import type { EncounterResult } from "@/services/encounterApi";
-
-const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
 
 // ---------------------------------------------------------------------------
 // Request / Response types
@@ -53,26 +51,13 @@ export interface OptimizeBuildResponse {
 
 export async function runOptimization(
   req: OptimizeBuildRequest,
-  signal?: AbortSignal
 ): Promise<OptimizeBuildResponse> {
-  const res = await fetch(`${BASE_URL}/optimize/build`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify(req),
-    signal,
-  });
-
-  if (!res.ok) {
-    const body: ApiResponse<null> = await res.json().catch(() => ({
-      data: null, meta: null, errors: [{ message: `HTTP ${res.status}` }],
-    }));
-    const msg = body.errors?.[0]?.message ?? `Request failed (${res.status})`;
-    throw new Error(msg);
+  const res = await apiPost<OptimizeBuildResponse>("/optimize/build", req);
+  if (res.errors) {
+    throw new Error(res.errors[0]?.message ?? "Optimization failed");
   }
-
-  const body: ApiResponse<OptimizeBuildResponse> = await res.json();
-  if (!body.data) throw new Error("Empty response from server");
-  return body.data;
+  if (!res.data) throw new Error("Empty response from server");
+  return res.data;
 }
 
 // ---------------------------------------------------------------------------

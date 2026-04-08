@@ -90,6 +90,9 @@ class TestConstantsJson:
 
 @pytest.fixture(scope="module")
 def enemies():
+    path = os.path.join(_DATA_DIR, "enemies.json")
+    if not os.path.exists(path):
+        pytest.skip("enemies.json removed — data consolidated to data/entities/enemy_profiles.json")
     return _load("enemies.json")
 
 

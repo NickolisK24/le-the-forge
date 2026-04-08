@@ -41,13 +41,6 @@
     "lore": "",
     "class": ""
   },
-  "Aura Of Decay": {
-    "id": "ad0ry",
-    "name": "Aura Of Decay",
-    "description": "Toggles Aura of Decay, which poisons you every second, and leaves a trail of decay. Enemies near you or in the trail are poisoned four times a second, and your chance to poison on hit applies to each of these instances at 100% effectiveness.\n\nWhile Aura of Decay is active you take 30% less poison damage. Additionally, you take 50% less damage from your own Aura of Decay.",
-    "lore": "",
-    "class": ""
-  },
   "Avalanche": {
     "id": "av75ch",
     "name": "Avalanche",
@@ -458,13 +451,6 @@
     "id": "re82ke",
     "name": "Rebuke",
     "description": "Hold ability key to channel for up to 2 seconds. You take 80% less damage while channelling.\n\nWhen you stop channelling the barrier breaks dealing physical damage to all nearby enemies. This deals 20 additional physical damage for each hit you received while channelling.",
-    "lore": "",
-    "class": ""
-  },
-  "Ring Of Shields": {
-    "id": "rs31hi",
-    "name": "Ring Of Shields",
-    "description": "Manifests a ring of shields around you.\n\nEach shield has 75 base health and lasts up to 10 seconds. Shields draw enemy aggression and block projectiles.\n\nStats on your equipped shield also apply to the shields created by Ring of Shields",
     "lore": "",
     "class": ""
   },
@@ -1056,13 +1042,6 @@
     "lore": "",
     "class": ""
   },
-  "Mark For Death": {
-    "id": "md26kh",
-    "name": "Mark For Death",
-    "description": "Curses the enemy, reducing all resistances by 25% for 8 seconds. This effect does not stack.",
-    "lore": "",
-    "class": ""
-  },
   "Disintegrate": {
     "id": "dig5",
     "name": "Disintegrate",
@@ -1111,5 +1090,117 @@
     "description": "A melee attack which grants you a stack of Firebrand buff if it hits an enemy. Each stack of the Firebrand buff increases the size of subsequent Firebrand attacks and adds melee fire damage.",
     "lore": "",
     "class": ""
+  },
+  "Mark for Death": {
+    "id": "md26kh",
+    "name": "Mark for Death",
+    "description": "Curses the enemy, reducing all resistances by 25% for 8 seconds. This effect does not stack.",
+    "lore": "",
+    "class": ""
+  },
+  "Aura of Decay": {
+    "id": "ad0ry",
+    "name": "Aura of Decay",
+    "description": "Toggles Aura of Decay, which poisons you every second, and leaves a trail of decay. Enemies near you or in the trail are poisoned four times a second, and your chance to poison on hit applies to each of these instances at 100% effectiveness.\n\nWhile Aura of Decay is active you take 30% less poison damage. Additionally, you take 50% less damage from your own Aura of Decay.",
+    "lore": "",
+    "class": ""
+  },
+  "Ring of Shields": {
+    "id": "rs31hi",
+    "name": "Ring of Shields",
+    "description": "Manifests a ring of shields around you.\n\nEach shield has 75 base health and lasts up to 10 seconds. Shields draw enemy aggression and block projectiles.\n\nStats on your equipped shield also apply to the shields created by Ring of Shields",
+    "lore": "",
+    "class": ""
+  },
+  "Arrow Barrage": {
+    "id": "arrow_barrage",
+    "name": "Arrow Barrage",
+    "description": "Fire a barrage of arrows.",
+    "lore": "",
+    "class": "Rogue"
+  },
+  "Blade Flurry": {
+    "id": "blade_flurry",
+    "name": "Blade Flurry",
+    "description": "A rapid series of blade attacks.",
+    "lore": "",
+    "class": "Rogue"
+  },
+  "Fireball": {
+    "id": "fireball",
+    "name": "Fireball",
+    "description": "Launch a ball of fire at enemies.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Ice Thorns": {
+    "id": "ice_thorns",
+    "name": "Ice Thorns",
+    "description": "Summon thorns of ice around you.",
+    "lore": "",
+    "class": "Primalist"
+  },
+  "Meteor": {
+    "id": "meteor",
+    "name": "Meteor",
+    "description": "Call down a devastating meteor.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Nova": {
+    "id": "nova",
+    "name": "Nova",
+    "description": "Release a burst of energy in all directions.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Rain of Arrows": {
+    "id": "rain_of_arrows",
+    "name": "Rain of Arrows",
+    "description": "Rain arrows down on a target area.",
+    "lore": "",
+    "class": "Rogue"
+  },
+  "Reaper Form": {
+    "id": "reaper_form",
+    "name": "Reaper Form",
+    "description": "Transform into the Reaper.",
+    "lore": "",
+    "class": "Acolyte"
+  },
+  "Rune of Winter": {
+    "id": "rune_of_winter",
+    "name": "Rune of Winter",
+    "description": "Place a rune that deals cold damage.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Runic Bolt": {
+    "id": "runic_bolt",
+    "name": "Runic Bolt",
+    "description": "Fire a bolt of runic energy.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Scorpion Aspect": {
+    "id": "scorpion_aspect",
+    "name": "Scorpion Aspect",
+    "description": "Take on the aspect of a scorpion.",
+    "lore": "",
+    "class": "Primalist"
+  },
+  "Thorn Totem": {
+    "id": "thorn_totem",
+    "name": "Thorn Totem",
+    "description": "Summon a totem that fires thorns.",
+    "lore": "",
+    "class": "Primalist"
+  },
+  "Vessel of Chaos": {
+    "id": "vessel_of_chaos",
+    "name": "Vessel of Chaos",
+    "description": "Channel chaos energy.",
+    "lore": "",
+    "class": "Acolyte"
   }
 }

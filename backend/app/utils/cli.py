@@ -37,6 +37,7 @@ def register_commands(app: Flask) -> None:
         return result
 
     _ITEM_TYPES = [
+        # Weapons
         ("Wand", "weapon", "+X% Spell Damage"),
         ("Staff", "weapon", "+X% Spell Damage"),
         ("Sword", "weapon", "+X% Melee Damage"),
@@ -45,14 +46,28 @@ def register_commands(app: Flask) -> None:
         ("Mace", "weapon", "+X% Melee Damage"),
         ("Sceptre", "weapon", "+X Mana"),
         ("Bow", "weapon", "+X% Bow Damage"),
+        ("Polearm", "weapon", "+X% Melee Damage"),
+        ("Spear", "weapon", "+X% Melee Damage"),
+        # Off-hand
         ("Shield", "off_hand", "+X Armour"),
+        ("Quiver", "off_hand", None),
+        ("Catalyst", "off_hand", None),
+        # Armour
         ("Helm", "armour", None),
         ("Chest", "armour", None),
         ("Gloves", "armour", None),
         ("Boots", "armour", None),
+        # Accessories
         ("Belt", "accessory", None),
         ("Ring", "accessory", None),
         ("Amulet", "accessory", None),
+        ("Relic", "accessory", None),
+        # Idols
+        ("Idol_1X1", "idol", None),
+        ("Idol_1X2", "idol", None),
+        ("Idol_1X3", "idol", None),
+        ("Idol_1X4", "idol", None),
+        ("Idol_2X2", "idol", None),
     ]
 
     @app.cli.command("seed")
