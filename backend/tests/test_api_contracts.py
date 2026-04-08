@@ -16,10 +16,24 @@ automatically when FLASK_ENV=testing (which uses in-memory SQLite).
 import os
 import pytest
 
-# Skip the entire module in CI testing mode (no seeded DB available)
+# Skip the entire module when no seeded PostgreSQL database is available.
+# Contract tests need a live DB; they cannot run against in-memory SQLite.
+def _pg_available() -> bool:
+    """Return True only if the dev PostgreSQL database is reachable."""
+    try:
+        import psycopg2
+        conn = psycopg2.connect(
+            "postgresql://forge:forgedev@127.0.0.1:5432/the_forge",
+            connect_timeout=2,
+        )
+        conn.close()
+        return True
+    except Exception:
+        return False
+
 pytestmark = pytest.mark.skipif(
-    os.environ.get("FLASK_ENV") == "testing",
-    reason="Contract tests require a seeded PostgreSQL database, not SQLite"
+    not _pg_available(),
+    reason="Contract tests require a seeded PostgreSQL database (not available)"
 )
 
 # Use the dev database for contract tests (not sqlite)

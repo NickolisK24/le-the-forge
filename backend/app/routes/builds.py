@@ -189,6 +189,7 @@ def get_build(slug: str):
 # ---------------------------------------------------------------------------
 
 @builds_bp.patch("/<slug>")
+@limiter.limit("20 per minute")
 @login_required
 def update_build(slug: str):
     build = build_service.get_build(slug)
@@ -214,6 +215,7 @@ def update_build(slug: str):
 # ---------------------------------------------------------------------------
 
 @builds_bp.delete("/<slug>")
+@limiter.limit("10 per minute")
 @login_required
 def delete_build(slug: str):
     build = build_service.get_build(slug)

@@ -17,6 +17,8 @@ import type {
   StrategyComparison,
 } from "@/types";
 
+export type RiskLevel = "safe" | "moderate" | "dangerous" | "critical";
+
 export const TARGET_TIER = 5;
 
 export const FP_COSTS: Record<string, number> = {
@@ -128,6 +130,8 @@ export function simulateSequence(
   const sortedFp = [...fpConsumed].sort((a, b) => a - b);
   const sortedSteps = [...stepsCompleted].sort((a, b) => a - b);
 
+  const completedCount = stepsCompleted.filter((s) => s >= proposedSteps.length).length;
+
   return {
     fp_consumed: {
       p25: sortedFp[Math.floor(sortedFp.length * 0.25)],
@@ -139,6 +143,7 @@ export function simulateSequence(
       p50: sortedSteps[Math.floor(sortedSteps.length * 0.5)],
       p75: sortedSteps[Math.floor(sortedSteps.length * 0.75)],
     },
+    completion_rate: n > 0 ? completedCount / n : 0,
     n_simulations: n,
   };
 }
@@ -214,6 +219,7 @@ export function compareStrategies(
       return {
         name,
         description,
+        completion_chance: 0,
         expected_steps: 0,
         expected_fp_cost: 0,
       };
@@ -223,6 +229,7 @@ export function compareStrategies(
     return {
       name,
       description,
+      completion_chance: sim.completion_rate,
       expected_steps: steps.length,
       expected_fp_cost: fpTotal,
     };

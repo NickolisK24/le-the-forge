@@ -262,7 +262,7 @@ export interface PassiveNode {
   y: number;
   type: NodeType;
   name: string;
-  regionId: string;
+  regionId?: string;
   /** Maximum points that can be invested in this node */
   maxPoints?: number;
   /** Primary parent node ID (kept for backwards compatibility) */

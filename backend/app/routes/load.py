@@ -8,6 +8,7 @@ integrity warnings/errors detected during loading.
 
 from flask import Blueprint, current_app
 
+from app import limiter
 from app.utils.responses import ok, error
 from data.loaders.raw_data_loader import RawDataLoader
 from data.versioning.versioned_loader import VersionedLoader
@@ -18,6 +19,7 @@ load_bp = Blueprint("load", __name__)
 
 
 @load_bp.post("/game-data")
+@limiter.limit("5 per minute")
 def load_game_data():
     """
     Reload game data and run integrity checks.

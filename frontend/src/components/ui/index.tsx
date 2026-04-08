@@ -45,7 +45,7 @@ export function Panel({ title, action, children, className }: PanelProps) {
 // ---------------------------------------------------------------------------
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant?: "primary" | "ghost" | "danger" | "outline";
+  variant?: "primary" | "ghost" | "danger" | "outline" | "secondary";
   size?: "sm" | "md";
   children: ReactNode;
 }
@@ -59,6 +59,8 @@ const BUTTON_VARIANTS = {
     "bg-transparent text-forge-red border border-forge-red/40 hover:bg-forge-red/10 hover:border-forge-red",
   outline:
     "bg-transparent text-forge-muted border-forge-border hover:border-forge-amber hover:text-forge-amber",
+  secondary:
+    "bg-forge-surface2 text-forge-text border-forge-border hover:border-forge-cyan hover:text-forge-cyan",
 };
 
 const BUTTON_SIZES = {

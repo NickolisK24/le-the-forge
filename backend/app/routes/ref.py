@@ -21,7 +21,7 @@ from app.models import ItemType, AffixDef, PassiveNode
 from app.game_data.game_data_loader import get_all_affixes, get_affix_categories
 from app.engines.fp_engine import get_crafting_rules, get_all_fp_ranges, get_fp_range_by_rarity
 from app.engines.base_engine import get_all_bases, get_bases_for_slot, get_fp_range
-from app.utils.responses import ok
+from app.utils.responses import ok, error, not_found
 from app.utils.cache import cached_route, delete_pattern
 
 ref_bp = Blueprint("ref", __name__)
@@ -391,7 +391,7 @@ def get_fp_range_endpoint(rarity: str):
         lo, hi = get_fp_range_by_rarity(rarity, item_level)
         return ok(data={"rarity": rarity.lower(), "min_fp": lo, "max_fp": hi, "item_level": item_level})
     except ValueError as e:
-        return ok(data={"error": str(e)}, status=400)
+        return error(str(e), status=400)
 
 
 # ---------------------------------------------------------------------------
@@ -412,7 +412,7 @@ def get_enemy_profile_endpoint(enemy_id: str):
     from app.game_data.game_data_loader import get_enemy_profile
     profile = get_enemy_profile(enemy_id)
     if not profile:
-        return ok(data={"error": f"Enemy profile '{enemy_id}' not found"}, status=404)
+        return not_found(f"Enemy profile '{enemy_id}'")
     return ok(data=profile.to_dict())
 
 
@@ -513,5 +513,5 @@ def get_unique_endpoint(slug: str):
     from app.game_data.game_data_loader import get_unique_by_id
     item = get_unique_by_id(slug)
     if item is None:
-        return ok(data={"error": f"Unique '{slug}' not found"}, status=404)
+        return not_found(f"Unique '{slug}'")
     return ok(data=item)
