@@ -31,6 +31,10 @@ import type {
   SkillTreeResponse,
   SkillAllocationsResponse,
   SkillAllocation,
+  BossAnalysisResponse,
+  CorruptionAnalysisResponse,
+  GearUpgradeResponse,
+  BossListItem,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -566,5 +570,28 @@ export const uniquesApi = {
     return get<UniqueItem[]>(`/ref/uniques${qs ? "?" + qs : ""}`);
   },
   get: (slug: string) => get<UniqueItem>(`/ref/uniques/${slug}`),
+};
+
+// ---------------------------------------------------------------------------
+// Advanced Analysis (Phase 7)
+// ---------------------------------------------------------------------------
+
+export const analysisApi = {
+  boss: (slug: string, bossId: string, corruption = 0) =>
+    get<BossAnalysisResponse>(
+      `/builds/${slug}/analysis/boss/${bossId}?corruption=${corruption}`,
+    ),
+
+  corruption: (slug: string, bossId?: string) =>
+    get<CorruptionAnalysisResponse>(
+      `/builds/${slug}/analysis/corruption${bossId ? `?boss_id=${bossId}` : ""}`,
+    ),
+
+  gearUpgrades: (slug: string, slot?: string) =>
+    get<GearUpgradeResponse>(
+      `/builds/${slug}/analysis/gear-upgrades${slot ? `?slot=${slot}` : ""}`,
+    ),
+
+  bosses: () => get<BossListItem[]>("/entities/bosses"),
 };
 
