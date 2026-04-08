@@ -1,96 +1,54 @@
-# The Forge – Development Roadmap
-
-This document outlines the development stages for The Forge.
+# The Forge -- Development Roadmap
 
 ---
 
-# ✅ Phase 1 – Core Foundation *(Complete)*
+## Completed
 
-- Character data model
-- Stat calculation engine (base stats, mastery, passive nodes, gear affixes, attribute scaling)
-- Base damage simulation (DPS, crit scaling, attack/cast speed)
-- Defensive stat modeling (EHP, resistance capping, survivability score)
-- Basic build analysis output (upgrade advisor, weakness detection)
+### Phase 1 -- Core Foundation (v0.1.0)
+Character data model, stat calculation engine, base damage simulation, defensive stat modeling, crafting simulator with Monte Carlo, community builds browser, Discord OAuth2, Docker Compose environment.
 
----
+### Phase 2 -- Crafting Simulation (v0.1.0)
+Affix tier system with full seed data, forging potential tracking and RNG cost model, crafting probability modeling, Monte Carlo across thousands of craft attempts, strategy comparison and optimal path search.
 
-# ✅ Phase 2 – Crafting Simulation *(Complete)*
+### Phase 3 -- Passive Tree & System Polish (v0.3.0)
+Real game node coordinates, SVG connection rendering, BFS path validation, hexagonal nodes with stone texture, leveling path tracker, 8-layer stat engine, combat/defense/craft engine extraction, full system audit and structural polish.
 
-- Affix tier system with full seed data (34 affixes)
-- Forging potential tracking and RNG cost model
-- Crafting probability modeling and outcome simulation
-- Monte Carlo simulation across thousands of craft attempts
-- Strategy comparison and optimal path search
+### Phase 4 -- Optimization Engine (v0.4.0)
+Stat sensitivity analyzer with 50+ stat coverage and weighted impact scoring, upgrade efficiency scorer factoring DPS/EHP gain and FP cost, multi-objective optimization with Pareto front, best-in-slot search engine.
 
-> **Note:** Fracture mechanics were removed in alignment with modern Last Epoch (1.0+) game design.
+### Phase 5 -- Skill Tree UI (v0.5.0)
+Interactive skill specialization tree with node graph renderer, BFS path validation for skill trees, spec tree stat resolver parsing node descriptions into build stat bonuses and skill modifiers.
 
----
+### Phase 6 -- Build Import (v0.6.0)
+Build import from Last Epoch Tools and Maxroll URLs, partial import with gap reporting, import failure tracking with Discord webhook alerts.
 
-# ✅ Phase 3 – Passive Tree *(Complete)*
+### Phase 7 -- Advanced Analysis (v0.7.0)
+Boss encounter simulation with multi-phase transitions and enrage timers, corruption scaling curve analysis with recommended max corruption, per-slot gear upgrade ranking.
 
-- Real game node coordinates loaded from exported layout JSON
-- SVG connection rendering between nodes
-- BFS path validation — only reachable nodes can be allocated
-- Hexagonal nodes with stone texture background, color-coded by type
-- Static auto-fit layout (pan/zoom removed)
-- Leveling path tracker — scrollable timeline recording allocation order per level
+### Phase 8 -- Community Tools (v0.8.0)
+Build comparison engine with weighted DPS/EHP scoring, meta analytics with class/mastery distribution and trending builds, view tracking with privacy-safe IP hashing, shared build reports with OpenGraph meta tags.
 
 ---
 
-# 🔧 Phase 4 – Optimization Engine *(In Progress)*
+## In Progress
 
-- Stat sensitivity analysis
-- Offensive stat ranking
-- Defensive improvement analysis
-- Upgrade efficiency scoring
+### Phase 9 -- Deploy & Launch
 
-Partially implemented in `optimization_engine.py`. Needs expansion and full API exposure.
-
----
-
-# 🔜 Phase 5 – Skill Tree UI
-
-- Visual skill tree component (data already loaded in `skillTrees/index.ts`)
-- Mastery gate behavior — specialization selection unlocking deeper branches
-- Skill node tooltips with stat values and scaling
+- CI/CD pipeline with GitHub Actions (lint, test, type-check, deploy)
+- Production deployment (hosting platform TBD)
+- Domain and SSL configuration
+- Production environment configuration (Gunicorn, production database)
+- Performance audit and Redis caching verification
+- Mobile responsiveness audit
+- Community launch (r/LastEpoch, Last Epoch Discord)
+- Demo video walkthrough
 
 ---
 
-# 🔜 Phase 6 – Full Build Import System
+## Future Phases
 
-- Gear import
-- Passive tree import from external format
-- Skill modifier import
-- Automated character state generation
-
----
-
-# 🔜 Phase 7 – Advanced Analysis Tools
-
-- Boss encounter simulations
-- Corruption scaling analysis
-- Gear upgrade ranking against current build
-- Build weakness detection UI
-
----
-
-# 🔜 Phase 8 – Community Tools
-
-- Build comparison tools
-- Meta build analytics
-- Shared build reports
-- Theorycrafting tools
-
----
-
-# Long-Term Vision
-
-The Forge aims to become the most powerful analytical tool available for Last Epoch players.
-
-Future expansion may include:
-
-* advanced crafting prediction models
-* community build databases
-* statistical meta analysis
-* encounter-specific build optimization
-* native desktop packaging (Electron/Tauri)
+- **Native desktop packaging** -- Electron wrapper already scaffolded in `electron/`, needs production bundling with PyInstaller for the backend
+- **Advanced crafting prediction models** -- machine learning or probabilistic models for craft outcome prediction beyond Monte Carlo
+- **Encounter-specific optimization** -- recommend stat changes targeting specific boss fights
+- **Patch auto-sync pipeline** -- GitHub Actions workflow to automatically sync game data when new patches release
+- **"Ask The Forge" AI-powered build Q&A** -- natural language build analysis and recommendations
