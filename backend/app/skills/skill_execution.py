@@ -47,6 +47,7 @@ from app.domain.calculators.skill_calculator import (
     scale_skill_damage,
     sum_flat_damage,
 )
+from app.domain.calculators.ailment_calculator import calc_ailment_dps
 from app.domain.calculators.speed_calculator import effective_attack_speed
 from app.domain.skill import SkillStatDef, SkillSpec, calculate_multi_hit_dps
 from app.domain.skill_modifiers import SkillModifiers
@@ -86,11 +87,13 @@ class SkillExecutionResult:
     casts_per_second: float
     hits_per_cast: int
     damage_by_type: dict[str, float] = field(default_factory=dict)
+    ailment_dps: dict[str, float] = field(default_factory=dict)
+    total_dps: float = 0.0  # hit DPS + ailment DPS combined
     skill_name: str = ""
     debug: Optional[dict] = None
 
     def to_dict(self) -> dict:
-        return {
+        d = {
             "skill_name": self.skill_name,
             "hit_damage": round(self.hit_damage, 2),
             "average_hit": round(self.average_hit, 2),
@@ -102,6 +105,10 @@ class SkillExecutionResult:
             "hits_per_cast": self.hits_per_cast,
             "damage_by_type": {k: round(v, 2) for k, v in self.damage_by_type.items()},
         }
+        if self.ailment_dps:
+            d["ailment_dps"] = {k: round(v, 2) for k, v in self.ailment_dps.items()}
+            d["total_dps"] = round(self.total_dps, 2)
+        return d
 
 
 # ---------------------------------------------------------------------------
@@ -205,13 +212,27 @@ class SkillExecutionEngine:
         # 8 — Hits per cast (base + spec-tree additions)
         total_hits = hits_per_cast(sm.added_hits_per_cast)
 
-        # 9 — DPS
+        # 9 — Hit DPS
         dps = avg_hit * total_hits * casts_per_sec
+
+        # 10 — Ailment DPS (bleed, ignite, poison from proc chance + scaling)
+        bleed, ignite, poison = calc_ailment_dps(hit_damage, casts_per_sec, stats)
+        ailment_dps: dict[str, float] = {}
+        if bleed > 0:
+            ailment_dps["bleed"] = float(bleed)
+        if ignite > 0:
+            ailment_dps["ignite"] = float(ignite)
+        if poison > 0:
+            ailment_dps["poison"] = float(poison)
+        total_ailment_dps = sum(ailment_dps.values())
+        total_dps = dps + total_ailment_dps
 
         if capture_debug:
             debug_trace["casts_per_second"] = round(casts_per_sec, 4)
             debug_trace["hits_per_cast"] = total_hits
             debug_trace["dps"] = round(dps, 2)
+            debug_trace["ailment_dps"] = {k: round(v, 2) for k, v in ailment_dps.items()}
+            debug_trace["total_dps"] = round(total_dps, 2)
 
         # Per-type breakdown (convert DamageType enum → string keys)
         damage_by_type = {
@@ -223,6 +244,7 @@ class SkillExecutionEngine:
             skill=skill_name,
             hit_damage=round(hit_damage, 2),
             dps=round(dps, 2),
+            ailment_dps=round(total_ailment_dps, 2),
         )
 
         return SkillExecutionResult(
@@ -235,6 +257,8 @@ class SkillExecutionEngine:
             casts_per_second=casts_per_sec,
             hits_per_cast=total_hits,
             damage_by_type=damage_by_type,
+            ailment_dps=ailment_dps,
+            total_dps=total_dps,
             skill_name=skill_name,
             debug=debug_trace,
         )
