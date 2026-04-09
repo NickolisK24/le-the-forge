@@ -470,6 +470,7 @@ class TestDiscordNotifier:
         mock_failure.source = "maxroll"
         mock_failure.raw_url = "https://example.com"
         mock_failure.missing_fields = ["field_a"]
+        mock_failure.partial_data = None
         mock_failure.error_message = "Test error"
         mock_failure.user_id = None
         mock_failure.created_at = None
@@ -490,6 +491,7 @@ class TestDiscordNotifier:
         mock_failure.source = "lastepochtools"
         mock_failure.raw_url = "https://lastepochtools.com/planner/ABC"
         mock_failure.missing_fields = ["mastery", "skill_id:xyz"]
+        mock_failure.partial_data = {"character_class": "Rogue", "gear": []}
         mock_failure.error_message = "Partial import"
         mock_failure.user_id = "user-123"
         mock_failure.created_at = None
@@ -504,7 +506,174 @@ class TestDiscordNotifier:
         assert "Partial Import" in embed["title"]
         assert embed["color"] == 0xFF8C00  # orange for partial
         assert any(f["name"] == "URL" for f in embed["fields"])
-        assert any(f["name"] == "User ID" for f in embed["fields"])
+        assert any(f["name"] == "User" for f in embed["fields"])
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_hard_failure_uses_red_color(self, mock_post):
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "red-test"
+        mock_failure.source = "lastepochtools"
+        mock_failure.raw_url = "https://example.com"
+        mock_failure.missing_fields = []
+        mock_failure.partial_data = None
+        mock_failure.error_message = "Hard crash"
+        mock_failure.user_id = None
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="hard")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        assert "Import Failure" in embed["title"]
+        assert embed["color"] == 0xFF0000  # red for hard failure
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_embed_includes_parsed_data_summary(self, mock_post):
+        """Verify the 'Parsed Data' field summarizes what DID import."""
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "summary-test"
+        mock_failure.source = "lastepochtools"
+        mock_failure.raw_url = "https://example.com"
+        mock_failure.missing_fields = ["gear"]
+        mock_failure.partial_data = {
+            "character_class": "Rogue",
+            "mastery": "Bladedancer",
+            "skills": [{"name": "Umbral Blades"}, {"name": "Shadow Cascade"}],
+            "passive_tree": list(range(90)),
+            "gear": [],
+        }
+        mock_failure.error_message = "Gear not mapped"
+        mock_failure.user_id = None
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="partial")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        parsed_field = next(f for f in embed["fields"] if f["name"] == "Parsed Data")
+        assert "Rogue" in parsed_field["value"]
+        assert "Bladedancer" in parsed_field["value"]
+        assert "Skills: 2" in parsed_field["value"]
+        assert "Passives: 90" in parsed_field["value"]
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_embed_includes_raw_gear_data(self, mock_post):
+        """Verify raw gear entries appear in the embed for debugging."""
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "gear-test"
+        mock_failure.source = "lastepochtools"
+        mock_failure.raw_url = "https://example.com"
+        mock_failure.missing_fields = ["gear"]
+        mock_failure.partial_data = {
+            "gear": [
+                {"slot": "weapon", "base_type_id": 47, "affixes": [{"id": 1042}]},
+                {"slot": "body", "base_type_id": 12},
+                {"slot": "helmet", "base_type_id": 8},
+                {"slot": "boots", "base_type_id": 3},
+            ],
+        }
+        mock_failure.error_message = "Gear IDs unmappable"
+        mock_failure.user_id = None
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="hard")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        gear_field = next(f for f in embed["fields"] if "Gear" in f["name"])
+        # Should contain the first 3 entries as JSON
+        assert "weapon" in gear_field["value"]
+        assert "body" in gear_field["value"]
+        assert "helmet" in gear_field["value"]
+        # 4th entry should be noted but not shown in full
+        assert "+1 more" in gear_field["value"]
+        # Should be in a code block
+        assert "```json" in gear_field["value"]
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_anonymous_user_shown_as_anonymous(self, mock_post):
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "anon-test"
+        mock_failure.source = "lastepochtools"
+        mock_failure.raw_url = "https://example.com"
+        mock_failure.missing_fields = []
+        mock_failure.partial_data = None
+        mock_failure.error_message = "Error"
+        mock_failure.user_id = None
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="hard")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        user_field = next(f for f in embed["fields"] if f["name"] == "User")
+        assert user_field["value"] == "anonymous"
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_embed_under_discord_character_limit(self, mock_post):
+        """Verify embed stays under Discord's 6000 character limit even with large gear data."""
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "limit-test"
+        mock_failure.source = "lastepochtools"
+        mock_failure.raw_url = "https://example.com/very/long/url/" + "x" * 200
+        mock_failure.missing_fields = [f"field_{i}" for i in range(50)]
+        mock_failure.partial_data = {
+            "gear": [
+                {"slot": f"slot_{i}", "data": "x" * 500, "affixes": list(range(20))}
+                for i in range(10)
+            ],
+        }
+        mock_failure.error_message = "A" * 1024
+        mock_failure.user_id = "user-with-long-id-12345"
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="hard")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        # Calculate total character count across all fields
+        total = len(embed.get("title", ""))
+        for f in embed["fields"]:
+            total += len(f["name"]) + len(f["value"])
+        assert total < 6000, f"Embed total chars = {total}, exceeds Discord limit"
+
+    @patch("app.services.discord_notifier.WEBHOOK_URL", "https://discord.example.com/webhook")
+    @patch("app.services.discord_notifier.requests.post")
+    def test_no_gear_data_shows_no_gear_field(self, mock_post):
+        """When partial_data has no gear, the raw gear field is omitted."""
+        mock_post.return_value = MagicMock(status_code=200)
+        from app.services.discord_notifier import _post_alert
+        mock_failure = MagicMock()
+        mock_failure.id = "no-gear"
+        mock_failure.source = "maxroll"
+        mock_failure.raw_url = "https://example.com"
+        mock_failure.missing_fields = []
+        mock_failure.partial_data = {"character_class": "Mage"}
+        mock_failure.error_message = "Class only"
+        mock_failure.user_id = None
+        mock_failure.created_at = None
+
+        _post_alert(mock_failure, severity="hard")
+
+        payload = mock_post.call_args[1]["json"]
+        embed = payload["embeds"][0]
+        gear_fields = [f for f in embed["fields"] if "Gear" in f["name"]]
+        assert len(gear_fields) == 0  # no gear field when no gear data
 
 
 # ---------------------------------------------------------------------------
