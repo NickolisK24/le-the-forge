@@ -720,3 +720,209 @@ class TestBaseImporterValidation:
         )
         validated = DummyImporter().validate(result)
         assert any("class:FakeClass" in f for f in validated.missing_fields)
+
+
+# ---------------------------------------------------------------------------
+# Import Route Never Returns 500
+# ---------------------------------------------------------------------------
+
+class TestImportNever500:
+    """Verify the import route never returns 500 — always 422, 400, or 2xx."""
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_importer_crash_returns_422_not_500(self, mock_alert, mock_factory, client, db):
+        """When the importer raises an unexpected exception, route returns 422 not 500."""
+        mock_importer = MagicMock()
+        mock_importer.parse.side_effect = RuntimeError("Unexpected crash in parser")
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://www.lastepochtools.com/planner/CRASH"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 422
+        body = resp.get_json()
+        assert any("crash" in e["message"].lower() for e in body["errors"])
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.build_service")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_save_failure_returns_422_not_500(self, mock_alert, mock_bs, mock_factory, client, db):
+        """When build save fails, route returns 422 not 500."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=True,
+            source="lastepochtools",
+            build_data={
+                "name": "Test", "character_class": "Mage", "mastery": "Sorcerer",
+                "level": 80, "passive_tree": [], "skills": [], "gear": [],
+            },
+        )
+        mock_factory.return_value = mock_importer
+        mock_bs.create_build.side_effect = Exception("DB constraint violation")
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://www.lastepochtools.com/planner/SAVEFAIL"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 422
+        body = resp.get_json()
+        assert any("could not be saved" in e["message"].lower() for e in body["errors"])
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_importer_crash_fires_discord_alert(self, mock_alert, mock_factory, client, db):
+        """Crashes in the importer still fire a Discord alert."""
+        mock_importer = MagicMock()
+        mock_importer.parse.side_effect = ValueError("Something broke")
+        mock_factory.return_value = mock_importer
+
+        client.post(
+            "/api/import/build",
+            json={"url": "https://www.lastepochtools.com/planner/CRASH2"},
+            content_type="application/json",
+        )
+
+        mock_alert.assert_called_once()
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_null_build_data_returns_422(self, mock_alert, mock_factory, client, db):
+        """When importer returns success=True but build_data=None, returns 422."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=True,
+            source="lastepochtools",
+            build_data=None,
+        )
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://www.lastepochtools.com/planner/NULLDATA"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 422
+
+
+# ---------------------------------------------------------------------------
+# Gear Parsing
+# ---------------------------------------------------------------------------
+
+class TestGearParsing:
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_parses_equipment_from_build(self, mock_get):
+        """When build has equipment data, it gets parsed to gear array."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": [
+                {"equipmentSlot": 0, "baseTypeID": 5, "affixes": [{"affixID": "42", "tier": 3}]},
+                {"equipmentSlot": 5, "baseTypeID": 10}
+            ]
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/GEAR1")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 2
+        assert gear[0]["slot"] == "helmet"
+        assert gear[1]["slot"] == "weapon"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_no_equipment_returns_empty_gear(self, mock_get):
+        """Build without equipment data returns empty gear list."""
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = _LET_HTML
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/NOGEAR")
+
+        assert result.success is True
+        assert result.build_data["gear"] == []
+
+
+# ---------------------------------------------------------------------------
+# Extraction Strategies
+# ---------------------------------------------------------------------------
+
+class TestExtractionStrategies:
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_extracts_from_next_data(self, mock_get):
+        """Extraction works when data is in __NEXT_DATA__ script tag."""
+        html = '''
+        <html><body>
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props": {"pageProps": {"buildInfo": {
+            "bio": {"level": 80, "characterClass": 1, "chosenMastery": 1},
+            "charTree": {"selected": {"5": 3}},
+            "skillTrees": [],
+            "hud": []
+        }}}}
+        </script>
+        </body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/NEXT")
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Mage"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_mapping_crash_returns_failure_not_exception(self, mock_get):
+        """If _map() throws, parse() returns ImportResult(success=False) not an exception."""
+        # Build info has invalid data that will cause mapping to fail
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": "not_a_number", "characterClass": "invalid", "chosenMastery": "bad"},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": []
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        from app.services.importers.base_importer import ImportResult as IR
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/BAD")
+
+        # Should return a result, not raise an exception
+        assert isinstance(result, IR)
+        assert result.success is False
+        assert result.error_message is not None

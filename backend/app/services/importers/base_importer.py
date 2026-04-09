@@ -88,6 +88,7 @@ class ImportResult:
     source: str = ""
     missing_fields: list = field(default_factory=list)
     error_message: Optional[str] = None
+    partial_data: Optional[dict] = None
 
 
 class BaseImporter(ABC):
