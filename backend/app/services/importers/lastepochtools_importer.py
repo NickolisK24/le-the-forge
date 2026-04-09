@@ -14,12 +14,13 @@ Schema (relevant fields):
     equipment[]         [{baseTypeID, affixes: [{affixID, tier}], ...}]
 """
 
+import base64
 import json
 import logging
 import os
 import re
 import traceback
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import requests as _requests
 
@@ -143,6 +144,170 @@ def _get_affix_map() -> Dict[str, dict]:
         logger.warning("LET importer: could not load affix map: %s", exc)
 
     return _AFFIX_MAP
+
+
+# ---------------------------------------------------------------------------
+# Forge slot name → affix registry slot tags (used for slot-validation)
+# ---------------------------------------------------------------------------
+
+_FORGE_SLOT_TO_AFFIX_TAGS: Dict[str, list] = {
+    "helmet":      ["helm"],
+    "body_armour": ["chest"],
+    "belt":        ["belt"],
+    "boots":       ["boots"],
+    "gloves":      ["gloves"],
+    "weapon":      ["sword", "axe", "mace", "dagger", "wand", "sceptre", "staff",
+                    "bow", "polearm", "two_handed_sword", "two_handed_axe",
+                    "two_handed_mace", "two_handed_staff", "two_handed_polearm"],
+    "weapon1":     ["sword", "axe", "mace", "dagger", "wand", "sceptre", "staff",
+                    "bow", "polearm", "two_handed_sword", "two_handed_axe",
+                    "two_handed_mace", "two_handed_staff", "two_handed_polearm"],
+    "weapon2":     ["sword", "axe", "mace", "dagger", "wand", "sceptre",
+                    "shield", "catalyst", "quiver"],
+    "off_hand":    ["shield", "catalyst", "quiver"],
+    "amulet":      ["amulet"],
+    "ring_1":      ["ring"],
+    "ring_2":      ["ring"],
+    "relic":       ["relic"],
+}
+
+
+# ---------------------------------------------------------------------------
+# Base64 affix ID decoder
+# ---------------------------------------------------------------------------
+
+def _decode_varints(data: bytes) -> List[int]:
+    """Decode a sequence of protobuf-style varints from raw bytes."""
+    varints: List[int] = []
+    pos = 0
+    while pos < len(data):
+        result = 0
+        shift = 0
+        while pos < len(data):
+            b = data[pos]
+            result |= (b & 0x7f) << shift
+            shift += 7
+            pos += 1
+            if not (b & 0x80):
+                break
+        varints.append(result)
+    return varints
+
+
+def _decode_let_affix(encoded: str) -> Dict:
+    """
+    Decode a Last Epoch Tools base64-encoded affix ID.
+
+    LE Tools encodes each affix as a base64 string over a byte sequence
+    of protobuf-style varints:
+        varint[0] = 0  (padding / version marker)
+        varint[1] = category / type flags
+        varint[2] = affix identifier (may be the affix_id, or packed with tier)
+        varint[3+] = tier, roll value, or other metadata
+
+    Since LE Tools' internal affix IDs may differ from The Forge's, we
+    extract multiple candidate IDs and let the caller try each one.
+
+    Returns a dict with:
+        raw_bytes: hex string of decoded bytes
+        varints: list of decoded varints
+        candidates: list of candidate affix_id ints to try (best-guess order)
+        tier_guess: best-guess tier (0-7) or None
+    """
+    # Pad and decode base64
+    padded = encoded + "=" * (4 - len(encoded) % 4) if len(encoded) % 4 else encoded
+    try:
+        raw = base64.b64decode(padded)
+    except Exception:
+        try:
+            raw = base64.urlsafe_b64decode(padded)
+        except Exception:
+            return {"raw_bytes": "", "varints": [], "candidates": [], "tier_guess": None}
+
+    varints = _decode_varints(raw)
+    candidates: List[int] = []
+    tier_guess: Optional[int] = None
+
+    if len(varints) >= 3:
+        v2 = varints[2]
+        # Strategy 1: varint[2] directly as affix_id (works for small values)
+        if 0 <= v2 <= 1110:
+            candidates.append(v2)
+            # Tier from varint[3] if present
+            if len(varints) >= 4:
+                t = varints[3]
+                if 0 <= t <= 7:
+                    tier_guess = t
+                else:
+                    tier_guess = t & 0x07
+
+        # Strategy 2: for large varint[2], try splitting — low 8 bits as affix_id
+        if v2 > 255:
+            low8 = v2 & 0xFF
+            tier_from_high = (v2 >> 8) & 0x07
+            if 0 <= low8 <= 1110 and low8 not in candidates:
+                candidates.append(low8)
+                if tier_guess is None:
+                    tier_guess = tier_from_high
+
+    # Strategy 3: varint[1] as affix_id (fallback for 2-varint entries)
+    if len(varints) >= 2 and varints[1] not in candidates:
+        v1 = varints[1]
+        if 0 <= v1 <= 1110:
+            candidates.append(v1)
+
+    # Strategy 4: raw byte[2] (skip varint encoding, just use the third byte)
+    if len(raw) >= 3:
+        b2 = raw[2]
+        if b2 not in candidates and 0 <= b2 <= 255:
+            candidates.append(b2)
+
+    return {
+        "raw_bytes": raw.hex(),
+        "varints": varints,
+        "candidates": candidates,
+        "tier_guess": tier_guess,
+    }
+
+
+def _resolve_affix(decoded: Dict, slot_name: str) -> Tuple[Optional[dict], Optional[int]]:
+    """
+    Try to resolve decoded affix candidates against The Forge's affix registry.
+
+    Tries each candidate ID in order, preferring matches whose applicable_to
+    list includes the slot.  Returns (affix_info, tier) or (None, None).
+    """
+    affix_map = _get_affix_map()
+    # Build a numeric lookup
+    affix_by_num: Dict[int, dict] = {}
+    for a in affix_map.values():
+        aid = a.get("affix_id")
+        if aid is not None:
+            affix_by_num[int(aid)] = a
+
+    slot_tags = _FORGE_SLOT_TO_AFFIX_TAGS.get(slot_name, [])
+    tier = decoded.get("tier_guess")
+
+    # First pass: find a candidate that matches the slot
+    for cid in decoded.get("candidates", []):
+        affix = affix_by_num.get(cid)
+        if not affix:
+            continue
+        applicable = affix.get("applicable_to", [])
+        if not applicable:
+            # No restriction — accept
+            return affix, tier
+        # Check if any slot tag matches
+        if any(tag in applicable for tag in slot_tags):
+            return affix, tier
+
+    # Second pass: accept any matching candidate regardless of slot
+    for cid in decoded.get("candidates", []):
+        affix = affix_by_num.get(cid)
+        if affix:
+            return affix, tier
+
+    return None, None
 
 
 # URL pattern for Last Epoch Tools planner links
@@ -533,7 +698,6 @@ class LastEpochToolsImporter(BaseImporter):
         )
 
         base_item_map = _get_base_item_map()
-        affix_map = _get_affix_map()
         gear: list = []
 
         # LE Tools slot name → Forge slot name (covers both string-keyed dicts
@@ -583,23 +747,53 @@ class LastEpochToolsImporter(BaseImporter):
                 else:
                     missing_fields.append(f"gear_base_type:{slot_name}:{base_type_id}")
 
-            # Affixes
+            # Affixes — LE Tools encodes affix IDs as base64 strings.
+            # We decode them and try multiple resolution strategies.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
             parsed_affixes = []
             for affix_raw in (raw_affixes or []):
-                if not isinstance(affix_raw, dict):
+                # Handle both dict entries ({"affixID": "...", "tier": N})
+                # and bare string entries ("AGwRhQ")
+                if isinstance(affix_raw, str):
+                    encoded_id = affix_raw
+                    explicit_tier = None
+                elif isinstance(affix_raw, dict):
+                    encoded_id = str(affix_raw.get("affixID", affix_raw.get("id", "")))
+                    explicit_tier = affix_raw.get("tier", affix_raw.get("t"))
+                else:
                     continue
-                affix_id = str(affix_raw.get("affixID", affix_raw.get("id", "")))
-                tier = affix_raw.get("tier", affix_raw.get("t", 0))
-                affix_info = affix_map.get(affix_id) if affix_id else None
-                parsed_affixes.append({
-                    "id": affix_id,
-                    "name": affix_info["name"] if affix_info else None,
-                    "tier": tier,
-                    "_raw": affix_raw if not affix_info else None,
-                })
-                if not affix_info and affix_id:
-                    missing_fields.append(f"gear_affix:{slot_name}:{affix_id}")
+
+                if not encoded_id:
+                    continue
+
+                # Attempt base64 decode and resolution
+                decoded = _decode_let_affix(encoded_id)
+                affix_info, tier_guess = _resolve_affix(decoded, slot_name)
+
+                # Use explicit tier from the data if available, otherwise decoded guess
+                tier = explicit_tier if explicit_tier is not None else tier_guess
+
+                if affix_info:
+                    parsed_affixes.append({
+                        "id": str(affix_info.get("affix_id", encoded_id)),
+                        "name": affix_info["name"],
+                        "tier": tier,
+                    })
+                else:
+                    # Unresolved — record with decoded info for debugging
+                    parsed_affixes.append({
+                        "id": encoded_id,
+                        "name": None,
+                        "tier": tier,
+                        "decoded": {
+                            "candidates": decoded.get("candidates", []),
+                            "varints": decoded.get("varints", []),
+                        },
+                    })
+                    missing_fields.append(
+                        f"gear_affix:{slot_name}:{encoded_id}"
+                        f"(candidates={decoded.get('candidates', [])})"
+                    )
 
             # Implicit stats
             implicit_value = item_raw.get("implicitValue", item_raw.get("implicit"))
