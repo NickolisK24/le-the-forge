@@ -900,6 +900,128 @@ class TestGearParsing:
         assert result.success is True
         assert result.build_data["gear"] == []
 
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_parses_let_format_with_id_ir_ur(self, mock_get):
+        """LE Tools actual format: 'id' for base type, 'ir' for rarity, 'ur' for LP."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 5, "affixes": ["AAwDhQ"], "ir": 4, "ur": 1},
+                "body": {"id": 10, "affixes": [], "ir": 2, "ur": 0},
+                "belt": {"id": 7, "affixes": ["AAzBsQ", "AGwRhQ"], "ir": 3, "ur": 0},
+                "boots": {"id": 3, "affixes": [], "ir": 1, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/LETFMT")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 4
+
+        # Check slot names mapped correctly
+        slots = {g["slot"]: g for g in gear}
+        assert "helmet" in slots
+        assert "body_armour" in slots
+        assert "belt" in slots
+        assert "boots" in slots
+
+        # Check rarity mapping from 'ir' integer
+        assert slots["helmet"]["rarity"] == "legendary"
+        assert slots["body_armour"]["rarity"] == "rare"
+        assert slots["belt"]["rarity"] == "exalted"
+        assert slots["boots"]["rarity"] == "magic"
+
+        # Check legendary potential from 'ur'
+        assert slots["helmet"].get("legendary_potential") == 1
+
+        # Check affixes were parsed (even if not all resolve)
+        assert len(slots["helmet"]["affixes"]) == 1
+        assert len(slots["belt"]["affixes"]) == 2
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_numeric_affix_ids_resolved_directly(self, mock_get):
+        """When affix IDs are plain integers, resolve directly without base64."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 80, "characterClass": 2, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 5, "affixes": [17, 25], "ir": 2, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/NUMAFX")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        affix_names = [a.get("name") for a in gear[0]["affixes"] if a.get("name")]
+        # 17=Cold Resistance, 25=Added Health — both should resolve
+        assert len(affix_names) == 2
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_all_12_slot_names_mapped(self, mock_get):
+        """All 12 LE Tools slot names map to valid Forge slot names."""
+        slots_json = ", ".join([
+            f'"{s}": {{"id": 1, "affixes": [], "ir": 0, "ur": 0}}'
+            for s in ["helm", "body", "belt", "boots", "gloves",
+                       "weapon1", "weapon2", "amulet", "ring1", "ring2",
+                       "relic", "idol_altar"]
+        ])
+        html = f'''
+        <html><body><script>
+        window["buildInfo"] = {{
+            "bio": {{"level": 80, "characterClass": 0, "chosenMastery": 1}},
+            "charTree": {{"selected": {{}}}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {{{slots_json}}}
+        }};
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/ALLSLOTS")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 12
+        found_slots = {g["slot"] for g in gear}
+        expected = {"helmet", "body_armour", "belt", "boots", "gloves",
+                    "weapon1", "weapon2", "amulet", "ring_1", "ring_2",
+                    "relic", "idol_altar"}
+        assert found_slots == expected
+
 
 # ---------------------------------------------------------------------------
 # Extraction Strategies
