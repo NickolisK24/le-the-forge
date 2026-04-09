@@ -324,7 +324,9 @@ def allocate_skill_node(slug: str, skill_id: str, node_id: int):
             return error("Node is not reachable — prerequisite nodes must be allocated first")
 
         total = sum(v for k, v in test_alloc.items() if node_map.get(k, {}).get("maxPoints", 1) > 0)
-        if total > 20:
+        # Base cap is 20; gear affixes like "+X to Skill" can raise it
+        max_budget = max(20, sum(v for k, v in alloc.items() if node_map.get(k, {}).get("maxPoints", 1) > 0))
+        if total > max_budget:
             return error("Cannot exceed 20 skill points")
 
     elif new_points < old_points:
