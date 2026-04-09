@@ -74,11 +74,19 @@ def _nodes_response(nodes: list[PassiveNode], character_class=None, mastery=None
     if not serialized:
         # DB table empty — fall back to the JSON export so the page still works
         serialized = _load_json_fallback(character_class, mastery)
+
+    # Group nodes by tree section (base vs each mastery)
+    grouped: dict[str, list[dict]] = {}
+    for n in serialized:
+        key = n.get("mastery") or "__base__"
+        grouped.setdefault(key, []).append(n)
+
     return ok(data={
         "class": character_class,
         "mastery": mastery,
         "count": len(serialized),
         "nodes": serialized,
+        "grouped": grouped,
     })
 
 
