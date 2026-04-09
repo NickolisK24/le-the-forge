@@ -19,6 +19,7 @@ from app.schemas.skill_tree import (
     NodeAllocateRequestSchema,
 )
 from app.services import build_service
+from app.skills.skill_classifier import classify_skills, detect_primary_skill
 from app.utils.responses import ok, error, not_found, validation_error
 from app.utils.cache import get as cache_get, set as cache_set, delete_pattern
 
@@ -217,7 +218,7 @@ def get_skill_tree(skill_id: str):
 @skills_bp.get("/builds/<slug>/skills")
 @limiter.limit("20 per minute")
 def get_build_skills(slug: str):
-    """Return allocation state for all skills on a build."""
+    """Return allocation state for all skills on a build, with classifications and primary detection."""
     build = build_service.get_build(slug)
     if not build:
         return not_found("Build")
@@ -225,17 +226,30 @@ def get_build_skills(slug: str):
     skills_data = []
     for skill in sorted(build.skills, key=lambda s: s.slot):
         alloc_map = _spec_tree_to_alloc_map(skill.spec_tree or [])
-        # Normalize keys to strings for JSON
         str_map = {str(k): v for k, v in alloc_map.items()}
+        total = sum(alloc_map.values())
         skills_data.append({
             "skill_id": _skill_name_to_id(skill.skill_name),
             "skill_name": skill.skill_name,
             "slot": skill.slot,
             "allocated_nodes": str_map,
-            "total_points": sum(alloc_map.values()),
+            "total_points": total,
+            "classification": classify_skills([skill.skill_name]).get(skill.skill_name, "damage"),
         })
 
-    return ok(data={"skills": skills_data})
+    # Auto-detect primary skill
+    detect_input = [
+        {"skill_name": s["skill_name"], "slot": s["slot"], "allocated_nodes": s["total_points"]}
+        for s in skills_data
+    ]
+    primary = detect_primary_skill(detect_input)
+    classifications = {s["skill_name"]: s["classification"] for s in skills_data}
+
+    return ok(data={
+        "skills": skills_data,
+        "primary_skill": primary,
+        "skill_classifications": classifications,
+    })
 
 
 def _skill_name_to_id(skill_name: str) -> str:
