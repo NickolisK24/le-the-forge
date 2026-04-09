@@ -126,7 +126,7 @@ export default function SkillSelector({
       {activeSkill && !activeSkillId && (
         <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-8 text-center">
           <span className="font-mono text-xs text-forge-dim">
-            No tree data available for {activeSkill.skill_name}
+            No tree data available for {resolveSkillName(activeSkill.skill_name)}
           </span>
         </div>
       )}
