@@ -587,6 +587,15 @@ def calculate_dps_vs_enemy(
         if (pen := getattr(stats, f"{dt}_penetration", 0.0)) > 0
     }
 
+    # Calculate steady-state armor shred
+    from app.domain.armor_shred import armor_shred_amount
+    shred = armor_shred_amount(
+        stats.armour_shred_chance,
+        base_result.effective_attack_speed,
+        skill_def.hit_count,
+    )
+    effective_armor = max(0, enemy.armor - shred)
+
     # Use proportion-weighted resistance when per-type damage breakdown is
     # available (populated by calculate_dps via DamageResult.damage_by_type).
     # Falls back to equal-weight average when breakdown is absent.
@@ -596,9 +605,13 @@ def calculate_dps_vs_enemy(
             _DT(k): v for k, v in base_result.damage_by_type.items()
         }
         multiplier = weighted_damage_multiplier(enemy, damage_by_type_typed, pen_map)
+        # Replace armor factor with shredded armor factor
+        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
+        if old_armor_factor > 0:
+            multiplier = multiplier / old_armor_factor * new_armor_factor
         # avg_res for reporting: back-compute from the weighted multiplier + armor
-        armor_factor = 1.0 - armor_mitigation(enemy.armor)
-        res_factor = multiplier / armor_factor if armor_factor > 0 else 1.0
+        res_factor = multiplier / new_armor_factor if new_armor_factor > 0 else 1.0
         avg_res = (1.0 - res_factor) * 100.0
     else:
         res_values = [
@@ -607,6 +620,11 @@ def calculate_dps_vs_enemy(
         ]
         avg_res = sum(res_values) / len(res_values) if res_values else 0.0
         multiplier = enemy_damage_multiplier(enemy, skill_damage_types, pen_map)
+        # Replace armor factor with shredded armor
+        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
+        if old_armor_factor > 0:
+            multiplier = multiplier / old_armor_factor * new_armor_factor
 
     effective_dps = round(raw_dps * multiplier)
 
@@ -615,7 +633,7 @@ def calculate_dps_vs_enemy(
         enemy_id=enemy_id,
         raw_dps=raw_dps,
         effective_dps=effective_dps,
-        armor_reduction_pct=round(armor_mitigation(enemy.armor) * 100, 1),
+        armor_reduction_pct=round(armor_mitigation(effective_armor) * 100, 1),
         avg_res_reduction_pct=round(avg_res, 1),
         penetration_applied=pen_map,
     )

@@ -104,6 +104,7 @@ class EnemyDefenseEngine:
         skill_result: SkillExecutionResult,
         enemy: EnemyInstance,
         penetration: dict[str, float] | None = None,
+        armor_shred: float = 0.0,
         capture_debug: bool = False,
     ) -> DefensedDamageResult:
         """Apply enemy defenses to skill damage and return post-defense result.
@@ -113,6 +114,8 @@ class EnemyDefenseEngine:
             enemy:         EnemyInstance with resistances, armor, shred state.
             penetration:   Per-type penetration values from BuildStats
                            (e.g. {"fire": 15.0, "physical": 10.0}).
+            armor_shred:   Total armor reduction from shred stacks. Applied
+                           before the armor mitigation formula.
             capture_debug: If True, attach a debug trace dict.
 
         Returns:
@@ -184,13 +187,15 @@ class EnemyDefenseEngine:
 
         # ------------------------------------------------------------------
         # 3 — Apply armor mitigation to physical component
+        #     Armor shred reduces effective armor before the formula.
         # ------------------------------------------------------------------
+        effective_enemy_armor = max(0.0, float(enemy.armor) - armor_shred)
         total_armor_reduction = 0.0
         after_armor: dict[str, float] = {}
 
         for dmg_type, dmg_value in after_resistance.items():
             if dmg_type == "physical":
-                mitigated = apply_armor(dmg_value, float(enemy.armor))
+                mitigated = apply_armor(dmg_value, effective_enemy_armor)
                 armor_lost = dmg_value - mitigated
                 total_armor_reduction += armor_lost
                 after_armor[dmg_type] = mitigated
@@ -200,6 +205,8 @@ class EnemyDefenseEngine:
         if capture_debug:
             debug_trace["armor_mitigation"] = {
                 "enemy_armor": enemy.armor,
+                "armor_shred": round(armor_shred, 1),
+                "effective_armor": round(effective_enemy_armor, 1),
                 "physical_before": round(after_resistance.get("physical", 0.0), 2),
                 "physical_after": round(after_armor.get("physical", 0.0), 2),
                 "armor_reduction": round(total_armor_reduction, 2),
@@ -273,6 +280,7 @@ class EnemyDefenseEngine:
         skill_result: SkillExecutionResult,
         profile: EnemyProfile,
         penetration: dict[str, float] | None = None,
+        armor_shred: float = 0.0,
         capture_debug: bool = False,
     ) -> DefensedDamageResult:
         """Convenience: apply defenses using an EnemyProfile directly."""
@@ -282,15 +290,16 @@ class EnemyDefenseEngine:
             resistances=dict(profile.resistances),
         )
         enemy = EnemyInstance.from_stats(stats)
-        return self.apply_defenses(skill_result, enemy, penetration, capture_debug)
+        return self.apply_defenses(skill_result, enemy, penetration, armor_shred, capture_debug)
 
     def apply_defenses_from_archetype(
         self,
         skill_result: SkillExecutionResult,
         archetype: EnemyArchetype,
         penetration: dict[str, float] | None = None,
+        armor_shred: float = 0.0,
         capture_debug: bool = False,
     ) -> DefensedDamageResult:
         """Convenience: apply defenses using an EnemyArchetype."""
         enemy = EnemyInstance.from_archetype(archetype)
-        return self.apply_defenses(skill_result, enemy, penetration, capture_debug)
+        return self.apply_defenses(skill_result, enemy, penetration, armor_shred, capture_debug)
