@@ -40,6 +40,8 @@ export interface PassiveTreeResponse {
   mastery: string | null;
   count: number;
   nodes: PassiveNode[];
+  /** Nodes grouped by tree section: "__base__" | mastery name */
+  grouped?: Record<string, PassiveNode[]>;
 }
 
 // ---------------------------------------------------------------------------

@@ -26,10 +26,17 @@ import {
 } from "@/utils/passiveGraph";
 import { computeLayout } from "@/utils/passiveLayout";
 import PassiveTreeCanvas from "@/components/passives/PassiveTreeCanvas";
+import PassiveTreeSelector from "@/components/PassiveTree/PassiveTreeSelector";
+import { CLASS_MASTERIES } from "@constants";
 
 type AllocMap = Record<number, number>;
 
 const CANVAS_H = 580;
+
+// Last Epoch passive point budget rules
+const BASE_POINT_CAP = 20;         // Max points in base class tree
+const NON_CHOSEN_MASTERY_CAP = 25; // Max points in each non-chosen mastery
+// Chosen mastery has no per-section cap (uses overall budget)
 
 interface Props {
   characterClass: string;
@@ -50,6 +57,12 @@ export default function BuildPassiveTree({
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [canvasSize, setCanvasSize] = useState({ w: 800, h: CANVAS_H });
+  const [activeTab, setActiveTab] = useState<string>("__base__");
+
+  // Reset tab when class changes
+  useEffect(() => {
+    setActiveTab("__base__");
+  }, [characterClass]);
 
   // Resize observer for responsive width
   useEffect(() => {
@@ -71,12 +84,20 @@ export default function BuildPassiveTree({
     staleTime: 5 * 60 * 1000,
   });
 
-  // Filter nodes: show base + selected mastery (or all if no mastery chosen)
+  const masteries = useMemo(
+    () => (CLASS_MASTERIES as Record<string, readonly string[]>)[characterClass] ?? [],
+    [characterClass],
+  );
+
+  // Filter nodes: show only the active tab's section (no overlap)
   const filteredNodes = useMemo(() => {
+    if (treeData?.grouped) {
+      return treeData.grouped[activeTab] ?? [];
+    }
     const all = treeData?.nodes ?? [];
-    if (!mastery) return all;
-    return all.filter((n) => n.mastery === null || n.mastery === mastery);
-  }, [treeData, mastery]);
+    if (activeTab === "__base__") return all.filter((n) => n.mastery === null);
+    return all.filter((n) => n.mastery === activeTab);
+  }, [treeData, activeTab]);
 
   // ID mappings: raw_node_id ↔ string id
   const { rawToStr, strToRaw } = useMemo(() => {
@@ -145,6 +166,30 @@ export default function BuildPassiveTree({
   const totalSpent = Object.values(allocated).reduce((s, v) => s + v, 0);
   const pointsLeft = totalPassivePoints - totalSpent;
 
+  // Points per tree section for tab badges
+  const pointsBySection = useMemo(() => {
+    const result: Record<string, number> = {};
+    const allNodes = treeData?.nodes ?? [];
+    for (const node of allNodes) {
+      if (!allocatedIds.has(node.id)) continue;
+      const section = node.mastery ?? "__base__";
+      result[section] = (result[section] ?? 0) + (allocatedPoints.get(node.id) ?? 1);
+    }
+    return result;
+  }, [treeData, allocatedIds, allocatedPoints]);
+
+  // Section cap: how many more points can go into the node's section?
+  const sectionCapRemaining = useCallback(
+    (node: PassiveNode): number => {
+      const section = node.mastery ?? "__base__";
+      const spent = pointsBySection[section] ?? 0;
+      if (section === "__base__") return Math.max(0, BASE_POINT_CAP - spent);
+      if (section === mastery) return Infinity; // chosen mastery: no per-section cap
+      return Math.max(0, NON_CHOSEN_MASTERY_CAP - spent);
+    },
+    [pointsBySection, mastery],
+  );
+
   // Allocation handlers — convert string IDs back to numeric for parent callback
   const handleNodeClick = useCallback(
     (nodeId: string, shiftKey: boolean) => {
@@ -154,19 +199,25 @@ export default function BuildPassiveTree({
       if (!node || rawId === undefined) return;
       if (pointsLeft <= 0 && !allocatedIds.has(nodeId)) return;
 
+      const capLeft = sectionCapRemaining(node);
+      if (capLeft <= 0 && !allocatedIds.has(nodeId)) return;
+
       if (allocatedIds.has(nodeId)) {
         const current = allocatedPoints.get(nodeId) ?? 1;
         if (current >= node.max_points) return;
         const target = shiftKey ? node.max_points : current + 1;
-        const clamped = Math.min(target, node.max_points);
+        const addable = Math.min(target - current, pointsLeft, capLeft);
+        const clamped = Math.min(current + addable, node.max_points);
         if (clamped === current) return;
         onAllocate(rawId, clamped);
       } else if (availableIds.has(nodeId)) {
-        const pts = shiftKey ? Math.min(node.max_points, pointsLeft) : 1;
+        const desired = shiftKey ? node.max_points : 1;
+        const pts = Math.min(desired, pointsLeft, capLeft);
+        if (pts <= 0) return;
         onAllocate(rawId, pts);
       }
     },
-    [nodeById, strToRaw, allocatedIds, allocatedPoints, availableIds, onAllocate, readOnly, pointsLeft],
+    [nodeById, strToRaw, allocatedIds, allocatedPoints, availableIds, onAllocate, readOnly, pointsLeft, sectionCapRemaining],
   );
 
   const handleNodeRightClick = useCallback(
@@ -212,16 +263,34 @@ export default function BuildPassiveTree({
 
   if (filteredNodes.length === 0) {
     return (
-      <div className="flex items-center justify-center py-12">
-        <span className="font-mono text-xs text-forge-dim">No passive data for this class.</span>
+      <div ref={containerRef} className="flex flex-col gap-0">
+        <PassiveTreeSelector
+          masteries={[...masteries]}
+          activeTab={activeTab}
+          onTabChange={setActiveTab}
+          pointsBySection={pointsBySection}
+          lockedMastery={mastery || null}
+        />
+        <div className="flex items-center justify-center py-12 border border-t-0 border-forge-border">
+          <span className="font-mono text-xs text-forge-dim">No passive data for this section.</span>
+        </div>
       </div>
     );
   }
 
   return (
     <div ref={containerRef} className="flex flex-col gap-0">
+      {/* Mastery tab selector */}
+      <PassiveTreeSelector
+        masteries={[...masteries]}
+        activeTab={activeTab}
+        onTabChange={setActiveTab}
+        pointsBySection={pointsBySection}
+        lockedMastery={mastery || null}
+      />
+
       {/* Point budget bar */}
-      <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-3 py-1.5 rounded-t">
+      <div className="flex items-center justify-between border-b border-forge-border bg-forge-surface2 px-3 py-1.5">
         <div className="flex items-center gap-3 font-mono text-[10px]">
           <span className="text-forge-dim uppercase tracking-widest">Passive Points</span>
           <span className={`font-bold ${totalSpent > 0 ? "text-forge-amber" : "text-forge-dim"}`}>
@@ -232,6 +301,23 @@ export default function BuildPassiveTree({
             {pointsLeft} remaining
           </span>
           <span className="text-forge-dim">/ {totalPassivePoints}</span>
+          {/* Section cap for current tab */}
+          {activeTab === "__base__" && (
+            <>
+              <span className="text-forge-dim">·</span>
+              <span className="text-forge-dim">
+                Base: {pointsBySection["__base__"] ?? 0}/{BASE_POINT_CAP}
+              </span>
+            </>
+          )}
+          {activeTab !== "__base__" && activeTab !== mastery && (
+            <>
+              <span className="text-forge-dim">·</span>
+              <span className="text-forge-dim">
+                {activeTab}: {pointsBySection[activeTab] ?? 0}/{NON_CHOSEN_MASTERY_CAP}
+              </span>
+            </>
+          )}
         </div>
         {!readOnly && pointsLeft === 0 && (
           <span className="font-mono text-[9px] text-red-400/80">All points spent</span>
