@@ -40,11 +40,11 @@ export default function SkillSelector({
 }: Props) {
   const [activeSlot, setActiveSlot] = useState<number | null>(null);
 
-  // Build a lookup of skill defs for icons
+  // Build a lookup of skill defs for icons (case-insensitive)
   const skillDefs = useMemo(() => {
     const map: Record<string, SkillDef> = {};
     for (const s of CLASS_SKILLS[characterClass] ?? []) {
-      map[s.name] = s;
+      map[s.name.toLowerCase()] = s;
     }
     return map;
   }, [characterClass]);
@@ -63,7 +63,7 @@ export default function SkillSelector({
         {Array.from({ length: MAX_SLOTS }, (_, i) => {
           const skill = skills[i];
           const displayName = skill ? resolveSkillName(skill.skill_name) : null;
-          const def = displayName ? skillDefs[displayName] : null;
+          const def = displayName ? skillDefs[displayName.toLowerCase()] : null;
           const isActive = activeSlot === i;
           const hasTree = skill ? !!getSkillCode(skill.skill_name) : false;
 
