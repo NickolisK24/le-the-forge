@@ -121,7 +121,7 @@ def _post_alert(failure, severity: str) -> None:
 
     # Add raw gear data for debugging gear import issues
     raw_gear = _extract_raw_gear(failure.partial_data)
-    if raw_gear != "No gear data":
+    if raw_gear not in ("No gear data", "No gear entries"):
         fields.append({
             "name": "Raw Gear Data (first 3 entries)",
             "value": raw_gear,
