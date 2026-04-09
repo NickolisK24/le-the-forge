@@ -992,3 +992,136 @@ class TestExtractionStrategies:
         assert result.build_data["mastery"] == "Lich"
         assert result.build_data["gear"] == []
         assert len(result.build_data["passive_tree"]) == 8  # 5+3
+
+
+# ---------------------------------------------------------------------------
+# Base64 Affix ID Decoding
+# ---------------------------------------------------------------------------
+
+class TestAffixDecoding:
+    def test_decode_let_affix_extracts_varints(self):
+        """_decode_let_affix produces varints from base64 input."""
+        from app.services.importers.lastepochtools_importer import _decode_let_affix
+        # AGwRhQ → bytes [0, 108, 17, 133] → varints [0, 108, 17, 5]
+        result = _decode_let_affix("AGwRhQ")
+        assert result["varints"] == [0, 108, 17, 5]
+        assert len(result["candidates"]) > 0
+        assert result["raw_bytes"] == "006c1185"
+
+    def test_decode_let_affix_short_entry(self):
+        """Short entries like AAwDhQ still produce candidates."""
+        from app.services.importers.lastepochtools_importer import _decode_let_affix
+        # AAwDhQ → varints [0, 12, 3, 5]
+        result = _decode_let_affix("AAwDhQ")
+        assert result["varints"] == [0, 12, 3, 5]
+        assert 3 in result["candidates"]
+        assert result["tier_guess"] == 5
+
+    def test_decode_let_affix_large_varint_splits(self):
+        """Large varints are split to extract candidate affix IDs."""
+        from app.services.importers.lastepochtools_importer import _decode_let_affix
+        # AAzBsQ → varints [0, 12, 6337]
+        result = _decode_let_affix("AAzBsQ")
+        # 6337 & 0xFF = 193, should be in candidates
+        assert 193 in result["candidates"] or 6337 in result["candidates"]
+        assert result["tier_guess"] is not None
+
+    def test_decode_empty_string_returns_empty(self):
+        from app.services.importers.lastepochtools_importer import _decode_let_affix
+        result = _decode_let_affix("")
+        assert result["candidates"] == []
+        assert result["varints"] == []
+
+    def test_resolve_affix_finds_cold_resistance(self):
+        """Affix ID 17 (Cold Resistance) resolves for helmet slot."""
+        from app.services.importers.lastepochtools_importer import _resolve_affix
+        decoded = {"candidates": [17], "tier_guess": 5}
+        affix, tier = _resolve_affix(decoded, "helmet")
+        assert affix is not None
+        assert "cold" in affix["name"].lower() or "resistance" in affix["name"].lower()
+        assert tier == 5
+
+    def test_resolve_affix_prefers_slot_match(self):
+        """When multiple candidates exist, prefer the one valid for the slot."""
+        from app.services.importers.lastepochtools_importer import _resolve_affix
+        # Candidate 25 (Added Health) is valid for belt; candidate 12 might not be
+        decoded = {"candidates": [25, 12], "tier_guess": 3}
+        affix, _ = _resolve_affix(decoded, "belt")
+        assert affix is not None
+        # Should pick Added Health (25) which is valid for belt
+        assert int(affix["affix_id"]) == 25
+
+    def test_resolve_affix_returns_none_for_unknown(self):
+        from app.services.importers.lastepochtools_importer import _resolve_affix
+        decoded = {"candidates": [99999], "tier_guess": None}
+        affix, tier = _resolve_affix(decoded, "helmet")
+        assert affix is None
+        assert tier is None
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_base64_affixes_parsed_in_gear(self, mock_get):
+        """Gear with base64 affix IDs produces parsed_affixes entries."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": [
+                {"equipmentSlot": 0, "affixes": [
+                    {"affixID": "AAwDhQ", "tier": 5}
+                ]}
+            ]
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/B64AFF")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        affix_list = gear[0]["affixes"]
+        assert len(affix_list) == 1
+        # Should have either resolved name or decoded candidates
+        affix = affix_list[0]
+        assert affix["tier"] == 5
+        # Either resolved (has name) or unresolved (has decoded)
+        assert affix.get("name") is not None or affix.get("decoded") is not None
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_bare_string_affixes_handled(self, mock_get):
+        """Affixes as bare strings (not dicts) are also decoded."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": [
+                {"equipmentSlot": 7, "affixes": ["AAwDhQ", "AGwRhQ"]}
+            ]
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/BARESTR")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        assert len(gear[0]["affixes"]) == 2
