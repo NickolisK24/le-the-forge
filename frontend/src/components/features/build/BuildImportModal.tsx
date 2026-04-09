@@ -1,20 +1,23 @@
 /**
  * BuildImportModal
  *
- * Two-tab import UI:
- *   • "Last Epoch Tools URL" — paste a LE Tools planner URL, backend proxies it
- *   • "JSON" — paste raw Forge export JSON directly
+ * Three-tab import UI:
+ *   - "URL Import" — paste a LE Tools or Maxroll planner URL, creates build directly
+ *   - "Quick Fetch" — legacy: fetch and preview before applying to form
+ *   - "JSON" — paste raw Forge export JSON directly
  *
- * On success calls onImport(payload) with a BuildCreatePayload-compatible object.
- * The caller is responsible for applying the payload to their form state.
+ * Detects source from URL as the user types and shows a badge.
+ * On success, navigates to the new build or applies to form.
  */
 
 import { useState } from "react";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { importApi, type ImportedBuild } from "@/lib/api";
-import { Button } from "@/components/ui";
+import type { ImportBuildResponse } from "@/types";
+import { Button, Spinner } from "@/components/ui";
 
-type Tab = "url" | "json";
+type Tab = "import" | "fetch" | "json";
 
 interface Props {
   onImport: (build: ImportedBuild) => void;
@@ -25,49 +28,96 @@ const inputCls =
   "w-full rounded-sm border border-forge-border bg-forge-surface2 px-3 py-2 font-body text-sm text-forge-text outline-none focus:border-forge-amber/60 disabled:opacity-50";
 const labelCls = "font-mono text-[11px] uppercase tracking-widest text-forge-dim";
 
-export default function BuildImportModal({ onImport, onClose }: Props) {
-  const [tab, setTab] = useState<Tab>("url");
+function detectSource(url: string): "lastepochtools" | "maxroll" | null {
+  if (/lastepochtools\.com\/planner\//i.test(url)) return "lastepochtools";
+  if (/maxroll\.gg\/last-epoch\/planner\//i.test(url)) return "maxroll";
+  return null;
+}
 
-  // URL tab state
-  const [url, setUrl] = useState("");
-  const [urlLoading, setUrlLoading] = useState(false);
-  const [urlError, setUrlError] = useState("");
+const SOURCE_LABELS: Record<string, string> = {
+  lastepochtools: "Last Epoch Tools",
+  maxroll: "Maxroll",
+};
+
+export default function BuildImportModal({ onImport, onClose }: Props) {
+  const navigate = useNavigate();
+  const [tab, setTab] = useState<Tab>("import");
+
+  // Import tab state (new full import)
+  const [importUrl, setImportUrl] = useState("");
+  const [importLoading, setImportLoading] = useState(false);
+  const [importError, setImportError] = useState("");
+  const [importResult, setImportResult] = useState<ImportBuildResponse | null>(null);
+
+  // Fetch tab state (legacy preview)
+  const [fetchUrl, setFetchUrl] = useState("");
+  const [fetchLoading, setFetchLoading] = useState(false);
+  const [fetchError, setFetchError] = useState("");
+  const [preview, setPreview] = useState<ImportedBuild | null>(null);
 
   // JSON tab state
   const [jsonText, setJsonText] = useState("");
   const [jsonError, setJsonError] = useState("");
 
-  // Preview — shown after a successful URL fetch before the user confirms
-  const [preview, setPreview] = useState<ImportedBuild | null>(null);
+  const importSource = detectSource(importUrl);
+  const fetchSource = detectSource(fetchUrl);
 
-  // ---- URL import ---------------------------------------------------------
+  // ---- Full import (URL → save build) ------------------------------------
+
+  async function handleFullImport() {
+    setImportError("");
+    if (!importUrl.trim()) {
+      setImportError("Paste a build URL first.");
+      return;
+    }
+    if (!importSource) {
+      setImportError("Unsupported URL. Supported: lastepochtools.com/planner/... or maxroll.gg/last-epoch/planner/...");
+      return;
+    }
+
+    setImportLoading(true);
+    try {
+      const res = await importApi.importBuild(importUrl.trim());
+      const errMsg = res.errors?.[0]?.message;
+      if (errMsg || !res.data) {
+        setImportError(errMsg ?? "Import failed — check the URL and try again.");
+      } else {
+        setImportResult(res.data);
+      }
+    } catch {
+      setImportError("Request failed — backend may be unavailable.");
+    } finally {
+      setImportLoading(false);
+    }
+  }
+
+  // ---- Legacy fetch (URL → preview → apply to form) ----------------------
 
   async function handleUrlFetch() {
-    setUrlError("");
-    if (!url.trim()) {
-      setUrlError("Paste a Last Epoch Tools URL first.");
+    setFetchError("");
+    if (!fetchUrl.trim()) {
+      setFetchError("Paste a Last Epoch Tools URL first.");
       return;
     }
-    if (!url.includes("lastepochtools.com/planner/")) {
-      setUrlError("URL must be from lastepochtools.com/planner/…");
+    if (!fetchUrl.includes("lastepochtools.com/planner/")) {
+      setFetchError("URL must be from lastepochtools.com/planner/…");
       return;
     }
 
-    setUrlLoading(true);
+    setFetchLoading(true);
     try {
-      const res = await importApi.fromUrl(url.trim());
-      // ApiResponse uses { data, errors } envelope
+      const res = await importApi.fromUrl(fetchUrl.trim());
       const errMsg = res.errors?.[0]?.message;
-      const build = (res.data as any)?.build as ImportedBuild | undefined;
+      const build = (res.data as Record<string, unknown>)?.build as ImportedBuild | undefined;
       if (errMsg || !build) {
-        setUrlError(errMsg ?? "No build data returned — check the URL and try again.");
+        setFetchError(errMsg ?? "No build data returned — check the URL and try again.");
       } else {
         setPreview(build);
       }
     } catch {
-      setUrlError("Request failed — backend may be unavailable.");
+      setFetchError("Request failed — backend may be unavailable.");
     } finally {
-      setUrlLoading(false);
+      setFetchLoading(false);
     }
   }
 
@@ -100,6 +150,17 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
     }
   }
 
+  // ---- Source badge -------------------------------------------------------
+
+  function SourceBadge({ source }: { source: string | null }) {
+    if (!source) return null;
+    return (
+      <span className="inline-flex items-center rounded-sm border border-forge-amber/40 bg-forge-amber/10 px-2 py-0.5 font-mono text-[10px] text-forge-amber">
+        {SOURCE_LABELS[source] ?? source}
+      </span>
+    );
+  }
+
   // ---- Render -------------------------------------------------------------
 
   return (
@@ -124,50 +185,176 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
 
         {/* Tabs */}
         <div className="flex border-b border-forge-border">
-          {(["url", "json"] as Tab[]).map((t) => (
+          {([
+            { key: "import" as Tab, label: "Import URL" },
+            { key: "fetch" as Tab, label: "Quick Fetch" },
+            { key: "json" as Tab, label: "{ } JSON" },
+          ]).map((t) => (
             <button
-              key={t}
-              onClick={() => { setTab(t); setPreview(null); setUrlError(""); setJsonError(""); }}
-              className={`px-5 py-2.5 font-mono text-[11px] uppercase tracking-widest border-r border-forge-border transition-colors ${
-                tab === t
+              key={t.key}
+              onClick={() => {
+                setTab(t.key);
+                setImportResult(null);
+                setPreview(null);
+                setImportError("");
+                setFetchError("");
+                setJsonError("");
+              }}
+              className={`px-4 py-2.5 font-mono text-[10px] uppercase tracking-widest border-r border-forge-border transition-colors ${
+                tab === t.key
                   ? "bg-forge-surface text-forge-amber"
                   : "text-forge-dim hover:text-forge-text"
               }`}
             >
-              {t === "url" ? "🔗 Last Epoch Tools URL" : "{ } JSON Paste"}
+              {t.label}
             </button>
           ))}
         </div>
 
         <div className="p-5">
 
-          {/* ---- URL tab ---- */}
-          {tab === "url" && !preview && (
+          {/* ---- Import tab (new full flow) ---- */}
+          {tab === "import" && !importResult && (
+            <div className="flex flex-col gap-4">
+              <div>
+                <p className="font-body text-sm text-forge-text/80 leading-relaxed">
+                  Import a build from{" "}
+                  <span className="text-forge-amber font-mono text-xs">Last Epoch Tools</span> or{" "}
+                  <span className="text-forge-amber font-mono text-xs">Maxroll</span>.
+                  We'll map everything we can and tell you what didn't transfer.
+                </p>
+              </div>
+
+              <div>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <label className={labelCls}>Build URL</label>
+                  <SourceBadge source={importSource} />
+                </div>
+                <input
+                  className={inputCls}
+                  type="url"
+                  placeholder="https://www.lastepochtools.com/planner/B4XdLG56 or https://maxroll.gg/last-epoch/planner/zge0t60e"
+                  value={importUrl}
+                  onChange={(e) => { setImportUrl(e.target.value); setImportError(""); }}
+                  onKeyDown={(e) => e.key === "Enter" && handleFullImport()}
+                  autoFocus
+                />
+                {importError && (
+                  <p className="mt-1.5 font-mono text-[11px] text-red-400">{importError}</p>
+                )}
+              </div>
+
+              <div className="flex justify-end gap-2">
+                <Button variant="outline" size="sm" onClick={onClose}>Cancel</Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={handleFullImport}
+                  disabled={importLoading || !importUrl.trim()}
+                >
+                  {importLoading ? (
+                    <span className="flex items-center gap-2">
+                      <Spinner size={14} /> Fetching and parsing build...
+                    </span>
+                  ) : "Import Build"}
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* ---- Import success ---- */}
+          {tab === "import" && importResult && (
+            <div className="flex flex-col gap-4">
+              {/* Success with no warnings */}
+              {importResult.warnings.length === 0 && (
+                <div className="rounded border border-green-500/30 bg-green-500/8 px-4 py-3">
+                  <div className="font-display text-sm text-green-400">Build imported successfully</div>
+                  <div className="mt-1 font-mono text-[11px] text-forge-dim">
+                    {importResult.build_name} — from {SOURCE_LABELS[importResult.source] ?? importResult.source}
+                  </div>
+                </div>
+              )}
+
+              {/* Success with warnings (partial import) */}
+              {importResult.warnings.length > 0 && (
+                <div className="rounded border border-yellow-500/30 bg-yellow-500/8 px-4 py-3">
+                  <div className="font-display text-sm text-yellow-400">Partial import</div>
+                  <div className="mt-1 font-mono text-[11px] text-forge-dim">
+                    {importResult.build_name} — some fields could not be mapped:
+                  </div>
+                  <ul className="mt-2 space-y-0.5">
+                    {importResult.warnings.map((w, i) => (
+                      <li key={i} className="font-mono text-[10px] text-yellow-400/80">• {w}</li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+
+              {/* Imported fields summary */}
+              <div className="rounded border border-forge-border bg-forge-surface2 p-3">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim mb-2">
+                  Imported Fields
+                </div>
+                <div className="flex flex-wrap gap-1.5">
+                  {importResult.imported_fields.map((f) => (
+                    <span key={f} className="rounded-sm border border-forge-border bg-forge-bg px-2 py-0.5 font-mono text-[10px] text-forge-text">
+                      {f}
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <div className="flex justify-between gap-2">
+                <Button
+                  variant="outline"
+                  size="sm"
+                  onClick={() => { setImportResult(null); setImportUrl(""); }}
+                >
+                  Import Another
+                </Button>
+                <Button
+                  variant="primary"
+                  size="sm"
+                  onClick={() => {
+                    onClose();
+                    navigate(`/build/${importResult.slug}`);
+                  }}
+                >
+                  Open Build
+                </Button>
+              </div>
+            </div>
+          )}
+
+          {/* ---- Quick Fetch tab (legacy) ---- */}
+          {tab === "fetch" && !preview && (
             <div className="flex flex-col gap-4">
               <div>
                 <p className="font-body text-sm text-forge-text/80 leading-relaxed">
                   Paste a build link from{" "}
                   <span className="text-forge-amber font-mono text-xs">lastepochtools.com/planner/…</span>
-                  {" "}and The Forge will import the class, passives, and skills automatically.
+                  {" "}and The Forge will fetch it for preview. You can then apply it to your form.
                 </p>
                 <p className="mt-1 font-mono text-[10px] text-forge-dim">
-                  ⚠ Gear is not yet imported — fill it in manually after importing.
+                  Gear is not yet imported via this method.
                 </p>
               </div>
 
               <div>
-                <label className={labelCls}>Last Epoch Tools URL</label>
+                <div className="flex items-center gap-2 mb-1.5">
+                  <label className={labelCls}>Last Epoch Tools URL</label>
+                  <SourceBadge source={fetchSource} />
+                </div>
                 <input
-                  className={inputCls + " mt-1.5"}
+                  className={inputCls}
                   type="url"
                   placeholder="https://www.lastepochtools.com/planner/kB5dyWvQ"
-                  value={url}
-                  onChange={(e) => { setUrl(e.target.value); setUrlError(""); }}
+                  value={fetchUrl}
+                  onChange={(e) => { setFetchUrl(e.target.value); setFetchError(""); }}
                   onKeyDown={(e) => e.key === "Enter" && handleUrlFetch()}
-                  autoFocus
                 />
-                {urlError && (
-                  <p className="mt-1.5 font-mono text-[11px] text-red-400">{urlError}</p>
+                {fetchError && (
+                  <p className="mt-1.5 font-mono text-[11px] text-red-400">{fetchError}</p>
                 )}
               </div>
 
@@ -177,16 +364,16 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   variant="primary"
                   size="sm"
                   onClick={handleUrlFetch}
-                  disabled={urlLoading || !url.trim()}
+                  disabled={fetchLoading || !fetchUrl.trim()}
                 >
-                  {urlLoading ? "Fetching…" : "Fetch Build →"}
+                  {fetchLoading ? "Fetching…" : "Fetch Build →"}
                 </Button>
               </div>
             </div>
           )}
 
-          {/* ---- URL preview ---- */}
-          {tab === "url" && preview && (
+          {/* ---- Quick Fetch preview ---- */}
+          {tab === "fetch" && preview && (
             <div className="flex flex-col gap-4">
               <div className="rounded border border-forge-border bg-forge-surface2 p-3 flex flex-col gap-2">
                 <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim mb-1">
@@ -214,7 +401,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
 
               {preview._import_meta?.gear_note && (
                 <p className="font-mono text-[10px] text-yellow-400/70">
-                  ⚠ {preview._import_meta.gear_note}
+                  {preview._import_meta.gear_note}
                 </p>
               )}
 
@@ -264,6 +451,15 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
           )}
 
         </div>
+
+        {/* Hard failure note */}
+        {importError && importError.includes("422") && (
+          <div className="border-t border-forge-border px-4 py-2">
+            <p className="font-mono text-[10px] text-forge-dim">
+              This issue has been reported and will be reviewed.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

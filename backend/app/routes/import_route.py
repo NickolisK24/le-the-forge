@@ -1,8 +1,9 @@
 """
 Import Blueprint — /api/import
 
-POST /api/import/url   → Proxy-fetch a Last Epoch Tools build URL and return
-                         a mapped build payload ready to be reviewed / saved.
+POST /api/import/url    → Proxy-fetch a Last Epoch Tools build URL and return
+                          a mapped build payload ready to be reviewed / saved.
+POST /api/import/build  → Parse URL (LET or Maxroll), validate, save build, track failures.
 """
 
 import json as json_lib
@@ -13,7 +14,12 @@ from typing import Dict, List, Optional
 import requests as _requests
 from flask import Blueprint, current_app, request
 
-from app import limiter
+from app import db, limiter
+from app.models import ImportFailure
+from app.services import build_service
+from app.services.importers import get_importer, detect_source, ImportResult
+from app.services.discord_notifier import send_import_failure_alert
+from app.utils.auth import get_current_user
 from app.utils.responses import ok, error as err_response
 
 import_bp = Blueprint("import", __name__)
@@ -308,3 +314,136 @@ def import_from_url():
         f"skills={len(mapped['skills'])}"
     )
     return ok({"build": mapped, "source_code": code})
+
+
+# ---------------------------------------------------------------------------
+# Full import — parse, validate, save build, track failures
+# ---------------------------------------------------------------------------
+
+def _rate_key_import():
+    """Rate limit key that distinguishes authenticated vs anonymous users."""
+    user = get_current_user()
+    if user:
+        return f"import:user:{user.id}"
+    return f"import:anon:{request.remote_addr}"
+
+
+def _dynamic_import_limit():
+    """Return '5 per minute' for authenticated users, '2 per minute' for anon."""
+    user = get_current_user()
+    return "5 per minute" if user else "2 per minute"
+
+
+@import_bp.post("/build")
+@limiter.limit(_dynamic_import_limit, key_func=_rate_key_import)
+def import_build():
+    """
+    POST /api/import/build
+    Body: { "url": "https://www.lastepochtools.com/planner/B4XdLG56" }
+           or { "url": "https://maxroll.gg/last-epoch/planner/zge0t60e" }
+
+    1. Detect source from URL
+    2. Run the appropriate importer
+    3. On success — save as a draft build, return slug + summary
+    4. On hard failure — log ImportFailure, fire Discord alert, return 422
+    5. On partial — save build, log ImportFailure, return 200 with warnings
+    """
+    body = request.get_json(silent=True) or {}
+    url: str = body.get("url", "").strip()
+    user = get_current_user()
+    user_id = user.id if user else None
+
+    if not url:
+        return err_response("url is required", 400)
+
+    # Detect source
+    try:
+        source = detect_source(url)
+    except ValueError as exc:
+        return err_response(str(exc), 400)
+
+    # Run importer
+    try:
+        importer = get_importer(url)
+        result: ImportResult = importer.parse(url)
+    except Exception as exc:
+        current_app.logger.exception("import/build: unexpected error parsing %s", url)
+        # Log failure
+        failure = ImportFailure(
+            source=source,
+            raw_url=url,
+            missing_fields=[],
+            partial_data=None,
+            user_id=user_id,
+            error_message=f"Unexpected error: {exc}",
+        )
+        db.session.add(failure)
+        db.session.commit()
+        send_import_failure_alert(failure, severity="hard")
+        return err_response(f"Import failed: {exc}", 500)
+
+    # Hard failure — class/mastery unmappable
+    if not result.success:
+        failure = ImportFailure(
+            source=result.source or source,
+            raw_url=url,
+            missing_fields=result.missing_fields,
+            partial_data=result.build_data,
+            user_id=user_id,
+            error_message=result.error_message,
+        )
+        db.session.add(failure)
+        db.session.commit()
+        send_import_failure_alert(failure, severity="hard")
+
+        return err_response(
+            result.error_message or "Import failed — could not parse the build.",
+            422,
+        )
+
+    # Success (possibly partial)
+    build_data = result.build_data
+    # Force draft (not public) for imported builds
+    build_data["is_public"] = False
+
+    try:
+        build = build_service.create_build(build_data, user_id=user_id)
+    except Exception as exc:
+        current_app.logger.exception("import/build: failed to save build from %s", url)
+        return err_response(f"Build parsed but could not be saved: {exc}", 500)
+
+    # Track partial imports
+    warnings = result.missing_fields
+    if warnings:
+        failure = ImportFailure(
+            source=result.source or source,
+            raw_url=url,
+            missing_fields=warnings,
+            partial_data={"slug": build.slug},
+            user_id=user_id,
+            error_message="Partial import — some fields could not be mapped.",
+        )
+        db.session.add(failure)
+        db.session.commit()
+        send_import_failure_alert(failure, severity="partial")
+
+    imported_fields = []
+    if build_data.get("character_class"):
+        imported_fields.append("class")
+    if build_data.get("mastery"):
+        imported_fields.append("mastery")
+    if build_data.get("passive_tree"):
+        imported_fields.append(f"passive_tree ({len(build_data['passive_tree'])} nodes)")
+    if build_data.get("skills"):
+        imported_fields.append(f"skills ({len(build_data['skills'])})")
+    if build_data.get("gear"):
+        imported_fields.append(f"gear ({len(build_data['gear'])} items)")
+
+    return ok({
+        "slug": build.slug,
+        "build_name": build.name,
+        "source": result.source,
+        "imported_fields": imported_fields,
+        "missing_fields": warnings,
+        "warnings": [f"Could not map: {f}" for f in warnings] if warnings else [],
+    }, status=201)

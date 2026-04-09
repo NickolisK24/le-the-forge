@@ -1,56 +1,42 @@
-# The Forge — API Reference
+# The Forge -- API Reference
 
-All endpoints are prefixed with `/api`. All responses are JSON.
+All endpoints are prefixed with `/api`. All responses use the standard JSON envelope:
+
+```json
+{
+  "data": <payload or null>,
+  "meta": <pagination or null>,
+  "errors": [{"message": "...", "field": "..."}] or null
+}
+```
 
 ---
 
 ## Authentication
 
-The Forge uses Discord OAuth 2.0. Protected endpoints require a JWT bearer token:
+Discord OAuth2 with JWT bearer tokens. Protected endpoints require:
 
 ```
 Authorization: Bearer <token>
 ```
 
 ### `GET /api/auth/discord`
-Redirects the browser to Discord's OAuth consent page.
+Redirects to Discord OAuth consent page.
+**Rate limit:** 20/min
 
 ### `GET /api/auth/discord/authorized`
-OAuth callback. Exchanges the Discord code for a token, creates/updates the user, and redirects to the frontend with `?token=<jwt>`.
-
-**Error redirects:** `?auth=failed&reason=<reason>`
-- `discord_unreachable` — could not reach Discord
-- `discord_timeout` — Discord timed out
-- `token_exchange` — token exchange failed
-- `profile_fetch` — could not fetch Discord profile
-- `no_code` — authorization cancelled
+OAuth callback. Exchanges code, creates/updates user, redirects frontend with `?token=<jwt>`.
+**Rate limit:** 20/min
 
 ### `GET /api/auth/me`
-Returns the current authenticated user.
-
-**Requires auth.** Returns `401` if token is missing or expired.
-
-```json
-{
-  "data": {
-    "id": "uuid",
-    "username": "Player#1234",
-    "avatar_url": "https://cdn.discordapp.com/...",
-    "is_active": true,
-    "created_at": "2025-01-01T00:00:00Z"
-  }
-}
-```
+Returns current authenticated user.
+**Requires auth.**
 
 ### `POST /api/auth/logout`
-Clears the server-side session (stateless JWT — client should discard the token).
+Stateless logout -- client discards JWT.
 
-```json
-{ "message": "logged out" }
-```
-
-### `GET /api/auth/dev-login` *(dev only)*
-Bypasses Discord and returns a JWT for a local test user. Only available when `FLASK_ENV=development`.
+### `GET /api/auth/dev-login`
+Dev-only JWT bypass. Only available when `FLASK_ENV=development`.
 
 ---
 
@@ -59,197 +45,98 @@ Bypasses Discord and returns a JWT for a local test user. Only available when `F
 ### `GET /api/builds`
 List community builds with filtering and pagination.
 
-**Query parameters:**
-
-| Param | Type | Description |
-|---|---|---|
-| `q` | string | Search builds by name/description |
-| `character_class` | string | Filter by class |
-| `mastery` | string | Filter by mastery |
-| `tier` | string | Filter by tier (`S`, `A`, `B`, `C`) |
-| `is_ssf` | bool | SSF builds only |
-| `is_hc` | bool | Hardcore builds only |
-| `is_ladder_viable` | bool | Ladder-viable only |
-| `is_budget` | bool | Budget builds only |
-| `sort` | string | `votes` (default), `new`, `tier`, `views` |
-| `page` | int | Page number (default: 1) |
-| `per_page` | int | Results per page (default: 20, max: 100) |
-
-```json
-{
-  "data": [
-    {
-      "id": "uuid",
-      "slug": "wraithlord-7xk3",
-      "name": "Wraithlord One-Shot",
-      "description": "Fastest T4 clear...",
-      "character_class": "Acolyte",
-      "mastery": "Lich",
-      "level": 100,
-      "tier": "S",
-      "vote_count": 142,
-      "view_count": 3201,
-      "is_ssf": false,
-      "is_hc": false,
-      "is_ladder_viable": true,
-      "is_budget": false,
-      "author": { "username": "Ghostblade" },
-      "created_at": "2025-06-01T12:00:00Z"
-    }
-  ],
-  "meta": {
-    "page": 1,
-    "pages": 5,
-    "total": 94,
-    "per_page": 20,
-    "has_next": true,
-    "has_prev": false
-  }
-}
-```
-
-### `GET /api/builds/meta/snapshot`
-Aggregate stats about all public builds (class distribution, tier counts).
-
-```json
-{
-  "data": {
-    "total": 94,
-    "by_class": { "Acolyte": 23, "Mage": 18, ... },
-    "by_tier": { "S": 5, "A": 21, "B": 38, "C": 30 }
-  }
-}
-```
+**Query params:** `q`, `character_class`, `mastery`, `tier` (S/A/B/C), `is_ssf`, `is_hc`, `is_ladder_viable`, `is_budget`, `cycle`, `sort` (votes/new/tier/views), `page`, `per_page` (max 100)
 
 ### `POST /api/builds`
-Create a new build. Rate limited: 20/min.
+Create a new build. Auth optional (anonymous builds allowed).
+**Rate limit:** 20/min
 
-**Request body:**
-
-```json
-{
-  "name": "Wraithlord One-Shot",
-  "description": "Fastest T4 clear in patch 1.2",
-  "character_class": "Acolyte",
-  "mastery": "Lich",
-  "level": 100,
-  "passive_tree": [0, 1, 3, 7, 12],
-  "skills": [
-    { "slot": 0, "skill_name": "Transplant", "points_allocated": 20, "spec_tree": [1, 2, 5] }
-  ],
-  "gear": [
-    { "slot": "head", "item_name": "Drowned Wraith", "rarity": "Exalted",
-      "affixes": [{ "name": "% Increased Health", "tier": 5 }] }
-  ],
-  "is_ssf": false,
-  "is_hc": false,
-  "is_ladder_viable": true,
-  "is_budget": false,
-  "patch_version": "1.2",
-  "cycle": "Cycle of the Tides"
-}
-```
-
-**Response:** `201 Created`
-
-```json
-{
-  "data": { "slug": "wraithlord-7xk3", ...full build object }
-}
-```
+### `GET /api/builds/meta/snapshot`
+Legacy meta snapshot (class distribution, tier counts).
 
 ### `GET /api/builds/<slug>`
-Get a single build by slug. Increments `view_count`.
-
-```json
-{
-  "data": {
-    "id": "uuid",
-    "slug": "wraithlord-7xk3",
-    "name": "Wraithlord One-Shot",
-    "character_class": "Acolyte",
-    "mastery": "Lich",
-    "level": 100,
-    "passive_tree": [0, 1, 3, 7, 12],
-    "gear": [...],
-    "skills": [
-      { "id": "uuid", "slot": 0, "skill_name": "Transplant", "points_allocated": 20, "spec_tree": [...] }
-    ],
-    "is_ssf": false,
-    "is_hc": false,
-    "is_ladder_viable": true,
-    "is_budget": false,
-    "tier": "S",
-    "vote_count": 142,
-    "view_count": 3202,
-    "user_vote": null,
-    "author": { "id": "uuid", "username": "Ghostblade" },
-    "patch_version": "1.2",
-    "cycle": "Cycle of the Tides",
-    "created_at": "2025-06-01T12:00:00Z",
-    "updated_at": "2025-06-01T14:00:00Z"
-  }
-}
-```
+Get a single build by slug. Increments view_count. Includes user_vote if authenticated.
 
 ### `PATCH /api/builds/<slug>`
-Update a build. **Requires auth.** Only the build author can update.
-
-**Request body:** any subset of the `POST /api/builds` fields.
-
-**Response:** `200 OK` with updated build object.
+Update a build. **Requires auth.** Owner only.
+**Rate limit:** 20/min
 
 ### `DELETE /api/builds/<slug>`
-Delete a build. **Requires auth.** Only the build author can delete.
-
-**Response:** `204 No Content`
-
-### `POST /api/builds/<slug>/simulate`
-Run a quick simulation for this saved build. Rate limited: 10/min.
-
-**Request body (optional):**
-
-```json
-{ "seed": 42 }
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "dps": 148200.5,
-    "average_hit": 24700.1,
-    "crit_chance": 0.72,
-    "effective_attack_speed": 6.0,
-    "ehp": 185000,
-    "survivability_score": 0.81
-  }
-}
-```
+Delete a build. **Requires auth.** Owner only.
+**Rate limit:** 10/min
 
 ### `POST /api/builds/<slug>/vote`
-Vote on a build. **Requires auth.** Rate limited: 30/min.
+Vote on a build (+1 or -1). Same direction toggles off. **Requires auth.**
+**Rate limit:** 30/min
 
-**Request body:**
+### `POST /api/builds/<slug>/simulate`
+Run full simulation pipeline for a saved build. Returns stats, DPS, Monte Carlo, defense, stat upgrades, per-skill DPS breakdown.
+**Rate limit:** 10/min
 
-```json
-{ "direction": 1 }
-```
+### `POST /api/builds/<slug>/optimize`
+Get stat upgrade recommendations for a build.
+**Rate limit:** 10/min
 
-`direction`: `1` (upvote) or `-1` (downvote). Sending the same direction again toggles the vote off.
+### `GET /api/builds/<slug>/optimize`
+Sensitivity analysis + ranked upgrades + efficiency scoring.
+**Query params:** `mode` (balanced/offense/defense)
+**Rate limit:** 10/min. Cached 30 minutes.
 
-**Response:**
+---
 
-```json
-{
-  "data": {
-    "vote_count": 143,
-    "user_vote": 1,
-    "tier": "S"
-  }
-}
-```
+## Build Analysis
+
+### `GET /api/builds/<slug>/analysis/boss/<boss_id>`
+Boss encounter simulation with per-phase results.
+**Query params:** `corruption` (default 0)
+**Rate limit:** 10/min. Cached 30 minutes.
+
+### `GET /api/builds/<slug>/analysis/corruption`
+Corruption scaling curve analysis.
+**Query params:** `boss_id` (optional)
+**Rate limit:** 10/min. Cached 30 minutes.
+
+### `GET /api/builds/<slug>/analysis/gear-upgrades`
+Per-slot gear upgrade ranking.
+**Query params:** `slot` (filter to specific slot)
+**Rate limit:** 10/min. Cached 30 minutes.
+
+---
+
+## Build Comparison
+
+### `GET /api/compare/<slug_a>/<slug_b>`
+Compare two builds with full DPS/EHP simulation, stat deltas, skill comparison, and weighted overall winner (60% DPS / 40% EHP).
+Returns 400 if `slug_a == slug_b`. Cache key uses alphabetically sorted slugs.
+**Rate limit:** 15/min. Cached 20 minutes.
+
+---
+
+## Meta Analytics
+
+### `GET /api/meta/snapshot`
+Full meta analytics: class/mastery distribution, popular skills, popular affixes, average stats by class, current patch.
+**Rate limit:** 30/min. Cached 6 hours.
+
+### `GET /api/meta/trending`
+Trending builds ranked by view velocity (view_count / age_days, minimum 10 views).
+**Rate limit:** 30/min. Cached 1 hour.
+
+---
+
+## View Tracking
+
+### `POST /api/builds/<slug>/view`
+Record a build view. IP is SHA-256 hashed before storage. Rate limited to 1 view per IP per build per hour via Redis key. Silently returns 204 if rate limited.
+**Rate limit:** 60/min.
+
+---
+
+## Build Reports
+
+### `GET /api/builds/<slug>/report`
+Shareable build report with identity, stats, DPS, EHP, top 3 upgrades, skills, gear, and OpenGraph meta tags. Returns 403 for private builds unless requester is owner.
+**Rate limit:** 20/min. Cached 1 hour.
 
 ---
 
@@ -257,411 +144,170 @@ Vote on a build. **Requires auth.** Rate limited: 30/min.
 
 ### `POST /api/craft`
 Create a new crafting session.
-
-**Request body:**
-
-```json
-{
-  "item_type": "Wand",
-  "item_name": "Driftwood Wand",
-  "item_level": 85,
-  "rarity": "Rare",
-  "forge_potential": 40,
-  "affixes": [
-    { "name": "% Increased Spell Damage", "tier": 3, "sealed": false }
-  ]
-}
-```
-
-**Response:** `201 Created`
-
-```json
-{
-  "data": {
-    "id": "uuid",
-    "slug": "craft-9xp2",
-    "item_type": "Wand",
-    "item_name": "Driftwood Wand",
-    "item_level": 85,
-    "rarity": "Rare",
-    "forge_potential": 40,
-    "affixes": [...],
-    "steps": [],
-    "created_at": "2025-06-01T12:00:00Z"
-  }
-}
-```
+**Rate limit:** 30/min
 
 ### `GET /api/craft/<slug>`
-Get a craft session by slug.
-
-### `DELETE /api/craft/<slug>`
-Delete a craft session. **Requires auth** if the session belongs to a user.
+Get a craft session with step history.
 
 ### `POST /api/craft/<slug>/action`
-Apply a crafting action to an active session.
-
-**Request body:**
-
-```json
-{
-  "action": "upgrade_affix",
-  "affix_name": "% Increased Spell Damage",
-  "seed": 42
-}
-```
-
-`action` values: `add_affix`, `upgrade_affix`, `seal_affix`, `unseal_affix`, `remove_affix`
-
-**Response:**
-
-```json
-{
-  "data": {
-    "step": {
-      "step_number": 1,
-      "action": "upgrade_affix",
-      "affix_name": "% Increased Spell Damage",
-      "tier_before": 3,
-      "tier_after": 4,
-      "roll": 72,
-      "outcome": "success",
-      "fp_before": 40,
-      "fp_after": 35
-    },
-    "session": { ...updated session }
-  }
-}
-```
+Apply a crafting action. Actions: `add_affix`, `upgrade_affix`, `seal_affix`, `unseal_affix`, `remove_affix`.
+**Rate limit:** 60/min
 
 ### `POST /api/craft/<slug>/undo`
 Undo the last crafting action.
+**Rate limit:** 30/min
 
 ### `GET /api/craft/<slug>/summary`
-Get a summary and simulation results for a craft session.
+Get session summary with optimal path search, Monte Carlo simulation, and strategy comparison.
 
-```json
-{
-  "data": {
-    "item_type": "Wand",
-    "rarity": "Rare",
-    "affixes": [...],
-    "fp_remaining": 35,
-    "optimal_path": {
-      "steps": ["upgrade_affix: % Increased Spell Damage → T5", "seal_affix"],
-      "total_fp_cost": 25,
-      "expected_fp_needed": 28.4
-    },
-    "simulation": {
-      "runs": 3000,
-      "success_rate": 0.68,
-      "expected_fp_used": 27.1
-    }
-  }
-}
-```
+### `DELETE /api/craft/<slug>`
+Delete a craft session.
+**Rate limit:** 10/min
 
 ### `POST /api/craft/predict`
 Stateless FP cost prediction. No session required.
-
-**Request body:**
-
-```json
-{
-  "item_type": "Wand",
-  "item_level": 85,
-  "rarity": "Rare",
-  "affixes": [
-    { "name": "% Increased Spell Damage", "tier": 3, "sealed": false }
-  ],
-  "target_tiers": { "% Increased Spell Damage": 5 },
-  "seed": null
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "optimal_path": { "steps": [...], "total_fp_cost": 20 },
-    "strategies": {
-      "aggressive": { "fp_cost": 18, "success_rate": 0.55, "risk": "high" },
-      "balanced":   { "fp_cost": 22, "success_rate": 0.71, "risk": "medium" },
-      "conservative": { "fp_cost": 28, "success_rate": 0.85, "risk": "low" }
-    }
-  }
-}
-```
+**Rate limit:** 30/min
 
 ### `POST /api/craft/simulate`
-Run a Monte Carlo simulation for a craft configuration. Rate limited: 10/min.
-
-**Request body:**
-
-```json
-{
-  "item_type": "Wand",
-  "item_level": 85,
-  "rarity": "Rare",
-  "forge_potential": 40,
-  "affixes": [{ "name": "% Increased Spell Damage", "tier": 3, "sealed": false }],
-  "runs": 3000,
-  "seed": 42
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "runs": 3000,
-    "success_rate": 0.68,
-    "expected_fp_used": 27.1,
-    "percentiles": { "p25": 22, "p50": 27, "p75": 33, "p90": 40 },
-    "seed": 42
-  }
-}
-```
+Monte Carlo craft simulation.
+**Rate limit:** 20/min
 
 ---
 
-## Simulation
+## Simulation (Stateless)
+
+These endpoints accept raw build data (no saved build required).
 
 ### `POST /api/simulate/stats`
-Compute aggregate stats for a build config.
-
-**Request body:**
-
-```json
-{
-  "character_class": "Acolyte",
-  "mastery": "Lich",
-  "level": 100,
-  "passive_nodes": [0, 1, 3, 7],
-  "gear": [
-    { "slot": "head", "affixes": [{ "stat_key": "spell_damage_pct", "value": 50 }] }
-  ],
-  "skills": [{ "skill_name": "Transplant", "points_allocated": 20 }]
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "stats": {
-      "base_damage": 120,
-      "crit_chance": 0.72,
-      "crit_multiplier": 3.5,
-      "spell_damage_pct": 280,
-      "max_health": 2800,
-      "armour": 1500,
-      "void_res": 75,
-      ...
-    }
-  }
-}
-```
+Compute aggregate stats from class/mastery/passives/gear.
+**Rate limit:** 60/min (configurable). Cached 5 minutes.
 
 ### `POST /api/simulate/combat`
-Simulate combat DPS against an enemy profile. Rate limited: 20/min.
-
-**Request body:**
-
-```json
-{
-  "character_class": "Acolyte",
-  "mastery": "Lich",
-  "level": 100,
-  "passive_nodes": [0, 1, 3],
-  "gear": [...],
-  "skills": [...],
-  "enemy_id": "boss_lagon",
-  "skill_name": "Transplant",
-  "runs": 1000,
-  "seed": 42
-}
-```
-
-**Response:**
-
-```json
-{
-  "data": {
-    "dps": 148200.5,
-    "average_hit": 24700.1,
-    "crit_contribution_pct": 0.62,
-    "effective_attack_speed": 6.0,
-    "hit_damage": 12350.0,
-    "seed": 42
-  }
-}
-```
+DPS + Monte Carlo simulation. Supports async via `"async": true` in body.
+**Rate limit:** 20/min. Cached 5 minutes.
 
 ### `POST /api/simulate/defense`
-Compute defensive stats. Rate limited: 30/min.
-
-**Request body:** Same structure as `/simulate/stats` + `enemy_id` (optional).
-
-**Response:**
-
-```json
-{
-  "data": {
-    "ehp": 185000,
-    "armor_reduction_pct": 0.60,
-    "resistances": { "fire": 75, "cold": 58, "lightning": 75, "void": 42 },
-    "survivability_score": 0.81,
-    "weaknesses": ["cold", "void"],
-    "strengths": ["fire", "lightning"]
-  }
-}
-```
+EHP + survivability analysis.
+**Rate limit:** 30/min. Cached 5 minutes.
 
 ### `POST /api/simulate/optimize`
-Get top stat upgrade recommendations. Rate limited: 10/min.
+Stat upgrade recommendations from raw data.
+**Rate limit:** 10/min. Cached 5 minutes.
 
-**Request body:** Same as `/simulate/stats`.
+### `POST /api/simulate/sensitivity`
+Stat sensitivity analysis with weighted impact scoring.
+**Rate limit:** 10/min. Cached 5 minutes.
 
-**Response:**
+### `POST /api/simulate/encounter`
+Encounter simulation with enemy templates.
+**Rate limit:** 15/min (configurable).
 
-```json
-{
-  "data": {
-    "top_upgrades": [
-      { "stat": "crit_chance_pct", "label": "Critical Strike Chance", "dps_gain": 18400, "pct_gain": 0.124 },
-      { "stat": "spell_damage_pct", "label": "Increased Spell Damage", "dps_gain": 14200, "pct_gain": 0.096 }
-    ]
-  }
-}
-```
+### `POST /api/simulate/encounter-build`
+Encounter simulation from full build definition.
+**Rate limit:** 20/min
 
 ### `POST /api/simulate/build`
-Full build simulation — stats + combat + defense in one call. Rate limited: 10/min.
+Full pipeline (stats + combat + defense) in one call. Supports async.
+**Rate limit:** 30/min (configurable). Cached 5 minutes.
 
-**Request body:**
+### `POST /api/simulate/rotation`
+Skill rotation simulation with priority ordering and cooldown tracking.
+**Rate limit:** 10/min
 
-```json
-{
-  "character_class": "Acolyte",
-  "mastery": "Lich",
-  "level": 100,
-  "passive_nodes": [...],
-  "gear": [...],
-  "skills": [...],
-  "enemy_id": "boss_lagon",
-  "skill_name": "Transplant",
-  "runs": 1000,
-  "seed": 42
-}
-```
+### `POST /api/simulate/conditional`
+Conditional modifier evaluation against simulation state.
+**Rate limit:** 30/min
 
-**Response:**
+### `POST /api/simulate/multi-target`
+Multi-target encounter simulation (AOE, chain, splash).
+**Rate limit:** 20/min
 
-```json
-{
-  "data": {
-    "stats": { ...aggregate stats },
-    "combat": { ...dps breakdown },
-    "defense": { ...ehp + resistances },
-    "top_upgrades": [...],
-    "seed": 42
-  }
-}
-```
+---
+
+## Optimization
+
+### `POST /api/optimize/build`
+Full variant generation + simulation + ranking.
+**Rate limit:** 5/min
+
+---
+
+## BIS Search
+
+### `POST /api/bis/search`
+Best-in-slot incremental search with weighted affix targeting.
+**Rate limit:** 15/min
+
+---
+
+## Build Import
+
+### `POST /api/import/url`
+Proxy-fetch and parse a Last Epoch Tools or Maxroll URL.
+**Rate limit:** 20/min
+
+### `POST /api/import/build`
+Full import pipeline: detect source, parse, save, track failures.
+**Rate limit:** 5/min (authenticated), 2/min (anonymous). Dynamic key function.
+
+---
+
+## Skill Trees
+
+### `GET /api/skills/<skill_id>/tree`
+Get skill tree node graph for a specific skill.
+**Rate limit:** 30/min. Cached 24 hours.
+
+### `GET /api/builds/<slug>/skills`
+Get skill allocation state for a build.
+**Rate limit:** 20/min
+
+### `PATCH /api/builds/<slug>/skills/<skill_id>/nodes/<node_id>`
+Allocate or deallocate points on a skill tree node.
+**Rate limit:** 30/min
+
+---
+
+## Passives
+
+### `GET /api/passives`
+All passive nodes. Filter by `class`, `mastery`.
+
+### `GET /api/passives/<character_class>`
+Full passive tree for a class.
+
+### `GET /api/passives/<character_class>/<mastery>`
+Mastery-specific passive nodes plus base class nodes.
 
 ---
 
 ## Reference Data
 
-These endpoints return static game data. All are cached indefinitely.
+All reference endpoints return static game data. Most are cached 24 hours.
 
 ### `GET /api/ref/classes`
-All character classes with masteries and available skills.
-
-```json
-{
-  "data": {
-    "Acolyte": {
-      "color": "#9b59b6",
-      "masteries": ["Lich", "Necromancer", "Warlock"],
-      "skills": ["Transplant", "Marrow Shards", ...]
-    },
-    ...
-  }
-}
-```
+All character classes with masteries and skills.
 
 ### `GET /api/ref/item-types`
 All item type definitions.
 
-```json
-{
-  "data": [
-    { "name": "Wand", "category": "weapon", "base_implicit": "cast speed" },
-    ...
-  ]
-}
-```
-
 ### `GET /api/ref/affixes`
-All affix definitions. Filterable.
+All affix definitions. Filter by `type`, `slot`, `class`, `tag`.
 
-**Query params:** `?type=prefix&slot=wand&class=Acolyte&tag=spell`
-
-```json
-{
-  "data": [
-    {
-      "id": "spell-damage-prefix",
-      "name": "% Increased Spell Damage",
-      "type": "prefix",
-      "stat_key": "spell_damage_pct",
-      "applicable_to": ["wand", "staff", "sceptre"],
-      "class_requirement": null,
-      "tags": ["spell", "damage"],
-      "tiers": [
-        { "tier": 1, "min": 10, "max": 20 },
-        { "tier": 5, "min": 60, "max": 90 }
-      ]
-    }
-  ]
-}
-```
-
-### `GET /api/ref/affixes/<affix_id>`
-Single affix by ID.
-
-### `GET /api/ref/skills`
-All skill definitions. Filter by `?class=Acolyte`.
-
-```json
-{
-  "data": [
-    { "name": "Transplant", "class": "Acolyte", "tags": ["spell", "movement"], "icon": "transplant" }
-  ]
-}
-```
+### `GET /api/ref/affix-categories`
+Affix category descriptions.
 
 ### `GET /api/ref/passives`
-Passive tree nodes. Filter by `?class=Acolyte&mastery=Lich`.
+Passive nodes. Filter by `class`, `mastery`.
 
-```json
-{
-  "data": [
-    { "id": 0, "name": "Node 0", "type": "notable", "region": "base", "max_points": 8, "description": "..." }
-  ]
-}
-```
+### `GET /api/ref/skills`
+Skill metadata. Filter by `class`.
 
 ### `GET /api/ref/crafting-rules`
 FP cost ranges and crafting action rules.
 
 ### `GET /api/ref/base-items`
-All base item definitions (base type, FP range, implicits).
+All base item definitions.
 
 ### `GET /api/ref/base-items/<base_type>`
 Single base item definition.
@@ -670,14 +316,10 @@ Single base item definition.
 FP ranges by rarity tier.
 
 ### `GET /api/ref/fp-ranges/<rarity>`
-FP range for a specific rarity. Optional `?ilvl=85` for item-level scaling.
-
-```json
-{ "data": { "rarity": "Exalted", "min_fp": 30, "max_fp": 60 } }
-```
+FP range for a specific rarity.
 
 ### `GET /api/ref/enemy-profiles`
-All enemy profiles (normal, elite, bosses).
+All enemy profiles.
 
 ### `GET /api/ref/enemy-profiles/<enemy_id>`
 Single enemy profile with resistances and damage types.
@@ -694,94 +336,98 @@ All implicit stats by item type.
 ### `GET /api/ref/implicit-stats/<item_type>`
 Implicit stat for a specific item type.
 
+### `GET /api/ref/uniques`
+All unique items. Filter by `slot`, `q` (search).
+
+### `GET /api/ref/uniques/<slug>`
+Single unique item.
+
+---
+
+## Entities
+
+### `GET /api/entities/bosses`
+All boss profiles. Cached 24 hours.
+
 ---
 
 ## Profile
 
-### `GET /api/profile`
-Get the current user's profile. **Requires auth.**
+All profile endpoints require authentication.
 
-```json
-{
-  "data": {
-    "user": { "id": "uuid", "username": "Ghostblade", "avatar_url": "...", "created_at": "..." },
-    "stats": { "builds_count": 7, "sessions_count": 12 }
-  }
-}
-```
+### `GET /api/profile`
+Current user profile with stats (build count, session count) and recent activity.
 
 ### `GET /api/profile/builds`
-Builds created by the current user. **Requires auth.**
-
-**Query params:** `?page=1&per_page=10`
+Paginated list of user's own builds (including private).
 
 ### `GET /api/profile/sessions`
-Craft sessions owned by the current user. **Requires auth.**
-
-**Query params:** `?page=1&per_page=10`
+Paginated list of user's craft sessions.
 
 ---
 
 ## Admin
 
-> Admin endpoints are for managing game data files. These require a user with admin privileges.
-
 ### `GET /api/admin/affixes`
-List all affixes from `data/affixes.json`.
-
-**Query params:** `?q=spell&type=prefix&tag=damage&slot=wand`
+All affixes from data file. Filter by `q`, `type`, `tag`, `slot`.
 
 ### `PATCH /api/admin/affixes/<affix_id>`
-Update a single affix in `data/affixes.json`.
+Update a single affix definition.
+**Rate limit:** 30/min
 
-**Request body (any subset):**
+### `GET /api/admin/import-failures`
+Paginated import failure log. **Requires auth.**
+**Rate limit:** 60/min
 
-```json
-{
-  "name": "% Increased Spell Damage",
-  "type": "prefix",
-  "stat_key": "spell_damage_pct",
-  "tags": ["spell", "damage"],
-  "applicable_to": ["wand", "staff"],
-  "class_requirement": null,
-  "tiers": [{ "tier": 1, "min": 10, "max": 20 }, ...]
-}
-```
+---
 
-**Response:** `200 OK` with updated affix object.
+## Jobs
+
+### `GET /api/jobs/<job_id>`
+Poll status of an async simulation job.
+
+---
+
+## System
+
+### `GET /api/version`
+Version metadata.
+
+### `POST /api/load/game-data`
+Hot-reload all game data and run integrity check.
+**Rate limit:** 5/min
 
 ---
 
 ## Error Responses
 
-All errors follow this shape:
+All errors follow the envelope format:
 
 ```json
 {
-  "errors": [
-    { "message": "Build not found", "code": "not_found" }
-  ]
+  "data": null,
+  "meta": null,
+  "errors": [{"message": "Build not found"}]
 }
 ```
 
 | HTTP Status | Meaning |
-|---|---|
+|-------------|---------|
 | `400` | Bad request / validation error |
 | `401` | Unauthorized (missing or expired token) |
-| `403` | Forbidden (not the owner) |
+| `403` | Forbidden (not the owner or not admin) |
 | `404` | Resource not found |
+| `422` | Validation error (includes field-level details) |
 | `429` | Rate limit exceeded |
 | `500` | Internal server error |
 
-### Validation errors
-
-When request body validation fails, errors include a `field` key:
+Validation errors include a `field` key:
 
 ```json
 {
   "errors": [
-    { "field": "crit_chance", "message": "Must be between 0 and 1." },
-    { "field": "level", "message": "Must be between 1 and 100." }
+    {"field": "character_class", "message": "Not a valid class."},
+    {"field": "level", "message": "Must be between 1 and 100."}
   ]
 }
 ```

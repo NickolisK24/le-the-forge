@@ -9,15 +9,22 @@ import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import type { Build, BuildSkill, CharacterClass } from "@/types";
-import { versionApi, simulateApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
+import { versionApi, simulateApi, buildsApi, viewApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
+import type { OptimizeMode } from "@/types";
 import SimulationDashboard from "./SimulationDashboard";
+import StatUpgradePanel from "./StatUpgradePanel";
+import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
 import SkillTreeGraph from "./SkillTreeGraph";
-import PassiveTreeGraph from "./PassiveTreeGraph";
+import BuildPassiveTree from "./BuildPassiveTree";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
-import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
+import SkillSelector from "./SkillSelector";
+import BossEncounterPanel from "./BossEncounterPanel";
+import CorruptionScalingPanel from "./CorruptionScalingPanel";
+import GearUpgradePanel from "./GearUpgradePanel";
+import { getSkillTree, hasSkillTree, resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
 const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
@@ -70,7 +77,7 @@ function SkillRow({
   const hasTree = hasSkillTree(skill.skill_name);
   return (
     <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
-      <span className="flex-1 font-body text-sm text-forge-text truncate">{skill.skill_name}</span>
+      <span className="flex-1 font-body text-sm text-forge-text truncate">{resolveSkillName(skill.skill_name)}</span>
       <span className="font-mono text-[10px] text-forge-dim w-4 text-center">{skill.slot}</span>
       <input
         type="number"
@@ -165,6 +172,7 @@ function BuildSummary({ build }: { build: Build }) {
 
   const [simResult, setSimResult] = useState<BuildSimulationResult | null>(null);
   const [showDashboard, setShowDashboard] = useState(false);
+  const [optimizeMode, setOptimizeMode] = useState<OptimizeMode>("balanced");
   const simulateMutation = useMutation({
     mutationFn: () => simulateApi.build(build.slug),
     onSuccess: (res) => {
@@ -176,6 +184,14 @@ function BuildSummary({ build }: { build: Build }) {
       }
     },
     onError: () => toast.error("Simulation failed — backend may be unavailable"),
+  });
+
+  const optimizeQuery = useQuery({
+    queryKey: ["optimize", build.slug, optimizeMode],
+    queryFn: () => buildsApi.optimize(build.slug, optimizeMode),
+    enabled: showDashboard && simResult !== null,
+    staleTime: 30 * 60 * 1000,
+    select: (res) => res.data,
   });
 
   function handleExport() {
@@ -463,43 +479,25 @@ function BuildSummary({ build }: { build: Build }) {
 
         <Panel title="Skills" className="lg:col-span-2">
           {build.skills.length ? (
-            <div className="grid gap-3 md:grid-cols-2 xl:grid-cols-3">
-              {build.skills.map((skill, i) => {
-                const nodes = getSkillTree(skill.skill_name);
-                const allocMap: AllocMap = {};
-                for (const id of (skill.spec_tree ?? [])) allocMap[id] = (allocMap[id] ?? 0) + 1;
-                const totalNodes = Object.values(allocMap).reduce((a, b) => a + b, 0);
-                return (
-                  <div key={skill.id} className="rounded border border-forge-border bg-forge-surface2 p-4 flex flex-col gap-3">
-                    <div>
-                      <div className="font-display text-lg text-forge-text">{skill.skill_name}</div>
-                      <div className="mt-1 font-mono text-[11px] uppercase tracking-widest text-forge-dim">
-                        Slot {i + 1} · {skill.points_allocated} pts
-                        {totalNodes > 0 && <span className="ml-2 text-forge-amber">· {totalNodes} tree nodes</span>}
-                      </div>
-                    </div>
-                    {nodes.length > 0 ? (
-                      <Button
-                        variant="outline"
-                        size="sm"
-                        onClick={() => setTreeModal({ skillIndex: i, readOnly: true })}
-                      >
-                        🌿 View Skill Tree
-                      </Button>
-                    ) : (
-                      <span className="font-mono text-[10px] text-forge-dim italic">No tree data yet</span>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
+            <SkillSelector
+              skills={build.skills.map((s) => ({
+                skill_name: s.skill_name,
+                slot: s.slot,
+                points_allocated: s.points_allocated,
+                spec_tree: s.spec_tree,
+              }))}
+              characterClass={build.character_class}
+              mastery={build.mastery}
+              buildSlug={build.slug}
+              readOnly={!isOwner || !editing}
+            />
           ) : (
             <EmptyState title="No skills saved" description="This build does not have specialized skills attached yet." />
           )}
         </Panel>
 
         <Panel title="Passive Tree" className="lg:col-span-2">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={build.character_class}
             mastery={build.mastery}
             allocated={(() => {
@@ -537,6 +535,39 @@ function BuildSummary({ build }: { build: Build }) {
           <div className="mt-2">
             <SimulationDashboard result={simResult} />
           </div>
+        )}
+
+        {/* Phase 4: Optimization panels */}
+        {showDashboard && simResult && (
+          <div className="mt-4 grid gap-4 lg:grid-cols-2">
+            <StatUpgradePanel
+              rankings={optimizeQuery.data?.stat_rankings ?? []}
+              mode={optimizeMode}
+              onModeChange={setOptimizeMode}
+              isLoading={optimizeQuery.isLoading}
+              error={optimizeQuery.error}
+              onRetry={() => optimizeQuery.refetch()}
+            />
+            <UpgradeCandidatesPanel
+              candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
+              isLoading={optimizeQuery.isLoading}
+              error={optimizeQuery.error}
+              onRetry={() => optimizeQuery.refetch()}
+            />
+          </div>
+        )}
+
+        {/* Phase 7: Advanced analysis panels */}
+        {showDashboard && simResult && build.slug && (
+          <>
+            <div className="mt-4 grid gap-4 lg:grid-cols-2">
+              <BossEncounterPanel slug={build.slug} />
+              <CorruptionScalingPanel slug={build.slug} />
+            </div>
+            <div className="mt-4">
+              <GearUpgradePanel slug={build.slug} />
+            </div>
+          </>
         )}
       </div>
     );
@@ -614,7 +645,7 @@ function BuildSummary({ build }: { build: Build }) {
         </Panel>
 
         <Panel title="Passive Tree">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={characterClass}
             mastery={mastery}
             allocated={getPassiveAllocMap()}
@@ -627,6 +658,19 @@ function BuildSummary({ build }: { build: Build }) {
               onRewindTo={rewindPassiveTo}
             />
           </div>
+        </Panel>
+
+        <Panel title="Skill Trees">
+          <SkillSelector
+            skills={draftSkills.map((s) => ({
+              skill_name: s.skill_name,
+              slot: s.slot,
+              points_allocated: s.points_allocated,
+            }))}
+            characterClass={characterClass}
+            mastery={mastery}
+            buildSlug={build.slug}
+          />
         </Panel>
       </div>
 
@@ -688,8 +732,10 @@ export default function BuildPlannerPage() {
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
 
-  // Import / preset modal state
-  const [showImportModal, setShowImportModal] = useState(false);
+  // Import / preset modal state — auto-open if ?import=true in URL
+  const [showImportModal, setShowImportModal] = useState(
+    () => new URLSearchParams(window.location.search).get("import") === "true"
+  );
   const [showPresets, setShowPresets] = useState(false);
 
   function handleApplyImport(imported: ImportedBuild) {
@@ -774,6 +820,13 @@ export default function BuildPlannerPage() {
     }, 1500);
     return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
   }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree]);
+
+  // Track view on mount (fire and forget — no loading/error state)
+  useEffect(() => {
+    if (slug) {
+      viewApi.track(slug).catch(() => {});
+    }
+  }, [slug]);
 
   function clearDraft() {
     localStorage.removeItem(DRAFT_KEY);
@@ -1134,12 +1187,11 @@ export default function BuildPlannerPage() {
         </Panel>
 
         <Panel title="Passive Tree">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={characterClass}
             mastery={mastery}
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
-            onMasteryChange={handleMasteryChange}
           />
           <div className="mt-3 min-w-0 overflow-hidden">
             <PassiveProgressBar
@@ -1149,6 +1201,20 @@ export default function BuildPlannerPage() {
             />
           </div>
         </Panel>
+
+        {draftSkills.length > 0 && (
+          <Panel title="Skill Trees">
+            <SkillSelector
+              skills={draftSkills.map((s) => ({
+                skill_name: s.skill_name,
+                slot: s.slot,
+                points_allocated: s.points_allocated,
+              }))}
+              characterClass={characterClass}
+              mastery={mastery}
+            />
+          </Panel>
+        )}
       </div>
 
       {/* ── RIGHT: preview + gear + save ── */}
@@ -1181,7 +1247,7 @@ export default function BuildPlannerPage() {
               <div className="mt-2 flex flex-col gap-1">
                 {draftSkills.map((s) => (
                   <div key={s.skill_name} className="flex justify-between font-mono text-[11px] text-forge-dim">
-                    <span>{s.skill_name}</span>
+                    <span>{resolveSkillName(s.skill_name)}</span>
                     <span>{s.points_allocated} pts</span>
                   </div>
                 ))}

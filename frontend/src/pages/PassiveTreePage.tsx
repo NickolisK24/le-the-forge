@@ -20,8 +20,7 @@ import {
 } from "@/services/passiveTreeService";
 import { MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
-import PassiveTreeNode from "@/components/passives/PassiveTreeNode";
-import PassiveTreeConnections from "@/components/passives/PassiveTreeConnections";
+import PassiveTreeCanvas from "@/components/passives/PassiveTreeCanvas";
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
@@ -43,7 +42,6 @@ import { generateStatMergeSnapshot } from "@/logic/debugStatMerge";
 import { generateResolutionSnapshot } from "@/logic/debugStatResolution";
 import { validatePassiveBuild } from "@/logic/validatePassiveBuild";
 import {
-  findPathToNode,
   findAllAllocatedPaths,
   collectPathNodes,
   collectPathEdges,
@@ -53,100 +51,20 @@ import { resolveCharacterStats } from "@/logic/resolveCharacterStats";
 import { computePassiveStats } from "@/logic/computePassiveStats";
 import { resolveStats } from "@/logic/statResolutionPipeline";
 import {
-  NodeState,
   buildBidirectionalAdjacency,
   findStartNodes,
   computeAvailableNodes,
   canRemoveNode,
   validateTreeIntegrity,
 } from "@/utils/passiveGraph";
+import { computeLayout } from "@/utils/passiveLayout";
 import { serializeBuild, saveBuildToLocalStorage, clearBuildFromLocalStorage } from "@/logic/saveBuild";
 import { deserializeBuild, loadBuildFromLocalStorage } from "@/logic/loadBuild";
 import { copyBuildToClipboard } from "@/logic/exportBuild";
 import { importBuildFromString } from "@/logic/importBuild";
-import { analyzeNodeDependencies, type DependencyReport } from "@/logic/analyzeNodeDependencies";
-import DependencyInspector from "@/components/passives/DependencyInspector";
 
 const CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const CANVAS_H = 650;
-const NODE_R_CORE = 18;
-const NODE_R_NOTABLE = 24;
-
-// ---------------------------------------------------------------------------
-// Layout
-// ---------------------------------------------------------------------------
-
-interface LayoutResult {
-  positions: Map<string, { sx: number; sy: number; masteryIndex: number }>;
-  edges: Array<{ fromId: string; toId: string }>;
-  scale: number;
-}
-
-function computeLayout(nodes: PassiveNode[], canvasW: number, canvasH: number): LayoutResult {
-  const positions = new Map<string, { sx: number; sy: number; masteryIndex: number }>();
-  const edges: Array<{ fromId: string; toId: string }> = [];
-
-  if (nodes.length === 0) return { positions, edges, scale: 1 };
-
-  const xs = nodes.map((n) => n.x);
-  const ys = nodes.map((n) => n.y);
-  const minX = Math.min(...xs), maxX = Math.max(...xs);
-  const minY = Math.min(...ys), maxY = Math.max(...ys);
-  const midX = (minX + maxX) / 2;
-  const midY = (minY + maxY) / 2;
-  const treeW = maxX - minX || 1;
-  const treeH = maxY - minY || 1;
-  const pad = 60;
-  const scale = Math.min((canvasW - pad * 2) / treeW, (canvasH - pad * 2) / treeH);
-
-  const idSet = new Set(nodes.map((n) => n.id));
-  for (const node of nodes) {
-    const lx = node.x - midX;
-    const ly = -(node.y - midY);
-    positions.set(node.id, { sx: lx * scale + canvasW / 2, sy: ly * scale + canvasH / 2, masteryIndex: node.mastery_index });
-  }
-  for (const node of nodes) {
-    for (const connId of node.connections) {
-      if (idSet.has(connId)) edges.push({ fromId: connId, toId: node.id });
-    }
-  }
-  return { positions, edges, scale };
-}
-
-// ---------------------------------------------------------------------------
-// Tooltip
-// ---------------------------------------------------------------------------
-
-interface TooltipData { node: PassiveNode; x: number; y: number }
-
-function NodeTooltip({ data, containerRect, allocated, canDealloc }: {
-  data: TooltipData; containerRect: DOMRect | null; allocated: boolean; canDealloc: boolean;
-}) {
-  if (!containerRect) return null;
-  const n = data.node;
-  const tx = data.x - containerRect.left + 16;
-  const ty = data.y - containerRect.top - 12;
-  return (
-    <div className="pointer-events-none absolute z-20 w-64 rounded border border-forge-border bg-forge-bg/95 p-3 shadow-2xl"
-      style={{ left: Math.min(tx, containerRect.width - 272), top: Math.max(4, ty) }}>
-      <div className="font-display text-sm font-bold text-forge-amber">{n.name || "Passive Node"}</div>
-      <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-forge-dim">
-        {n.node_type} · {n.max_points} pts{n.mastery && <span> · {n.mastery}</span>}
-      </div>
-      {n.description && <p className="mt-1.5 font-body text-[11px] leading-relaxed text-forge-text/90 whitespace-pre-line">{n.description}</p>}
-      {n.stats.length > 0 && (
-        <ul className="mt-1.5 space-y-0.5">
-          {n.stats.map((s, i) => <li key={i} className="font-mono text-[10px] text-forge-cyan/80">{s.key}: {s.value}</li>)}
-        </ul>
-      )}
-      {n.ability_granted && <div className="mt-1 font-mono text-[10px] text-forge-amber/80">Grants: {n.ability_granted}</div>}
-      {allocated && !canDealloc && <div className="mt-1.5 font-mono text-[10px] text-red-400/80">Cannot remove — other nodes depend on this</div>}
-      <div className="mt-1.5 font-mono text-[10px] text-forge-dim/50">
-        {allocated ? "L-click: +1 · Shift+L: max · R-click: -1 · Shift+R: remove" : "Left-click to allocate · Shift+click for max"}
-      </div>
-    </div>
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Page
@@ -157,9 +75,7 @@ export default function PassiveTreePage() {
   const [selectedMastery, setSelectedMastery] = useState<string>("__all__");
   const [allocatedIds, setAllocatedIds] = useState<Set<string>>(new Set());
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
-  const [tooltip, setTooltip] = useState<TooltipData | null>(null);
   const [showAllocPaths, setShowAllocPaths] = useState(false);
-  const [inspectorReport, setInspectorReport] = useState<{ report: DependencyReport; x: number; y: number } | null>(null);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
   const [exportMsg, setExportMsg] = useState<string | null>(null);
   const containerRef = useRef<HTMLDivElement>(null);
@@ -289,68 +205,14 @@ export default function PassiveTreePage() {
     [allocatedPoints, nodeById],
   );
 
-  // --- Path highlighting ---
-  // Hover path: BFS from starts to the hovered node
-  const hoverPath = useMemo(() => {
-    if (!tooltip) return [];
-    return findPathToNode(tooltip.node.id, adjacency, startIds);
-  }, [tooltip, adjacency, startIds]);
-
-  const hoverPathNodes = useMemo(() => new Set(hoverPath), [hoverPath]);
-  const hoverPathEdges = useMemo(() => {
-    const edges = new Set<string>();
-    for (let i = 0; i < hoverPath.length - 1; i++) {
-      edges.add(`${hoverPath[i]}-${hoverPath[i + 1]}`);
-      edges.add(`${hoverPath[i + 1]}-${hoverPath[i]}`);
-    }
-    return edges;
-  }, [hoverPath]);
-
-  // Allocated paths: all paths from starts to allocated nodes (toggle-controlled)
+  // --- Path highlighting (allocated paths only; hover paths handled by canvas) ---
   const allocatedPathData = useMemo(() => {
     if (!showAllocPaths || allocatedIds.size === 0) return { nodes: new Set<string>(), edges: new Set<string>() };
     const paths = findAllAllocatedPaths(allocatedIds, adjacency, startIds);
     return { nodes: collectPathNodes(paths), edges: collectPathEdges(paths) };
   }, [showAllocPaths, allocatedIds, adjacency, startIds]);
 
-  // Blocking nodes: nodes that prevent the inspected node from being allocated/removed
-  const blockingNodeIds = useMemo(() => {
-    if (!inspectorReport) return new Set<string>();
-    const r = inspectorReport.report;
-    const blocking = new Set<string>();
-    // If locked: missing parents are the blockers
-    if (!r.isAllocated) {
-      for (const pid of r.missingParents) blocking.add(pid);
-    }
-    // If can't remove: blocking children are the blockers
-    if (r.isAllocated && !r.canRemove) {
-      for (const cid of r.blockingChildren) blocking.add(cid);
-    }
-    return blocking;
-  }, [inspectorReport]);
-
-  // Combined highlight sets (hover takes priority)
-  const highlightedNodes = useMemo(() => {
-    const set = new Set(allocatedPathData.nodes);
-    for (const id of hoverPathNodes) set.add(id);
-    return set;
-  }, [hoverPathNodes, allocatedPathData.nodes]);
-
-  const highlightedEdges = useMemo(() => {
-    const set = new Set(allocatedPathData.edges);
-    for (const e of hoverPathEdges) set.add(e);
-    return set;
-  }, [hoverPathEdges, allocatedPathData.edges]);
-
-  // Node state resolver using enum
-  const getNodeState = useCallback(
-    (nodeId: string): NodeState => {
-      if (allocatedIds.has(nodeId)) return NodeState.ALLOCATED;
-      if (availableIds.has(nodeId)) return NodeState.AVAILABLE;
-      return NodeState.LOCKED;
-    },
-    [allocatedIds, availableIds],
-  );
+  const emptySet = useMemo(() => new Set<string>(), []);
 
   // Part 7: Dev-mode integrity check after every allocation change
   useEffect(() => {
@@ -446,33 +308,6 @@ export default function PassiveTreePage() {
       if (elapsed > 500) console.warn(`[PassiveTreePage] Render time ${elapsed}ms exceeds 500ms`);
     });
   }, [filteredNodes, allocatedIds]);
-
-  const handleHover = useCallback((node: PassiveNode, x: number, y: number) => {
-    setTooltip({ node, x, y });
-  }, []);
-  const handleLeave = useCallback(() => {
-    setTooltip(null);
-    setInspectorReport(null);
-  }, []);
-
-  // Shift-hover: show dependency inspector
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Shift" && tooltip) {
-        const report = analyzeNodeDependencies(
-          tooltip.node.id, filteredNodes, allocatedIds, allocatedPoints,
-          adjacency, startIds, totalBasePointsSpent,
-        );
-        setInspectorReport({ report, x: tooltip.x, y: tooltip.y });
-      }
-      if (e.type === "keyup" && e.key === "Shift") {
-        setInspectorReport(null);
-      }
-    };
-    window.addEventListener("keydown", onKey);
-    window.addEventListener("keyup", onKey);
-    return () => { window.removeEventListener("keydown", onKey); window.removeEventListener("keyup", onKey); };
-  }, [tooltip, filteredNodes, allocatedIds, allocatedPoints, adjacency, startIds, totalBasePointsSpent]);
 
   const handleClassChange = (cls: CharacterClass) => {
     setSelectedClass(cls);
@@ -612,10 +447,6 @@ export default function PassiveTreePage() {
       </div></Page>);
   }
 
-  const containerRect = containerRef.current?.getBoundingClientRect() ?? null;
-  const tooltipAllocated = tooltip ? allocatedIds.has(tooltip.node.id) : false;
-  const tooltipCanDealloc = tooltip && tooltipAllocated ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, filteredNodes) : false;
-
   return (
     <Page>
       <PageHeader />
@@ -650,36 +481,26 @@ export default function PassiveTreePage() {
         {exportMsg && <span className="font-mono text-xs text-forge-cyan">{exportMsg}</span>}
       </div>
 
-      {/* SVG canvas */}
-      <div ref={containerRef} className="relative overflow-hidden rounded border border-forge-border select-none" style={{ height: CANVAS_H, background: "#0b0e1a" }}>
-        <svg width={canvasSize.w} height={canvasSize.h} style={{ display: "block" }}>
-          <rect width={canvasSize.w} height={canvasSize.h} fill="#0b0e1a" />
-          <PassiveTreeConnections edges={layout.edges} positions={layout.positions} allocatedIds={allocatedIds} highlightedEdges={highlightedEdges} />
-          {filteredNodes.map((node) => {
-            const pos = layout.positions.get(node.id);
-            if (!pos) return null;
-            const radius = (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) * Math.max(0.5, layout.scale);
-            return (
-              <PassiveTreeNode key={node.id} node={node} sx={pos.sx} sy={pos.sy}
-                radius={Math.max(5, radius)} state={getNodeState(node.id)}
-                allocatedPoints={allocatedPoints.get(node.id) ?? 0}
-                onNodeClick={handleNodeClick} onNodeRightClick={handleNodeRightClick}
-                onHover={handleHover} onLeave={handleLeave}
-                highlighted={highlightedNodes.has(node.id)}
-                blocked={blockingNodeIds.has(node.id)} />
-            );
-          })}
-        </svg>
-        {tooltip && !inspectorReport && <NodeTooltip data={tooltip} containerRect={containerRect} allocated={tooltipAllocated} canDealloc={tooltipCanDealloc} />}
-        {inspectorReport && <DependencyInspector report={inspectorReport.report} screenX={inspectorReport.x} screenY={inspectorReport.y} containerRect={containerRect} />}
-      </div>
-
-      {/* Legend */}
-      <div className="mt-2 flex flex-wrap items-center gap-4 font-mono text-[10px] text-forge-dim">
-        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border-2" style={{ borderColor: "#8890b8", background: "#181c30" }} /> Allocated</span>
-        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border" style={{ borderColor: "#5a6090", background: "#181c30" }} /> Available</span>
-        <span className="flex items-center gap-1.5"><span className="inline-block h-2.5 w-2.5 rounded-full border opacity-40" style={{ borderColor: "#3a4070", background: "#181c30" }} /> Locked</span>
-        <span className="text-forge-dim/50 ml-auto">L-click: invest · Shift+L: max · R-click: refund · Shift+R: remove all</span>
+      {/* Passive tree canvas */}
+      <div ref={containerRef}>
+        <PassiveTreeCanvas
+          nodes={filteredNodes}
+          edges={layout.edges}
+          positions={layout.positions}
+          scale={layout.scale}
+          allocatedIds={allocatedIds}
+          allocatedPoints={allocatedPoints}
+          startIds={startIds}
+          adjacency={adjacency}
+          onNodeClick={handleNodeClick}
+          onNodeRightClick={handleNodeRightClick}
+          availableIds={availableIds}
+          highlightedNodes={allocatedPathData.nodes}
+          highlightedEdges={allocatedPathData.edges}
+          blockingNodeIds={emptySet}
+          canvasWidth={canvasSize.w}
+          canvasHeight={canvasSize.h}
+        />
       </div>
 
       {/* Stat debug panel */}

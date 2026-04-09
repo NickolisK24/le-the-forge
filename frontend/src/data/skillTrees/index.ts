@@ -4290,20 +4290,43 @@ export const SKILL_TREES: Record<string, N[]> = {
   ],
 };
 
-/** Look up a skill tree by skill name (case-insensitive). Falls back to legacy key format. */
+/** Look up a skill tree by skill name (case-insensitive) or tree code. */
 export function getSkillTree(skillName: string): SkillNode[] {
   const norm = skillName.toLowerCase().trim();
+  // Direct tree code match first (imported builds may store codes as names)
+  if (SKILL_TREES[norm]) return SKILL_TREES[norm];
   const code = SKILL_NAME_TO_CODE[norm] ?? norm.replace(/\s+/g, "_");
   return SKILL_TREES[code] ?? [];
 }
 
-/** Returns the tree code for a skill name, or null if not found. */
+/** Returns the tree code for a skill name, or null if not found.
+ *  Also handles the case where the input is already a tree code. */
 export function getSkillCode(skillName: string): string | null {
   const norm = skillName.toLowerCase().trim();
+  // Direct tree code match (e.g. imported builds store codes as names)
+  if (SKILL_TREES[norm]) return norm;
   return SKILL_NAME_TO_CODE[norm] ?? null;
 }
 
 /** Returns true if a skill tree exists for the given skill name. */
 export function hasSkillTree(skillName: string): boolean {
   return getSkillTree(skillName).length > 0;
+}
+
+/**
+ * Resolves a skill name that may be a raw tree code (e.g. "sh4re") back to
+ * its human-readable display name (e.g. "Flay").
+ * Returns the input unchanged if it's already a readable name.
+ */
+export function resolveSkillName(skillName: string): string {
+  const nodes = SKILL_TREES[skillName];
+  if (nodes?.length && nodes[0].name) return nodes[0].name;
+  return skillName;
+}
+
+/** Returns the entry (root) node's iconId for a tree code, or null. */
+export function getEntryIconId(treeCode: string): string | null {
+  const nodes = SKILL_TREES[treeCode];
+  if (!nodes?.length) return null;
+  return nodes[0].iconId ?? null;
 }

@@ -25,6 +25,20 @@ import type {
   AffixDef,
   User,
   PaginationMeta,
+  OptimizeResponse,
+  OptimizeMode,
+  ImportBuildResponse,
+  SkillTreeResponse,
+  SkillAllocationsResponse,
+  SkillAllocation,
+  BossAnalysisResponse,
+  CorruptionAnalysisResponse,
+  GearUpgradeResponse,
+  BossListItem,
+  ComparisonResult,
+  FullMetaSnapshot,
+  TrendingBuild,
+  BuildReport,
 } from "@/types";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
@@ -188,6 +202,9 @@ export const buildsApi = {
     post<VoteResult>(`/builds/${slug}/vote`, { direction }),
 
   metaSnapshot: () => get<MetaSnapshot>("/builds/meta/snapshot"),
+
+  optimize: (slug: string, mode: OptimizeMode = "balanced") =>
+    get<OptimizeResponse>(`/builds/${slug}/optimize?mode=${mode}`),
 };
 
 // ---------------------------------------------------------------------------
@@ -404,6 +421,15 @@ export const simulateApi = {
     post<MultiTargetResult>("/simulate/multi-target", payload),
 };
 
+export const skillsApi = {
+  getTree: (skillId: string) =>
+    get<SkillTreeResponse>(`/skills/${skillId}/tree`),
+  getBuildSkills: (slug: string) =>
+    get<SkillAllocationsResponse>(`/builds/${slug}/skills`),
+  allocateNode: (slug: string, skillId: string, nodeId: number, points: number) =>
+    patch<SkillAllocation>(`/builds/${slug}/skills/${skillId}/nodes/${nodeId}`, { points }),
+};
+
 export interface ConditionalResult {
   base_damage:         number;
   adjusted_damage:     number;
@@ -502,6 +528,8 @@ export interface ImportedBuild {
 export const importApi = {
   fromUrl: (url: string) =>
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
+  importBuild: (url: string) =>
+    post<ImportBuildResponse>("/import/build", { url }),
 };
 
 // ---------------------------------------------------------------------------
@@ -546,5 +574,50 @@ export const uniquesApi = {
     return get<UniqueItem[]>(`/ref/uniques${qs ? "?" + qs : ""}`);
   },
   get: (slug: string) => get<UniqueItem>(`/ref/uniques/${slug}`),
+};
+
+// ---------------------------------------------------------------------------
+// Advanced Analysis (Phase 7)
+// ---------------------------------------------------------------------------
+
+export const analysisApi = {
+  boss: (slug: string, bossId: string, corruption = 0) =>
+    get<BossAnalysisResponse>(
+      `/builds/${slug}/analysis/boss/${bossId}?corruption=${corruption}`,
+    ),
+
+  corruption: (slug: string, bossId?: string) =>
+    get<CorruptionAnalysisResponse>(
+      `/builds/${slug}/analysis/corruption${bossId ? `?boss_id=${bossId}` : ""}`,
+    ),
+
+  gearUpgrades: (slug: string, slot?: string) =>
+    get<GearUpgradeResponse>(
+      `/builds/${slug}/analysis/gear-upgrades${slot ? `?slot=${slot}` : ""}`,
+    ),
+
+  bosses: () => get<BossListItem[]>("/entities/bosses"),
+};
+
+// ---------------------------------------------------------------------------
+// Community Tools (Phase 8)
+// ---------------------------------------------------------------------------
+
+export const compareApi = {
+  compare: (slugA: string, slugB: string) =>
+    get<ComparisonResult>(`/compare/${slugA}/${slugB}`),
+};
+
+export const metaApi = {
+  snapshot: () => get<FullMetaSnapshot>("/meta/snapshot"),
+  trending: () => get<TrendingBuild[]>("/meta/trending"),
+};
+
+export const reportApi = {
+  get: (slug: string) => get<BuildReport>(`/builds/${slug}/report`),
+};
+
+export const viewApi = {
+  track: (slug: string) => post<null>(`/builds/${slug}/view`),
 };
 

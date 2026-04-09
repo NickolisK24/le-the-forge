@@ -75,11 +75,16 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Death Seal",     mastery: "Lich", tags: ["Spell","Necrotic","Self-Cast"], icon: "🔒" },
     { name: "Drain Life",     mastery: "Lich", tags: ["Spell","Necrotic","Channel","Leech"], icon: "🩸" },
     { name: "Aura of Decay",  mastery: "Lich", tags: ["Aura","Necrotic","Poison","DoT"], icon: "☠️" },
+    // Necromancer exclusive
+    { name: "Sacrifice",            mastery: "Necromancer", tags: ["Minion","Spell","Physical"],  icon: "💀" },
+    { name: "Volatile Zombie",      mastery: "Necromancer", tags: ["Minion","Spell","Fire"],      icon: "🧟" },
     // Warlock exclusive
     { name: "Chthonic Fissure", mastery: "Warlock", tags: ["Spell","Void","Necrotic"], icon: "🌑" },
     { name: "Soul Feast",       mastery: "Warlock", tags: ["Spell","Necrotic","Leech"], icon: "👁️" },
     { name: "Profane Veil",     mastery: "Warlock", tags: ["Spell","Curse","Ward"],    icon: "🌀" },
     { name: "Chaos Bolts",      mastery: "Warlock", tags: ["Spell","Fire","Necrotic","Projectile"], icon: "🔴" },
+    { name: "Ghost Flame",      mastery: "Warlock", tags: ["Spell","Fire","Necrotic","DoT"],     icon: "👻" },
+    { name: "Profane Form",     mastery: "Warlock", tags: ["Transformation","Necrotic","Void"],  icon: "☠️" },
   ],
 
   Mage: [
@@ -110,11 +115,17 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Black Hole",       mastery: "Sorcerer", tags: ["Spell","Void","AoE"],              icon: "⚫" },
     { name: "Meteor",           mastery: "Sorcerer", tags: ["Spell","Fire","AoE"],              icon: "☄️" },
     // Spellblade exclusive
+    { name: "Enchant Weapon",   mastery: "Spellblade", tags: ["Spell","Melee","Buff","Fire","Cold","Lightning"], icon: "✨" },
+    { name: "Surge",            mastery: "Spellblade", tags: ["Movement","Melee","Lightning"],  icon: "⚡" },
+    { name: "Shatter Strike",   mastery: "Spellblade", tags: ["Melee","Cold","AoE"],            icon: "❄️" },
+    { name: "Firebrand",        mastery: "Spellblade", tags: ["Melee","Fire","Buff"],            icon: "🔥" },
+    { name: "Flame Reave",      mastery: "Spellblade", tags: ["Melee","Fire","AoE"],             icon: "🔥" },
     { name: "Static Orb",       mastery: "Spellblade", tags: ["Spell","Lightning","AoE"],       icon: "🔵" },
     { name: "Ice Barrage",      mastery: "Spellblade", tags: ["Spell","Cold","Projectile"],     icon: "❄️" },
     { name: "Arcane Ascendance",mastery: "Spellblade", tags: ["Spell","Buff","Transformation"], icon: "✨" },
     { name: "Black Hole",       mastery: "Spellblade", tags: ["Spell","Void","AoE"],            icon: "⚫" },
     { name: "Meteor",           mastery: "Spellblade", tags: ["Spell","Fire","AoE"],            icon: "☄️" },
+    { name: "Dense Orb",        mastery: "Spellblade", tags: ["Spell","Void","Projectile"],     icon: "⚫" },
   ],
 
   Primalist: [
@@ -129,21 +140,30 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Tornado",           tags: ["Spell","Lightning","AoE"],         icon: "🌪️" },
     { name: "Serpent Strike",    tags: ["Melee","Physical","Poison"],       icon: "🐍" },
     { name: "Gathering Storm",   tags: ["Spell","Lightning","DoT"],         icon: "⛈️" },
+    { name: "Upheaval",          tags: ["Melee","Physical","AoE"],           icon: "🪨" },
+    { name: "Tempest Strike",    tags: ["Melee","Physical","Cold","Lightning"], icon: "⛈️" },
     // Druid exclusive
     { name: "Werebear Form",    mastery: "Druid", tags: ["Transformation","Physical","Cold"], icon: "🐻" },
     { name: "Spriggan Form",    mastery: "Druid", tags: ["Transformation","Physical","Poison"], icon: "🌱" },
     { name: "Swipe",            mastery: "Druid", tags: ["Melee","Physical","Cold"],          icon: "🐾" },
     { name: "Thorn Totem",      mastery: "Druid", tags: ["Totem","Physical","Poison"],        icon: "🌵" },
+    { name: "Summon Spriggan",  mastery: "Druid", tags: ["Companion","Minion","Physical"],    icon: "🌿" },
+    { name: "Swarmblade Form",  mastery: "Druid", tags: ["Transformation","Physical","Poison"], icon: "🐛" },
+    { name: "Eterra's Blessing",mastery: "Druid", tags: ["Spell","Healing","Companion"],     icon: "🌿" },
+    { name: "Summon Storm Crows", mastery: "Druid", tags: ["Companion","Minion","Lightning"], icon: "🐦" },
     // Beastmaster exclusive
     { name: "Summon Raptor",    mastery: "Beastmaster", tags: ["Companion","Minion"],        icon: "🦖" },
     { name: "Summon Bear",      mastery: "Beastmaster", tags: ["Companion","Minion"],        icon: "🐻" },
     { name: "Summon Sabertooth",mastery: "Beastmaster", tags: ["Companion","Minion"],        icon: "🐱" },
     { name: "Scorpion Aspect",  mastery: "Beastmaster", tags: ["Buff","Poison","Companion"], icon: "🦂" },
+    { name: "Summon Scorpion",  mastery: "Beastmaster", tags: ["Companion","Minion","Poison"], icon: "🦂" },
     // Shaman exclusive
     { name: "Summon Storm Totem", mastery: "Shaman", tags: ["Totem","Lightning"],    icon: "⚡" },
+    { name: "Storm Totem",        mastery: "Shaman", tags: ["Totem","Lightning"],    icon: "⚡" },
     { name: "Summon Thorn Totem", mastery: "Shaman", tags: ["Totem","Physical"],     icon: "🌿" },
     { name: "Earthquake",         mastery: "Shaman", tags: ["Spell","Physical","AoE"], icon: "💥" },
     { name: "Vessel of Chaos",    mastery: "Shaman", tags: ["Minion","Totem"],        icon: "🫙" },
+    { name: "Frenzy Totem",       mastery: "Shaman", tags: ["Totem","Buff","Physical"], icon: "📯" },
   ],
 
   Sentinel: [
@@ -157,6 +177,11 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Ring of Shields",    tags: ["Minion","Physical","Defense"],    icon: "🔵" },
     { name: "Smelter's Wrath",    tags: ["Melee","Fire","Physical"],        icon: "🔥" },
     { name: "Healing Hands",      tags: ["Spell","Healing","Lightning"],    icon: "🤲" },
+    { name: "Hammer Throw",       tags: ["Throwing","Physical"],            icon: "🔨" },
+    { name: "Shield Bash",        tags: ["Melee","Physical","Stun"],        icon: "🛡️" },
+    { name: "Rebuke",             tags: ["Channel","Defense","Physical"],   icon: "🛡️" },
+    { name: "Vengeance",          tags: ["Melee","Physical","Riposte"],     icon: "⚔️" },
+    { name: "Multistrike",        tags: ["Melee","Physical","AoE"],         icon: "⚔️" },
     // Forge Guard exclusive
     { name: "Manifest Armor",    mastery: "Forge Guard", tags: ["Minion","Physical","Defense"], icon: "🛡️" },
     { name: "Forge Strike",      mastery: "Forge Guard", tags: ["Melee","Fire","Physical"],     icon: "🔨" },
@@ -166,11 +191,13 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Holy Aura",         mastery: "Paladin", tags: ["Aura","Lightning","Healing"],      icon: "✨" },
     { name: "Judgement",         mastery: "Paladin", tags: ["Spell","Lightning","Fire","AoE"],  icon: "⚖️" },
     { name: "Consecrated Ground",mastery: "Paladin", tags: ["Spell","Fire","Lightning","AoE"],  icon: "🌟" },
+    { name: "Sigils Of Hope",    mastery: "Paladin", tags: ["Spell","Buff","Lightning"],        icon: "✨" },
     // Void Knight exclusive
     { name: "Anomaly",           mastery: "Void Knight", tags: ["Spell","Void","AoE"],          icon: "🌀" },
     { name: "Devouring Orb",     mastery: "Void Knight", tags: ["Spell","Void","Projectile"],   icon: "⚫" },
     { name: "Erasing Strike",    mastery: "Void Knight", tags: ["Melee","Void"],                icon: "💨" },
     { name: "Void Cleave",       mastery: "Void Knight", tags: ["Melee","Void","AoE"],          icon: "🌑" },
+    { name: "Abyssal Echoes",    mastery: "Void Knight", tags: ["Spell","Void","AoE","DoT"],    icon: "🌑" },
   ],
 
   Rogue: [
@@ -185,21 +212,29 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Explosive Trap",    tags: ["Trap","Fire","AoE"],                icon: "💣" },
     { name: "Flurry",            tags: ["Melee","Physical"],                 icon: "💨" },
     { name: "Shurikens",         tags: ["Throwing","Physical","Dexterity"],  icon: "⭐" },
+    { name: "Cinder Strike",    tags: ["Melee","Physical","Fire","Bow"],    icon: "🔥" },
+    { name: "Decoy",             tags: ["Trap","Physical","Debuff"],         icon: "🪤" },
     // Bladedancer exclusive
     { name: "Shadow Cascade",  mastery: "Bladedancer", tags: ["Melee","Physical","Void","AoE"], icon: "🌑" },
     { name: "Dancing Strikes", mastery: "Bladedancer", tags: ["Melee","Physical","Movement"],   icon: "⚔️" },
     { name: "Blade Flurry",    mastery: "Bladedancer", tags: ["Melee","Physical","AoE"],        icon: "🗡️" },
     { name: "Synchronized Strike", mastery: "Bladedancer", tags: ["Melee","Physical","Void"],  icon: "✦" },
+    { name: "Umbral Blades",   mastery: "Bladedancer", tags: ["Melee","Physical","Throwing"],   icon: "🗡️" },
+    { name: "Flay",            mastery: "Bladedancer", tags: ["Melee","Physical"],               icon: "🗡️" },
+    { name: "Lethal Mirage",   mastery: "Bladedancer", tags: ["Melee","Physical","Movement"],   icon: "👤" },
     // Marksman exclusive
     { name: "Multishot",       mastery: "Marksman", tags: ["Bow","Physical","AoE"],             icon: "🏹" },
     { name: "Ballista",        mastery: "Marksman", tags: ["Totem","Bow","Physical"],            icon: "🎯" },
     { name: "Rain of Arrows",  mastery: "Marksman", tags: ["Bow","Physical","AoE","DoT"],       icon: "🌧️" },
     { name: "Hail of Arrows",  mastery: "Marksman", tags: ["Bow","Physical","Cold"],             icon: "❄️" },
+    { name: "Heartseeker",     mastery: "Marksman", tags: ["Bow","Physical","Projectile"],       icon: "🏹" },
+    { name: "Dark Quiver",     mastery: "Marksman", tags: ["Bow","Physical","Necrotic"],         icon: "🏹" },
     // Falconer exclusive
     { name: "Falcon Strikes",  mastery: "Falconer", tags: ["Companion","Physical"],              icon: "🦅" },
     { name: "Net",             mastery: "Falconer", tags: ["Trap","Physical","Debuff"],           icon: "🕸️" },
     { name: "Aerial Assault",  mastery: "Falconer", tags: ["Companion","Physical","Movement"],   icon: "🦅" },
     { name: "Dive Bomb",       mastery: "Falconer", tags: ["Companion","Physical","AoE"],        icon: "💥" },
+    { name: "Falconry",        mastery: "Falconer", tags: ["Companion","Physical"],               icon: "🦅" },
   ],
 };
 

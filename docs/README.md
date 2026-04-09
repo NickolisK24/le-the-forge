@@ -1,46 +1,38 @@
-# The Forge – Documentation
+# The Forge -- Documentation
 
 Welcome to the official documentation for **The Forge**.
 
-The Forge is a **simulation-driven analysis platform** for Last Epoch, designed to evaluate builds, predict crafting outcomes, and provide optimization insights using backend-driven engines.
+The Forge is a simulation-driven analysis platform for Last Epoch, designed to evaluate builds, predict crafting outcomes, simulate boss encounters, and provide optimization insights using backend-driven engines.
 
 ---
 
-## 📚 Documentation Index
+## Documentation Index
 
-* [architecture.md](architecture.md) → System overview, engine structure, and simulation math
-* [data_models.md](data_models.md) → Core data structures used across the system
-* [api_reference.md](api_reference.md) → Full REST API reference with request/response schemas
-* [passive_tree.md](passive_tree.md) → Passive tree system design
-* [development_roadmap.md](development_roadmap.md) → Master development roadmap and feature plan
-* [development_phases.md](development_phases.md) → GitHub workflow phases guide
+- [api_reference.md](api_reference.md) -- Full REST API reference with all endpoints, auth, request/response shapes, and rate limits
+- [engine_architecture.md](engine_architecture.md) -- Every engine module, its inputs, outputs, and how engines chain together
+- [data_models.md](data_models.md) -- Every SQLAlchemy model with fields, types, relationships, and indexes
+- [simulation_design.md](simulation_design.md) -- Combat simulation design, stat pipeline layers, Monte Carlo methodology
+- [passive_tree.md](passive_tree.md) -- Passive tree system design, layout, path validation, and allocation state
 
 ---
 
-## 🧠 Core Philosophy
+## Core Philosophy
 
 The Forge is built around:
 
-* Deterministic calculations
-* Monte Carlo simulations
-* Data-driven recommendations
+- **Deterministic calculations** -- reproducible results for any given input
+- **Monte Carlo simulations** -- statistical analysis across thousands of runs
+- **Data-driven recommendations** -- insights derived from game data, not opinions
 
 ---
 
-## ⚠️ Key Architectural Rule
+## Key Architectural Rule
 
 The backend is the **single source of truth**.
 
 The frontend:
-
-* sends input
-* receives results
-* renders UI
+- Sends input
+- Receives results
+- Renders UI
 
 It does **not** perform game calculations.
-
----
-
-## 🎯 Goal
-
-To become a high-quality theorycrafting tool for the Last Epoch community and a flagship portfolio project demonstrating full-stack engineering and simulation systems.

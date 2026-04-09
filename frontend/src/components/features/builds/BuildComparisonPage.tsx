@@ -12,6 +12,7 @@ import { Button, Badge, Spinner, ErrorMessage, Panel, SectionLabel } from "@/com
 import { useBuild } from "@/hooks";
 import { CLASS_COLORS } from "@/lib/gameData";
 import type { Build, BuildTier, CharacterClass } from "@/types";
+import SimulationComparison from "./SimulationComparison";
 
 const TIER_COLORS: Record<BuildTier, string> = {
   S: "#f5d060",
@@ -397,6 +398,9 @@ export default function BuildComparisonPage() {
           </Panel>
         </div>
       )}
+
+      {/* Simulation Comparison */}
+      <SimulationComparison slugA={a.slug} slugB={b.slug} />
 
       {/* Full view links */}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
