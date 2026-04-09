@@ -147,6 +147,7 @@ SKILL_STATS: dict = {
     "Detonating Arrow":       _S(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"], is_bow=True),
     "Explosive Trap":         _S(120, 0.12, 0.5, ["fire_damage_pct"]),
     "Shurikens":              _S(55,  0.09, 3.5, ["physical_damage_pct"], is_throwing=True),
+    "Umbral Blades":          _S(80,  0.08, 1.33, ["physical_damage_pct"], is_throwing=True, hit_count=5, mana_cost=12),
     "Shadow Cascade":         _S(120, 0.13, 1.6, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
     "Dancing Strikes":        _S(90,  0.11, 2.5, ["physical_damage_pct"], is_melee=True),
     "Blade Flurry":           _S(100, 0.12, 2.2, ["physical_damage_pct"], is_melee=True),
@@ -163,6 +164,80 @@ SKILL_STATS: dict = {
     "Ring of Shields":        _S(60,  0.09, 0.4, ["physical_damage_pct"]),
     "Healing Hands":          _S(40,  0.08, 0.8, ["spell_damage_pct"], is_spell=True),
     "Smoke Bomb":             _S(45,  0.08, 0.5, ["physical_damage_pct", "poison_damage_pct"]),
+
+    # --- Added skills (game data coverage completion) ---
+    "Abyssal Echoes":         _S(120, 0.12, 1.43, ["void_damage_pct"], is_spell=True, mana_cost=35),
+    "Arcane Ascendance":      _S(0,   0.00, 1.33, []),
+    "Armblade Slash":         _S(80, 0.10, 1.33, ["physical_damage_pct"], is_melee=True),
+    "Aura Of Decay":          _S(20,  0.06, 1.33, ["poison_damage_pct"]),
+    "Banner Rush":            _S(0,   0.00, 1.0,  []),
+    "Black Hole":             _S(0,   0.00, 1.33, []),
+    "Cinder Strike":          _S(75, 0.10, 1.28, ["fire_damage_pct"], is_melee=True),
+    "Create Shadow":          _S(0,   0.00, 1.33, []),
+    "Dark Quiver":            _S(0,   0.00, 1.33, []),
+    "Decoy":                  _S(40, 0.07, 1.43, ["fire_damage_pct"], is_throwing=True),
+    "Detonate Decoy":         _S(0,   0.00, 1.33, []),
+    "Dive":                   _S(0,   0.00, 2.5,  ["physical_damage_pct"], is_melee=True),
+    "Eterra's Blessing":      _S(0, 0.00, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Evade":                  _S(0,   0.00, 2.0,  []),
+    "Falconry":               _S(0,   0.00, 1.33, []),
+    "Fire Shield":            _S(0,   0.00, 1.33, []),
+    "Firebrand":              _S(0,   0.00, 1.33, []),
+    "Flame Reave":            _S(0,   0.00, 1.33, []),
+    "Flame Rush":             _S(0,   0.00, 1.33, []),
+    "Flay":                   _S(110, 0.12, 1.0,  ["physical_damage_pct"], is_melee=True),
+    "Focus":                  _S(0,   0.00, 1.33, []),
+    "Frigid Tempest":         _S(70, 0.10, 2.0,  ["cold_damage_pct"], is_spell=True),
+    "Frost Wall":             _S(0,   0.00, 1.33, []),
+    "Ghostflame":             _S(25, 0.07, 5.0,  ["fire_damage_pct"], is_spell=True),
+    "Glyph of Dominion":      _S(0,   0.00, 1.33, []),
+    "Hammer Throw":           _S(65, 0.09, 1.33, ["physical_damage_pct"], is_throwing=True),
+    "Heartseeker":            _S(75, 0.10, 1.33, ["physical_damage_pct"], is_bow=True),
+    "Holy Aura":              _S(0, 0.00, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Human Form":             _S(0, 0.00, 3.33, ["spell_damage_pct"], is_spell=True),
+    "Ice Barrage":            _S(0,   0.00, 1.33, []),
+    "Ice Ward":               _S(0,   0.00, 1.33, []),
+    "Lethal Mirage":          _S(160, 0.14, 0.67, ["physical_damage_pct"], is_melee=True),
+    "Mark For Death":         _S(0,   0.00, 1.33, []),
+    "Maul":                   _S(45, 0.07, 4.0,  ["physical_damage_pct"], is_melee=True),
+    "Multistrike":            _S(85, 0.10, 1.33, ["physical_damage_pct"], is_melee=True),
+    "Net":                    _S(40, 0.07, 1.11, ["physical_damage_pct"], is_throwing=True),
+    "Rampage":                _S(0,   0.00, 1.0,  ["physical_damage_pct"], is_melee=True),
+    "Reap":                   _S(0,   0.00, 5.0,  ["necrotic_damage_pct"], is_melee=True),
+    "Rebuke":                 _S(20, 0.07, 5.0,  ["spell_damage_pct"], is_spell=True),
+    "Ring Of Shields":        _S(60,  0.09, 0.4,  ["physical_damage_pct"]),
+    "Riposte":                _S(80, 0.10, 1.33, ["physical_damage_pct"], is_melee=True),
+    "Roar":                   _S(0, 0.00, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Rune Bolt":              _S(0,   0.00, 1.33, []),
+    "Sacrifice":              _S(120, 0.12, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Shield Bash":            _S(95, 0.10, 1.33, ["physical_damage_pct"], is_melee=True),
+    "Shocking Impact":        _S(150, 0.13, 0.5,  ["lightning_damage_pct"], is_spell=True),
+    "Spirit Thorns":          _S(65, 0.09, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Static":                 _S(0,   0.00, 1.33, []),
+    "Summon Cryomancer":      _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Death Knight":    _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Forged Weapon":   _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Frenzy Totem":    _S(0,   0.00, 1.67, ["minion_damage_pct"]),
+    "Summon Healing Totem":   _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Hive":            _S(0,   0.00, 1.67, ["minion_damage_pct"]),
+    "Summon Pyromancer":      _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Scorpion":        _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Skeleton Rogue":  _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Spriggan":        _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Squirrel":        _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Storm Crows":     _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Storm Totem":     _S(0,   0.00, 1.67, ["minion_damage_pct"]),
+    "Summon Thorn Totem":     _S(0,   0.00, 1.67, ["minion_damage_pct"]),
+    "Summon Vine":            _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Summon Vines":           _S(0,   0.00, 1.33, ["minion_damage_pct"]),
+    "Swarm Strike":           _S(85, 0.10, 1.25, ["physical_damage_pct"], is_melee=True),
+    "Swarmblade Form":        _S(0,   0.00, 1.25, []),
+    "Symbols of Hope":        _S(0, 0.00, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Tempest Strike":         _S(100, 0.12, 1.67, ["cold_damage_pct"], is_melee=True),
+    "Thorn Shield":           _S(0, 0.00, 1.33, ["spell_damage_pct"], is_spell=True),
+    "Upheaval":               _S(110, 0.12, 1.25, ["physical_damage_pct"], is_melee=True),
+    "Vengeance":              _S(85, 0.10, 1.33, ["physical_damage_pct"], is_melee=True),
+    "Wave of Death":          _S(80, 0.10, 1.33, ["necrotic_damage_pct"], is_spell=True),
 }
 
 
@@ -512,6 +587,15 @@ def calculate_dps_vs_enemy(
         if (pen := getattr(stats, f"{dt}_penetration", 0.0)) > 0
     }
 
+    # Calculate steady-state armor shred
+    from app.domain.armor_shred import armor_shred_amount
+    shred = armor_shred_amount(
+        stats.armour_shred_chance,
+        base_result.effective_attack_speed,
+        skill_def.hit_count,
+    )
+    effective_armor = max(0, enemy.armor - shred)
+
     # Use proportion-weighted resistance when per-type damage breakdown is
     # available (populated by calculate_dps via DamageResult.damage_by_type).
     # Falls back to equal-weight average when breakdown is absent.
@@ -521,9 +605,13 @@ def calculate_dps_vs_enemy(
             _DT(k): v for k, v in base_result.damage_by_type.items()
         }
         multiplier = weighted_damage_multiplier(enemy, damage_by_type_typed, pen_map)
+        # Replace armor factor with shredded armor factor
+        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
+        if old_armor_factor > 0:
+            multiplier = multiplier / old_armor_factor * new_armor_factor
         # avg_res for reporting: back-compute from the weighted multiplier + armor
-        armor_factor = 1.0 - armor_mitigation(enemy.armor)
-        res_factor = multiplier / armor_factor if armor_factor > 0 else 1.0
+        res_factor = multiplier / new_armor_factor if new_armor_factor > 0 else 1.0
         avg_res = (1.0 - res_factor) * 100.0
     else:
         res_values = [
@@ -532,6 +620,11 @@ def calculate_dps_vs_enemy(
         ]
         avg_res = sum(res_values) / len(res_values) if res_values else 0.0
         multiplier = enemy_damage_multiplier(enemy, skill_damage_types, pen_map)
+        # Replace armor factor with shredded armor
+        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
+        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
+        if old_armor_factor > 0:
+            multiplier = multiplier / old_armor_factor * new_armor_factor
 
     effective_dps = round(raw_dps * multiplier)
 
@@ -540,7 +633,7 @@ def calculate_dps_vs_enemy(
         enemy_id=enemy_id,
         raw_dps=raw_dps,
         effective_dps=effective_dps,
-        armor_reduction_pct=round(armor_mitigation(enemy.armor) * 100, 1),
+        armor_reduction_pct=round(armor_mitigation(effective_armor) * 100, 1),
         avg_res_reduction_pct=round(avg_res, 1),
         penetration_applied=pen_map,
     )

@@ -21,6 +21,7 @@ from __future__ import annotations
 from dataclasses import dataclass, field
 
 from app.combat.combat_scenario import CombatScenario, SkillRotationEntry
+from app.domain.armor_shred import armor_shred_amount
 from app.enemies.enemy_defense import EnemyDefenseEngine
 from app.engines.stat_engine import BuildStats
 from app.skills.skill_execution import SkillExecutionEngine
@@ -179,9 +180,19 @@ class CombatSimulator:
             skill_mana_costs[key] = entry.skill_def.mana_cost
 
             if scenario.enemy is not None:
+                # Calculate steady-state armor shred from build stats.
+                # Use total hits: skill's native hit_count × hits_per_cast
+                # (hit_count from SkillStatDef, hits_per_cast from SkillModifiers)
+                total_hits = entry.skill_def.hit_count * sr.hits_per_cast
+                shred = armor_shred_amount(
+                    stats.armour_shred_chance,
+                    sr.casts_per_second,
+                    total_hits,
+                )
                 dr = self._defense_engine.apply_defenses(
                     sr, scenario.enemy,
                     penetration=scenario.penetration or None,
+                    armor_shred=shred,
                 )
                 defense_results[key] = dr
             else:
