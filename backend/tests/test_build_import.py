@@ -470,6 +470,7 @@ class TestDiscordNotifier:
         mock_failure.source = "maxroll"
         mock_failure.raw_url = "https://example.com"
         mock_failure.missing_fields = ["field_a"]
+        mock_failure.partial_data = None
         mock_failure.error_message = "Test error"
         mock_failure.user_id = None
         mock_failure.created_at = None
@@ -490,6 +491,7 @@ class TestDiscordNotifier:
         mock_failure.source = "lastepochtools"
         mock_failure.raw_url = "https://lastepochtools.com/planner/ABC"
         mock_failure.missing_fields = ["mastery", "skill_id:xyz"]
+        mock_failure.partial_data = {"character_class": "Rogue", "gear": []}
         mock_failure.error_message = "Partial import"
         mock_failure.user_id = "user-123"
         mock_failure.created_at = None
@@ -504,7 +506,7 @@ class TestDiscordNotifier:
         assert "Partial Import" in embed["title"]
         assert embed["color"] == 0xFF8C00  # orange for partial
         assert any(f["name"] == "URL" for f in embed["fields"])
-        assert any(f["name"] == "User ID" for f in embed["fields"])
+        assert any(f["name"] == "User" for f in embed["fields"])
 
 
 # ---------------------------------------------------------------------------
