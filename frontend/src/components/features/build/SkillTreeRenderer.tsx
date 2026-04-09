@@ -16,7 +16,7 @@ import TreeIcon from "@/components/TreeIcon";
 // ---------------------------------------------------------------------------
 
 const DISPLAY_H = 520;
-const MAX_SKILL_POINTS = 20;
+const BASE_SKILL_POINTS = 20;
 
 const BASE_NODE_R = 22;
 const ROOT_NODE_R = 34;
@@ -178,7 +178,9 @@ export default function SkillTreeRenderer({
     if (Number(id) === rootNodeId) return s;
     return s + v;
   }, 0);
-  const pointsLeft = MAX_SKILL_POINTS - totalPoints;
+  // Gear affixes like "+X to Skill" raise the cap above 20
+  const maxSkillPoints = Math.max(BASE_SKILL_POINTS, totalPoints);
+  const pointsLeft = maxSkillPoints - totalPoints;
 
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipInfo | null>(null);
