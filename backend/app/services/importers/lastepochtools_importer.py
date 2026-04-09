@@ -347,11 +347,38 @@ class LastEpochToolsImporter(BaseImporter):
                 "LET importer: unexpected error mapping build code=%s: %s\n%s",
                 code, exc, traceback.format_exc(),
             )
+            # Populate partial_data with whatever we can safely extract from
+            # raw build_info so the Discord alert shows what was parsed
+            # before the failure point.
+            bio = build_info.get("bio", {})
+            try:
+                cls_id = int(bio.get("characterClass", -1))
+            except (ValueError, TypeError):
+                cls_id = -1
+            cls_name = _CLASS_MAP.get(cls_id)
+            mastery_name = None
+            if cls_name:
+                try:
+                    mastery_name = _MASTERY_MAP.get(cls_name, {}).get(
+                        int(bio.get("chosenMastery", 0))
+                    )
+                except (ValueError, TypeError):
+                    pass
+            partial = {
+                "code": code,
+                "character_class": cls_name,
+                "mastery": mastery_name,
+                "level": bio.get("level"),
+                "passive_count": len(build_info.get("charTree", {}).get("selected", {})),
+                "skill_count": len(build_info.get("skillTrees", [])),
+                "gear_attempted": "equipment" in build_info or "gear" in build_info,
+                "error": str(exc),
+            }
             return ImportResult(
                 success=False,
                 source=self.source_name,
                 error_message=f"Failed to map build data: {exc}",
-                partial_data={"code": code, "keys": list(build_info.keys())},
+                partial_data=partial,
             )
 
     def _map(self, build_info: dict, code: str) -> ImportResult:
@@ -431,8 +458,14 @@ class LastEpochToolsImporter(BaseImporter):
         skills.sort(key=lambda s: s["slot"])
         logger.info("LET importer: parsed %d skills", len(skills))
 
-        # Gear
-        gear = self._parse_gear(build_info, missing_fields)
+        # Gear — wrapped so a crash here still returns what was parsed above
+        try:
+            gear = self._parse_gear(build_info, missing_fields)
+        except Exception as exc:
+            logger.error("LET importer: gear parsing failed: %s", exc)
+            missing_fields.append(f"gear_parse_error:{exc}")
+            gear = []
+
         logger.info("LET importer: parsed %d gear items", len(gear))
 
         build_data = {
@@ -463,37 +496,82 @@ class LastEpochToolsImporter(BaseImporter):
         Parse gear from LE Tools equipment data.
 
         LE Tools uses several possible keys: "equipment", "gear", "items".
-        Each entry has baseTypeID (int), affixes (list of {affixID, tier}),
-        and a slot index.
+        The value can be:
+          - A list of item dicts (each with equipmentSlot / slot index)
+          - A dict keyed by slot name or slot ID string (e.g. {"0": {...}, "helm": {...}})
         """
         raw_equipment = (
             build_info.get("equipment")
             or build_info.get("gear")
             or build_info.get("items")
-            or []
         )
 
         if not raw_equipment:
             logger.info("LET importer: no gear/equipment data in build")
             return []
 
+        # Normalise to a list of (slot_key, item_dict) pairs regardless of shape
+        items_iter: List[tuple] = []
+        if isinstance(raw_equipment, list):
+            items_iter = [(idx, v) for idx, v in enumerate(raw_equipment)]
+            sample = raw_equipment[0] if raw_equipment else None
+        elif isinstance(raw_equipment, dict):
+            items_iter = list(raw_equipment.items())
+            sample = next(iter(raw_equipment.values()), None) if raw_equipment else None
+        else:
+            logger.warning(
+                "LET importer: unexpected equipment type %s, skipping gear",
+                type(raw_equipment).__name__,
+            )
+            return []
+
         logger.info(
-            "LET importer: raw equipment entries=%d, sample keys=%s",
-            len(raw_equipment),
-            list(raw_equipment[0].keys()) if raw_equipment and isinstance(raw_equipment[0], dict) else "N/A",
+            "LET importer: raw equipment type=%s entries=%d sample_keys=%s",
+            type(raw_equipment).__name__,
+            len(items_iter),
+            list(sample.keys()) if isinstance(sample, dict) else "N/A",
         )
 
         base_item_map = _get_base_item_map()
         affix_map = _get_affix_map()
         gear: list = []
 
-        for idx, item_raw in enumerate(raw_equipment):
+        # LE Tools slot name → Forge slot name (covers both string-keyed dicts
+        # and explicit slot fields inside item dicts)
+        _LET_SLOT_ALIASES: Dict[str, str] = {
+            "helm": "helmet", "helmet": "helmet", "head": "helmet",
+            "body": "body_armour", "body_armour": "body_armour",
+            "chest": "body_armour", "bodyArmour": "body_armour",
+            "belt": "belt", "waist": "belt",
+            "boots": "boots", "feet": "boots",
+            "gloves": "gloves", "hands": "gloves",
+            "weapon": "weapon", "mainHand": "weapon",
+            "offHand": "off_hand", "off_hand": "off_hand", "shield": "off_hand",
+            "amulet": "amulet", "neck": "amulet",
+            "ring1": "ring_1", "ring_1": "ring_1", "leftRing": "ring_1",
+            "ring2": "ring_2", "ring_2": "ring_2", "rightRing": "ring_2",
+            "relic": "relic",
+        }
+
+        for slot_key, item_raw in items_iter:
             if not isinstance(item_raw, dict):
                 continue
 
-            # Determine slot
-            slot_idx = item_raw.get("equipmentSlot", item_raw.get("slot", idx))
-            slot_name = _EQUIP_SLOT_MAP.get(int(slot_idx), f"slot_{slot_idx}")
+            # Determine slot — try the item's own field first, then the dict key,
+            # then fall back to the numeric index via _EQUIP_SLOT_MAP
+            explicit_slot = item_raw.get("equipmentSlot", item_raw.get("slot"))
+            if explicit_slot is not None:
+                try:
+                    slot_name = _EQUIP_SLOT_MAP.get(int(explicit_slot), f"slot_{explicit_slot}")
+                except (ValueError, TypeError):
+                    slot_name = _LET_SLOT_ALIASES.get(str(explicit_slot), str(explicit_slot))
+            elif isinstance(slot_key, str) and not slot_key.isdigit():
+                slot_name = _LET_SLOT_ALIASES.get(slot_key, slot_key)
+            else:
+                try:
+                    slot_name = _EQUIP_SLOT_MAP.get(int(slot_key), f"slot_{slot_key}")
+                except (ValueError, TypeError):
+                    slot_name = f"slot_{slot_key}"
 
             # Base type
             base_type_id = item_raw.get("baseTypeID", item_raw.get("baseType", item_raw.get("base_type_id")))
