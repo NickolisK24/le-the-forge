@@ -8,6 +8,7 @@ import toast from "react-hot-toast";
 
 import { Panel, Spinner, ErrorMessage } from "@/components/ui";
 import { skillsApi } from "@/lib/api";
+import { getEntryIconId } from "@/data/skillTrees";
 import SkillTreeRenderer from "./SkillTreeRenderer";
 
 interface Props {
@@ -77,6 +78,14 @@ export default function SkillTreePanel({ skillId, buildSlug, skillName, readOnly
   const tree = treeQuery.data;
   const skillAlloc = allocQuery.data?.skills?.find(s => s.skill_id === skillId);
 
+  // Patch root node icon from local data when the API returns null
+  const entryIcon = getEntryIconId(skillId);
+  const nodes = tree.nodes.map(n =>
+    n.id === tree.root_node_id && n.icon == null && entryIcon
+      ? { ...n, icon: entryIcon }
+      : n,
+  );
+
   // Convert string-keyed map to number-keyed
   const allocMap: Record<number, number> = {};
   if (skillAlloc) {
@@ -92,7 +101,7 @@ export default function SkillTreePanel({ skillId, buildSlug, skillName, readOnly
 
   return (
     <SkillTreeRenderer
-      nodes={tree.nodes}
+      nodes={nodes}
       rootNodeId={tree.root_node_id}
       allocated={allocMap}
       onAllocate={handleAllocate}

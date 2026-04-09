@@ -4307,3 +4307,10 @@ export function getSkillCode(skillName: string): string | null {
 export function hasSkillTree(skillName: string): boolean {
   return getSkillTree(skillName).length > 0;
 }
+
+/** Returns the entry (root) node's iconId for a tree code, or null. */
+export function getEntryIconId(treeCode: string): string | null {
+  const nodes = SKILL_TREES[treeCode];
+  if (!nodes?.length) return null;
+  return nodes[0].iconId ?? null;
+}
