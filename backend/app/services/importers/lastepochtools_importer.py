@@ -660,10 +660,17 @@ class LastEpochToolsImporter(BaseImporter):
         """
         Parse gear from LE Tools equipment data.
 
-        LE Tools uses several possible keys: "equipment", "gear", "items".
-        The value can be:
-          - A list of item dicts (each with equipmentSlot / slot index)
-          - A dict keyed by slot name or slot ID string (e.g. {"0": {...}, "helm": {...}})
+        LE Tools stores equipment as a dict keyed by slot name:
+          {"helm": {"id": 123, "affixes": [...], "ir": 0, "ur": 0}, ...}
+
+        Field meanings:
+          id      — base item type ID (integer)
+          affixes — list of affix entries (base64-encoded strings or dicts)
+          ir      — item rarity (0=Normal, 1=Magic, 2=Rare, 3=Exalted,
+                    4=Legendary, 5=Set, 6=Unique)
+          ur      — unique rarity / legendary potential (integer)
+
+        Can also be a list of item dicts with equipmentSlot fields.
         """
         raw_equipment = (
             build_info.get("equipment")
@@ -679,10 +686,8 @@ class LastEpochToolsImporter(BaseImporter):
         items_iter: List[tuple] = []
         if isinstance(raw_equipment, list):
             items_iter = [(idx, v) for idx, v in enumerate(raw_equipment)]
-            sample = raw_equipment[0] if raw_equipment else None
         elif isinstance(raw_equipment, dict):
             items_iter = list(raw_equipment.items())
-            sample = next(iter(raw_equipment.values()), None) if raw_equipment else None
         else:
             logger.warning(
                 "LET importer: unexpected equipment type %s, skipping gear",
@@ -690,18 +695,33 @@ class LastEpochToolsImporter(BaseImporter):
             )
             return []
 
-        logger.info(
-            "LET importer: raw equipment type=%s entries=%d sample_keys=%s",
-            type(raw_equipment).__name__,
-            len(items_iter),
-            list(sample.keys()) if isinstance(sample, dict) else "N/A",
-        )
+        # Log the actual structure for diagnostics
+        if items_iter:
+            first_key, first_val = items_iter[0]
+            logger.info(
+                "LET importer: equipment — %d slots, slot_names=%s, "
+                "first_slot=%s fields=%s",
+                len(items_iter),
+                [k for k, _ in items_iter],
+                first_key,
+                list(first_val.keys()) if isinstance(first_val, dict) else type(first_val).__name__,
+            )
 
         base_item_map = _get_base_item_map()
         gear: list = []
 
-        # LE Tools slot name → Forge slot name (covers both string-keyed dicts
-        # and explicit slot fields inside item dicts)
+        # LE Tools rarity ID → name
+        _RARITY_MAP: Dict[int, str] = {
+            0: "normal",
+            1: "magic",
+            2: "rare",
+            3: "exalted",
+            4: "legendary",
+            5: "set",
+            6: "unique",
+        }
+
+        # LE Tools slot name → Forge slot name
         _LET_SLOT_ALIASES: Dict[str, str] = {
             "helm": "helmet", "helmet": "helmet", "head": "helmet",
             "body": "body_armour", "body_armour": "body_armour",
@@ -709,13 +729,18 @@ class LastEpochToolsImporter(BaseImporter):
             "belt": "belt", "waist": "belt",
             "boots": "boots", "feet": "boots",
             "gloves": "gloves", "hands": "gloves",
-            "weapon": "weapon", "mainHand": "weapon",
-            "offHand": "off_hand", "off_hand": "off_hand", "shield": "off_hand",
+            "weapon": "weapon", "weapon1": "weapon1", "mainHand": "weapon1",
+            "weapon2": "weapon2", "offHand": "off_hand", "off_hand": "off_hand",
+            "shield": "off_hand",
             "amulet": "amulet", "neck": "amulet",
             "ring1": "ring_1", "ring_1": "ring_1", "leftRing": "ring_1",
             "ring2": "ring_2", "ring_2": "ring_2", "rightRing": "ring_2",
             "relic": "relic",
+            "idol_altar": "idol_altar", "idolAltar": "idol_altar",
         }
+
+        affixes_resolved = 0
+        affixes_missing = 0
 
         for slot_key, item_raw in items_iter:
             if not isinstance(item_raw, dict):
@@ -737,41 +762,77 @@ class LastEpochToolsImporter(BaseImporter):
                 except (ValueError, TypeError):
                     slot_name = f"slot_{slot_key}"
 
-            # Base type
-            base_type_id = item_raw.get("baseTypeID", item_raw.get("baseType", item_raw.get("base_type_id")))
+            # Base type — LE Tools uses 'id' for the base item type ID,
+            # older formats may use 'baseTypeID' or 'baseType'
+            base_type_id = item_raw.get("id",
+                           item_raw.get("baseTypeID",
+                           item_raw.get("baseType",
+                           item_raw.get("base_type_id"))))
             base_item_name = None
             if base_type_id is not None:
-                base_info = base_item_map.get(int(base_type_id))
+                try:
+                    base_info = base_item_map.get(int(base_type_id))
+                except (ValueError, TypeError):
+                    base_info = None
                 if base_info:
                     base_item_name = base_info.get("name")
                 else:
-                    missing_fields.append(f"gear_base_type:{slot_name}:{base_type_id}")
+                    missing_fields.append(f"gear_base:{slot_name}:{base_type_id}")
+
+            # Rarity — LE Tools 'ir' field (integer → name)
+            ir = item_raw.get("ir", item_raw.get("rarity"))
+            if isinstance(ir, int):
+                rarity = _RARITY_MAP.get(ir, f"rarity_{ir}")
+            elif isinstance(ir, str):
+                rarity = ir
+            else:
+                rarity = "normal"
+
+            # Legendary potential / unique rarity
+            legendary_potential = item_raw.get("ur", item_raw.get("legendaryPotential", 0))
 
             # Affixes — LE Tools encodes affix IDs as base64 strings.
-            # We decode them and try multiple resolution strategies.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
             parsed_affixes = []
             for affix_raw in (raw_affixes or []):
-                # Handle both dict entries ({"affixID": "...", "tier": N})
-                # and bare string entries ("AGwRhQ")
                 if isinstance(affix_raw, str):
                     encoded_id = affix_raw
                     explicit_tier = None
                 elif isinstance(affix_raw, dict):
                     encoded_id = str(affix_raw.get("affixID", affix_raw.get("id", "")))
                     explicit_tier = affix_raw.get("tier", affix_raw.get("t"))
+                elif isinstance(affix_raw, (int, float)):
+                    # Plain integer affix ID
+                    encoded_id = str(int(affix_raw))
+                    explicit_tier = None
                 else:
                     continue
 
                 if not encoded_id:
                     continue
 
-                # Attempt base64 decode and resolution
+                # Try direct numeric lookup first (if it looks like an integer)
+                affix_info = None
+                tier = explicit_tier
+                if encoded_id.isdigit():
+                    affix_by_num = {int(a.get("affix_id", -1)): a
+                                    for a in _get_affix_map().values()
+                                    if a.get("affix_id") is not None}
+                    affix_info = affix_by_num.get(int(encoded_id))
+                    if affix_info:
+                        parsed_affixes.append({
+                            "id": encoded_id,
+                            "name": affix_info["name"],
+                            "tier": tier,
+                        })
+                        affixes_resolved += 1
+                        continue
+
+                # Base64 decode and multi-strategy resolution
                 decoded = _decode_let_affix(encoded_id)
                 affix_info, tier_guess = _resolve_affix(decoded, slot_name)
-
-                # Use explicit tier from the data if available, otherwise decoded guess
-                tier = explicit_tier if explicit_tier is not None else tier_guess
+                if tier is None:
+                    tier = tier_guess
 
                 if affix_info:
                     parsed_affixes.append({
@@ -779,8 +840,8 @@ class LastEpochToolsImporter(BaseImporter):
                         "name": affix_info["name"],
                         "tier": tier,
                     })
+                    affixes_resolved += 1
                 else:
-                    # Unresolved — record with decoded info for debugging
                     parsed_affixes.append({
                         "id": encoded_id,
                         "name": None,
@@ -794,27 +855,33 @@ class LastEpochToolsImporter(BaseImporter):
                         f"gear_affix:{slot_name}:{encoded_id}"
                         f"(candidates={decoded.get('candidates', [])})"
                     )
+                    affixes_missing += 1
 
-            # Implicit stats
-            implicit_value = item_raw.get("implicitValue", item_raw.get("implicit"))
-
-            gear_entry = {
+            gear_entry: dict = {
                 "slot": slot_name,
                 "base_type_id": base_type_id,
                 "item_name": base_item_name,
+                "rarity": rarity,
                 "affixes": parsed_affixes,
-                "implicit": implicit_value,
-                "rarity": item_raw.get("rarity", "normal"),
-                "_raw": item_raw if not base_item_name else None,
             }
+            if legendary_potential:
+                gear_entry["legendary_potential"] = legendary_potential
+            if not base_item_name:
+                gear_entry["_raw"] = item_raw
 
-            # Clean up None _raw entries
-            if gear_entry["_raw"] is None:
-                del gear_entry["_raw"]
-            for affix in gear_entry["affixes"]:
-                if affix.get("_raw") is None:
-                    affix.pop("_raw", None)
-
+            logger.info(
+                "LET importer: parsed %s — %s rarity=%s affixes=%d",
+                slot_name,
+                base_item_name or f"(base_id={base_type_id})",
+                rarity,
+                len(parsed_affixes),
+            )
             gear.append(gear_entry)
+
+        logger.info(
+            "LET importer: gear summary — %d slots, %d affixes resolved, %d unresolved",
+            len(gear), affixes_resolved, affixes_missing,
+        )
+        return gear
 
         return gear
