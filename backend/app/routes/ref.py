@@ -260,7 +260,7 @@ def _get_affixes_inner():
         # Convert tier_ranges dict {"1": [lo,hi]} to [{tier, min, max}] array
         tier_ranges = a.tier_ranges or {}
         tiers = sorted(
-            [{"tier": int(k), "min": v[0], "max": v[1]} for k, v in tier_ranges.items()],
+            [{"tier": int(k.lstrip("T")), "min": v[0], "max": v[1]} for k, v in tier_ranges.items()],
             key=lambda t: t["tier"],
         )
         result.append({
