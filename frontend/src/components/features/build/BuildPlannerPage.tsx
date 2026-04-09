@@ -24,7 +24,7 @@ import SkillSelector from "./SkillSelector";
 import BossEncounterPanel from "./BossEncounterPanel";
 import CorruptionScalingPanel from "./CorruptionScalingPanel";
 import GearUpgradePanel from "./GearUpgradePanel";
-import { getSkillTree, hasSkillTree } from "@/data/skillTrees";
+import { getSkillTree, hasSkillTree, resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
 const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
@@ -77,7 +77,7 @@ function SkillRow({
   const hasTree = hasSkillTree(skill.skill_name);
   return (
     <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
-      <span className="flex-1 font-body text-sm text-forge-text truncate">{skill.skill_name}</span>
+      <span className="flex-1 font-body text-sm text-forge-text truncate">{resolveSkillName(skill.skill_name)}</span>
       <span className="font-mono text-[10px] text-forge-dim w-4 text-center">{skill.slot}</span>
       <input
         type="number"
@@ -1248,7 +1248,7 @@ export default function BuildPlannerPage() {
               <div className="mt-2 flex flex-col gap-1">
                 {draftSkills.map((s) => (
                   <div key={s.skill_name} className="flex justify-between font-mono text-[11px] text-forge-dim">
-                    <span>{s.skill_name}</span>
+                    <span>{resolveSkillName(s.skill_name)}</span>
                     <span>{s.points_allocated} pts</span>
                   </div>
                 ))}
