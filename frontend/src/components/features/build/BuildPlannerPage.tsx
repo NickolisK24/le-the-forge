@@ -16,7 +16,7 @@ import SimulationDashboard from "./SimulationDashboard";
 import StatUpgradePanel from "./StatUpgradePanel";
 import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
 import SkillTreeGraph from "./SkillTreeGraph";
-import PassiveTreeGraph from "./PassiveTreeGraph";
+import BuildPassiveTree from "./BuildPassiveTree";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
@@ -497,7 +497,7 @@ function BuildSummary({ build }: { build: Build }) {
         </Panel>
 
         <Panel title="Passive Tree" className="lg:col-span-2">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={build.character_class}
             mastery={build.mastery}
             allocated={(() => {
@@ -645,7 +645,7 @@ function BuildSummary({ build }: { build: Build }) {
         </Panel>
 
         <Panel title="Passive Tree">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={characterClass}
             mastery={mastery}
             allocated={getPassiveAllocMap()}
@@ -1187,12 +1187,11 @@ export default function BuildPlannerPage() {
         </Panel>
 
         <Panel title="Passive Tree">
-          <PassiveTreeGraph
+          <BuildPassiveTree
             characterClass={characterClass}
             mastery={mastery}
             allocated={getPassiveAllocMap()}
             onAllocate={setPassiveAlloc}
-            onMasteryChange={handleMasteryChange}
           />
           <div className="mt-3 min-w-0 overflow-hidden">
             <PassiveProgressBar
