@@ -29,7 +29,7 @@ from app.services import build_service
 from app.utils.auth import login_required, get_current_user
 from app.utils.responses import (
     ok, created, no_content, error,
-    not_found, forbidden, validation_error,
+    not_found, forbidden, unauthorized, validation_error,
     paginate_meta,
 )
 from app.utils.cache import get, set as cache_set, delete, delete_pattern, make_hash
@@ -198,15 +198,19 @@ def get_build(slug: str):
 
 @builds_bp.patch("/<slug>")
 @limiter.limit("20 per minute")
-@login_required
 def update_build(slug: str):
     build = build_service.get_build(slug)
     if not build:
         return not_found("Build")
 
     user = get_current_user()
-    if build.author_id and build.author_id != user.id:
-        return forbidden()
+    # Anonymous builds (no author) can be updated by anyone.
+    # Owned builds require the owner to be authenticated.
+    if build.author_id:
+        if not user:
+            return unauthorized()
+        if build.author_id != user.id:
+            return forbidden()
 
     try:
         data = build_update_schema.load(request.get_json() or {})
