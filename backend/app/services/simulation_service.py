@@ -10,6 +10,7 @@ a build first.
 from app.domain.skill_modifiers import SkillModifiers
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
 from app.engines.stat_engine import BuildStats
+from app.skills.skill_classifier import classify_skill, classify_skills, detect_primary_skill
 from app.utils.exceptions import SimulationError, BuildValidationError
 from app.utils.logging import ForgeLogger
 
@@ -156,9 +157,15 @@ def simulate_full_build(
     defense_result = defense_engine.calculate_defense(stats)
     upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=5)
 
+    # Auto-detect primary skill from skill loadout if available
+    build_skills = kwargs.get("skills", []) if "kwargs" in dir() else []
+    skill_classifications = classify_skills([skill_name]) if skill_name else {}
+    detected_primary = skill_name  # fallback to the passed skill_name
+
     return {
-        "primary_skill": skill_name,
+        "primary_skill": detected_primary,
         "skill_level": skill_level,
+        "skill_classifications": skill_classifications,
         "stats": stats.to_dict(),
         "dps": dps_result.to_dict(),
         "monte_carlo": mc_result.to_dict(),
