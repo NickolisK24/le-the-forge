@@ -274,11 +274,40 @@ function BuildSummary({ build }: { build: Build }) {
     setPassiveTree(prev => prev.slice(0, stepIndex));
   }
   const characterClass = build.character_class;
-  const mastery = build.mastery;
+  const [mastery, setMastery] = useState(build.mastery);
+  const [showMasteryConfirm, setShowMasteryConfirm] = useState<string | null>(null);
+
+  const masteryOptions = useMemo(
+    () => MASTERIES[characterClass] ?? [],
+    [characterClass],
+  );
+
+  function handleMasteryChangeRequest(next: string) {
+    if (next === mastery) return;
+    // Show confirmation if there are passive points or skills that might be affected
+    if (passiveTree.length > 0 || draftSkills.length > 0) {
+      setShowMasteryConfirm(next);
+    } else {
+      setMastery(next);
+    }
+  }
+
+  function confirmMasteryChange() {
+    if (!showMasteryConfirm) return;
+    setMastery(showMasteryConfirm);
+    // Drop mastery-specific skills that don't belong to the new mastery
+    setDraftSkills((prev) =>
+      prev.filter((ds) => {
+        const def = CLASS_SKILLS[characterClass].find((s) => s.name === ds.skill_name);
+        return !def?.mastery || def.mastery === showMasteryConfirm;
+      })
+    );
+    setShowMasteryConfirm(null);
+  }
 
   const availableSkills = useMemo(
     () => CLASS_SKILLS[characterClass].filter((s) => !s.mastery || s.mastery === mastery),
-    [characterClass, mastery]
+    [characterClass, mastery],
   );
   const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
 
@@ -347,6 +376,7 @@ function BuildSummary({ build }: { build: Build }) {
       payload: {
         name: name.trim(),
         description: description.trim() || undefined,
+        mastery,
         level,
         is_ssf: isSsf,
         is_hc: isHc,
@@ -589,15 +619,23 @@ function BuildSummary({ build }: { build: Build }) {
               <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className={inputCls + " mt-1.5 resize-none"} />
             </label>
 
-            {/* Class & mastery are read-only — fixed at creation */}
+            {/* Class is fixed at creation; mastery can be changed */}
             <div className="block">
               <SectionLabel>Class</SectionLabel>
               <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{characterClass}</div>
             </div>
-            <div className="block">
+            <label className="block">
               <SectionLabel>Mastery</SectionLabel>
-              <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{mastery}</div>
-            </div>
+              <select
+                value={mastery}
+                onChange={(e) => handleMasteryChangeRequest(e.target.value)}
+                className={inputCls + " mt-1.5"}
+              >
+                {masteryOptions.map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+            </label>
 
             <label className="block">
               <SectionLabel>Level</SectionLabel>
@@ -701,6 +739,29 @@ function BuildSummary({ build }: { build: Build }) {
           onClose={() => setTreeModal(null)}
           readOnly={treeModal.readOnly}
         />
+      )}
+
+      {/* Mastery change confirmation modal */}
+      {showMasteryConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="w-full max-w-sm rounded-lg border border-forge-border bg-forge-bg p-6 shadow-2xl">
+            <h3 className="font-display text-lg font-bold text-forge-amber">Change Mastery?</h3>
+            <p className="mt-2 font-body text-sm text-forge-muted">
+              Switching from <strong className="text-forge-text">{mastery}</strong> to{" "}
+              <strong className="text-forge-text">{showMasteryConfirm}</strong> will remove
+              skills exclusive to your current mastery. Passive tree allocations will be preserved
+              but mastery-specific nodes may become locked.
+            </p>
+            <div className="mt-4 flex gap-3 justify-end">
+              <Button variant="outline" size="sm" onClick={() => setShowMasteryConfirm(null)}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={confirmMasteryChange}>
+                Confirm
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
