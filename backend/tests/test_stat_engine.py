@@ -73,12 +73,13 @@ class TestMasteryBonuses:
 
 class TestPassiveNodeBonuses:
     def test_allocated_nodes_add_stats(self):
+        # Class-aware passive cycle: Mage node 0 → intelligence +2
         nodes = [
-            {"id": 0, "type": "core", "name": "Node0"},  # id%10=0 → max_health +8
+            {"id": 0, "type": "core", "name": "Node0"},
         ]
         stats_with = aggregate_stats("Mage", "Sorcerer", [0], nodes, [])
         stats_without = aggregate_stats("Mage", "Sorcerer", [], nodes, [])
-        assert stats_with.max_health > stats_without.max_health
+        assert stats_with.intelligence > stats_without.intelligence
 
     def test_unallocated_nodes_not_applied(self):
         nodes = [{"id": 3, "type": "core", "name": "ArmourNode"}]
@@ -96,15 +97,17 @@ class TestPassiveNodeBonuses:
         assert stats_with.spell_damage_pct > stats_without.spell_damage_pct
 
     def test_notable_node_has_3x_bonus(self):
+        # Class-aware cycle: Mage[0] = ("intelligence", 2)
+        # Core node 0: +2 intelligence, Notable node 10 (10%10=0): +6 intelligence (3×)
         nodes = [
             {"id": 0, "type": "core",    "name": "CoreNode"},
-            {"id": 10, "type": "notable", "name": "NotableNode"},  # id%10==0 → max_health
+            {"id": 10, "type": "notable", "name": "NotableNode"},
         ]
         stats_core    = aggregate_stats("Mage", "Sorcerer", [0],  nodes, [])
         stats_notable = aggregate_stats("Mage", "Sorcerer", [10], nodes, [])
-        # Notable gives 3× base bonus — health gain from notable > from core
-        assert (stats_notable.max_health - aggregate_stats("Mage", "Sorcerer", [], [], []).max_health) > \
-               (stats_core.max_health    - aggregate_stats("Mage", "Sorcerer", [], [], []).max_health)
+        base_int = aggregate_stats("Mage", "Sorcerer", [], [], []).intelligence
+        # Notable gives 3× base bonus — intelligence gain from notable > from core
+        assert (stats_notable.intelligence - base_int) > (stats_core.intelligence - base_int)
 
     def test_mastery_gate_nodes_are_ignored(self):
         nodes = [{"id": 50, "type": "mastery-gate", "name": "Gate"}]
@@ -170,8 +173,8 @@ class TestAttributeScaling:
 class TestGetAffixValue:
     def test_t1_health_midpoint(self):
         val = get_affix_value("Added Health", 1)
-        # T1 midpoint: (500+1500)/2 = 1000 (real LE data)
-        assert val == 1000
+        # T1 midpoint: (500+1500)/2 = 1000 raw → /100 = 10.0 (flat stat normalization)
+        assert val == 10.0
 
     def test_unknown_affix_returns_zero(self):
         assert get_affix_value("Completely Fake Affix", 1) == 0

@@ -13,7 +13,7 @@
     },
     "Bone Curse": {
       "base_damage": 60,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.2,
       "scaling_stats": [
         "spell_damage_pct",
@@ -94,7 +94,7 @@
     },
     "Summon Skeleton": {
       "base_damage": 60,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.0,
       "scaling_stats": [
         "minion_damage_pct"
@@ -202,7 +202,7 @@
     },
     "Summon Wraith": {
       "base_damage": 70,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.2,
       "scaling_stats": [
         "minion_damage_pct",
@@ -270,7 +270,7 @@
     },
     "Mana Strike": {
       "base_damage": 80,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 2.0,
       "scaling_stats": [
         "spell_damage_pct",
@@ -424,7 +424,7 @@
     },
     "Enchant Weapon": {
       "base_damage": 80,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.0,
       "scaling_stats": [
         "fire_damage_pct"
@@ -433,7 +433,7 @@
     },
     "Summon Wolf": {
       "base_damage": 75,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.5,
       "scaling_stats": [
         "minion_damage_pct",
@@ -489,7 +489,7 @@
     },
     "Ice Thorns": {
       "base_damage": 65,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.2,
       "scaling_stats": [
         "spell_damage_pct",
@@ -499,7 +499,7 @@
     },
     "Tornado": {
       "base_damage": 65,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 0.6,
       "scaling_stats": [
         "spell_damage_pct",
@@ -539,7 +539,7 @@
     },
     "Spriggan Form": {
       "base_damage": 80,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 1.0,
       "scaling_stats": [
         "physical_damage_pct",
@@ -639,7 +639,7 @@
     },
     "Shield Rush": {
       "base_damage": 70,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 0.7,
       "scaling_stats": [
         "physical_damage_pct"
@@ -678,7 +678,7 @@
     },
     "Manifest Armor": {
       "base_damage": 80,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 0.8,
       "scaling_stats": [
         "minion_damage_pct"
@@ -771,7 +771,7 @@
     },
     "Flurry": {
       "base_damage": 65,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 3.0,
       "scaling_stats": [
         "physical_damage_pct"
@@ -798,7 +798,7 @@
     },
     "Arrow Barrage": {
       "base_damage": 70,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 2.5,
       "scaling_stats": [
         "physical_damage_pct"
@@ -877,7 +877,7 @@
     },
     "Ballista": {
       "base_damage": 70,
-      "level_scaling": 0.10,
+      "level_scaling": 0.1,
       "attack_speed": 2.0,
       "scaling_stats": [
         "minion_damage_pct",
@@ -963,6 +963,19 @@
         "physical_damage_pct",
         "poison_damage_pct"
       ]
+    },
+    "Umbral Blades": {
+      "base_damage": 80,
+      "level_scaling": 0.08,
+      "attack_speed": 1.33,
+      "scaling_stats": [
+        "physical_damage_pct"
+      ],
+      "is_spell": false,
+      "is_melee": false,
+      "is_throwing": true,
+      "mana_cost": 12,
+      "hit_count": 5
     }
   }
 }
