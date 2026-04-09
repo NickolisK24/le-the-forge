@@ -122,7 +122,8 @@ class TestCalculateDefense:
                     "dodge_chance_pct", "ward_regen_per_second", "ward_decay_per_second",
                     "net_ward_per_second", "survivability_score", "weaknesses", "strengths",
                     "physical_res", "poison_res", "block_chance_pct", "block_mitigation_pct",
-                    "endurance_pct", "endurance_threshold_pct", "crit_avoidance_pct",
+                    "endurance_pct", "endurance_threshold_pct", "endurance_damage_reduction",
+                    "crit_avoidance_pct",
                     "glancing_blow_pct", "stun_avoidance_pct", "ward_buffer", "total_ehp",
                     "leech_pct", "health_on_kill", "sustain_score"]:
             assert key in d, f"Missing key: {key}"
@@ -268,6 +269,46 @@ class TestEnduranceMechanics:
         stats.endurance = 30
         result = calculate_defense(stats)
         assert any("endurance" in s.lower() for s in result.strengths)
+
+    def test_endurance_does_not_increase_max_health(self):
+        """Endurance is a conditional damage reduction — NOT a max_health increase."""
+        base = BuildStats()
+        base.max_health = 2000
+        endured = BuildStats()
+        endured.max_health = 2000
+        endured.endurance = 40
+        endured.endurance_threshold = 60
+        r_base = calculate_defense(base)
+        r_endured = calculate_defense(endured)
+        # max_health must be identical — endurance never adds health
+        assert r_base.max_health == r_endured.max_health
+
+    def test_endurance_damage_reduction_field_populated(self):
+        """The explicit damage reduction field must reflect the endurance value."""
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.endurance = 40
+        stats.endurance_threshold = 60
+        result = calculate_defense(stats)
+        assert result.endurance_damage_reduction == 40.0
+
+    def test_endurance_damage_reduction_capped(self):
+        stats = BuildStats()
+        stats.max_health = 2000
+        stats.endurance = 80  # over ENDURANCE_CAP (60)
+        stats.endurance_threshold = 50
+        result = calculate_defense(stats)
+        assert result.endurance_damage_reduction == 60.0  # capped
+
+    def test_endurance_zero_threshold_means_no_benefit(self):
+        """Without a threshold, endurance provides no EHP benefit."""
+        base = BuildStats()
+        base.max_health = 2000
+        endured = BuildStats()
+        endured.max_health = 2000
+        endured.endurance = 40
+        endured.endurance_threshold = 0  # no threshold
+        assert calculate_defense(endured).effective_hp == calculate_defense(base).effective_hp
 
 
 class TestCritAvoidanceAndGlancingBlow:

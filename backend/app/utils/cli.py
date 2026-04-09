@@ -260,3 +260,90 @@ def register_commands(app: Flask) -> None:
         db.session.add(user)
         db.session.commit()
         click.echo(f"✓ Admin user '{username}' created. ID: {user.id}")
+
+    @app.cli.command("refresh-meta")
+    def refresh_meta():
+        """Force-refresh all meta analytics caches regardless of TTL."""
+        from app.services import meta_analytics_service
+        try:
+            snapshot = meta_analytics_service.refresh_all()
+            classes = len(snapshot.get("class_distribution", []))
+            skills = len(snapshot.get("popular_skills", []))
+            click.echo(f"✓ Meta analytics refreshed — {classes} classes, {skills} popular skills.")
+        except Exception as e:
+            click.echo(f"✗ Failed to refresh meta analytics: {e}", err=True)
+
+    @app.cli.command("validate-data")
+    def validate_data():
+        """Validate all data files in /data/. Exits with code 1 if any are malformed."""
+        import json
+        import sys
+        from pathlib import Path
+
+        data_root = Path(__file__).resolve().parent.parent.parent.parent / "data"
+        if not data_root.exists():
+            click.echo(f"ERROR: Data directory not found: {data_root}", err=True)
+            sys.exit(1)
+
+        errors: list[str] = []
+        checked = 0
+
+        # Required data files — the pipeline depends on these
+        required_files = {
+            "items/affixes.json": {"type": list, "min_entries": 1},
+            "entities/enemy_profiles.json": {"type": list, "min_entries": 1},
+            "classes/passives.json": {"type": list, "min_entries": 1},
+            "classes/skills_metadata.json": {"type": dict},
+            "items/uniques.json": {"type": dict},
+            "items/rarities.json": {"type": list},
+            "combat/damage_types.json": {"type": list},
+            "items/implicit_stats.json": {"type": dict},
+            "items/base_items.json": {"type": (list, dict)},
+            "items/crafting_rules.json": {"type": dict},
+        }
+
+        # Check required files exist and have valid JSON + correct top-level type
+        for rel_path, spec in required_files.items():
+            fpath = data_root / rel_path
+            if not fpath.exists():
+                errors.append(f"MISSING: {rel_path}")
+                continue
+            try:
+                with open(fpath, encoding="utf-8") as f:
+                    data = json.load(f)
+            except json.JSONDecodeError as exc:
+                errors.append(f"MALFORMED JSON: {rel_path}: {exc}")
+                continue
+
+            expected_type = spec["type"]
+            if isinstance(expected_type, tuple):
+                if not isinstance(data, expected_type):
+                    errors.append(f"WRONG TYPE: {rel_path}: expected {expected_type}, got {type(data).__name__}")
+            elif not isinstance(data, expected_type):
+                errors.append(f"WRONG TYPE: {rel_path}: expected {expected_type.__name__}, got {type(data).__name__}")
+
+            min_entries = spec.get("min_entries", 0)
+            if min_entries and isinstance(data, (list, dict)) and len(data) < min_entries:
+                errors.append(f"TOO FEW ENTRIES: {rel_path}: expected >= {min_entries}, got {len(data)}")
+
+            checked += 1
+
+        # Also validate all JSON files in data/ are parseable
+        for json_file in sorted(data_root.rglob("*.json")):
+            rel = json_file.relative_to(data_root)
+            if str(rel) in required_files:
+                continue  # already checked
+            try:
+                with open(json_file, encoding="utf-8") as f:
+                    json.load(f)
+                checked += 1
+            except json.JSONDecodeError as exc:
+                errors.append(f"MALFORMED JSON: {rel}: {exc}")
+
+        if errors:
+            click.echo(f"✗ Data validation FAILED — {len(errors)} error(s):", err=True)
+            for err in errors:
+                click.echo(f"  - {err}", err=True)
+            sys.exit(1)
+        else:
+            click.echo(f"✓ Data validation passed — {checked} files checked.")

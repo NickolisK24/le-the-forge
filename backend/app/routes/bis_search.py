@@ -1,12 +1,15 @@
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request
 
+from app import limiter
+from app.utils.responses import ok, error
 from bis.models.item_slot import SlotPool
 from bis.engine.incremental_search import IncrementalSearchEngine
 
 bis_bp = Blueprint("bis", __name__)
 
 
-@bis_bp.route("/api/bis/search", methods=["POST"])
+@bis_bp.route("/search", methods=["POST"])
+@limiter.limit("15 per minute")
 def bis_search():
     data = request.get_json(force=True) or {}
     try:
@@ -20,7 +23,7 @@ def bis_search():
         engine = IncrementalSearchEngine(n_runs_per_eval=30)
         result = engine.search(slot_pool, target_affixes, target_tiers, top_n, max_candidates)
 
-        return jsonify({
+        return ok(data={
             "search_id": result.search_id,
             "total_evaluated": result.total_evaluated,
             "results": [
@@ -35,5 +38,5 @@ def bis_search():
             "best_score": result.best_score,
             "duration_s": result.search_duration_s,
         })
-    except Exception as e:
-        return jsonify({"error": str(e)}), 400
+    except ValueError as e:
+        return error(str(e), status=422)

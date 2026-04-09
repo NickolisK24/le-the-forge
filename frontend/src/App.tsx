@@ -19,6 +19,7 @@ import NotFoundPage from "@/components/features/NotFoundPage";
 import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
 
 import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
+import ReportPage from "@/components/features/builds/ReportPage";
 import PassiveTreePage from "@/pages/PassiveTreePage";
 import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
 import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
@@ -174,6 +175,7 @@ export default function App() {
                 <Route path="/affixes" element={<AffixEditorPage />} />
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
+                <Route path="/report/:slug" element={<ReportPage />} />
                 <Route path="/meta" element={<MetaSnapshotPage />} />
                 <Route path="/encounter"     element={<SimulationPage />} />
                 <Route path="/build-editor" element={<BuildEditorPage />} />

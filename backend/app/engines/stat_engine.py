@@ -254,7 +254,8 @@ ATTRIBUTE_SCALING: dict = {
     "attunement":   {"cast_speed": 0.3},
 }
 
-# Passive node stat cycle — same as CORE_STAT_CYCLE in simulation.ts
+# Passive node stat cycle — generic fallback when real passive data is unavailable.
+# Class-specific cycles give more realistic stat distributions per class archetype.
 CORE_STAT_CYCLE: list = [
     ("max_health", 8),
     ("spell_damage_pct", 1),
@@ -267,6 +268,69 @@ CORE_STAT_CYCLE: list = [
     ("necrotic_res", 2),
     ("cast_speed", 1),
 ]
+
+CLASS_STAT_CYCLES: dict[str, list] = {
+    "Rogue": [
+        ("dexterity", 2),
+        ("physical_damage_pct", 2),
+        ("crit_chance_pct", 1),
+        ("dodge_rating", 15),
+        ("max_health", 6),
+        ("attack_speed_pct", 1),
+        ("physical_damage_pct", 1),
+        ("void_res", 2),
+        ("cold_res", 2),
+        ("dexterity", 1),
+    ],
+    "Mage": [
+        ("intelligence", 2),
+        ("spell_damage_pct", 2),
+        ("max_mana", 8),
+        ("ward", 10),
+        ("max_health", 6),
+        ("cast_speed", 1),
+        ("elemental_damage_pct", 1),
+        ("fire_res", 2),
+        ("lightning_res", 2),
+        ("cold_res", 2),
+    ],
+    "Sentinel": [
+        ("strength", 2),
+        ("physical_damage_pct", 2),
+        ("armour", 20),
+        ("max_health", 10),
+        ("block_chance", 2),
+        ("fire_res", 3),
+        ("void_res", 2),
+        ("physical_damage_pct", 1),
+        ("vitality", 1),
+        ("necrotic_res", 2),
+    ],
+    "Primalist": [
+        ("strength", 2),
+        ("physical_damage_pct", 2),
+        ("max_health", 10),
+        ("attunement", 1),
+        ("armour", 10),
+        ("cold_res", 2),
+        ("lightning_res", 2),
+        ("minion_damage_pct", 1),
+        ("vitality", 1),
+        ("dodge_rating", 10),
+    ],
+    "Acolyte": [
+        ("intelligence", 2),
+        ("necrotic_damage_pct", 2),
+        ("max_health", 8),
+        ("ward", 8),
+        ("vitality", 1),
+        ("spell_damage_pct", 1),
+        ("void_damage_pct", 1),
+        ("necrotic_res", 3),
+        ("void_res", 2),
+        ("minion_damage_pct", 1),
+    ],
+}
 
 NOTABLE_MULTIPLIER = 3
 
@@ -431,12 +495,13 @@ def _apply_stat_key(stats: BuildStats, stat_key: str, value: float) -> None:
 # Helper — passive node bonus (mirrors getNodeBonus in simulation.ts)
 # ---------------------------------------------------------------------------
 
-def _get_node_bonus(node_id: int, node_type: str, node_name: str) -> dict:
+def _get_node_bonus(node_id: int, node_type: str, node_name: str, character_class: str = "") -> dict:
     if node_type == "mastery-gate":
         return {}
     if node_type == "keystone":
         return KEYSTONE_BONUSES.get(node_name, {"spell_damage_pct": 10, "max_health": 50})
-    stat_key, base_amount = CORE_STAT_CYCLE[node_id % len(CORE_STAT_CYCLE)]
+    cycle = CLASS_STAT_CYCLES.get(character_class, CORE_STAT_CYCLE)
+    stat_key, base_amount = cycle[node_id % len(cycle)]
     amount = base_amount * NOTABLE_MULTIPLIER if node_type == "notable" else base_amount
     return {stat_key: amount}
 
@@ -445,11 +510,50 @@ def _get_node_bonus(node_id: int, node_type: str, node_name: str) -> dict:
 # Helper — affix tier midpoint value
 # ---------------------------------------------------------------------------
 
+# Stat keys whose affix tier values are stored at 100× game scale in the data
+# files (sync_game_data.py multiplies raw floats by 100, which is correct for
+# percentage-point stats but inflates flat stats by 100×).  Percentage stats
+# (ending in _pct) are already at the correct scale after the ×100 conversion.
+_FLAT_SCALE_STAT_KEYS: frozenset[str] = frozenset({
+    "added_melee_physical", "added_melee_fire", "added_melee_cold",
+    "added_melee_lightning", "added_melee_void", "added_melee_necrotic",
+    "added_spell_damage", "added_spell_fire", "added_spell_cold",
+    "added_spell_lightning", "added_spell_necrotic", "added_spell_void",
+    "added_throw_physical", "added_throw_fire", "added_throw_cold",
+    "added_bow_physical", "added_bow_fire",
+    "max_health", "hybrid_health", "max_mana",
+    "armour", "dodge_rating", "ward",
+    "health_regen", "mana_regen", "ward_regen",
+    "stun_avoidance", "block_effectiveness",
+    "health_on_block", "health_on_kill", "ward_on_kill", "ward_on_potion",
+    "strength", "intelligence", "dexterity", "vitality", "attunement",
+    "thorns",
+})
+
+
 def get_affix_value(affix_name: str, tier: int) -> float:
-    """Returns the midpoint stat value for an affix at the given tier (1=lowest, 7=best)."""
+    """Returns the midpoint stat value for an affix at the given tier (1=lowest, 7=best).
+
+    Applies a /100 normalization for flat stat values that are stored at 100×
+    scale in the data files (see sync_game_data.py tier conversion comment).
+    Only applies to affixes whose stat_key is in _FLAT_SCALE_STAT_KEYS AND
+    whose tier midpoint exceeds a threshold indicating ×100 inflation (> 100
+    at T1 rules out percentage-scale stats that share the same stat_key).
+    """
     tier_key = f"T{tier}"
     midpoints = AFFIX_TIER_MIDPOINTS.get(affix_name, {})
-    return float(midpoints.get(tier_key, 0))
+    raw = float(midpoints.get(tier_key, 0))
+    if raw == 0:
+        return 0.0
+    stat_key = AFFIX_STAT_KEYS.get(affix_name, "")
+    if stat_key in _FLAT_SCALE_STAT_KEYS:
+        # Only correct if T1 midpoint indicates ×100 scale (>100).
+        # Affixes like "Increased Armor" (T1=11) share stat_key "armour" but
+        # are already at correct scale — don't divide those.
+        t1_raw = float(midpoints.get("T1", 0))
+        if t1_raw > 100:
+            return raw / 100.0
+    return raw
 
 
 # ---------------------------------------------------------------------------
@@ -531,7 +635,7 @@ def aggregate_stats(
         if has_real_passive_data and node_type != "keystone":
             # Real data from passive_stat_resolver covers this node; skip modulo fallback.
             continue
-        bonus = _get_node_bonus(node["id"], node_type, node_name)
+        bonus = _get_node_bonus(node["id"], node_type, node_name, character_class)
         _add_partial(stats, bonus)
 
     # 4. Gear affix values — route through StatPool for proper type bucketing

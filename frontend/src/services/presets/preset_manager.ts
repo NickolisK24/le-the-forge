@@ -7,7 +7,7 @@ export interface Preset {
   id: string;
   name: string;
   description: string;
-  category: "build" | "craft" | "sim" | "general";
+  category: "build" | "craft" | "sim" | "general" | "damage" | "defense";
   data: Record<string, unknown>;
   createdAt: number;
   updatedAt: number;

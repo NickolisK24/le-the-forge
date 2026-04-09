@@ -35,20 +35,11 @@ log = ForgeLogger(__name__)
 _CONSTANTS_PATH = os.path.join(
     os.path.dirname(__file__), "..", "game_data", "constants.json"
 )
-_ITEMS_PATH = os.path.join(
-    os.path.dirname(__file__), "..", "game_data", "items.json"
-)
 
 
 @lru_cache(maxsize=1)
 def _load_constants() -> dict:
     with open(_CONSTANTS_PATH) as f:
-        return json.load(f)
-
-
-@lru_cache(maxsize=1)
-def _load_items() -> dict:
-    with open(_ITEMS_PATH) as f:
         return json.load(f)
 
 

@@ -1,342 +1,257 @@
 # The Forge
 
-The Forge is a data-driven analysis and optimization toolkit for the action RPG **Last Epoch**.
+**Build optimization and combat simulation toolkit for Last Epoch.**
 
-It helps players evaluate builds, analyze gear, and make better crafting decisions through simulation and statistical modeling.
+The Forge is a full-stack simulation platform that helps Last Epoch players plan character builds, simulate DPS and survivability against specific bosses, optimize gear through crafting probability analysis, import builds from community tools, and compare builds across the meta. It is powered by a deterministic Python engine layer with 10,000+ tests and a React TypeScript frontend.
 
-The goal of The Forge is simple:
+Built as both a community tool and an engineering portfolio project demonstrating full-stack development, simulation systems, and data-driven game analysis.
 
-Turn complex game systems into clear, actionable insights for players.
-
----
-
-## Screenshots
-
-| Home | Community Builds |
-|------|-----------------|
-| ![Home](docs/screenshots/20260323_184859_01_home.webp) | ![Builds](docs/screenshots/20260323_184859_02_builds.webp) |
-
-| Build Planner | Craft Simulator |
-|--------------|-----------------|
-| ![Build Planner](docs/screenshots/20260323_184859_03_build_new.webp) | ![Craft Simulator](docs/screenshots/20260323_184859_04_craft.webp) |
-
-| Build Comparison |
-|-----------------|
-| ![Compare](docs/screenshots/20260323_184859_05_compare.webp) |
+![Python](https://img.shields.io/badge/python-3.11+-blue)
+![Node](https://img.shields.io/badge/node-20+-green)
+![Tests](https://img.shields.io/badge/tests-10%2C029-brightgreen)
+![License](https://img.shields.io/badge/license-MIT-blue)
+![Last Updated](https://img.shields.io/badge/updated-2026--04-orange)
 
 ---
 
-# Why The Forge Exists
+## Features
 
-Last Epoch has deep systems:
+### Build Planner
+- Create and edit character builds with class and mastery selection (5 classes, 15 masteries)
+- Interactive passive tree with real in-game node positions, BFS path validation, and hexagonal node rendering
+- Skill tree specialization with node point allocation and spec tree modifiers
+- Paper-doll gear editor with item picker, unique item support, and idol slots
+- Leveling path tracker -- scrollable timeline recording passive allocation order per level
 
-* layered defensive mechanics
-* complex crafting outcomes
-* numerous stat interactions
-* non-obvious upgrade paths
+### Stat Engine (8-Layer Deterministic Pipeline)
+1. **Base Stats** -- class and mastery base values
+2. **Flat Additions** -- gear implicits and affix flat values
+3. **Increased (%)** -- additive percentage pool
+4. **More Multipliers** -- multiplicative product pool
+5. **Conversions** -- damage type conversions
+6. **Derived Stats** -- attribute-to-secondary expansion (Strength to health, Intelligence to ward retention, etc.)
+7. **Registry Derived** -- EHP, armor mitigation, dodge chance
+8. **Conditional Stats** -- context-dependent bonuses (while moving, against bosses, enemy frozen, etc.)
 
-Players often struggle to answer questions such as:
+### Combat Simulation
+- Skill execution engine computing per-hit damage, crit-weighted average hit, and DPS
+- Enemy defense engine applying per-type resistance, armor mitigation, and penetration
+- Ailment DPS (Ignite, Bleed, Poison) computed from proc chance and scaling stats
+- Monte Carlo damage variance simulation with configurable sample size and deterministic seeding
+- Multi-target encounter simulation with target selection, damage distribution, and spawn lifecycle
+- Boss encounter simulation with multi-phase transitions, immunity windows, and enrage timers
+- Time-based combat loop with priority-ordered skill rotation and cooldown tracking
+- Mana resource gating -- skills require mana to cast, mana regenerates per tick
 
-* Is this item actually an upgrade?
-* Which stat improves my damage the most?
-* What is the safest way to craft this item?
-* Where is my build weakest?
+### Crafting Simulator
+- Forging potential cost model with RNG simulation
+- Affix tier system with 1,000+ affix definitions synced from game data
+- Monte Carlo simulation across thousands of craft attempts
+- Strategy comparison (aggressive, balanced, conservative) and optimal path search
+- Probability visualization with timeline and outcome charts
+- Undo/redo support and per-step audit trail
 
-The Forge aims to solve these problems using simulation and analysis.
+### Optimization Engine
+- Stat sensitivity analysis testing 50+ stats with weighted impact scoring
+- Upgrade efficiency scoring factoring DPS gain, EHP gain, and FP cost
+- Offensive/defensive ranking with configurable weighting modes (balanced, offense, defense)
+- Pareto-optimal candidate detection for multi-objective optimization
+- Per-slot gear upgrade ranking with cross-slot top-10 recommendations
+
+### Advanced Analysis
+- Boss encounter simulation with per-phase DPS, time-to-kill, and survival scoring
+- Corruption scaling curve analysis with recommended max corruption threshold
+- Gear upgrade ranking evaluating candidate items against current build
+- Best-in-slot search engine with weighted affix targeting
+
+### Build Import
+- Import from Last Epoch Tools and Maxroll URLs
+- Partial import with gap reporting for incomplete builds
+- Admin failure tracking dashboard with severity classification
+- Discord webhook alerts for import failures
+
+### Community Tools
+- Community builds browser with filtering, voting, pagination, and tier ranking
+- Build comparison engine with full DPS/EHP simulation results and weighted overall winner
+- Meta analytics with class/mastery distribution, popular skills and affixes, trending builds by view velocity
+- View tracking with privacy-safe SHA-256 hashed IPs (raw IPs never stored)
+- Shared build reports with OpenGraph meta tags for Discord link previews
+
+### Authentication and Profiles
+- Discord OAuth2 login with JWT session management
+- User profiles with build history and craft session history
+- Admin role with affix management and import failure monitoring
 
 ---
 
-# Key Features
+## Tech Stack
 
-## Build Analysis Engine
+| Layer | Technology |
+|-------|------------|
+| Frontend | React 18, TypeScript 5.4, Vite 5, Tailwind CSS 3 |
+| State Management | Zustand 4, TanStack Query 5 |
+| Charts | Recharts 3 |
+| Backend | Python 3.11, Flask 3.0 |
+| Database | PostgreSQL 15 |
+| Cache / Rate Limiting | Redis 7, Flask-Limiter |
+| ORM | SQLAlchemy + Flask-Migrate (Alembic) |
+| Auth | Flask-Dance (Discord OAuth2), Flask-JWT-Extended |
+| Validation | Marshmallow 3 |
+| Testing | pytest (10,000+ tests), Vitest |
+| Desktop | Electron 41 (optional) |
+| Deployment | Docker Compose |
 
-Simulates character performance and evaluates build efficiency.
+---
 
-Metrics include:
+## Project Structure
 
-* DPS estimation
-* effective health pool
-* damage scaling analysis
-* defensive layer evaluation
-
-**Example output — Bone Curse Lich (Acolyte), level 90:**
-
-```json
-{
-  "primary_skill": "Bone Curse",
-  "skill_level": 20,
-  "dps": {
-    "hit_damage": 4821,
-    "average_hit": 6340,
-    "dps": 9732,
-    "effective_attack_speed": 1.54,
-    "crit_contribution_pct": 31,
-    "total_dps": 11480
-  },
-  "monte_carlo": {
-    "mean_dps": 9718,
-    "min_dps": 6230,
-    "max_dps": 16447,
-    "std_dev": 2841.3,
-    "percentile_25": 6230,
-    "percentile_75": 16447,
-    "n_simulations": 10000
-  },
-  "defense": {
-    "max_health": 1840,
-    "effective_hp": 6120,
-    "armor_reduction_pct": 28,
-    "avg_resistance": 62,
-    "survivability_score": 71,
-    "weaknesses": ["low physical resistance", "no leech"],
-    "strengths": ["capped fire resistance", "large ward buffer"]
-  },
-  "stat_upgrades": [
-    { "stat": "necrotic_damage_pct", "label": "+15% Necrotic Damage", "dps_gain_pct": 8.4, "ehp_gain_pct": 0.0 },
-    { "stat": "crit_multiplier_pct", "label": "+30% Crit Multiplier",  "dps_gain_pct": 6.1, "ehp_gain_pct": 0.0 },
-    { "stat": "max_health",          "label": "+200 Health",           "dps_gain_pct": 0.0, "ehp_gain_pct": 4.9 }
-  ]
-}
+```
+le-the-forge/
+├── backend/
+│   ├── app/
+│   │   ├── engines/            22 pure calculation modules (stat, combat, defense, craft, optimization, etc.)
+│   │   ├── services/           11 orchestration services (build analysis, craft, simulation, etc.)
+│   │   ├── routes/             24 Flask blueprints (builds, simulate, craft, compare, meta, etc.)
+│   │   ├── schemas/            Marshmallow request/response validation
+│   │   ├── models/             SQLAlchemy ORM models (User, Build, CraftSession, PassiveNode, etc.)
+│   │   ├── game_data/          Data pipeline loader and registries
+│   │   └── utils/              Auth, cache, responses, CLI commands, logging
+│   ├── migrations/             Alembic migration versions
+│   └── tests/                  10,000+ tests across 251 test files
+├── frontend/
+│   └── src/
+│       ├── components/         Feature components organized by domain
+│       │   ├── features/       Build planner, craft simulator, encounter, optimizer, etc.
+│       │   └── ui/             Shared UI components (Panel, Button, Badge, Modal, Skeleton, etc.)
+│       ├── pages/              Route-level page components
+│       ├── lib/                API client with typed request/response
+│       ├── hooks/              TanStack Query hooks and utilities
+│       ├── store/              Zustand state stores (auth, craft)
+│       └── types/              TypeScript type definitions
+├── data/                       Canonical game data (JSON)
+│   ├── classes/                Class definitions, passives, skill trees, skill metadata
+│   ├── combat/                 Damage types, ailments, monster modifiers
+│   ├── entities/               Enemy and boss profiles
+│   ├── items/                  Affixes, base items, uniques, crafting rules, rarities
+│   ├── localization/           Game string tables
+│   ├── progression/            Blessings
+│   └── world/                  Zones, timelines, dungeons, quests, loot tables
+├── docs/                       Documentation and screenshots
+├── electron/                   Desktop app wrapper (main process + preload)
+├── scripts/                    Game data sync, icon extraction, tree data generation
+├── docker-compose.yml
+├── ARCHITECTURE.md
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+├── ROADMAP.md
+└── LICENSE                     MIT
 ```
 
 ---
 
-## Crafting Outcome Predictor
+## Local Development Setup
 
-Simulates crafting attempts and estimates expected outcomes.
+### Prerequisites
 
-Features include:
+- Docker Desktop (for PostgreSQL + Redis)
+- Python 3.11+
+- Node.js 20+
 
-* crafting success probabilities
-* expected stat outcomes
-* optimal crafting strategies
-* Monte Carlo simulation across thousands of attempts
-
-**Example output — Rare Helmet, 28 FP, two T2 prefixes:**
-
-```json
-{
-  "optimal_path": [
-    { "action": "upgrade_affix", "affix": "% increased Health", "from_tier": 2, "to_tier": 4, "fp_cost": 4 },
-    { "action": "upgrade_affix", "affix": "% increased Armour",  "from_tier": 2, "to_tier": 4, "fp_cost": 4 },
-    { "action": "seal_affix",    "affix": "% increased Health",  "fp_cost": 8 }
-  ],
-  "simulation_result": {
-    "completion_chance": 0.8120,
-    "step_survival_curve": [1.0, 0.9430, 0.8120],
-    "n_simulations": 10000
-  },
-  "strategy_comparison": [
-    { "name": "Direct Upgrade",  "completion_chance": 0.8120, "fp_efficiency": "high" },
-    { "name": "Seal First",      "completion_chance": 0.6340, "fp_efficiency": "medium" }
-  ]
-}
-```
-
----
-
-## Stat Optimization Engine
-
-Determines which stats provide the greatest performance improvements.
-
-**Example output — Marksman Rogue, Detonating Arrow:**
-
-```json
-[
-  { "stat": "bow_damage_pct",        "label": "+20% Bow Damage",        "dps_gain_pct": 11.2, "ehp_gain_pct": 0.0 },
-  { "stat": "physical_damage_pct",   "label": "+20% Physical Damage",   "dps_gain_pct": 9.8,  "ehp_gain_pct": 0.0 },
-  { "stat": "crit_chance_pct",       "label": "+5% Critical Strike",    "dps_gain_pct": 7.3,  "ehp_gain_pct": 0.0 },
-  { "stat": "max_health",            "label": "+200 Health",             "dps_gain_pct": 0.0,  "ehp_gain_pct": 6.1 },
-  { "stat": "dodge_rating",          "label": "+150 Dodge Rating",       "dps_gain_pct": 0.0,  "ehp_gain_pct": 3.4 }
-]
-```
-
----
-
-## Gear Upgrade Analysis
-
-Compares potential items against the current build to determine:
-
-* real DPS improvement
-* survivability impact
-* overall efficiency gain
-
----
-
-# System Architecture
-
-The Forge is built around a central **Intelligence Engine** that powers all analysis systems.
-
-For a full architecture breakdown, see:
-
-docs/architecture.md
-
-```mermaid
-flowchart TD
-
-A[Player Input] --> B[Build Import System]
-B --> C[Character Engine]
-C --> D[Stat Engine]
-D --> E[Combat Simulation Engine]
-D --> F[Defense Simulation Engine]
-E --> G[Build Analysis Layer]
-F --> G
-G --> H[Optimization Engine]
-H --> I[Recommendation Engine]
-I --> J[Frontend Dashboard]
-```
-
-This pipeline converts raw build data into optimized recommendations.
-
----
-
-# Documentation
-
-Detailed technical documentation can be found in the docs folder.
-
-## Core Documentation
-
-* docs/architecture.md — system overview, engine structure, and simulation math
-* docs/api_reference.md — full REST API reference with request/response schemas
-* docs/data_models.md — core data structures
-* docs/passive_tree.md — passive tree system design
-* docs/development_roadmap.md — master development roadmap and feature plan
-* docs/development_phases.md — GitHub workflow phases guide
-
-Screenshots and demo assets are in `docs/screenshots/`. Run `./scripts/screenshot.sh` to capture new screenshots.
-
----
-
-# Project Structure
-
-Example structure of the repository:
-
-```
-the-forge/
-│
-├ README.md
-├ ROADMAP.md
-│
-├ docs/
-│   ├ architecture.md
-│   ├ api_reference.md
-│   ├ data_models.md
-│   ├ passive_tree.md
-│   ├ development_roadmap.md
-│   └ development_phases.md
-│
-├ backend/
-│
-└ frontend/
-```
-
----
-
-# Development Goals
-
-The Forge is currently being developed as a **local analytics tool** designed for theorycrafters and build optimizers.
-
-## Local Desktop Development
-
-Recommended local workflow:
-
-* backend runs locally on your machine
-* frontend runs locally on your machine
-* PostgreSQL and Redis run via Docker
-
-The default Docker Postgres port is `5433` so local development does not collide
-with a host Postgres instance already using `5432`.
-
-Quick start:
+### Quick Start
 
 ```bash
+# Clone and configure
+git clone https://github.com/NickolisK24/le-the-forge.git
+cd le-the-forge
 cp .env.example .env
+
+# Start database and cache
 docker compose up -d db redis
 
+# Backend setup
 cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db upgrade
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed
-FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed-builds
+FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed-passives
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask run --port=5050 --debug
 ```
 
 In a second terminal:
 
 ```bash
+# Frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-Or use the root helper scripts after dependencies are installed:
+- Frontend: http://localhost:5173
+- Backend API: http://localhost:5050/api
+
+### Running Tests
 
 ```bash
-npm run dev:db
-npm run db:upgrade
-npm run db:seed
-npm run db:seed-builds
-npm run dev:backend
-npm run dev:frontend
+cd backend
+source .venv/bin/activate
+PYTHONPATH=. pytest tests/ -x -q
 ```
 
-Local URLs:
-
-* frontend: `http://localhost:5173`
-* backend API: `http://localhost:5050/api`
-
-The long-term goal is to create a platform that enables players to:
-
-* analyze builds
-* simulate crafting outcomes
-* identify build weaknesses
-* optimize gear progression
-
----
-
-## Development Guide
-
-See the development roadmap:
-
-docs/development_roadmap.md
-
-### Game Data Setup
-
-The backend relies on curated game data in `/data/`. This is pre-generated and committed to the repo — no extra steps needed for most contributors.
-
-If you need to re-sync from the raw game exports (e.g. after a patch), clone the data repo alongside this one and run the sync script:
+### Data Validation
 
 ```bash
-# From the project root
-git clone https://github.com/NickolisK24/last-epoch-data.git
-python scripts/sync_game_data.py
+cd backend
+source .venv/bin/activate
+FLASK_APP=wsgi.py PYTHONPATH=. flask validate-data
 ```
 
-> **Note:** `last-epoch-data/` is intentionally excluded from this repo (`.gitignore`) as it contains raw extracted game assets. Only the processed `/data/` output is committed.
+### Alternative: Full Docker
+
+```bash
+docker compose up --build
+
+# First run only -- seed the database
+docker compose exec -e PYTHONPATH=/app backend flask db upgrade
+docker compose exec -e PYTHONPATH=/app backend flask seed
+docker compose exec -e PYTHONPATH=/app backend flask seed-passives
+```
 
 ---
 
-# Long-Term Vision
+## Screenshots
 
-The Forge aims to become a comprehensive analytical toolkit for Last Epoch players.
-
-Future capabilities may include:
-
-* automated build evaluation
-* meta build analytics
-* advanced crafting simulators
-* encounter-specific optimization
-
----
-
-# Contributing
-
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, branch conventions, architecture guidelines, and the PR checklist.
+| Page | Screenshot |
+|------|-----------|
+| Home | ![Home](docs/screenshots/20260323_184859_01_home.png) |
+| Community Builds | ![Builds](docs/screenshots/20260323_184859_02_builds.png) |
+| Build Planner | ![Build Planner](docs/screenshots/20260323_184859_03_build_new.png) |
+| Craft Simulator | ![Craft Simulator](docs/screenshots/20260323_184859_04_craft.png) |
+| Build Comparison | ![Compare](docs/screenshots/20260323_184859_05_compare.png) |
 
 ---
 
-# License
+## What's Coming
 
-This project is licensed under the [MIT License](LICENSE).
+From the [roadmap](ROADMAP.md):
+
+- **Phase 9 -- Deploy & Launch**: CI/CD with GitHub Actions, production deployment, performance audit, mobile responsiveness, community launch
+
+Long-term vision:
+- Native desktop packaging via Electron
+- Advanced crafting prediction models
+- Encounter-specific build optimization
+- Patch auto-sync pipeline via GitHub Actions
+
+---
+
+## Contributing
+
+See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, branch conventions, code style guidelines, and PR checklist.
+
+---
+
+## License
+
+[MIT](LICENSE)

@@ -72,7 +72,7 @@ export default function DataLoaderPanel({ onLoaded }: Props) {
         <Button onClick={() => mutation.mutate()} disabled={mutation.isPending}>
           {mutation.isPending ? (
             <span className="flex items-center gap-2">
-              <Spinner size="sm" /> Loading…
+              <Spinner size={16} /> Loading…
             </span>
           ) : (
             "Reload Game Data"

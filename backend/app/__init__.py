@@ -98,6 +98,19 @@ def create_app(env: str = "development") -> Flask:
                 )
         return response
 
+    # Rate limit violation handler — log and return structured JSON
+    @app.errorhandler(429)
+    def _rate_limit_exceeded(e):
+        from flask import jsonify, request as req
+        app.logger.warning(
+            f"rate_limit_exceeded ip={req.remote_addr} "
+            f"path={req.path} method={req.method}"
+        )
+        return jsonify({
+            "error": "rate_limit_exceeded",
+            "message": str(e.description),
+        }), 429
+
     # Register blueprints
     from app.routes.auth import auth_bp
     from app.routes.builds import builds_bp
@@ -115,6 +128,14 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.jobs import jobs_bp
     from app.routes.version import version_bp
     from app.routes.import_route import import_bp
+    from app.routes.bis_search import bis_bp
+    from app.routes.skills import skills_bp
+    from app.routes.analysis import analysis_bp
+    from app.routes.entities import entities_bp
+    from app.routes.compare import compare_bp
+    from app.routes.meta import meta_bp
+    from app.routes.views import views_bp
+    from app.routes.report import report_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -132,6 +153,14 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(admin_bp, url_prefix="/api/admin")
     app.register_blueprint(jobs_bp, url_prefix="/api/jobs")
     app.register_blueprint(version_bp, url_prefix="/api/version")
+    app.register_blueprint(bis_bp, url_prefix="/api/bis")
+    app.register_blueprint(skills_bp, url_prefix="/api")
+    app.register_blueprint(analysis_bp, url_prefix="/api/builds")
+    app.register_blueprint(entities_bp, url_prefix="/api/entities")
+    app.register_blueprint(compare_bp, url_prefix="/api/compare")
+    app.register_blueprint(meta_bp, url_prefix="/api/meta")
+    app.register_blueprint(views_bp, url_prefix="/api/builds")
+    app.register_blueprint(report_bp, url_prefix="/api/builds")
 
     # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError
@@ -160,9 +189,5 @@ def create_app(env: str = "development") -> Flask:
     @app.get("/api/health")
     def health():
         return {"status": "ok", "env": env}
-
-    @app.get("/api/test")
-    def test():
-        return {"message": "API is running"}
 
     return app

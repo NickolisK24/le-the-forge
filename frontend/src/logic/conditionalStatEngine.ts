@@ -83,6 +83,13 @@ export function evaluateCondition(
       return { passed, reason: `moving=${runtimeCtx.isMoving}, want=${condition.isMoving}: ${passed}` };
     }
 
+    case "buff_active": {
+      if (!runtimeCtx) return { passed: false, reason: "No runtime context (buffs unavailable)" };
+      const allBuffs = [...runtimeCtx.activeBuffIds, ...runtimeCtx.activeDebuffIds];
+      const passed = allBuffs.includes(condition.buffId);
+      return { passed, reason: `buff "${condition.buffId}" active: ${passed}` };
+    }
+
     default: {
       return { passed: false, reason: `Unknown condition type: ${(condition as any).type}` };
     }
@@ -348,21 +355,21 @@ export const CONDITIONAL_TESTS: ConditionalTestCase[] = [
     name: "Health% ≤ 50: passes (40%)",
     modifiers: [CONTEXT_CONDITIONAL_MODIFIERS[0]],
     context: { statPool: new Map(), equippedItems: [], allocatedSkills: new Map(), tags: new Set() },
-    runtimeCtx: { currentHealth: 400, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "boss", enemyCount: 1, minionCount: 0, activeTags: new Set(), currentWard: 0 },
+    runtimeCtx: { currentHealth: 400, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "boss", enemyCount: 1, minionCount: 0, activeTags: new Set(), currentWard: 0, activeBuffIds: [], activeDebuffIds: [] },
     expectedResults: [{ description: "+100 when health ≤ 50%", shouldPass: true }],
   },
   {
     name: "Enemy type = boss: passes",
     modifiers: [CONTEXT_CONDITIONAL_MODIFIERS[1]],
     context: { statPool: new Map(), equippedItems: [], allocatedSkills: new Map(), tags: new Set() },
-    runtimeCtx: { currentHealth: 1000, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "boss", enemyCount: 1, minionCount: 0, activeTags: new Set(), currentWard: 0 },
+    runtimeCtx: { currentHealth: 1000, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "boss", enemyCount: 1, minionCount: 0, activeTags: new Set(), currentWard: 0, activeBuffIds: [], activeDebuffIds: [] },
     expectedResults: [{ description: "+40% vs Boss", shouldPass: true }],
   },
   {
     name: "Minions ≥ 3: fails (have 2)",
     modifiers: [CONTEXT_CONDITIONAL_MODIFIERS[2]],
     context: { statPool: new Map(), equippedItems: [], allocatedSkills: new Map(), tags: new Set() },
-    runtimeCtx: { currentHealth: 1000, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "normal", enemyCount: 1, minionCount: 2, activeTags: new Set(), currentWard: 0 },
+    runtimeCtx: { currentHealth: 1000, maxHealth: 1000, currentMana: 200, maxMana: 200, isMoving: false, wasHitRecently: false, isChanneling: false, enemyType: "normal", enemyCount: 1, minionCount: 2, activeTags: new Set(), currentWard: 0, activeBuffIds: [], activeDebuffIds: [] },
     expectedResults: [{ description: "+20 when ≥3 minions", shouldPass: false }],
   },
 ];

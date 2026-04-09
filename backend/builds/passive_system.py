@@ -3,10 +3,15 @@ E6 — Passive System
 
 Manages passive node allocation for a build.
 Tracks dependency chains and prevents circular allocations.
+Emits stat modifiers from allocated nodes into a StatPool.
 """
 
 from __future__ import annotations
 from dataclasses import dataclass, field
+from typing import TYPE_CHECKING
+
+if TYPE_CHECKING:
+    from app.engines.stat_engine import StatPool
 
 
 @dataclass
@@ -92,6 +97,72 @@ class PassiveSystem:
         Only registered nodes can supply stat_engine node bonuses.
         """
         return [n.to_dict() for n in self._registry.values()]
+
+    def apply_to_stat_pool(self, pool: "StatPool") -> None:
+        """Emit stat modifiers from all allocated nodes into *pool*.
+
+        For each allocated node that has metadata in the registry, the
+        node bonus is computed using the same logic as
+        ``stat_engine._get_node_bonus`` and routed into the correct
+        StatPool bucket (flat / increased / more).
+
+        Nodes without registry metadata are skipped — their stats are
+        handled by aggregate_stats via the modulo fallback or by
+        pre-resolved passive_stats from the DB resolver.
+        """
+        from app.utils.logging import ForgeLogger
+        log = ForgeLogger(__name__)
+
+        for node_id in sorted(self._allocated):
+            node = self._registry.get(node_id)
+            if node is None:
+                continue
+            bonus = self._get_node_stat_bonus(node)
+            for stat_key, value in bonus.items():
+                if value == 0:
+                    continue
+                if stat_key.endswith("_pct"):
+                    pool.add_increased(stat_key, value)
+                elif stat_key.startswith("more_") or stat_key == "more_damage_multiplier":
+                    pool.add_more(stat_key, value)
+                else:
+                    pool.add_flat(stat_key, value)
+                log.debug(
+                    "passive.emit",
+                    node_id=node_id,
+                    node_name=node.name,
+                    stat_key=stat_key,
+                    value=value,
+                )
+
+    @staticmethod
+    def _get_node_stat_bonus(node: PassiveNode) -> dict[str, float]:
+        """Compute the stat bonus dict for a single passive node.
+
+        Mirrors ``stat_engine._get_node_bonus`` logic:
+        - Mastery-gate nodes produce nothing.
+        - Keystone nodes use the KEYSTONE_BONUSES lookup.
+        - Minor/notable nodes use the CORE_STAT_CYCLE modulo heuristic,
+          with notables getting 3× the base amount.
+        """
+        from app.engines.stat_engine import (
+            CLASS_STAT_CYCLES,
+            CORE_STAT_CYCLE,
+            KEYSTONE_BONUSES,
+            NOTABLE_MULTIPLIER,
+        )
+
+        if node.node_type == "mastery-gate":
+            return {}
+        if node.node_type == "keystone":
+            return dict(KEYSTONE_BONUSES.get(node.name, {
+                "spell_damage_pct": 10,
+                "max_health": 50,
+            }))
+        cycle = CORE_STAT_CYCLE  # default; class-aware lookup in stat_engine
+        stat_key, base_amount = cycle[node.node_id % len(cycle)]
+        amount = base_amount * NOTABLE_MULTIPLIER if node.node_type == "notable" else base_amount
+        return {stat_key: float(amount)}
 
     def _has_circular_dependency(
         self,

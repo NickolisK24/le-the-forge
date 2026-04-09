@@ -156,7 +156,7 @@ export type CraftAction =
   | "unseal_affix"
   | "remove_affix";
 
-export type CraftOutcome = "success" | "perfect" | "fracture";
+export type CraftOutcome = "success" | "perfect" | "fracture" | "error";
 
 export interface CraftAffix {
   name: string;
@@ -220,6 +220,7 @@ export interface SimulationResult {
 export interface LocalSimulationResult {
   fp_consumed: { p25: number; p50: number; p75: number };
   steps_completed: { p25: number; p50: number; p75: number };
+  completion_rate: number;
   n_simulations: number;
 }
 
@@ -282,5 +283,376 @@ export interface AffixDef {
   tiers: AffixTier[];
   tags?: string[];
   class_requirement?: string | null;
+}
+
+// ---------------------------------------------------------------------------
+// Phase 4 — Optimization (sensitivity + ranking + efficiency)
+// ---------------------------------------------------------------------------
+
+export type OptimizeMode = "balanced" | "offense" | "defense";
+
+export interface StatRankingEntry {
+  stat_key: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  impact_score: number;
+  rank: number;
+}
+
+export interface UpgradeCandidate {
+  affix_id: string;
+  label: string;
+  dps_gain_pct: number;
+  ehp_gain_pct: number;
+  fp_cost: number;
+  efficiency_score: number;
+  rank: number;
+}
+
+export interface OptimizeResponse {
+  stat_rankings: StatRankingEntry[];
+  top_upgrade_candidates: UpgradeCandidate[];
+  mode: OptimizeMode;
+  offense_weight: number;
+  defense_weight: number;
+  base_dps: number;
+  base_ehp: number;
+  generated_at: string;
+}
+
+// ---------------------------------------------------------------------------
+// Phase 5 — Skill Tree API
+// ---------------------------------------------------------------------------
+
+export interface SkillNodeStat {
+  statName: string;
+  value: string;
+  noScaling: boolean;
+  downside: boolean;
+}
+
+export interface SkillNodeRequirement {
+  node: number;
+  requirement: number;
+}
+
+export interface SkillNodeTransform {
+  x: number;
+  y: number;
+  scale?: number;
+  rotation?: number;
+}
+
+export interface SkillNode {
+  id: number;
+  name: string;
+  description: string;
+  maxPoints: number;
+  stats: SkillNodeStat[];
+  requirements: SkillNodeRequirement[];
+  transform: SkillNodeTransform;
+  icon: string | number | null;
+  abilityGrantedByNode: string | null;
+}
+
+export interface SkillTreeResponse {
+  skill_id: string;
+  skill_name: string;
+  nodes: SkillNode[];
+  root_node_id: number;
+}
+
+export interface SkillAllocation {
+  skill_id: string;
+  skill_name: string;
+  slot: number;
+  allocated_nodes: Record<string, number>;
+  total_points: number;
+}
+
+export interface SkillAllocationsResponse {
+  skills: SkillAllocation[];
+}
+
+// ---------------------------------------------------------------------------
+// Phase 6 — Build Import
+// ---------------------------------------------------------------------------
+
+export interface ImportBuildRequest {
+  url: string;
+}
+
+export interface ImportBuildResponse {
+  slug: string;
+  build_name: string;
+  source: string;
+  imported_fields: string[];
+  missing_fields: string[];
+  warnings: string[];
+}
+
+export interface ImportFailure {
+  id: string;
+  source: string;
+  raw_url: string;
+  missing_fields: string[];
+  partial_data: Record<string, unknown> | null;
+  user_id: string | null;
+  error_message: string | null;
+  created_at: string | null;
+}
+
+// ---------------------------------------------------------------------------
+// Phase 7 — Advanced Analysis
+// ---------------------------------------------------------------------------
+
+export interface BossPhaseResult {
+  phase: number;
+  health_threshold: number;
+  dps: number;
+  ttk_seconds: number;
+  survival_score: number;
+  mana_sustainable: boolean;
+  warnings: string[];
+}
+
+export interface BossSummary {
+  total_ttk_seconds: number;
+  can_kill_before_enrage: boolean;
+  overall_survival_score: number;
+  weakest_phase: number;
+}
+
+export interface BossAnalysisResponse {
+  boss_id: string;
+  boss_name: string;
+  corruption: number;
+  phases: BossPhaseResult[];
+  summary: BossSummary;
+  warnings: string[];
+}
+
+export interface CorruptionDataPoint {
+  corruption: number;
+  dps_efficiency: number;
+  survivability_score: number;
+}
+
+export interface CorruptionAnalysisResponse {
+  boss_id: string;
+  recommended_max_corruption: number;
+  curve: CorruptionDataPoint[];
+}
+
+export interface GearUpgradeCandidate {
+  item_name: string;
+  base_type: string;
+  slot: string;
+  affixes: Record<string, unknown>[];
+  dps_delta_pct: number;
+  ehp_delta_pct: number;
+  fp_cost: number;
+  efficiency_score: number;
+  rank: number;
+}
+
+export interface SlotUpgradeResult {
+  slot: string;
+  candidates: GearUpgradeCandidate[];
+}
+
+export interface GearUpgradeResponse {
+  slots: SlotUpgradeResult[];
+  top_10_overall: GearUpgradeCandidate[];
+}
+
+export interface BossListItem {
+  id: string;
+  name: string;
+  category: string;
+}
+
+// ---------------------------------------------------------------------------
+// Phase 8 — Community Tools
+// ---------------------------------------------------------------------------
+
+// Build Comparison
+export interface DPSComparisonData {
+  raw_dps_a: number;
+  raw_dps_b: number;
+  crit_contribution_a: number;
+  crit_contribution_b: number;
+  ailment_dps_a: number;
+  ailment_dps_b: number;
+  total_dps_a: number;
+  total_dps_b: number;
+  winner: "a" | "b" | "tie";
+}
+
+export interface EHPComparisonData {
+  max_health_a: number;
+  max_health_b: number;
+  effective_hp_a: number;
+  effective_hp_b: number;
+  armor_reduction_pct_a: number;
+  armor_reduction_pct_b: number;
+  avg_resistance_a: number;
+  avg_resistance_b: number;
+  survivability_score_a: number;
+  survivability_score_b: number;
+  winner: "a" | "b" | "tie";
+}
+
+export interface StatDelta {
+  stat_key: string;
+  value_a: number;
+  value_b: number;
+  delta: number;
+}
+
+export interface SkillComparisonData {
+  skills_a: Array<{ skill_name: string; points_allocated: number; slot: number }>;
+  skills_b: Array<{ skill_name: string; points_allocated: number; slot: number }>;
+  shared: string[];
+  unique_to_a: string[];
+  unique_to_b: string[];
+}
+
+export interface GearSlotComparisonData {
+  slot: string;
+  item_a: string | null;
+  rarity_a: string | null;
+  item_b: string | null;
+  rarity_b: string | null;
+}
+
+export interface ComparisonResult {
+  slug_a: string;
+  slug_b: string;
+  name_a: string;
+  name_b: string;
+  dps: DPSComparisonData;
+  ehp: EHPComparisonData;
+  stat_deltas: StatDelta[];
+  overall_winner: "a" | "b" | "tie";
+  overall_score_a: number;
+  overall_score_b: number;
+  skill_comparison: SkillComparisonData;
+  gear_comparison: GearSlotComparisonData[];
+}
+
+// Meta Analytics
+export interface ClassDistEntry {
+  class: string;
+  count: number;
+  percentage: number;
+}
+
+export interface MasteryDistEntry {
+  mastery: string;
+  count: number;
+  percentage: number;
+}
+
+export interface PopularSkillEntry {
+  skill_name: string;
+  usage_count: number;
+}
+
+export interface PopularAffixEntry {
+  affix_name: string;
+  usage_count: number;
+}
+
+export interface TrendingBuild {
+  id: string;
+  slug: string;
+  name: string;
+  character_class: string;
+  mastery: string;
+  tier: string | null;
+  vote_count: number;
+  view_count: number;
+  trending_score: number;
+  author: string | null;
+}
+
+export interface FullMetaSnapshot {
+  class_distribution: ClassDistEntry[];
+  mastery_distribution: Record<string, MasteryDistEntry[]>;
+  popular_skills: PopularSkillEntry[];
+  popular_affixes: PopularAffixEntry[];
+  average_stats_by_class: Array<{
+    class: string;
+    build_count: number;
+    avg_votes: number;
+    avg_views: number;
+  }>;
+  patch_breakdown: Array<{ patch_version: string; count: number }>;
+  last_updated: string;
+  current_patch: string;
+}
+
+// Build Report
+export interface BuildReportIdentity {
+  name: string;
+  character_class: string;
+  mastery: string;
+  level: number;
+  patch_version: string;
+  author: string | null;
+  slug: string;
+}
+
+export interface BuildReport {
+  identity: BuildReportIdentity;
+  stat_summary: Record<string, number>;
+  dps_summary: {
+    total_dps: number;
+    raw_dps: number;
+    crit_contribution_pct: number;
+    ailment_dps: number;
+    hit_damage: number;
+    average_hit: number;
+  };
+  ehp_summary: {
+    effective_hp: number;
+    max_health: number;
+    armor_reduction_pct: number;
+    avg_resistance: number;
+    survivability_score: number;
+    dodge_chance_pct: number;
+    block_chance_pct: number;
+  };
+  top_upgrades: Array<{
+    stat: string;
+    label: string;
+    dps_gain_pct: number;
+    ehp_gain_pct: number;
+    explanation?: string;
+  }>;
+  skills: Array<{
+    skill_name: string;
+    slot: number;
+    points_allocated: number;
+    node_count: number;
+  }>;
+  gear: Array<{
+    slot: string;
+    item_name: string | null;
+    rarity: string | null;
+    affix_count: number;
+  }>;
+  generated_at: string;
+  og_title: string;
+  og_description: string;
+  og_url: string;
+}
+
+export interface OpenGraphMeta {
+  og_title: string;
+  og_description: string;
+  og_url: string;
 }
 
