@@ -1,6 +1,6 @@
 """Add build_views table and last_viewed_at column
 
-Revision ID: a1b2c3d4e5f6
+Revision ID: d1e2f3a4b5c6
 Revises: f8953bcaab80
 Create Date: 2026-04-08 00:00:00.000000
 
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'a1b2c3d4e5f6'
+revision = 'd1e2f3a4b5c6'
 down_revision = 'f8953bcaab80'
 branch_labels = None
 depends_on = None
