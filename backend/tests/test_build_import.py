@@ -851,6 +851,41 @@ class TestGearParsing:
         assert gear[1]["slot"] == "weapon"
 
     @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_parses_dict_keyed_equipment(self, mock_get):
+        """When equipment is a dict keyed by slot name/ID, it still parses."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"baseTypeID": 5, "affixes": [{"affixID": "42", "tier": 3}]},
+                "weapon": {"baseTypeID": 10},
+                "3": {"baseTypeID": 7}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/DICTGEAR")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 3
+        slots = [g["slot"] for g in gear]
+        assert "helmet" in slots   # "helm" → "helmet" via alias
+        assert "weapon" in slots
+        assert "boots" in slots    # "3" → boots via _EQUIP_SLOT_MAP
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
     def test_no_equipment_returns_empty_gear(self, mock_get):
         """Build without equipment data returns empty gear list."""
         mock_resp = MagicMock()
@@ -926,3 +961,34 @@ class TestExtractionStrategies:
         assert isinstance(result, IR)
         assert result.success is False
         assert result.error_message is not None
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_mapping_crash_populates_partial_data(self, mock_get):
+        """When _map() crashes, partial_data still contains class/mastery/counts."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 85, "characterClass": 3, "chosenMastery": 2},
+            "charTree": {"selected": {"10": 5, "20": 3}},
+            "skillTrees": [{"treeID": "x", "selected": {}, "level": 1}],
+            "hud": [],
+            "equipment": "THIS_WILL_CAUSE_A_TYPE_ERROR"
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/PARTIAL_CRASH")
+
+        # Should succeed — gear parsing handles the invalid type gracefully
+        # and returns empty gear list (no crash propagation)
+        assert result.success is True
+        assert result.build_data["character_class"] == "Acolyte"
+        assert result.build_data["mastery"] == "Lich"
+        assert result.build_data["gear"] == []
+        assert len(result.build_data["passive_tree"]) == 8  # 5+3
