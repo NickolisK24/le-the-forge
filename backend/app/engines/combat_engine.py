@@ -147,6 +147,7 @@ SKILL_STATS: dict = {
     "Detonating Arrow":       _S(130, 0.13, 1.2, ["fire_damage_pct", "physical_damage_pct"], is_bow=True),
     "Explosive Trap":         _S(120, 0.12, 0.5, ["fire_damage_pct"]),
     "Shurikens":              _S(55,  0.09, 3.5, ["physical_damage_pct"], is_throwing=True),
+    "Umbral Blades":          _S(80,  0.08, 1.33, ["physical_damage_pct"], is_throwing=True, hit_count=5, mana_cost=12),
     "Shadow Cascade":         _S(120, 0.13, 1.6, ["physical_damage_pct", "void_damage_pct"], is_melee=True),
     "Dancing Strikes":        _S(90,  0.11, 2.5, ["physical_damage_pct"], is_melee=True),
     "Blade Flurry":           _S(100, 0.12, 2.2, ["physical_damage_pct"], is_melee=True),

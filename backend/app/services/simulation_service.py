@@ -7,12 +7,40 @@ This allows the frontend to call simulation endpoints without persisting
 a build first.
 """
 
+from app.domain.skill_modifiers import SkillModifiers
 from app.engines import stat_engine, combat_engine, defense_engine, optimization_engine
 from app.engines.stat_engine import BuildStats
 from app.utils.exceptions import SimulationError, BuildValidationError
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
+
+
+def _resolve_skill_modifiers(
+    skill_name: str,
+    spec_tree: list[dict] | None,
+    stats: BuildStats,
+) -> SkillModifiers | None:
+    """Resolve skill tree nodes into SkillModifiers and merge build stat bonuses.
+
+    Returns None if no spec_tree is provided (backward compatible).
+    When spec_tree is provided, also merges build_stat_bonuses into the
+    already-resolved BuildStats object.
+    """
+    if not spec_tree:
+        return None
+    try:
+        from app.services.skill_tree_resolver import resolve_skill_tree_stats
+        result = resolve_skill_tree_stats(skill_name, spec_tree)
+        # Merge build stat bonuses into the existing BuildStats
+        for stat_key, value in result.get("build_stat_bonuses", {}).items():
+            if hasattr(stats, stat_key):
+                current = getattr(stats, stat_key)
+                setattr(stats, stat_key, current + value)
+        return result.get("skill_modifiers")
+    except Exception as exc:
+        log.warning("resolve_skill_modifiers.failed", skill=skill_name, error=str(exc))
+        return None
 
 
 def aggregate_stats(
@@ -40,6 +68,7 @@ def simulate_combat(
     skill_level: int = 20,
     n_simulations: int = 10_000,
     seed: int | None = None,
+    spec_tree: list[dict] | None = None,
 ) -> dict:
     """Calculate DPS + Monte Carlo from a stats dict and skill."""
     log.info(
@@ -51,8 +80,11 @@ def simulate_combat(
     )
     stats = _build_stats_from_dict(stats_dict)
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed)
+    # Resolve skill tree modifiers if spec_tree is provided
+    sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
+
+    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
+    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
 
     return {
         "dps": dps_result.to_dict(),
@@ -93,6 +125,7 @@ def simulate_full_build(
     n_simulations: int = 5_000,
     seed: int | None = None,
     passive_stats: dict | None = None,
+    spec_tree: list[dict] | None = None,
 ) -> dict:
     """
     Full pipeline: stats → combat → defense → optimize.
@@ -115,8 +148,11 @@ def simulate_full_build(
         passive_stats=passive_stats,
     )
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed)
+    # Resolve skill tree modifiers and merge build stat bonuses
+    sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
+
+    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
+    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
     defense_result = defense_engine.calculate_defense(stats)
     upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=5)
 

@@ -146,6 +146,7 @@ class PassiveSystem:
           with notables getting 3× the base amount.
         """
         from app.engines.stat_engine import (
+            CLASS_STAT_CYCLES,
             CORE_STAT_CYCLE,
             KEYSTONE_BONUSES,
             NOTABLE_MULTIPLIER,
@@ -158,7 +159,8 @@ class PassiveSystem:
                 "spell_damage_pct": 10,
                 "max_health": 50,
             }))
-        stat_key, base_amount = CORE_STAT_CYCLE[node.node_id % len(CORE_STAT_CYCLE)]
+        cycle = CORE_STAT_CYCLE  # default; class-aware lookup in stat_engine
+        stat_key, base_amount = cycle[node.node_id % len(cycle)]
         amount = base_amount * NOTABLE_MULTIPLIER if node.node_type == "notable" else base_amount
         return {stat_key: float(amount)}
 
