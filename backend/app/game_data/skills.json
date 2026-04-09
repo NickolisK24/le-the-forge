@@ -2,8 +2,8 @@
   "_comment": "Skill stat definitions. scaling_stats lists BuildStats field names for % damage bonuses. is_spell determines cast_speed vs attack_speed application.",
   "skills": {
     "Abyssal Echoes": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 120,
+      "level_scaling": 0.12,
       "attack_speed": 1.43,
       "scaling_stats": [
         "void_damage_pct"
@@ -47,8 +47,8 @@
       "mana_cost": 1.0
     },
     "Armblade Slash": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 80,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -167,8 +167,8 @@
       "is_spell": true
     },
     "Cinder Strike": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 75,
+      "level_scaling": 0.1,
       "attack_speed": 1.28,
       "scaling_stats": [
         "fire_damage_pct"
@@ -211,8 +211,8 @@
       "is_spell": true
     },
     "Decoy": {
-      "base_damage": 55,
-      "level_scaling": 0.08,
+      "base_damage": 40,
+      "level_scaling": 0.07,
       "attack_speed": 1.43,
       "scaling_stats": [
         "fire_damage_pct"
@@ -335,8 +335,8 @@
       "is_melee": true
     },
     "Eterra's Blessing": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -428,8 +428,8 @@
       "is_spell": true
     },
     "Flay": {
-      "base_damage": 130,
-      "level_scaling": 0.08,
+      "base_damage": 110,
+      "level_scaling": 0.12,
       "attack_speed": 1.0,
       "scaling_stats": [
         "physical_damage_pct"
@@ -465,8 +465,8 @@
       "is_melee": true
     },
     "Frigid Tempest": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 70,
+      "level_scaling": 0.1,
       "attack_speed": 2.0,
       "scaling_stats": [
         "cold_damage_pct"
@@ -511,8 +511,8 @@
       "is_spell": true
     },
     "Ghostflame": {
-      "base_damage": 30,
-      "level_scaling": 0.08,
+      "base_damage": 25,
+      "level_scaling": 0.07,
       "attack_speed": 5.0,
       "scaling_stats": [
         "fire_damage_pct"
@@ -548,8 +548,8 @@
       ]
     },
     "Hammer Throw": {
-      "base_damage": 55,
-      "level_scaling": 0.08,
+      "base_damage": 65,
+      "level_scaling": 0.09,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -578,8 +578,8 @@
       "is_spell": true
     },
     "Heartseeker": {
-      "base_damage": 70,
-      "level_scaling": 0.08,
+      "base_damage": 75,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -589,8 +589,8 @@
       "mana_cost": 3.0
     },
     "Holy Aura": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -599,8 +599,8 @@
       "mana_cost": 30.0
     },
     "Human Form": {
-      "base_damage": 50,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 3.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -673,8 +673,8 @@
       "is_spell": true
     },
     "Lethal Mirage": {
-      "base_damage": 130,
-      "level_scaling": 0.08,
+      "base_damage": 160,
+      "level_scaling": 0.14,
       "attack_speed": 0.67,
       "scaling_stats": [
         "physical_damage_pct"
@@ -759,8 +759,8 @@
       "is_spell": true
     },
     "Maul": {
-      "base_damage": 60,
-      "level_scaling": 0.08,
+      "base_damage": 45,
+      "level_scaling": 0.07,
       "attack_speed": 4.0,
       "scaling_stats": [
         "physical_damage_pct"
@@ -787,8 +787,8 @@
       ]
     },
     "Multistrike": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 85,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -797,8 +797,8 @@
       "is_melee": true
     },
     "Net": {
-      "base_damage": 55,
-      "level_scaling": 0.08,
+      "base_damage": 40,
+      "level_scaling": 0.07,
       "attack_speed": 1.11,
       "scaling_stats": [
         "physical_damage_pct"
@@ -877,8 +877,8 @@
       "is_spell": true
     },
     "Rebuke": {
-      "base_damage": 30,
-      "level_scaling": 0.08,
+      "base_damage": 20,
+      "level_scaling": 0.07,
       "attack_speed": 5.0,
       "scaling_stats": [
         "spell_damage_pct"
@@ -912,8 +912,8 @@
       "is_melee": false
     },
     "Riposte": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 80,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -932,8 +932,8 @@
       "is_melee": true
     },
     "Roar": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -981,8 +981,8 @@
       "is_spell": true
     },
     "Sacrifice": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 120,
+      "level_scaling": 0.12,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -1031,8 +1031,8 @@
       "is_melee": true
     },
     "Shield Bash": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 95,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -1068,8 +1068,8 @@
       "is_spell": true
     },
     "Shocking Impact": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 150,
+      "level_scaling": 0.13,
       "attack_speed": 0.5,
       "scaling_stats": [
         "lightning_damage_pct"
@@ -1146,8 +1146,8 @@
       "is_spell": true
     },
     "Spirit Thorns": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 65,
+      "level_scaling": 0.09,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -1426,8 +1426,8 @@
       "is_melee": true
     },
     "Swarm Strike": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 85,
+      "level_scaling": 0.1,
       "attack_speed": 1.25,
       "scaling_stats": [
         "physical_damage_pct"
@@ -1452,8 +1452,8 @@
       "is_melee": true
     },
     "Symbols of Hope": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -1482,8 +1482,8 @@
       "is_spell": true
     },
     "Tempest Strike": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 100,
+      "level_scaling": 0.12,
       "attack_speed": 1.67,
       "scaling_stats": [
         "cold_damage_pct"
@@ -1493,8 +1493,8 @@
       "mana_cost": 16.0
     },
     "Thorn Shield": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 0,
+      "level_scaling": 0.0,
       "attack_speed": 1.33,
       "scaling_stats": [
         "spell_damage_pct"
@@ -1532,7 +1532,7 @@
     },
     "Umbral Blades": {
       "base_damage": 80,
-      "level_scaling": 0.08,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -1544,8 +1544,8 @@
       "hit_count": 5
     },
     "Upheaval": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 110,
+      "level_scaling": 0.12,
       "attack_speed": 1.25,
       "scaling_stats": [
         "physical_damage_pct"
@@ -1555,8 +1555,8 @@
       "mana_cost": 10.0
     },
     "Vengeance": {
-      "base_damage": 90,
-      "level_scaling": 0.08,
+      "base_damage": 85,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "physical_damage_pct"
@@ -1628,8 +1628,8 @@
       "is_melee": true
     },
     "Wave of Death": {
-      "base_damage": 100,
-      "level_scaling": 0.08,
+      "base_damage": 80,
+      "level_scaling": 0.1,
       "attack_speed": 1.33,
       "scaling_stats": [
         "necrotic_damage_pct"
