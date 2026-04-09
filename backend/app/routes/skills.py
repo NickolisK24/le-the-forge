@@ -241,11 +241,14 @@ def get_build_skills(slug: str):
 def _skill_name_to_id(skill_name: str) -> str:
     """
     Convert a skill name to its tree ID using the same mapping as the frontend.
+    Also handles the case where skill_name is already a tree code (from imports).
     Falls back to a slugified version if not found.
     """
-    # Load the skill tree index to find ID by ability name
     trees = _load_trees()
     name_lower = skill_name.lower().strip()
+    # Direct tree code match (imported builds may store codes as names)
+    if name_lower in trees:
+        return name_lower
     for tree_id, tree in trees.items():
         if tree.get("ability", "").lower().strip() == name_lower:
             return tree_id

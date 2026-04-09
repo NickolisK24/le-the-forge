@@ -11,7 +11,7 @@ import { useState, useMemo } from "react";
 
 import { CLASS_SKILLS, type SkillDef } from "@/lib/gameData";
 import type { CharacterClass } from "@/types";
-import { getSkillCode } from "@/data/skillTrees";
+import { getSkillCode, resolveSkillName } from "@/data/skillTrees";
 import SkillTreePanel from "./SkillTreePanel";
 
 interface SkillSlot {
@@ -62,7 +62,8 @@ export default function SkillSelector({
       <div className="flex gap-2 flex-wrap">
         {Array.from({ length: MAX_SLOTS }, (_, i) => {
           const skill = skills[i];
-          const def = skill ? skillDefs[skill.skill_name] : null;
+          const displayName = skill ? resolveSkillName(skill.skill_name) : null;
+          const def = displayName ? skillDefs[displayName] : null;
           const isActive = activeSlot === i;
           const hasTree = skill ? !!getSkillCode(skill.skill_name) : false;
 
@@ -80,13 +81,13 @@ export default function SkillSelector({
                     : "border-forge-border/40 bg-forge-surface2/50 text-forge-dim cursor-default"
                 }
               `}
-              title={skill ? `${skill.skill_name} — click to ${isActive ? "hide" : "show"} skill tree` : `Slot ${i + 1} — empty`}
+              title={skill ? `${displayName} — click to ${isActive ? "hide" : "show"} skill tree` : `Slot ${i + 1} — empty`}
             >
               <span className="text-base leading-none flex-shrink-0">
                 {def?.icon ?? (skill ? "?" : "·")}
               </span>
               <span className="font-body text-xs truncate">
-                {skill?.skill_name ?? `Slot ${i + 1}`}
+                {displayName ?? `Slot ${i + 1}`}
               </span>
               {skill && (
                 <span className="font-mono text-[10px] text-forge-dim flex-shrink-0">

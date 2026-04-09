@@ -27,6 +27,20 @@
     "lore": "",
     "class": ""
   },
+  "Anomaly (an0my)": {
+    "id": "an0my",
+    "name": "Anomaly",
+    "description": "Brings enemies that were sent forward back to your time.",
+    "lore": "",
+    "class": ""
+  },
+  "Arcane Ascendance": {
+    "id": "arcas",
+    "name": "Arcane Ascendance",
+    "description": "Toggle to prevent movement and drain 25 mana each second. Mana drain increases by 1 mana per second. All spells cost +5 mana to cast. 100% increased spell damage and 50% increased cast speed. Also deals lightning damage over time to surrounding enemies.",
+    "lore": "",
+    "class": ""
+  },
   "Armblade Slash": {
     "id": "abs2",
     "name": "Armblade Slash",
@@ -34,10 +48,24 @@
     "lore": "",
     "class": ""
   },
+  "Arrow Barrage": {
+    "id": "arrow_barrage",
+    "name": "Arrow Barrage",
+    "description": "Fire a barrage of arrows.",
+    "lore": "",
+    "class": "Rogue"
+  },
   "Assemble Abomination": {
     "id": "aa710",
     "name": "Assemble Abomination",
     "description": "Hold ability key to channel to absorb your Wraiths, Summoned Skeletons, Skeletal Mages, Golems, and Volatile Zombies in an area. When you release, summon a single hulking abomination with added health and more damage per minion absorbed.\n\nThe abomination remembers the minions absorbed to create it and will rapidly devour those minions to restore 10% of its maximum health.",
+    "lore": "",
+    "class": ""
+  },
+  "Aura of Decay": {
+    "id": "ad0ry",
+    "name": "Aura of Decay",
+    "description": "Toggles Aura of Decay, which poisons you every second, and leaves a trail of decay. Enemies near you or in the trail are poisoned four times a second, and your chance to poison on hit applies to each of these instances at 100% effectiveness.\n\nWhile Aura of Decay is active you take 30% less poison damage. Additionally, you take 50% less damage from your own Aura of Decay.",
     "lore": "",
     "class": ""
   },
@@ -61,6 +89,20 @@
     "description": "Dash to your Banner. Cannot be used without a target.",
     "lore": "",
     "class": ""
+  },
+  "Black Hole": {
+    "id": "bh2",
+    "name": "Black Hole",
+    "description": "Summon a powerful black hole at target location that aggressively pulls enemies and deals cold damage over time to enemies within its reach.",
+    "lore": "",
+    "class": ""
+  },
+  "Blade Flurry": {
+    "id": "blade_flurry",
+    "name": "Blade Flurry",
+    "description": "A rapid series of blade attacks.",
+    "lore": "",
+    "class": "Rogue"
   },
   "Bone Curse": {
     "id": "bc53",
@@ -90,6 +132,13 @@
     "lore": "",
     "class": ""
   },
+  "Cinder Strike (cstri)": {
+    "id": "cstri",
+    "name": "Cinder Strike",
+    "description": "Melee or bow combo with three attacks. The first attack also creates a fiery explosion, damaging nearby enemies.",
+    "lore": "",
+    "class": ""
+  },
   "Create Shadow": {
     "id": "en6",
     "name": "Create Shadow",
@@ -104,6 +153,13 @@
     "lore": "",
     "class": ""
   },
+  "Dancing Strikes (dacn33)": {
+    "id": "dacn33",
+    "name": "Dancing Strikes",
+    "description": "Requires dual wielding.\n\nA series of fast dash attacks. Dancing Strikes' movement does not scale with attack speed, but it gains increased cooldown recovery speed and more damage equal to 50% of your total increased melee attack speed.",
+    "lore": "",
+    "class": ""
+  },
   "Dark Quiver": {
     "id": "dqv5",
     "name": "Dark Quiver",
@@ -113,6 +169,13 @@
   },
   "Death Seal": {
     "id": "ds34i",
+    "name": "Death Seal",
+    "description": "Releases a Wave of Death dealing damage based on how long Death Seal has been actve and your current percent missing health.",
+    "lore": "",
+    "class": ""
+  },
+  "Death Seal (ds34l)": {
+    "id": "ds34l",
     "name": "Death Seal",
     "description": "Releases a Wave of Death dealing damage based on how long Death Seal has been actve and your current percent missing health.",
     "lore": "",
@@ -143,6 +206,13 @@
     "id": "do5vr",
     "name": "Devouring Orb",
     "description": "Creates a devouring orb at the target location for 10 seconds that deals void damage over time to nearby enemies, and casts a void rift whenever something dies nearby, hitting nearby enemies to deal void damage.\n\nEach successive rift has 12% more damage and area of effect, capped at an increase of 120%.",
+    "lore": "",
+    "class": ""
+  },
+  "Disintegrate": {
+    "id": "dig5",
+    "name": "Disintegrate",
+    "description": "Channel to create a beam of pure energy in the target direction. The beam deals fire and lightning damage to all enemies caught in it.",
     "lore": "",
     "class": ""
   },
@@ -178,6 +248,13 @@
     "id": "eq5s",
     "name": "Earthquake",
     "description": "Slam the ground with your weapon damaging enemies in a large area and creating 2 to 4 aftershocks nearby.",
+    "lore": "",
+    "class": ""
+  },
+  "Enchant Weapon": {
+    "id": "sb44eQ",
+    "name": "Enchant Weapon",
+    "description": "Active: Enchant your weapon with elemental power. Your melee attacks deal 50% more elemental damage for 5 seconds.\n\nPassive: Your melee attacks deal 15% more elemental damage.",
     "lore": "",
     "class": ""
   },
@@ -230,8 +307,64 @@
     "lore": "The Dune Falcon is one of the most deadly hunters in all of Eterra. What it lacks in size it makes up in speed, precision, and intelligence. Fierce and independent, the Dune Falcon is known to maim those who attempt to train it. Only those it recognizes as an equal can hope to gain its trust and be accepted as a hunting partner.",
     "class": ""
   },
+  "Fire Shield": {
+    "id": "fs11",
+    "name": "Fire Shield",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Fireball": {
+    "id": "fireball",
+    "name": "Fireball",
+    "description": "Launch a ball of fire at enemies.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Firebrand": {
+    "id": "f1b4d",
+    "name": "Firebrand",
+    "description": "A melee attack which grants you a stack of Firebrand buff if it hits an enemy. Each stack of the Firebrand buff increases the size of subsequent Firebrand attacks and adds melee fire damage.",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Reave": {
+    "id": "fr11mv",
+    "name": "Flame Reave",
+    "description": "A melee attack that release a wave of flames from your weapon cleaving through enemies in a cone infront of you. Deals up to 50% less damage to distant enemies. \n\nDeals 16 additional base fire damage. Other added melee damage applies at 200% effectiveness.",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Rush": {
+    "id": "fl71ds",
+    "name": "Flame Rush",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Ward": {
+    "id": "fw3d",
+    "name": "Flame Ward",
+    "description": "Grants a burst of 400 ward. Then for 3 seconds, hits deal 30% less damage to you and cause a retaliatory burst of flames.\n",
+    "lore": "",
+    "class": ""
+  },
   "Flay": {
     "id": "fl44",
+    "name": "Flay",
+    "description": "Spirit Step up to 3 meters towards an enemy if not within range, then perform a narrow rending slash.\nEach enemy killed by the melee attack will release a Blood Eruption, a spell dealing physical damage in an area.\nEnemies can be hit by both Flay and all Blood Eruptions that occur.",
+    "lore": "",
+    "class": ""
+  },
+  "Flay (bl5st)": {
+    "id": "bl5st",
+    "name": "Flay",
+    "description": "Spirit Step up to 3 meters towards an enemy if not within range, then perform a narrow rending slash.\nEach enemy killed by the melee attack will release a Blood Eruption, a spell dealing physical damage in an area.\nEnemies can be hit by both Flay and all Blood Eruptions that occur.",
+    "lore": "",
+    "class": ""
+  },
+  "Flay (sh4re)": {
+    "id": "sh4re",
     "name": "Flay",
     "description": "Spirit Step up to 3 meters towards an enemy if not within range, then perform a narrow rending slash.\nEach enemy killed by the melee attack will release a Blood Eruption, a spell dealing physical damage in an area.\nEnemies can be hit by both Flay and all Blood Eruptions that occur.",
     "lore": "",
@@ -241,6 +374,13 @@
     "id": "flur3",
     "name": "Flurry",
     "description": "A bow or melee attack that performs 3 rapid strikes. The last strike can be cancelled by moving.",
+    "lore": "",
+    "class": ""
+  },
+  "Focus": {
+    "id": "vm53dx",
+    "name": "Focus",
+    "description": "Hold ability key to channel. While channelling you have 100% increased mana regen and gain 10 ward per second. After channelling for exactly one second you recover 10% of missing mana and gain a burst of 40 mana and ward.",
     "lore": "",
     "class": ""
   },
@@ -255,6 +395,20 @@
     "id": "fi9",
     "name": "Frigid Tempest",
     "description": "Conjures a spear of frost that pierces enemies.",
+    "lore": "",
+    "class": ""
+  },
+  "Frost Claw": {
+    "id": "frc87w",
+    "name": "Frost Claw",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Frost Wall": {
+    "id": "fr4wl",
+    "name": "Frost Wall",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -276,6 +430,20 @@
     "id": "gh0fl",
     "name": "Ghostflame",
     "description": "Channel to releases a continuous jet of horrid flames in front of you dealing fire and necrotic damage over time.",
+    "lore": "",
+    "class": ""
+  },
+  "Glacier": {
+    "id": "gl14",
+    "name": "Glacier",
+    "description": "Creates three successively larger ice explosions in the target direction. Each explosion deals more damage than the last.",
+    "lore": "",
+    "class": ""
+  },
+  "Glyph of Dominion": {
+    "id": "gy2dm",
+    "name": "Glyph of Dominion",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -335,6 +503,27 @@
     "lore": "",
     "class": ""
   },
+  "Ice Barrage": {
+    "id": "ib5g3",
+    "name": "Ice Barrage",
+    "description": "Opens a rift that repeatedly shoots a barrage of ice shards in a target direction for 5 seconds.",
+    "lore": "",
+    "class": ""
+  },
+  "Ice Thorns": {
+    "id": "ice_thorns",
+    "name": "Ice Thorns",
+    "description": "Summon thorns of ice around you.",
+    "lore": "",
+    "class": "Primalist"
+  },
+  "Ice Ward": {
+    "id": "is58",
+    "name": "Ice Ward",
+    "description": "Toggles a protective shield that chills nearby enemies and grants 4 ward per second, but drains 3 mana per second. Can be cast instantly.",
+    "lore": "",
+    "class": ""
+  },
   "Infernal Shade": {
     "id": "is40",
     "name": "Infernal Shade",
@@ -363,6 +552,13 @@
     "lore": "",
     "class": ""
   },
+  "Lightning Blast": {
+    "id": "lb23il",
+    "name": "Lightning Blast",
+    "description": "Hurl a bolt of lightning at the target. It chains to an additional enemy for each time it has been directly cast in the last 4 seconds, up to 2 times.",
+    "lore": "",
+    "class": ""
+  },
   "Lunge": {
     "id": "lu25ng",
     "name": "Lunge",
@@ -377,10 +573,24 @@
     "lore": "",
     "class": ""
   },
+  "Mana Strike": {
+    "id": "ms26",
+    "name": "Mana Strike",
+    "description": "A melee attack that hits all enemies in an area in front of you, returning 15 mana if it hits an enemy.\n\nDeals 15 base lightning damage.",
+    "lore": "",
+    "class": ""
+  },
   "Manifest Armor": {
     "id": "ma6hdr",
     "name": "Manifest Armor",
     "description": "Manifests an animated set of heavy armor, which attacks slowly.\n\nStats granted by your body armor, helmet, gloves and boots also apply to your Manifest Armor.",
+    "lore": "",
+    "class": ""
+  },
+  "Mark for Death": {
+    "id": "md26kh",
+    "name": "Mark for Death",
+    "description": "Curses the enemy, reducing all resistances by 25% for 8 seconds. This effect does not stack.",
     "lore": "",
     "class": ""
   },
@@ -397,6 +607,13 @@
     "description": "Jump forward a short distance and slam into the ground dealing damage to nearby enemies.",
     "lore": "",
     "class": ""
+  },
+  "Meteor": {
+    "id": "meteor",
+    "name": "Meteor",
+    "description": "Call down a devastating meteor.",
+    "lore": "",
+    "class": "Mage"
   },
   "Multishot": {
     "id": "mush9",
@@ -419,6 +636,13 @@
     "lore": "",
     "class": ""
   },
+  "Nova": {
+    "id": "nova",
+    "name": "Nova",
+    "description": "Release a burst of energy in all directions.",
+    "lore": "",
+    "class": "Mage"
+  },
   "Profane Veil": {
     "id": "pr5fm",
     "name": "Profane Veil",
@@ -432,6 +656,13 @@
     "description": "An extended melee stab or piercing bow attack that has a 30% chance to inflict bleed on hit. Bleeds inflicted by puncture have 30% increased duration.",
     "lore": "",
     "class": ""
+  },
+  "Rain of Arrows": {
+    "id": "rain_of_arrows",
+    "name": "Rain of Arrows",
+    "description": "Rain arrows down on a target area.",
+    "lore": "",
+    "class": "Rogue"
   },
   "Rampage": {
     "id": "ch2ge",
@@ -447,10 +678,24 @@
     "lore": "",
     "class": ""
   },
+  "Reaper Form": {
+    "id": "reaper_form",
+    "name": "Reaper Form",
+    "description": "Transform into the Reaper.",
+    "lore": "",
+    "class": "Acolyte"
+  },
   "Rebuke": {
     "id": "re82ke",
     "name": "Rebuke",
     "description": "Hold ability key to channel for up to 2 seconds. You take 80% less damage while channelling.\n\nWhen you stop channelling the barrier breaks dealing physical damage to all nearby enemies. This deals 20 additional physical damage for each hit you received while channelling.",
+    "lore": "",
+    "class": ""
+  },
+  "Ring of Shields": {
+    "id": "rs31hi",
+    "name": "Ring of Shields",
+    "description": "Manifests a ring of shields around you.\n\nEach shield has 75 base health and lasts up to 10 seconds. Shields draw enemy aggression and block projectiles.\n\nStats on your equipped shield also apply to the shields created by Ring of Shields",
     "lore": "",
     "class": ""
   },
@@ -475,10 +720,45 @@
     "lore": "",
     "class": ""
   },
+  "Rive (sndr1)": {
+    "id": "sndr1",
+    "name": "Rive",
+    "description": "A combo of three melee attacks. Every third consecutive attack with Rive slashes in a full circle around the character, dealing double damage.",
+    "lore": "",
+    "class": ""
+  },
   "Roar": {
     "id": "wb45ro",
     "name": "Roar",
     "description": "Unleash a thunderous roar which knocks enemies back and stuns them for 1.5 seconds. Rares and bosses are stunned for half as long.. All effects from your Warcry Skill Tree are applied to Roar.\n\n20% of remaining cooldown recovered whenever you stun (or freeze if Warcry is converted to cold) an enemy, including with Roar itself. This effect can occur a maximum of two times each second.",
+    "lore": "",
+    "class": ""
+  },
+  "Rune Bolt": {
+    "id": "fb8fe",
+    "name": "Rune Bolt",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Rune of Winter": {
+    "id": "rune_of_winter",
+    "name": "Rune of Winter",
+    "description": "Place a rune that deals cold damage.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Runic Bolt": {
+    "id": "runic_bolt",
+    "name": "Runic Bolt",
+    "description": "Fire a bolt of runic energy.",
+    "lore": "",
+    "class": "Mage"
+  },
+  "Runic Invocation": {
+    "id": "rn7iv",
+    "name": "Runic Invocation",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -488,6 +768,13 @@
     "description": "Rips apart an allied minion, dealing physical damage to enemies around it.",
     "lore": "",
     "class": ""
+  },
+  "Scorpion Aspect": {
+    "id": "scorpion_aspect",
+    "name": "Scorpion Aspect",
+    "description": "Take on the aspect of a scorpion.",
+    "lore": "",
+    "class": "Primalist"
   },
   "Serpent Strike": {
     "id": "st31et",
@@ -500,6 +787,13 @@
     "id": "dagg3",
     "name": "Shadow Cascade",
     "description": "Requires dual wielding.\n\nA circular attack that's also used by your shadow clones.",
+    "lore": "",
+    "class": ""
+  },
+  "Shatter Strike": {
+    "id": "ss3tre",
+    "name": "Shatter Strike",
+    "description": "A sweeping melee attack of 2 arcs that strikes enemies in a circle around you dealing cold damage and instantly kills frozen enemies below 10% health.\n\nEnemies in the middle of the attack are hit twice, where the arcs overlap.",
     "lore": "",
     "class": ""
   },
@@ -566,6 +860,13 @@
     "lore": "",
     "class": ""
   },
+  "Snap Freeze": {
+    "id": "sw31a",
+    "name": "Snap Freeze",
+    "description": "Freezes enemies in a cone in front of you. Freeze lasts for 2 seconds.\n\n20% of remaining cooldown recovered whenever you freeze an enemy, including with Snap Freeze itself. This effect can occur a maximum of two times each second.",
+    "lore": "",
+    "class": ""
+  },
   "Soul Feast": {
     "id": "fe8at",
     "name": "Soul Feast",
@@ -591,6 +892,20 @@
     "id": "sf5rd",
     "name": "Spriggan Form",
     "description": "Transform into a forest spriggan, increasing your spell casting capabilities, and gaining 4 new abilities.\n\nYour mana is replaced with Rage while in spriggan form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
+    "lore": "",
+    "class": ""
+  },
+  "Static": {
+    "id": "st47ic",
+    "name": "Static",
+    "description": "Static charges up as you move or when you get hit. Activate Static to discharge what you have built up, striking up to 5 nearby enemies with lightning.\n\n100 charges maximum. Deals 4% more damage per charge.",
+    "lore": "",
+    "class": ""
+  },
+  "Static Orb": {
+    "id": "so35a",
+    "name": "Static Orb",
+    "description": "Casts an orb in a target direction that deals lightning damage and pulls enemies that it hits towards it as it travels. At the target location it explodes, dealing lightning damage to enemies surrounding it and also striking up to 5 enemies further out. The further it travels the higher the damage and area of effect of the explosion, up to 100%.",
     "lore": "",
     "class": ""
   },
@@ -769,6 +1084,13 @@
     "lore": "",
     "class": ""
   },
+  "Surge": {
+    "id": "su5g3",
+    "name": "Surge",
+    "description": "Quick fixed distance dash which hits all enemies in the path with a lightning melee attack.",
+    "lore": "",
+    "class": ""
+  },
   "Swarm Strike": {
     "id": "sbsa4",
     "name": "Swarm Strike",
@@ -811,6 +1133,13 @@
     "lore": "",
     "class": ""
   },
+  "Teleport (te44)": {
+    "id": "te44",
+    "name": "Teleport",
+    "description": "Teleport to target location.",
+    "lore": "",
+    "class": ""
+  },
   "Tempest Strike": {
     "id": "ts85i",
     "name": "Tempest Strike",
@@ -824,6 +1153,13 @@
     "description": "Form a protective barrier of thorns around yourself or an ally that grants 30 armor and reflects 50 damage to attackers. When the shield expires, a burst of thorns shoots out and damages all nearby enemies.",
     "lore": "",
     "class": ""
+  },
+  "Thorn Totem": {
+    "id": "thorn_totem",
+    "name": "Thorn Totem",
+    "description": "Summon a totem that fires thorns.",
+    "lore": "",
+    "class": "Primalist"
   },
   "Tornado": {
     "id": "to50",
@@ -846,6 +1182,13 @@
     "lore": "",
     "class": ""
   },
+  "Umbral Blades (ub5d9)": {
+    "id": "ub5d9",
+    "name": "Umbral Blades",
+    "description": "Recall all Umbral Blades to you, hitting enemies along the way.",
+    "lore": "",
+    "class": ""
+  },
   "Upheaval": {
     "id": "uph41",
     "name": "Upheaval",
@@ -860,6 +1203,13 @@
     "lore": "",
     "class": ""
   },
+  "Vessel of Chaos": {
+    "id": "vessel_of_chaos",
+    "name": "Vessel of Chaos",
+    "description": "Channel chaos energy.",
+    "lore": "",
+    "class": "Acolyte"
+  },
   "Void Cleave": {
     "id": "v01cv",
     "name": "Void Cleave",
@@ -871,6 +1221,13 @@
     "id": "vr53sl",
     "name": "Volatile Reversal",
     "description": "A combo ability that jumps forwards in time to a target location and performs a melee attack on arrival. Recast within 3 seconds to jump backwards in time to your original location and perform a melee attack on arrival.",
+    "lore": "",
+    "class": ""
+  },
+  "Volcanic Orb": {
+    "id": "vo54",
+    "name": "Volcanic Orb",
+    "description": "Casts a fiery orb that spews burning shrapnel in all directions.",
     "lore": "",
     "class": ""
   },
@@ -908,299 +1265,5 @@
     "description": "Transform into a ferocious werebear, increasing your physical capabilities and gaining 4 new abilities. \n\nYour mana is replaced with Rage while in werebear form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
     "lore": "",
     "class": ""
-  },
-  "Fire Shield": {
-    "id": "fs11",
-    "name": "Fire Shield",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Arcane Ascendance": {
-    "id": "arcas",
-    "name": "Arcane Ascendance",
-    "description": "Toggle to prevent movement and drain 25 mana each second. Mana drain increases by 1 mana per second. All spells cost +5 mana to cast. 100% increased spell damage and 50% increased cast speed. Also deals lightning damage over time to surrounding enemies.",
-    "lore": "",
-    "class": ""
-  },
-  "Shatter Strike": {
-    "id": "ss3tre",
-    "name": "Shatter Strike",
-    "description": "A sweeping melee attack of 2 arcs that strikes enemies in a circle around you dealing cold damage and instantly kills frozen enemies below 10% health.\n\nEnemies in the middle of the attack are hit twice, where the arcs overlap.",
-    "lore": "",
-    "class": ""
-  },
-  "Black Hole": {
-    "id": "bh2",
-    "name": "Black Hole",
-    "description": "Summon a powerful black hole at target location that aggressively pulls enemies and deals cold damage over time to enemies within its reach.",
-    "lore": "",
-    "class": ""
-  },
-  "Runic Invocation": {
-    "id": "rn7iv",
-    "name": "Runic Invocation",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Flame Rush": {
-    "id": "fl71ds",
-    "name": "Flame Rush",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Focus": {
-    "id": "vm53dx",
-    "name": "Focus",
-    "description": "Hold ability key to channel. While channelling you have 100% increased mana regen and gain 10 ward per second. After channelling for exactly one second you recover 10% of missing mana and gain a burst of 40 mana and ward.",
-    "lore": "",
-    "class": ""
-  },
-  "Ice Barrage": {
-    "id": "ib5g3",
-    "name": "Ice Barrage",
-    "description": "Opens a rift that repeatedly shoots a barrage of ice shards in a target direction for 5 seconds.",
-    "lore": "",
-    "class": ""
-  },
-  "Static Orb": {
-    "id": "so35a",
-    "name": "Static Orb",
-    "description": "Casts an orb in a target direction that deals lightning damage and pulls enemies that it hits towards it as it travels. At the target location it explodes, dealing lightning damage to enemies surrounding it and also striking up to 5 enemies further out. The further it travels the higher the damage and area of effect of the explosion, up to 100%.",
-    "lore": "",
-    "class": ""
-  },
-  "Glyph of Dominion": {
-    "id": "gy2dm",
-    "name": "Glyph of Dominion",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Ice Ward": {
-    "id": "is58",
-    "name": "Ice Ward",
-    "description": "Toggles a protective shield that chills nearby enemies and grants 4 ward per second, but drains 3 mana per second. Can be cast instantly.",
-    "lore": "",
-    "class": ""
-  },
-  "Glacier": {
-    "id": "gl14",
-    "name": "Glacier",
-    "description": "Creates three successively larger ice explosions in the target direction. Each explosion deals more damage than the last.",
-    "lore": "",
-    "class": ""
-  },
-  "Lightning Blast": {
-    "id": "lb23il",
-    "name": "Lightning Blast",
-    "description": "Hurl a bolt of lightning at the target. It chains to an additional enemy for each time it has been directly cast in the last 4 seconds, up to 2 times.",
-    "lore": "",
-    "class": ""
-  },
-  "Static": {
-    "id": "st47ic",
-    "name": "Static",
-    "description": "Static charges up as you move or when you get hit. Activate Static to discharge what you have built up, striking up to 5 nearby enemies with lightning.\n\n100 charges maximum. Deals 4% more damage per charge.",
-    "lore": "",
-    "class": ""
-  },
-  "Flame Reave": {
-    "id": "fr11mv",
-    "name": "Flame Reave",
-    "description": "A melee attack that release a wave of flames from your weapon cleaving through enemies in a cone infront of you. Deals up to 50% less damage to distant enemies. \n\nDeals 16 additional base fire damage. Other added melee damage applies at 200% effectiveness.",
-    "lore": "",
-    "class": ""
-  },
-  "Surge": {
-    "id": "su5g3",
-    "name": "Surge",
-    "description": "Quick fixed distance dash which hits all enemies in the path with a lightning melee attack.",
-    "lore": "",
-    "class": ""
-  },
-  "Snap Freeze": {
-    "id": "sw31a",
-    "name": "Snap Freeze",
-    "description": "Freezes enemies in a cone in front of you. Freeze lasts for 2 seconds.\n\n20% of remaining cooldown recovered whenever you freeze an enemy, including with Snap Freeze itself. This effect can occur a maximum of two times each second.",
-    "lore": "",
-    "class": ""
-  },
-  "Rune Bolt": {
-    "id": "fb8fe",
-    "name": "Rune Bolt",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Mana Strike": {
-    "id": "ms26",
-    "name": "Mana Strike",
-    "description": "A melee attack that hits all enemies in an area in front of you, returning 15 mana if it hits an enemy.\n\nDeals 15 base lightning damage.",
-    "lore": "",
-    "class": ""
-  },
-  "Disintegrate": {
-    "id": "dig5",
-    "name": "Disintegrate",
-    "description": "Channel to create a beam of pure energy in the target direction. The beam deals fire and lightning damage to all enemies caught in it.",
-    "lore": "",
-    "class": ""
-  },
-  "Frost Wall": {
-    "id": "fr4wl",
-    "name": "Frost Wall",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Enchant Weapon": {
-    "id": "sb44eQ",
-    "name": "Enchant Weapon",
-    "description": "Active: Enchant your weapon with elemental power. Your melee attacks deal 50% more elemental damage for 5 seconds.\n\nPassive: Your melee attacks deal 15% more elemental damage.",
-    "lore": "",
-    "class": ""
-  },
-  "Volcanic Orb": {
-    "id": "vo54",
-    "name": "Volcanic Orb",
-    "description": "Casts a fiery orb that spews burning shrapnel in all directions.",
-    "lore": "",
-    "class": ""
-  },
-  "Flame Ward": {
-    "id": "fw3d",
-    "name": "Flame Ward",
-    "description": "Grants a burst of 400 ward. Then for 3 seconds, hits deal 30% less damage to you and cause a retaliatory burst of flames.\n",
-    "lore": "",
-    "class": ""
-  },
-  "Frost Claw": {
-    "id": "frc87w",
-    "name": "Frost Claw",
-    "description": "",
-    "lore": "",
-    "class": ""
-  },
-  "Firebrand": {
-    "id": "f1b4d",
-    "name": "Firebrand",
-    "description": "A melee attack which grants you a stack of Firebrand buff if it hits an enemy. Each stack of the Firebrand buff increases the size of subsequent Firebrand attacks and adds melee fire damage.",
-    "lore": "",
-    "class": ""
-  },
-  "Mark for Death": {
-    "id": "md26kh",
-    "name": "Mark for Death",
-    "description": "Curses the enemy, reducing all resistances by 25% for 8 seconds. This effect does not stack.",
-    "lore": "",
-    "class": ""
-  },
-  "Aura of Decay": {
-    "id": "ad0ry",
-    "name": "Aura of Decay",
-    "description": "Toggles Aura of Decay, which poisons you every second, and leaves a trail of decay. Enemies near you or in the trail are poisoned four times a second, and your chance to poison on hit applies to each of these instances at 100% effectiveness.\n\nWhile Aura of Decay is active you take 30% less poison damage. Additionally, you take 50% less damage from your own Aura of Decay.",
-    "lore": "",
-    "class": ""
-  },
-  "Ring of Shields": {
-    "id": "rs31hi",
-    "name": "Ring of Shields",
-    "description": "Manifests a ring of shields around you.\n\nEach shield has 75 base health and lasts up to 10 seconds. Shields draw enemy aggression and block projectiles.\n\nStats on your equipped shield also apply to the shields created by Ring of Shields",
-    "lore": "",
-    "class": ""
-  },
-  "Arrow Barrage": {
-    "id": "arrow_barrage",
-    "name": "Arrow Barrage",
-    "description": "Fire a barrage of arrows.",
-    "lore": "",
-    "class": "Rogue"
-  },
-  "Blade Flurry": {
-    "id": "blade_flurry",
-    "name": "Blade Flurry",
-    "description": "A rapid series of blade attacks.",
-    "lore": "",
-    "class": "Rogue"
-  },
-  "Fireball": {
-    "id": "fireball",
-    "name": "Fireball",
-    "description": "Launch a ball of fire at enemies.",
-    "lore": "",
-    "class": "Mage"
-  },
-  "Ice Thorns": {
-    "id": "ice_thorns",
-    "name": "Ice Thorns",
-    "description": "Summon thorns of ice around you.",
-    "lore": "",
-    "class": "Primalist"
-  },
-  "Meteor": {
-    "id": "meteor",
-    "name": "Meteor",
-    "description": "Call down a devastating meteor.",
-    "lore": "",
-    "class": "Mage"
-  },
-  "Nova": {
-    "id": "nova",
-    "name": "Nova",
-    "description": "Release a burst of energy in all directions.",
-    "lore": "",
-    "class": "Mage"
-  },
-  "Rain of Arrows": {
-    "id": "rain_of_arrows",
-    "name": "Rain of Arrows",
-    "description": "Rain arrows down on a target area.",
-    "lore": "",
-    "class": "Rogue"
-  },
-  "Reaper Form": {
-    "id": "reaper_form",
-    "name": "Reaper Form",
-    "description": "Transform into the Reaper.",
-    "lore": "",
-    "class": "Acolyte"
-  },
-  "Rune of Winter": {
-    "id": "rune_of_winter",
-    "name": "Rune of Winter",
-    "description": "Place a rune that deals cold damage.",
-    "lore": "",
-    "class": "Mage"
-  },
-  "Runic Bolt": {
-    "id": "runic_bolt",
-    "name": "Runic Bolt",
-    "description": "Fire a bolt of runic energy.",
-    "lore": "",
-    "class": "Mage"
-  },
-  "Scorpion Aspect": {
-    "id": "scorpion_aspect",
-    "name": "Scorpion Aspect",
-    "description": "Take on the aspect of a scorpion.",
-    "lore": "",
-    "class": "Primalist"
-  },
-  "Thorn Totem": {
-    "id": "thorn_totem",
-    "name": "Thorn Totem",
-    "description": "Summon a totem that fires thorns.",
-    "lore": "",
-    "class": "Primalist"
-  },
-  "Vessel of Chaos": {
-    "id": "vessel_of_chaos",
-    "name": "Vessel of Chaos",
-    "description": "Channel chaos energy.",
-    "lore": "",
-    "class": "Acolyte"
   }
 }
