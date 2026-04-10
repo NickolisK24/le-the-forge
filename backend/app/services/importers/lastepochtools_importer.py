@@ -1022,79 +1022,38 @@ class LastEpochToolsImporter(BaseImporter):
                 if not base_item_name:
                     missing_fields.append(f"gear_base:{slot_name}:{raw_item_id}")
 
-            # Rarity — 'ir' field may be:
-            #   - A list of bytes e.g. [155, 21, 118] → rarity is byte[0] & 0x07
-            #   - An integer (0-6)
-            #   - A string integer ("4")
-            #   - A base64-encoded string
-            ir = item_raw.get("ir", item_raw.get("rarity"))
-            rarity = "normal"
+            # --- Rarity + Unique Resolution ---
+            # The ir/ur fields are item seed data, NOT rarity codes.
+            # Rarity is determined by:
+            #   1. Matching the decoded base type name against uniques.json
+            #   2. Affix count heuristic for crafted items
 
-            if isinstance(ir, list) and len(ir) >= 1:
-                # Byte-list encoding: low 3 bits of first byte = rarity
-                try:
-                    rarity_code = int(ir[0]) & 0x07
-                    rarity = _RARITY_MAP.get(rarity_code, f"rarity_{rarity_code}")
-                except (ValueError, TypeError):
-                    pass
-            elif isinstance(ir, int) and ir > 0:
-                rarity = _RARITY_MAP.get(ir, f"rarity_{ir}")
-            elif isinstance(ir, str):
-                if ir.isdigit() and int(ir) > 0:
-                    rarity = _RARITY_MAP.get(int(ir), f"rarity_{ir}")
-                elif ir in _RARITY_MAP.values():
-                    rarity = ir
+            # Try to resolve as unique: look up (slot, base_type_name) in unique index
+            unique_name = _resolve_unique_name(slot_name, base_item_name) if base_item_name else None
+            if unique_name:
+                rarity = "unique"
+                base_item_name = f"{unique_name} ({base_item_name})"
+            elif not base_item_name:
+                # Base type couldn't be decoded at all — try ur field as unique indicator
+                ur_raw = item_raw.get("ur")
+                if ur_raw and ur_raw != 0 and ur_raw != [0, 0, 0]:
+                    rarity = "unique"
+                    base_item_name = "Unknown Unique"
                 else:
-                    ir_bytes = _b64_decode_safe(ir)
-                    if ir_bytes:
-                        ir_varints = _decode_varints(ir_bytes)
-                        for v in ir_varints:
-                            if v in _RARITY_MAP and v > 0:
-                                rarity = _RARITY_MAP[v]
-                                break
-
-            # Legendary potential / unique rarity
-            ur_raw = item_raw.get("ur", item_raw.get("legendaryPotential", 0))
-            legendary_potential = 0
-            if isinstance(ur_raw, list) and len(ur_raw) >= 1:
-                try:
-                    legendary_potential = int(ur_raw[0])
-                except (ValueError, TypeError):
-                    pass
-            elif isinstance(ur_raw, int):
-                legendary_potential = ur_raw
-            elif isinstance(ur_raw, str) and ur_raw.isdigit():
-                legendary_potential = int(ur_raw)
-            elif isinstance(ur_raw, str):
-                ur_bytes = _b64_decode_safe(ur_raw)
-                if ur_bytes:
-                    ur_varints = _decode_varints(ur_bytes)
-                    legendary_potential = ur_varints[0] if ur_varints else 0
-
-            # Fallback: infer from affix count when rarity is still "normal"
-            raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
-            affix_count = len(raw_affixes) if raw_affixes else 0
-            if rarity == "normal" and affix_count > 0:
-                if legendary_potential > 0:
-                    rarity = "legendary"
-                elif affix_count >= 4:
+                    rarity = "normal"
+            else:
+                # Base type resolved but no unique match — crafted item.
+                # Infer rarity from affix count.
+                raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
+                affix_count = len(raw_affixes) if raw_affixes else 0
+                if affix_count >= 4:
                     rarity = "exalted"
                 elif affix_count >= 3:
                     rarity = "rare"
                 elif affix_count >= 1:
                     rarity = "magic"
-
-            # For unique/set items, resolve the unique name from base type + slot
-            is_unique = rarity in ("unique", "set", "legendary")
-            if is_unique and base_item_name:
-                unique_name = _resolve_unique_name(slot_name, base_item_name)
-                if unique_name:
-                    # Store base type separately, use unique name as primary
-                    base_item_name = f"{unique_name} ({base_item_name})"
-
-            # For unique/set items where base_id didn't resolve at all
-            if not base_item_name and rarity in ("unique", "set"):
-                base_item_name = f"Unknown {rarity.title()}"
+                else:
+                    rarity = "normal"
 
             # Affixes — LE Tools encodes affix IDs as base64 strings.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
@@ -1169,8 +1128,6 @@ class LastEpochToolsImporter(BaseImporter):
                 "rarity": rarity,
                 "affixes": parsed_affixes,
             }
-            if legendary_potential:
-                gear_entry["legendary_potential"] = legendary_potential
             if not base_item_name:
                 gear_entry["_raw"] = item_raw
 
