@@ -293,6 +293,60 @@ def _resolve_unique_name(slot_name: str, base_item_name: Optional[str]) -> Optio
     return None
 
 
+def _resolve_unique_from_candidates(
+    slot_name: str, encoded_id: Optional[str],
+) -> Tuple[Optional[str], Optional[str]]:
+    """
+    Try to resolve a unique item by decoding the base64 item ID and checking
+    ALL decoded varint candidates as subTypeIDs against the unique index.
+
+    For each candidate subTypeID, gets the subtype name from items.json
+    and checks if (slot, subtype_name_lower) matches any unique in uniques.json.
+
+    Returns (unique_name, base_type_name) or (None, None).
+    """
+    if not encoded_id:
+        return None, None
+
+    raw = _b64_decode_safe(encoded_id)
+    if raw is None:
+        return None, None
+
+    varints = _decode_varints(raw)
+    subtype_map = _get_item_subtype_map()
+    unique_index = _get_unique_by_base()
+
+    # Gather ALL candidate subTypeIDs from varints (any value 0-200)
+    candidates: List[int] = []
+    if len(varints) >= 2:
+        candidates.append(varints[1])
+    for v in varints:
+        if 0 <= v <= 200 and v not in candidates:
+            candidates.append(v)
+
+    # Get the valid baseTypeIDs for this slot
+    slot_base_ids = _SLOT_TO_BASE_TYPE_IDS.get(slot_name, [])
+
+    # For each candidate, check if any (baseTypeID, candidate) produces
+    # a subtype name that matches a unique base in uniques.json
+    for sub_id in candidates:
+        for btid in slot_base_ids:
+            subtype_name = subtype_map.get((btid, sub_id))
+            if not subtype_name:
+                continue
+            name_lower = subtype_name.lower().strip()
+            unique_matches = unique_index.get((slot_name, name_lower), [])
+            if unique_matches:
+                logger.info(
+                    "LET importer: resolved %s → %s via base type %s (subTypeID=%d)",
+                    slot_name, unique_matches[0], subtype_name, sub_id,
+                )
+                return unique_matches[0], subtype_name
+
+    # Also try the decoded base_item_name directly (from _decode_base_item_id)
+    return None, None
+
+
 # ---------------------------------------------------------------------------
 # Forge slot name → affix registry slot tags (used for slot-validation)
 # Forge slot name → list of possible game baseTypeIDs (ordered by likelihood)
@@ -1023,27 +1077,48 @@ class LastEpochToolsImporter(BaseImporter):
                     missing_fields.append(f"gear_base:{slot_name}:{raw_item_id}")
 
             # --- Rarity + Unique Resolution ---
-            # The ir/ur fields are item seed data, NOT rarity codes.
-            # Rarity is determined by:
-            #   1. Matching the decoded base type name against uniques.json
-            #   2. Affix count heuristic for crafted items
+            #
+            # The base64 item ID blob does NOT encode the game's subTypeID as a
+            # plain varint — the decoded varints are item seed data, not type IDs.
+            # Therefore, base type names from _decode_base_item_id are unreliable
+            # (e.g. returns "Fiend Cowl" for what is actually "Iron Casque").
+            #
+            # The ir field is also item seed data, not a rarity code.
+            #
+            # Rarity detection strategy:
+            #   1. ur field non-zero → unique (ur = unique random seed)
+            #   2. Direct name match against unique index (when decoder is lucky)
+            #   3. Affix count heuristic for non-unique items
 
-            # Try to resolve as unique: look up (slot, base_type_name) in unique index
-            unique_name = _resolve_unique_name(slot_name, base_item_name) if base_item_name else None
+            # Check ur field — non-zero indicates a unique item
+            ur_raw = item_raw.get("ur")
+            is_unique_by_ur = (
+                ur_raw is not None
+                and ur_raw != 0
+                and ur_raw != [0, 0, 0]
+                and ur_raw != []
+            )
+
+            # Try direct unique name match (works when base type decoded correctly)
+            unique_name = None
+            if base_item_name:
+                unique_name = _resolve_unique_name(slot_name, base_item_name)
+
             if unique_name:
                 rarity = "unique"
                 base_item_name = f"{unique_name} ({base_item_name})"
-            elif not base_item_name:
-                # Base type couldn't be decoded at all — try ur field as unique indicator
-                ur_raw = item_raw.get("ur")
-                if ur_raw and ur_raw != 0 and ur_raw != [0, 0, 0]:
-                    rarity = "unique"
-                    base_item_name = "Unknown Unique"
+                logger.info(
+                    "LET importer: resolved %s → %s via base type match",
+                    slot_name, unique_name,
+                )
+            elif is_unique_by_ur:
+                rarity = "unique"
+                if base_item_name:
+                    base_item_name = f"Unknown Unique ({base_item_name})"
                 else:
-                    rarity = "normal"
+                    base_item_name = "Unknown Unique"
             else:
-                # Base type resolved but no unique match — crafted item.
-                # Infer rarity from affix count.
+                # Non-unique — infer rarity from affix count.
                 raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
                 affix_count = len(raw_affixes) if raw_affixes else 0
                 if affix_count >= 4:
