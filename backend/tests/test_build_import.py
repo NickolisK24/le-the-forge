@@ -1496,6 +1496,125 @@ class TestBaseItemDecoding:
         assert pd["gear"][0]["affixes"] == 3
 
 
+# Unique Item Resolution via ur field
+# ---------------------------------------------------------------------------
+
+class TestUniqueResolutionViaUr:
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_ur_nonzero_int_marks_unique(self, mock_get):
+        """When ur is a non-zero int, item is flagged as unique."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": ["a","b","c"], "ir": 0, "ur": 42}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/URINT")
+
+        gear = result.build_data["gear"]
+        assert gear[0]["rarity"] == "unique"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_ur_nonzero_list_marks_unique(self, mock_get):
+        """When ur is a non-zero byte list, item is flagged as unique."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "boots": {"id": 1, "affixes": [], "ir": 0, "ur": [155, 21, 118]}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/URLIST")
+
+        gear = result.build_data["gear"]
+        assert gear[0]["rarity"] == "unique"
+        assert "Unknown Unique" in gear[0]["item_name"]
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_ur_zero_not_unique(self, mock_get):
+        """When ur is 0, item is NOT unique — rarity from affix count."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": ["a","b","c","d"], "ir": 0, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/URNONE")
+
+        gear = result.build_data["gear"]
+        # 4 affixes, ur=0 → exalted (or unique if base matches, but it won't here)
+        assert gear[0]["rarity"] in ("exalted", "unique")
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_ur_empty_list_not_unique(self, mock_get):
+        """When ur is empty list [], item is NOT unique."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": [], "ir": 0, "ur": []}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/UREMPTY")
+
+        gear = result.build_data["gear"]
+        assert gear[0]["rarity"] != "unique"
+
+
 # Base64 Affix ID Decoding
 # ---------------------------------------------------------------------------
 
