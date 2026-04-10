@@ -100,7 +100,7 @@ def _get_skill_id_map() -> Dict[str, str]:
 
 
 def _get_base_item_map() -> Dict[int, dict]:
-    """Load base item data keyed by LE Tools integer type ID."""
+    """Load base item data keyed by sequential index."""
     global _BASE_ITEM_MAP
     if _BASE_ITEM_MAP is not None:
         return _BASE_ITEM_MAP
@@ -110,7 +110,6 @@ def _get_base_item_map() -> Dict[int, dict]:
         path = os.path.join(_project_root(), "data", "items", "base_items.json")
         with open(path) as f:
             data = json.load(f)
-        # base_items.json is {slot_name: [items...]} — flatten
         idx = 0
         for slot_name, items in data.items():
             for item in items:
@@ -122,6 +121,51 @@ def _get_base_item_map() -> Dict[int, dict]:
         logger.warning("LET importer: could not load base item map: %s", exc)
 
     return _BASE_ITEM_MAP
+
+
+# (baseTypeID, subTypeID) → item name (from items.json equippable subtypes)
+_ITEM_SUBTYPE_MAP: Optional[Dict[Tuple[int, int], str]] = None
+# baseTypeID → Forge slot category
+_BASE_TYPE_TO_SLOT: Optional[Dict[int, str]] = None
+
+
+def _get_item_subtype_map() -> Dict[Tuple[int, int], str]:
+    """
+    Load the (baseTypeID, subTypeID) → displayName lookup from items.json.
+
+    LE Tools encodes items using the game's baseTypeID (equipment category,
+    0-39) and subTypeID (specific base within that category). This mapping
+    lets us resolve decoded IDs to human-readable item names.
+    """
+    global _ITEM_SUBTYPE_MAP, _BASE_TYPE_TO_SLOT
+    if _ITEM_SUBTYPE_MAP is not None:
+        return _ITEM_SUBTYPE_MAP
+
+    _ITEM_SUBTYPE_MAP = {}
+    _BASE_TYPE_TO_SLOT = {}
+    try:
+        path = os.path.join(_project_root(), "data", "items", "items.json")
+        with open(path) as f:
+            items_data = json.load(f)
+        for eq in items_data.get("equippable", []):
+            btid = eq.get("baseTypeID")
+            if btid is None:
+                continue
+            slot_type = (eq.get("type") or "").lower()
+            _BASE_TYPE_TO_SLOT[btid] = slot_type
+            for st in eq.get("subTypes", []):
+                stid = st.get("subTypeID")
+                name = st.get("displayName") or st.get("name")
+                if stid is not None and name:
+                    _ITEM_SUBTYPE_MAP[(btid, stid)] = name
+        logger.info(
+            "LET importer: loaded %d item subtypes from items.json",
+            len(_ITEM_SUBTYPE_MAP),
+        )
+    except Exception as exc:
+        logger.warning("LET importer: could not load items.json: %s", exc)
+
+    return _ITEM_SUBTYPE_MAP
 
 
 def _get_affix_map() -> Dict[str, dict]:
@@ -148,6 +192,95 @@ def _get_affix_map() -> Dict[str, dict]:
 
 # ---------------------------------------------------------------------------
 # Forge slot name → affix registry slot tags (used for slot-validation)
+# Forge slot name → game baseTypeID (for inferring base type from slot)
+_SLOT_TO_BASE_TYPE_ID: Dict[str, int] = {
+    "helmet": 0, "body_armour": 1, "belt": 2, "boots": 3, "gloves": 4,
+    "weapon1": 5,   # one-handed sword; real ID depends on weapon type
+    "weapon2": 5,
+    "weapon": 5,
+    "off_hand": 14,  # shield
+    "amulet": 20, "ring_1": 21, "ring_2": 21,
+    "relic": 22,
+}
+
+
+def _decode_base_item_id(
+    encoded: str, slot_name: str,
+) -> Tuple[Optional[str], Optional[int], Optional[int]]:
+    """
+    Decode a base64-encoded LE Tools item ID and resolve the base item name.
+
+    The encoded blob contains protobuf-style fields. We extract candidate
+    subTypeIDs from the varints and try to look up the item using the
+    slot's known baseTypeID from the game data.
+
+    Returns (item_name, baseTypeID, subTypeID) or (None, None, None).
+    """
+    raw = _b64_decode_safe(encoded)
+    if raw is None:
+        return None, None, None
+
+    varints = _decode_varints(raw)
+    subtype_map = _get_item_subtype_map()
+
+    # Infer baseTypeID from slot name
+    base_type_id = _SLOT_TO_BASE_TYPE_ID.get(slot_name)
+
+    # Extract candidate subTypeIDs from the varints.
+    # From protobuf analysis: the blob starts with a field tag + value.
+    # The first varint value (after tag parsing) is often a small integer
+    # that could be the subTypeID. We try multiple extraction strategies.
+    candidates: List[int] = []
+
+    # Strategy 1: parse first field as protobuf (tag byte → field value)
+    if len(raw) >= 2:
+        tag_byte = raw[0]
+        wire_type = tag_byte & 0x07
+        if wire_type == 0 and len(varints) >= 1:
+            # Read the value after the tag — it's varints[0] if we treat
+            # the whole thing as varints, but the tag itself consumes bytes.
+            # Re-decode skipping the tag:
+            tag_varints = _decode_varints(raw)
+            # The tag itself is the first varint; the value is the second
+            if len(tag_varints) >= 2:
+                candidates.append(tag_varints[1])
+
+    # Strategy 2: plain varints — try each one
+    for v in varints:
+        if 0 <= v <= 200 and v not in candidates:
+            candidates.append(v)
+
+    # Try each candidate as subTypeID with the inferred baseTypeID
+    if base_type_id is not None:
+        for sub_id in candidates:
+            name = subtype_map.get((base_type_id, sub_id))
+            if name:
+                return name, base_type_id, sub_id
+
+    # Brute-force: try all (baseTypeID, candidate) combinations
+    for sub_id in candidates:
+        for btid in range(40):
+            name = subtype_map.get((btid, sub_id))
+            if name:
+                return name, btid, sub_id
+
+    return None, base_type_id, None
+
+
+def _b64_decode_safe(encoded: str) -> Optional[bytes]:
+    """Decode a base64 string with flexible padding."""
+    if not encoded:
+        return None
+    for pad_len in range(4):
+        padded = encoded + "=" * pad_len
+        for decoder in [base64.b64decode, base64.urlsafe_b64decode]:
+            try:
+                return decoder(padded)
+            except Exception:
+                continue
+    return None
+
+
 # ---------------------------------------------------------------------------
 
 _FORGE_SLOT_TO_AFFIX_TAGS: Dict[str, list] = {
@@ -214,15 +347,9 @@ def _decode_let_affix(encoded: str) -> Dict:
         candidates: list of candidate affix_id ints to try (best-guess order)
         tier_guess: best-guess tier (0-7) or None
     """
-    # Pad and decode base64
-    padded = encoded + "=" * (4 - len(encoded) % 4) if len(encoded) % 4 else encoded
-    try:
-        raw = base64.b64decode(padded)
-    except Exception:
-        try:
-            raw = base64.urlsafe_b64decode(padded)
-        except Exception:
-            return {"raw_bytes": "", "varints": [], "candidates": [], "tier_guess": None}
+    raw = _b64_decode_safe(encoded)
+    if raw is None:
+        return {"raw_bytes": "", "varints": [], "candidates": [], "tier_guess": None}
 
     varints = _decode_varints(raw)
     candidates: List[int] = []
@@ -762,34 +889,78 @@ class LastEpochToolsImporter(BaseImporter):
                 except (ValueError, TypeError):
                     slot_name = f"slot_{slot_key}"
 
-            # Base type — LE Tools uses 'id' for the base item type ID,
-            # older formats may use 'baseTypeID' or 'baseType'
-            base_type_id = item_raw.get("id",
-                           item_raw.get("baseTypeID",
-                           item_raw.get("baseType",
-                           item_raw.get("base_type_id"))))
+            # Base type — LE Tools 'id' field may be:
+            #   - An integer base item type ID
+            #   - A base64-encoded blob containing baseTypeID + subTypeID
+            #   - A string integer ("123")
+            raw_item_id = item_raw.get("id",
+                          item_raw.get("baseTypeID",
+                          item_raw.get("baseType",
+                          item_raw.get("base_type_id"))))
             base_item_name = None
-            if base_type_id is not None:
-                try:
-                    base_info = base_item_map.get(int(base_type_id))
-                except (ValueError, TypeError):
-                    base_info = None
-                if base_info:
-                    base_item_name = base_info.get("name")
-                else:
-                    missing_fields.append(f"gear_base:{slot_name}:{base_type_id}")
+            base_type_id = None
 
-            # Rarity — LE Tools 'ir' field (integer → name)
+            if raw_item_id is not None:
+                if isinstance(raw_item_id, int):
+                    # Plain integer — try direct lookup
+                    base_info = base_item_map.get(raw_item_id)
+                    if base_info:
+                        base_item_name = base_info.get("name")
+                        base_type_id = raw_item_id
+                elif isinstance(raw_item_id, str) and raw_item_id.isdigit():
+                    # String integer
+                    int_id = int(raw_item_id)
+                    base_info = base_item_map.get(int_id)
+                    if base_info:
+                        base_item_name = base_info.get("name")
+                        base_type_id = int_id
+                elif isinstance(raw_item_id, str):
+                    # Base64-encoded — decode and resolve via items.json subtypes
+                    name, btid, stid = _decode_base_item_id(raw_item_id, slot_name)
+                    if name:
+                        base_item_name = name
+                        base_type_id = btid
+
+                if not base_item_name:
+                    missing_fields.append(f"gear_base:{slot_name}:{raw_item_id}")
+
+            # Rarity — 'ir' field may be an integer, a string integer, or
+            # a base64-encoded value. Try all interpretations.
             ir = item_raw.get("ir", item_raw.get("rarity"))
+            rarity = "normal"
             if isinstance(ir, int):
                 rarity = _RARITY_MAP.get(ir, f"rarity_{ir}")
             elif isinstance(ir, str):
-                rarity = ir
-            else:
-                rarity = "normal"
+                # Try as string integer first ("4" → legendary)
+                if ir.isdigit():
+                    rarity = _RARITY_MAP.get(int(ir), f"rarity_{ir}")
+                elif ir in _RARITY_MAP.values():
+                    rarity = ir
+                else:
+                    # Try base64 decode to integer
+                    ir_bytes = _b64_decode_safe(ir)
+                    if ir_bytes:
+                        ir_varints = _decode_varints(ir_bytes)
+                        for v in ir_varints:
+                            if v in _RARITY_MAP:
+                                rarity = _RARITY_MAP[v]
+                                break
 
-            # Legendary potential / unique rarity
-            legendary_potential = item_raw.get("ur", item_raw.get("legendaryPotential", 0))
+            # Legendary potential / unique rarity — same treatment
+            ur_raw = item_raw.get("ur", item_raw.get("legendaryPotential", 0))
+            if isinstance(ur_raw, int):
+                legendary_potential = ur_raw
+            elif isinstance(ur_raw, str) and ur_raw.isdigit():
+                legendary_potential = int(ur_raw)
+            elif isinstance(ur_raw, str):
+                ur_bytes = _b64_decode_safe(ur_raw)
+                if ur_bytes:
+                    ur_varints = _decode_varints(ur_bytes)
+                    legendary_potential = ur_varints[0] if ur_varints else 0
+                else:
+                    legendary_potential = 0
+            else:
+                legendary_potential = 0
 
             # Affixes — LE Tools encodes affix IDs as base64 strings.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
