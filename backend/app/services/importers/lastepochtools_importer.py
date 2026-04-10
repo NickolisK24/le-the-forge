@@ -192,16 +192,29 @@ def _get_affix_map() -> Dict[str, dict]:
 
 # ---------------------------------------------------------------------------
 # Forge slot name → affix registry slot tags (used for slot-validation)
-# Forge slot name → game baseTypeID (for inferring base type from slot)
-_SLOT_TO_BASE_TYPE_ID: Dict[str, int] = {
-    "helmet": 0, "body_armour": 1, "belt": 2, "boots": 3, "gloves": 4,
-    "weapon1": 5,   # one-handed sword; real ID depends on weapon type
-    "weapon2": 5,
-    "weapon": 5,
-    "off_hand": 14,  # shield
-    "amulet": 20, "ring_1": 21, "ring_2": 21,
-    "relic": 22,
+# Forge slot name → list of possible game baseTypeIDs (ordered by likelihood)
+# Weapons can be many types, so list all weapon baseTypeIDs.
+_SLOT_TO_BASE_TYPE_IDS: Dict[str, List[int]] = {
+    "helmet":      [0],
+    "body_armour": [1],
+    "belt":        [2],
+    "boots":       [3],
+    "gloves":      [4],
+    "weapon1":     [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 23],  # all weapon types
+    "weapon2":     [5, 6, 7, 8, 9, 10, 11, 18, 19, 17],  # one-hand + shield/catalyst/quiver
+    "weapon":      [5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 23],
+    "off_hand":    [18, 19, 17],  # shield, catalyst, quiver
+    "amulet":      [20],
+    "ring_1":      [21],
+    "ring_2":      [21],
+    "relic":       [22],
+    "idol_altar":  [25, 26, 27, 28, 29, 30, 31, 32, 33],  # all idol sizes
 }
+
+# Equipment-only baseTypeIDs (non-idol, non-blessing, non-lens)
+_EQUIPMENT_BASE_TYPE_IDS = list(range(0, 24))
+# Idol-only baseTypeIDs
+_IDOL_BASE_TYPE_IDS = list(range(25, 34))
 
 
 def _decode_base_item_id(
@@ -218,53 +231,51 @@ def _decode_base_item_id(
     """
     raw = _b64_decode_safe(encoded)
     if raw is None:
+        logger.debug("LET importer: base item ID '%s' failed base64 decode", encoded)
         return None, None, None
 
     varints = _decode_varints(raw)
     subtype_map = _get_item_subtype_map()
 
-    # Infer baseTypeID from slot name
-    base_type_id = _SLOT_TO_BASE_TYPE_ID.get(slot_name)
+    # Infer which baseTypeIDs are valid for this slot
+    slot_base_ids = _SLOT_TO_BASE_TYPE_IDS.get(slot_name)
 
     # Extract candidate subTypeIDs from the varints.
-    # From protobuf analysis: the blob starts with a field tag + value.
-    # The first varint value (after tag parsing) is often a small integer
-    # that could be the subTypeID. We try multiple extraction strategies.
+    # The blob is protobuf-like: first varint is a field tag, second is the value.
     candidates: List[int] = []
 
-    # Strategy 1: parse first field as protobuf (tag byte → field value)
-    if len(raw) >= 2:
-        tag_byte = raw[0]
-        wire_type = tag_byte & 0x07
-        if wire_type == 0 and len(varints) >= 1:
-            # Read the value after the tag — it's varints[0] if we treat
-            # the whole thing as varints, but the tag itself consumes bytes.
-            # Re-decode skipping the tag:
-            tag_varints = _decode_varints(raw)
-            # The tag itself is the first varint; the value is the second
-            if len(tag_varints) >= 2:
-                candidates.append(tag_varints[1])
+    # Strategy 1: protobuf tag → value (second varint is the item subtype)
+    if len(varints) >= 2:
+        candidates.append(varints[1])
 
-    # Strategy 2: plain varints — try each one
+    # Strategy 2: all small varints as additional candidates
     for v in varints:
         if 0 <= v <= 200 and v not in candidates:
             candidates.append(v)
 
-    # Try each candidate as subTypeID with the inferred baseTypeID
-    if base_type_id is not None:
-        for sub_id in candidates:
-            name = subtype_map.get((base_type_id, sub_id))
-            if name:
-                return name, base_type_id, sub_id
+    if not candidates:
+        return None, (slot_base_ids[0] if slot_base_ids else None), None
 
-    # Brute-force: try all (baseTypeID, candidate) combinations
+    # Try each candidate against the slot's known baseTypeIDs (most specific first)
+    if slot_base_ids:
+        for btid in slot_base_ids:
+            for sub_id in candidates:
+                name = subtype_map.get((btid, sub_id))
+                if name:
+                    return name, btid, sub_id
+
+    # Fallback: brute-force scan, but restricted to the correct category.
+    # Idol slots only try idol types; equipment slots only try equipment types.
+    is_idol = slot_name in ("idol_altar",)
+    scan_ids = _IDOL_BASE_TYPE_IDS if is_idol else _EQUIPMENT_BASE_TYPE_IDS
+
     for sub_id in candidates:
-        for btid in range(40):
+        for btid in scan_ids:
             name = subtype_map.get((btid, sub_id))
             if name:
                 return name, btid, sub_id
 
-    return None, base_type_id, None
+    return None, (slot_base_ids[0] if slot_base_ids else None), None
 
 
 def _b64_decode_safe(encoded: str) -> Optional[bytes]:
@@ -927,12 +938,16 @@ class LastEpochToolsImporter(BaseImporter):
             # Rarity — 'ir' field may be an integer, a string integer, or
             # a base64-encoded value. Try all interpretations.
             ir = item_raw.get("ir", item_raw.get("rarity"))
+            logger.debug(
+                "LET importer: %s raw ir=%r type=%s",
+                slot_name, ir, type(ir).__name__,
+            )
             rarity = "normal"
-            if isinstance(ir, int):
+            if isinstance(ir, int) and ir > 0:
                 rarity = _RARITY_MAP.get(ir, f"rarity_{ir}")
             elif isinstance(ir, str):
                 # Try as string integer first ("4" → legendary)
-                if ir.isdigit():
+                if ir.isdigit() and int(ir) > 0:
                     rarity = _RARITY_MAP.get(int(ir), f"rarity_{ir}")
                 elif ir in _RARITY_MAP.values():
                     rarity = ir
@@ -942,7 +957,7 @@ class LastEpochToolsImporter(BaseImporter):
                     if ir_bytes:
                         ir_varints = _decode_varints(ir_bytes)
                         for v in ir_varints:
-                            if v in _RARITY_MAP:
+                            if v in _RARITY_MAP and v > 0:
                                 rarity = _RARITY_MAP[v]
                                 break
 
@@ -961,6 +976,21 @@ class LastEpochToolsImporter(BaseImporter):
                     legendary_potential = 0
             else:
                 legendary_potential = 0
+
+            # Rarity fallback: infer from affix count when ir is 0/missing.
+            # LE Tools may store ir=0 for all items in some format versions,
+            # with the real rarity implicit in the item's affix/unique status.
+            raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
+            affix_count = len(raw_affixes) if raw_affixes else 0
+            if rarity == "normal" and affix_count > 0:
+                if legendary_potential > 0:
+                    rarity = "legendary"
+                elif affix_count >= 4:
+                    rarity = "exalted"
+                elif affix_count >= 3:
+                    rarity = "rare"
+                elif affix_count >= 1:
+                    rarity = "magic"
 
             # Affixes — LE Tools encodes affix IDs as base64 strings.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
