@@ -1239,6 +1239,130 @@ class TestBaseItemDecoding:
         assert gear[0]["rarity"] == "legendary"
         assert gear[0].get("legendary_potential") == 2
 
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_rarity_inferred_from_affix_count_when_ir_zero(self, mock_get):
+        """When ir=0 (LE Tools default), rarity is inferred from affix count."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": ["a","b","c","d"], "ir": 0, "ur": 1},
+                "body": {"id": 2, "affixes": ["a","b","c","d"], "ir": 0, "ur": 0},
+                "belt": {"id": 3, "affixes": ["a","b","c"], "ir": 0, "ur": 0},
+                "boots": {"id": 4, "affixes": ["a"], "ir": 0, "ur": 0},
+                "gloves": {"id": 5, "affixes": [], "ir": 0, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/INFRAR")
+
+        gear = result.build_data["gear"]
+        slots = {g["slot"]: g for g in gear}
+        # ur=1 + 4 affixes → legendary
+        assert slots["helmet"]["rarity"] == "legendary"
+        # 4 affixes, no LP → exalted
+        assert slots["body_armour"]["rarity"] == "exalted"
+        # 3 affixes → rare
+        assert slots["belt"]["rarity"] == "rare"
+        # 1 affix → magic
+        assert slots["boots"]["rarity"] == "magic"
+        # 0 affixes → normal
+        assert slots["gloves"]["rarity"] == "normal"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_idol_does_not_resolve_to_ring(self, mock_get):
+        """Idol slots only search idol baseTypeIDs, not rings or other equipment."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "idol_altar": {"id": 1, "affixes": [], "ir": 0, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/IDOL")
+
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        idol = gear[0]
+        assert idol["slot"] == "idol_altar"
+        # The item_name should NOT be a ring/amulet/weapon name
+        if idol.get("item_name"):
+            name_lower = idol["item_name"].lower()
+            assert "ring" not in name_lower, f"Idol resolved to ring: {idol['item_name']}"
+            assert "amulet" not in name_lower, f"Idol resolved to amulet: {idol['item_name']}"
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_partial_import_alert_includes_build_data(self, mock_alert, mock_factory, client, db):
+        """Partial import Discord alert partial_data includes class, mastery, gear stats."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=True,
+            source="lastepochtools",
+            build_data={
+                "name": "Test Partial",
+                "character_class": "Rogue",
+                "mastery": "Bladedancer",
+                "level": 98,
+                "passive_tree": list(range(50)),
+                "skills": [{"skill_name": "Shurikens"}],
+                "gear": [
+                    {"slot": "helmet", "item_name": "Fiend Cowl", "rarity": "legendary", "affixes": [1,2,3]},
+                    {"slot": "body_armour", "affixes": [1]},
+                ],
+            },
+            missing_fields=["gear_affix:helmet:xyz"],
+        )
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://www.lastepochtools.com/planner/PARTDATA"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 201
+        # Discord alert was fired with partial severity
+        mock_alert.assert_called_once()
+        failure_obj = mock_alert.call_args[0][0]
+        pd = failure_obj.partial_data
+        assert pd is not None
+        assert pd["character_class"] == "Rogue"
+        assert pd["mastery"] == "Bladedancer"
+        assert pd["level"] == 98
+        assert pd["passive_tree"] == 50
+        assert len(pd["skills"]) == 1
+        assert len(pd["gear"]) == 2
+        assert pd["gear"][0]["slot"] == "helmet"
+        assert pd["gear"][0]["item_name"] == "Fiend Cowl"
+        assert pd["gear"][0]["affixes"] == 3
+
 
 # Base64 Affix ID Decoding
 # ---------------------------------------------------------------------------
