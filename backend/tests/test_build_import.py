@@ -1316,6 +1316,126 @@ class TestBaseItemDecoding:
             assert "ring" not in name_lower, f"Idol resolved to ring: {idol['item_name']}"
             assert "amulet" not in name_lower, f"Idol resolved to amulet: {idol['item_name']}"
 
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_rarity_from_ir_byte_list(self, mock_get):
+        """ir=[155, 21, 118] → rarity from byte[0] & 0x07 = 3 → exalted."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm":  {"id": 1, "affixes": ["a","b","c"], "ir": [155, 21, 118], "ur": 0},
+                "body":  {"id": 2, "affixes": [],             "ir": [110, 108, 198], "ur": 0},
+                "ring2": {"id": 3, "affixes": ["a","b","c","d"], "ir": [149, 99, 15], "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/IRBYTE")
+
+        gear = result.build_data["gear"]
+        slots = {g["slot"]: g for g in gear}
+        # 155 & 0x07 = 3 → exalted
+        assert slots["helmet"]["rarity"] == "exalted"
+        # 110 & 0x07 = 6 → unique
+        assert slots["body_armour"]["rarity"] == "unique"
+        # 149 & 0x07 = 5 → set
+        assert slots["ring_2"]["rarity"] == "set"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_unique_rarity_labels_unresolvable_item(self, mock_get):
+        """When rarity=unique but base_id can't decode, item_name set to 'Unknown Unique'."""
+        # Use a 9-char base64 string (always invalid — 9 % 4 == 1 data chars)
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 98, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "body": {"id": "UAzAs4DiA", "affixes": [], "ir": [110, 0, 0], "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/UNIQLAB")
+
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        assert gear[0]["rarity"] == "unique"
+        assert gear[0]["item_name"] == "Unknown Unique"
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_ring_slot_never_resolves_to_helmet(self, mock_get):
+        """Ring lookup must never cross-contaminate with helmet subtypes."""
+        # Use a base64 id that would decode to varints containing small values
+        # that exist as helmet subTypeIDs but not ring subTypeIDs.
+        # Helmet has 71 subtypes; ring has 13. subTypeID=50 exists for helmets
+        # but not for rings (only 0-12).
+        import base64
+        # Encode bytes that produce varints [80, 50] — 50 is valid helmet but not ring
+        raw_bytes = bytes([80, 50])
+        encoded = base64.b64encode(raw_bytes).decode().rstrip("=")
+
+        html = f'''
+        <html><body><script>
+        window["buildInfo"] = {{
+            "bio": {{"level": 90, "characterClass": 4, "chosenMastery": 1}},
+            "charTree": {{"selected": {{}}}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {{
+                "ring1": {{"id": "{encoded}", "affixes": [], "ir": 0, "ur": 0}}
+            }}
+        }};
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/RINGISO")
+
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        # Should NOT resolve to a helmet name
+        if gear[0].get("item_name"):
+            assert "helm" not in gear[0]["item_name"].lower()
+            assert "coif" not in gear[0]["item_name"].lower()
+            assert "casque" not in gear[0]["item_name"].lower()
+
+    def test_unique_items_loaded(self):
+        """_get_unique_items() loads and groups uniques by Forge slot."""
+        from app.services.importers.lastepochtools_importer import _get_unique_items
+        uniques = _get_unique_items()
+        assert "body_armour" in uniques
+        assert "helmet" in uniques
+        assert "ring" in uniques or "ring_1" in uniques
+        # Architects of Astral Blood should be in body_armour
+        body_names = [u["name"] for u in uniques.get("body_armour", [])]
+        assert "Architects of Astral Blood" in body_names
+
     @patch("app.routes.import_route.get_importer")
     @patch("app.routes.import_route.send_import_failure_alert")
     def test_partial_import_alert_includes_build_data(self, mock_alert, mock_factory, client, db):
