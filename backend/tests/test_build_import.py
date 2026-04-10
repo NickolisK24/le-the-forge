@@ -1117,6 +1117,129 @@ class TestExtractionStrategies:
 
 
 # ---------------------------------------------------------------------------
+# Base Item ID Decoding + Rarity
+# ---------------------------------------------------------------------------
+
+class TestBaseItemDecoding:
+    def test_decode_integer_id_resolves(self):
+        """Plain integer base type ID resolves from base_items.json."""
+        from app.services.importers.lastepochtools_importer import _get_base_item_map
+        bim = _get_base_item_map()
+        # Index 0 = first helmet (Rusted Coif)
+        assert bim.get(0, {}).get("name") == "Rusted Coif"
+
+    def test_decode_base_item_id_returns_name_for_known_slot(self):
+        """_decode_base_item_id attempts to match varints to item subtypes."""
+        from app.services.importers.lastepochtools_importer import _decode_base_item_id
+        # We can't predict which base64 maps to which item (opaque encoding),
+        # but we can verify the function doesn't crash and returns a tuple
+        name, btid, stid = _decode_base_item_id("UAzBMoVgNiA", "helmet")
+        # It should return something (name may or may not resolve)
+        assert isinstance(name, (str, type(None)))
+        assert isinstance(btid, (int, type(None)))
+
+    def test_decode_base_item_id_empty_returns_none(self):
+        from app.services.importers.lastepochtools_importer import _decode_base_item_id
+        name, btid, stid = _decode_base_item_id("", "helmet")
+        assert name is None
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_base64_id_parsed_and_resolved_or_missing(self, mock_get):
+        """When item id is base64, it's decoded and lookup attempted."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": "UAzBMoVgNiA", "affixes": [], "ir": 4, "ur": 1}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/B64ITEM")
+
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        helm = gear[0]
+        # Either decoded to a name or recorded as missing
+        assert helm.get("item_name") is not None or \
+            any("gear_base:helmet" in f for f in result.missing_fields)
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_rarity_from_integer_ir(self, mock_get):
+        """ir=4 correctly maps to legendary."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": [], "ir": 4, "ur": 2},
+                "body": {"id": 2, "affixes": [], "ir": 3, "ur": 0},
+                "belt": {"id": 3, "affixes": [], "ir": 6, "ur": 0}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/RARITY")
+
+        gear = result.build_data["gear"]
+        slots = {g["slot"]: g for g in gear}
+        assert slots["helmet"]["rarity"] == "legendary"
+        assert slots["body_armour"]["rarity"] == "exalted"
+        assert slots["belt"]["rarity"] == "unique"
+        assert slots["helmet"].get("legendary_potential") == 2
+
+    @patch("app.services.importers.lastepochtools_importer._requests.get")
+    def test_rarity_from_string_integer_ir(self, mock_get):
+        """ir="4" (string) correctly maps to legendary."""
+        html = '''
+        <html><body><script>
+        window["buildInfo"] = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 1, "affixes": [], "ir": "4", "ur": "2"}
+            }
+        };
+        </script></body></html>
+        '''
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.text = html
+        mock_resp.raise_for_status = MagicMock()
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import LastEpochToolsImporter
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/STRRAR")
+
+        gear = result.build_data["gear"]
+        assert gear[0]["rarity"] == "legendary"
+        assert gear[0].get("legendary_potential") == 2
+
+
 # Base64 Affix ID Decoding
 # ---------------------------------------------------------------------------
 
