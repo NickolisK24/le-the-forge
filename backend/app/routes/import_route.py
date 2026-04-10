@@ -534,7 +534,23 @@ def _do_import(url: str, source: str, user_id: str | None):
             error_message="Partial import — some fields could not be mapped.",
             severity="partial",
             missing_fields=warnings,
-            partial_data={"slug": build.slug},
+            partial_data={
+                "slug": build.slug,
+                "character_class": build_data.get("character_class"),
+                "mastery": build_data.get("mastery"),
+                "level": build_data.get("level"),
+                "skills": [s.get("skill_name") for s in build_data.get("skills", [])],
+                "passive_tree": len(build_data.get("passive_tree", [])),
+                "gear": [
+                    {
+                        "slot": g.get("slot"),
+                        "item_name": g.get("item_name"),
+                        "rarity": g.get("rarity"),
+                        "affixes": len(g.get("affixes", [])),
+                    }
+                    for g in build_data.get("gear", [])
+                ],
+            },
         )
 
     imported_fields = []
