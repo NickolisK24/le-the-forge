@@ -241,6 +241,58 @@ def _get_unique_items() -> Dict[str, List[dict]]:
     return _UNIQUE_ITEMS
 
 
+# (forge_slot, base_name_lower) → list of unique names
+_UNIQUE_BY_BASE: Optional[Dict[Tuple[str, str], List[str]]] = None
+
+
+def _get_unique_by_base() -> Dict[Tuple[str, str], List[str]]:
+    """
+    Build (forge_slot, base_type_name_lower) → [unique_name, ...] index.
+
+    Used to resolve a unique item name when we know the slot and base type.
+    Multiple uniques can share the same base type (e.g. Iron Casque has 3).
+    """
+    global _UNIQUE_BY_BASE
+    if _UNIQUE_BY_BASE is not None:
+        return _UNIQUE_BY_BASE
+
+    _UNIQUE_BY_BASE = {}
+    uniques_by_slot = _get_unique_items()
+    for forge_slot, items in uniques_by_slot.items():
+        for item in items:
+            base = (item.get("base") or "").lower().strip()
+            if base:
+                _UNIQUE_BY_BASE.setdefault((forge_slot, base), []).append(item["name"])
+                # Also index with ring_1/ring_2 for ring items
+                if forge_slot == "ring":
+                    _UNIQUE_BY_BASE.setdefault(("ring_1", base), []).append(item["name"])
+                    _UNIQUE_BY_BASE.setdefault(("ring_2", base), []).append(item["name"])
+                # Also index weapon1/weapon2 for weapon items
+                if forge_slot == "weapon":
+                    _UNIQUE_BY_BASE.setdefault(("weapon1", base), []).append(item["name"])
+                    _UNIQUE_BY_BASE.setdefault(("weapon2", base), []).append(item["name"])
+
+    return _UNIQUE_BY_BASE
+
+
+def _resolve_unique_name(slot_name: str, base_item_name: Optional[str]) -> Optional[str]:
+    """
+    Given a slot and base item name, look up candidate unique item names.
+
+    Returns the unique name if one or more matches found (picks first).
+    Returns None if no match.
+    """
+    if not base_item_name:
+        return None
+
+    index = _get_unique_by_base()
+    base_lower = base_item_name.lower().strip()
+    matches = index.get((slot_name, base_lower), [])
+    if matches:
+        return matches[0]
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Forge slot name → affix registry slot tags (used for slot-validation)
 # Forge slot name → list of possible game baseTypeIDs (ordered by likelihood)
@@ -311,16 +363,6 @@ def _decode_base_item_id(
 
     return None, (slot_base_ids[0] if slot_base_ids else None), None
 
-
-def _resolve_unique_for_slot(slot_name: str) -> Optional[str]:
-    """
-    When we know an item is unique/set (from rarity) but can't decode its
-    base64 ID, return "Unknown Unique" as a placeholder.
-
-    In the future this could try to match against unique items by cross-
-    referencing decoded varint data with the unique item registry.
-    """
-    return None
 
 
 def _b64_decode_safe(encoded: str) -> Optional[bytes]:
@@ -1042,7 +1084,15 @@ class LastEpochToolsImporter(BaseImporter):
                 elif affix_count >= 1:
                     rarity = "magic"
 
-            # For unique/set items where base_id didn't resolve, note the rarity
+            # For unique/set items, resolve the unique name from base type + slot
+            is_unique = rarity in ("unique", "set", "legendary")
+            if is_unique and base_item_name:
+                unique_name = _resolve_unique_name(slot_name, base_item_name)
+                if unique_name:
+                    # Store base type separately, use unique name as primary
+                    base_item_name = f"{unique_name} ({base_item_name})"
+
+            # For unique/set items where base_id didn't resolve at all
             if not base_item_name and rarity in ("unique", "set"):
                 base_item_name = f"Unknown {rarity.title()}"
 
