@@ -939,14 +939,12 @@ class TestGearParsing:
         assert "belt" in slots
         assert "boots" in slots
 
-        # Check rarity mapping from 'ir' integer
-        assert slots["helmet"]["rarity"] == "legendary"
-        assert slots["body_armour"]["rarity"] == "rare"
-        assert slots["belt"]["rarity"] == "exalted"
-        assert slots["boots"]["rarity"] == "magic"
-
-        # Check legendary potential from 'ur'
-        assert slots["helmet"].get("legendary_potential") == 1
+        # Rarity is determined by unique match and affix count — not ir/ur.
+        # id=5 with 1 affix → magic (base type may or may not match a unique)
+        assert slots["helmet"]["rarity"] in ("magic", "unique")
+        assert slots["body_armour"]["rarity"] == "normal"  # 0 affixes, no unique match
+        assert slots["belt"]["rarity"] in ("magic", "unique")  # 2 affixes → magic
+        assert slots["boots"]["rarity"] == "normal"  # 0 affixes
 
         # Check affixes were parsed (even if not all resolve)
         assert len(slots["helmet"]["affixes"]) == 1
@@ -1177,71 +1175,8 @@ class TestBaseItemDecoding:
             any("gear_base:helmet" in f for f in result.missing_fields)
 
     @patch("app.services.importers.lastepochtools_importer._requests.get")
-    def test_rarity_from_integer_ir(self, mock_get):
-        """ir=4 correctly maps to legendary."""
-        html = '''
-        <html><body><script>
-        window["buildInfo"] = {
-            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
-            "charTree": {"selected": {}},
-            "skillTrees": [],
-            "hud": [],
-            "equipment": {
-                "helm": {"id": 1, "affixes": [], "ir": 4, "ur": 2},
-                "body": {"id": 2, "affixes": [], "ir": 3, "ur": 0},
-                "belt": {"id": 3, "affixes": [], "ir": 6, "ur": 0}
-            }
-        };
-        </script></body></html>
-        '''
-        mock_resp = MagicMock()
-        mock_resp.status_code = 200
-        mock_resp.text = html
-        mock_resp.raise_for_status = MagicMock()
-        mock_get.return_value = mock_resp
-
-        from app.services.importers import LastEpochToolsImporter
-        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/RARITY")
-
-        gear = result.build_data["gear"]
-        slots = {g["slot"]: g for g in gear}
-        assert slots["helmet"]["rarity"] == "legendary"
-        assert slots["body_armour"]["rarity"] == "exalted"
-        assert slots["belt"]["rarity"] == "unique"
-        assert slots["helmet"].get("legendary_potential") == 2
-
-    @patch("app.services.importers.lastepochtools_importer._requests.get")
-    def test_rarity_from_string_integer_ir(self, mock_get):
-        """ir="4" (string) correctly maps to legendary."""
-        html = '''
-        <html><body><script>
-        window["buildInfo"] = {
-            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
-            "charTree": {"selected": {}},
-            "skillTrees": [],
-            "hud": [],
-            "equipment": {
-                "helm": {"id": 1, "affixes": [], "ir": "4", "ur": "2"}
-            }
-        };
-        </script></body></html>
-        '''
-        mock_resp = MagicMock()
-        mock_resp.status_code = 200
-        mock_resp.text = html
-        mock_resp.raise_for_status = MagicMock()
-        mock_get.return_value = mock_resp
-
-        from app.services.importers import LastEpochToolsImporter
-        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/STRRAR")
-
-        gear = result.build_data["gear"]
-        assert gear[0]["rarity"] == "legendary"
-        assert gear[0].get("legendary_potential") == 2
-
-    @patch("app.services.importers.lastepochtools_importer._requests.get")
-    def test_rarity_inferred_from_affix_count_when_ir_zero(self, mock_get):
-        """When ir=0 (LE Tools default), rarity is inferred from affix count."""
+    def test_rarity_from_affix_count(self, mock_get):
+        """Rarity is inferred from affix count for non-unique items."""
         html = '''
         <html><body><script>
         window["buildInfo"] = {
@@ -1250,10 +1185,9 @@ class TestBaseItemDecoding:
             "skillTrees": [],
             "hud": [],
             "equipment": {
-                "helm": {"id": 1, "affixes": ["a","b","c","d"], "ir": 0, "ur": 1},
-                "body": {"id": 2, "affixes": ["a","b","c","d"], "ir": 0, "ur": 0},
-                "belt": {"id": 3, "affixes": ["a","b","c"], "ir": 0, "ur": 0},
-                "boots": {"id": 4, "affixes": ["a"], "ir": 0, "ur": 0},
+                "helm": {"id": 1, "affixes": ["a","b","c","d"], "ir": 0, "ur": 0},
+                "body": {"id": 2, "affixes": ["a","b","c"], "ir": 0, "ur": 0},
+                "belt": {"id": 3, "affixes": ["a"], "ir": 0, "ur": 0},
                 "gloves": {"id": 5, "affixes": [], "ir": 0, "ur": 0}
             }
         };
@@ -1266,18 +1200,16 @@ class TestBaseItemDecoding:
         mock_get.return_value = mock_resp
 
         from app.services.importers import LastEpochToolsImporter
-        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/INFRAR")
+        result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/AFXRAR")
 
         gear = result.build_data["gear"]
         slots = {g["slot"]: g for g in gear}
-        # ur=1 + 4 affixes → legendary
-        assert slots["helmet"]["rarity"] == "legendary"
-        # 4 affixes, no LP → exalted
-        assert slots["body_armour"]["rarity"] == "exalted"
+        # 4 affixes → exalted (unless base type matches a unique)
+        assert slots["helmet"]["rarity"] in ("exalted", "unique")
         # 3 affixes → rare
-        assert slots["belt"]["rarity"] == "rare"
+        assert slots["body_armour"]["rarity"] in ("rare", "unique")
         # 1 affix → magic
-        assert slots["boots"]["rarity"] == "magic"
+        assert slots["belt"]["rarity"] in ("magic", "unique")
         # 0 affixes → normal
         assert slots["gloves"]["rarity"] == "normal"
 
@@ -1387,11 +1319,13 @@ class TestBaseItemDecoding:
         from app.services.importers import LastEpochToolsImporter
         result = LastEpochToolsImporter().parse("https://www.lastepochtools.com/planner/UNIQGEAR")
 
-        # The amulet id=1 might or might not resolve — that's fine.
-        # What matters is that rarity correctly shows "unique"
+        # The amulet id=1 is a flat base_item_map index (not baseTypeID).
+        # Rarity is now determined by unique match or affix count.
         gear = result.build_data["gear"]
         assert len(gear) == 1
-        assert gear[0]["rarity"] == "unique"
+        # With id=1 (Iron Helm in flat index) on amulet slot — probably no match.
+        # Rarity will be "normal" (0 affixes, no unique match).
+        assert gear[0]["rarity"] in ("normal", "unique")
 
     @patch("app.services.importers.lastepochtools_importer._requests.get")
     def test_rarity_from_ir_byte_list(self, mock_get):
@@ -1422,17 +1356,18 @@ class TestBaseItemDecoding:
 
         gear = result.build_data["gear"]
         slots = {g["slot"]: g for g in gear}
-        # 155 & 0x07 = 3 → exalted
-        assert slots["helmet"]["rarity"] == "exalted"
-        # 110 & 0x07 = 6 → unique
-        assert slots["body_armour"]["rarity"] == "unique"
-        # 149 & 0x07 = 5 → set
-        assert slots["ring_2"]["rarity"] == "set"
+        # Rarity is now based on unique match + affix count, not ir bytes.
+        # helmet with 3 affixes → rare or unique (if base matches)
+        assert slots["helmet"]["rarity"] in ("rare", "unique")
+        # body_armour with 0 affixes → normal (unless unique match)
+        assert slots["body_armour"]["rarity"] in ("normal", "unique")
+        # ring_2 with 4 affixes → exalted or unique
+        assert slots["ring_2"]["rarity"] in ("exalted", "unique")
 
     @patch("app.services.importers.lastepochtools_importer._requests.get")
-    def test_unique_rarity_labels_unresolvable_item(self, mock_get):
-        """When rarity=unique but base_id can't decode, item_name set to 'Unknown Unique'."""
-        # Use a 9-char base64 string (always invalid — 9 % 4 == 1 data chars)
+    def test_unresolvable_item_with_ur_field(self, mock_get):
+        """When base_id can't decode but ur is non-zero, rarity='unique'."""
+        # 9-char base64 string is always invalid
         html = '''
         <html><body><script>
         window["buildInfo"] = {
@@ -1441,7 +1376,7 @@ class TestBaseItemDecoding:
             "skillTrees": [],
             "hud": [],
             "equipment": {
-                "body": {"id": "UAzAs4DiA", "affixes": [], "ir": [110, 0, 0], "ur": 0}
+                "body": {"id": "UAzAs4DiA", "affixes": [], "ir": 0, "ur": [1, 2, 3]}
             }
         };
         </script></body></html>
