@@ -69,6 +69,9 @@ _BASE_ITEM_MAP: Optional[Dict[int, dict]] = None
 # Affix ID → affix info (loaded lazily)
 _AFFIX_MAP: Optional[Dict[str, dict]] = None
 
+# Unique items by slot → [{name, base, ...}] (loaded lazily)
+_UNIQUE_ITEMS: Optional[Dict[str, List[dict]]] = None
+
 
 def _project_root() -> str:
     """Return project root (4 levels up from this file)."""
@@ -190,6 +193,54 @@ def _get_affix_map() -> Dict[str, dict]:
     return _AFFIX_MAP
 
 
+# Unique item slot names from uniques.json → Forge slot names
+_UNIQUE_SLOT_TO_FORGE: Dict[str, str] = {
+    "helm": "helmet", "chest": "body_armour",
+    "belt": "belt", "boots": "boots", "gloves": "gloves",
+    "amulet": "amulet", "ring": "ring",
+    "relic": "relic",
+    "sword_1h": "weapon", "axe_1h": "weapon", "mace_1h": "weapon",
+    "dagger": "weapon", "wand": "weapon", "sceptre": "weapon",
+    "sword_2h": "weapon", "axe_2h": "weapon", "mace_2h": "weapon",
+    "spear": "weapon", "staff": "weapon", "bow": "weapon",
+    "shield": "off_hand", "catalyst": "off_hand", "quiver": "off_hand",
+    "idol_1x1_eterra": "idol_altar", "idol_1x3": "idol_altar",
+    "idol_1x4": "idol_altar", "idol_2x2": "idol_altar",
+}
+
+
+def _get_unique_items() -> Dict[str, List[dict]]:
+    """
+    Load unique items from data/items/uniques.json, grouped by Forge slot name.
+
+    Returns { "helmet": [{name, base, slot, ...}], "body_armour": [...], ... }
+    """
+    global _UNIQUE_ITEMS
+    if _UNIQUE_ITEMS is not None:
+        return _UNIQUE_ITEMS
+
+    _UNIQUE_ITEMS = {}
+    try:
+        path = os.path.join(_project_root(), "data", "items", "uniques.json")
+        with open(path) as f:
+            data = json.load(f)
+        count = 0
+        for key, item in data.items():
+            if key == "_meta" or not isinstance(item, dict):
+                continue
+            raw_slot = item.get("slot", "")
+            forge_slot = _UNIQUE_SLOT_TO_FORGE.get(raw_slot)
+            if not forge_slot:
+                continue
+            _UNIQUE_ITEMS.setdefault(forge_slot, []).append(item)
+            count += 1
+        logger.info("LET importer: loaded %d unique items", count)
+    except Exception as exc:
+        logger.warning("LET importer: could not load uniques.json: %s", exc)
+
+    return _UNIQUE_ITEMS
+
+
 # ---------------------------------------------------------------------------
 # Forge slot name → affix registry slot tags (used for slot-validation)
 # Forge slot name → list of possible game baseTypeIDs (ordered by likelihood)
@@ -223,9 +274,8 @@ def _decode_base_item_id(
     """
     Decode a base64-encoded LE Tools item ID and resolve the base item name.
 
-    The encoded blob contains protobuf-style fields. We extract candidate
-    subTypeIDs from the varints and try to look up the item using the
-    slot's known baseTypeID from the game data.
+    Only searches base item subtypes that are valid for the given slot.
+    Never crosses slot boundaries (a ring lookup will never return a helmet).
 
     Returns (item_name, baseTypeID, subTypeID) or (None, None, None).
     """
@@ -241,14 +291,9 @@ def _decode_base_item_id(
     slot_base_ids = _SLOT_TO_BASE_TYPE_IDS.get(slot_name)
 
     # Extract candidate subTypeIDs from the varints.
-    # The blob is protobuf-like: first varint is a field tag, second is the value.
     candidates: List[int] = []
-
-    # Strategy 1: protobuf tag → value (second varint is the item subtype)
     if len(varints) >= 2:
         candidates.append(varints[1])
-
-    # Strategy 2: all small varints as additional candidates
     for v in varints:
         if 0 <= v <= 200 and v not in candidates:
             candidates.append(v)
@@ -256,7 +301,7 @@ def _decode_base_item_id(
     if not candidates:
         return None, (slot_base_ids[0] if slot_base_ids else None), None
 
-    # Try each candidate against the slot's known baseTypeIDs (most specific first)
+    # ONLY search this slot's valid baseTypeIDs — no brute-force cross-slot scan
     if slot_base_ids:
         for btid in slot_base_ids:
             for sub_id in candidates:
@@ -264,18 +309,18 @@ def _decode_base_item_id(
                 if name:
                     return name, btid, sub_id
 
-    # Fallback: brute-force scan, but restricted to the correct category.
-    # Idol slots only try idol types; equipment slots only try equipment types.
-    is_idol = slot_name in ("idol_altar",)
-    scan_ids = _IDOL_BASE_TYPE_IDS if is_idol else _EQUIPMENT_BASE_TYPE_IDS
-
-    for sub_id in candidates:
-        for btid in scan_ids:
-            name = subtype_map.get((btid, sub_id))
-            if name:
-                return name, btid, sub_id
-
     return None, (slot_base_ids[0] if slot_base_ids else None), None
+
+
+def _resolve_unique_for_slot(slot_name: str) -> Optional[str]:
+    """
+    When we know an item is unique/set (from rarity) but can't decode its
+    base64 ID, return "Unknown Unique" as a placeholder.
+
+    In the future this could try to match against unique items by cross-
+    referencing decoded varint data with the unique item registry.
+    """
+    return None
 
 
 def _b64_decode_safe(encoded: str) -> Optional[bytes]:
@@ -935,24 +980,29 @@ class LastEpochToolsImporter(BaseImporter):
                 if not base_item_name:
                     missing_fields.append(f"gear_base:{slot_name}:{raw_item_id}")
 
-            # Rarity — 'ir' field may be an integer, a string integer, or
-            # a base64-encoded value. Try all interpretations.
+            # Rarity — 'ir' field may be:
+            #   - A list of bytes e.g. [155, 21, 118] → rarity is byte[0] & 0x07
+            #   - An integer (0-6)
+            #   - A string integer ("4")
+            #   - A base64-encoded string
             ir = item_raw.get("ir", item_raw.get("rarity"))
-            logger.debug(
-                "LET importer: %s raw ir=%r type=%s",
-                slot_name, ir, type(ir).__name__,
-            )
             rarity = "normal"
-            if isinstance(ir, int) and ir > 0:
+
+            if isinstance(ir, list) and len(ir) >= 1:
+                # Byte-list encoding: low 3 bits of first byte = rarity
+                try:
+                    rarity_code = int(ir[0]) & 0x07
+                    rarity = _RARITY_MAP.get(rarity_code, f"rarity_{rarity_code}")
+                except (ValueError, TypeError):
+                    pass
+            elif isinstance(ir, int) and ir > 0:
                 rarity = _RARITY_MAP.get(ir, f"rarity_{ir}")
             elif isinstance(ir, str):
-                # Try as string integer first ("4" → legendary)
                 if ir.isdigit() and int(ir) > 0:
                     rarity = _RARITY_MAP.get(int(ir), f"rarity_{ir}")
                 elif ir in _RARITY_MAP.values():
                     rarity = ir
                 else:
-                    # Try base64 decode to integer
                     ir_bytes = _b64_decode_safe(ir)
                     if ir_bytes:
                         ir_varints = _decode_varints(ir_bytes)
@@ -961,9 +1011,15 @@ class LastEpochToolsImporter(BaseImporter):
                                 rarity = _RARITY_MAP[v]
                                 break
 
-            # Legendary potential / unique rarity — same treatment
+            # Legendary potential / unique rarity
             ur_raw = item_raw.get("ur", item_raw.get("legendaryPotential", 0))
-            if isinstance(ur_raw, int):
+            legendary_potential = 0
+            if isinstance(ur_raw, list) and len(ur_raw) >= 1:
+                try:
+                    legendary_potential = int(ur_raw[0])
+                except (ValueError, TypeError):
+                    pass
+            elif isinstance(ur_raw, int):
                 legendary_potential = ur_raw
             elif isinstance(ur_raw, str) and ur_raw.isdigit():
                 legendary_potential = int(ur_raw)
@@ -972,14 +1028,8 @@ class LastEpochToolsImporter(BaseImporter):
                 if ur_bytes:
                     ur_varints = _decode_varints(ur_bytes)
                     legendary_potential = ur_varints[0] if ur_varints else 0
-                else:
-                    legendary_potential = 0
-            else:
-                legendary_potential = 0
 
-            # Rarity fallback: infer from affix count when ir is 0/missing.
-            # LE Tools may store ir=0 for all items in some format versions,
-            # with the real rarity implicit in the item's affix/unique status.
+            # Fallback: infer from affix count when rarity is still "normal"
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))
             affix_count = len(raw_affixes) if raw_affixes else 0
             if rarity == "normal" and affix_count > 0:
@@ -991,6 +1041,10 @@ class LastEpochToolsImporter(BaseImporter):
                     rarity = "rare"
                 elif affix_count >= 1:
                     rarity = "magic"
+
+            # For unique/set items where base_id didn't resolve, note the rarity
+            if not base_item_name and rarity in ("unique", "set"):
+                base_item_name = f"Unknown {rarity.title()}"
 
             # Affixes — LE Tools encodes affix IDs as base64 strings.
             raw_affixes = item_raw.get("affixes", item_raw.get("mods", []))

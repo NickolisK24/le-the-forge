@@ -76,13 +76,13 @@ def _summarize_partial_data(partial_data: dict | None) -> str:
         parts.append(f"Mastery: {partial_data['mastery']}")
     skills = partial_data.get("skills", [])
     if skills:
-        parts.append(f"Skills: {len(skills)}")
-    passives = partial_data.get("passive_tree", partial_data.get("passives", []))
+        parts.append(f"Skills: {len(skills) if isinstance(skills, list) else skills}")
+    passives = partial_data.get("passive_tree", partial_data.get("passives"))
     if passives:
-        parts.append(f"Passives: {len(passives)}")
+        parts.append(f"Passives: {len(passives) if isinstance(passives, (list, dict)) else passives}")
     gear = partial_data.get("gear", [])
     if gear:
-        parts.append(f"Gear slots: {len(gear)}")
+        parts.append(f"Gear slots: {len(gear) if isinstance(gear, list) else gear}")
     return ", ".join(parts) if parts else "No fields parsed"
 
 
