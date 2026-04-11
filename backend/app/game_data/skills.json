@@ -119,12 +119,24 @@
       "mana_cost": 8.0
     },
     "Black Hole": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 160,
+      "level_scaling": 0.14,
+      "attack_speed": 0.8,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "cold_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 35.0
+    },
+    "Bladestorm": {
+      "base_damage": 80,
+      "level_scaling": 0.10,
+      "attack_speed": 3.0,
+      "scaling_stats": [
+        "physical_damage_pct"
+      ],
+      "is_throwing": true
     },
     "Blade Flurry": {
       "base_damage": 100,
@@ -368,6 +380,15 @@
         "physical_damage_pct"
       ]
     },
+    "Familiar Rage": {
+      "base_damage": 0,
+      "level_scaling": 0.0,
+      "attack_speed": 1.0,
+      "scaling_stats": [
+        "spell_damage_pct"
+      ],
+      "is_spell": true
+    },
     "Falconry": {
       "base_damage": 0,
       "level_scaling": 0.0,
@@ -395,26 +416,33 @@
       "is_spell": true
     },
     "Firebrand": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false
+      "base_damage": 75,
+      "level_scaling": 0.10,
+      "attack_speed": 1.5,
+      "scaling_stats": [
+        "fire_damage_pct"
+      ],
+      "is_melee": true
     },
     "Flame Reave": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 100,
+      "level_scaling": 0.12,
+      "attack_speed": 1.4,
+      "scaling_stats": [
+        "fire_damage_pct"
+      ],
+      "is_melee": true,
       "mana_cost": 26.0
     },
     "Flame Rush": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 60,
+      "level_scaling": 0.09,
+      "attack_speed": 0.5,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "fire_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 22.0
     },
     "Flame Ward": {
@@ -484,11 +512,14 @@
       "is_spell": true
     },
     "Frost Wall": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 40,
+      "level_scaling": 0.08,
+      "attack_speed": 0.7,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "cold_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 35.0
     },
     "Fury Leap": {
@@ -531,11 +562,14 @@
       "is_spell": true
     },
     "Glyph of Dominion": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 50,
+      "level_scaling": 0.09,
+      "attack_speed": 0.8,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "lightning_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 30.0
     },
     "Hail of Arrows": {
@@ -618,11 +652,14 @@
       "is_spell": true
     },
     "Ice Barrage": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 85,
+      "level_scaling": 0.11,
+      "attack_speed": 1.8,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "cold_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 50.0
     },
     "Ice Thorns": {
@@ -948,6 +985,16 @@
       "is_spell": false,
       "mana_cost": 3.0
     },
+    "Runebolt": {
+      "base_damage": 90,
+      "level_scaling": 0.11,
+      "attack_speed": 1.6,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "fire_damage_pct"
+      ],
+      "is_spell": true
+    },
     "Rune of Winter": {
       "base_damage": 140,
       "level_scaling": 0.13,
@@ -1007,6 +1054,15 @@
       "scaling_stats": [
         "physical_damage_pct",
         "poison_damage_pct"
+      ],
+      "is_melee": true
+    },
+    "Shadow Rend": {
+      "base_damage": 120,
+      "level_scaling": 0.13,
+      "attack_speed": 0.8,
+      "scaling_stats": [
+        "physical_damage_pct"
       ],
       "is_melee": true
     },
@@ -1165,11 +1221,14 @@
       "is_melee": true
     },
     "Static": {
-      "base_damage": 0,
-      "level_scaling": 0.0,
-      "attack_speed": 1.33,
-      "scaling_stats": [],
-      "is_spell": false,
+      "base_damage": 70,
+      "level_scaling": 0.10,
+      "attack_speed": 1.4,
+      "scaling_stats": [
+        "spell_damage_pct",
+        "lightning_damage_pct"
+      ],
+      "is_spell": true,
       "mana_cost": 15.0
     },
     "Static Orb": {
