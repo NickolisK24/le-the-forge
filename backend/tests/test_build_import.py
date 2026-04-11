@@ -9,6 +9,7 @@ Tests for the build import system:
 """
 
 import json
+import types
 from unittest.mock import patch, MagicMock
 
 import pytest
@@ -536,21 +537,22 @@ class TestDiscordNotifier:
         """Verify the 'Parsed Data' field summarizes what DID import."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = MagicMock()
-        mock_failure.id = "summary-test"
-        mock_failure.source = "lastepochtools"
-        mock_failure.raw_url = "https://example.com"
-        mock_failure.missing_fields = ["gear"]
-        mock_failure.partial_data = {
-            "character_class": "Rogue",
-            "mastery": "Bladedancer",
-            "skills": [{"name": "Umbral Blades"}, {"name": "Shadow Cascade"}],
-            "passive_tree": list(range(90)),
-            "gear": [],
-        }
-        mock_failure.error_message = "Gear not mapped"
-        mock_failure.user_id = None
-        mock_failure.created_at = None
+        mock_failure = types.SimpleNamespace(
+            id="summary-test",
+            source="lastepochtools",
+            raw_url="https://example.com",
+            missing_fields=["gear"],
+            partial_data={
+                "character_class": "Rogue",
+                "mastery": "Bladedancer",
+                "skills": [{"name": "Umbral Blades"}, {"name": "Shadow Cascade"}],
+                "passive_tree": list(range(90)),
+                "gear": [],
+            },
+            error_message="Gear not mapped",
+            user_id=None,
+            created_at=None,
+        )
 
         _post_alert(mock_failure, severity="partial")
 
