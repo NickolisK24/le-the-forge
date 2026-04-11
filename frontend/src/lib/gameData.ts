@@ -83,7 +83,7 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Soul Feast",       mastery: "Warlock", tags: ["Spell","Necrotic","Leech"], icon: "👁️" },
     { name: "Profane Veil",     mastery: "Warlock", tags: ["Spell","Curse","Ward"],    icon: "🌀" },
     { name: "Chaos Bolts",      mastery: "Warlock", tags: ["Spell","Fire","Necrotic","Projectile"], icon: "🔴" },
-    { name: "Ghost Flame",      mastery: "Warlock", tags: ["Spell","Fire","Necrotic","DoT"],     icon: "👻" },
+    { name: "Ghostflame",        mastery: "Warlock", tags: ["Spell","Fire","Necrotic","DoT"],     icon: "👻" },
     { name: "Profane Form",     mastery: "Warlock", tags: ["Transformation","Necrotic","Void"],  icon: "☠️" },
   ],
 
@@ -146,7 +146,7 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Werebear Form",    mastery: "Druid", tags: ["Transformation","Physical","Cold"], icon: "🐻" },
     { name: "Spriggan Form",    mastery: "Druid", tags: ["Transformation","Physical","Poison"], icon: "🌱" },
     { name: "Swipe",            mastery: "Druid", tags: ["Melee","Physical","Cold"],          icon: "🐾" },
-    { name: "Thorn Totem",      mastery: "Druid", tags: ["Totem","Physical","Poison"],        icon: "🌵" },
+    { name: "Summon Thorn Totem", mastery: "Druid", tags: ["Totem","Physical","Poison"],       icon: "🌵" },
     { name: "Summon Spriggan",  mastery: "Druid", tags: ["Companion","Minion","Physical"],    icon: "🌿" },
     { name: "Swarmblade Form",  mastery: "Druid", tags: ["Transformation","Physical","Poison"], icon: "🐛" },
     { name: "Eterra's Blessing",mastery: "Druid", tags: ["Spell","Healing","Companion"],     icon: "🌿" },
@@ -191,7 +191,7 @@ export const CLASS_SKILLS: Record<CharacterClass, SkillDef[]> = {
     { name: "Holy Aura",         mastery: "Paladin", tags: ["Aura","Lightning","Healing"],      icon: "✨" },
     { name: "Judgement",         mastery: "Paladin", tags: ["Spell","Lightning","Fire","AoE"],  icon: "⚖️" },
     { name: "Consecrated Ground",mastery: "Paladin", tags: ["Spell","Fire","Lightning","AoE"],  icon: "🌟" },
-    { name: "Sigils Of Hope",    mastery: "Paladin", tags: ["Spell","Buff","Lightning"],        icon: "✨" },
+    { name: "Symbols of Hope",   mastery: "Paladin", tags: ["Spell","Buff","Lightning"],        icon: "✨" },
     // Void Knight exclusive
     { name: "Anomaly",           mastery: "Void Knight", tags: ["Spell","Void","AoE"],          icon: "🌀" },
     { name: "Devouring Orb",     mastery: "Void Knight", tags: ["Spell","Void","Projectile"],   icon: "⚫" },
