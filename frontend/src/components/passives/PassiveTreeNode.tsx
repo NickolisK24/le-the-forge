@@ -57,6 +57,8 @@ function PassiveTreeNodeInner({
   const isAllocated = state === NodeState.ALLOCATED;
   const isAvailable = state === NodeState.AVAILABLE;
   const isLocked = state === NodeState.LOCKED;
+  const isMasteryLocked = state === NodeState.MASTERY_LOCKED;
+  const isAnyLocked = isLocked || isMasteryLocked;
 
   const stroke = isAllocated
     ? pal.strokeAllocated
@@ -65,8 +67,8 @@ function PassiveTreeNodeInner({
       : pal.strokeIdle;
 
   const strokeWidth = isAllocated ? 2 : highlighted ? 1.5 : 1;
-  const opacity = isLocked ? (highlighted ? 0.6 : 0.35) : 1;
-  const cursor = isLocked ? "not-allowed" : "pointer";
+  const opacity = isMasteryLocked ? 0.2 : isLocked ? (highlighted ? 0.6 : 0.35) : 1;
+  const cursor = isAnyLocked ? "not-allowed" : "pointer";
 
   return (
     <g
@@ -167,6 +169,20 @@ function PassiveTreeNodeInner({
         >
           {allocatedPoints}/{node.max_points}
         </text>
+      )}
+
+      {/* Lock icon for mastery-locked nodes */}
+      {isMasteryLocked && (
+        <g pointerEvents="none" opacity={0.9}>
+          <rect
+            x={-4} y={-2} width={8} height={7} rx={1}
+            fill="#ef4444" opacity={0.7}
+          />
+          <path
+            d="M-2.5,-2 L-2.5,-4 A2.5,2.5 0 0,1 2.5,-4 L2.5,-2"
+            fill="none" stroke="#ef4444" strokeWidth={1.5} opacity={0.7}
+          />
+        </g>
       )}
     </g>
   );

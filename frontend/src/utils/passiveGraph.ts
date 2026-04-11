@@ -20,6 +20,8 @@ export const enum NodeState {
   LOCKED = 0,
   AVAILABLE = 1,
   ALLOCATED = 2,
+  /** Upper-half node in a non-chosen mastery tree — permanently locked */
+  MASTERY_LOCKED = 3,
 }
 
 // ---------------------------------------------------------------------------

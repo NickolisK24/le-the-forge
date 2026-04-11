@@ -115,6 +115,8 @@ export interface PassiveTreeCanvasProps {
   canvasHeight: number;
   showPathHighlights?: boolean;
   readOnly?: boolean;
+  /** Node IDs that are mastery-locked (upper half of non-chosen mastery trees) */
+  masteryLockedIds?: Set<string>;
 }
 
 // ---------------------------------------------------------------------------
@@ -139,6 +141,7 @@ export default function PassiveTreeCanvas({
   canvasWidth,
   canvasHeight,
   readOnly,
+  masteryLockedIds,
 }: PassiveTreeCanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
@@ -162,11 +165,12 @@ export default function PassiveTreeCanvas({
   // Node state resolver
   const getNodeState = useCallback(
     (nodeId: string): NodeState => {
+      if (masteryLockedIds?.has(nodeId)) return NodeState.MASTERY_LOCKED;
       if (allocatedIds.has(nodeId)) return NodeState.ALLOCATED;
       if (availableIds.has(nodeId)) return NodeState.AVAILABLE;
       return NodeState.LOCKED;
     },
-    [allocatedIds, availableIds],
+    [allocatedIds, availableIds, masteryLockedIds],
   );
 
   const handleHover = useCallback(
@@ -339,6 +343,13 @@ export default function PassiveTreeCanvas({
             style={{ borderColor: "#3a4070", background: "#181c30" }}
           />{" "}
           Locked
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full border opacity-20"
+            style={{ borderColor: "#ef4444", background: "#181c30" }}
+          />{" "}
+          Mastery Required
         </span>
         {!readOnly && (
           <span className="text-forge-dim/50 ml-auto">
