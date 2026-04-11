@@ -1780,6 +1780,28 @@ class TestMaxrollURLParsing:
         m = URL_PATTERN.search("https://example.com/planner/abc123")
         assert m is None
 
+    def test_extracts_code_excludes_hash_fragment(self):
+        """Regex capture group excludes the # character entirely."""
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://maxroll.gg/last-epoch/planner/29StdI0o#2")
+        assert m is not None
+        assert m.group(1) == "29StdI0o"
+
+    def test_variant_extraction_from_url(self):
+        """parse() correctly extracts variant index from URL hash fragment."""
+        import re
+        url = "https://maxroll.gg/last-epoch/planner/29StdI0o#2"
+        frag_match = re.search(r"#(\d+)", url)
+        assert frag_match is not None
+        assert int(frag_match.group(1)) == 2
+
+    def test_no_variant_defaults_to_zero(self):
+        """URL without hash fragment means variant 0."""
+        import re
+        url = "https://maxroll.gg/last-epoch/planner/29StdI0o"
+        frag_match = re.search(r"#(\d+)", url)
+        assert frag_match is None
+
     def test_no_match_for_wrong_game(self):
         from app.services.importers.maxroll_importer import URL_PATTERN
         m = URL_PATTERN.search("https://maxroll.gg/diablo-4/planner/abc123")
@@ -2152,6 +2174,34 @@ class TestMaxrollUnwrapBuildData:
         payload = {"className": "Acolyte"}
         assert _unwrap_build_data(payload) is payload
 
+    def test_unwrap_data_list_default_variant(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        b0 = {"class": "Mage", "level": 80}
+        b1 = {"class": "Rogue", "level": 90}
+        payload = {"data": [b0, b1]}
+        assert _unwrap_build_data(payload) is b0
+
+    def test_unwrap_data_list_selects_variant(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        b0 = {"class": "Mage", "level": 80}
+        b1 = {"class": "Rogue", "level": 90}
+        b2 = {"class": "Sentinel", "level": 100}
+        payload = {"data": [b0, b1, b2]}
+        assert _unwrap_build_data(payload, variant=2) is b2
+
+    def test_unwrap_data_list_clamps_out_of_range(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        b0 = {"class": "Mage", "level": 80}
+        payload = {"data": [b0]}
+        assert _unwrap_build_data(payload, variant=5) is b0
+
+    def test_unwrap_builds_subkey_selects_variant(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        b0 = {"class": "Primalist", "level": 70}
+        b1 = {"class": "Acolyte", "level": 85}
+        payload = {"data": {"builds": [b0, b1]}}
+        assert _unwrap_build_data(payload, variant=1) is b1
+
 
 class TestMaxrollPartialImport:
     """Partial imports handle missing data gracefully and populate partial_data."""
@@ -2396,6 +2446,59 @@ class TestMaxrollFullParseFlow:
         assert result.success is True
         assert result.build_data["character_class"] == "Rogue"
         assert result.build_data["mastery"] == "Falconer"
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_parse_with_hash_variant_selects_correct_build(self, mock_get):
+        """URL #2 selects the third build from a multi-variant planner."""
+        api_data = {
+            "data": [
+                {"class": "Mage", "mastery": "Sorcerer", "level": 80,
+                 "passives": {}, "skills": [], "equipment": []},
+                {"class": "Rogue", "mastery": "Bladedancer", "level": 85,
+                 "passives": {}, "skills": [], "equipment": []},
+                {"class": "Sentinel", "mastery": "Paladin", "level": 90,
+                 "passives": {}, "skills": [], "equipment": []},
+            ]
+        }
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.json.return_value = api_data
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse(
+            "https://maxroll.gg/last-epoch/planner/29StdI0o#2"
+        )
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Sentinel"
+        assert result.build_data["mastery"] == "Paladin"
+        assert result.build_data["level"] == 90
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_parse_without_hash_selects_first_build(self, mock_get):
+        """URL without hash fragment selects the first build (variant 0)."""
+        api_data = {
+            "data": [
+                {"class": "Acolyte", "mastery": "Lich", "level": 75,
+                 "passives": {}, "skills": [], "equipment": []},
+                {"class": "Primalist", "mastery": "Druid", "level": 95,
+                 "passives": {}, "skills": [], "equipment": []},
+            ]
+        }
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.json.return_value = api_data
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse(
+            "https://maxroll.gg/last-epoch/planner/29StdI0o"
+        )
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Acolyte"
+        assert result.build_data["mastery"] == "Lich"
 
     @patch("app.services.importers.maxroll_importer._requests.get")
     def test_all_fetch_strategies_fail_returns_error(self, mock_get):
