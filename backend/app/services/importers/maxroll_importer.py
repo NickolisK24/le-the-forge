@@ -111,27 +111,46 @@ def _extract_next_data(html: str) -> Optional[dict]:
         return None
 
 
-def _unwrap_build_data(payload: dict) -> Optional[dict]:
+def _is_build_dict(d: dict) -> bool:
+    """Return True if *d* looks like a single-build payload."""
+    return bool(d.get("class") or d.get("className") or d.get("characterClass"))
+
+
+def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
     """
     Unwrap the build data from various Maxroll response wrappers.
 
     Maxroll's API has used different envelope formats over time:
       {"data": {...build fields...}}
+      {"data": [{...build 0...}, {...build 1...}, ...]}
+      {"data": {"builds": [{...}, ...]}}
       {"build": {...build fields...}}
       {"plannerData": {...build fields...}}
       {...build fields directly...}
+
+    *variant* is the 0-based index from the URL hash fragment (e.g. #2 → 2).
     """
     # Direct build data (has class or className)
-    if payload.get("class") or payload.get("className") or payload.get("characterClass"):
+    if _is_build_dict(payload):
         return payload
 
     # Nested under a key
     for key in ("data", "build", "plannerData"):
         inner = payload.get(key)
-        if isinstance(inner, dict) and (
-            inner.get("class") or inner.get("className") or inner.get("characterClass")
-        ):
-            return inner
+        if isinstance(inner, dict):
+            # {"data": {"builds": [...]}}
+            builds_list = inner.get("builds")
+            if isinstance(builds_list, list) and builds_list:
+                idx = min(variant, len(builds_list) - 1)
+                if isinstance(builds_list[idx], dict):
+                    return builds_list[idx]
+            if _is_build_dict(inner):
+                return inner
+        # {"data": [{...build...}, ...]}
+        if isinstance(inner, list) and inner:
+            idx = min(variant, len(inner) - 1)
+            if isinstance(inner[idx], dict) and _is_build_dict(inner[idx]):
+                return inner[idx]
 
     return None
 
@@ -154,10 +173,16 @@ class MaxrollImporter(BaseImporter):
             )
 
         code = match.group(1)
-        # Strip hash fragment if present (e.g. #2)
-        code = code.split("#")[0]
 
-        build_data = self._fetch_build_data(code)
+        # Extract variant index from the URL hash fragment (e.g. #2 → variant 2).
+        # The regex already excludes '#' so it won't appear in *code*, but we
+        # still need to pull the fragment from the original URL.
+        variant = 0
+        frag_match = re.search(r"#(\d+)", url)
+        if frag_match:
+            variant = int(frag_match.group(1))
+
+        build_data = self._fetch_build_data(code, variant)
         if build_data is None:
             return ImportResult(
                 success=False,
@@ -170,7 +195,7 @@ class MaxrollImporter(BaseImporter):
 
         return self._map(build_data, code)
 
-    def _fetch_build_data(self, code: str) -> Optional[dict]:
+    def _fetch_build_data(self, code: str, variant: int = 0) -> Optional[dict]:
         """Try multiple strategies to get the build data."""
         headers = {
             "User-Agent": (
@@ -180,6 +205,8 @@ class MaxrollImporter(BaseImporter):
             ),
             "Accept": "application/json, text/html, */*",
             "Accept-Language": "en-US,en;q=0.9",
+            "Referer": "https://maxroll.gg/last-epoch/planner/",
+            "Origin": "https://maxroll.gg",
         }
 
         # Strategy 1: Try API endpoints
@@ -190,7 +217,7 @@ class MaxrollImporter(BaseImporter):
                 if resp.status_code == 200:
                     data = resp.json()
                     if isinstance(data, dict):
-                        unwrapped = _unwrap_build_data(data)
+                        unwrapped = _unwrap_build_data(data, variant)
                         if unwrapped:
                             logger.info("Maxroll: got build data from API %s", api_url)
                             return unwrapped
@@ -205,10 +232,18 @@ class MaxrollImporter(BaseImporter):
                 timeout=15,
             )
             if resp.status_code == 200:
-                build_data = _extract_next_data(resp.text)
-                if build_data:
-                    logger.info("Maxroll: extracted build from __NEXT_DATA__")
-                    return build_data
+                raw = _extract_next_data(resp.text)
+                if raw:
+                    # __NEXT_DATA__ may also wrap multi-variant builds
+                    if isinstance(raw, dict):
+                        unwrapped = _unwrap_build_data(raw, variant)
+                        if unwrapped:
+                            logger.info("Maxroll: extracted build from __NEXT_DATA__")
+                            return unwrapped
+                    # _extract_next_data already returned a valid build dict
+                    if _is_build_dict(raw):
+                        logger.info("Maxroll: extracted build from __NEXT_DATA__")
+                        return raw
         except Exception as exc:
             logger.warning("Maxroll: HTML fetch failed: %s", exc)
 
