@@ -89,7 +89,7 @@
   },
   {
     "id": 140023,
-    "text": "All modifiers from implicits apply globally. For example, the “Increased Physical Damage” from a weapon’s implicit has the same effect as “Increased Physical Damage” from an <link=\"affixes\">affix</link> on a ring or from a passive node."
+    "text": "All modifiers from implicits apply globally. For example, the ΓÇ£Increased Physical DamageΓÇ¥ from a weaponΓÇÖs implicit has the same effect as ΓÇ£Increased Physical DamageΓÇ¥ from an <link=\"affixes\">affix</link> on a ring or from a passive node."
   },
   {
     "id": 140024,
@@ -125,7 +125,7 @@
   },
   {
     "id": 140032,
-    "text": "All stats granted by affixes are global. This means the “Increased Physical Damage” affix on a ring will have the same effect as “Increased Physical Damage” on a weapon’s <link=\"implicit\">implicit</link> or a passive node."
+    "text": "All stats granted by affixes are global. This means the ΓÇ£Increased Physical DamageΓÇ¥ affix on a ring will have the same effect as ΓÇ£Increased Physical DamageΓÇ¥ on a weaponΓÇÖs <link=\"implicit\">implicit</link> or a passive node."
   },
   {
     "id": 140033,
@@ -369,7 +369,7 @@
   },
   {
     "id": 140093,
-    "text": "The amount of Legendary Potential that a unique item will generally drop with is relative to the item’s base power. High powered or very well scaling unique items are difficult to find with even one legendary potential, and low powered or leveling items are much more likely to have even more than one legendary potential. This is done so that most unique items have more similar overall power potential."
+    "text": "The amount of Legendary Potential that a unique item will generally drop with is relative to the itemΓÇÖs base power. High powered or very well scaling unique items are difficult to find with even one legendary potential, and low powered or leveling items are much more likely to have even more than one legendary potential. This is done so that most unique items have more similar overall power potential."
   },
   {
     "id": 140094,
@@ -637,7 +637,7 @@
   },
   {
     "id": 140160,
-    "text": "<#E5E5E5>Glyph of Envy:</color> Changes the item’s subtype to a different one with the same class requirement when adding or upgrading an affix."
+    "text": "<#E5E5E5>Glyph of Envy:</color> Changes the itemΓÇÖs subtype to a different one with the same class requirement when adding or upgrading an affix."
   },
   {
     "id": 140161,
@@ -785,7 +785,7 @@
   },
   {
     "id": 140197,
-    "text": "All skills have a base amount of damage that they would deal without any stats, which is called base damage. Base damage can only be modified by a skill’s tree."
+    "text": "All skills have a base amount of damage that they would deal without any stats, which is called base damage. Base damage can only be modified by a skillΓÇÖs tree."
   },
   {
     "id": 140198,
@@ -797,7 +797,7 @@
   },
   {
     "id": 140200,
-    "text": "When calculating damage dealt, stats like “<link=\"+5\">+5</link> melee fire damage” are multiplied by the skill’s <link=\"added damage effectiveness\">added damage effectiveness</link>, then added to the base damage before stats like “30% <link=\"increased added more\">increased</link> damage” and “10% <link=\"more\">more</link> damage” are applied."
+    "text": "When calculating damage dealt, stats like ΓÇ£<link=\"+5\">+5</link> melee fire damageΓÇ¥ are multiplied by the skillΓÇÖs <link=\"added damage effectiveness\">added damage effectiveness</link>, then added to the base damage before stats like ΓÇ£30% <link=\"increased added more\">increased</link> damageΓÇ¥ and ΓÇ£10% <link=\"more\">more</link> damageΓÇ¥ are applied."
   },
   {
     "id": 140201,
@@ -817,7 +817,7 @@
   },
   {
     "id": 140205,
-    "text": "Base damage conversion converts a skill’s <link=\"base damage\">base damage</link> from one type to another, which does not affect damage from stats such as “+5 Melee Fire Damage”, but will change the damage type of added damage stats without a damage type tag such as \"+5 Melee Damage\"."
+    "text": "Base damage conversion converts a skillΓÇÖs <link=\"base damage\">base damage</link> from one type to another, which does not affect damage from stats such as ΓÇ£+5 Melee Fire DamageΓÇ¥, but will change the damage type of added damage stats without a damage type tag such as \"+5 Melee Damage\"."
   },
   {
     "id": 140207,
@@ -837,11 +837,11 @@
   },
   {
     "id": 140211,
-    "text": "All skills have an added damage effectiveness, which is a multiplier that is applied to all damage from stats like “+5 melee fire damage”.<br><br>Skills with large mana costs or cooldowns typically have greater than 100% damage effectiveness, while some skills that hit rapidly have less than 100%."
+    "text": "All skills have an added damage effectiveness, which is a multiplier that is applied to all damage from stats like ΓÇ£+5 melee fire damageΓÇ¥.<br><br>Skills with large mana costs or cooldowns typically have greater than 100% damage effectiveness, while some skills that hit rapidly have less than 100%."
   },
   {
     "id": 140212,
-    "text": "For example, Elemental Nova has a damage effectiveness of 100%, while Meteor has a damage effectiveness of 900%.<br><br>If you had “+10 spell fire damage” from your passives, 10 fire damage would be added to Elemental Nova, while 90 fire damage would be added to Meteor. You can view the damage effectiveness of skills by holding ALT while hovering on them."
+    "text": "For example, Elemental Nova has a damage effectiveness of 100%, while Meteor has a damage effectiveness of 900%.<br><br>If you had ΓÇ£+10 spell fire damageΓÇ¥ from your passives, 10 fire damage would be added to Elemental Nova, while 90 fire damage would be added to Meteor. You can view the damage effectiveness of skills by holding ALT while hovering on them."
   },
   {
     "id": 140213,
@@ -1061,7 +1061,7 @@
   },
   {
     "id": 140267,
-    "text": "Where “a” is the zone’s area level and “x” is Dodge Rating."
+    "text": "Where ΓÇ£aΓÇ¥ is the zoneΓÇÖs area level and ΓÇ£xΓÇ¥ is Dodge Rating."
   },
   {
     "id": 140268,
@@ -1101,7 +1101,7 @@
   },
   {
     "id": 140277,
-    "text": "Where “a” is the zone’s area level and “x” is Block Effectiveness."
+    "text": "Where ΓÇ£aΓÇ¥ is the zoneΓÇÖs area level and ΓÇ£xΓÇ¥ is Block Effectiveness."
   },
   {
     "id": 140278,
@@ -1177,7 +1177,7 @@
   },
   {
     "id": 140296,
-    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to critically strike, or “crit”, dealing much more damage than normal. <link=\"hit vs damage over time\">Damage over time</link> effects cannot crit.<br>"
+    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to critically strike, or ΓÇ£critΓÇ¥, dealing much more damage than normal. <link=\"hit vs damage over time\">Damage over time</link> effects cannot crit.<br>"
   },
   {
     "id": 140297,
@@ -1281,7 +1281,7 @@
   },
   {
     "id": 140322,
-    "text": "Each time you deal damage (whether from a <link=\"hit\">hit</link> or <link=\"hit vs damage over time\">damage over time</link>), any applicable leech stats are calculated, then the amount of damage is multiplied by this value to get the amount of health you will gain.<br><br>For example, if you deal 100 physical damage with a melee attack and you have “5% of melee damage leeched as health” and “3% of physical damage leeched as health”, you will leech <#E5E5E5>100 x (0.05 + 0.03) = 8 health.</color>"
+    "text": "Each time you deal damage (whether from a <link=\"hit\">hit</link> or <link=\"hit vs damage over time\">damage over time</link>), any applicable leech stats are calculated, then the amount of damage is multiplied by this value to get the amount of health you will gain.<br><br>For example, if you deal 100 physical damage with a melee attack and you have ΓÇ£5% of melee damage leeched as healthΓÇ¥ and ΓÇ£3% of physical damage leeched as healthΓÇ¥, you will leech <#E5E5E5>100 x (0.05 + 0.03) = 8 health.</color>"
   },
   {
     "id": 140323,
@@ -1309,7 +1309,7 @@
   },
   {
     "id": 140329,
-    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to stun if they deal enough damage. Hits that deal more damage are more likely to stun, but enemies that have higher maximum health are harder to stun.<br><br>The Increased Stun Chance stat also makes hits more likely to stun, while the target’s Stun Avoidance stat makes it harder to stun. If the target is <link=\"shock\">shocked</link>, it has an increased chance to be stunned.<br>"
+    "text": "All <link=\"hit vs damage over time\">hits</link> have a chance to stun if they deal enough damage. Hits that deal more damage are more likely to stun, but enemies that have higher maximum health are harder to stun.<br><br>The Increased Stun Chance stat also makes hits more likely to stun, while the targetΓÇÖs Stun Avoidance stat makes it harder to stun. If the target is <link=\"shock\">shocked</link>, it has an increased chance to be stunned.<br>"
   },
   {
     "id": 140330,
@@ -1377,7 +1377,7 @@
   },
   {
     "id": 140346,
-    "text": "Minions automatically attack enemies and will run towards the player if they’ve strayed too far behind.<br><br>You can also manually tell your minions to target the enemy under your cursor using Minion Attack Command (bound to A by default). If there’s no enemy at the location you target, your minions will move there before picking a new target to attack. You can also use this command to have your minions break things like crates.\n\nMinions have two modes, Protect and Assassinate, which alter the distance they attack enemies or run back to the player. In Assassinate mode minions prioritize attacking targets close to them, especially bosses and rare enemies, and don't return to the player unless they're very far away. In Protect mode minions stay closer to the player and prioritize targets close to the player instead."
+    "text": "Minions automatically attack enemies and will run towards the player if theyΓÇÖve strayed too far behind.<br><br>You can also manually tell your minions to target the enemy under your cursor using Minion Attack Command (bound to A by default). If thereΓÇÖs no enemy at the location you target, your minions will move there before picking a new target to attack. You can also use this command to have your minions break things like crates.\n\nMinions have two modes, Protect and Assassinate, which alter the distance they attack enemies or run back to the player. In Assassinate mode minions prioritize attacking targets close to them, especially bosses and rare enemies, and don't return to the player unless they're very far away. In Protect mode minions stay closer to the player and prioritize targets close to the player instead."
   },
   {
     "id": 140347,
@@ -1417,7 +1417,7 @@
   },
   {
     "id": 140356,
-    "text": "When a companion’s health is reduced to zero, it enters a <#E5E5E5>Downed</color> state rather than dying. Being close to a downed companion will revive it, but if you wait too long the companion will die and must be summoned again."
+    "text": "When a companionΓÇÖs health is reduced to zero, it enters a <#E5E5E5>Downed</color> state rather than dying. Being close to a downed companion will revive it, but if you wait too long the companion will die and must be summoned again."
   },
   {
     "id": 140357,
@@ -2061,7 +2061,7 @@
   },
   {
     "id": 140520,
-    "text": "Keys for each Dungeon start dropping at a higher level than the Tier 1 level of the Dungeon, so you’re likely to come back to them later for their rewards, or use them on subsequent characters. Right clicking a Dungeon Key will show its location on the world map."
+    "text": "Keys for each Dungeon start dropping at a higher level than the Tier 1 level of the Dungeon, so youΓÇÖre likely to come back to them later for their rewards, or use them on subsequent characters. Right clicking a Dungeon Key will show its location on the world map."
   },
   {
     "id": 140521,
@@ -2529,39 +2529,39 @@
   },
   {
     "id": 110389048872230912,
-    "text": "There are restrictions to equipping items depending which Factions’ services were used to obtain them. For example, many items found while aligned with Circle of Fortune will require the player to be aligned with Circle of Fortune to equip them. Similarly, when an item is traded within Merchant’s Guild, no player aligned with Circle of Fortune will be able to equip it.\n"
+    "text": "There are restrictions to equipping items depending which FactionsΓÇÖ services were used to obtain them. For example, many items found while aligned with Circle of Fortune will require the player to be aligned with Circle of Fortune to equip them. Similarly, when an item is traded within MerchantΓÇÖs Guild, no player aligned with Circle of Fortune will be able to equip it.\n"
   },
   {
     "id": 110389060121354240,
-    "text": "While aligned with either Faction and slaying enemies or completing quests you gain a resource called <link=\"terminology\">Favor</link>. You then expend Favor to use that Faction’s services and gain <link=\"terminology\">Reputation</link>, which is your experience with a Faction. As your Reputation grows, you will gain <link=\"terminology\">Ranks</link> within the Faction which unlocks better benefits and rewards within the Faction. Reputation is also gained from experience. The total Reputation gain is equal between the Factions if all Favor is spent, and roughly half of the Reputation comes from spending Favor while the other half comes from just gaining experience."
+    "text": "While aligned with either Faction and slaying enemies or completing quests you gain a resource called <link=\"terminology\">Favor</link>. You then expend Favor to use that FactionΓÇÖs services and gain <link=\"terminology\">Reputation</link>, which is your experience with a Faction. As your Reputation grows, you will gain <link=\"terminology\">Ranks</link> within the Faction which unlocks better benefits and rewards within the Faction. Reputation is also gained from experience. The total Reputation gain is equal between the Factions if all Favor is spent, and roughly half of the Reputation comes from spending Favor while the other half comes from just gaining experience."
   },
   {
     "id": 110389360299302912,
-    "text": "Merchant’s Guild is an <link=\"item factions\">Item Faction</link> that enables trading with other players who are also aligned with Merchant’s Guild within the same <link=\"season\">Season</link> and <link=\"game mode\">Game Mode</link> (Normal or Hardcore). You’ll be able to align with them for the first time during Chapter 9 of the campaign. All trades require exchanging gold for items, no item-to-item trades are possible."
+    "text": "MerchantΓÇÖs Guild is an <link=\"item factions\">Item Faction</link> that enables trading with other players who are also aligned with MerchantΓÇÖs Guild within the same <link=\"season\">Season</link> and <link=\"game mode\">Game Mode</link> (Normal or Hardcore). YouΓÇÖll be able to align with them for the first time during Chapter 9 of the campaign. All trades require exchanging gold for items, no item-to-item trades are possible."
   },
   {
     "id": 110389397712494592,
-    "text": "When aligned with the Merchant’s Guild for the first time, you’ll start at rank 1 which enables selling all equippable items that aren’t untradable, and the purchases of Normal, Magic and Rare items. "
+    "text": "When aligned with the MerchantΓÇÖs Guild for the first time, youΓÇÖll start at rank 1 which enables selling all equippable items that arenΓÇÖt untradable, and the purchases of Normal, Magic and Rare items. "
   },
   {
     "id": 110389410593202176,
-    "text": "All trades done at the Bazaar require Favor, a currency gained while slaying enemies and completing quests while aligned with Merchant’s Guild. Selling items requires much less Favor than purchasing them.\n"
+    "text": "All trades done at the Bazaar require Favor, a currency gained while slaying enemies and completing quests while aligned with MerchantΓÇÖs Guild. Selling items requires much less Favor than purchasing them.\n"
   },
   {
     "id": 110389420013608960,
-    "text": "Ranks can be increased by gaining Reputation with the Faction, which is done by gaining experience and spending Favor by buying and selling items, or spending it at the Merchant Guild’s representative. Higher ranks unlock more options to purchase valuable items, and maximum rank allows for any equippable item to be purchased. Open the Factions Window for more details (bound to Y by default)."
+    "text": "Ranks can be increased by gaining Reputation with the Faction, which is done by gaining experience and spending Favor by buying and selling items, or spending it at the Merchant GuildΓÇÖs representative. Higher ranks unlock more options to purchase valuable items, and maximum rank allows for any equippable item to be purchased. Open the Factions Window for more details (bound to Y by default)."
   },
   {
     "id": 110389429249466368,
-    "text": "The Bazaar is a town area near Maj’elka in Divine Era, visited in Chapter 9 during the campaign. Filled with stalls for different item types, players are able to search and filter precisely what they want to buy from other players. Trading through Bazaar is asynchronous, meaning you will not need to interact with other players to complete trades. Instead, buying an item will send it to your inventory if you have space for it."
+    "text": "The Bazaar is a town area near MajΓÇÖelka in Divine Era, visited in Chapter 9 during the campaign. Filled with stalls for different item types, players are able to search and filter precisely what they want to buy from other players. Trading through Bazaar is asynchronous, meaning you will not need to interact with other players to complete trades. Instead, buying an item will send it to your inventory if you have space for it."
   },
   {
     "id": 110389584208027648,
-    "text": "Circle of Fortune is an Item Faction that grants powerful benefits towards finding more and better items. You’ll be able to align with the Circle of Fortune for the first time during Chapter 9. Unlike the <link=\"merchant's guild\">Merchant's Guild</link>, items found while aligned with Circle of Fortune will always be untradable (they can still be <link=\"item gifting\">gifted</link>) and if found from Prophecies or through Rank rewards, will also be bound to Circle of Fortune, making it impossible to equip them if aligned with the Merchant’s Guild. "
+    "text": "Circle of Fortune is an Item Faction that grants powerful benefits towards finding more and better items. YouΓÇÖll be able to align with the Circle of Fortune for the first time during Chapter 9. Unlike the <link=\"merchant's guild\">Merchant's Guild</link>, items found while aligned with Circle of Fortune will always be untradable (they can still be <link=\"item gifting\">gifted</link>) and if found from Prophecies or through Rank rewards, will also be bound to Circle of Fortune, making it impossible to equip them if aligned with the MerchantΓÇÖs Guild. "
   },
   {
     "id": 110389629468762112,
-    "text": "When aligning with the Circle of Fortune for the first time, you’ll start at rank 1. As you gain Reputation from gaining experience or spending Favor with the Faction by either purchasing Prophecies at the Observatory or spending at the Faction’s representative, you’ll gain higher ranks which yields greater benefits from the Faction. For more details on the benefits from ranks gained while aligned with Circle of Fortune, you can open the Factions panel (bound to Y by default)."
+    "text": "When aligning with the Circle of Fortune for the first time, youΓÇÖll start at rank 1. As you gain Reputation from gaining experience or spending Favor with the Faction by either purchasing Prophecies at the Observatory or spending at the FactionΓÇÖs representative, youΓÇÖll gain higher ranks which yields greater benefits from the Faction. For more details on the benefits from ranks gained while aligned with Circle of Fortune, you can open the Factions panel (bound to Y by default)."
   },
   {
     "id": 110389671969644544,
@@ -2625,11 +2625,11 @@
   },
   {
     "id": 147828444316467200,
-    "text": "After you have aligned with an Item Faction with one character, future characters sharing that stash are able to align with a Faction in the first town during Chapter 1, retaining the ranks you’ve gained with that Faction from previous character(s)."
+    "text": "After you have aligned with an Item Faction with one character, future characters sharing that stash are able to align with a Faction in the first town during Chapter 1, retaining the ranks youΓÇÖve gained with that Faction from previous character(s)."
   },
   {
     "id": 147837538871967744,
-    "text": "Items can only be traded once, and any item traded once will become untradable and bound to Merchant’s Guild, making it impossible to equip as a member of the <link=\"circle of fortune\">Circle of Fortune</link> even if you switch Factions."
+    "text": "Items can only be traded once, and any item traded once will become untradable and bound to MerchantΓÇÖs Guild, making it impossible to equip as a member of the <link=\"circle of fortune\">Circle of Fortune</link> even if you switch Factions."
   },
   {
     "id": 147842630476005376,
@@ -2637,7 +2637,7 @@
   },
   {
     "id": 147851722724638720,
-    "text": "In Last Epoch, characters have an attribute or attributes that represent what they excel at. For example, Rogue’s core attribute is Dexterity, while it’s Intelligence for the Mage. Each of these core attributes has a small benefit per point:"
+    "text": "In Last Epoch, characters have an attribute or attributes that represent what they excel at. For example, RogueΓÇÖs core attribute is Dexterity, while itΓÇÖs Intelligence for the Mage. Each of these core attributes has a small benefit per point:"
   },
   {
     "id": 147851800315068416,
@@ -2661,7 +2661,7 @@
   },
   {
     "id": 147851906552594432,
-    "text": "As seen in the descriptions of the attributes above, they often improve skills with different expertises, and in most cases skills of a certain class by default benefit from the same stat. In some cases, more than one attribute can also scale a skill, like Primalist’s Gathering Storm that benefits from both Strength and Attunement. You can see what attribute scales a skill by hovering to the skill, and more detailed effect by holding ALT. "
+    "text": "As seen in the descriptions of the attributes above, they often improve skills with different expertises, and in most cases skills of a certain class by default benefit from the same stat. In some cases, more than one attribute can also scale a skill, like PrimalistΓÇÖs Gathering Storm that benefits from both Strength and Attunement. You can see what attribute scales a skill by hovering to the skill, and more detailed effect by holding ALT. "
   },
   {
     "id": 147851924634238976,
@@ -2821,7 +2821,7 @@
   },
   {
     "id": 148006963600326656,
-    "text": "Resonances are special items that expand <link=\"item gifting\">Item Gifting</link>, allowing you to gift specific items to players you play with frequently, even if the item didn’t drop while you were playing with them. Resonances are specific to an individual player. For example, a Golden Resonance that resonates with Moxjet200 (can be seen in the tooltip of the Resonance) allows you to gift an item to Moxjet200. "
+    "text": "Resonances are special items that expand <link=\"item gifting\">Item Gifting</link>, allowing you to gift specific items to players you play with frequently, even if the item didnΓÇÖt drop while you were playing with them. Resonances are specific to an individual player. For example, a Golden Resonance that resonates with Moxjet200 (can be seen in the tooltip of the Resonance) allows you to gift an item to Moxjet200. "
   },
   {
     "id": 148006986815799296,
@@ -2837,7 +2837,7 @@
   },
   {
     "id": 148007049122185216,
-    "text": "Resonances are stored when you press the “Transfer Materials” button in your inventory, and can be found in your Gifting window. You can open your gifting window by pressing “Gifting” button in your inventory."
+    "text": "Resonances are stored when you press the ΓÇ£Transfer MaterialsΓÇ¥ button in your inventory, and can be found in your Gifting window. You can open your gifting window by pressing ΓÇ£GiftingΓÇ¥ button in your inventory."
   },
   {
     "id": 148007067191246848,
@@ -2869,7 +2869,7 @@
   },
   {
     "id": 148007237278662656,
-    "text": "Frequently Asked Questions:\n\nCan I gain experience at max level (100)?\n\n- Yes.\n\nCan I gain experience at high level while playing in a low level area? For example, level 99 in a level 3 area.\n\n- Yes. You won’t get much experience, but slaying any enemy that grants experience can generate progress, and the amount doesn’t matter.\n\nCan I generate progress towards a Resonance just by being in a party with someone?\n- No. You need to be in the same area and within a relatively close proximity. The distance is similar to experience gain range.\n\nCan I track the progress towards a specific Resonance somehow?\n\n- No, the progress towards Resonance drops is hidden."
+    "text": "Frequently Asked Questions:\n\nCan I gain experience at max level (100)?\n\n- Yes.\n\nCan I gain experience at high level while playing in a low level area? For example, level 99 in a level 3 area.\n\n- Yes. You wonΓÇÖt get much experience, but slaying any enemy that grants experience can generate progress, and the amount doesnΓÇÖt matter.\n\nCan I generate progress towards a Resonance just by being in a party with someone?\n- No. You need to be in the same area and within a relatively close proximity. The distance is similar to experience gain range.\n\nCan I track the progress towards a specific Resonance somehow?\n\n- No, the progress towards Resonance drops is hidden."
   },
   {
     "id": 148016192507772928,
@@ -2877,7 +2877,7 @@
   },
   {
     "id": 148016229094686720,
-    "text": "When creating a new character, on top of deciding whether a character will be a <link=\"season\">Season</link> or <link=\"legacy\">Legacy</link> character, there’s also other options: Game Mode and Challenges."
+    "text": "When creating a new character, on top of deciding whether a character will be a <link=\"season\">Season</link> or <link=\"legacy\">Legacy</link> character, thereΓÇÖs also other options: Game Mode and Challenges."
   },
   {
     "id": 148016236791234560,
@@ -2885,7 +2885,7 @@
   },
   {
     "id": 148016247570595840,
-    "text": "There’s also additional <link=\"challenges\">Challenges</link> that can be chosen to further customize your experience."
+    "text": "ThereΓÇÖs also additional <link=\"challenges\">Challenges</link> that can be chosen to further customize your experience."
   },
   {
     "id": 148016267795529728,
@@ -3061,11 +3061,11 @@
   },
   {
     "id": 148021962607591424,
-    "text": "Arena is one of the endgame activies in Last Epoch, and is located in Champion’s Gate. If you have an Arena Key or Arena Key of Memory, you can right click it and it’ll open the world map and show the location of Champion’s Gate."
+    "text": "Arena is one of the endgame activies in Last Epoch, and is located in ChampionΓÇÖs Gate. If you have an Arena Key or Arena Key of Memory, you can right click it and itΓÇÖll open the world map and show the location of ChampionΓÇÖs Gate."
   },
   {
     "id": 148022022938460160,
-    "text": "There’s two different modes in Arena: Arena Champions and Endless Arena."
+    "text": "ThereΓÇÖs two different modes in Arena: Arena Champions and Endless Arena."
   },
   {
     "id": 148022036943241216,
@@ -3125,7 +3125,7 @@
   },
   {
     "id": 148023150937800704,
-    "text": "The rules at the top of the the filter take priority over rules below them. For example, if the top rule in the filter would be “show Unique helmets”, and a rule below it that would be “hide all helmets”, you’d see all Unique helmets while rest of them would be hidden. "
+    "text": "The rules at the top of the the filter take priority over rules below them. For example, if the top rule in the filter would be ΓÇ£show Unique helmetsΓÇ¥, and a rule below it that would be ΓÇ£hide all helmetsΓÇ¥, youΓÇÖd see all Unique helmets while rest of them would be hidden. "
   },
   {
     "id": 148023155710918656,
@@ -3437,19 +3437,19 @@
   },
   {
     "id": 148079139116449792,
-    "text": "Weaver’s Will is a special mechanic on certain unique items representing the amount of total Affix Tiers the Unique item will gain at maximum when turned to a <link=\"legendary items\">Legendary item</link>. "
+    "text": "WeaverΓÇÖs Will is a special mechanic on certain unique items representing the amount of total Affix Tiers the Unique item will gain at maximum when turned to a <link=\"legendary items\">Legendary item</link>. "
   },
   {
     "id": 148079141008080896,
-    "text": "Instead of combining items in the <link=\"legendary items\">Eternity Cache</link>, Weaver’s WIll uniques gain additional stats when slaying enemies and gaining experience while having it equipped."
+    "text": "Instead of combining items in the <link=\"legendary items\">Eternity Cache</link>, WeaverΓÇÖs WIll uniques gain additional stats when slaying enemies and gaining experience while having it equipped."
   },
   {
     "id": 148079143818264576,
-    "text": "When Weaver’s Will Unique gains a stat, it can either add a new tier 1 affix or upgrade an existing one, limited to tier 7. A Weaver’s WIll item with 28 Weaver’s WIll would eventually become a Legendary version of that unique with 4 tier 7 Affixes."
+    "text": "When WeaverΓÇÖs Will Unique gains a stat, it can either add a new tier 1 affix or upgrade an existing one, limited to tier 7. A WeaverΓÇÖs WIll item with 28 WeaverΓÇÖs WIll would eventually become a Legendary version of that unique with 4 tier 7 Affixes."
   },
   {
     "id": 148079144996864000,
-    "text": "Weaver’s WIll Unique items found in higher level areas and higher <link=\"corruption and the shade\">Corruption</link> will have an increased chance in having a higher Weaver’s Will."
+    "text": "WeaverΓÇÖs WIll Unique items found in higher level areas and higher <link=\"corruption and the shade\">Corruption</link> will have an increased chance in having a higher WeaverΓÇÖs Will."
   },
   {
     "id": 148079210335731712,
@@ -3549,11 +3549,11 @@
   },
   {
     "id": 148092412897427456,
-    "text": "Reputation: Your experience with an Item Faction. After gaining enough Reputation you’ll Rank up with your aligned Faction."
+    "text": "Reputation: Your experience with an Item Faction. After gaining enough Reputation youΓÇÖll Rank up with your aligned Faction."
   },
   {
     "id": 148092417544716288,
-    "text": "Rank: Your level with an Item Faction. Higher your Rank with an Item Faction, the better benefits and perks within the Faction. For example, when aligned with Merchant’s Guild higher rank allows you to purchase higher tier items."
+    "text": "Rank: Your level with an Item Faction. Higher your Rank with an Item Faction, the better benefits and perks within the Faction. For example, when aligned with MerchantΓÇÖs Guild higher rank allows you to purchase higher tier items."
   },
   {
     "id": 148099704296472576,
@@ -3577,15 +3577,15 @@
   },
   {
     "id": 148099854117011456,
-    "text": "Temporal Sanctum is a Dungeon where you must travel between two different Eras to get through it, and at the end of it you’ll have the option to use The Eternity Cache to create a Legendary item by combining an Exalted and Unique item with Legenary Potential."
+    "text": "Temporal Sanctum is a Dungeon where you must travel between two different Eras to get through it, and at the end of it youΓÇÖll have the option to use The Eternity Cache to create a Legendary item by combining an Exalted and Unique item with Legenary Potential."
   },
   {
     "id": 148102765215645696,
-    "text": "Similarly, there are effects like “Increased Amulet Drop Rate” which are typically granted by Blessings that you can obtain from the Monolith of Fate. This would cause more amulets (including uniques) to drop for you without affecting how many items of other types drop. "
+    "text": "Similarly, there are effects like ΓÇ£Increased Amulet Drop RateΓÇ¥ which are typically granted by Blessings that you can obtain from the Monolith of Fate. This would cause more amulets (including uniques) to drop for you without affecting how many items of other types drop. "
   },
   {
     "id": 148102787218964480,
-    "text": "Modifiers that increase the quality or quantity of found items like “Increased Item Rarity” or “Increased Amulet Drop Rate” do not compete with modifiers that grant character power."
+    "text": "Modifiers that increase the quality or quantity of found items like ΓÇ£Increased Item RarityΓÇ¥ or ΓÇ£Increased Amulet Drop RateΓÇ¥ do not compete with modifiers that grant character power."
   },
   {
     "id": 148112585322823680,
@@ -3693,7 +3693,7 @@
   },
   {
     "id": 181576991742263296,
-    "text": "Should you succeed in hunting them down, you’ll eventually be able to challenge their leader."
+    "text": "Should you succeed in hunting them down, youΓÇÖll eventually be able to challenge their leader."
   },
   {
     "id": 181576994246262784,
@@ -3725,7 +3725,7 @@
   },
   {
     "id": 181580356643618816,
-    "text": "Different Endgame Factions may provide different rewards and challenges from others, and their progression isn’t always as simple as just slaying enemies or gaining and spending a specific currency tied to them."
+    "text": "Different Endgame Factions may provide different rewards and challenges from others, and their progression isnΓÇÖt always as simple as just slaying enemies or gaining and spending a specific currency tied to them."
   },
   {
     "id": 181580358933708800,
@@ -4209,7 +4209,7 @@
   },
   {
     "id": 181684440096735232,
-    "text": "Exposed Flesh is a curse which reduces cold resistance by 15%, reduces armor by 15 per point of inflicter’s dexterity, and increases chance to be frozen by 30%."
+    "text": "Exposed Flesh is a curse which reduces cold resistance by 15%, reduces armor by 15 per point of inflicterΓÇÖs dexterity, and increases chance to be frozen by 30%."
   },
   {
     "id": 181685349350539264,
@@ -4297,7 +4297,7 @@
   },
   {
     "id": 197103687773880320,
-    "text": "Experience is gained by completing quests, slaying enemies and from other rewards, such as <link=\"monolith introduction\">Monolith</link> Echoes. As you gain experience, your character and skills will <link=\"levels\">level up</link>, allowing you to customize and make your character stronger. The maximum character level in Last Epoch is 100. You can still gain experience at level 100, it just won’t increase character level anymore."
+    "text": "Experience is gained by completing quests, slaying enemies and from other rewards, such as <link=\"monolith introduction\">Monolith</link> Echoes. As you gain experience, your character and skills will <link=\"levels\">level up</link>, allowing you to customize and make your character stronger. The maximum character level in Last Epoch is 100. You can still gain experience at level 100, it just wonΓÇÖt increase character level anymore."
   },
   {
     "id": 197103696498032640,
@@ -4345,7 +4345,7 @@
   },
   {
     "id": 197103771618017280,
-    "text": "Additional bonuses which increase the experience gained in <link=\"arena\">Arena</link> and Monolith Echoes won’t apply to characters under level 50, but they will still gain the unmodified amount of experience from slain enemies. "
+    "text": "Additional bonuses which increase the experience gained in <link=\"arena\">Arena</link> and Monolith Echoes wonΓÇÖt apply to characters under level 50, but they will still gain the unmodified amount of experience from slain enemies. "
   },
   {
     "id": 197103779717218304,
@@ -4445,7 +4445,7 @@
   },
   {
     "id": 197108902447185920,
-    "text": "The increase in chance to be frozen is multiplicative with a hit’s chance to freeze.  For example if a hit had 10% chance to freeze by default and the target had 4 stacks of Frostbite the hit would have a 14% chance to freeze instead."
+    "text": "The increase in chance to be frozen is multiplicative with a hitΓÇÖs chance to freeze.  For example if a hit had 10% chance to freeze by default and the target had 4 stacks of Frostbite the hit would have a 14% chance to freeze instead."
   },
   {
     "id": 197109172111572992,
@@ -4913,7 +4913,7 @@
   },
   {
     "id": 288358003557433344,
-    "text": "Dungeon Keys can be used to purchase Dungeon Key Charms in Divine Era’s Maj’elka."
+    "text": "Dungeon Keys can be used to purchase Dungeon Key Charms in Divine EraΓÇÖs MajΓÇÖelka."
   },
   {
     "id": 288358008263442432,
@@ -5017,7 +5017,7 @@
   },
   {
     "id": 346389811015622656,
-    "text": "<#E5E5E5>Rune of Evolution:</color> Evolves an exalted item into a <link=\"primordial items\">Primordial</link> exalted item, upgrading a random tier 7 affix on the item into a tier 8 affix, massively increasing the affix’s power and moving it to its own second sealed affix slot."
+    "text": "<#E5E5E5>Rune of Evolution:</color> Evolves an exalted item into a <link=\"primordial items\">Primordial</link> exalted item, upgrading a random tier 7 affix on the item into a tier 8 affix, massively increasing the affixΓÇÖs power and moving it to its own second sealed affix slot."
   },
   {
     "id": 346392285218775040,
@@ -5081,7 +5081,7 @@
   },
   {
     "id": 346398237179420672,
-    "text": "While aligned with Merchant’s Guild, two different tokens can be found that bypass some trade restrictions:\n - Merchant’s Token allows the purchase of an item at the Bazaar while ignoring the Favor cost.\n - Black Market Token allows the purchase of an item at the Bazaar while ignoring the Favor cost and Rank requirement, and any item purchased with a Black Market Token will only require Rank 1 in Merchant’s Guild to equip."
+    "text": "While aligned with MerchantΓÇÖs Guild, two different tokens can be found that bypass some trade restrictions:\n - MerchantΓÇÖs Token allows the purchase of an item at the Bazaar while ignoring the Favor cost.\n - Black Market Token allows the purchase of an item at the Bazaar while ignoring the Favor cost and Rank requirement, and any item purchased with a Black Market Token will only require Rank 1 in MerchantΓÇÖs Guild to equip."
   },
   {
     "id": 346398694236921856,
@@ -5169,7 +5169,7 @@
   },
   {
     "id": 346452451108757504,
-    "text": "<b>Macros</b>\n Macros are case-insensitive short hands that match supported properties of items with an optional quantifier e.g.\n- LP0 (is unique with no legendary potential)\n- T6+ (has tier 6 or higher affix)\n- prefixes2 (has 2 prefixes)\n Most macros match a number on the item and are of the form: Macro[number][+/-]\n If a number is provided, the item must exactly match that number.\n If + or - is provided, the item must be greater/less than or equal to that number. For example:\n - WW matches any Weaver’s Will item and the macro matches the amount of Weaver’s Will on the item\n - WW0 matches any Weaver’s Will item with no Weaver’s Will left\n - WW15+ matches any Weaver’s Will item with at least 15 Weaver’s Will"
+    "text": "<b>Macros</b>\n Macros are case-insensitive short hands that match supported properties of items with an optional quantifier e.g.\n- LP0 (is unique with no legendary potential)\n- T6+ (has tier 6 or higher affix)\n- prefixes2 (has 2 prefixes)\n Most macros match a number on the item and are of the form: Macro[number][+/-]\n If a number is provided, the item must exactly match that number.\n If + or - is provided, the item must be greater/less than or equal to that number. For example:\n - WW matches any WeaverΓÇÖs Will item and the macro matches the amount of WeaverΓÇÖs Will on the item\n - WW0 matches any WeaverΓÇÖs Will item with no WeaverΓÇÖs Will left\n - WW15+ matches any WeaverΓÇÖs Will item with at least 15 WeaverΓÇÖs Will"
   },
   {
     "id": 346452457085640704,

@@ -451,7 +451,7 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
             # For colliding raw IDs, resolve the connected node's mastery by scanning.
             connections = []
             for r in node.get("requirements", []):
-                req_raw_id = r["node"]
+                req_raw_id = r["nodeId"]
                 if req_raw_id in colliding_raw_ids:
                     # Find the actual node in this tree to get its mastery
                     req_node = next((n for n in all_nodes if n["id"] == req_raw_id), None)

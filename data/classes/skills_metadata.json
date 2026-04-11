@@ -27,6 +27,13 @@
     "lore": "",
     "class": ""
   },
+  "Arcane Ascendance": {
+    "id": "arcas",
+    "name": "Arcane Ascendance",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Armblade Slash": {
     "id": "abs2",
     "name": "Armblade Slash",
@@ -66,6 +73,20 @@
     "id": "br8s7",
     "name": "Banner Rush",
     "description": "Dash to your Banner. Cannot be used without a target.",
+    "lore": "",
+    "class": ""
+  },
+  "Black Hole": {
+    "id": "bh2",
+    "name": "Black Hole",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Bladestorm": {
+    "id": "bl5st",
+    "name": "Bladestorm",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -153,6 +174,13 @@
     "lore": "",
     "class": ""
   },
+  "Disintegrate": {
+    "id": "dig5",
+    "name": "Disintegrate",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Dive": {
     "id": "sbsw7",
     "name": "Dive",
@@ -185,6 +213,13 @@
     "id": "eq5s",
     "name": "Earthquake",
     "description": "Slam the ground with your weapon damaging enemies in a large area and creating 2 to 4 aftershocks nearby.",
+    "lore": "",
+    "class": ""
+  },
+  "Enchant Weapon": {
+    "id": "sb44eQ",
+    "name": "Enchant Weapon",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -237,6 +272,41 @@
     "lore": "The Dune Falcon is one of the most deadly hunters in all of Eterra. What it lacks in size it makes up in speed, precision, and intelligence. Fierce and independent, the Dune Falcon is known to maim those who attempt to train it. Only those it recognizes as an equal can hope to gain its trust and be accepted as a hunting partner.",
     "class": ""
   },
+  "Familiar Rage": {
+    "id": "fs11",
+    "name": "Familiar Rage",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Firebrand": {
+    "id": "f1b4d",
+    "name": "Firebrand",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Reave": {
+    "id": "fr11mv",
+    "name": "Flame Reave",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Rush": {
+    "id": "fl71ds",
+    "name": "Flame Rush",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Flame Ward": {
+    "id": "fw3d",
+    "name": "Flame Ward",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Flay": {
     "id": "fl44",
     "name": "Flay",
@@ -251,6 +321,13 @@
     "lore": "",
     "class": ""
   },
+  "Focus": {
+    "id": "vm53dx",
+    "name": "Focus",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Forge Strike": {
     "id": "fs3e3",
     "name": "Forge Strike",
@@ -262,6 +339,20 @@
     "id": "fi9",
     "name": "Frigid Tempest",
     "description": "Conjures a spear of frost that pierces enemies.",
+    "lore": "",
+    "class": ""
+  },
+  "Frost Claw": {
+    "id": "frc87w",
+    "name": "Frost Claw",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Frost Wall": {
+    "id": "fr4wl",
+    "name": "Frost Wall",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -283,6 +374,20 @@
     "id": "gh0fl",
     "name": "Ghostflame",
     "description": "Channel to releases a continuous jet of horrid flames in front of you dealing fire and necrotic damage over time.",
+    "lore": "",
+    "class": ""
+  },
+  "Glacier": {
+    "id": "gl14",
+    "name": "Glacier",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Glyph of Dominion": {
+    "id": "gy2dm",
+    "name": "Glyph of Dominion",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -342,6 +447,20 @@
     "lore": "",
     "class": ""
   },
+  "Ice Barrage": {
+    "id": "ib5g3",
+    "name": "Ice Barrage",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Ice Ward": {
+    "id": "is58",
+    "name": "Ice Ward",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Infernal Shade": {
     "id": "is40",
     "name": "Infernal Shade",
@@ -370,6 +489,13 @@
     "lore": "",
     "class": ""
   },
+  "Lightning Blast": {
+    "id": "lb23il",
+    "name": "Lightning Blast",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Lunge": {
     "id": "lu25ng",
     "name": "Lunge",
@@ -384,10 +510,24 @@
     "lore": "",
     "class": ""
   },
+  "Mana Strike": {
+    "id": "ms26",
+    "name": "Mana Strike",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Manifest Armor": {
     "id": "ma6hdr",
     "name": "Manifest Armor",
     "description": "Manifests an animated set of heavy armor, which attacks slowly.\n\nStats granted by your body armor, helmet, gloves and boots also apply to your Manifest Armor.",
+    "lore": "",
+    "class": ""
+  },
+  "Mark For Death": {
+    "id": "md26kh",
+    "name": "Mark For Death",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -496,6 +636,20 @@
     "lore": "",
     "class": ""
   },
+  "Runebolt": {
+    "id": "fb8fe",
+    "name": "Runebolt",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Runic Invocation": {
+    "id": "rn7iv",
+    "name": "Runic Invocation",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Sacrifice": {
     "id": "sf31rc",
     "name": "Sacrifice",
@@ -514,6 +668,20 @@
     "id": "dagg3",
     "name": "Shadow Cascade",
     "description": "Requires dual wielding.\n\nA circular attack that's also used by your shadow clones.",
+    "lore": "",
+    "class": ""
+  },
+  "Shadow Rend": {
+    "id": "sh4re",
+    "name": "Shadow Rend",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Shatter Strike": {
+    "id": "ss3tre",
+    "name": "Shatter Strike",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -580,6 +748,13 @@
     "lore": "",
     "class": ""
   },
+  "Snap Freeze": {
+    "id": "sw31a",
+    "name": "Snap Freeze",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Soul Feast": {
     "id": "fe8at",
     "name": "Soul Feast",
@@ -605,6 +780,20 @@
     "id": "sf5rd",
     "name": "Spriggan Form",
     "description": "Transform into a forest spriggan, increasing your spell casting capabilities, and gaining 4 new abilities.\n\nYour mana is replaced with Rage while in spriggan form. When your Rage reaches 0 you automatically transform back into your human form. Your starting Rage is equal to your maximum mana. Rage slowly decays over time at a constant rate.",
+    "lore": "",
+    "class": ""
+  },
+  "Static": {
+    "id": "st47ic",
+    "name": "Static",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
+  "Static Orb": {
+    "id": "so35a",
+    "name": "Static Orb",
+    "description": "",
     "lore": "",
     "class": ""
   },
@@ -783,6 +972,13 @@
     "lore": "",
     "class": ""
   },
+  "Surge": {
+    "id": "su5g3",
+    "name": "Surge",
+    "description": "",
+    "lore": "",
+    "class": ""
+  },
   "Swarm Strike": {
     "id": "sbsa4",
     "name": "Swarm Strike",
@@ -885,6 +1081,13 @@
     "id": "vr53sl",
     "name": "Volatile Reversal",
     "description": "A combo ability that jumps forwards in time to a target location and performs a melee attack on arrival. Recast within 3 seconds to jump backwards in time to your original location and perform a melee attack on arrival.",
+    "lore": "",
+    "class": ""
+  },
+  "Volcanic Orb": {
+    "id": "vo54",
+    "name": "Volcanic Orb",
+    "description": "",
     "lore": "",
     "class": ""
   },
