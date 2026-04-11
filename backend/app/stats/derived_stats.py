@@ -71,26 +71,21 @@ def compute_health(stats: BuildStats) -> None:
 
 
 def compute_armor_mitigation(stats: BuildStats) -> None:
-    """Compute armor mitigation percentage against a reference hit.
+    """Compute armor mitigation percentage using the Last Epoch formula.
 
-    Uses the canonical armor formula from ``app.domain.armor``:
+    Formula: armor / (armor + 10 × area_level)
+    Cap: 85% for physical.
 
-        mitigation = armour / (armour + K * reference_hit)
-
-    The result is stored as a percentage [0–75] (not a fraction) so it
+    Uses area_level=100 as default endgame reference.
+    The result is stored as a percentage [0–85] (not a fraction) so it
     reads naturally in build summaries: "42% armor mitigation".
-
-    The reference_hit (100 damage) represents a typical endgame physical
-    hit.  Actual per-hit mitigation varies — this is for build comparison.
     """
     armour = stats.armour
     if armour <= 0:
         return
-    raw = armour / (armour + ARMOR_K * _REFERENCE_HIT)
+    _AREA_LEVEL = 100
+    raw = armour / (armour + ARMOR_K * _AREA_LEVEL)
     mitigation_pct = min(raw, ARMOR_MITIGATION_CAP) * 100.0
-    # Store as a dynamic attribute — consumers can read it for build summaries.
-    # Note: endurance_threshold is a separate mechanic (damage reduction below
-    # health threshold) and must NOT be confused with armor mitigation.
     stats._armor_mitigation_pct = mitigation_pct  # type: ignore[attr-defined]
 
 
@@ -110,17 +105,17 @@ def compute_mana_regen(stats: BuildStats) -> None:
 def compute_effective_health(stats: BuildStats) -> None:
     """Compute effective health pool (EHP) accounting for armor mitigation.
 
-    EHP represents how much raw physical damage the character can absorb:
+    Uses the corrected armor formula: armor / (armor + 10 × area_level)
+    with area_level=100 as default endgame reference.
 
-        ehp = max_health / (1 - mitigation_fraction)
-
-    This is a planning stat for comparing builds — not used in combat sim.
+    EHP = max_health / (1 - mitigation_fraction)
     """
     armour = stats.armour
     if armour <= 0:
         stats._effective_health = stats.max_health  # type: ignore[attr-defined]
         return
-    raw_mit = armour / (armour + ARMOR_K * _REFERENCE_HIT)
+    _AREA_LEVEL = 100
+    raw_mit = armour / (armour + ARMOR_K * _AREA_LEVEL)
     mit_frac = min(raw_mit, ARMOR_MITIGATION_CAP)
     divisor = max(1.0 - mit_frac, 0.01)  # prevent division by zero
     stats._effective_health = stats.max_health / divisor  # type: ignore[attr-defined]
@@ -129,18 +124,21 @@ def compute_effective_health(stats: BuildStats) -> None:
 def compute_dodge_chance(stats: BuildStats) -> None:
     """Compute dodge chance percentage from dodge rating.
 
-    Last Epoch dodge formula (diminishing returns):
+    Last Epoch dodge formula:
+        dodge_chance = dodge_rating / (dodge_rating + 10 × area_level)
+        Cap: 85%
 
-        dodge_chance = dodge_rating / (dodge_rating + K)
-
-    where K ≈ 1000 at endgame.  Result is a percentage [0–100].
+    Uses area_level=100 as default endgame reference.
+    Result is a percentage [0–85].
     """
-    _DODGE_K = 1000.0
+    _AREA_LEVEL = 100
+    _DODGE_K = 10.0 * _AREA_LEVEL  # = 1000 at area_level=100
+    _DODGE_CAP = 85.0
     rating = stats.dodge_rating
     if rating <= 0:
         return
     chance = (rating / (rating + _DODGE_K)) * 100.0
-    stats._dodge_chance_pct = chance  # type: ignore[attr-defined]
+    stats._dodge_chance_pct = min(chance, _DODGE_CAP)  # type: ignore[attr-defined]
 
 
 # ---------------------------------------------------------------------------

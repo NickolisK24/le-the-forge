@@ -158,10 +158,10 @@ class TestCrit:
 
     def test_skill_mod_crit_bonus(self):
         stats = _stats(crit_chance=0.05, crit_multiplier=1.5)
-        sm = SkillModifiers(crit_chance_pct=20.0)  # +20% crit
+        sm = SkillModifiers(crit_chance_pct=20.0)  # +20% increased crit
         result = ENGINE.execute(_fireball(), stats, level=1, skill_mods=sm)
-        # 0.05 + 20/100 = 0.25
-        assert abs(result.crit_chance - 0.25) < 0.01
+        # Multiplicative: 0.05 × (1 + 20/100) = 0.06
+        assert abs(result.crit_chance - 0.06) < 0.01
 
 
 # ---------------------------------------------------------------------------

@@ -219,11 +219,11 @@ class TestFunctionSignatures:
 
     def test_weighted_damage_multiplier_params(self):
         from app.domain.calculators.enemy_mitigation_calculator import weighted_damage_multiplier
-        assert _params(weighted_damage_multiplier) == ["enemy", "damage_by_type", "pen_map"]
+        assert _params(weighted_damage_multiplier) == ["enemy", "damage_by_type", "pen_map", "area_level"]
 
     def test_effective_crit_chance_params(self):
         from app.domain.calculators.crit_calculator import effective_crit_chance
-        assert _params(effective_crit_chance) == ["base", "bonus_pct"]
+        assert _params(effective_crit_chance) == ["base", "increased_pct"]
 
     def test_calculate_average_hit_params(self):
         from app.domain.calculators.crit_calculator import calculate_average_hit

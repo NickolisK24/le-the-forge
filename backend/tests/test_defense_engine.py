@@ -168,21 +168,21 @@ class TestWardSustainability:
         assert result.net_ward_per_second == 0.0
 
     def test_ward_decays_at_base_rate(self):
-        """With 0 retention, decay = ward * 0.25/s"""
+        """With 0 retention, decay = 0.4 × ward / 1.0"""
         stats = BuildStats()
         stats.max_health = 1000
         stats.ward = 400
         result = calculate_defense(stats)
-        assert result.ward_decay_per_second == 100.0  # 400 * 0.25
+        assert result.ward_decay_per_second == 160.0  # 0.4 * 400
 
     def test_ward_retention_reduces_decay(self):
-        """25% retention → decay rate = max(0, 0.25 - 0.25) = 0"""
+        """25% retention → decay = 0.4 × 400 / (1 + 0.5 × 0.25) = 142.2"""
         stats = BuildStats()
         stats.max_health = 1000
         stats.ward = 400
         stats.ward_retention_pct = 25.0
         result = calculate_defense(stats)
-        assert result.ward_decay_per_second == 0.0
+        assert result.ward_decay_per_second == 142.2
 
     def test_ward_regen_contributes_positively(self):
         stats = BuildStats()

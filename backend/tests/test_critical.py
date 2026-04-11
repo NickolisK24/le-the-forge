@@ -1,5 +1,9 @@
 """
-Tests for Critical Strike System (Step 63).
+Tests for Critical Strike System.
+
+Last Epoch crit formula:
+  Crit% = base × (1 + increased_pct / 100), capped at 100%
+  Base crit multiplier: 150% (1.5×)
 """
 
 import pytest
@@ -20,41 +24,50 @@ class TestEffectiveCritChance:
     def test_base_only_no_bonus(self):
         assert effective_crit_chance(0.05, 0.0) == pytest.approx(0.05)
 
-    def test_bonus_adds_to_base(self):
-        # 5% base + 10% bonus → 15%
-        assert effective_crit_chance(0.05, 10.0) == pytest.approx(0.15)
+    def test_increased_multiplies_base(self):
+        # 5% base × (1 + 100/100) = 5% × 2.0 = 10%
+        assert effective_crit_chance(0.05, 100.0) == pytest.approx(0.10)
+
+    def test_200pct_increased_triples_base(self):
+        # 5% base × (1 + 200/100) = 5% × 3.0 = 15%
+        assert effective_crit_chance(0.05, 200.0) == pytest.approx(0.15)
 
     def test_capped_at_100pct(self):
-        assert effective_crit_chance(0.5, 100.0) == pytest.approx(CRIT_CAP)
+        assert effective_crit_chance(0.5, 200.0) == pytest.approx(CRIT_CAP)
 
     def test_above_cap_clamped(self):
         assert effective_crit_chance(1.0, 50.0) == pytest.approx(CRIT_CAP)
 
-    def test_zero_result_clamped_at_zero(self):
-        # Negative bonus still can't go below 0
-        assert effective_crit_chance(0.05, -20.0) == pytest.approx(0.0)
+    def test_negative_increased_reduces_chance(self):
+        # 5% base × (1 + (-50)/100) = 5% × 0.5 = 2.5%
+        assert effective_crit_chance(0.05, -50.0) == pytest.approx(0.025)
+
+    def test_negative_increased_clamped_at_zero(self):
+        # 5% base × (1 + (-200)/100) = 5% × (-1.0) = -5% → clamped to 0
+        assert effective_crit_chance(0.05, -200.0) == pytest.approx(0.0)
 
     def test_negative_base_raises(self):
         with pytest.raises(ValueError, match="base_chance"):
             effective_crit_chance(-0.1, 0.0)
 
-    def test_exact_cap_boundary(self):
-        assert effective_crit_chance(0.0, 100.0) == pytest.approx(CRIT_CAP)
+    def test_large_increased_still_capped(self):
+        # 50% base × (1 + 5000/100) = 50% × 51 → capped at 1.0
+        assert effective_crit_chance(0.5, 5000.0) == pytest.approx(CRIT_CAP)
 
 
 class TestEffectiveCritMultiplier:
     def test_base_only_no_bonus(self):
-        assert effective_crit_multiplier(2.0, 0.0) == pytest.approx(2.0)
+        assert effective_crit_multiplier(1.5, 0.0) == pytest.approx(1.5)
 
     def test_50pct_bonus_adds_half(self):
-        # 2.0 + 50/100 = 2.5
-        assert effective_crit_multiplier(2.0, 50.0) == pytest.approx(2.5)
+        # 1.5 + 50/100 = 2.0
+        assert effective_crit_multiplier(1.5, 50.0) == pytest.approx(2.0)
 
     def test_100pct_bonus_adds_1(self):
-        assert effective_crit_multiplier(2.0, 100.0) == pytest.approx(3.0)
+        assert effective_crit_multiplier(1.5, 100.0) == pytest.approx(2.5)
 
     def test_negative_bonus_clamped_to_zero(self):
-        assert effective_crit_multiplier(2.0, -50.0) == pytest.approx(2.0)
+        assert effective_crit_multiplier(1.5, -50.0) == pytest.approx(1.5)
 
     def test_base_below_1_raises(self):
         with pytest.raises(ValueError, match="base_multiplier"):
@@ -64,7 +77,8 @@ class TestEffectiveCritMultiplier:
         assert effective_crit_multiplier(1.0, 0.0) == pytest.approx(1.0)
 
     def test_default_base_multiplier_constant(self):
-        assert BASE_CRIT_MULTIPLIER == pytest.approx(2.0)
+        """Base crit multiplier is 150% (1.5×) per verified game data."""
+        assert BASE_CRIT_MULTIPLIER == pytest.approx(1.5)
 
 
 class TestApplyCrit:
@@ -100,18 +114,15 @@ class TestRollCrit:
         assert roll_crit(1.0, rng_roll=99.9) is True
 
     def test_roll_below_threshold_crits(self):
-        # 50% chance → threshold=50; roll=49.9 < 50 → crit
         assert roll_crit(0.5, rng_roll=49.9) is True
 
     def test_roll_at_threshold_no_crit(self):
-        # roll=50.0 is NOT < 50 → no crit
         assert roll_crit(0.5, rng_roll=50.0) is False
 
     def test_roll_above_threshold_no_crit(self):
         assert roll_crit(0.5, rng_roll=75.0) is False
 
     def test_none_roll_treated_as_zero(self):
-        # rng_roll=None → 0.0 < any positive chance → always crits
         assert roll_crit(0.01, rng_roll=None) is True
 
     def test_none_roll_zero_chance_no_crit(self):

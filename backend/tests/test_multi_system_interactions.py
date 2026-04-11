@@ -91,8 +91,8 @@ class TestConversionAndArmor:
             enemy=enemy,
             damage_type=DamageType.PHYSICAL,
         ))
-        # ARMOR_MITIGATION_CAP = 75% → minimum 25% always passes through
-        assert result.post_armor == pytest.approx(25.0)
+        # ARMOR_MITIGATION_CAP = 85% → minimum 15% always passes through
+        assert result.post_armor == pytest.approx(15.0)
 
 
 # ---------------------------------------------------------------------------

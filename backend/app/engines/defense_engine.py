@@ -95,8 +95,10 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
         armour=stats.armour,
         ward=stats.ward,
     )
-    # Armour mitigation
-    armor_reduction = stats.armour / (stats.armour + ARMOR_DIVISOR)
+    # Armour mitigation: armor / (armor + 10 × area_level), cap at 85%
+    armor_divisor = ARMOR_DIVISOR  # 10 × 100 (default area_level=100)
+    armor_reduction = stats.armour / (stats.armour + armor_divisor) if stats.armour > 0 else 0.0
+    armor_reduction = min(armor_reduction, 0.85)  # 85% cap for physical
 
     # Cap each resistance at 75%
     fire_res    = min(RES_CAP, stats.fire_res)
@@ -126,8 +128,10 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
     # Average damage taken factor with block: (1 - block_chance * block_mitigation)
     block_factor = max(0.01, 1 - block_chance * block_mitigation)
 
-    # Dodge: avoidance layer
-    dodge_chance = stats.dodge_rating / (stats.dodge_rating + DODGE_DIVISOR)
+    # Dodge: dodge_rating / (dodge_rating + 10 × area_level), cap at 85%
+    dodge_divisor = DODGE_DIVISOR  # 10 × 100 (default area_level=100)
+    dodge_chance = stats.dodge_rating / (stats.dodge_rating + dodge_divisor) if stats.dodge_rating > 0 else 0.0
+    dodge_chance = min(dodge_chance, 0.85)  # 85% cap
     dodge_chance_pct = round(dodge_chance * 100, 1)
     dodge_factor = max(0.01, 1 - dodge_chance)
 
@@ -168,9 +172,12 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
     ward_buffer = round(stats.ward)
     total_ehp = round(effective_hp) + ward_buffer
 
-    # Ward sustainability
-    effective_decay_rate = max(0.0, WARD_BASE_DECAY_RATE - stats.ward_retention_pct / 100)
-    ward_decay_per_second = round(stats.ward * effective_decay_rate, 1)
+    # Ward sustainability — correct formula:
+    # Ward_Lost/sec = 0.4 × (CurrentWard - Threshold) / (1 + 0.5 × WardRetention)
+    # Intelligence grants 4% ward retention per point (included in ward_retention_pct)
+    ward_above_threshold = max(0.0, stats.ward)  # threshold defaults to 0 for build planning
+    retention_factor = 1.0 + 0.5 * (stats.ward_retention_pct / 100.0)
+    ward_decay_per_second = round(WARD_BASE_DECAY_RATE * ward_above_threshold / retention_factor, 1) if ward_above_threshold > 0 else 0.0
     ward_regen_per_second = round(stats.ward_regen, 1)
     net_ward_per_second   = round(ward_regen_per_second - ward_decay_per_second, 1)
 

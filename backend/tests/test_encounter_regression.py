@@ -25,22 +25,22 @@ class TestTimeTokill:
     def test_standard_boss_ttk(self):
         cfg = load_template(STANDARD_BOSS, base_damage=500.0, hit_config=_hit())
         r = EncounterMachine(cfg).run()
-        assert r.elapsed_time == pytest.approx(13.8, abs=0.2)
+        assert r.elapsed_time == pytest.approx(18.8, abs=0.2)
 
     def test_standard_boss_ticks(self):
         cfg = load_template(STANDARD_BOSS, base_damage=500.0, hit_config=_hit())
         r = EncounterMachine(cfg).run()
-        assert r.ticks_simulated == 138
+        assert r.ticks_simulated == 188
 
     def test_shielded_boss_ttk(self):
         cfg = load_template(SHIELDED_BOSS, base_damage=500.0, hit_config=_hit())
         r = EncounterMachine(cfg).run()
-        assert r.elapsed_time == pytest.approx(7.5, abs=0.2)
+        assert r.elapsed_time == pytest.approx(9.2, abs=0.2)
 
     def test_shielded_boss_ticks(self):
         cfg = load_template(SHIELDED_BOSS, base_damage=500.0, hit_config=_hit())
         r = EncounterMachine(cfg).run()
-        assert r.ticks_simulated == 75
+        assert r.ticks_simulated == 92
 
     def test_training_dummy_never_dies(self):
         cfg = load_template(TRAINING_DUMMY, base_damage=100.0, hit_config=_hit())
@@ -96,7 +96,7 @@ class TestPhaseTransitionTiming:
                 enrage_tick = i
                 break
         assert enrage_tick is not None
-        assert enrage_tick == pytest.approx(96, abs=2)
+        assert enrage_tick == pytest.approx(131, abs=2)
 
     def test_no_phase_on_shielded_boss(self):
         cfg = load_template(SHIELDED_BOSS, base_damage=500.0, hit_config=_hit())
