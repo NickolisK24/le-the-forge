@@ -355,8 +355,8 @@ def _build_layout_lookup() -> dict[str, dict[int, dict]]:
     def _flatten(obj: object, acc: dict[int, dict]) -> None:
         """Recursively walk any nested dict/list to collect nodeId entries."""
         if isinstance(obj, dict):
-            if "nodeId" in obj and "rect" in obj:
-                acc[obj["nodeId"]] = {
+            if "id" in obj and "rect" in obj:
+                acc[obj["id"]] = {
                     "x": obj["rect"][0],
                     "y": obj["rect"][1],
                     "icon": obj.get("icon", ""),
@@ -451,7 +451,7 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
             # For colliding raw IDs, resolve the connected node's mastery by scanning.
             connections = []
             for r in node.get("requirements", []):
-                req_raw_id = r["nodeId"]
+                req_raw_id = r["node"]
                 if req_raw_id in colliding_raw_ids:
                     # Find the actual node in this tree to get its mastery
                     req_node = next((n for n in all_nodes if n["id"] == req_raw_id), None)

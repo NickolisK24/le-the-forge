@@ -537,22 +537,22 @@ class TestDiscordNotifier:
         """Verify the 'Parsed Data' field summarizes what DID import."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = types.SimpleNamespace(
-            id="summary-test",
-            source="lastepochtools",
-            raw_url="https://example.com",
-            missing_fields=["gear"],
-            partial_data={
+        mock_failure = {
+            "id": "summary-test",
+            "source": "lastepochtools",
+            "raw_url": "https://example.com",
+            "missing_fields": ["gear"],
+            "partial_data": {
                 "character_class": "Rogue",
                 "mastery": "Bladedancer",
                 "skills": [{"name": "Umbral Blades"}, {"name": "Shadow Cascade"}],
                 "passive_tree": list(range(90)),
                 "gear": [],
             },
-            error_message="Gear not mapped",
-            user_id=None,
-            created_at=None,
-        )
+            "error_message": "Gear not mapped",
+            "user_id": None,
+            "created_at": None,
+        }
 
         _post_alert(mock_failure, severity="partial")
 
