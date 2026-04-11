@@ -262,8 +262,9 @@ class TestMaxrollImporter:
         from app.services.importers import MaxrollImporter
         result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/test")
 
+        # Without a class field, _unwrap_build_data returns None
+        # so the fetch stage fails entirely
         assert result.success is False
-        assert "character_class" in result.missing_fields
 
     def test_invalid_url_returns_failure(self):
         from app.services.importers import MaxrollImporter
@@ -1747,3 +1748,722 @@ class TestAffixDecoding:
         gear = result.build_data["gear"]
         assert len(gear) == 1
         assert len(gear[0]["affixes"]) == 2
+
+
+# ---------------------------------------------------------------------------
+# Maxroll Importer — Extended Tests
+# ---------------------------------------------------------------------------
+
+class TestMaxrollURLParsing:
+    """URL parsing extracts correct build codes from various Maxroll URL formats."""
+
+    def test_extracts_code_from_standard_url(self):
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://maxroll.gg/last-epoch/planner/zge0t60e")
+        assert m is not None
+        assert m.group(1) == "zge0t60e"
+
+    def test_extracts_code_from_url_with_hash(self):
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://maxroll.gg/last-epoch/planner/abc123#2")
+        assert m is not None
+        assert m.group(1).split("#")[0] == "abc123"
+
+    def test_extracts_code_with_hyphens_and_underscores(self):
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://maxroll.gg/last-epoch/planner/a-b_c-123")
+        assert m is not None
+        assert m.group(1) == "a-b_c-123"
+
+    def test_no_match_for_non_maxroll_url(self):
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://example.com/planner/abc123")
+        assert m is None
+
+    def test_no_match_for_wrong_game(self):
+        from app.services.importers.maxroll_importer import URL_PATTERN
+        m = URL_PATTERN.search("https://maxroll.gg/diablo-4/planner/abc123")
+        assert m is None
+
+
+class TestMaxrollClassMasteryImport:
+    """Class and mastery import correctly from various Maxroll data formats."""
+
+    def test_string_class_and_mastery(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [],
+            "equipment": [],
+        }, "test1")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Mage"
+        assert result.build_data["mastery"] == "Sorcerer"
+        assert result.build_data["level"] == 80
+
+    def test_numeric_class_id_resolves(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": 3,
+            "mastery": "Necromancer",
+            "level": 70,
+            "passives": {},
+            "skills": [],
+        }, "test2")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Acolyte"
+
+    def test_numeric_mastery_id_resolves(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": 3,
+            "level": 90,
+            "passives": {},
+            "skills": [],
+        }, "test3")
+        assert result.success is True
+        assert result.build_data["mastery"] == "Paladin"
+
+    def test_className_field_accepted(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "className": "Rogue",
+            "mastery": "Falconer",
+            "level": 85,
+            "passives": {},
+            "skills": [],
+        }, "test4")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Rogue"
+        assert result.build_data["mastery"] == "Falconer"
+
+    def test_characterClass_field_accepted(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "characterClass": "Primalist",
+            "masteryName": "Druid",
+            "level": 100,
+            "passives": {},
+            "skills": [],
+        }, "test5")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Primalist"
+        assert result.build_data["mastery"] == "Druid"
+
+    def test_missing_class_is_hard_failure(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "mastery": "Sorcerer",
+            "level": 70,
+            "passives": {},
+            "skills": [],
+        }, "test6")
+        assert result.success is False
+        assert "character_class" in result.missing_fields
+
+    def test_missing_mastery_is_soft_failure(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "level": 70,
+            "passives": {},
+            "skills": [],
+        }, "test7")
+        assert result.success is True
+        assert "mastery" in result.missing_fields
+        # Falls back to first mastery for the class
+        assert result.build_data["mastery"] == "Sorcerer"
+
+    def test_all_five_classes_resolve_from_numeric_ids(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter, _CLASS_MAP
+        importer = MaxrollImporter()
+        for class_id, class_name in _CLASS_MAP.items():
+            result = importer._map({
+                "class": class_id,
+                "mastery": 1,
+                "level": 70,
+                "passives": {},
+                "skills": [],
+            }, f"class-{class_id}")
+            assert result.success is True
+            assert result.build_data["character_class"] == class_name
+
+
+class TestMaxrollSkillsImport:
+    """Skills import with correct names and point allocations."""
+
+    def test_skills_import_with_names_and_nodes(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [
+                {"name": "Fireball", "slot": 0, "level": 20, "nodes": {"1": 4, "2": 2, "3": 1}},
+                {"name": "Teleport", "slot": 1, "level": 15, "nodes": {"10": 3}},
+            ],
+        }, "skills1")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 2
+        # Sorted by slot
+        assert skills[0]["skill_name"] == "Fireball"
+        assert skills[0]["slot"] == 0
+        assert skills[0]["points_allocated"] == 20
+        assert len(skills[0]["spec_tree"]) == 7  # 4+2+1
+        assert skills[0]["spec_tree"].count(1) == 4
+        assert skills[0]["spec_tree"].count(2) == 2
+        assert skills[0]["spec_tree"].count(3) == 1
+
+        assert skills[1]["skill_name"] == "Teleport"
+        assert skills[1]["slot"] == 1
+        assert skills[1]["points_allocated"] == 15
+        assert len(skills[1]["spec_tree"]) == 3
+
+    def test_skills_with_selected_key_instead_of_nodes(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": "Paladin",
+            "level": 70,
+            "passives": {},
+            "skills": [
+                {"name": "Rive", "slot": 0, "level": 20, "selected": {"5": 3, "6": 2}},
+            ],
+        }, "skills2")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert len(skills[0]["spec_tree"]) == 5  # 3+2
+
+    def test_skillTrees_key_accepted(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Rogue",
+            "mastery": "Bladedancer",
+            "level": 90,
+            "passives": {},
+            "skillTrees": [
+                {"skill_name": "Shift", "slot": 0, "level": 10, "nodes": {}},
+            ],
+        }, "skills3")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Shift"
+
+    def test_empty_skills_returns_empty_list(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 70,
+            "passives": {},
+            "skills": [],
+        }, "skills4")
+        assert result.success is True
+        assert result.build_data["skills"] == []
+
+
+class TestMaxrollPassivesImport:
+    """Passive tree import from dict and list formats."""
+
+    def test_passives_from_dict(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"10": 3, "20": 5, "30": 1},
+            "skills": [],
+        }, "passive1")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert len(pt) == 9  # 3+5+1
+        assert pt.count(10) == 3
+        assert pt.count(20) == 5
+        assert pt.count(30) == 1
+
+    def test_passives_from_list_format(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Acolyte",
+            "mastery": "Lich",
+            "level": 70,
+            "passives": [
+                {"id": 5, "points": 3},
+                {"nodeId": 10, "points": 2},
+            ],
+            "skills": [],
+        }, "passive2")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert len(pt) == 5  # 3+2
+        assert pt.count(5) == 3
+        assert pt.count(10) == 2
+
+    def test_passives_from_charTree_selected(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": "Paladin",
+            "level": 90,
+            "charTree": {"selected": {"100": 4, "200": 2}},
+            "skills": [],
+        }, "passive3")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert len(pt) == 6  # 4+2
+
+
+class TestMaxrollGearSlotNormalisation:
+    """Gear slot names normalise to canonical Forge format."""
+
+    def test_normalise_helm_variants(self):
+        from app.services.importers.maxroll_importer import _normalise_slot
+        assert _normalise_slot("helm") == "Helmet"
+        assert _normalise_slot("Helmet") == "Helmet"
+        assert _normalise_slot("head") == "Helmet"
+        assert _normalise_slot("HELM") == "Helmet"
+
+    def test_normalise_body_variants(self):
+        from app.services.importers.maxroll_importer import _normalise_slot
+        assert _normalise_slot("chest") == "Body Armour"
+        assert _normalise_slot("body") == "Body Armour"
+        assert _normalise_slot("body armour") == "Body Armour"
+        assert _normalise_slot("body armor") == "Body Armour"
+
+    def test_normalise_offhand_variants(self):
+        from app.services.importers.maxroll_importer import _normalise_slot
+        assert _normalise_slot("offhand") == "Off Hand"
+        assert _normalise_slot("off hand") == "Off Hand"
+        assert _normalise_slot("shield") == "Off Hand"
+
+    def test_normalise_ring_slots(self):
+        from app.services.importers.maxroll_importer import _normalise_slot
+        assert _normalise_slot("ring 1") == "Ring 1"
+        assert _normalise_slot("ring1") == "Ring 1"
+        assert _normalise_slot("ring 2") == "Ring 2"
+        assert _normalise_slot("ring2") == "Ring 2"
+
+    def test_unknown_slot_passes_through(self):
+        from app.services.importers.maxroll_importer import _normalise_slot
+        assert _normalise_slot("unknown_slot") == "unknown_slot"
+
+    def test_gear_list_format_normalises_slots(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Rogue",
+            "mastery": "Marksman",
+            "level": 90,
+            "passives": {},
+            "skills": [],
+            "equipment": [
+                {"slot": "helm", "name": "Iron Helm", "rarity": "Rare"},
+                {"slot": "chest", "name": "Leather Coat", "rarity": "Rare"},
+                {"slot": "offhand", "name": "Wooden Shield", "rarity": "Rare"},
+                {"slot": "ring1", "name": "Ruby Ring", "rarity": "Rare"},
+            ],
+        }, "gear-norm")
+        assert result.success is True
+        gear = result.build_data["gear"]
+        slots = {g["slot"] for g in gear}
+        assert "Helmet" in slots
+        assert "Body Armour" in slots
+        assert "Off Hand" in slots
+        assert "Ring 1" in slots
+
+    def test_gear_dict_format_normalises_slots(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [],
+            "equipment": {
+                "helm": {"name": "Iron Helm", "rarity": "Rare"},
+                "boots": {"name": "Leather Boots", "rarity": "Rare"},
+                "weapon": {"name": "Copper Sword", "rarity": "Rare"},
+            },
+        }, "gear-dict")
+        assert result.success is True
+        gear = result.build_data["gear"]
+        slots = {g["slot"] for g in gear}
+        assert "Helmet" in slots
+        assert "Boots" in slots
+        assert "Weapon" in slots
+
+
+class TestMaxrollUnwrapBuildData:
+    """_unwrap_build_data handles various Maxroll API response envelopes."""
+
+    def test_unwrap_direct_data(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        payload = {"class": "Mage", "level": 80}
+        assert _unwrap_build_data(payload) is payload
+
+    def test_unwrap_data_key(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {"class": "Mage", "level": 80}
+        payload = {"data": inner}
+        assert _unwrap_build_data(payload) is inner
+
+    def test_unwrap_build_key(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {"className": "Sentinel", "level": 90}
+        payload = {"build": inner}
+        assert _unwrap_build_data(payload) is inner
+
+    def test_unwrap_plannerData_key(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {"characterClass": "Rogue", "level": 85}
+        payload = {"plannerData": inner}
+        assert _unwrap_build_data(payload) is inner
+
+    def test_unwrap_returns_none_for_unknown_structure(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        payload = {"status": "ok", "meta": {"version": 1}}
+        assert _unwrap_build_data(payload) is None
+
+    def test_unwrap_className_detected(self):
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        payload = {"className": "Acolyte"}
+        assert _unwrap_build_data(payload) is payload
+
+
+class TestMaxrollPartialImport:
+    """Partial imports handle missing data gracefully and populate partial_data."""
+
+    def test_missing_gear_records_missing_fields(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"5": 2},
+            "skills": [{"name": "Fireball", "slot": 0, "level": 20, "nodes": {}}],
+            "equipment": [
+                {"slot": "helm", "name": "Iron Helm"},
+                {"slot": "chest"},  # no name → missing
+            ],
+        }, "partial1")
+        assert result.success is True
+        assert any("gear_slot" in f for f in result.missing_fields)
+        # Gear array should only contain the helm (chest had no name)
+        assert len(result.build_data["gear"]) == 1
+
+    def test_partial_data_populated_when_missing_fields(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": "Paladin",
+            "level": 90,
+            "passives": {"10": 3, "20": 2},
+            "skills": [
+                {"name": "Rive", "slot": 0, "level": 20, "nodes": {"1": 4}},
+                {"name": "Smite", "slot": 1, "level": 15, "nodes": {}},
+            ],
+            "equipment": [
+                {"slot": "helm"},  # no name → missing field triggers partial_data
+            ],
+        }, "partial2")
+        assert result.success is True
+        assert len(result.missing_fields) > 0
+        assert result.partial_data is not None
+        assert result.partial_data["character_class"] == "Sentinel"
+        assert result.partial_data["mastery"] == "Paladin"
+        assert result.partial_data["level"] == 90
+        assert result.partial_data["skills_count"] == 2
+        assert result.partial_data["passives_count"] == 5
+        assert result.partial_data["gear_count"] == 0
+        assert result.partial_data["missing_count"] == 1
+
+    def test_no_partial_data_when_no_missing_fields(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"5": 2},
+            "skills": [{"name": "Fireball", "slot": 0, "level": 20, "nodes": {}}],
+            "equipment": [{"slot": "helm", "name": "Iron Helm"}],
+        }, "partial3")
+        assert result.success is True
+        assert result.partial_data is None
+
+    def test_no_equipment_key_returns_empty_gear(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [],
+        }, "no-equip")
+        assert result.success is True
+        assert result.build_data["gear"] == []
+
+    def test_gear_affixes_parsed(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [],
+            "equipment": [{
+                "slot": "helm",
+                "name": "Iron Helm",
+                "rarity": "Rare",
+                "affixes": [
+                    {"name": "Health", "tier": 5, "sealed": False},
+                    {"name": "Fire Resist", "tier": 3, "sealed": True},
+                ],
+            }],
+        }, "affixes")
+        assert result.success is True
+        gear = result.build_data["gear"]
+        assert len(gear) == 1
+        assert len(gear[0]["affixes"]) == 2
+        assert gear[0]["affixes"][0]["name"] == "Health"
+        assert gear[0]["affixes"][0]["tier"] == 5
+        assert gear[0]["affixes"][1]["sealed"] is True
+
+
+class TestMaxrollNextDataExtraction:
+    """__NEXT_DATA__ extraction from HTML."""
+
+    def test_extract_next_data_success(self):
+        from app.services.importers.maxroll_importer import _extract_next_data
+        html = '''
+        <html><body>
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props": {"pageProps": {"build": {
+            "class": "Mage", "mastery": "Sorcerer", "level": 80
+        }}}}
+        </script>
+        </body></html>
+        '''
+        data = _extract_next_data(html)
+        assert data is not None
+        assert data["class"] == "Mage"
+
+    def test_extract_next_data_with_data_key(self):
+        from app.services.importers.maxroll_importer import _extract_next_data
+        html = '''
+        <html><body>
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props": {"pageProps": {"data": {
+            "class": "Sentinel", "mastery": "Paladin"
+        }}}}
+        </script>
+        </body></html>
+        '''
+        data = _extract_next_data(html)
+        assert data is not None
+        assert data["class"] == "Sentinel"
+
+    def test_extract_next_data_no_script_tag(self):
+        from app.services.importers.maxroll_importer import _extract_next_data
+        html = "<html><body>No data here</body></html>"
+        assert _extract_next_data(html) is None
+
+    def test_extract_next_data_invalid_json(self):
+        from app.services.importers.maxroll_importer import _extract_next_data
+        html = '''
+        <html><body>
+        <script id="__NEXT_DATA__" type="application/json">
+        NOT VALID JSON
+        </script>
+        </body></html>
+        '''
+        assert _extract_next_data(html) is None
+
+
+class TestMaxrollFullParseFlow:
+    """Full parse flow with mocked HTTP, including Discord webhook on failure."""
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_parse_with_api_response_wrapped_in_data(self, mock_get):
+        api_data = {
+            "data": {
+                "class": "Acolyte",
+                "mastery": "Warlock",
+                "level": 95,
+                "passives": {"1": 5, "2": 3},
+                "skills": [
+                    {"name": "Chaos Bolts", "slot": 0, "level": 20, "nodes": {"10": 4}},
+                ],
+                "equipment": [
+                    {"slot": "helm", "name": "Iron Helm", "rarity": "Rare", "affixes": []},
+                ],
+            }
+        }
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.json.return_value = api_data
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/abc123")
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Acolyte"
+        assert result.build_data["mastery"] == "Warlock"
+        assert len(result.build_data["passive_tree"]) == 8
+        assert len(result.build_data["skills"]) == 1
+        assert len(result.build_data["gear"]) == 1
+        assert result.build_data["gear"][0]["slot"] == "Helmet"
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_parse_with_build_key_envelope(self, mock_get):
+        api_data = {
+            "build": {
+                "className": "Primalist",
+                "mastery": "Beastmaster",
+                "level": 75,
+                "passives": {},
+                "skills": [],
+            }
+        }
+        mock_resp = MagicMock()
+        mock_resp.status_code = 200
+        mock_resp.json.return_value = api_data
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/xyz789")
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Primalist"
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_all_api_endpoints_fail_then_html_fallback(self, mock_get):
+        """When all API endpoints return 404, falls back to HTML __NEXT_DATA__."""
+        html_with_data = '''
+        <html><body>
+        <script id="__NEXT_DATA__" type="application/json">
+        {"props": {"pageProps": {"build": {
+            "class": "Rogue", "mastery": "Falconer", "level": 85,
+            "passives": {}, "skills": [], "equipment": []
+        }}}}
+        </script>
+        </body></html>
+        '''
+
+        def side_effect(url, **kwargs):
+            resp = MagicMock()
+            if "api" in url:
+                resp.status_code = 404
+                resp.json.side_effect = Exception("Not found")
+            else:
+                resp.status_code = 200
+                resp.text = html_with_data
+            return resp
+
+        mock_get.side_effect = side_effect
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/htmlfb")
+
+        assert result.success is True
+        assert result.build_data["character_class"] == "Rogue"
+        assert result.build_data["mastery"] == "Falconer"
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_all_fetch_strategies_fail_returns_error(self, mock_get):
+        """When all strategies fail, returns a clear error message."""
+        mock_resp = MagicMock()
+        mock_resp.status_code = 404
+        mock_resp.json.side_effect = Exception("Not found")
+        mock_resp.text = "<html><body>Not found</body></html>"
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/dead")
+
+        assert result.success is False
+        assert "Could not fetch" in result.error_message
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_maxroll_hard_failure_fires_discord_alert(self, mock_alert, mock_factory, client, db):
+        """Maxroll import failure fires Discord webhook alert."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=False,
+            source="maxroll",
+            error_message="Could not fetch build data from Maxroll.",
+            missing_fields=[],
+        )
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://maxroll.gg/last-epoch/planner/deadbuild"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 422
+        mock_alert.assert_called_once()
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_maxroll_partial_import_fires_partial_discord_alert(self, mock_alert, mock_factory, client, db):
+        """Maxroll partial import fires Discord alert with severity=partial."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=True,
+            source="maxroll",
+            build_data={
+                "name": "Partial Maxroll",
+                "character_class": "Mage",
+                "mastery": "Sorcerer",
+                "level": 80,
+                "passive_tree": [1, 2, 3],
+                "skills": [],
+                "gear": [],
+            },
+            missing_fields=["gear_slot:chest"],
+        )
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://maxroll.gg/last-epoch/planner/partial"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 201
+        mock_alert.assert_called_once()
+        call_args = mock_alert.call_args
+        assert call_args[1].get("severity") == "partial" or (len(call_args[0]) > 1 and call_args[0][1] == "partial")
