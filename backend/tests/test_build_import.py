@@ -570,25 +570,24 @@ class TestDiscordNotifier:
         """Verify raw gear entries appear in the embed for debugging."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = MagicMock()
-        mock_failure.id = "gear-test"
-        mock_failure.source = "lastepochtools"
-        mock_failure.raw_url = "https://example.com"
-        mock_failure.missing_fields = ["gear"]
-        mock_failure.partial_data = {
-            "gear": [
-                {"slot": "weapon", "base_type_id": 47, "affixes": [{"id": 1042}]},
-                {"slot": "body", "base_type_id": 12},
-                {"slot": "helmet", "base_type_id": 8},
-                {"slot": "boots", "base_type_id": 3},
-            ],
+        mock_failure = {
+            "id": "gear-test",
+            "source": "lastepochtools",
+            "raw_url": "https://example.com",
+            "missing_fields": ["gear"],
+            "partial_data": {
+                "gear": [
+                    {"slot": "weapon", "base_type_id": 47, "affixes": [{"id": 1042}]},
+                    {"slot": "body", "base_type_id": 12},
+                    {"slot": "helmet", "base_type_id": 8},
+                    {"slot": "boots", "base_type_id": 3},
+                ],
+            },
+            "error_message": "Gear IDs unmappable",
+            "user_id": None,
+            "created_at": None,
         }
-        mock_failure.error_message = "Gear IDs unmappable"
-        mock_failure.user_id = None
-        mock_failure.created_at = None
-
         _post_alert(mock_failure, severity="hard")
-
         payload = mock_post.call_args[1]["json"]
         embed = payload["embeds"][0]
         gear_field = next(f for f in embed["fields"] if "Gear" in f["name"])
@@ -606,15 +605,16 @@ class TestDiscordNotifier:
     def test_anonymous_user_shown_as_anonymous(self, mock_post):
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = MagicMock()
-        mock_failure.id = "anon-test"
-        mock_failure.source = "lastepochtools"
-        mock_failure.raw_url = "https://example.com"
-        mock_failure.missing_fields = []
-        mock_failure.partial_data = None
-        mock_failure.error_message = "Error"
-        mock_failure.user_id = None
-        mock_failure.created_at = None
+        mock_failure = {
+            "id": "anon-test",
+            "source": "lastepochtools",
+            "raw_url": "https://example.com",
+            "missing_fields": [],
+            "partial_data": None,
+            "error_message": "Error",
+            "user_id": None,
+            "created_at": None,
+        }
 
         _post_alert(mock_failure, severity="hard")
 
@@ -629,20 +629,21 @@ class TestDiscordNotifier:
         """Verify embed stays under Discord's 6000 character limit even with large gear data."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = MagicMock()
-        mock_failure.id = "limit-test"
-        mock_failure.source = "lastepochtools"
-        mock_failure.raw_url = "https://example.com/very/long/url/" + "x" * 200
-        mock_failure.missing_fields = [f"field_{i}" for i in range(50)]
-        mock_failure.partial_data = {
-            "gear": [
-                {"slot": f"slot_{i}", "data": "x" * 500, "affixes": list(range(20))}
-                for i in range(10)
-            ],
+        mock_failure = {
+            "id": "limit-test",
+            "source": "lastepochtools",
+            "raw_url": "https://example.com/very/long/url/" + "x" * 200,
+            "missing_fields": [f"field_{i}" for i in range(50)],
+            "partial_data": {
+                "gear": [
+                    {"slot": f"slot_{i}", "data": "x" * 500, "affixes": list(range(20))}
+                    for i in range(10)
+                ],
+            },
+            "error_message": "A" * 1024,
+            "user_id": "user-with-long-id-12345",
+            "created_at": None,
         }
-        mock_failure.error_message = "A" * 1024
-        mock_failure.user_id = "user-with-long-id-12345"
-        mock_failure.created_at = None
 
         _post_alert(mock_failure, severity="hard")
 
@@ -660,18 +661,17 @@ class TestDiscordNotifier:
         """When partial_data has no gear, the raw gear field is omitted."""
         mock_post.return_value = MagicMock(status_code=200)
         from app.services.discord_notifier import _post_alert
-        mock_failure = MagicMock()
-        mock_failure.id = "no-gear"
-        mock_failure.source = "maxroll"
-        mock_failure.raw_url = "https://example.com"
-        mock_failure.missing_fields = []
-        mock_failure.partial_data = {"character_class": "Mage"}
-        mock_failure.error_message = "Class only"
-        mock_failure.user_id = None
-        mock_failure.created_at = None
-
+        mock_failure = {
+            "id": "no-gear",
+            "source": "maxroll",
+            "raw_url": "https://example.com",
+            "missing_fields": [],
+            "partial_data": {"character_class": "Mage"},
+            "error_message": "Class only",
+            "user_id": None,
+            "created_at": None,
+        }
         _post_alert(mock_failure, severity="hard")
-
         payload = mock_post.call_args[1]["json"]
         embed = payload["embeds"][0]
         gear_fields = [f for f in embed["fields"] if "Gear" in f["name"]]
