@@ -44,6 +44,7 @@ class SkillStatDef:
     is_throwing: bool = False
     is_bow: bool = False
     damage_types: tuple[DamageType, ...] = ()  # explicit damage channels this skill deals
+    added_damage_effectiveness: float = 1.0  # multiplier on flat added damage (e.g. 2.0 = 200%)
     hit_count:    int   = 1    # hits per cast activation
     hit_interval: float = 0.0  # seconds between hits (0 = simultaneous)
     mana_cost:    float = 0.0  # mana required per cast (0 = free)
@@ -67,6 +68,7 @@ class SkillStatDef:
             is_bow=bool(d.get("is_bow", False)),
             data_version=data_version,
             damage_types=dtypes,
+            added_damage_effectiveness=float(d.get("added_damage_effectiveness", 1.0)),
             hit_count=int(d.get("hit_count", 1)),
             hit_interval=float(d.get("hit_interval", 0.0)),
             mana_cost=float(d.get("mana_cost", 0.0)),

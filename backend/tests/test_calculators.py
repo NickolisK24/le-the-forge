@@ -17,6 +17,7 @@ import sys
 import os
 import math
 import unittest
+import pytest
 
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), ".."))
 
@@ -41,7 +42,11 @@ from app.domain.calculators.enemy_mitigation_calculator import (
     RES_CAP,
 )
 from app.domain.enemy import EnemyProfile
-from app.constants.combat import BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION, POISON_DPS_RATIO, POISON_DURATION
+from app.constants.combat import (
+    BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION,
+    POISON_DPS_RATIO, POISON_DURATION,
+    BLEED_BASE_DPS, IGNITE_BASE_DPS, POISON_BASE_DPS,
+)
 from app.engines.stat_engine import BuildStats
 
 
@@ -553,90 +558,84 @@ class TestAilmentStackCount(unittest.TestCase):
     """
     Deterministic tests for steady-state ailment stack math.
 
-    Formula: stacks = effective_as × chance × duration
+    Formula: stacks = effective_as × (chance_pct / 100) × duration
+    chance_pct is in percentage points (100.0 = 100%).
     """
 
     def test_unit_values_equal_duration(self):
-        # as=1, chance=1.0 → stacks = 1 × 1 × duration
-        assert ailment_stack_count(1.0, 1.0, BLEED_DURATION) == BLEED_DURATION
+        # as=1, chance_pct=100 → stacks = 1 × 1.0 × duration
+        assert ailment_stack_count(1.0, 100.0, BLEED_DURATION) == BLEED_DURATION
 
     def test_half_chance_halves_stacks(self):
-        # as=2, chance=0.5 → proc_rate=1.0 → same stacks as as=1, chance=1.0
-        assert ailment_stack_count(2.0, 0.5, 3.0) == ailment_stack_count(1.0, 1.0, 3.0)
+        # as=2, chance_pct=50 → proc_rate=1.0 → same stacks as as=1, chance_pct=100
+        assert ailment_stack_count(2.0, 50.0, 3.0) == ailment_stack_count(1.0, 100.0, 3.0)
 
     def test_zero_chance_gives_zero_stacks(self):
         assert ailment_stack_count(2.0, 0.0, 3.0) == 0.0
 
     def test_zero_as_gives_zero_stacks(self):
-        assert ailment_stack_count(0.0, 1.0, 3.0) == 0.0
+        assert ailment_stack_count(0.0, 100.0, 3.0) == 0.0
 
     def test_proportional_to_attack_speed(self):
         # Doubling attack speed doubles stacks.
-        assert ailment_stack_count(2.0, 0.5, 4.0) == 2 * ailment_stack_count(1.0, 0.5, 4.0)
+        assert ailment_stack_count(2.0, 50.0, 4.0) == 2 * ailment_stack_count(1.0, 50.0, 4.0)
 
     def test_proportional_to_duration(self):
         # Doubling duration doubles stacks.
-        assert ailment_stack_count(1.5, 0.4, 6.0) == 2 * ailment_stack_count(1.5, 0.4, 3.0)
+        assert ailment_stack_count(1.5, 40.0, 6.0) == 2 * ailment_stack_count(1.5, 40.0, 3.0)
 
     def test_exact_numeric(self):
-        # 1.5 as × 0.4 chance × 3.0 duration = 1.8
-        assert math.isclose(ailment_stack_count(1.5, 0.4, 3.0), 1.8, rel_tol=1e-9, abs_tol=1e-12)
+        # 1.5 as × (40/100) × 3.0 duration = 1.8
+        assert math.isclose(ailment_stack_count(1.5, 40.0, 3.0), 1.8, rel_tol=1e-9, abs_tol=1e-12)
 
 
 class TestCalcAilmentDps(unittest.TestCase):
     """
     Deterministic tests for calc_ailment_dps output.
 
-    Expected values derived from the stack model:
-        stacks       = effective_as × chance × duration
-        per_stack_dps = hit_damage × ratio [/ duration for bleed]
-        base_dps     = per_stack_dps × stacks
-        final_dps    = round(base_dps × (1 + increased_pct / 100))
+    Flat base damage per stack model (Last Epoch verified):
+        stacks    = effective_as × (chance_pct / 100) × duration
+        base_dps  = AILMENT_BASE_DPS × stacks
+        final_dps = round(base_dps × (1 + increased_pct / 100))
     """
 
     def test_bleed_only_no_bonuses(self):
-        # hit=100, as=1.0, bleed_chance=100% → chance=1.0
-        # stacks = 1.0 × 1.0 × BLEED_DURATION = BLEED_DURATION
-        # per_stack = 100 × BLEED_BASE_RATIO / BLEED_DURATION
-        # base = per_stack × BLEED_DURATION = 100 × BLEED_BASE_RATIO = 70
-        # increased = 0 → final = 70
+        # as=1.0, bleed_chance=100% → stacks = 1 × 1.0 × 4.0 = 4.0
+        # base_dps = 43 × 4 = 172
         stats = BuildStats(bleed_chance_pct=100.0)
         bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
-        expected = round(100.0 * BLEED_BASE_RATIO)
+        expected = round(BLEED_BASE_DPS * 1.0 * 1.0 * BLEED_DURATION)
         assert bleed == expected
         assert ignite == 0
         assert poison == 0
 
     def test_ignite_only_no_bonuses(self):
-        # hit=100, as=1.0, ignite_chance=100%
-        # stacks = 1.0 × 1.0 × IGNITE_DURATION
-        # per_stack = 100 × IGNITE_DPS_RATIO = 20
-        # base = 20 × IGNITE_DURATION = 60
-        # final = 60
+        # as=1.0, ignite_chance=100% → stacks = 1 × 1.0 × 3.0 = 3.0
+        # base_dps = 40 × 3 = 120
         stats = BuildStats(ignite_chance_pct=100.0)
         bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
-        expected = round(100.0 * IGNITE_DPS_RATIO * IGNITE_DURATION)
+        expected = round(IGNITE_BASE_DPS * 1.0 * 1.0 * IGNITE_DURATION)
         assert bleed == 0
         assert ignite == expected
         assert poison == 0
 
     def test_poison_only_no_bonuses(self):
-        # hit=100, as=1.0, poison_chance=100%
-        # base = 100 × POISON_DPS_RATIO × POISON_DURATION = 90
+        # as=1.0, poison_chance=100% → stacks = 1 × 1.0 × 3.0 = 3.0
+        # base_dps = 28 × 3 = 84
         stats = BuildStats(poison_chance_pct=100.0)
         bleed, ignite, poison = calc_ailment_dps(100.0, 1.0, stats)
-        expected = round(100.0 * POISON_DPS_RATIO * POISON_DURATION)
+        expected = round(POISON_BASE_DPS * 1.0 * 1.0 * POISON_DURATION)
         assert bleed == 0
         assert ignite == 0
         assert poison == expected
 
-    def test_bleed_chance_capped_at_100pct(self):
-        # 150% chance is capped to 1.0 — same result as 100%.
+    def test_bleed_over_100pct_gives_more_stacks(self):
+        # 150% chance → 1.5 stacks per hit → more DPS than 100%
         stats_100 = BuildStats(bleed_chance_pct=100.0)
         stats_150 = BuildStats(bleed_chance_pct=150.0)
         b100, _, _ = calc_ailment_dps(100.0, 1.0, stats_100)
         b150, _, _ = calc_ailment_dps(100.0, 1.0, stats_150)
-        assert b100 == b150
+        assert b150 > b100  # 150% gives 1.5× the stacks
 
     def test_bleed_scales_with_attack_speed(self):
         # Doubling effective_as doubles bleed DPS (linearly via stack count).
@@ -1036,91 +1035,82 @@ class TestArmorMitigation(unittest.TestCase):
     def test_negative_armor_gives_zero_mitigation(self):
         assert armor_mitigation(-50) == 0.0
 
-    def test_formula_1000_armor(self):
-        # 1000 / (1000 + 1000) = 0.5
-        assert math.isclose(armor_mitigation(1000), 0.5, rel_tol=1e-9, abs_tol=1e-12)
+    def test_formula_1000_armor_area_100(self):
+        # 1000 / (1000 + 10×100) = 1000/2000 = 0.5
+        assert math.isclose(armor_mitigation(1000, 100), 0.5, rel_tol=1e-9, abs_tol=1e-12)
 
-    def test_formula_500_armor(self):
+    def test_formula_500_armor_area_100(self):
         # 500 / (500 + 1000) = 1/3
-        assert math.isclose(armor_mitigation(500), 1.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(armor_mitigation(500, 100), 1.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_higher_armor_gives_higher_mitigation(self):
         assert armor_mitigation(2000) > armor_mitigation(1000) > armor_mitigation(0)
 
     def test_mitigation_below_one(self):
-        # Armor can never fully absorb damage
         assert armor_mitigation(999_999) < 1.0
 
-    def test_extreme_armor_approaches_one(self):
-        # Asymptotic saturation: 1_000_000 / (1_000_000 + 1000) ≈ 0.999001
-        # Must be < 1.0 (never full absorption) and > 0.999 (saturating).
+    def test_extreme_armor_capped_at_85pct(self):
+        # With 85% cap: 1M armor → capped at 0.85
         mit = armor_mitigation(1_000_000)
-        assert mit < 1.0
-        assert mit > 0.999
+        assert mit == 0.85
 
-    def test_formula_2000_armor(self):
+    def test_formula_2000_armor_area_100(self):
         # 2000 / (2000 + 1000) = 2/3
-        assert math.isclose(armor_mitigation(2000), 2.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(armor_mitigation(2000, 100), 2.0 / 3.0, rel_tol=1e-9, abs_tol=1e-12)
 
-    def test_formula_3000_armor(self):
+    def test_formula_3000_armor_area_100(self):
         # 3000 / (3000 + 1000) = 3/4 = 0.75
-        assert math.isclose(armor_mitigation(3000), 0.75, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(armor_mitigation(3000, 100), 0.75, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_formula_general(self):
-        # For any armor a > 0: mitigation = a / (a + 1000)
+        # For any armor a > 0 at area_level=100: mitigation = a / (a + 1000), capped at 85%
         for a in (100, 250, 750, 1500, 4000):
-            expected = a / (a + 1000)
-            assert math.isclose(armor_mitigation(a), expected, rel_tol=1e-9, abs_tol=1e-12)
+            expected = min(0.85, a / (a + 1000))
+            assert math.isclose(armor_mitigation(a, 100), expected, rel_tol=1e-9, abs_tol=1e-12)
 
 
 class TestApplyArmor(unittest.TestCase):
     """
-    Deterministic tests for apply_armor(damage, armor).
+    Deterministic tests for apply_armor(damage, armor, area_level).
 
-    Each case uses a round damage value and a breakpoint armor value so the
-    expected post-armor damage is exactly computable.
+    Formula: damage × (1 - armor/(armor + 10×area_level)), cap at 85%.
+    Uses default area_level=100 where not specified.
     """
 
     def test_zero_armor_passes_full_damage(self):
         assert apply_armor(100.0, 0) == 100.0
 
     def test_1000_armor_halves_damage(self):
-        # mitigation = 0.5 → 100 × 0.5 = 50
-        assert math.isclose(apply_armor(100.0, 1000), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        # area_level=100: 1000/(1000+1000)=0.5 → 100×0.5=50
+        assert math.isclose(apply_armor(100.0, 1000, 100), 50.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_2000_armor_reduces_to_one_third(self):
         # mitigation = 2/3 → 300 × (1 - 2/3) = 100
-        assert math.isclose(apply_armor(300.0, 2000), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(apply_armor(300.0, 2000, 100), 100.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_3000_armor_reduces_to_one_quarter(self):
         # mitigation = 3/4 → 200 × 0.25 = 50
-        assert math.isclose(apply_armor(200.0, 3000), 50.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(apply_armor(200.0, 3000, 100), 50.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_500_armor_reduces_to_two_thirds(self):
         # mitigation = 1/3 → 150 × (2/3) = 100
-        assert math.isclose(apply_armor(150.0, 500), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(apply_armor(150.0, 500, 100), 100.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_negative_armor_is_same_as_zero(self):
-        # Negative armor treated as 0 — no buff to damage.
-        assert math.isclose(apply_armor(100.0, -200), 100.0, rel_tol=1e-9, abs_tol=1e-12)
+        assert math.isclose(apply_armor(100.0, -200, 100), 100.0, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_result_never_exceeds_input(self):
-        # Post-armor damage is always ≤ raw damage.
         for armor in (0, 100, 500, 1000, 5000):
             assert apply_armor(100.0, armor) <= 100.0
 
     def test_result_always_positive(self):
-        # Even extreme armor cannot produce zero or negative damage.
         assert apply_armor(1.0, 1_000_000) > 0.0
 
-    def test_extreme_armor_never_reaches_full_block(self):
-        # 1_000_000 armor: mitigation = 1_000_000 / 1_001_000 ≈ 0.999001
-        # Remaining damage ≈ 0.0999 — well above zero, well below 0.1% of input.
-        # Guards against overflow/rounding causing full absorption in Monte Carlo.
+    def test_extreme_armor_capped_at_85pct(self):
+        # 85% cap → minimum 15% of damage passes through
         damage = 100.0
         result = apply_armor(damage, 1_000_000)
-        assert result > 0
-        assert result < damage * 0.001
+        assert result == pytest.approx(damage * 0.15)
 
 
 class TestPenetrationMechanics(unittest.TestCase):
@@ -1254,10 +1244,13 @@ class TestEnemyDamageMultiplier(unittest.TestCase):
         assert math.isclose(mult, 0.5, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_armor_and_resistance_stack_multiplicatively(self):
-        # 1000 armor (50% mit) × 50% fire res → 0.5 × 0.5 = 0.25
+        # 1000 armor, fire damage → non-physical armor at 75% effectiveness
+        # effective_armor=750, mit=750/(750+1000)=3/7, armor_factor=4/7
+        # 50% fire res → res_factor=0.5 → total = 4/7 × 0.5 = 2/7 ≈ 0.28571
         enemy = _make_enemy(armor=1000, resistances={"fire": 50.0})
         mult = enemy_damage_multiplier(enemy, {"fire"})
-        assert math.isclose(mult, 0.25, rel_tol=1e-9, abs_tol=1e-12)
+        expected = (1.0 - 750.0 / 1750.0) * 0.5
+        assert math.isclose(mult, expected, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_penetration_improves_multiplier(self):
         enemy = _make_enemy(armor=0, resistances={"fire": 40.0})
@@ -1322,11 +1315,14 @@ class TestWeightedDamageMultiplier(unittest.TestCase):
         assert math.isclose(weighted, 0.70, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_armor_applies_regardless_of_weighting(self):
-        # 1000 armor (50% mit), 0% resistance on all types.
+        # 1000 armor, fire damage → non-physical armor at 75% effectiveness
+        # effective_armor=750, mit=750/(750+1000)=3/7, armor_factor=4/7 ≈ 0.57143
+        # 0% fire res → res_factor=1.0 → total = 4/7 ≈ 0.57143
         enemy = _make_enemy(armor=1000, resistances={"fire": 0.0})
         damage_by_type = {DamageType.FIRE: 100.0}
         weighted = weighted_damage_multiplier(enemy, damage_by_type)
-        assert math.isclose(weighted, 0.5, rel_tol=1e-9, abs_tol=1e-12)
+        expected = 1.0 - 750.0 / 1750.0
+        assert math.isclose(weighted, expected, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_empty_damage_by_type_returns_armor_only(self):
         # No per-type data → fall back to armor factor only.

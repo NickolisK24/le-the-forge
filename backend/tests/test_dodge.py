@@ -1,4 +1,8 @@
-"""Tests for Dodge Mechanics (Step 78)."""
+"""Tests for Dodge Mechanics.
+
+Last Epoch formula: Dodge% = DodgeRating / (DodgeRating + 10 × AreaLevel)
+Cap: 85%
+"""
 import pytest
 from app.domain.dodge import dodge_chance, roll_dodge, DODGE_CAP
 
@@ -13,10 +17,10 @@ class TestDodgeChance:
     def test_very_high_rating_capped(self):
         assert dodge_chance(10_000_000.0) == pytest.approx(DODGE_CAP)
 
-    def test_level_penalty_reduces_chance(self):
-        base  = dodge_chance(500.0, level_penalty=0.0)
-        penalised = dodge_chance(500.0, level_penalty=1.0)
-        assert penalised < base
+    def test_higher_area_level_reduces_chance(self):
+        base = dodge_chance(500.0, area_level=50)
+        harder = dodge_chance(500.0, area_level=200)
+        assert harder < base
 
     def test_negative_rating_raises(self):
         with pytest.raises(ValueError):
@@ -25,6 +29,13 @@ class TestDodgeChance:
     def test_result_in_valid_range(self):
         chance = dodge_chance(500.0)
         assert 0.0 <= chance <= DODGE_CAP
+
+    def test_formula_exact(self):
+        # 1000 rating, area_level=100 → 1000/(1000+1000) = 0.5
+        assert dodge_chance(1000.0, area_level=100) == pytest.approx(0.5)
+
+    def test_cap_is_85pct(self):
+        assert DODGE_CAP == pytest.approx(0.85)
 
 
 class TestRollDodge:

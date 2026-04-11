@@ -168,8 +168,8 @@ class SkillExecutionEngine:
             skill_def.base_damage * (1 + skill_def.level_scaling * (level - 1))
         )
 
-        # 2 — Add flat gear damage
-        flat_added = sum_flat_damage(stats, skill_def)
+        # 2 — Add flat gear damage (scaled by addedDamageEffectiveness)
+        flat_added = sum_flat_damage(stats, skill_def) * skill_def.added_damage_effectiveness
         effective_base = scaled_total + flat_added
 
         if capture_debug:

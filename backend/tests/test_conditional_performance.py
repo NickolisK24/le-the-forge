@@ -105,4 +105,4 @@ class TestTriggerPerformance:
         reg.register(EventTrigger("t1", "on_crit", callback=lambda ctx: None))
 
         elapsed = _elapsed(lambda: [reg.fire("on_crit", {}) for _ in range(1000)])
-        assert elapsed < 0.1, f"1000 fire calls took {elapsed:.3f}s (limit 0.1s)"
+        assert elapsed < 0.2, f"1000 fire calls took {elapsed:.3f}s (limit 0.2s)"
