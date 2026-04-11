@@ -45,14 +45,50 @@ _MASTERY_MAP: Dict[str, Dict[int, str]] = {
     "Rogue":     {1: "Bladedancer", 2: "Marksman",    3: "Falconer"},
 }
 
+# Canonical gear slot names (Maxroll may use various formats)
+_SLOT_NORMALISE: Dict[str, str] = {
+    "helm": "Helmet",
+    "helmet": "Helmet",
+    "head": "Helmet",
+    "chest": "Body Armour",
+    "body": "Body Armour",
+    "body armour": "Body Armour",
+    "body armor": "Body Armour",
+    "gloves": "Gloves",
+    "hands": "Gloves",
+    "boots": "Boots",
+    "feet": "Boots",
+    "belt": "Belt",
+    "waist": "Belt",
+    "amulet": "Amulet",
+    "neck": "Amulet",
+    "ring 1": "Ring 1",
+    "ring1": "Ring 1",
+    "ring 2": "Ring 2",
+    "ring2": "Ring 2",
+    "weapon": "Weapon",
+    "mainhand": "Weapon",
+    "main hand": "Weapon",
+    "offhand": "Off Hand",
+    "off hand": "Off Hand",
+    "shield": "Off Hand",
+    "relic": "Relic",
+    "idol 1": "Idol 1",
+    "idol 2": "Idol 2",
+    "idol 3": "Idol 3",
+    "idol 4": "Idol 4",
+}
+
 URL_PATTERN = re.compile(
     r"maxroll\.gg/last-epoch/planner/([A-Za-z0-9_\-]+)"
 )
 
-# Possible API endpoints Maxroll uses for planner data
+# Possible API endpoints Maxroll uses for planner data.
+# Ordered by likelihood — first hit wins.
 _API_URLS = [
     "https://planners.maxroll.gg/last-epoch/api/save/{code}",
     "https://maxroll.gg/last-epoch/api/planner/{code}",
+    "https://planners.maxroll.gg/api/last-epoch/save/{code}",
 ]
 
 
@@ -73,6 +109,36 @@ def _extract_next_data(html: str) -> Optional[dict]:
         return page_props.get("build") or page_props.get("data") or page_props
     except (json.JSONDecodeError, AttributeError):
         return None
+
+
+def _unwrap_build_data(payload: dict) -> Optional[dict]:
+    """
+    Unwrap the build data from various Maxroll response wrappers.
+
+    Maxroll's API has used different envelope formats over time:
+      {"data": {...build fields...}}
+      {"build": {...build fields...}}
+      {"plannerData": {...build fields...}}
+      {...build fields directly...}
+    """
+    # Direct build data (has class or className)
+    if payload.get("class") or payload.get("className") or payload.get("characterClass"):
+        return payload
+
+    # Nested under a key
+    for key in ("data", "build", "plannerData"):
+        inner = payload.get(key)
+        if isinstance(inner, dict) and (
+            inner.get("class") or inner.get("className") or inner.get("characterClass")
+        ):
+            return inner
+
+    return None
+
+
+def _normalise_slot(raw_slot: str) -> str:
+    """Normalise gear slot name to canonical form."""
+    return _SLOT_NORMALISE.get(raw_slot.lower().strip(), raw_slot)
 
 
 class MaxrollImporter(BaseImporter):
@@ -123,9 +189,11 @@ class MaxrollImporter(BaseImporter):
                 resp = _requests.get(api_url, headers=headers, timeout=15)
                 if resp.status_code == 200:
                     data = resp.json()
-                    if isinstance(data, dict) and (data.get("data") or data.get("class")):
-                        logger.info("Maxroll: got build data from API %s", api_url)
-                        return data.get("data", data)
+                    if isinstance(data, dict):
+                        unwrapped = _unwrap_build_data(data)
+                        if unwrapped:
+                            logger.info("Maxroll: got build data from API %s", api_url)
+                            return unwrapped
             except Exception:
                 continue
 
@@ -151,7 +219,12 @@ class MaxrollImporter(BaseImporter):
         missing_fields: List[str] = []
 
         # Class resolution — Maxroll uses string names or numeric IDs
-        char_class = raw.get("class") or raw.get("className") or raw.get("characterClass")
+        # Use explicit None checks since 0 is a valid numeric class ID
+        char_class = raw.get("class")
+        if char_class is None:
+            char_class = raw.get("className")
+        if char_class is None:
+            char_class = raw.get("characterClass")
         if isinstance(char_class, int):
             char_class = _CLASS_MAP.get(char_class)
         if not char_class:
@@ -163,7 +236,7 @@ class MaxrollImporter(BaseImporter):
                 build_data={"_raw_keys": list(raw.keys())},
             )
 
-        # Mastery resolution
+        # Mastery resolution — 0 is not a valid mastery ID so `or` is safe here
         mastery = raw.get("mastery") or raw.get("masteryName") or ""
         if isinstance(mastery, int):
             mastery = _MASTERY_MAP.get(char_class, {}).get(mastery, "")
@@ -226,8 +299,45 @@ class MaxrollImporter(BaseImporter):
         if isinstance(gear_raw, list):
             for item in gear_raw:
                 if isinstance(item, dict):
-                    slot = item.get("slot", "")
-                    item_name = item.get("name") or item.get("baseType") or item.get("itemName", "")
+                    raw_slot = str(item.get("slot", ""))
+                    slot = _normalise_slot(raw_slot) if raw_slot else ""
+                    item_name = (
+                        item.get("name")
+                        or item.get("baseType")
+                        or item.get("itemName")
+                        or ""
+                    )
+                    rarity = item.get("rarity", "Rare")
+
+                    affixes = []
+                    for aff in (item.get("affixes") or []):
+                        if isinstance(aff, dict):
+                            affixes.append({
+                                "name": aff.get("name") or aff.get("id", ""),
+                                "tier": aff.get("tier", 1),
+                                "sealed": aff.get("sealed", False),
+                            })
+
+                    if item_name:
+                        gear.append({
+                            "slot": slot,
+                            "item_name": item_name,
+                            "rarity": rarity,
+                            "affixes": affixes,
+                        })
+                    else:
+                        missing_fields.append(f"gear_slot:{slot or raw_slot}")
+        elif isinstance(gear_raw, dict):
+            # Some Maxroll formats use {slot_name: item_data, ...}
+            for slot_key, item in gear_raw.items():
+                if isinstance(item, dict):
+                    slot = _normalise_slot(slot_key)
+                    item_name = (
+                        item.get("name")
+                        or item.get("baseType")
+                        or item.get("itemName")
+                        or ""
+                    )
                     rarity = item.get("rarity", "Rare")
 
                     affixes = []
@@ -269,5 +379,14 @@ class MaxrollImporter(BaseImporter):
             build_data=build_data,
             source=self.source_name,
             missing_fields=missing_fields,
+            partial_data={
+                "character_class": char_class,
+                "mastery": mastery,
+                "level": level,
+                "skills_count": len(skills),
+                "passives_count": len(passive_tree),
+                "gear_count": len(gear),
+                "missing_count": len(missing_fields),
+            } if missing_fields else None,
         )
         return self.validate(result)

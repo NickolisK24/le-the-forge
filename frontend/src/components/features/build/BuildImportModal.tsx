@@ -219,21 +219,32 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
               <div>
                 <p className="font-body text-sm text-forge-text/80 leading-relaxed">
                   Import a build from{" "}
-                  <span className="text-forge-amber font-mono text-xs">Last Epoch Tools</span> or{" "}
-                  <span className="text-forge-amber font-mono text-xs">Maxroll</span>.
-                  We'll map everything we can and tell you what didn't transfer.
+                  <span className="text-forge-amber font-mono text-xs">Maxroll</span>
+                  . Paste a planner URL and we'll map everything we can.
                 </p>
+                <div className="mt-2 rounded border border-yellow-500/20 bg-yellow-500/5 px-3 py-2">
+                  <p className="font-mono text-[10px] text-yellow-400/80 leading-relaxed">
+                    Last Epoch Tools import is temporarily unavailable — LET moved to
+                    client-side rendering which prevents server-side fetching. Use Maxroll
+                    planner URLs instead.
+                  </p>
+                </div>
               </div>
 
               <div>
                 <div className="flex items-center gap-2 mb-1.5">
-                  <label className={labelCls}>Build URL</label>
+                  <label className={labelCls}>Maxroll Planner URL</label>
                   <SourceBadge source={importSource} />
+                  {importSource === "lastepochtools" && (
+                    <span className="font-mono text-[10px] text-yellow-400/70">
+                      LET import unavailable
+                    </span>
+                  )}
                 </div>
                 <input
                   className={inputCls}
                   type="url"
-                  placeholder="https://www.lastepochtools.com/planner/B4XdLG56 or https://maxroll.gg/last-epoch/planner/zge0t60e"
+                  placeholder="https://maxroll.gg/last-epoch/planner/zge0t60e"
                   value={importUrl}
                   onChange={(e) => { setImportUrl(e.target.value); setImportError(""); }}
                   onKeyDown={(e) => e.key === "Enter" && handleFullImport()}
@@ -329,18 +340,18 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
           {/* ---- Quick Fetch tab (legacy) ---- */}
           {tab === "fetch" && !preview && (
             <div className="flex flex-col gap-4">
-              <div>
-                <p className="font-body text-sm text-forge-text/80 leading-relaxed">
-                  Paste a build link from{" "}
-                  <span className="text-forge-amber font-mono text-xs">lastepochtools.com/planner/…</span>
-                  {" "}and The Forge will fetch it for preview. You can then apply it to your form.
+              <div className="rounded border border-yellow-500/20 bg-yellow-500/5 px-4 py-3">
+                <div className="font-display text-sm text-yellow-400">Temporarily Unavailable</div>
+                <p className="mt-1 font-body text-sm text-forge-text/70 leading-relaxed">
+                  Last Epoch Tools moved to client-side rendering, which prevents
+                  server-side fetching. This method is temporarily unavailable.
                 </p>
-                <p className="mt-1 font-mono text-[10px] text-forge-dim">
-                  Gear is not yet imported via this method.
+                <p className="mt-2 font-mono text-[10px] text-forge-dim">
+                  Use the <strong>Import URL</strong> tab with a Maxroll planner URL instead.
                 </p>
               </div>
 
-              <div>
+              <div className="opacity-50">
                 <div className="flex items-center gap-2 mb-1.5">
                   <label className={labelCls}>Last Epoch Tools URL</label>
                   <SourceBadge source={fetchSource} />
@@ -352,6 +363,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   value={fetchUrl}
                   onChange={(e) => { setFetchUrl(e.target.value); setFetchError(""); }}
                   onKeyDown={(e) => e.key === "Enter" && handleUrlFetch()}
+                  disabled
                 />
                 {fetchError && (
                   <p className="mt-1.5 font-mono text-[11px] text-red-400">{fetchError}</p>
@@ -364,9 +376,9 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   variant="primary"
                   size="sm"
                   onClick={handleUrlFetch}
-                  disabled={fetchLoading || !fetchUrl.trim()}
+                  disabled
                 >
-                  {fetchLoading ? "Fetching…" : "Fetch Build →"}
+                  Fetch Build →
                 </Button>
               </div>
             </div>
