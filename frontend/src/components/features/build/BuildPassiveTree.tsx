@@ -1,8 +1,11 @@
 /**
- * BuildPassiveTree — renders all 4 passive trees simultaneously in a 2x2 grid.
+ * BuildPassiveTree — tab-based passive tree viewer.
+ *
+ * Renders one tree at a time with tabs: Base | Mastery1 | Mastery2 | Mastery3.
+ * Point totals and remaining budget are tracked globally across all tabs.
  *
  * Last Epoch passive tree rules:
- *   - 4 trees: 1 base class + 3 mastery trees, all visible at once
+ *   - 4 trees: 1 base class + 3 mastery trees
  *   - Base tree: no point cap, tier gating at 5/10/15/20/25
  *   - 20 points in base tree required to unlock mastery trees
  *   - Chosen mastery: full tree accessible, no point cap
@@ -31,7 +34,7 @@ import { CLASS_MASTERIES } from "@constants";
 
 type AllocMap = Record<number, number>;
 
-const PANEL_H = 460;
+const PANEL_H = 620;
 
 // Last Epoch passive point budget rules
 const BASE_TREE_GATE = 20;            // Points in base tree to unlock mastery trees
@@ -76,13 +79,16 @@ export default function BuildPassiveTree({
   const containerRef = useRef<HTMLDivElement>(null);
   const [panelWidth, setPanelWidth] = useState(400);
 
-  // Resize observer for responsive width
+  // Active tab: "__base__" or a mastery name
+  const [activeTab, setActiveTab] = useState("__base__");
+
+  // Resize observer for responsive width (full container width for single-panel tab layout)
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setPanelWidth(Math.floor(entry.contentRect.width / 2)));
+    const ro = new ResizeObserver(([entry]) => setPanelWidth(Math.floor(entry.contentRect.width)));
     ro.observe(el);
-    setPanelWidth(Math.floor(el.clientWidth / 2));
+    setPanelWidth(Math.floor(el.clientWidth));
     return () => ro.disconnect();
   }, []);
 
@@ -134,6 +140,35 @@ export default function BuildPassiveTree({
     }
     return { allocatedIds: ids, allocatedPoints: pts };
   }, [allocated, rawToStr]);
+
+  // Per-section allocated IDs — filters global allocations to nodes in each section.
+  // Fixes BUG where canRemoveNode received global allocatedIds but section-scoped
+  // adjacency, causing BFS to fail on nodes from other sections.
+  const sectionAllocatedIds = useMemo(() => {
+    const result: Record<string, Set<string>> = {};
+    for (const key of sectionKeys) {
+      const sectionNodeIds = new Set((sections[key] ?? []).map((n) => n.id));
+      const filtered = new Set<string>();
+      for (const id of allocatedIds) {
+        if (sectionNodeIds.has(id)) filtered.add(id);
+      }
+      result[key] = filtered;
+    }
+    return result;
+  }, [sectionKeys, sections, allocatedIds]);
+
+  const sectionAllocatedPoints = useMemo(() => {
+    const result: Record<string, Map<string, number>> = {};
+    for (const key of sectionKeys) {
+      const sectionNodeIds = new Set((sections[key] ?? []).map((n) => n.id));
+      const filtered = new Map<string, number>();
+      for (const [id, pts] of allocatedPoints) {
+        if (sectionNodeIds.has(id)) filtered.set(id, pts);
+      }
+      result[key] = filtered;
+    }
+    return result;
+  }, [sectionKeys, sections, allocatedPoints]);
 
   // Points spent per section
   const pointsBySection = useMemo(() => {
@@ -247,16 +282,18 @@ export default function BuildPassiveTree({
       // Don't allow mastery tree allocation if base tree gate not met
       if (sectionKey !== "__base__" && !masteryTreesUnlocked) return;
 
-      if (pointsLeft <= 0 && !allocatedIds.has(nodeId)) return;
+      const secAllocated = sectionAllocatedIds[sectionKey] ?? new Set<string>();
+
+      if (pointsLeft <= 0 && !secAllocated.has(nodeId)) return;
 
       const capLeft = sectionCapRemaining(sectionKey);
-      if (capLeft <= 0 && !allocatedIds.has(nodeId)) return;
+      if (capLeft <= 0 && !secAllocated.has(nodeId)) return;
 
       const sd = sectionData[sectionKey];
       if (!sd) return;
       const available = sectionAvailable[sectionKey] ?? new Set();
 
-      if (allocatedIds.has(nodeId)) {
+      if (secAllocated.has(nodeId)) {
         const current = allocatedPoints.get(nodeId) ?? 1;
         if (current >= node.max_points) return;
         const target = shiftKey ? node.max_points : current + 1;
@@ -271,14 +308,15 @@ export default function BuildPassiveTree({
         onAllocate(rawId, pts);
       }
     },
-    [nodeById, strToRaw, allocatedIds, allocatedPoints, onAllocate, readOnly, pointsLeft,
+    [nodeById, strToRaw, sectionAllocatedIds, allocatedPoints, onAllocate, readOnly, pointsLeft,
       sectionCapRemaining, sectionData, sectionAvailable, masteryLockedIds, masteryTreesUnlocked],
   );
 
   const makeHandleRightClick = useCallback(
     (sectionKey: string) => (nodeId: string, shiftKey: boolean) => {
       if (readOnly) return;
-      if (!allocatedIds.has(nodeId)) return;
+      const secAllocated = sectionAllocatedIds[sectionKey] ?? new Set<string>();
+      if (!secAllocated.has(nodeId)) return;
       const rawId = strToRaw.get(nodeId);
       if (rawId === undefined) return;
 
@@ -288,13 +326,14 @@ export default function BuildPassiveTree({
       const pts = allocatedPoints.get(nodeId) ?? 1;
 
       if (shiftKey || pts === 1) {
-        if (!canRemoveNode(nodeId, allocatedIds, sd.startIds, sd.adjacency, sd.nodes)) return;
+        // Use section-scoped allocatedIds so BFS only checks this section's nodes
+        if (!canRemoveNode(nodeId, secAllocated, sd.startIds, sd.adjacency, sd.nodes)) return;
         onAllocate(rawId, 0);
       } else {
         onAllocate(rawId, pts - 1);
       }
     },
-    [allocatedIds, allocatedPoints, strToRaw, onAllocate, readOnly, sectionData],
+    [sectionAllocatedIds, allocatedPoints, strToRaw, onAllocate, readOnly, sectionData],
   );
 
   // Empty highlight sets
@@ -350,6 +389,16 @@ export default function BuildPassiveTree({
     return key !== "__base__" && key !== mastery;
   }
 
+  // Active section data
+  const activeKey = activeTab;
+  const activeSd = sectionData[activeKey];
+  const activeAvailable = sectionAvailable[activeKey] ?? new Set<string>();
+  const activeIsLocked = activeKey !== "__base__" && !masteryTreesUnlocked;
+  const activeIsChosen = isChosenMastery(activeKey);
+  const activeIsNonChosen = isNonChosenMastery(activeKey);
+  const activeSecAllocated = sectionAllocatedIds[activeKey] ?? new Set<string>();
+  const activeSecAllocatedPts = sectionAllocatedPoints[activeKey] ?? new Map<string, number>();
+
   return (
     <div ref={containerRef} className="flex flex-col gap-0">
       {/* Total point budget bar */}
@@ -376,110 +425,94 @@ export default function BuildPassiveTree({
         </div>
       </div>
 
-      {/* 2x2 grid of tree panels */}
-      <div className="grid grid-cols-2 gap-0">
+      {/* Tab bar */}
+      <div className="flex border-x border-forge-border bg-forge-surface">
         {sectionKeys.map((key) => {
-          const sd = sectionData[key];
-          if (!sd) return null;
-          const available = sectionAvailable[key] ?? new Set();
-          const isMastery = key !== "__base__";
-          const isLocked = isMastery && !masteryTreesUnlocked;
+          const isActive = key === activeKey;
           const isChosen = isChosenMastery(key);
-          const isNonChosen = isNonChosenMastery(key);
+          const isLocked = key !== "__base__" && !masteryTreesUnlocked;
           const spent = pointsBySection[key] ?? 0;
 
           return (
-            <div key={key} className="flex flex-col border border-forge-border">
-              {/* Section header */}
-              <div className={`flex items-center justify-between px-3 py-1.5 ${
-                isChosen
-                  ? "bg-forge-amber/10 border-b border-forge-amber/30"
+            <button
+              key={key}
+              onClick={() => setActiveTab(key)}
+              className={`relative flex items-center gap-2 px-4 py-2 font-mono text-[11px] transition-colors ${
+                isActive
+                  ? isChosen
+                    ? "bg-forge-amber/10 text-forge-amber border-b-2 border-forge-amber"
+                    : "bg-forge-surface2 text-forge-text border-b-2 border-forge-amber/60"
                   : isLocked
-                    ? "bg-forge-surface opacity-60 border-b border-forge-border"
-                    : "bg-forge-surface2 border-b border-forge-border"
-              }`}>
-                <div className="flex items-center gap-2 font-mono text-[11px]">
-                  <span className={`font-bold ${
-                    isChosen ? "text-forge-amber" : isLocked ? "text-forge-dim" : "text-forge-text"
-                  }`}>
-                    {sectionName(key)}
-                  </span>
-                  {isChosen && (
-                    <span className="rounded bg-forge-amber/20 px-1.5 py-0.5 text-[9px] font-bold text-forge-amber">
-                      CHOSEN
-                    </span>
-                  )}
-                  {isLocked && (
-                    <span className="rounded bg-forge-surface2 px-1.5 py-0.5 text-[9px] text-forge-dim">
-                      LOCKED
-                    </span>
-                  )}
-                </div>
-                <div className="font-mono text-[10px]">
-                  {key === "__base__" ? (
-                    <span className={spent >= BASE_TREE_GATE ? "text-green-400" : "text-forge-dim"}>
-                      {sectionPointLabel(key)} pts
-                      {spent < BASE_TREE_GATE && (
-                        <span className="text-forge-dim"> (gate: {BASE_TREE_GATE})</span>
-                      )}
-                    </span>
-                  ) : isChosen ? (
-                    <span className="text-forge-amber">{spent} pts</span>
-                  ) : (
-                    <span className={spent >= NON_CHOSEN_MASTERY_CAP ? "text-red-400" : "text-forge-dim"}>
-                      {sectionPointLabel(key)} pts
-                    </span>
-                  )}
-                </div>
-              </div>
-
-              {/* Tree canvas or locked overlay */}
-              {isLocked ? (
-                <div
-                  className="flex items-center justify-center"
-                  style={{ height: PANEL_H, background: "#0b0e1a" }}
-                >
-                  <div className="text-center">
-                    <div className="font-mono text-xs text-forge-dim/60">
-                      Spend {BASE_TREE_GATE - basePointsSpent} more point{BASE_TREE_GATE - basePointsSpent !== 1 ? "s" : ""} in Base tree
-                    </div>
-                    <div className="font-mono text-[10px] text-forge-dim/40 mt-1">
-                      to unlock mastery trees
-                    </div>
-                  </div>
-                </div>
-              ) : sd.nodes.length === 0 ? (
-                <div
-                  className="flex items-center justify-center"
-                  style={{ height: PANEL_H, background: "#0b0e1a" }}
-                >
-                  <span className="font-mono text-xs text-forge-dim">No passive data.</span>
-                </div>
-              ) : (
-                <PassiveTreeCanvas
-                  nodes={sd.nodes}
-                  edges={sd.layout.edges}
-                  positions={sd.layout.positions}
-                  scale={sd.layout.scale}
-                  allocatedIds={allocatedIds}
-                  allocatedPoints={allocatedPoints}
-                  startIds={sd.startIds}
-                  adjacency={sd.adjacency}
-                  onNodeClick={makeHandleClick(key)}
-                  onNodeRightClick={makeHandleRightClick(key)}
-                  availableIds={available}
-                  highlightedNodes={emptySet}
-                  highlightedEdges={emptySet}
-                  blockingNodeIds={emptySet}
-                  canvasWidth={panelWidth}
-                  canvasHeight={PANEL_H}
-                  readOnly={readOnly || isLocked}
-                  masteryLockedIds={isNonChosen ? masteryLockedIds : undefined}
-                />
+                    ? "text-forge-dim/50 hover:bg-forge-surface2/50 border-b-2 border-transparent"
+                    : "text-forge-dim hover:bg-forge-surface2 hover:text-forge-text border-b-2 border-transparent"
+              }`}
+            >
+              <span className="font-bold">{sectionName(key)}</span>
+              {isChosen && (
+                <span className="rounded bg-forge-amber/20 px-1 py-0.5 text-[9px] font-bold text-forge-amber">
+                  CHOSEN
+                </span>
               )}
-            </div>
+              {isLocked && (
+                <span className="rounded bg-forge-surface2 px-1 py-0.5 text-[9px] text-forge-dim">
+                  LOCKED
+                </span>
+              )}
+              <span className={`text-[10px] ${
+                isChosen ? "text-forge-amber/70" : spent > 0 ? "text-forge-text/60" : "text-forge-dim/50"
+              }`}>
+                {sectionPointLabel(key)}
+              </span>
+            </button>
           );
         })}
+      </div>
+
+      {/* Single tree panel for active tab */}
+      <div className="border border-t-0 border-forge-border">
+        {activeIsLocked ? (
+          <div
+            className="flex items-center justify-center"
+            style={{ height: PANEL_H, background: "#0b0e1a" }}
+          >
+            <div className="text-center">
+              <div className="font-mono text-xs text-forge-dim/60">
+                Spend {BASE_TREE_GATE - basePointsSpent} more point{BASE_TREE_GATE - basePointsSpent !== 1 ? "s" : ""} in Base tree
+              </div>
+              <div className="font-mono text-[10px] text-forge-dim/40 mt-1">
+                to unlock mastery trees
+              </div>
+            </div>
+          </div>
+        ) : !activeSd || activeSd.nodes.length === 0 ? (
+          <div
+            className="flex items-center justify-center"
+            style={{ height: PANEL_H, background: "#0b0e1a" }}
+          >
+            <span className="font-mono text-xs text-forge-dim">No passive data.</span>
+          </div>
+        ) : (
+          <PassiveTreeCanvas
+            nodes={activeSd.nodes}
+            edges={activeSd.layout.edges}
+            positions={activeSd.layout.positions}
+            scale={activeSd.layout.scale}
+            allocatedIds={activeSecAllocated}
+            allocatedPoints={activeSecAllocatedPts}
+            startIds={activeSd.startIds}
+            adjacency={activeSd.adjacency}
+            onNodeClick={makeHandleClick(activeKey)}
+            onNodeRightClick={makeHandleRightClick(activeKey)}
+            availableIds={activeAvailable}
+            highlightedNodes={emptySet}
+            highlightedEdges={emptySet}
+            blockingNodeIds={emptySet}
+            canvasWidth={panelWidth}
+            canvasHeight={PANEL_H}
+            readOnly={readOnly || activeIsLocked}
+            masteryLockedIds={activeIsNonChosen ? masteryLockedIds : undefined}
+          />
+        )}
       </div>
     </div>
   );
