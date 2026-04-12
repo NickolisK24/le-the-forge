@@ -102,9 +102,9 @@ class TestDeterministic:
         assert DamageType.PHYSICAL not in result
         assert math.isclose(result[DamageType.FIRE], 100.0, rel_tol=1e-9)
 
-    def test_crit_chance_capped_at_95pct(self):
-        assert math.isclose(effective_crit_chance(1.0, 0), 0.95, rel_tol=1e-9)
-        assert math.isclose(effective_crit_chance(2.0, 0), 0.95, rel_tol=1e-9)
+    def test_crit_chance_capped_at_100pct(self):
+        assert math.isclose(effective_crit_chance(1.0, 0), 1.0, rel_tol=1e-9)
+        assert math.isclose(effective_crit_chance(2.0, 0), 1.0, rel_tol=1e-9)
 
     def test_weighted_multiplier_formula(self):
         # armor=500 → factor = 1000/1500 = 2/3
@@ -156,9 +156,9 @@ class TestDPSSnapshots:
         stats.bleed_chance_pct  = 100
         stats.ignite_chance_pct = 100
         r = calculate_dps(stats, "Rive", 20)
-        assert r.bleed_dps   == 508
-        assert r.ignite_dps  == 396
-        assert r.total_dps   == 1580
+        assert r.bleed_dps   == 346
+        assert r.ignite_dps  == 219
+        assert r.total_dps   == 1241
 
     def test_level_scaling_monotone(self):
         stats = _mage()
@@ -280,9 +280,9 @@ class TestEdgeCases:
         enemy = _enemy(resistances={"fire": -50.0})
         assert effective_resistance(enemy, "fire") == 0.0
 
-    def test_extreme_armor_mitigation_below_one(self):
+    def test_extreme_armor_mitigation_capped_at_85pct(self):
+        assert armor_mitigation(10_000_000) == pytest.approx(0.85)
         assert armor_mitigation(10_000_000) < 1.0
-        assert armor_mitigation(10_000_000) > 0.999
 
     # --- conversion extremes ---
 

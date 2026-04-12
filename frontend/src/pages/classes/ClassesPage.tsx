@@ -15,6 +15,39 @@ import ClassCard from "@/components/classes/ClassCard";
 
 const EXPECTED_CLASS_COUNT = 5;
 
+// One-liner flavour descriptions. Keyed by class name.
+const CLASS_DESCRIPTIONS: Record<string, string> = {
+  Sentinel:  "Heavy-armoured melee champion — stand your ground, swing hard, and punish anything that gets close.",
+  Mage:      "Elemental caster — trade defences for devastating ranged spells and board-wide AoE.",
+  Primalist: "Nature-aligned brute with wolves, totems, and shape-shifts — versatile across melee, ranged, and summons.",
+  Rogue:     "Agile hit-and-run specialist — stack crit and movement, strike before the enemy reacts.",
+  Acolyte:   "Master of death magic — minions, damage-over-time, and curses that grind down tough targets.",
+};
+
+// Per-mastery colours. Falls back to the class colour for unknown names.
+const MASTERY_COLORS: Record<string, string> = {
+  // Sentinel
+  Paladin:     "#f5d060",
+  "Forge Guard": "#e06030",
+  "Void Knight": "#b870ff",
+  // Mage
+  Sorcerer:    "#00d4f5",
+  Spellblade:  "#ff7070",
+  Runemaster:  "#f0a020",
+  // Primalist
+  Beastmaster: "#c07a3c",
+  Druid:       "#3dca74",
+  Shaman:      "#5ab0ff",
+  // Rogue
+  Bladedancer: "#ff5050",
+  Marksman:    "#c0f030",
+  Falconer:    "#5ab0ff",
+  // Acolyte
+  Necromancer: "#3dca74",
+  Lich:        "#b870ff",
+  Warlock:     "#ff5090",
+};
+
 export default function ClassesPage() {
   const { data: classesRes, isLoading, isError, error } = useClasses();
 
@@ -117,6 +150,9 @@ export default function ClassesPage() {
             color={cls.color}
             masteries={cls.masteries}
             skills={cls.skills}
+            description={CLASS_DESCRIPTIONS[cls.name]}
+            masteryColors={MASTERY_COLORS}
+            to={`/build?class=${encodeURIComponent(cls.name)}`}
           />
         ))}
       </div>

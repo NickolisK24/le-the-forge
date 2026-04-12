@@ -137,8 +137,8 @@ class TestDodgeCap:
         assert dodge_chance(0.0) == pytest.approx(0.0)
 
     def test_dodge_never_exceeds_cap_with_penalty(self):
-        # Even with level penalty, result stays <= DODGE_CAP
-        result = dodge_chance(1e12, level_penalty=5.0)
+        # Even at high area level, result stays <= DODGE_CAP
+        result = dodge_chance(1e12, area_level=200)
         assert result <= DODGE_CAP
 
 

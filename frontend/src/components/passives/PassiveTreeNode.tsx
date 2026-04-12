@@ -10,7 +10,7 @@
  * Wrapped in React.memo with custom comparator for performance.
  */
 
-import { memo } from "react";
+import { memo, useState } from "react";
 import TreeIcon from "@/components/TreeIcon";
 import type { PassiveNode } from "@/services/passiveTreeService";
 import { NodeState } from "@/utils/passiveGraph";
@@ -57,117 +57,180 @@ function PassiveTreeNodeInner({
   const isAllocated = state === NodeState.ALLOCATED;
   const isAvailable = state === NodeState.AVAILABLE;
   const isLocked = state === NodeState.LOCKED;
+  const isMasteryLocked = state === NodeState.MASTERY_LOCKED;
+  const isAnyLocked = isLocked || isMasteryLocked;
 
+  // ALLOCATED vs AVAILABLE vs LOCKED distinction:
+  //   ALLOCATED     — bright class color fill + glow halo, thick border
+  //   AVAILABLE     — dark fill, colored border, full opacity
+  //   LOCKED        — very dark fill, dim border, 40% opacity
+  //   MASTERY_LOCKED — locked styling + lock icon overlay
   const stroke = isAllocated
     ? pal.strokeAllocated
     : isAvailable
       ? pal.strokeAvailable
       : pal.strokeIdle;
 
-  const strokeWidth = isAllocated ? 2 : highlighted ? 1.5 : 1;
-  const opacity = isLocked ? (highlighted ? 0.6 : 0.35) : 1;
-  const cursor = isLocked ? "not-allowed" : "pointer";
+  const fill = isAllocated ? pal.strokeAllocated : pal.fill;
+
+  // Strokes and labels scale with the node radius so they stay visually
+  // proportional at any on-screen size (our canvas guarantees the screen
+  // radius is ≥ MIN_SCREEN_NODE_R by inflating the coord-space radius).
+  const strokeWidth = isAllocated
+    ? radius * 0.2
+    : highlighted
+      ? radius * 0.15
+      : radius * 0.1;
+  const opacity = isMasteryLocked ? 0.4 : isLocked ? (highlighted ? 0.6 : 0.4) : 1;
+  const cursor = isAnyLocked ? "not-allowed" : "pointer";
+
+  // Icon sits inside the node shape. User-facing target is 1.6× diameter
+  // of the base radius (so the art fills more of the node).
+  const iconSize = radius * 1.6;
+  // Points label scales with the node so it stays legible. Ratio 0.55
+  // matches ~10 unit font at the 18-unit base radius.
+  const labelFontSize = radius * 0.55;
+  const labelGap = radius * 0.2;
+
+  // Hover scale — applied via CSS transform so the browser animates
+  // smoothly. Outer <g> handles the SVG translate (viewBox coords);
+  // inner <g> handles the scale so we do not fight the attribute.
+  const [hovered, setHovered] = useState(false);
 
   return (
-    <g
-      transform={`translate(${sx},${sy})`}
-      onClick={(e) => onNodeClick(node.id, e.shiftKey)}
-      onContextMenu={(e) => { e.preventDefault(); onNodeRightClick(node.id, e.shiftKey); }}
-      onMouseEnter={(e) => onHover(node, e.clientX, e.clientY)}
-      onMouseMove={(e) => onHover(node, e.clientX, e.clientY)}
-      onMouseLeave={onLeave}
-      style={{ cursor }}
-      opacity={opacity}
-    >
-      {/* Glow halo when allocated */}
-      {isAllocated && (
-        isNotable ? (
-          <rect
-            x={-(radius + 4)}
-            y={-(radius + 4)}
-            width={(radius + 4) * 2}
-            height={(radius + 4) * 2}
-            rx={3}
-            transform="rotate(45)"
-            fill={pal.strokeAllocated}
-            opacity={0.15}
+    <g transform={`translate(${sx},${sy})`}>
+      <g
+        onClick={(e) => onNodeClick(node.id, e.shiftKey)}
+        onContextMenu={(e) => { e.preventDefault(); onNodeRightClick(node.id, e.shiftKey); }}
+        onMouseEnter={(e) => { setHovered(true); onHover(node, e.clientX, e.clientY); }}
+        onMouseMove={(e) => onHover(node, e.clientX, e.clientY)}
+        onMouseLeave={() => { setHovered(false); onLeave(); }}
+        style={{
+          cursor,
+          opacity,
+          transform: hovered && !isAnyLocked ? "scale(1.2)" : "scale(1)",
+          transition: "transform 150ms ease-out",
+          transformBox: "fill-box",
+          transformOrigin: "center",
+        }}
+      >
+        {/* Glow halo when allocated — bright bloom that signals the
+            node is active. Grows proportionally with radius. */}
+        {isAllocated && (
+          isNotable ? (
+            <rect
+              x={-(radius + radius * 0.35)}
+              y={-(radius + radius * 0.35)}
+              width={(radius + radius * 0.35) * 2}
+              height={(radius + radius * 0.35) * 2}
+              rx={radius * 0.25}
+              transform="rotate(45)"
+              fill={pal.strokeAllocated}
+              opacity={0.22}
+              pointerEvents="none"
+            />
+          ) : (
+            <circle
+              r={radius * 1.45}
+              fill={pal.strokeAllocated}
+              opacity={0.22}
+              pointerEvents="none"
+            />
+          )
+        )}
+
+        {/* Path highlight ring (when node is on the hover path) */}
+        {highlighted && !isAllocated && (
+          <circle
+            r={radius + radius * 0.2}
+            fill="none"
+            stroke="#f0a020"
+            strokeWidth={radius * 0.08}
+            opacity={0.55}
             pointerEvents="none"
+          />
+        )}
+
+        {/* Blocking indicator (red outline when this node is a dependency blocker) */}
+        {blocked && (
+          <circle
+            r={radius + radius * 0.3}
+            fill="none"
+            stroke="#ef4444"
+            strokeWidth={radius * 0.12}
+            opacity={0.75}
+            pointerEvents="none"
+          />
+        )}
+
+        {/* Node shape — filled with class color when allocated (so the
+            node reads as "active" at a glance), dark with colored border
+            otherwise. */}
+        {isNotable ? (
+          <rect
+            x={-radius}
+            y={-radius}
+            width={radius * 2}
+            height={radius * 2}
+            rx={radius * 0.2}
+            transform="rotate(45)"
+            fill={fill}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
           />
         ) : (
           <circle
-            r={radius + 4}
-            fill={pal.strokeAllocated}
-            opacity={0.15}
-            pointerEvents="none"
+            r={radius}
+            fill={fill}
+            stroke={stroke}
+            strokeWidth={strokeWidth}
           />
-        )
-      )}
+        )}
 
-      {/* Path highlight ring (when node is on the hover path) */}
-      {highlighted && !isAllocated && (
-        <circle
-          r={radius + 2}
-          fill="none"
-          stroke="#f0a020"
-          strokeWidth={1}
-          opacity={0.5}
-          pointerEvents="none"
-        />
-      )}
+        {/* Icon — sized to 1.6× the base radius so the art fills the
+            node while still leaving a visible rim. */}
+        <TreeIcon iconId={node.icon} size={iconSize} nodeName={node.name} />
 
-      {/* Blocking indicator (red outline when this node is a dependency blocker) */}
-      {blocked && (
-        <circle
-          r={radius + 3}
-          fill="none"
-          stroke="#ef4444"
-          strokeWidth={1.5}
-          opacity={0.7}
-          pointerEvents="none"
-        />
-      )}
+        {/* Points label — scales with the node so "X/Y" stays legible. */}
+        {node.max_points > 1 && (
+          <text
+            textAnchor="middle"
+            dominantBaseline="hanging"
+            y={radius + labelGap}
+            fontSize={labelFontSize}
+            fill={isAllocated ? pal.strokeAllocated : stroke}
+            fontFamily="monospace"
+            fontWeight="bold"
+            pointerEvents="none"
+            opacity={0.9}
+          >
+            {allocatedPoints}/{node.max_points}
+          </text>
+        )}
 
-      {/* Node shape */}
-      {isNotable ? (
-        <rect
-          x={-radius}
-          y={-radius}
-          width={radius * 2}
-          height={radius * 2}
-          rx={3}
-          transform="rotate(45)"
-          fill={pal.fill}
-          stroke={stroke}
-          strokeWidth={strokeWidth}
-        />
-      ) : (
-        <circle
-          r={radius}
-          fill={pal.fill}
-          stroke={stroke}
-          strokeWidth={strokeWidth}
-        />
-      )}
-
-      {/* Icon */}
-      <TreeIcon iconId={node.icon} size={radius * 1.5} nodeName={node.name} />
-
-      {/* Points label */}
-      {node.max_points > 1 && (
-        <text
-          textAnchor="middle"
-          dominantBaseline="hanging"
-          y={radius + 3}
-          fontSize={8}
-          fill={isAllocated ? pal.strokeAllocated : stroke}
-          fontFamily="monospace"
-          fontWeight="bold"
-          pointerEvents="none"
-          opacity={0.85}
-        >
-          {allocatedPoints}/{node.max_points}
-        </text>
-      )}
+        {/* Lock icon for mastery-locked nodes — scales with radius so
+            the glyph stays visible at any zoom level. */}
+        {isMasteryLocked && (
+          <g pointerEvents="none" opacity={0.95}>
+            <rect
+              x={-radius * 0.35}
+              y={-radius * 0.15}
+              width={radius * 0.7}
+              height={radius * 0.55}
+              rx={radius * 0.08}
+              fill="#ef4444"
+              opacity={0.85}
+            />
+            <path
+              d={`M${-radius * 0.22},${-radius * 0.15} L${-radius * 0.22},${-radius * 0.35} A${radius * 0.22},${radius * 0.22} 0 0,1 ${radius * 0.22},${-radius * 0.35} L${radius * 0.22},${-radius * 0.15}`}
+              fill="none"
+              stroke="#ef4444"
+              strokeWidth={radius * 0.12}
+              opacity={0.85}
+            />
+          </g>
+        )}
+      </g>
     </g>
   );
 }

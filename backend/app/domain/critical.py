@@ -1,51 +1,46 @@
 """
-Critical Strike System (Step 63).
+Critical Strike System.
 
 Determines whether a hit is a critical strike and applies the crit
 multiplier to the damage. Mirrors Last Epoch's crit model:
 
-    effective_crit_chance = clamp(base_chance + bonus_pct / 100, 0, CRIT_CAP)
+    effective_crit_chance = clamp(base_chance × (1 + increased_pct / 100), 0, CRIT_CAP)
     crit_multiplier       = base_multiplier + increased_multiplier / 100
-    crit_damage           = raw_damage * crit_multiplier
+    crit_damage           = raw_damage × crit_multiplier
 
 Constants:
     CRIT_CAP = 1.0   — maximum crit chance (100%)
-    BASE_CRIT_MULTIPLIER = 2.0 — default 200% (i.e. double damage)
+    BASE_CRIT_MULTIPLIER = 1.5 — default 150% (verified game value)
 
 Public API:
-    effective_crit_chance(base_chance, crit_chance_bonus_pct) -> float
-        Returns clamped crit chance in [0, CRIT_CAP].
-
+    effective_crit_chance(base_chance, crit_chance_increased_pct) -> float
     effective_crit_multiplier(base_multiplier, increased_multiplier_pct) -> float
-        Returns total crit multiplier.
-
     apply_crit(raw_damage, is_crit, crit_multiplier) -> float
-        Returns damage after applying crit multiplier (if crit).
-
     roll_crit(crit_chance, rng_roll=None) -> bool
-        Returns True if this hit is a critical strike.
 """
 
 from __future__ import annotations
 
 CRIT_CAP: float = 1.0
-BASE_CRIT_MULTIPLIER: float = 2.0
+BASE_CRIT_MULTIPLIER: float = 1.5
 
 
-def effective_crit_chance(base_chance: float, crit_chance_bonus_pct: float) -> float:
+def effective_crit_chance(base_chance: float, crit_chance_increased_pct: float) -> float:
     """
     Return effective crit chance clamped to [0, CRIT_CAP].
 
-        effective = clamp(base_chance + crit_chance_bonus_pct / 100, 0, 1)
+    Last Epoch formula: (base + flat_added) × (1 + increased_crit%)
+    Since flat_added is folded into base_chance by the stat engine:
+        effective = base_chance × (1 + crit_chance_increased_pct / 100)
 
-    base_chance is a fraction (0.0–1.0); crit_chance_bonus_pct is additive
-    percentage points (e.g. 10 = +10% crit chance).
+    base_chance is a fraction (0.0–1.0); crit_chance_increased_pct is
+    the total increased crit chance from all sources as percentage points.
 
     Raises ValueError if base_chance < 0.
     """
     if base_chance < 0:
         raise ValueError(f"base_chance must be >= 0, got {base_chance}")
-    raw = base_chance + crit_chance_bonus_pct / 100.0
+    raw = base_chance * (1 + crit_chance_increased_pct / 100.0)
     return max(0.0, min(CRIT_CAP, raw))
 
 
@@ -57,7 +52,7 @@ def effective_crit_multiplier(
 
         effective = base_multiplier + increased_multiplier_pct / 100
 
-    base_multiplier is a total multiplier (e.g. 2.0 = 200% damage).
+    base_multiplier is a total multiplier (e.g. 1.5 = 150% damage).
     increased_multiplier_pct is additive bonus (e.g. 50 → +50% → adds 0.5).
 
     Raises ValueError if base_multiplier < 1.

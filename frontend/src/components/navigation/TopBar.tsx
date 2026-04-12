@@ -78,7 +78,9 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
     staleTime: 5 * 60 * 1000,
     retry: false,
   });
-  const version = versionRes?.data;
+  // Fall back to the build-time VERSION file so the badge renders on cold
+  // load before /api/version resolves. The API value overrides once available.
+  const versionString = versionRes?.data?.version || __APP_VERSION__;
 
   function handleLogout() {
     logout();
@@ -122,9 +124,9 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
           </span>
         </Link>
 
-        {version && (
+        {versionString && versionString !== "0.0.0" && (
           <span className="font-mono text-[10px] text-forge-dim hidden lg:block ml-1">
-            v{version.version}
+            v{versionString}
           </span>
         )}
       </div>
@@ -184,6 +186,7 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
           <div className="flex items-center gap-2">
             <a
               href={authUrl}
+              onClick={() => sessionStorage.setItem("forge_login_attempted", "1")}
               className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-3 py-1.5 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
             >
               Sign In

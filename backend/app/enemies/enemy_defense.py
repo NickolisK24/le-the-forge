@@ -27,6 +27,7 @@ from dataclasses import dataclass, field
 from typing import Optional
 
 from app.domain.armor import armor_mitigation_pct, apply_armor
+from app.constants.defense import DEFAULT_AREA_LEVEL
 from app.domain.dodge import dodge_chance
 from app.domain.enemy import EnemyInstance, EnemyArchetype, EnemyStats, EnemyProfile
 from app.domain.resistance import apply_resistance, RES_CAP
@@ -195,7 +196,7 @@ class EnemyDefenseEngine:
 
         for dmg_type, dmg_value in after_resistance.items():
             if dmg_type == "physical":
-                mitigated = apply_armor(dmg_value, effective_enemy_armor)
+                mitigated = apply_armor(dmg_value, effective_enemy_armor, DEFAULT_AREA_LEVEL, physical=True)
                 armor_lost = dmg_value - mitigated
                 total_armor_reduction += armor_lost
                 after_armor[dmg_type] = mitigated

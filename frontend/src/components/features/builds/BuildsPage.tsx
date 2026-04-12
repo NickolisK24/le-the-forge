@@ -55,6 +55,9 @@ function BuildCard({
 
   const tierColor = TIER_COLORS[build.tier ?? "C"];
   const classColor = CLASS_COLORS[build.character_class] ?? "#8890b8";
+  // Hide the C tier for unrated builds — only show a tier badge when
+  // the backend has assigned one explicitly (i.e. there is simulation data).
+  const hasRating = Boolean(build.tier);
 
   function handleVote(dir: 1 | -1) {
     if (!user) return;
@@ -94,11 +97,11 @@ function BuildCard({
                 {build.name}
               </Link>
 
-              {build.description && (
-                <p className="font-body text-sm text-forge-muted mt-1 line-clamp-1 leading-relaxed">
-                  {build.description}
-                </p>
-              )}
+              <p className="font-body text-sm text-forge-muted mt-1 line-clamp-1 leading-relaxed">
+                {build.description?.trim() || (
+                  <span className="italic text-forge-dim">No description provided</span>
+                )}
+              </p>
 
               <div className="flex flex-wrap items-center gap-2 mt-2.5">
                 <span
@@ -119,13 +122,22 @@ function BuildCard({
 
             {/* Tier + meta */}
             <div className="flex flex-col items-end gap-2 flex-shrink-0">
-              <span
-                className="font-display text-2xl font-bold leading-none"
-                style={{ color: tierColor, textShadow: `0 0 12px ${tierColor}60` }}
-                title={`Tier ${build.tier ?? "C"}`}
-              >
-                {build.tier ?? "C"}
-              </span>
+              {hasRating ? (
+                <span
+                  className="font-display text-2xl font-bold leading-none"
+                  style={{ color: tierColor, textShadow: `0 0 12px ${tierColor}60` }}
+                  title={`Tier ${build.tier}`}
+                >
+                  {build.tier}
+                </span>
+              ) : (
+                <span
+                  className="font-mono text-[10px] uppercase tracking-widest text-forge-dim border border-forge-border/60 rounded-sm px-1.5 py-0.5"
+                  title="No simulation data yet — run a simulation to assign a tier."
+                >
+                  Unrated
+                </span>
+              )}
               {build.author && (
                 <span className="font-mono text-[10px] text-forge-dim">
                   by {build.author.username}

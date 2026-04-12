@@ -43,6 +43,7 @@ services:
       SECRET_KEY: ${SECRET_KEY:-dev-secret-change-in-prod}
       DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
       DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET}
+      DISCORD_IMPORT_WEBHOOK_URL: ${DISCORD_IMPORT_WEBHOOK_URL}
       FRONTEND_URL: http://localhost:5173
     ports:
       - "5050:5000"

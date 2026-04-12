@@ -355,8 +355,9 @@ def _build_layout_lookup() -> dict[str, dict[int, dict]]:
     def _flatten(obj: object, acc: dict[int, dict]) -> None:
         """Recursively walk any nested dict/list to collect nodeId entries."""
         if isinstance(obj, dict):
-            if "nodeId" in obj and "rect" in obj:
-                acc[obj["nodeId"]] = {
+            nid = obj.get("nodeId") or obj.get("id")
+            if nid is not None and "rect" in obj:
+                acc[nid] = {
                     "x": obj["rect"][0],
                     "y": obj["rect"][1],
                     "icon": obj.get("icon", ""),
@@ -411,6 +412,10 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
         raw = json.load(f)
 
     nodes_out: list[dict] = []
+
+    # Build layout lookup for coordinates — fallback when source data
+    # lacks the transform field (common in 1.4.3+ exports).
+    layout_coords = _build_layout_lookup()
 
     for tree in raw.get("passiveTrees", []):
         cls = tree.get("class", "")
@@ -473,8 +478,20 @@ def sync_passives(dry_run: bool = False) -> list[dict] | None:
             x = transform.get("x", 0.0)
             y = transform.get("y", 0.0)
 
+            # Fallback to char-tree-layout.json when source lacks coordinates
+            if x == 0.0 and y == 0.0:
+                layout_node = layout_coords.get(cls, {}).get(raw_id)
+                if layout_node:
+                    x = layout_node.get("x", 0.0)
+                    y = layout_node.get("y", 0.0)
+
             raw_icon = node.get("icon")
             icon = str(raw_icon) if raw_icon is not None else None
+            # Fallback icon from layout
+            if not icon:
+                layout_node = layout_coords.get(cls, {}).get(raw_id)
+                if layout_node:
+                    icon = layout_node.get("icon") or None
 
             max_pts = node.get("maxPoints", 1)
             node_type = "core" if max_pts > 1 else "notable"

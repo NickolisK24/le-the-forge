@@ -17,7 +17,11 @@ export default function AppLayout() {
     staleTime: 5 * 60 * 1000,
     retry: false,
   });
-  const version = versionRes?.data;
+  const apiVersion = versionRes?.data;
+  // Build-time fallback so the footer renders the version badge synchronously
+  // on cold load before /api/version resolves. patch/season still come from the
+  // API (they can change between releases without a frontend rebuild).
+  const versionString = apiVersion?.version || __APP_VERSION__;
 
   const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
     try {
@@ -82,19 +86,27 @@ export default function AppLayout() {
             <span className="font-mono text-xs text-forge-dim">
               The Forge — Last Epoch Build Analyzer
             </span>
-            {version && (
-              <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
-                <span className="text-forge-muted">v{version.version}</span>
-                <span className="text-forge-border">·</span>
-                <span title={`git ${version.commit}`} className="text-forge-dim">
-                  {version.commit}
-                </span>
-                <span className="text-forge-border">·</span>
-                <span title="Last Epoch patch" className="text-forge-amber/60">
-                  patch {version.current_patch}
-                </span>
-              </span>
-            )}
+            <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
+              {versionString && versionString !== "0.0.0" && (
+                <span className="text-forge-muted">v{versionString}</span>
+              )}
+              {apiVersion?.current_patch && (
+                <>
+                  <span className="text-forge-border">|</span>
+                  <span title="Last Epoch patch" className="text-forge-amber/60">
+                    patch {apiVersion.current_patch}
+                  </span>
+                </>
+              )}
+              {apiVersion?.current_season !== undefined && apiVersion?.current_season !== null && (
+                <>
+                  <span className="text-forge-border">|</span>
+                  <span title="Last Epoch season" className="text-forge-cyan/60">
+                    S{apiVersion.current_season}
+                  </span>
+                </>
+              )}
+            </span>
           </div>
         </footer>
       </div>

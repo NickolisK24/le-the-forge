@@ -1,1 +1,164 @@
-[]
+[
+  {
+    "id": "arcas",
+    "className": "ArcaneAscendanceTree",
+    "ability": "Arcane Ascendance",
+    "nodeCount": 29
+  },
+  {
+    "id": "bh2",
+    "className": "BlackHoleTree",
+    "ability": "Black Hole",
+    "nodeCount": 29
+  },
+  {
+    "id": "dig5",
+    "className": "DisintegrateTree",
+    "ability": "Disintegrate",
+    "nodeCount": 32
+  },
+  {
+    "id": "f1b4d",
+    "className": "FirebrandTree",
+    "ability": "Firebrand",
+    "nodeCount": 29
+  },
+  {
+    "id": "fb8fe",
+    "className": "RuneBoltSkillTree",
+    "ability": "Rune Bolt Skill",
+    "nodeCount": 33
+  },
+  {
+    "id": "fl71ds",
+    "className": "FlameRushSkillTree",
+    "ability": "Flame Rush Skill",
+    "nodeCount": 28
+  },
+  {
+    "id": "fr11mv",
+    "className": "FlameReaveTree",
+    "ability": "Flame Reave",
+    "nodeCount": 53
+  },
+  {
+    "id": "fr4wl",
+    "className": "FrostWallSkillTree",
+    "ability": "Frost Wall Skill",
+    "nodeCount": 29
+  },
+  {
+    "id": "frc87w",
+    "className": "FrostClawTree",
+    "ability": "Frost Claw",
+    "nodeCount": 30
+  },
+  {
+    "id": "fs11",
+    "className": "FireShieldSkillTree",
+    "ability": "Fire Shield Skill",
+    "nodeCount": 17
+  },
+  {
+    "id": "fw3d",
+    "className": "FlameWardTree",
+    "ability": "Flame Ward",
+    "nodeCount": 39
+  },
+  {
+    "id": "gl14",
+    "className": "GlacierSkillTree",
+    "ability": "Glacier Skill",
+    "nodeCount": 28
+  },
+  {
+    "id": "gy2dm",
+    "className": "GlyphOfDominionSkillTree",
+    "ability": "Glyph Of Dominion Skill",
+    "nodeCount": 28
+  },
+  {
+    "id": "ib5g3",
+    "className": "IceBarrageTree",
+    "ability": "Ice Barrage",
+    "nodeCount": 32
+  },
+  {
+    "id": "is58",
+    "className": "IceWardSkillTree",
+    "ability": "Ice Ward Skill",
+    "nodeCount": 16
+  },
+  {
+    "id": "lb23il",
+    "className": "LightningBlastSkillTree",
+    "ability": "Lightning Blast Skill",
+    "nodeCount": 33
+  },
+  {
+    "id": "md26kh",
+    "className": "MarkForDeathTree",
+    "ability": "Mark For Death",
+    "nodeCount": 20
+  },
+  {
+    "id": "ms26",
+    "className": "ManaStrikeSkillTree",
+    "ability": "Mana Strike Skill",
+    "nodeCount": 27
+  },
+  {
+    "id": "rn7iv",
+    "className": "RunicInvocationSkillTree",
+    "ability": "Runic Invocation Skill",
+    "nodeCount": 32
+  },
+  {
+    "id": "sb44eQ",
+    "className": "EnchantWeaponTree",
+    "ability": "Enchant Weapon",
+    "nodeCount": 26
+  },
+  {
+    "id": "so35a",
+    "className": "StaticOrbTree",
+    "ability": "Static Orb",
+    "nodeCount": 32
+  },
+  {
+    "id": "ss3tre",
+    "className": "ShatterStrikeTree",
+    "ability": "Shatter Strike",
+    "nodeCount": 31
+  },
+  {
+    "id": "st47ic",
+    "className": "StaticTree",
+    "ability": "Static",
+    "nodeCount": 29
+  },
+  {
+    "id": "su5g3",
+    "className": "SurgeTree",
+    "ability": "Surge",
+    "nodeCount": 30
+  },
+  {
+    "id": "sw31a",
+    "className": "SnapFreezeTree",
+    "ability": "Snap Freeze",
+    "nodeCount": 24
+  },
+  {
+    "id": "vm53dx",
+    "className": "FocusTree",
+    "ability": "Focus",
+    "nodeCount": 33
+  },
+  {
+    "id": "vo54",
+    "className": "VolcanicOrbTree",
+    "ability": "Volcanic Orb",
+    "nodeCount": 27
+  }
+]

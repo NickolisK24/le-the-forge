@@ -15,7 +15,6 @@ import type { OptimizeMode } from "@/types";
 import SimulationDashboard from "./SimulationDashboard";
 import StatUpgradePanel from "./StatUpgradePanel";
 import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
-import SkillTreeGraph from "./SkillTreeGraph";
 import BuildPassiveTree from "./BuildPassiveTree";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
@@ -24,7 +23,7 @@ import SkillSelector from "./SkillSelector";
 import BossEncounterPanel from "./BossEncounterPanel";
 import CorruptionScalingPanel from "./CorruptionScalingPanel";
 import GearUpgradePanel from "./GearUpgradePanel";
-import { getSkillTree, hasSkillTree, resolveSkillName } from "@/data/skillTrees";
+import { resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
 const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
@@ -62,7 +61,7 @@ function FlagToggle({
 }
 
 // ---------------------------------------------------------------------------
-// Skill row inside the picker
+// Shared types
 // ---------------------------------------------------------------------------
 interface DraftSkill {
   skill_name: string;
@@ -71,88 +70,7 @@ interface DraftSkill {
   spec_tree: number[];
 }
 
-function SkillRow({
-  skill, onRemove, onPoints, onOpenTree,
-}: { skill: DraftSkill; onRemove: () => void; onPoints: (p: number) => void; onOpenTree: () => void }) {
-  const hasTree = hasSkillTree(skill.skill_name);
-  return (
-    <div className="flex items-center gap-3 rounded border border-forge-border bg-forge-surface2 px-3 py-2">
-      <span className="flex-1 font-body text-sm text-forge-text truncate">{resolveSkillName(skill.skill_name)}</span>
-      <span className="font-mono text-[10px] text-forge-dim w-4 text-center">{skill.slot}</span>
-      <input
-        type="number"
-        min={0}
-        max={MAX_SKILL_LEVEL}
-        value={skill.points_allocated}
-        onChange={(e) => onPoints(Math.min(MAX_SKILL_LEVEL, Math.max(0, Number(e.target.value) || 0)))}
-        className="w-14 rounded-sm border border-forge-border bg-forge-bg px-2 py-0.5 font-mono text-xs text-forge-text outline-none focus:border-forge-amber/60 text-center"
-        title={`Skill level (0–${MAX_SKILL_LEVEL}; base cap 20, gear can push higher)`}
-      />
-      <button
-        onClick={onOpenTree}
-        className={`font-mono text-xs leading-none transition-colors ${hasTree ? "text-forge-amber hover:text-amber-300" : "text-forge-dim hover:text-forge-muted"}`}
-        title={hasTree ? "View skill tree" : "No tree data for this skill yet"}
-      >🌿</button>
-      <button
-        onClick={onRemove}
-        className="text-forge-dim hover:text-red-400 transition-colors font-mono text-xs leading-none"
-        title="Remove skill"
-      >✕</button>
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------
-// Skill tree modal
-// ---------------------------------------------------------------------------
 interface AllocMap { [nodeId: number]: number }
-
-function SkillTreeModal({
-  skillName, allocated, onAllocate, onClose, readOnly,
-}: {
-  skillName: string;
-  allocated: AllocMap;
-  onAllocate: (nodeId: number, points: number) => void;
-  onClose: () => void;
-  readOnly?: boolean;
-}) {
-  const nodes = getSkillTree(skillName);
-  const totalPoints = Object.values(allocated).reduce((a, b) => a + b, 0);
-
-  return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/70 p-4" onClick={onClose}>
-      <div
-        className="relative w-full max-w-2xl rounded border border-forge-border bg-forge-bg shadow-2xl"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="flex items-center justify-between border-b border-forge-border px-4 py-3">
-          <div>
-            <span className="font-display text-lg text-forge-amber">{skillName}</span>
-            <span className="ml-3 font-mono text-xs text-forge-dim">
-              {totalPoints} node{totalPoints !== 1 ? "s" : ""} allocated
-            </span>
-          </div>
-          <button
-            onClick={onClose}
-            className="text-forge-dim hover:text-forge-text font-mono text-sm transition-colors"
-          >✕ Close</button>
-        </div>
-        {nodes.length ? (
-          <SkillTreeGraph nodes={nodes} allocated={allocated} onAllocate={onAllocate} readOnly={readOnly} skillName={skillName} />
-        ) : (
-          <div className="flex items-center justify-center py-16 font-mono text-sm text-forge-dim">
-            No tree data for this skill yet.
-          </div>
-        )}
-        {!readOnly && (
-          <div className="border-t border-forge-border px-4 py-2 text-right">
-            <Button variant="outline" size="sm" onClick={onClose}>Done</Button>
-          </div>
-        )}
-      </div>
-    </div>
-  );
-}
 
 // ---------------------------------------------------------------------------
 // Build summary (view mode)
@@ -239,9 +157,6 @@ function BuildSummary({ build }: { build: Build }) {
     }))
   );
 
-  // Skill tree modal state: { skillIndex, readOnly }
-  const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
-
   // Passive tree allocation (stored as flat array of node IDs in DB)
   const [passiveTree, setPassiveTree] = useState<number[]>(build.passive_tree ?? []);
 
@@ -274,13 +189,36 @@ function BuildSummary({ build }: { build: Build }) {
     setPassiveTree(prev => prev.slice(0, stepIndex));
   }
   const characterClass = build.character_class;
-  const mastery = build.mastery;
+  const [mastery, setMastery] = useState(build.mastery);
+  const [showMasteryConfirm, setShowMasteryConfirm] = useState<string | null>(null);
 
-  const availableSkills = useMemo(
-    () => CLASS_SKILLS[characterClass].filter((s) => !s.mastery || s.mastery === mastery),
-    [characterClass, mastery]
+  const masteryOptions = useMemo(
+    () => MASTERIES[characterClass] ?? [],
+    [characterClass],
   );
-  const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
+
+  function handleMasteryChangeRequest(next: string) {
+    if (next === mastery) return;
+    // Show confirmation if there are passive points or skills that might be affected
+    if (passiveTree.length > 0 || draftSkills.length > 0) {
+      setShowMasteryConfirm(next);
+    } else {
+      setMastery(next);
+    }
+  }
+
+  function confirmMasteryChange() {
+    if (!showMasteryConfirm) return;
+    setMastery(showMasteryConfirm);
+    // Drop mastery-specific skills that don't belong to the new mastery
+    setDraftSkills((prev) =>
+      prev.filter((ds) => {
+        const def = CLASS_SKILLS[characterClass].find((s) => s.name === ds.skill_name);
+        return !def?.mastery || def.mastery === showMasteryConfirm;
+      })
+    );
+    setShowMasteryConfirm(null);
+  }
 
   function handleVote(direction: 1 | -1) {
     if (!user) { toast.error("Sign in to vote"); return; }
@@ -308,23 +246,6 @@ function BuildSummary({ build }: { build: Build }) {
     setDraftSkills((prev) => prev.map((s, i) => i === index ? { ...s, points_allocated: points } : s));
   }
 
-  function setTreeAlloc(skillIndex: number, nodeId: number, points: number) {
-    setDraftSkills((prev) => prev.map((s, i) => {
-      if (i !== skillIndex) return s;
-      const tree = s.spec_tree.filter((id) => id !== nodeId);
-      const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
-      return { ...s, spec_tree: updated };
-    }));
-  }
-
-  function getTreeAllocMap(skillIndex: number): AllocMap {
-    const skill = draftSkills[skillIndex];
-    if (!skill) return {};
-    const map: AllocMap = {};
-    for (const id of skill.spec_tree) map[id] = (map[id] ?? 0) + 1;
-    return map;
-  }
-
   function cancelEdit() {
     // Reset form to current build values
     setName(build.name);
@@ -347,6 +268,7 @@ function BuildSummary({ build }: { build: Build }) {
       payload: {
         name: name.trim(),
         description: description.trim() || undefined,
+        mastery,
         level,
         is_ssf: isSsf,
         is_hc: isHc,
@@ -519,17 +441,6 @@ function BuildSummary({ build }: { build: Build }) {
           )}
         </Panel>
 
-        {/* Skill tree modal (view-only) */}
-        {treeModal !== null && (
-          <SkillTreeModal
-            skillName={build.skills[treeModal.skillIndex]?.skill_name ?? ""}
-            allocated={getTreeAllocMap(treeModal.skillIndex)}
-            onAllocate={() => {}}
-            onClose={() => setTreeModal(null)}
-            readOnly
-          />
-        )}
-
         {/* Simulation results dashboard */}
         {showDashboard && simResult && (
           <div className="mt-2">
@@ -589,15 +500,23 @@ function BuildSummary({ build }: { build: Build }) {
               <textarea value={description} onChange={(e) => setDescription(e.target.value)} rows={2} className={inputCls + " mt-1.5 resize-none"} />
             </label>
 
-            {/* Class & mastery are read-only — fixed at creation */}
+            {/* Class is fixed at creation; mastery can be changed */}
             <div className="block">
               <SectionLabel>Class</SectionLabel>
               <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{characterClass}</div>
             </div>
-            <div className="block">
+            <label className="block">
               <SectionLabel>Mastery</SectionLabel>
-              <div className={inputCls + " mt-1.5 opacity-50 cursor-not-allowed"}>{mastery}</div>
-            </div>
+              <select
+                value={mastery}
+                onChange={(e) => handleMasteryChangeRequest(e.target.value)}
+                className={inputCls + " mt-1.5"}
+              >
+                {masteryOptions.map((m) => (
+                  <option key={m} value={m}>{m}</option>
+                ))}
+              </select>
+            </label>
 
             <label className="block">
               <SectionLabel>Level</SectionLabel>
@@ -618,30 +537,24 @@ function BuildSummary({ build }: { build: Build }) {
           </div>
         </Panel>
 
+        {/* Consolidated skills section — single panel with per-slot point
+            controls, expand/collapse toggle, and inline skill tree view. */}
         <Panel title={`Skills (${draftSkills.length}/${MAX_SKILLS})`}>
-          <div className="flex flex-col gap-4">
-            {draftSkills.length > 0 && (
-              <div className="flex flex-col gap-2">
-                {draftSkills.map((skill, i) => (
-                  <SkillRow key={skill.skill_name} skill={skill} onRemove={() => removeSkill(i)} onPoints={(p) => setPoints(i, p)} onOpenTree={() => setTreeModal({ skillIndex: i, readOnly: false })} />
-                ))}
-              </div>
-            )}
-            {draftSkills.length < MAX_SKILLS && (
-              <div>
-                <SectionLabel>Add skill — {characterClass} · {mastery}</SectionLabel>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {availableSkills.filter((s) => !selectedNames.has(s.name)).map((s) => (
-                    <button key={s.name} onClick={() => addSkill(s.name)} title={s.tags.join(", ")}
-                      className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2.5 py-1.5 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors">
-                      <span>{s.icon}</span><span>{s.name}</span>
-                      {s.mastery && <span className="font-mono text-[9px] text-forge-dim opacity-70">{s.mastery}</span>}
-                    </button>
-                  ))}
-                </div>
-              </div>
-            )}
-          </div>
+          <SkillSelector
+            skills={draftSkills.map((s) => ({
+              skill_name: s.skill_name,
+              slot: s.slot,
+              points_allocated: s.points_allocated,
+              spec_tree: s.spec_tree,
+            }))}
+            characterClass={characterClass}
+            mastery={mastery}
+            buildSlug={build.slug}
+            onAddSkill={addSkill}
+            onRemoveSkill={removeSkill}
+            onPointsChange={setPoints}
+            maxSkillLevel={MAX_SKILL_LEVEL}
+          />
         </Panel>
 
         <Panel title="Passive Tree">
@@ -658,19 +571,6 @@ function BuildSummary({ build }: { build: Build }) {
               onRewindTo={rewindPassiveTo}
             />
           </div>
-        </Panel>
-
-        <Panel title="Skill Trees">
-          <SkillSelector
-            skills={draftSkills.map((s) => ({
-              skill_name: s.skill_name,
-              slot: s.slot,
-              points_allocated: s.points_allocated,
-            }))}
-            characterClass={characterClass}
-            mastery={mastery}
-            buildSlug={build.slug}
-          />
         </Panel>
       </div>
 
@@ -692,15 +592,27 @@ function BuildSummary({ build }: { build: Build }) {
         </Panel>
       </div>
 
-      {/* Skill tree modal (edit mode) */}
-      {treeModal !== null && (
-        <SkillTreeModal
-          skillName={draftSkills[treeModal.skillIndex]?.skill_name ?? ""}
-          allocated={getTreeAllocMap(treeModal.skillIndex)}
-          onAllocate={(nodeId, pts) => setTreeAlloc(treeModal.skillIndex, nodeId, pts)}
-          onClose={() => setTreeModal(null)}
-          readOnly={treeModal.readOnly}
-        />
+      {/* Mastery change confirmation modal */}
+      {showMasteryConfirm && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60">
+          <div className="w-full max-w-sm rounded-lg border border-forge-border bg-forge-bg p-6 shadow-2xl">
+            <h3 className="font-display text-lg font-bold text-forge-amber">Change Mastery?</h3>
+            <p className="mt-2 font-body text-sm text-forge-muted">
+              Switching from <strong className="text-forge-text">{mastery}</strong> to{" "}
+              <strong className="text-forge-text">{showMasteryConfirm}</strong> will remove
+              skills exclusive to your current mastery. Passive tree allocations will be preserved
+              but mastery-specific nodes may become locked.
+            </p>
+            <div className="mt-4 flex gap-3 justify-end">
+              <Button variant="outline" size="sm" onClick={() => setShowMasteryConfirm(null)}>
+                Cancel
+              </Button>
+              <Button size="sm" onClick={confirmMasteryChange}>
+                Confirm
+              </Button>
+            </div>
+          </div>
+        </div>
       )}
     </div>
   );
@@ -727,7 +639,6 @@ export default function BuildPlannerPage() {
   const [isLadder, setIsLadder] = useState(false);
   const [isBudget, setIsBudget] = useState(false);
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
-  const [treeModal, setTreeModal] = useState<{ skillIndex: number; readOnly: boolean } | null>(null);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
@@ -858,16 +769,6 @@ export default function BuildPlannerPage() {
 
   const masteryOptions = useMemo(() => MASTERIES[characterClass], [characterClass]);
 
-  // Skills available for the selected class, filtered to base + chosen mastery
-  const availableSkills = useMemo(() =>
-    CLASS_SKILLS[characterClass].filter(
-      (s) => !s.mastery || s.mastery === mastery
-    ),
-    [characterClass, mastery]
-  );
-
-  const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
-
   function handleClassChange(next: CharacterClass) {
     setCharacterClass(next);
     setMastery(MASTERIES[next][0]);
@@ -879,7 +780,7 @@ export default function BuildPlannerPage() {
     // Drop skills that belong to a different mastery
     setDraftSkills((prev) =>
       prev.filter((ds) => {
-        const def = CLASS_SKILLS[characterClass].find((s) => s.name === ds.skill_name);
+        const def = (CLASS_SKILLS[characterClass] ?? []).find((s) => s.name === ds.skill_name);
         return !def?.mastery || def.mastery === next;
       })
     );
@@ -910,21 +811,19 @@ export default function BuildPlannerPage() {
     );
   }
 
+  // Updates draft spec_tree when the user allocates a skill-tree node before
+  // saving. spec_tree stores one entry per point (e.g. [5,5,5] = 3 pts on
+  // node 5), so we strip all existing entries for this node and push `points`
+  // copies back in.
   function setTreeAlloc(skillIndex: number, nodeId: number, points: number) {
-    setDraftSkills((prev) => prev.map((s, i) => {
-      if (i !== skillIndex) return s;
-      const tree = s.spec_tree.filter((id) => id !== nodeId);
-      const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
-      return { ...s, spec_tree: updated };
-    }));
-  }
-
-  function getTreeAllocMap(skillIndex: number): AllocMap {
-    const skill = draftSkills[skillIndex];
-    if (!skill) return {};
-    const map: AllocMap = {};
-    for (const id of skill.spec_tree) map[id] = (map[id] ?? 0) + 1;
-    return map;
+    setDraftSkills((prev) =>
+      prev.map((s, i) => {
+        if (i !== skillIndex) return s;
+        const tree = (s.spec_tree ?? []).filter((id) => id !== nodeId);
+        const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
+        return { ...s, spec_tree: updated };
+      })
+    );
   }
 
   async function handleSave() {
@@ -1005,7 +904,10 @@ export default function BuildPlannerPage() {
                 Clear Draft
               </Button>
             )}
-            <a href={`${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}>
+            <a
+              href={`${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}
+              onClick={() => sessionStorage.setItem("forge_login_attempted", "1")}
+            >
               <Button variant="primary" size="sm">Sign In</Button>
             </a>
           </div>
@@ -1132,58 +1034,24 @@ export default function BuildPlannerPage() {
           </div>
         </Panel>
 
-        {/* Skills */}
+        {/* Consolidated skills section — single panel with per-slot point
+            controls, expand/collapse toggle, and inline skill tree view. */}
         <Panel title={`Skills (${draftSkills.length}/${MAX_SKILLS})`}>
-          <div className="flex flex-col gap-4">
-
-            {/* Selected skills */}
-            {draftSkills.length > 0 && (
-              <div className="flex flex-col gap-2">
-                {draftSkills.map((skill, i) => (
-                  <SkillRow
-                    key={skill.skill_name}
-                    skill={skill}
-                    onRemove={() => removeSkill(i)}
-                    onPoints={(p) => setPoints(i, p)}
-                    onOpenTree={() => setTreeModal({ skillIndex: i, readOnly: false })}
-                  />
-                ))}
-              </div>
-            )}
-
-            {/* Skill picker */}
-            {draftSkills.length < MAX_SKILLS && (
-              <div>
-                <SectionLabel>
-                  Add skill — {characterClass} · {mastery}
-                </SectionLabel>
-                <div className="mt-2 flex flex-wrap gap-2">
-                  {availableSkills
-                    .filter((s) => !selectedNames.has(s.name))
-                    .map((s) => (
-                      <button
-                        key={s.name}
-                        onClick={() => addSkill(s.name)}
-                        title={s.tags.join(", ")}
-                        className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2.5 py-1.5 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors"
-                      >
-                        <span>{s.icon}</span>
-                        <span>{s.name}</span>
-                        {s.mastery && (
-                          <span className="font-mono text-[9px] text-forge-dim opacity-70">{s.mastery}</span>
-                        )}
-                      </button>
-                    ))}
-                </div>
-              </div>
-            )}
-
-            {draftSkills.length === 0 && (
-              <p className="font-body text-xs text-forge-dim">
-                Pick up to {MAX_SKILLS} skills to specialize. Base level cap is 20; set higher to account for +skill levels from gear.
-              </p>
-            )}
-          </div>
+          <SkillSelector
+            skills={draftSkills.map((s) => ({
+              skill_name: s.skill_name,
+              slot: s.slot,
+              points_allocated: s.points_allocated,
+              spec_tree: s.spec_tree,
+            }))}
+            characterClass={characterClass}
+            mastery={mastery}
+            onAddSkill={addSkill}
+            onRemoveSkill={removeSkill}
+            onPointsChange={setPoints}
+            onTreeAlloc={setTreeAlloc}
+            maxSkillLevel={MAX_SKILL_LEVEL}
+          />
         </Panel>
 
         <Panel title="Passive Tree">
@@ -1201,20 +1069,6 @@ export default function BuildPlannerPage() {
             />
           </div>
         </Panel>
-
-        {draftSkills.length > 0 && (
-          <Panel title="Skill Trees">
-            <SkillSelector
-              skills={draftSkills.map((s) => ({
-                skill_name: s.skill_name,
-                slot: s.slot,
-                points_allocated: s.points_allocated,
-              }))}
-              characterClass={characterClass}
-              mastery={mastery}
-            />
-          </Panel>
-        )}
       </div>
 
       {/* ── RIGHT: preview + gear + save ── */}
@@ -1284,16 +1138,6 @@ export default function BuildPlannerPage() {
         </Panel>
       </div>
 
-      {/* Skill tree modal (create mode) */}
-      {treeModal !== null && (
-        <SkillTreeModal
-          skillName={draftSkills[treeModal.skillIndex]?.skill_name ?? ""}
-          allocated={getTreeAllocMap(treeModal.skillIndex)}
-          onAllocate={(nodeId, pts) => setTreeAlloc(treeModal.skillIndex, nodeId, pts)}
-          onClose={() => setTreeModal(null)}
-          readOnly={false}
-        />
-      )}
     </div>
   );
 }

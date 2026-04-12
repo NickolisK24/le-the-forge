@@ -6,6 +6,7 @@
 
 import { useState } from "react";
 import type { BuffDef } from "@/services/buildApi";
+import { buffLabel } from "@/constants/buffLabels";
 
 interface Props {
   buffs: BuffDef[];
@@ -36,7 +37,7 @@ function BuffRow({
   return (
     <div className="flex items-center justify-between rounded border border-forge-border bg-forge-surface/60 px-3 py-2">
       <div>
-        <span className="text-sm font-medium text-forge-text">{buff.buff_id}</span>
+        <span className="text-sm font-medium text-forge-text">{buffLabel(buff.buff_id)}</span>
         <p className="text-xs text-forge-muted font-mono">{modSummary}</p>
         {buff.duration !== null && (
           <p className="text-xs text-forge-muted">{buff.duration}s</p>
@@ -99,7 +100,7 @@ export default function BuffPanel({ buffs, onChange, disabled }: Props) {
               hover:border-forge-accent hover:text-forge-accent disabled:opacity-40
             "
           >
-            + {p.buff_id}
+            + {buffLabel(p.buff_id)}
           </button>
         ))}
       </div>

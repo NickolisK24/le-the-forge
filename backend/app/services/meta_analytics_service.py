@@ -182,7 +182,7 @@ def compute_snapshot() -> dict:
     from flask import current_app
 
     now = datetime.now(timezone.utc)
-    patch = current_app.config.get("CURRENT_PATCH", "1.2")
+    patch = current_app.config.get("CURRENT_PATCH", "1.4.3")
 
     return {
         "class_distribution": _class_distribution(),

@@ -133,6 +133,23 @@ class TestGetClassTree:
                       "connections", "stats", "ability_granted", "icon"):
             assert field in node, f"Missing field: {field}"
 
+    def test_response_includes_grouped_field(self, client, seeded_passives):
+        """The grouped field must separate nodes by tree section."""
+        resp = client.get("/api/passives/Acolyte")
+        body = resp.get_json()["data"]
+        assert "grouped" in body
+        grouped = body["grouped"]
+        # Base nodes should be under "__base__"
+        assert "__base__" in grouped
+        base_ids = {n["id"] for n in grouped["__base__"]}
+        assert "ac_0" in base_ids  # Bone Aura is a base node
+        # Lich nodes should be under "Lich"
+        assert "Lich" in grouped
+        lich_ids = {n["id"] for n in grouped["Lich"]}
+        assert "ac_22" in lich_ids
+        # No overlap between sections
+        assert base_ids.isdisjoint(lich_ids)
+
     def test_unknown_class_returns_400(self, client):
         resp = client.get("/api/passives/Foo")
         assert resp.status_code == 400

@@ -73,6 +73,23 @@
     border: 2px solid rgba(255,184,63,0.4);
   }
 
+  /* Form element dark-theme defaults — prevents white-on-white text when
+     components omit explicit bg/color classes. Browser UA styles otherwise
+     render select/input with a white background that doesn't inherit the
+     body text color. */
+  select, input, textarea {
+    color: #eceef8;
+    background-color: #10152a;
+  }
+  select:disabled, input:disabled, textarea:disabled {
+    color: #8890b8;
+  }
+  /* Option elements in native dropdowns — Chromium/Firefox honor these */
+  option {
+    color: #eceef8;
+    background-color: #10152a;
+  }
+
   /* Select dropdown arrow */
   select {
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M0 0l5 6 5-6z' fill='%234a5480'/%3E%3C/svg%3E");

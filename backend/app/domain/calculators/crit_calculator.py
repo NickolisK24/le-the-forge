@@ -1,6 +1,10 @@
 """
 Crit Calculator — pure crit mechanics math.
 
+Last Epoch crit formula:
+  Crit% = (BaseCrit + FlatAdded) × (1 + IncreasedCrit%)
+  Cap: 100%
+
 All functions accept primitive values and return computed values.
 No registry access. No Flask context. No I/O.
 """
@@ -10,13 +14,17 @@ from __future__ import annotations
 from app.constants.combat import CRIT_CHANCE_CAP
 
 
-def effective_crit_chance(base: float, bonus_pct: float = 0.0) -> float:
+def effective_crit_chance(base: float, increased_pct: float = 0.0) -> float:
     """
-    Final crit chance: base + bonus percent-points converted to 0-1, capped.
+    Final crit chance using the multiplicative formula, capped at 100%.
 
-    bonus_pct: percent-point bonus (e.g. 5.0 = +5% crit chance → +0.05).
+    Last Epoch formula: (base + flat) × (1 + increased%)
+    Here base already includes flat added (folded in by stat engine).
+
+    increased_pct: total increased critical strike chance from all sources
+                   as percent-points (e.g. 100.0 = +100% increased).
     """
-    return min(CRIT_CHANCE_CAP, base + bonus_pct / 100)
+    return min(CRIT_CHANCE_CAP, base * (1 + increased_pct / 100))
 
 
 def effective_crit_multiplier(base: float, bonus_pct: float = 0.0) -> float:

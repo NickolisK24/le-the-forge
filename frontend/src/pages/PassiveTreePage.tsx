@@ -9,7 +9,7 @@
  *   - Dev-mode integrity validation after every allocation change
  */
 
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui";
 import type { CharacterClass } from "@/types";
@@ -21,6 +21,7 @@ import {
 import { MASTERIES } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
 import PassiveTreeCanvas from "@/components/passives/PassiveTreeCanvas";
+import PassiveTreeSelector from "@/components/PassiveTree/PassiveTreeSelector";
 import PassiveStatsDebugPanel from "@/components/passives/PassiveStatsDebugPanel";
 import StatValidationPanel from "@/components/passives/StatValidationPanel";
 import PointEconomyPanel from "@/components/passives/PointEconomyPanel";
@@ -72,23 +73,12 @@ const CANVAS_H = 650;
 
 export default function PassiveTreePage() {
   const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(null);
-  const [selectedMastery, setSelectedMastery] = useState<string>("__all__");
+  const [selectedMastery, setSelectedMastery] = useState<string>("__base__");
   const [allocatedIds, setAllocatedIds] = useState<Set<string>>(new Set());
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
   const [showAllocPaths, setShowAllocPaths] = useState(false);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
   const [exportMsg, setExportMsg] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canvasSize, setCanvasSize] = useState({ w: 900, h: CANVAS_H });
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setCanvasSize({ w: entry.contentRect.width, h: CANVAS_H }));
-    ro.observe(el);
-    setCanvasSize({ w: el.clientWidth, h: CANVAS_H });
-    return () => ro.disconnect();
-  }, []);
 
   // Fetch
   const { data: treeData, isLoading, isError, error } = useQuery<PassiveTreeResponse | null>({
@@ -98,12 +88,17 @@ export default function PassiveTreePage() {
     staleTime: 5 * 60 * 1000,
   });
 
-  // Filter by mastery
+  // Filter by mastery — show only nodes from the active tab's section.
+  // Each section (base vs mastery) has its own coordinate space, so we never
+  // combine them on a single canvas (that causes overlap).
   const filteredNodes = useMemo(() => {
+    if (treeData?.grouped) {
+      return treeData.grouped[selectedMastery] ?? [];
+    }
+    // Fallback for responses without grouped field
     const all = treeData?.nodes ?? [];
-    if (selectedMastery === "__all__") return all;
     if (selectedMastery === "__base__") return all.filter((n) => n.mastery === null);
-    return all.filter((n) => n.mastery === selectedMastery || n.mastery === null);
+    return all.filter((n) => n.mastery === selectedMastery);
   }, [treeData, selectedMastery]);
 
   // Part 3: Precomputed bidirectional adjacency — rebuilt only when nodes change
@@ -294,8 +289,8 @@ export default function PassiveTreePage() {
 
   // Layout
   const layout = useMemo(
-    () => computeLayout(filteredNodes, canvasSize.w, canvasSize.h),
-    [filteredNodes, canvasSize],
+    () => computeLayout(filteredNodes),
+    [filteredNodes],
   );
 
   // Render timing
@@ -311,7 +306,7 @@ export default function PassiveTreePage() {
 
   const handleClassChange = (cls: CharacterClass) => {
     setSelectedClass(cls);
-    setSelectedMastery("__all__");
+    setSelectedMastery("__base__");
     setAllocatedIds(new Set());
     setAllocatedPoints(new Map());
   };
@@ -414,6 +409,19 @@ export default function PassiveTreePage() {
   };
 
   const masteries = selectedClass ? (MASTERIES[selectedClass] ?? []) : [];
+
+  // Points spent per tree section for tab badges
+  const pointsBySection = useMemo(() => {
+    const result: Record<string, number> = {};
+    const allNodes = treeData?.nodes ?? [];
+    for (const node of allNodes) {
+      if (!allocatedIds.has(node.id)) continue;
+      const section = node.mastery ?? "__base__";
+      result[section] = (result[section] ?? 0) + (allocatedPoints.get(node.id) ?? 1);
+    }
+    return result;
+  }, [treeData, allocatedIds, allocatedPoints]);
+
   const totalPointsSpent = useMemo(
     () => Array.from(allocatedPoints.values()).reduce((a, b) => a + b, 0),
     [allocatedPoints],
@@ -441,7 +449,7 @@ export default function PassiveTreePage() {
   }
   if (filteredNodes.length === 0) {
     return (<Page><PageHeader /><ClassSelector selected={selectedClass} onSelect={handleClassChange} />
-      <MasterySelector masteries={masteries} selected={selectedMastery} onSelect={setSelectedMastery} />
+      <PassiveTreeSelector masteries={masteries} activeTab={selectedMastery} onTabChange={setSelectedMastery} pointsBySection={pointsBySection} />
       <div className="mt-4 flex h-80 items-center justify-center rounded border border-forge-border bg-forge-surface">
         <p className="font-mono text-sm text-forge-dim">No passive nodes for this selection.</p>
       </div></Page>);
@@ -451,7 +459,7 @@ export default function PassiveTreePage() {
     <Page>
       <PageHeader />
       <ClassSelector selected={selectedClass} onSelect={handleClassChange} />
-      <MasterySelector masteries={masteries} selected={selectedMastery} onSelect={setSelectedMastery} />
+      <PassiveTreeSelector masteries={masteries} activeTab={selectedMastery} onTabChange={setSelectedMastery} pointsBySection={pointsBySection} />
 
       {/* Status bar */}
       <div className="mt-3 mb-3 flex flex-wrap items-center gap-3">
@@ -482,26 +490,23 @@ export default function PassiveTreePage() {
       </div>
 
       {/* Passive tree canvas */}
-      <div ref={containerRef}>
-        <PassiveTreeCanvas
-          nodes={filteredNodes}
-          edges={layout.edges}
-          positions={layout.positions}
-          scale={layout.scale}
-          allocatedIds={allocatedIds}
-          allocatedPoints={allocatedPoints}
-          startIds={startIds}
-          adjacency={adjacency}
-          onNodeClick={handleNodeClick}
-          onNodeRightClick={handleNodeRightClick}
-          availableIds={availableIds}
-          highlightedNodes={allocatedPathData.nodes}
-          highlightedEdges={allocatedPathData.edges}
-          blockingNodeIds={emptySet}
-          canvasWidth={canvasSize.w}
-          canvasHeight={canvasSize.h}
-        />
-      </div>
+      <PassiveTreeCanvas
+        nodes={filteredNodes}
+        edges={layout.edges}
+        positions={layout.positions}
+        bbox={layout.bbox}
+        allocatedIds={allocatedIds}
+        allocatedPoints={allocatedPoints}
+        startIds={startIds}
+        adjacency={adjacency}
+        onNodeClick={handleNodeClick}
+        onNodeRightClick={handleNodeRightClick}
+        availableIds={availableIds}
+        highlightedNodes={allocatedPathData.nodes}
+        highlightedEdges={allocatedPathData.edges}
+        blockingNodeIds={emptySet}
+        minHeight={CANVAS_H}
+      />
 
       {/* Stat debug panel */}
       <PassiveStatsDebugPanel
@@ -566,18 +571,6 @@ function ClassSelector({ selected, onSelect }: { selected: CharacterClass | null
   );
 }
 
-function MasterySelector({ masteries, selected, onSelect }: { masteries: string[]; selected: string; onSelect: (m: string) => void }) {
-  return (
-    <div className="mt-2 flex flex-wrap gap-1.5">
-      {["__all__", "__base__", ...masteries].map((m) => (
-        <button key={m} onClick={() => onSelect(m)}
-          className={`rounded px-2.5 py-1 font-mono text-xs transition-colors ${selected === m ? "bg-forge-cyan/20 text-forge-cyan font-semibold" : "bg-forge-surface2 text-forge-dim hover:text-forge-muted"}`}>
-          {m === "__all__" ? "All" : m === "__base__" ? "Base" : m}
-        </button>
-      ))}
-    </div>
-  );
-}
 
 function Badge({ label, ok }: { label: string; ok: boolean }) {
   return <span className={`rounded px-2.5 py-1 font-mono text-xs font-semibold ${ok ? "bg-green-500/15 text-green-400" : "bg-forge-surface2 text-forge-dim"}`}>{label}</span>;

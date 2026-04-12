@@ -4,6 +4,11 @@
  * Pure rendering component: receives all computed graph state as props.
  * Manages only internal tooltip/hover state and the dependency inspector overlay.
  *
+ * Uses the layout's node bounding box as the SVG viewBox. Combined with
+ * `preserveAspectRatio="xMidYMid meet"`, this auto-fits and centers the tree
+ * to fill its container with a small padding margin, regardless of viewport
+ * size or which mastery tab is active.
+ *
  * Used by both PassiveTreePage (standalone viewer) and BuildPlannerPage (embedded).
  */
 
@@ -16,8 +21,21 @@ import PassiveTreeNode from "./PassiveTreeNode";
 import PassiveTreeConnections from "./PassiveTreeConnections";
 import DependencyInspector from "./DependencyInspector";
 
-const NODE_R_CORE = 18;
-const NODE_R_NOTABLE = 24;
+// Node sizing — we measure the container and compute radii in viewBox
+// (tree-coord) units so that the smallest node always renders at a
+// readable on-screen size, regardless of bbox dimensions.
+//
+// Minimum on-screen radius (pixels). The core-node coord radius is
+// scaled up as needed to guarantee this floor after preserveAspectRatio
+// "meet" maps bbox → container.
+const MIN_SCREEN_NODE_R = 12;
+// Base node radius in coord space (used when the natural scale is large
+// enough that MIN_SCREEN_NODE_R does not force a bigger value).
+const BASE_COORD_NODE_R = 18;
+// Notable-to-core radius ratio (notable nodes are visually larger).
+const NOTABLE_RATIO = 1.3;
+// Base idle connection stroke width in coord space.
+const BASE_COORD_STROKE = 3;
 
 // ---------------------------------------------------------------------------
 // Tooltip
@@ -100,7 +118,8 @@ export interface PassiveTreeCanvasProps {
   nodes: PassiveNode[];
   edges: Array<{ fromId: string; toId: string }>;
   positions: Map<string, { sx: number; sy: number; masteryIndex: number }>;
-  scale: number;
+  /** Bounding box of the layout (from computeLayout). Used as the SVG viewBox. */
+  bbox: { x: number; y: number; width: number; height: number };
   allocatedIds: Set<string>;
   allocatedPoints: Map<string, number>;
   startIds: Set<string>;
@@ -111,10 +130,12 @@ export interface PassiveTreeCanvasProps {
   highlightedNodes: Set<string>;
   highlightedEdges: Set<string>;
   blockingNodeIds: Set<string>;
-  canvasWidth: number;
-  canvasHeight: number;
   showPathHighlights?: boolean;
   readOnly?: boolean;
+  /** Node IDs that are mastery-locked (upper half of non-chosen mastery trees) */
+  masteryLockedIds?: Set<string>;
+  /** Optional override for canvas min-height (px). Defaults to 500. */
+  minHeight?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -125,7 +146,7 @@ export default function PassiveTreeCanvas({
   nodes,
   edges,
   positions,
-  scale,
+  bbox,
   allocatedIds,
   allocatedPoints,
   startIds,
@@ -136,9 +157,9 @@ export default function PassiveTreeCanvas({
   highlightedNodes,
   highlightedEdges,
   blockingNodeIds,
-  canvasWidth,
-  canvasHeight,
   readOnly,
+  masteryLockedIds,
+  minHeight = 500,
 }: PassiveTreeCanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
@@ -162,11 +183,12 @@ export default function PassiveTreeCanvas({
   // Node state resolver
   const getNodeState = useCallback(
     (nodeId: string): NodeState => {
+      if (masteryLockedIds?.has(nodeId)) return NodeState.MASTERY_LOCKED;
       if (allocatedIds.has(nodeId)) return NodeState.ALLOCATED;
       if (availableIds.has(nodeId)) return NodeState.AVAILABLE;
       return NodeState.LOCKED;
     },
-    [allocatedIds, availableIds],
+    [allocatedIds, availableIds, masteryLockedIds],
   );
 
   const handleHover = useCallback(
@@ -258,35 +280,90 @@ export default function PassiveTreeCanvas({
       ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, nodes)
       : false;
 
+  // Track container size so we can convert between screen pixels and
+  // viewBox coord-space. preserveAspectRatio "meet" picks the smaller of
+  // the two axis scales, so we mirror that logic below.
+  const [containerSize, setContainerSize] = useState<{ w: number; h: number }>({
+    w: 800,
+    h: 600,
+  });
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      const rect = el.getBoundingClientRect();
+      setContainerSize({ w: rect.width || 800, h: rect.height || 600 });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Pixels-per-coord-unit the SVG will render at (preserveAspectRatio
+  // "meet" → min of the two axis scales). Guard against zero bbox.
+  const coordToPxScale = useMemo(() => {
+    const sx = containerSize.w / (bbox.width || 1);
+    const sy = containerSize.h / (bbox.height || 1);
+    return Math.min(sx, sy) || 1;
+  }, [containerSize, bbox.width, bbox.height]);
+
+  // Node radii in coord space. Floor of BASE_COORD_NODE_R, but scale up
+  // whenever the natural render would be smaller than MIN_SCREEN_NODE_R
+  // pixels so nodes stay readable on any container/bbox combination.
+  const nodeRCore = Math.max(
+    BASE_COORD_NODE_R,
+    MIN_SCREEN_NODE_R / coordToPxScale,
+  );
+  const nodeRNotable = nodeRCore * NOTABLE_RATIO;
+
+  // Connection stroke widths in coord space. Anchored to the core radius
+  // so they visually scale with the node size (and thus with the tree).
+  const strokeIdle = Math.max(BASE_COORD_STROKE, nodeRCore * 0.18);
+  const strokeHighlighted = strokeIdle * 1.4;
+  const strokeAllocated = strokeIdle * 1.8;
+
+  const viewBoxStr = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
+
   return (
-    <div className="flex flex-col">
-      {/* SVG canvas */}
+    <div className="flex h-full w-full flex-col">
+      {/* SVG canvas — fills the parent container. The viewBox is the node
+          bounding box (with a small padding margin), so preserveAspectRatio
+          "xMidYMid meet" auto-fits and centers the tree to fill any
+          container width/height — including mobile pinch-zoom viewports. */}
       <div
         ref={containerRef}
-        className="relative overflow-hidden rounded border border-forge-border select-none"
-        style={{ height: canvasHeight, background: "#0b0e1a" }}
+        className="relative w-full flex-1 min-h-0 overflow-hidden rounded border border-forge-border select-none"
+        style={{ minHeight, background: "#0b0e1a" }}
       >
-        <svg width={canvasWidth} height={canvasHeight} style={{ display: "block" }}>
-          <rect width={canvasWidth} height={canvasHeight} fill="#0b0e1a" />
+        <svg
+          viewBox={viewBoxStr}
+          preserveAspectRatio="xMidYMid meet"
+          width="100%"
+          height="100%"
+          style={{ display: "block" }}
+        >
+          <rect x={bbox.x} y={bbox.y} width={bbox.width} height={bbox.height} fill="#0b0e1a" />
           <PassiveTreeConnections
             edges={edges}
             positions={positions}
             allocatedIds={allocatedIds}
             highlightedEdges={mergedHighlightedEdges}
+            strokeIdle={strokeIdle}
+            strokeHighlighted={strokeHighlighted}
+            strokeAllocated={strokeAllocated}
           />
           {nodes.map((node) => {
             const pos = positions.get(node.id);
             if (!pos) return null;
-            const radius =
-              (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) *
-              Math.max(0.5, scale);
+            const radius = node.max_points === 1 ? nodeRNotable : nodeRCore;
             return (
               <PassiveTreeNode
                 key={node.id}
                 node={node}
                 sx={pos.sx}
                 sy={pos.sy}
-                radius={Math.max(5, radius)}
+                radius={radius}
                 state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={onNodeClick}
@@ -339,6 +416,13 @@ export default function PassiveTreeCanvas({
             style={{ borderColor: "#3a4070", background: "#181c30" }}
           />{" "}
           Locked
+        </span>
+        <span className="flex items-center gap-1.5">
+          <span
+            className="inline-block h-2.5 w-2.5 rounded-full border opacity-20"
+            style={{ borderColor: "#ef4444", background: "#181c30" }}
+          />{" "}
+          Mastery Required
         </span>
         {!readOnly && (
           <span className="text-forge-dim/50 ml-auto">

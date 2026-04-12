@@ -7,8 +7,10 @@ POST /api/import/build  → Parse URL (LET or Maxroll), validate, save build, tr
 """
 
 import json as json_lib
+import logging
 import os
 import re
+import traceback
 from typing import Dict, List, Optional
 
 import requests as _requests
@@ -23,6 +25,7 @@ from app.utils.auth import get_current_user
 from app.utils.responses import ok, error as err_response
 
 import_bp = Blueprint("import", __name__)
+logger = logging.getLogger(__name__)
 
 # ---------------------------------------------------------------------------
 # Last Epoch class / mastery ID maps
@@ -69,11 +72,12 @@ def _get_skill_id_map() -> Dict[str, str]:
             for v in skills_data.values()
             if isinstance(v, dict) and "id" in v and "name" in v
         }
-        current_app.logger.info(
-            f"import: loaded {len(_SKILL_ID_TO_NAME)} skill ID mappings from {data_path}"
+        logger.info(
+            "import: loaded %d skill ID mappings from %s",
+            len(_SKILL_ID_TO_NAME), data_path,
         )
     except Exception as exc:
-        current_app.logger.warning(f"import: could not load skill ID map: {exc}")
+        logger.warning("import: could not load skill ID map: %s", exc)
         _SKILL_ID_TO_NAME = {}
 
     return _SKILL_ID_TO_NAME
@@ -87,34 +91,81 @@ def _extract_build_info(html: str) -> Optional[dict]:
     """
     Extract the build JSON object embedded in a Last Epoch Tools planner page.
 
-    LE Tools embeds the full build as a JS assignment in a <script> tag:
-        window["buildInfo"] = {...};
-    or occasionally:
-        window.buildInfo = {...};
-
-    We locate the assignment with a regex, then use json.JSONDecoder.raw_decode()
-    which is structure-aware and correctly handles arbitrary nesting depth.
-    Using a plain {.*?} regex would break on the first closing brace.
+    Tries multiple extraction strategies:
+    1. window["buildInfo"] = {...}  (classic LE Tools format)
+    2. __NEXT_DATA__ script tag     (Next.js SSR format)
+    3. Fallback script tag scan     (look for any JSON with bio/charTree)
     """
-    # Match either window["buildInfo"] or window.buildInfo assignment
+    # Method 1: window["buildInfo"] or window.buildInfo assignment
     assignment_re = re.search(
         r'window\s*(?:\[\s*["\']buildInfo["\']\s*\]|\.buildInfo)\s*=\s*',
         html,
     )
-    if not assignment_re:
-        return None
+    if assignment_re:
+        start = assignment_re.end()
+        while start < len(html) and html[start] in " \t\r\n":
+            start += 1
+        try:
+            decoder = json_lib.JSONDecoder()
+            obj, _ = decoder.raw_decode(html, start)
+            if isinstance(obj, dict):
+                logger.info("import/url: extracted buildInfo via window assignment")
+                return obj
+        except json_lib.JSONDecodeError as exc:
+            logger.warning("import/url: buildInfo assignment found but JSON decode failed: %s", exc)
 
-    start = assignment_re.end()
-    # Skip any whitespace before the JSON object/value
-    while start < len(html) and html[start] in " \t\r\n":
-        start += 1
+    # Method 2: __NEXT_DATA__ (Next.js SSR)
+    next_data_re = re.search(
+        r'<script\s+id="__NEXT_DATA__"\s+type="application/json">\s*',
+        html,
+    )
+    if next_data_re:
+        start = next_data_re.end()
+        end = html.find("</script>", start)
+        if end > start:
+            try:
+                next_data = json_lib.loads(html[start:end])
+                page_props = next_data.get("props", {}).get("pageProps", {})
+                if "buildInfo" in page_props:
+                    logger.info("import/url: extracted buildInfo via __NEXT_DATA__")
+                    return page_props["buildInfo"]
+                if "build" in page_props:
+                    logger.info("import/url: extracted build via __NEXT_DATA__")
+                    return page_props["build"]
+                if page_props.get("bio") or page_props.get("charTree"):
+                    logger.info("import/url: extracted build from __NEXT_DATA__ pageProps")
+                    return page_props
+                logger.warning(
+                    "import/url: __NEXT_DATA__ found but no buildInfo. pageProps keys: %s",
+                    list(page_props.keys()),
+                )
+            except json_lib.JSONDecodeError as exc:
+                logger.warning("import/url: __NEXT_DATA__ JSON decode failed: %s", exc)
 
-    try:
-        decoder = json_lib.JSONDecoder()
-        obj, _ = decoder.raw_decode(html, start)
-        return obj if isinstance(obj, dict) else None
-    except json_lib.JSONDecodeError:
-        return None
+    # Method 3: Fallback — scan all script tags for JSON with bio/charTree
+    for match in re.finditer(r'<script[^>]*>\s*', html):
+        script_start = match.end()
+        script_end = html.find("</script>", script_start)
+        if script_end < 0:
+            continue
+        script_content = html[script_start:script_end].strip()
+        if not script_content.startswith("{"):
+            json_match = re.search(r'=\s*(\{)', script_content)
+            if not json_match:
+                continue
+            script_content = script_content[json_match.start(1):]
+        if len(script_content) < 50:
+            continue
+        try:
+            obj, _ = json_lib.JSONDecoder().raw_decode(script_content)
+            if isinstance(obj, dict) and ("bio" in obj or "charTree" in obj):
+                logger.info("import/url: extracted build data via fallback script scan")
+                return obj
+        except (json_lib.JSONDecodeError, ValueError):
+            continue
+
+    logger.warning("import/url: no build data found in HTML (%d bytes)", len(html))
+    return None
 
 
 # ---------------------------------------------------------------------------
@@ -127,7 +178,7 @@ def _map_let_build(build_info: dict) -> dict:
 
     LE Tools schema (relevant fields):
         bio.level           int
-        bio.characterClass  int  (1–5)
+        bio.characterClass  int  (0–4)
         bio.chosenMastery   int  (1–3)
         charTree.selected   {nodeId: pts}
         skillTrees[]        [{treeID, selected, level, slotNumber}]
@@ -142,8 +193,6 @@ def _map_let_build(build_info: dict) -> dict:
     mastery = _MASTERY_MAP.get(char_class, {}).get(mastery_id, "")
 
     # ---- Passive tree -------------------------------------------------------
-    # charTree.selected = {"nodeId": pointsSpent, ...}
-    # Our format: flat array of nodeIds repeated for multi-point nodes
     char_tree = build_info.get("charTree", {})
     selected_nodes: dict = char_tree.get("selected", {})
     passive_tree: List[int] = []
@@ -164,15 +213,13 @@ def _map_let_build(build_info: dict) -> dict:
         if not tree_id:
             continue
 
-        skill_name = skill_id_map.get(tree_id, tree_id)  # fallback to raw ID
+        skill_name = skill_id_map.get(tree_id, tree_id)
 
-        # Resolve slot from HUD order first, then slotNumber field
         if tree_id in hud:
             slot = hud.index(tree_id)
         else:
             slot = int(st.get("slotNumber", len(skills)))
 
-        # Spec tree uses the same flat-array format as passive tree
         selected_spec: dict = st.get("selected", {})
         spec_tree: List[int] = []
         for node_id_str, pts in selected_spec.items():
@@ -217,7 +264,32 @@ def _map_let_build(build_info: dict) -> dict:
 
 
 # ---------------------------------------------------------------------------
-# Route
+# Helper: record failure + fire Discord alert
+# ---------------------------------------------------------------------------
+
+def _record_and_alert(source: str, url: str, user_id: str | None,
+                      error_message: str, severity: str = "hard",
+                      missing_fields: list | None = None,
+                      partial_data: dict | None = None) -> None:
+    """Create an ImportFailure record and fire the Discord alert."""
+    try:
+        failure = ImportFailure(
+            source=source,
+            raw_url=url,
+            missing_fields=missing_fields or [],
+            partial_data=partial_data,
+            user_id=user_id,
+            error_message=error_message,
+        )
+        db.session.add(failure)
+        db.session.commit()
+        send_import_failure_alert(failure, severity=severity)
+    except Exception as exc:
+        logger.error("import: failed to record import failure: %s", exc)
+
+
+# ---------------------------------------------------------------------------
+# Route: POST /api/import/url
 # ---------------------------------------------------------------------------
 
 @import_bp.post("/url")
@@ -246,74 +318,89 @@ def import_from_url():
 
     code = match.group(1)
 
-    # Fetch the LE Tools planner page server-side (browser blocked by CORS)
+    # Top-level try/except — never return a bare 500
     try:
-        resp = _requests.get(
-            f"https://www.lastepochtools.com/planner/{code}",
-            headers={
-                "User-Agent": (
-                    "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-                    "AppleWebKit/537.36 (KHTML, like Gecko) "
-                    "Chrome/120.0.0.0 Safari/537.36"
-                ),
-                "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
-                "Accept-Language": "en-US,en;q=0.9",
-            },
-            timeout=15,
+        # Fetch the LE Tools planner page server-side (browser blocked by CORS)
+        try:
+            resp = _requests.get(
+                f"https://www.lastepochtools.com/planner/{code}",
+                headers={
+                    "User-Agent": (
+                        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                        "AppleWebKit/537.36 (KHTML, like Gecko) "
+                        "Chrome/120.0.0.0 Safari/537.36"
+                    ),
+                    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+                    "Accept-Language": "en-US,en;q=0.9",
+                },
+                timeout=15,
+            )
+            resp.raise_for_status()
+        except _requests.Timeout:
+            return err_response("Timed out fetching the build page — try again.", 504)
+        except _requests.HTTPError as exc:
+            status = exc.response.status_code if exc.response is not None else 502
+            if status == 404:
+                return err_response("Build not found — the link may be expired or invalid.", 404)
+            return err_response(f"Last Epoch Tools returned HTTP {status}.", 502)
+        except _requests.RequestException as exc:
+            return err_response(f"Network error fetching build: {exc}", 502)
+
+        html = resp.text
+        logger.info("import/url: fetched code=%s html_len=%d", code, len(html))
+
+        # Extract the embedded build JSON using structure-aware parsing
+        build_info = _extract_build_info(html)
+
+        if build_info is None:
+            logger.warning(
+                "import/url: could not find buildInfo for code=%s. HTML snippet: %.500s",
+                code, html[:500],
+            )
+            return err_response(
+                "Could not find build data in the page. "
+                "The build code may be invalid, or Last Epoch Tools may have updated their page format.",
+                422,
+            )
+
+        # LE Tools sets buildLoadError on invalid/deleted build codes
+        if build_info.get("buildLoadError"):
+            return err_response("Build not found or deleted on Last Epoch Tools.", 404)
+
+        # LE Tools sometimes wraps the real payload in a "data" key
+        if "data" in build_info and isinstance(build_info["data"], dict):
+            build_info = build_info["data"]
+
+        # Sanity check — a valid build always has bio or charTree
+        if not build_info.get("bio") and not build_info.get("charTree"):
+            logger.warning(
+                "import/url: extracted JSON missing bio/charTree for code=%s: %s",
+                code, list(build_info.keys()),
+            )
+            return err_response("Build data is incomplete or in an unexpected format.", 422)
+
+        mapped = _map_let_build(build_info)
+        logger.info(
+            "import/url: mapped code=%s class=%s mastery=%s passives=%d skills=%d",
+            code, mapped["character_class"], mapped["mastery"],
+            len(mapped["passive_tree"]), len(mapped["skills"]),
         )
-        resp.raise_for_status()
-    except _requests.Timeout:
-        return err_response("Timed out fetching the build page — try again.", 504)
-    except _requests.HTTPError as exc:
-        status = exc.response.status_code if exc.response is not None else 502
-        if status == 404:
-            return err_response("Build not found — the link may be expired or invalid.", 404)
-        return err_response(f"Last Epoch Tools returned HTTP {status}.", 502)
-    except _requests.RequestException as exc:
-        return err_response(f"Network error fetching build: {exc}", 502)
+        return ok({"build": mapped, "source_code": code})
 
-    html = resp.text
-    current_app.logger.info(
-        f"import/url: fetched code={code} html_len={len(html)}"
-    )
-
-    # Extract the embedded build JSON using structure-aware parsing
-    build_info = _extract_build_info(html)
-
-    if build_info is None:
-        current_app.logger.warning(
-            f"import/url: could not find window[buildInfo] for code={code}. "
-            f"HTML snippet: {html[:500]!r}"
+    except Exception as exc:
+        logger.error(
+            "import/url: unhandled exception for url=%s: %s\n%s",
+            url, exc, traceback.format_exc(),
         )
-        return err_response(
-            "Could not find build data in the page. "
-            "The build code may be invalid, or Last Epoch Tools may have updated their page format.",
-            404,
+        user = get_current_user()
+        _record_and_alert(
+            source="lastepochtools",
+            url=url,
+            user_id=user.id if user else None,
+            error_message=f"Unhandled error in import/url: {exc}",
+            partial_data={"traceback": traceback.format_exc()[-500:]},
         )
-
-    # LE Tools sets buildLoadError on invalid/deleted build codes
-    if build_info.get("buildLoadError"):
-        return err_response("Build not found or deleted on Last Epoch Tools.", 404)
-
-    # LE Tools sometimes wraps the real payload in a "data" key
-    if "data" in build_info and isinstance(build_info["data"], dict):
-        build_info = build_info["data"]
-
-    # Sanity check — a valid build always has bio or charTree
-    if not build_info.get("bio") and not build_info.get("charTree"):
-        current_app.logger.warning(
-            f"import/url: extracted JSON missing bio/charTree for code={code}: "
-            f"{list(build_info.keys())}"
-        )
-        return err_response("Build data is incomplete or in an unexpected format.", 502)
-
-    mapped = _map_let_build(build_info)
-    current_app.logger.info(
-        f"import/url: mapped code={code} class={mapped['character_class']} "
-        f"mastery={mapped['mastery']} passive_nodes={len(mapped['passive_tree'])} "
-        f"skills={len(mapped['skills'])}"
-    )
-    return ok({"build": mapped, "source_code": code})
+        return err_response(f"Import failed unexpectedly: {exc}", 422)
 
 
 # ---------------------------------------------------------------------------
@@ -347,6 +434,8 @@ def import_build():
     3. On success — save as a draft build, return slug + summary
     4. On hard failure — log ImportFailure, fire Discord alert, return 422
     5. On partial — save build, log ImportFailure, return 200 with warnings
+
+    NEVER returns 500 — all exceptions are caught, recorded, and returned as 422.
     """
     body = request.get_json(silent=True) or {}
     url: str = body.get("url", "").strip()
@@ -362,40 +451,51 @@ def import_build():
     except ValueError as exc:
         return err_response(str(exc), 400)
 
+    # Top-level try/except — catch ANY unhandled error, record it, alert, return 422
+    try:
+        return _do_import(url, source, user_id)
+    except Exception as exc:
+        logger.error(
+            "import/build: unhandled exception for url=%s: %s\n%s",
+            url, exc, traceback.format_exc(),
+        )
+        _record_and_alert(
+            source=source,
+            url=url,
+            user_id=user_id,
+            error_message=f"Unhandled error: {exc}\n{traceback.format_exc()[-500:]}",
+            partial_data={"traceback": traceback.format_exc()[-500:]},
+        )
+        return err_response(f"Import failed unexpectedly: {exc}", 422)
+
+
+def _do_import(url: str, source: str, user_id: str | None):
+    """Inner import logic — separated so the top-level handler can catch everything."""
+
     # Run importer
     try:
         importer = get_importer(url)
         result: ImportResult = importer.parse(url)
     except Exception as exc:
-        current_app.logger.exception("import/build: unexpected error parsing %s", url)
-        # Log failure
-        failure = ImportFailure(
+        logger.exception("import/build: error during parse for %s", url)
+        _record_and_alert(
             source=source,
-            raw_url=url,
-            missing_fields=[],
-            partial_data=None,
+            url=url,
             user_id=user_id,
-            error_message=f"Unexpected error: {exc}",
+            error_message=f"Importer crashed: {exc}",
         )
-        db.session.add(failure)
-        db.session.commit()
-        send_import_failure_alert(failure, severity="hard")
-        return err_response(f"Import failed: {exc}", 500)
+        return err_response(f"Import failed: {exc}", 422)
 
     # Hard failure — class/mastery unmappable
     if not result.success:
-        failure = ImportFailure(
+        _record_and_alert(
             source=result.source or source,
-            raw_url=url,
+            url=url,
+            user_id=user_id,
+            error_message=result.error_message or "Unknown parse failure",
             missing_fields=result.missing_fields,
             partial_data=result.build_data,
-            user_id=user_id,
-            error_message=result.error_message,
         )
-        db.session.add(failure)
-        db.session.commit()
-        send_import_failure_alert(failure, severity="hard")
-
         return err_response(
             result.error_message or "Import failed — could not parse the build.",
             422,
@@ -403,29 +503,69 @@ def import_build():
 
     # Success (possibly partial)
     build_data = result.build_data
+    if not build_data:
+        _record_and_alert(
+            source=source, url=url, user_id=user_id,
+            error_message="Importer returned success=True but build_data is None",
+        )
+        return err_response("Import returned no data despite reporting success.", 422)
+
     # Force draft (not public) for imported builds
     build_data["is_public"] = False
 
     try:
         build = build_service.create_build(build_data, user_id=user_id)
     except Exception as exc:
-        current_app.logger.exception("import/build: failed to save build from %s", url)
-        return err_response(f"Build parsed but could not be saved: {exc}", 500)
+        logger.exception("import/build: failed to save build from %s", url)
+        _record_and_alert(
+            source=source, url=url, user_id=user_id,
+            error_message=f"Build parsed but save failed: {exc}",
+            partial_data={"build_data_keys": list(build_data.keys())},
+        )
+        return err_response(f"Build parsed but could not be saved: {exc}", 422)
 
     # Track partial imports
     warnings = result.missing_fields
     if warnings:
-        failure = ImportFailure(
+        # Build the partial_data payload for the alert. Start with any
+        # diagnostic fields the importer already captured (e.g. raw_keys
+        # from Maxroll's unknown data shapes) so they reach the Discord
+        # notifier. Then add our route-level summary.
+        alert_partial: dict = {}
+        if isinstance(result.partial_data, dict):
+            # Preserve diagnostic fields like raw_keys, but not fields we
+            # rewrite below (to avoid stale/duplicate data).
+            for key, value in result.partial_data.items():
+                if key not in {"character_class", "mastery", "level",
+                               "skills_count", "passives_count",
+                               "gear_count", "missing_count"}:
+                    alert_partial[key] = value
+        alert_partial.update({
+            "slug": build.slug,
+            "character_class": build_data.get("character_class"),
+            "mastery": build_data.get("mastery"),
+            "level": build_data.get("level"),
+            "skills": [s.get("skill_name") for s in build_data.get("skills", [])],
+            "passive_tree": len(build_data.get("passive_tree", [])),
+            "gear": [
+                {
+                    "slot": g.get("slot"),
+                    "item_name": g.get("item_name"),
+                    "rarity": g.get("rarity"),
+                    "affixes": len(g.get("affixes", [])),
+                }
+                for g in build_data.get("gear", [])
+            ],
+        })
+        _record_and_alert(
             source=result.source or source,
-            raw_url=url,
-            missing_fields=warnings,
-            partial_data={"slug": build.slug},
+            url=url,
             user_id=user_id,
             error_message="Partial import — some fields could not be mapped.",
+            severity="partial",
+            missing_fields=warnings,
+            partial_data=alert_partial,
         )
-        db.session.add(failure)
-        db.session.commit()
-        send_import_failure_alert(failure, severity="partial")
 
     imported_fields = []
     if build_data.get("character_class"):

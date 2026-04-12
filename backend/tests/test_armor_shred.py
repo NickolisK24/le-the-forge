@@ -172,7 +172,7 @@ class TestDPSImpact:
         r_yes = sim.simulate(scenario, stats_with_shred)
 
         improvement = (r_yes.effective_dps / r_no.effective_dps - 1.0) * 100
-        assert 15 <= improvement <= 60, f"Improvement was {improvement:.1f}%, expected 20-50%"
+        assert 80 <= improvement <= 120, f"Improvement was {improvement:.1f}%, expected ~100%"
 
     def test_no_shred_vs_training_dummy_same(self):
         """Armor shred has no effect against training dummy (0 armor)."""
