@@ -188,6 +188,13 @@ def create_app(env: str = "development") -> Flask:
     # Health check
     @app.get("/api/health")
     def health():
-        return {"status": "ok", "env": env}
+        from app.routes.version import _read_version
+        return {
+            "status": "ok",
+            "env": env,
+            "version": _read_version(),
+            "current_patch": app.config.get("CURRENT_PATCH", "1.4.3"),
+            "current_season": app.config.get("CURRENT_SEASON", 4),
+        }
 
     return app

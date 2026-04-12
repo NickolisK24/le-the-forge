@@ -261,6 +261,48 @@ def register_commands(app: Flask) -> None:
         db.session.commit()
         click.echo(f"✓ Admin user '{username}' created. ID: {user.id}")
 
+    @app.cli.command("reset-demo-votes")
+    @click.option(
+        "--threshold",
+        default=100,
+        show_default=True,
+        type=int,
+        help="Vote count above which builds are considered seeded/demo and will be reset to 0.",
+    )
+    def reset_demo_votes(threshold: int):
+        """
+        Reset unrealistic seeded demo vote counts to 0.
+
+        Finds any public build with vote_count strictly greater than --threshold
+        (default 100) and zeroes its vote_count. Does not delete builds, does
+        not touch builds with realistic organic vote counts, and does not
+        hardcode specific build IDs or names.
+        """
+        from app.models import Build
+
+        inflated = Build.query.filter(Build.vote_count > threshold).all()
+        if not inflated:
+            click.echo(f"✓ No builds found with vote_count > {threshold}. Nothing to do.")
+            return
+
+        for b in inflated:
+            click.echo(
+                f"  resetting votes: {b.slug or b.id} ({b.name!r}) — was {b.vote_count}, now 0"
+            )
+            b.vote_count = 0
+            # Re-derive tier since vote_count feeds into tier calculation.
+            if hasattr(b, "recalculate_tier"):
+                try:
+                    b.recalculate_tier()
+                except Exception:
+                    current_app_logger = app.logger
+                    current_app_logger.exception(
+                        "Failed to recalculate tier for build %s after vote reset", b.id
+                    )
+
+        db.session.commit()
+        click.echo(f"✓ Reset vote_count to 0 on {len(inflated)} build(s) (threshold > {threshold}).")
+
     @app.cli.command("refresh-meta")
     def refresh_meta():
         """Force-refresh all meta analytics caches regardless of TTL."""

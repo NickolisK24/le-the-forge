@@ -175,7 +175,9 @@ function PopularAffixesPanel({ affixes }: { affixes: Array<{ affix_name: string;
   return (
     <Panel title="Popular Affixes">
       {affixes.length === 0 ? (
-        <p className="font-mono text-[10px] text-forge-dim italic text-center py-4">No data</p>
+        <p className="font-mono text-[11px] text-forge-dim leading-relaxed text-center py-6 px-3">
+          Affix tracking coming soon — submit more builds to unlock this feature.
+        </p>
       ) : (
         <div className="space-y-2">
           {affixes.map((a, i) => (

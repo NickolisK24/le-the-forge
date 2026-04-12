@@ -20,6 +20,7 @@ import type {
   BuildDefinition, EncounterOverride, EnemyTemplateOpt,
 } from "@/services/buildApi";
 import type { EncounterResult } from "@/services/encounterApi";
+import { DISTRIBUTION_LABELS } from "@/services/encounterApi";
 
 // ---------------------------------------------------------------------------
 // Default state
@@ -189,7 +190,7 @@ export default function BuildEditorPage() {
               "
             >
               {(["SINGLE", "CLEAVE", "SPLIT", "CHAIN"] as const).map((d) => (
-                <option key={d} value={d}>{d}</option>
+                <option key={d} value={d}>{DISTRIBUTION_LABELS[d]}</option>
               ))}
             </select>
           </div>
