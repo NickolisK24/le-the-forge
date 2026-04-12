@@ -144,6 +144,9 @@ _BUILD_CONTENT_KEYS = (
     "equipment", "gear", "items",
     "level", "mastery", "masteryName",
     "nodes", "charTree",
+    # Planner workspace markers — a profiles list means we have build
+    # data even if other keys live inside profiles[activeProfile].
+    "profiles", "mainset",
 )
 
 
@@ -179,7 +182,58 @@ def _maybe_decode_json(value):
     return value
 
 
-def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
+def _drill_profiles(d: dict, variant: Optional[int] = None) -> dict:
+    """If *d* is a Maxroll planner workspace (a dict with a `profiles` list
+    and an `activeProfile` index), return the selected profile enriched
+    with workspace-level fields (class, mainset, items, name). Otherwise
+    return *d* unchanged.
+
+    Maxroll's planner workspace looks like:
+        {
+          "profiles": [{char/passives/skills}, ...],
+          "activeProfile": 0,
+          "items": [...],      # item catalog shared across profiles
+          "mainset": {...},    # active equipped set
+          "class": "Rogue",    # display label
+          "name": "..."
+        }
+    The URL fragment (#N) selects a profile; if *variant* is None we fall
+    back to `activeProfile`.
+    """
+    profiles = d.get("profiles")
+    if not isinstance(profiles, list) or not profiles:
+        return d
+
+    active = d.get("activeProfile", 0)
+    if not isinstance(active, int):
+        try:
+            active = int(active)
+        except (ValueError, TypeError):
+            active = 0
+
+    # An explicit URL variant takes precedence if it's in range; otherwise
+    # fall back to the workspace's activeProfile setting.
+    if variant is not None and 0 <= variant < len(profiles):
+        idx = variant
+    elif 0 <= active < len(profiles):
+        idx = active
+    else:
+        idx = 0
+
+    profile = profiles[idx]
+    if not isinstance(profile, dict):
+        return d
+
+    # Enrich the profile with workspace-level fields it lacks, so the
+    # mapper can resolve class labels and locate the equipped set.
+    enriched = dict(profile)
+    for k in ("class", "mainset", "items", "name"):
+        if k not in enriched and k in d:
+            enriched[k] = d[k]
+    return enriched
+
+
+def _unwrap_build_data(payload: dict, variant: Optional[int] = None) -> Optional[dict]:
     """
     Unwrap the build data from various Maxroll response wrappers.
 
@@ -191,10 +245,26 @@ def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
       {"build": {...build fields...}}
       {"plannerData": {...build fields...}}
       {"id": ..., "class": "Rogue", "data": {...real build...}, ...}  (profile envelope)
+      {...profiles: [...], activeProfile: N, items, mainset, ...}     (planner workspace)
       {...build fields directly...}
 
     *variant* is the 0-based index from the URL hash fragment (e.g. #2 → 2).
+    The returned dict is always drilled to profile level when a workspace
+    is detected.
     """
+    result = _do_unwrap_build_data(payload, variant)
+    if result is None:
+        return None
+    return _drill_profiles(result, variant)
+
+
+def _do_unwrap_build_data(payload: dict, variant: Optional[int] = None) -> Optional[dict]:
+    """Inner unwrap logic; see _unwrap_build_data docstring.
+
+    For list-indexed payloads (`{"data": [...]}`, `{"data": {"builds": [...]}}`),
+    an unspecified variant is treated as 0 (first entry).
+    """
+    list_variant = variant if variant is not None else 0
     # Direct build data (has class + real build content)
     if _is_build_dict(payload):
         return payload
@@ -206,7 +276,7 @@ def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
             # {"data": {"builds": [...]}}
             builds_list = inner.get("builds")
             if isinstance(builds_list, list) and builds_list:
-                idx = min(variant, len(builds_list) - 1)
+                idx = min(list_variant, len(builds_list) - 1)
                 if isinstance(builds_list[idx], dict):
                     # The envelope often has the class label at the top
                     # level; fall back to it if the inner build lacks one.
@@ -234,7 +304,7 @@ def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
                 return inner
         # {"data": [{...build...}, ...]}
         if isinstance(inner, list) and inner:
-            idx = min(variant, len(inner) - 1)
+            idx = min(list_variant, len(inner) - 1)
             if isinstance(inner[idx], dict) and _is_build_dict(inner[idx]):
                 return inner[idx]
 
@@ -263,7 +333,9 @@ class MaxrollImporter(BaseImporter):
         # Extract variant index from the URL hash fragment (e.g. #2 → variant 2).
         # The regex already excludes '#' so it won't appear in *code*, but we
         # still need to pull the fragment from the original URL.
-        variant = 0
+        # None when the URL has no fragment, so workspace unwrap falls
+        # back to Maxroll's `activeProfile`. An explicit `#0` pins to 0.
+        variant: Optional[int] = None
         frag_match = re.search(r"#(\d+)", url)
         if frag_match:
             variant = int(frag_match.group(1))
@@ -287,7 +359,7 @@ class MaxrollImporter(BaseImporter):
         return self._map(build_data, code)
 
     def _fetch_build_data(
-        self, code: str, variant: int = 0
+        self, code: str, variant: Optional[int] = None
     ) -> tuple[Optional[dict], str]:
         """
         Try multiple strategies to get the build data.
@@ -576,13 +648,14 @@ class MaxrollImporter(BaseImporter):
                 code, list(raw.keys()),
             )
 
-        # Gear (best-effort mapping). Maxroll's profile envelope stores gear
-        # under `mainset` alongside `data`; that sibling was merged in during
-        # unwrap, so we include it in the candidate list here.
+        # Gear (best-effort mapping). Maxroll's planner workspace stores
+        # equipped gear under `mainset`. Note: `items` is a shared item
+        # CATALOG (all items the user has saved) — NOT equipped gear — so
+        # we deliberately exclude it here to avoid importing 100s of stray
+        # entries as gear slots.
         gear_raw = (
             raw.get("equipment")
             or raw.get("gear")
-            or raw.get("items")
             or raw.get("mainset")
             or []
         )
@@ -593,6 +666,28 @@ class MaxrollImporter(BaseImporter):
                 if isinstance(gear_raw.get(inner_key), (list, dict)):
                     gear_raw = gear_raw[inner_key]
                     break
+
+        # Item catalog — used to resolve int/str references in mainset to
+        # a concrete item dict (name/type/affixes). Planner format stores
+        # the catalog under `items` at the workspace level.
+        items_catalog = raw.get("items") if isinstance(raw.get("items"), list) else []
+
+        def _resolve_item_ref(ref):
+            """Resolve a gear-slot reference to an item dict.
+
+            Maxroll's mainset often uses integer indices or string IDs that
+            point into the items catalog, rather than inline item objects.
+            """
+            if isinstance(ref, dict):
+                return ref
+            if isinstance(ref, int) and 0 <= ref < len(items_catalog):
+                resolved = items_catalog[ref]
+                return resolved if isinstance(resolved, dict) else None
+            if isinstance(ref, str):
+                for candidate in items_catalog:
+                    if isinstance(candidate, dict) and str(candidate.get("id")) == ref:
+                        return candidate
+            return None
 
         def _extract_item_name(item: dict) -> str:
             return (
@@ -605,59 +700,65 @@ class MaxrollImporter(BaseImporter):
                 or ""
             )
 
+        def _collect_affixes(item: dict) -> list:
+            affixes = []
+            for aff in (item.get("affixes") or []):
+                if isinstance(aff, dict):
+                    affixes.append({
+                        "name": aff.get("name") or aff.get("id", ""),
+                        "tier": aff.get("tier", 1),
+                        "sealed": aff.get("sealed", False),
+                    })
+            return affixes
+
         gear: List[dict] = []
         if isinstance(gear_raw, list):
-            for item in gear_raw:
-                if isinstance(item, dict):
-                    raw_slot = str(item.get("slot", ""))
-                    slot = _normalise_slot(raw_slot) if raw_slot else ""
-                    item_name = _extract_item_name(item)
-                    rarity = item.get("rarity", "Rare")
+            for entry in gear_raw:
+                resolved = _resolve_item_ref(entry)
+                if resolved is None and isinstance(entry, dict):
+                    resolved = entry
+                if not isinstance(resolved, dict):
+                    continue
+                raw_slot = str(
+                    (entry.get("slot") if isinstance(entry, dict) else "")
+                    or resolved.get("slot", "")
+                )
+                slot = _normalise_slot(raw_slot) if raw_slot else ""
+                item_name = _extract_item_name(resolved)
+                rarity = resolved.get("rarity", "Rare")
 
-                    affixes = []
-                    for aff in (item.get("affixes") or []):
-                        if isinstance(aff, dict):
-                            affixes.append({
-                                "name": aff.get("name") or aff.get("id", ""),
-                                "tier": aff.get("tier", 1),
-                                "sealed": aff.get("sealed", False),
-                            })
-
-                    if item_name:
-                        gear.append({
-                            "slot": slot,
-                            "item_name": item_name,
-                            "rarity": rarity,
-                            "affixes": affixes,
-                        })
-                    else:
-                        add_missing(f"gear_slot:{slot or raw_slot or 'unknown'}")
+                if item_name:
+                    gear.append({
+                        "slot": slot,
+                        "item_name": item_name,
+                        "rarity": rarity,
+                        "affixes": _collect_affixes(resolved),
+                    })
+                else:
+                    add_missing(f"gear_slot:{slot or raw_slot or 'unknown'}")
         elif isinstance(gear_raw, dict):
-            # Some Maxroll formats use {slot_name: item_data, ...}
-            for slot_key, item in gear_raw.items():
-                if isinstance(item, dict):
-                    slot = _normalise_slot(slot_key)
-                    item_name = _extract_item_name(item)
-                    rarity = item.get("rarity", "Rare")
+            # Some Maxroll formats use {slot_name: item_ref, ...} where the
+            # value may be an inline dict, an int index into items_catalog,
+            # or a string item id.
+            for slot_key, entry in gear_raw.items():
+                resolved = _resolve_item_ref(entry)
+                if resolved is None and isinstance(entry, dict):
+                    resolved = entry
+                if not isinstance(resolved, dict):
+                    continue
+                slot = _normalise_slot(slot_key)
+                item_name = _extract_item_name(resolved)
+                rarity = resolved.get("rarity", "Rare")
 
-                    affixes = []
-                    for aff in (item.get("affixes") or []):
-                        if isinstance(aff, dict):
-                            affixes.append({
-                                "name": aff.get("name") or aff.get("id", ""),
-                                "tier": aff.get("tier", 1),
-                                "sealed": aff.get("sealed", False),
-                            })
-
-                    if item_name:
-                        gear.append({
-                            "slot": slot,
-                            "item_name": item_name,
-                            "rarity": rarity,
-                            "affixes": affixes,
-                        })
-                    else:
-                        add_missing(f"gear_slot:{slot}")
+                if item_name:
+                    gear.append({
+                        "slot": slot,
+                        "item_name": item_name,
+                        "rarity": rarity,
+                        "affixes": _collect_affixes(resolved),
+                    })
+                else:
+                    add_missing(f"gear_slot:{slot}")
 
         # Flag empty passives/skills so the partial import alert captures them.
         # Without this, a build with 0 passives+skills looks "successful" and
