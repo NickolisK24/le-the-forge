@@ -128,9 +128,49 @@ def _extract_next_data(html: str) -> Optional[dict]:
         return None
 
 
+# Signals that a dict actually carries build content (not just a label).
+# Used to distinguish a real build payload from a planner *envelope* that
+# happens to carry a top-level `class` field (e.g. Maxroll's profile envelope
+# wraps the real build under `data` alongside metadata like id/date/name).
+_BUILD_CONTENT_KEYS = (
+    "passives", "passiveTree", "passiveNodes", "tree", "passive_tree",
+    "skills", "skillTrees", "abilities", "abilityTree", "skillSpecializations",
+    "equipment", "gear", "items",
+    "level", "mastery", "masteryName",
+    "nodes", "charTree",
+)
+
+
+def _has_class_field(d: dict) -> bool:
+    v = d.get("class", d.get("className", d.get("characterClass")))
+    # Accept 0 (Primalist numeric ID) but reject None/"".
+    return v is not None and v != ""
+
+
 def _is_build_dict(d: dict) -> bool:
-    """Return True if *d* looks like a single-build payload."""
-    return bool(d.get("class") or d.get("className") or d.get("characterClass"))
+    """Return True if *d* looks like a single-build payload.
+
+    Requires both a class signal AND a build-content signal. A bare `class`
+    is insufficient because Maxroll's planner envelope also carries a
+    top-level `class` label while the real build lives under `data`.
+    """
+    if not _has_class_field(d):
+        return False
+    return any(k in d for k in _BUILD_CONTENT_KEYS)
+
+
+def _maybe_decode_json(value):
+    """Return *value* parsed as JSON if it is a string that looks like JSON,
+    otherwise return it unchanged. Maxroll's profile envelopes sometimes
+    store the build payload as a JSON-encoded string under `data`."""
+    if isinstance(value, str):
+        s = value.strip()
+        if s.startswith("{") or s.startswith("["):
+            try:
+                return json.loads(s)
+            except (ValueError, json.JSONDecodeError):
+                return value
+    return value
 
 
 def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
@@ -139,29 +179,46 @@ def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
 
     Maxroll's API has used different envelope formats over time:
       {"data": {...build fields...}}
+      {"data": "<JSON-encoded build>"}
       {"data": [{...build 0...}, {...build 1...}, ...]}
       {"data": {"builds": [{...}, ...]}}
       {"build": {...build fields...}}
       {"plannerData": {...build fields...}}
+      {"id": ..., "class": "Rogue", "data": {...real build...}, ...}  (profile envelope)
       {...build fields directly...}
 
     *variant* is the 0-based index from the URL hash fragment (e.g. #2 → 2).
     """
-    # Direct build data (has class or className)
+    # Direct build data (has class + real build content)
     if _is_build_dict(payload):
         return payload
 
-    # Nested under a key
+    # Nested under a wrapper key
     for key in ("data", "build", "plannerData"):
-        inner = payload.get(key)
+        inner = _maybe_decode_json(payload.get(key))
         if isinstance(inner, dict):
             # {"data": {"builds": [...]}}
             builds_list = inner.get("builds")
             if isinstance(builds_list, list) and builds_list:
                 idx = min(variant, len(builds_list) - 1)
                 if isinstance(builds_list[idx], dict):
-                    return builds_list[idx]
-            if _is_build_dict(inner):
+                    # The envelope often has the class label at the top
+                    # level; fall back to it if the inner build lacks one.
+                    candidate = builds_list[idx]
+                    if not _has_class_field(candidate) and _has_class_field(payload):
+                        candidate = {**candidate, "class": payload.get("class")}
+                    return candidate
+            if isinstance(inner, dict) and (
+                _is_build_dict(inner)
+                or any(k in inner for k in _BUILD_CONTENT_KEYS)
+            ):
+                # Envelope fallback: inner has build content but no class —
+                # borrow the class label from the outer envelope. If neither
+                # side has a class, keep looking (don't return a classless dict).
+                if not _has_class_field(inner):
+                    if not _has_class_field(payload):
+                        continue
+                    inner = {**inner, "class": payload.get("class")}
                 return inner
         # {"data": [{...build...}, ...]}
         if isinstance(inner, list) and inner:
