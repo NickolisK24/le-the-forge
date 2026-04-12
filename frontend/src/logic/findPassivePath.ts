@@ -28,7 +28,8 @@ export function findPathToNode(
   // Target is a start node — path is just itself
   if (startNodeIds.has(targetNodeId)) return [targetNodeId];
 
-  // BFS from all start nodes simultaneously
+  // BFS from all start nodes simultaneously. Head-pointer dequeue keeps this
+  // O(n + e); array.shift() was dropping it to O(n²).
   const visited = new Map<string, string | null>(); // nodeId → parent nodeId
   const queue: string[] = [];
 
@@ -37,8 +38,9 @@ export function findPathToNode(
     queue.push(startId);
   }
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
 
     if (current === targetNodeId) {
       // Reconstruct path
@@ -79,7 +81,7 @@ export function findAllAllocatedPaths(
 ): Map<string, string[]> {
   if (allocatedIds.size === 0) return new Map();
 
-  // BFS spanning tree from start nodes
+  // BFS spanning tree from start nodes — head-pointer dequeue, O(n + e).
   const parent = new Map<string, string | null>();
   const queue: string[] = [];
 
@@ -88,8 +90,9 @@ export function findAllAllocatedPaths(
     queue.push(startId);
   }
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
     const neighbors = adjacency.get(current);
     if (!neighbors) continue;
 

@@ -127,10 +127,12 @@ function isReachable(
   startIds: Set<string>,
 ): boolean {
   const visited = new Set<string>();
-  const queue = [...startIds];
+  const queue: string[] = [...startIds];
   for (const id of startIds) visited.add(id);
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  // Head-pointer BFS keeps this O(n + e); array.shift() is O(n) per call.
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
     if (current === targetId) return true;
     const neighbors = adjacency.get(current);
     if (!neighbors) continue;
@@ -162,12 +164,13 @@ function checkRemovalSafe(
     }
   }
 
-  // BFS from roots
+  // BFS from roots — head-pointer dequeue keeps this O(n + e).
   const visited = new Set<string>();
-  const queue = [...roots];
+  const queue: string[] = [...roots];
   for (const r of roots) visited.add(r);
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
     const neighbors = adjacency.get(current);
     if (!neighbors) continue;
     for (const next of neighbors) {
