@@ -306,7 +306,10 @@ function BuildSummary({ build }: { build: Build }) {
   }
 
   const availableSkills = useMemo(
-    () => CLASS_SKILLS[characterClass].filter((s) => !s.mastery || s.mastery === mastery),
+    () =>
+      (CLASS_SKILLS[characterClass] ?? []).filter(
+        (s) => !s.mastery || s.mastery === mastery,
+      ),
     [characterClass, mastery],
   );
   const selectedNames = new Set(draftSkills.map((s) => s.skill_name));
@@ -921,7 +924,7 @@ export default function BuildPlannerPage() {
 
   // Skills available for the selected class, filtered to base + chosen mastery
   const availableSkills = useMemo(() =>
-    CLASS_SKILLS[characterClass].filter(
+    (CLASS_SKILLS[characterClass] ?? []).filter(
       (s) => !s.mastery || s.mastery === mastery
     ),
     [characterClass, mastery]
@@ -940,7 +943,7 @@ export default function BuildPlannerPage() {
     // Drop skills that belong to a different mastery
     setDraftSkills((prev) =>
       prev.filter((ds) => {
-        const def = CLASS_SKILLS[characterClass].find((s) => s.name === ds.skill_name);
+        const def = (CLASS_SKILLS[characterClass] ?? []).find((s) => s.name === ds.skill_name);
         return !def?.mastery || def.mastery === next;
       })
     );
