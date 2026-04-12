@@ -2798,3 +2798,48 @@ class TestMaxrollFullParseFlow:
         mock_alert.assert_called_once()
         call_args = mock_alert.call_args
         assert call_args[1].get("severity") == "partial" or (len(call_args[0]) > 1 and call_args[0][1] == "partial")
+
+    @patch("app.routes.import_route.get_importer")
+    @patch("app.routes.import_route.send_import_failure_alert")
+    def test_partial_import_preserves_raw_keys_in_alert(
+        self, mock_alert, mock_factory, client, db,
+    ):
+        """The ImportFailure record must carry raw_keys from the importer's
+        partial_data through to the Discord notifier so operators can see
+        the actual Maxroll field names."""
+        from app.services.importers.base_importer import ImportResult
+        mock_importer = MagicMock()
+        mock_importer.parse.return_value = ImportResult(
+            success=True,
+            source="maxroll",
+            build_data={
+                "name": "Sparse",
+                "character_class": "Rogue",
+                "mastery": "Bladedancer",
+                "level": 70,
+                "passive_tree": [],
+                "skills": [],
+                "gear": [],
+            },
+            missing_fields=["passives:empty", "skills:empty"],
+            partial_data={
+                "character_class": "Rogue",
+                "mastery": "Bladedancer",
+                "raw_keys": ["class", "mastery", "level", "mysteryField"],
+            },
+        )
+        mock_factory.return_value = mock_importer
+
+        resp = client.post(
+            "/api/import/build",
+            json={"url": "https://maxroll.gg/last-epoch/planner/sparse"},
+            content_type="application/json",
+        )
+
+        assert resp.status_code == 201
+        mock_alert.assert_called_once()
+        # The ImportFailure model instance is the first positional arg.
+        failure = mock_alert.call_args[0][0]
+        assert failure.partial_data is not None
+        assert "raw_keys" in failure.partial_data
+        assert "mysteryField" in failure.partial_data["raw_keys"]

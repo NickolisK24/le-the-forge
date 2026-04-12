@@ -527,6 +527,36 @@ def _do_import(url: str, source: str, user_id: str | None):
     # Track partial imports
     warnings = result.missing_fields
     if warnings:
+        # Build the partial_data payload for the alert. Start with any
+        # diagnostic fields the importer already captured (e.g. raw_keys
+        # from Maxroll's unknown data shapes) so they reach the Discord
+        # notifier. Then add our route-level summary.
+        alert_partial: dict = {}
+        if isinstance(result.partial_data, dict):
+            # Preserve diagnostic fields like raw_keys, but not fields we
+            # rewrite below (to avoid stale/duplicate data).
+            for key, value in result.partial_data.items():
+                if key not in {"character_class", "mastery", "level",
+                               "skills_count", "passives_count",
+                               "gear_count", "missing_count"}:
+                    alert_partial[key] = value
+        alert_partial.update({
+            "slug": build.slug,
+            "character_class": build_data.get("character_class"),
+            "mastery": build_data.get("mastery"),
+            "level": build_data.get("level"),
+            "skills": [s.get("skill_name") for s in build_data.get("skills", [])],
+            "passive_tree": len(build_data.get("passive_tree", [])),
+            "gear": [
+                {
+                    "slot": g.get("slot"),
+                    "item_name": g.get("item_name"),
+                    "rarity": g.get("rarity"),
+                    "affixes": len(g.get("affixes", [])),
+                }
+                for g in build_data.get("gear", [])
+            ],
+        })
         _record_and_alert(
             source=result.source or source,
             url=url,
@@ -534,23 +564,7 @@ def _do_import(url: str, source: str, user_id: str | None):
             error_message="Partial import — some fields could not be mapped.",
             severity="partial",
             missing_fields=warnings,
-            partial_data={
-                "slug": build.slug,
-                "character_class": build_data.get("character_class"),
-                "mastery": build_data.get("mastery"),
-                "level": build_data.get("level"),
-                "skills": [s.get("skill_name") for s in build_data.get("skills", [])],
-                "passive_tree": len(build_data.get("passive_tree", [])),
-                "gear": [
-                    {
-                        "slot": g.get("slot"),
-                        "item_name": g.get("item_name"),
-                        "rarity": g.get("rarity"),
-                        "affixes": len(g.get("affixes", [])),
-                    }
-                    for g in build_data.get("gear", [])
-                ],
-            },
+            partial_data=alert_partial,
         )
 
     imported_fields = []
