@@ -74,8 +74,8 @@ services:
 
   frontend:
     build:
-      context: ./frontend
-      dockerfile: Dockerfile
+      context: .
+      dockerfile: frontend/Dockerfile
       args:
         APP_VERSION: ${APP_VERSION:-0.8.0}
         VITE_API_URL: /api
