@@ -92,7 +92,14 @@ function BuildsTab() {
                 <div className="flex-1 min-w-0">
                   <Link
                     to={`/build/${build.slug}`}
-                    className="font-display text-base font-semibold text-forge-text hover:text-forge-amber transition-colors no-underline block truncate"
+                    title={build.name}
+                    className="font-display text-base font-semibold text-forge-text hover:text-forge-amber transition-colors no-underline block overflow-hidden"
+                    style={{
+                      display: "-webkit-box",
+                      WebkitLineClamp: 2,
+                      WebkitBoxOrient: "vertical",
+                      wordBreak: "break-word",
+                    }}
                   >
                     {build.name}
                   </Link>
@@ -168,36 +175,49 @@ function SessionsTab() {
         />
       ) : (
         <div className="flex flex-col gap-2.5">
-          {sessions.map((session: any) => (
-            <Link key={session.id} to={`/craft/${session.slug}`} className="no-underline">
-              <div className="bg-forge-surface border border-forge-border rounded px-5 py-4 hover:border-forge-border-hot transition-colors">
-                <div className="flex items-center justify-between gap-4">
-                  <div className="flex-1 min-w-0">
-                    <div className="font-display text-base font-semibold text-forge-text">
-                      {session.item_name ?? session.item_type}
+          {sessions.map((session: any) => {
+            const itemLevel = session.item_level ?? session.ilvl;
+            return (
+              <Link key={session.id} to={`/craft/${session.slug}`} className="no-underline">
+                <div className="bg-forge-surface border border-forge-border rounded px-5 py-4 hover:border-forge-border-hot transition-colors">
+                  <div className="flex items-center justify-between gap-4">
+                    <div className="flex-1 min-w-0">
+                      <div className="font-display text-base font-semibold text-forge-text truncate">
+                        {session.item_name ?? session.item_type}
+                      </div>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 mt-1.5">
+                        <span className="font-mono text-xs text-forge-muted">{session.item_type}</span>
+                        {itemLevel !== undefined && itemLevel !== null && (
+                          <span className="font-mono text-xs text-forge-dim">
+                            iL<span className="text-forge-muted">{itemLevel}</span>
+                          </span>
+                        )}
+                        <span className="font-mono text-xs text-forge-dim">
+                          {session.step_count} actions
+                        </span>
+                      </div>
                     </div>
-                    <div className="flex items-center gap-4 mt-1.5">
-                      <span className="font-mono text-xs text-forge-muted">{session.item_type}</span>
-                      <span className="font-mono text-xs text-forge-dim">
-                        {session.step_count} actions
-                      </span>
-                    </div>
-                  </div>
-                  <div className="flex items-center gap-4 flex-shrink-0">
-                    <div
-                      className="font-display text-sm font-bold"
-                      style={{ color: "#3dca74" }}
-                    >
-                      {session.forge_potential} FP
-                    </div>
-                    <div className="font-mono text-xs uppercase tracking-widest text-forge-muted border border-forge-border rounded-sm px-3 py-1.5 hover:border-forge-amber hover:text-forge-amber transition-colors">
-                      Resume →
+                    <div className="flex items-center gap-4 flex-shrink-0">
+                      <div className="flex flex-col items-end">
+                        <div
+                          className="font-display text-sm font-bold tabular-nums"
+                          style={{ color: "#3dca74" }}
+                        >
+                          {session.forge_potential} FP
+                        </div>
+                        <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">
+                          remaining
+                        </div>
+                      </div>
+                      <div className="font-mono text-xs uppercase tracking-widest text-forge-muted border border-forge-border rounded-sm px-3 py-1.5 hover:border-forge-amber hover:text-forge-amber transition-colors">
+                        Resume →
+                      </div>
                     </div>
                   </div>
                 </div>
-              </div>
-            </Link>
-          ))}
+              </Link>
+            );
+          })}
         </div>
       )}
 

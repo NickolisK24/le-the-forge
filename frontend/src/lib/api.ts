@@ -311,6 +311,7 @@ export interface VersionInfo {
   commit: string;
   data_version: string;
   current_patch: string;
+  current_season?: number;
 }
 
 export const versionApi = {

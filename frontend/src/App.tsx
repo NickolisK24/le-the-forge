@@ -41,6 +41,7 @@ import CraftDebugPage from "@/pages/debug/CraftDebugPage";
 import BisSearchPage from "@/pages/bis/BisSearchPage";
 import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
 import BackendDebugDashboard from "@/pages/debug/BackendDebugDashboard";
+import DashboardPage from "@/pages/DashboardPage";
 import DataFlowHarness from "@/pages/debug/DataFlowHarness";
 import ClassesPage from "@/pages/classes/ClassesPage";
 
@@ -165,7 +166,7 @@ export default function App() {
 
               {/* Main app shell */}
               <Route element={<AppLayout />}>
-                <Route index element={<BackendDebugDashboard />} />
+                <Route index element={<DashboardPage />} />
                 <Route path="/home" element={<HomePage />} />
                 <Route path="/builds" element={<BuildsPage />} />
                 <Route path="/build" element={<BuildPlannerPage />} />

@@ -76,6 +76,15 @@ const DEFAULT_WEIGHTS: WeightConfig = { tier: 0.4, coverage: 0.3, fp: 0.15, feas
 // Page component
 // ---------------------------------------------------------------------------
 
+// Physical DPS preset — covers the most common melee/ranged weapons and
+// basic offence stats. Tiers are modest so results are usually feasible.
+const PHYSICAL_DPS_PRESET: AffixTarget[] = [
+  { affix_id: "physical_damage",            affix_name: "Physical Damage",            min_tier: 3, target_tier: 5 },
+  { affix_id: "attack_speed",               affix_name: "Attack Speed",               min_tier: 3, target_tier: 5 },
+  { affix_id: "critical_strike_chance",     affix_name: "Critical Strike Chance",     min_tier: 3, target_tier: 5 },
+  { affix_id: "critical_strike_multiplier", affix_name: "Critical Strike Multiplier", min_tier: 3, target_tier: 5 },
+];
+
 export default function BisSearchPage() {
   const [slots,           setSlots]           = useState<SlotConfig[]>(DEFAULT_SLOTS);
   const [targetAffixes,   setTargetAffixes]   = useState<AffixTarget[]>([]);
@@ -85,6 +94,7 @@ export default function BisSearchPage() {
   const [result,          setResult]          = useState<BisSearchResponse | null>(null);
   const [selectedResult,  setSelectedResult]  = useState<BisSearchResult | null>(null);
   const [error,           setError]           = useState<string | null>(null);
+  const [howToOpen,       setHowToOpen]       = useState(true);
 
   const runSearch = useCallback(async () => {
     setIsSearching(true);
@@ -128,12 +138,56 @@ export default function BisSearchPage() {
   return (
     <div className="mx-auto max-w-7xl px-4 py-8">
       {/* Page header */}
-      <div className="mb-6">
+      <div className="mb-4">
         <h1 className="font-display text-2xl font-bold text-[#f5a623]">BIS Search Engine</h1>
         <p className="mt-1 text-sm text-forge-muted">
           Find the optimal gear combination across all slots by evaluating thousands of
           candidate builds against your target affixes and score weights.
         </p>
+      </div>
+
+      {/* How-to + preset panel */}
+      <div className="mb-6 rounded-lg border border-forge-cyan/25 bg-forge-cyan/[0.04]">
+        <button
+          type="button"
+          onClick={() => setHowToOpen((v) => !v)}
+          className="w-full flex items-center justify-between px-4 py-2.5 bg-transparent border-none cursor-pointer text-left"
+        >
+          <span className="font-mono text-[11px] uppercase tracking-widest text-forge-cyan">
+            {howToOpen ? "▾" : "▸"} How to use BIS Search
+          </span>
+          <button
+            type="button"
+            onClick={(e) => {
+              e.stopPropagation();
+              setTargetAffixes(PHYSICAL_DPS_PRESET);
+              setHowToOpen(false);
+            }}
+            className="rounded bg-forge-amber/20 border border-forge-amber/50 text-forge-amber hover:bg-forge-amber/30 px-3 py-1 text-[11px] font-mono uppercase tracking-widest transition-colors"
+          >
+            Load Example · Physical DPS
+          </button>
+        </button>
+        {howToOpen && (
+          <div className="px-4 pb-4 pt-1 text-sm text-forge-muted leading-relaxed space-y-2">
+            <p>
+              <span className="font-mono text-[11px] uppercase tracking-widest text-forge-amber mr-2">Step 1</span>
+              Choose the <strong className="text-forge-text">gear slots</strong> to include in the search
+              (weapons, armour, jewellery). Disable slots you've already locked in.
+            </p>
+            <p>
+              <span className="font-mono text-[11px] uppercase tracking-widest text-forge-amber mr-2">Step 2</span>
+              Add the <strong className="text-forge-text">target affixes</strong> you want — e.g. Physical Damage,
+              Attack Speed, Crit Multi — and set the minimum tier that counts as "good enough".
+            </p>
+            <p>
+              <span className="font-mono text-[11px] uppercase tracking-widest text-forge-amber mr-2">Step 3</span>
+              Tune <strong className="text-forge-text">score weights</strong> (tier vs. coverage vs. FP vs.
+              feasibility) and hit <strong className="text-forge-text">Run Search</strong>. The top-scoring
+              candidates appear on the right.
+            </p>
+          </div>
+        )}
       </div>
 
       {/* Summary bar — only shown when results are available */}
