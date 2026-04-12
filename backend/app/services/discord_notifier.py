@@ -142,6 +142,18 @@ def _post_alert(failure: dict, severity: str) -> None:
             "inline": False,
         })
 
+    # Add raw top-level keys when present — critical for diagnosing
+    # unknown Maxroll data shapes where expected fields are empty.
+    partial = failure.get("partial_data") or {}
+    raw_keys = partial.get("raw_keys")
+    if raw_keys:
+        value = ", ".join(str(k) for k in raw_keys)[:_FIELD_LIMIT]
+        fields.append({
+            "name": "Raw Top-Level Keys",
+            "value": f"`{value}`" if value else "(empty)",
+            "inline": False,
+        })
+
     user_id = failure.get("user_id")
     fields.append({"name": "User", "value": str(user_id) if user_id else "anonymous", "inline": True})
 
