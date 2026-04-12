@@ -2130,6 +2130,146 @@ class TestMaxrollSkillsImport:
         skills = result.build_data["skills"]
         assert len(skills[0]["spec_tree"]) == 6  # 3+2+1
 
+    def test_specializedSkills_resolves_name_from_abilityId(self):
+        """Current Maxroll planner stores skills under `specializedSkills`
+        with `abilityId` pointing into skills_metadata.json — no `name`."""
+        from app.services.importers.maxroll_importer import (
+            MaxrollImporter, _get_skill_id_map,
+        )
+        # Pick a known ability ID from the live registry so the test moves
+        # with the data rather than hard-coding a stale id.
+        id_map = _get_skill_id_map()
+        assert id_map, "skills_metadata.json must load for this test"
+        sample_id, sample_name = next(iter(id_map.items()))
+
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 90,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                {"abilityId": sample_id, "level": 20, "nodes": {"1": 3}},
+            ],
+        }, "spec_ability")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == sample_name
+        assert skills[0]["points_allocated"] == 20
+        assert "skill:empty_name" not in result.missing_fields
+
+    def test_activeSkills_resolves_name_from_skillId(self):
+        """`activeSkills` with `skillId` also resolves via the registry."""
+        from app.services.importers.maxroll_importer import (
+            MaxrollImporter, _get_skill_id_map,
+        )
+        id_map = _get_skill_id_map()
+        sample_id, sample_name = next(iter(id_map.items()))
+
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Rogue",
+            "mastery": "Bladedancer",
+            "level": 85,
+            "passives": {"1": 1},
+            "activeSkills": [
+                {"skillId": sample_id, "points": 5, "nodes": {}},
+            ],
+        }, "active_skill")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == sample_name
+        assert "skill:empty_name" not in result.missing_fields
+
+    def test_specializedSkills_preferred_over_skillTrees(self):
+        """When both are present, the richer `specializedSkills` wins so
+        we don't end up with empty-name entries from `skillTrees`."""
+        from app.services.importers.maxroll_importer import (
+            MaxrollImporter, _get_skill_id_map,
+        )
+        id_map = _get_skill_id_map()
+        sample_id, sample_name = next(iter(id_map.items()))
+
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": "Paladin",
+            "level": 80,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                {"abilityId": sample_id, "level": 15, "nodes": {}},
+            ],
+            # Would yield empty names if preferred
+            "skillTrees": [{"history": [], "position": {}}],
+        }, "spec_wins")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == sample_name
+
+    def test_unknown_abilityId_kept_as_raw_string(self):
+        """An unrecognised abilityId must still yield a non-empty name so
+        the skill survives validation (skill:empty_name otherwise)."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                {"abilityId": "zz_unknown_id_9999", "level": 10, "nodes": {}},
+            ],
+        }, "unknown_abil")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "zz_unknown_id_9999"
+        assert "skill:empty_name" not in result.missing_fields
+
+    def test_displayName_resolves_before_id_lookup(self):
+        """If a human-readable displayName is present, prefer it over an
+        abilityId lookup (avoids a round-trip when the planner supplies it)."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                {"displayName": "Fireball", "abilityId": "something",
+                 "level": 20, "nodes": {}},
+            ],
+        }, "display_name")
+        assert result.success is True
+        assert result.build_data["skills"][0]["skill_name"] == "Fireball"
+
+    def test_specialized_skill_with_zero_points_appears(self):
+        """A skill with 0 points allocated must still appear in the list."""
+        from app.services.importers.maxroll_importer import (
+            MaxrollImporter, _get_skill_id_map,
+        )
+        id_map = _get_skill_id_map()
+        sample_id, sample_name = next(iter(id_map.items()))
+
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                {"abilityId": sample_id, "level": 0, "nodes": {}},
+            ],
+        }, "zero_points")
+        assert result.success is True
+        assert len(result.build_data["skills"]) == 1
+        assert result.build_data["skills"][0]["skill_name"] == sample_name
+        assert result.build_data["skills"][0]["points_allocated"] == 0
+
 
 class TestMaxrollPassivesImport:
     """Passive tree import from dict and list formats."""
@@ -2214,6 +2354,87 @@ class TestMaxrollPassivesImport:
         assert pt.count(10) == 2
         assert pt.count(20) == 1
         assert pt.count(30) == 3
+
+    def test_passives_wrapper_with_history_and_position(self):
+        """Current Maxroll planner wraps allocations in a dict alongside
+        editor state (`history`, `position`). Importer must descend into
+        `nodes` instead of iterating the wrapper — otherwise "history" and
+        "position" become bogus passive_node warnings."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 90,
+            "passives": {
+                "history": [{"op": "add", "node": 1}],
+                "position": {"x": 0, "y": 0},
+                "nodes": {"1": 3, "2": 5},
+            },
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_wrapper")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert pt.count(1) == 3
+        assert pt.count(2) == 5
+        # And no spurious warnings for the wrapper's editor-state keys.
+        assert not any(
+            f.startswith("passive_node:history") or f.startswith("passive_node:position")
+            for f in result.missing_fields
+        )
+        assert "passives:empty" not in result.missing_fields
+
+    def test_passives_wrapper_with_allocations_subkey(self):
+        """Alternate wrapper shape: allocations stored under `allocations`."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Acolyte",
+            "mastery": "Lich",
+            "level": 80,
+            "passives": {
+                "history": [],
+                "allocations": {"5": 2, "6": 4},
+            },
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_alloc")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert pt.count(5) == 2
+        assert pt.count(6) == 4
+
+    def test_passives_wrapper_falls_back_when_no_subkey(self):
+        """A passives wrapper without any known allocation sub-key should
+        flag as empty rather than raising or emitting garbage warnings."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {
+                "history": [],
+                "position": {"x": 0},
+            },
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_wrap_empty")
+        assert result.success is True
+        assert result.build_data["passive_tree"] == []
+        assert "passives:empty" in result.missing_fields
+
+    def test_descend_passive_nodes_preserves_flat_dict(self):
+        """When the dict already contains integer-keyed allocations, leave
+        it untouched (no accidental descent)."""
+        from app.services.importers.maxroll_importer import _descend_passive_nodes
+        flat = {"1": 3, "2": 5, "10": 1}
+        assert _descend_passive_nodes(flat) is flat
+
+    def test_descend_passive_nodes_passes_through_lists(self):
+        """List passives (flat ID lists or list-of-dicts) should be returned
+        as-is so the list branch of _map can handle them."""
+        from app.services.importers.maxroll_importer import _descend_passive_nodes
+        flat_list = [10, 20, 30]
+        assert _descend_passive_nodes(flat_list) is flat_list
 
 
 class TestMaxrollMissingDataDiagnostics:

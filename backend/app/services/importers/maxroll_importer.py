@@ -19,6 +19,7 @@ data is the same for the base slug.
 
 import json
 import logging
+import os
 import re
 from collections import Counter
 from typing import Dict, List, Optional
@@ -28,6 +29,37 @@ import requests as _requests
 from app.services.importers.base_importer import BaseImporter, ImportResult
 
 logger = logging.getLogger(__name__)
+
+# Lazy-loaded map of skill-ID → canonical name, built from skills_metadata.json.
+# Maxroll's planner stores skills under abilityId/skillId rather than name, so
+# we resolve those short IDs back to display names via the game data registry.
+_SKILL_ID_TO_NAME: Optional[Dict[str, str]] = None
+
+
+def _get_skill_id_map() -> Dict[str, str]:
+    """Return a cached {skill_id: skill_name} map from skills_metadata.json."""
+    global _SKILL_ID_TO_NAME
+    if _SKILL_ID_TO_NAME is not None:
+        return _SKILL_ID_TO_NAME
+    try:
+        root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))
+        ))))
+        path = os.path.join(root, "data", "classes", "skills_metadata.json")
+        with open(path) as f:
+            data = json.load(f)
+        _SKILL_ID_TO_NAME = {
+            v["id"]: v["name"]
+            for v in data.values()
+            if isinstance(v, dict) and v.get("id") and v.get("name")
+        }
+        logger.info(
+            "Maxroll importer: loaded %d skill ID mappings", len(_SKILL_ID_TO_NAME)
+        )
+    except Exception as exc:
+        logger.warning("Maxroll: could not load skills_metadata.json: %s", exc)
+        _SKILL_ID_TO_NAME = {}
+    return _SKILL_ID_TO_NAME
 
 # Cap on how many individual per-item warnings (e.g. `gear_slot:...`) of any
 # single prefix we emit in missing_fields. Without this cap, a Maxroll payload
@@ -331,7 +363,12 @@ _NESTED_BUILD_CONTAINERS = (
 )
 
 # Candidate keys carrying skill data (object or array).
+# Current Maxroll planner format keys (specializedSkills / activeSkills)
+# are checked first — they carry the full per-skill data (abilityId, level,
+# nodes) that older `skillTrees`-style entries lack.
 _SKILL_CANDIDATE_KEYS = (
+    "specializedSkills", "specialized_skills",
+    "activeSkills", "active_skills",
     "skills", "skillTrees", "skill_trees",
     "abilities", "abilityTree", "ability_tree",
     "skillSpecializations", "skill_specializations",
@@ -353,6 +390,85 @@ _PASSIVE_CANDIDATE_KEYS = (
     # Compact keys.
     "pt", "p",
 )
+
+# Sub-keys within a passives *wrapper* object that hold the real node
+# allocations. Maxroll's planner wraps allocations under `nodes` alongside
+# editor state (history, position, timestamps, etc.), so we must descend
+# into the allocation sub-key rather than iterating the wrapper's top level.
+_PASSIVE_NODE_SUBKEYS = (
+    "nodes", "allocations", "allocated", "selected", "points", "tree",
+    "allocatedNodes", "allocated_nodes",
+    "chosenNodes", "chosen_nodes",
+)
+
+# Field names on a single skill entry that identify it. The first group are
+# human-readable names; the second group are short IDs that must be looked up
+# in skills_metadata.json. Maxroll's planner uses abilityId/skillId/treeId.
+_SKILL_NAME_FIELDS = ("name", "displayName", "skillName", "skill_name", "ability")
+_SKILL_ID_FIELDS = ("abilityId", "ability_id", "skillId", "skill_id",
+                    "treeId", "treeID", "tree_id", "id")
+
+
+def _descend_passive_nodes(value):
+    """Return the real node-allocation payload from a passives wrapper.
+
+    Maxroll's `passives` value is often a wrapper dict of the form::
+
+        {"history": [...], "position": {...}, "nodes": {"1": 3, "2": 5}}
+
+    iterating its top-level keys treats "history"/"position" as node IDs
+    (failing int() conversion) and emits spurious passive_node warnings.
+    This helper detects the wrapper (non-integer keys present) and descends
+    into the first known sub-key carrying the real allocations.
+
+    Values that are already lists, or dicts whose keys all parse as ints,
+    are returned unchanged.
+    """
+    if not isinstance(value, dict) or not value:
+        return value
+    # If every top-level key already parses as an integer node ID, this IS
+    # the allocation map — return as-is.
+    all_int_keys = True
+    for k in value.keys():
+        try:
+            int(k)
+        except (ValueError, TypeError):
+            all_int_keys = False
+            break
+    if all_int_keys:
+        return value
+    # Wrapper detected. Find the first non-empty sub-key that holds the
+    # actual allocations.
+    for sk in _PASSIVE_NODE_SUBKEYS:
+        inner = _maybe_decode_json(value.get(sk))
+        if isinstance(inner, (dict, list)) and inner:
+            return inner
+    return value
+
+
+def _resolve_skill_name(sk: dict, skill_id_map: Dict[str, str]) -> str:
+    """Resolve a Maxroll skill entry to a display name.
+
+    Checks human-readable name fields first, then falls back to short
+    skill-ID fields resolved against *skill_id_map*. If an ID is present
+    but unknown to the registry, the raw ID is returned (non-empty) so the
+    skill still appears in the list.
+    """
+    for f in _SKILL_NAME_FIELDS:
+        v = sk.get(f)
+        if isinstance(v, str) and v:
+            return v
+    for f in _SKILL_ID_FIELDS:
+        sid = sk.get(f)
+        if sid is None or sid == "":
+            continue
+        sid_str = str(sid)
+        resolved = skill_id_map.get(sid_str)
+        if resolved:
+            return resolved
+        # Unknown ID — keep the raw ID so the skill isn't dropped as empty.
+        return sid_str
+    return ""
 
 
 def _search_nested(
@@ -622,6 +738,10 @@ class MaxrollImporter(BaseImporter):
         if not passives_raw:
             # Fallback: legacy `charTree.selected` format.
             passives_raw = raw.get("charTree", {}).get("selected", {}) if isinstance(raw.get("charTree"), dict) else None
+        # Maxroll's current planner wraps allocations inside a `nodes` sub-key
+        # alongside editor state (history, position). Descend into it so we
+        # iterate real node IDs instead of "history"/"position".
+        passives_raw = _descend_passive_nodes(passives_raw)
         passive_tree: List[int] = []
         if isinstance(passives_raw, dict):
             for node_id_str, pts in passives_raw.items():
@@ -647,7 +767,11 @@ class MaxrollImporter(BaseImporter):
                     except (ValueError, TypeError):
                         add_missing(f"passive_node:{item}")
 
-        # Skills — same broad search as passives.
+        # Skills — same broad search as passives. Maxroll's current planner
+        # stores full skill data under `specializedSkills` / `activeSkills`
+        # (see _SKILL_CANDIDATE_KEYS ordering), keyed by `abilityId`/`skillId`
+        # which we resolve to canonical names via skills_metadata.json.
+        skill_id_map = _get_skill_id_map()
         skills_raw = _search_nested(raw, _SKILL_CANDIDATE_KEYS) or []
         skills: List[dict] = []
         if isinstance(skills_raw, list):
@@ -660,13 +784,7 @@ class MaxrollImporter(BaseImporter):
 
         for idx, sk in iterable:
             if isinstance(sk, dict):
-                skill_name = (
-                    sk.get("name")
-                    or sk.get("skill_name")
-                    or sk.get("skillName")
-                    or sk.get("ability")
-                    or sk.get("id", "")
-                )
+                skill_name = _resolve_skill_name(sk, skill_id_map)
                 slot = sk.get("slot", idx)
 
                 # Node allocations — check many candidate keys
