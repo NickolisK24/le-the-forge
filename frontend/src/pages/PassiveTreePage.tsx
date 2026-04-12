@@ -72,7 +72,7 @@ const CANVAS_H = 650;
 // ---------------------------------------------------------------------------
 
 export default function PassiveTreePage() {
-  const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(null);
+  const [selectedClass, setSelectedClass] = useState<CharacterClass | null>("Acolyte");
   const [selectedMastery, setSelectedMastery] = useState<string>("__base__");
   const [allocatedIds, setAllocatedIds] = useState<Set<string>>(new Set());
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());

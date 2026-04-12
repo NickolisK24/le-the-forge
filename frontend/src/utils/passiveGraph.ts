@@ -98,8 +98,11 @@ export function getReachableNodes(
     }
   }
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  // Head-pointer BFS — avoids O(n) array.shift() per dequeue. With shift()
+  // BFS degrades to O(n²); with a head index it runs in O(n + e).
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
     const neighbors = adjacency.get(current);
     if (!neighbors) continue;
 
@@ -209,7 +212,8 @@ export function canRemoveNode(
     }
   }
 
-  // BFS from all roots through remaining allocated nodes
+  // BFS from all roots through remaining allocated nodes — head-pointer
+  // dequeue keeps this O(n + e) instead of O(n²) from array.shift().
   const visited = new Set<string>();
   const queue: string[] = [];
 
@@ -218,8 +222,9 @@ export function canRemoveNode(
     queue.push(rootId);
   }
 
-  while (queue.length > 0) {
-    const current = queue.shift()!;
+  let head = 0;
+  while (head < queue.length) {
+    const current = queue[head++];
     const neighbors = adjacency.get(current);
     if (!neighbors) continue;
 

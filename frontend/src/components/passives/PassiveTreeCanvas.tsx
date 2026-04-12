@@ -230,11 +230,16 @@ export default function PassiveTreeCanvas({
     };
   }, [tooltip, nodes, allocatedIds, allocatedPoints, adjacency, startIds, totalBasePointsSpent]);
 
+  // Stable id of the hovered node — the tooltip object gets a new reference
+  // on every mouse-move (new x/y), but downstream BFS/memoization only needs
+  // to recompute when the hovered node itself changes.
+  const tooltipNodeId = tooltip?.node.id ?? null;
+
   // --- Hover path highlighting (BFS from roots to hovered node) ---
   const hoverPath = useMemo(() => {
-    if (!tooltip) return [];
-    return findPathToNode(tooltip.node.id, adjacency, startIds);
-  }, [tooltip, adjacency, startIds]);
+    if (!tooltipNodeId) return [];
+    return findPathToNode(tooltipNodeId, adjacency, startIds);
+  }, [tooltipNodeId, adjacency, startIds]);
 
   const hoverPathNodes = useMemo(() => new Set(hoverPath), [hoverPath]);
   const hoverPathEdges = useMemo(() => {
@@ -274,11 +279,18 @@ export default function PassiveTreeCanvas({
   }, [inspectorReport, blockingNodeIds]);
 
   const containerRect = containerRef.current?.getBoundingClientRect() ?? null;
-  const tooltipAllocated = tooltip ? allocatedIds.has(tooltip.node.id) : false;
-  const tooltipCanDealloc =
-    tooltip && tooltipAllocated
-      ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, nodes)
-      : false;
+  const tooltipAllocated = tooltipNodeId ? allocatedIds.has(tooltipNodeId) : false;
+  // Memoize the removal-safety BFS — keyed on node id (not the whole tooltip
+  // object, which gets a new reference on every mouse-move). Without this,
+  // each mouse-move updating `tooltip` re-runs canRemoveNode (a full BFS)
+  // synchronously during render, costing seconds on larger graphs.
+  const tooltipCanDealloc = useMemo(
+    () =>
+      tooltipNodeId && tooltipAllocated
+        ? canRemoveNode(tooltipNodeId, allocatedIds, startIds, adjacency, nodes)
+        : false,
+    [tooltipNodeId, tooltipAllocated, allocatedIds, startIds, adjacency, nodes],
+  );
 
   // Track container size so we can convert between screen pixels and
   // viewBox coord-space. preserveAspectRatio "meet" picks the smaller of
