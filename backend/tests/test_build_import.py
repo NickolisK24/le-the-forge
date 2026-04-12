@@ -2414,7 +2414,14 @@ class TestMaxrollSpecializedSkillsFormat:
 
     def test_full_maxroll_profile_extraction(self):
         """Integration test: mimics the exact shape of profiles[activeProfile]
-        for the Rogue/Bladedancer zu5tdn0o planner confirmed from Discord."""
+        for the Rogue/Bladedancer zu5tdn0o planner confirmed from Discord.
+
+        Critical assertion: ``ub5d9`` (Umbral Blades) and ``dacn33`` (Dancing
+        Strikes) are Maxroll tree IDs that do NOT match the short IDs in
+        skills_metadata.json (``na28`` / ``dacn37`` respectively), so the
+        importer must join name → tree_id via skills_with_trees.json for
+        points to be picked up. The two skills used to import with 0 points.
+        """
         from app.services.importers.maxroll_importer import MaxrollImporter
         raw = {
             "name": "Starter",
@@ -2434,10 +2441,13 @@ class TestMaxrollSpecializedSkillsFormat:
                 "position": 113,
             },
             "skillTrees": {
-                "sync5":  {"history": [21, 21, 21, 17], "position": 4},
-                "dagg3":  {"history": [17, 17, 16],      "position": 3},
-                "smbmb":  {"history": [],                "position": 0},
-                "shiif":  {"history": [5, 5],            "position": 2},
+                # tree IDs here match skills_with_trees.json, NOT
+                # skills_metadata.json — see ub5d9 / dacn33 below.
+                "sync5":  {"history": list(range(19)),  "position": 19},
+                "dagg3":  {"history": list(range(20)),  "position": 20},
+                "shiif":  {"history": list(range(20)),  "position": 20},
+                "ub5d9":  {"history": list(range(20)),  "position": 20},
+                "dacn33": {"history": list(range(20)),  "position": 20},
             },
         }
         result = MaxrollImporter()._map(raw, "zu5tdn0o")
@@ -2466,14 +2476,42 @@ class TestMaxrollSpecializedSkillsFormat:
         assert pt.count(8) == 5
         assert "passives:empty" not in result.missing_fields
 
-        # Points from skillTrees[id].position wire through to the Forge skill.
+        # Points from skillTrees[tree_id].position wire through to the Forge
+        # skill via the skills_with_trees.json name→tree_id lookup.
         skills_by_name = {s["skill_name"]: s for s in result.build_data["skills"]}
-        assert skills_by_name["Synchronized Strike"]["points_allocated"] == 4
-        assert skills_by_name["Shadow Cascade"]["points_allocated"] == 3
-        assert skills_by_name["Shift"]["points_allocated"] == 2
-        # No matching tree for Umbral Blades/Dancing Strikes → 0 points.
-        assert skills_by_name["Umbral Blades"]["points_allocated"] == 0
-        assert skills_by_name["Dancing Strikes"]["points_allocated"] == 0
+        assert skills_by_name["Synchronized Strike"]["points_allocated"] == 19
+        assert skills_by_name["Shadow Cascade"]["points_allocated"] == 20
+        assert skills_by_name["Shift"]["points_allocated"] == 20
+        # These are the two that used to import with 0 points because their
+        # metadata IDs (na28 / dacn37) do not match Maxroll's tree IDs
+        # (ub5d9 / dacn33). Fixed by switching to skills_with_trees.json.
+        assert skills_by_name["Umbral Blades"]["points_allocated"] == 20
+        assert skills_by_name["Dancing Strikes"]["points_allocated"] == 20
+
+    def test_tree_id_lookup_resolves_skills_whose_metadata_id_differs(self):
+        """Skills whose skills_metadata.json id does not match Maxroll's
+        skillTrees key must still resolve points via skills_with_trees.json.
+
+        Without the fix: Umbral Blades (metadata id=na28) and Dancing Strikes
+        (metadata id=dacn37) would look up wrong keys in skillTrees and
+        receive 0 points even when Maxroll supplies allocations.
+        """
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4, "mastery": 1, "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": ["Umbral Blades", "Dancing Strikes"],
+            "skillTrees": {
+                "ub5d9":  {"history": [1, 1, 2, 2, 3], "position": 5},
+                "dacn33": {"history": [10, 11, 12],     "position": 3},
+            },
+        }, "tree_id_fix")
+        assert result.success is True
+        skills_by_name = {s["skill_name"]: s for s in result.build_data["skills"]}
+        assert skills_by_name["Umbral Blades"]["points_allocated"] == 5
+        assert skills_by_name["Umbral Blades"]["spec_tree"] == [1, 1, 2, 2, 3]
+        assert skills_by_name["Dancing Strikes"]["points_allocated"] == 3
+        assert skills_by_name["Dancing Strikes"]["spec_tree"] == [10, 11, 12]
 
 
 class TestMaxrollPassivesHistoryFormat:

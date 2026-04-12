@@ -36,6 +36,14 @@ logger = logging.getLogger(__name__)
 # we resolve those short IDs back to display names via the game data registry.
 _SKILL_ID_TO_NAME: Optional[Dict[str, str]] = None
 
+# Lazy-loaded map of tree-ID → canonical name, built from skills_with_trees.json.
+# Maxroll keys its `skillTrees` dict by tree IDs (e.g. "ub5d9", "dacn33") that
+# do NOT always match the short IDs in skills_metadata.json. skills_with_trees
+# carries the authoritative tree IDs under each entry's top-level `id` field
+# (which equals `skillTree.sourceId`), so we use it to join specializedSkills
+# (by name) to their Maxroll skillTree allocations (by tree id).
+_SKILL_TREE_ID_TO_NAME: Optional[Dict[str, str]] = None
+
 
 def _get_skill_id_map() -> Dict[str, str]:
     """Return a cached {skill_id: skill_name} map from skills_metadata.json."""
@@ -61,6 +69,56 @@ def _get_skill_id_map() -> Dict[str, str]:
         logger.warning("Maxroll: could not load skills_metadata.json: %s", exc)
         _SKILL_ID_TO_NAME = {}
     return _SKILL_ID_TO_NAME
+
+
+def _get_skill_tree_id_map() -> Dict[str, str]:
+    """Return a cached {tree_id: skill_name} map from skills_with_trees.json.
+
+    Each entry in skills_with_trees.json is one skill with its full tree
+    definition. The entry's top-level ``id`` field is the Maxroll tree ID
+    used as the key in Maxroll's ``skillTrees`` dict. Example entries:
+
+        {"id": "ub5d9",  "name": "Umbral Blades",   "skillTree": {...}}
+        {"id": "dacn33", "name": "Dancing Strikes", "skillTree": {...}}
+
+    skills_metadata.json has DIFFERENT IDs for these same skills (``na28``
+    and ``dacn37`` respectively), so it can't be used to join by tree ID.
+    """
+    global _SKILL_TREE_ID_TO_NAME
+    if _SKILL_TREE_ID_TO_NAME is not None:
+        return _SKILL_TREE_ID_TO_NAME
+    try:
+        root = os.path.dirname(os.path.dirname(os.path.dirname(os.path.dirname(
+            os.path.dirname(os.path.abspath(__file__))
+        ))))
+        path = os.path.join(root, "data", "classes", "skills_with_trees.json")
+        with open(path) as f:
+            data = json.load(f)
+        mapping: Dict[str, str] = {}
+        if isinstance(data, list):
+            for entry in data:
+                if not isinstance(entry, dict):
+                    continue
+                # Some skill names appear multiple times in the registry —
+                # only entries with ``hasTree: True`` are the real active skill
+                # trees Maxroll keys its allocations by. The others are
+                # legacy/variant rows whose IDs (e.g. ``na28``, ``dacn37``) do
+                # NOT match Maxroll's skillTrees dict.
+                if not entry.get("hasTree"):
+                    continue
+                tree_id = entry.get("id")
+                name = entry.get("name")
+                if isinstance(tree_id, str) and isinstance(name, str) and tree_id and name:
+                    mapping[tree_id] = name
+        _SKILL_TREE_ID_TO_NAME = mapping
+        logger.info(
+            "Maxroll importer: loaded %d skill tree ID mappings",
+            len(_SKILL_TREE_ID_TO_NAME),
+        )
+    except Exception as exc:
+        logger.warning("Maxroll: could not load skills_with_trees.json: %s", exc)
+        _SKILL_TREE_ID_TO_NAME = {}
+    return _SKILL_TREE_ID_TO_NAME
 
 
 # Hardcoded overrides for Maxroll → Forge skill name differences. Keyed by
@@ -862,12 +920,19 @@ class MaxrollImporter(BaseImporter):
 
         # Skills — Maxroll's current planner format stores specializedSkills
         # as a plain list of skill name strings and keeps per-skill tree
-        # allocations under a parallel `skillTrees` dict keyed by the skill's
-        # registry id. We prefer that path; fall back to legacy list-of-dicts
-        # / dict-of-dicts shapes when it isn't present.
+        # allocations under a parallel `skillTrees` dict keyed by tree ID.
+        # The tree IDs come from skills_with_trees.json (NOT skills_metadata.json,
+        # whose IDs diverge for some skills — e.g. Umbral Blades is ``na28`` in
+        # metadata but ``ub5d9`` as a tree ID). We prefer this path; fall back
+        # to legacy list-of-dicts / dict-of-dicts shapes when it isn't present.
         skill_id_map = _get_skill_id_map()          # {id: canonical_name}
-        canonical_names = set(skill_id_map.values())
-        name_to_id = {v: k for k, v in skill_id_map.items()}
+        tree_id_to_name = _get_skill_tree_id_map()  # {tree_id: canonical_name}
+        # Canonical names accepted by the normalizer — union of both registries
+        # so skills present only in skills_with_trees.json still resolve.
+        canonical_names = set(skill_id_map.values()) | set(tree_id_to_name.values())
+        # Reverse lookup: name → tree_id. skills_with_trees.json is the
+        # authoritative source of Maxroll-compatible tree IDs.
+        name_to_tree_id = {v: k for k, v in tree_id_to_name.items()}
         skill_trees_raw = raw.get("skillTrees") or raw.get("skill_trees")
         if not isinstance(skill_trees_raw, dict):
             skill_trees_raw = {}
@@ -909,7 +974,7 @@ class MaxrollImporter(BaseImporter):
             # Current Maxroll format — list of skill name strings.
             for idx, raw_name in enumerate(spec_skills_raw):
                 canonical = _normalize_maxroll_skill_name(raw_name, canonical_names)
-                tree_id = name_to_id.get(canonical)
+                tree_id = name_to_tree_id.get(canonical)
                 points, spec_tree = _points_and_spec_tree_from_tree(tree_id)
                 if canonical not in canonical_names:
                     add_missing(f"skill_unmapped:{raw_name}")
