@@ -45,6 +45,16 @@ _MASTERY_MAP: Dict[str, Dict[int, str]] = {
     "Rogue":     {1: "Bladedancer", 2: "Marksman",    3: "Falconer"},
 }
 
+# Reverse lookup: mastery name → base class.
+# Maxroll sometimes stores the mastery name in the `class` field (the
+# current Maxroll planner treats "Bladedancer" etc. as the character's
+# class). We detect this and resolve the real base class.
+_MASTERY_TO_CLASS: Dict[str, str] = {
+    mastery: base
+    for base, masteries in _MASTERY_MAP.items()
+    for mastery in masteries.values()
+}
+
 # Canonical gear slot names (Maxroll may use various formats)
 _SLOT_NORMALISE: Dict[str, str] = {
     "helm": "Helmet",
@@ -326,6 +336,22 @@ class MaxrollImporter(BaseImporter):
             char_class = raw.get("characterClass")
         if isinstance(char_class, int):
             char_class = _CLASS_MAP.get(char_class)
+
+        # Mastery resolution — 0 is not a valid mastery ID so `or` is safe here
+        mastery = raw.get("mastery") or raw.get("masteryName") or ""
+        if isinstance(mastery, int):
+            mastery = _MASTERY_MAP.get(char_class, {}).get(mastery, "")
+
+        # Maxroll frequently stores the mastery name in the `class` field
+        # (e.g. "Bladedancer" instead of "Rogue"). If what we parsed as the
+        # class is actually a known mastery, swap them into the correct slots.
+        if char_class in _MASTERY_TO_CLASS:
+            # If no mastery was set, use the value as the mastery; otherwise
+            # keep the explicit mastery and just correct the base class.
+            if not mastery:
+                mastery = char_class
+            char_class = _MASTERY_TO_CLASS[char_class]
+
         if not char_class:
             return ImportResult(
                 success=False,
@@ -335,10 +361,6 @@ class MaxrollImporter(BaseImporter):
                 build_data={"_raw_keys": list(raw.keys())},
             )
 
-        # Mastery resolution — 0 is not a valid mastery ID so `or` is safe here
-        mastery = raw.get("mastery") or raw.get("masteryName") or ""
-        if isinstance(mastery, int):
-            mastery = _MASTERY_MAP.get(char_class, {}).get(mastery, "")
         if not mastery:
             missing_fields.append("mastery")
 

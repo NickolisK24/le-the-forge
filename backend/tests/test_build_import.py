@@ -1867,6 +1867,69 @@ class TestMaxrollClassMasteryImport:
         assert result.build_data["character_class"] == "Rogue"
         assert result.build_data["mastery"] == "Falconer"
 
+    def test_mastery_name_in_class_field_resolves_to_base_class(self):
+        """Maxroll stores mastery names (e.g. 'Bladedancer') in the class
+        field. The importer must resolve the real base class and move the
+        mastery name to the mastery slot."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Bladedancer",  # actually a Rogue mastery
+            "level": 80,
+            "passives": {},
+            "skills": [],
+        }, "test_bd")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Rogue"
+        assert result.build_data["mastery"] == "Bladedancer"
+
+    def test_mastery_name_in_class_with_explicit_mastery(self):
+        """If `class` is a mastery AND `mastery` is explicit, correct the
+        base class but keep the explicit mastery."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sorcerer",   # Mage mastery
+            "mastery": "Spellblade",  # explicit, takes precedence
+            "level": 80,
+            "passives": {},
+            "skills": [],
+        }, "test_sb")
+        assert result.success is True
+        assert result.build_data["character_class"] == "Mage"
+        assert result.build_data["mastery"] == "Spellblade"
+
+    def test_all_masteries_resolve_to_base_class(self):
+        """Every mastery name in the class field must resolve to its base class."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        cases = [
+            ("Beastmaster", "Primalist"),
+            ("Shaman", "Primalist"),
+            ("Druid", "Primalist"),
+            ("Sorcerer", "Mage"),
+            ("Spellblade", "Mage"),
+            ("Runemaster", "Mage"),
+            ("Void Knight", "Sentinel"),
+            ("Forge Guard", "Sentinel"),
+            ("Paladin", "Sentinel"),
+            ("Necromancer", "Acolyte"),
+            ("Lich", "Acolyte"),
+            ("Warlock", "Acolyte"),
+            ("Bladedancer", "Rogue"),
+            ("Marksman", "Rogue"),
+            ("Falconer", "Rogue"),
+        ]
+        for mastery, expected_class in cases:
+            result = importer._map({
+                "class": mastery, "level": 80,
+                "passives": {}, "skills": [],
+            }, "test")
+            assert result.build_data["character_class"] == expected_class, (
+                f"{mastery} should resolve to {expected_class}"
+            )
+            assert result.build_data["mastery"] == mastery
+
     def test_characterClass_field_accepted(self):
         from app.services.importers.maxroll_importer import MaxrollImporter
         importer = MaxrollImporter()
