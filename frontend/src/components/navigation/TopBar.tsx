@@ -78,7 +78,9 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
     staleTime: 5 * 60 * 1000,
     retry: false,
   });
-  const version = versionRes?.data;
+  // Fall back to the build-time VERSION file so the badge renders on cold
+  // load before /api/version resolves. The API value overrides once available.
+  const versionString = versionRes?.data?.version || __APP_VERSION__;
 
   function handleLogout() {
     logout();
@@ -122,9 +124,9 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
           </span>
         </Link>
 
-        {version?.version && version.version !== "0.0.0" && (
+        {versionString && versionString !== "0.0.0" && (
           <span className="font-mono text-[10px] text-forge-dim hidden lg:block ml-1">
-            v{version.version}
+            v{versionString}
           </span>
         )}
       </div>
