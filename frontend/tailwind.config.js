@@ -9,10 +9,13 @@ export default {
         "forge-surface":  "#0c0f1c",
         "forge-surface2": "#10152a",
         "forge-surface3": "#161c34",
+        // Input/form backgrounds — slightly darker than surface2 for contrast
+        "forge-input":    "#10152a",
         // Borders — blue-purple tint
         "forge-border":     "rgba(80,100,210,0.22)",
         "forge-border-hot": "rgba(130,160,255,0.50)",
         // Primary accent — warm gold (crafting / equipment)
+        "forge-accent":    "#f0a020",
         "forge-amber":     "#f0a020",
         "forge-amber-hot": "#ffb83f",
         "forge-ember":     "#e06030",
