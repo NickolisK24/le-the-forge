@@ -2437,6 +2437,72 @@ class TestMaxrollUnwrapBuildData:
         assert result.get("class") == "Mage"
         assert result.get("mainset") == mainset
 
+    def test_unwrap_drills_into_active_profile(self):
+        """A Maxroll planner workspace carries profiles[] and
+        activeProfile; unwrap must drill into the active profile."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        profile_0 = {"mastery": "Sorcerer", "level": 80, "passives": {"1": 1}, "skills": []}
+        profile_1 = {"mastery": "Runemaster", "level": 95, "passives": {"9": 3}, "skills": []}
+        payload = {
+            "class": "Mage", "name": "Workspace",
+            "profiles": [profile_0, profile_1],
+            "activeProfile": 1,
+            "items": [{"name": "Apex"}],
+            "mainset": {"helm": 0},
+        }
+        result = _unwrap_build_data(payload)
+        assert result is not None
+        # Drilled into profiles[1] (activeProfile)
+        assert result.get("mastery") == "Runemaster"
+        assert result.get("level") == 95
+        # Workspace-level fields merged into the profile
+        assert result.get("class") == "Mage"
+        assert result.get("mainset") == {"helm": 0}
+        assert result.get("items") == [{"name": "Apex"}]
+
+    def test_unwrap_variant_overrides_active_profile(self):
+        """URL hash fragment takes precedence over activeProfile."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        profile_0 = {"mastery": "Beastmaster", "level": 70, "passives": {}, "skills": []}
+        profile_1 = {"mastery": "Shaman",      "level": 75, "passives": {}, "skills": []}
+        profile_2 = {"mastery": "Druid",       "level": 80, "passives": {}, "skills": []}
+        payload = {
+            "class": "Primalist",
+            "profiles": [profile_0, profile_1, profile_2],
+            "activeProfile": 0,
+        }
+        result = _unwrap_build_data(payload, variant=2)
+        assert result is not None
+        assert result.get("mastery") == "Druid"
+        assert result.get("level") == 80
+
+    def test_map_planner_workspace_resolves_gear_from_catalog(self):
+        """mainset references items by index into the items catalog —
+        the mapper must resolve those refs instead of treating the
+        catalog itself as gear."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        raw = {
+            "class": "Rogue", "mastery": "Bladedancer", "level": 95,
+            "passives": {"100": 3},
+            "skills": [{"name": "Shift", "slot": 0, "level": 20, "nodes": {}}],
+            # mainset -> catalog index references
+            "mainset": {"helm": 0, "chest": 1},
+            "items": [
+                {"name": "Apex Helm", "rarity": "Legendary"},
+                {"name": "Woven Chest", "rarity": "Rare"},
+                # 100 more unrelated catalog items — MUST NOT become gear
+                *[{"name": f"Catalog item {i}"} for i in range(100)],
+            ],
+        }
+        result = MaxrollImporter()._map(raw, "ws1")
+        assert result.success is True
+        # Exactly two gear slots, resolved from the catalog — NOT 102.
+        assert len(result.build_data["gear"]) == 2
+        names = {g["item_name"] for g in result.build_data["gear"]}
+        assert names == {"Apex Helm", "Woven Chest"}
+        # And no gear_slot warnings flooded.
+        assert all("gear_slot" not in f for f in result.missing_fields)
+
     def test_unwrap_profile_envelope_with_jsonstring_data(self):
         """Some Maxroll envelopes store `data` as a JSON-encoded string."""
         import json
