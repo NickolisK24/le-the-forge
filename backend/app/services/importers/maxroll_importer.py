@@ -85,10 +85,17 @@ URL_PATTERN = re.compile(
 
 # Possible API endpoints Maxroll uses for planner data.
 # Ordered by likelihood — first hit wins.
+# Maxroll has restructured their planner backend several times; we try a
+# variety of known patterns. Any 4xx/5xx responses are logged (with status)
+# so misses can be traced in production.
 _API_URLS = [
+    "https://planners.maxroll.gg/profiles/le-planner/{code}",
     "https://planners.maxroll.gg/last-epoch/api/save/{code}",
-    "https://maxroll.gg/last-epoch/api/planner/{code}",
     "https://planners.maxroll.gg/api/last-epoch/save/{code}",
+    "https://planners.maxroll.gg/api/last-epoch/load/{code}",
+    "https://planners.maxroll.gg/api/v1/last-epoch/{code}",
+    "https://maxroll.gg/last-epoch/api/planner/{code}",
+    "https://maxroll.gg/api/last-epoch/planner/{code}",
 ]
 
 
@@ -182,21 +189,34 @@ class MaxrollImporter(BaseImporter):
         if frag_match:
             variant = int(frag_match.group(1))
 
-        build_data = self._fetch_build_data(code, variant)
+        build_data, fetch_diag = self._fetch_build_data(code, variant)
         if build_data is None:
+            # Surface the last observed HTTP status (if any) so production
+            # operators can tell whether Maxroll is rate-limiting, returning
+            # 404s, or returning 200s with an unexpected body shape.
+            diag_suffix = f" ({fetch_diag})" if fetch_diag else ""
             return ImportResult(
                 success=False,
                 source=self.source_name,
                 error_message=(
                     "Could not fetch build data from Maxroll. "
                     "The build may be expired, or Maxroll may have changed their format."
+                    + diag_suffix
                 ),
             )
 
         return self._map(build_data, code)
 
-    def _fetch_build_data(self, code: str, variant: int = 0) -> Optional[dict]:
-        """Try multiple strategies to get the build data."""
+    def _fetch_build_data(
+        self, code: str, variant: int = 0
+    ) -> tuple[Optional[dict], str]:
+        """
+        Try multiple strategies to get the build data.
+
+        Returns a tuple of (build_data_or_None, diagnostic_string). The
+        diagnostic string summarises what each attempt returned so callers
+        can include it in error messages and logs.
+        """
         headers = {
             "User-Agent": (
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -208,30 +228,52 @@ class MaxrollImporter(BaseImporter):
             "Referer": "https://maxroll.gg/last-epoch/planner/",
             "Origin": "https://maxroll.gg",
         }
+        attempts: List[str] = []
 
         # Strategy 1: Try API endpoints
         for url_template in _API_URLS:
             api_url = url_template.format(code=code)
             try:
                 resp = _requests.get(api_url, headers=headers, timeout=15)
-                if resp.status_code == 200:
-                    data = resp.json()
+                status = resp.status_code
+                if status == 200:
+                    try:
+                        data = resp.json()
+                    except (ValueError, json.JSONDecodeError) as exc:
+                        attempts.append(f"{api_url}: 200 non-JSON ({exc})")
+                        logger.warning("Maxroll: %s returned 200 non-JSON: %s", api_url, exc)
+                        continue
                     if isinstance(data, dict):
                         unwrapped = _unwrap_build_data(data, variant)
                         if unwrapped:
                             logger.info("Maxroll: got build data from API %s", api_url)
-                            return unwrapped
-            except Exception:
-                continue
+                            return unwrapped, ""
+                        attempts.append(f"{api_url}: 200 but unknown shape (keys={list(data.keys())[:5]})")
+                        logger.warning(
+                            "Maxroll: %s returned 200 with unknown shape, keys=%s",
+                            api_url, list(data.keys())[:10],
+                        )
+                    else:
+                        attempts.append(f"{api_url}: 200 non-dict ({type(data).__name__})")
+                else:
+                    attempts.append(f"{api_url}: HTTP {status}")
+                    logger.debug("Maxroll: %s returned HTTP %d", api_url, status)
+            except _requests.Timeout:
+                attempts.append(f"{api_url}: timeout")
+            except _requests.RequestException as exc:
+                attempts.append(f"{api_url}: {type(exc).__name__}")
+                logger.debug("Maxroll: %s raised %s", api_url, exc)
 
         # Strategy 2: Fetch HTML and extract __NEXT_DATA__
+        html_url = f"https://maxroll.gg/last-epoch/planner/{code}"
         try:
             resp = _requests.get(
-                f"https://maxroll.gg/last-epoch/planner/{code}",
+                html_url,
                 headers={**headers, "Accept": "text/html,application/xhtml+xml"},
                 timeout=15,
             )
-            if resp.status_code == 200:
+            html_status = resp.status_code
+            if html_status == 200:
                 raw = _extract_next_data(resp.text)
                 if raw:
                     # __NEXT_DATA__ may also wrap multi-variant builds
@@ -239,15 +281,37 @@ class MaxrollImporter(BaseImporter):
                         unwrapped = _unwrap_build_data(raw, variant)
                         if unwrapped:
                             logger.info("Maxroll: extracted build from __NEXT_DATA__")
-                            return unwrapped
-                    # _extract_next_data already returned a valid build dict
-                    if _is_build_dict(raw):
-                        logger.info("Maxroll: extracted build from __NEXT_DATA__")
-                        return raw
+                            return unwrapped, ""
+                        # _extract_next_data already returned a valid build dict
+                        if _is_build_dict(raw):
+                            logger.info("Maxroll: extracted build from __NEXT_DATA__")
+                            return raw, ""
+                    attempts.append(f"{html_url}: 200 but __NEXT_DATA__ has no build")
+                else:
+                    attempts.append(f"{html_url}: 200 but no __NEXT_DATA__ found")
+            else:
+                attempts.append(f"{html_url}: HTTP {html_status}")
+        except _requests.Timeout:
+            attempts.append(f"{html_url}: timeout")
         except Exception as exc:
+            # Catch broadly — resp.text may raise unexpectedly and we must
+            # never let the HTML fallback kill the whole parse.
+            attempts.append(f"{html_url}: {type(exc).__name__}")
             logger.warning("Maxroll: HTML fetch failed: %s", exc)
 
-        return None
+        # Compact diagnostic — only include the HTTP statuses (most useful),
+        # not the full attempt list, to keep the user-facing message short.
+        statuses = [
+            part.split(": ", 1)[1]
+            for part in attempts
+            if ": " in part
+        ]
+        diag = f"attempts: {'; '.join(statuses[-3:])}" if statuses else ""
+        logger.warning(
+            "Maxroll: all fetch strategies failed for code=%s. Attempts: %s",
+            code, "; ".join(attempts),
+        )
+        return None, diag
 
     def _map(self, raw: dict, code: str) -> ImportResult:
         """Map Maxroll planner data to Forge build payload."""
