@@ -366,8 +366,16 @@ class MaxrollImporter(BaseImporter):
 
         level = int(raw.get("level", 70))
 
-        # Passive tree
-        passives_raw = raw.get("passives") or raw.get("charTree", {}).get("selected", {})
+        # Passive tree — try several candidate keys. Maxroll's planner has
+        # used different names over time; newer exports put them under
+        # `passiveTree`, `tree`, or `passiveNodes` rather than `passives`.
+        passives_raw = (
+            raw.get("passives")
+            or raw.get("passiveTree")
+            or raw.get("passiveNodes")
+            or raw.get("tree")
+            or raw.get("charTree", {}).get("selected", {})
+        )
         passive_tree: List[int] = []
         if isinstance(passives_raw, dict):
             for node_id_str, pts in passives_raw.items():
@@ -379,24 +387,59 @@ class MaxrollImporter(BaseImporter):
             # Some formats use a flat list
             for item in passives_raw:
                 if isinstance(item, dict):
-                    nid = item.get("id") or item.get("nodeId")
-                    pts = item.get("points", 1)
+                    nid = item.get("id") or item.get("nodeId") or item.get("node")
+                    pts = item.get("points") or item.get("pts") or item.get("rank") or 1
                     if nid is not None:
                         try:
                             passive_tree.extend([int(nid)] * max(0, int(pts)))
                         except (ValueError, TypeError):
                             missing_fields.append(f"passive_node:{nid}")
+                elif isinstance(item, (int, str)):
+                    # List of bare node IDs
+                    try:
+                        passive_tree.append(int(item))
+                    except (ValueError, TypeError):
+                        missing_fields.append(f"passive_node:{item}")
 
-        # Skills
-        skills_raw = raw.get("skills") or raw.get("skillTrees") or []
+        # Skills — try several candidate keys
+        skills_raw = (
+            raw.get("skills")
+            or raw.get("skillTrees")
+            or raw.get("abilities")
+            or raw.get("abilityTree")
+            or raw.get("skillSpecializations")
+            or []
+        )
         skills: List[dict] = []
-        for idx, sk in enumerate(skills_raw):
+        if isinstance(skills_raw, list):
+            iterable = enumerate(skills_raw)
+        elif isinstance(skills_raw, dict):
+            # Some formats use {slot: skill_data, ...}
+            iterable = enumerate(skills_raw.values())
+        else:
+            iterable = enumerate([])
+
+        for idx, sk in iterable:
             if isinstance(sk, dict):
-                skill_name = sk.get("name") or sk.get("skill_name") or sk.get("id", "")
+                skill_name = (
+                    sk.get("name")
+                    or sk.get("skill_name")
+                    or sk.get("skillName")
+                    or sk.get("ability")
+                    or sk.get("id", "")
+                )
                 slot = sk.get("slot", idx)
 
-                # Node allocations
-                nodes = sk.get("nodes") or sk.get("selected") or {}
+                # Node allocations — check many candidate keys
+                nodes = (
+                    sk.get("nodes")
+                    or sk.get("selected")
+                    or sk.get("tree")
+                    or sk.get("specTree")
+                    or sk.get("spec_tree")
+                    or sk.get("allocations")
+                    or {}
+                )
                 spec_tree: List[int] = []
                 if isinstance(nodes, dict):
                     for node_id_str, pts in nodes.items():
@@ -404,15 +447,54 @@ class MaxrollImporter(BaseImporter):
                             spec_tree.extend([int(node_id_str)] * max(0, int(pts)))
                         except (ValueError, TypeError):
                             missing_fields.append(f"skill_node:{skill_name}:{node_id_str}")
+                elif isinstance(nodes, list):
+                    for n in nodes:
+                        if isinstance(n, dict):
+                            nid = n.get("id") or n.get("nodeId") or n.get("node")
+                            pts = n.get("points") or n.get("pts") or n.get("rank") or 1
+                            if nid is not None:
+                                try:
+                                    spec_tree.extend([int(nid)] * max(0, int(pts)))
+                                except (ValueError, TypeError):
+                                    missing_fields.append(f"skill_node:{skill_name}:{nid}")
+                        elif isinstance(n, (int, str)):
+                            try:
+                                spec_tree.append(int(n))
+                            except (ValueError, TypeError):
+                                missing_fields.append(f"skill_node:{skill_name}:{n}")
 
                 skills.append({
                     "skill_name": skill_name,
                     "slot": slot,
-                    "points_allocated": int(sk.get("level", 0)),
+                    "points_allocated": int(
+                        sk.get("level") or sk.get("points") or sk.get("points_allocated") or 0
+                    ),
                     "spec_tree": spec_tree,
                 })
 
         skills.sort(key=lambda s: s["slot"])
+
+        # Diagnostic — log raw structure when the mapper produced nothing.
+        # This is critical for debugging unknown Maxroll data formats since
+        # the main payload is not captured anywhere else.
+        if not passive_tree and not skills:
+            logger.warning(
+                "Maxroll: mapper produced no passives/skills for code=%s. "
+                "raw top-level keys=%s; sample values=%s",
+                code,
+                list(raw.keys()),
+                {k: type(v).__name__ for k, v in list(raw.items())[:20]},
+            )
+        elif not passive_tree:
+            logger.warning(
+                "Maxroll: no passives mapped for code=%s. raw keys=%s",
+                code, list(raw.keys()),
+            )
+        elif not skills:
+            logger.warning(
+                "Maxroll: no skills mapped for code=%s. raw keys=%s",
+                code, list(raw.keys()),
+            )
 
         # Gear (best-effort mapping)
         gear_raw = raw.get("equipment") or raw.get("gear") or raw.get("items") or []
@@ -480,6 +562,14 @@ class MaxrollImporter(BaseImporter):
                     else:
                         missing_fields.append(f"gear_slot:{slot}")
 
+        # Flag empty passives/skills so the partial import alert captures them.
+        # Without this, a build with 0 passives+skills looks "successful" and
+        # the failure is only visible in the UI.
+        if not passive_tree:
+            missing_fields.append("passives:empty")
+        if not skills:
+            missing_fields.append("skills:empty")
+
         build_data = {
             "name": f"Imported — {char_class} {mastery}".strip(),
             "description": (
@@ -508,6 +598,8 @@ class MaxrollImporter(BaseImporter):
                 "passives_count": len(passive_tree),
                 "gear_count": len(gear),
                 "missing_count": len(missing_fields),
+                # Raw top-level keys — critical for debugging unknown formats
+                "raw_keys": list(raw.keys()),
             } if missing_fields else None,
         )
         return self.validate(result)

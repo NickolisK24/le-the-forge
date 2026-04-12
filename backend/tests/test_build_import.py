@@ -2065,6 +2065,71 @@ class TestMaxrollSkillsImport:
         assert result.success is True
         assert result.build_data["skills"] == []
 
+    def test_skills_from_abilities_key(self):
+        """Maxroll may use 'abilities' instead of 'skills' as the top-level key."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Rogue",
+            "mastery": "Bladedancer",
+            "level": 70,
+            "passives": {"1": 1},
+            "abilities": [
+                {"name": "Shift", "slot": 0, "level": 20, "nodes": {"1": 3}},
+            ],
+        }, "skills_abil")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Shift"
+        assert skills[0]["points_allocated"] == 20
+
+    def test_skills_from_skillName_field(self):
+        """Some formats use skillName instead of name."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"1": 1},
+            "skills": [
+                {"skillName": "Fireball", "slot": 0, "points": 20, "tree": {"5": 2}},
+            ],
+        }, "skills_name")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Fireball"
+        assert skills[0]["points_allocated"] == 20
+        assert len(skills[0]["spec_tree"]) == 2
+
+    def test_skills_with_list_of_nodes(self):
+        """Skill nodes may be a list of {id, points} instead of a dict."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Sentinel",
+            "mastery": "Paladin",
+            "level": 80,
+            "passives": {"1": 1},
+            "skills": [
+                {
+                    "name": "Rive",
+                    "slot": 0,
+                    "level": 20,
+                    "nodes": [
+                        {"id": 1, "points": 3},
+                        {"nodeId": 2, "points": 2},
+                        {"node": 3, "points": 1},
+                    ],
+                },
+            ],
+        }, "skills_list")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills[0]["spec_tree"]) == 6  # 3+2+1
+
 
 class TestMaxrollPassivesImport:
     """Passive tree import from dict and list formats."""
@@ -2118,6 +2183,89 @@ class TestMaxrollPassivesImport:
         assert result.success is True
         pt = result.build_data["passive_tree"]
         assert len(pt) == 6  # 4+2
+
+    def test_passives_from_passiveTree_key(self):
+        """Maxroll may use 'passiveTree' instead of 'passives'."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passiveTree": {"1": 3, "2": 5},
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_alt")
+        assert result.success is True
+        assert len(result.build_data["passive_tree"]) == 8
+
+    def test_passives_from_bare_id_list(self):
+        """Passives may be encoded as a flat list of node IDs."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Acolyte",
+            "mastery": "Lich",
+            "level": 75,
+            "passiveNodes": [10, 10, 20, 30, 30, 30],
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_bare")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert pt.count(10) == 2
+        assert pt.count(20) == 1
+        assert pt.count(30) == 3
+
+
+class TestMaxrollMissingDataDiagnostics:
+    """Empty passives/skills should be flagged so partial-import alerts fire."""
+
+    def test_empty_passives_flagged_as_missing(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "empty_pt")
+        assert result.success is True
+        assert "passives:empty" in result.missing_fields
+
+    def test_empty_skills_flagged_as_missing(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"1": 3},
+            "skills": [],
+        }, "empty_sk")
+        assert result.success is True
+        assert "skills:empty" in result.missing_fields
+
+    def test_partial_data_includes_raw_keys_for_debugging(self):
+        """partial_data must include raw top-level keys so Discord alerts
+        can be used to diagnose unknown Maxroll data shapes."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {},
+            "skills": [],
+            # simulate unknown field names Maxroll might actually be using
+            "someUnknownField": "xyz",
+            "anotherField": 42,
+        }, "unknown_shape")
+        assert result.success is True
+        assert result.partial_data is not None
+        assert "raw_keys" in result.partial_data
+        raw_keys = result.partial_data["raw_keys"]
+        assert "someUnknownField" in raw_keys
+        assert "anotherField" in raw_keys
 
 
 class TestMaxrollGearSlotNormalisation:
