@@ -21,12 +21,21 @@ import PassiveTreeNode from "./PassiveTreeNode";
 import PassiveTreeConnections from "./PassiveTreeConnections";
 import DependencyInspector from "./DependencyInspector";
 
-// Node radii as fractions of the tree bbox's shorter dimension. Expressing
-// them in viewBox (tree-coord) units lets preserveAspectRatio handle all
-// scaling — nodes stay proportional to the tree across every viewport.
-const NODE_R_CORE_FRAC = 0.010;
-const NODE_R_NOTABLE_FRAC = 0.013;
-const MIN_NODE_R = 4;
+// Node sizing — we measure the container and compute radii in viewBox
+// (tree-coord) units so that the smallest node always renders at a
+// readable on-screen size, regardless of bbox dimensions.
+//
+// Minimum on-screen radius (pixels). The core-node coord radius is
+// scaled up as needed to guarantee this floor after preserveAspectRatio
+// "meet" maps bbox → container.
+const MIN_SCREEN_NODE_R = 12;
+// Base node radius in coord space (used when the natural scale is large
+// enough that MIN_SCREEN_NODE_R does not force a bigger value).
+const BASE_COORD_NODE_R = 18;
+// Notable-to-core radius ratio (notable nodes are visually larger).
+const NOTABLE_RATIO = 1.3;
+// Base idle connection stroke width in coord space.
+const BASE_COORD_STROKE = 3;
 
 // ---------------------------------------------------------------------------
 // Tooltip
@@ -271,12 +280,48 @@ export default function PassiveTreeCanvas({
       ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, nodes)
       : false;
 
-  // Node radii in viewBox (tree-coord) units, derived from the bbox's
-  // shorter dimension. preserveAspectRatio scales the SVG so these stay
-  // visually proportional to the tree across all container sizes.
-  const minExtent = Math.min(bbox.width, bbox.height) || 1;
-  const nodeRCore = Math.max(MIN_NODE_R, minExtent * NODE_R_CORE_FRAC);
-  const nodeRNotable = Math.max(MIN_NODE_R, minExtent * NODE_R_NOTABLE_FRAC);
+  // Track container size so we can convert between screen pixels and
+  // viewBox coord-space. preserveAspectRatio "meet" picks the smaller of
+  // the two axis scales, so we mirror that logic below.
+  const [containerSize, setContainerSize] = useState<{ w: number; h: number }>({
+    w: 800,
+    h: 600,
+  });
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const update = () => {
+      const rect = el.getBoundingClientRect();
+      setContainerSize({ w: rect.width || 800, h: rect.height || 600 });
+    };
+    update();
+    const ro = new ResizeObserver(update);
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, []);
+
+  // Pixels-per-coord-unit the SVG will render at (preserveAspectRatio
+  // "meet" → min of the two axis scales). Guard against zero bbox.
+  const coordToPxScale = useMemo(() => {
+    const sx = containerSize.w / (bbox.width || 1);
+    const sy = containerSize.h / (bbox.height || 1);
+    return Math.min(sx, sy) || 1;
+  }, [containerSize, bbox.width, bbox.height]);
+
+  // Node radii in coord space. Floor of BASE_COORD_NODE_R, but scale up
+  // whenever the natural render would be smaller than MIN_SCREEN_NODE_R
+  // pixels so nodes stay readable on any container/bbox combination.
+  const nodeRCore = Math.max(
+    BASE_COORD_NODE_R,
+    MIN_SCREEN_NODE_R / coordToPxScale,
+  );
+  const nodeRNotable = nodeRCore * NOTABLE_RATIO;
+
+  // Connection stroke widths in coord space. Anchored to the core radius
+  // so they visually scale with the node size (and thus with the tree).
+  const strokeIdle = Math.max(BASE_COORD_STROKE, nodeRCore * 0.18);
+  const strokeHighlighted = strokeIdle * 1.4;
+  const strokeAllocated = strokeIdle * 1.8;
 
   const viewBoxStr = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
 
@@ -304,6 +349,9 @@ export default function PassiveTreeCanvas({
             positions={positions}
             allocatedIds={allocatedIds}
             highlightedEdges={mergedHighlightedEdges}
+            strokeIdle={strokeIdle}
+            strokeHighlighted={strokeHighlighted}
+            strokeAllocated={strokeAllocated}
           />
           {nodes.map((node) => {
             const pos = positions.get(node.id);

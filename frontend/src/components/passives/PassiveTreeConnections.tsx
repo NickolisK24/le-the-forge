@@ -36,9 +36,23 @@ interface Props {
   allocatedIds: Set<string>;
   /** Set of "fromId-toId" edge keys that should be highlighted */
   highlightedEdges?: Set<string>;
+  /** Idle stroke width in coord (viewBox) units. Scales with the tree. */
+  strokeIdle?: number;
+  /** Highlighted stroke width in coord units. */
+  strokeHighlighted?: number;
+  /** Allocated stroke width in coord units. */
+  strokeAllocated?: number;
 }
 
-function PassiveTreeConnectionsInner({ edges, positions, allocatedIds, highlightedEdges }: Props) {
+function PassiveTreeConnectionsInner({
+  edges,
+  positions,
+  allocatedIds,
+  highlightedEdges,
+  strokeIdle = 3,
+  strokeHighlighted = 4.2,
+  strokeAllocated = 5.4,
+}: Props) {
   return (
     <g>
       {edges.map(({ fromId, toId }) => {
@@ -57,24 +71,27 @@ function PassiveTreeConnectionsInner({ edges, positions, allocatedIds, highlight
 
         if (bothAllocated) {
           color = EDGE_ACTIVE[masteryIdx] ?? EDGE_ACTIVE[0];
-          width = 2;
+          width = strokeAllocated;
           opacity = 0.85;
         } else if (isHighlighted) {
           color = EDGE_HIGHLIGHT;
-          width = 1.5;
+          width = strokeHighlighted;
           opacity = 0.6;
         } else {
           color = EDGE_IDLE[masteryIdx] ?? EDGE_IDLE[0];
-          width = 1;
+          width = strokeIdle;
           opacity = 0.4;
         }
 
+        // Stroke widths are in coord space (no non-scaling-stroke) so
+        // lines thicken/thin visually with the tree as the container
+        // resizes — matching the node radii which also scale with it.
         return (
           <line
             key={`${fromId}-${toId}`}
             x1={from.sx} y1={from.sy} x2={to.sx} y2={to.sy}
             stroke={color} strokeWidth={width} opacity={opacity}
-            vectorEffect="non-scaling-stroke"
+            strokeLinecap="round"
           />
         );
       })}
