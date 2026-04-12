@@ -14,7 +14,7 @@
  *   - Total budget: 113 passive points (98 leveling + 15 quests)
  */
 
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import { useState, useMemo, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui";
 import {
@@ -34,10 +34,9 @@ import { CLASS_MASTERIES } from "@constants";
 
 type AllocMap = Record<number, number>;
 
-// Default panel height used only as a seed before the ResizeObserver reports
-// real dimensions. Actual rendering uses the measured container size so the
-// tree fills the full available viewport (see `panelHeight` below).
-const DEFAULT_PANEL_H = 620;
+// Min pixel height of the canvas area — layout is driven by the tree's own
+// bounding box (via the SVG viewBox + preserveAspectRatio), so container
+// size only needs a floor so the tree has room to render.
 const MIN_PANEL_H = 500;
 
 // Last Epoch passive point budget rules
@@ -80,38 +79,8 @@ export default function BuildPassiveTree({
   readOnly = false,
   totalPassivePoints = 113,
 }: Props) {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const canvasAreaRef = useRef<HTMLDivElement>(null);
-  const [panelWidth, setPanelWidth] = useState(400);
-  const [panelHeight, setPanelHeight] = useState(DEFAULT_PANEL_H);
-
   // Active tab: "__base__" or a mastery name
   const [activeTab, setActiveTab] = useState("__base__");
-
-  // Resize observer for responsive width (full container width for single-panel
-  // tab layout). Height tracks the canvas area separately so the tree fills
-  // whatever vertical space the flexbox grants it — not a fixed PANEL_H.
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setPanelWidth(Math.floor(entry.contentRect.width)));
-    ro.observe(el);
-    setPanelWidth(Math.floor(el.clientWidth));
-    return () => ro.disconnect();
-  }, []);
-
-  useEffect(() => {
-    const el = canvasAreaRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => {
-      const h = Math.floor(entry.contentRect.height);
-      if (h > 0) setPanelHeight(Math.max(MIN_PANEL_H, h));
-    });
-    ro.observe(el);
-    const initial = Math.floor(el.clientHeight);
-    if (initial > 0) setPanelHeight(Math.max(MIN_PANEL_H, initial));
-    return () => ro.disconnect();
-  }, []);
 
   // Fetch full class tree from API
   const { data: treeData, isLoading, isError, error } = useQuery<PassiveTreeResponse>({
@@ -222,11 +191,11 @@ export default function BuildPassiveTree({
       const nodes = sections[key] ?? [];
       const adjacency = buildBidirectionalAdjacency(nodes);
       const startIds = findStartNodes(nodes);
-      const layout = computeLayout(nodes, panelWidth, panelHeight);
+      const layout = computeLayout(nodes);
       result[key] = { nodes, adjacency, startIds, layout };
     }
     return result;
-  }, [sectionKeys, sections, panelWidth, panelHeight]);
+  }, [sectionKeys, sections]);
 
   // Mastery-locked node IDs: upper-half nodes in non-chosen mastery trees
   const masteryLockedIds = useMemo(() => {
@@ -381,7 +350,7 @@ export default function BuildPassiveTree({
 
   if (allNodes.length === 0) {
     return (
-      <div ref={containerRef} className="flex items-center justify-center py-12 border border-forge-border">
+      <div className="flex items-center justify-center py-12 border border-forge-border">
         <span className="font-mono text-xs text-forge-dim">No passive data available.</span>
       </div>
     );
@@ -422,12 +391,11 @@ export default function BuildPassiveTree({
 
   return (
     <div
-      ref={containerRef}
       className="flex w-full flex-col gap-0"
       style={{
         // Fill the container's full width; grow to viewport height so the
-        // tree uses the space available instead of being cramped into
-        // a fixed 620px box.
+        // tree uses the space available. The SVG viewBox auto-fits the
+        // tree's bounding box into whatever space the canvas area has.
         minHeight: MIN_PANEL_H + 140, // + room for point bar, tab bar, legend
         height: "clamp(640px, 80vh, 1000px)",
       }}
@@ -501,7 +469,6 @@ export default function BuildPassiveTree({
 
       {/* Single tree panel for active tab — fills remaining vertical space */}
       <div
-        ref={canvasAreaRef}
         className="flex flex-1 min-h-0 border border-t-0 border-forge-border"
         style={{ minHeight: MIN_PANEL_H }}
       >
@@ -532,7 +499,7 @@ export default function BuildPassiveTree({
               nodes={activeSd.nodes}
               edges={activeSd.layout.edges}
               positions={activeSd.layout.positions}
-              scale={activeSd.layout.scale}
+              bbox={activeSd.layout.bbox}
               allocatedIds={activeSecAllocated}
               allocatedPoints={activeSecAllocatedPts}
               startIds={activeSd.startIds}
@@ -543,8 +510,7 @@ export default function BuildPassiveTree({
               highlightedNodes={emptySet}
               highlightedEdges={emptySet}
               blockingNodeIds={emptySet}
-              canvasWidth={panelWidth}
-              canvasHeight={panelHeight}
+              minHeight={MIN_PANEL_H}
               readOnly={readOnly || activeIsLocked}
               masteryLockedIds={activeIsNonChosen ? masteryLockedIds : undefined}
             />

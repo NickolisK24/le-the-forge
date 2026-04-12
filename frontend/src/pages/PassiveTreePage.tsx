@@ -9,7 +9,7 @@
  *   - Dev-mode integrity validation after every allocation change
  */
 
-import { useState, useMemo, useRef, useEffect, useCallback } from "react";
+import { useState, useMemo, useEffect, useCallback } from "react";
 import { useQuery } from "@tanstack/react-query";
 import { Spinner } from "@/components/ui";
 import type { CharacterClass } from "@/types";
@@ -79,17 +79,6 @@ export default function PassiveTreePage() {
   const [showAllocPaths, setShowAllocPaths] = useState(false);
   const [renderTimeMs, setRenderTimeMs] = useState<number | null>(null);
   const [exportMsg, setExportMsg] = useState<string | null>(null);
-  const containerRef = useRef<HTMLDivElement>(null);
-  const [canvasSize, setCanvasSize] = useState({ w: 900, h: CANVAS_H });
-
-  useEffect(() => {
-    const el = containerRef.current;
-    if (!el) return;
-    const ro = new ResizeObserver(([entry]) => setCanvasSize({ w: entry.contentRect.width, h: CANVAS_H }));
-    ro.observe(el);
-    setCanvasSize({ w: el.clientWidth, h: CANVAS_H });
-    return () => ro.disconnect();
-  }, []);
 
   // Fetch
   const { data: treeData, isLoading, isError, error } = useQuery<PassiveTreeResponse | null>({
@@ -300,8 +289,8 @@ export default function PassiveTreePage() {
 
   // Layout
   const layout = useMemo(
-    () => computeLayout(filteredNodes, canvasSize.w, canvasSize.h),
-    [filteredNodes, canvasSize],
+    () => computeLayout(filteredNodes),
+    [filteredNodes],
   );
 
   // Render timing
@@ -501,26 +490,23 @@ export default function PassiveTreePage() {
       </div>
 
       {/* Passive tree canvas */}
-      <div ref={containerRef}>
-        <PassiveTreeCanvas
-          nodes={filteredNodes}
-          edges={layout.edges}
-          positions={layout.positions}
-          scale={layout.scale}
-          allocatedIds={allocatedIds}
-          allocatedPoints={allocatedPoints}
-          startIds={startIds}
-          adjacency={adjacency}
-          onNodeClick={handleNodeClick}
-          onNodeRightClick={handleNodeRightClick}
-          availableIds={availableIds}
-          highlightedNodes={allocatedPathData.nodes}
-          highlightedEdges={allocatedPathData.edges}
-          blockingNodeIds={emptySet}
-          canvasWidth={canvasSize.w}
-          canvasHeight={canvasSize.h}
-        />
-      </div>
+      <PassiveTreeCanvas
+        nodes={filteredNodes}
+        edges={layout.edges}
+        positions={layout.positions}
+        bbox={layout.bbox}
+        allocatedIds={allocatedIds}
+        allocatedPoints={allocatedPoints}
+        startIds={startIds}
+        adjacency={adjacency}
+        onNodeClick={handleNodeClick}
+        onNodeRightClick={handleNodeRightClick}
+        availableIds={availableIds}
+        highlightedNodes={allocatedPathData.nodes}
+        highlightedEdges={allocatedPathData.edges}
+        blockingNodeIds={emptySet}
+        minHeight={CANVAS_H}
+      />
 
       {/* Stat debug panel */}
       <PassiveStatsDebugPanel

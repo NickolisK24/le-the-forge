@@ -74,6 +74,7 @@ function PassiveTreeConnectionsInner({ edges, positions, allocatedIds, highlight
             key={`${fromId}-${toId}`}
             x1={from.sx} y1={from.sy} x2={to.sx} y2={to.sy}
             stroke={color} strokeWidth={width} opacity={opacity}
+            vectorEffect="non-scaling-stroke"
           />
         );
       })}

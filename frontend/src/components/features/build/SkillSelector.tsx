@@ -23,6 +23,7 @@ import { SectionLabel } from "@/components/ui";
 import type { CharacterClass } from "@/types";
 import { getSkillCode, hasSkillTree, resolveSkillName } from "@/data/skillTrees";
 import SkillTreePanel from "./SkillTreePanel";
+import SkillTreeDraftPanel from "./SkillTreeDraftPanel";
 
 interface SkillSlot {
   skill_name: string;
@@ -43,6 +44,12 @@ interface Props {
   onRemoveSkill?: (index: number) => void;
   /** Called when the user edits a slot's points input. */
   onPointsChange?: (index: number, points: number) => void;
+  /**
+   * Called when the user allocates/deallocates a node on the draft-mode
+   * skill tree (buildSlug absent). `points` is the new total for that node;
+   * callers should rebuild `spec_tree` accordingly.
+   */
+  onTreeAlloc?: (skillIndex: number, nodeId: number, points: number) => void;
   /** Max value for the points input. Default 30 (base cap 20, +10 for gear). */
   maxSkillLevel?: number;
 }
@@ -59,6 +66,7 @@ export default function SkillSelector({
   onAddSkill,
   onRemoveSkill,
   onPointsChange,
+  onTreeAlloc,
   maxSkillLevel = DEFAULT_MAX_SKILL_LEVEL,
 }: Props) {
   const [activeSlot, setActiveSlot] = useState<number | null>(null);
@@ -189,7 +197,9 @@ export default function SkillSelector({
         })}
       </div>
 
-      {/* Expanded skill tree panel */}
+      {/* Expanded skill tree panel. Saved builds go through the API-backed
+          SkillTreePanel; draft builds use the local-state SkillTreeDraftPanel
+          so point allocation works before the build is saved. */}
       {activeSkill && activeSkillId && buildSlug && (
         <div className="rounded border border-forge-border bg-forge-bg">
           <SkillTreePanel
@@ -201,18 +211,26 @@ export default function SkillSelector({
         </div>
       )}
 
+      {activeSkill && activeSkillId && !buildSlug && activeSlot !== null && (
+        <div className="rounded border border-forge-border bg-forge-bg">
+          <SkillTreeDraftPanel
+            skillId={activeSkillId}
+            skillName={activeSkill.skill_name}
+            specTree={activeSkill.spec_tree ?? []}
+            onAllocate={
+              onTreeAlloc
+                ? (nodeId, points) => onTreeAlloc(activeSlot, nodeId, points)
+                : () => {}
+            }
+            readOnly={readOnly || !onTreeAlloc}
+          />
+        </div>
+      )}
+
       {activeSkill && !activeSkillId && (
         <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-8 text-center">
           <span className="font-mono text-xs text-forge-dim">
             No tree data available for {resolveSkillName(activeSkill.skill_name)}
-          </span>
-        </div>
-      )}
-
-      {activeSkill && activeSkillId && !buildSlug && (
-        <div className="rounded border border-forge-border bg-forge-surface2 px-4 py-8 text-center">
-          <span className="font-mono text-xs text-forge-dim">
-            Save the build first to use the interactive skill tree
           </span>
         </div>
       )}

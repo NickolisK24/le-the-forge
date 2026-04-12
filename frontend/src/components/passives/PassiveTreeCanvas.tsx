@@ -4,6 +4,11 @@
  * Pure rendering component: receives all computed graph state as props.
  * Manages only internal tooltip/hover state and the dependency inspector overlay.
  *
+ * Uses the layout's node bounding box as the SVG viewBox. Combined with
+ * `preserveAspectRatio="xMidYMid meet"`, this auto-fits and centers the tree
+ * to fill its container with a small padding margin, regardless of viewport
+ * size or which mastery tab is active.
+ *
  * Used by both PassiveTreePage (standalone viewer) and BuildPlannerPage (embedded).
  */
 
@@ -16,8 +21,12 @@ import PassiveTreeNode from "./PassiveTreeNode";
 import PassiveTreeConnections from "./PassiveTreeConnections";
 import DependencyInspector from "./DependencyInspector";
 
-const NODE_R_CORE = 18;
-const NODE_R_NOTABLE = 24;
+// Node radii as fractions of the tree bbox's shorter dimension. Expressing
+// them in viewBox (tree-coord) units lets preserveAspectRatio handle all
+// scaling — nodes stay proportional to the tree across every viewport.
+const NODE_R_CORE_FRAC = 0.010;
+const NODE_R_NOTABLE_FRAC = 0.013;
+const MIN_NODE_R = 4;
 
 // ---------------------------------------------------------------------------
 // Tooltip
@@ -100,7 +109,8 @@ export interface PassiveTreeCanvasProps {
   nodes: PassiveNode[];
   edges: Array<{ fromId: string; toId: string }>;
   positions: Map<string, { sx: number; sy: number; masteryIndex: number }>;
-  scale: number;
+  /** Bounding box of the layout (from computeLayout). Used as the SVG viewBox. */
+  bbox: { x: number; y: number; width: number; height: number };
   allocatedIds: Set<string>;
   allocatedPoints: Map<string, number>;
   startIds: Set<string>;
@@ -111,12 +121,12 @@ export interface PassiveTreeCanvasProps {
   highlightedNodes: Set<string>;
   highlightedEdges: Set<string>;
   blockingNodeIds: Set<string>;
-  canvasWidth: number;
-  canvasHeight: number;
   showPathHighlights?: boolean;
   readOnly?: boolean;
   /** Node IDs that are mastery-locked (upper half of non-chosen mastery trees) */
   masteryLockedIds?: Set<string>;
+  /** Optional override for canvas min-height (px). Defaults to 500. */
+  minHeight?: number;
 }
 
 // ---------------------------------------------------------------------------
@@ -127,7 +137,7 @@ export default function PassiveTreeCanvas({
   nodes,
   edges,
   positions,
-  scale,
+  bbox,
   allocatedIds,
   allocatedPoints,
   startIds,
@@ -138,10 +148,9 @@ export default function PassiveTreeCanvas({
   highlightedNodes,
   highlightedEdges,
   blockingNodeIds,
-  canvasWidth,
-  canvasHeight,
   readOnly,
   masteryLockedIds,
+  minHeight = 500,
 }: PassiveTreeCanvasProps) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [tooltip, setTooltip] = useState<TooltipData | null>(null);
@@ -262,25 +271,34 @@ export default function PassiveTreeCanvas({
       ? canRemoveNode(tooltip.node.id, allocatedIds, startIds, adjacency, nodes)
       : false;
 
+  // Node radii in viewBox (tree-coord) units, derived from the bbox's
+  // shorter dimension. preserveAspectRatio scales the SVG so these stay
+  // visually proportional to the tree across all container sizes.
+  const minExtent = Math.min(bbox.width, bbox.height) || 1;
+  const nodeRCore = Math.max(MIN_NODE_R, minExtent * NODE_R_CORE_FRAC);
+  const nodeRNotable = Math.max(MIN_NODE_R, minExtent * NODE_R_NOTABLE_FRAC);
+
+  const viewBoxStr = `${bbox.x} ${bbox.y} ${bbox.width} ${bbox.height}`;
+
   return (
     <div className="flex h-full w-full flex-col">
-      {/* SVG canvas — fills the parent container. viewBox holds the computed
-          layout coords (canvasWidth x canvasHeight); preserveAspectRatio
-          "xMidYMid meet" keeps the tree centered and scaled proportionally on
-          any viewport size, including pinch-zoom on mobile. */}
+      {/* SVG canvas — fills the parent container. The viewBox is the node
+          bounding box (with a small padding margin), so preserveAspectRatio
+          "xMidYMid meet" auto-fits and centers the tree to fill any
+          container width/height — including mobile pinch-zoom viewports. */}
       <div
         ref={containerRef}
         className="relative w-full flex-1 min-h-0 overflow-hidden rounded border border-forge-border select-none"
-        style={{ minHeight: canvasHeight, background: "#0b0e1a" }}
+        style={{ minHeight, background: "#0b0e1a" }}
       >
         <svg
-          viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
+          viewBox={viewBoxStr}
           preserveAspectRatio="xMidYMid meet"
           width="100%"
           height="100%"
           style={{ display: "block" }}
         >
-          <rect width={canvasWidth} height={canvasHeight} fill="#0b0e1a" />
+          <rect x={bbox.x} y={bbox.y} width={bbox.width} height={bbox.height} fill="#0b0e1a" />
           <PassiveTreeConnections
             edges={edges}
             positions={positions}
@@ -290,16 +308,14 @@ export default function PassiveTreeCanvas({
           {nodes.map((node) => {
             const pos = positions.get(node.id);
             if (!pos) return null;
-            const radius =
-              (node.max_points === 1 ? NODE_R_NOTABLE : NODE_R_CORE) *
-              Math.max(0.5, scale);
+            const radius = node.max_points === 1 ? nodeRNotable : nodeRCore;
             return (
               <PassiveTreeNode
                 key={node.id}
                 node={node}
                 sx={pos.sx}
                 sy={pos.sy}
-                radius={Math.max(5, radius)}
+                radius={radius}
                 state={getNodeState(node.id)}
                 allocatedPoints={allocatedPoints.get(node.id) ?? 0}
                 onNodeClick={onNodeClick}
