@@ -2382,8 +2382,60 @@ class TestMaxrollUnwrapBuildData:
 
     def test_unwrap_className_detected(self):
         from app.services.importers.maxroll_importer import _unwrap_build_data
-        payload = {"className": "Acolyte"}
+        # `className` must be accompanied by a build-content signal to count
+        # as a real build (otherwise it could be a bare envelope label).
+        payload = {"className": "Acolyte", "level": 85}
         assert _unwrap_build_data(payload) is payload
+
+    def test_unwrap_rejects_envelope_without_build_content(self):
+        """A dict with `class` but no build-content keys is an envelope label,
+        not a build. Must NOT be returned as-is."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        payload = {
+            "id": "abc", "date": "2026", "name": "Cool build",
+            "class": "Rogue",  # display label from the planner profile
+            "public": True, "type": "planner", "tags": [],
+            # no `data`, no build content → nothing to unwrap
+        }
+        assert _unwrap_build_data(payload) is None
+
+    def test_unwrap_profile_envelope_with_nested_data(self):
+        """Maxroll's profile envelope carries top-level metadata and a
+        class label, while the real build lives under `data`."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {
+            "mastery": "Bladedancer", "level": 95,
+            "passives": {"101": 5},
+            "skills": [{"name": "Shift", "slot": 0, "level": 20, "nodes": {}}],
+        }
+        payload = {
+            "id": "zu5tdn0o", "date": "2026-04-01", "name": "Rogue BD",
+            "class": "Rogue", "data": inner, "public": True, "type": "planner",
+        }
+        result = _unwrap_build_data(payload)
+        assert result is not None
+        # Inner build got the envelope's class merged in (inner lacked one).
+        assert result.get("class") == "Rogue"
+        assert result.get("mastery") == "Bladedancer"
+        assert result.get("passives") == {"101": 5}
+
+    def test_unwrap_profile_envelope_with_jsonstring_data(self):
+        """Some Maxroll envelopes store `data` as a JSON-encoded string."""
+        import json
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {
+            "class": "Mage", "mastery": "Sorcerer", "level": 92,
+            "passives": {"7": 3},
+            "skills": [],
+        }
+        payload = {
+            "id": "x1", "name": "Meteor build",
+            "data": json.dumps(inner),
+        }
+        result = _unwrap_build_data(payload)
+        assert result is not None
+        assert result.get("class") == "Mage"
+        assert result.get("level") == 92
 
     def test_unwrap_data_list_default_variant(self):
         from app.services.importers.maxroll_importer import _unwrap_build_data
