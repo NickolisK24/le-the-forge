@@ -263,13 +263,16 @@ def _do_unwrap_build_data(payload: dict, variant: Optional[int] = None) -> Optio
 
     For list-indexed payloads (`{"data": [...]}`, `{"data": {"builds": [...]}}`),
     an unspecified variant is treated as 0 (first entry).
+
+    NB: The wrapper keys (data/build/plannerData) are tried *before* accepting
+    the payload as a direct build. Maxroll's profile envelope has a top-level
+    `class` + `mainset` that passes _is_build_dict, while the real workspace
+    lives under `data`; accepting the envelope early would miss passives/skills.
     """
     list_variant = variant if variant is not None else 0
-    # Direct build data (has class + real build content)
-    if _is_build_dict(payload):
-        return payload
 
-    # Nested under a wrapper key
+    # Try unwrapping a wrapper key first. Only fall back to treating the
+    # payload itself as a build if no wrapper yields one.
     for key in ("data", "build", "plannerData"):
         inner = _maybe_decode_json(payload.get(key))
         if isinstance(inner, dict):
@@ -284,7 +287,7 @@ def _do_unwrap_build_data(payload: dict, variant: Optional[int] = None) -> Optio
                     if not _has_class_field(candidate) and _has_class_field(payload):
                         candidate = {**candidate, "class": payload.get("class")}
                     return candidate
-            if isinstance(inner, dict) and (
+            if (
                 _is_build_dict(inner)
                 or any(k in inner for k in _BUILD_CONTENT_KEYS)
             ):
@@ -308,12 +311,106 @@ def _do_unwrap_build_data(payload: dict, variant: Optional[int] = None) -> Optio
             if isinstance(inner[idx], dict) and _is_build_dict(inner[idx]):
                 return inner[idx]
 
+    # No wrapper produced a build — only now try the payload directly.
+    if _is_build_dict(payload):
+        return payload
+
     return None
 
 
 def _normalise_slot(raw_slot: str) -> str:
     """Normalise gear slot name to canonical form."""
     return _SLOT_NORMALISE.get(raw_slot.lower().strip(), raw_slot)
+
+
+# Sub-dicts within a profile that may nest the actual build content.
+# Maxroll has at various times wrapped character/skills/passives inside
+# one of these containers rather than at the profile top level.
+_NESTED_BUILD_CONTAINERS = (
+    "character", "char", "build", "loadout", "planner", "mainset", "state",
+)
+
+# Candidate keys carrying skill data (object or array).
+_SKILL_CANDIDATE_KEYS = (
+    "skills", "skillTrees", "skill_trees",
+    "abilities", "abilityTree", "ability_tree",
+    "skillSpecializations", "skill_specializations",
+    "equippedSkills", "equipped_skills",
+    "selectedSkills", "selected_skills",
+    "skillBar", "skill_bar",
+    # Compact keys Maxroll has used in save formats.
+    "sb", "s",
+)
+
+# Candidate keys carrying passive tree / allocations.
+_PASSIVE_CANDIDATE_KEYS = (
+    "passives", "passiveTree", "passive_tree",
+    "passiveNodes", "passive_nodes",
+    "passivePoints", "passive_points",
+    "allocatedPassives", "allocated_passives",
+    "chosenPassives", "chosen_passives",
+    "tree",
+    # Compact keys.
+    "pt", "p",
+)
+
+
+def _search_nested(
+    d: dict,
+    candidate_keys: tuple,
+    containers: tuple = _NESTED_BUILD_CONTAINERS,
+    max_depth: int = 2,
+) -> Optional[object]:
+    """Search *d* for the first truthy value under any of *candidate_keys*.
+
+    Looks at top level first; if nothing is found, recurses into each of
+    *containers* (bounded by *max_depth*) and repeats the search.  Values
+    that are JSON-encoded strings are decoded before matching.
+    """
+    if not isinstance(d, dict):
+        return None
+    for k in candidate_keys:
+        v = _maybe_decode_json(d.get(k))
+        if v:
+            return v
+    if max_depth <= 0:
+        return None
+    for c in containers:
+        nested = _maybe_decode_json(d.get(c))
+        if isinstance(nested, dict):
+            hit = _search_nested(nested, candidate_keys, containers, max_depth - 1)
+            if hit:
+                return hit
+    return None
+
+
+def _structural_summary(value, max_depth: int = 3, max_items: int = 4):
+    """Return a compact, JSON-serialisable description of *value*'s shape.
+
+    Used as a diagnostic in partial_data when skills/passives come up empty:
+    operators can look at the Discord alert and see exactly what keys exist
+    at each level of the unknown Maxroll payload.
+    """
+    if max_depth <= 0:
+        if isinstance(value, (dict, list)):
+            return f"<{type(value).__name__} len={len(value)}>"
+        return f"<{type(value).__name__}>"
+    if isinstance(value, dict):
+        out: dict = {}
+        for i, (k, v) in enumerate(value.items()):
+            if i >= 25:
+                out["..."] = f"+{len(value) - 25} more keys"
+                break
+            out[str(k)] = _structural_summary(v, max_depth - 1, max_items)
+        return out
+    if isinstance(value, list):
+        if not value:
+            return "[]"
+        sample = [_structural_summary(v, max_depth - 1, max_items) for v in value[:max_items]]
+        return {"_list_len": len(value), "sample": sample}
+    if isinstance(value, str):
+        return value[:80] + ("…" if len(value) > 80 else "")
+    return repr(value)[:80]
 
 
 class MaxrollImporter(BaseImporter):
@@ -518,16 +615,13 @@ class MaxrollImporter(BaseImporter):
 
         level = int(raw.get("level", 70))
 
-        # Passive tree — try several candidate keys. Maxroll's planner has
-        # used different names over time; newer exports put them under
-        # `passiveTree`, `tree`, or `passiveNodes` rather than `passives`.
-        passives_raw = (
-            raw.get("passives")
-            or raw.get("passiveTree")
-            or raw.get("passiveNodes")
-            or raw.get("tree")
-            or raw.get("charTree", {}).get("selected", {})
-        )
+        # Passive tree — Maxroll's planner has used different names and
+        # nesting levels over time; search top-level candidates first, then
+        # walk into known sub-containers (character/build/mainset/etc.).
+        passives_raw = _search_nested(raw, _PASSIVE_CANDIDATE_KEYS)
+        if not passives_raw:
+            # Fallback: legacy `charTree.selected` format.
+            passives_raw = raw.get("charTree", {}).get("selected", {}) if isinstance(raw.get("charTree"), dict) else None
         passive_tree: List[int] = []
         if isinstance(passives_raw, dict):
             for node_id_str, pts in passives_raw.items():
@@ -553,15 +647,8 @@ class MaxrollImporter(BaseImporter):
                     except (ValueError, TypeError):
                         add_missing(f"passive_node:{item}")
 
-        # Skills — try several candidate keys
-        skills_raw = (
-            raw.get("skills")
-            or raw.get("skillTrees")
-            or raw.get("abilities")
-            or raw.get("abilityTree")
-            or raw.get("skillSpecializations")
-            or []
-        )
+        # Skills — same broad search as passives.
+        skills_raw = _search_nested(raw, _SKILL_CANDIDATE_KEYS) or []
         skills: List[dict] = []
         if isinstance(skills_raw, list):
             iterable = enumerate(skills_raw)
@@ -791,12 +878,9 @@ class MaxrollImporter(BaseImporter):
             "_source_code": code,
         }
 
-        result = ImportResult(
-            success=True,
-            build_data=build_data,
-            source=self.source_name,
-            missing_fields=missing_fields,
-            partial_data={
+        partial: Optional[dict] = None
+        if missing_fields:
+            partial = {
                 "character_class": char_class,
                 "mastery": mastery,
                 "level": level,
@@ -806,6 +890,21 @@ class MaxrollImporter(BaseImporter):
                 "missing_count": len(missing_fields),
                 # Raw top-level keys — critical for debugging unknown formats
                 "raw_keys": list(raw.keys()),
-            } if missing_fields else None,
+            }
+            # When the mapper produced no passives or no skills, include a
+            # structural summary of the payload so the Discord alert shows
+            # operators exactly where the missing data is hiding.
+            if not passive_tree or not skills:
+                partial["structure"] = _structural_summary(raw, max_depth=3)
+                mainset_val = raw.get("mainset")
+                if mainset_val is not None:
+                    partial["mainset_shape"] = _structural_summary(mainset_val, max_depth=3)
+
+        result = ImportResult(
+            success=True,
+            build_data=build_data,
+            source=self.source_name,
+            missing_fields=missing_fields,
+            partial_data=partial,
         )
         return self.validate(result)

@@ -2677,6 +2677,118 @@ class TestMaxrollPartialImport:
         assert gear[0]["affixes"][1]["sealed"] is True
 
 
+class TestMaxrollNestedSkillsAndPassives:
+    """Skills and passives nested inside sub-containers (character, build,
+    mainset, loadout, ...) or using compact Maxroll key names must still
+    be discovered by the mapper."""
+
+    def test_skills_nested_under_character(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Rogue", "mastery": "Bladedancer", "level": 90,
+            "passives": {"1": 1},
+            # No top-level skills; they live inside `character`.
+            "character": {
+                "skills": [
+                    {"name": "Shift", "slot": 0, "level": 18, "nodes": {"4": 3}},
+                ],
+            },
+        }, "nest1")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Shift"
+        assert skills[0]["points_allocated"] == 18
+
+    def test_passives_nested_under_build(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Mage", "mastery": "Sorcerer", "level": 80,
+            "skills": [{"name": "Fireball", "slot": 0, "level": 10, "nodes": {}}],
+            # Passives nested inside `build`.
+            "build": {"passives": {"42": 4, "99": 2}},
+        }, "nest2")
+        assert result.success is True
+        assert len(result.build_data["passive_tree"]) == 6  # 4+2
+
+    def test_passives_under_mainset(self):
+        """The user's Discord diagnostic said passives may live inside
+        `mainset`. Verify the search reaches that container."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Acolyte", "mastery": "Lich", "level": 85,
+            "skills": [{"name": "Bone Curse", "slot": 0, "level": 5, "nodes": {}}],
+            "mainset": {"passives": {"7": 3}},
+        }, "nest3")
+        assert result.success is True
+        assert len(result.build_data["passive_tree"]) == 3
+
+    def test_compact_keys_pt_and_sb(self):
+        """Some Maxroll save formats compact passives under `pt` and skill
+        bar under `sb`. Both should be recognized."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Sentinel", "mastery": "Paladin", "level": 70,
+            "pt": {"50": 2, "51": 1},
+            "sb": [{"name": "Rive", "slot": 0, "level": 12, "nodes": {"3": 2}}],
+        }, "compact")
+        assert result.success is True
+        assert len(result.build_data["passive_tree"]) == 3  # 2+1
+        assert len(result.build_data["skills"]) == 1
+        assert result.build_data["skills"][0]["skill_name"] == "Rive"
+
+    def test_envelope_with_workspace_data_unwraps_to_profile(self):
+        """Regression test for the Maxroll profile envelope. Outer envelope
+        has `class` + `mainset` (so _is_build_dict true) plus a `data` key
+        holding the actual workspace with profiles[]; unwrap must prefer
+        the wrapper and drill into profiles[activeProfile]."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        profile = {
+            "mastery": "Bladedancer", "level": 95,
+            "passives": {"77": 5},
+            "skills": [{"name": "Shift", "slot": 0, "level": 18, "nodes": {}}],
+        }
+        workspace = {
+            "profiles": [profile],
+            "activeProfile": 0,
+            "items": [],
+            "class": "Rogue",
+        }
+        envelope = {
+            "id": "zu5tdn0o", "date": "2026-04-12", "name": "BD",
+            "class": "Rogue",
+            "data": workspace,
+            "mainset": {"helm": 0},
+            "public": True, "type": "planner",
+        }
+        result = _unwrap_build_data(envelope)
+        assert result is not None
+        assert result.get("mastery") == "Bladedancer"
+        # Drilled into the profile — its own passives/skills must be present.
+        assert result.get("passives") == {"77": 5}
+        assert isinstance(result.get("skills"), list) and len(result["skills"]) == 1
+
+    def test_empty_skills_passives_emit_structural_summary(self):
+        """When no skills/passives are found, partial_data must include a
+        structure dump so operators can diagnose the payload remotely."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Rogue", "mastery": "Bladedancer", "level": 95,
+            # Build content in an unrecognized shape → nothing gets mapped.
+            "character": {"unknown_nested_field": {"x": 1}},
+            "mainset": {"helm": {"raw": "blob"}},
+        }, "diag")
+        assert result.success is True
+        assert result.partial_data is not None
+        assert "structure" in result.partial_data
+        assert "mainset_shape" in result.partial_data
+        # Top-level keys should be reflected in the structure dump.
+        struct = result.partial_data["structure"]
+        assert isinstance(struct, dict)
+        assert "character" in struct
+        assert "mainset" in struct
+
+
 class TestMaxrollNextDataExtraction:
     """__NEXT_DATA__ extraction from HTML."""
 
