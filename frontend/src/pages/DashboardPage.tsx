@@ -12,6 +12,7 @@ import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import { useBuilds } from "@/hooks";
 import { metaApi, refApi, versionApi } from "@/lib/api";
 import { CLASS_COLORS } from "@/lib/gameData";
@@ -188,6 +189,11 @@ export default function DashboardPage() {
 
   return (
     <div>
+      <PageMeta
+        title="Dashboard"
+        description="The Forge — your Last Epoch command center. Browse community builds, explore the meta, and plan your next character."
+        path="/"
+      />
       {/* Hero */}
       <section className="pt-12 pb-10 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-forge-amber/40 bg-forge-amber/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-forge-amber mb-6">

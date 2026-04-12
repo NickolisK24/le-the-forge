@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
 import { Panel, Button, SectionLabel, Spinner } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import {
   optimalPath, simulateSequence,
   compareStrategies, fpCost, FP_COSTS,
@@ -1081,6 +1082,11 @@ export default function CraftSimulatorPage() {
 
   return (
     <div>
+      <PageMeta
+        title="Craft Simulator"
+        description="Simulate Last Epoch crafting with forge potential tracking, optimal path finding, and Monte Carlo probability analysis."
+        path={slug ? `/craft/${slug}` : "/craft"}
+      />
       {/* Header */}
       <div className="flex items-center justify-between mb-6">
         <div>

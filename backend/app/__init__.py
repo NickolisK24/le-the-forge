@@ -8,7 +8,6 @@ from flask_limiter.util import get_remote_address
 import time
 
 from config import config
-from app.utils.logging import configure_logging
 
 db = SQLAlchemy()
 migrate = Migrate()
@@ -37,19 +36,61 @@ def create_app(env: str = "development") -> Flask:
     app = Flask(__name__)
     app.config.from_object(config[env])
 
+    # -----------------------------------------------------------------------
+    # Production safety checks — refuse to start with insecure defaults
+    # -----------------------------------------------------------------------
+    if env == "production":
+        from config import ProductionConfig
+        errors = ProductionConfig.validate()
+        if errors:
+            for err in errors:
+                print(f"  [FATAL] {err}")
+            raise RuntimeError(
+                f"Production configuration has {len(errors)} error(s). "
+                "Fix the issues above before deploying."
+            )
+
     # Extensions
     db.init_app(app)
     migrate.init_app(app, db)
     jwt.init_app(app)
     _init_limiter(app)
 
+    from app.utils.logging import configure_logging
+    configure_logging(app)
+
+    # -----------------------------------------------------------------------
+    # CORS — restrict to frontend origin
+    # -----------------------------------------------------------------------
     CORS(
         app,
         origins=[app.config["FRONTEND_URL"]],
         supports_credentials=True,
     )
 
-    configure_logging(app)
+    # -----------------------------------------------------------------------
+    # Security headers — applied to every response
+    # -----------------------------------------------------------------------
+    @app.after_request
+    def _set_security_headers(response):
+        # Prevent MIME-type sniffing
+        response.headers["X-Content-Type-Options"] = "nosniff"
+        # Prevent clickjacking
+        response.headers["X-Frame-Options"] = "DENY"
+        # XSS protection (legacy browsers)
+        response.headers["X-XSS-Protection"] = "1; mode=block"
+        # Don't leak referrer to external sites
+        response.headers["Referrer-Policy"] = "strict-origin-when-cross-origin"
+        # Restrict browser features
+        response.headers["Permissions-Policy"] = (
+            "camera=(), microphone=(), geolocation=(), payment=()"
+        )
+        # HSTS — only in production (tell browsers to always use HTTPS)
+        if env == "production":
+            response.headers["Strict-Transport-Security"] = (
+                "max-age=31536000; includeSubDomains; preload"
+            )
+        return response
 
     # Data pipeline + registries
     from app.game_data.pipeline import GameDataPipeline
@@ -107,8 +148,9 @@ def create_app(env: str = "development") -> Flask:
             f"path={req.path} method={req.method}"
         )
         return jsonify({
-            "error": "rate_limit_exceeded",
-            "message": str(e.description),
+            "data": None,
+            "meta": None,
+            "errors": [{"message": f"Rate limit exceeded: {e.description}"}],
         }), 429
 
     # Register blueprints

@@ -4,6 +4,7 @@ import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
@@ -883,8 +884,14 @@ export default function BuildPlannerPage() {
   if (data?.data) return <BuildSummary build={data.data} />;
 
   // ── Create form ──
+  const pageTitle = slug ? `${data?.data?.name ?? "Build"} — Build Planner` : "Build Planner";
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_360px] min-w-0">
+      <PageMeta
+        title={pageTitle}
+        description="Plan your Last Epoch build with interactive passive tree, skill specializations, gear editor, and real-time DPS simulation."
+        path={slug ? `/build/${slug}` : "/build"}
+      />
 
       {/* Draft / auth banners */}
       {!user && (

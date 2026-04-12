@@ -9,6 +9,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { clsx } from "clsx";
 
 import { Button, Badge, Spinner, EmptyState, ErrorMessage } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import { useBuilds, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
 import { CLASS_COLORS, MASTERIES } from "@/lib/gameData";
@@ -255,6 +256,11 @@ export default function BuildsPage() {
 
   return (
     <div>
+      <PageMeta
+        title="Community Builds"
+        description="Browse, vote, and compare Last Epoch community builds. Filter by class, mastery, tier, and playstyle."
+        path="/builds"
+      />
       {/* Page header */}
       <div className="flex items-center justify-between mb-8">
         <div>

@@ -1,0 +1,100 @@
+# ---------------------------------------------------------------------------
+# The Forge — Production Docker Compose
+# ---------------------------------------------------------------------------
+# Usage:
+#   1. Copy .env.example to .env.production and fill in real values
+#   2. docker compose -f docker-compose.prod.yml --env-file .env.production up -d
+# ---------------------------------------------------------------------------
+
+services:
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      POSTGRES_DB: the_forge
+      POSTGRES_USER: forge
+      POSTGRES_PASSWORD: ${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U forge -d the_forge"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Not exposed to host — only accessible within Docker network
+    networks:
+      - forge-internal
+
+  redis:
+    image: redis:7-alpine
+    restart: always
+    command: redis-server --maxmemory 256mb --maxmemory-policy allkeys-lru
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    networks:
+      - forge-internal
+
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    environment:
+      FLASK_ENV: production
+      DATABASE_URL: postgresql://forge:${DB_PASSWORD}@db:5432/the_forge
+      REDIS_URL: redis://redis:6379/0
+      SECRET_KEY: ${SECRET_KEY}
+      JWT_SECRET_KEY: ${JWT_SECRET_KEY}
+      DISCORD_CLIENT_ID: ${DISCORD_CLIENT_ID}
+      DISCORD_CLIENT_SECRET: ${DISCORD_CLIENT_SECRET}
+      DISCORD_REDIRECT_URI: ${DISCORD_REDIRECT_URI}
+      DISCORD_IMPORT_WEBHOOK_URL: ${DISCORD_IMPORT_WEBHOOK_URL:-}
+      FRONTEND_URL: ${FRONTEND_URL:-https://epochforge.gg}
+      GUNICORN_WORKERS: ${GUNICORN_WORKERS:-4}
+      GUNICORN_THREADS: ${GUNICORN_THREADS:-2}
+      GUNICORN_TIMEOUT: "120"
+    volumes:
+      - ./data:/data:ro
+    networks:
+      - forge-internal
+    deploy:
+      resources:
+        limits:
+          memory: 1G
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+      args:
+        APP_VERSION: ${APP_VERSION:-0.8.0}
+        VITE_API_URL: /api
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "${HOST_PORT:-80}:80"
+    networks:
+      - forge-internal
+    deploy:
+      resources:
+        limits:
+          memory: 128M
+
+volumes:
+  postgres_data:
+  redis_data:
+
+networks:
+  forge-internal:
+    driver: bridge

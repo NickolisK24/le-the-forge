@@ -57,6 +57,54 @@ class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_ECHO = False
 
+    # Production-hardened pool settings for higher concurrency
+    SQLALCHEMY_ENGINE_OPTIONS = {
+        "pool_pre_ping": True,
+        "pool_recycle": 300,
+        "pool_size": 10,
+        "max_overflow": 20,
+    }
+
+    # Tighter rate limits for production
+    RATELIMIT_DEFAULT = "1000 per day;200 per hour;30 per minute"
+
+    @classmethod
+    def validate(cls) -> list[str]:
+        """
+        Validate that all required production secrets are set via environment
+        variables and are not using insecure defaults. Returns a list of
+        validation errors (empty list means all checks passed).
+        """
+        errors: list[str] = []
+
+        if cls.SECRET_KEY in ("dev-secret", ""):
+            errors.append(
+                "SECRET_KEY must be set to a strong random value in production. "
+                "Generate one with: python -c \"import secrets; print(secrets.token_hex(32))\""
+            )
+        if cls.JWT_SECRET_KEY in ("jwt-dev-secret", ""):
+            errors.append(
+                "JWT_SECRET_KEY must be set to a strong random value in production. "
+                "Generate one with: python -c \"import secrets; print(secrets.token_hex(32))\""
+            )
+        if "localhost" in (cls.SQLALCHEMY_DATABASE_URI or ""):
+            errors.append(
+                "DATABASE_URL points to localhost — set it to your production database."
+            )
+        if not cls.DISCORD_CLIENT_ID:
+            errors.append("DISCORD_CLIENT_ID is required for Discord OAuth in production.")
+        if not cls.DISCORD_CLIENT_SECRET:
+            errors.append("DISCORD_CLIENT_SECRET is required for Discord OAuth in production.")
+
+        frontend = cls.FRONTEND_URL or ""
+        if "localhost" in frontend:
+            errors.append(
+                f"FRONTEND_URL is '{frontend}' — set it to your production domain "
+                f"(e.g. https://epochforge.gg)."
+            )
+
+        return errors
+
 
 class TestingConfig(Config):
     TESTING = True
