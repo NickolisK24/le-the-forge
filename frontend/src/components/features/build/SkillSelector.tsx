@@ -19,7 +19,6 @@
 import { useState, useMemo } from "react";
 
 import { CLASS_SKILLS, type SkillDef } from "@/lib/gameData";
-import { SectionLabel } from "@/components/ui";
 import type { CharacterClass } from "@/types";
 import { getSkillCode, hasSkillTree, resolveSkillName } from "@/data/skillTrees";
 import SkillTreePanel from "./SkillTreePanel";
@@ -100,10 +99,14 @@ export default function SkillSelector({
     setActiveSlot((prev) => (prev === index ? null : index));
   }
 
+  const hasEmptySlot = skills.length < MAX_SLOTS;
+  const showAddPicker = editable && Boolean(onAddSkill) && hasEmptySlot;
+
   return (
-    <div className="flex flex-col gap-3">
+    <div className="flex flex-col gap-2">
       {/* Slot rows — one per slot (up to MAX_SLOTS). Filled rows show
-          points + expand + remove; empty rows show a subtle placeholder. */}
+          points + expand + remove; empty rows show a subtle placeholder
+          that hints to the add-picker below. */}
       <div className="flex flex-col gap-1.5">
         {Array.from({ length: MAX_SLOTS }, (_, i) => {
           const skill = skills[i];
@@ -116,11 +119,13 @@ export default function SkillSelector({
             return (
               <div
                 key={i}
-                className="flex items-center gap-3 rounded border border-dashed border-forge-border/60 bg-forge-surface2/40 px-3 py-2"
+                className="flex items-center gap-3 rounded border border-dashed border-forge-border/50 bg-forge-surface2/30 px-3 py-2"
               >
-                <span className="text-base leading-none flex-shrink-0 text-forge-dim">·</span>
-                <span className="flex-1 font-body text-xs text-forge-dim">
-                  Slot {i + 1} — empty
+                <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim/60 flex-shrink-0">
+                  Slot {i + 1}
+                </span>
+                <span className="flex-1 font-body text-xs text-forge-dim/70">
+                  {showAddPicker ? "Empty — pick a skill below" : "Empty"}
                 </span>
               </div>
             );
@@ -235,13 +240,19 @@ export default function SkillSelector({
         </div>
       )}
 
-      {/* Add-skill picker — only rendered when edit handlers are provided. */}
-      {editable && onAddSkill && skills.length < MAX_SLOTS && (
-        <div>
-          <SectionLabel>
-            Add skill — {characterClass} · {mastery}
-          </SectionLabel>
-          <div className="mt-2 flex flex-wrap gap-2">
+      {/* Add-skill picker — unified with the slot list, not a separate
+          section. Only shown when editable and at least one slot is open. */}
+      {showAddPicker && onAddSkill && (
+        <div className="rounded border border-forge-border/60 bg-forge-surface2/40 px-3 py-2">
+          <div className="flex items-baseline justify-between gap-3 mb-1.5">
+            <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim">
+              Add skill
+            </span>
+            <span className="font-mono text-[10px] text-forge-dim/70">
+              {characterClass} · {mastery}
+            </span>
+          </div>
+          <div className="flex flex-wrap gap-1.5">
             {availableSkills
               .filter((s) => !selectedNames.has(s.name))
               .map((s) => (
@@ -250,7 +261,7 @@ export default function SkillSelector({
                   type="button"
                   onClick={() => onAddSkill(s.name)}
                   title={s.tags.join(", ")}
-                  className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2.5 py-1.5 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors"
+                  className="flex items-center gap-1.5 rounded-sm border border-forge-border bg-forge-surface2 px-2 py-1 font-body text-xs text-forge-text hover:border-forge-amber/60 hover:text-forge-amber transition-colors"
                 >
                   <span>{s.icon}</span>
                   <span>{s.name}</span>
@@ -260,13 +271,12 @@ export default function SkillSelector({
                 </button>
               ))}
           </div>
+          {skills.length === 0 && (
+            <p className="mt-1.5 font-body text-[11px] text-forge-dim">
+              Pick up to {MAX_SLOTS} skills. Base cap is 20; gear can raise it further.
+            </p>
+          )}
         </div>
-      )}
-
-      {editable && skills.length === 0 && (
-        <p className="font-body text-xs text-forge-dim">
-          Pick up to {MAX_SLOTS} skills to specialize. Base level cap is 20; set higher to account for +skill levels from gear.
-        </p>
       )}
     </div>
   );
