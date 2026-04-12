@@ -44,15 +44,15 @@ def _read_version() -> str:
         return "0.0.0"
 
 
-def _git_sha() -> str:
+def _git_sha() -> str | None:
     try:
         return subprocess.check_output(
             ["git", "rev-parse", "--short", "HEAD"],
             stderr=subprocess.DEVNULL,
             cwd=_PROJECT_ROOT,
-        ).decode().strip()
+        ).decode().strip() or None
     except Exception:
-        return "unknown"
+        return None
 
 
 @version_bp.get("")

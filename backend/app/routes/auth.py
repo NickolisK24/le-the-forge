@@ -32,9 +32,19 @@ def discord_login():
     """
     Initiates Discord OAuth2 PKCE flow.
     In production, replace with actual Flask-Dance OAuth redirect.
+
+    If Discord credentials aren't configured (e.g. local dev without a
+    client ID), fail silently by redirecting back to the frontend without
+    any error params — no toast should fire in that case.
     """
-    client_id = current_app.config["DISCORD_CLIENT_ID"]
-    redirect_uri = current_app.config["DISCORD_REDIRECT_URI"]
+    client_id = current_app.config.get("DISCORD_CLIENT_ID") or ""
+    redirect_uri = current_app.config.get("DISCORD_REDIRECT_URI") or ""
+    frontend_url = current_app.config["FRONTEND_URL"]
+    if not client_id or not redirect_uri:
+        current_app.logger.info(
+            "Discord login unavailable: DISCORD_CLIENT_ID or DISCORD_REDIRECT_URI not configured."
+        )
+        return redirect(frontend_url)
     scope = "identify"
     url = (
         f"https://discord.com/api/oauth2/authorize"

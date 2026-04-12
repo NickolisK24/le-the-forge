@@ -84,18 +84,20 @@ export default function AppLayout() {
             </span>
             {version && (
               <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
-                <span className="text-forge-muted">v{version.version}</span>
-                <span className="text-forge-border">·</span>
-                <span title={`git ${version.commit}`} className="text-forge-dim">
-                  {version.commit}
-                </span>
-                <span className="text-forge-border">·</span>
-                <span title="Last Epoch patch" className="text-forge-amber/60">
-                  patch {version.current_patch}
-                </span>
-                {version.current_season !== undefined && (
+                {version.version && version.version !== "0.0.0" && (
+                  <span className="text-forge-muted">v{version.version}</span>
+                )}
+                {version.current_patch && (
                   <>
-                    <span className="text-forge-border">·</span>
+                    <span className="text-forge-border">|</span>
+                    <span title="Last Epoch patch" className="text-forge-amber/60">
+                      patch {version.current_patch}
+                    </span>
+                  </>
+                )}
+                {version.current_season !== undefined && version.current_season !== null && (
+                  <>
+                    <span className="text-forge-border">|</span>
                     <span title="Last Epoch season" className="text-forge-cyan/60">
                       S{version.current_season}
                     </span>

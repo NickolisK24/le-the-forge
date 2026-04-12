@@ -322,9 +322,22 @@ def get_skills():
             "class": char_class,
             "skills": CLASS_META[char_class]["skills"],
         })
-    all_skills = {}
-    for cls, meta in CLASS_META.items():
-        all_skills[cls] = meta["skills"]
+
+    # Full catalogue: keep CLASS_META class-keyed presets for backward
+    # compatibility, but use the canonical skill registry (loaded from
+    # data/classes/skills.json at startup — ~179 skills) as the source
+    # of truth for the total count. Skills not already assigned to a class
+    # preset are bucketed under "Other" so summing list lengths across keys
+    # reflects the real catalogue size.
+    all_skills: dict[str, list[str]] = {
+        cls: list(meta["skills"]) for cls, meta in CLASS_META.items()
+    }
+    registry = current_app.extensions.get("skill_registry")
+    if registry is not None:
+        covered = {s for meta in CLASS_META.values() for s in meta["skills"]}
+        other = [s for s in registry.names() if s not in covered]
+        if other:
+            all_skills["Other"] = other
     return ok(data=all_skills)
 
 

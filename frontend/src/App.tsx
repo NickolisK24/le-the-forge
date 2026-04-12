@@ -102,33 +102,42 @@ function AuthErrorHandler() {
   useEffect(() => {
     const failed = params.get("auth");
     const reason = params.get("reason") ?? "";
-    if (failed === "failed") {
-      const msg = AUTH_FAIL_MESSAGES[reason] ?? "Login failed. Please try again.";
+    if (failed !== "failed") return;
 
-      if (IS_DEV && reason === "discord_unreachable") {
-        // In dev, offer a bypass link since Discord may be unreachable in local environments
-        toast.error(
-          (t) => (
-            <span>
-              {msg}{" "}
-              <a
-                href="/api/auth/dev-login"
-                style={{ color: "#f5a623", textDecoration: "underline", cursor: "pointer" }}
-                onClick={() => toast.dismiss(t.id)}
-              >
-                Dev login
-              </a>
-            </span>
-          ),
-          { duration: 12000 }
-        );
-      } else {
-        toast.error(msg, { duration: 6000 });
-      }
+    // Only surface the toast if the user actually initiated a login attempt
+    // (flag set when clicking Sign In). Prevents spurious errors on cold page
+    // loads when credentials aren't configured or stale URL params linger.
+    const attempted = sessionStorage.getItem("forge_login_attempted") === "1";
+    sessionStorage.removeItem("forge_login_attempted");
 
-      params.delete("auth");
-      params.delete("reason");
-      setParams(params, { replace: true });
+    // Clear the URL params regardless so reloads don't re-fire the toast.
+    params.delete("auth");
+    params.delete("reason");
+    setParams(params, { replace: true });
+
+    if (!attempted) return;
+
+    const msg = AUTH_FAIL_MESSAGES[reason] ?? "Login failed. Please try again.";
+
+    if (IS_DEV && reason === "discord_unreachable") {
+      // In dev, offer a bypass link since Discord may be unreachable in local environments
+      toast.error(
+        (t) => (
+          <span>
+            {msg}{" "}
+            <a
+              href="/api/auth/dev-login"
+              style={{ color: "#f5a623", textDecoration: "underline", cursor: "pointer" }}
+              onClick={() => toast.dismiss(t.id)}
+            >
+              Dev login
+            </a>
+          </span>
+        ),
+        { duration: 12000 }
+      );
+    } else {
+      toast.error(msg, { duration: 6000 });
     }
   }, []);
 

@@ -122,7 +122,7 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
           </span>
         </Link>
 
-        {version && (
+        {version?.version && version.version !== "0.0.0" && (
           <span className="font-mono text-[10px] text-forge-dim hidden lg:block ml-1">
             v{version.version}
           </span>
@@ -184,6 +184,7 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
           <div className="flex items-center gap-2">
             <a
               href={authUrl}
+              onClick={() => sessionStorage.setItem("forge_login_attempted", "1")}
               className="font-display text-xs font-bold tracking-widest uppercase bg-forge-amber text-forge-bg px-3 py-1.5 rounded-sm hover:bg-forge-amber-hot hover:shadow-glow-amber transition-all no-underline"
             >
               Sign In
