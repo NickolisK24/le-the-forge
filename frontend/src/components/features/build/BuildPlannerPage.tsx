@@ -811,6 +811,21 @@ export default function BuildPlannerPage() {
     );
   }
 
+  // Updates draft spec_tree when the user allocates a skill-tree node before
+  // saving. spec_tree stores one entry per point (e.g. [5,5,5] = 3 pts on
+  // node 5), so we strip all existing entries for this node and push `points`
+  // copies back in.
+  function setTreeAlloc(skillIndex: number, nodeId: number, points: number) {
+    setDraftSkills((prev) =>
+      prev.map((s, i) => {
+        if (i !== skillIndex) return s;
+        const tree = (s.spec_tree ?? []).filter((id) => id !== nodeId);
+        const updated = points >= 1 ? [...tree, ...Array(points).fill(nodeId)] : tree;
+        return { ...s, spec_tree: updated };
+      })
+    );
+  }
+
   async function handleSave() {
     if (!name.trim()) { toast.error("Build name is required"); return; }
 
@@ -1031,6 +1046,7 @@ export default function BuildPlannerPage() {
             onAddSkill={addSkill}
             onRemoveSkill={removeSkill}
             onPointsChange={setPoints}
+            onTreeAlloc={setTreeAlloc}
             maxSkillLevel={MAX_SKILL_LEVEL}
           />
         </Panel>
