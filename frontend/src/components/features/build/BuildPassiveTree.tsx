@@ -34,7 +34,11 @@ import { CLASS_MASTERIES } from "@constants";
 
 type AllocMap = Record<number, number>;
 
-const PANEL_H = 620;
+// Default panel height used only as a seed before the ResizeObserver reports
+// real dimensions. Actual rendering uses the measured container size so the
+// tree fills the full available viewport (see `panelHeight` below).
+const DEFAULT_PANEL_H = 620;
+const MIN_PANEL_H = 500;
 
 // Last Epoch passive point budget rules
 const BASE_TREE_GATE = 20;            // Points in base tree to unlock mastery trees
@@ -77,18 +81,35 @@ export default function BuildPassiveTree({
   totalPassivePoints = 113,
 }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
+  const canvasAreaRef = useRef<HTMLDivElement>(null);
   const [panelWidth, setPanelWidth] = useState(400);
+  const [panelHeight, setPanelHeight] = useState(DEFAULT_PANEL_H);
 
   // Active tab: "__base__" or a mastery name
   const [activeTab, setActiveTab] = useState("__base__");
 
-  // Resize observer for responsive width (full container width for single-panel tab layout)
+  // Resize observer for responsive width (full container width for single-panel
+  // tab layout). Height tracks the canvas area separately so the tree fills
+  // whatever vertical space the flexbox grants it — not a fixed PANEL_H.
   useEffect(() => {
     const el = containerRef.current;
     if (!el) return;
     const ro = new ResizeObserver(([entry]) => setPanelWidth(Math.floor(entry.contentRect.width)));
     ro.observe(el);
     setPanelWidth(Math.floor(el.clientWidth));
+    return () => ro.disconnect();
+  }, []);
+
+  useEffect(() => {
+    const el = canvasAreaRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(([entry]) => {
+      const h = Math.floor(entry.contentRect.height);
+      if (h > 0) setPanelHeight(Math.max(MIN_PANEL_H, h));
+    });
+    ro.observe(el);
+    const initial = Math.floor(el.clientHeight);
+    if (initial > 0) setPanelHeight(Math.max(MIN_PANEL_H, initial));
     return () => ro.disconnect();
   }, []);
 
@@ -201,11 +222,11 @@ export default function BuildPassiveTree({
       const nodes = sections[key] ?? [];
       const adjacency = buildBidirectionalAdjacency(nodes);
       const startIds = findStartNodes(nodes);
-      const layout = computeLayout(nodes, panelWidth, PANEL_H);
+      const layout = computeLayout(nodes, panelWidth, panelHeight);
       result[key] = { nodes, adjacency, startIds, layout };
     }
     return result;
-  }, [sectionKeys, sections, panelWidth]);
+  }, [sectionKeys, sections, panelWidth, panelHeight]);
 
   // Mastery-locked node IDs: upper-half nodes in non-chosen mastery trees
   const masteryLockedIds = useMemo(() => {
@@ -400,7 +421,17 @@ export default function BuildPassiveTree({
   const activeSecAllocatedPts = sectionAllocatedPoints[activeKey] ?? new Map<string, number>();
 
   return (
-    <div ref={containerRef} className="flex flex-col gap-0">
+    <div
+      ref={containerRef}
+      className="flex w-full flex-col gap-0"
+      style={{
+        // Fill the container's full width; grow to viewport height so the
+        // tree uses the space available instead of being cramped into
+        // a fixed 620px box.
+        minHeight: MIN_PANEL_H + 140, // + room for point bar, tab bar, legend
+        height: "clamp(640px, 80vh, 1000px)",
+      }}
+    >
       {/* Total point budget bar */}
       <div className="flex items-center justify-between border border-forge-border bg-forge-surface2 px-3 py-2 rounded-t">
         <div className="flex items-center gap-3 font-mono text-[10px]">
@@ -468,12 +499,16 @@ export default function BuildPassiveTree({
         })}
       </div>
 
-      {/* Single tree panel for active tab */}
-      <div className="border border-t-0 border-forge-border">
+      {/* Single tree panel for active tab — fills remaining vertical space */}
+      <div
+        ref={canvasAreaRef}
+        className="flex flex-1 min-h-0 border border-t-0 border-forge-border"
+        style={{ minHeight: MIN_PANEL_H }}
+      >
         {activeIsLocked ? (
           <div
-            className="flex items-center justify-center"
-            style={{ height: PANEL_H, background: "#0b0e1a" }}
+            className="flex w-full items-center justify-center"
+            style={{ background: "#0b0e1a" }}
           >
             <div className="text-center">
               <div className="font-mono text-xs text-forge-dim/60">
@@ -486,32 +521,34 @@ export default function BuildPassiveTree({
           </div>
         ) : !activeSd || activeSd.nodes.length === 0 ? (
           <div
-            className="flex items-center justify-center"
-            style={{ height: PANEL_H, background: "#0b0e1a" }}
+            className="flex w-full items-center justify-center"
+            style={{ background: "#0b0e1a" }}
           >
             <span className="font-mono text-xs text-forge-dim">No passive data.</span>
           </div>
         ) : (
-          <PassiveTreeCanvas
-            nodes={activeSd.nodes}
-            edges={activeSd.layout.edges}
-            positions={activeSd.layout.positions}
-            scale={activeSd.layout.scale}
-            allocatedIds={activeSecAllocated}
-            allocatedPoints={activeSecAllocatedPts}
-            startIds={activeSd.startIds}
-            adjacency={activeSd.adjacency}
-            onNodeClick={makeHandleClick(activeKey)}
-            onNodeRightClick={makeHandleRightClick(activeKey)}
-            availableIds={activeAvailable}
-            highlightedNodes={emptySet}
-            highlightedEdges={emptySet}
-            blockingNodeIds={emptySet}
-            canvasWidth={panelWidth}
-            canvasHeight={PANEL_H}
-            readOnly={readOnly || activeIsLocked}
-            masteryLockedIds={activeIsNonChosen ? masteryLockedIds : undefined}
-          />
+          <div className="w-full">
+            <PassiveTreeCanvas
+              nodes={activeSd.nodes}
+              edges={activeSd.layout.edges}
+              positions={activeSd.layout.positions}
+              scale={activeSd.layout.scale}
+              allocatedIds={activeSecAllocated}
+              allocatedPoints={activeSecAllocatedPts}
+              startIds={activeSd.startIds}
+              adjacency={activeSd.adjacency}
+              onNodeClick={makeHandleClick(activeKey)}
+              onNodeRightClick={makeHandleRightClick(activeKey)}
+              availableIds={activeAvailable}
+              highlightedNodes={emptySet}
+              highlightedEdges={emptySet}
+              blockingNodeIds={emptySet}
+              canvasWidth={panelWidth}
+              canvasHeight={panelHeight}
+              readOnly={readOnly || activeIsLocked}
+              masteryLockedIds={activeIsNonChosen ? masteryLockedIds : undefined}
+            />
+          </div>
         )}
       </div>
     </div>

@@ -263,14 +263,23 @@ export default function PassiveTreeCanvas({
       : false;
 
   return (
-    <div className="flex flex-col">
-      {/* SVG canvas */}
+    <div className="flex h-full w-full flex-col">
+      {/* SVG canvas — fills the parent container. viewBox holds the computed
+          layout coords (canvasWidth x canvasHeight); preserveAspectRatio
+          "xMidYMid meet" keeps the tree centered and scaled proportionally on
+          any viewport size, including pinch-zoom on mobile. */}
       <div
         ref={containerRef}
-        className="relative overflow-hidden rounded border border-forge-border select-none"
-        style={{ height: canvasHeight, background: "#0b0e1a" }}
+        className="relative w-full flex-1 min-h-0 overflow-hidden rounded border border-forge-border select-none"
+        style={{ minHeight: canvasHeight, background: "#0b0e1a" }}
       >
-        <svg width={canvasWidth} height={canvasHeight} style={{ display: "block" }}>
+        <svg
+          viewBox={`0 0 ${canvasWidth} ${canvasHeight}`}
+          preserveAspectRatio="xMidYMid meet"
+          width="100%"
+          height="100%"
+          style={{ display: "block" }}
+        >
           <rect width={canvasWidth} height={canvasHeight} fill="#0b0e1a" />
           <PassiveTreeConnections
             edges={edges}
