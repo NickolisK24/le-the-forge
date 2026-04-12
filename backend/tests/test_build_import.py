@@ -2501,6 +2501,23 @@ class TestMaxrollFullParseFlow:
         assert result.build_data["mastery"] == "Lich"
 
     @patch("app.services.importers.maxroll_importer._requests.get")
+    def test_error_message_includes_http_status_diagnostics(self, mock_get):
+        """When Maxroll returns non-200, the error message surfaces the status codes."""
+        mock_resp = MagicMock()
+        mock_resp.status_code = 403
+        mock_resp.json.side_effect = Exception("Not JSON")
+        mock_resp.text = "forbidden"
+        mock_get.return_value = mock_resp
+
+        from app.services.importers import MaxrollImporter
+        result = MaxrollImporter().parse("https://maxroll.gg/last-epoch/planner/blocked")
+
+        assert result.success is False
+        # The diagnostic suffix should reference the HTTP status so operators
+        # can tell rate-limiting (429) from stale endpoints (404) from blocks (403).
+        assert "HTTP 403" in result.error_message
+
+    @patch("app.services.importers.maxroll_importer._requests.get")
     def test_all_fetch_strategies_fail_returns_error(self, mock_get):
         """When all strategies fail, returns a clear error message."""
         mock_resp = MagicMock()
