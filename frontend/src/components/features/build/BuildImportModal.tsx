@@ -286,17 +286,24 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                 </div>
               )}
 
-              {/* Success with warnings (partial import) */}
+              {/* Success with warnings (partial import). Cap the rendered
+                  list so a malformed source payload can't fill the screen;
+                  surplus entries are summarised at the bottom. */}
               {importResult.warnings.length > 0 && (
                 <div className="rounded border border-yellow-500/30 bg-yellow-500/8 px-4 py-3">
                   <div className="font-display text-sm text-yellow-400">Partial import</div>
                   <div className="mt-1 font-mono text-[11px] text-forge-dim">
                     {importResult.build_name} — some fields could not be mapped:
                   </div>
-                  <ul className="mt-2 space-y-0.5">
-                    {importResult.warnings.map((w, i) => (
+                  <ul className="mt-2 max-h-48 space-y-0.5 overflow-y-auto">
+                    {importResult.warnings.slice(0, 20).map((w, i) => (
                       <li key={i} className="font-mono text-[10px] text-yellow-400/80">• {w}</li>
                     ))}
+                    {importResult.warnings.length > 20 && (
+                      <li className="font-mono text-[10px] text-yellow-400/60">
+                        … {importResult.warnings.length - 20} more warnings suppressed
+                      </li>
+                    )}
                   </ul>
                 </div>
               )}

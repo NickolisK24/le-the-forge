@@ -2419,6 +2419,24 @@ class TestMaxrollUnwrapBuildData:
         assert result.get("mastery") == "Bladedancer"
         assert result.get("passives") == {"101": 5}
 
+    def test_unwrap_profile_envelope_merges_mainset(self):
+        """Maxroll's profile envelope carries gear under `mainset` as a
+        sibling of `data`; after unwrap the merged build must include it."""
+        from app.services.importers.maxroll_importer import _unwrap_build_data
+        inner = {
+            "mastery": "Sorcerer", "level": 90,
+            "passives": {"1": 1}, "skills": [],
+        }
+        mainset = [{"slot": "helm", "name": "Apex Helm"}]
+        payload = {
+            "id": "abc", "class": "Mage",
+            "data": inner, "mainset": mainset,
+        }
+        result = _unwrap_build_data(payload)
+        assert result is not None
+        assert result.get("class") == "Mage"
+        assert result.get("mainset") == mainset
+
     def test_unwrap_profile_envelope_with_jsonstring_data(self):
         """Some Maxroll envelopes store `data` as a JSON-encoded string."""
         import json
@@ -2487,6 +2505,29 @@ class TestMaxrollPartialImport:
         assert any("gear_slot" in f for f in result.missing_fields)
         # Gear array should only contain the helm (chest had no name)
         assert len(result.build_data["gear"]) == 1
+
+    def test_many_unnamed_gear_items_cap_warnings(self):
+        """A Maxroll payload with hundreds of unnamed items must not flood
+        missing_fields — the per-prefix cap keeps the list bounded and adds
+        an overflow summary."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        importer = MaxrollImporter()
+        equipment = [{"slot": f"slot_{i}"} for i in range(200)]
+        result = importer._map({
+            "class": "Mage",
+            "mastery": "Sorcerer",
+            "level": 80,
+            "passives": {"5": 2},
+            "skills": [{"name": "Fireball", "slot": 0, "level": 20, "nodes": {}}],
+            "equipment": equipment,
+        }, "flood")
+        gear_entries = [f for f in result.missing_fields if f.startswith("gear_slot:")]
+        overflow = [f for f in result.missing_fields if f.startswith("gear_slot_overflow:")]
+        # Per-prefix cap applied.
+        assert len(gear_entries) <= 5
+        # Overflow summary present and reports the excess count.
+        assert len(overflow) == 1
+        assert "195" in overflow[0]
 
     def test_partial_data_populated_when_missing_fields(self):
         from app.services.importers.maxroll_importer import MaxrollImporter

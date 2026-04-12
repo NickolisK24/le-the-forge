@@ -20,6 +20,7 @@ data is the same for the base slug.
 import json
 import logging
 import re
+from collections import Counter
 from typing import Dict, List, Optional
 
 import requests as _requests
@@ -27,6 +28,11 @@ import requests as _requests
 from app.services.importers.base_importer import BaseImporter, ImportResult
 
 logger = logging.getLogger(__name__)
+
+# Cap on how many individual per-item warnings (e.g. `gear_slot:...`) of any
+# single prefix we emit in missing_fields. Without this cap, a Maxroll payload
+# with hundreds of unnamed items can flood the import UI with warnings.
+_MAX_WARNINGS_PER_PREFIX = 5
 
 # Same class/mastery maps for numeric IDs (Maxroll sometimes uses them)
 _CLASS_MAP: Dict[int, str] = {
@@ -219,6 +225,12 @@ def _unwrap_build_data(payload: dict, variant: int = 0) -> Optional[dict]:
                     if not _has_class_field(payload):
                         continue
                     inner = {**inner, "class": payload.get("class")}
+                # Merge sibling envelope fields that carry build data.
+                # Maxroll's profile envelope puts gear under `mainset`
+                # alongside `data`; without this merge we lose the gear.
+                for field in ("mainset", "equipment", "gear", "items", "level", "name"):
+                    if field in payload and field not in inner:
+                        inner = {**inner, field: payload[field]}
                 return inner
         # {"data": [{...build...}, ...]}
         if isinstance(inner, list) and inner:
@@ -383,6 +395,17 @@ class MaxrollImporter(BaseImporter):
     def _map(self, raw: dict, code: str) -> ImportResult:
         """Map Maxroll planner data to Forge build payload."""
         missing_fields: List[str] = []
+        # Count of per-prefix warnings emitted so we can cap them. After the
+        # cap, suppressed entries are summarised as `<prefix>_overflow:N`.
+        prefix_counts: Counter = Counter()
+
+        def add_missing(entry: str) -> None:
+            """Append to missing_fields, capping entries sharing the same
+            colon-delimited prefix so a malformed payload can't flood the UI."""
+            prefix = entry.split(":", 1)[0] if ":" in entry else entry
+            prefix_counts[prefix] += 1
+            if prefix_counts[prefix] <= _MAX_WARNINGS_PER_PREFIX:
+                missing_fields.append(entry)
 
         # Class resolution — Maxroll uses string names or numeric IDs
         # Use explicit None checks since 0 is a valid numeric class ID
@@ -419,7 +442,7 @@ class MaxrollImporter(BaseImporter):
             )
 
         if not mastery:
-            missing_fields.append("mastery")
+            add_missing("mastery")
 
         level = int(raw.get("level", 70))
 
@@ -439,7 +462,7 @@ class MaxrollImporter(BaseImporter):
                 try:
                     passive_tree.extend([int(node_id_str)] * max(0, int(pts)))
                 except (ValueError, TypeError):
-                    missing_fields.append(f"passive_node:{node_id_str}")
+                    add_missing(f"passive_node:{node_id_str}")
         elif isinstance(passives_raw, list):
             # Some formats use a flat list
             for item in passives_raw:
@@ -450,13 +473,13 @@ class MaxrollImporter(BaseImporter):
                         try:
                             passive_tree.extend([int(nid)] * max(0, int(pts)))
                         except (ValueError, TypeError):
-                            missing_fields.append(f"passive_node:{nid}")
+                            add_missing(f"passive_node:{nid}")
                 elif isinstance(item, (int, str)):
                     # List of bare node IDs
                     try:
                         passive_tree.append(int(item))
                     except (ValueError, TypeError):
-                        missing_fields.append(f"passive_node:{item}")
+                        add_missing(f"passive_node:{item}")
 
         # Skills — try several candidate keys
         skills_raw = (
@@ -503,7 +526,7 @@ class MaxrollImporter(BaseImporter):
                         try:
                             spec_tree.extend([int(node_id_str)] * max(0, int(pts)))
                         except (ValueError, TypeError):
-                            missing_fields.append(f"skill_node:{skill_name}:{node_id_str}")
+                            add_missing(f"skill_node:{skill_name}:{node_id_str}")
                 elif isinstance(nodes, list):
                     for n in nodes:
                         if isinstance(n, dict):
@@ -513,12 +536,12 @@ class MaxrollImporter(BaseImporter):
                                 try:
                                     spec_tree.extend([int(nid)] * max(0, int(pts)))
                                 except (ValueError, TypeError):
-                                    missing_fields.append(f"skill_node:{skill_name}:{nid}")
+                                    add_missing(f"skill_node:{skill_name}:{nid}")
                         elif isinstance(n, (int, str)):
                             try:
                                 spec_tree.append(int(n))
                             except (ValueError, TypeError):
-                                missing_fields.append(f"skill_node:{skill_name}:{n}")
+                                add_missing(f"skill_node:{skill_name}:{n}")
 
                 skills.append({
                     "skill_name": skill_name,
@@ -553,20 +576,42 @@ class MaxrollImporter(BaseImporter):
                 code, list(raw.keys()),
             )
 
-        # Gear (best-effort mapping)
-        gear_raw = raw.get("equipment") or raw.get("gear") or raw.get("items") or []
+        # Gear (best-effort mapping). Maxroll's profile envelope stores gear
+        # under `mainset` alongside `data`; that sibling was merged in during
+        # unwrap, so we include it in the candidate list here.
+        gear_raw = (
+            raw.get("equipment")
+            or raw.get("gear")
+            or raw.get("items")
+            or raw.get("mainset")
+            or []
+        )
+        # `mainset` on Maxroll is sometimes a wrapper dict like
+        # {"items": [...]} or {"equipment": {...}}. Descend one level.
+        if isinstance(gear_raw, dict):
+            for inner_key in ("items", "equipment", "gear"):
+                if isinstance(gear_raw.get(inner_key), (list, dict)):
+                    gear_raw = gear_raw[inner_key]
+                    break
+
+        def _extract_item_name(item: dict) -> str:
+            return (
+                item.get("name")
+                or item.get("baseType")
+                or item.get("itemName")
+                or item.get("type")
+                or item.get("baseTypeName")
+                or item.get("baseTypeId")
+                or ""
+            )
+
         gear: List[dict] = []
         if isinstance(gear_raw, list):
             for item in gear_raw:
                 if isinstance(item, dict):
                     raw_slot = str(item.get("slot", ""))
                     slot = _normalise_slot(raw_slot) if raw_slot else ""
-                    item_name = (
-                        item.get("name")
-                        or item.get("baseType")
-                        or item.get("itemName")
-                        or ""
-                    )
+                    item_name = _extract_item_name(item)
                     rarity = item.get("rarity", "Rare")
 
                     affixes = []
@@ -586,18 +631,13 @@ class MaxrollImporter(BaseImporter):
                             "affixes": affixes,
                         })
                     else:
-                        missing_fields.append(f"gear_slot:{slot or raw_slot}")
+                        add_missing(f"gear_slot:{slot or raw_slot or 'unknown'}")
         elif isinstance(gear_raw, dict):
             # Some Maxroll formats use {slot_name: item_data, ...}
             for slot_key, item in gear_raw.items():
                 if isinstance(item, dict):
                     slot = _normalise_slot(slot_key)
-                    item_name = (
-                        item.get("name")
-                        or item.get("baseType")
-                        or item.get("itemName")
-                        or ""
-                    )
+                    item_name = _extract_item_name(item)
                     rarity = item.get("rarity", "Rare")
 
                     affixes = []
@@ -617,15 +657,23 @@ class MaxrollImporter(BaseImporter):
                             "affixes": affixes,
                         })
                     else:
-                        missing_fields.append(f"gear_slot:{slot}")
+                        add_missing(f"gear_slot:{slot}")
 
         # Flag empty passives/skills so the partial import alert captures them.
         # Without this, a build with 0 passives+skills looks "successful" and
         # the failure is only visible in the UI.
         if not passive_tree:
-            missing_fields.append("passives:empty")
+            add_missing("passives:empty")
         if not skills:
-            missing_fields.append("skills:empty")
+            add_missing("skills:empty")
+
+        # Emit overflow summaries for any prefix that exceeded the per-prefix
+        # cap, so operators still see the magnitude of the failure without
+        # drowning the UI.
+        for prefix, count in prefix_counts.items():
+            if count > _MAX_WARNINGS_PER_PREFIX:
+                overflow = count - _MAX_WARNINGS_PER_PREFIX
+                missing_fields.append(f"{prefix}_overflow:+{overflow} more")
 
         build_data = {
             "name": f"Imported — {char_class} {mastery}".strip(),
