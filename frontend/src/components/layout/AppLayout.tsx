@@ -58,13 +58,13 @@ export default function AppLayout() {
   const sidebarWidth = sidebarOpen ? SIDEBAR_WIDTH_EXPANDED : SIDEBAR_WIDTH_COLLAPSED;
 
   return (
-    <div className="min-h-screen bg-forge-bg text-forge-text font-body overflow-x-hidden flex">
+    <div className="h-screen bg-forge-bg text-forge-text font-body overflow-hidden flex">
       {/* Sidebar */}
       <Sidebar />
 
       {/* Main column */}
       <div
-        className="flex flex-col flex-1 min-w-0 transition-all duration-200"
+        className="flex flex-col flex-1 min-w-0 min-h-0 transition-all duration-200"
         style={{ marginLeft: 0 }}
       >
         {/* Top bar */}
@@ -73,8 +73,10 @@ export default function AppLayout() {
           onSidebarToggle={() => setSidebarOpen((v) => !v)}
         />
 
-        {/* Page content */}
-        <main className="flex-1 overflow-x-hidden px-6 py-8">
+        {/* Page content — single scroll container for the app shell. min-h-0
+            lets this flex child actually shrink below its content size so that
+            overflow-y-auto kicks in instead of pushing the footer off-screen. */}
+        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-6 py-8">
           <div className="mx-auto max-w-7xl">
             <Outlet />
           </div>
