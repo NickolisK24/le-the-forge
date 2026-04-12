@@ -4,9 +4,22 @@
 #
 # Build context must be the MONOREPO ROOT (not frontend/) so that the
 # @constants alias (../backend/src/constants) resolves during tsc + vite build.
+#
+# Stages:
+#   dev        — Node + npm for local development (docker compose up)
+#   build      — production bundle (tsc + vite build)
+#   production — nginx serving static assets
 # ---------------------------------------------------------------------------
 
-# --- Stage 1: Build ----------------------------------------------------------
+# --- Stage: Dev (used by docker-compose.yml) ---------------------------------
+FROM node:20-alpine AS dev
+
+WORKDIR /app
+
+EXPOSE 5173
+CMD ["npm", "run", "dev", "--", "--host"]
+
+# --- Stage: Build (production bundle) ----------------------------------------
 FROM node:20-alpine AS build
 
 WORKDIR /app/frontend
