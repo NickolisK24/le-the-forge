@@ -17,12 +17,13 @@ The #2 hash fragment in URLs selects a specific tab/variant but the build
 data is the same for the base slug.
 """
 
+import difflib
 import json
 import logging
 import os
 import re
 from collections import Counter
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 import requests as _requests
 
@@ -60,6 +61,82 @@ def _get_skill_id_map() -> Dict[str, str]:
         logger.warning("Maxroll: could not load skills_metadata.json: %s", exc)
         _SKILL_ID_TO_NAME = {}
     return _SKILL_ID_TO_NAME
+
+
+# Hardcoded overrides for Maxroll → Forge skill name differences. Keyed by
+# lowercase, whitespace-stripped form so "DancingStrike1", "DancingStrike",
+# and "Dancing Strike" all collapse to the same lookup. Extend this table
+# whenever a new mismatch surfaces in the Discord import alerts.
+_MAXROLL_SKILL_NAME_OVERRIDES: Dict[str, str] = {
+    "synchronizedstrike":  "Synchronized Strike",
+    "shadowcascade":       "Shadow Cascade",
+    "dancingstrike":       "Dancing Strikes",
+    "dancingstrikes":      "Dancing Strikes",
+    "shadowrend":          "Shadow Rend",
+    "smokebomb":           "Smoke Bomb",
+    "smokeboomb":          "Smoke Bomb",
+    "umbralblades":        "Umbral Blades",
+    "umbralblade":         "Umbral Blades",
+}
+
+
+def _strip_trailing_digits(name: str) -> str:
+    """Strip trailing version/rank digits so ``'Umbral Blades 1'`` and
+    ``'DancingStrike1'`` both reduce to their digit-free stem."""
+    return re.sub(r"\s*\d+$", "", name).strip()
+
+
+def _camelcase_to_spaces(name: str) -> str:
+    """Insert spaces at camelCase boundaries (``SynchronizedStrike`` →
+    ``Synchronized Strike``). Leaves already-spaced names untouched."""
+    return re.sub(r"([a-z])([A-Z])", r"\1 \2", name)
+
+
+def _normalize_maxroll_skill_name(raw: str, canonical_names: set) -> str:
+    """Resolve a Maxroll-supplied skill name string to a Forge canonical name.
+
+    Resolution order:
+        1. Strip trailing version digits.
+        2. Explicit override table (case- and whitespace-insensitive).
+        3. Exact case-insensitive match against the Forge registry.
+        4. camelCase split → re-check overrides and exact match.
+        5. difflib fuzzy match (cutoff 0.75) against the registry.
+        6. Fallback to the cleaned / split name (non-empty) so the skill
+           still appears in the import and a warning can be emitted.
+    """
+    if not raw or not isinstance(raw, str):
+        return ""
+    cleaned = _strip_trailing_digits(raw.strip())
+    lower_canonical = {n.lower(): n for n in canonical_names}
+
+    def _try_override(s: str) -> Optional[str]:
+        return _MAXROLL_SKILL_NAME_OVERRIDES.get(s.lower().replace(" ", ""))
+
+    hit = _try_override(cleaned)
+    if hit:
+        return hit
+    if cleaned.lower() in lower_canonical:
+        return lower_canonical[cleaned.lower()]
+
+    split = _camelcase_to_spaces(cleaned)
+    hit = _try_override(split)
+    if hit:
+        return hit
+    if split.lower() in lower_canonical:
+        return lower_canonical[split.lower()]
+
+    matches = difflib.get_close_matches(split, list(canonical_names), n=1, cutoff=0.75)
+    if matches:
+        return matches[0]
+    return split
+
+
+def _history_to_allocations(history: List[int]) -> Dict[int, int]:
+    """Convert Maxroll's ordered allocation history list into a
+    ``{node_id: points_allocated}`` dict by counting occurrences."""
+    counts = Counter(h for h in history if isinstance(h, int))
+    return dict(counts)
+
 
 # Cap on how many individual per-item warnings (e.g. `gear_slot:...`) of any
 # single prefix we emit in missing_fields. Without this cap, a Maxroll payload
@@ -412,19 +489,31 @@ _SKILL_ID_FIELDS = ("abilityId", "ability_id", "skillId", "skill_id",
 def _descend_passive_nodes(value):
     """Return the real node-allocation payload from a passives wrapper.
 
-    Maxroll's `passives` value is often a wrapper dict of the form::
+    Maxroll's current planner format stores passive allocations as an
+    ordered *history* list of node IDs (one entry per point spent)::
 
-        {"history": [...], "position": {...}, "nodes": {"1": 3, "2": 5}}
+        {"history": [6, 6, 6, 10, 7, 7, 7, 7, 7, 8], "position": 113}
 
-    iterating its top-level keys treats "history"/"position" as node IDs
-    (failing int() conversion) and emits spurious passive_node warnings.
-    This helper detects the wrapper (non-integer keys present) and descends
-    into the first known sub-key carrying the real allocations.
+    Counting occurrences yields ``{node_id: points_allocated}``. Older
+    formats wrap the allocations under ``nodes`` / ``allocations`` etc.
 
-    Values that are already lists, or dicts whose keys all parse as ints,
-    are returned unchanged.
+    Return shapes:
+        * ``None`` / empty ⇒ unchanged
+        * list of ints ⇒ reconstructed ``{nodeId: count}`` dict
+        * dict whose keys all parse as int ⇒ unchanged
+        * wrapper dict with ``history: [ints]`` ⇒ counted dict
+        * wrapper dict with any ``_PASSIVE_NODE_SUBKEYS`` inner payload ⇒
+          that inner payload
+        * anything else ⇒ unchanged
     """
-    if not isinstance(value, dict) or not value:
+    if not value:
+        return value
+    # A bare ordered-allocation list (ints) → count into a dict.
+    if isinstance(value, list):
+        if all(isinstance(v, int) for v in value):
+            return _history_to_allocations(value)
+        return value
+    if not isinstance(value, dict):
         return value
     # If every top-level key already parses as an integer node ID, this IS
     # the allocation map — return as-is.
@@ -437,8 +526,12 @@ def _descend_passive_nodes(value):
             break
     if all_int_keys:
         return value
-    # Wrapper detected. Find the first non-empty sub-key that holds the
-    # actual allocations.
+    # Wrapper. Prefer `history` (current Maxroll format) when it is a flat
+    # list of ints — reconstruct allocations by counting occurrences.
+    history = value.get("history")
+    if isinstance(history, list) and history and all(isinstance(v, int) for v in history):
+        return _history_to_allocations(history)
+    # Fall back to older wrapper shapes carrying an explicit allocation map.
     for sk in _PASSIVE_NODE_SUBKEYS:
         inner = _maybe_decode_json(value.get(sk))
         if isinstance(inner, (dict, list)) and inner:
@@ -767,67 +860,121 @@ class MaxrollImporter(BaseImporter):
                     except (ValueError, TypeError):
                         add_missing(f"passive_node:{item}")
 
-        # Skills — same broad search as passives. Maxroll's current planner
-        # stores full skill data under `specializedSkills` / `activeSkills`
-        # (see _SKILL_CANDIDATE_KEYS ordering), keyed by `abilityId`/`skillId`
-        # which we resolve to canonical names via skills_metadata.json.
-        skill_id_map = _get_skill_id_map()
-        skills_raw = _search_nested(raw, _SKILL_CANDIDATE_KEYS) or []
-        skills: List[dict] = []
-        if isinstance(skills_raw, list):
-            iterable = enumerate(skills_raw)
-        elif isinstance(skills_raw, dict):
-            # Some formats use {slot: skill_data, ...}
-            iterable = enumerate(skills_raw.values())
-        else:
-            iterable = enumerate([])
+        # Skills — Maxroll's current planner format stores specializedSkills
+        # as a plain list of skill name strings and keeps per-skill tree
+        # allocations under a parallel `skillTrees` dict keyed by the skill's
+        # registry id. We prefer that path; fall back to legacy list-of-dicts
+        # / dict-of-dicts shapes when it isn't present.
+        skill_id_map = _get_skill_id_map()          # {id: canonical_name}
+        canonical_names = set(skill_id_map.values())
+        name_to_id = {v: k for k, v in skill_id_map.items()}
+        skill_trees_raw = raw.get("skillTrees") or raw.get("skill_trees")
+        if not isinstance(skill_trees_raw, dict):
+            skill_trees_raw = {}
 
-        for idx, sk in iterable:
-            if isinstance(sk, dict):
-                skill_name = _resolve_skill_name(sk, skill_id_map)
-                slot = sk.get("slot", idx)
+        def _points_and_spec_tree_from_tree(tree_id: Optional[str]) -> Tuple[int, List[int]]:
+            """Return (points_allocated, spec_tree) for *tree_id* in skillTrees.
 
-                # Node allocations — check many candidate keys
-                nodes = (
-                    sk.get("nodes")
-                    or sk.get("selected")
-                    or sk.get("tree")
-                    or sk.get("specTree")
-                    or sk.get("spec_tree")
-                    or sk.get("allocations")
-                    or {}
-                )
-                spec_tree: List[int] = []
-                if isinstance(nodes, dict):
-                    for node_id_str, pts in nodes.items():
+            ``position`` encodes the total points allocated to that skill;
+            ``history`` is the ordered list of node IDs, one entry per point.
+            """
+            if not tree_id:
+                return 0, []
+            entry = skill_trees_raw.get(tree_id)
+            if not isinstance(entry, dict):
+                return 0, []
+            pos = entry.get("position")
+            points = int(pos) if isinstance(pos, int) else 0
+            spec_tree: List[int] = []
+            hist = entry.get("history")
+            if isinstance(hist, list):
+                for n in hist:
+                    if isinstance(n, int):
+                        spec_tree.append(n)
+                    elif isinstance(n, str):
                         try:
-                            spec_tree.extend([int(node_id_str)] * max(0, int(pts)))
+                            spec_tree.append(int(n))
                         except (ValueError, TypeError):
-                            add_missing(f"skill_node:{skill_name}:{node_id_str}")
-                elif isinstance(nodes, list):
-                    for n in nodes:
-                        if isinstance(n, dict):
-                            nid = n.get("id") or n.get("nodeId") or n.get("node")
-                            pts = n.get("points") or n.get("pts") or n.get("rank") or 1
-                            if nid is not None:
-                                try:
-                                    spec_tree.extend([int(nid)] * max(0, int(pts)))
-                                except (ValueError, TypeError):
-                                    add_missing(f"skill_node:{skill_name}:{nid}")
-                        elif isinstance(n, (int, str)):
-                            try:
-                                spec_tree.append(int(n))
-                            except (ValueError, TypeError):
-                                add_missing(f"skill_node:{skill_name}:{n}")
+                            pass
+            return points, spec_tree
 
+        skills: List[dict] = []
+        spec_skills_raw = raw.get("specializedSkills") or raw.get("specialized_skills")
+
+        if (
+            isinstance(spec_skills_raw, list)
+            and spec_skills_raw
+            and all(isinstance(s, str) for s in spec_skills_raw)
+        ):
+            # Current Maxroll format — list of skill name strings.
+            for idx, raw_name in enumerate(spec_skills_raw):
+                canonical = _normalize_maxroll_skill_name(raw_name, canonical_names)
+                tree_id = name_to_id.get(canonical)
+                points, spec_tree = _points_and_spec_tree_from_tree(tree_id)
+                if canonical not in canonical_names:
+                    add_missing(f"skill_unmapped:{raw_name}")
                 skills.append({
-                    "skill_name": skill_name,
-                    "slot": slot,
-                    "points_allocated": int(
-                        sk.get("level") or sk.get("points") or sk.get("points_allocated") or 0
-                    ),
+                    "skill_name": canonical or raw_name,
+                    "slot": idx,
+                    "points_allocated": points,
                     "spec_tree": spec_tree,
                 })
+        else:
+            # Legacy path — list of dicts / dict of dicts with abilityId/name.
+            skills_raw = _search_nested(raw, _SKILL_CANDIDATE_KEYS) or []
+            if isinstance(skills_raw, list):
+                iterable = enumerate(skills_raw)
+            elif isinstance(skills_raw, dict):
+                iterable = enumerate(skills_raw.values())
+            else:
+                iterable = enumerate([])
+
+            for idx, sk in iterable:
+                if isinstance(sk, dict):
+                    skill_name = _resolve_skill_name(sk, skill_id_map)
+                    slot = sk.get("slot", idx)
+
+                    # Node allocations — check many candidate keys
+                    nodes = (
+                        sk.get("nodes")
+                        or sk.get("selected")
+                        or sk.get("tree")
+                        or sk.get("specTree")
+                        or sk.get("spec_tree")
+                        or sk.get("allocations")
+                        or {}
+                    )
+                    spec_tree = []
+                    if isinstance(nodes, dict):
+                        for node_id_str, pts in nodes.items():
+                            try:
+                                spec_tree.extend([int(node_id_str)] * max(0, int(pts)))
+                            except (ValueError, TypeError):
+                                add_missing(f"skill_node:{skill_name}:{node_id_str}")
+                    elif isinstance(nodes, list):
+                        for n in nodes:
+                            if isinstance(n, dict):
+                                nid = n.get("id") or n.get("nodeId") or n.get("node")
+                                pts = n.get("points") or n.get("pts") or n.get("rank") or 1
+                                if nid is not None:
+                                    try:
+                                        spec_tree.extend([int(nid)] * max(0, int(pts)))
+                                    except (ValueError, TypeError):
+                                        add_missing(f"skill_node:{skill_name}:{nid}")
+                            elif isinstance(n, (int, str)):
+                                try:
+                                    spec_tree.append(int(n))
+                                except (ValueError, TypeError):
+                                    add_missing(f"skill_node:{skill_name}:{n}")
+
+                    skills.append({
+                        "skill_name": skill_name,
+                        "slot": slot,
+                        "points_allocated": int(
+                            sk.get("level") or sk.get("points") or sk.get("points_allocated") or 0
+                        ),
+                        "spec_tree": spec_tree,
+                    })
 
         skills.sort(key=lambda s: s["slot"])
 

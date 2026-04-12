@@ -2271,6 +2271,259 @@ class TestMaxrollSkillsImport:
         assert result.build_data["skills"][0]["points_allocated"] == 0
 
 
+class TestMaxrollSkillNameNormalization:
+    """Maxroll supplies skill names as camelCase / digit-suffixed strings.
+    The normalizer must resolve them to Forge canonical names."""
+
+    def test_strip_trailing_digits(self):
+        from app.services.importers.maxroll_importer import _strip_trailing_digits
+        assert _strip_trailing_digits("Umbral Blades 1") == "Umbral Blades"
+        assert _strip_trailing_digits("DancingStrike1") == "DancingStrike"
+        assert _strip_trailing_digits("Fireball") == "Fireball"
+
+    def test_camelcase_to_spaces(self):
+        from app.services.importers.maxroll_importer import _camelcase_to_spaces
+        assert _camelcase_to_spaces("SynchronizedStrike") == "Synchronized Strike"
+        assert _camelcase_to_spaces("ShadowRend") == "Shadow Rend"
+        assert _camelcase_to_spaces("Fireball") == "Fireball"
+
+    def test_normalize_hardcoded_overrides(self):
+        from app.services.importers.maxroll_importer import _normalize_maxroll_skill_name
+        canon = {"Synchronized Strike", "Shadow Cascade", "Dancing Strikes",
+                 "Umbral Blades", "Shadow Rend", "Smoke Bomb"}
+        assert _normalize_maxroll_skill_name("DancingStrike1", canon) == "Dancing Strikes"
+        assert _normalize_maxroll_skill_name("DancingStrikes", canon) == "Dancing Strikes"
+        assert _normalize_maxroll_skill_name("Umbral Blades 1", canon) == "Umbral Blades"
+
+    def test_normalize_camelcase_to_canonical(self):
+        from app.services.importers.maxroll_importer import _normalize_maxroll_skill_name
+        canon = {"Shadow Rend", "Shadow Cascade"}
+        assert _normalize_maxroll_skill_name("ShadowRend", canon) == "Shadow Rend"
+        assert _normalize_maxroll_skill_name("ShadowCascade", canon) == "Shadow Cascade"
+
+    def test_normalize_falls_back_to_cleaned_when_unknown(self):
+        from app.services.importers.maxroll_importer import _normalize_maxroll_skill_name
+        # Unknown, no close match — return the best-cleaned form so the skill
+        # still appears non-empty and a warning can flag it.
+        canon = {"Fireball", "Meteor"}
+        result = _normalize_maxroll_skill_name("TotallyUnknownSkill1", canon)
+        assert result  # non-empty
+        assert "1" not in result  # trailing digit stripped
+        assert " " in result       # camelCase split applied
+
+    def test_normalize_fuzzy_catches_small_typos(self):
+        from app.services.importers.maxroll_importer import _normalize_maxroll_skill_name
+        canon = {"Synchronized Strike", "Shadow Cascade"}
+        # Off-by-one letter should still match via difflib cutoff
+        assert _normalize_maxroll_skill_name("SynchonizedStrike", canon) == "Synchronized Strike"
+
+
+class TestMaxrollSpecializedSkillsFormat:
+    """Maxroll's current planner stores specializedSkills as a list of
+    name strings + skillTrees keyed by skill registry id."""
+
+    def test_list_of_name_strings_resolves_to_canonical_names(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4,  # Rogue
+            "mastery": 1,  # Bladedancer
+            "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": [
+                "SynchronizedStrike", "ShadowCascade", "Shift",
+                "Umbral Blades 1", "DancingStrike1",
+            ],
+            "skillTrees": {},
+        }, "spec_strings")
+        assert result.success is True
+        names = [s["skill_name"] for s in result.build_data["skills"]]
+        assert "Synchronized Strike" in names
+        assert "Shadow Cascade" in names
+        assert "Shift" in names
+        assert "Umbral Blades" in names
+        assert "Dancing Strikes" in names
+        # All names are non-empty, so no skill:empty_name warnings.
+        assert "skill:empty_name" not in result.missing_fields
+
+    def test_skillTrees_position_used_as_points(self):
+        """`skillTrees[id].position` is the total points allocated to that
+        specialization — surface it via points_allocated."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4, "mastery": 1, "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": ["SynchronizedStrike"],
+            "skillTrees": {
+                "sync5": {"history": [21, 21, 21, 17, 17], "position": 19},
+            },
+        }, "spec_points")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Synchronized Strike"
+        assert skills[0]["points_allocated"] == 19
+
+    def test_skillTrees_history_used_as_spec_tree(self):
+        """`skillTrees[id].history` is the ordered list of node IDs, one
+        per point spent — surface it as spec_tree verbatim."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4, "mastery": 1, "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": ["SynchronizedStrike"],
+            "skillTrees": {
+                "sync5": {"history": [21, 21, 21, 17, 17], "position": 5},
+            },
+        }, "spec_tree")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert skills[0]["spec_tree"] == [21, 21, 21, 17, 17]
+
+    def test_skill_without_matching_tree_imports_with_zero_points(self):
+        """Per spec: skills with no matching entry in skillTrees still
+        import, with points=0 and empty spec_tree."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4, "mastery": 1, "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": ["Shift"],
+            "skillTrees": {},  # no entries
+        }, "no_tree")
+        assert result.success is True
+        skills = result.build_data["skills"]
+        assert len(skills) == 1
+        assert skills[0]["skill_name"] == "Shift"
+        assert skills[0]["points_allocated"] == 0
+        assert skills[0]["spec_tree"] == []
+
+    def test_unmapped_skill_name_logs_to_missing_fields(self):
+        """A skill name that can't be resolved to the Forge registry must
+        be logged via skill_unmapped:<raw> so it's visible in the alert."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": 4, "mastery": 1, "level": 100,
+            "passives": {"1": 1},
+            "specializedSkills": ["QuantumWizardry9000"],
+            "skillTrees": {},
+        }, "unmapped")
+        assert result.success is True
+        assert any(
+            f.startswith("skill_unmapped:QuantumWizardry9000")
+            for f in result.missing_fields
+        )
+
+    def test_full_maxroll_profile_extraction(self):
+        """Integration test: mimics the exact shape of profiles[activeProfile]
+        for the Rogue/Bladedancer zu5tdn0o planner confirmed from Discord."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        raw = {
+            "name": "Starter",
+            "class": 4,          # Rogue
+            "mastery": 1,        # Bladedancer
+            "level": 100,
+            "specializedSkills": [
+                "SynchronizedStrike", "ShadowCascade", "Shift",
+                "Umbral Blades 1", "DancingStrike1",
+            ],
+            "activeSkills": [
+                "Shift", "SynchronizedStrike", "Decoy",
+                "DancingStrike1", "ShadowCascade",
+            ],
+            "passives": {
+                "history": ([6] * 8) + [10, 1] + ([7] * 5) + ([8] * 5),
+                "position": 113,
+            },
+            "skillTrees": {
+                "sync5":  {"history": [21, 21, 21, 17], "position": 4},
+                "dagg3":  {"history": [17, 17, 16],      "position": 3},
+                "smbmb":  {"history": [],                "position": 0},
+                "shiif":  {"history": [5, 5],            "position": 2},
+            },
+        }
+        result = MaxrollImporter()._map(raw, "zu5tdn0o")
+
+        # Class and mastery resolve from numeric IDs.
+        assert result.success is True
+        assert result.build_data["character_class"] == "Rogue"
+        assert result.build_data["mastery"] == "Bladedancer"
+        assert result.build_data["level"] == 100
+
+        # All 5 specialized skills present with canonical names.
+        names = [s["skill_name"] for s in result.build_data["skills"]]
+        assert set(names) == {
+            "Synchronized Strike", "Shadow Cascade", "Shift",
+            "Umbral Blades", "Dancing Strikes",
+        }
+        # No skill:empty_name warnings from the fixed path.
+        assert "skill:empty_name" not in result.missing_fields
+
+        # Passives reconstructed from history by occurrence count.
+        pt = result.build_data["passive_tree"]
+        assert pt.count(6) == 8
+        assert pt.count(10) == 1
+        assert pt.count(1) == 1
+        assert pt.count(7) == 5
+        assert pt.count(8) == 5
+        assert "passives:empty" not in result.missing_fields
+
+        # Points from skillTrees[id].position wire through to the Forge skill.
+        skills_by_name = {s["skill_name"]: s for s in result.build_data["skills"]}
+        assert skills_by_name["Synchronized Strike"]["points_allocated"] == 4
+        assert skills_by_name["Shadow Cascade"]["points_allocated"] == 3
+        assert skills_by_name["Shift"]["points_allocated"] == 2
+        # No matching tree for Umbral Blades/Dancing Strikes → 0 points.
+        assert skills_by_name["Umbral Blades"]["points_allocated"] == 0
+        assert skills_by_name["Dancing Strikes"]["points_allocated"] == 0
+
+
+class TestMaxrollPassivesHistoryFormat:
+    """Maxroll's current passives wrapper stores allocations as an ordered
+    history list — reconstruct by counting occurrences."""
+
+    def test_passives_history_int_list_counted(self):
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Rogue", "mastery": "Bladedancer", "level": 100,
+            "passives": {
+                "history": [6, 6, 6, 6, 6, 6, 6, 6, 10, 1, 7, 7, 7, 7, 7,
+                            8, 8, 8, 8, 8],
+                "position": 113,
+            },
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_history")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        assert pt.count(6) == 8
+        assert pt.count(10) == 1
+        assert pt.count(1) == 1
+        assert pt.count(7) == 5
+        assert pt.count(8) == 5
+        assert len(pt) == 20
+        # Editor-state keys must not become passive_node warnings.
+        assert not any(
+            f.startswith("passive_node:history") or f.startswith("passive_node:position")
+            for f in result.missing_fields
+        )
+
+    def test_passives_position_int_is_not_treated_as_nodes(self):
+        """`position` is an int (cursor position), not an allocation map —
+        it must not leak into passive_tree."""
+        from app.services.importers.maxroll_importer import MaxrollImporter
+        result = MaxrollImporter()._map({
+            "class": "Rogue", "mastery": "Bladedancer", "level": 100,
+            "passives": {
+                "history": [6, 6, 10],
+                "position": 113,
+            },
+            "skills": [{"name": "X", "slot": 0, "level": 1, "nodes": {}}],
+        }, "pt_pos")
+        assert result.success is True
+        pt = result.build_data["passive_tree"]
+        # 113 is the cursor position, not a node — it must not appear.
+        assert 113 not in pt
+        assert set(pt) == {6, 10}
+
+
 class TestMaxrollPassivesImport:
     """Passive tree import from dict and list formats."""
 
@@ -2429,12 +2682,19 @@ class TestMaxrollPassivesImport:
         flat = {"1": 3, "2": 5, "10": 1}
         assert _descend_passive_nodes(flat) is flat
 
-    def test_descend_passive_nodes_passes_through_lists(self):
-        """List passives (flat ID lists or list-of-dicts) should be returned
-        as-is so the list branch of _map can handle them."""
+    def test_descend_passive_nodes_counts_bare_int_list(self):
+        """A bare list of ints is Maxroll's ordered allocation history —
+        the helper must count occurrences into {node_id: points} so _map's
+        dict branch can extend passive_tree correctly."""
         from app.services.importers.maxroll_importer import _descend_passive_nodes
-        flat_list = [10, 20, 30]
-        assert _descend_passive_nodes(flat_list) is flat_list
+        assert _descend_passive_nodes([10, 10, 20, 30, 30, 30]) == {10: 2, 20: 1, 30: 3}
+
+    def test_descend_passive_nodes_leaves_list_of_dicts(self):
+        """A list of dicts (older format) must NOT be counted — leave it
+        so the list-of-dicts branch of _map can parse id/points entries."""
+        from app.services.importers.maxroll_importer import _descend_passive_nodes
+        data = [{"id": 5, "points": 3}, {"id": 6, "points": 2}]
+        assert _descend_passive_nodes(data) is data
 
 
 class TestMaxrollMissingDataDiagnostics:
