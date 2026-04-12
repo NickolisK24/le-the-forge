@@ -52,10 +52,26 @@ export default function EncounterSimulatorPage() {
 
   return (
     <div className="mx-auto max-w-5xl px-4 py-8">
-      <h1 className="mb-1 text-2xl font-bold text-forge-text">Encounter Simulator</h1>
-      <p className="mb-6 text-sm text-forge-muted">
-        Simulate your build against boss templates using the Phase C encounter engine.
+      <h1 className="mb-1 text-2xl font-bold text-forge-text">Quick Simulator</h1>
+      <p className="mb-4 text-sm text-forge-muted">
+        Plug in raw damage numbers to get a fast DPS estimate — no full build required.
       </p>
+
+      {/* Intro / example card */}
+      <div className="mb-6 rounded-lg border border-forge-cyan/25 bg-forge-cyan/[0.04] px-4 py-3">
+        <p className="font-mono text-[11px] uppercase tracking-widest text-forge-cyan mb-2">
+          How it works
+        </p>
+        <p className="text-sm text-forge-muted leading-relaxed">
+          Provide your build's <span className="text-forge-text">base hit damage</span>, <span className="text-forge-text">crit chance</span>,
+          and <span className="text-forge-text">crit multiplier</span>. Choose a boss template and we'll run the encounter
+          tick-by-tick to produce a DPS curve. For a full build (skills, gear,
+          passives), use <span className="text-forge-text">Build Simulator</span> instead.
+        </p>
+        <p className="mt-2 font-mono text-[11px] text-forge-dim">
+          Example: <span className="text-forge-amber">Base 1500</span> · <span className="text-forge-amber">Crit 0.45</span> · <span className="text-forge-amber">Multiplier 2.5×</span>
+        </p>
+      </div>
 
       <div className="space-y-6 rounded-lg border border-forge-border bg-forge-surface p-6">
         <BuildControls
@@ -77,13 +93,14 @@ export default function EncounterSimulatorPage() {
             onClick={handleRun}
             disabled={loading}
             className="
-              rounded bg-forge-accent px-6 py-2 text-sm font-semibold text-forge-bg
+              rounded bg-forge-amber px-7 py-2.5 text-sm font-semibold uppercase tracking-widest text-forge-bg
+              shadow-[0_0_20px_rgba(240,160,32,0.25)]
               hover:brightness-110 active:brightness-90
               disabled:opacity-50 disabled:cursor-not-allowed
               transition-all
             "
           >
-            {loading ? "Simulating…" : "Run Simulation"}
+            {loading ? "Simulating…" : "▶ Run Simulation"}
           </button>
         </div>
       </div>

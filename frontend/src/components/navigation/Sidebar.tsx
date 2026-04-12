@@ -163,9 +163,12 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/bis-search",  label: "BIS Search",    icon: <BisSearchIcon /> },
   { to: "/encounter",   label: "Simulation",    icon: <SimulationIcon /> },
   { to: "/meta",        label: "Meta",          icon: <MetaIcon /> },
-  { to: "/data-manager",label: "Data Manager",  icon: <DataManagerIcon /> },
-  { to: "/profile",     label: "Settings",      icon: <SettingsIcon /> },
+  { to: "/profile",     label: "Profile",       icon: <SettingsIcon /> },
 ];
+
+// Suppress unused-import warning while keeping the icon around for the
+// Data Manager power-user route (still accessible via /data-manager URL).
+void DataManagerIcon;
 
 export default function Sidebar() {
   const location = useLocation();
@@ -202,11 +205,19 @@ export default function Sidebar() {
           <ForgeLogoSmall />
         </div>
         {expanded && (
-          <span
-            className="font-display text-sm font-bold tracking-[0.18em] text-forge-amber whitespace-nowrap overflow-hidden"
-            style={{ textShadow: "0 0 20px rgba(240,160,32,0.35)" }}
-          >
-            THE FORGE
+          <span className="flex items-center gap-2 overflow-hidden">
+            <span
+              className="font-display text-sm font-bold tracking-[0.18em] text-forge-amber whitespace-nowrap"
+              style={{ textShadow: "0 0 20px rgba(240,160,32,0.35)" }}
+            >
+              THE FORGE
+            </span>
+            <span
+              className="font-mono text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-forge-cyan/40 bg-forge-cyan/12 text-forge-cyan whitespace-nowrap"
+              title="Public beta — expect rough edges"
+            >
+              BETA
+            </span>
           </span>
         )}
       </div>

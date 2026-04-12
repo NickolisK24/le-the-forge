@@ -93,6 +93,14 @@ export default function AppLayout() {
                 <span title="Last Epoch patch" className="text-forge-amber/60">
                   patch {version.current_patch}
                 </span>
+                {version.current_season !== undefined && (
+                  <>
+                    <span className="text-forge-border">·</span>
+                    <span title="Last Epoch season" className="text-forge-cyan/60">
+                      S{version.current_season}
+                    </span>
+                  </>
+                )}
               </span>
             )}
           </div>
