@@ -34,10 +34,11 @@ import { CLASS_MASTERIES } from "@constants";
 
 type AllocMap = Record<number, number>;
 
-// Min pixel height of the canvas area — layout is driven by the tree's own
-// bounding box (via the SVG viewBox + preserveAspectRatio), so container
-// size only needs a floor so the tree has room to render.
-const MIN_PANEL_H = 500;
+// Fixed pixel height of the tree canvas area. The tree's own bounding box
+// (via the SVG viewBox + preserveAspectRatio="xMidYMid meet") auto-fits
+// into this fixed box, so the tree uses the full width and height rather
+// than expanding the whole page to 80vh.
+const TREE_CANVAS_H = 600;
 
 // Last Epoch passive point budget rules
 const BASE_TREE_GATE = 20;            // Points in base tree to unlock mastery trees
@@ -390,16 +391,7 @@ export default function BuildPassiveTree({
   const activeSecAllocatedPts = sectionAllocatedPoints[activeKey] ?? new Map<string, number>();
 
   return (
-    <div
-      className="flex w-full flex-col gap-0"
-      style={{
-        // Fill the container's full width; grow to viewport height so the
-        // tree uses the space available. The SVG viewBox auto-fits the
-        // tree's bounding box into whatever space the canvas area has.
-        minHeight: MIN_PANEL_H + 140, // + room for point bar, tab bar, legend
-        height: "clamp(640px, 80vh, 1000px)",
-      }}
-    >
+    <div className="flex w-full flex-col gap-0">
       {/* Total point budget bar */}
       <div className="flex items-center justify-between border border-forge-border bg-forge-surface2 px-3 py-2 rounded-t">
         <div className="flex items-center gap-3 font-mono text-[10px]">
@@ -467,10 +459,12 @@ export default function BuildPassiveTree({
         })}
       </div>
 
-      {/* Single tree panel for active tab — fills remaining vertical space */}
+      {/* Single tree panel for active tab — fixed-height canvas so the
+          tree auto-fits into a predictable 600px box rather than
+          ballooning the page. */}
       <div
-        className="flex flex-1 min-h-0 border border-t-0 border-forge-border"
-        style={{ minHeight: MIN_PANEL_H }}
+        className="flex border border-t-0 border-forge-border"
+        style={{ height: TREE_CANVAS_H }}
       >
         {activeIsLocked ? (
           <div
@@ -494,7 +488,7 @@ export default function BuildPassiveTree({
             <span className="font-mono text-xs text-forge-dim">No passive data.</span>
           </div>
         ) : (
-          <div className="w-full">
+          <div className="w-full h-full">
             <PassiveTreeCanvas
               nodes={activeSd.nodes}
               edges={activeSd.layout.edges}
@@ -510,7 +504,7 @@ export default function BuildPassiveTree({
               highlightedNodes={emptySet}
               highlightedEdges={emptySet}
               blockingNodeIds={emptySet}
-              minHeight={MIN_PANEL_H}
+              minHeight={0}
               readOnly={readOnly || activeIsLocked}
               masteryLockedIds={activeIsNonChosen ? masteryLockedIds : undefined}
             />
