@@ -5,7 +5,7 @@
  * Presents:
  *   - Hero section with Season + Patch badge and two CTA buttons
  *   - Stats row: community builds, skills, affixes counts
- *   - Meta snapshot: top 3 classes bar chart, top 5 skills
+ *   - Meta snapshot: top 5 classes bar chart, top 5 skills
  *   - 2×3 quick links grid
  */
 import { Link } from "react-router-dom";
@@ -179,7 +179,12 @@ export default function DashboardPage() {
     return 0;
   })();
 
-  const topClasses = (meta?.class_distribution ?? []).slice(0, 3);
+  // Show up to 5 classes with at least one public build. The backend's
+  // class_distribution only includes classes that have builds (group-by),
+  // but we still filter defensively in case that changes.
+  const topClasses = (meta?.class_distribution ?? [])
+    .filter((d) => d.count > 0)
+    .slice(0, 5);
   const topSkills = (meta?.popular_skills ?? []).slice(0, 5);
   const classTotal = topClasses.reduce((s, d) => s + d.count, 0) || 1;
   const skillMax = topSkills.reduce((m, s) => Math.max(m, s.usage_count), 0) || 1;

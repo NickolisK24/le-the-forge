@@ -3,6 +3,16 @@
  *
  * Sortable, paginated table of BIS search results.
  * Score colour-coded: green ≥80 %, yellow ≥60 %, red <60 %.
+ *
+ * Displays readable per-result fields sourced from the backend:
+ *   - Slot (e.g. "Helm")
+ *   - Base item name (e.g. "Iron Helm")
+ *   - Matched affixes with tiers
+ *   - Score
+ *
+ * The synthetic build_id (e.g. "snap_0002") is still shown as a small
+ * monospace subtitle for debugging / linking back to a specific snapshot,
+ * but it's no longer the primary column.
  */
 
 import { useState } from "react";
@@ -22,6 +32,17 @@ function scoreColor(score: number): string {
   if (pct >= 80) return "text-green-400";
   if (pct >= 60) return "text-yellow-400";
   return "text-red-400";
+}
+
+// Slot ids from the backend (e.g. "weapon1") become "Weapon 1" for display.
+function formatSlot(slot: string | null | undefined): string {
+  if (!slot) return "—";
+  return slot
+    .replace(/_/g, " ")
+    .replace(/(\d+)/, " $1")
+    .replace(/\s+/g, " ")
+    .trim()
+    .replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 // ---------------------------------------------------------------------------
@@ -89,16 +110,22 @@ export default function BisResultsTable({ results, onSelect, selectedId }: Props
                 Rank <SortIcon k="rank" />
               </th>
               <th className="px-4 py-2 text-left text-xs uppercase tracking-wider text-forge-muted">
-                Build ID
+                Slot
+              </th>
+              <th className="px-4 py-2 text-left text-xs uppercase tracking-wider text-forge-muted">
+                Base Item
+              </th>
+              <th className="px-4 py-2 text-left text-xs uppercase tracking-wider text-forge-muted">
+                Matched Affixes
               </th>
               <th
-                className="cursor-pointer px-4 py-2 text-left text-xs uppercase tracking-wider text-forge-muted
+                className="cursor-pointer px-4 py-2 text-right text-xs uppercase tracking-wider text-forge-muted
                   hover:text-forge-text select-none"
                 onClick={() => toggleSort("score")}
               >
                 Score <SortIcon k="score" />
               </th>
-              <th className="px-4 py-2 text-left text-xs uppercase tracking-wider text-forge-muted">
+              <th className="px-4 py-2 text-right text-xs uppercase tracking-wider text-forge-muted">
                 Percentile
               </th>
             </tr>
@@ -106,22 +133,50 @@ export default function BisResultsTable({ results, onSelect, selectedId }: Props
           <tbody>
             {pageItems.map((r) => {
               const isSelected = r.build_id === selectedId;
+              const hasAffixes = r.affixes && r.affixes.length > 0;
               return (
                 <tr
                   key={r.build_id}
                   onClick={() => onSelect?.(r)}
-                  className={`cursor-pointer border-b border-forge-border/40 transition-colors
+                  className={`cursor-pointer border-b border-forge-border/40 transition-colors align-top
                     ${isSelected
                       ? "border-l-2 border-l-[#f5a623] bg-[#1e2840]"
                       : "hover:bg-[#161c30]"
                     }`}
                 >
-                  <td className="px-4 py-2 text-forge-muted font-mono">#{r.rank}</td>
-                  <td className="px-4 py-2 font-mono text-[#22d3ee] text-xs">{r.build_id}</td>
-                  <td className={`px-4 py-2 font-semibold tabular-nums ${scoreColor(r.score)}`}>
+                  <td className="px-4 py-2 text-forge-muted font-mono whitespace-nowrap">
+                    #{r.rank}
+                  </td>
+                  <td className="px-4 py-2 text-forge-text whitespace-nowrap">
+                    {formatSlot(r.slot)}
+                  </td>
+                  <td className="px-4 py-2 text-forge-text">
+                    <div>{r.item_name ?? "—"}</div>
+                    <div className="font-mono text-[10px] text-forge-dim">{r.build_id}</div>
+                  </td>
+                  <td className="px-4 py-2">
+                    {hasAffixes ? (
+                      <div className="flex flex-wrap gap-1">
+                        {r.affixes.map((a) => (
+                          <span
+                            key={a.id}
+                            className="inline-flex items-center gap-1 rounded border border-forge-border/60
+                              bg-forge-surface2 px-1.5 py-0.5 font-mono text-[10px] text-forge-text"
+                            title={a.id}
+                          >
+                            <span>{a.name}</span>
+                            <span className="text-[#f5a623]">T{a.tier}</span>
+                          </span>
+                        ))}
+                      </div>
+                    ) : (
+                      <span className="text-xs text-forge-muted">—</span>
+                    )}
+                  </td>
+                  <td className={`px-4 py-2 text-right font-semibold tabular-nums whitespace-nowrap ${scoreColor(r.score)}`}>
                     {(r.score * 100).toFixed(1)}%
                   </td>
-                  <td className="px-4 py-2 text-forge-muted">
+                  <td className="px-4 py-2 text-right text-forge-muted whitespace-nowrap">
                     P{r.percentile}
                   </td>
                 </tr>

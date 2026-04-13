@@ -43,11 +43,20 @@ export interface WeightConfig {
   feasibility: number;
 }
 
+export interface BisResultAffix {
+  id:   string;
+  name: string;
+  tier: number;
+}
+
 export interface BisSearchResult {
   rank:          number;
   build_id:      string;
   score:         number;
   percentile:    number;
+  slot:          string | null;
+  item_name:     string | null;
+  affixes:       BisResultAffix[];
   slot_details?: Record<string, { affix_id: string; tier: number }[]>;
 }
 

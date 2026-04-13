@@ -40,6 +40,10 @@ class IncrementalSearchEngine:
         search_id = f"search_{int(t0)}"
 
         all_scores: list[BuildScore] = []
+        # Keep the snapshots keyed by build_id so the route layer can surface
+        # human-readable fields (slot, base item, affix tiers) for each ranked
+        # result instead of just the synthetic "snap_NNNN" id.
+        snapshots_by_id: dict[str, BuildSnapshot] = {}
         evaluated = 0
 
         for slot in slot_pool.enabled_slots():
@@ -56,6 +60,7 @@ class IncrementalSearchEngine:
                     total_affix_count=len(snapshot.affixes),
                     total_tier_sum=top_assignment.total_tier_sum,
                 )
+                snapshots_by_id[build_snap.build_id] = build_snap
                 score = self._scorer.score(build_snap, target_affixes, target_tiers)
                 all_scores.append(score)
                 evaluated += 1
@@ -70,7 +75,7 @@ class IncrementalSearchEngine:
             )
 
         result = self._selector.select(all_scores, top_n)
-        return BisResult(
+        bis_result = BisResult(
             search_id,
             result.entries,
             evaluated,
@@ -78,6 +83,10 @@ class IncrementalSearchEngine:
             target_affixes,
             target_tiers,
         )
+        # Stash snapshots for downstream serialization; consumers that don't
+        # need them can ignore metadata.
+        bis_result.metadata["snapshots"] = snapshots_by_id
+        return bis_result
 
     def get_stages(self) -> list[SearchStage]:
         return list(self._stages)

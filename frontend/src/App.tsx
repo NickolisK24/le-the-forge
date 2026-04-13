@@ -1,4 +1,4 @@
-import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
@@ -51,6 +51,16 @@ const VisualizationDebugPage = lazy(() => import("@/pages/debug/VisualizationDeb
 const CraftDebugPage = lazy(() => import("@/pages/debug/CraftDebugPage"));
 const BackendDebugDashboard = lazy(() => import("@/pages/debug/BackendDebugDashboard"));
 const DataFlowHarness = lazy(() => import("@/pages/debug/DataFlowHarness"));
+
+// ---------------------------------------------------------------------------
+// Route alias redirect — preserves the current location's search string so
+// bookmarks like /planner?class=Acolyte still deliver the query param to the
+// canonical /build route.
+// ---------------------------------------------------------------------------
+function AliasRedirect({ to }: { to: string }) {
+  const loc = useLocation();
+  return <Navigate to={{ pathname: to, search: loc.search }} replace />;
+}
 
 // ---------------------------------------------------------------------------
 // Suspense fallback for lazy-loaded routes
@@ -219,6 +229,15 @@ export default function App() {
                 <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
                 <Route path="/profile" element={<UserProfilePage />} />
+
+                {/* Route aliases — redirect legacy/external URL patterns to their
+                    canonical paths. `replace` ensures the alias doesn't pollute
+                    browser history. Query strings are preserved (e.g. so
+                    /planner?class=Acolyte still reaches the planner with the
+                    param intact). */}
+                <Route path="/simulation" element={<AliasRedirect to="/encounter" />} />
+                <Route path="/passive-tree" element={<AliasRedirect to="/passives" />} />
+                <Route path="/planner" element={<AliasRedirect to="/build" />} />
 
                 {/* Debug routes — only available in development builds */}
                 {IS_DEV && (
