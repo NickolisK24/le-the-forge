@@ -103,4 +103,5 @@ class EnemySchema(Schema):
     name = fields.Str(load_default="")
     category = fields.Str(load_default="")
     crit_chance = fields.Float(load_default=0.0, validate=validate.Range(min=0.0, max=1.0))
-    crit_multiplier = fields.Float(load_default=1.5, validate=validate.Range(min=1.0))
+    # VERIFIED: 1.4.3 spec §2.2 — default base crit multiplier is 2.0× (200%)
+    crit_multiplier = fields.Float(load_default=2.0, validate=validate.Range(min=1.0))

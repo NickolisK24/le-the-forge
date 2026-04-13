@@ -40,6 +40,7 @@ from app.domain.calculators.speed_calculator import effective_attack_speed
 from app.domain.calculators.ailment_calculator import calc_ailment_dps
 from app.domain.skill_modifiers import SkillModifiers
 from app.engines.stat_engine import BuildStats
+from app.constants.combat import HIT_DAMAGE_VARIANCE
 
 # Shorthand for hardcoded fallback entries in SKILL_STATS.
 # data_version is required on SkillStatDef; "hardcoded" marks these as static
@@ -93,7 +94,8 @@ SKILL_STATS: dict = {
     "Volcanic Orb":           _S(130, 0.13, 0.8, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
     "Disintegrate":           _S(60,  0.09, 1.0, ["spell_damage_pct", "fire_damage_pct", "lightning_damage_pct"], is_spell=True),
     "Shatter Strike":         _S(130, 0.12, 1.3, ["spell_damage_pct", "cold_damage_pct"], is_melee=True),
-    "Meteor":                 _S(300, 0.16, 0.4, ["spell_damage_pct", "fire_damage_pct"], is_spell=True),
+    # VERIFIED: 1.4.3 spec §6 — Meteor base damage 240 per hit, added damage effectiveness 1200%
+    "Meteor":                 _S(240, 0.16, 0.4, ["spell_damage_pct", "fire_damage_pct"], is_spell=True, added_damage_effectiveness=12.0),
     "Nova":                   _S(180, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct", "lightning_damage_pct"], is_spell=True),
     "Snap Freeze":            _S(160, 0.14, 0.7, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
     "Rune of Winter":         _S(140, 0.13, 0.9, ["spell_damage_pct", "cold_damage_pct"], is_spell=True),
@@ -403,18 +405,29 @@ def _simulate_chunk(
     Module-level so it is picklable by ProcessPoolExecutor workers.
     Each call creates its own Random instance from seed, giving full
     isolation between chunks when running in parallel.
+
+    Each hit rolls two independent random values:
+      1. Hit damage variance: uniform in [1 - HIT_DAMAGE_VARIANCE, 1 + HIT_DAMAGE_VARIANCE]
+         (VERIFIED: 1.4.3 spec §2.1 — ±25% on hit damage)
+      2. Crit outcome: crit if rand() < eff_crit_chance
     """
     rng = random.Random(seed)
     # Pre-compute values used every iteration outside the loop.
-    crit_dmg = hit_damage * eff_crit_mult
     scale    = effective_as * hpc
+    variance_low  = 1.0 - HIT_DAMAGE_VARIANCE  # 0.75
+    variance_span = 2.0 * HIT_DAMAGE_VARIANCE  # 0.50
     # Cache bound method to skip attribute lookup on every call.
     rand = rng.random
     # Pre-allocate exact size — avoids the ~log2(n) capacity doublings that
     # [] + append triggers as the list grows.
     results = [0.0] * n
     for i in range(n):
-        results[i] = (crit_dmg if rand() < eff_crit_chance else hit_damage) * scale
+        # Uniform ±HIT_DAMAGE_VARIANCE roll on the base hit damage
+        roll = variance_low + variance_span * rand()
+        base = hit_damage * roll
+        if rand() < eff_crit_chance:
+            base *= eff_crit_mult
+        results[i] = base * scale
     return results
 
 

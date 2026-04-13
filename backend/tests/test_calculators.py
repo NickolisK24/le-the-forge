@@ -1244,12 +1244,13 @@ class TestEnemyDamageMultiplier(unittest.TestCase):
         assert math.isclose(mult, 0.5, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_armor_and_resistance_stack_multiplicatively(self):
-        # 1000 armor, fire damage → non-physical armor at 75% effectiveness
-        # effective_armor=750, mit=750/(750+1000)=3/7, armor_factor=4/7
-        # 50% fire res → res_factor=0.5 → total = 4/7 × 0.5 = 2/7 ≈ 0.28571
+        # VERIFIED: 1.4.3 spec §3.1 — armour is 70% effective vs non-physical
+        # 1000 armor, fire damage → non-physical armor at 70% effectiveness
+        # effective_armor=700, mit=700/(700+1000)=7/17, armor_factor=10/17
+        # 50% fire res → res_factor=0.5 → total = 10/17 × 0.5 ≈ 0.29412
         enemy = _make_enemy(armor=1000, resistances={"fire": 50.0})
         mult = enemy_damage_multiplier(enemy, {"fire"})
-        expected = (1.0 - 750.0 / 1750.0) * 0.5
+        expected = (1.0 - 700.0 / 1700.0) * 0.5
         assert math.isclose(mult, expected, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_penetration_improves_multiplier(self):
@@ -1315,13 +1316,14 @@ class TestWeightedDamageMultiplier(unittest.TestCase):
         assert math.isclose(weighted, 0.70, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_armor_applies_regardless_of_weighting(self):
-        # 1000 armor, fire damage → non-physical armor at 75% effectiveness
-        # effective_armor=750, mit=750/(750+1000)=3/7, armor_factor=4/7 ≈ 0.57143
-        # 0% fire res → res_factor=1.0 → total = 4/7 ≈ 0.57143
+        # VERIFIED: 1.4.3 spec §3.1 — armour is 70% effective vs non-physical
+        # 1000 armor, fire damage → non-physical armor at 70% effectiveness
+        # effective_armor=700, mit=700/(700+1000)=7/17, armor_factor=10/17
+        # 0% fire res → res_factor=1.0 → total ≈ 0.58824
         enemy = _make_enemy(armor=1000, resistances={"fire": 0.0})
         damage_by_type = {DamageType.FIRE: 100.0}
         weighted = weighted_damage_multiplier(enemy, damage_by_type)
-        expected = 1.0 - 750.0 / 1750.0
+        expected = 1.0 - 700.0 / 1700.0
         assert math.isclose(weighted, expected, rel_tol=1e-9, abs_tol=1e-12)
 
     def test_empty_damage_by_type_returns_armor_only(self):

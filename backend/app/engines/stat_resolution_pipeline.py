@@ -62,14 +62,15 @@ def _const(section: str, key: str, default: Any = None) -> Any:
 # Derived-stat scaling coefficients — ONLY for expansions NOT already in
 # aggregate_stats ATTRIBUTE_SCALING (dex→dodge and vit→health are handled there).
 # These constants are re-exported for test access.
+# VERIFIED: 1.4.3 spec §1.5 — per-point attribute grants
 # Strength → max_health (per point) — not in ATTRIBUTE_SCALING
 STR_TO_HEALTH: float = 1.0
 # Dexterity → dodge_rating (per point) — mirrors ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
-DEX_TO_DODGE: float = 3.0
+DEX_TO_DODGE: float = 4.0
 # Vitality → max_health (per point) — mirrors ATTRIBUTE_SCALING["vitality"]["max_health"]
-VIT_TO_HEALTH: float = 10.0
+VIT_TO_HEALTH: float = 6.0
 # Intelligence → ward_retention_pct (per point) — not in ATTRIBUTE_SCALING
-INT_TO_WARD_RETENTION: float = 0.1
+INT_TO_WARD_RETENTION: float = 4.0
 # Attunement → mana_regen (per point) — not in ATTRIBUTE_SCALING
 ATT_TO_MANA_REGEN: float = 0.2
 

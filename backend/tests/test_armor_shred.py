@@ -6,7 +6,6 @@ import pytest
 
 from app.domain.armor_shred import (
     ARMOR_PER_STACK,
-    STACK_CAP,
     STACK_DURATION,
     armor_shred_amount,
     steady_state_stacks,
@@ -40,10 +39,10 @@ class TestSteadyStateStacks:
     def test_zero_hits_per_second_zero_stacks(self):
         assert steady_state_stacks(85.0, 0.0) == 0.0
 
-    def test_high_shred_fast_attack_near_cap(self):
-        # 85% chance, 3 hits/sec, 5 hit_count = 0.85*3*5*4 = 51 → capped at 20
+    def test_high_shred_fast_attack_no_cap(self):
+        # 85% chance, 3 hits/sec, 5 hit_count = 0.85*3*5*4 = 51 stacks (no cap per 1.4.3)
         stacks = steady_state_stacks(85.0, 3.0, hit_count=5)
-        assert stacks == float(STACK_CAP)
+        assert abs(stacks - 51.0) < 0.01
 
     def test_low_shred_partial_stacks(self):
         # 20% chance, 1 hit/sec, 1 hit = 0.20*1*1*4 = 0.8 stacks
@@ -74,15 +73,16 @@ class TestArmorShredAmount:
     def test_zero_shred_zero_amount(self):
         assert armor_shred_amount(0.0, 2.0) == 0.0
 
-    def test_max_stacks_max_amount(self):
+    def test_high_rate_uncapped_amount(self):
+        # 100% chance × 10 hits/s × 5 hit_count × 4s duration = 200 stacks (no cap)
         amount = armor_shred_amount(100.0, 10.0, hit_count=5)
-        assert amount == STACK_CAP * ARMOR_PER_STACK  # 20 * 100 = 2000
+        assert amount == 200 * ARMOR_PER_STACK  # 200 * 100 = 20000
 
     def test_effective_armor_never_negative(self):
         amount = armor_shred_amount(100.0, 10.0, hit_count=5)
         enemy_armor = 1000
         effective = max(0, enemy_armor - amount)
-        assert effective == 0  # 1000 - 2000 = 0 (clamped)
+        assert effective == 0  # 1000 - 20000 = 0 (clamped)
 
 
 # ---------------------------------------------------------------------------

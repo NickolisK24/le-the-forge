@@ -133,4 +133,5 @@ class TestSchemaNewFields:
         from data.schemas.game_data_schema import EnemySchema
         result = EnemySchema().load({"enemy_id": "x", "max_health": 100.0, "armor": 0.0})
         assert result["crit_chance"] == 0.0
-        assert result["crit_multiplier"] == 1.5
+        # VERIFIED: 1.4.3 spec §2.2 — default crit multiplier is 2.0×
+        assert result["crit_multiplier"] == 2.0

@@ -10,7 +10,7 @@ multiplier to the damage. Mirrors Last Epoch's crit model:
 
 Constants:
     CRIT_CAP = 1.0   — maximum crit chance (100%)
-    BASE_CRIT_MULTIPLIER = 1.5 — default 150% (verified game value)
+    BASE_CRIT_MULTIPLIER = 2.0 — default 200% (verified game value)
 
 Public API:
     effective_crit_chance(base_chance, crit_chance_increased_pct) -> float
@@ -22,7 +22,8 @@ Public API:
 from __future__ import annotations
 
 CRIT_CAP: float = 1.0
-BASE_CRIT_MULTIPLIER: float = 1.5
+# VERIFIED: 1.4.3 spec §2.2 — base crit multiplier is 200% (2.0×)
+BASE_CRIT_MULTIPLIER: float = 2.0
 
 
 def effective_crit_chance(base_chance: float, crit_chance_increased_pct: float) -> float:
@@ -52,7 +53,7 @@ def effective_crit_multiplier(
 
         effective = base_multiplier + increased_multiplier_pct / 100
 
-    base_multiplier is a total multiplier (e.g. 1.5 = 150% damage).
+    base_multiplier is a total multiplier (e.g. 2.0 = 200% damage).
     increased_multiplier_pct is additive bonus (e.g. 50 → +50% → adds 0.5).
 
     Raises ValueError if base_multiplier < 1.
