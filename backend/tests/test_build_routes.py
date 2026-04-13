@@ -136,6 +136,9 @@ class TestEncounterBuildEndpoint:
 
 class TestBuildToSimulationIntegration:
     def test_gear_boosts_damage_in_simulation(self, client):
+        # Compare DPS instead of total damage: both runs can finish off the
+        # STANDARD_BOSS within the fight duration, but the geared build
+        # should still achieve a higher DPS.
         bare_resp = _post(client, build=_LICH_BUILD,
                           encounter={**_ENCOUNTER, "crit_chance": 0.0})
         gear_build = {
@@ -146,9 +149,9 @@ class TestBuildToSimulationIntegration:
         }
         gear_resp  = _post(client, build=gear_build,
                            encounter={**_ENCOUNTER, "crit_chance": 0.0})
-        bare = bare_resp.get_json()["data"]["total_damage"]
-        gear = gear_resp.get_json()["data"]["total_damage"]
-        assert gear > bare, "Gear should increase total damage"
+        bare = bare_resp.get_json()["data"]
+        gear = gear_resp.get_json()["data"]
+        assert gear["dps"] > bare["dps"], "Gear should increase DPS"
 
     def test_buff_boosts_damage_in_simulation(self, client):
         bare_resp = _post(client, build=_LICH_BUILD,
@@ -171,10 +174,12 @@ class TestBuildToSimulationIntegration:
         assert r1["ticks_simulated"] == r2["ticks_simulated"]
 
     def test_different_classes_produce_different_damage(self, client):
+        # Compare DPS — both builds kill the STANDARD_BOSS so total_damage caps
+        # at the enemy's max_health, but per-cast DPS reflects class differences.
         enc = {**_ENCOUNTER, "crit_chance": 0.0}
         r_lich = _post(client, build=_LICH_BUILD,     encounter=enc).get_json()["data"]
         r_sorc = _post(client, build=_SORCERER_BUILD, encounter=enc).get_json()["data"]
-        assert r_lich["total_damage"] != r_sorc["total_damage"]
+        assert r_lich["dps"] != r_sorc["dps"]
 
     def test_outputs_deterministic_across_requests(self, client):
         enc = {**_ENCOUNTER, "enemy_template": "TRAINING_DUMMY",
@@ -206,15 +211,16 @@ class TestBuildRegressionStats:
         assert abs(stats.crit_chance - 0.05) < 0.01
 
     def test_acolyte_lich_crit_multiplier(self, client):
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier is 2.0×
         from builds.build_definition  import BuildDefinition
         from builds.build_stats_engine import BuildStatsEngine
         b     = BuildDefinition.from_dict(_LICH_BUILD)
         stats = BuildStatsEngine().compile(b)
-        assert abs(stats.crit_multiplier - 1.5) < 0.05
+        assert abs(stats.crit_multiplier - 2.0) < 0.05
 
     def test_training_dummy_deterministic_damage(self, client):
-        """Lich (effective_damage=88, crit_mult=1.5) vs training dummy.
-        rng_crit=None → always crits → 88 × 1.5 × 600 = 79,200.
+        """Lich (effective_damage=88, crit_mult=2.0) vs training dummy.
+        rng_crit=None → always crits → 88 × 2.0 × 600 = 105,600.
         """
         enc = {
             "enemy_template": "TRAINING_DUMMY",
@@ -224,5 +230,5 @@ class TestBuildRegressionStats:
         }
         resp = _post(client, build=_LICH_BUILD, encounter=enc)
         data = resp.get_json()["data"]
-        assert abs(data["total_damage"] - 79_200.0) < 1000.0
+        assert abs(data["total_damage"] - 105_600.0) < 1000.0
         assert data["total_casts"] == 600

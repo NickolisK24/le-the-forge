@@ -93,9 +93,10 @@ class TestDataLayer:
         assert d["defense"]["resistance_cap"] == 75
 
     def test_constants_max_prefixes(self):
+        # VERIFIED: 1.4.3 spec §5 — items allow at most 2 prefixes + 2 suffixes
         d = _load_json("constants.json")
-        assert d["crafting"]["max_prefixes"] == 3
-        assert d["crafting"]["max_suffixes"] == 3
+        assert d["crafting"]["max_prefixes"] == 2
+        assert d["crafting"]["max_suffixes"] == 2
 
     def test_training_dummy_has_zero_resistances(self):
         d = _load_json("enemies.json")

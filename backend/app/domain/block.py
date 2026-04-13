@@ -10,12 +10,13 @@ based on block effectiveness.
       damage_taken = incoming * (1 - block_effectiveness) if blocked else incoming
       blocked      = True if the roll succeeded
 
-  BLOCK_CHANCE_CAP = 0.75
+  BLOCK_CHANCE_CAP = 0.85
 """
 
 from __future__ import annotations
 
-BLOCK_CHANCE_CAP: float = 0.75
+# VERIFIED: 1.4.3 spec §3.5 — block chance effectiveness is capped at 85%
+BLOCK_CHANCE_CAP: float = 0.85
 
 
 def roll_block(block_chance: float, rng_roll: float | None = None) -> bool:

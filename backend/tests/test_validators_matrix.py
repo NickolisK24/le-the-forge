@@ -14,9 +14,9 @@ from app.engines.validators import (
 
 # All slots sorted
 _ALL_SLOTS = sorted(VALID_SLOTS)
-# Tiers 1-7 valid, 0 and 8+ invalid
-_VALID_TIERS = [1, 2, 3, 4, 5, 6, 7]
-_INVALID_TIERS = [0, -1, -5, 8, 9, 10, 50, 100]
+# VERIFIED: 1.4.3 spec §5 — tiers 1-8 valid (T8 = Primordial); 0 and 9+ invalid
+_VALID_TIERS = [1, 2, 3, 4, 5, 6, 7, 8]
+_INVALID_TIERS = [0, -1, -5, 9, 10, 50, 100]
 # FP values
 _VALID_FP = [0, 1, 5, 10, 15, 20, 30, 50, 75, 100]
 _INVALID_FP = [-1, -5, -10, -100]
@@ -258,8 +258,9 @@ def test_different_slots_no_duplicate_warning(slot1, slot2):
 # ---------------------------------------------------------------------------
 
 @pytest.mark.parametrize("tier1,tier2,both_valid", [
-    (1, 7, True), (3, 5, True), (1, 1, True), (7, 7, True),
-    (0, 1, False), (1, 8, False), (0, 8, False),
+    # VERIFIED: 1.4.3 spec §5 — tier 8 is valid (Primordial); 9+ invalid
+    (1, 7, True), (3, 5, True), (1, 1, True), (7, 7, True), (1, 8, True), (8, 8, True),
+    (0, 1, False), (1, 9, False), (0, 9, False),
 ])
 def test_two_affix_tier_combo(tier1, tier2, both_valid):
     affixes = [

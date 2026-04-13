@@ -9,10 +9,12 @@ CRIT_CHANCE_CAP: float = 1.0
 
 # BuildStats defaults — also used as dataclass field defaults in stat_engine.py
 BASE_CRIT_CHANCE: float = 0.05
-BASE_CRIT_MULTIPLIER: float = 1.5
+# VERIFIED: 1.4.3 spec §2.2 — base crit multiplier is 200% (2.0×), not 150%
+BASE_CRIT_MULTIPLIER: float = 2.0
 
-# Hit damage variance: ±15% for hits, none for DoTs
-HIT_DAMAGE_VARIANCE: float = 0.15
+# Hit damage variance: ±25% for hits, none for DoTs
+# VERIFIED: 1.4.3 spec §2.1 — hit damage rolls uniformly in [0.75×, 1.25×]
+HIT_DAMAGE_VARIANCE: float = 0.25
 
 # Ailment DoT — Last Epoch flat base damage per stack, pre-modifier
 # These are the base DPS values per stack; total = stacks × base × (1 + increased)

@@ -3,9 +3,10 @@
   "_description": "Global simulation constants for The Forge. All engines reference this file for caps, defaults, and formula parameters.",
 
   "combat": {
+    "_verified": "1.4.3 spec §2 — crit multiplier default 2.0×; base crit chance 5%",
     "crit_chance_cap": 1.0,
     "crit_chance_default": 0.05,
-    "crit_multiplier_default": 1.5,
+    "crit_multiplier_default": 2.0,
     "base_hit_chance": 0.92,
     "glancing_blow_damage_multiplier": 0.35,
     "base_attack_speed": 1.0,
@@ -13,10 +14,11 @@
   },
 
   "defense": {
+    "_verified": "1.4.3 spec §3 — armour hard cap 85% physical; 70% effectiveness non-physical",
     "resistance_cap": 75,
     "overcap_resistance_cap": 90,
-    "armor_reduction_formula": "armor / (armor + 300)",
-    "armor_cap": 0.80,
+    "armor_reduction_formula": "armor / (armor + 10 * area_level)",
+    "armor_cap": 0.85,
     "endurance_threshold_default": 0,
     "endurance_damage_reduction": 0.6,
     "block_effectiveness_scale": 0.01,
@@ -25,8 +27,9 @@
   },
 
   "crafting": {
-    "max_prefixes": 3,
-    "max_suffixes": 3,
+    "_verified": "1.4.3 spec §5 — 2 prefixes + 2 suffixes max; T1-T7 standard + T8 Primordial (Rune of Evolution)",
+    "max_prefixes": 2,
+    "max_suffixes": 2,
     "max_sealed_affixes": 1,
     "fp_cost_add": 4,
     "fp_cost_upgrade": 6,
@@ -34,9 +37,7 @@
     "fp_cost_seal": 8,
     "fp_min_roll": 0.8,
     "fp_max_roll": 1.2,
-    "fracture_base_chance": 0.05,
-    "fracture_fp_scaling": 0.01,
-    "max_affix_tier": 7,
+    "max_affix_tier": 8,
     "success_probability_base": 1.0
   },
 

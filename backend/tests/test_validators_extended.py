@@ -74,8 +74,9 @@ def test_valid_tier_in_each_slot(slot, tier):
 # D. Invalid tiers per slot
 # ---------------------------------------------------------------------------
 
+# VERIFIED: 1.4.3 spec §5 — tier 8 is valid (Primordial); 9+ invalid
 @pytest.mark.parametrize("slot", sorted(VALID_SLOTS))
-@pytest.mark.parametrize("bad_tier", [0, -1, 8, 9, 10])
+@pytest.mark.parametrize("bad_tier", [0, -1, 9, 10, 11])
 def test_invalid_tier_in_each_slot(slot, bad_tier):
     item = {"slot_type": slot, "forging_potential": 10,
             "affixes": [_affix("Added Health", tier=bad_tier)]}
@@ -219,7 +220,8 @@ def test_affix_combo_valid_tier(tier):
     assert len(tier_errors) == 0
 
 
-@pytest.mark.parametrize("tier", [0, -1, 8, 9, 100])
+# VERIFIED: 1.4.3 spec §5 — tier 8 is valid (Primordial); 9+ invalid
+@pytest.mark.parametrize("tier", [0, -1, 9, 10, 100])
 def test_affix_combo_invalid_tier(tier):
     r = validate_affix_combination([_affix("Added Health", tier=tier)])
     tier_errors = [e for e in r.errors if "TIER" in e.code]
@@ -278,12 +280,12 @@ def test_slot_index_in_fp_field_path(idx):
 # N. validate_affix_combination — prefix/suffix mix
 # ---------------------------------------------------------------------------
 
+# VERIFIED: 1.4.3 spec §5 — max 2 prefixes + 2 suffixes
 @pytest.mark.parametrize("n_prefixes,n_suffixes", [
-    (0, 1), (0, 2), (0, 3),
-    (1, 0), (2, 0), (3, 0),
+    (0, 1), (0, 2),
+    (1, 0), (2, 0),
     (1, 1), (1, 2), (2, 1),
-    (2, 2), (3, 3),
-    (1, 3), (3, 1),
+    (2, 2),
 ])
 def test_valid_prefix_suffix_mix(n_prefixes, n_suffixes):
     affixes = (
