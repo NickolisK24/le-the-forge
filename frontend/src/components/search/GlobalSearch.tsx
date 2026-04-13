@@ -1,7 +1,18 @@
-import { useEffect, useRef, useState, useCallback } from "react";
+import { useEffect, useMemo, useRef, useState, useCallback } from "react";
 import { useNavigate } from "react-router-dom";
 import { createPortal } from "react-dom";
+import { useQuery } from "@tanstack/react-query";
 
+import { buildsApi, refApi } from "@/lib/api";
+import type { BuildListItem } from "@/types";
+
+// ---------------------------------------------------------------------------
+// Types
+// ---------------------------------------------------------------------------
+
+// "skill" | "affix" | "build" — live categories wired to the reference/builds
+// registries. "item" is kept in the type union only because the search result
+// badges already have styles for it; no items are currently sourced.
 interface SearchResult {
   id: string;
   name: string;
@@ -21,44 +32,9 @@ interface GlobalSearchProps {
   onClose: () => void;
 }
 
-const MOCK_DATA: SearchSection[] = [
-  {
-    title: "Items",
-    type: "item",
-    results: [
-      { id: "i1", name: "Ravenous Void", type: "item", path: "/bis-search", subtitle: "Body Armour" },
-      { id: "i2", name: "Bleeding Heart", type: "item", path: "/bis-search", subtitle: "Amulet" },
-      { id: "i3", name: "Invoker's Static Touch", type: "item", path: "/bis-search", subtitle: "Gloves" },
-    ],
-  },
-  {
-    title: "Skills",
-    type: "skill",
-    results: [
-      { id: "s1", name: "Rive", type: "skill", path: "/build", subtitle: "Sentinel" },
-      { id: "s2", name: "Warpath", type: "skill", path: "/build", subtitle: "Sentinel" },
-      { id: "s3", name: "Shatter Strike", type: "skill", path: "/build", subtitle: "Sentinel" },
-    ],
-  },
-  {
-    title: "Affixes",
-    type: "affix",
-    results: [
-      { id: "a1", name: "Increased Attack Speed", type: "affix", path: "/affixes", subtitle: "Prefix" },
-      { id: "a2", name: "Critical Strike Chance", type: "affix", path: "/affixes", subtitle: "Prefix" },
-      { id: "a3", name: "Adaptive Spell Damage", type: "affix", path: "/affixes", subtitle: "Suffix" },
-    ],
-  },
-  {
-    title: "Builds",
-    type: "build",
-    results: [
-      { id: "b1", name: "Bleed Rive Sentinel", type: "build", path: "/builds", subtitle: "Tier S · SSF" },
-      { id: "b2", name: "Void Knight Echoes", type: "build", path: "/builds", subtitle: "Tier A" },
-      { id: "b3", name: "Warpath Tank", type: "build", path: "/builds", subtitle: "Tier B · HC" },
-    ],
-  },
-];
+// Cap results per section so the dropdown stays navigable; users can always
+// refine the query to narrow matches.
+const MAX_PER_SECTION = 12;
 
 const TYPE_BADGE_STYLES: Record<SearchResult["type"], string> = {
   item:  "text-forge-amber  border-forge-amber/40  bg-forge-amber/8",
@@ -85,24 +61,121 @@ function CloseIcon() {
   );
 }
 
-function flatResults(sections: SearchSection[]): SearchResult[] {
-  return sections.flatMap((s) => s.results);
+// ---------------------------------------------------------------------------
+// Live data hooks — the search pulls from the same registries the rest of the
+// app uses. Queried lazily (only when the palette is opened) and cached for
+// the session.
+// ---------------------------------------------------------------------------
+
+function useSearchSkills(enabled: boolean) {
+  return useQuery({
+    queryKey: ["search", "skills"],
+    queryFn: () => refApi.skills(),
+    enabled,
+    staleTime: Infinity,
+  });
 }
 
-function filterSections(sections: SearchSection[], query: string): SearchSection[] {
-  if (!query.trim()) return sections;
-  const q = query.toLowerCase();
-  return sections
-    .map((section) => ({
-      ...section,
-      results: section.results.filter(
-        (r) =>
-          r.name.toLowerCase().includes(q) ||
-          r.subtitle?.toLowerCase().includes(q) ||
-          r.type.toLowerCase().includes(q)
-      ),
-    }))
-    .filter((s) => s.results.length > 0);
+function useSearchAffixes(enabled: boolean) {
+  return useQuery({
+    queryKey: ["search", "affixes"],
+    queryFn: () => refApi.affixes(),
+    enabled,
+    staleTime: Infinity,
+  });
+}
+
+function useSearchBuilds(enabled: boolean) {
+  return useQuery({
+    queryKey: ["search", "builds"],
+    queryFn: () => buildsApi.list({ per_page: 100, sort: "votes" }),
+    enabled,
+    staleTime: 5 * 60 * 1000,
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Section builders — turn API payloads into SearchResult[]
+// ---------------------------------------------------------------------------
+
+function buildSkillSection(
+  data: Record<string, unknown> | null | undefined,
+): SearchResult[] {
+  if (!data || typeof data !== "object") return [];
+  const out: SearchResult[] = [];
+  const seen = new Set<string>();
+  for (const [cls, list] of Object.entries(data)) {
+    if (!Array.isArray(list)) continue;
+    for (const skill of list) {
+      if (typeof skill !== "string") continue;
+      // Same skill can appear under multiple class buckets (e.g. via the
+      // "Other" fallback) — dedupe on skill name.
+      const key = skill.toLowerCase();
+      if (seen.has(key)) continue;
+      seen.add(key);
+      out.push({
+        id: `skill-${out.length}`,
+        name: skill,
+        type: "skill",
+        path: `/build?skill=${encodeURIComponent(skill)}`,
+        subtitle: cls === "Other" ? undefined : cls,
+      });
+    }
+  }
+  return out;
+}
+
+function buildAffixSection(
+  data: Array<{ id: string; name: string; type: string }> | null | undefined,
+): SearchResult[] {
+  if (!Array.isArray(data)) return [];
+  return data.map((a, i) => ({
+    id: `affix-${a.id ?? i}`,
+    name: a.name,
+    type: "affix" as const,
+    path: `/affixes?q=${encodeURIComponent(a.name)}`,
+    subtitle: a.type === "prefix" ? "Prefix" : a.type === "suffix" ? "Suffix" : a.type,
+  }));
+}
+
+function buildBuildSection(
+  data: BuildListItem[] | null | undefined,
+): SearchResult[] {
+  if (!Array.isArray(data)) return [];
+  return data.map((b) => {
+    const tagBits: string[] = [];
+    if (b.tier) tagBits.push(`Tier ${b.tier}`);
+    if (b.character_class) tagBits.push(b.character_class);
+    if (b.is_ssf) tagBits.push("SSF");
+    if (b.is_hc) tagBits.push("HC");
+    return {
+      id: `build-${b.slug}`,
+      name: b.name,
+      type: "build" as const,
+      path: `/builds/${b.slug}`,
+      subtitle: tagBits.join(" · ") || undefined,
+    };
+  });
+}
+
+// ---------------------------------------------------------------------------
+// Filtering — case-insensitive substring match on name + subtitle
+// ---------------------------------------------------------------------------
+
+function filterSection(results: SearchResult[], q: string): SearchResult[] {
+  if (!q) return results.slice(0, MAX_PER_SECTION);
+  const needle = q.toLowerCase();
+  const matched: SearchResult[] = [];
+  for (const r of results) {
+    if (
+      r.name.toLowerCase().includes(needle) ||
+      r.subtitle?.toLowerCase().includes(needle)
+    ) {
+      matched.push(r);
+      if (matched.length >= MAX_PER_SECTION) break;
+    }
+  }
+  return matched;
 }
 
 export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
@@ -111,23 +184,55 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
   const [activeIndex, setActiveIndex] = useState(0);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  const filteredSections = filterSections(MOCK_DATA, query);
-  const allResults = flatResults(filteredSections);
+  // Fetch live data — only start fetching when the palette opens, but keep
+  // the results cached afterwards so re-opening is instant.
+  const { data: skillsRes, isLoading: skillsLoading } = useSearchSkills(isOpen);
+  const { data: affixesRes, isLoading: affixesLoading } = useSearchAffixes(isOpen);
+  const { data: buildsRes, isLoading: buildsLoading } = useSearchBuilds(isOpen);
 
-  // Register global Cmd/Ctrl+K
+  const allSkills = useMemo(
+    () => buildSkillSection(skillsRes?.data as Record<string, unknown> | undefined),
+    [skillsRes],
+  );
+  const allAffixes = useMemo(
+    () => buildAffixSection(affixesRes?.data as any),
+    [affixesRes],
+  );
+  const allBuilds = useMemo(
+    () => buildBuildSection(buildsRes?.data as BuildListItem[] | undefined),
+    [buildsRes],
+  );
+
+  const filteredSections: SearchSection[] = useMemo(() => {
+    const sections: SearchSection[] = [];
+    const skills = filterSection(allSkills, query);
+    if (skills.length > 0) sections.push({ title: "Skills", type: "skill", results: skills });
+    const affixes = filterSection(allAffixes, query);
+    if (affixes.length > 0) sections.push({ title: "Affixes", type: "affix", results: affixes });
+    const builds = filterSection(allBuilds, query);
+    if (builds.length > 0) sections.push({ title: "Builds", type: "build", results: builds });
+    return sections;
+  }, [allSkills, allAffixes, allBuilds, query]);
+
+  const allResults = useMemo(
+    () => filteredSections.flatMap((s) => s.results),
+    [filteredSections],
+  );
+
+  const isAnyLoading = skillsLoading || affixesLoading || buildsLoading;
+  const hasAnyData = allSkills.length + allAffixes.length + allBuilds.length > 0;
+
+  // Register global Cmd/Ctrl+K to prevent browser default. Opening/closing is
+  // managed by the parent.
   useEffect(() => {
     function handleKeyDown(e: KeyboardEvent) {
       if ((e.metaKey || e.ctrlKey) && e.key === "k") {
         e.preventDefault();
-        if (!isOpen) {
-          // parent controls open state; this fires onClose as a toggle signal if needed
-          // The parent registers its own listener to open — this just prevents default
-        }
       }
     }
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isOpen]);
+  }, []);
 
   // Focus input when opened
   useEffect(() => {
@@ -206,7 +311,7 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search items, skills, affixes, builds…"
+            placeholder="Search skills, affixes, builds…"
             className="flex-1 bg-transparent border-none outline-none font-body text-sm text-forge-text placeholder:text-forge-dim"
           />
           {query && (
@@ -224,9 +329,15 @@ export default function GlobalSearch({ isOpen, onClose }: GlobalSearchProps) {
 
         {/* Results */}
         <div className="max-h-[60vh] overflow-y-auto">
-          {filteredSections.length === 0 ? (
+          {isAnyLoading && !hasAnyData ? (
             <div className="py-12 text-center">
-              <p className="font-body text-sm text-forge-dim">No results found.</p>
+              <p className="font-body text-sm text-forge-dim">Loading…</p>
+            </div>
+          ) : filteredSections.length === 0 ? (
+            <div className="py-12 text-center">
+              <p className="font-body text-sm text-forge-dim">
+                {query ? "No results found." : "Start typing to search skills, affixes, and builds."}
+              </p>
             </div>
           ) : (
             filteredSections.map((section) => {

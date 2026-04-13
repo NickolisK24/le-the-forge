@@ -46,6 +46,9 @@ function generateMockResults(count = 20): BisSearchResult[] {
     build_id:   `build-${Math.random().toString(36).slice(2, 10).toUpperCase()}`,
     score:      +score.toFixed(4),
     percentile: Math.round(((count - (i + 1)) / count) * 100),
+    slot:       null,
+    item_name:  null,
+    affixes:    [],
   }));
 }
 

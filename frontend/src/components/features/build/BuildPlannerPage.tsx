@@ -1,5 +1,5 @@
 import { useMemo, useState, useEffect, useRef } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
@@ -625,15 +625,26 @@ function BuildSummary({ build }: { build: Build }) {
 export default function BuildPlannerPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { data, isLoading } = useBuild(slug ?? "");
   const createBuild = useCreateBuild();
   const { user } = useAuthStore();
 
+  // URL-driven class override: links like /build?class=Acolyte (e.g. from the
+  // Classes page) must win over any autosaved draft so navigating with intent
+  // never silently drops back to the previous class. Validated against
+  // CHARACTER_CLASSES so unknown/malformed values fall through to defaults.
+  const urlClassParam = searchParams.get("class");
+  const urlClass: CharacterClass | null =
+    urlClassParam && (CHARACTER_CLASSES as readonly string[]).includes(urlClassParam)
+      ? (urlClassParam as CharacterClass)
+      : null;
+
   // Form state
   const [name, setName] = useState("New Forge Build");
   const [description, setDescription] = useState("");
-  const [characterClass, setCharacterClass] = useState<CharacterClass>("Sentinel");
-  const [mastery, setMastery] = useState(MASTERIES.Sentinel[0]);
+  const [characterClass, setCharacterClass] = useState<CharacterClass>(urlClass ?? "Sentinel");
+  const [mastery, setMastery] = useState(MASTERIES[urlClass ?? "Sentinel"][0]);
   const [level, setLevel] = useState(70);
   const [isSsf, setIsSsf] = useState(false);
   const [isHc, setIsHc] = useState(false);
@@ -643,6 +654,12 @@ export default function BuildPlannerPage() {
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
+  // Informational banner — set when we had to override a stored draft's class
+  // with the one from the URL. The draft stays on disk so the user can undo.
+  const [urlClassOverride, setUrlClassOverride] = useState<{
+    from: CharacterClass;
+    to: CharacterClass;
+  } | null>(null);
 
   // Import / preset modal state — auto-open if ?import=true in URL
   const [showImportModal, setShowImportModal] = useState(
@@ -698,7 +715,11 @@ export default function BuildPlannerPage() {
   const DRAFT_KEY = "forge_draft_build";
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Restore draft on mount for new builds only
+  // Restore draft on mount for new builds only. When a ?class= URL param is
+  // present it takes priority over the draft's class/mastery — the rest of
+  // the draft (name, level, skills, passive tree, etc.) still restores so the
+  // user's in-progress work isn't thrown away. A banner below surfaces the
+  // override so the swap isn't silent.
   useEffect(() => {
     if (slug) return; // editing existing — don't overwrite
     const raw = localStorage.getItem(DRAFT_KEY);
@@ -707,19 +728,38 @@ export default function BuildPlannerPage() {
       const draft = JSON.parse(raw);
       if (draft.name) setName(draft.name);
       if (draft.description) setDescription(draft.description);
-      if (draft.characterClass) setCharacterClass(draft.characterClass);
-      if (draft.mastery) setMastery(draft.mastery);
+      const draftClass: CharacterClass | undefined = draft.characterClass;
+      if (urlClass) {
+        // URL param wins. Keep the draft's class on the override banner so the
+        // user can see what was swapped.
+        setCharacterClass(urlClass);
+        setMastery(MASTERIES[urlClass][0]);
+        // Drop skills tied to a different class — they'd be invalid anyway.
+        if (draftClass && draftClass !== urlClass) {
+          setUrlClassOverride({ from: draftClass, to: urlClass });
+        } else if (Array.isArray(draft.draftSkills)) {
+          setDraftSkills(draft.draftSkills);
+        }
+      } else {
+        if (draftClass) setCharacterClass(draftClass);
+        if (draft.mastery) setMastery(draft.mastery);
+        if (Array.isArray(draft.draftSkills)) setDraftSkills(draft.draftSkills);
+      }
       if (typeof draft.level === "number") setLevel(draft.level);
       if (typeof draft.isSsf === "boolean") setIsSsf(draft.isSsf);
       if (typeof draft.isHc === "boolean") setIsHc(draft.isHc);
       if (typeof draft.isLadder === "boolean") setIsLadder(draft.isLadder);
       if (typeof draft.isBudget === "boolean") setIsBudget(draft.isBudget);
-      if (Array.isArray(draft.draftSkills)) setDraftSkills(draft.draftSkills);
       if (Array.isArray(draft.passiveTree)) setPassiveTree(draft.passiveTree);
       setHasDraft(true);
     } catch {
       localStorage.removeItem(DRAFT_KEY);
     }
+    // urlClass is derived synchronously from searchParams at render time —
+    // the effect should run only on mount / slug change, matching the
+    // original behaviour. Re-reading urlClass here would re-apply the draft
+    // on every render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   // Auto-save draft to localStorage (debounced 1.5s) for new builds only
@@ -928,6 +968,31 @@ export default function BuildPlannerPage() {
           </span>
           <Button variant="ghost" size="sm" onClick={clearDraft}>
             Clear Draft
+          </Button>
+        </div>
+      )}
+
+      {urlClassOverride && (
+        <div className="xl:col-span-2 flex items-center justify-between gap-4 rounded border border-forge-amber/40 bg-forge-amber/8 px-4 py-3">
+          <span className="font-body text-sm text-forge-muted">
+            <span className="text-forge-amber">URL class applied.</span> Switched to{" "}
+            <strong className="text-forge-text">{urlClassOverride.to}</strong> from your{" "}
+            <strong className="text-forge-text">{urlClassOverride.from}</strong> draft. Other draft
+            fields (name, level, gear, tags) were preserved.
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              // Revert to the draft's class; the banner closes and the draft
+              // stays intact on disk.
+              const from = urlClassOverride.from;
+              setCharacterClass(from);
+              setMastery(MASTERIES[from][0]);
+              setUrlClassOverride(null);
+            }}
+          >
+            Use draft class
           </Button>
         </div>
       )}
