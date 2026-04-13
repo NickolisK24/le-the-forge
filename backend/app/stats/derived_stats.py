@@ -58,7 +58,7 @@ def compute_health(stats: BuildStats) -> None:
 
     This is an additive top-up on top of whatever max_health the earlier
     layers have already accumulated.  The primary vitality→health scaling
-    (10 hp per vitality) is handled by aggregate_stats ATTRIBUTE_SCALING
+    (6 hp per vitality) is handled by aggregate_stats ATTRIBUTE_SCALING
     and Layer 6 apply_derived_stats.  This function adds the *strength*
     contribution (STR_TO_HEALTH = 1.0/pt) which Layer 6 also covers — so
     we only apply the health_regen derived component here:
