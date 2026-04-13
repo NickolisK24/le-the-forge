@@ -150,6 +150,7 @@ def create_app(env: str = "development") -> Flask:
         return jsonify({
             "data": None,
             "meta": None,
+            "error": "rate_limit_exceeded",
             "errors": [{"message": f"Rate limit exceeded: {e.description}"}],
         }), 429
 
