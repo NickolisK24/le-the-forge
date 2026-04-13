@@ -226,7 +226,7 @@ class TestCriticalStrikes:
         increased_pct = 50.0  # percent-points
 
         folded_base = base_fraction + flat_fraction  # 0.40
-        result = effective_crit_chance(folded_base, increased_pct)
+        result = effective_crit_chance(folded_base, increased_pct=increased_pct)
         assert result == pytest.approx(0.60)
 
     def test_11_crit_chance_cannot_exceed_100_pct(self):
@@ -236,7 +236,7 @@ class TestCriticalStrikes:
             (0.05 + 0.90) × 1.50 = 1.425  →  capped at 1.0
         """
         folded_base = 0.05 + 0.90  # 0.95
-        result = effective_crit_chance(folded_base, 50.0)
+        result = effective_crit_chance(folded_base, increased_pct=50.0)
         assert result == pytest.approx(1.0)
 
 

@@ -759,7 +759,6 @@ export default function BuildPlannerPage() {
     // the effect should run only on mount / slug change, matching the
     // original behaviour. Re-reading urlClass here would re-apply the draft
     // on every render.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [slug]);
 
   // Auto-save draft to localStorage (debounced 1.5s) for new builds only

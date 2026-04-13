@@ -83,7 +83,7 @@ class ConditionalSimulateSchema(Schema):
     modifiers   = fields.List(fields.Nested(_ModifierSchema), load_default=list)
 
     @validates("base_damage")
-    def _validate_damage(self, value):
+    def _validate_damage(self, value, **kwargs):
         if value < 0:
             raise ValidationError("base_damage must be >= 0")
 

@@ -43,8 +43,7 @@ from app.domain.calculators.enemy_mitigation_calculator import (
 )
 from app.domain.enemy import EnemyProfile
 from app.constants.combat import (
-    BLEED_BASE_RATIO, BLEED_DURATION, IGNITE_DPS_RATIO, IGNITE_DURATION,
-    POISON_DPS_RATIO, POISON_DURATION,
+    BLEED_DURATION, IGNITE_DURATION, POISON_DURATION,
     BLEED_BASE_DPS, IGNITE_BASE_DPS, POISON_BASE_DPS,
 )
 from app.engines.stat_engine import BuildStats

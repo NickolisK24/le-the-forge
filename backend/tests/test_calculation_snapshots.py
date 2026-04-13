@@ -149,7 +149,8 @@ DPS_SNAPSHOTS = [
         # average_hit      = 856.9 + 90.2     = 947.1
         # effective_as     = 1.2 × (1 + 0)   = 1.2   (spell → cast_speed path)
         # hit_dps          = 947.1 × 1.2      = 1136.52
-        # crit_contrib     = (90.2×1.2)/1136.52×100 = 9.52 → 10
+        # VERIFIED: 1.4.3 spec §2.2 — crit_contrib uses (multi − 1.0) uplift.
+        # crit_contrib     = (0.05×902×1.0)/947.1×100 = 4.76 → 5
         "stats": BuildStats(
             spell_damage_pct=100.0,
             fire_damage_pct=50.0,
@@ -162,7 +163,7 @@ DPS_SNAPSHOTS = [
             "average_hit": 947,
             "dps": 1137,
             "effective_attack_speed": 1.2,
-            "crit_contribution_pct": 10,
+            "crit_contribution_pct": 5,
             "flat_damage_added": 0,
             "total_dps": 1137,
         },
@@ -182,7 +183,8 @@ DPS_SNAPSHOTS = [
         # cast_speed_bonus = 30/100           = 0.30
         # effective_as     = 1.2 × 1.3       = 1.56
         # hit_dps          = 2178.33 × 1.56  = 3398.19
-        # crit_contrib     = (473.55×1.56)/3398.19×100 = 21.74 → 22
+        # VERIFIED: 1.4.3 spec §2.2 — crit_contrib uses (multi − 1.0) uplift.
+        # crit_contrib     = (0.10×1894.2×1.5)/2178.33×100 = 13.05 → 13
         "stats": BuildStats(
             spell_damage_pct=150.0,
             fire_damage_pct=80.0,
@@ -198,7 +200,7 @@ DPS_SNAPSHOTS = [
             "average_hit": 2178,
             "dps": 3398,
             "effective_attack_speed": 1.56,
-            "crit_contribution_pct": 22,
+            "crit_contribution_pct": 13,
             "flat_damage_added": 0,
             "total_dps": 3398,
         },
@@ -215,7 +217,8 @@ DPS_SNAPSHOTS = [
         # average_hit     = 1199.66 + 126.28 = 1325.94
         # effective_as    = 1.2
         # hit_dps         = 1325.94 × 1.2 = 1591.13
-        # crit_contrib    = (126.28×1.2)/1591.13×100 = 9.52 → 10
+        # VERIFIED: 1.4.3 spec §2.2 — crit_contrib uses (multi − 1.0) uplift.
+        # crit_contrib    = (0.05×1262.8×1.0)/1325.94×100 = 4.76 → 5
         "stats": BuildStats(
             spell_damage_pct=100.0,
             fire_damage_pct=50.0,
@@ -228,7 +231,7 @@ DPS_SNAPSHOTS = [
             "average_hit": 1326,
             "dps": 1591,
             "effective_attack_speed": 1.2,
-            "crit_contribution_pct": 10,
+            "crit_contribution_pct": 5,
             "flat_damage_added": 0,
             "total_dps": 1591,
         },

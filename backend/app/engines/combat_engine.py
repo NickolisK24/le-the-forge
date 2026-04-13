@@ -25,8 +25,6 @@ from app.domain.calculators.skill_calculator import sum_flat_damage, scale_skill
 from app.domain.calculators.enemy_mitigation_calculator import (
     armor_mitigation,
     effective_resistance,
-    damage_multiplier as enemy_damage_multiplier,
-    weighted_damage_multiplier,
 )
 from app.domain.calculators.final_damage_calculator import DamageContext, calculate_final_damage
 from app.domain.calculators.conversion_calculator import DamageConversion, apply_conversions
@@ -349,12 +347,13 @@ def calculate_dps(
     # sum(scaled.values()) == total for any non-empty damage_types (split then re-sum).
     # Fall back to inline formula only when damage_types is empty (pending data migration).
     scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-    effective_base = scaled_total + flat_added
+    # VERIFIED: 1.4.3 spec §2.1 — flat added × effectiveness before summing
+    effective_base = scaled_total + flat_added * skill_def.added_damage_effectiveness
 
     damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
     hit_damage = damage.total
 
-    eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+    eff_crit_chance = effective_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
     eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
     average_hit = calculate_average_hit(hit_damage, eff_crit_chance, eff_crit_mult)
 
@@ -480,15 +479,20 @@ def monte_carlo_dps(
     scaled = scale_skill_damage(skill_def.base_damage, skill_def.level_scaling, skill_level, skill_def.damage_types)
     scaled = apply_conversions(scaled, conversions or [])
     scaled_total = sum(scaled.values()) if scaled else skill_def.base_damage * (1 + skill_def.level_scaling * (skill_level - 1))
-    effective_base = scaled_total + flat_added
+    # VERIFIED: 1.4.3 spec §2.1 — flat added × effectiveness before summing
+    effective_base = scaled_total + flat_added * skill_def.added_damage_effectiveness
 
     damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
     hit_damage = damage.total
 
-    eff_crit_chance = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+    eff_crit_chance = effective_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
     eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
     hpc = hits_per_cast(sm.added_hits_per_cast)
     effective_as = effective_attack_speed(skill_def, stats, sm)
+
+    # VERIFIED: DoT DPS is deterministic — added after variance rolls
+    bleed_dps, ignite_dps, poison_dps = calc_ailment_dps(hit_damage, effective_as, stats)
+    ailment_total = bleed_dps + ignite_dps + poison_dps
 
     # Build per-worker (chunk_size, sub_seed) pairs.
     # Remainder hits go to the first (n % workers) workers.
@@ -521,6 +525,10 @@ def monte_carlo_dps(
                 end = offset + len(chunk)
                 damages[offset:end] = chunk
                 offset = end
+
+    # VERIFIED: DoT DPS is deterministic — added after variance rolls
+    if ailment_total:
+        damages = [d + ailment_total for d in damages]
 
     damages.sort()
     mean = sum(damages) / n
@@ -563,18 +571,24 @@ def calculate_dps_vs_enemy(
     skill_name: str,
     skill_level: int,
     enemy_id: str = "training_dummy",
+    area_level: int = 100,
 ) -> EnemyAwareDPS:
     """
     Calculates effective DPS against a specific enemy profile from enemy_profiles.json.
 
     Applies:
-    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 1000)
+    - Enemy armor reduction formula: Mitigation = Armor / (Armor + 10 × area_level)
+      (VERIFIED: 1.4.3 spec §3.1 — armor formula is area-level-based)
     - Enemy resistances minus character penetration for matching damage types
     - Resistance cap at 75%
+    - Ailment DoT DPS bypasses armor entirely (VERIFIED: 1.4.3 spec §4.4 — DoTs are
+      mitigated only by resistances, not armor).
 
     Returns raw DPS (vs dummy) and effective DPS (vs enemy).
     """
     base_result = calculate_dps(stats, skill_name, skill_level)
+    hit_dps = base_result.dps
+    ailment_dps = base_result.ailment_dps
     raw_dps = base_result.total_dps
 
     enemy: EnemyProfile | None = get_enemy_profile(enemy_id)
@@ -613,22 +627,23 @@ def calculate_dps_vs_enemy(
     )
     effective_armor = max(0, enemy.armor - shred)
 
-    # Use proportion-weighted resistance when per-type damage breakdown is
+    # Armor only applies to hits; use the non-physical path when no physical
+    # damage is present in the skill's damage types.
+    has_physical = "physical" in skill_damage_types
+    armor_factor = 1.0 - armor_mitigation(effective_armor, area_level, physical=has_physical)
+
+    # Proportion-weighted resistance when a per-type damage breakdown is
     # available (populated by calculate_dps via DamageResult.damage_by_type).
     # Falls back to equal-weight average when breakdown is absent.
     if base_result.damage_by_type:
         from app.domain.calculators.damage_type_router import DamageType as _DT
-        damage_by_type_typed = {
-            _DT(k): v for k, v in base_result.damage_by_type.items()
-        }
-        multiplier = weighted_damage_multiplier(enemy, damage_by_type_typed, pen_map)
-        # Replace armor factor with shredded armor factor
-        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
-        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
-        if old_armor_factor > 0:
-            multiplier = multiplier / old_armor_factor * new_armor_factor
-        # avg_res for reporting: back-compute from the weighted multiplier + armor
-        res_factor = multiplier / new_armor_factor if new_armor_factor > 0 else 1.0
+        total = sum(base_result.damage_by_type.values()) or 1.0
+        res_factor = sum(
+            (amount / total) * (
+                1.0 - effective_resistance(enemy, dt, pen_map.get(dt, 0.0)) / 100.0
+            )
+            for dt, amount in base_result.damage_by_type.items()
+        )
         avg_res = (1.0 - res_factor) * 100.0
     else:
         res_values = [
@@ -636,21 +651,19 @@ def calculate_dps_vs_enemy(
             for dt in skill_damage_types
         ]
         avg_res = sum(res_values) / len(res_values) if res_values else 0.0
-        multiplier = enemy_damage_multiplier(enemy, skill_damage_types, pen_map)
-        # Replace armor factor with shredded armor
-        old_armor_factor = 1.0 - armor_mitigation(enemy.armor)
-        new_armor_factor = 1.0 - armor_mitigation(effective_armor)
-        if old_armor_factor > 0:
-            multiplier = multiplier / old_armor_factor * new_armor_factor
+        res_factor = 1.0 - avg_res / 100.0
 
-    effective_dps = round(raw_dps * multiplier)
+    # VERIFIED: 1.4.3 spec §4.4 — DoTs bypass armor; only resistances apply.
+    hit_multiplier = armor_factor * res_factor
+    ailment_multiplier = res_factor
+    effective_dps = round(hit_dps * hit_multiplier + ailment_dps * ailment_multiplier)
 
     return EnemyAwareDPS(
         skill_name=skill_name,
         enemy_id=enemy_id,
         raw_dps=raw_dps,
         effective_dps=effective_dps,
-        armor_reduction_pct=round(armor_mitigation(effective_armor) * 100, 1),
+        armor_reduction_pct=round(armor_mitigation(effective_armor, area_level, physical=has_physical) * 100, 1),
         avg_res_reduction_pct=round(avg_res, 1),
         penetration_applied=pen_map,
     )

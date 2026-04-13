@@ -194,7 +194,9 @@ class SkillExecutionEngine:
             debug_trace["hit_damage"] = round(hit_damage, 2)
 
         # 5 — Effective crit chance and multiplier (build + skill mods)
-        crit_ch = effective_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+        # VERIFIED: 1.4.3 spec §2.2 — skill-spec crit_chance_pct is a flat
+        # percent-point bonus added to base crit, not an "increased" multiplier.
+        crit_ch = effective_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
         crit_mul = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
 
         # 6 — Average hit (crit-weighted)
