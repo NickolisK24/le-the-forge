@@ -681,7 +681,10 @@ def aggregate_stats(
     stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health
 
     # 8. Apply % bonuses to base values
-    stats.crit_chance = effective_crit_chance(stats.crit_chance, stats.crit_chance_pct)
+    # VERIFIED: 1.4.3 spec §2.2 — stats.crit_chance_pct is the resolved
+    # "increased" pool from affixes and passives (e.g. "+15% Increased Critical
+    # Strike Chance"), applied multiplicatively on the base+flat crit chance.
+    stats.crit_chance = effective_crit_chance(stats.crit_chance, increased_pct=stats.crit_chance_pct)
     stats.crit_multiplier = effective_crit_multiplier(stats.crit_multiplier, stats.crit_multiplier_pct)
     stats.attack_speed   = apply_percent_bonus(stats.attack_speed, stats.attack_speed_pct)
 

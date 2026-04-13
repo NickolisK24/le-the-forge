@@ -21,6 +21,9 @@ HIT_DAMAGE_VARIANCE: float = 0.25
 IGNITE_BASE_DPS: float = 40.0     # 40 fire DoT per second per stack
 IGNITE_DURATION: float = 3.0      # seconds
 
+# UNVERIFIED: Last Epoch 1.4.3 publishes no single authoritative "base bleed DPS"
+# number. 43.0 is a community-derived approximation used across the engine and
+# regression tests; re-check before any patch-driven recalibration.
 BLEED_BASE_DPS: float = 43.0      # ~43 physical DoT per second per stack
 BLEED_DURATION: float = 4.0       # seconds
 
@@ -32,8 +35,3 @@ ELECTRIFY_DURATION: float = 2.5   # seconds
 
 # Boss ailment effectiveness reduction (60% less effective vs bosses)
 BOSS_AILMENT_REDUCTION: float = 0.60
-
-# Legacy ratio-based constants (kept for backward compatibility)
-BLEED_BASE_RATIO: float = 0.70
-IGNITE_DPS_RATIO: float = 0.20
-POISON_DPS_RATIO: float = 0.30

@@ -172,6 +172,7 @@ class TestCritFormula:
 
     def test_multiplicative_formula(self):
         """5% base, 100% increased → 5% x 2.0 = 10%."""
+        # Domain module keeps the old (base, increased_pct) positional shape.
         assert effective_crit_chance(0.05, 100.0) == pytest.approx(0.10)
 
     def test_200pct_increased_triples(self):
@@ -198,7 +199,9 @@ class TestCritFormula:
 
     def test_calculator_crit_chance_matches_domain(self):
         """Calculator module uses same multiplicative formula."""
-        assert calc_crit_chance(0.05, 100.0) == pytest.approx(0.10)
+        # VERIFIED: 1.4.3 spec §2.2 — calculator takes (base, flat_bonus_pct,
+        # increased_pct); passing only increased gives base × (1 + inc%).
+        assert calc_crit_chance(0.05, increased_pct=100.0) == pytest.approx(0.10)
 
 
 # ===========================================================================
@@ -369,7 +372,7 @@ class TestDPSBenchmark:
         damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled))
         hit_damage = damage.total
 
-        eff_crit_chance = calc_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+        eff_crit_chance = calc_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
         eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
         average_hit = calculate_average_hit(hit_damage, eff_crit_chance, eff_crit_mult)
 

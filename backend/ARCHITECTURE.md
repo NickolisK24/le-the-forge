@@ -738,11 +738,11 @@ frontend/src/
 | MAX_SUFFIXES | 2 | `app/constants/crafting.py` |
 | MAX_AFFIX_TIER | 7 | `app/game_data/constants.json` |
 | ENDURANCE_CAP | 60 | `app/constants/defense.py` |
-| BLEED_BASE_RATIO | 0.70 | `app/constants/combat.py` |
+| BLEED_BASE_DPS | 43.0 (UNVERIFIED) | `app/constants/combat.py` |
 | BLEED_DURATION | 4.0s | `app/constants/combat.py` |
-| IGNITE_DPS_RATIO | 0.20 | `app/constants/combat.py` |
+| IGNITE_BASE_DPS | 40.0 | `app/constants/combat.py` |
 | IGNITE_DURATION | 3.0s | `app/constants/combat.py` |
-| POISON_DPS_RATIO | 0.30 | `app/constants/combat.py` |
+| POISON_BASE_DPS | 28.0 | `app/constants/combat.py` |
 | POISON_DURATION | 3.0s | `app/constants/combat.py` |
 
 ---

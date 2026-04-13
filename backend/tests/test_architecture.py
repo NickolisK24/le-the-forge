@@ -190,7 +190,7 @@ class TestFunctionSignatures:
     def test_calculate_dps_vs_enemy_params(self):
         from app.engines.combat_engine import calculate_dps_vs_enemy
         assert _params(calculate_dps_vs_enemy) == [
-            "stats", "skill_name", "skill_level", "enemy_id",
+            "stats", "skill_name", "skill_level", "enemy_id", "area_level",
         ]
 
     def test_profile_call_params(self):
@@ -223,7 +223,7 @@ class TestFunctionSignatures:
 
     def test_effective_crit_chance_params(self):
         from app.domain.calculators.crit_calculator import effective_crit_chance
-        assert _params(effective_crit_chance) == ["base", "increased_pct"]
+        assert _params(effective_crit_chance) == ["base", "flat_bonus_pct", "increased_pct"]
 
     def test_calculate_average_hit_params(self):
         from app.domain.calculators.crit_calculator import calculate_average_hit
