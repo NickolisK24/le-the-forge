@@ -14,7 +14,6 @@ import type { Build, BuildSkill, CharacterClass, AffixOnItem } from "@/types";
 import { versionApi, simulateApi, buildsApi, viewApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
 import type { OptimizeMode } from "@/types";
-import SimulationDashboard from "./SimulationDashboard";
 import StatUpgradePanel from "./StatUpgradePanel";
 import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
 import BuildPassiveTree from "./BuildPassiveTree";
@@ -26,6 +25,11 @@ import SkillSelector from "./SkillSelector";
 import BossEncounterPanel from "./BossEncounterPanel";
 import CorruptionScalingPanel from "./CorruptionScalingPanel";
 import GearUpgradePanel from "./GearUpgradePanel";
+import BuildScoreCard from "./simulation/BuildScoreCard";
+import AccordionSection from "./simulation/AccordionSection";
+import OffenseDefenseSplit from "./simulation/OffenseDefenseSplit";
+import PrimarySkillBreakdown from "./simulation/PrimarySkillBreakdown";
+import AllSkillsSummary from "./simulation/AllSkillsSummary";
 import { resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
 
@@ -610,44 +614,88 @@ function BuildSummary({ build }: { build: Build }) {
           )}
         </Panel>
 
-        {/* Simulation results dashboard */}
+        {/* Simulation results — restructured 6-section UX */}
         {showDashboard && simResult && (
-          <div className="mt-2">
-            <SimulationDashboard result={simResult} />
-          </div>
-        )}
-
-        {/* Phase 4: Optimization panels */}
-        {showDashboard && simResult && (
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            <StatUpgradePanel
-              rankings={optimizeQuery.data?.stat_rankings ?? []}
-              mode={optimizeMode}
-              onModeChange={setOptimizeMode}
-              isLoading={optimizeQuery.isLoading}
-              error={optimizeQuery.error}
-              onRetry={() => optimizeQuery.refetch()}
+          <div className="mt-2 flex flex-col gap-6 min-w-0">
+            {/* SECTION 1 — Build Score Card (hero, above fold) */}
+            <BuildScoreCard
+              skillName={simResult.primary_skill}
+              characterClass={build.character_class}
+              mastery={build.mastery}
+              dps={simResult.dps.total_dps ?? simResult.dps.dps ?? 0}
+              effectiveHp={simResult.defense.effective_hp}
+              survivabilityScore={simResult.defense.survivability_score}
+              weaknesses={simResult.defense.weaknesses ?? []}
+              topUpgrade={simResult.stat_upgrades?.[0]?.label ?? null}
             />
-            <UpgradeCandidatesPanel
-              candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
-              isLoading={optimizeQuery.isLoading}
-              error={optimizeQuery.error}
-              onRetry={() => optimizeQuery.refetch()}
-            />
-          </div>
-        )}
 
-        {/* Phase 7: Advanced analysis panels */}
-        {showDashboard && simResult && build.slug && (
-          <>
-            <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              <BossEncounterPanel slug={build.slug} />
-              <CorruptionScalingPanel slug={build.slug} />
+            {/* SECTION 2 — Offense vs Defense split */}
+            <OffenseDefenseSplit
+              dps={simResult.dps}
+              defense={simResult.defense}
+              stats={simResult.stats}
+            />
+
+            {/* SECTION 3 — Primary skill breakdown */}
+            <PrimarySkillBreakdown
+              skillName={simResult.primary_skill}
+              dps={simResult.dps}
+              skills={simResult.dps_per_skill}
+            />
+
+            {/* SECTION 4 — All skills summary */}
+            <AllSkillsSummary
+              skills={build.skills.map((s) => ({
+                slot: s.slot,
+                skill_name: s.skill_name,
+                points_allocated: s.points_allocated,
+              }))}
+              dpsPerSkill={simResult.dps_per_skill}
+            />
+
+            {/* SECTION 5 — What To Improve Next */}
+            <div className="flex flex-col gap-3 min-w-0">
+              <div className="flex flex-col gap-1">
+                <h3 className="font-display text-lg font-bold tracking-wider text-forge-text">
+                  What To Improve Next
+                </h3>
+                <p className="font-body text-sm text-forge-dim">
+                  Highest-impact stat upgrades and affix swaps ranked by simulated DPS &amp; effective HP gains.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                <StatUpgradePanel
+                  rankings={optimizeQuery.data?.stat_rankings ?? []}
+                  mode={optimizeMode}
+                  onModeChange={setOptimizeMode}
+                  isLoading={optimizeQuery.isLoading}
+                  error={optimizeQuery.error}
+                  onRetry={() => optimizeQuery.refetch()}
+                />
+                <UpgradeCandidatesPanel
+                  candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
+                  isLoading={optimizeQuery.isLoading}
+                  error={optimizeQuery.error}
+                  onRetry={() => optimizeQuery.refetch()}
+                />
+              </div>
             </div>
-            <div className="mt-4">
-              <GearUpgradePanel slug={build.slug} />
-            </div>
-          </>
+
+            {/* SECTION 6 — Advanced Analysis (collapsed by default) */}
+            {build.slug && (
+              <AccordionSection
+                title="Advanced Analysis — Boss Encounters, Corruption Scaling & Gear Upgrades"
+                storageKey="forge_advanced_analysis_open"
+                defaultOpen={false}
+              >
+                <div className="grid gap-4 lg:grid-cols-2 min-w-0">
+                  <BossEncounterPanel slug={build.slug} />
+                  <CorruptionScalingPanel slug={build.slug} />
+                </div>
+                <GearUpgradePanel slug={build.slug} />
+              </AccordionSection>
+            )}
+          </div>
         )}
       </div>
     );
