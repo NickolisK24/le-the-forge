@@ -73,9 +73,11 @@ describe("useLiveStats — stat computation", () => {
     expect(withCrit.result.current.stats.effectiveCritChance).toBeGreaterThan(0.05);
   });
 
-  it("effectiveCritMultiplier is at least 1.5 (base)", () => {
+  it("effectiveCritMultiplier is at least 2.0 (base)", () => {
+    // FIXED: was asserting pre-fix incorrect value (1.5).
+    // 1.4.3 spec §2.2: base crit multiplier is 200% = 2.0×.
     const { result } = renderHook(() => useLiveStats(EMPTY_SOURCE));
-    expect(result.current.stats.effectiveCritMultiplier).toBeGreaterThanOrEqual(1.5);
+    expect(result.current.stats.effectiveCritMultiplier).toBeGreaterThanOrEqual(2.0);
   });
 
   it("manaPool is positive", () => {

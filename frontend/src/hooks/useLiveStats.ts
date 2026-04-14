@@ -35,7 +35,8 @@ export interface LiveStatsResult {
 const DEFAULT_STATS: ComputedStats = {
   totalDps: 0,
   effectiveCritChance: 0,
-  effectiveCritMultiplier: 1.5,
+  // VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 200% = 2.0×
+  effectiveCritMultiplier: 2.0,
   totalArmor: 0,
   totalResistances: {},
   manaPool: 200,
@@ -80,7 +81,8 @@ function computeStats(source: StatSource): ComputedStats {
   const critBonus = (gearStats["crit_chance"] ?? 0) / 100;
   const effectiveCritChance = Math.min(1, baseCrit + critBonus);
 
-  const baseCritMult = 1.5;
+  // VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 200% = 2.0×
+  const baseCritMult = 2.0;
   const critMultBonus = (gearStats["crit_multiplier"] ?? 0) / 100;
   const effectiveCritMultiplier = baseCritMult + critMultBonus;
 
