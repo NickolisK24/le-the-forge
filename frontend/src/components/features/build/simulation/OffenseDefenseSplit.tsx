@@ -107,7 +107,7 @@ function OffenseCard({ dps, stats }: { dps: DPSResult; stats: Record<string, num
           tier={getBenchmarkTier("total_dps", totalDps)}
         />
         <StatRow
-          label="Hit Damage DPS"
+          label={statLabel("hit_dps")}
           value={fmt(dps.dps)}
         />
         {dps.ailment_dps > 0 && (
@@ -162,9 +162,9 @@ function DefenseCard({ def }: { def: DefenseResult }) {
           />
         )}
         <StatRow
-          label={statLabel("armor_mitigation_pct")}
+          label={statLabel("armor_reduction_pct")}
           value={fmtPct(def.armor_reduction_pct)}
-          tier={getBenchmarkTier("armor_mitigation_pct", def.armor_reduction_pct)}
+          tier={getBenchmarkTier("armor_reduction_pct", def.armor_reduction_pct)}
         />
         <StatRow
           label={statLabel("avg_resistance")}

@@ -7,6 +7,7 @@
  */
 
 import { Panel } from "@/components/ui";
+import { statLabel } from "@/constants/statLabels";
 
 // ---------------------------------------------------------------------------
 // Props
@@ -223,7 +224,7 @@ export default function BuildScoreCard({
               </>
             ) : (
               <>
-                <StatPill label="Total DPS" value={fmt(dps)} />
+                <StatPill label={statLabel("total_dps")} value={fmt(dps)} />
                 <StatPill label="Effective HP" value={fmt(effectiveHp)} />
                 <StatPill
                   label="Survivability"

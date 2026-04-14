@@ -147,7 +147,7 @@ export default function PrimarySkillBreakdown({
       )}
 
       <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mb-4">
-        <Stat label="Per-Hit Damage" value={fmt(dps.hit_damage)} />
+        <Stat label={statLabel("hit_damage")} value={fmt(dps.hit_damage)} />
         <Stat label={statLabel("average_hit")} value={fmt(dps.average_hit)} />
         <Stat
           label={statLabel("effective_attack_speed")}

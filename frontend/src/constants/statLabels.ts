@@ -26,7 +26,7 @@ export const STAT_LABELS: Record<string, string> = {
   total_ehp: "Total Effective HP (with Ward)",
   ward_buffer: "Ward Buffer",
   armour: "Armor",
-  armor_mitigation_pct: "Armor Damage Reduction",
+  armor_reduction_pct: "Armor Damage Reduction",
   avg_resistance: "Average Resistance",
   fire_res: "Fire Resistance",
   cold_res: "Cold Resistance",

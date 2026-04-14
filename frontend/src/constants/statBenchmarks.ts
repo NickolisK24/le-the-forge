@@ -14,7 +14,7 @@ export const STAT_BENCHMARKS: Record<string, { weak: number; strong: number }> =
   survivability_score:  { weak: 50,    strong: 75 },
   crit_chance:          { weak: 0.20,  strong: 0.40 },
   avg_resistance:       { weak: 50,    strong: 70 },
-  armor_mitigation_pct: { weak: 20,    strong: 50 },
+  armor_reduction_pct:  { weak: 20,    strong: 50 },
   dodge_chance_pct:     { weak: 15,    strong: 40 },
 };
 
