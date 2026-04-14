@@ -12,6 +12,7 @@ import { Fragment, useState } from "react";
 import { clsx } from "clsx";
 import { Panel, Badge } from "@/components/ui";
 import type { SkillDpsEntry } from "@/lib/api";
+import { statLabel } from "@/constants/statLabels";
 
 // ---------------------------------------------------------------------------
 // Client-side classifier (mirror of backend skill_classifier.py)
@@ -222,11 +223,11 @@ export default function AllSkillsSummary({
                             value={row.skill_level > 0 ? String(row.skill_level) : "—"}
                           />
                           <DetailCell
-                            label="Hit DPS"
+                            label={statLabel("hit_dps")}
                             value={row.dpsEntry ? fmt(row.dpsEntry.dps) : "—"}
                           />
                           <DetailCell
-                            label="Total DPS"
+                            label={statLabel("total_dps")}
                             value={row.dpsEntry ? fmt(row.dpsEntry.total_dps) : "—"}
                           />
                         </div>
