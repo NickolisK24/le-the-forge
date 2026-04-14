@@ -7,9 +7,10 @@ import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/compo
 import PageMeta from "@/components/PageMeta";
 import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
-import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
+import { CLASS_COLORS, CLASS_SKILLS, MASTERIES, getAffixValue } from "@/lib/gameData";
+import type { GearItem, GearAffix } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
-import type { Build, BuildSkill, CharacterClass } from "@/types";
+import type { Build, BuildSkill, CharacterClass, AffixOnItem } from "@/types";
 import { versionApi, simulateApi, buildsApi, viewApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
 import type { OptimizeMode } from "@/types";
@@ -20,6 +21,7 @@ import BuildPassiveTree from "./BuildPassiveTree";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
+import GearSlotEditor from "./GearSlotEditor";
 import SkillSelector from "./SkillSelector";
 import BossEncounterPanel from "./BossEncounterPanel";
 import CorruptionScalingPanel from "./CorruptionScalingPanel";
@@ -58,6 +60,172 @@ function FlagToggle({
       </div>
       <span className="font-body text-sm text-forge-text">{label}</span>
     </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// QuickGearGrid — 11-slot grid that opens GearSlotEditor per slot.
+// Used in create mode so users can craft affixes on each gear piece without
+// leaving the build planner.
+// ---------------------------------------------------------------------------
+const QUICK_SLOT_DEFS = [
+  { key: "helmet",  label: "Helm",        icon: "⛑",  slotType: "Helm",   storeSlot: "helmet",  occurrence: 0 },
+  { key: "body",    label: "Body Armour", icon: "🧥", slotType: "Chest",  storeSlot: "body",    occurrence: 0 },
+  { key: "gloves",  label: "Gloves",      icon: "🧤", slotType: "Gloves", storeSlot: "gloves",  occurrence: 0 },
+  { key: "boots",   label: "Boots",       icon: "👢", slotType: "Boots",  storeSlot: "boots",   occurrence: 0 },
+  { key: "belt",    label: "Belt",        icon: "➰", slotType: "Belt",   storeSlot: "belt",    occurrence: 0 },
+  { key: "amulet",  label: "Amulet",      icon: "📿", slotType: "Amulet", storeSlot: "amulet",  occurrence: 0 },
+  { key: "ring_1",  label: "Ring 1",      icon: "💍", slotType: "Ring",   storeSlot: "ring",    occurrence: 0 },
+  { key: "ring_2",  label: "Ring 2",      icon: "💍", slotType: "Ring",   storeSlot: "ring",    occurrence: 1 },
+  { key: "weapon",  label: "Weapon",      icon: "⚔",  slotType: "Wand",   storeSlot: "weapon",  occurrence: 0 },
+  { key: "offhand", label: "Off-hand",    icon: "🛡", slotType: "Shield", storeSlot: "offhand", occurrence: 0 },
+  // Relic uses Amulet-class affixes as proxy (AFFIX_DEFINITIONS has no "Relic"
+  // applicable tag; spell-caster affixes on relics mirror amulet roll tables).
+  { key: "relic",   label: "Relic",       icon: "🔮", slotType: "Amulet", storeSlot: "relic",   occurrence: 0 },
+] as const;
+
+function findGearAt(gear: GearSlot[], storeSlot: string, occurrence: number): GearSlot | undefined {
+  let seen = 0;
+  for (const g of gear) {
+    if (g.slot === storeSlot) {
+      if (seen === occurrence) return g;
+      seen++;
+    }
+  }
+  return undefined;
+}
+
+function removeGearAt(gear: GearSlot[], storeSlot: string, occurrence: number): GearSlot[] {
+  let seen = 0;
+  return gear.filter((g) => {
+    if (g.slot !== storeSlot) return true;
+    const keep = seen !== occurrence;
+    seen++;
+    return keep;
+  });
+}
+
+function upsertGearAt(
+  gear: GearSlot[],
+  storeSlot: string,
+  occurrence: number,
+  next: GearSlot,
+): GearSlot[] {
+  let seen = 0;
+  let replaced = false;
+  const result: GearSlot[] = [];
+  for (const g of gear) {
+    if (g.slot === storeSlot) {
+      if (seen === occurrence) {
+        result.push(next);
+        replaced = true;
+      } else {
+        result.push(g);
+      }
+      seen++;
+    } else {
+      result.push(g);
+    }
+  }
+  if (!replaced) result.push(next);
+  return result;
+}
+
+function slotToItem(slot: GearSlot | undefined, storeSlot: string): GearItem | undefined {
+  if (!slot) return undefined;
+  const rarity = (slot.rarity ?? "rare") as GearItem["rarity"];
+  const safeRarity: GearItem["rarity"] =
+    rarity === "normal" || rarity === "magic" || rarity === "rare" || rarity === "exalted"
+      ? rarity
+      : "rare";
+  return {
+    slot: storeSlot,
+    rarity: safeRarity,
+    affixes: (slot.affixes ?? []).map((a): GearAffix => ({
+      name: a.name,
+      tier: a.tier,
+      value: getAffixValue(a.name, a.tier),
+    })),
+  };
+}
+
+function itemToSlot(item: GearItem, storeSlot: string, previousItemName?: string): GearSlot {
+  return {
+    slot: storeSlot,
+    item_name: previousItemName,
+    rarity: item.rarity,
+    affixes: item.affixes.map((a): AffixOnItem => ({
+      name: a.name,
+      tier: a.tier,
+      sealed: false,
+    })),
+  };
+}
+
+function QuickGearGrid({
+  gear, onChange,
+}: { gear: GearSlot[]; onChange: (g: GearSlot[]) => void }) {
+  const [editingKey, setEditingKey] = useState<string | null>(null);
+
+  const activeDef = editingKey
+    ? QUICK_SLOT_DEFS.find((d) => d.key === editingKey) ?? null
+    : null;
+  const activeExisting = activeDef
+    ? findGearAt(gear, activeDef.storeSlot, activeDef.occurrence)
+    : undefined;
+
+  return (
+    <>
+      <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+        {QUICK_SLOT_DEFS.map((def) => {
+          const equipped = findGearAt(gear, def.storeSlot, def.occurrence);
+          const affixCount = equipped?.affixes?.length ?? 0;
+          const hasItem = !!equipped;
+          return (
+            <button
+              key={def.key}
+              type="button"
+              onClick={() => setEditingKey(def.key)}
+              className={`relative flex flex-col items-center justify-center gap-1 border rounded-sm px-2 py-3 cursor-pointer transition-colors ${
+                hasItem
+                  ? "border-forge-amber/60 bg-forge-amber/10 hover:bg-forge-amber/15"
+                  : "border-forge-border bg-forge-surface2 hover:border-forge-border-hot"
+              }`}
+              aria-label={`Edit ${def.label}`}
+            >
+              <span className="text-2xl leading-none">{def.icon}</span>
+              <span className="font-mono text-[9px] uppercase tracking-wider text-forge-dim">
+                {def.label}
+              </span>
+              {affixCount > 0 && (
+                <span className="absolute top-1 right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-forge-amber text-forge-bg font-mono text-[10px] font-bold flex items-center justify-center">
+                  {affixCount}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {activeDef && (
+        <GearSlotEditor
+          slot={activeDef.label}
+          slotIcon={activeDef.icon}
+          slotType={activeDef.slotType}
+          initial={slotToItem(activeExisting, activeDef.storeSlot)}
+          onSave={(item) => {
+            const next = itemToSlot(item, activeDef.storeSlot, activeExisting?.item_name);
+            onChange(upsertGearAt(gear, activeDef.storeSlot, activeDef.occurrence, next));
+            setEditingKey(null);
+          }}
+          onClear={() => {
+            onChange(removeGearAt(gear, activeDef.storeSlot, activeDef.occurrence));
+            setEditingKey(null);
+          }}
+          onClose={() => setEditingKey(null)}
+        />
+      )}
+    </>
   );
 }
 
@@ -1182,7 +1350,7 @@ export default function BuildPlannerPage() {
         </Panel>
 
         <Panel title={`Gear (${draftGear.length} equipped)`}>
-          <GearEditor
+          <QuickGearGrid
             gear={draftGear}
             onChange={setDraftGear}
           />

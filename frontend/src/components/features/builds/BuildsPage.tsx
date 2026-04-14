@@ -53,6 +53,7 @@ function BuildCard({
 }) {
   const { user } = useAuthStore();
   const vote = useVote();
+  const navigate = useNavigate();
 
   const tierColor = TIER_COLORS[build.tier ?? "C"];
   const classColor = CLASS_COLORS[build.character_class] ?? "#8890b8";
@@ -60,20 +61,43 @@ function BuildCard({
   // the backend has assigned one explicitly (i.e. there is simulation data).
   const hasRating = Boolean(build.tier);
 
-  function handleVote(dir: 1 | -1) {
+  function handleVote(e: React.MouseEvent, dir: 1 | -1) {
+    e.stopPropagation();
     if (!user) return;
     vote.mutate({ slug: build.slug, direction: dir });
   }
 
+  function handleCompare(e: React.MouseEvent) {
+    e.stopPropagation();
+    onCompareToggle(build.slug);
+  }
+
+  function handleCardClick() {
+    navigate(`/build/${build.slug}`);
+  }
+
+  function handleCardKey(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key === "Enter" || e.key === " ") {
+      e.preventDefault();
+      navigate(`/build/${build.slug}`);
+    }
+  }
+
   return (
-    <div className="bg-forge-surface border border-forge-border rounded transition-all duration-200 hover:border-forge-border-hot group"
+    <div
+      className="bg-forge-surface border border-forge-border rounded transition-all duration-200 hover:border-forge-border-hot group cursor-pointer"
       style={{ boxShadow: "0 2px 12px rgba(0,0,0,0.3)" }}
+      onClick={handleCardClick}
+      onKeyDown={handleCardKey}
+      role="link"
+      tabIndex={0}
+      aria-label={`Open build ${build.name}`}
     >
       <div className="flex items-stretch">
         {/* Vote column */}
         <div className="flex flex-col items-center justify-center gap-1.5 px-4 py-4 border-r border-forge-border/50 min-w-[52px]">
           <button
-            onClick={() => handleVote(1)}
+            onClick={(e) => handleVote(e, 1)}
             disabled={!user || vote.isPending}
             className="font-mono text-sm text-forge-dim hover:text-forge-amber disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors"
           >▲</button>
@@ -81,7 +105,7 @@ function BuildCard({
             {build.vote_count}
           </span>
           <button
-            onClick={() => handleVote(-1)}
+            onClick={(e) => handleVote(e, -1)}
             disabled={!user || vote.isPending}
             className="font-mono text-sm text-forge-dim hover:text-forge-red disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors"
           >▼</button>
@@ -145,7 +169,7 @@ function BuildCard({
                 </span>
               )}
               <button
-                onClick={() => onCompareToggle(build.slug)}
+                onClick={handleCompare}
                 title={isCompareSelected ? "Remove from comparison" : "Add to comparison"}
                 className={clsx(
                   "font-mono text-[10px] uppercase tracking-widest px-2 py-1 border rounded-sm cursor-pointer transition-all",
