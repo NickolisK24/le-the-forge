@@ -11,15 +11,85 @@ Workflow:
 Pure module — no DB, no HTTP.
 """
 
+import re
 from dataclasses import dataclass, asdict
 
 from app.constants.combat import CRIT_CHANCE_CAP
+from app.domain.calculators.damage_type_router import (
+    combined_increased_stats,
+    tags_for_stats,
+)
 from app.engines.stat_engine import BuildStats
-from app.engines.combat_engine import calculate_dps
+from app.engines.combat_engine import calculate_dps, _get_skill_def
 from app.engines.defense_engine import calculate_defense
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
+
+
+def _normalize_skill_name(skill_name: str) -> str:
+    """Convert a skill name from snake_case / lowercase / CamelCase to the
+    title-case-with-spaces form used as keys in ``combat_engine.SKILL_STATS``.
+
+    Build imports from Last Epoch Tools and Maxroll emit skill names in
+    various casings (e.g. ``"shadow_cascade"`` or ``"ShadowCascade"``), but
+    ``SKILL_STATS`` is keyed by the in-game display name (``"Shadow Cascade"``).
+    Without normalization ``_get_skill_def`` returns ``None``, ``calculate_dps``
+    zeroes out, and the optimizer's rankings become meaningless.
+
+    Examples:
+        ``"shadow_cascade"`` → ``"Shadow Cascade"``
+        ``"shadow cascade"`` → ``"Shadow Cascade"``
+        ``"ShadowCascade"``  → ``"Shadow Cascade"``
+        ``"Shadow Cascade"`` → ``"Shadow Cascade"`` (no-op)
+    """
+    if not skill_name:
+        return skill_name
+    # Insert a space between a lowercase letter and a following uppercase
+    # letter so that CamelCase splits on word boundaries.
+    spaced = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", skill_name)
+    # Convert snake_case / kebab-case separators to spaces.
+    spaced = spaced.replace("_", " ").replace("-", " ")
+    # Collapse consecutive whitespace and title-case each word.
+    return " ".join(spaced.split()).title()
+
+
+def _applicable_damage_stat_keys(skill_name: str) -> frozenset[str] | None:
+    """Return the set of ``*_damage_pct`` stat keys that can actually scale
+    ``skill_name``'s damage, or ``None`` if the skill is unknown.
+
+    Uses :func:`combined_increased_stats` over the skill's declared damage
+    types plus any tag-modifier stats in its ``scaling_stats`` tuple, then
+    adds the delivery-tag stats for ``is_melee`` / ``is_throwing`` / ``is_bow``
+    flags (those tags are typically tracked as booleans rather than via
+    ``scaling_stats`` entries).
+
+    Example — Shadow Cascade (physical+void, is_melee=True):
+        → {"physical_damage_pct", "void_damage_pct", "melee_damage_pct"}
+
+    A ``None`` return signals "unknown skill — do not filter", so callers
+    fall back to testing every candidate increment rather than silently
+    dropping all of them.
+    """
+    skill_def = _get_skill_def(skill_name)
+    if skill_def is None:
+        return None
+
+    applicable = set(combined_increased_stats(
+        skill_def.damage_types,
+        tags_for_stats(skill_def.scaling_stats),
+    ))
+
+    # Delivery tags are stored as booleans on SkillStatDef, so combine them
+    # into the applicable set explicitly.
+    if skill_def.is_melee:
+        applicable.add("melee_damage_pct")
+    if skill_def.is_throwing:
+        applicable.add("throwing_damage_pct")
+    if skill_def.is_bow:
+        applicable.add("bow_damage_pct")
+
+    return frozenset(applicable)
 
 
 @dataclass
@@ -86,6 +156,16 @@ STAT_TEST_INCREMENTS: list = [
 ]
 
 
+# Every *_damage_pct candidate tested by this engine. Used together with
+# :func:`_applicable_damage_stat_keys` to skip damage buckets a skill can't
+# actually use (e.g. fire_damage_pct for a pure-physical build), which would
+# otherwise produce 0% dps_gain rows and pollute the top-N ranking whenever
+# the sort falls back to insertion order.
+_ALL_DAMAGE_PCT_KEYS: frozenset[str] = frozenset(
+    inc["key"] for inc in STAT_TEST_INCREMENTS if inc["key"].endswith("_damage_pct")
+)
+
+
 def get_stat_upgrades(
     stats: BuildStats,
     primary_skill: str,
@@ -104,9 +184,29 @@ def get_stat_upgrades(
     Returns:
         List of StatUpgrade sorted by dps_gain_pct descending, length top_n.
     """
+    # Normalize incoming skill names (snake_case / CamelCase / etc.) to the
+    # title-case-with-spaces form SKILL_STATS is keyed by, so that imported
+    # builds from LE Tools / Maxroll don't silently produce zero DPS rankings.
+    primary_skill = _normalize_skill_name(primary_skill)
+
     log.info("get_stat_upgrades.start", skill=primary_skill, top_n=top_n)
     base_dps = calculate_dps(stats, primary_skill, skill_level).dps
     base_ehp = calculate_defense(stats).effective_hp
+
+    if base_dps == 0:
+        log.warning(
+            "get_stat_upgrades.zero_baseline_dps",
+            skill=primary_skill,
+            message=(
+                "Baseline DPS is 0 — skill definition not found in SKILL_STATS. "
+                "Stat upgrade rankings will be meaningless (all dps_gain_pct=0)."
+            ),
+        )
+
+    # Restrict %-damage testing to buckets the skill can actually use
+    # (e.g. Shadow Cascade → physical/void/melee). Non-damage stats like
+    # resistances, crit, speed, and flat added damage are always tested.
+    applicable_damage_keys = _applicable_damage_stat_keys(primary_skill)
 
     results = []
 
@@ -114,6 +214,15 @@ def get_stat_upgrades(
         key = increment["key"]
         delta = increment["delta"]
         label = increment["label"]
+
+        # Skip %-damage stats the skill cannot scale with — they'd always
+        # return 0% DPS gain and pollute the ranking.
+        if (
+            key in _ALL_DAMAGE_PCT_KEYS
+            and applicable_damage_keys is not None
+            and key not in applicable_damage_keys
+        ):
+            continue
 
         # Clone stats and apply delta
         from copy import copy as _copy
@@ -254,9 +363,22 @@ def stat_sensitivity(
 
     # Build the stat list to test
     if stat_keys:
+        # Caller specified an explicit list — respect it verbatim.
         increments = [{"key": k, "delta": delta} for k in stat_keys if hasattr(stats, k)]
     else:
-        increments = [{"key": inc["key"], "delta": delta} for inc in STAT_TEST_INCREMENTS]
+        # No explicit list — test every candidate, but restrict %-damage
+        # buckets to those the skill can actually scale with (same filter as
+        # get_stat_upgrades) so unusable damage types don't produce noise.
+        applicable_damage_keys = _applicable_damage_stat_keys(primary_skill)
+        increments = [
+            {"key": inc["key"], "delta": delta}
+            for inc in STAT_TEST_INCREMENTS
+            if not (
+                inc["key"] in _ALL_DAMAGE_PCT_KEYS
+                and applicable_damage_keys is not None
+                and inc["key"] not in applicable_damage_keys
+            )
+        ]
 
     results = []
     for inc in increments:
@@ -334,8 +456,9 @@ def find_best_affix_upgrade(
     """
     from app.engines.stat_engine import aggregate_stats
 
-    # Resolve skill
+    # Resolve skill and normalize casing (imports may use snake_case / CamelCase).
     skill = primary_skill or build.get("primary_skill") or "Fireball"
+    skill = _normalize_skill_name(skill)
 
     # Build the keyword dict aggregate_stats expects
     gear = build.get("gear", [])
