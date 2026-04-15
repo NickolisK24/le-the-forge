@@ -65,6 +65,47 @@ def _extract_conversions(
         return []
 
 
+_CONVERSION_DATA_GAP_NOTE = (
+    "Conversion nodes were allocated in the skill tree but could not be "
+    "parsed from their narrative description. Optimization recommendations "
+    "may not reflect this build's actual damage type — use with care."
+)
+
+
+def _conversion_data_gap_info(
+    skill_name: str,
+    spec_tree: list[dict] | None,
+    conversions: list,
+) -> dict:
+    """Return the conversion-data-gap fields when the skill tree mentions
+    conversions that the parser couldn't extract.
+
+    Emits ``{"conversion_data_gap": True, "conversion_data_gap_note": ...}``
+    when :func:`_extract_conversions` produced an empty list but the
+    allocated spec_tree still contains at least one node whose description
+    uses ``"->"`` (i.e. a narrative-only conversion node). Returns ``{}``
+    otherwise so callers can ``**``-merge the result unconditionally.
+    """
+    if conversions or not spec_tree:
+        return {}
+    try:
+        from app.services.skill_tree_resolver import find_narrative_conversion_nodes
+        arrow_nodes = find_narrative_conversion_nodes(skill_name, spec_tree)
+    except Exception as exc:
+        log.warning(
+            "conversion_data_gap_check.failed",
+            skill=skill_name,
+            error=str(exc),
+        )
+        return {}
+    if not arrow_nodes:
+        return {}
+    return {
+        "conversion_data_gap": True,
+        "conversion_data_gap_note": _CONVERSION_DATA_GAP_NOTE,
+    }
+
+
 def aggregate_stats(
     character_class: str,
     mastery: str,
@@ -124,6 +165,7 @@ def simulate_combat(
         "dps": dps_result.to_dict(),
         "monte_carlo": mc_result.to_dict(),
         "seed": seed,
+        **_conversion_data_gap_info(skill_name, spec_tree, conversions),
     }
 
 
@@ -239,6 +281,7 @@ def simulate_full_build(
         "defense": defense_result.to_dict(),
         "stat_upgrades": [u.to_dict() for u in upgrades],
         "seed": seed,
+        **_conversion_data_gap_info(skill_name, spec_tree, conversions),
     }
 
 
