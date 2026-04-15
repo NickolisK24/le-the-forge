@@ -267,65 +267,61 @@ class TestApplyDerivedStats:
 # 4. apply_conversions()
 # ---------------------------------------------------------------------------
 
-class TestApplyConversions:
-    def test_no_conversion_no_change(self):
-        s = _stats(fire_damage_pct=50.0)
-        apply_conversions(s, None)
-        assert s.fire_damage_pct == pytest.approx(50.0)
+class TestApplyConversionsIsNoop:
+    """Layer 5 ``apply_conversions`` is intentionally a no-op.
 
-    def test_empty_conversion_list_no_change(self):
-        s = _stats(fire_damage_pct=50.0)
-        apply_conversions(s, [])
-        assert s.fire_damage_pct == pytest.approx(50.0)
+    The previous stat-level percentage-copy implementation was
+    mechanically wrong for Last Epoch (it kept both source and target
+    increased pools active, double-counting). Correct conversion is
+    handled by ``DamageConversion`` objects at the DPS calculation
+    layer — see ``combat_engine.calculate_dps``. These tests lock in
+    the no-op contract: no BuildStats field may change as a result of
+    calling ``apply_conversions``, and every input shape the old API
+    accepted must still not raise.
+    """
 
-    def test_physical_to_fire_50pct(self):
-        s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0)
-        apply_conversions(s, [{"from": "physical", "to": "fire", "pct": 50}])
-        assert s.fire_damage_pct == pytest.approx(50.0)
-
-    def test_source_stat_unchanged_by_conversion(self):
-        s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0)
-        apply_conversions(s, [{"from": "physical", "to": "fire", "pct": 50}])
-        # Source remains (conversion adds, doesn't remove)
-        assert s.physical_damage_pct == pytest.approx(100.0)
-
-    def test_100pct_conversion(self):
-        s = _stats(cold_damage_pct=80.0, lightning_damage_pct=0.0)
-        apply_conversions(s, [{"from": "cold", "to": "lightning", "pct": 100}])
-        assert s.lightning_damage_pct == pytest.approx(80.0)
-
-    def test_zero_pct_conversion_no_change(self):
-        s = _stats(fire_damage_pct=100.0, cold_damage_pct=0.0)
-        apply_conversions(s, [{"from": "fire", "to": "cold", "pct": 0}])
+    def test_no_damage_pct_field_is_modified(self):
+        s = _stats(
+            physical_damage_pct=200.0,
+            fire_damage_pct=0.0,
+            cold_damage_pct=0.0,
+        )
+        apply_conversions(s, [{"from": "physical", "to": "fire", "pct": 100}])
+        assert s.physical_damage_pct == pytest.approx(200.0)
+        assert s.fire_damage_pct == pytest.approx(0.0)
         assert s.cold_damage_pct == pytest.approx(0.0)
 
-    def test_multiple_conversions_stack(self):
-        s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0, cold_damage_pct=0.0)
-        conversions = [
-            {"from": "physical", "to": "fire", "pct": 30},
-            {"from": "physical", "to": "cold", "pct": 20},
-        ]
-        apply_conversions(s, conversions)
-        assert s.fire_damage_pct == pytest.approx(30.0)
-        assert s.cold_damage_pct == pytest.approx(20.0)
+    def test_buildstats_identical_before_and_after(self):
+        s = _stats(
+            physical_damage_pct=150.0,
+            fire_damage_pct=40.0,
+            cold_damage_pct=25.0,
+            lightning_damage_pct=60.0,
+            max_health=2000.0,
+            crit_multiplier_pct=80.0,
+        )
+        before = asdict(s)
+        apply_conversions(
+            s,
+            [
+                {"from": "physical", "to": "fire", "pct": 50},
+                {"from": "cold", "to": "lightning", "pct": 25},
+            ],
+        )
+        after = asdict(s)
+        assert before == after
 
-    def test_unknown_stat_is_ignored(self):
-        s = _stats(fire_damage_pct=50.0)
-        apply_conversions(s, [{"from": "nonexistent", "to": "fire", "pct": 50}])
-        assert s.fire_damage_pct == pytest.approx(50.0)
+    def test_accepts_none_without_raising(self):
+        s = _stats(physical_damage_pct=100.0)
+        apply_conversions(s, None)
 
-    def test_conversion_accumulates_on_existing(self):
-        s = _stats(physical_damage_pct=100.0, fire_damage_pct=20.0)
+    def test_accepts_empty_list_without_raising(self):
+        s = _stats(physical_damage_pct=100.0)
+        apply_conversions(s, [])
+
+    def test_accepts_well_formed_list_without_raising(self):
+        s = _stats(physical_damage_pct=100.0)
         apply_conversions(s, [{"from": "physical", "to": "fire", "pct": 50}])
-        assert s.fire_damage_pct == pytest.approx(70.0)
-
-    @pytest.mark.parametrize("pct,expected", [
-        (10, 10.0), (25, 25.0), (50, 50.0), (75, 75.0), (100, 100.0),
-    ])
-    def test_conversion_percentages(self, pct, expected):
-        s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0)
-        apply_conversions(s, [{"from": "physical", "to": "fire", "pct": pct}])
-        assert s.fire_damage_pct == pytest.approx(expected)
 
 
 # ---------------------------------------------------------------------------
@@ -646,38 +642,6 @@ def test_att_mana_exact(points, coeff):
     s = _stats(mana_regen=0.0, attunement=float(points))
     apply_derived_stats(s)
     assert s.mana_regen == pytest.approx(points * coeff)
-
-
-# ---------------------------------------------------------------------------
-# 12. Conversion parametric tests
-# ---------------------------------------------------------------------------
-
-@pytest.mark.parametrize("from_type,to_type", [
-    ("physical", "fire"),
-    ("physical", "cold"),
-    ("physical", "lightning"),
-    ("fire", "cold"),
-    ("cold", "fire"),
-    ("fire", "lightning"),
-    ("lightning", "fire"),
-    ("cold", "lightning"),
-    ("lightning", "cold"),
-])
-def test_damage_conversions_work(from_type, to_type):
-    from_attr = f"{from_type}_damage_pct"
-    to_attr = f"{to_type}_damage_pct"
-    s = BuildStats()
-    setattr(s, from_attr, 100.0)
-    setattr(s, to_attr, 0.0)
-    apply_conversions(s, [{"from": from_type, "to": to_type, "pct": 50}])
-    assert getattr(s, to_attr) == pytest.approx(50.0)
-
-
-@pytest.mark.parametrize("pct", [0, 10, 20, 25, 33, 50, 75, 100])
-def test_conversion_pct_transfer(pct):
-    s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0)
-    apply_conversions(s, [{"from": "physical", "to": "fire", "pct": pct}])
-    assert s.fire_damage_pct == pytest.approx(float(pct))
 
 
 # ---------------------------------------------------------------------------

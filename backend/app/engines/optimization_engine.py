@@ -15,6 +15,10 @@ import re
 from dataclasses import dataclass, asdict
 
 from app.constants.combat import CRIT_CHANCE_CAP
+from app.domain.calculators.conversion_calculator import (
+    DamageConversion,
+    apply_conversions,
+)
 from app.domain.calculators.damage_type_router import (
     combined_increased_stats,
     tags_for_stats,
@@ -54,18 +58,35 @@ def _normalize_skill_name(skill_name: str) -> str:
     return " ".join(spaced.split()).title()
 
 
-def _applicable_damage_stat_keys(skill_name: str) -> frozenset[str] | None:
+def _applicable_damage_stat_keys(
+    skill_name: str,
+    conversions: list[DamageConversion] | None = None,
+) -> frozenset[str] | None:
     """Return the set of ``*_damage_pct`` stat keys that can actually scale
     ``skill_name``'s damage, or ``None`` if the skill is unknown.
 
-    Uses :func:`combined_increased_stats` over the skill's declared damage
-    types plus any tag-modifier stats in its ``scaling_stats`` tuple, then
-    adds the delivery-tag stats for ``is_melee`` / ``is_throwing`` / ``is_bow``
+    Uses :func:`combined_increased_stats` over the skill's damage types
+    plus any tag-modifier stats in its ``scaling_stats`` tuple, then adds
+    the delivery-tag stats for ``is_melee`` / ``is_throwing`` / ``is_bow``
     flags (those tags are typically tracked as booleans rather than via
     ``scaling_stats`` entries).
 
+    When ``conversions`` is provided, the damage-type set is derived from
+    the *post-conversion* distribution rather than from
+    ``skill_def.damage_types``. This matters for skills whose tree nodes
+    convert one channel to another (e.g. phys→fire): once converted, the
+    source channel's increased pool no longer applies, and the target
+    channel's pool does. A synthetic per-type dict ``{dt: 1/n}`` (equal
+    split over the static types) is run through
+    :func:`conversion_calculator.apply_conversions`; types that remain
+    non-zero in the output are the effective post-conversion channels.
+
     Example — Shadow Cascade (physical+void, is_melee=True):
         → {"physical_damage_pct", "void_damage_pct", "melee_damage_pct"}
+
+    Example — same skill with a phys→fire 100% conversion node:
+        → {"fire_damage_pct", "elemental_damage_pct",
+           "void_damage_pct", "melee_damage_pct"}
 
     A ``None`` return signals "unknown skill — do not filter", so callers
     fall back to testing every candidate increment rather than silently
@@ -75,8 +96,17 @@ def _applicable_damage_stat_keys(skill_name: str) -> frozenset[str] | None:
     if skill_def is None:
         return None
 
+    if conversions:
+        n = len(skill_def.damage_types) or 1
+        share = 1.0 / n
+        scaled = {dt: share for dt in skill_def.damage_types}
+        post = apply_conversions(scaled, conversions)
+        effective_types = list(post.keys())
+    else:
+        effective_types = skill_def.damage_types
+
     applicable = set(combined_increased_stats(
-        skill_def.damage_types,
+        effective_types,
         tags_for_stats(skill_def.scaling_stats),
     ))
 
@@ -171,6 +201,7 @@ def get_stat_upgrades(
     primary_skill: str,
     skill_level: int = 20,
     top_n: int = 5,
+    conversions: list[DamageConversion] | None = None,
 ) -> list[StatUpgrade]:
     """
     Test each stat increment and rank by DPS gain.
@@ -180,6 +211,11 @@ def get_stat_upgrades(
         primary_skill: the skill to use as DPS reference (e.g. "Fireball")
         skill_level: the level of that skill
         top_n: how many top upgrades to return
+        conversions: optional damage-type conversions allocated in the skill
+                     tree. When provided, %-damage filtering uses the
+                     post-conversion channel set so converted skills test
+                     the right damage buckets (e.g. phys→fire converted
+                     attacks test fire_damage_pct, not physical_damage_pct).
 
     Returns:
         List of StatUpgrade sorted by dps_gain_pct descending, length top_n.
@@ -190,7 +226,9 @@ def get_stat_upgrades(
     primary_skill = _normalize_skill_name(primary_skill)
 
     log.info("get_stat_upgrades.start", skill=primary_skill, top_n=top_n)
-    base_dps = calculate_dps(stats, primary_skill, skill_level).dps
+    base_dps = calculate_dps(
+        stats, primary_skill, skill_level, conversions=conversions,
+    ).dps
     base_ehp = calculate_defense(stats).effective_hp
 
     if base_dps == 0:
@@ -206,7 +244,11 @@ def get_stat_upgrades(
     # Restrict %-damage testing to buckets the skill can actually use
     # (e.g. Shadow Cascade → physical/void/melee). Non-damage stats like
     # resistances, crit, speed, and flat added damage are always tested.
-    applicable_damage_keys = _applicable_damage_stat_keys(primary_skill)
+    # Conversions, if present, shift the effective channel set so the
+    # filter reflects the post-conversion damage profile.
+    applicable_damage_keys = _applicable_damage_stat_keys(
+        primary_skill, conversions=conversions,
+    )
 
     results = []
 
@@ -238,7 +280,9 @@ def get_stat_upgrades(
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
 
-        new_dps = calculate_dps(modified, primary_skill, skill_level).dps
+        new_dps = calculate_dps(
+            modified, primary_skill, skill_level, conversions=conversions,
+        ).dps
         new_ehp = calculate_defense(modified).effective_hp
 
         dps_gain = ((new_dps - base_dps) / base_dps * 100) if base_dps > 0 else 0.0
@@ -339,6 +383,7 @@ def stat_sensitivity(
     skill_level: int = 20,
     stat_keys: list[str] | None = None,
     delta: float = 10.0,
+    conversions: list[DamageConversion] | None = None,
 ) -> list[dict]:
     """
     Sensitivity analysis: for each stat, compute the DPS and EHP change per
@@ -352,13 +397,18 @@ def stat_sensitivity(
         skill_level: skill level
         stat_keys: specific stats to test (default: all from STAT_TEST_INCREMENTS)
         delta: the amount to bump each stat by (default 10)
+        conversions: optional damage-type conversions; when provided, the
+                     default %-damage filter uses the post-conversion
+                     channel set (see :func:`_applicable_damage_stat_keys`).
 
     Returns:
         List of dicts sorted by dps_per_unit descending:
         [{"stat", "current_value", "delta", "dps_gain_pct", "ehp_gain_pct",
           "dps_per_unit", "ehp_per_unit", "category"}]
     """
-    base_dps = calculate_dps(stats, primary_skill, skill_level).dps
+    base_dps = calculate_dps(
+        stats, primary_skill, skill_level, conversions=conversions,
+    ).dps
     base_ehp = calculate_defense(stats).effective_hp
 
     # Build the stat list to test
@@ -369,7 +419,9 @@ def stat_sensitivity(
         # No explicit list — test every candidate, but restrict %-damage
         # buckets to those the skill can actually scale with (same filter as
         # get_stat_upgrades) so unusable damage types don't produce noise.
-        applicable_damage_keys = _applicable_damage_stat_keys(primary_skill)
+        applicable_damage_keys = _applicable_damage_stat_keys(
+            primary_skill, conversions=conversions,
+        )
         increments = [
             {"key": inc["key"], "delta": delta}
             for inc in STAT_TEST_INCREMENTS
@@ -398,7 +450,9 @@ def stat_sensitivity(
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
 
-        new_dps = calculate_dps(modified, primary_skill, skill_level).dps
+        new_dps = calculate_dps(
+            modified, primary_skill, skill_level, conversions=conversions,
+        ).dps
         new_ehp = calculate_defense(modified).effective_hp
 
         dps_gain = ((new_dps - base_dps) / base_dps * 100) if base_dps > 0 else 0.0
