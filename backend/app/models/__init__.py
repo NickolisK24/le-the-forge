@@ -94,6 +94,10 @@ class Build(TimestampMixin, db.Model):
     # Gear — JSON array of { slot, item_name, rarity, affixes: [...] }
     gear = db.Column(db.JSON, nullable=False, default=list)
 
+    # Monolith blessings — JSON array of selected blessings (max 10, one per timeline).
+    # Each entry: { timeline_id, blessing_id, is_grand, value }
+    blessings = db.Column(db.JSON, nullable=False, default=list)
+
     # Meta tags
     is_ssf = db.Column(db.Boolean, default=False, nullable=False)
     is_hc = db.Column(db.Boolean, default=False, nullable=False)

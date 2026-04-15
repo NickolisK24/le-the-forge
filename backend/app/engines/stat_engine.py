@@ -576,6 +576,7 @@ def aggregate_stats(
     nodes: list[dict],        # list of {"id", "type", "name"}
     gear_affixes: list[dict], # list of {"name", "tier", "sealed"} — same as CraftAffix
     passive_stats: Optional[dict] = None,  # output of resolve_passive_stats()
+    blessing_stats: Optional[list[dict]] = None,  # output of resolve_blessing_stats()
 ) -> BuildStats:
     """
     Aggregate all character stats from every source.
@@ -589,6 +590,10 @@ def aggregate_stats(
         passive_stats: resolved passive tree stats from passive_stat_resolver
             ({"additive": {...}, "special_effects": [...]}). When provided,
             the additive values are merged into the stat totals.
+        blessing_stats: resolved Monolith blessing effects from
+            ``resolve_blessing_stats()`` — a list of
+            ``{"stat_key", "value", "stat_type"}`` dicts.  Applied after the
+            passive merge step.  Unknown stat keys are skipped silently.
 
     Returns:
         BuildStats with all values accumulated and derived stats applied.
@@ -664,6 +669,21 @@ def aggregate_stats(
     # 5. Resolved passive tree stats (from passive_stat_resolver)
     if passive_stats:
         _add_partial(stats, passive_stats.get("additive", {}))
+
+    # 5b. Monolith blessings — applied after passives, before attribute scaling
+    for entry in (blessing_stats or []):
+        stat_key = entry["stat_key"]
+        value = entry["value"]
+        if not hasattr(stats, stat_key):
+            continue
+        if entry.get("stat_type") == "increased" or stat_key.endswith("_pct"):
+            setattr(
+                stats,
+                stat_key,
+                combine_additive_percents(getattr(stats, stat_key), value),
+            )
+        else:
+            setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
     # 6. Attribute scaling — VERIFIED: 1.4.3 spec §1.5
     stats.spell_damage_pct    = combine_additive_percents(stats.spell_damage_pct,    stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"])

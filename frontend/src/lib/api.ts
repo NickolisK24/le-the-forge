@@ -40,6 +40,7 @@ import type {
   TrendingBuild,
   BuildReport,
 } from "@/types";
+import type { BlessingTimeline } from "@/types/blessings";
 
 const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
 
@@ -260,6 +261,7 @@ export const refApi = {
   baseItems: () => get<Record<string, BaseItemDef[]>>("/ref/base-items"),
   baseItemsBySlot: (slot: string) => get<BaseItemDef[]>(`/ref/base-items?slot=${encodeURIComponent(slot)}`),
   fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
+  getBlessings: () => get<BlessingTimeline[]>("/ref/blessings"),
 };
 
 // ---------------------------------------------------------------------------

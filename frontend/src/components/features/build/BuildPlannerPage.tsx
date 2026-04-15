@@ -32,6 +32,8 @@ import PrimarySkillBreakdown from "./simulation/PrimarySkillBreakdown";
 import AllSkillsSummary from "./simulation/AllSkillsSummary";
 import { resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
+import BlessingsPanel from "@/components/blessings/BlessingsPanel";
+import type { SelectedBlessing } from "@/types/blessings";
 
 const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const MAX_SKILLS = 5;
@@ -336,6 +338,11 @@ function BuildSummary({ build }: { build: Build }) {
   // Gear slots
   const [gearSlots, setGearSlots] = useState<GearSlot[]>(build.gear ?? []);
 
+  // Monolith blessings
+  const [draftBlessings, setDraftBlessings] = useState<SelectedBlessing[]>(
+    build.blessings ?? [],
+  );
+
   function getPassiveAllocMap(): AllocMap {
     const map: AllocMap = {};
     for (const id of passiveTree) map[id] = (map[id] ?? 0) + 1;
@@ -431,6 +438,7 @@ function BuildSummary({ build }: { build: Build }) {
     setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree ?? [] })));
     setPassiveTree(build.passive_tree ?? []);
     setGearSlots(build.gear ?? []);
+    setDraftBlessings(build.blessings ?? []);
     setEditing(false);
   }
 
@@ -450,6 +458,7 @@ function BuildSummary({ build }: { build: Build }) {
         skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree })) as Partial<BuildSkill>[],
         passive_tree: passiveTree,
         gear: gearSlots,
+        blessings: draftBlessings,
       },
     });
     if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
@@ -799,6 +808,11 @@ function BuildSummary({ build }: { build: Build }) {
           />
         </Panel>
 
+        <BlessingsPanel
+          selectedBlessings={draftBlessings}
+          onChange={setDraftBlessings}
+        />
+
         <Panel title="Save Changes">
           <div className="flex flex-col gap-3">
             <Button onClick={handleSave} disabled={updateBuild.isPending || !name.trim()} className="w-full">
@@ -869,6 +883,7 @@ export default function BuildPlannerPage() {
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
+  const [draftBlessings, setDraftBlessings] = useState<SelectedBlessing[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
   // Informational banner — set when we had to override a stored draft's class
   // with the one from the URL. The draft stays on disk so the user can undo.
@@ -967,6 +982,7 @@ export default function BuildPlannerPage() {
       if (typeof draft.isLadder === "boolean") setIsLadder(draft.isLadder);
       if (typeof draft.isBudget === "boolean") setIsBudget(draft.isBudget);
       if (Array.isArray(draft.passiveTree)) setPassiveTree(draft.passiveTree);
+      if (Array.isArray(draft.draftBlessings)) setDraftBlessings(draft.draftBlessings);
       setHasDraft(true);
     } catch {
       localStorage.removeItem(DRAFT_KEY);
@@ -982,11 +998,11 @@ export default function BuildPlannerPage() {
     if (slug) return;
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
-      const draft = { name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree };
+      const draft = { name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree, draftBlessings };
       localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     }, 1500);
     return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
-  }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree]);
+  }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree, draftBlessings]);
 
   // Track view on mount (fire and forget — no loading/error state)
   useEffect(() => {
@@ -1103,6 +1119,7 @@ export default function BuildPlannerPage() {
       })) as Partial<BuildSkill>[],
       passive_tree: passiveTree,
       gear: draftGear,
+      blessings: draftBlessings,
     };
 
     const res = await createBuild.mutateAsync(payload);
@@ -1403,6 +1420,11 @@ export default function BuildPlannerPage() {
             onChange={setDraftGear}
           />
         </Panel>
+
+        <BlessingsPanel
+          selectedBlessings={draftBlessings}
+          onChange={setDraftBlessings}
+        />
 
         <Panel title="Save">
           <div className="flex flex-col gap-4">

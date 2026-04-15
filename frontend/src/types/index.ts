@@ -69,6 +69,7 @@ export interface Build {
   passive_tree: number[];
   gear: GearSlot[];
   skills: BuildSkill[];
+  blessings: import("./blessings").SelectedBlessing[];
   is_ssf: boolean;
   is_hc: boolean;
   is_ladder_viable: boolean;
@@ -130,6 +131,7 @@ export interface BuildCreatePayload {
   passive_tree?: number[];
   gear?: GearSlot[];
   skills?: Partial<BuildSkill>[];
+  blessings?: import("./blessings").SelectedBlessing[];
   is_ssf?: boolean;
   is_hc?: boolean;
   is_ladder_viable?: boolean;

@@ -7,7 +7,7 @@ Convention:
   - <Model>UpdateSchema → input validation for PATCH (all fields optional)
 """
 
-from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, EXCLUDE
+from marshmallow import Schema, fields, validate, validates, ValidationError, post_load, post_dump, EXCLUDE
 from marshmallow_sqlalchemy import SQLAlchemyAutoSchema
 
 from app import db
@@ -62,6 +62,13 @@ class BuildSchema(SQLAlchemyAutoSchema):
         sqla_session = db.session
         exclude = ("votes",)
 
+    @post_dump
+    def _normalize_blessings(self, data, **kwargs):
+        """Coerce a null blessings column to an empty list for API consumers."""
+        if data.get("blessings") is None:
+            data["blessings"] = []
+        return data
+
 
 class BuildCreateSchema(Schema):
     name = fields.Str(required=True, validate=validate.Length(min=3, max=120))
@@ -75,6 +82,7 @@ class BuildCreateSchema(Schema):
     passive_tree = fields.List(fields.Raw(), load_default=[])
     gear = fields.List(fields.Dict(), load_default=[])
     skills = fields.List(fields.Dict(), load_default=[])
+    blessings = fields.List(fields.Dict(), load_default=[])
     is_ssf = fields.Bool(load_default=False)
     is_hc = fields.Bool(load_default=False)
     is_ladder_viable = fields.Bool(load_default=True)
@@ -116,6 +124,7 @@ class BuildUpdateSchema(Schema):
     passive_tree = fields.List(fields.Raw())
     gear = fields.List(fields.Dict())
     skills = fields.List(fields.Dict())
+    blessings = fields.List(fields.Dict())
     is_ssf = fields.Bool()
     is_hc = fields.Bool()
     is_ladder_viable = fields.Bool()
