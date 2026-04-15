@@ -176,7 +176,20 @@ class TestDPSSnapshots:
         r = calculate_dps(_paladin(), "Rive", 20, conversions=convs)
         assert "fire" in r.damage_by_type
         assert "physical" not in r.damage_by_type
-        assert math.isclose(r.damage_by_type["fire"], 360.8, rel_tol=1e-6)
+        # Pipeline now derives the increased-damage pool from the
+        # post-conversion types (fire + elemental + melee), so the
+        # Paladin's physical_damage_pct no longer scales the converted
+        # fire hit. 328.0 is the correct value under that routing.
+        assert math.isclose(r.damage_by_type["fire"], 328.0, rel_tol=1e-6)
+
+        # Invariant: pumping physical_damage_pct must NOT increase the
+        # converted fire damage. If it did, physical scaling would still
+        # be leaking into the post-conversion fire pool — exactly the
+        # bug the post_conversion_types fix removes.
+        boosted = _paladin()
+        boosted.physical_damage_pct += 100
+        r_boosted = calculate_dps(boosted, "Rive", 20, conversions=convs)
+        assert r_boosted.damage_by_type["fire"] == r.damage_by_type["fire"]
 
     def test_training_dummy_passes_through_unmodified(self):
         r = calculate_dps_vs_enemy(_mage(), "Fireball", 20, "training_dummy")
@@ -355,13 +368,31 @@ class TestSystemIntegration:
     def test_conversion_changes_damage_type_against_resistant_enemy(self):
         # Rive is physical. Convert to fire; enemy resists fire more than phys.
         # Effective DPS should drop when fire-resistant.
-        stats = _paladin()
-        r_plain = calculate_dps(stats, "Rive", 20)
+        # conversion preserves base damage quantity but reroutes the
+        # increased pool — hit damage only matches unconverted when
+        # source and target scaling are equal.
         convs = [DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0)]
+
+        # Case 1: source scaling present, no target scaling. The Paladin
+        # baseline has physical_damage_pct > 0 from class stats but no
+        # fire_damage_pct, so converting away loses the physical pool and
+        # effective hit damage must drop.
+        stats = _paladin()
+        assert stats.physical_damage_pct > 0
+        assert stats.fire_damage_pct == 0
+        r_plain = calculate_dps(stats, "Rive", 20)
         r_conv = calculate_dps(stats, "Rive", 20, conversions=convs)
-        # After conversion all damage is fire — both pipelines should produce
-        # the same total hit damage (conversion is lossless).
-        assert r_plain.hit_damage == r_conv.hit_damage
+        assert r_conv.hit_damage < r_plain.hit_damage
+
+        # Case 2: equal source and target scaling. With symmetric pools
+        # the rerouted increased% matches the original, so base damage
+        # quantity (which conversion preserves) carries through and
+        # hit damage is ~unchanged. Allow 1 integer of rounding slack.
+        sym = _paladin()
+        sym.fire_damage_pct = sym.physical_damage_pct
+        r_sym_plain = calculate_dps(sym, "Rive", 20)
+        r_sym_conv = calculate_dps(sym, "Rive", 20, conversions=convs)
+        assert abs(r_sym_conv.hit_damage - r_sym_plain.hit_damage) <= 1
 
     def test_ailment_dps_adds_to_total(self):
         stats = _mage()
