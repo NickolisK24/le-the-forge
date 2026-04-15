@@ -481,6 +481,11 @@ def extract_damage_conversions(
     }
 
     conversions: list[DamageConversion] = []
+    # Track allocated nodes whose description hints at a conversion (contains
+    # "->" somewhere) so we can distinguish two outcomes:
+    #   * no arrow nodes at all → expected silence (debug)
+    #   * arrow nodes present but nothing parsed → data gap worth surfacing
+    arrow_node_ids: list[int] = []
 
     for allocation in spec_tree:
         if not isinstance(allocation, dict):
@@ -500,6 +505,8 @@ def extract_damage_conversions(
             continue
 
         description = node.get("description") or ""
+        if "->" in description:
+            arrow_node_ids.append(int(node_id))
         if "|" not in description:
             continue
 
@@ -544,15 +551,80 @@ def extract_damage_conversions(
             conversions.append(DamageConversion(source, target, scaled_pct))
 
     if not conversions:
-        log.debug(
-            "extract_damage_conversions.no_machine_readable_conversions",
-            skill=skill_name,
-            note=(
-                "conversion extraction requires structured node data; "
-                "most conversion nodes encode the effect only in narrative "
-                "description text and cannot be parsed — tracked as a data "
-                "gap, not a code error"
-            ),
-        )
+        # Promote to warning when an allocated node's description mentions
+        # "->" — those are conversion nodes whose narrative text couldn't be
+        # parsed, so optimization will fall back to the static damage-type
+        # list. Silent debug is only appropriate when no conversion-looking
+        # nodes were allocated at all.
+        if arrow_node_ids:
+            log.warning(
+                "extract_damage_conversions.no_machine_readable_conversions",
+                skill=skill_name,
+                narrative_conversion_node_count=len(arrow_node_ids),
+                narrative_conversion_node_ids=arrow_node_ids,
+                note=(
+                    "allocated node(s) mention '->' in their description but "
+                    "no structured conversion could be parsed; optimization "
+                    "recommendations will not reflect post-conversion damage "
+                    "types — tracked as a data gap, not a code error"
+                ),
+            )
+        else:
+            log.debug(
+                "extract_damage_conversions.no_machine_readable_conversions",
+                skill=skill_name,
+                note=(
+                    "no allocated node encodes a structured conversion; this "
+                    "is expected for builds that don't use conversion nodes"
+                ),
+            )
 
     return conversions
+
+
+def find_narrative_conversion_nodes(
+    skill_name: str,
+    spec_tree: list,
+) -> list[int]:
+    """Return allocated node IDs whose description contains ``"->"``.
+
+    Used by callers that need to detect the "conversion node allocated but
+    unparseable" data gap — i.e. when :func:`extract_damage_conversions`
+    returned an empty list yet the user has clearly picked a conversion
+    node whose effect lives only in prose. Never raises; returns ``[]``
+    for missing/invalid inputs.
+    """
+    if not spec_tree:
+        return []
+
+    try:
+        tree_data = get_tree_for_skill(skill_name)
+    except Exception:
+        return []
+    if not tree_data:
+        return []
+
+    nodes_by_id: dict[int, dict] = {
+        n["id"]: n for n in tree_data.get("nodes", []) if "id" in n
+    }
+
+    arrow_node_ids: list[int] = []
+    for allocation in spec_tree:
+        if not isinstance(allocation, dict):
+            continue
+        node_id = allocation.get("node_id")
+        if node_id is None:
+            continue
+        try:
+            points = int(allocation.get("points", 1))
+        except (TypeError, ValueError):
+            continue
+        if points <= 0:
+            continue
+        node = nodes_by_id.get(node_id)
+        if not node:
+            continue
+        description = node.get("description") or ""
+        if "->" in description:
+            arrow_node_ids.append(int(node_id))
+    return arrow_node_ids
