@@ -53,6 +53,7 @@ _PATHS = {
     "implicit_stats": os.path.join(_ROOT, "data", "items", "implicit_stats.json"),
     "base_items":     os.path.join(_ROOT, "data", "items", "base_items.json"),
     "crafting_rules": os.path.join(_ROOT, "data", "items", "crafting_rules.json"),
+    "blessings":      os.path.join(_ROOT, "data", "progression", "blessings.json"),
 }
 
 
@@ -122,6 +123,12 @@ class GameDataPipeline:
         self._cache["rarities"]       = self._load_optional("rarities", [])
         self._cache["damage_types"]   = self._load_optional("damage_types", [])
         self._cache["implicit_stats"] = self._load_optional("implicit_stats", {})
+        self._cache["blessings"]      = self._load_optional("blessings", [])
+        self._cache["blessings_flat"] = {
+            b["id"]: b
+            for b in self._cache["blessings"]
+            if isinstance(b, dict) and "id" in b
+        }
 
         log.info("pipeline.load_all.done", version=self._version)
 
@@ -183,6 +190,14 @@ class GameDataPipeline:
     @property
     def implicit_stats(self) -> dict:
         return self._cache.get("implicit_stats", {})
+
+    @property
+    def blessings(self) -> list[dict]:
+        return self._cache.get("blessings", [])
+
+    @property
+    def blessings_flat(self) -> dict[str, dict]:
+        return self._cache.get("blessings_flat", {})
 
     def get_enemy(self, enemy_id: str) -> Optional[EnemyProfile]:
         """Return a single EnemyProfile by id, or None."""
