@@ -304,7 +304,8 @@
         "normal_min": 30,
         "normal_max": 42,
         "grand_min": 45,
-        "grand_max": 70
+        "grand_max": 70,
+        "description": "Health Increase"
       },
       {
         "id": "echo_of_solarum",
@@ -316,7 +317,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Void Resistance"
       },
       {
         "id": "shadow_of_the_eclipse",
@@ -328,7 +330,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 61,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Dodge Rating"
       },
       {
         "id": "whisper_of_orobyss",
@@ -340,7 +343,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Void Damage Increase"
       },
       {
         "id": "flames_of_the_black_sun",
@@ -352,7 +356,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Chance to Ignite on Hit"
       },
       {
         "id": "hunger_of_the_void",
@@ -403,7 +408,8 @@
         "normal_min": 30,
         "normal_max": 50,
         "grand_min": 51,
-        "grand_max": 80
+        "grand_max": 80,
+        "description": "Increased Critical Strike Chance"
       },
       {
         "id": "depths_of_infinity",
@@ -441,6 +447,9 @@
             "normal_max": 100,
             "grand_min": 120,
             "grand_max": 200
+          },
+          {
+            "description": "Ward Gain on Kill and Ward Decay Threshold"
           }
         ]
       },
@@ -454,7 +463,8 @@
         "normal_min": 20,
         "normal_max": 26,
         "grand_min": 27,
-        "grand_max": 40
+        "grand_max": 40,
+        "description": "Critical Strike Multiplier"
       },
       {
         "id": "thirst_of_the_sun",
@@ -651,7 +661,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Lightning Resistance"
       },
       {
         "id": "light_of_the_moon",
@@ -663,7 +674,8 @@
         "normal_min": 30,
         "normal_max": 50,
         "grand_min": 60,
-        "grand_max": 90
+        "grand_max": 90,
+        "description": "Mana Increase"
       },
       {
         "id": "rhythm_of_the_tide",
@@ -688,6 +700,9 @@
             "normal_max": 100,
             "grand_min": 120,
             "grand_max": 200
+          },
+          {
+            "description": "Health Regeneration and Increased Health Regeneration"
           }
         ]
       },
@@ -701,7 +716,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Lightning Damage Increase"
       },
       {
         "id": "might_of_the_sea_titan",
@@ -713,7 +729,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Cold Damage Increase"
       },
       {
         "id": "resonance_of_the_sea",
@@ -725,7 +742,8 @@
         "normal_min": 17,
         "normal_max": 25,
         "grand_min": 30,
-        "grand_max": 42
+        "grand_max": 42,
+        "description": "Ward Per Second"
       },
       {
         "id": "mysteries_of_the_deep",
@@ -828,6 +846,9 @@
             "normal_max": 140,
             "grand_min": 160,
             "grand_max": 260
+          },
+          {
+            "description": "Ward Gain on Potion Use and Ward Decay Threshold"
           }
         ]
       }
@@ -1041,7 +1062,8 @@
         "normal_min": 30,
         "normal_max": 45,
         "grand_min": 50,
-        "grand_max": 70
+        "grand_max": 70,
+        "description": "Critical Strike Avoidance & Dodge Rating"
       },
       {
         "id": "dream_of_eterra",
@@ -1053,7 +1075,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 45,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Necrotic Resistance"
       },
       {
         "id": "persistence_of_will",
@@ -1065,7 +1088,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Poison Resistance"
       },
       {
         "id": "cruelty_of_strength",
@@ -1077,7 +1101,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Increased Physical Damage"
       },
       {
         "id": "despair_of_flesh",
@@ -1089,7 +1114,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Increased Necrotic Damage"
       },
       {
         "id": "binds_of_nature",
@@ -1101,7 +1127,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Increased Poison Damage"
       },
       {
         "id": "hemmorage_of_marrow",
@@ -1114,7 +1141,7 @@
         "normal_max": 60,
         "grand_min": 65,
         "grand_max": 100,
-        "description": "In-game spelling is Hemmorage"
+        "description": "Chance to Inflict Bleed on Hit"
       },
       {
         "id": "taste_of_venom",
@@ -1126,7 +1153,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Chance to Poison on Hit"
       },
       {
         "id": "allure_of_apathy",
@@ -1198,7 +1226,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Fire Resistance"
       },
       {
         "id": "body_of_obsidian",
@@ -1210,7 +1239,8 @@
         "normal_min": 120,
         "normal_max": 180,
         "grand_min": 200,
-        "grand_max": 320
+        "grand_max": 320,
+        "description": "Armor"
       },
       {
         "id": "curse_of_sulphur",
@@ -1235,7 +1265,8 @@
         "normal_min": 10,
         "normal_max": 14,
         "grand_min": 18,
-        "grand_max": 30
+        "grand_max": 30,
+        "description": "Endurance"
       },
       {
         "id": "swiftness_of_logi",
@@ -1247,7 +1278,8 @@
         "normal_min": 15,
         "normal_max": 35,
         "grand_min": 40,
-        "grand_max": 70
+        "grand_max": 70,
+        "description": "Dodge Rating"
       },
       {
         "id": "breath_of_cinders",
@@ -1285,7 +1317,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Increased Minion Damage"
       },
       {
         "id": "might_of_bhuldar",
@@ -1310,7 +1343,8 @@
         "normal_min": 40,
         "normal_max": 60,
         "grand_min": 65,
-        "grand_max": 100
+        "grand_max": 100,
+        "description": "Increased Fire Damage"
       },
       {
         "id": "patience_of_herkir",
@@ -1323,7 +1357,7 @@
         "normal_max": 350,
         "grand_min": 400,
         "grand_max": 650,
-        "description": "Armor while Channeling — conditional"
+        "description": "Armor while Channeling"
       }
     ]
   },
@@ -1343,7 +1377,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Physical Resistance"
       },
       {
         "id": "protection_of_heorot",
@@ -1355,7 +1390,8 @@
         "normal_min": 25,
         "normal_max": 40,
         "grand_min": 55,
-        "grand_max": 75
+        "grand_max": 75,
+        "description": "Cold Resistance"
       },
       {
         "id": "vigor_of_jormun",
@@ -1367,7 +1403,8 @@
         "normal_min": 40,
         "normal_max": 70,
         "grand_min": 80,
-        "grand_max": 150
+        "grand_max": 150,
+        "description": "Endurance Threshold"
       },
       {
         "id": "maw_of_artor",
@@ -1457,6 +1494,9 @@
             "normal_max": 140,
             "grand_min": 180,
             "grand_max": 240
+          },
+          {
+            "description": "Block Chance and Block Effectiveness"
           }
         ]
       },
@@ -1470,7 +1510,8 @@
         "normal_min": 12,
         "normal_max": 24,
         "grand_min": 25,
-        "grand_max": 55
+        "grand_max": 55,
+        "description": "Increased Armor"
       },
       {
         "id": "defiance_of_yulia",
@@ -1483,7 +1524,7 @@
         "normal_max": 10,
         "grand_min": 11,
         "grand_max": 20,
-        "description": "Spell Cold Damage while Channeling — conditional"
+        "description": "Spell Cold Damage while Channeling"
       }
     ]
   },
