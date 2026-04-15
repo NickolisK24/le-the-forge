@@ -30,6 +30,8 @@ Values with "(downside)" are included as negative modifiers.
 import re
 import os
 import json
+from app.domain.calculators.conversion_calculator import DamageConversion
+from app.domain.calculators.damage_type_router import DamageType
 from app.domain.passive import SkillTreeStats
 from app.domain.skill_modifiers import SkillModifiers
 from functools import lru_cache
@@ -388,3 +390,169 @@ def _empty_result(skill_name: str) -> dict:
         "skill_modifiers": SkillModifiers(),
         "special_effects": [],
     }
+
+
+# ---------------------------------------------------------------------------
+# Damage type conversion extraction
+# ---------------------------------------------------------------------------
+#
+# The skill tree node data file (skill_tree_nodes.json) is only partially
+# machine-readable for conversions:
+#
+#   * Most conversion nodes describe the effect *only* in narrative text on
+#     the left-hand side of the description's pipe separator
+#     (e.g. "Base physical damage is converted to fire."). These cannot be
+#     parsed reliably and are tracked as a data gap.
+#   * A small number of nodes encode the conversion in the structured
+#     stat-line side after the pipe, e.g.
+#       "Base Physical Damage -> Cold Damage 100%"
+#       "Physical -> Cold +100%"
+#     These are extractable: source and target are both DamageType names,
+#     separated by an arrow, with a trailing percentage.
+#
+# This parser handles the structured form. Lines whose source or target
+# isn't a known DamageType, or whose suffix indicates a defensive /
+# resistance / chance conversion (e.g. "Physical -> Cold Damage Taken 100%",
+# "Physical -> Cold Res Shred 100%") are intentionally skipped.
+# ---------------------------------------------------------------------------
+
+_DAMAGE_NAMES = "physical|fire|cold|lightning|necrotic|void|poison"
+
+# Match a single source-type → target-type damage-conversion fragment with
+# an explicit percentage. Both sides must mention exactly one damage word,
+# and the line must end with a percent value.
+_CONVERSION_LINE_RE = re.compile(
+    rf"\b({_DAMAGE_NAMES})\b[^->]*?\s*(?:->|→|=>)\s*"
+    rf"\b({_DAMAGE_NAMES})\b[^%]*?([+\-]?\s*\d+(?:\.\d+)?)\s*%",
+    re.I,
+)
+
+# Sub-strings that disqualify a fragment even if the regex matches —
+# defensive ("damage taken"), resistance shred, or chance conversions all
+# share the same arrow syntax but are not hit-damage conversions.
+_NON_DAMAGE_KEYWORDS = (
+    "damage taken",
+    "res ",
+    "resistance",
+    "shred",
+    "chance",
+    "penetration",
+)
+
+
+def extract_damage_conversions(
+    skill_name: str,
+    spec_tree: list,
+) -> list[DamageConversion]:
+    """Extract :class:`DamageConversion` objects from a skill's allocated tree.
+
+    Walks ``spec_tree`` (the same per-skill allocation list consumed by
+    :func:`resolve_skill_tree_stats`), pulls each allocated node from the
+    skill-tree data, and parses the structured side of its description for
+    ``<source-type> -> <target-type> N%`` fragments.
+
+    Returns an empty list — never raises — when:
+      * ``spec_tree`` is empty;
+      * the tree data isn't loaded or no tree matches ``skill_name``;
+      * no allocated node carries a parseable conversion line.
+
+    Per-point scaling matches :func:`_parse_description`: the fragment's
+    percent value is multiplied by ``min(points, maxPoints)`` and the
+    result is clamped to 100% (a single conversion can never exceed full).
+
+    Caveat: the bulk of in-game conversion nodes describe their effect
+    only in narrative text (left of the description's pipe). Those nodes
+    are not machine-readable in the current data file and are therefore
+    skipped. This is a known data gap, not a code error.
+    """
+    if not spec_tree:
+        return []
+
+    tree_data = get_tree_for_skill(skill_name)
+    if not tree_data:
+        log.debug(
+            "extract_damage_conversions.no_tree_data",
+            skill=skill_name,
+        )
+        return []
+
+    nodes_by_id: dict[int, dict] = {
+        n["id"]: n for n in tree_data.get("nodes", []) if "id" in n
+    }
+
+    conversions: list[DamageConversion] = []
+
+    for allocation in spec_tree:
+        if not isinstance(allocation, dict):
+            continue
+        node_id = allocation.get("node_id")
+        if node_id is None:
+            continue
+        try:
+            points = int(allocation.get("points", 1))
+        except (TypeError, ValueError):
+            continue
+        if points <= 0:
+            continue
+
+        node = nodes_by_id.get(node_id)
+        if not node:
+            continue
+
+        description = node.get("description") or ""
+        if "|" not in description:
+            continue
+
+        max_points = int(node.get("maxPoints", 1) or 1)
+        clamped_points = min(points, max_points)
+
+        structured = description.split("|", 1)[1]
+        for fragment in structured.split(";"):
+            frag = fragment.strip()
+            if not frag:
+                continue
+
+            lower = frag.lower()
+            if any(kw in lower for kw in _NON_DAMAGE_KEYWORDS):
+                continue
+
+            m = _CONVERSION_LINE_RE.search(frag)
+            if not m:
+                continue
+
+            src_name = m.group(1).lower()
+            tgt_name = m.group(2).lower()
+            try:
+                source = DamageType(src_name)
+                target = DamageType(tgt_name)
+            except ValueError:
+                continue
+            if source == target:
+                continue
+
+            try:
+                pct_value = float(m.group(3).replace(" ", ""))
+            except ValueError:
+                continue
+
+            scaled_pct = pct_value * clamped_points
+            if scaled_pct <= 0:
+                continue
+            if scaled_pct > 100.0:
+                scaled_pct = 100.0
+
+            conversions.append(DamageConversion(source, target, scaled_pct))
+
+    if not conversions:
+        log.debug(
+            "extract_damage_conversions.no_machine_readable_conversions",
+            skill=skill_name,
+            note=(
+                "conversion extraction requires structured node data; "
+                "most conversion nodes encode the effect only in narrative "
+                "description text and cannot be parsed — tracked as a data "
+                "gap, not a code error"
+            ),
+        )
+
+    return conversions

@@ -44,6 +44,27 @@ def _resolve_skill_modifiers(
         return None
 
 
+def _extract_conversions(
+    skill_name: str,
+    spec_tree: list[dict] | None,
+) -> list:
+    """Extract DamageConversion objects from the skill's allocated tree.
+
+    Returns an empty list when ``spec_tree`` is missing/empty or when
+    extraction fails for any reason — never raises. Callers can pass the
+    result straight to ``calculate_dps`` / ``get_stat_upgrades`` as the
+    ``conversions`` argument.
+    """
+    if not spec_tree:
+        return []
+    try:
+        from app.services.skill_tree_resolver import extract_damage_conversions
+        return extract_damage_conversions(skill_name, spec_tree)
+    except Exception as exc:
+        log.warning("extract_conversions.failed", skill=skill_name, error=str(exc))
+        return []
+
+
 def aggregate_stats(
     character_class: str,
     mastery: str,
@@ -84,8 +105,20 @@ def simulate_combat(
     # Resolve skill tree modifiers if spec_tree is provided
     sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
+    # Pull damage-type conversions allocated in the skill tree so the DPS
+    # layer applies them. Without this, conversion nodes (e.g. phys → fire)
+    # are silently dropped and the per-type damage breakdown is wrong.
+    conversions = _extract_conversions(skill_name, spec_tree)
+
+    dps_result = combat_engine.calculate_dps(
+        stats, skill_name, skill_level,
+        skill_modifiers=sm, conversions=conversions,
+    )
+    mc_result = combat_engine.monte_carlo_dps(
+        stats, skill_name, skill_level,
+        n=n_simulations, seed=seed,
+        skill_modifiers=sm, conversions=conversions,
+    )
 
     return {
         "dps": dps_result.to_dict(),
@@ -161,10 +194,24 @@ def simulate_full_build(
     # Resolve skill tree modifiers and merge build stat bonuses
     sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
+    # Pull damage-type conversions allocated in the skill tree so the DPS
+    # layer and the optimizer both see the correct post-conversion damage
+    # profile (otherwise tree-level phys→fire / etc. is silently dropped).
+    conversions = _extract_conversions(skill_name, spec_tree)
+
+    dps_result = combat_engine.calculate_dps(
+        stats, skill_name, skill_level,
+        skill_modifiers=sm, conversions=conversions,
+    )
+    mc_result = combat_engine.monte_carlo_dps(
+        stats, skill_name, skill_level,
+        n=n_simulations, seed=seed,
+        skill_modifiers=sm, conversions=conversions,
+    )
     defense_result = defense_engine.calculate_defense(stats)
-    upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=5)
+    upgrades = optimization_engine.get_stat_upgrades(
+        stats, skill_name, skill_level, top_n=5, conversions=conversions,
+    )
 
     # Auto-detect primary skill from skill loadout if available
     build_skills = kwargs.get("skills", []) if "kwargs" in dir() else []
