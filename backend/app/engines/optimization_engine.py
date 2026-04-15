@@ -11,6 +11,7 @@ Workflow:
 Pure module — no DB, no HTTP.
 """
 
+import re
 from dataclasses import dataclass, asdict
 
 from app.constants.combat import CRIT_CHANCE_CAP
@@ -20,6 +21,33 @@ from app.engines.defense_engine import calculate_defense
 from app.utils.logging import ForgeLogger
 
 log = ForgeLogger(__name__)
+
+
+def _normalize_skill_name(skill_name: str) -> str:
+    """Convert a skill name from snake_case / lowercase / CamelCase to the
+    title-case-with-spaces form used as keys in ``combat_engine.SKILL_STATS``.
+
+    Build imports from Last Epoch Tools and Maxroll emit skill names in
+    various casings (e.g. ``"shadow_cascade"`` or ``"ShadowCascade"``), but
+    ``SKILL_STATS`` is keyed by the in-game display name (``"Shadow Cascade"``).
+    Without normalization ``_get_skill_def`` returns ``None``, ``calculate_dps``
+    zeroes out, and the optimizer's rankings become meaningless.
+
+    Examples:
+        ``"shadow_cascade"`` → ``"Shadow Cascade"``
+        ``"shadow cascade"`` → ``"Shadow Cascade"``
+        ``"ShadowCascade"``  → ``"Shadow Cascade"``
+        ``"Shadow Cascade"`` → ``"Shadow Cascade"`` (no-op)
+    """
+    if not skill_name:
+        return skill_name
+    # Insert a space between a lowercase letter and a following uppercase
+    # letter so that CamelCase splits on word boundaries.
+    spaced = re.sub(r"(?<=[a-z])(?=[A-Z])", " ", skill_name)
+    # Convert snake_case / kebab-case separators to spaces.
+    spaced = spaced.replace("_", " ").replace("-", " ")
+    # Collapse consecutive whitespace and title-case each word.
+    return " ".join(spaced.split()).title()
 
 
 @dataclass
@@ -104,9 +132,24 @@ def get_stat_upgrades(
     Returns:
         List of StatUpgrade sorted by dps_gain_pct descending, length top_n.
     """
+    # Normalize incoming skill names (snake_case / CamelCase / etc.) to the
+    # title-case-with-spaces form SKILL_STATS is keyed by, so that imported
+    # builds from LE Tools / Maxroll don't silently produce zero DPS rankings.
+    primary_skill = _normalize_skill_name(primary_skill)
+
     log.info("get_stat_upgrades.start", skill=primary_skill, top_n=top_n)
     base_dps = calculate_dps(stats, primary_skill, skill_level).dps
     base_ehp = calculate_defense(stats).effective_hp
+
+    if base_dps == 0:
+        log.warning(
+            "get_stat_upgrades.zero_baseline_dps",
+            skill=primary_skill,
+            message=(
+                "Baseline DPS is 0 — skill definition not found in SKILL_STATS. "
+                "Stat upgrade rankings will be meaningless (all dps_gain_pct=0)."
+            ),
+        )
 
     results = []
 
@@ -334,8 +377,9 @@ def find_best_affix_upgrade(
     """
     from app.engines.stat_engine import aggregate_stats
 
-    # Resolve skill
+    # Resolve skill and normalize casing (imports may use snake_case / CamelCase).
     skill = primary_skill or build.get("primary_skill") or "Fireball"
+    skill = _normalize_skill_name(skill)
 
     # Build the keyword dict aggregate_stats expects
     gear = build.get("gear", [])
