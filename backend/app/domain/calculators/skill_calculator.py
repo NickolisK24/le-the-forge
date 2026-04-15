@@ -46,10 +46,11 @@ _FLAT_SPELL_BY_TYPE: dict[DamageType, str] = {
     DamageType.NECROTIC:  "added_spell_necrotic",
     DamageType.VOID:      "added_spell_void",
 }
-# Note: added_spell_damage is a generic physical-flavoured spell flat stat
-# and isn't in _FLAT_SPELL_BY_TYPE — it's added separately below and only
-# when the skill's damage_types is exactly {PHYSICAL}, so it doesn't
-# double-count alongside a specific type like added_spell_fire.
+# Note: added_spell_damage is a generic flat spell damage bonus that applies
+# to any spell skill regardless of damage type — analogous to how
+# melee_damage_pct applies to every melee skill. It's added unconditionally
+# in the is_spell block below and is independent of the typed added_spell_*
+# fields (distinct stat sources, no double-counting).
 
 _FLAT_THROW_BY_TYPE: dict[DamageType, str] = {
     DamageType.PHYSICAL:  "added_throw_physical",
@@ -115,13 +116,12 @@ def sum_flat_damage(stats: BuildStats, skill_def: SkillStatDef) -> float:
                 field = _FLAT_SPELL_BY_TYPE.get(dt)
                 if field is not None:
                     total += getattr(stats, field, 0.0)
-            # added_spell_damage is the generic physical-flavoured spell flat
-            # stat. Include it only when the skill deals pure physical damage
-            # — if other specific types are present (e.g. PHYSICAL + FIRE),
-            # including it would double-count the physical portion against
-            # the type-specific added_spell_* fields.
-            if skill_types == {DamageType.PHYSICAL}:
-                total += stats.added_spell_damage
+            # added_spell_damage is a generic flat spell damage bonus that
+            # applies to every spell regardless of damage type (analogous to
+            # how melee_damage_pct applies to every melee skill). It's a
+            # distinct stat field from the typed added_spell_* fields, so
+            # including it alongside them is not double-counting.
+            total += stats.added_spell_damage
         else:
             # Fallback: no declared damage_types — preserve legacy broad sum.
             total += (stats.added_spell_damage + stats.added_spell_fire +
