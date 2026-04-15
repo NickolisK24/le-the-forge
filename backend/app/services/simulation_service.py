@@ -107,11 +107,20 @@ def simulate_optimize(
     skill_name: str,
     skill_level: int = 20,
     top_n: int = 5,
+    conversions: list | None = None,
 ) -> list[dict]:
-    """Rank stat upgrades by DPS/EHP gain from a stats dict."""
+    """Rank stat upgrades by DPS/EHP gain from a stats dict.
+
+    ``conversions`` is an optional list of ``DamageConversion`` objects
+    describing skill-tree conversion nodes. When present, it is forwarded
+    to :func:`optimization_engine.get_stat_upgrades` so that %-damage
+    filtering reflects the post-conversion damage profile.
+    """
     log.info("simulate_optimize", skill=skill_name, top_n=top_n)
     stats = _build_stats_from_dict(stats_dict)
-    upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=top_n)
+    upgrades = optimization_engine.get_stat_upgrades(
+        stats, skill_name, skill_level, top_n=top_n, conversions=conversions,
+    )
     return [u.to_dict() for u in upgrades]
 
 
