@@ -207,7 +207,7 @@ export default function DashboardPage() {
           <span>Patch {patchLabel}</span>
         </div>
 
-        <h1 className="font-display text-7xl font-bold leading-none tracking-tight text-forge-text">
+        <h1 className="font-display text-5xl sm:text-7xl font-bold leading-none tracking-tight text-forge-text">
           The{" "}
           <span
             className="text-forge-amber"
@@ -217,15 +217,15 @@ export default function DashboardPage() {
           </span>
         </h1>
 
-        <p className="font-body text-xl font-light text-forge-muted mt-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="font-body text-base sm:text-xl font-light text-forge-muted mt-6 max-w-2xl mx-auto leading-relaxed">
           Last Epoch Build Intelligence.
           <br />
-          <span className="text-forge-dim text-base">
+          <span className="text-forge-dim text-sm sm:text-base">
             Simulate. Craft. Optimize.
           </span>
         </p>
 
-        <div className="flex gap-4 justify-center mt-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-8">
           <Link to="/build">
             <Button variant="primary" size="md">Start Planning</Button>
           </Link>
@@ -237,7 +237,7 @@ export default function DashboardPage() {
 
       {/* Stats row */}
       <section className="mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard
             label="Community Builds"
             value={buildsTotal.toLocaleString()}
@@ -349,7 +349,7 @@ export default function DashboardPage() {
         <div className="font-mono text-xs uppercase tracking-[0.28em] text-forge-dim text-center mb-6">
           Jump In
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {QUICK_LINKS.map((q) => (
             <QuickLinkCard key={q.to} {...q} />
           ))}

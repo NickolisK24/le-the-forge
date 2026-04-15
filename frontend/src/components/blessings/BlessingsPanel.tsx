@@ -109,7 +109,7 @@ function BlessingRow({ timeline, selection, onChange, readOnly }: RowProps) {
           disabled={readOnly || !selection}
           aria-label={`Clear blessing on ${timeline.name}`}
           className={clsx(
-            "w-6 h-6 rounded-sm border border-forge-border bg-forge-surface2 shrink-0",
+            "min-w-[44px] min-h-[44px] md:w-6 md:h-6 md:min-w-0 md:min-h-0 rounded-sm border border-forge-border bg-forge-surface2 shrink-0",
             "flex items-center justify-center text-forge-dim",
             "hover:text-forge-red hover:border-forge-red/60",
             "disabled:opacity-40 disabled:cursor-not-allowed disabled:hover:text-forge-dim disabled:hover:border-forge-border",
@@ -141,8 +141,8 @@ function BlessingRow({ timeline, selection, onChange, readOnly }: RowProps) {
         ))}
       </select>
 
-      {/* Toggle + value */}
-      <div className="flex items-stretch gap-2 min-w-0">
+      {/* Toggle + value — stacks vertically on mobile, side-by-side on md+ */}
+      <div className="flex flex-col md:flex-row md:items-stretch gap-2 min-w-0">
         <div
           className={clsx(
             "flex rounded-sm border border-forge-border overflow-hidden bg-forge-surface2 flex-1",
@@ -154,7 +154,7 @@ function BlessingRow({ timeline, selection, onChange, readOnly }: RowProps) {
             disabled={readOnly || !selection}
             onClick={() => handleGrandToggle(false)}
             className={clsx(
-              "flex-1 px-2 py-1 font-mono text-[11px] uppercase tracking-widest transition-colors",
+              "flex-1 px-2 py-1 font-mono text-[11px] uppercase tracking-widest transition-colors min-h-[44px] md:min-h-0",
               !isGrand
                 ? "bg-forge-cyan/15 text-forge-cyan"
                 : "text-forge-dim hover:text-forge-text",
@@ -168,7 +168,7 @@ function BlessingRow({ timeline, selection, onChange, readOnly }: RowProps) {
             disabled={readOnly || !selection}
             onClick={() => handleGrandToggle(true)}
             className={clsx(
-              "flex-1 px-2 py-1 font-mono text-[11px] uppercase tracking-widest transition-colors",
+              "flex-1 px-2 py-1 font-mono text-[11px] uppercase tracking-widest transition-colors min-h-[44px] md:min-h-0",
               isGrand
                 ? "bg-forge-amber/20 text-forge-amber"
                 : "text-forge-dim hover:text-forge-text",
@@ -187,8 +187,8 @@ function BlessingRow({ timeline, selection, onChange, readOnly }: RowProps) {
           onChange={(e) => handleValueChange(e.target.value)}
           placeholder="—"
           className={clsx(
-            "w-24 bg-forge-surface2 border border-forge-border rounded-sm",
-            "px-2 py-1 text-sm text-forge-text font-mono text-right",
+            "w-full md:w-24 bg-forge-surface2 border border-forge-border rounded-sm",
+            "px-2 py-1 text-sm text-forge-text font-mono text-right min-h-[44px] md:min-h-0",
             "focus:outline-none focus:border-forge-cyan",
             "disabled:opacity-50 disabled:cursor-not-allowed",
           )}

@@ -87,14 +87,15 @@ describe('AppLayout', () => {
   it('sidebar starts collapsed by default', () => {
     const { container } = render(<AppLayout />);
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('56px');
+    // Desktop collapsed width is applied via Tailwind `md:w-[56px]`.
+    expect(aside.className).toContain('md:w-[56px]');
   });
 
   it('sidebar starts expanded when localStorage has true', () => {
     localStorage.setItem('forge_sidebar_open', 'true');
     const { container } = render(<AppLayout />);
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('200px');
+    expect(aside.className).toContain('md:w-[200px]');
   });
 
   it('sidebar toggle button exists in topbar', () => {
@@ -108,7 +109,7 @@ describe('AppLayout', () => {
     const expandBtn = screen.getByTitle('Expand sidebar');
     await act(async () => { fireEvent.click(expandBtn); });
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('200px');
+    expect(aside.className).toContain('md:w-[200px]');
   });
 
   it('sidebar can be collapsed via expand/collapse toggle', async () => {
@@ -116,10 +117,10 @@ describe('AppLayout', () => {
     // Expand via sidebar's own expand button
     await act(async () => { fireEvent.click(screen.getByTitle('Expand sidebar')); });
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('200px');
+    expect(aside.className).toContain('md:w-[200px]');
     // Collapse via sidebar's own collapse button
     await act(async () => { fireEvent.click(screen.getByTitle('Collapse sidebar')); });
-    expect(aside.style.width).toBe('56px');
+    expect(aside.className).toContain('md:w-[56px]');
   });
 
   it('GlobalSearch is not visible initially', () => {

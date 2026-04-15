@@ -182,7 +182,7 @@ function QuickGearGrid({
 
   return (
     <>
-      <div className="grid grid-cols-4 sm:grid-cols-6 gap-2">
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
         {QUICK_SLOT_DEFS.map((def) => {
           const equipped = findGearAt(gear, def.storeSlot, def.occurrence);
           const affixCount = equipped?.affixes?.length ?? 0;

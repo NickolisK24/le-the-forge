@@ -67,14 +67,16 @@ describe('Sidebar', () => {
   it('renders in collapsed state by default (no stored value)', () => {
     const { container } = render(<Sidebar />);
     const aside = container.querySelector('aside') as HTMLElement;
-    // Collapsed width is 56px
-    expect(aside.style.width).toBe('56px');
+    // Collapsed desktop width is 56px (applied via Tailwind `md:w-[56px]`).
+    expect(aside.className).toContain('md:w-[56px]');
   });
 
   it('does not show text labels when collapsed', () => {
     render(<Sidebar />);
-    // Labels like "Build Planner" should not be visible when collapsed
-    expect(screen.queryByText('Build Planner')).not.toBeInTheDocument();
+    // Labels remain in the DOM (so the mobile drawer at w-72 can show them)
+    // but are hidden on desktop via `md:hidden` when the sidebar is collapsed.
+    const label = screen.getByText('Build Planner');
+    expect(label.className).toContain('md:hidden');
   });
 
   it('shows toggle button', () => {
@@ -88,7 +90,7 @@ describe('Sidebar', () => {
     const toggle = screen.getByTitle('Expand sidebar');
     await act(async () => { fireEvent.click(toggle); });
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('200px');
+    expect(aside.className).toContain('md:w-[200px]');
   });
 
   it('shows nav labels when expanded', async () => {
@@ -113,14 +115,14 @@ describe('Sidebar', () => {
     const collapseBtn = screen.getByTitle('Collapse sidebar');
     await act(async () => { fireEvent.click(collapseBtn); });
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('56px');
+    expect(aside.className).toContain('md:w-[56px]');
   });
 
   it('reads expanded state from localStorage', () => {
     localStorage.setItem('forge_sidebar_open', 'true');
     const { container } = render(<Sidebar />);
     const aside = container.querySelector('aside') as HTMLElement;
-    expect(aside.style.width).toBe('200px');
+    expect(aside.className).toContain('md:w-[200px]');
   });
 
   it('renders all 7 nav items when expanded', async () => {
