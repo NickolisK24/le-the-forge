@@ -107,28 +107,45 @@ def apply_derived_stats(stats: BuildStats) -> None:
 # ---------------------------------------------------------------------------
 
 def apply_conversions(stats: BuildStats, conversions: list[dict] | None = None) -> None:
-    """Apply damage type conversions (Layer 5).
+    """Layer 5 — Damage type conversions (no-op).
 
-    Conversions redirect a percentage of one damage type's bonus into another.
-    Example: 50% physical → fire conversion means half of physical_damage_pct
-    also contributes to fire_damage_pct.
+    This function is intentionally a no-op. The previous implementation
+    copied percentage values between ``*_damage_pct`` stats — e.g. reading
+    ``physical_damage_pct``, multiplying by the conversion percentage, and
+    adding the result to ``fire_damage_pct`` while leaving
+    ``physical_damage_pct`` untouched. That model is mechanically wrong
+    for Last Epoch: in-game conversion makes the damage *fully* the new
+    type, so the original type's increased pool should no longer apply to
+    the converted portion. Keeping both pools active double-counts the
+    increased% and inflates DPS for converted skills.
+
+    The correct conversion model operates on the per-type base-damage
+    dict *before* the increased pool is applied, not on the stored
+    ``*_damage_pct`` BuildStats fields. It's implemented by
+    :class:`app.domain.calculators.conversion_calculator.DamageConversion`
+    and consumed by :func:`app.engines.combat_engine.calculate_dps`,
+    which calls ``apply_conversions(scaled, conversions)`` on the scaled
+    base-damage dict before the increased-damage pool is applied.
+
+    Signature and parameter list are preserved so existing callers
+    (including :func:`resolve_final_stats`) don't break. The
+    ``conversions`` argument is accepted and ignored.
 
     Args:
-        stats: BuildStats to modify in place.
-        conversions: List of {"from": "physical", "to": "fire", "pct": 50} dicts.
-                     None or empty list is a valid no-op.
+        stats: BuildStats instance — not modified.
+        conversions: Ignored. Pass-through kept for backward compatibility.
     """
-    if not conversions:
-        return
-    for conv in conversions:
-        from_key  = conv.get("from", "")
-        to_key    = conv.get("to", "")
-        from_stat = f"{from_key}_damage_pct"
-        to_stat   = f"{to_key}_damage_pct"
-        pct       = conv.get("pct", 0) / 100.0
-        if hasattr(stats, from_stat) and hasattr(stats, to_stat):
-            transfer = getattr(stats, from_stat) * pct
-            setattr(stats, to_stat, getattr(stats, to_stat) + transfer)
+    log.debug(
+        "apply_conversions.noop",
+        reason=(
+            "damage type conversion is handled at the DPS calculation level "
+            "via DamageConversion objects in combat_engine.calculate_dps — "
+            "see app.domain.calculators.conversion_calculator for the "
+            "correct implementation; stat-level percentage copying is "
+            "incorrect Last Epoch conversion mechanics"
+        ),
+        n_conversions=len(conversions) if conversions else 0,
+    )
 
 
 # ---------------------------------------------------------------------------
