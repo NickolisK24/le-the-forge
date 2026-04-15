@@ -447,11 +447,9 @@
             "normal_max": 100,
             "grand_min": 120,
             "grand_max": 200
-          },
-          {
-            "description": "Ward Gain on Kill and Ward Decay Threshold"
           }
-        ]
+        ],
+        "description": "Ward Gain on Kill and Ward Decay Threshold"
       },
       {
         "id": "emptiness_of_ash",
@@ -700,11 +698,9 @@
             "normal_max": 100,
             "grand_min": 120,
             "grand_max": 200
-          },
-          {
-            "description": "Health Regeneration and Increased Health Regeneration"
           }
-        ]
+        ],
+        "description": "Health Regeneration and Increased Health Regeneration"
       },
       {
         "id": "chaos_of_lagon",
@@ -846,11 +842,9 @@
             "normal_max": 140,
             "grand_min": 160,
             "grand_max": 260
-          },
-          {
-            "description": "Ward Gain on Potion Use and Ward Decay Threshold"
           }
-        ]
+        ],
+        "description": "Ward Gain on Potion Use and Ward Decay Threshold"
       }
     ]
   },
@@ -1494,11 +1488,9 @@
             "normal_max": 140,
             "grand_min": 180,
             "grand_max": 240
-          },
-          {
-            "description": "Block Chance and Block Effectiveness"
           }
-        ]
+        ],
+        "description": "Block Chance and Block Effectiveness"
       },
       {
         "id": "bulwark_of_the_tundra",
