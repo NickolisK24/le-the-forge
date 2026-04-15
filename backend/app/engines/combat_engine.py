@@ -350,7 +350,18 @@ def calculate_dps(
     # VERIFIED: 1.4.3 spec §2.1 — flat added × effectiveness before summing
     effective_base = scaled_total + flat_added * skill_def.added_damage_effectiveness
 
-    damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
+    # Post-conversion damage types drive the increased-damage pool so that
+    # e.g. a physical→cold converted skill scales with cold_damage_pct /
+    # elemental_damage_pct rather than the static physical_damage_pct.
+    post_conversion_types = set(scaled.keys())
+    damage = calculate_final_damage(
+        DamageContext.from_build(
+            effective_base, stats, skill_def, sm.more_damage_pct,
+            scaled=scaled,
+            post_conversion_types=post_conversion_types,
+        ),
+        debug=debug,
+    )
     hit_damage = damage.total
 
     eff_crit_chance = effective_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
@@ -482,7 +493,16 @@ def monte_carlo_dps(
     # VERIFIED: 1.4.3 spec §2.1 — flat added × effectiveness before summing
     effective_base = scaled_total + flat_added * skill_def.added_damage_effectiveness
 
-    damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled), debug=debug)
+    # Post-conversion types drive the increased-damage pool (see calculate_dps).
+    post_conversion_types = set(scaled.keys())
+    damage = calculate_final_damage(
+        DamageContext.from_build(
+            effective_base, stats, skill_def, sm.more_damage_pct,
+            scaled=scaled,
+            post_conversion_types=post_conversion_types,
+        ),
+        debug=debug,
+    )
     hit_damage = damage.total
 
     eff_crit_chance = effective_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
