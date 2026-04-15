@@ -141,6 +141,7 @@ def simulate_optimize(
     skill_level: int = 20,
     top_n: int = 5,
     conversions: list | None = None,
+    spec_tree: list[dict] | None = None,
 ) -> list[dict]:
     """Rank stat upgrades by DPS/EHP gain from a stats dict.
 
@@ -148,9 +149,19 @@ def simulate_optimize(
     describing skill-tree conversion nodes. When present, it is forwarded
     to :func:`optimization_engine.get_stat_upgrades` so that %-damage
     filtering reflects the post-conversion damage profile.
+
+    ``spec_tree`` is the per-skill allocation list consumed by
+    :func:`skill_tree_resolver.extract_damage_conversions`. When
+    provided, conversions are derived from it via ``_extract_conversions``
+    and override the ``conversions`` kwarg — most callers should use this
+    rather than constructing ``DamageConversion`` objects themselves.
     """
     log.info("simulate_optimize", skill=skill_name, top_n=top_n)
     stats = _build_stats_from_dict(stats_dict)
+
+    if spec_tree:
+        conversions = _extract_conversions(skill_name, spec_tree)
+
     upgrades = optimization_engine.get_stat_upgrades(
         stats, skill_name, skill_level, top_n=top_n, conversions=conversions,
     )

@@ -226,7 +226,9 @@ def get_stat_upgrades(
     primary_skill = _normalize_skill_name(primary_skill)
 
     log.info("get_stat_upgrades.start", skill=primary_skill, top_n=top_n)
-    base_dps = calculate_dps(stats, primary_skill, skill_level).dps
+    base_dps = calculate_dps(
+        stats, primary_skill, skill_level, conversions=conversions,
+    ).dps
     base_ehp = calculate_defense(stats).effective_hp
 
     if base_dps == 0:
@@ -278,7 +280,9 @@ def get_stat_upgrades(
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
 
-        new_dps = calculate_dps(modified, primary_skill, skill_level).dps
+        new_dps = calculate_dps(
+            modified, primary_skill, skill_level, conversions=conversions,
+        ).dps
         new_ehp = calculate_defense(modified).effective_hp
 
         dps_gain = ((new_dps - base_dps) / base_dps * 100) if base_dps > 0 else 0.0
@@ -402,7 +406,9 @@ def stat_sensitivity(
         [{"stat", "current_value", "delta", "dps_gain_pct", "ehp_gain_pct",
           "dps_per_unit", "ehp_per_unit", "category"}]
     """
-    base_dps = calculate_dps(stats, primary_skill, skill_level).dps
+    base_dps = calculate_dps(
+        stats, primary_skill, skill_level, conversions=conversions,
+    ).dps
     base_ehp = calculate_defense(stats).effective_hp
 
     # Build the stat list to test
@@ -444,7 +450,9 @@ def stat_sensitivity(
             base_mult = stats.crit_multiplier - stats.crit_multiplier_pct / 100
             modified.crit_multiplier = base_mult + modified.crit_multiplier_pct / 100
 
-        new_dps = calculate_dps(modified, primary_skill, skill_level).dps
+        new_dps = calculate_dps(
+            modified, primary_skill, skill_level, conversions=conversions,
+        ).dps
         new_ehp = calculate_defense(modified).effective_hp
 
         dps_gain = ((new_dps - base_dps) / base_dps * 100) if base_dps > 0 else 0.0
