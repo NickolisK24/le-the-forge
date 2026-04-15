@@ -427,7 +427,8 @@ class TestCraftEngineProbability:
         assert "item_before" in result
         assert "item_after" in result
 
-    @pytest.mark.xfail(reason="Craft engine uses global random state alongside local RNG — determinism not guaranteed")
+    # Global-RNG leak fixed on fix/craft-engine-rng-determinism — the local
+    # rng is now threaded through apply_craft_action → roll_fp_cost.
     def test_simulate_craft_attempt_is_deterministic_with_seed(self):
         """Same seed + identical input → identical result."""
         from app.engines.craft_engine import simulate_craft_attempt
