@@ -190,12 +190,33 @@ def resolve_blessing_stats(blessing_entries: list[dict]) -> list[dict]:
             return float(bdef.get("normal_max", 0))
 
         if stat_type == "dual":
-            for sub_key in bdef.get("stat_keys", []) or []:
-                out.append({
-                    "stat_key": sub_key,
-                    "value": _resolve_value(),
-                    "stat_type": stat_type,
-                })
+            # Dual blessings fan out into one output per sub-key.  The
+            # ``stat_keys`` entry can be either a plain string (legacy shape
+            # sharing the outer normal_max/grand_max) or a dict carrying its
+            # own stat_type + min/max ranges (1.2 data shape).
+            for sub in bdef.get("stat_keys", []) or []:
+                if isinstance(sub, dict):
+                    sub_stat_key = sub.get("stat_key")
+                    if not sub_stat_key:
+                        continue
+                    sub_stat_type = sub.get("stat_type", "flat")
+                    if explicit_value is not None:
+                        sub_value = float(explicit_value)
+                    elif is_grand:
+                        sub_value = float(sub.get("grand_max", 0))
+                    else:
+                        sub_value = float(sub.get("normal_max", 0))
+                    out.append({
+                        "stat_key": sub_stat_key,
+                        "value": sub_value,
+                        "stat_type": sub_stat_type,
+                    })
+                else:
+                    out.append({
+                        "stat_key": sub,
+                        "value": _resolve_value(),
+                        "stat_type": stat_type,
+                    })
         else:
             stat_key = bdef.get("stat_key")
             if not stat_key:

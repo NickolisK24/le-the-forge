@@ -124,11 +124,19 @@ class GameDataPipeline:
         self._cache["damage_types"]   = self._load_optional("damage_types", [])
         self._cache["implicit_stats"] = self._load_optional("implicit_stats", {})
         self._cache["blessings"]      = self._load_optional("blessings", [])
-        self._cache["blessings_flat"] = {
-            b["id"]: b
-            for b in self._cache["blessings"]
-            if isinstance(b, dict) and "id" in b
-        }
+        # blessings.json is a list of 10 timelines, each with a nested
+        # ``blessings`` array of individual blessing definitions.  Flatten
+        # that inner list into a {blessing_id: definition} index so
+        # get_blessing_by_id() resolves the actual blessings, not the
+        # outer timeline wrappers.
+        _flat: dict[str, dict] = {}
+        for timeline in self._cache["blessings"]:
+            if not isinstance(timeline, dict):
+                continue
+            for b in timeline.get("blessings", []) or []:
+                if isinstance(b, dict) and "id" in b:
+                    _flat[b["id"]] = b
+        self._cache["blessings_flat"] = _flat
 
         log.info("pipeline.load_all.done", version=self._version)
 
