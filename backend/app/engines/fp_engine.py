@@ -93,15 +93,19 @@ def roll_base_fp(item_type: str, rng: Optional[random.Random] = None) -> int:
 # Consume + Log
 # ---------------------------------------------------------------------------
 
-def consume_fp(item: dict, action_type: str) -> dict:
+def consume_fp(item: dict, action_type: str,
+               rng: Optional[random.Random] = None) -> dict:
     """
     Roll an FP cost, validate the item has enough, and deduct it.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
 
     Returns:
       {"success": True, "cost": int, "remaining_fp": int}
       {"success": False, "reason": str, "cost": int}
     """
-    cost = roll_fp_cost(action_type)
+    cost = roll_fp_cost(action_type, rng=rng)
 
     if item.get("forge_potential", 0) < cost:
         return {
@@ -129,12 +133,16 @@ def log_fp_event(item: dict, action_type: str, cost: int) -> None:
     })
 
 
-def apply_fp(item: dict, action_type: str) -> dict:
+def apply_fp(item: dict, action_type: str,
+             rng: Optional[random.Random] = None) -> dict:
     """
     Main entry point: consume FP, log the event, return result.
     Returns a result dict — caller checks result["success"] before applying craft.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
     """
-    result = consume_fp(item, action_type)
+    result = consume_fp(item, action_type, rng=rng)
     if result["success"]:
         log_fp_event(item, action_type, result["cost"])
     return result
@@ -144,9 +152,10 @@ def apply_fp(item: dict, action_type: str) -> dict:
 # Session-model helpers (for craft_service which uses SQLAlchemy models)
 # ---------------------------------------------------------------------------
 
-def roll_session_fp_cost(action_type: str) -> int:
+def roll_session_fp_cost(action_type: str,
+                         rng: Optional[random.Random] = None) -> int:
     """Alias for craft_service — same as roll_fp_cost."""
-    return roll_fp_cost(action_type)
+    return roll_fp_cost(action_type, rng=rng)
 
 
 def get_crafting_rules() -> dict:

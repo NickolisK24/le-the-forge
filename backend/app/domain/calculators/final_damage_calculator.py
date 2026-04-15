@@ -64,6 +64,7 @@ class DamageContext:
         extra_more_pct: float = 0.0,
         *,
         scaled: dict[DamageType, float] | None = None,
+        post_conversion_types: set[DamageType] | None = None,
     ) -> DamageContext:
         """
         Compute all three stage values from build inputs.
@@ -71,10 +72,24 @@ class DamageContext:
         extra_more_pct: additional 'more' from the skill spec tree (percent-point).
         scaled:         per-type base damage from scale_skill_damage(); pass to
                         get a populated damage_by_type in the result.
+        post_conversion_types:
+                        DamageTypes the skill actually deals after
+                        ``apply_conversions``. When non-empty, drives the
+                        increased-damage pool instead of ``skill_def.damage_types``
+                        so the multiplier reflects the converted channels
+                        (e.g. a physical → cold conversion picks up
+                        cold_damage_pct / elemental_damage_pct rather than
+                        the original physical_damage_pct). Not stored on
+                        the context — only used here to compute
+                        ``increased_damage``.
         """
         return cls(
             base_damage=effective_base,
-            increased_damage=sum_increased_damage(stats, skill_def),
+            increased_damage=sum_increased_damage(
+                stats,
+                skill_def,
+                post_conversion_types=post_conversion_types,
+            ),
             more_damage=[stats.more_damage_pct, extra_more_pct],
             scaled=scaled or {},
         )

@@ -127,7 +127,9 @@
         "cold_damage_pct"
       ],
       "is_spell": true,
-      "mana_cost": 35.0
+      "mana_cost": 35.0,
+      "added_damage_effectiveness": 8.0,
+      "_verified": "1.4.3 spec §6 — 800% added damage effectiveness"
     },
     "Bladestorm": {
       "base_damage": 80,
@@ -136,7 +138,9 @@
       "scaling_stats": [
         "physical_damage_pct"
       ],
-      "is_throwing": true
+      "is_throwing": true,
+      "added_damage_effectiveness": 1.5,
+      "_verified": "1.4.3 spec §6 — 150% added damage effectiveness per hit"
     },
     "Blade Flurry": {
       "base_damage": 100,
@@ -806,14 +810,16 @@
       "is_melee": true
     },
     "Meteor": {
-      "base_damage": 300,
+      "base_damage": 240,
       "level_scaling": 0.16,
       "attack_speed": 0.4,
       "scaling_stats": [
         "spell_damage_pct",
         "fire_damage_pct"
       ],
-      "is_spell": true
+      "is_spell": true,
+      "added_damage_effectiveness": 12.0,
+      "_verified": "1.4.3 spec §6 — Meteor 240 base, 1200% added damage effectiveness"
     },
     "Multishot": {
       "base_damage": 85,
@@ -1064,7 +1070,9 @@
       "scaling_stats": [
         "physical_damage_pct"
       ],
-      "is_melee": true
+      "is_melee": true,
+      "added_damage_effectiveness": 5.0,
+      "_verified": "1.4.3 spec §6 — 500% added damage effectiveness"
     },
     "Shadow Cascade": {
       "base_damage": 120,

@@ -95,15 +95,16 @@ class TestArmorFormula:
     def test_physical_cap_85pct(self):
         assert armor_mitigation_pct(1_000_000.0, 100) == pytest.approx(0.85)
 
-    def test_non_physical_75pct_effectiveness(self):
-        """Non-physical: effective_armor = 1000*0.75 = 750, mit = 750/1750."""
+    def test_non_physical_70pct_effectiveness(self):
+        """VERIFIED: 1.4.3 spec §3.1 — armour 70% effective vs non-physical.
+        effective_armor = 1000*0.70 = 700, mit = 700/1700."""
         result = armor_mitigation_pct(1000.0, 100, physical=False)
-        assert result == pytest.approx(750.0 / 1750.0)
+        assert result == pytest.approx(700.0 / 1700.0)
 
     def test_non_physical_cap(self):
-        """Non-physical cap = 85% * 75% = 63.75%."""
+        """Non-physical cap = 85% * 70% = 59.5%."""
         result = armor_mitigation_pct(1_000_000.0, 100, physical=False)
-        assert result == pytest.approx(0.85 * 0.75)
+        assert result == pytest.approx(0.85 * 0.70)
 
     def test_apply_armor_damage_reduction(self):
         """100 damage, 1000 armor, area 100 → 50% mit → 50 passes through."""
@@ -160,16 +161,18 @@ class TestDodgeFormula:
 # ===========================================================================
 
 class TestCritFormula:
-    """Crit% = base x (1 + increased_pct/100), cap 100%. Base mult 1.5x."""
+    """Crit% = base x (1 + increased_pct/100), cap 100%. Base mult 2.0x (1.4.3)."""
 
-    def test_base_crit_multiplier_150pct(self):
-        assert BASE_CRIT_MULTIPLIER == pytest.approx(1.5)
+    def test_base_crit_multiplier_200pct(self):
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier is 200% (2.0×)
+        assert BASE_CRIT_MULTIPLIER == pytest.approx(2.0)
 
     def test_crit_cap_100pct(self):
         assert CRIT_CAP == pytest.approx(1.0)
 
     def test_multiplicative_formula(self):
         """5% base, 100% increased → 5% x 2.0 = 10%."""
+        # Domain module keeps the old (base, increased_pct) positional shape.
         assert effective_crit_chance(0.05, 100.0) == pytest.approx(0.10)
 
     def test_200pct_increased_triples(self):
@@ -196,7 +199,9 @@ class TestCritFormula:
 
     def test_calculator_crit_chance_matches_domain(self):
         """Calculator module uses same multiplicative formula."""
-        assert calc_crit_chance(0.05, 100.0) == pytest.approx(0.10)
+        # VERIFIED: 1.4.3 spec §2.2 — calculator takes (base, flat_bonus_pct,
+        # increased_pct); passing only increased gives base × (1 + inc%).
+        assert calc_crit_chance(0.05, increased_pct=100.0) == pytest.approx(0.10)
 
 
 # ===========================================================================
@@ -367,7 +372,7 @@ class TestDPSBenchmark:
         damage = calculate_final_damage(DamageContext.from_build(effective_base, stats, skill_def, sm.more_damage_pct, scaled=scaled))
         hit_damage = damage.total
 
-        eff_crit_chance = calc_crit_chance(stats.crit_chance, sm.crit_chance_pct)
+        eff_crit_chance = calc_crit_chance(stats.crit_chance, flat_bonus_pct=sm.crit_chance_pct, increased_pct=0.0)
         eff_crit_mult = effective_crit_multiplier(stats.crit_multiplier, sm.crit_multiplier_pct)
         average_hit = calculate_average_hit(hit_damage, eff_crit_chance, eff_crit_mult)
 

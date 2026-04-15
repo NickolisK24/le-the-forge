@@ -85,9 +85,9 @@ class TestPassiveNodeBonuses:
         nodes = [{"id": 3, "type": "core", "name": "ArmourNode"}]
         stats = aggregate_stats("Mage", "Sorcerer", [], nodes, [])
         # Node 3 → armour (id%10 == 3). Not allocated, so no bonus.
-        # Mage has 0 base armour from class + only attribute scaling
-        expected_armour = CLASS_BASE_STATS["Mage"]["strength"] * 2
-        assert stats.armour == pytest.approx(expected_armour)
+        # VERIFIED: 1.4.3 spec §1.5 — strength grants +4% INCREASED armour
+        # (multiplicative on existing flat armour); with no flat source, 0.
+        assert stats.armour == pytest.approx(0.0)
 
     def test_keystone_node_applies_keystone_bonus(self):
         nodes = [{"id": 99, "type": "keystone", "name": "Arcane Absorption"}]
@@ -158,9 +158,13 @@ class TestAttributeScaling:
         assert stats.spell_damage_pct > base.spell_damage_pct
 
     def test_strength_boosts_armour(self):
+        # VERIFIED: 1.4.3 spec §1.5 — strength grants +4% INCREASED armour.
+        # Use a Forge Guard with allocated mastery nodes for flat armour source.
+        nodes = [{"id": i, "type": "core", "name": f"Node{i}"} for i in range(1, 5)]
+        allocated = list(range(1, 5))
         affixes = [{"name": "Strength", "tier": 1}]
-        stats = aggregate_stats("Sentinel", "Paladin", [], [], affixes)
-        base = aggregate_stats("Sentinel", "Paladin", [], [], [])
+        stats = aggregate_stats("Sentinel", "Forge Guard", allocated, nodes, affixes)
+        base = aggregate_stats("Sentinel", "Forge Guard", allocated, nodes, [])
         assert stats.armour > base.armour
 
     def test_dexterity_boosts_dodge(self):

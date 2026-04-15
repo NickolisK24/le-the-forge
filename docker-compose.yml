@@ -54,7 +54,10 @@ services:
     command: sh -c "flask db upgrade && flask seed && flask seed-passives && flask run --host=0.0.0.0 --port=5000 --debug"
 
   frontend:
-    build: ./frontend
+    build:
+      context: .
+      dockerfile: frontend/Dockerfile
+      target: dev
     restart: unless-stopped
     depends_on:
       - backend

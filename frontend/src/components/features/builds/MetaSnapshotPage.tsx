@@ -292,7 +292,7 @@ function SummaryStrip({ data }: { data: FullMetaSnapshot }) {
   }
 
   return (
-    <div className="grid grid-cols-3 gap-4 rounded border border-forge-border bg-forge-surface2 px-6 py-4">
+    <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 rounded border border-forge-border bg-forge-surface2 px-4 sm:px-6 py-4">
       <div className="text-center">
         <div className="font-mono text-[10px] uppercase tracking-widest text-forge-muted mb-1">
           Total Builds

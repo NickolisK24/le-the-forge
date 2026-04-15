@@ -331,11 +331,12 @@ export const CLASS_BASE_STATS: Record<CharacterClass, {
   strength: number; intelligence: number; dexterity: number; vitality: number; attunement: number;
   base_damage: number; crit_chance: number; crit_multiplier: number; attack_speed: number;
 }> = {
-  Acolyte:   { health: 380, mana: 120, strength: 5,  intelligence: 15, dexterity: 5,  vitality: 8,  attunement: 12, base_damage: 80,  crit_chance: 0.05, crit_multiplier: 1.5, attack_speed: 1.0 },
-  Mage:      { health: 340, mana: 180, strength: 3,  intelligence: 20, dexterity: 7,  vitality: 6,  attunement: 14, base_damage: 100, crit_chance: 0.05, crit_multiplier: 1.5, attack_speed: 1.0 },
-  Primalist: { health: 480, mana: 80,  strength: 18, intelligence: 5,  dexterity: 8,  vitality: 14, attunement: 5,  base_damage: 90,  crit_chance: 0.05, crit_multiplier: 1.5, attack_speed: 1.2 },
-  Sentinel:  { health: 520, mana: 60,  strength: 20, intelligence: 5,  dexterity: 5,  vitality: 16, attunement: 4,  base_damage: 110, crit_chance: 0.05, crit_multiplier: 1.5, attack_speed: 0.9 },
-  Rogue:     { health: 400, mana: 100, strength: 8,  intelligence: 8,  dexterity: 18, vitality: 9,  attunement: 7,  base_damage: 85,  crit_chance: 0.07, crit_multiplier: 1.5, attack_speed: 1.3 },
+  // VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 200% = 2.0× for all classes
+  Acolyte:   { health: 380, mana: 120, strength: 5,  intelligence: 15, dexterity: 5,  vitality: 8,  attunement: 12, base_damage: 80,  crit_chance: 0.05, crit_multiplier: 2.0, attack_speed: 1.0 },
+  Mage:      { health: 340, mana: 180, strength: 3,  intelligence: 20, dexterity: 7,  vitality: 6,  attunement: 14, base_damage: 100, crit_chance: 0.05, crit_multiplier: 2.0, attack_speed: 1.0 },
+  Primalist: { health: 480, mana: 80,  strength: 18, intelligence: 5,  dexterity: 8,  vitality: 14, attunement: 5,  base_damage: 90,  crit_chance: 0.05, crit_multiplier: 2.0, attack_speed: 1.2 },
+  Sentinel:  { health: 520, mana: 60,  strength: 20, intelligence: 5,  dexterity: 5,  vitality: 16, attunement: 4,  base_damage: 110, crit_chance: 0.05, crit_multiplier: 2.0, attack_speed: 0.9 },
+  Rogue:     { health: 400, mana: 100, strength: 8,  intelligence: 8,  dexterity: 18, vitality: 9,  attunement: 7,  base_damage: 85,  crit_chance: 0.07, crit_multiplier: 2.0, attack_speed: 1.3 },
 };
 
 // ---------------------------------------------------------------------------
@@ -652,10 +653,21 @@ export function getAffixValue(affixName: string, tier: number): number {
 }
 
 // Attribute scaling constants
+// VERIFIED: 1.4.3 spec §1.5 — per-point attribute grants. Mirrors
+// backend ATTRIBUTE_SCALING in backend/app/engines/stat_engine.py.
+//
+// Note on `strength.armour` (flat) vs backend `strength.armour_pct` (percent
+// increase): the frontend simulation applies armour as a flat addition for
+// simplicity (simulation.ts:aggregateStats step 5). The backend applies it
+// multiplicatively in its "more" pool. Full parity requires porting the
+// percent-increase armour path — tracked separately from this patch.
 export const ATTRIBUTE_SCALING = {
   strength:     { physical_damage_pct: 0.5, armour: 2 },
-  intelligence: { spell_damage_pct: 0.5, max_mana: 10 },
-  dexterity:    { attack_speed_pct: 0.3, dodge_rating: 3 },
-  vitality:     { max_health: 10 },
+  // VERIFIED: 1.4.3 spec §1.5 — intelligence grants +4% ward retention per point
+  intelligence: { spell_damage_pct: 0.5, max_mana: 10, ward_retention_pct: 4 },
+  // VERIFIED: 1.4.3 spec §1.5 — dexterity grants +4 dodge rating per point
+  dexterity:    { attack_speed_pct: 0.3, dodge_rating: 4 },
+  // VERIFIED: 1.4.3 spec §1.5 — vitality grants +6 health per point
+  vitality:     { max_health: 6 },
   attunement:   { cast_speed: 0.3 },
 };

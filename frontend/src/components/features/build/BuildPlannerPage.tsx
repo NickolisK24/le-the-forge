@@ -1,30 +1,39 @@
 import { useMemo, useState, useEffect, useRef } from "react";
-import { Link, useNavigate, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams, useSearchParams } from "react-router-dom";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 
 import { Badge, Button, EmptyState, Panel, SectionLabel, Spinner } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import { useBuild, useCreateBuild, useUpdateBuild, useVote } from "@/hooks";
 import { useAuthStore } from "@/store";
-import { CLASS_COLORS, CLASS_SKILLS, MASTERIES } from "@/lib/gameData";
+import { CLASS_COLORS, CLASS_SKILLS, MASTERIES, getAffixValue } from "@/lib/gameData";
+import type { GearItem, GearAffix } from "@/lib/gameData";
 import { BASE_CLASSES } from "@constants";
-import type { Build, BuildSkill, CharacterClass } from "@/types";
+import type { Build, BuildSkill, CharacterClass, AffixOnItem } from "@/types";
 import { versionApi, simulateApi, buildsApi, viewApi, type BuildSimulationResult, type ImportedBuild } from "@/lib/api";
 import { PRESETS } from "@/data/presets";
 import type { OptimizeMode } from "@/types";
-import SimulationDashboard from "./SimulationDashboard";
 import StatUpgradePanel from "./StatUpgradePanel";
 import UpgradeCandidatesPanel from "./UpgradeCandidatesPanel";
 import BuildPassiveTree from "./BuildPassiveTree";
 import PassiveProgressBar from "./PassiveProgressBar";
 import BuildImportModal from "./BuildImportModal";
 import GearEditor from "./GearEditor";
+import GearSlotEditor from "./GearSlotEditor";
 import SkillSelector from "./SkillSelector";
 import BossEncounterPanel from "./BossEncounterPanel";
 import CorruptionScalingPanel from "./CorruptionScalingPanel";
 import GearUpgradePanel from "./GearUpgradePanel";
+import BuildScoreCard from "./simulation/BuildScoreCard";
+import AccordionSection from "./simulation/AccordionSection";
+import OffenseDefenseSplit from "./simulation/OffenseDefenseSplit";
+import PrimarySkillBreakdown from "./simulation/PrimarySkillBreakdown";
+import AllSkillsSummary from "./simulation/AllSkillsSummary";
 import { resolveSkillName } from "@/data/skillTrees";
 import type { GearSlot } from "@/types";
+import BlessingsPanel from "@/components/blessings/BlessingsPanel";
+import type { SelectedBlessing } from "@/types/blessings";
 
 const CHARACTER_CLASSES: CharacterClass[] = [...BASE_CLASSES] as CharacterClass[];
 const MAX_SKILLS = 5;
@@ -57,6 +66,172 @@ function FlagToggle({
       </div>
       <span className="font-body text-sm text-forge-text">{label}</span>
     </button>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// QuickGearGrid — 11-slot grid that opens GearSlotEditor per slot.
+// Used in create mode so users can craft affixes on each gear piece without
+// leaving the build planner.
+// ---------------------------------------------------------------------------
+const QUICK_SLOT_DEFS = [
+  { key: "helmet",  label: "Helm",        icon: "⛑",  slotType: "Helm",   storeSlot: "helmet",  occurrence: 0 },
+  { key: "body",    label: "Body Armour", icon: "🧥", slotType: "Chest",  storeSlot: "body",    occurrence: 0 },
+  { key: "gloves",  label: "Gloves",      icon: "🧤", slotType: "Gloves", storeSlot: "gloves",  occurrence: 0 },
+  { key: "boots",   label: "Boots",       icon: "👢", slotType: "Boots",  storeSlot: "boots",   occurrence: 0 },
+  { key: "belt",    label: "Belt",        icon: "➰", slotType: "Belt",   storeSlot: "belt",    occurrence: 0 },
+  { key: "amulet",  label: "Amulet",      icon: "📿", slotType: "Amulet", storeSlot: "amulet",  occurrence: 0 },
+  { key: "ring_1",  label: "Ring 1",      icon: "💍", slotType: "Ring",   storeSlot: "ring",    occurrence: 0 },
+  { key: "ring_2",  label: "Ring 2",      icon: "💍", slotType: "Ring",   storeSlot: "ring",    occurrence: 1 },
+  { key: "weapon",  label: "Weapon",      icon: "⚔",  slotType: "Wand",   storeSlot: "weapon",  occurrence: 0 },
+  { key: "offhand", label: "Off-hand",    icon: "🛡", slotType: "Shield", storeSlot: "offhand", occurrence: 0 },
+  // Relic uses Amulet-class affixes as proxy (AFFIX_DEFINITIONS has no "Relic"
+  // applicable tag; spell-caster affixes on relics mirror amulet roll tables).
+  { key: "relic",   label: "Relic",       icon: "🔮", slotType: "Amulet", storeSlot: "relic",   occurrence: 0 },
+] as const;
+
+function findGearAt(gear: GearSlot[], storeSlot: string, occurrence: number): GearSlot | undefined {
+  let seen = 0;
+  for (const g of gear) {
+    if (g.slot === storeSlot) {
+      if (seen === occurrence) return g;
+      seen++;
+    }
+  }
+  return undefined;
+}
+
+function removeGearAt(gear: GearSlot[], storeSlot: string, occurrence: number): GearSlot[] {
+  let seen = 0;
+  return gear.filter((g) => {
+    if (g.slot !== storeSlot) return true;
+    const keep = seen !== occurrence;
+    seen++;
+    return keep;
+  });
+}
+
+function upsertGearAt(
+  gear: GearSlot[],
+  storeSlot: string,
+  occurrence: number,
+  next: GearSlot,
+): GearSlot[] {
+  let seen = 0;
+  let replaced = false;
+  const result: GearSlot[] = [];
+  for (const g of gear) {
+    if (g.slot === storeSlot) {
+      if (seen === occurrence) {
+        result.push(next);
+        replaced = true;
+      } else {
+        result.push(g);
+      }
+      seen++;
+    } else {
+      result.push(g);
+    }
+  }
+  if (!replaced) result.push(next);
+  return result;
+}
+
+function slotToItem(slot: GearSlot | undefined, storeSlot: string): GearItem | undefined {
+  if (!slot) return undefined;
+  const rarity = (slot.rarity ?? "rare") as GearItem["rarity"];
+  const safeRarity: GearItem["rarity"] =
+    rarity === "normal" || rarity === "magic" || rarity === "rare" || rarity === "exalted"
+      ? rarity
+      : "rare";
+  return {
+    slot: storeSlot,
+    rarity: safeRarity,
+    affixes: (slot.affixes ?? []).map((a): GearAffix => ({
+      name: a.name,
+      tier: a.tier,
+      value: getAffixValue(a.name, a.tier),
+    })),
+  };
+}
+
+function itemToSlot(item: GearItem, storeSlot: string, previousItemName?: string): GearSlot {
+  return {
+    slot: storeSlot,
+    item_name: previousItemName,
+    rarity: item.rarity,
+    affixes: item.affixes.map((a): AffixOnItem => ({
+      name: a.name,
+      tier: a.tier,
+      sealed: false,
+    })),
+  };
+}
+
+function QuickGearGrid({
+  gear, onChange,
+}: { gear: GearSlot[]; onChange: (g: GearSlot[]) => void }) {
+  const [editingKey, setEditingKey] = useState<string | null>(null);
+
+  const activeDef = editingKey
+    ? QUICK_SLOT_DEFS.find((d) => d.key === editingKey) ?? null
+    : null;
+  const activeExisting = activeDef
+    ? findGearAt(gear, activeDef.storeSlot, activeDef.occurrence)
+    : undefined;
+
+  return (
+    <>
+      <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 gap-2">
+        {QUICK_SLOT_DEFS.map((def) => {
+          const equipped = findGearAt(gear, def.storeSlot, def.occurrence);
+          const affixCount = equipped?.affixes?.length ?? 0;
+          const hasItem = !!equipped;
+          return (
+            <button
+              key={def.key}
+              type="button"
+              onClick={() => setEditingKey(def.key)}
+              className={`relative flex flex-col items-center justify-center gap-1 border rounded-sm px-2 py-3 cursor-pointer transition-colors ${
+                hasItem
+                  ? "border-forge-amber/60 bg-forge-amber/10 hover:bg-forge-amber/15"
+                  : "border-forge-border bg-forge-surface2 hover:border-forge-border-hot"
+              }`}
+              aria-label={`Edit ${def.label}`}
+            >
+              <span className="text-2xl leading-none">{def.icon}</span>
+              <span className="font-mono text-[9px] uppercase tracking-wider text-forge-dim">
+                {def.label}
+              </span>
+              {affixCount > 0 && (
+                <span className="absolute top-1 right-1 min-w-[18px] h-[18px] px-1 rounded-full bg-forge-amber text-forge-bg font-mono text-[10px] font-bold flex items-center justify-center">
+                  {affixCount}
+                </span>
+              )}
+            </button>
+          );
+        })}
+      </div>
+
+      {activeDef && (
+        <GearSlotEditor
+          slot={activeDef.label}
+          slotIcon={activeDef.icon}
+          slotType={activeDef.slotType}
+          initial={slotToItem(activeExisting, activeDef.storeSlot)}
+          onSave={(item) => {
+            const next = itemToSlot(item, activeDef.storeSlot, activeExisting?.item_name);
+            onChange(upsertGearAt(gear, activeDef.storeSlot, activeDef.occurrence, next));
+            setEditingKey(null);
+          }}
+          onClear={() => {
+            onChange(removeGearAt(gear, activeDef.storeSlot, activeDef.occurrence));
+            setEditingKey(null);
+          }}
+          onClose={() => setEditingKey(null)}
+        />
+      )}
+    </>
   );
 }
 
@@ -163,6 +338,11 @@ function BuildSummary({ build }: { build: Build }) {
   // Gear slots
   const [gearSlots, setGearSlots] = useState<GearSlot[]>(build.gear ?? []);
 
+  // Monolith blessings
+  const [draftBlessings, setDraftBlessings] = useState<SelectedBlessing[]>(
+    build.blessings ?? [],
+  );
+
   function getPassiveAllocMap(): AllocMap {
     const map: AllocMap = {};
     for (const id of passiveTree) map[id] = (map[id] ?? 0) + 1;
@@ -258,6 +438,7 @@ function BuildSummary({ build }: { build: Build }) {
     setDraftSkills(build.skills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree ?? [] })));
     setPassiveTree(build.passive_tree ?? []);
     setGearSlots(build.gear ?? []);
+    setDraftBlessings(build.blessings ?? []);
     setEditing(false);
   }
 
@@ -277,6 +458,7 @@ function BuildSummary({ build }: { build: Build }) {
         skills: draftSkills.map((s) => ({ skill_name: s.skill_name, slot: s.slot, points_allocated: s.points_allocated, spec_tree: s.spec_tree })) as Partial<BuildSkill>[],
         passive_tree: passiveTree,
         gear: gearSlots,
+        blessings: draftBlessings,
       },
     });
     if (res.errors) { toast.error(res.errors[0]?.message ?? "Update failed"); return; }
@@ -441,44 +623,88 @@ function BuildSummary({ build }: { build: Build }) {
           )}
         </Panel>
 
-        {/* Simulation results dashboard */}
+        {/* Simulation results — restructured 6-section UX */}
         {showDashboard && simResult && (
-          <div className="mt-2">
-            <SimulationDashboard result={simResult} />
-          </div>
-        )}
-
-        {/* Phase 4: Optimization panels */}
-        {showDashboard && simResult && (
-          <div className="mt-4 grid gap-4 lg:grid-cols-2">
-            <StatUpgradePanel
-              rankings={optimizeQuery.data?.stat_rankings ?? []}
-              mode={optimizeMode}
-              onModeChange={setOptimizeMode}
-              isLoading={optimizeQuery.isLoading}
-              error={optimizeQuery.error}
-              onRetry={() => optimizeQuery.refetch()}
+          <div className="mt-2 flex flex-col gap-6 min-w-0">
+            {/* SECTION 1 — Build Score Card (hero, above fold) */}
+            <BuildScoreCard
+              skillName={simResult.primary_skill}
+              characterClass={build.character_class}
+              mastery={build.mastery}
+              dps={simResult.dps.total_dps ?? simResult.dps.dps ?? 0}
+              effectiveHp={simResult.defense.effective_hp}
+              survivabilityScore={simResult.defense.survivability_score}
+              weaknesses={simResult.defense.weaknesses ?? []}
+              topUpgrade={simResult.stat_upgrades?.[0]?.label ?? null}
             />
-            <UpgradeCandidatesPanel
-              candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
-              isLoading={optimizeQuery.isLoading}
-              error={optimizeQuery.error}
-              onRetry={() => optimizeQuery.refetch()}
-            />
-          </div>
-        )}
 
-        {/* Phase 7: Advanced analysis panels */}
-        {showDashboard && simResult && build.slug && (
-          <>
-            <div className="mt-4 grid gap-4 lg:grid-cols-2">
-              <BossEncounterPanel slug={build.slug} />
-              <CorruptionScalingPanel slug={build.slug} />
+            {/* SECTION 2 — Offense vs Defense split */}
+            <OffenseDefenseSplit
+              dps={simResult.dps}
+              defense={simResult.defense}
+              stats={simResult.stats}
+            />
+
+            {/* SECTION 3 — Primary skill breakdown */}
+            <PrimarySkillBreakdown
+              skillName={simResult.primary_skill}
+              dps={simResult.dps}
+              skills={simResult.dps_per_skill}
+            />
+
+            {/* SECTION 4 — All skills summary */}
+            <AllSkillsSummary
+              skills={build.skills.map((s) => ({
+                slot: s.slot,
+                skill_name: s.skill_name,
+                points_allocated: s.points_allocated,
+              }))}
+              dpsPerSkill={simResult.dps_per_skill}
+            />
+
+            {/* SECTION 5 — What To Improve Next */}
+            <div className="flex flex-col gap-3 min-w-0">
+              <div className="flex flex-col gap-1">
+                <h3 className="font-display text-lg font-bold tracking-wider text-forge-text">
+                  What To Improve Next
+                </h3>
+                <p className="font-body text-sm text-forge-dim">
+                  Highest-impact stat upgrades and affix swaps ranked by simulated DPS &amp; effective HP gains.
+                </p>
+              </div>
+              <div className="grid gap-4 lg:grid-cols-2">
+                <StatUpgradePanel
+                  rankings={optimizeQuery.data?.stat_rankings ?? []}
+                  mode={optimizeMode}
+                  onModeChange={setOptimizeMode}
+                  isLoading={optimizeQuery.isLoading}
+                  error={optimizeQuery.error}
+                  onRetry={() => optimizeQuery.refetch()}
+                />
+                <UpgradeCandidatesPanel
+                  candidates={optimizeQuery.data?.top_upgrade_candidates ?? []}
+                  isLoading={optimizeQuery.isLoading}
+                  error={optimizeQuery.error}
+                  onRetry={() => optimizeQuery.refetch()}
+                />
+              </div>
             </div>
-            <div className="mt-4">
-              <GearUpgradePanel slug={build.slug} />
-            </div>
-          </>
+
+            {/* SECTION 6 — Advanced Analysis (collapsed by default) */}
+            {build.slug && (
+              <AccordionSection
+                title="Advanced Analysis — Boss Encounters, Corruption Scaling & Gear Upgrades"
+                storageKey="forge_advanced_analysis_open"
+                defaultOpen={false}
+              >
+                <div className="grid gap-4 lg:grid-cols-2 min-w-0">
+                  <BossEncounterPanel slug={build.slug} />
+                  <CorruptionScalingPanel slug={build.slug} />
+                </div>
+                <GearUpgradePanel slug={build.slug} />
+              </AccordionSection>
+            )}
+          </div>
         )}
       </div>
     );
@@ -582,6 +808,11 @@ function BuildSummary({ build }: { build: Build }) {
           />
         </Panel>
 
+        <BlessingsPanel
+          selectedBlessings={draftBlessings}
+          onChange={setDraftBlessings}
+        />
+
         <Panel title="Save Changes">
           <div className="flex flex-col gap-3">
             <Button onClick={handleSave} disabled={updateBuild.isPending || !name.trim()} className="w-full">
@@ -624,15 +855,26 @@ function BuildSummary({ build }: { build: Build }) {
 export default function BuildPlannerPage() {
   const { slug } = useParams();
   const navigate = useNavigate();
+  const [searchParams] = useSearchParams();
   const { data, isLoading } = useBuild(slug ?? "");
   const createBuild = useCreateBuild();
   const { user } = useAuthStore();
 
+  // URL-driven class override: links like /build?class=Acolyte (e.g. from the
+  // Classes page) must win over any autosaved draft so navigating with intent
+  // never silently drops back to the previous class. Validated against
+  // CHARACTER_CLASSES so unknown/malformed values fall through to defaults.
+  const urlClassParam = searchParams.get("class");
+  const urlClass: CharacterClass | null =
+    urlClassParam && (CHARACTER_CLASSES as readonly string[]).includes(urlClassParam)
+      ? (urlClassParam as CharacterClass)
+      : null;
+
   // Form state
   const [name, setName] = useState("New Forge Build");
   const [description, setDescription] = useState("");
-  const [characterClass, setCharacterClass] = useState<CharacterClass>("Sentinel");
-  const [mastery, setMastery] = useState(MASTERIES.Sentinel[0]);
+  const [characterClass, setCharacterClass] = useState<CharacterClass>(urlClass ?? "Sentinel");
+  const [mastery, setMastery] = useState(MASTERIES[urlClass ?? "Sentinel"][0]);
   const [level, setLevel] = useState(70);
   const [isSsf, setIsSsf] = useState(false);
   const [isHc, setIsHc] = useState(false);
@@ -641,7 +883,14 @@ export default function BuildPlannerPage() {
   const [draftSkills, setDraftSkills] = useState<DraftSkill[]>([]);
   const [passiveTree, setPassiveTree] = useState<number[]>([]);
   const [draftGear, setDraftGear] = useState<GearSlot[]>([]);
+  const [draftBlessings, setDraftBlessings] = useState<SelectedBlessing[]>([]);
   const [hasDraft, setHasDraft] = useState(false);
+  // Informational banner — set when we had to override a stored draft's class
+  // with the one from the URL. The draft stays on disk so the user can undo.
+  const [urlClassOverride, setUrlClassOverride] = useState<{
+    from: CharacterClass;
+    to: CharacterClass;
+  } | null>(null);
 
   // Import / preset modal state — auto-open if ?import=true in URL
   const [showImportModal, setShowImportModal] = useState(
@@ -697,7 +946,11 @@ export default function BuildPlannerPage() {
   const DRAFT_KEY = "forge_draft_build";
   const saveTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Restore draft on mount for new builds only
+  // Restore draft on mount for new builds only. When a ?class= URL param is
+  // present it takes priority over the draft's class/mastery — the rest of
+  // the draft (name, level, skills, passive tree, etc.) still restores so the
+  // user's in-progress work isn't thrown away. A banner below surfaces the
+  // override so the swap isn't silent.
   useEffect(() => {
     if (slug) return; // editing existing — don't overwrite
     const raw = localStorage.getItem(DRAFT_KEY);
@@ -706,19 +959,38 @@ export default function BuildPlannerPage() {
       const draft = JSON.parse(raw);
       if (draft.name) setName(draft.name);
       if (draft.description) setDescription(draft.description);
-      if (draft.characterClass) setCharacterClass(draft.characterClass);
-      if (draft.mastery) setMastery(draft.mastery);
+      const draftClass: CharacterClass | undefined = draft.characterClass;
+      if (urlClass) {
+        // URL param wins. Keep the draft's class on the override banner so the
+        // user can see what was swapped.
+        setCharacterClass(urlClass);
+        setMastery(MASTERIES[urlClass][0]);
+        // Drop skills tied to a different class — they'd be invalid anyway.
+        if (draftClass && draftClass !== urlClass) {
+          setUrlClassOverride({ from: draftClass, to: urlClass });
+        } else if (Array.isArray(draft.draftSkills)) {
+          setDraftSkills(draft.draftSkills);
+        }
+      } else {
+        if (draftClass) setCharacterClass(draftClass);
+        if (draft.mastery) setMastery(draft.mastery);
+        if (Array.isArray(draft.draftSkills)) setDraftSkills(draft.draftSkills);
+      }
       if (typeof draft.level === "number") setLevel(draft.level);
       if (typeof draft.isSsf === "boolean") setIsSsf(draft.isSsf);
       if (typeof draft.isHc === "boolean") setIsHc(draft.isHc);
       if (typeof draft.isLadder === "boolean") setIsLadder(draft.isLadder);
       if (typeof draft.isBudget === "boolean") setIsBudget(draft.isBudget);
-      if (Array.isArray(draft.draftSkills)) setDraftSkills(draft.draftSkills);
       if (Array.isArray(draft.passiveTree)) setPassiveTree(draft.passiveTree);
+      if (Array.isArray(draft.draftBlessings)) setDraftBlessings(draft.draftBlessings);
       setHasDraft(true);
     } catch {
       localStorage.removeItem(DRAFT_KEY);
     }
+    // urlClass is derived synchronously from searchParams at render time —
+    // the effect should run only on mount / slug change, matching the
+    // original behaviour. Re-reading urlClass here would re-apply the draft
+    // on every render.
   }, [slug]);
 
   // Auto-save draft to localStorage (debounced 1.5s) for new builds only
@@ -726,11 +998,11 @@ export default function BuildPlannerPage() {
     if (slug) return;
     if (saveTimerRef.current) clearTimeout(saveTimerRef.current);
     saveTimerRef.current = setTimeout(() => {
-      const draft = { name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree };
+      const draft = { name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree, draftBlessings };
       localStorage.setItem(DRAFT_KEY, JSON.stringify(draft));
     }, 1500);
     return () => { if (saveTimerRef.current) clearTimeout(saveTimerRef.current); };
-  }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree]);
+  }, [slug, name, description, characterClass, mastery, level, isSsf, isHc, isLadder, isBudget, draftSkills, passiveTree, draftBlessings]);
 
   // Track view on mount (fire and forget — no loading/error state)
   useEffect(() => {
@@ -847,6 +1119,7 @@ export default function BuildPlannerPage() {
       })) as Partial<BuildSkill>[],
       passive_tree: passiveTree,
       gear: draftGear,
+      blessings: draftBlessings,
     };
 
     const res = await createBuild.mutateAsync(payload);
@@ -883,8 +1156,14 @@ export default function BuildPlannerPage() {
   if (data?.data) return <BuildSummary build={data.data} />;
 
   // ── Create form ──
+  const pageTitle = slug ? `${data?.data?.name ?? "Build"} — Build Planner` : "Build Planner";
   return (
     <div className="grid gap-6 xl:grid-cols-[1fr_360px] min-w-0">
+      <PageMeta
+        title={pageTitle}
+        description="Plan your Last Epoch build with interactive passive tree, skill specializations, gear editor, and real-time DPS simulation."
+        path={slug ? `/build/${slug}` : "/build"}
+      />
 
       {/* Draft / auth banners */}
       {!user && (
@@ -921,6 +1200,31 @@ export default function BuildPlannerPage() {
           </span>
           <Button variant="ghost" size="sm" onClick={clearDraft}>
             Clear Draft
+          </Button>
+        </div>
+      )}
+
+      {urlClassOverride && (
+        <div className="xl:col-span-2 flex items-center justify-between gap-4 rounded border border-forge-amber/40 bg-forge-amber/8 px-4 py-3">
+          <span className="font-body text-sm text-forge-muted">
+            <span className="text-forge-amber">URL class applied.</span> Switched to{" "}
+            <strong className="text-forge-text">{urlClassOverride.to}</strong> from your{" "}
+            <strong className="text-forge-text">{urlClassOverride.from}</strong> draft. Other draft
+            fields (name, level, gear, tags) were preserved.
+          </span>
+          <Button
+            variant="ghost"
+            size="sm"
+            onClick={() => {
+              // Revert to the draft's class; the banner closes and the draft
+              // stays intact on disk.
+              const from = urlClassOverride.from;
+              setCharacterClass(from);
+              setMastery(MASTERIES[from][0]);
+              setUrlClassOverride(null);
+            }}
+          >
+            Use draft class
           </Button>
         </div>
       )}
@@ -1111,11 +1415,16 @@ export default function BuildPlannerPage() {
         </Panel>
 
         <Panel title={`Gear (${draftGear.length} equipped)`}>
-          <GearEditor
+          <QuickGearGrid
             gear={draftGear}
             onChange={setDraftGear}
           />
         </Panel>
+
+        <BlessingsPanel
+          selectedBlessings={draftBlessings}
+          onChange={setDraftBlessings}
+        />
 
         <Panel title="Save">
           <div className="flex flex-col gap-4">

@@ -10,12 +10,12 @@ export const CRIT_CHANCE_CAP = 0.95 as const;
 export const BASE_CRIT_CHANCE = 0.05 as const;
 export const BASE_CRIT_MULTIPLIER = 1.5 as const;
 
-/** Ailment DoT — Last Epoch baseline values, pre-modifier */
-export const BLEED_BASE_RATIO = 0.70 as const;  // 70% of hit damage spread over duration per stack
+/** Ailment DoT — Last Epoch baseline durations per stack.
+ * VERIFIED: 1.4.3 spec §4 — each ailment has flat base DPS per stack (see
+ * BLEED_BASE_DPS / IGNITE_BASE_DPS / POISON_BASE_DPS in the Python constants).
+ * The old legacy ratio constants (BLEED_BASE_RATIO etc.) were incorrect and
+ * have been removed.
+ */
 export const BLEED_DURATION = 4.0 as const;      // seconds
-
-export const IGNITE_DPS_RATIO = 0.20 as const;   // 20% of hit damage per second per stack
 export const IGNITE_DURATION = 3.0 as const;     // seconds
-
-export const POISON_DPS_RATIO = 0.30 as const;   // 30% of hit damage per second per stack
 export const POISON_DURATION = 3.0 as const;     // seconds

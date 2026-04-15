@@ -1,16 +1,14 @@
 import { useState, useEffect } from "react";
-import { Outlet, useNavigate } from "react-router-dom";
+import { Outlet, useLocation } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-import { useAuthStore } from "@/store";
 import { versionApi } from "@/lib/api";
 
 import Sidebar, { SIDEBAR_WIDTH_COLLAPSED, SIDEBAR_WIDTH_EXPANDED } from "@/components/navigation/Sidebar";
 import TopBar from "@/components/navigation/TopBar";
 import GlobalSearch from "@/components/search/GlobalSearch";
 
-const SIDEBAR_STORAGE_KEY = "forge_sidebar_open";
-
 export default function AppLayout() {
+  const location = useLocation();
   const { data: versionRes } = useQuery({
     queryKey: ["version"],
     queryFn: () => versionApi.get(),
@@ -23,25 +21,17 @@ export default function AppLayout() {
   // API (they can change between releases without a frontend rebuild).
   const versionString = apiVersion?.version || __APP_VERSION__;
 
-  const [sidebarOpen, setSidebarOpen] = useState<boolean>(() => {
-    try {
-      const stored = localStorage.getItem(SIDEBAR_STORAGE_KEY);
-      return stored === null ? false : stored === "true";
-    } catch {
-      return false;
-    }
-  });
+  // Mobile drawer state (transient — doesn't persist across reloads).
+  // Desktop sidebar expand/collapse persistence is owned by Sidebar itself.
+  const [mobileSidebarOpen, setMobileSidebarOpen] = useState(false);
 
   const [searchOpen, setSearchOpen] = useState(false);
 
-  // Sync sidebar state to localStorage when toggled from TopBar
+  // Auto-close the mobile drawer whenever the route changes so that tapping a
+  // nav item navigates AND dismisses the drawer in one gesture.
   useEffect(() => {
-    try {
-      localStorage.setItem(SIDEBAR_STORAGE_KEY, String(sidebarOpen));
-    } catch {
-      // ignore
-    }
-  }, [sidebarOpen]);
+    setMobileSidebarOpen(false);
+  }, [location.pathname]);
 
   // Register Cmd/Ctrl+K globally
   useEffect(() => {
@@ -55,26 +45,35 @@ export default function AppLayout() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
-  const sidebarWidth = sidebarOpen ? SIDEBAR_WIDTH_EXPANDED : SIDEBAR_WIDTH_COLLAPSED;
-
   return (
-    <div className="min-h-screen bg-forge-bg text-forge-text font-body overflow-x-hidden flex">
-      {/* Sidebar */}
-      <Sidebar />
+    <div className="h-screen bg-forge-bg text-forge-text font-body overflow-hidden flex">
+      {/* Sidebar — fixed drawer on mobile, in-flow on md+ */}
+      <Sidebar
+        mobileOpen={mobileSidebarOpen}
+        onMobileNavigate={() => setMobileSidebarOpen(false)}
+      />
+
+      {/* Mobile drawer backdrop — clicking dismisses the drawer */}
+      {mobileSidebarOpen && (
+        <div
+          className="fixed inset-0 z-40 bg-black/50 md:hidden"
+          onClick={() => setMobileSidebarOpen(false)}
+          aria-hidden="true"
+        />
+      )}
 
       {/* Main column */}
-      <div
-        className="flex flex-col flex-1 min-w-0 transition-all duration-200"
-        style={{ marginLeft: 0 }}
-      >
+      <div className="flex flex-col flex-1 min-w-0 min-h-0">
         {/* Top bar */}
         <TopBar
           onSearchOpen={() => setSearchOpen(true)}
-          onSidebarToggle={() => setSidebarOpen((v) => !v)}
+          onSidebarToggle={() => setMobileSidebarOpen((v) => !v)}
         />
 
-        {/* Page content */}
-        <main className="flex-1 overflow-x-hidden px-6 py-8">
+        {/* Page content — single scroll container for the app shell. min-h-0
+            lets this flex child actually shrink below its content size so that
+            overflow-y-auto kicks in instead of pushing the footer off-screen. */}
+        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6 md:px-6 md:py-8">
           <div className="mx-auto max-w-7xl">
             <Outlet />
           </div>

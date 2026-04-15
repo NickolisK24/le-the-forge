@@ -74,7 +74,8 @@ def fp_cost(action: str) -> int:
 # ---------------------------------------------------------------------------
 
 def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None,
-                      target_tier: Optional[int] = None) -> dict:
+                      target_tier: Optional[int] = None,
+                      rng: Optional[random.Random] = None) -> dict:
     """
     Modern Last Epoch craft action pipeline (post-0.8.4).
     Items NEVER fracture. Crafting simply stops when FP runs out.
@@ -87,6 +88,11 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
     5. Check FP remaining
     6. Return result
 
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state —
+    preserving the historical behaviour of this function for callers that
+    don't need determinism.
+
     Item structure:
     {
         "forge_potential": int,
@@ -95,7 +101,7 @@ def apply_craft_action(item: dict, action: str, affix_name: Optional[str] = None
     """
     # 1. Validate action — check FP first
     # 2. Roll FP cost
-    cost = roll_fp_cost(action)
+    cost = roll_fp_cost(action, rng=rng)
     if item["forge_potential"] < cost:
         log.warning(
             "craft_action.insufficient_fp",
@@ -408,8 +414,12 @@ def compare_strategies(affixes: list, forge_potential: int) -> list:
 
 
 
-def add_affix(item, affix_name, tier):
-    """Add an affix to an item. Returns structured {success, reason} response."""
+def add_affix(item, affix_name, tier, rng: Optional[random.Random] = None):
+    """Add an affix to an item. Returns structured {success, reason} response.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
+    """
     affix = get_affix_by_name(affix_name)
     if affix is None:
         return {"success": False, "reason": "Affix not found"}
@@ -418,7 +428,7 @@ def add_affix(item, affix_name, tier):
     if not can_add_affix(item, affix_type):
         return {"success": False, "reason": "Slot limit reached"}
 
-    cost = roll_fp_cost("add_affix")
+    cost = roll_fp_cost("add_affix", rng=rng)
     if item["forging_potential"] < cost:
         return {"success": False, "reason": "Not enough FP"}
 
@@ -432,8 +442,12 @@ def add_affix(item, affix_name, tier):
     return {"success": True, "reason": "Affix added"}
 
 
-def upgrade_affix(item, affix_name):
-    """Upgrade an affix tier by 1. Returns structured {success, reason} response."""
+def upgrade_affix(item, affix_name, rng: Optional[random.Random] = None):
+    """Upgrade an affix tier by 1. Returns structured {success, reason} response.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
+    """
     for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
             if affix["name"] == affix_name:
@@ -441,7 +455,7 @@ def upgrade_affix(item, affix_name):
                 if is_max_tier(affix_data, affix["tier"]):
                     return {"success": False, "reason": "Already at max tier"}
 
-                cost = roll_fp_cost("upgrade_affix")
+                cost = roll_fp_cost("upgrade_affix", rng=rng)
                 if item["forging_potential"] < cost:
                     return {"success": False, "reason": "Not enough FP"}
 
@@ -452,12 +466,16 @@ def upgrade_affix(item, affix_name):
     return {"success": False, "reason": "Affix not found"}
 
 
-def remove_affix(item, affix_name):
-    """Remove an affix from an item. Returns structured {success, reason} response."""
+def remove_affix(item, affix_name, rng: Optional[random.Random] = None):
+    """Remove an affix from an item. Returns structured {success, reason} response.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
+    """
     for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
             if affix["name"] == affix_name:
-                cost = roll_fp_cost("remove_affix")
+                cost = roll_fp_cost("remove_affix", rng=rng)
                 if item["forging_potential"] < cost:
                     return {"success": False, "reason": "Not enough FP"}
 
@@ -468,13 +486,17 @@ def remove_affix(item, affix_name):
     return {"success": False, "reason": "Affix not found"}
 
 
-def unseal_affix(item):
+def unseal_affix(item, rng: Optional[random.Random] = None):
     """Return the sealed affix back to its prefix/suffix slot.
-    Returns structured {success, reason} response."""
+    Returns structured {success, reason} response.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
+    """
     if item["sealed_affix"] is None:
         return {"success": False, "reason": "No sealed affix"}
 
-    cost = roll_fp_cost("unseal_affix")
+    cost = roll_fp_cost("unseal_affix", rng=rng)
     if item["forging_potential"] < cost:
         return {"success": False, "reason": "Not enough FP"}
 
@@ -491,15 +513,19 @@ def unseal_affix(item):
     return {"success": True, "reason": "Affix unsealed"}
 
 
-def seal_affix(item, affix_name):
-    """Seal an affix (max 1 sealed). Returns structured {success, reason} response."""
+def seal_affix(item, affix_name, rng: Optional[random.Random] = None):
+    """Seal an affix (max 1 sealed). Returns structured {success, reason} response.
+
+    Pass an isolated ``rng`` instance for deterministic/seeded simulations.
+    When omitted, falls back to the module-level global random state.
+    """
     if item["sealed_affix"]:
         return {"success": False, "reason": "Already has sealed affix"}
 
     for affix_list in [item["prefixes"], item["suffixes"]]:
         for affix in affix_list:
             if affix["name"] == affix_name:
-                cost = roll_fp_cost("seal_affix")
+                cost = roll_fp_cost("seal_affix", rng=rng)
                 if item["forging_potential"] < cost:
                     return {"success": False, "reason": "Not enough FP"}
 
@@ -698,9 +724,16 @@ def simulate_craft_attempt(
             "reason": f"Item fractured (probability was {fracture_prob:.1%})",
         }
 
-    # Normalise to pipeline format for apply_craft_action
+    # Normalise to pipeline format for apply_craft_action.
+    # Thread the local rng through so the FP-cost roll inside
+    # apply_craft_action uses this same seeded RNG rather than the global
+    # random module. Without this, the result depends on whatever global
+    # random state preceding code happens to leave behind, and the seed
+    # parameter only controls the fracture check — not the FP roll.
     pipeline_item = _to_pipeline_item(item)
-    result = apply_craft_action(pipeline_item, action, affix_name, target_tier)
+    result = apply_craft_action(
+        pipeline_item, action, affix_name, target_tier, rng=rng,
+    )
     success = result.get("success", False)
     reason  = result.get("reason", result.get("message", ""))
     fp_after = int(pipeline_item.get("forge_potential", fp_before))

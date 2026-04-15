@@ -124,7 +124,13 @@ def register_commands(app: Flask) -> None:
 
     @app.cli.command("seed-builds")
     def seed_builds():
-        """Add sample builds for local dev / demo."""
+        """Add sample builds for local dev / demo.
+
+        Seeded builds start with vote_count=0 (the model default). Do NOT
+        inflate vote counts here — fake vote counts destroy community trust
+        the moment a real user sees them. Votes must only accrue from actual
+        users casting votes via the /vote endpoint.
+        """
         from app.models import Build
         from app.services.build_service import create_build
 
@@ -137,7 +143,7 @@ def register_commands(app: Flask) -> None:
                 "is_ssf": True,
                 "is_ladder_viable": True,
                 "is_budget": False,
-                "patch_version": "1.2.1",
+                "patch_version": "1.4.3",
                 "cycle": "1.2",
             },
             {
@@ -148,7 +154,7 @@ def register_commands(app: Flask) -> None:
                 "is_ssf": False,
                 "is_ladder_viable": True,
                 "is_budget": True,
-                "patch_version": "1.2.1",
+                "patch_version": "1.4.3",
                 "cycle": "1.2",
             },
             {
@@ -158,7 +164,7 @@ def register_commands(app: Flask) -> None:
                 "mastery": "Forge Guard",
                 "is_ssf": True,
                 "is_hc": True,
-                "patch_version": "1.2.1",
+                "patch_version": "1.4.3",
                 "cycle": "1.2",
             },
         ]
@@ -166,9 +172,9 @@ def register_commands(app: Flask) -> None:
         for data in sample_builds:
             if not Build.query.filter_by(name=data["name"]).first():
                 b = create_build(data)
-                # Give them some votes for realism
-                b.vote_count = {"Bone Curse Lich": 2841, "Frozen Ruins Runemaster": 2204,
-                                "Manifest Armor Forge Guard": 1987}.get(b.name, 100)
+                # Leave vote_count at the model default (0). Tier re-derives
+                # from vote_count so unrated seeded builds fall to the lowest
+                # tier until real users vote on them.
                 b.recalculate_tier()
 
         db.session.commit()
@@ -302,6 +308,36 @@ def register_commands(app: Flask) -> None:
 
         db.session.commit()
         click.echo(f"✓ Reset vote_count to 0 on {len(inflated)} build(s) (threshold > {threshold}).")
+
+    @app.cli.command("remove-seeded-builds")
+    def remove_seeded_builds():
+        """
+        Delete the three empty-shell demo builds seeded by seed-builds.
+
+        Matches by exact name — does not touch any other build. These demo
+        builds are placeholder shells with zero skills, passives, and gear,
+        and leave the community builds page looking empty/broken to any new
+        visitor. Safer to delete than to paper over.
+        """
+        from app.models import Build
+
+        SEEDED_NAMES = (
+            "Bone Curse Lich",
+            "Frozen Ruins Runemaster",
+            "Manifest Armor Forge Guard",
+        )
+
+        seeded = Build.query.filter(Build.name.in_(SEEDED_NAMES)).all()
+        if not seeded:
+            click.echo("✓ No seeded demo builds found. Nothing to do.")
+            return
+
+        for b in seeded:
+            click.echo(f"  removing build: {b.slug or b.id} ({b.name!r})")
+            db.session.delete(b)
+
+        db.session.commit()
+        click.echo(f"✓ Removed {len(seeded)} seeded demo build(s).")
 
     @app.cli.command("refresh-meta")
     def refresh_meta():

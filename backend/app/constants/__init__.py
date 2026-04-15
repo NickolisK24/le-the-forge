@@ -33,11 +33,8 @@ from app.constants.combat import (
     CRIT_CHANCE_CAP,
     BASE_CRIT_CHANCE,
     BASE_CRIT_MULTIPLIER,
-    BLEED_BASE_RATIO,
     BLEED_DURATION,
-    IGNITE_DPS_RATIO,
     IGNITE_DURATION,
-    POISON_DPS_RATIO,
     POISON_DURATION,
 )
 from app.constants.crafting import (
@@ -82,11 +79,8 @@ __all__ = [
     "CRIT_CHANCE_CAP",
     "BASE_CRIT_CHANCE",
     "BASE_CRIT_MULTIPLIER",
-    "BLEED_BASE_RATIO",
     "BLEED_DURATION",
-    "IGNITE_DPS_RATIO",
     "IGNITE_DURATION",
-    "POISON_DPS_RATIO",
     "POISON_DURATION",
     # crafting
     "MAX_PREFIXES",

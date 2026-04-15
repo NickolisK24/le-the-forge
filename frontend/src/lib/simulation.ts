@@ -74,7 +74,8 @@ export interface BuildStats {
 
 function emptyStats(): BuildStats {
   return {
-    base_damage: 0, attack_speed: 1.0, crit_chance: 0.05, crit_multiplier: 1.5,
+    // VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 200% = 2.0×
+    base_damage: 0, attack_speed: 1.0, crit_chance: 0.05, crit_multiplier: 2.0,
     spell_damage_pct: 0, physical_damage_pct: 0, fire_damage_pct: 0,
     cold_damage_pct: 0, lightning_damage_pct: 0, necrotic_damage_pct: 0,
     void_damage_pct: 0, poison_damage_pct: 0, minion_damage_pct: 0,
@@ -195,15 +196,18 @@ export function aggregateStats(
     }
   }
 
-  // 5. Apply attribute scaling
-  stats.spell_damage_pct   += stats.intelligence * ATTRIBUTE_SCALING.intelligence.spell_damage_pct;
-  stats.max_mana           += stats.intelligence * ATTRIBUTE_SCALING.intelligence.max_mana;
-  stats.physical_damage_pct += stats.strength   * ATTRIBUTE_SCALING.strength.physical_damage_pct;
-  stats.armour             += stats.strength    * ATTRIBUTE_SCALING.strength.armour;
-  stats.attack_speed_pct   += stats.dexterity   * ATTRIBUTE_SCALING.dexterity.attack_speed_pct;
-  stats.dodge_rating       += stats.dexterity   * ATTRIBUTE_SCALING.dexterity.dodge_rating;
-  stats.max_health         += stats.vitality    * ATTRIBUTE_SCALING.vitality.max_health;
-  stats.cast_speed         += stats.attunement  * ATTRIBUTE_SCALING.attunement.cast_speed;
+  // 5. Apply attribute scaling — mirrors backend ATTRIBUTE_SCALING (1.4.3 spec §1.5)
+  stats.spell_damage_pct    += stats.intelligence * ATTRIBUTE_SCALING.intelligence.spell_damage_pct;
+  stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING.intelligence.max_mana;
+  stats.ward_retention_pct  += stats.intelligence * ATTRIBUTE_SCALING.intelligence.ward_retention_pct;
+  stats.physical_damage_pct += stats.strength     * ATTRIBUTE_SCALING.strength.physical_damage_pct;
+  stats.armour              += stats.strength     * ATTRIBUTE_SCALING.strength.armour;
+  stats.attack_speed_pct    += stats.dexterity    * ATTRIBUTE_SCALING.dexterity.attack_speed_pct;
+  // VERIFIED: 1.4.3 spec §1.5 — 4 dodge rating per Dexterity point
+  stats.dodge_rating        += stats.dexterity    * ATTRIBUTE_SCALING.dexterity.dodge_rating;
+  // VERIFIED: 1.4.3 spec §1.5 — 6 HP per Vitality point
+  stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING.vitality.max_health;
+  stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING.attunement.cast_speed;
 
   // 6. Apply % bonuses to base values
   stats.crit_chance   = Math.min(0.95, stats.crit_chance + stats.crit_chance_pct / 100);

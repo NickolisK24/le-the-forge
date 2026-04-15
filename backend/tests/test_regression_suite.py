@@ -132,13 +132,15 @@ class TestDPSSnapshots:
     """
 
     def test_fireball_l20_dps(self):
-        assert calculate_dps(_mage(), "Fireball", 20).dps == 606
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
+        assert calculate_dps(_mage(), "Fireball", 20).dps == 621
 
     def test_fireball_l20_hit_damage(self):
         assert calculate_dps(_mage(), "Fireball", 20).hit_damage == 451
 
     def test_fireball_l20_average_hit(self):
-        assert calculate_dps(_mage(), "Fireball", 20).average_hit == 462
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
+        assert calculate_dps(_mage(), "Fireball", 20).average_hit == 474
 
     def test_fireball_l20_total_dps_equals_dps_no_ailments(self):
         r = calculate_dps(_mage(), "Fireball", 20)
@@ -149,7 +151,8 @@ class TestDPSSnapshots:
         assert set(r.damage_by_type.keys()) == {"fire"}
 
     def test_rive_l20_dps(self):
-        assert calculate_dps(_paladin(), "Rive", 20).dps == 676
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
+        assert calculate_dps(_paladin(), "Rive", 20).dps == 692
 
     def test_rive_l20_ailment_snapshot(self):
         stats = _paladin()
@@ -158,12 +161,14 @@ class TestDPSSnapshots:
         r = calculate_dps(stats, "Rive", 20)
         assert r.bleed_dps   == 346
         assert r.ignite_dps  == 219
-        assert r.total_dps   == 1241
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
+        assert r.total_dps   == 1257
 
     def test_level_scaling_monotone(self):
         stats = _mage()
-        assert calculate_dps(stats, "Fireball",  1).dps == 185
-        assert calculate_dps(stats, "Fireball", 20).dps == 606
+        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
+        assert calculate_dps(stats, "Fireball",  1).dps == 189
+        assert calculate_dps(stats, "Fireball", 20).dps == 621
 
     def test_conversion_flows_through_pipeline(self):
         # 100% phys → fire: damage_by_type must show fire, not physical
@@ -171,7 +176,20 @@ class TestDPSSnapshots:
         r = calculate_dps(_paladin(), "Rive", 20, conversions=convs)
         assert "fire" in r.damage_by_type
         assert "physical" not in r.damage_by_type
-        assert math.isclose(r.damage_by_type["fire"], 360.8, rel_tol=1e-6)
+        # Pipeline now derives the increased-damage pool from the
+        # post-conversion types (fire + elemental + melee), so the
+        # Paladin's physical_damage_pct no longer scales the converted
+        # fire hit. 328.0 is the correct value under that routing.
+        assert math.isclose(r.damage_by_type["fire"], 328.0, rel_tol=1e-6)
+
+        # Invariant: pumping physical_damage_pct must NOT increase the
+        # converted fire damage. If it did, physical scaling would still
+        # be leaking into the post-conversion fire pool — exactly the
+        # bug the post_conversion_types fix removes.
+        boosted = _paladin()
+        boosted.physical_damage_pct += 100
+        r_boosted = calculate_dps(boosted, "Rive", 20, conversions=convs)
+        assert r_boosted.damage_by_type["fire"] == r.damage_by_type["fire"]
 
     def test_training_dummy_passes_through_unmodified(self):
         r = calculate_dps_vs_enemy(_mage(), "Fireball", 20, "training_dummy")
@@ -195,12 +213,13 @@ class TestMonteCarloSnapshots:
         stats.fire_damage_pct  = 60.0
         stats.cast_speed       = 20.0
         mc = monte_carlo_dps(stats, "Fireball", 20, n=1_000, seed=1)
-        assert mc.mean_dps       == 1530
-        assert mc.min_dps        == 1247
-        assert mc.max_dps        == 2494
-        assert mc.std_dev        == 522.3
-        assert mc.percentile_25  == 1247
-        assert mc.percentile_75  == 1247
+        # VERIFIED: 1.4.3 spec §2.1 + §2.2 — ±25% hit variance + 2.0× crit multi
+        assert mc.mean_dps       == 1522
+        assert mc.min_dps        == 936
+        assert mc.max_dps        == 3110
+        assert mc.std_dev        == 565.3
+        assert mc.percentile_25  == 1132
+        assert mc.percentile_75  == 1543
         assert mc.n_simulations  == 1_000
 
     def test_same_seed_always_identical(self):
@@ -226,12 +245,15 @@ class TestEdgeCases:
 
     # --- zero / identity inputs ---
 
-    def test_zero_crit_chance_no_variance(self):
+    def test_zero_crit_chance_hit_variance_only(self):
+        # VERIFIED: 1.4.3 spec §2.1 — hits always have ±25% variance; with 0%
+        # crit chance, the only variance source is the ±25% uniform hit roll.
         stats = _mage()
         stats.crit_chance = 0.0
         mc = monte_carlo_dps(stats, "Fireball", 20, n=500, seed=7)
-        assert mc.std_dev == 0.0
-        assert mc.min_dps == mc.max_dps == mc.mean_dps
+        # All samples bracket within the ±25% hit variance band.
+        assert 0.70 * mc.mean_dps <= mc.min_dps <= mc.mean_dps
+        assert mc.mean_dps <= mc.max_dps <= 1.30 * mc.mean_dps
 
     def test_unknown_skill_zeros_all_fields(self):
         r = calculate_dps(_mage(), "NoSuchSkill_XYZ", 20)
@@ -346,13 +368,31 @@ class TestSystemIntegration:
     def test_conversion_changes_damage_type_against_resistant_enemy(self):
         # Rive is physical. Convert to fire; enemy resists fire more than phys.
         # Effective DPS should drop when fire-resistant.
-        stats = _paladin()
-        r_plain = calculate_dps(stats, "Rive", 20)
+        # conversion preserves base damage quantity but reroutes the
+        # increased pool — hit damage only matches unconverted when
+        # source and target scaling are equal.
         convs = [DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0)]
+
+        # Case 1: source scaling present, no target scaling. The Paladin
+        # baseline has physical_damage_pct > 0 from class stats but no
+        # fire_damage_pct, so converting away loses the physical pool and
+        # effective hit damage must drop.
+        stats = _paladin()
+        assert stats.physical_damage_pct > 0
+        assert stats.fire_damage_pct == 0
+        r_plain = calculate_dps(stats, "Rive", 20)
         r_conv = calculate_dps(stats, "Rive", 20, conversions=convs)
-        # After conversion all damage is fire — both pipelines should produce
-        # the same total hit damage (conversion is lossless).
-        assert r_plain.hit_damage == r_conv.hit_damage
+        assert r_conv.hit_damage < r_plain.hit_damage
+
+        # Case 2: equal source and target scaling. With symmetric pools
+        # the rerouted increased% matches the original, so base damage
+        # quantity (which conversion preserves) carries through and
+        # hit damage is ~unchanged. Allow 1 integer of rounding slack.
+        sym = _paladin()
+        sym.fire_damage_pct = sym.physical_damage_pct
+        r_sym_plain = calculate_dps(sym, "Rive", 20)
+        r_sym_conv = calculate_dps(sym, "Rive", 20, conversions=convs)
+        assert abs(r_sym_conv.hit_damage - r_sym_plain.hit_damage) <= 1
 
     def test_ailment_dps_adds_to_total(self):
         stats = _mage()

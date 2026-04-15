@@ -184,3 +184,22 @@ def get_implicit_stat(item_type: str) -> dict | None:
 
 def get_all_implicit_stats() -> dict:
     return _pipeline().implicit_stats
+
+
+# ---------------------------------------------------------------------------
+# Monolith blessings
+# ---------------------------------------------------------------------------
+
+def get_all_blessings() -> list[dict]:
+    """Return all Monolith blessing definitions from data/progression/blessings.json."""
+    return _pipeline().blessings
+
+
+def get_blessing_by_id(blessing_id: str) -> dict | None:
+    """Return a single blessing definition by its id, or None if not found."""
+    return _pipeline().blessings_flat.get(blessing_id)
+
+
+def get_all_blessings_flat() -> dict[str, dict]:
+    """Return a {blessing_id: blessing_dict} index built once at startup for O(1) lookup."""
+    return _pipeline().blessings_flat

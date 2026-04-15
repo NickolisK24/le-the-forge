@@ -53,15 +53,16 @@ class TestArmorMitigationPct:
         # armor=500, area_level=50 → 500/(500+500) = 0.5
         assert armor_mitigation_pct(500.0, 50) == pytest.approx(0.5)
 
-    def test_non_physical_75pct_effectiveness(self):
-        # Non-physical: effective_armor = 1000 * 0.75 = 750
-        # 750 / (750 + 1000) = 750/1750 ≈ 0.4286
+    def test_non_physical_70pct_effectiveness(self):
+        # VERIFIED: 1.4.3 spec §3.1 — armour is 70% effective vs non-physical
+        # Non-physical: effective_armor = 1000 * 0.70 = 700
+        # 700 / (700 + 1000) = 700/1700 ≈ 0.4118
         result = armor_mitigation_pct(1000.0, 100, physical=False)
-        expected = 750.0 / (750.0 + 1000.0)
+        expected = 700.0 / (700.0 + 1000.0)
         assert result == pytest.approx(expected)
 
     def test_non_physical_cap_is_lower(self):
-        # Non-physical cap = 85% × 75% = 63.75%
+        # Non-physical cap = 85% × 70% = 59.5%
         result = armor_mitigation_pct(1_000_000.0, 100, physical=False)
         assert result == pytest.approx(ARMOR_MITIGATION_CAP * ARMOR_NON_PHYSICAL_EFFECTIVENESS)
 

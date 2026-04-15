@@ -72,7 +72,7 @@ const CANVAS_H = 650;
 // ---------------------------------------------------------------------------
 
 export default function PassiveTreePage() {
-  const [selectedClass, setSelectedClass] = useState<CharacterClass | null>(null);
+  const [selectedClass, setSelectedClass] = useState<CharacterClass | null>("Acolyte");
   const [selectedMastery, setSelectedMastery] = useState<string>("__base__");
   const [allocatedIds, setAllocatedIds] = useState<Set<string>>(new Set());
   const [allocatedPoints, setAllocatedPoints] = useState<Map<string, number>>(new Map());
@@ -508,35 +508,37 @@ export default function PassiveTreePage() {
         minHeight={CANVAS_H}
       />
 
-      {/* Stat debug panel */}
-      <PassiveStatsDebugPanel
-        stats={passiveStats}
-        resolvedStats={resolvedStats}
-        totalPoints={totalPointsSpent}
-        allocatedCount={allocatedIds.size}
-      />
+      {/* Stat debug panels — desktop only (cluttered/wide for mobile) */}
+      <div className="hidden md:block">
+        <PassiveStatsDebugPanel
+          stats={passiveStats}
+          resolvedStats={resolvedStats}
+          totalPoints={totalPointsSpent}
+          allocatedCount={allocatedIds.size}
+        />
 
-      <StatValidationPanel
-        snapshot={statSnapshot}
-        resolvedCharStats={characterStats}
-      />
+        <StatValidationPanel
+          snapshot={statSnapshot}
+          resolvedCharStats={characterStats}
+        />
 
-      <PointEconomyPanel validation={buildValidation} />
+        <PointEconomyPanel validation={buildValidation} />
 
-      <MergedStatsPanel
-        passiveSnapshot={statSnapshot}
-        skillSnapshot={emptySkillSnapshot}
-        mergedSnapshot={mergedSnapshot}
-        finalStats={unifiedFinalStats}
-      />
+        <MergedStatsPanel
+          passiveSnapshot={statSnapshot}
+          skillSnapshot={emptySkillSnapshot}
+          mergedSnapshot={mergedSnapshot}
+          finalStats={unifiedFinalStats}
+        />
 
-      <StatSourceInspector snapshot={statMergeSnapshot} />
+        <StatSourceInspector snapshot={statMergeSnapshot} />
 
-      <ResolutionPipelineViewer snapshot={resolutionSnapshot} />
+        <ResolutionPipelineViewer snapshot={resolutionSnapshot} />
 
-      <ConditionalStatViewer results={conditionalResults} />
+        <ConditionalStatViewer results={conditionalResults} />
 
-      <BuffDebugPanel activeBuffs={activeBuffs} testResults={buffTestResults} />
+        <BuffDebugPanel activeBuffs={activeBuffs} testResults={buffTestResults} />
+      </div>
     </Page>
   );
 }

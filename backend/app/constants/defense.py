@@ -23,10 +23,11 @@ ENDURANCE_DEFAULT_DR: float = 20.0         # default damage reduction %
 ENDURANCE_DEFAULT_THRESHOLD: float = 20.0  # default HP threshold %
 
 # Armor formula: DR% = Armor / (Armor + ARMOR_AREA_LEVEL_FACTOR × AreaLevel)
-# Cap: 85% for physical, non-physical at 75% effectiveness
+# Cap: 85% for physical, non-physical at 70% effectiveness
+# VERIFIED: 1.4.3 spec §3.1 — armor is 70% effective vs non-physical hit damage
 ARMOR_AREA_LEVEL_FACTOR: float = 10.0
 ARMOR_MITIGATION_CAP: float = 0.85
-ARMOR_NON_PHYSICAL_EFFECTIVENESS: float = 0.75  # armor is 75% effective vs non-physical
+ARMOR_NON_PHYSICAL_EFFECTIVENESS: float = 0.70  # armor is 70% effective vs non-physical
 
 # Dodge formula: Dodge% = DodgeRating / (DodgeRating + DODGE_AREA_LEVEL_FACTOR × AreaLevel)
 # Cap: 85%

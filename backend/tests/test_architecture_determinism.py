@@ -93,9 +93,10 @@ class TestDataLayer:
         assert d["defense"]["resistance_cap"] == 75
 
     def test_constants_max_prefixes(self):
+        # VERIFIED: 1.4.3 spec §5 — items allow at most 2 prefixes + 2 suffixes
         d = _load_json("constants.json")
-        assert d["crafting"]["max_prefixes"] == 3
-        assert d["crafting"]["max_suffixes"] == 3
+        assert d["crafting"]["max_prefixes"] == 2
+        assert d["crafting"]["max_suffixes"] == 2
 
     def test_training_dummy_has_zero_resistances(self):
         d = _load_json("enemies.json")
@@ -426,7 +427,8 @@ class TestCraftEngineProbability:
         assert "item_before" in result
         assert "item_after" in result
 
-    @pytest.mark.xfail(reason="Craft engine uses global random state alongside local RNG — determinism not guaranteed")
+    # Global-RNG leak fixed on fix/craft-engine-rng-determinism — the local
+    # rng is now threaded through apply_craft_action → roll_fp_cost.
     def test_simulate_craft_attempt_is_deterministic_with_seed(self):
         """Same seed + identical input → identical result."""
         from app.engines.craft_engine import simulate_craft_attempt

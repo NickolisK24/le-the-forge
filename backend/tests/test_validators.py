@@ -181,7 +181,8 @@ class TestValidateItemValid:
         assert len(tier_errors) == 0
 
     def test_max_tier_valid(self):
-        r = validate_item(_item(affixes=[_affix(tier=7)]))
+        # VERIFIED: 1.4.3 spec §5 — T1-T7 standard + T8 Primordial (Rune of Evolution)
+        r = validate_item(_item(affixes=[_affix(tier=8)]))
         tier_errors = [e for e in r.errors if e.code == "TIER_ABOVE_MAX"]
         assert len(tier_errors) == 0
 
@@ -237,7 +238,8 @@ class TestValidateItemErrors:
         assert any(e.code == "TIER_BELOW_MIN" for e in r.errors)
 
     def test_tier_above_max_is_error(self):
-        r = validate_item(_item(affixes=[_affix(tier=8)]))
+        # VERIFIED: 1.4.3 spec §5 — max affix tier is T8 Primordial; T9+ invalid
+        r = validate_item(_item(affixes=[_affix(tier=9)]))
         assert any(e.code == "TIER_ABOVE_MAX" for e in r.errors)
 
     def test_non_numeric_implicit_is_error(self):
@@ -272,7 +274,8 @@ class TestValidateItemErrors:
         r = validate_item(_item(slot_type=bad_slot))
         assert any(e.code == "SLOT_INVALID" for e in r.errors)
 
-    @pytest.mark.parametrize("tier", [0, -1, -5, 8, 9, 10, 100])
+    # VERIFIED: 1.4.3 spec §5 — tier 8 is valid (Primordial); 9+ invalid
+    @pytest.mark.parametrize("tier", [0, -1, -5, 9, 10, 100])
     def test_invalid_tier_values(self, tier):
         r = validate_item(_item(affixes=[_affix(tier=tier)]))
         tier_errors = [e for e in r.errors if "TIER" in e.code]
@@ -411,13 +414,15 @@ class TestValidateAffixCombination:
         r = validate_affix_combination([_affix()])
         assert r.valid
 
-    def test_three_prefixes_valid(self):
-        affixes = [_affix(f"Prefix{i}") for i in range(3)]
+    def test_two_prefixes_valid(self):
+        # VERIFIED: 1.4.3 spec §5 — max 2 prefixes per item
+        affixes = [_affix(f"Prefix{i}") for i in range(2)]
         r = validate_affix_combination(affixes)
         assert r.valid
 
-    def test_three_suffixes_valid(self):
-        affixes = [_affix(f"Suffix{i}", affix_type="suffix") for i in range(3)]
+    def test_two_suffixes_valid(self):
+        # VERIFIED: 1.4.3 spec §5 — max 2 suffixes per item
+        affixes = [_affix(f"Suffix{i}", affix_type="suffix") for i in range(2)]
         r = validate_affix_combination(affixes)
         assert r.valid
 
@@ -427,12 +432,14 @@ class TestValidateAffixCombination:
         assert any(e.code == "AFFIX_DUPLICATE" for e in r.errors)
 
     def test_prefix_overflow_is_error(self):
-        affixes = [_affix(f"Prefix{i}") for i in range(4)]
+        # VERIFIED: 1.4.3 spec §5 — max 2 prefixes; 3+ is overflow
+        affixes = [_affix(f"Prefix{i}") for i in range(3)]
         r = validate_affix_combination(affixes)
         assert any(e.code == "PREFIX_OVERFLOW" for e in r.errors)
 
     def test_suffix_overflow_is_error(self):
-        affixes = [_affix(f"Suffix{i}", affix_type="suffix") for i in range(4)]
+        # VERIFIED: 1.4.3 spec §5 — max 2 suffixes; 3+ is overflow
+        affixes = [_affix(f"Suffix{i}", affix_type="suffix") for i in range(3)]
         r = validate_affix_combination(affixes)
         assert any(e.code == "SUFFIX_OVERFLOW" for e in r.errors)
 
@@ -441,18 +448,21 @@ class TestValidateAffixCombination:
         assert any(e.code == "TIER_BELOW_MIN" for e in r.errors)
 
     def test_tier_above_max_is_error(self):
-        r = validate_affix_combination([_affix(tier=8)])
+        # VERIFIED: 1.4.3 spec §5 — max affix tier is T8 Primordial; T9+ invalid
+        r = validate_affix_combination([_affix(tier=9)])
         assert any(e.code == "TIER_ABOVE_MAX" for e in r.errors)
 
-    @pytest.mark.parametrize("tier", [1, 2, 3, 4, 5, 6, 7])
+    # VERIFIED: 1.4.3 spec §5 — tiers 1–8 are valid (T8 = Primordial)
+    @pytest.mark.parametrize("tier", [1, 2, 3, 4, 5, 6, 7, 8])
     def test_valid_tiers(self, tier):
         r = validate_affix_combination([_affix(tier=tier)])
         tier_errors = [e for e in r.errors if "TIER" in e.code]
         assert len(tier_errors) == 0
 
+    # VERIFIED: 1.4.3 spec §5 — max 2 prefixes + 2 suffixes; 3+ overflows
     @pytest.mark.parametrize("n_prefixes,n_suffixes,should_fail", [
-        (0, 0, False), (1, 0, False), (3, 3, False),
-        (4, 0, True), (0, 4, True), (4, 4, True),
+        (0, 0, False), (1, 0, False), (2, 2, False),
+        (3, 0, True), (0, 3, True), (3, 3, True),
     ])
     def test_prefix_suffix_combinations(self, n_prefixes, n_suffixes, should_fail):
         affixes = (

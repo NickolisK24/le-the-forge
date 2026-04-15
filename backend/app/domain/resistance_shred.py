@@ -25,6 +25,14 @@ from __future__ import annotations
 
 from app.constants.defense import RES_CAP
 
+# VERIFIED: 1.4.3 spec §4.3 — resistance shred per-stack values
+# Each stack of resistance shred reduces enemy resistance by 5% (2% vs bosses).
+# Stacks persist for 4 seconds; max 10 stacks per element against a single target.
+SHRED_PER_STACK: float = 5.0            # percentage points per shred stack
+SHRED_PER_STACK_BOSS: float = 2.0       # percentage points per shred stack vs bosses
+MAX_STACKS_PER_TYPE: int = 10           # maximum concurrent stacks per damage type
+STACK_DURATION: float = 4.0             # seconds before a stack expires
+
 
 # ---------------------------------------------------------------------------
 # Core shred function

@@ -14,11 +14,20 @@ export interface BisSearchRequest {
   max_candidates?: number;
 }
 
+export interface BisAffixSummary {
+  id: string;
+  name: string;
+  tier: number;
+}
+
 export interface BisSearchResultEntry {
   rank: number;
   build_id: string;
   score: number;
   percentile: number;
+  slot: string | null;
+  item_name: string | null;
+  affixes: BisAffixSummary[];
 }
 
 export interface BisSearchResponse {

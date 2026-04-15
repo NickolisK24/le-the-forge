@@ -54,6 +54,7 @@ def create_build(data: dict, user_id: Optional[str] = None) -> Build:
         level=data.get("level", 100),
         passive_tree=data.get("passive_tree", []),
         gear=data.get("gear", []),
+        blessings=data.get("blessings", []),
         is_ssf=data.get("is_ssf", False),
         is_hc=data.get("is_hc", False),
         is_ladder_viable=data.get("is_ladder_viable", True),
@@ -92,7 +93,7 @@ def get_build(build_id_or_slug: str, increment_views: bool = False) -> Optional[
 
 def update_build(build: Build, data: dict) -> Build:
     updatable = [
-        "name", "description", "level", "passive_tree", "gear",
+        "name", "description", "level", "passive_tree", "gear", "blessings",
         "is_ssf", "is_hc", "is_ladder_viable", "is_budget",
         "patch_version", "is_public",
     ]

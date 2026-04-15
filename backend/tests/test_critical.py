@@ -77,8 +77,9 @@ class TestEffectiveCritMultiplier:
         assert effective_crit_multiplier(1.0, 0.0) == pytest.approx(1.0)
 
     def test_default_base_multiplier_constant(self):
-        """Base crit multiplier is 150% (1.5×) per verified game data."""
-        assert BASE_CRIT_MULTIPLIER == pytest.approx(1.5)
+        """Base crit multiplier is 200% (2.0×) per verified 1.4.3 game data."""
+        # VERIFIED: 1.4.3 spec §2.2
+        assert BASE_CRIT_MULTIPLIER == pytest.approx(2.0)
 
 
 class TestApplyCrit:

@@ -1,8 +1,8 @@
-import { BrowserRouter, Routes, Route, useSearchParams } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation, useSearchParams } from "react-router-dom";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Toaster } from "react-hot-toast";
 import toast from "react-hot-toast";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 
 import { useAuthStore } from "@/store";
 import { authApi, setToken } from "@/lib/api";
@@ -22,7 +22,6 @@ import BuildComparisonPage from "@/components/features/builds/BuildComparisonPag
 import ReportPage from "@/components/features/builds/ReportPage";
 import PassiveTreePage from "@/pages/PassiveTreePage";
 import MetaSnapshotPage from "@/components/features/builds/MetaSnapshotPage";
-import EncounterSimulatorPage from "@/components/features/encounter/EncounterSimulatorPage";
 import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
 import SimulationPage from "@/pages/simulation/SimulationPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
@@ -30,21 +29,53 @@ import RotationBuilderPage from "@/pages/RotationBuilderPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
-import MovementDebugPage from "@/pages/movement/MovementDebugPage";
 import MonteCarloPage from "@/pages/MonteCarloPage";
-import VisualizationDebugPage from "@/pages/debug/VisualizationDebugPage";
 import CraftingPage from "@/pages/crafting/CraftingPage";
-import CraftDebugPage from "@/pages/debug/CraftDebugPage";
 // Removed: SharedBuildPage (mock data), BuildLibraryPage (mock data)
 // Removed: UserBuildDashboard (mock data with wrong class names)
 // Removed: IntegrationDebugPage, BuildWorkspace (stub), BisWorkspace (duplicate)
 import BisSearchPage from "@/pages/bis/BisSearchPage";
 import CraftingWorkspace from "@/pages/crafting/CraftingWorkspace";
-import BackendDebugDashboard from "@/pages/debug/BackendDebugDashboard";
 import DashboardPage from "@/pages/DashboardPage";
-import DataFlowHarness from "@/pages/debug/DataFlowHarness";
 import ClassesPage from "@/pages/classes/ClassesPage";
 
+// ---------------------------------------------------------------------------
+// Debug pages — lazy-loaded, only registered in development builds.
+// In production these routes simply don't exist, so /debug, /viz-debug, etc.
+// correctly fall through to the NotFoundPage catch-all.
+// ---------------------------------------------------------------------------
+const IS_DEV = import.meta.env.DEV;
+
+const MovementDebugPage = lazy(() => import("@/pages/movement/MovementDebugPage"));
+const VisualizationDebugPage = lazy(() => import("@/pages/debug/VisualizationDebugPage"));
+const CraftDebugPage = lazy(() => import("@/pages/debug/CraftDebugPage"));
+const BackendDebugDashboard = lazy(() => import("@/pages/debug/BackendDebugDashboard"));
+const DataFlowHarness = lazy(() => import("@/pages/debug/DataFlowHarness"));
+
+// ---------------------------------------------------------------------------
+// Route alias redirect — preserves the current location's search string so
+// bookmarks like /planner?class=Acolyte still deliver the query param to the
+// canonical /build route.
+// ---------------------------------------------------------------------------
+function AliasRedirect({ to }: { to: string }) {
+  const loc = useLocation();
+  return <Navigate to={{ pathname: to, search: loc.search }} replace />;
+}
+
+// ---------------------------------------------------------------------------
+// Suspense fallback for lazy-loaded routes
+// ---------------------------------------------------------------------------
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center h-64">
+      <div className="animate-spin rounded-full h-8 w-8 border-2 border-forge-cyan border-t-transparent" />
+    </div>
+  );
+}
+
+// ---------------------------------------------------------------------------
+// React Query client
+// ---------------------------------------------------------------------------
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -93,8 +124,6 @@ const AUTH_FAIL_MESSAGES: Record<string, string> = {
   no_code: "Discord login was cancelled.",
   no_access_token: "Discord did not return an access token. Please try again.",
 };
-
-const IS_DEV = import.meta.env.DEV;
 
 function AuthErrorHandler() {
   const [params, setParams] = useSearchParams();
@@ -187,25 +216,40 @@ export default function App() {
                 <Route path="/compare" element={<BuildComparisonPage />} />
                 <Route path="/report/:slug" element={<ReportPage />} />
                 <Route path="/meta" element={<MetaSnapshotPage />} />
-                <Route path="/encounter"     element={<SimulationPage />} />
+                <Route path="/encounter" element={<SimulationPage />} />
                 <Route path="/build-editor" element={<BuildEditorPage />} />
-                <Route path="/optimizer"    element={<OptimizerPage />} />
-                <Route path="/rotation"      element={<RotationBuilderPage />} />
-                <Route path="/conditional"  element={<ConditionalBuilderPage />} />
-                <Route path="/multi-target"  element={<MultiTargetSimulatorPage />} />
+                <Route path="/optimizer" element={<OptimizerPage />} />
+                <Route path="/rotation" element={<RotationBuilderPage />} />
+                <Route path="/conditional" element={<ConditionalBuilderPage />} />
+                <Route path="/multi-target" element={<MultiTargetSimulatorPage />} />
                 <Route path="/data-manager" element={<DataManagerPage />} />
-                <Route path="/movement-debug" element={<MovementDebugPage />} />
                 <Route path="/monte-carlo" element={<MonteCarloPage />} />
-                <Route path="/viz-debug" element={<VisualizationDebugPage />} />
                 <Route path="/crafting" element={<CraftingPage />} />
-                <Route path="/craft-debug" element={<CraftDebugPage />} />
-                {/* Removed: /my-builds — UserBuildDashboard uses mock data with wrong class names */}
-                <Route path="/debug" element={<BackendDebugDashboard />} />
                 <Route path="/classes" element={<ClassesPage />} />
-                <Route path="/data-flow" element={<DataFlowHarness />} />
                 <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
                 <Route path="/profile" element={<UserProfilePage />} />
+
+                {/* Route aliases — redirect legacy/external URL patterns to their
+                    canonical paths. `replace` ensures the alias doesn't pollute
+                    browser history. Query strings are preserved (e.g. so
+                    /planner?class=Acolyte still reaches the planner with the
+                    param intact). */}
+                <Route path="/simulation" element={<AliasRedirect to="/encounter" />} />
+                <Route path="/passive-tree" element={<AliasRedirect to="/passives" />} />
+                <Route path="/planner" element={<AliasRedirect to="/build" />} />
+
+                {/* Debug routes — only available in development builds */}
+                {IS_DEV && (
+                  <>
+                    <Route path="/movement-debug" element={<Suspense fallback={<PageLoader />}><MovementDebugPage /></Suspense>} />
+                    <Route path="/viz-debug" element={<Suspense fallback={<PageLoader />}><VisualizationDebugPage /></Suspense>} />
+                    <Route path="/craft-debug" element={<Suspense fallback={<PageLoader />}><CraftDebugPage /></Suspense>} />
+                    <Route path="/debug" element={<Suspense fallback={<PageLoader />}><BackendDebugDashboard /></Suspense>} />
+                    <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
+                  </>
+                )}
+
                 <Route path="*" element={<NotFoundPage />} />
               </Route>
             </Routes>

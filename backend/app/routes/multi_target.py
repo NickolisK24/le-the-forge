@@ -55,17 +55,17 @@ class MultiTargetSimulateSchema(Schema):
     targets        = fields.List(fields.Nested(_TargetSpec), load_default=list)
 
     @validates("base_damage")
-    def _validate_damage(self, value):
+    def _validate_damage(self, value, **kwargs):
         if value <= 0:
             raise ValidationError("base_damage must be > 0")
 
     @validates("max_duration")
-    def _validate_duration(self, value):
+    def _validate_duration(self, value, **kwargs):
         if value <= 0:
             raise ValidationError("max_duration must be > 0")
 
     @validates("tick_size")
-    def _validate_tick(self, value):
+    def _validate_tick(self, value, **kwargs):
         if value <= 0:
             raise ValidationError("tick_size must be > 0")
 

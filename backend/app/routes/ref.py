@@ -528,3 +528,15 @@ def get_unique_endpoint(slug: str):
     if item is None:
         return not_found(f"Unique '{slug}'")
     return ok(data=item)
+
+
+# ---------------------------------------------------------------------------
+# Monolith blessings
+# ---------------------------------------------------------------------------
+
+@ref_bp.get("/blessings")
+@cached_route("ref:blessings", ttl=REF_STATIC_CACHE_TTL)
+def get_blessings_endpoint():
+    """Return all Monolith blessing definitions from data/progression/blessings.json."""
+    from app.game_data.game_data_loader import get_all_blessings
+    return ok(data=get_all_blessings())

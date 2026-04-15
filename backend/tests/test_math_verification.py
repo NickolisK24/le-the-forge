@@ -226,7 +226,7 @@ class TestCriticalStrikes:
         increased_pct = 50.0  # percent-points
 
         folded_base = base_fraction + flat_fraction  # 0.40
-        result = effective_crit_chance(folded_base, increased_pct)
+        result = effective_crit_chance(folded_base, increased_pct=increased_pct)
         assert result == pytest.approx(0.60)
 
     def test_11_crit_chance_cannot_exceed_100_pct(self):
@@ -236,7 +236,7 @@ class TestCriticalStrikes:
             (0.05 + 0.90) × 1.50 = 1.425  →  capped at 1.0
         """
         folded_base = 0.05 + 0.90  # 0.95
-        result = effective_crit_chance(folded_base, 50.0)
+        result = effective_crit_chance(folded_base, increased_pct=50.0)
         assert result == pytest.approx(1.0)
 
 
@@ -270,15 +270,17 @@ class TestArmorMitigation:
         """Test 16 — 1000 raw × (1 − 0.50) = 500 after armor."""
         assert apply_armor(raw_damage=1000.0, armor=1000.0, area_level=100) == pytest.approx(500.0)
 
-    def test_17_non_physical_damage_uses_armor_at_75_pct_effectiveness(self):
+    def test_17_non_physical_damage_uses_armor_at_70_pct_effectiveness(self):
         """
+        VERIFIED: 1.4.3 spec §3.1 — armour 70% effective vs non-physical
+
         Test 17 — Non-physical armor effectiveness:
 
-            effective_armor = 1000 × 0.75 = 750
-            DR = 750 / (750 + 1000) = 750 / 1750 ≈ 0.4286
+            effective_armor = 1000 × 0.70 = 700
+            DR = 700 / (700 + 1000) = 700 / 1700 ≈ 0.4118
         """
         result = armor_mitigation_pct(1000.0, area_level=100, physical=False)
-        assert result == pytest.approx(750 / 1750)
+        assert result == pytest.approx(700 / 1700)
 
 
 # ===========================================================================

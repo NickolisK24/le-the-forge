@@ -192,6 +192,10 @@ class SimulateOptimizeSchema(Schema):
     top_n = fields.Int(
         validate=validate.Range(min=1, max=16), load_default=5
     )
+    # Optional per-skill allocation list ({"node_id": int, "points": int}).
+    # When present the service derives DamageConversion nodes from it so the
+    # %-damage upgrade pool reflects post-conversion channels.
+    spec_tree = fields.List(fields.Dict(), load_default=None, allow_none=True)
 
 
 class SimulateSensitivitySchema(Schema):

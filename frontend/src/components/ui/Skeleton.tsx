@@ -42,6 +42,25 @@ export function SkeletonCard({ height = 120 }: { height?: number }) {
   );
 }
 
+/** Full-page loading skeleton for route-level Suspense boundaries. */
+export function PageSkeleton() {
+  return (
+    <div className="space-y-6">
+      {/* Page title area */}
+      <div className="space-y-2">
+        <Skeleton className="h-8 w-64" />
+        <Skeleton className="h-4 w-96" />
+      </div>
+      {/* Content grid */}
+      <div className="grid gap-6 lg:grid-cols-2">
+        <SkeletonCard height={180} />
+        <SkeletonCard height={180} />
+      </div>
+      <SkeletonCard height={240} />
+    </div>
+  );
+}
+
 export function SkeletonTable({ rows = 5, cols = 4 }: { rows?: number; cols?: number }) {
   return (
     <div className="animate-pulse">

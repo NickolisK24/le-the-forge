@@ -44,6 +44,68 @@ def _resolve_skill_modifiers(
         return None
 
 
+def _extract_conversions(
+    skill_name: str,
+    spec_tree: list[dict] | None,
+) -> list:
+    """Extract DamageConversion objects from the skill's allocated tree.
+
+    Returns an empty list when ``spec_tree`` is missing/empty or when
+    extraction fails for any reason — never raises. Callers can pass the
+    result straight to ``calculate_dps`` / ``get_stat_upgrades`` as the
+    ``conversions`` argument.
+    """
+    if not spec_tree:
+        return []
+    try:
+        from app.services.skill_tree_resolver import extract_damage_conversions
+        return extract_damage_conversions(skill_name, spec_tree)
+    except Exception as exc:
+        log.warning("extract_conversions.failed", skill=skill_name, error=str(exc))
+        return []
+
+
+_CONVERSION_DATA_GAP_NOTE = (
+    "Conversion nodes were allocated in the skill tree but could not be "
+    "parsed from their narrative description. Optimization recommendations "
+    "may not reflect this build's actual damage type — use with care."
+)
+
+
+def _conversion_data_gap_info(
+    skill_name: str,
+    spec_tree: list[dict] | None,
+    conversions: list,
+) -> dict:
+    """Return the conversion-data-gap fields when the skill tree mentions
+    conversions that the parser couldn't extract.
+
+    Emits ``{"conversion_data_gap": True, "conversion_data_gap_note": ...}``
+    when :func:`_extract_conversions` produced an empty list but the
+    allocated spec_tree still contains at least one node whose description
+    uses ``"->"`` (i.e. a narrative-only conversion node). Returns ``{}``
+    otherwise so callers can ``**``-merge the result unconditionally.
+    """
+    if conversions or not spec_tree:
+        return {}
+    try:
+        from app.services.skill_tree_resolver import find_narrative_conversion_nodes
+        arrow_nodes = find_narrative_conversion_nodes(skill_name, spec_tree)
+    except Exception as exc:
+        log.warning(
+            "conversion_data_gap_check.failed",
+            skill=skill_name,
+            error=str(exc),
+        )
+        return {}
+    if not arrow_nodes:
+        return {}
+    return {
+        "conversion_data_gap": True,
+        "conversion_data_gap_note": _CONVERSION_DATA_GAP_NOTE,
+    }
+
+
 def aggregate_stats(
     character_class: str,
     mastery: str,
@@ -84,13 +146,26 @@ def simulate_combat(
     # Resolve skill tree modifiers if spec_tree is provided
     sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
+    # Pull damage-type conversions allocated in the skill tree so the DPS
+    # layer applies them. Without this, conversion nodes (e.g. phys → fire)
+    # are silently dropped and the per-type damage breakdown is wrong.
+    conversions = _extract_conversions(skill_name, spec_tree)
+
+    dps_result = combat_engine.calculate_dps(
+        stats, skill_name, skill_level,
+        skill_modifiers=sm, conversions=conversions,
+    )
+    mc_result = combat_engine.monte_carlo_dps(
+        stats, skill_name, skill_level,
+        n=n_simulations, seed=seed,
+        skill_modifiers=sm, conversions=conversions,
+    )
 
     return {
         "dps": dps_result.to_dict(),
         "monte_carlo": mc_result.to_dict(),
         "seed": seed,
+        **_conversion_data_gap_info(skill_name, spec_tree, conversions),
     }
 
 
@@ -107,11 +182,31 @@ def simulate_optimize(
     skill_name: str,
     skill_level: int = 20,
     top_n: int = 5,
+    conversions: list | None = None,
+    spec_tree: list[dict] | None = None,
 ) -> list[dict]:
-    """Rank stat upgrades by DPS/EHP gain from a stats dict."""
+    """Rank stat upgrades by DPS/EHP gain from a stats dict.
+
+    ``conversions`` is an optional list of ``DamageConversion`` objects
+    describing skill-tree conversion nodes. When present, it is forwarded
+    to :func:`optimization_engine.get_stat_upgrades` so that %-damage
+    filtering reflects the post-conversion damage profile.
+
+    ``spec_tree`` is the per-skill allocation list consumed by
+    :func:`skill_tree_resolver.extract_damage_conversions`. When
+    provided, conversions are derived from it via ``_extract_conversions``
+    and override the ``conversions`` kwarg — most callers should use this
+    rather than constructing ``DamageConversion`` objects themselves.
+    """
     log.info("simulate_optimize", skill=skill_name, top_n=top_n)
     stats = _build_stats_from_dict(stats_dict)
-    upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=top_n)
+
+    if spec_tree:
+        conversions = _extract_conversions(skill_name, spec_tree)
+
+    upgrades = optimization_engine.get_stat_upgrades(
+        stats, skill_name, skill_level, top_n=top_n, conversions=conversions,
+    )
     return [u.to_dict() for u in upgrades]
 
 
@@ -152,10 +247,24 @@ def simulate_full_build(
     # Resolve skill tree modifiers and merge build stat bonuses
     sm = _resolve_skill_modifiers(skill_name, spec_tree, stats)
 
-    dps_result = combat_engine.calculate_dps(stats, skill_name, skill_level, skill_modifiers=sm)
-    mc_result = combat_engine.monte_carlo_dps(stats, skill_name, skill_level, n=n_simulations, seed=seed, skill_modifiers=sm)
+    # Pull damage-type conversions allocated in the skill tree so the DPS
+    # layer and the optimizer both see the correct post-conversion damage
+    # profile (otherwise tree-level phys→fire / etc. is silently dropped).
+    conversions = _extract_conversions(skill_name, spec_tree)
+
+    dps_result = combat_engine.calculate_dps(
+        stats, skill_name, skill_level,
+        skill_modifiers=sm, conversions=conversions,
+    )
+    mc_result = combat_engine.monte_carlo_dps(
+        stats, skill_name, skill_level,
+        n=n_simulations, seed=seed,
+        skill_modifiers=sm, conversions=conversions,
+    )
     defense_result = defense_engine.calculate_defense(stats)
-    upgrades = optimization_engine.get_stat_upgrades(stats, skill_name, skill_level, top_n=5)
+    upgrades = optimization_engine.get_stat_upgrades(
+        stats, skill_name, skill_level, top_n=5, conversions=conversions,
+    )
 
     # Auto-detect primary skill from skill loadout if available
     build_skills = kwargs.get("skills", []) if "kwargs" in dir() else []
@@ -172,6 +281,7 @@ def simulate_full_build(
         "defense": defense_result.to_dict(),
         "stat_upgrades": [u.to_dict() for u in upgrades],
         "seed": seed,
+        **_conversion_data_gap_info(skill_name, spec_tree, conversions),
     }
 
 

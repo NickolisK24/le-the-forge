@@ -5,13 +5,14 @@
  * Presents:
  *   - Hero section with Season + Patch badge and two CTA buttons
  *   - Stats row: community builds, skills, affixes counts
- *   - Meta snapshot: top 3 classes bar chart, top 5 skills
+ *   - Meta snapshot: top 5 classes bar chart, top 5 skills
  *   - 2×3 quick links grid
  */
 import { Link } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
 
 import { Button } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 import { useBuilds } from "@/hooks";
 import { metaApi, refApi, versionApi } from "@/lib/api";
 import { CLASS_COLORS } from "@/lib/gameData";
@@ -178,7 +179,12 @@ export default function DashboardPage() {
     return 0;
   })();
 
-  const topClasses = (meta?.class_distribution ?? []).slice(0, 3);
+  // Show up to 5 classes with at least one public build. The backend's
+  // class_distribution only includes classes that have builds (group-by),
+  // but we still filter defensively in case that changes.
+  const topClasses = (meta?.class_distribution ?? [])
+    .filter((d) => d.count > 0)
+    .slice(0, 5);
   const topSkills = (meta?.popular_skills ?? []).slice(0, 5);
   const classTotal = topClasses.reduce((s, d) => s + d.count, 0) || 1;
   const skillMax = topSkills.reduce((m, s) => Math.max(m, s.usage_count), 0) || 1;
@@ -188,6 +194,11 @@ export default function DashboardPage() {
 
   return (
     <div>
+      <PageMeta
+        title="Dashboard"
+        description="The Forge — your Last Epoch command center. Browse community builds, explore the meta, and plan your next character."
+        path="/"
+      />
       {/* Hero */}
       <section className="pt-12 pb-10 text-center">
         <div className="inline-flex items-center gap-2 rounded-full border border-forge-amber/40 bg-forge-amber/10 px-4 py-1.5 font-mono text-[10px] uppercase tracking-[0.28em] text-forge-amber mb-6">
@@ -196,7 +207,7 @@ export default function DashboardPage() {
           <span>Patch {patchLabel}</span>
         </div>
 
-        <h1 className="font-display text-7xl font-bold leading-none tracking-tight text-forge-text">
+        <h1 className="font-display text-5xl sm:text-7xl font-bold leading-none tracking-tight text-forge-text">
           The{" "}
           <span
             className="text-forge-amber"
@@ -206,15 +217,15 @@ export default function DashboardPage() {
           </span>
         </h1>
 
-        <p className="font-body text-xl font-light text-forge-muted mt-6 max-w-2xl mx-auto leading-relaxed">
+        <p className="font-body text-base sm:text-xl font-light text-forge-muted mt-6 max-w-2xl mx-auto leading-relaxed">
           Last Epoch Build Intelligence.
           <br />
-          <span className="text-forge-dim text-base">
+          <span className="text-forge-dim text-sm sm:text-base">
             Simulate. Craft. Optimize.
           </span>
         </p>
 
-        <div className="flex gap-4 justify-center mt-8">
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mt-8">
           <Link to="/build">
             <Button variant="primary" size="md">Start Planning</Button>
           </Link>
@@ -226,7 +237,7 @@ export default function DashboardPage() {
 
       {/* Stats row */}
       <section className="mb-10">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
           <StatCard
             label="Community Builds"
             value={buildsTotal.toLocaleString()}
@@ -338,7 +349,7 @@ export default function DashboardPage() {
         <div className="font-mono text-xs uppercase tracking-[0.28em] text-forge-dim text-center mb-6">
           Jump In
         </div>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
           {QUICK_LINKS.map((q) => (
             <QuickLinkCard key={q.to} {...q} />
           ))}

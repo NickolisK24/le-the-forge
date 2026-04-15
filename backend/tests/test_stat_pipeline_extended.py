@@ -133,17 +133,6 @@ _CONVERSION_PAIRS = [
 
 
 @pytest.mark.parametrize("from_type,to_type", _CONVERSION_PAIRS)
-def test_conversion_transfers_correct_amount(from_type, to_type):
-    from_attr = f"{from_type}_damage_pct"
-    to_attr = f"{to_type}_damage_pct"
-    s = BuildStats()
-    setattr(s, from_attr, 100.0)
-    setattr(s, to_attr, 0.0)
-    apply_conversions(s, [{"from": from_type, "to": to_type, "pct": 25}])
-    assert getattr(s, to_attr) == pytest.approx(25.0)
-
-
-@pytest.mark.parametrize("from_type,to_type", _CONVERSION_PAIRS)
 def test_conversion_source_unchanged(from_type, to_type):
     from_attr = f"{from_type}_damage_pct"
     to_attr = f"{to_type}_damage_pct"
@@ -154,11 +143,25 @@ def test_conversion_source_unchanged(from_type, to_type):
     assert getattr(s, from_attr) == pytest.approx(100.0)
 
 
-@pytest.mark.parametrize("pct", [0, 10, 20, 25, 33, 50, 75, 100])
-def test_physical_to_fire_pct_exact(pct):
-    s = _stats(physical_damage_pct=100.0, fire_damage_pct=0.0)
-    apply_conversions(s, [{"from": "physical", "to": "fire", "pct": pct}])
-    assert s.fire_damage_pct == pytest.approx(float(pct))
+def test_layer5_is_noop_in_full_pipeline():
+    """Layer 5 (conversions) must not mutate stats within ``resolve_final_stats``.
+
+    Even with a non-empty ``conversions`` list in the build, the snapshot
+    captured after Layer 5 must be byte-for-byte identical to the snapshot
+    captured after Layer 4. Correct conversion happens in the DPS layer
+    via ``DamageConversion`` objects; Layer 5 is a documented no-op.
+    """
+    build = _build(
+        conversions=[
+            {"from": "physical", "to": "fire", "pct": 50},
+            {"from": "cold", "to": "lightning", "pct": 25},
+        ],
+    )
+    result = resolve_final_stats(build, capture_snapshots=True)
+    assert (
+        result.layer_snapshots["5_conversions"]
+        == result.layer_snapshots["4_more_multipliers"]
+    )
 
 
 # ---------------------------------------------------------------------------

@@ -1,4687 +1,1647 @@
 [
   {
-    "id": "pride_of_rebellion",
-    "name": "Pride of Rebellion",
-    "internal_name": "27",
-    "tier": 0,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "fall_of_the_outcasts",
+    "name": "Fall of the Outcasts",
+    "level": 58,
+    "order": 1,
+    "blessings": [
       {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_pride_of_rebellion",
-    "name": "Grand Pride of Rebellion",
-    "internal_name": "27",
-    "tier": 1,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.51,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "sight_of_the_outcasts",
-    "name": "Sight of the Outcasts",
-    "internal_name": "29",
-    "tier": 2,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_sight_of_the_outcasts",
-    "name": "Grand Sight of the Outcasts",
-    "internal_name": "29",
-    "tier": 3,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.51,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "curse_of_flesh",
-    "name": "Curse of Flesh",
-    "internal_name": "31",
-    "tier": 4,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Necrotic"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_curse_of_flesh",
-    "name": "Grand Curse of Flesh",
-    "internal_name": "31",
-    "tier": 5,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Necrotic"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.51,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "favor_of_souls",
-    "name": "Favor of Souls",
-    "internal_name": "28",
-    "tier": 6,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_favor_of_souls",
-    "name": "Grand Favor of Souls",
-    "internal_name": "28",
-    "tier": 7,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.51,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "mark_of_agony",
-    "name": "Mark of Agony",
-    "internal_name": "26",
-    "tier": 8,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Necrotic"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_mark_of_agony",
-    "name": "Grand Mark of Agony",
-    "internal_name": "26",
-    "tier": 9,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Necrotic"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.51,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "memory_of_the_living",
-    "name": "Memory of the Living",
-    "internal_name": "33",
-    "tier": 10,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.15
-      }
-    ]
-  },
-  {
-    "id": "grand_memory_of_the_living",
-    "name": "Grand Memory of the Living",
-    "internal_name": "33",
-    "tier": 11,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.16,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "sign_of_torment",
-    "name": "Sign of Torment",
-    "internal_name": "9",
-    "tier": 12,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.15
-      }
-    ]
-  },
-  {
-    "id": "grand_sign_of_torment",
-    "name": "Grand Sign of Torment",
-    "internal_name": "9",
-    "tier": 13,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.16,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "cruelty_of_formosus",
-    "name": "Cruelty of Formosus",
-    "internal_name": "11",
-    "tier": 14,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "savior_of_the_north",
-    "name": "Savior of the North",
-    "internal_name": "71",
-    "tier": 15,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "chill_of_death",
-    "name": "Chill of Death",
-    "internal_name": "32",
-    "tier": 16,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "enmity_of_the_clans",
-    "name": "Enmity of the Clans",
-    "internal_name": "63",
-    "tier": 17,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "ambition_of_the_empire",
-    "name": "Ambition of the Empire",
-    "internal_name": "7",
-    "tier": 18,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "scars_of_blood",
-    "name": "Scars of Blood",
-    "internal_name": "74",
-    "tier": 19,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "favor_of_the_wengari",
-    "name": "Favor of the Wengari",
-    "internal_name": "17",
-    "tier": 20,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "resolve_of_frost",
-    "name": "Resolve of Frost",
-    "internal_name": "35",
-    "tier": 21,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "shards_of_unity",
-    "name": "Shards of Unity",
-    "internal_name": "58",
-    "tier": 22,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "remorse_of_heorot",
-    "name": "Remorse of Heorot",
-    "internal_name": "2",
-    "tier": 23,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "memory_of_light",
-    "name": "Memory of Light",
-    "internal_name": "24",
-    "tier": 24,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Health",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 30.0,
-        "max_value": 42.0
-      }
-    ]
-  },
-  {
-    "id": "grand_memory_of_light",
-    "name": "Grand Memory of Light",
-    "internal_name": "24",
-    "tier": 25,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Health",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 45.0,
-        "max_value": 70.0
-      }
-    ]
-  },
-  {
-    "id": "echo_of_solarum",
-    "name": "Echo of Solarum",
-    "internal_name": "25",
-    "tier": 26,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "VoidResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "grand_echo_of_solarum",
-    "name": "Grand Echo of Solarum",
-    "internal_name": "25",
-    "tier": 27,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "VoidResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "shadow_of_the_eclipse",
-    "name": "Shadow of the Eclipse",
-    "internal_name": "46",
-    "tier": 28,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 60.0,
-        "max_value": 100.0
-      }
-    ]
-  },
-  {
-    "id": "grand_shadow_of_the_eclipse",
-    "name": "Grand Shadow of the Eclipse",
-    "internal_name": "46",
-    "tier": 29,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 101.0,
-        "max_value": 200.0
-      }
-    ]
-  },
-  {
-    "id": "wrath_of_rahyeh",
-    "name": "Wrath of Rahyeh",
-    "internal_name": "5",
-    "tier": 30,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Throwing"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_wrath_of_rahyeh",
-    "name": "Grand Wrath of Rahyeh",
-    "internal_name": "5",
-    "tier": 31,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Throwing"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "whisper_of_orobyss",
-    "name": "Whisper of Orobyss",
-    "internal_name": "6",
-    "tier": 32,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Void"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_whisper_of_orobyss",
-    "name": "Grand Whisper of Orobyss",
-    "internal_name": "6",
-    "tier": 33,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Void"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "flames_of_the_black_sun",
-    "name": "Flames of the Black Sun",
-    "internal_name": "54",
-    "tier": 34,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_flames_of_the_black_sun",
-    "name": "Grand Flames of the Black Sun",
-    "internal_name": "54",
-    "tier": 35,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "hunger_of_the_void",
-    "name": "Hunger of the Void",
-    "internal_name": "41",
-    "tier": 36,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Spell"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_hunger_of_the_void",
-    "name": "Grand Hunger of the Void",
-    "internal_name": "41",
-    "tier": 37,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Spell"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "strength_of_the_mountain",
-    "name": "Strength of the Mountain",
-    "internal_name": "47",
-    "tier": 38,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthGain",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 10.0,
-        "max_value": 14.0
-      }
-    ]
-  },
-  {
-    "id": "grand_strength_of_the_mountain",
-    "name": "Grand Strength of the Mountain",
-    "internal_name": "47",
-    "tier": 39,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthGain",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 15.0,
-        "max_value": 22.0
-      }
-    ]
-  },
-  {
-    "id": "winds_of_oblivion",
-    "name": "Winds of Oblivion",
-    "internal_name": "70",
-    "tier": 40,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "CriticalChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_winds_of_oblivion",
-    "name": "Grand Winds of Oblivion",
-    "internal_name": "70",
-    "tier": 41,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "CriticalChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.51,
-        "max_value": 0.8
-      }
-    ]
-  },
-  {
-    "id": "depths_of_infinity",
-    "name": "Depths of Infinity",
-    "internal_name": "57",
-    "tier": 42,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_depths_of_infinity",
-    "name": "Grand Depths of Infinity",
-    "internal_name": "57",
-    "tier": 43,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "greed_of_darkness",
-    "name": "Greed of Darkness",
-    "internal_name": "72",
-    "tier": 44,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardGain",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 6.0,
-        "max_value": 10.0
+        "id": "pride_of_rebellion",
+        "name": "Pride of Rebellion",
+        "grand_name": "Grand Pride of Rebellion",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 100,
+        "description": "Increased Grand Idol Drop Rate"
       },
       {
-        "property": "WardDecayThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 60.0,
-        "max_value": 100.0
-      }
-    ]
-  },
-  {
-    "id": "grand_greed_of_darkness",
-    "name": "Grand Greed of Darkness",
-    "internal_name": "72",
-    "tier": 45,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardGain",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 12.0,
-        "max_value": 18.0
+        "id": "sight_of_the_outcasts",
+        "name": "Sight of the Outcasts",
+        "grand_name": "Grand Sight of the Outcasts",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 100,
+        "description": "Increased Large Idol Drop Rate"
       },
       {
-        "property": "WardDecayThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 120.0,
-        "max_value": 200.0
-      }
-    ]
-  },
-  {
-    "id": "emptiness_of_ash",
-    "name": "Emptiness of Ash",
-    "internal_name": "59",
-    "tier": 46,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "CriticalMultiplier",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.26
-      }
-    ]
-  },
-  {
-    "id": "grand_emptiness_of_ash",
-    "name": "Grand Emptiness of Ash",
-    "internal_name": "59",
-    "tier": 47,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "CriticalMultiplier",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.27,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "thirst_of_the_sun",
-    "name": "Thirst of the Sun",
-    "internal_name": "69",
-    "tier": 48,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedLeechRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_thirst_of_the_sun",
-    "name": "Grand Thirst of the Sun",
-    "internal_name": "69",
-    "tier": 49,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedLeechRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "hope_of_the_beginning",
-    "name": "Hope of the Beginning",
-    "internal_name": "42",
-    "tier": 50,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.07,
-        "max_value": 0.14
-      }
-    ]
-  },
-  {
-    "id": "safety_of_the_labyrinth",
-    "name": "Safety of the Labyrinth",
-    "internal_name": "10",
-    "tier": 51,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "remnants_of_the_living",
-    "name": "Remnants of the Living",
-    "internal_name": "53",
-    "tier": 52,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "visions_of_death",
-    "name": "Visions of Death",
-    "internal_name": "7",
-    "tier": 53,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "inevitability_of_the_void",
-    "name": "Inevitability of the Void",
-    "internal_name": "6",
-    "tier": 54,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.16,
-        "max_value": 0.26
-      }
-    ]
-  },
-  {
-    "id": "rot_of_the_world",
-    "name": "Rot of the World",
-    "internal_name": "65",
-    "tier": 55,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "boon_of_the_scarab",
-    "name": "Boon of the Scarab",
-    "internal_name": "62",
-    "tier": 56,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "shadows_of_infinity",
-    "name": "Shadows of Infinity",
-    "internal_name": "12",
-    "tier": 57,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "despair_of_the_empire",
-    "name": "Despair of the Empire",
-    "internal_name": "13",
-    "tier": 58,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "vigilance_of_the_damned",
-    "name": "Vigilance of the Damned",
-    "internal_name": "67",
-    "tier": 59,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "subtlety_of_slaughter",
-    "name": "Subtlety of Slaughter",
-    "internal_name": "8",
-    "tier": 60,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "apex_of_fortune",
-    "name": "Apex of Fortune",
-    "internal_name": "20",
-    "tier": 61,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "arrogance_of_argentus",
-    "name": "Arrogance of Argentus",
-    "internal_name": "14",
-    "tier": 62,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "embrace_of_ice",
-    "name": "Embrace of Ice",
-    "internal_name": "2",
-    "tier": 63,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grip_of_the_lance",
-    "name": "Grip of the Lance",
-    "internal_name": "34",
-    "tier": 64,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "right_of_conquest",
-    "name": "Right of Conquest",
-    "internal_name": "25",
-    "tier": 65,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "reach_of_flame",
-    "name": "Reach of Flame",
-    "internal_name": "5",
-    "tier": 66,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "binds_of_sanctuary",
-    "name": "Binds of Sanctuary",
-    "internal_name": "18",
-    "tier": 67,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "slumber_of_morditas",
-    "name": "Slumber of Morditas",
-    "internal_name": "76",
-    "tier": 68,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "talon_of_grandeur",
-    "name": "Talon of Grandeur",
-    "internal_name": "60",
-    "tier": 69,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "vision_of_the_aurora",
-    "name": "Vision of the Aurora",
-    "internal_name": "64",
-    "tier": 70,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "might_of_the_siege",
-    "name": "Might of the Siege",
-    "internal_name": "45",
-    "tier": 71,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "bastion_of_divinity",
-    "name": "Bastion of Divinity",
-    "internal_name": "15",
-    "tier": 72,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "LightningResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "grand_bastion_of_divinity",
-    "name": "Grand Bastion of Divinity",
-    "internal_name": "15",
-    "tier": 73,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "LightningResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "light_of_the_moon",
-    "name": "Light of the Moon",
-    "internal_name": "50",
-    "tier": 74,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Mana",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 30.0,
-        "max_value": 50.0
-      }
-    ]
-  },
-  {
-    "id": "grand_light_of_the_moon",
-    "name": "Grand Light of the Moon",
-    "internal_name": "50",
-    "tier": 75,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Mana",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 60.0,
-        "max_value": 90.0
-      }
-    ]
-  },
-  {
-    "id": "rhythm_of_the_tide",
-    "name": "Rhythm of the Tide",
-    "internal_name": "43",
-    "tier": 76,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.6,
-        "max_value": 1.0
+        "id": "curse_of_flesh",
+        "name": "Curse of Flesh",
+        "grand_name": "Grand Curse of Flesh",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 100,
+        "description": "Increased Huge Idol Drop Rate"
       },
       {
-        "property": "HealthRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 6.0,
-        "max_value": 10.0
-      }
-    ]
-  },
-  {
-    "id": "grand_rhythm_of_the_tide",
-    "name": "Grand Rhythm of the Tide",
-    "internal_name": "43",
-    "tier": 77,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 1.2,
-        "max_value": 2.0
+        "id": "favor_of_souls",
+        "name": "Favor of Souls",
+        "grand_name": "Grand Favor of Souls",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 100,
+        "description": "Increased Ornate Idol Drop Rate"
       },
       {
-        "property": "HealthRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 12.0,
-        "max_value": 20.0
-      }
-    ]
-  },
-  {
-    "id": "chaos_of_lagon",
-    "name": "Chaos of Lagon",
-    "internal_name": "3",
-    "tier": 78,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_chaos_of_lagon",
-    "name": "Grand Chaos of Lagon",
-    "internal_name": "3",
-    "tier": 79,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "might_of_the_sea_titan",
-    "name": "Might of the Sea Titan",
-    "internal_name": "30",
-    "tier": 80,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_might_of_the_sea_titan",
-    "name": "Grand Might of the Sea Titan",
-    "internal_name": "30",
-    "tier": 81,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "resonance_of_the_sea",
-    "name": "Resonance of the Sea",
-    "internal_name": "75",
-    "tier": 82,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 17.0,
-        "max_value": 25.0
-      }
-    ]
-  },
-  {
-    "id": "grand_resonance_of_the_sea",
-    "name": "Grand Resonance of the Sea",
-    "internal_name": "75",
-    "tier": 83,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardRegen",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 30.0,
-        "max_value": 42.0
-      }
-    ]
-  },
-  {
-    "id": "mysteries_of_the_deep",
-    "name": "Mysteries of the Deep",
-    "internal_name": "49",
-    "tier": 84,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_mysteries_of_the_deep",
-    "name": "Grand Mysteries of the Deep",
-    "internal_name": "49",
-    "tier": 85,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "cruelty_of_the_meruna",
-    "name": "Cruelty of the Meruna",
-    "internal_name": "36",
-    "tier": 86,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_cruelty_of_the_meruna",
-    "name": "Grand Cruelty of the Meruna",
-    "internal_name": "36",
-    "tier": 87,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "weight_of_the_abyss",
-    "name": "Weight of the Abyss",
-    "internal_name": "56",
-    "tier": 88,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "FreezeRateMultiplier",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 1.0,
-        "max_value": 1.8
-      }
-    ]
-  },
-  {
-    "id": "grand_weight_of_the_abyss",
-    "name": "Grand Weight of the Abyss",
-    "internal_name": "56",
-    "tier": 89,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "FreezeRateMultiplier",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 2.0,
-        "max_value": 3.0
-      }
-    ]
-  },
-  {
-    "id": "crash_of_the_waves",
-    "name": "Crash of the Waves",
-    "internal_name": "48",
-    "tier": 90,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedStunChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_crash_of_the_waves",
-    "name": "Grand Crash of the Waves",
-    "internal_name": "48",
-    "tier": 91,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedStunChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 1.0,
-        "max_value": 1.6
-      }
-    ]
-  },
-  {
-    "id": "trance_of_the_sirens",
-    "name": "Trance of the Sirens",
-    "internal_name": "52",
-    "tier": 92,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedAilmentDuration",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.14
-      }
-    ]
-  },
-  {
-    "id": "grand_trance_of_the_sirens",
-    "name": "Grand Trance of the Sirens",
-    "internal_name": "52",
-    "tier": 93,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedAilmentDuration",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.22
-      }
-    ]
-  },
-  {
-    "id": "intellect_of_liath",
-    "name": "Intellect of Liath",
-    "internal_name": "51",
-    "tier": 94,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "ChanceToGain30WardWhenHit",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "grand_intellect_of_liath",
-    "name": "Grand Intellect of Liath",
-    "internal_name": "51",
-    "tier": 95,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "ChanceToGain30WardWhenHit",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grace_of_water",
-    "name": "Grace of Water",
-    "internal_name": "44",
-    "tier": 96,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardOnPotionUse",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 40.0,
-        "max_value": 70.0
+        "id": "mark_of_agony",
+        "name": "Mark of Agony",
+        "grand_name": "Grand Mark of Agony",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 100,
+        "description": "Increased Adorned Idol Drop Rate"
       },
       {
-        "property": "WardDecayThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 80.0,
-        "max_value": 140.0
-      }
-    ]
-  },
-  {
-    "id": "grand_grace_of_water",
-    "name": "Grand Grace of Water",
-    "internal_name": "44",
-    "tier": 97,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "WardOnPotionUse",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 80.0,
-        "max_value": 130.0
+        "id": "memory_of_the_living",
+        "name": "Memory of the Living",
+        "grand_name": "Grand Memory of the Living",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 15,
+        "grand_min": 16,
+        "grand_max": 25,
+        "description": "Increased Glyph Drop Rate"
       },
       {
-        "property": "WardDecayThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 160.0,
-        "max_value": 260.0
-      }
-    ]
-  },
-  {
-    "id": "resolve_of_humanity",
-    "name": "Resolve of Humanity",
-    "internal_name": "40",
-    "tier": 98,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AllResistances",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.07,
-        "max_value": 0.12
-      }
-    ]
-  },
-  {
-    "id": "survival_of_might",
-    "name": "Survival of Might",
-    "internal_name": "68",
-    "tier": 99,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "CritAvoidance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
+        "id": "sign_of_torment",
+        "name": "Sign of Torment",
+        "grand_name": "Grand Sign of Torment",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 15,
+        "grand_min": 16,
+        "grand_max": 25,
+        "description": "Increased Rune Drop Rate"
       },
       {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 30.0,
-        "max_value": 50.0
-      }
-    ]
-  },
-  {
-    "id": "dream_of_eterra",
-    "name": "Dream of Eterra",
-    "internal_name": "1",
-    "tier": 100,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "NecroticResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "binds_of_nature",
-    "name": "Binds of Nature",
-    "internal_name": "39",
-    "tier": 101,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Poison"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "despair_of_flesh",
-    "name": "Despair of Flesh",
-    "internal_name": "37",
-    "tier": 102,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Necrotic"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "cruelty_of_strength",
-    "name": "Cruelty of Strength",
-    "internal_name": "38",
-    "tier": 103,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "hemmorage_of_marrow",
-    "name": "Hemmorage of Marrow",
-    "internal_name": "8",
-    "tier": 104,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "taste_of_venom",
-    "name": "Taste of Venom",
-    "internal_name": "61",
-    "tier": 105,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "hunger_of_dragons",
-    "name": "Hunger of Dragons",
-    "internal_name": "16",
-    "tier": 106,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Melee"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "virtue_of_command",
-    "name": "Virtue of Command",
-    "internal_name": "23",
-    "tier": 107,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AllResistances",
-        "tags": [
-          "Minion"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.08,
-        "max_value": 0.15
-      }
-    ]
-  },
-  {
-    "id": "persistance_of_will",
-    "name": "Persistance of Will",
-    "internal_name": "73",
-    "tier": 108,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "PoisonResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "guile_of_wyrms",
-    "name": "Guile of Wyrms",
-    "internal_name": "55",
-    "tier": 109,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.6,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "allure_of_apathy",
-    "name": "Allure of Apathy",
-    "internal_name": "66",
-    "tier": 110,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "winds_of_fortune",
-    "name": "Winds of Fortune",
-    "internal_name": "21",
-    "tier": 111,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.15
-      }
-    ]
-  },
-  {
-    "id": "grand_winds_of_fortune",
-    "name": "Grand Winds of Fortune",
-    "internal_name": "21",
-    "tier": 112,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.16,
-        "max_value": 0.22
-      }
-    ]
-  },
-  {
-    "id": "strength_of_mind",
-    "name": "Strength of Mind",
-    "internal_name": "22",
-    "tier": 113,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedExperience",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.04,
-        "max_value": 0.06
-      }
-    ]
-  },
-  {
-    "id": "grand_strength_of_mind",
-    "name": "Grand Strength of Mind",
-    "internal_name": "22",
-    "tier": 114,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedExperience",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.07,
-        "max_value": 0.1
-      }
-    ]
-  },
-  {
-    "id": "scales_of_greed",
-    "name": "Scales of Greed",
-    "internal_name": "4",
-    "tier": 115,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "grand_scales_of_greed",
-    "name": "Grand Scales of Greed",
-    "internal_name": "4",
-    "tier": 116,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": false,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.45,
-        "max_value": 0.7
-      }
-    ]
-  },
-  {
-    "id": "grand_arrogance_of_argentus",
-    "name": "Grand Arrogance of Argentus",
-    "internal_name": "14",
-    "tier": 117,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_embrace_of_ice",
-    "name": "Grand Embrace of Ice",
-    "internal_name": "2",
-    "tier": 118,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_grip_of_the_lance",
-    "name": "Grand Grip of the Lance",
-    "internal_name": "34",
-    "tier": 119,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_right_of_conquest",
-    "name": "Grand Right of Conquest",
-    "internal_name": "25",
-    "tier": 120,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_reach_of_flame",
-    "name": "Grand Reach of Flame",
-    "internal_name": "5",
-    "tier": 121,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_binds_of_sanctuary",
-    "name": "Grand Binds of Sanctuary",
-    "internal_name": "18",
-    "tier": 122,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_slumber_of_morditas",
-    "name": "Grand Slumber of Morditas",
-    "internal_name": "76",
-    "tier": 123,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_talon_of_grandeur",
-    "name": "Grand Talon of Grandeur",
-    "internal_name": "60",
-    "tier": 124,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_vision_of_the_aurora",
-    "name": "Grand Vision of the Aurora",
-    "internal_name": "64",
-    "tier": 125,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_might_of_the_siege",
-    "name": "Grand Might of the Siege",
-    "internal_name": "45",
-    "tier": 126,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.35,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_cruelty_of_formosus",
-    "name": "Grand Cruelty of Formosus",
-    "internal_name": "11",
-    "tier": 127,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_savior_of_the_north",
-    "name": "Grand Savior of the North",
-    "internal_name": "71",
-    "tier": 128,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_chill_of_death",
-    "name": "Grand Chill of Death",
-    "internal_name": "32",
-    "tier": 129,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_enmity_of_the_clans",
-    "name": "Grand Enmity of the Clans",
-    "internal_name": "63",
-    "tier": 130,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_ambition_of_the_empire",
-    "name": "Grand Ambition of the Empire",
-    "internal_name": "7",
-    "tier": 131,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_scars_of_blood",
-    "name": "Grand Scars of Blood",
-    "internal_name": "74",
-    "tier": 132,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_favor_of_the_wengari",
-    "name": "Grand Favor of the Wengari",
-    "internal_name": "17",
-    "tier": 133,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_resolve_of_frost",
-    "name": "Grand Resolve of Frost",
-    "internal_name": "35",
-    "tier": 134,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_shards_of_unity",
-    "name": "Grand Shards of Unity",
-    "internal_name": "58",
-    "tier": 135,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_remorse_of_heorot",
-    "name": "Grand Remorse of Heorot",
-    "internal_name": "2",
-    "tier": 136,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.9
-      }
-    ]
-  },
-  {
-    "id": "grand_hope_of_the_beginning",
-    "name": "Grand Hope of the Beginning",
-    "internal_name": "14",
-    "tier": 137,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.15,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "grand_safety_of_the_labyrinth",
-    "name": "Grand Safety of the Labyrinth",
-    "internal_name": "10",
-    "tier": 138,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "grand_remnants_of_the_living",
-    "name": "Grand Remnants of the Living",
-    "internal_name": "53",
-    "tier": 139,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.33,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_visions_of_death",
-    "name": "Grand Visions of Death",
-    "internal_name": "7",
-    "tier": 140,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_inevitability_of_the_void",
-    "name": "Grand Inevitability of the Void",
-    "internal_name": "6",
-    "tier": 141,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.45
-      }
-    ]
-  },
-  {
-    "id": "grand_rot_of_the_world",
-    "name": "Grand Rot of the World",
-    "internal_name": "65",
-    "tier": 142,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Fire"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_boon_of_the_scarab",
-    "name": "Grand Boon of the Scarab",
-    "internal_name": "62",
-    "tier": 143,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_shadows_of_infinity",
-    "name": "Grand Shadows of Infinity",
-    "internal_name": "12",
-    "tier": 144,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "grand_despair_of_the_empire",
-    "name": "Grand Despair of the Empire",
-    "internal_name": "13",
-    "tier": 145,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.45,
-        "max_value": 0.7
-      }
-    ]
-  },
-  {
-    "id": "grand_vigilance_of_the_damned",
-    "name": "Grand Vigilance of the Damned",
-    "internal_name": "67",
-    "tier": 146,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Cold",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_subtlety_of_slaughter",
-    "name": "Grand Subtlety of Slaughter",
-    "internal_name": "8",
-    "tier": 147,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_apex_of_fortune",
-    "name": "Grand Apex of Fortune",
-    "internal_name": "20",
-    "tier": 148,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.41,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_resolve_of_humanity",
-    "name": "Grand Resolve of Humanity",
-    "internal_name": "40",
-    "tier": 149,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AllResistances",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.13,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_survival_of_might",
-    "name": "Grand Survival of Might",
-    "internal_name": "68",
-    "tier": 150,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "CritAvoidance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.5,
-        "max_value": 0.7
+        "id": "winds_of_fortune",
+        "name": "Winds of Fortune",
+        "grand_name": "Grand Winds of Fortune",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 15,
+        "grand_min": 16,
+        "grand_max": 22,
+        "description": "Increased Unique Item Drop Rate"
       },
       {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 51.0,
-        "max_value": 90.0
-      }
-    ]
-  },
-  {
-    "id": "grand_dream_of_eterra",
-    "name": "Grand Dream of Eterra",
-    "internal_name": "1",
-    "tier": 151,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "NecroticResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.45,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_binds_of_nature",
-    "name": "Grand Binds of Nature",
-    "internal_name": "39",
-    "tier": 152,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Poison"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "grand_despair_of_flesh",
-    "name": "Grand Despair of Flesh",
-    "internal_name": "37",
-    "tier": 153,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Necrotic"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "grand_cruelty_of_strength",
-    "name": "Grand Cruelty of Strength",
-    "internal_name": "38",
-    "tier": 154,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "grand_hemmorage_of_marrow",
-    "name": "Grand Hemmorage of Marrow",
-    "internal_name": "8",
-    "tier": 155,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "grand_taste_of_venom",
-    "name": "Grand Taste of Venom",
-    "internal_name": "61",
-    "tier": 156,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "grand_hunger_of_dragons",
-    "name": "Grand Hunger of Dragons",
-    "internal_name": "16",
-    "tier": 157,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "HealthLeech",
-        "tags": [
-          "Melee"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.45,
-        "max_value": 0.7
-      }
-    ]
-  },
-  {
-    "id": "grand_virtue_of_command",
-    "name": "Grand Virtue of Command",
-    "internal_name": "23",
-    "tier": 158,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AllResistances",
-        "tags": [
-          "Minion"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.16,
-        "max_value": 0.25
-      }
-    ]
-  },
-  {
-    "id": "grand_persistance_of_will",
-    "name": "Grand Persistance of Will",
-    "internal_name": "73",
-    "tier": 159,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "PoisonResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "grand_guile_of_wyrms",
-    "name": "Grand Guile of Wyrms",
-    "internal_name": "55",
-    "tier": 160,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 1.0,
-        "max_value": 1.5
-      }
-    ]
-  },
-  {
-    "id": "grand_allure_of_apathy",
-    "name": "Grand Allure of Apathy",
-    "internal_name": "66",
-    "tier": 161,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "temple_of_the_mind",
-    "name": "Temple of the Mind",
-    "internal_name": "63",
-    "tier": 162,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_temple_of_the_mind",
-    "name": "Grand Temple of the Mind",
-    "internal_name": "63",
-    "tier": 163,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "bastion_of_the_heart",
-    "name": "Bastion of the Heart",
-    "internal_name": "26",
-    "tier": 164,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_bastion_of_the_heart",
-    "name": "Grand Bastion of the Heart",
-    "internal_name": "26",
-    "tier": 165,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "binding_of_ruin",
-    "name": "Binding of Ruin",
-    "internal_name": "65",
-    "tier": 166,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_binding_of_ruin",
-    "name": "Grand Binding of Ruin",
-    "internal_name": "65",
-    "tier": 167,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.32,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "refuge_of_despair",
-    "name": "Refuge of Despair",
-    "internal_name": "73",
-    "tier": 168,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_refuge_of_despair",
-    "name": "Grand Refuge of Despair",
-    "internal_name": "73",
-    "tier": 169,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.32,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "comfort_of_the_end",
-    "name": "Comfort of the End",
-    "internal_name": "72",
-    "tier": 170,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_comfort_of_the_end",
-    "name": "Grand Comfort of the End",
-    "internal_name": "72",
-    "tier": 171,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "memory_of_masters",
-    "name": "Memory of Masters",
-    "internal_name": "19",
-    "tier": 172,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.18
-      }
-    ]
-  },
-  {
-    "id": "grand_memory_of_masters",
-    "name": "Grand Memory of Masters",
-    "internal_name": "19",
-    "tier": 173,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Lightning"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grasp_of_hope",
-    "name": "Grasp of Hope",
-    "internal_name": "66",
-    "tier": 174,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_grasp_of_hope",
-    "name": "Grand Grasp of Hope",
-    "internal_name": "66",
-    "tier": 175,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.32,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "remnants_of_the_elders",
-    "name": "Remnants of the Elders",
-    "internal_name": "17",
-    "tier": 176,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_remnants_of_the_elders",
-    "name": "Grand Remnants of the Elders",
-    "internal_name": "17",
-    "tier": 177,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Lightning",
-          "Void"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.32,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "knowledge_of_skill",
-    "name": "Knowledge of Skill",
-    "internal_name": "28",
-    "tier": 178,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.12,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_knowledge_of_skill",
-    "name": "Grand Knowledge of Skill",
-    "internal_name": "28",
-    "tier": 179,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedDropRate",
-        "tags": [
-          "Physical",
-          "Cold"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.22,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "resolve_of_grael",
-    "name": "Resolve of Grael",
-    "internal_name": "33",
-    "tier": 180,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "PhysicalResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "grand_resolve_of_grael",
-    "name": "Grand Resolve of Grael",
-    "internal_name": "33",
-    "tier": 181,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "PhysicalResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "protection_of_heorot",
-    "name": "Protection of Heorot",
-    "internal_name": "14",
-    "tier": 182,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "ColdResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
-      }
-    ]
-  },
-  {
-    "id": "grand_protection_of_heorot",
-    "name": "Grand Protection of Heorot",
-    "internal_name": "14",
-    "tier": 183,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "ColdResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
-      }
-    ]
-  },
-  {
-    "id": "vigor_of_jormun",
-    "name": "Vigor of Jormun",
-    "internal_name": "18",
-    "tier": 184,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "EnduranceThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 40.0,
-        "max_value": 70.0
-      }
-    ]
-  },
-  {
-    "id": "grand_vigor_of_jormun",
-    "name": "Grand Vigor of Jormun",
-    "internal_name": "18",
-    "tier": 185,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "EnduranceThreshold",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 80.0,
-        "max_value": 150.0
-      }
-    ]
-  },
-  {
-    "id": "maw_of_artor",
-    "name": "Maw of Artor",
-    "internal_name": "22",
-    "tier": 186,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_maw_of_artor",
-    "name": "Grand Maw of Artor",
-    "internal_name": "22",
-    "tier": 187,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "winds_of_frost",
-    "name": "Winds of Frost",
-    "internal_name": "51",
-    "tier": 188,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "MoreFreezeRatePerStackOfChill",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.3,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "grand_winds_of_frost",
-    "name": "Grand Winds of Frost",
-    "internal_name": "51",
-    "tier": 189,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "MoreFreezeRatePerStackOfChill",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.8
-      }
-    ]
-  },
-  {
-    "id": "rage_of_winter",
-    "name": "Rage of Winter",
-    "internal_name": "54",
-    "tier": 190,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_rage_of_winter",
-    "name": "Grand Rage of Winter",
-    "internal_name": "54",
-    "tier": 191,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "fury_of_the_north",
-    "name": "Fury of the North",
-    "internal_name": "53",
-    "tier": 192,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_fury_of_the_north",
-    "name": "Grand Fury of the North",
-    "internal_name": "53",
-    "tier": 193,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "heart_of_ice",
-    "name": "Heart of Ice",
-    "internal_name": "56",
-    "tier": 194,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "grand_heart_of_ice",
-    "name": "Grand Heart of Ice",
-    "internal_name": "56",
-    "tier": 195,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "bones_of_eternity",
-    "name": "Bones of Eternity",
-    "internal_name": "75",
-    "tier": 196,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "BlockChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.03,
-        "max_value": 0.04
+        "id": "scales_of_greed",
+        "name": "Scales of Greed",
+        "grand_name": "Grand Scales of Greed",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 45,
+        "grand_max": 70,
+        "description": "Increased Gold Drop Rate"
       },
       {
-        "property": "BlockEffectiveness",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 100.0,
-        "max_value": 140.0
+        "id": "strength_of_mind",
+        "name": "Strength of Mind",
+        "grand_name": "Grand Strength of Mind",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 4,
+        "normal_max": 6,
+        "grand_min": 7,
+        "grand_max": 10,
+        "description": "Increased Experience"
       }
     ]
   },
   {
-    "id": "grand_bones_of_eternity",
-    "name": "Grand Bones of Eternity",
-    "internal_name": "75",
-    "tier": 197,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "the_stolen_lance",
+    "name": "The Stolen Lance",
+    "level": 62,
+    "order": 2,
+    "blessings": [
       {
-        "property": "BlockChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.05,
-        "max_value": 0.08
+        "id": "arrogance_of_argentus",
+        "name": "Arrogance of Argentus",
+        "grand_name": "Grand Arrogance of Argentus",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 50,
+        "description": "Increased Helmet Drop Rate"
       },
       {
-        "property": "BlockEffectiveness",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 180.0,
-        "max_value": 240.0
+        "id": "embrace_of_ice",
+        "name": "Embrace of Ice",
+        "grand_name": "Grand Embrace of Ice",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 50,
+        "description": "Increased Body Armor Drop Rate"
+      },
+      {
+        "id": "grip_of_the_lance",
+        "name": "Grip of the Lance",
+        "grand_name": "Grand Grip of the Lance",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Gloves Drop Rate"
+      },
+      {
+        "id": "right_of_conquest",
+        "name": "Right of Conquest",
+        "grand_name": "Grand Right of Conquest",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Boots Drop Rate"
+      },
+      {
+        "id": "reach_of_flame",
+        "name": "Reach of Flame",
+        "grand_name": "Grand Reach of Flame",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Off-Hand Catalyst Drop Rate"
+      },
+      {
+        "id": "binds_of_sanctuary",
+        "name": "Binds of Sanctuary",
+        "grand_name": "Grand Binds of Sanctuary",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Shield Drop Rate"
+      },
+      {
+        "id": "talon_of_grandeur",
+        "name": "Talon of Grandeur",
+        "grand_name": "Grand Talon of Grandeur",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Ring Drop Rate"
+      },
+      {
+        "id": "vision_of_the_aurora",
+        "name": "Vision of the Aurora",
+        "grand_name": "Grand Vision of the Aurora",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Amulet Drop Rate"
+      },
+      {
+        "id": "might_of_the_siege",
+        "name": "Might of the Siege",
+        "grand_name": "Grand Might of the Siege",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 75,
+        "description": "Increased Belt Drop Rate"
+      },
+      {
+        "id": "slumber_of_morditas",
+        "name": "Slumber of Morditas",
+        "grand_name": "Grand Slumber of Morditas",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 12,
+        "normal_max": 25,
+        "grand_min": 30,
+        "grand_max": 60,
+        "description": "Increased Relic Drop Rate"
+      },
+      {
+        "id": "apex_of_fortune",
+        "name": "Apex of Fortune",
+        "grand_name": "Grand Apex of Fortune",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 15,
+        "normal_max": 30,
+        "grand_min": 41,
+        "grand_max": 60,
+        "description": "Increased Quiver Drop Rate"
       }
     ]
   },
   {
-    "id": "bulwark_of_the_tundra",
-    "name": "Bulwark of the Tundra",
-    "internal_name": "62",
-    "tier": 198,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "the_black_sun",
+    "name": "The Black Sun",
+    "level": 66,
+    "order": 3,
+    "blessings": [
       {
-        "property": "Armour",
-        "tags": [
-          "None"
+        "id": "memory_of_light",
+        "name": "Memory of Light",
+        "grand_name": "Grand Memory of Light",
+        "simulation_relevant": true,
+        "stat_key": "max_health",
+        "stat_type": "flat",
+        "normal_min": 30,
+        "normal_max": 42,
+        "grand_min": 45,
+        "grand_max": 70,
+        "description": "Health Increase"
+      },
+      {
+        "id": "echo_of_solarum",
+        "name": "Echo of Solarum",
+        "grand_name": "Grand Echo of Solarum",
+        "simulation_relevant": true,
+        "stat_key": "void_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Void Resistance"
+      },
+      {
+        "id": "shadow_of_the_eclipse",
+        "name": "Shadow of the Eclipse",
+        "grand_name": "Grand Shadow of the Eclipse",
+        "simulation_relevant": true,
+        "stat_key": "dodge_rating",
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 61,
+        "grand_max": 100,
+        "description": "Dodge Rating"
+      },
+      {
+        "id": "whisper_of_orobyss",
+        "name": "Whisper of Orobyss",
+        "grand_name": "Grand Whisper of Orobyss",
+        "simulation_relevant": true,
+        "stat_key": "void_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Void Damage Increase"
+      },
+      {
+        "id": "flames_of_the_black_sun",
+        "name": "Flames of the Black Sun",
+        "grand_name": "Grand Flames of the Black Sun",
+        "simulation_relevant": true,
+        "stat_key": "ignite_chance_pct",
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Ignite on Hit"
+      },
+      {
+        "id": "hunger_of_the_void",
+        "name": "Hunger of the Void",
+        "grand_name": "Grand Hunger of the Void",
+        "simulation_relevant": true,
+        "stat_key": "leech",
+        "stat_type": "flat",
+        "normal_min": 1.2,
+        "normal_max": 2.0,
+        "grand_min": 2.2,
+        "grand_max": 3.5,
+        "description": "% of Spell Damage Leeched as Health"
+      },
+      {
+        "id": "wrath_of_rahyeh",
+        "name": "Wrath of Rahyeh",
+        "grand_name": "Grand Wrath of Rahyeh",
+        "simulation_relevant": true,
+        "stat_key": "leech",
+        "stat_type": "flat",
+        "normal_min": 1.2,
+        "normal_max": 2.0,
+        "grand_min": 2.2,
+        "grand_max": 3.5,
+        "description": "% of Throwing Damage Leeched as Health"
+      },
+      {
+        "id": "strength_of_the_mountain",
+        "name": "Strength of the Mountain",
+        "grand_name": "Grand Strength of the Mountain",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 14,
+        "grand_min": 15,
+        "grand_max": 22,
+        "description": "Health Gain on Block"
+      },
+      {
+        "id": "winds_of_oblivion",
+        "name": "Winds of Oblivion",
+        "grand_name": "Grand Winds of Oblivion",
+        "simulation_relevant": true,
+        "stat_key": "crit_chance_pct",
+        "stat_type": "increased",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 51,
+        "grand_max": 80,
+        "description": "Increased Critical Strike Chance"
+      },
+      {
+        "id": "depths_of_infinity",
+        "name": "Depths of Infinity",
+        "grand_name": "Grand Depths of Infinity",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Void Resistance on Hit"
+      },
+      {
+        "id": "greed_of_darkness",
+        "name": "Greed of Darkness",
+        "grand_name": "Grand Greed of Darkness",
+        "simulation_relevant": true,
+        "stat_key": "dual",
+        "stat_type": "dual",
+        "stat_keys": [
+          {
+            "stat_key": "ward",
+            "stat_type": "flat",
+            "normal_min": 6,
+            "normal_max": 10,
+            "grand_min": 12,
+            "grand_max": 18
+          },
+          {
+            "stat_key": "ward_retention_pct",
+            "stat_type": "flat",
+            "normal_min": 60,
+            "normal_max": 100,
+            "grand_min": 120,
+            "grand_max": 200
+          }
         ],
-        "modifier_type": "INCREASED",
-        "value": 0.12,
-        "max_value": 0.24
+        "description": "Ward Gain on Kill and Ward Decay Threshold"
+      },
+      {
+        "id": "emptiness_of_ash",
+        "name": "Emptiness of Ash",
+        "grand_name": "Grand Emptiness of Ash",
+        "simulation_relevant": true,
+        "stat_key": "crit_multiplier_pct",
+        "stat_type": "flat",
+        "normal_min": 20,
+        "normal_max": 26,
+        "grand_min": 27,
+        "grand_max": 40,
+        "description": "Critical Strike Multiplier"
+      },
+      {
+        "id": "thirst_of_the_sun",
+        "name": "Thirst of the Sun",
+        "grand_name": "Grand Thirst of the Sun",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "increased",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 35,
+        "grand_max": 50,
+        "description": "Increased Leech Rate"
       }
     ]
   },
   {
-    "id": "grand_bulwark_of_the_tundra",
-    "name": "Grand Bulwark of the Tundra",
-    "internal_name": "62",
-    "tier": 199,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "blood_frost_and_death",
+    "name": "Blood, Frost and Death",
+    "level": 70,
+    "order": 4,
+    "blessings": [
       {
-        "property": "Armour",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.25,
-        "max_value": 0.55
+        "id": "cruelty_of_formosus",
+        "name": "Cruelty of Formosus",
+        "grand_name": "Grand Cruelty of Formosus",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Wand Drop Rate"
+      },
+      {
+        "id": "savior_of_the_north",
+        "name": "Savior of the North",
+        "grand_name": "Grand Savior of the North",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Sceptre Drop Rate"
+      },
+      {
+        "id": "chill_of_death",
+        "name": "Chill of Death",
+        "grand_name": "Grand Chill of Death",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Two-Handed Staff Drop Rate"
+      },
+      {
+        "id": "enmity_of_the_clans",
+        "name": "Enmity of the Clans",
+        "grand_name": "Grand Enmity of the Clans",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased One-Handed Sword Drop Rate"
+      },
+      {
+        "id": "ambition_of_the_empire",
+        "name": "Ambition of the Empire",
+        "grand_name": "Grand Ambition of the Empire",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Two-Handed Sword Drop Rate"
+      },
+      {
+        "id": "scars_of_blood",
+        "name": "Scars of Blood",
+        "grand_name": "Grand Scars of Blood",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased One-Handed Axe Drop Rate"
+      },
+      {
+        "id": "favor_of_the_wengari",
+        "name": "Favor of the Wengari",
+        "grand_name": "Grand Favor of the Wengari",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Two-Handed Axe Drop Rate"
+      },
+      {
+        "id": "resolve_of_frost",
+        "name": "Resolve of Frost",
+        "grand_name": "Grand Resolve of Frost",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased One-Handed Mace Drop Rate"
+      },
+      {
+        "id": "shards_of_unity",
+        "name": "Shards of Unity",
+        "grand_name": "Grand Shards of Unity",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Two-Handed Mace Drop Rate"
+      },
+      {
+        "id": "remorse_of_heorot",
+        "name": "Remorse of Heorot",
+        "grand_name": "Grand Remorse of Heorot",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 90,
+        "description": "Increased Two-Handed Spear Drop Rate"
+      },
+      {
+        "id": "subtlety_of_slaughter",
+        "name": "Subtlety of Slaughter",
+        "grand_name": "Grand Subtlety of Slaughter",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 75,
+        "description": "Increased Dagger Drop Rate"
+      },
+      {
+        "id": "vigilance_of_the_damned",
+        "name": "Vigilance of the Damned",
+        "grand_name": "Grand Vigilance of the Damned",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 75,
+        "description": "Increased Bow Drop Rate"
       }
     ]
   },
   {
-    "id": "defiance_of_yulia",
-    "name": "Defiance of Yulia",
-    "internal_name": "64",
-    "tier": 200,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "ending_the_storm",
+    "name": "Ending the Storm",
+    "level": 75,
+    "order": 5,
+    "blessings": [
       {
-        "property": "Damage",
-        "tags": [
-          "Cold",
-          "Spell",
-          "Channelling"
+        "id": "bastion_of_divinity",
+        "name": "Bastion of Divinity",
+        "grand_name": "Grand Bastion of Divinity",
+        "simulation_relevant": true,
+        "stat_key": "lightning_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Lightning Resistance"
+      },
+      {
+        "id": "light_of_the_moon",
+        "name": "Light of the Moon",
+        "grand_name": "Grand Light of the Moon",
+        "simulation_relevant": true,
+        "stat_key": "max_mana",
+        "stat_type": "flat",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 60,
+        "grand_max": 90,
+        "description": "Mana Increase"
+      },
+      {
+        "id": "rhythm_of_the_tide",
+        "name": "Rhythm of the Tide",
+        "grand_name": "Grand Rhythm of the Tide",
+        "simulation_relevant": true,
+        "stat_key": "dual",
+        "stat_type": "dual",
+        "stat_keys": [
+          {
+            "stat_key": "health_regen",
+            "stat_type": "flat",
+            "normal_min": 6,
+            "normal_max": 10,
+            "grand_min": 12,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "health_regen",
+            "stat_type": "increased",
+            "normal_min": 60,
+            "normal_max": 100,
+            "grand_min": 120,
+            "grand_max": 200
+          }
         ],
-        "modifier_type": "ADDED",
-        "value": 5.0,
-        "max_value": 10.0
+        "description": "Health Regeneration and Increased Health Regeneration"
+      },
+      {
+        "id": "chaos_of_lagon",
+        "name": "Chaos of Lagon",
+        "grand_name": "Grand Chaos of Lagon",
+        "simulation_relevant": true,
+        "stat_key": "lightning_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Lightning Damage Increase"
+      },
+      {
+        "id": "might_of_the_sea_titan",
+        "name": "Might of the Sea Titan",
+        "grand_name": "Grand Might of the Sea Titan",
+        "simulation_relevant": true,
+        "stat_key": "cold_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Cold Damage Increase"
+      },
+      {
+        "id": "resonance_of_the_sea",
+        "name": "Resonance of the Sea",
+        "grand_name": "Grand Resonance of the Sea",
+        "simulation_relevant": true,
+        "stat_key": "ward_regen",
+        "stat_type": "flat",
+        "normal_min": 17,
+        "normal_max": 25,
+        "grand_min": 30,
+        "grand_max": 42,
+        "description": "Ward Per Second"
+      },
+      {
+        "id": "mysteries_of_the_deep",
+        "name": "Mysteries of the Deep",
+        "grand_name": "Grand Mysteries of the Deep",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Lightning Resistance on Hit"
+      },
+      {
+        "id": "cruelty_of_the_meruna",
+        "name": "Cruelty of the Meruna",
+        "grand_name": "Grand Cruelty of the Meruna",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Shock on Hit"
+      },
+      {
+        "id": "weight_of_the_abyss",
+        "name": "Weight of the Abyss",
+        "grand_name": "Grand Weight of the Abyss",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "increased",
+        "normal_min": 100,
+        "normal_max": 180,
+        "grand_min": 200,
+        "grand_max": 300,
+        "description": "Freeze Rate Multiplier"
+      },
+      {
+        "id": "crash_of_the_waves",
+        "name": "Crash of the Waves",
+        "grand_name": "Grand Crash of the Waves",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "increased",
+        "normal_min": 50,
+        "normal_max": 90,
+        "grand_min": 100,
+        "grand_max": 160,
+        "description": "Increased Stun Chance"
+      },
+      {
+        "id": "trance_of_the_sirens",
+        "name": "Trance of the Sirens",
+        "grand_name": "Grand Trance of the Sirens",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "increased",
+        "normal_min": 10,
+        "normal_max": 14,
+        "grand_min": 15,
+        "grand_max": 22,
+        "description": "Increased Shock Duration"
+      },
+      {
+        "id": "intellect_of_liath",
+        "name": "Intellect of Liath",
+        "grand_name": "Grand Intellect of Liath",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 15,
+        "normal_max": 25,
+        "grand_min": 30,
+        "grand_max": 50,
+        "description": "Chance to Gain 30 Ward when Hit"
+      },
+      {
+        "id": "grace_of_water",
+        "name": "Grace of Water",
+        "grand_name": "Grand Grace of Water",
+        "simulation_relevant": true,
+        "stat_key": "dual",
+        "stat_type": "dual",
+        "stat_keys": [
+          {
+            "stat_key": "ward",
+            "stat_type": "flat",
+            "normal_min": 40,
+            "normal_max": 70,
+            "grand_min": 80,
+            "grand_max": 130
+          },
+          {
+            "stat_key": "ward_retention_pct",
+            "stat_type": "flat",
+            "normal_min": 80,
+            "normal_max": 140,
+            "grand_min": 160,
+            "grand_max": 260
+          }
+        ],
+        "description": "Ward Gain on Potion Use and Ward Decay Threshold"
       }
     ]
   },
   {
-    "id": "grand_defiance_of_yulia",
-    "name": "Grand Defiance of Yulia",
-    "internal_name": "64",
-    "tier": 201,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "fall_of_the_empire",
+    "name": "Fall of the Empire",
+    "level": 80,
+    "order": 6,
+    "blessings": [
       {
-        "property": "Damage",
-        "tags": [
-          "Cold",
-          "Spell",
-          "Channelling"
-        ],
-        "modifier_type": "ADDED",
-        "value": 11.0,
-        "max_value": 20.0
+        "id": "hope_of_the_beginning",
+        "name": "Hope of the Beginning",
+        "grand_name": "Grand Hope of the Beginning",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 7,
+        "normal_max": 14,
+        "grand_min": 15,
+        "grand_max": 25,
+        "description": "Increased Prefix Shard Drop Rate"
+      },
+      {
+        "id": "safety_of_the_labyrinth",
+        "name": "Safety of the Labyrinth",
+        "grand_name": "Grand Safety of the Labyrinth",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Amulet Shard Drop Rate"
+      },
+      {
+        "id": "remnants_of_the_living",
+        "name": "Remnants of the Living",
+        "grand_name": "Grand Remnants of the Living",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 33,
+        "grand_max": 50,
+        "description": "Increased Ring Shard Drop Rate"
+      },
+      {
+        "id": "shadows_of_infinity",
+        "name": "Shadows of Infinity",
+        "grand_name": "Grand Shadows of Infinity",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Relic Shard Drop Rate"
+      },
+      {
+        "id": "inevitability_of_the_void",
+        "name": "Inevitability of the Void",
+        "grand_name": "Grand Inevitability of the Void",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 16,
+        "normal_max": 26,
+        "grand_min": 30,
+        "grand_max": 45,
+        "description": "Increased Two-Handed Staff Shard Drop Rate"
+      },
+      {
+        "id": "rot_of_the_world",
+        "name": "Rot of the World",
+        "grand_name": "Grand Rot of the World",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 25,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 60,
+        "description": "Increased Wand Shard Drop Rate"
+      },
+      {
+        "id": "visions_of_death",
+        "name": "Visions of Death",
+        "grand_name": "Grand Visions of Death",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 25,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 60,
+        "description": "Increased Two-Handed Spear Shard Drop Rate"
+      },
+      {
+        "id": "boon_of_the_scarab",
+        "name": "Boon of the Scarab",
+        "grand_name": "Grand Boon of the Scarab",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 25,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 60,
+        "description": "Increased Bow Shard Drop Rate"
+      },
+      {
+        "id": "despair_of_the_empire",
+        "name": "Despair of the Empire",
+        "grand_name": "Grand Despair of the Empire",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 45,
+        "grand_max": 70,
+        "description": "Increased Ailment Shard Drop Rate"
       }
     ]
   },
   {
-    "id": "heart_of_the_caldera",
-    "name": "Heart of the Caldera",
-    "internal_name": "36",
-    "tier": 202,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "reign_of_dragons",
+    "name": "Reign of Dragons",
+    "level": 85,
+    "order": 7,
+    "blessings": [
       {
-        "property": "FireResistance",
-        "tags": [
-          "None"
+        "id": "resolve_of_humanity",
+        "name": "Resolve of Humanity",
+        "grand_name": "Grand Resolve of Humanity",
+        "simulation_relevant": true,
+        "stat_key": "dual",
+        "stat_type": "dual",
+        "stat_keys": [
+          {
+            "stat_key": "fire_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "cold_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "lightning_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "void_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "necrotic_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "physical_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          },
+          {
+            "stat_key": "poison_res",
+            "stat_type": "flat",
+            "normal_min": 7,
+            "normal_max": 12,
+            "grand_min": 13,
+            "grand_max": 20
+          }
         ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.4
+        "description": "All Resistances"
+      },
+      {
+        "id": "survival_of_might",
+        "name": "Survival of Might",
+        "grand_name": "Grand Survival of Might",
+        "simulation_relevant": true,
+        "stat_key": "crit_avoidance",
+        "stat_type": "flat",
+        "normal_min": 30,
+        "normal_max": 45,
+        "grand_min": 50,
+        "grand_max": 70,
+        "description": "Critical Strike Avoidance & Dodge Rating"
+      },
+      {
+        "id": "dream_of_eterra",
+        "name": "Dream of Eterra",
+        "grand_name": "Grand Dream of Eterra",
+        "simulation_relevant": true,
+        "stat_key": "necrotic_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 45,
+        "grand_max": 75,
+        "description": "Necrotic Resistance"
+      },
+      {
+        "id": "persistence_of_will",
+        "name": "Persistence of Will",
+        "grand_name": "Grand Persistence of Will",
+        "simulation_relevant": true,
+        "stat_key": "poison_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Poison Resistance"
+      },
+      {
+        "id": "cruelty_of_strength",
+        "name": "Cruelty of Strength",
+        "grand_name": "Grand Cruelty of Strength",
+        "simulation_relevant": true,
+        "stat_key": "physical_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Increased Physical Damage"
+      },
+      {
+        "id": "despair_of_flesh",
+        "name": "Despair of Flesh",
+        "grand_name": "Grand Despair of Flesh",
+        "simulation_relevant": true,
+        "stat_key": "necrotic_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Increased Necrotic Damage"
+      },
+      {
+        "id": "binds_of_nature",
+        "name": "Binds of Nature",
+        "grand_name": "Grand Binds of Nature",
+        "simulation_relevant": true,
+        "stat_key": "poison_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Increased Poison Damage"
+      },
+      {
+        "id": "hemmorage_of_marrow",
+        "name": "Hemmorage of Marrow",
+        "grand_name": "Grand Hemmorage of Marrow",
+        "simulation_relevant": true,
+        "stat_key": "bleed_chance_pct",
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Inflict Bleed on Hit"
+      },
+      {
+        "id": "taste_of_venom",
+        "name": "Taste of Venom",
+        "grand_name": "Grand Taste of Venom",
+        "simulation_relevant": true,
+        "stat_key": "poison_chance_pct",
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Poison on Hit"
+      },
+      {
+        "id": "allure_of_apathy",
+        "name": "Allure of Apathy",
+        "grand_name": "Grand Allure of Apathy",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Slow on Hit"
+      },
+      {
+        "id": "hunger_of_dragons",
+        "name": "Hunger of Dragons",
+        "grand_name": "Grand Hunger of Dragons",
+        "simulation_relevant": true,
+        "stat_key": "leech",
+        "stat_type": "flat",
+        "normal_min": 2.0,
+        "normal_max": 4.0,
+        "grand_min": 4.5,
+        "grand_max": 7.0,
+        "description": "% of Melee Damage Leeched as Health"
+      },
+      {
+        "id": "virtue_of_command",
+        "name": "Virtue of Command",
+        "grand_name": "Grand Virtue of Command",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 8,
+        "normal_max": 15,
+        "grand_min": 16,
+        "grand_max": 25,
+        "description": "All Minion Resistances"
+      },
+      {
+        "id": "guile_of_wyrms",
+        "name": "Guile of Wyrms",
+        "grand_name": "Grand Guile of Wyrms",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 60,
+        "normal_max": 90,
+        "grand_min": 100,
+        "grand_max": 150,
+        "description": "Chance to Shred Poison Resistance on Hit"
       }
     ]
   },
   {
-    "id": "grand_heart_of_the_caldera",
-    "name": "Grand Heart of the Caldera",
-    "internal_name": "36",
-    "tier": 203,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "spirits_of_fire",
+    "name": "Spirits of Fire",
+    "level": 90,
+    "order": 8,
+    "blessings": [
       {
-        "property": "FireResistance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.55,
-        "max_value": 0.75
+        "id": "heart_of_the_caldera",
+        "name": "Heart of the Caldera",
+        "grand_name": "Grand Heart of the Caldera",
+        "simulation_relevant": true,
+        "stat_key": "fire_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Fire Resistance"
+      },
+      {
+        "id": "body_of_obsidian",
+        "name": "Body of Obsidian",
+        "grand_name": "Grand Body of Obsidian",
+        "simulation_relevant": true,
+        "stat_key": "armour",
+        "stat_type": "flat",
+        "normal_min": 120,
+        "normal_max": 180,
+        "grand_min": 200,
+        "grand_max": 320,
+        "description": "Armor"
+      },
+      {
+        "id": "curse_of_sulphur",
+        "name": "Curse of Sulphur",
+        "grand_name": "Grand Curse of Sulphur",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 20,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 60,
+        "description": "Chance to Apply Frailty on Hit"
+      },
+      {
+        "id": "embers_of_immortality",
+        "name": "Embers of Immortality",
+        "grand_name": "Grand Embers of Immortality",
+        "simulation_relevant": true,
+        "stat_key": "endurance",
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 14,
+        "grand_min": 18,
+        "grand_max": 30,
+        "description": "Endurance"
+      },
+      {
+        "id": "swiftness_of_logi",
+        "name": "Swiftness of Logi",
+        "grand_name": "Grand Swiftness of Logi",
+        "simulation_relevant": true,
+        "stat_key": "dodge_rating",
+        "stat_type": "increased",
+        "normal_min": 15,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 70,
+        "description": "Dodge Rating"
+      },
+      {
+        "id": "breath_of_cinders",
+        "name": "Breath of Cinders",
+        "grand_name": "Grand Breath of Cinders",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Fire Resistance on Hit"
+      },
+      {
+        "id": "promise_of_death",
+        "name": "Promise of Death",
+        "grand_name": "Grand Promise of Death",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Necrotic Resistance on Hit"
+      },
+      {
+        "id": "spirit_of_command",
+        "name": "Spirit of Command",
+        "grand_name": "Grand Spirit of Command",
+        "simulation_relevant": true,
+        "stat_key": "minion_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Increased Minion Damage"
+      },
+      {
+        "id": "might_of_bhuldar",
+        "name": "Might of Bhuldar",
+        "grand_name": "Grand Might of Bhuldar",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "increased",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 32,
+        "grand_max": 50,
+        "description": "Increased Stun Duration"
+      },
+      {
+        "id": "flames_of_calamity",
+        "name": "Flames of Calamity",
+        "grand_name": "Grand Flames of Calamity",
+        "simulation_relevant": true,
+        "stat_key": "fire_damage_pct",
+        "stat_type": "increased",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Increased Fire Damage"
+      },
+      {
+        "id": "patience_of_herkir",
+        "name": "Patience of Herkir",
+        "grand_name": "Grand Patience of Herkir",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 200,
+        "normal_max": 350,
+        "grand_min": 400,
+        "grand_max": 650,
+        "description": "Armor while Channeling"
       }
     ]
   },
   {
-    "id": "body_of_obsidian",
-    "name": "Body of Obsidian",
-    "internal_name": "24",
-    "tier": 204,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "the_age_of_winter",
+    "name": "The Age of Winter",
+    "level": 90,
+    "order": 9,
+    "blessings": [
       {
-        "property": "Armour",
-        "tags": [
-          "None"
+        "id": "resolve_of_grael",
+        "name": "Resolve of Grael",
+        "grand_name": "Grand Resolve of Grael",
+        "simulation_relevant": true,
+        "stat_key": "physical_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Physical Resistance"
+      },
+      {
+        "id": "protection_of_heorot",
+        "name": "Protection of Heorot",
+        "grand_name": "Grand Protection of Heorot",
+        "simulation_relevant": true,
+        "stat_key": "cold_res",
+        "stat_type": "flat",
+        "normal_min": 25,
+        "normal_max": 40,
+        "grand_min": 55,
+        "grand_max": 75,
+        "description": "Cold Resistance"
+      },
+      {
+        "id": "vigor_of_jormun",
+        "name": "Vigor of Jormun",
+        "grand_name": "Grand Vigor of Jormun",
+        "simulation_relevant": true,
+        "stat_key": "endurance_threshold",
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 70,
+        "grand_min": 80,
+        "grand_max": 150,
+        "description": "Endurance Threshold"
+      },
+      {
+        "id": "maw_of_artor",
+        "name": "Maw of Artor",
+        "grand_name": "Grand Maw of Artor",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 40,
+        "normal_max": 60,
+        "grand_min": 65,
+        "grand_max": 100,
+        "description": "Chance to Apply Frostbite on Hit"
+      },
+      {
+        "id": "winds_of_frost",
+        "name": "Winds of Frost",
+        "grand_name": "Grand Winds of Frost",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 30,
+        "normal_max": 50,
+        "grand_min": 55,
+        "grand_max": 80,
+        "description": "Freeze Rate per Stack of Chill"
+      },
+      {
+        "id": "rage_of_winter",
+        "name": "Rage of Winter",
+        "grand_name": "Grand Rage of Winter",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Cold Resistance on Hit"
+      },
+      {
+        "id": "fury_of_the_north",
+        "name": "Fury of the North",
+        "grand_name": "Grand Fury of the North",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 10,
+        "normal_max": 20,
+        "grand_min": 25,
+        "grand_max": 50,
+        "description": "Chance to Shred Physical Resistance on Hit"
+      },
+      {
+        "id": "heart_of_ice",
+        "name": "Heart of Ice",
+        "grand_name": "Grand Heart of Ice",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 20,
+        "normal_max": 35,
+        "grand_min": 40,
+        "grand_max": 60,
+        "description": "Chance to Chill on Hit"
+      },
+      {
+        "id": "bones_of_eternity",
+        "name": "Bones of Eternity",
+        "grand_name": "Grand Bones of Eternity",
+        "simulation_relevant": true,
+        "stat_key": "dual",
+        "stat_type": "dual",
+        "stat_keys": [
+          {
+            "stat_key": "block_chance",
+            "stat_type": "flat",
+            "normal_min": 3,
+            "normal_max": 4,
+            "grand_min": 5,
+            "grand_max": 8
+          },
+          {
+            "stat_key": "block_effectiveness",
+            "stat_type": "flat",
+            "normal_min": 100,
+            "normal_max": 140,
+            "grand_min": 180,
+            "grand_max": 240
+          }
         ],
-        "modifier_type": "ADDED",
-        "value": 120.0,
-        "max_value": 180.0
+        "description": "Block Chance and Block Effectiveness"
+      },
+      {
+        "id": "bulwark_of_the_tundra",
+        "name": "Bulwark of the Tundra",
+        "grand_name": "Grand Bulwark of the Tundra",
+        "simulation_relevant": true,
+        "stat_key": "armour",
+        "stat_type": "increased",
+        "normal_min": 12,
+        "normal_max": 24,
+        "grand_min": 25,
+        "grand_max": 55,
+        "description": "Increased Armor"
+      },
+      {
+        "id": "defiance_of_yulia",
+        "name": "Defiance of Yulia",
+        "grand_name": "Grand Defiance of Yulia",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "flat",
+        "normal_min": 5,
+        "normal_max": 10,
+        "grand_min": 11,
+        "grand_max": 20,
+        "description": "Spell Cold Damage while Channeling"
       }
     ]
   },
   {
-    "id": "grand_body_of_obsidian",
-    "name": "Grand Body of Obsidian",
-    "internal_name": "24",
-    "tier": 205,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+    "id": "the_last_ruin",
+    "name": "The Last Ruin",
+    "level": 90,
+    "order": 10,
+    "blessings": [
       {
-        "property": "Armour",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 200.0,
-        "max_value": 320.0
-      }
-    ]
-  },
-  {
-    "id": "curse_of_sulphur",
-    "name": "Curse of Sulphur",
-    "internal_name": "21",
-    "tier": 206,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "temple_of_the_mind",
+        "name": "Temple of the Mind",
+        "grand_name": "Grand Temple of the Mind",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 12,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Helmet Shard Drop Rate"
+      },
       {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "grand_curse_of_sulphur",
-    "name": "Grand Curse of Sulphur",
-    "internal_name": "21",
-    "tier": 207,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "bastion_of_the_heart",
+        "name": "Bastion of the Heart",
+        "grand_name": "Grand Bastion of the Heart",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 12,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Body Armor Shard Drop Rate"
+      },
       {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "embers_of_immortality",
-    "name": "Embers of Immortality",
-    "internal_name": "40",
-    "tier": 208,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "comfort_of_the_end",
+        "name": "Comfort of the End",
+        "grand_name": "Grand Comfort of the End",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 12,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Suffix Shard Drop Rate"
+      },
       {
-        "property": "Endurance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.14
-      }
-    ]
-  },
-  {
-    "id": "grand_embers_of_immortality",
-    "name": "Grand Embers of Immortality",
-    "internal_name": "40",
-    "tier": 209,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "knowledge_of_skill",
+        "name": "Knowledge of Skill",
+        "grand_name": "Grand Knowledge of Skill",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 12,
+        "normal_max": 20,
+        "grand_min": 22,
+        "grand_max": 35,
+        "description": "Increased Skill Shard Drop Rate"
+      },
       {
-        "property": "Endurance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.18,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "swiftness_of_logi",
-    "name": "Swiftness of Logi",
-    "internal_name": "60",
-    "tier": 210,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "memory_of_masters",
+        "name": "Memory of Masters",
+        "grand_name": "Grand Memory of Masters",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 10,
+        "normal_max": 18,
+        "grand_min": 20,
+        "grand_max": 30,
+        "description": "Increased Class Specific Shard Drop Rate"
+      },
       {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.15,
-        "max_value": 0.35
-      }
-    ]
-  },
-  {
-    "id": "grand_swiftness_of_logi",
-    "name": "Grand Swiftness of Logi",
-    "internal_name": "60",
-    "tier": 211,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "grasp_of_hope",
+        "name": "Grasp of Hope",
+        "grand_name": "Grand Grasp of Hope",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 32,
+        "grand_max": 50,
+        "description": "Increased Gloves Shard Drop Rate"
+      },
       {
-        "property": "DodgeRating",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.7
-      }
-    ]
-  },
-  {
-    "id": "breath_of_cinders",
-    "name": "Breath of Cinders",
-    "internal_name": "55",
-    "tier": 212,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "binding_of_ruin",
+        "name": "Binding of Ruin",
+        "grand_name": "Grand Binding of Ruin",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 32,
+        "grand_max": 50,
+        "description": "Increased Belt Shard Drop Rate"
+      },
       {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_breath_of_cinders",
-    "name": "Grand Breath of Cinders",
-    "internal_name": "55",
-    "tier": 213,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
+        "id": "refuge_of_despair",
+        "name": "Refuge of Despair",
+        "grand_name": "Grand Refuge of Despair",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 32,
+        "grand_max": 50,
+        "description": "Increased Shield Shard Drop Rate"
+      },
       {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "promise_of_death",
-    "name": "Promise of Death",
-    "internal_name": "58",
-    "tier": 214,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.1,
-        "max_value": 0.2
-      }
-    ]
-  },
-  {
-    "id": "grand_promise_of_death",
-    "name": "Grand Promise of Death",
-    "internal_name": "58",
-    "tier": 215,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "AilmentChance",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.25,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "spirit_of_command",
-    "name": "Spirit of Command",
-    "internal_name": "48",
-    "tier": 216,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Minion"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_spirit_of_command",
-    "name": "Grand Spirit of Command",
-    "internal_name": "48",
-    "tier": 217,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Minion"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "might_of_bhuldar",
-    "name": "Might of Bhuldar",
-    "internal_name": "49",
-    "tier": 218,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedStunDuration",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.2,
-        "max_value": 0.3
-      }
-    ]
-  },
-  {
-    "id": "grand_might_of_bhuldar",
-    "name": "Grand Might of Bhuldar",
-    "internal_name": "49",
-    "tier": 219,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "IncreasedStunDuration",
-        "tags": [
-          "None"
-        ],
-        "modifier_type": "ADDED",
-        "value": 0.32,
-        "max_value": 0.5
-      }
-    ]
-  },
-  {
-    "id": "flames_of_calamity",
-    "name": "Flames of Calamity",
-    "internal_name": "14",
-    "tier": 220,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Fire"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.4,
-        "max_value": 0.6
-      }
-    ]
-  },
-  {
-    "id": "grand_flames_of_calamity",
-    "name": "Grand Flames of Calamity",
-    "internal_name": "14",
-    "tier": 221,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Damage",
-        "tags": [
-          "Fire"
-        ],
-        "modifier_type": "INCREASED",
-        "value": 0.65,
-        "max_value": 1.0
-      }
-    ]
-  },
-  {
-    "id": "patience_of_herkir",
-    "name": "Patience of Herkir",
-    "internal_name": "37",
-    "tier": 222,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Armour",
-        "tags": [
-          "Channelling"
-        ],
-        "modifier_type": "ADDED",
-        "value": 200.0,
-        "max_value": 350.0
-      }
-    ]
-  },
-  {
-    "id": "grand_patience_of_herkir",
-    "name": "Grand Patience of Herkir",
-    "internal_name": "37",
-    "tier": 223,
-    "level_req": 0,
-    "class_req": null,
-    "cannot_drop": true,
-    "stats": [
-      {
-        "property": "Armour",
-        "tags": [
-          "Channelling"
-        ],
-        "modifier_type": "ADDED",
-        "value": 400.0,
-        "max_value": 650.0
+        "id": "remnants_of_the_elders",
+        "name": "Remnants of the Elders",
+        "grand_name": "Grand Remnants of the Elders",
+        "simulation_relevant": false,
+        "stat_key": null,
+        "stat_type": "drop_rate",
+        "normal_min": 20,
+        "normal_max": 30,
+        "grand_min": 32,
+        "grand_max": 50,
+        "description": "Increased Off-Hand Catalyst Shard Drop Rate"
       }
     ]
   }

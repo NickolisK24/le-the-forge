@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui";
+import PageMeta from "@/components/PageMeta";
 
 const FEATURES = [
   {
@@ -43,6 +44,11 @@ const STATUS_STYLES: Record<string, string> = {
 export default function HomePage() {
   return (
     <div>
+      <PageMeta
+        title="Home"
+        description="The Forge — the most advanced Last Epoch community hub. Build planner, craft simulator, DPS simulation, meta analytics, and more."
+        path="/home"
+      />
       {/* Hero */}
       <section className="py-24 text-center">
         <div className="font-mono text-xs uppercase tracking-[0.28em] text-forge-cyan mb-8 flex items-center justify-center gap-4">
