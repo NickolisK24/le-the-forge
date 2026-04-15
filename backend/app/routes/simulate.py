@@ -192,6 +192,10 @@ def simulate_optimize():
     except ValidationError as e:
         return validation_error(e)
 
+    # ``data`` already contains spec_tree (possibly None) when the schema
+    # passed — feeding the whole dict into the cache key means two requests
+    # with identical stats/skill but different skill-tree allocations don't
+    # collide on the cache.
     cache_key = _sim_cache_key("optimize", data)
     cached = get(cache_key)
     if cached is not None:
@@ -204,6 +208,7 @@ def simulate_optimize():
         skill_name=data["skill_name"],
         skill_level=data.get("skill_level", 20),
         top_n=data.get("top_n", 5),
+        spec_tree=data.get("spec_tree"),
     )
     cache_set(cache_key, result, _SIM_CACHE_TTL)
     return ok(data=result)

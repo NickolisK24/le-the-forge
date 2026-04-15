@@ -548,4 +548,27 @@ def find_best_affix_upgrade(
         gear_affixes,
     )
 
-    return get_stat_upgrades(stats, skill, skill_level, top_n=top_n)
+    # Derive conversions from the per-skill spec_tree if the build dict
+    # carries a "skills" loadout. Matching is case-insensitive because
+    # imported builds use inconsistent casing for skill names. Any failure
+    # to resolve or parse the tree falls back to an empty list so the
+    # optimizer still runs — mirrors _extract_conversions in
+    # simulation_service.py.
+    spec_tree = None
+    for entry in build.get("skills", []) or []:
+        entry_name = entry.get("skill_name") or ""
+        if entry_name.casefold() == skill.casefold():
+            spec_tree = entry.get("spec_tree")
+            break
+
+    conversions = None
+    if spec_tree:
+        try:
+            from app.services.skill_tree_resolver import extract_damage_conversions
+            conversions = extract_damage_conversions(skill, spec_tree)
+        except Exception:
+            conversions = []
+
+    return get_stat_upgrades(
+        stats, skill, skill_level, top_n=top_n, conversions=conversions,
+    )
