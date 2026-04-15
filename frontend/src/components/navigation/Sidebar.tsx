@@ -1,10 +1,18 @@
 import { useLocation, NavLink } from "react-router-dom";
 import { useEffect, useState } from "react";
+import { clsx } from "clsx";
 
 export const SIDEBAR_WIDTH_COLLAPSED = 56;
 export const SIDEBAR_WIDTH_EXPANDED = 200;
 
 const STORAGE_KEY = "forge_sidebar_open";
+
+interface SidebarProps {
+  /** Mobile-only drawer open state. Ignored above the `md` breakpoint. */
+  mobileOpen?: boolean;
+  /** Called when a NavLink is tapped while the mobile drawer is open. */
+  onMobileNavigate?: () => void;
+}
 
 interface NavItem {
   to: string;
@@ -170,7 +178,7 @@ const NAV_ITEMS: NavItem[] = [
 // Data Manager power-user route (still accessible via /data-manager URL).
 void DataManagerIcon;
 
-export default function Sidebar() {
+export default function Sidebar({ mobileOpen = false, onMobileNavigate }: SidebarProps = {}) {
   const location = useLocation();
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
@@ -189,12 +197,25 @@ export default function Sidebar() {
     }
   }, [expanded]);
 
-  const width = expanded ? SIDEBAR_WIDTH_EXPANDED : SIDEBAR_WIDTH_COLLAPSED;
+  // Labels are visible whenever they fit:
+  //   - Mobile drawer width (w-72 = 288px) — always show.
+  //   - Desktop expanded (md:w-[200px]) — show.
+  //   - Desktop collapsed (md:w-[56px]) — hide via `md:hidden`.
+  // Tailwind classes (rather than `expanded && ...`) keep the DOM stable
+  // across breakpoints so the drawer doesn't rerender on resize.
+  const labelHideOnDesktop = expanded ? "" : "md:hidden";
 
   return (
     <aside
-      className="flex flex-col shrink-0 border-r border-forge-border bg-forge-surface transition-all duration-200 overflow-hidden"
-      style={{ width, minWidth: width }}
+      className={clsx(
+        "flex flex-col border-r border-forge-border bg-forge-surface overflow-hidden",
+        // Mobile: fixed-position drawer with slide-in transform
+        "fixed inset-y-0 left-0 z-50 w-72 transform transition-all duration-200",
+        mobileOpen ? "translate-x-0" : "-translate-x-full",
+        // Desktop (md+): normal flex child, no transform, width follows expanded state
+        "md:relative md:translate-x-0 md:shrink-0",
+        expanded ? "md:w-[200px]" : "md:w-[56px]",
+      )}
     >
       {/* Logo area */}
       <div
@@ -204,22 +225,20 @@ export default function Sidebar() {
         <div className="flex items-center justify-center" style={{ width: SIDEBAR_WIDTH_COLLAPSED }}>
           <ForgeLogoSmall />
         </div>
-        {expanded && (
-          <span className="flex items-center gap-2 overflow-hidden">
-            <span
-              className="font-display text-sm font-bold tracking-[0.18em] text-forge-amber whitespace-nowrap"
-              style={{ textShadow: "0 0 20px rgba(240,160,32,0.35)" }}
-            >
-              THE FORGE
-            </span>
-            <span
-              className="font-mono text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-forge-cyan/40 bg-forge-cyan/12 text-forge-cyan whitespace-nowrap"
-              title="Public beta — expect rough edges"
-            >
-              BETA
-            </span>
+        <span className={clsx("flex items-center gap-2 overflow-hidden", labelHideOnDesktop)}>
+          <span
+            className="font-display text-sm font-bold tracking-[0.18em] text-forge-amber whitespace-nowrap"
+            style={{ textShadow: "0 0 20px rgba(240,160,32,0.35)" }}
+          >
+            THE FORGE
           </span>
-        )}
+          <span
+            className="font-mono text-[9px] font-bold uppercase tracking-widest px-1.5 py-0.5 rounded-sm border border-forge-cyan/40 bg-forge-cyan/12 text-forge-cyan whitespace-nowrap"
+            title="Public beta — expect rough edges"
+          >
+            BETA
+          </span>
+        </span>
       </div>
 
       {/* Nav items */}
@@ -234,9 +253,9 @@ export default function Sidebar() {
               to={to}
               end={to === "/"}
               title={!expanded ? label : undefined}
-              className="flex items-center no-underline transition-all duration-150 group relative"
+              onClick={() => onMobileNavigate?.()}
+              className="flex items-center no-underline transition-all duration-150 group relative min-h-[44px]"
               style={{
-                height: 44,
                 paddingLeft: 0,
               }}
             >
@@ -263,28 +282,27 @@ export default function Sidebar() {
               </div>
 
               {/* Label */}
-              {expanded && (
-                <span
-                  className={`font-body text-sm whitespace-nowrap transition-colors duration-150 ${
-                    isActive
-                      ? "text-forge-amber font-medium"
-                      : "text-forge-muted group-hover:text-forge-text"
-                  }`}
-                >
-                  {label}
-                </span>
-              )}
+              <span
+                className={clsx(
+                  "font-body text-sm whitespace-nowrap transition-colors duration-150",
+                  isActive
+                    ? "text-forge-amber font-medium"
+                    : "text-forge-muted group-hover:text-forge-text",
+                  labelHideOnDesktop,
+                )}
+              >
+                {label}
+              </span>
             </NavLink>
           );
         })}
       </nav>
 
-      {/* Expand/collapse toggle */}
-      <div className="border-t border-forge-border shrink-0">
+      {/* Expand/collapse toggle — desktop only (mobile uses backdrop tap to close) */}
+      <div className="border-t border-forge-border shrink-0 hidden md:block">
         <button
           onClick={() => setExpanded((v) => !v)}
-          className="flex items-center w-full text-forge-dim hover:text-forge-muted bg-transparent border-none cursor-pointer transition-colors duration-150"
-          style={{ height: 44 }}
+          className="flex items-center w-full text-forge-dim hover:text-forge-muted bg-transparent border-none cursor-pointer transition-colors duration-150 min-h-[44px]"
           title={expanded ? "Collapse sidebar" : "Expand sidebar"}
         >
           <div
@@ -298,11 +316,14 @@ export default function Sidebar() {
               <ChevronRightIcon />
             </span>
           </div>
-          {expanded && (
-            <span className="font-mono text-xs uppercase tracking-widest whitespace-nowrap">
-              Collapse
-            </span>
-          )}
+          <span
+            className={clsx(
+              "font-mono text-xs uppercase tracking-widest whitespace-nowrap",
+              labelHideOnDesktop,
+            )}
+          >
+            Collapse
+          </span>
         </button>
       </div>
     </aside>

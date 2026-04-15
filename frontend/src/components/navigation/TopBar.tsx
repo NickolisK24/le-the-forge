@@ -97,8 +97,9 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
         {onSidebarToggle && (
           <button
             onClick={onSidebarToggle}
-            className="flex items-center justify-center w-9 h-9 rounded-sm text-forge-dim hover:text-forge-text hover:bg-forge-surface2 bg-transparent border-none cursor-pointer transition-colors"
+            className="md:hidden flex items-center justify-center min-w-[44px] min-h-[44px] rounded-sm text-forge-dim hover:text-forge-text hover:bg-forge-surface2 bg-transparent border-none cursor-pointer transition-colors"
             title="Toggle sidebar"
+            aria-label="Toggle navigation menu"
           >
             <HamburgerIcon />
           </button>
@@ -131,15 +132,18 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
         )}
       </div>
 
-      {/* Center: search trigger */}
-      <div className="flex-1 flex items-center justify-center px-4">
+      {/* Center: search trigger — collapses to icon button on mobile */}
+      <div className="flex-1 flex items-center justify-center px-2 md:px-4">
         <button
           onClick={onSearchOpen}
-          className="flex items-center gap-2 text-forge-dim hover:text-forge-muted bg-forge-surface2 hover:bg-forge-surface3 border border-forge-border hover:border-forge-border/80 rounded-sm px-3 py-1.5 w-full max-w-xs transition-all cursor-pointer"
+          className="flex items-center justify-center md:justify-start gap-2 text-forge-dim hover:text-forge-muted bg-transparent md:bg-forge-surface2 hover:bg-forge-surface3 border-none md:border md:border-forge-border hover:border-forge-border/80 rounded-sm min-w-[44px] min-h-[44px] md:min-h-0 md:px-3 md:py-1.5 md:w-full md:max-w-xs transition-all cursor-pointer"
+          aria-label="Open search"
         >
           <SearchIcon />
-          <span className="font-mono text-xs text-forge-dim flex-1 text-left">Search…</span>
-          <kbd className="font-mono text-[10px] text-forge-dim border border-forge-border rounded px-1 py-0.5 hidden sm:block">
+          <span className="hidden md:inline font-mono text-xs text-forge-dim flex-1 text-left">
+            Search…
+          </span>
+          <kbd className="font-mono text-[10px] text-forge-dim border border-forge-border rounded px-1 py-0.5 hidden md:block">
             ⌘K
           </kbd>
         </button>
@@ -194,7 +198,7 @@ export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buil
             {isDev && (
               <a
                 href={devLoginUrl}
-                className="font-mono text-xs uppercase tracking-widest text-forge-dim hover:text-forge-amber transition-colors border border-forge-border px-2 py-1.5 rounded-sm no-underline"
+                className="hidden md:inline-flex font-mono text-xs uppercase tracking-widest text-forge-dim hover:text-forge-amber transition-colors border border-forge-border px-2 py-1.5 rounded-sm no-underline"
                 title="Dev login (bypasses Discord)"
               >
                 Dev

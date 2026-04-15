@@ -1088,9 +1088,9 @@ export default function CraftSimulatorPage() {
         path={slug ? `/craft/${slug}` : "/craft"}
       />
       {/* Header */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 mb-6">
         <div>
-          <div className="flex items-center gap-3 mb-1">
+          <div className="flex flex-wrap items-center gap-3 mb-1">
             <h1 className="font-display text-2xl font-bold text-forge-amber tracking-wider">
               Craft Simulator
             </h1>
@@ -1110,7 +1110,7 @@ export default function CraftSimulatorPage() {
           </p>
         </div>
 
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {isLive && (
             <Button variant="outline" size="sm" onClick={copyShareLink}>
               {copied ? "Copied!" : "Share Link"}
@@ -1329,7 +1329,7 @@ export default function CraftSimulatorPage() {
         <div className="flex flex-col gap-3">
 
           {/* Craft Stats */}
-          <div className="grid grid-cols-3 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-px bg-forge-border border border-forge-border rounded-sm overflow-hidden">
             {[
               { label: "FP Remaining", value: `${fp}`, color: fp > 15 ? "#3dca74" : fp > 8 ? "#f0a020" : "#ff5050" },
               { label: "Sealed Affixes", value: `${sealedCount}/1`, color: "#3dca74" },
@@ -1347,7 +1347,7 @@ export default function CraftSimulatorPage() {
           </div>
 
           {/* Action + Outcome Predictor */}
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             <ActionPanel
               affixes={affixes}
               fp={fp}
@@ -1459,7 +1459,7 @@ export default function CraftSimulatorPage() {
           {/* Session summary (live only) */}
           {isLive && summary && (
             <Panel title="Session Summary">
-              <div className="grid grid-cols-3 gap-3">
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
                 {[
                   { label: "Total Actions", value: summary.total_actions },
                   { label: "Successes", value: summary.successes },

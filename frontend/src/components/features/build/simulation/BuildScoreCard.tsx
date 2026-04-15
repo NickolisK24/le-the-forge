@@ -214,13 +214,13 @@ export default function BuildScoreCard({
             )}
           </div>
 
-          {/* Stat pills */}
-          <div className="flex flex-1 flex-wrap gap-2">
+          {/* Stat pills — 2-col grid on mobile (3rd spans both), 3-col grid at sm+ */}
+          <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 flex-1 [&>*:nth-child(3)]:col-span-2 sm:[&>*:nth-child(3)]:col-span-1">
             {isLoading ? (
               <>
-                <Skeleton className="h-14 flex-1 min-w-[120px]" />
-                <Skeleton className="h-14 flex-1 min-w-[120px]" />
-                <Skeleton className="h-14 flex-1 min-w-[120px]" />
+                <Skeleton className="h-14" />
+                <Skeleton className="h-14" />
+                <Skeleton className="h-14" />
               </>
             ) : (
               <>

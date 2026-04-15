@@ -33,7 +33,7 @@ export default function PassiveTreeSelector({
   const tabs = ["__base__", ...masteries];
 
   return (
-    <div className="flex items-stretch gap-0 rounded-t border border-b-0 border-forge-border bg-forge-surface overflow-hidden">
+    <div className="flex items-stretch gap-0 rounded-t border border-b-0 border-forge-border bg-forge-surface overflow-x-auto whitespace-nowrap">
       {tabs.map((tab) => {
         const isActive = activeTab === tab;
         const label = tab === "__base__" ? "Base" : tab;
@@ -49,7 +49,7 @@ export default function PassiveTreeSelector({
             onClick={() => !isLocked && onTabChange(tab)}
             disabled={!!isLocked}
             className={`
-              relative flex items-center gap-1.5 px-4 py-2 font-mono text-xs transition-colors
+              relative flex shrink-0 items-center gap-1.5 px-4 py-2 font-mono text-xs transition-colors min-h-[44px]
               ${isActive
                 ? "bg-forge-surface2 text-forge-amber font-semibold border-b-2 border-forge-amber"
                 : isLocked

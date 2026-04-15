@@ -99,7 +99,8 @@ function BuildCard({
           <button
             onClick={(e) => handleVote(e, 1)}
             disabled={!user || vote.isPending}
-            className="font-mono text-sm text-forge-dim hover:text-forge-amber disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors"
+            aria-label="Upvote build"
+            className="font-mono text-sm text-forge-dim hover:text-forge-amber disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 flex items-center justify-center"
           >▲</button>
           <span className="font-mono text-sm font-bold text-forge-amber tabular-nums">
             {build.vote_count}
@@ -107,7 +108,8 @@ function BuildCard({
           <button
             onClick={(e) => handleVote(e, -1)}
             disabled={!user || vote.isPending}
-            className="font-mono text-sm text-forge-dim hover:text-forge-red disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors"
+            aria-label="Downvote build"
+            className="font-mono text-sm text-forge-dim hover:text-forge-red disabled:opacity-30 disabled:cursor-default bg-transparent border-none cursor-pointer leading-none transition-colors min-w-[44px] min-h-[44px] md:min-w-0 md:min-h-0 flex items-center justify-center"
           >▼</button>
         </div>
 
@@ -172,7 +174,7 @@ function BuildCard({
                 onClick={handleCompare}
                 title={isCompareSelected ? "Remove from comparison" : "Add to comparison"}
                 className={clsx(
-                  "font-mono text-[10px] uppercase tracking-widest px-2 py-1 border rounded-sm cursor-pointer transition-all",
+                  "hidden md:inline-flex font-mono text-[10px] uppercase tracking-widest px-2 py-1 border rounded-sm cursor-pointer transition-all",
                   isCompareSelected
                     ? "border-forge-cyan text-forge-cyan bg-forge-cyan/12"
                     : "border-forge-border text-forge-dim hover:border-forge-cyan/60 hover:text-forge-cyan"
@@ -286,18 +288,18 @@ export default function BuildsPage() {
         path="/builds"
       />
       {/* Page header */}
-      <div className="flex items-center justify-between mb-8">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 mb-8">
         <div>
-          <h1 className="font-display text-4xl font-bold text-forge-amber tracking-wider"
+          <h1 className="font-display text-3xl sm:text-4xl font-bold text-forge-amber tracking-wider"
             style={{ textShadow: "0 0 30px rgba(240,160,32,0.30)" }}
           >
             Community Builds
           </h1>
-          <p className="font-body text-base text-forge-muted mt-1.5">
+          <p className="font-body text-sm sm:text-base text-forge-muted mt-1.5">
             {meta ? `${meta.total.toLocaleString()} builds available` : "Browse and vote on community builds"}
           </p>
         </div>
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           <Link to="/build">
             <Button variant="primary" size="sm">+ New Build</Button>
           </Link>
