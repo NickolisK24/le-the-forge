@@ -154,15 +154,20 @@ class TestBuildToSimulationIntegration:
         assert gear["dps"] > bare["dps"], "Gear should increase DPS"
 
     def test_buff_boosts_damage_in_simulation(self, client):
-        bare_resp = _post(client, build=_LICH_BUILD,
-                          encounter={**_ENCOUNTER, "crit_chance": 0.0})
+        # updated: verified in-game data — STANDARD_BOSS has finite HP
+        # (50_000) which both the bare and buffed runs reach, capping the
+        # total_damage comparison. Switch to TRAINING_DUMMY so the buff's
+        # extra damage is observable rather than HP-capped.
+        training_enc = {**_ENCOUNTER,
+                        "enemy_template": "TRAINING_DUMMY",
+                        "crit_chance": 0.0}
+        bare_resp = _post(client, build=_LICH_BUILD, encounter=training_enc)
         buff_build = {
             **_LICH_BUILD,
             "buffs": [{"buff_id": "power", "modifiers": {"base_damage": 200.0},
                         "duration": None}],
         }
-        buff_resp  = _post(client, build=buff_build,
-                           encounter={**_ENCOUNTER, "crit_chance": 0.0})
+        buff_resp  = _post(client, build=buff_build, encounter=training_enc)
         assert buff_resp.get_json()["data"]["total_damage"] > \
                bare_resp.get_json()["data"]["total_damage"]
 
@@ -219,9 +224,13 @@ class TestBuildRegressionStats:
         assert abs(stats.crit_multiplier - 2.0) < 0.05
 
     def test_training_dummy_deterministic_damage(self, client):
-        """Lich (effective_damage=88, crit_mult=2.0) vs training dummy.
-        rng_crit=None → always crits → 88 × 2.0 × 600 = 105,600.
+        """Lich (Rip Blood base=80, no Str phys-scaling anymore, crit_mult=2.0)
+        vs training dummy.  rng_crit=None → always crits → 80 × 2.0 × 600 = 96,000.
         """
+        # updated: verified in-game data — previous 105,600 figure relied on
+        # Strength's now-removed +0.5% phys_damage_pct scaling which inflated
+        # effective damage from 80 → 88. Base damage is now the raw skill
+        # base_damage (Rip Blood = 80) with no attribute-level scaling.
         enc = {
             "enemy_template": "TRAINING_DUMMY",
             "fight_duration": 60.0,
@@ -230,5 +239,5 @@ class TestBuildRegressionStats:
         }
         resp = _post(client, build=_LICH_BUILD, encounter=enc)
         data = resp.get_json()["data"]
-        assert abs(data["total_damage"] - 105_600.0) < 1000.0
+        assert abs(data["total_damage"] - 96_000.0) < 1000.0
         assert data["total_casts"] == 600

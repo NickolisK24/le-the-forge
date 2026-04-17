@@ -107,6 +107,9 @@ class BuildStats:
     health_pct: float = 0.0
     hybrid_health: float = 0.0
     armour: float = 0.0
+    # Strength grants 4% Increased Armor per point — accumulated here and
+    # applied multiplicatively to armour in the mitigation calculator.
+    armour_pct: float = 0.0
     dodge_rating: float = 0.0
     block_chance: float = 0.0
     block_effectiveness: float = 0.0
@@ -203,13 +206,47 @@ class BuildStats:
 # Game constants — mirrored from frontend/src/lib/gameData.ts
 # ---------------------------------------------------------------------------
 
-# VERIFIED: 1.4.3 spec §2.2 — player base crit multiplier is 200% (2.0×)
+# VERIFIED: in-game character sheet at level 1 with no gear and no passives.
+# All classes share the same survivability floor (110 HP, 51 mana, 6 HP regen,
+# 8 mana regen, 255 stun avoidance, 20.0 endurance, 22 endurance threshold)
+# and 2.0× crit multiplier. Only attribute allocation and (for Primalist/Acolyte)
+# base mana or endurance threshold differ.
 CLASS_BASE_STATS: dict = {
-    "Acolyte":   {"health": 380, "mana": 120, "strength": 5,  "intelligence": 15, "dexterity": 5,  "vitality": 8,  "attunement": 12, "base_damage": 80,  "crit_chance": 0.05, "crit_multiplier": 2.0, "attack_speed": 1.0},
-    "Mage":      {"health": 340, "mana": 180, "strength": 3,  "intelligence": 20, "dexterity": 7,  "vitality": 6,  "attunement": 14, "base_damage": 100, "crit_chance": 0.05, "crit_multiplier": 2.0, "attack_speed": 1.0},
-    "Primalist": {"health": 480, "mana": 80,  "strength": 18, "intelligence": 5,  "dexterity": 8,  "vitality": 14, "attunement": 5,  "base_damage": 90,  "crit_chance": 0.05, "crit_multiplier": 2.0, "attack_speed": 1.2},
-    "Sentinel":  {"health": 520, "mana": 60,  "strength": 20, "intelligence": 5,  "dexterity": 5,  "vitality": 16, "attunement": 4,  "base_damage": 110, "crit_chance": 0.05, "crit_multiplier": 2.0, "attack_speed": 0.9},
-    "Rogue":     {"health": 400, "mana": 100, "strength": 8,  "intelligence": 8,  "dexterity": 18, "vitality": 9,  "attunement": 7,  "base_damage": 85,  "crit_chance": 0.07, "crit_multiplier": 2.0, "attack_speed": 1.3},
+    "Sentinel":  {
+        "health": 110, "mana": 51, "health_regen": 6, "mana_regen": 8,
+        "strength": 2, "intelligence": 0, "dexterity": 0,
+        "vitality": 1, "attunement": 0,
+        "attack_speed": 1.0, "crit_chance": 0.05, "crit_multiplier": 2.0,
+        "stun_avoidance": 255, "endurance": 20.0, "endurance_threshold": 22,
+    },
+    "Rogue":     {
+        "health": 110, "mana": 51, "health_regen": 6, "mana_regen": 8,
+        "strength": 0, "intelligence": 0, "dexterity": 3,
+        "vitality": 0, "attunement": 0,
+        "attack_speed": 1.0, "crit_chance": 0.05, "crit_multiplier": 2.0,
+        "stun_avoidance": 255, "endurance": 20.0, "endurance_threshold": 22,
+    },
+    "Mage":      {
+        "health": 110, "mana": 51, "health_regen": 6, "mana_regen": 8,
+        "strength": 0, "intelligence": 3, "dexterity": 0,
+        "vitality": 0, "attunement": 0,
+        "attack_speed": 1.0, "crit_chance": 0.05, "crit_multiplier": 2.0,
+        "stun_avoidance": 255, "endurance": 20.0, "endurance_threshold": 22,
+    },
+    "Primalist": {
+        "health": 110, "mana": 51, "health_regen": 6, "mana_regen": 8,
+        "strength": 2, "intelligence": 0, "dexterity": 0,
+        "vitality": 0, "attunement": 1,
+        "attack_speed": 1.0, "crit_chance": 0.05, "crit_multiplier": 2.0,
+        "stun_avoidance": 255, "endurance": 20.0, "endurance_threshold": 22,
+    },
+    "Acolyte":   {
+        "health": 110, "mana": 51, "health_regen": 6, "mana_regen": 8,
+        "strength": 0, "intelligence": 2, "dexterity": 0,
+        "vitality": 1, "attunement": 0,
+        "attack_speed": 1.0, "crit_chance": 0.05, "crit_multiplier": 2.0,
+        "stun_avoidance": 255, "endurance": 20.0, "endurance_threshold": 22,
+    },
 }
 
 MASTERY_BONUSES: dict = {
@@ -247,20 +284,23 @@ KEYSTONE_BONUSES: dict = {
     "Cheap Shot":           {"physical_damage_pct": 25, "crit_chance_pct": 3},
 }
 
-# VERIFIED: 1.4.3 spec §1.5 — attribute grants per point:
-#   Strength:     +4% increased armour, +0.5% physical damage
-#   Intelligence: +4% ward retention, +0.5% spell damage, +10 max mana
-#   Dexterity:    +4 dodge rating, +0.3% attack speed
-#   Vitality:     +6 health
-#   Attunement:   +0.3% cast speed (placeholder — spec = 1 max mana + 4% mana regen)
-# "armour_pct" is an increased-armour percentage applied multiplicatively in step 6.
-# "ward_retention_pct" is additive with other ward retention sources.
+# VERIFIED: in-game attribute tooltip descriptions + level-1 sheet math.
+# Per-point direct grants (attributes also scale specific skills at the skill
+# layer — that's not handled here):
+#   Strength     → 4% Increased Armor (multiplicative on current armour)
+#   Dexterity    → 4 Dodge Rating  (Rogue DEX 3 = 12 dodge)
+#   Intelligence → 2% Ward Retention  (Mage INT 3 = 6% ward)
+#   Attunement   → 2 Mana  (Primalist ATT 1 = 53 mana)
+#   Vitality     → 6 Health + 1 Endurance Threshold + 1% Poison Resistance
+#                  + 1% Necrotic Resistance  (VIT 1 classes show 116 HP, 1%
+#                  poison, 1% necrotic, ET 23; VIT 0 shows 110, 0%, 0%, 22)
 ATTRIBUTE_SCALING: dict = {
-    "strength":     {"physical_damage_pct": 0.5, "armour_pct": 4},
-    "intelligence": {"spell_damage_pct": 0.5, "max_mana": 10, "ward_retention_pct": 4},
-    "dexterity":    {"attack_speed_pct": 0.3, "dodge_rating": 4},
-    "vitality":     {"max_health": 6},
-    "attunement":   {"cast_speed": 0.3},
+    "strength":     {"armour_pct": 4.0},
+    "dexterity":    {"dodge_rating": 4},
+    "intelligence": {"ward_retention_pct": 2.0},
+    "vitality":     {"max_health": 6, "endurance_threshold": 1,
+                     "poison_res": 1.0, "necrotic_res": 1.0},
+    "attunement":   {"max_mana": 2},
 }
 
 # Passive node stat cycle — generic fallback when real passive data is unavailable.
@@ -612,17 +652,21 @@ def aggregate_stats(
 
     # 1. Class base stats
     base = CLASS_BASE_STATS.get(character_class, CLASS_BASE_STATS["Sentinel"])
-    stats.base_damage = base["base_damage"]
-    stats.attack_speed = base["attack_speed"]
-    stats.crit_chance = base["crit_chance"]
-    stats.crit_multiplier = base["crit_multiplier"]
-    stats.max_health = base["health"]
-    stats.max_mana = base["mana"]
-    stats.strength = base["strength"]
-    stats.intelligence = base["intelligence"]
-    stats.dexterity = base["dexterity"]
-    stats.vitality = base["vitality"]
-    stats.attunement = base["attunement"]
+    stats.attack_speed        = base["attack_speed"]
+    stats.crit_chance         = base["crit_chance"]
+    stats.crit_multiplier     = base["crit_multiplier"]
+    stats.max_health          = base["health"]
+    stats.max_mana            = base["mana"]
+    stats.health_regen        = base["health_regen"]
+    stats.mana_regen          = base["mana_regen"]
+    stats.strength            = base["strength"]
+    stats.intelligence        = base["intelligence"]
+    stats.dexterity           = base["dexterity"]
+    stats.vitality            = base["vitality"]
+    stats.attunement          = base["attunement"]
+    stats.stun_avoidance      = base["stun_avoidance"]
+    stats.endurance           = base["endurance"]
+    stats.endurance_threshold = base["endurance_threshold"]
 
     # 2. Mastery flat bonuses
     mastery_bonus = MASTERY_BONUSES.get(mastery, {})
@@ -685,17 +729,20 @@ def aggregate_stats(
         else:
             setattr(stats, stat_key, getattr(stats, stat_key) + value)
 
-    # 6. Attribute scaling — VERIFIED: 1.4.3 spec §1.5
-    stats.spell_damage_pct    = combine_additive_percents(stats.spell_damage_pct,    stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["spell_damage_pct"])
-    stats.max_mana            += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["max_mana"]
-    stats.ward_retention_pct  = combine_additive_percents(stats.ward_retention_pct,  stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["ward_retention_pct"])
-    stats.physical_damage_pct = combine_additive_percents(stats.physical_damage_pct, stats.strength     * ATTRIBUTE_SCALING["strength"]["physical_damage_pct"])
-    # Strength grants increased armour (multiplicative on current armour base).
-    stats.armour              = apply_percent_bonus(stats.armour, stats.strength * ATTRIBUTE_SCALING["strength"]["armour_pct"])
-    stats.attack_speed_pct    = combine_additive_percents(stats.attack_speed_pct,    stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["attack_speed_pct"])
+    # 6. Attribute scaling
+    # Direct per-point bonuses — verified from in-game tooltips and
+    # level 1 character sheet data with no gear and no passives.
+    # Note: attributes also scale specific skills at the skill level
+    # (e.g. Strength scales Warpath) — that is handled in skill calc,
+    # not here.
+    stats.armour_pct          += stats.strength     * ATTRIBUTE_SCALING["strength"]["armour_pct"]
     stats.dodge_rating        += stats.dexterity    * ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
+    stats.ward_retention_pct  += stats.intelligence * ATTRIBUTE_SCALING["intelligence"]["ward_retention_pct"]
     stats.max_health          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["max_health"]
-    stats.cast_speed          += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["cast_speed"]
+    stats.endurance_threshold += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["endurance_threshold"]
+    stats.poison_res          += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["poison_res"]
+    stats.necrotic_res        += stats.vitality     * ATTRIBUTE_SCALING["vitality"]["necrotic_res"]
+    stats.max_mana            += stats.attunement   * ATTRIBUTE_SCALING["attunement"]["max_mana"]
 
     # 7. Apply percentage health bonuses
     stats.max_health = apply_percent_bonus(stats.max_health, stats.health_pct) + stats.hybrid_health

@@ -214,24 +214,27 @@ class TestApplyDerivedStatRegistry:
 
 class TestPipelineLayer7Integration:
     def test_vitality_affects_health_regen_in_pipeline(self):
-        """High-vitality build should have more health_regen than low-vitality."""
+        """High-vitality build should have more max_health than low-vitality."""
+        # updated: verified in-game data — all classes now share near-equal
+        # base Vitality (0 or 1). Vitality also no longer directly scales
+        # health_regen; it grants +6 HP, +1 ET, +1% poison/necrotic
+        # resistance. Use explicit Vitality affix to drive VIT differences
+        # and assert on max_health (the actual verified scaling target).
         from app.engines.stat_resolution_pipeline import resolve_final_stats
 
-        # Primalist has vitality=14 base
         result_high_vit = resolve_final_stats({
-            "character_class": "Primalist",
+            "character_class": "Sentinel",
             "mastery": "",
             "passive_tree": [],
-            "gear_affixes": [],
+            "gear_affixes": [{"stat_key": "vitality", "value": 20}],
         })
-        # Mage has vitality=6 base
         result_low_vit = resolve_final_stats({
-            "character_class": "Mage",
+            "character_class": "Sentinel",
             "mastery": "",
             "passive_tree": [],
             "gear_affixes": [],
         })
-        assert result_high_vit.stats.health_regen > result_low_vit.stats.health_regen
+        assert result_high_vit.stats.max_health > result_low_vit.stats.max_health
 
     def test_armour_affects_armor_mitigation_in_pipeline(self):
         """Sentinel with armor affix should have armor mitigation."""
