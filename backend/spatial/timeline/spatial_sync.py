@@ -54,7 +54,7 @@ class SpatialTimelineSynchronizer:
         duration: float,
         resolution: HitResolutionEngine | None = None,
         crit_chance: float = 0.0,
-        crit_multiplier: float = 1.5,
+        crit_multiplier: float = 2.0,  # verified: player base is 200%
     ) -> list[SpatialTickRecord]:
         """
         Advance *projectile_mgr* and *spatial_mgr* for *duration* seconds.

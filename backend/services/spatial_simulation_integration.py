@@ -70,7 +70,7 @@ class SpatialSimulationIntegration:
         self,
         tick_size: float = 0.05,
         crit_chance: float = 0.0,
-        crit_multiplier: float = 1.5,
+        crit_multiplier: float = 2.0,  # verified: player base is 200%
         log_capacity: int = 200,
     ) -> None:
         self.tick_size = tick_size
