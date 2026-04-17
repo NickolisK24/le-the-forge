@@ -331,16 +331,22 @@ The Forge is approaching its community launch but is honest about what is not ye
 
 The project follows a phased development plan. Phases 1-8 are complete.
 
-1. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
-2. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
-3. **Phase 11 — Advanced Crafting Models** — probabilistic outcome prediction beyond Monte Carlo
-4. **Phase 12 — Encounter-Specific Optimization** — stat recommendations targeting specific boss fights
-5. **Phase 13 — Patch Auto-Sync** — GitHub Actions pipeline to automatically update game data when patches release
-6. **Phase 14 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path
-7. **Phase 15 — Minion Engine** — per-minion-type damage modeling for summoner builds
-8. **Phase 16 — Real Passive Node Data** — migrate all passive nodes from estimated cycles to verified per-node stats
-9. **Phase 17 — Full Gear Import** — complete item ID mapping for Last Epoch Tools and Maxroll
-10. **Phase 18 — AI-Powered Build Q&A** — natural language build analysis and recommendations
+**Pre-Launch (blocking v1.0.0-beta):**
+
+1. **Full Gear Import** — complete item ID mapping for Last Epoch Tools and Maxroll ([#155](https://github.com/NickolisK24/le-the-forge/issues/155))
+2. **Real Passive Node Data** — migrate all passive nodes from estimated cycles to verified per-node stats ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
+3. **Craft Engine Determinism** — thread the local RNG seed through all craft simulation subroutines to guarantee reproducible results ([#223](https://github.com/NickolisK24/le-the-forge/issues/223))
+
+**Post-Launch:**
+
+4. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
+5. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
+6. **Phase 11 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path
+7. **Phase 12 — Minion Engine** — per-minion-type damage modeling for summoner builds
+8. **Phase 13 — Advanced Crafting Models** — probabilistic outcome prediction beyond Monte Carlo
+9. **Phase 14 — Encounter-Specific Optimization** — stat recommendations targeting specific boss fights
+10. **Phase 15 — Patch Auto-Sync** — GitHub Actions pipeline to automatically update game data when patches release
+11. **Phase 16 — AI-Powered Build Q&A** — natural language build analysis and recommendations
 
 See the full [Roadmap](ROADMAP.md) and the [GitHub Issues](https://github.com/NickolisK24/le-the-forge/issues) for current status.
 
