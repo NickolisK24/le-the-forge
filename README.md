@@ -336,10 +336,10 @@ The project follows a phased development plan. Phases 1-8 are complete.
 1. **Full Gear Import** — complete item ID mapping for Last Epoch Tools and Maxroll ([#155](https://github.com/NickolisK24/le-the-forge/issues/155))
 2. **Real Passive Node Data** — migrate all passive nodes from estimated cycles to verified per-node stats ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
 3. **Craft Engine Determinism** — thread the local RNG seed through all craft simulation subroutines to guarantee reproducible results ([#223](https://github.com/NickolisK24/le-the-forge/issues/223))
+4. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
 
 **Post-Launch:**
 
-4. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
 5. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
 6. **Phase 11 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path
 7. **Phase 12 — Minion Engine** — per-minion-type damage modeling for summoner builds
