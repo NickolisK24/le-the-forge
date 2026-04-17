@@ -1,159 +1,81 @@
 # The Forge
 
-**Build optimization and combat simulation toolkit for Last Epoch.**
+**A deterministic Last Epoch build analysis and simulation platform.**
 
-The Forge is a full-stack simulation platform that helps Last Epoch players plan character builds, simulate DPS and survivability against specific bosses, optimize gear through crafting probability analysis, import builds from community tools, and compare builds across the meta. It is powered by a deterministic Python engine layer with 10,000+ tests and a React TypeScript frontend.
-
-Built as both a community tool and an engineering portfolio project demonstrating full-stack development, simulation systems, and data-driven game analysis.
-
-![Python](https://img.shields.io/badge/python-3.11+-blue)
-![Node](https://img.shields.io/badge/node-20+-green)
-![Tests](https://img.shields.io/badge/tests-10%2C029-brightgreen)
+[![CI](https://github.com/NickolisK24/le-the-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/NickolisK24/le-the-forge/actions/workflows/ci.yml)
+![Tests](https://img.shields.io/badge/tests-10%2C750_passing-brightgreen)
+![TypeScript](https://img.shields.io/badge/TypeScript-0_errors-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
-![Last Updated](https://img.shields.io/badge/updated-2026--04-orange)
+![Version](https://img.shields.io/badge/version-0.8.0-orange)
+
+<p align="center">
+  <img src="docs/screenshots/20260323_184859_01_home.png" alt="The Forge — Home" width="720" />
+</p>
+
+---
+
+## What Is The Forge
+
+The Forge is a build analysis platform for Last Epoch. It takes a character build — class, mastery, passive tree, skill specializations, and gear — and runs it through a deterministic simulation engine to produce DPS numbers, survivability scores, crafting probability curves, and upgrade recommendations. If you have ever wondered whether swapping an affix or reallocating a passive node actually makes your build stronger, The Forge gives you a concrete answer.
+
+Unlike build planners that stop at showing stat totals, The Forge simulates the full combat loop: skill execution, crit weighting, Monte Carlo damage variance, boss encounter phases, mana gating, and enemy-specific resistance and armour mitigation. The goal is mechanical accuracy — every number traces back to a formula you can inspect, and the engine runs the same calculation every time for the same inputs.
+
+The project is currently at **v0.8.0**, approaching a v1.0.0-beta community launch. The core simulation pipeline is stable and backed by 10,750+ tests, but some input data — particularly skill base damage values and enemy armour profiles — are benchmarked approximations rather than verified game extracts. These are noted honestly throughout the tool and in the [Known Limitations](#known-limitations-beta) section below. Community validation of these values is actively sought and is one of the most impactful ways to contribute.
 
 ---
 
 ## Features
 
-### Build Planner
-- Create and edit character builds with class and mastery selection (5 classes, 15 masteries)
-- Interactive passive tree with real in-game node positions, BFS path validation, and hexagonal node rendering
-- Skill tree specialization with node point allocation and spec tree modifiers
-- Paper-doll gear editor with item picker, unique item support, and idol slots
-- Leveling path tracker -- scrollable timeline recording passive allocation order per level
+### Core Analysis
 
-### Stat Engine (8-Layer Deterministic Pipeline)
-1. **Base Stats** -- class and mastery base values
-2. **Flat Additions** -- gear implicits and affix flat values
-3. **Increased (%)** -- additive percentage pool
-4. **More Multipliers** -- multiplicative product pool
-5. **Conversions** -- damage type conversions
-6. **Derived Stats** -- attribute-to-secondary expansion (Strength to health, Intelligence to ward retention, etc.)
-7. **Registry Derived** -- EHP, armor mitigation, dodge chance
-8. **Conditional Stats** -- context-dependent bonuses (while moving, against bosses, enemy frozen, etc.)
+- **8-layer deterministic stat pipeline** — Base Stats, Flat Additions, Increased (%), More Multipliers, Conversions, Derived Stats, Registry Derived (EHP, armour mitigation, dodge chance), and Conditional bonuses
+- **Combat simulation engine** — per-hit damage, crit-weighted DPS, ailment damage over time, and Monte Carlo variance modeling with configurable sample size and deterministic seeding
+- **Boss encounter simulation** — multi-phase fights with per-phase DPS, time-to-kill, immunity windows, enrage timers, and survival scoring
+- **Corruption scaling analysis** — non-linear health and damage multiplier curves with recommended max corruption threshold
+- **Optimization engine** — stat sensitivity analysis across 50+ stats, upgrade efficiency scoring factoring DPS gain, EHP gain, and Forging Potential cost, with Pareto-optimal candidate detection
 
-### Combat Simulation
-- Skill execution engine computing per-hit damage, crit-weighted average hit, and DPS
-- Enemy defense engine applying per-type resistance, armor mitigation, and penetration
-- Ailment DPS (Ignite, Bleed, Poison) computed from proc chance and scaling stats
-- Monte Carlo damage variance simulation with configurable sample size and deterministic seeding
-- Multi-target encounter simulation with target selection, damage distribution, and spawn lifecycle
-- Boss encounter simulation with multi-phase transitions, immunity windows, and enrage timers
-- Time-based combat loop with priority-ordered skill rotation and cooldown tracking
-- Mana resource gating -- skills require mana to cast, mana regenerates per tick
+### Build Tools
 
-### Crafting Simulator
-- Forging potential cost model with RNG simulation
-- Affix tier system with 1,000+ affix definitions synced from game data
-- Monte Carlo simulation across thousands of craft attempts
-- Strategy comparison (aggressive, balanced, conservative) and optimal path search
-- Probability visualization with timeline and outcome charts
-- Undo/redo support and per-step audit trail
+- **Build import** from Last Epoch Tools and Maxroll URLs — class, mastery, passives, and skills transfer automatically; gear import is [in active development](#known-limitations-beta)
+- **Skill tree UI** with interactive node graph, point allocation, and BFS path validation
+- **Passive tree** with real in-game node positions, hexagonal rendering, BFS reachability validation, and leveling path tracker
+- **Primary skill auto-detection** with manual override
+- **Community builds browser** with filtering, voting, tier ranking, and build comparison with weighted DPS/EHP scoring
+- **Meta analytics** — class and mastery distribution, popular skills and affixes, trending builds by view velocity
+- **Shared build reports** with OpenGraph meta tags for Discord link previews
 
-### Optimization Engine
-- Stat sensitivity analysis testing 50+ stats with weighted impact scoring
-- Upgrade efficiency scoring factoring DPS gain, EHP gain, and FP cost
-- Offensive/defensive ranking with configurable weighting modes (balanced, offense, defense)
-- Pareto-optimal candidate detection for multi-objective optimization
-- Per-slot gear upgrade ranking with cross-slot top-10 recommendations
+### Crafting
 
-### Advanced Analysis
-- Boss encounter simulation with per-phase DPS, time-to-kill, and survival scoring
-- Corruption scaling curve analysis with recommended max corruption threshold
-- Gear upgrade ranking evaluating candidate items against current build
-- Best-in-slot search engine with weighted affix targeting
-
-### Build Import
-- Import from Last Epoch Tools and Maxroll URLs
-- Partial import with gap reporting for incomplete builds
-- Admin failure tracking dashboard with severity classification
-- Discord webhook alerts for import failures
-
-### Community Tools
-- Community builds browser with filtering, voting, pagination, and tier ranking
-- Build comparison engine with full DPS/EHP simulation results and weighted overall winner
-- Meta analytics with class/mastery distribution, popular skills and affixes, trending builds by view velocity
-- View tracking with privacy-safe SHA-256 hashed IPs (raw IPs never stored)
-- Shared build reports with OpenGraph meta tags for Discord link previews
-
-### Authentication and Profiles
-- Discord OAuth2 login with JWT session management
-- User profiles with build history and craft session history
-- Admin role with affix management and import failure monitoring
+- **Crafting simulator** with 1,000+ affix definitions synced from game data
+- **Forging Potential cost model** with RNG simulation and strategy comparison (aggressive, balanced, conservative)
+- **Monte Carlo probability curves** across thousands of craft attempts with per-step audit trail and undo/redo support
 
 ---
 
 ## Tech Stack
 
 | Layer | Technology |
-|-------|------------|
+|---|---|
 | Frontend | React 18, TypeScript 5.4, Vite 5, Tailwind CSS 3 |
-| State Management | Zustand 4, TanStack Query 5 |
+| State | Zustand 4, TanStack Query 5 |
 | Charts | Recharts 3 |
-| Backend | Python 3.11, Flask 3.0 |
+| Backend | Python 3.11+, Flask 3.0, Marshmallow 3 |
 | Database | PostgreSQL 15 |
-| Cache / Rate Limiting | Redis 7, Flask-Limiter |
+| Cache | Redis 7, Flask-Limiter |
 | ORM | SQLAlchemy + Flask-Migrate (Alembic) |
-| Auth | Flask-Dance (Discord OAuth2), Flask-JWT-Extended |
-| Validation | Marshmallow 3 |
-| Testing | pytest (10,000+ tests), Vitest |
-| Desktop | Electron 41 (optional) |
-| Deployment | Docker Compose |
+| Auth | Discord OAuth2 (Flask-Dance), JWT (Flask-JWT-Extended) |
+| Testing | pytest (10,750+ tests), TypeScript strict mode, Vitest |
+| Desktop | Electron 41 (optional, scaffolded) |
+| CI/CD | GitHub Actions (pytest, tsc, ESLint, Docker build) |
+| Infrastructure | Docker Compose (local), Gunicorn (production) |
 
 ---
 
-## Project Structure
-
-```
-le-the-forge/
-├── backend/
-│   ├── app/
-│   │   ├── engines/            22 pure calculation modules (stat, combat, defense, craft, optimization, etc.)
-│   │   ├── services/           11 orchestration services (build analysis, craft, simulation, etc.)
-│   │   ├── routes/             24 Flask blueprints (builds, simulate, craft, compare, meta, etc.)
-│   │   ├── schemas/            Marshmallow request/response validation
-│   │   ├── models/             SQLAlchemy ORM models (User, Build, CraftSession, PassiveNode, etc.)
-│   │   ├── game_data/          Data pipeline loader and registries
-│   │   └── utils/              Auth, cache, responses, CLI commands, logging
-│   ├── migrations/             Alembic migration versions
-│   └── tests/                  10,000+ tests across 251 test files
-├── frontend/
-│   └── src/
-│       ├── components/         Feature components organized by domain
-│       │   ├── features/       Build planner, craft simulator, encounter, optimizer, etc.
-│       │   └── ui/             Shared UI components (Panel, Button, Badge, Modal, Skeleton, etc.)
-│       ├── pages/              Route-level page components
-│       ├── lib/                API client with typed request/response
-│       ├── hooks/              TanStack Query hooks and utilities
-│       ├── store/              Zustand state stores (auth, craft)
-│       └── types/              TypeScript type definitions
-├── data/                       Canonical game data (JSON)
-│   ├── classes/                Class definitions, passives, skill trees, skill metadata
-│   ├── combat/                 Damage types, ailments, monster modifiers
-│   ├── entities/               Enemy and boss profiles
-│   ├── items/                  Affixes, base items, uniques, crafting rules, rarities
-│   ├── localization/           Game string tables
-│   ├── progression/            Blessings
-│   └── world/                  Zones, timelines, dungeons, quests, loot tables
-├── docs/                       Documentation and screenshots
-├── electron/                   Desktop app wrapper (main process + preload)
-├── scripts/                    Game data sync, icon extraction, tree data generation
-├── docker-compose.yml
-├── ARCHITECTURE.md
-├── CONTRIBUTING.md
-├── CHANGELOG.md
-├── ROADMAP.md
-└── LICENSE                     MIT
-```
-
----
-
-## Local Development Setup
+## Getting Started (Local Development)
 
 ### Prerequisites
 
-- Docker Desktop (for PostgreSQL + Redis)
+- Docker Desktop (for PostgreSQL and Redis)
 - Python 3.11+
 - Node.js 20+
 
@@ -164,94 +86,274 @@ le-the-forge/
 git clone https://github.com/NickolisK24/le-the-forge.git
 cd le-the-forge
 cp .env.example .env
+# Edit .env — fill in DISCORD_CLIENT_ID and DISCORD_CLIENT_SECRET
+# if you need OAuth login. Everything else has working defaults.
 
 # Start database and cache
 docker compose up -d db redis
+```
 
-# Backend setup
+Backend (terminal 1):
+
+```bash
 cd backend
 python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
+
+# Database setup and seed
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask db upgrade
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask seed-passives
+
+# Start the dev server
 FLASK_APP=wsgi.py FLASK_ENV=development PYTHONPATH=. flask run --port=5050 --debug
 ```
 
-In a second terminal:
+Frontend (terminal 2):
 
 ```bash
-# Frontend
 cd frontend
 npm install
 npm run dev
 ```
 
-- Frontend: http://localhost:5173
-- Backend API: http://localhost:5050/api
+- **Frontend:** http://localhost:5173
+- **Backend API:** http://localhost:5050/api
+
+### Full Docker (alternative)
+
+```bash
+docker compose up --build
+
+# First run only — migrations and seed run automatically via the
+# backend entrypoint, but you can also run them manually:
+docker compose exec -e PYTHONPATH=/app backend flask db upgrade
+docker compose exec -e PYTHONPATH=/app backend flask seed
+docker compose exec -e PYTHONPATH=/app backend flask seed-passives
+```
 
 ### Running Tests
 
 ```bash
 cd backend
-source .venv/bin/activate
 PYTHONPATH=. pytest tests/ -x -q
+```
+
+### TypeScript Check
+
+```bash
+cd frontend
+npx tsc --noEmit
 ```
 
 ### Data Validation
 
 ```bash
 cd backend
-source .venv/bin/activate
 FLASK_APP=wsgi.py PYTHONPATH=. flask validate-data
 ```
 
-### Alternative: Full Docker
+---
 
-```bash
-docker compose up --build
+## Project Structure
 
-# First run only -- seed the database
-docker compose exec -e PYTHONPATH=/app backend flask db upgrade
-docker compose exec -e PYTHONPATH=/app backend flask seed
-docker compose exec -e PYTHONPATH=/app backend flask seed-passives
+```
+le-the-forge/
+├── backend/
+│   ├── app/
+│   │   ├── engines/        22 pure calculation modules (stat, combat, defense, craft, optimization)
+│   │   ├── services/       11 orchestration services (build analysis, simulation, craft, meta)
+│   │   ├── routes/         25 Flask blueprints (builds, simulate, craft, compare, meta, import)
+│   │   ├── schemas/        Marshmallow request/response validation
+│   │   ├── models/         SQLAlchemy ORM models (User, Build, CraftSession, PassiveNode)
+│   │   ├── game_data/      Data pipeline loader and registries
+│   │   └── utils/          Auth, cache, responses, CLI commands
+│   ├── builds/             Build definition, stats engine, serializers
+│   ├── combat/             Hit resolution, spatial simulation
+│   ├── migrations/         Alembic migration versions
+│   ├── scripts/            Verification scripts (verify_base_stats.py)
+│   └── tests/              10,750+ tests across 250+ test files
+├── frontend/
+│   └── src/
+│       ├── components/     Feature components (build, craft, encounter, optimizer, bis)
+│       ├── pages/          Route-level page components
+│       ├── lib/            Typed API client
+│       ├── hooks/          TanStack Query hooks
+│       ├── store/          Zustand state stores
+│       └── types/          TypeScript type definitions
+├── data/                   Canonical game data (JSON)
+│   ├── classes/            Class definitions, passives, skill trees, skill metadata
+│   ├── combat/             Damage types, ailments, monster modifiers
+│   ├── entities/           Enemy and boss profiles
+│   ├── items/              Affixes, base items, uniques, crafting rules, rarities
+│   ├── localization/       Game string tables
+│   ├── progression/        Blessings
+│   └── world/              Zones, timelines, dungeons, quests, loot tables
+├── docs/                   Architecture docs, audit reports, screenshots
+├── electron/               Desktop app wrapper (Electron main process + preload)
+├── scripts/                Game data sync, icon extraction, tree data generation
+├── .github/workflows/      GitHub Actions CI pipeline
+├── docker-compose.yml
+├── ARCHITECTURE.md
+├── CONTRIBUTING.md
+├── CHANGELOG.md
+└── ROADMAP.md
 ```
 
 ---
 
-## Screenshots
+## Game Data
 
-| Page | Screenshot |
-|------|-----------|
-| Home | ![Home](docs/screenshots/20260323_184859_01_home.png) |
-| Community Builds | ![Builds](docs/screenshots/20260323_184859_02_builds.png) |
-| Build Planner | ![Build Planner](docs/screenshots/20260323_184859_03_build_new.png) |
-| Craft Simulator | ![Craft Simulator](docs/screenshots/20260323_184859_04_craft.png) |
-| Build Comparison | ![Compare](docs/screenshots/20260323_184859_05_compare.png) |
+### Data Sources
+
+The `data/` directory contains canonical game data extracted from Last Epoch and normalized into JSON:
+
+- **`data/classes/`** — class definitions with base stats, passive tree nodes with layout coordinates, skill metadata, and skill specialization trees
+- **`data/items/`** — 1,000+ affixes with tier ranges, base items, uniques, crafting rules, implicit stats, and rarity definitions
+- **`data/combat/`** — damage types, ailment definitions, monster modifiers
+- **`data/entities/`** — enemy and boss profiles with health, armour, and resistance values
+
+### Versioning and Updates
+
+Game data is synced from Last Epoch exports using `scripts/sync_game_data.py`, which normalizes raw data into the `/data/` JSON schema. The current data tracks **patch 1.4.3, Season 4**. After a game patch, re-run the sync script and validate:
+
+```bash
+cd backend
+FLASK_APP=wsgi.py PYTHONPATH=. flask validate-data
+```
+
+This checks all JSON files for valid structure, correct root types, minimum entry counts, and required file presence.
+
+### Data Confidence
+
+Not all values in the game data are verified extracts. The confidence model:
+
+| Data Category | Confidence | Notes |
+|---|---|---|
+| Class base stats | Verified | Recorded from level-1 character sheets, no gear, no passives |
+| Attribute scaling | Verified | Confirmed per-point grants from in-game tooltips |
+| Affix definitions and tier ranges | High | Extracted from game files |
+| Skill base damage (141 of 175 skills) | High | Extracted from game data |
+| Skill base damage (34 skills) | 70-80% | Calibrated estimates; community validation welcome ([#148](https://github.com/NickolisK24/le-the-forge/issues/148)) |
+| Enemy armour and resistance profiles | Estimated | Community documentation, not verified against game files ([#162](https://github.com/NickolisK24/le-the-forge/issues/162)) |
+| Passive node stat grants | Mixed | Being migrated from estimated cycles to real node data ([#156](https://github.com/NickolisK24/le-the-forge/issues/156)) |
 
 ---
 
-## What's Coming
+## Architecture Overview
 
-From the [roadmap](ROADMAP.md):
+The backend is the single source of truth for all calculations. The frontend sends build input, receives simulation results, and renders UI — it never computes stats or DPS locally. The backend follows a three-layer architecture: **Routes** (HTTP interface) delegate to **Services** (orchestration and database access) which call **Engines** (pure calculation modules with no side effects, no database, no HTTP). Game data flows from JSON files through a startup data pipeline into in-memory registries consumed by engines.
 
-- **Phase 9 -- Deploy & Launch**: CI/CD with GitHub Actions, production deployment, performance audit, mobile responsiveness, community launch
+For full details — the 24 API blueprints, engine inventory, database schema, Redis cache keys, rate limiting strategy, and frontend component organization — see [ARCHITECTURE.md](ARCHITECTURE.md).
 
-Long-term vision:
-- Native desktop packaging via Electron
-- Advanced crafting prediction models
-- Encounter-specific build optimization
-- Patch auto-sync pipeline via GitHub Actions
+---
+
+## Testing
+
+The test suite currently has **10,750 passing tests** (377 skipped) covering:
+
+- **Stat pipeline** — all 8 layers, attribute scaling, class base stats, derived stat registry
+- **Combat simulation** — DPS calculation, crit weighting, Monte Carlo variance, boss encounters, multi-target
+- **Defense engine** — EHP, armour mitigation, resistance capping, dodge, ward, survivability scoring
+- **Crafting engine** — FP cost model, affix tier upgrades, Monte Carlo craft simulation
+- **Optimization** — sensitivity analysis, efficiency scoring, Pareto front, best-in-slot search
+- **Import system** — Last Epoch Tools and Maxroll parsing, partial import, failure tracking
+- **API endpoints** — request validation, response schemas, error handling, rate limiting
+- **Regression suite** — locked known-good stat and simulation outputs to catch formula changes
+
+### Running the Suite
+
+```bash
+cd backend
+PYTHONPATH=. pytest tests/ -x -q
+```
+
+### TypeScript Safety
+
+The frontend enforces TypeScript strict mode with zero errors. This is checked in CI via `tsc --noEmit` and blocks merge on failure. For a simulation platform, type safety in the data layer between backend responses and frontend rendering is treated as non-negotiable — a silently wrong number is worse than a crash.
 
 ---
 
 ## Contributing
 
-See [CONTRIBUTING.md](CONTRIBUTING.md) for setup instructions, branch conventions, code style guidelines, and PR checklist.
+See [CONTRIBUTING.md](CONTRIBUTING.md) for full setup instructions, code style, and the PR checklist.
+
+### Branch Conventions
+
+| Prefix | Purpose |
+|---|---|
+| `feature/` | New functionality |
+| `fix/` | Bug fixes |
+| `refactor/` | Structural changes, no behavior change |
+| `chore/` | Dependency updates, config |
+| `docs/` | Documentation only |
+
+### Workflow
+
+All work branches off `dev`. PRs target `dev`. Never push directly to `main` — it receives squash merges from `dev` for releases.
+
+### Commit Messages
+
+```
+<type>: <short description>
+```
+
+Types: `feat`, `fix`, `refactor`, `chore`, `docs`, `test`
+
+### Reporting Bugs
+
+Open an issue on [GitHub Issues](https://github.com/NickolisK24/le-the-forge/issues). Include the build configuration and expected vs. actual values when reporting simulation inaccuracies.
+
+### High-Value Contributions Right Now
+
+**DPS validation** — comparing Forge simulation output to real in-game training dummy numbers — is the single most impactful contribution. Even one data point for one skill helps calibrate the engine. See [#148](https://github.com/NickolisK24/le-the-forge/issues/148) for the full list of skills needing validation.
+
+---
+
+## Known Limitations (Beta)
+
+The Forge is approaching its community launch but is honest about what is not yet complete:
+
+- **Gear import from Last Epoch Tools does not include items** — class, mastery, passives, and skills import correctly, but gear requires an item ID mapping that is still being built ([#155](https://github.com/NickolisK24/le-the-forge/issues/155))
+- **Maxroll import is unverified** — the importer exists but has not been end-to-end tested against current Maxroll URLs ([#163](https://github.com/NickolisK24/le-the-forge/issues/163))
+- **Passive node stats use estimated cycles** — being migrated to real per-node data from the game files ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
+- **34 skill base damage values are approximations** at 70-80% confidence — community validation welcome ([#148](https://github.com/NickolisK24/le-the-forge/issues/148))
+- **Enemy armour and resistance profiles are estimates** — not verified against game data ([#162](https://github.com/NickolisK24/le-the-forge/issues/162))
+- **Minion DPS is not modeled** — affects Necromancer and Beastmaster builds; minion skills show 0 DPS ([#157](https://github.com/NickolisK24/le-the-forge/issues/157))
+- **Ailment DPS (Ignite, Bleed, Poison) is unverified** against live gameplay values ([#159](https://github.com/NickolisK24/le-the-forge/issues/159))
+- **Conditional stat bonuses are calculated but not wired into DPS** — bonuses like "while moving" or "against bosses" are computed by Layer 8 but not yet consumed by the combat simulation ([#158](https://github.com/NickolisK24/le-the-forge/issues/158))
+- **Craft engine determinism bug** — `simulate_craft_attempt` does not fully thread its RNG seed through all subroutines ([#223](https://github.com/NickolisK24/le-the-forge/issues/223))
+
+---
+
+## Roadmap
+
+The project follows a phased development plan. Phases 1-8 are complete.
+
+1. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
+2. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
+3. **Phase 11 — Advanced Crafting Models** — probabilistic outcome prediction beyond Monte Carlo
+4. **Phase 12 — Encounter-Specific Optimization** — stat recommendations targeting specific boss fights
+5. **Phase 13 — Patch Auto-Sync** — GitHub Actions pipeline to automatically update game data when patches release
+6. **Phase 14 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path
+7. **Phase 15 — Minion Engine** — per-minion-type damage modeling for summoner builds
+8. **Phase 16 — Real Passive Node Data** — migrate all passive nodes from estimated cycles to verified per-node stats
+9. **Phase 17 — Full Gear Import** — complete item ID mapping for Last Epoch Tools and Maxroll
+10. **Phase 18 — AI-Powered Build Q&A** — natural language build analysis and recommendations
+
+See the full [Roadmap](ROADMAP.md) and the [GitHub Issues](https://github.com/NickolisK24/le-the-forge/issues) for current status.
 
 ---
 
 ## License
 
 [MIT](LICENSE)
+
+---
+
+## Acknowledgements
+
+- **Last Epoch** is developed by [Eleventh Hour Games](https://eleventh-hour-games.com/). The Forge is an independent community project and is not affiliated with or endorsed by EHG.
+- Game data is sourced from community exports and public documentation. Thank you to the Last Epoch datamining and theorycrafting community.
+- Community data contributions — especially DPS validation against live gameplay — are what make this tool accurate. Every data point helps.
