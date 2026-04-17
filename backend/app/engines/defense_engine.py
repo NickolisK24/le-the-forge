@@ -96,8 +96,11 @@ def calculate_defense(stats: BuildStats) -> DefenseResult:
         ward=stats.ward,
     )
     # Armour mitigation: armor / (armor + 10 × area_level), cap at 85%
+    # Strength grants 4% Increased Armor per point — apply armour_pct as a
+    # multiplicative boost to flat armour before the mitigation curve.
     armor_divisor = ARMOR_DIVISOR  # 10 × 100 (default area_level=100)
-    armor_reduction = stats.armour / (stats.armour + armor_divisor) if stats.armour > 0 else 0.0
+    effective_armour = stats.armour * (1 + stats.armour_pct / 100.0)
+    armor_reduction = effective_armour / (effective_armour + armor_divisor) if effective_armour > 0 else 0.0
     armor_reduction = min(armor_reduction, 0.85)  # 85% cap for physical
 
     # Cap each resistance at 75%

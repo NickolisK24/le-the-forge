@@ -19,26 +19,34 @@ class TestSimulateStats:
         })
         assert resp.status_code == 200
         data = resp.get_json()["data"]
-        # Acolyte base health = 380, Lich gets no flat mastery bonus for health
-        assert data["max_health"] > 0
-        assert data["base_damage"] == 80.0  # Acolyte base
+        # updated: verified in-game data — Acolyte base HP is 110 (VIT=1 adds
+        # +6 → 116). base_damage is no longer part of class stats; it's a
+        # skill-level field populated by BuildStatsEngine, not
+        # aggregate_stats.
+        assert data["max_health"] == 116.0
+        assert data["base_damage"] == 0.0
         assert data["attack_speed"] > 0
 
     def test_with_gear_affixes(self, client):
         """Gear affixes should increase stats."""
+        # updated: verified in-game data — Mage base HP is 110, not 340.
+        # Also fixed the affix names to match the canonical registry
+        # ("Added Health", "Increased Spell Damage") — the previous
+        # short-names didn't resolve and only happened to pass against the
+        # inflated 340 base.
         resp = client.post("/api/simulate/stats", json={
             "character_class": "Mage",
             "mastery": "Sorcerer",
             "gear_affixes": [
-                {"name": "Spell Damage", "tier": 3},
-                {"name": "Health", "tier": 2},
+                {"name": "Increased Spell Damage", "tier": 3},
+                {"name": "Added Health", "tier": 2},
             ],
         })
         assert resp.status_code == 200
         data = resp.get_json()["data"]
         # Sorcerer gets spell_damage_pct bonus + gear affix
         assert data["spell_damage_pct"] > 0
-        assert data["max_health"] > 340  # Mage base health
+        assert data["max_health"] > 110
 
     def test_invalid_class(self, client):
         resp = client.post("/api/simulate/stats", json={

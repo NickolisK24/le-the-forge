@@ -18,7 +18,10 @@ def _lich_build(**kwargs) -> BuildDefinition:
 
 
 def _sorcerer_build(**kwargs) -> BuildDefinition:
-    defaults = dict(character_class="Mage", mastery="Sorcerer")
+    # updated: verified in-game data — Mage base_damage now comes from the
+    # selected skill, not the class. Fireball's base_damage is 110.
+    defaults = dict(character_class="Mage", mastery="Sorcerer",
+                    skill_id="Fireball")
     return BuildDefinition(**{**defaults, **kwargs})
 
 
@@ -29,9 +32,11 @@ class TestBaseStatsComputed:
         assert stats.base_damage == 80.0  # Acolyte base
 
     def test_mage_base_damage(self):
+        # updated: verified in-game data — base_damage is now sourced from
+        # the skill, not the class. Fireball's base_damage is 110.
         eng = BuildStatsEngine()
         stats = eng.compile(_sorcerer_build())
-        assert stats.base_damage == 100.0  # Mage base
+        assert stats.base_damage == 110.0
 
     def test_base_crit_chance(self):
         eng = BuildStatsEngine()

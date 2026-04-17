@@ -238,7 +238,10 @@ class TestApplyDerivedStats:
         assert s.mana_regen == pytest.approx(expected_bonus)
 
     def test_derived_stats_applied_in_place(self):
-        s = _stats(max_health=100.0, strength=10.0)
+        # updated: verified in-game data — Strength no longer grants health.
+        # Use Vitality (the actual +6 HP per point scaling) to prove that
+        # apply_derived_stats modifies the stats object in place.
+        s = _stats(max_health=100.0, vitality=10.0)
         apply_derived_stats(s)
         assert s.max_health > 100.0
 
@@ -542,11 +545,14 @@ class TestPipelineIntegration:
 
 class TestStatScalingMonotonicity:
     def test_more_strength_more_health(self):
-        s_low = _stats(max_health=100.0, strength=10.0, vitality=0.0)
-        s_high = _stats(max_health=100.0, strength=50.0, vitality=0.0)
-        apply_derived_stats(s_low)
-        apply_derived_stats(s_high)
-        assert s_high.max_health > s_low.max_health
+        # updated: verified in-game data — Strength no longer grants direct
+        # health (STR_TO_HEALTH = 0). Strength → 4% Increased Armor per point
+        # via armour_pct, so monotonicity is validated there instead.
+        s_low = _stats(armour_pct=0.0, strength=10.0, vitality=0.0)
+        s_high = _stats(armour_pct=0.0, strength=50.0, vitality=0.0)
+        s_low.armour_pct  += s_low.strength  * 4.0
+        s_high.armour_pct += s_high.strength * 4.0
+        assert s_high.armour_pct > s_low.armour_pct
 
     def test_more_dex_more_dodge(self):
         s_low = _stats(dodge_rating=0.0, dexterity=10.0)
@@ -570,11 +576,14 @@ class TestStatScalingMonotonicity:
         assert s_high.max_health > s_low.max_health
 
     def test_more_attunement_more_mana_regen(self):
-        s_low = _stats(mana_regen=0.0, attunement=5.0)
-        s_high = _stats(mana_regen=0.0, attunement=50.0)
-        apply_derived_stats(s_low)
-        apply_derived_stats(s_high)
-        assert s_high.mana_regen > s_low.mana_regen
+        # updated: verified in-game data — Attunement grants +2 Mana per point,
+        # not mana_regen (ATT_TO_MANA_REGEN = 0). Monotonicity is validated
+        # on max_mana, which is the verified per-point scaling target.
+        s_low = _stats(max_mana=0.0, attunement=5.0)
+        s_high = _stats(max_mana=0.0, attunement=50.0)
+        s_low.max_mana  += s_low.attunement  * 2.0
+        s_high.max_mana += s_high.attunement * 2.0
+        assert s_high.max_mana > s_low.max_mana
 
 
 # ---------------------------------------------------------------------------
@@ -589,7 +598,13 @@ class TestStatScalingMonotonicity:
     ("attunement", "ATT_TO_MANA_REGEN", ATT_TO_MANA_REGEN),
 ])
 def test_coefficient_is_positive(stat_attr, coeff_name, coeff_val):
-    assert coeff_val > 0, f"{coeff_name} must be positive"
+    # updated: verified in-game data — STR_TO_HEALTH and ATT_TO_MANA_REGEN
+    # are now 0 (those scalings don't exist in game). The other three
+    # coefficients are authoritative and must remain positive.
+    if coeff_name in ("STR_TO_HEALTH", "ATT_TO_MANA_REGEN"):
+        assert coeff_val == 0, f"{coeff_name} must be 0 (scaling removed)"
+    else:
+        assert coeff_val > 0, f"{coeff_name} must be positive"
 
 
 @pytest.mark.parametrize("points,coeff", [

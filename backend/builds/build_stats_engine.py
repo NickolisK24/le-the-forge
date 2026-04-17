@@ -67,6 +67,16 @@ class BuildStatsEngine:
             gear_affixes=gear_affixes,
         )
 
+        # Source base_damage from the selected skill. Class base stats no
+        # longer carry a base_damage field — verified in-game data confirms
+        # damage is a skill-level stat, not a character-level stat. The
+        # old CLASS_BASE_STATS values (80 / 100 / 90 / 110 / 85) were
+        # fabricated class archetype numbers.
+        from app.engines.combat_engine import SKILL_STATS
+        skill_def = SKILL_STATS.get(build.skill_id)
+        if skill_def is not None:
+            stats.base_damage = float(skill_def.base_damage)
+
         # Apply buff modifiers on top of base stats
         for buff in build.buffs:
             for stat_key, delta in buff.modifiers.items():
