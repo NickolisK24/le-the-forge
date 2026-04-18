@@ -355,6 +355,7 @@ class GameDataPipeline:
     _REQUIRED_WEAVER_NODE_FIELDS = (
         "id", "name", "max_points", "connections", "stats",
     )
+    _ALLOWED_WEAVER_NODE_TYPES = {"root", "key", "circle"}
 
     def _validate_weaver_node(self, node: object, seen_ids: set[str]) -> None:
         """
@@ -383,9 +384,21 @@ class GameDataPipeline:
             raise RuntimeError(
                 f"pipeline: weaver_tree node[{node_id!r}].name must be a string"
             )
-        if not isinstance(node["max_points"], int) or node["max_points"] < 1:
+        node_type = node.get("node_type")
+        if node_type is not None:
+            if not isinstance(node_type, str):
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}].node_type must be a string"
+                )
+            if node_type not in self._ALLOWED_WEAVER_NODE_TYPES:
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}].node_type must be one of "
+                    f"{sorted(self._ALLOWED_WEAVER_NODE_TYPES)} (got {node_type!r})"
+                )
+        min_points = 0 if node_type == "root" else 1
+        if not isinstance(node["max_points"], int) or node["max_points"] < min_points:
             raise RuntimeError(
-                f"pipeline: weaver_tree node[{node_id!r}].max_points must be >= 1"
+                f"pipeline: weaver_tree node[{node_id!r}].max_points must be >= {min_points}"
             )
         if not isinstance(node["connections"], list):
             raise RuntimeError(

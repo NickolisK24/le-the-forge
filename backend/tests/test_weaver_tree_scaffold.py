@@ -1,15 +1,14 @@
 """
-Phase 0 · 0L-1 — Scaffold tests for the Weaver Tree data file.
+Phase 0 · 0L-1 — Tests for the Weaver Tree data file.
 
-The tree itself is populated in a follow-up task from user-captured
-ground-truth data. These tests lock the scaffold so that:
-  - the JSON file exists and declares its field contract in ``_schema``,
-  - the pipeline loader accepts the empty-nodes scaffold and strips
-    the meta wrapper before exposing data,
+The tree is populated from LET's ``window.LEWeaverTree`` payload
+(game version 1.4.2, 77 nodes). These tests cover:
+  - file + schema contract (``_schema`` block carries every node field),
+  - the populated file round-trips through the pipeline loader (77 nodes,
+    root node exempted from ``max_points >= 1``),
   - the validator raises on malformed nodes (missing ids, duplicate ids,
-    bad connection lists, bad stat entries, bad max_points),
-  - the public accessors return empty results today and a single node
-    when the cache is populated in-place.
+    bad connection lists, bad stat entries, bad max_points, bad node_type),
+  - the public accessors return the full list and look up nodes by id.
 """
 
 from __future__ import annotations
@@ -38,27 +37,34 @@ _WEAVER_PATH = (
 
 class TestWeaverTreeFile:
     def test_file_exists(self):
-        assert _WEAVER_PATH.exists(), "weaver_tree.json scaffold must ship"
+        assert _WEAVER_PATH.exists(), "weaver_tree.json must ship"
 
     def test_schema_block_present(self):
         raw = json.loads(_WEAVER_PATH.read_text())
         assert "_schema" in raw, "weaver_tree.json must carry a _schema block"
         for f in (
-            "id", "name", "description", "node_type", "tier",
-            "x", "y", "max_points", "connections", "stats",
-            "ability_granted", "icon",
+            "id", "raw_node_id", "name", "description", "node_type",
+            "let_kind", "tier", "x", "y", "max_points", "connections",
+            "stats", "ability_granted", "icon", "requirements",
+            "alt_text", "lore_text", "point_bonus_description",
         ):
             assert f in raw["_schema"]["node_fields"], (
                 f"_schema.node_fields missing {f!r}"
             )
 
-    def test_nodes_list_starts_empty(self):
-        """Scaffold ships empty; no guessed node content."""
+    def test_nodes_populated(self):
+        """77 nodes captured from LET's window.LEWeaverTree payload."""
         raw = json.loads(_WEAVER_PATH.read_text())
-        assert raw.get("nodes") == [], (
-            "weaver_tree.json nodes must stay empty until ground-truth "
-            "capture lands in the follow-up task"
+        nodes = raw.get("nodes")
+        assert isinstance(nodes, list)
+        assert len(nodes) == 77, (
+            f"expected 77 Weaver Tree nodes (LET 1.4.2), got {len(nodes)}"
         )
+
+    def test_node_ids_are_unique(self):
+        raw = json.loads(_WEAVER_PATH.read_text())
+        ids = [n["id"] for n in raw["nodes"]]
+        assert len(ids) == len(set(ids)), "duplicate node ids in weaver_tree.json"
 
 
 # ---------------------------------------------------------------------------
@@ -66,13 +72,19 @@ class TestWeaverTreeFile:
 # ---------------------------------------------------------------------------
 
 class TestLoader:
-    def test_exposes_empty_list_for_scaffold(self):
+    def test_exposes_all_nodes(self):
         nodes = get_weaver_tree_nodes()
         assert isinstance(nodes, list)
-        assert nodes == []
+        assert len(nodes) == 77
 
     def test_accessors_return_none_for_unknown_id(self):
         assert get_weaver_tree_node("does_not_exist") is None
+
+    def test_accessor_returns_known_node(self):
+        root = get_weaver_tree_node("wv_0")
+        assert root is not None
+        assert root["node_type"] == "root"
+        assert root["max_points"] == 0
 
 
 # ---------------------------------------------------------------------------
@@ -130,6 +142,16 @@ class TestValidator:
         p = self._pipeline()
         with pytest.raises(RuntimeError, match="max_points"):
             p._validate_weaver_node(_node(max_points=0), set())
+
+    def test_accepts_root_with_zero_max_points(self):
+        """Only the root node may carry max_points=0 (non-allocatable marker)."""
+        p = self._pipeline()
+        p._validate_weaver_node(_node(node_type="root", max_points=0), set())
+
+    def test_rejects_unknown_node_type(self):
+        p = self._pipeline()
+        with pytest.raises(RuntimeError, match="node_type must be one of"):
+            p._validate_weaver_node(_node(node_type="keystone"), set())
 
     def test_rejects_malformed_stat_entry(self):
         p = self._pipeline()
