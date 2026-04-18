@@ -520,11 +520,14 @@ export interface ImportedBuild {
   gear: unknown[];
   _import_meta?: {
     source: string;
-    char_class_id: number;
-    mastery_id: number;
-    skill_count: number;
-    passive_nodes: number;
-    gear_note: string;
+    char_class_id?: number;
+    mastery_id?: number;
+    skill_count?: number;
+    passive_nodes?: number;
+    gear_count?: number;
+    gear_missing_fields?: string[];
+    /** Deprecated: superseded by gear_count / gear_missing_fields. */
+    gear_note?: string;
   };
 }
 
@@ -533,6 +536,8 @@ export const importApi = {
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
   importBuild: (url: string) =>
     post<ImportBuildResponse>("/import/build", { url }),
+  letFromJson: (buildInfo: unknown) =>
+    post<{ build: ImportedBuild }>("/import/let/json", { build_info: buildInfo }),
 };
 
 // ---------------------------------------------------------------------------

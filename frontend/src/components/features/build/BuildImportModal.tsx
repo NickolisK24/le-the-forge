@@ -2,9 +2,10 @@
  * BuildImportModal
  *
  * Three-tab import UI:
- *   - "URL Import" — paste a LE Tools or Maxroll planner URL, creates build directly
+ *   - "URL Import" — paste a Maxroll planner URL, creates build directly
  *   - "Quick Fetch" — legacy: fetch and preview before applying to form
- *   - "JSON" — paste raw Forge export JSON directly
+ *   - "JSON" — paste Forge export JSON, or raw LET window.buildInfo captured
+ *     via the bookmarklet (auto-detected)
  *
  * Detects source from URL as the user types and shows a badge.
  * On success, navigates to the new build or applies to form.
@@ -18,6 +19,23 @@ import type { ImportBuildResponse } from "@/types";
 import { Button, Spinner } from "@/components/ui";
 
 type Tab = "import" | "fetch" | "json";
+
+// Minified bookmarklet kept in sync with frontend/public/bookmarklets/let-import.bookmarklet.txt.
+// Inlined so the <a href> is available for drag-to-bookmark without an extra fetch.
+const LET_BOOKMARKLET =
+  "javascript:(async()=>{try{const b=window.buildInfo;if(!b||typeof b!=='object'){alert('The Forge: window.buildInfo not found on this page. Open a Last Epoch Tools planner and run the bookmarklet there.');return}await navigator.clipboard.writeText(JSON.stringify(b));const t=document.createElement('div');t.textContent='\\u2713 Build JSON copied \\u2014 paste into The Forge';Object.assign(t.style,{position:'fixed',top:'16px',right:'16px',zIndex:'2147483647',background:'#1a1410',color:'#e8c87a',border:'1px solid #8b6a3a',padding:'10px 16px',fontFamily:'monospace',fontSize:'13px',boxShadow:'0 4px 12px rgba(0,0,0,0.5)',borderRadius:'4px'});document.body.appendChild(t);setTimeout(()=>t.remove(),2800)}catch(e){alert('The Forge bookmarklet failed: '+(e&&e.message?e.message:e))}})();";
+
+function looksLikeLetBuildInfo(parsed: unknown): boolean {
+  if (!parsed || typeof parsed !== "object") return false;
+  const obj = parsed as Record<string, unknown>;
+  const inner =
+    obj.data && typeof obj.data === "object"
+      ? (obj.data as Record<string, unknown>)
+      : obj;
+  const bio = inner.bio as Record<string, unknown> | undefined;
+  if (bio && typeof bio.characterClass === "number") return true;
+  return Boolean(inner.charTree && typeof inner.charTree === "object");
+}
 
 interface Props {
   onImport: (build: ImportedBuild) => void;
@@ -58,6 +76,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
   // JSON tab state
   const [jsonText, setJsonText] = useState("");
   const [jsonError, setJsonError] = useState("");
+  const [jsonLoading, setJsonLoading] = useState(false);
 
   const importSource = detectSource(importUrl);
   const fetchSource = detectSource(fetchUrl);
@@ -130,24 +149,51 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
 
   // ---- JSON import --------------------------------------------------------
 
-  function handleJsonImport() {
+  async function handleJsonImport() {
     setJsonError("");
     if (!jsonText.trim()) {
       setJsonError("Paste your build JSON first.");
       return;
     }
+
+    let parsed: unknown;
     try {
-      const parsed = JSON.parse(jsonText);
-      if (!parsed.character_class) {
-        setJsonError("Invalid build JSON — missing character_class field.");
-        return;
-      }
-      onImport(parsed as ImportedBuild);
-      toast.success("Build imported — review and save when ready.");
-      onClose();
+      parsed = JSON.parse(jsonText);
     } catch {
       setJsonError("Invalid JSON — check your paste for syntax errors.");
+      return;
     }
+
+    // LET bookmarklet payload → round-trip through the backend mapper.
+    if (looksLikeLetBuildInfo(parsed)) {
+      setJsonLoading(true);
+      try {
+        const res = await importApi.letFromJson(parsed);
+        const errMsg = res.errors?.[0]?.message;
+        const build = res.data?.build;
+        if (errMsg || !build) {
+          setJsonError(errMsg ?? "LET payload could not be mapped — see server logs.");
+          return;
+        }
+        onImport(build);
+        toast.success("LET build imported — review and save when ready.");
+        onClose();
+      } catch {
+        setJsonError("Request failed — backend may be unavailable.");
+      } finally {
+        setJsonLoading(false);
+      }
+      return;
+    }
+
+    // Forge-shaped JSON (direct export).
+    if (!parsed || typeof parsed !== "object" || !(parsed as Record<string, unknown>).character_class) {
+      setJsonError("Invalid build JSON — missing character_class field.");
+      return;
+    }
+    onImport(parsed as ImportedBuild);
+    toast.success("Build imported — review and save when ready.");
+    onClose();
   }
 
   // ---- Source badge -------------------------------------------------------
@@ -224,9 +270,9 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                 </p>
                 <div className="mt-2 rounded border border-yellow-500/20 bg-yellow-500/5 px-3 py-2">
                   <p className="font-mono text-[10px] text-yellow-400/80 leading-relaxed">
-                    Last Epoch Tools import is temporarily unavailable — LET moved to
-                    client-side rendering which prevents server-side fetching. Use Maxroll
-                    planner URLs instead.
+                    Last Epoch Tools cannot be fetched by URL (LET is client-side).
+                    For LET builds, switch to the <strong>{"{ } JSON"}</strong> tab and use
+                    the bookmarklet to capture the build from your browser.
                   </p>
                 </div>
               </div>
@@ -237,7 +283,7 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
                   <SourceBadge source={importSource} />
                   {importSource === "lastepochtools" && (
                     <span className="font-mono text-[10px] text-yellow-400/70">
-                      LET import unavailable
+                      Use JSON tab for LET
                     </span>
                   )}
                 </div>
@@ -439,16 +485,49 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
           {tab === "json" && (
             <div className="flex flex-col gap-4">
               <p className="font-body text-sm text-forge-text/80 leading-relaxed">
-                Paste a build JSON exported from The Forge (use the Export button on any build).
+                Paste a Forge export JSON, or a Last Epoch Tools <code className="font-mono text-xs text-forge-amber">window.buildInfo</code>{" "}
+                payload captured with the bookmarklet. The format is auto-detected.
               </p>
+
+              {/* LET bookmarklet helper */}
+              <div className="rounded border border-forge-border bg-forge-surface2 px-3 py-2.5">
+                <div className="font-mono text-[10px] uppercase tracking-widest text-forge-dim mb-1.5">
+                  Last Epoch Tools capture
+                </div>
+                <ol className="list-decimal list-inside space-y-1 font-body text-[12px] text-forge-text/80 leading-relaxed">
+                  <li>
+                    Drag this link to your bookmarks bar:{" "}
+                    <a
+                      href={LET_BOOKMARKLET}
+                      onClick={(e) => e.preventDefault()}
+                      draggable
+                      className="inline-flex items-center rounded-sm border border-forge-amber/40 bg-forge-amber/10 px-2 py-0.5 font-mono text-[11px] text-forge-amber hover:bg-forge-amber/20"
+                      title="Drag to bookmarks bar"
+                    >
+                      The Forge: Copy LET Build
+                    </a>
+                  </li>
+                  <li>
+                    Open a planner on{" "}
+                    <span className="font-mono text-[11px] text-forge-amber">lastepochtools.com/planner/…</span>
+                  </li>
+                  <li>Click the bookmark — it copies the build JSON to your clipboard.</li>
+                  <li>Paste it below and hit Import.</li>
+                </ol>
+                <p className="mt-2 font-mono text-[10px] text-forge-dim leading-relaxed">
+                  No bookmarks bar? Open DevTools on the planner page and run{" "}
+                  <code className="text-forge-amber">copy(window.buildInfo)</code>.
+                </p>
+              </div>
 
               <div>
                 <label className={labelCls}>Build JSON</label>
                 <textarea
                   className={inputCls + " mt-1.5 h-36 resize-none font-mono text-xs"}
-                  placeholder='{ "character_class": "Acolyte", "mastery": "Lich", ... }'
+                  placeholder='{ "character_class": "Acolyte", ... }  or  { "bio": { ... }, "charTree": { ... } }'
                   value={jsonText}
                   onChange={(e) => { setJsonText(e.target.value); setJsonError(""); }}
+                  disabled={jsonLoading}
                 />
                 {jsonError && (
                   <p className="mt-1.5 font-mono text-[11px] text-red-400">{jsonError}</p>
@@ -456,14 +535,20 @@ export default function BuildImportModal({ onImport, onClose }: Props) {
               </div>
 
               <div className="flex justify-end gap-2">
-                <Button variant="outline" size="sm" onClick={onClose}>Cancel</Button>
+                <Button variant="outline" size="sm" onClick={onClose} disabled={jsonLoading}>
+                  Cancel
+                </Button>
                 <Button
                   variant="primary"
                   size="sm"
                   onClick={handleJsonImport}
-                  disabled={!jsonText.trim()}
+                  disabled={!jsonText.trim() || jsonLoading}
                 >
-                  Import →
+                  {jsonLoading ? (
+                    <span className="flex items-center gap-2">
+                      <Spinner size={14} /> Mapping LET build…
+                    </span>
+                  ) : "Import →"}
                 </Button>
               </div>
             </div>

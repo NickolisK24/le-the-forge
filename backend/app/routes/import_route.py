@@ -237,6 +237,17 @@ def _map_let_build(build_info: dict) -> dict:
 
     skills.sort(key=lambda s: s["slot"])
 
+    # Delegate gear parsing to the full importer — same logic used by
+    # /api/import/build. Method does not use instance state.
+    from app.services.importers import LastEpochToolsImporter
+    gear_missing: List[str] = []
+    try:
+        gear = LastEpochToolsImporter()._parse_gear(build_info, gear_missing)
+    except Exception as exc:
+        logger.warning("LET mapper: gear parse failed: %s", exc)
+        gear = []
+        gear_missing.append(f"gear_parse_error:{exc}")
+
     return {
         "name": f"Imported — {char_class} {mastery}".strip(),
         "description": (
@@ -248,17 +259,15 @@ def _map_let_build(build_info: dict) -> dict:
         "level": level,
         "passive_tree": passive_tree,
         "skills": skills,
-        "gear": [],
+        "gear": gear,
         "_import_meta": {
             "source": "lastepochtools",
             "char_class_id": char_class_id,
             "mastery_id": mastery_id,
             "skill_count": len(skills),
             "passive_nodes": len(selected_nodes),
-            "gear_note": (
-                "Gear not imported — Last Epoch Tools item IDs "
-                "require a separate database lookup"
-            ),
+            "gear_count": len(gear),
+            "gear_missing_fields": gear_missing,
         },
     }
 
@@ -401,6 +410,73 @@ def import_from_url():
             partial_data={"traceback": traceback.format_exc()[-500:]},
         )
         return err_response(f"Import failed unexpectedly: {exc}", 422)
+
+
+# ---------------------------------------------------------------------------
+# Route: POST /api/import/let/json
+# ---------------------------------------------------------------------------
+
+@import_bp.post("/let/json")
+@limiter.limit("20 per minute")
+def import_let_from_json():
+    """
+    POST /api/import/let/json
+    Body: { "build_info": {...raw window.buildInfo from LET planner...} }
+
+    Accepts a raw Last Epoch Tools `window.buildInfo` JSON object (captured
+    client-side, e.g. via the import bookmarklet) and maps it to the same
+    preview payload shape returned by /api/import/url.
+
+    This exists because LET migrated to client-side rendering, so the server
+    cannot fetch `window.buildInfo` directly any more. Passing the JSON from
+    the browser side-steps the SPA hydration problem.
+
+    Does NOT save the build — the caller applies the mapped payload to the
+    build planner form or chains into /api/import/build.
+    """
+    body = request.get_json(silent=True) or {}
+    build_info = body.get("build_info")
+
+    if not isinstance(build_info, dict):
+        return err_response(
+            "build_info must be a JSON object (the raw window.buildInfo payload).",
+            400,
+        )
+
+    # Unwrap LET's optional "data" envelope, matching the URL flow.
+    if "data" in build_info and isinstance(build_info["data"], dict):
+        build_info = build_info["data"]
+
+    if not build_info.get("bio") and not build_info.get("charTree"):
+        return err_response(
+            "build_info is missing bio/charTree — this does not look like a "
+            "Last Epoch Tools window.buildInfo payload.",
+            422,
+        )
+
+    try:
+        mapped = _map_let_build(build_info)
+    except Exception as exc:
+        logger.error(
+            "import/let/json: mapping failed: %s\n%s", exc, traceback.format_exc(),
+        )
+        user = get_current_user()
+        _record_and_alert(
+            source="lastepochtools",
+            url="(json-paste)",
+            user_id=user.id if user else None,
+            error_message=f"LET JSON import mapping failed: {exc}",
+            partial_data={"keys": list(build_info.keys())},
+        )
+        return err_response(f"Could not map build: {exc}", 422)
+
+    logger.info(
+        "import/let/json: mapped class=%s mastery=%s passives=%d skills=%d gear=%d",
+        mapped["character_class"], mapped["mastery"],
+        len(mapped["passive_tree"]), len(mapped["skills"]),
+        len(mapped["gear"]),
+    )
+    return ok({"build": mapped})
 
 
 # ---------------------------------------------------------------------------
