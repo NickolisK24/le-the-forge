@@ -28,7 +28,7 @@ THE FORGE — MASTER DEVELOPMENT PLAN,,,,,,,,
 24,Phase 0,0F-2,Review and verify high-impact stat key mappings,Data,CRITICAL,Not Started,FALSE,"Spot-check: damage%, crit, resistances, health, speed keys against in-game tooltips"
 25,Phase 0,0F-3,Build passive_stat_key_map translation layer in engine,Engine,CRITICAL,Not Started,FALSE,Replace the class stat-cycle fallback with real per-node stat resolution
 26,Phase 0,0F-4,Classify 85 behavioral / flag passive stats,Engine,HIGH,Not Started,FALSE,"Create passive_flags set on BuildStats. Examples: CanEquipAxeOffhand, EffectTripledAtLowLife"
-27,Phase 0,0G-1,Add base damage schema fields to skills_metadata.json,Data,CRITICAL,Not Started,FALSE,"Add: base_damage_min, base_damage_max, damage_scaling_stat, attack_type per skill"
+27,Phase 0,0G-1,Add base damage schema fields to skills_metadata.json,Data,CRITICAL,Complete,TRUE,"Schema live on all 161 skills as null placeholders; _schema block self-documents enums; pipeline validates populated values and strips meta keys; new get_skill_base_damage() accessor. Values populated per class in 0G-2..0G-6."
 28,Phase 0,0G-2,Populate skill base damage — Sentinel (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
 29,Phase 0,0G-3,Populate skill base damage — Mage (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
 30,Phase 0,0G-4,Populate skill base damage — Acolyte (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
