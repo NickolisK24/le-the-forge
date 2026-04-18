@@ -3636,6 +3636,69 @@ class TestMaxrollFullParseFlow:
 
 
 # ---------------------------------------------------------------------------
+# _map_let_build — regression tests for issue #155
+# (Gear was hardcoded to [] in _map_let_build; now delegates to the full
+#  importer's gear parser.)
+# ---------------------------------------------------------------------------
+
+class TestMapLetBuildGear:
+    def test_preview_mapper_populates_gear(self):
+        """_map_let_build returns parsed gear, not an empty list (issue #155)."""
+        from app.routes.import_route import _map_let_build
+
+        build_info = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 5, "affixes": [], "ir": 0, "ur": 0},
+                "weapon": {"id": 10, "affixes": [], "ir": 0, "ur": 0},
+                "belt": {"id": 7, "affixes": [], "ir": 0, "ur": 0},
+            },
+        }
+
+        mapped = _map_let_build(build_info)
+
+        assert isinstance(mapped["gear"], list)
+        assert len(mapped["gear"]) == 3
+        slots = [g["slot"] for g in mapped["gear"]]
+        assert "helmet" in slots
+        assert "weapon" in slots
+        assert "belt" in slots
+        assert mapped["_import_meta"]["gear_count"] == 3
+
+    def test_preview_mapper_no_equipment(self):
+        """Build with no equipment data returns empty gear cleanly."""
+        from app.routes.import_route import _map_let_build
+
+        build_info = {
+            "bio": {"level": 70, "characterClass": 0, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+        }
+
+        mapped = _map_let_build(build_info)
+
+        assert mapped["gear"] == []
+        assert mapped["_import_meta"]["gear_count"] == 0
+
+    def test_preview_mapper_meta_no_stale_gear_note(self):
+        """The outdated 'gear_note' key must not leak into the response."""
+        from app.routes.import_route import _map_let_build
+
+        mapped = _map_let_build({
+            "bio": {"level": 70, "characterClass": 0, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+        })
+
+        assert "gear_note" not in mapped["_import_meta"]
+
+
+# ---------------------------------------------------------------------------
 # /api/import/let/json — paste raw window.buildInfo from LET
 # (Workaround for LET going client-side: the bookmarklet / DevTools copies
 #  window.buildInfo from the planner page and posts it here for mapping.)

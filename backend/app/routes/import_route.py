@@ -237,8 +237,10 @@ def _map_let_build(build_info: dict) -> dict:
 
     skills.sort(key=lambda s: s["slot"])
 
-    # Delegate gear parsing to the full importer — same logic used by
-    # /api/import/build. Method does not use instance state.
+    # ---- Gear ---------------------------------------------------------------
+    # Delegate to the full importer's gear parser so preview endpoints
+    # produce the same gear payload as /api/import/build. The method does
+    # not use instance state, so a fresh instance is safe.
     from app.services.importers import LastEpochToolsImporter
     gear_missing: List[str] = []
     try:
