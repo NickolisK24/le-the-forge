@@ -24,7 +24,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-62"
+    "icon": "a-r-62",
+    "requires": []
   },
   {
     "id": "ac_0",
@@ -51,7 +52,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-528"
+    "icon": "a-r-528",
+    "requires": []
   },
   {
     "id": "ac_2",
@@ -66,7 +68,9 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_6"
+    ],
     "stats": [
       {
         "key": "Increased Damage",
@@ -78,7 +82,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-45"
+    "icon": "a-r-45",
+    "requires": []
   },
   {
     "id": "ac_3",
@@ -93,7 +98,9 @@
     "x": -334.74,
     "y": -184.56003,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "ac_7"
+    ],
     "stats": [
       {
         "key": "Ward Decay Threshold",
@@ -109,7 +116,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-509"
+    "icon": "a-r-509",
+    "requires": []
   },
   {
     "id": "ac_55",
@@ -124,7 +132,10 @@
     "x": -334.74,
     "y": -3.0517578e-05,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_5",
+      "ac_80"
+    ],
     "stats": [
       {
         "key": "Increased Minion Attack Speed",
@@ -140,7 +151,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-20"
+    "icon": "a-r-20",
+    "requires": []
   },
   {
     "id": "ac_4",
@@ -155,7 +167,9 @@
     "x": -334.74,
     "y": 92.28,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_56"
+    ],
     "stats": [
       {
         "key": "Vitality",
@@ -167,7 +181,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-772"
+    "icon": "a-r-772",
+    "requires": []
   },
   {
     "id": "ac_5",
@@ -200,7 +215,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1144"
+    "icon": "a-r-1144",
+    "requires": [
+      {
+        "parent_id": "ac_55",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_6",
@@ -216,7 +237,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "ac_2"
+      "ac_2",
+      "ac_56"
     ],
     "stats": [
       {
@@ -229,7 +251,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-317"
+    "icon": "a-r-317",
+    "requires": [
+      {
+        "parent_id": "ac_2",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_7",
@@ -262,7 +290,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-692"
+    "icon": "a-r-692",
+    "requires": [
+      {
+        "parent_id": "ac_3",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_8",
@@ -277,7 +311,9 @@
     "x": 62.460022,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_83"
+    ],
     "stats": [
       {
         "key": "Poison Chance",
@@ -289,7 +325,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1376"
+    "icon": "a-r-1376",
+    "requires": []
   },
   {
     "id": "ac_56",
@@ -305,8 +342,8 @@
     "y": 92.28,
     "max_points": 5,
     "connections": [
-      "ac_6",
-      "ac_4"
+      "ac_4",
+      "ac_6"
     ],
     "stats": [
       {
@@ -319,7 +356,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-682"
+    "icon": "a-r-682",
+    "requires": [
+      {
+        "parent_id": "ac_4",
+        "points": 1
+      },
+      {
+        "parent_id": "ac_6",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_82",
@@ -350,7 +397,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-532"
+    "icon": "a-r-532",
+    "requires": []
   },
   {
     "id": "ac_80",
@@ -375,7 +423,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-523"
+    "icon": "a-r-523",
+    "requires": [
+      {
+        "parent_id": "ac_55",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "ac_83",
@@ -404,7 +458,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-356"
+    "icon": "a-r-356",
+    "requires": [
+      {
+        "parent_id": "ac_8",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_84",
@@ -431,7 +491,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-10"
+    "icon": "a-r-10",
+    "requires": []
   },
   {
     "id": "ac_59",
@@ -470,7 +531,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-233"
+    "icon": "a-r-233",
+    "requires": []
   },
   {
     "id": "ac_11",
@@ -501,7 +563,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-227"
+    "icon": "a-r-227",
+    "requires": []
   },
   {
     "id": "ac_10",
@@ -532,7 +595,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-530"
+    "icon": "a-r-530",
+    "requires": []
   },
   {
     "id": "ac_21",
@@ -547,7 +611,9 @@
     "x": -416.22,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_16"
+    ],
     "stats": [
       {
         "key": "Increased Health Regen",
@@ -559,7 +625,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-523"
+    "icon": "a-r-523",
+    "requires": []
   },
   {
     "id": "ac_14",
@@ -574,7 +641,9 @@
     "x": -416.22,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "ac_75"
+    ],
     "stats": [
       {
         "key": "Shared Increased Physical Damage",
@@ -590,7 +659,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-253"
+    "icon": "a-r-253",
+    "requires": []
   },
   {
     "id": "ac_15",
@@ -605,7 +675,9 @@
     "x": -416.22,
     "y": 184.56,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_13"
+    ],
     "stats": [
       {
         "key": "Ward Retention",
@@ -617,7 +689,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-55"
+    "icon": "a-r-55",
+    "requires": []
   },
   {
     "id": "ac_16",
@@ -633,6 +706,7 @@
     "y": -92.28003,
     "max_points": 10,
     "connections": [
+      "ac_12",
       "ac_21"
     ],
     "stats": [
@@ -646,7 +720,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-231"
+    "icon": "a-r-231",
+    "requires": [
+      {
+        "parent_id": "ac_21",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_13",
@@ -671,7 +751,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-545"
+    "icon": "a-r-545",
+    "requires": [
+      {
+        "parent_id": "ac_15",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_17",
@@ -698,7 +784,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-537"
+    "icon": "a-r-537",
+    "requires": []
   },
   {
     "id": "ac_75",
@@ -731,7 +818,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-7"
+    "icon": "a-r-7",
+    "requires": [
+      {
+        "parent_id": "ac_14",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_19",
@@ -770,7 +863,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-237"
+    "icon": "a-r-237",
+    "requires": []
   },
   {
     "id": "ac_60",
@@ -797,7 +891,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-45"
+    "icon": "a-r-45",
+    "requires": []
   },
   {
     "id": "ac_12",
@@ -826,7 +921,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-209"
+    "icon": "a-r-209",
+    "requires": [
+      {
+        "parent_id": "ac_16",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_18",
@@ -849,7 +950,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-951"
+    "icon": "a-r-951",
+    "requires": []
   },
   {
     "id": "ac_20",
@@ -864,12 +966,7 @@
     "x": -64.859985,
     "y": 184.56,
     "max_points": 5,
-    "connections": [
-      "ac_0",
-      "ac_1693823432392704",
-      "ac_0",
-      "ac_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Minion Melee Physical Damage",
@@ -885,7 +982,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-536"
+    "icon": "a-r-536",
+    "requires": []
   },
   {
     "id": "ac_23",
@@ -900,7 +998,10 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_24",
+      "ac_61"
+    ],
     "stats": [
       {
         "key": "Increased Health",
@@ -912,7 +1013,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-734"
+    "icon": "a-r-734",
+    "requires": []
   },
   {
     "id": "ac_74",
@@ -939,7 +1041,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-534"
+    "icon": "a-r-534",
+    "requires": []
   },
   {
     "id": "ac_62",
@@ -954,7 +1057,10 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_26",
+      "ac_63"
+    ],
     "stats": [
       {
         "key": "Shared Increased Attack Speed",
@@ -966,7 +1072,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-673"
+    "icon": "a-r-673",
+    "requires": []
   },
   {
     "id": "ac_24",
@@ -999,7 +1106,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-317"
+    "icon": "a-r-317",
+    "requires": [
+      {
+        "parent_id": "ac_23",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_76",
@@ -1014,7 +1127,9 @@
     "x": 169.38,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "ac_25"
+    ],
     "stats": [
       {
         "key": "Minion Fire Damage",
@@ -1034,7 +1149,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-337"
+    "icon": "a-r-337",
+    "requires": []
   },
   {
     "id": "ac_63",
@@ -1050,6 +1166,7 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
+      "ac_27",
       "ac_62"
     ],
     "stats": [
@@ -1063,7 +1180,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1161"
+    "icon": "a-r-1161",
+    "requires": [
+      {
+        "parent_id": "ac_62",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_61",
@@ -1096,7 +1219,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-951"
+    "icon": "a-r-951",
+    "requires": [
+      {
+        "parent_id": "ac_23",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_26",
@@ -1125,7 +1254,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1139"
+    "icon": "a-r-1139",
+    "requires": [
+      {
+        "parent_id": "ac_62",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_64",
@@ -1152,7 +1287,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-250"
+    "icon": "a-r-250",
+    "requires": []
   },
   {
     "id": "ac_25",
@@ -1193,7 +1329,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-348"
+    "icon": "a-r-348",
+    "requires": [
+      {
+        "parent_id": "ac_76",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_27",
@@ -1226,7 +1368,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-288"
+    "icon": "a-r-288",
+    "requires": [
+      {
+        "parent_id": "ac_63",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_65",
@@ -1257,7 +1405,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-217"
+    "icon": "a-r-217",
+    "requires": []
   },
   {
     "id": "ac_77",
@@ -1288,7 +1437,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-889"
+    "icon": "a-r-889",
+    "requires": []
   },
   {
     "id": "ac_28",
@@ -1323,7 +1473,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-772"
+    "icon": "a-r-772",
+    "requires": []
   },
   {
     "id": "ac_29",
@@ -1350,7 +1501,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-229"
+    "icon": "a-r-229",
+    "requires": []
   },
   {
     "id": "ac_30",
@@ -1365,7 +1517,9 @@
     "x": -533.34,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_22"
+    ],
     "stats": [
       {
         "key": "Health",
@@ -1377,7 +1531,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-317"
+    "icon": "a-r-317",
+    "requires": []
   },
   {
     "id": "ac_58",
@@ -1408,7 +1563,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-497"
+    "icon": "a-r-497",
+    "requires": []
   },
   {
     "id": "ac_31",
@@ -1423,7 +1579,9 @@
     "x": -416.22,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_35"
+    ],
     "stats": [
       {
         "key": "Increased Melee Damage",
@@ -1435,7 +1593,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-536"
+    "icon": "a-r-536",
+    "requires": []
   },
   {
     "id": "ac_32",
@@ -1462,7 +1621,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1165"
+    "icon": "a-r-1165",
+    "requires": []
   },
   {
     "id": "ac_66",
@@ -1489,7 +1649,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-416"
+    "icon": "a-r-416",
+    "requires": []
   },
   {
     "id": "ac_33",
@@ -1504,7 +1665,10 @@
     "x": -416.22,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_36",
+      "ac_37"
+    ],
     "stats": [
       {
         "key": "Vitality",
@@ -1516,7 +1680,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-949"
+    "icon": "a-r-949",
+    "requires": []
   },
   {
     "id": "ac_34",
@@ -1547,7 +1712,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-905"
+    "icon": "a-r-905",
+    "requires": []
   },
   {
     "id": "ac_22",
@@ -1563,7 +1729,8 @@
     "y": -3.0517578e-05,
     "max_points": 1,
     "connections": [
-      "ac_30"
+      "ac_30",
+      "ac_114"
     ],
     "stats": [
       {
@@ -1572,7 +1739,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-48"
+    "icon": "a-r-48",
+    "requires": [
+      {
+        "parent_id": "ac_30",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "ac_36",
@@ -1597,7 +1770,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-348"
+    "icon": "a-r-348",
+    "requires": [
+      {
+        "parent_id": "ac_33",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_35",
@@ -1630,7 +1809,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-253"
+    "icon": "a-r-253",
+    "requires": [
+      {
+        "parent_id": "ac_31",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_72",
@@ -1657,7 +1842,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-910"
+    "icon": "a-r-910",
+    "requires": []
   },
   {
     "id": "ac_39",
@@ -1688,7 +1874,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-688"
+    "icon": "a-r-688",
+    "requires": []
   },
   {
     "id": "ac_37",
@@ -1721,7 +1908,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-692"
+    "icon": "a-r-692",
+    "requires": [
+      {
+        "parent_id": "ac_33",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_38",
@@ -1752,7 +1945,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-666"
+    "icon": "a-r-666",
+    "requires": []
   },
   {
     "id": "ac_57",
@@ -1779,7 +1973,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-337"
+    "icon": "a-r-337",
+    "requires": []
   },
   {
     "id": "ac_40",
@@ -1806,7 +2001,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1161"
+    "icon": "a-r-1161",
+    "requires": []
   },
   {
     "id": "ac_68",
@@ -1821,7 +2017,9 @@
     "x": 52.26001,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_73"
+    ],
     "stats": [
       {
         "key": "Increased Critical Strike Chance",
@@ -1837,7 +2035,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-219"
+    "icon": "a-r-219",
+    "requires": []
   },
   {
     "id": "ac_43",
@@ -1868,7 +2067,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1389"
+    "icon": "a-r-1389",
+    "requires": []
   },
   {
     "id": "ac_67",
@@ -1883,7 +2083,9 @@
     "x": 52.26001,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_69"
+    ],
     "stats": [
       {
         "key": "Physical Penetration",
@@ -1899,7 +2101,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1170"
+    "icon": "a-r-1170",
+    "requires": []
   },
   {
     "id": "ac_70",
@@ -1930,7 +2133,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1237"
+    "icon": "a-r-1237",
+    "requires": []
   },
   {
     "id": "ac_42",
@@ -1957,7 +2161,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-55"
+    "icon": "a-r-55",
+    "requires": []
   },
   {
     "id": "ac_69",
@@ -1986,7 +2191,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-545"
+    "icon": "a-r-545",
+    "requires": [
+      {
+        "parent_id": "ac_67",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_73",
@@ -2015,7 +2226,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-673"
+    "icon": "a-r-673",
+    "requires": [
+      {
+        "parent_id": "ac_68",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "ac_45",
@@ -2046,7 +2263,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1390"
+    "icon": "a-r-1390",
+    "requires": []
   },
   {
     "id": "ac_44",
@@ -2075,7 +2293,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-596"
+    "icon": "a-r-596",
+    "requires": [
+      {
+        "parent_id": "ac_115",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_47",
@@ -2102,7 +2326,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-318"
+    "icon": "a-r-318",
+    "requires": []
   },
   {
     "id": "ac_71",
@@ -2137,7 +2362,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-224"
+    "icon": "a-r-224",
+    "requires": []
   },
   {
     "id": "ac_46",
@@ -2168,7 +2394,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-533"
+    "icon": "a-r-533",
+    "requires": []
   },
   {
     "id": "ac_49",
@@ -2199,7 +2426,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-685"
+    "icon": "a-r-685",
+    "requires": []
   },
   {
     "id": "ac_48",
@@ -2230,7 +2458,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-596"
+    "icon": "a-r-596",
+    "requires": []
   },
   {
     "id": "ac_78",
@@ -2265,7 +2494,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1391"
+    "icon": "a-r-1391",
+    "requires": []
   },
   {
     "id": "ac_50",
@@ -2296,7 +2526,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1161"
+    "icon": "a-r-1161",
+    "requires": []
   },
   {
     "id": "ac_52",
@@ -2335,7 +2566,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-99"
+    "icon": "a-r-99",
+    "requires": []
   },
   {
     "id": "ac_53",
@@ -2350,7 +2582,9 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_86"
+    ],
     "stats": [
       {
         "key": "Increased Damage Over Time",
@@ -2366,7 +2600,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-532"
+    "icon": "a-r-532",
+    "requires": []
   },
   {
     "id": "ac_54",
@@ -2381,7 +2616,9 @@
     "x": -299.09998,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_87"
+    ],
     "stats": [
       {
         "key": "Armor",
@@ -2397,7 +2634,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-810"
+    "icon": "a-r-810",
+    "requires": []
   },
   {
     "id": "ac_79",
@@ -2424,7 +2662,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-694"
+    "icon": "a-r-694",
+    "requires": []
   },
   {
     "id": "ac_87",
@@ -2453,7 +2692,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-416"
+    "icon": "a-r-416",
+    "requires": [
+      {
+        "parent_id": "ac_54",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_89",
@@ -2468,7 +2713,10 @@
     "x": -299.09998,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_91",
+      "ac_92"
+    ],
     "stats": [
       {
         "key": "Ward Decay Threshold",
@@ -2484,7 +2732,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-685"
+    "icon": "a-r-685",
+    "requires": []
   },
   {
     "id": "ac_90",
@@ -2500,7 +2749,7 @@
     "y": 184.56,
     "max_points": 6,
     "connections": [
-      "ac_510063"
+      "ac_86"
     ],
     "stats": [
       {
@@ -2517,7 +2766,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-225"
+    "icon": "a-r-225",
+    "requires": [
+      {
+        "parent_id": "ac_86",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_91",
@@ -2546,7 +2801,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-45"
+    "icon": "a-r-45",
+    "requires": [
+      {
+        "parent_id": "ac_89",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "ac_92",
@@ -2575,7 +2836,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-337"
+    "icon": "a-r-337",
+    "requires": [
+      {
+        "parent_id": "ac_89",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_93",
@@ -2602,7 +2869,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-513"
+    "icon": "a-r-513",
+    "requires": []
   },
   {
     "id": "ac_94",
@@ -2618,7 +2886,7 @@
     "y": 92.28,
     "max_points": 6,
     "connections": [
-      "ac_461804"
+      "ac_88"
     ],
     "stats": [
       {
@@ -2639,7 +2907,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1397"
+    "icon": "a-r-1397",
+    "requires": [
+      {
+        "parent_id": "ac_88",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_96",
@@ -2666,7 +2940,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-596"
+    "icon": "a-r-596",
+    "requires": []
   },
   {
     "id": "ac_99",
@@ -2693,7 +2968,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-949"
+    "icon": "a-r-949",
+    "requires": []
   },
   {
     "id": "ac_100",
@@ -2708,7 +2984,9 @@
     "x": 169.38,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_105"
+    ],
     "stats": [
       {
         "key": "Enemies Anguished on Curse Cast",
@@ -2716,7 +2994,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-698"
+    "icon": "a-r-698",
+    "requires": []
   },
   {
     "id": "ac_102",
@@ -2731,7 +3010,9 @@
     "x": 169.38,
     "y": 184.56,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_108"
+    ],
     "stats": [
       {
         "key": "Double Damage Chance",
@@ -2743,7 +3024,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-111"
+    "icon": "a-r-111",
+    "requires": []
   },
   {
     "id": "ac_104",
@@ -2776,7 +3058,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-112"
+    "icon": "a-r-112",
+    "requires": [
+      {
+        "parent_id": "ac_98",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_105",
@@ -2805,7 +3093,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-678"
+    "icon": "a-r-678",
+    "requires": [
+      {
+        "parent_id": "ac_100",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "ac_106",
@@ -2836,7 +3130,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-813"
+    "icon": "a-r-813",
+    "requires": []
   },
   {
     "id": "ac_107",
@@ -2863,7 +3158,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-99"
+    "icon": "a-r-99",
+    "requires": []
   },
   {
     "id": "ac_108",
@@ -2892,7 +3188,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-695"
+    "icon": "a-r-695",
+    "requires": [
+      {
+        "parent_id": "ac_102",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "ac_109",
@@ -2927,7 +3229,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-693"
+    "icon": "a-r-693",
+    "requires": []
   },
   {
     "id": "ac_110",
@@ -2943,7 +3246,7 @@
     "y": -3.0517578e-05,
     "max_points": 5,
     "connections": [
-      "ac_507262"
+      "ac_101"
     ],
     "stats": [
       {
@@ -2964,7 +3267,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-102"
+    "icon": "a-r-102",
+    "requires": [
+      {
+        "parent_id": "ac_101",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_111",
@@ -2999,7 +3308,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1232"
+    "icon": "a-r-1232",
+    "requires": []
   },
   {
     "id": "ac_112",
@@ -3026,7 +3336,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-310"
+    "icon": "a-r-310",
+    "requires": []
   },
   {
     "id": "ac_114",
@@ -3051,7 +3362,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-317"
+    "icon": "a-r-317",
+    "requires": [
+      {
+        "parent_id": "ac_22",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_115",
@@ -3066,7 +3383,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "ac_44"
+    ],
     "stats": [
       {
         "key": "More Health",
@@ -3086,7 +3405,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-700"
+    "icon": "a-r-700",
+    "requires": []
   },
   {
     "id": "mg_0",
@@ -3117,7 +3437,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-330"
+    "icon": "a-r-330",
+    "requires": []
   },
   {
     "id": "mg_2",
@@ -3132,7 +3453,10 @@
     "x": -533.74,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_6",
+      "mg_7"
+    ],
     "stats": [
       {
         "key": "Increased Fire Damage",
@@ -3148,7 +3472,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-152"
+    "icon": "a-r-152",
+    "requires": []
   },
   {
     "id": "mg_1",
@@ -3175,7 +3500,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-425"
+    "icon": "a-r-425",
+    "requires": []
   },
   {
     "id": "mg_4",
@@ -3202,7 +3528,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-838"
+    "icon": "a-r-838",
+    "requires": []
   },
   {
     "id": "mg_3",
@@ -3217,7 +3544,9 @@
     "x": -335.14,
     "y": 184.56,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "mg_8"
+    ],
     "stats": [
       {
         "key": "Ward Gained per 10 Health",
@@ -3225,7 +3554,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-570"
+    "icon": "a-r-570",
+    "requires": []
   },
   {
     "id": "mg_7",
@@ -3254,7 +3584,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-92"
+    "icon": "a-r-92",
+    "requires": [
+      {
+        "parent_id": "mg_2",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_5",
@@ -3289,7 +3625,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-21"
+    "icon": "a-r-21",
+    "requires": []
   },
   {
     "id": "mg_6",
@@ -3318,7 +3655,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-42"
+    "icon": "a-r-42",
+    "requires": [
+      {
+        "parent_id": "mg_2",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_24",
@@ -3333,7 +3676,9 @@
     "x": 62.059998,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_58"
+    ],
     "stats": [
       {
         "key": "Freeze Rate Multiplier",
@@ -3349,7 +3694,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-432"
+    "icon": "a-r-432",
+    "requires": []
   },
   {
     "id": "mg_9",
@@ -3376,7 +3722,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-474"
+    "icon": "a-r-474",
+    "requires": []
   },
   {
     "id": "mg_8",
@@ -3392,7 +3739,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "mg_3"
+      "mg_3",
+      "mg_78"
     ],
     "stats": [
       {
@@ -3401,7 +3749,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-381"
+    "icon": "a-r-381",
+    "requires": [
+      {
+        "parent_id": "mg_3",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_59",
@@ -3416,7 +3770,9 @@
     "x": 260.66003,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_58"
+    ],
     "stats": [
       {
         "key": "Increased Cold Damage",
@@ -3436,7 +3792,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-433"
+    "icon": "a-r-433",
+    "requires": []
   },
   {
     "id": "mg_45",
@@ -3451,7 +3808,9 @@
     "x": 260.66003,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_78"
+    ],
     "stats": [
       {
         "key": "Increased Fire Damage",
@@ -3471,7 +3830,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-737"
+    "icon": "a-r-737",
+    "requires": []
   },
   {
     "id": "mg_58",
@@ -3487,8 +3847,8 @@
     "y": -184.56003,
     "max_points": 3,
     "connections": [
-      "mg_59",
-      "mg_24"
+      "mg_24",
+      "mg_59"
     ],
     "stats": [
       {
@@ -3497,7 +3857,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-563"
+    "icon": "a-r-563",
+    "requires": [
+      {
+        "parent_id": "mg_24",
+        "points": 3
+      },
+      {
+        "parent_id": "mg_59",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_78",
@@ -3513,8 +3883,8 @@
     "y": 184.56,
     "max_points": 3,
     "connections": [
-      "mg_45",
-      "mg_8"
+      "mg_8",
+      "mg_45"
     ],
     "stats": [
       {
@@ -3527,7 +3897,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-270"
+    "icon": "a-r-270",
+    "requires": [
+      {
+        "parent_id": "mg_8",
+        "points": 3
+      },
+      {
+        "parent_id": "mg_45",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_12",
@@ -3542,7 +3922,9 @@
     "x": -533.74,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_14"
+    ],
     "stats": [
       {
         "key": "Mana",
@@ -3558,7 +3940,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-500"
+    "icon": "a-r-500",
+    "requires": []
   },
   {
     "id": "mg_11",
@@ -3591,7 +3974,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-65"
+    "icon": "a-r-65",
+    "requires": [
+      {
+        "parent_id": "mg_13",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "mg_20",
@@ -3618,7 +4007,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-33"
+    "icon": "a-r-33",
+    "requires": []
   },
   {
     "id": "mg_14",
@@ -3651,7 +4041,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1141"
+    "icon": "a-r-1141",
+    "requires": [
+      {
+        "parent_id": "mg_12",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "mg_13",
@@ -3666,7 +4062,9 @@
     "x": -533.74,
     "y": 184.56,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_11"
+    ],
     "stats": [
       {
         "key": "Increased Cast Speed per Stack",
@@ -3678,7 +4076,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-301"
+    "icon": "a-r-301",
+    "requires": []
   },
   {
     "id": "mg_15",
@@ -3701,7 +4100,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-474"
+    "icon": "a-r-474",
+    "requires": []
   },
   {
     "id": "mg_17",
@@ -3716,7 +4116,9 @@
     "x": -299.5,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_61"
+    ],
     "stats": [
       {
         "key": "Increased Lightning Damage",
@@ -3728,7 +4130,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-153"
+    "icon": "a-r-153",
+    "requires": []
   },
   {
     "id": "mg_16",
@@ -3743,7 +4146,9 @@
     "x": -299.5,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_62"
+    ],
     "stats": [
       {
         "key": "Increased Cold Damage",
@@ -3755,7 +4160,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-902"
+    "icon": "a-r-902",
+    "requires": []
   },
   {
     "id": "mg_18",
@@ -3770,7 +4176,9 @@
     "x": -299.5,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_63"
+    ],
     "stats": [
       {
         "key": "Increased Fire Damage",
@@ -3782,7 +4190,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-135"
+    "icon": "a-r-135",
+    "requires": []
   },
   {
     "id": "mg_66",
@@ -3809,7 +4218,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-3"
+    "icon": "a-r-3",
+    "requires": []
   },
   {
     "id": "mg_60",
@@ -3840,7 +4250,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-506"
+    "icon": "a-r-506",
+    "requires": []
   },
   {
     "id": "mg_61",
@@ -3869,7 +4280,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-313"
+    "icon": "a-r-313",
+    "requires": [
+      {
+        "parent_id": "mg_17",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_62",
@@ -3898,7 +4315,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-262"
+    "icon": "a-r-262",
+    "requires": [
+      {
+        "parent_id": "mg_16",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_63",
@@ -3927,7 +4350,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1336"
+    "icon": "a-r-1336",
+    "requires": [
+      {
+        "parent_id": "mg_18",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_22",
@@ -3942,7 +4371,10 @@
     "x": 51.860046,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_26",
+      "mg_64"
+    ],
     "stats": [
       {
         "key": "Increased Critical Strike Chance",
@@ -3950,7 +4382,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-258"
+    "icon": "a-r-258",
+    "requires": []
   },
   {
     "id": "mg_21",
@@ -3981,7 +4414,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-160"
+    "icon": "a-r-160",
+    "requires": []
   },
   {
     "id": "mg_23",
@@ -4012,7 +4446,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1080"
+    "icon": "a-r-1080",
+    "requires": []
   },
   {
     "id": "mg_26",
@@ -4037,7 +4472,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-141"
+    "icon": "a-r-141",
+    "requires": [
+      {
+        "parent_id": "mg_22",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_28",
@@ -4068,7 +4509,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-503"
+    "icon": "a-r-503",
+    "requires": []
   },
   {
     "id": "mg_25",
@@ -4103,7 +4545,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-8"
+    "icon": "a-r-8",
+    "requires": []
   },
   {
     "id": "mg_69",
@@ -4118,7 +4561,9 @@
     "x": 168.98004,
     "y": 184.56,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "mg_76"
+    ],
     "stats": [
       {
         "key": "Intelligence",
@@ -4130,7 +4575,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-441"
+    "icon": "a-r-441",
+    "requires": []
   },
   {
     "id": "mg_64",
@@ -4155,7 +4601,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-315"
+    "icon": "a-r-315",
+    "requires": [
+      {
+        "parent_id": "mg_22",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "mg_67",
@@ -4186,7 +4638,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1301"
+    "icon": "a-r-1301",
+    "requires": []
   },
   {
     "id": "mg_10",
@@ -4213,7 +4666,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-966"
+    "icon": "a-r-966",
+    "requires": []
   },
   {
     "id": "mg_29",
@@ -4240,7 +4694,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-42"
+    "icon": "a-r-42",
+    "requires": []
   },
   {
     "id": "mg_31",
@@ -4267,7 +4722,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-858"
+    "icon": "a-r-858",
+    "requires": []
   },
   {
     "id": "mg_27",
@@ -4294,7 +4750,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-946"
+    "icon": "a-r-946",
+    "requires": []
   },
   {
     "id": "mg_76",
@@ -4323,7 +4780,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1203"
+    "icon": "a-r-1203",
+    "requires": [
+      {
+        "parent_id": "mg_69",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "mg_30",
@@ -4358,7 +4821,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-734"
+    "icon": "a-r-734",
+    "requires": []
   },
   {
     "id": "mg_68",
@@ -4385,7 +4849,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-461"
+    "icon": "a-r-461",
+    "requires": []
   },
   {
     "id": "mg_65",
@@ -4408,7 +4873,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-895"
+    "icon": "a-r-895",
+    "requires": []
   },
   {
     "id": "mg_32",
@@ -4439,7 +4905,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-82"
+    "icon": "a-r-82",
+    "requires": []
   },
   {
     "id": "mg_35",
@@ -4454,7 +4921,9 @@
     "x": -533.34,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_36"
+    ],
     "stats": [
       {
         "key": "Melee Damage",
@@ -4466,7 +4935,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1270"
+    "icon": "a-r-1270",
+    "requires": []
   },
   {
     "id": "mg_33",
@@ -4481,7 +4951,9 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "mg_38"
+    ],
     "stats": [
       {
         "key": "Increased Elemental Damage",
@@ -4493,7 +4965,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-442"
+    "icon": "a-r-442",
+    "requires": []
   },
   {
     "id": "mg_34",
@@ -4524,7 +4997,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-722"
+    "icon": "a-r-722",
+    "requires": []
   },
   {
     "id": "mg_38",
@@ -4540,7 +5014,9 @@
     "y": 92.28,
     "max_points": 8,
     "connections": [
-      "mg_33"
+      "mg_33",
+      "mg_42",
+      "mg_70"
     ],
     "stats": [
       {
@@ -4553,7 +5029,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-274"
+    "icon": "a-r-274",
+    "requires": [
+      {
+        "parent_id": "mg_33",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_39",
@@ -4568,12 +5050,7 @@
     "x": -299.09998,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [
-      "mg_0",
-      "mg_1816457633595392",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Frost Claw Chance On Hit",
@@ -4585,7 +5062,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-453"
+    "icon": "a-r-453",
+    "requires": []
   },
   {
     "id": "mg_37",
@@ -4600,7 +5078,9 @@
     "x": -299.09998,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_43"
+    ],
     "stats": [
       {
         "key": "Increased Armor",
@@ -4624,7 +5104,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-36"
+    "icon": "a-r-36",
+    "requires": []
   },
   {
     "id": "mg_36",
@@ -4657,7 +5138,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1178"
+    "icon": "a-r-1178",
+    "requires": [
+      {
+        "parent_id": "mg_35",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_42",
@@ -4673,7 +5160,8 @@
     "y": 184.56,
     "max_points": 8,
     "connections": [
-      "mg_38"
+      "mg_38",
+      "mg_44"
     ],
     "stats": [
       {
@@ -4690,7 +5178,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-335"
+    "icon": "a-r-335",
+    "requires": [
+      {
+        "parent_id": "mg_38",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_40",
@@ -4717,7 +5211,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-515"
+    "icon": "a-r-515",
+    "requires": []
   },
   {
     "id": "mg_70",
@@ -4754,7 +5249,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-450"
+    "icon": "a-r-450",
+    "requires": [
+      {
+        "parent_id": "mg_38",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_71",
@@ -4781,7 +5282,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-370"
+    "icon": "a-r-370",
+    "requires": []
   },
   {
     "id": "mg_43",
@@ -4810,7 +5312,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-244"
+    "icon": "a-r-244",
+    "requires": [
+      {
+        "parent_id": "mg_37",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_72",
@@ -4837,7 +5345,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1342"
+    "icon": "a-r-1342",
+    "requires": []
   },
   {
     "id": "mg_77",
@@ -4864,7 +5373,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-426"
+    "icon": "a-r-426",
+    "requires": []
   },
   {
     "id": "mg_44",
@@ -4897,7 +5407,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1223"
+    "icon": "a-r-1223",
+    "requires": [
+      {
+        "parent_id": "mg_42",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_75",
@@ -4912,7 +5428,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "mg_48"
+    ],
     "stats": [
       {
         "key": "Dexterity",
@@ -4928,7 +5446,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-364"
+    "icon": "a-r-364",
+    "requires": []
   },
   {
     "id": "mg_84",
@@ -4959,7 +5478,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-863"
+    "icon": "a-r-863",
+    "requires": []
   },
   {
     "id": "mg_41",
@@ -4974,7 +5494,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_47"
+    ],
     "stats": [
       {
         "key": "Health",
@@ -4990,7 +5512,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-498"
+    "icon": "a-r-498",
+    "requires": []
   },
   {
     "id": "mg_48",
@@ -5023,7 +5546,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-47"
+    "icon": "a-r-47",
+    "requires": [
+      {
+        "parent_id": "mg_75",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_80",
@@ -5050,7 +5579,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-85"
+    "icon": "a-r-85",
+    "requires": []
   },
   {
     "id": "mg_73",
@@ -5077,7 +5607,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-592"
+    "icon": "a-r-592",
+    "requires": []
   },
   {
     "id": "mg_81",
@@ -5108,7 +5639,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-970"
+    "icon": "a-r-970",
+    "requires": []
   },
   {
     "id": "mg_47",
@@ -5124,7 +5656,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "mg_41"
+      "mg_41",
+      "mg_74"
     ],
     "stats": [
       {
@@ -5141,7 +5674,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-980"
+    "icon": "a-r-980",
+    "requires": [
+      {
+        "parent_id": "mg_41",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_49",
@@ -5156,7 +5695,9 @@
     "x": 286.50006,
     "y": -92.28003,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "mg_51"
+    ],
     "stats": [
       {
         "key": "Intelligence",
@@ -5168,7 +5709,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-495"
+    "icon": "a-r-495",
+    "requires": []
   },
   {
     "id": "mg_46",
@@ -5199,7 +5741,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-789"
+    "icon": "a-r-789",
+    "requires": []
   },
   {
     "id": "mg_82",
@@ -5230,7 +5773,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-570"
+    "icon": "a-r-570",
+    "requires": []
   },
   {
     "id": "mg_74",
@@ -5246,7 +5790,8 @@
     "y": 184.56,
     "max_points": 6,
     "connections": [
-      "mg_47"
+      "mg_47",
+      "mg_50"
     ],
     "stats": [
       {
@@ -5259,7 +5804,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-88"
+    "icon": "a-r-88",
+    "requires": [
+      {
+        "parent_id": "mg_47",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_50",
@@ -5284,7 +5835,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-21"
+    "icon": "a-r-21",
+    "requires": [
+      {
+        "parent_id": "mg_74",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_51",
@@ -5313,7 +5870,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-497"
+    "icon": "a-r-497",
+    "requires": [
+      {
+        "parent_id": "mg_49",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "mg_52",
@@ -5346,7 +5909,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1150"
+    "icon": "a-r-1150",
+    "requires": [
+      {
+        "parent_id": "mg_114",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_54",
@@ -5373,7 +5942,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1161"
+    "icon": "a-r-1161",
+    "requires": []
   },
   {
     "id": "mg_55",
@@ -5388,7 +5958,9 @@
     "x": -533.34,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_88"
+    ],
     "stats": [
       {
         "key": "Health",
@@ -5400,7 +5972,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-570"
+    "icon": "a-r-570",
+    "requires": []
   },
   {
     "id": "mg_56",
@@ -5415,7 +5988,9 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "mg_86"
+    ],
     "stats": [
       {
         "key": "Mana",
@@ -5435,7 +6010,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-497"
+    "icon": "a-r-497",
+    "requires": []
   },
   {
     "id": "mg_57",
@@ -5466,7 +6042,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-503"
+    "icon": "a-r-503",
+    "requires": []
   },
   {
     "id": "mg_86",
@@ -5482,7 +6059,9 @@
     "y": 92.28,
     "max_points": 8,
     "connections": [
-      "mg_56"
+      "mg_56",
+      "mg_89",
+      "mg_91"
     ],
     "stats": [
       {
@@ -5495,7 +6074,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-495"
+    "icon": "a-r-495",
+    "requires": [
+      {
+        "parent_id": "mg_56",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_87",
@@ -5510,7 +6095,10 @@
     "x": -299.09998,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "mg_90",
+      "mg_105"
+    ],
     "stats": [
       {
         "key": "Spell Damage on Next Spell",
@@ -5526,7 +6114,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-705"
+    "icon": "a-r-705",
+    "requires": []
   },
   {
     "id": "mg_88",
@@ -5542,7 +6131,8 @@
     "y": -3.0517578e-05,
     "max_points": 10,
     "connections": [
-      "mg_55"
+      "mg_55",
+      "mg_107"
     ],
     "stats": [
       {
@@ -5559,7 +6149,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-142"
+    "icon": "a-r-142",
+    "requires": [
+      {
+        "parent_id": "mg_55",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "mg_89",
@@ -5588,7 +6184,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-972"
+    "icon": "a-r-972",
+    "requires": [
+      {
+        "parent_id": "mg_86",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_90",
@@ -5617,7 +6219,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1214"
+    "icon": "a-r-1214",
+    "requires": [
+      {
+        "parent_id": "mg_87",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "mg_91",
@@ -5650,7 +6258,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-974"
+    "icon": "a-r-974",
+    "requires": [
+      {
+        "parent_id": "mg_86",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_92",
@@ -5681,7 +6295,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1254"
+    "icon": "a-r-1254",
+    "requires": []
   },
   {
     "id": "mg_93",
@@ -5696,12 +6311,7 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [
-      "mg_0",
-      "mg_1657290440572928",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "More Damage to Bosses and Rares",
@@ -5713,7 +6323,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-707"
+    "icon": "a-r-707",
+    "requires": []
   },
   {
     "id": "mg_94",
@@ -5728,12 +6339,7 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 8,
-    "connections": [
-      "mg_0",
-      "mg_1687316556939264",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Ward Per 2 Seconds",
@@ -5745,7 +6351,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-708"
+    "icon": "a-r-708",
+    "requires": []
   },
   {
     "id": "mg_95",
@@ -5760,7 +6367,9 @@
     "x": 169.38,
     "y": -184.56003,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "mg_99"
+    ],
     "stats": [
       {
         "key": "Elemental Penetration with Damage Over Time",
@@ -5772,7 +6381,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-981"
+    "icon": "a-r-981",
+    "requires": []
   },
   {
     "id": "mg_96",
@@ -5803,7 +6413,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-984"
+    "icon": "a-r-984",
+    "requires": []
   },
   {
     "id": "mg_97",
@@ -5818,7 +6429,10 @@
     "x": 169.38,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "mg_109",
+      "mg_111"
+    ],
     "stats": [
       {
         "key": "Intelligence",
@@ -5830,7 +6444,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1225"
+    "icon": "a-r-1225",
+    "requires": []
   },
   {
     "id": "mg_98",
@@ -5845,12 +6460,7 @@
     "x": 169.38,
     "y": 184.56,
     "max_points": 6,
-    "connections": [
-      "mg_0",
-      "mg_1839487248236544",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Armor while Channeling per Rune",
@@ -5862,7 +6472,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1101"
+    "icon": "a-r-1101",
+    "requires": []
   },
   {
     "id": "mg_99",
@@ -5891,7 +6502,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-786"
+    "icon": "a-r-786",
+    "requires": [
+      {
+        "parent_id": "mg_95",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "mg_100",
@@ -5906,7 +6523,9 @@
     "x": 403.62,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_102"
+    ],
     "stats": [
       {
         "key": "Runeword: Avalanche chance on Cold Skill use",
@@ -5922,7 +6541,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-96"
+    "icon": "a-r-96",
+    "requires": []
   },
   {
     "id": "mg_101",
@@ -5953,7 +6573,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-774"
+    "icon": "a-r-774",
+    "requires": []
   },
   {
     "id": "mg_102",
@@ -5969,9 +6590,9 @@
     "y": -3.0517578e-05,
     "max_points": 5,
     "connections": [
-      "mg_112",
+      "mg_100",
       "mg_110",
-      "mg_100"
+      "mg_112"
     ],
     "stats": [
       {
@@ -5984,7 +6605,21 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-706"
+    "icon": "a-r-706",
+    "requires": [
+      {
+        "parent_id": "mg_100",
+        "points": 1
+      },
+      {
+        "parent_id": "mg_110",
+        "points": 1
+      },
+      {
+        "parent_id": "mg_112",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_104",
@@ -6015,7 +6650,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-94"
+    "icon": "a-r-94",
+    "requires": []
   },
   {
     "id": "mg_105",
@@ -6048,7 +6684,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-784"
+    "icon": "a-r-784",
+    "requires": [
+      {
+        "parent_id": "mg_87",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_106",
@@ -6063,12 +6705,7 @@
     "x": -181.98001,
     "y": 184.56,
     "max_points": 6,
-    "connections": [
-      "mg_0",
-      "mg_1902258195267584",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Increased Area for Area Skills",
@@ -6080,7 +6717,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-911"
+    "icon": "a-r-911",
+    "requires": []
   },
   {
     "id": "mg_107",
@@ -6109,7 +6747,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-594"
+    "icon": "a-r-594",
+    "requires": [
+      {
+        "parent_id": "mg_88",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "mg_108",
@@ -6124,12 +6768,7 @@
     "x": 52.26001,
     "y": -3.0517578e-05,
     "max_points": 6,
-    "connections": [
-      "mg_0",
-      "mg_1843902474616832",
-      "mg_0",
-      "mg_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Increased Mana Regen",
@@ -6141,7 +6780,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-710"
+    "icon": "a-r-710",
+    "requires": []
   },
   {
     "id": "mg_109",
@@ -6174,7 +6814,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-581"
+    "icon": "a-r-581",
+    "requires": [
+      {
+        "parent_id": "mg_97",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_110",
@@ -6189,7 +6835,9 @@
     "x": 403.62,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_102"
+    ],
     "stats": [
       {
         "key": "Runeword: Inferno chance on Fire Skill use",
@@ -6205,7 +6853,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-97"
+    "icon": "a-r-97",
+    "requires": []
   },
   {
     "id": "mg_111",
@@ -6238,7 +6887,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-795"
+    "icon": "a-r-795",
+    "requires": [
+      {
+        "parent_id": "mg_97",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "mg_112",
@@ -6253,7 +6908,9 @@
     "x": 286.50006,
     "y": -3.0517578e-05,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_102"
+    ],
     "stats": [
       {
         "key": "Runeword: Hurricane chance on Lightning Skill use",
@@ -6269,7 +6926,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-95"
+    "icon": "a-r-95",
+    "requires": []
   },
   {
     "id": "mg_114",
@@ -6284,7 +6942,9 @@
     "x": 286.50006,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "mg_52"
+    ],
     "stats": [
       {
         "key": "Spell Damage",
@@ -6296,7 +6956,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1151"
+    "icon": "a-r-1151",
+    "requires": []
   },
   {
     "id": "pr_0",
@@ -6311,7 +6972,9 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_5"
+    ],
     "stats": [
       {
         "key": "Strength",
@@ -6323,7 +6986,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-292"
+    "icon": "a-r-292",
+    "requires": []
   },
   {
     "id": "pr_1",
@@ -6338,7 +7002,9 @@
     "x": -533.34,
     "y": 92.28,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_6"
+    ],
     "stats": [
       {
         "key": "Attunement",
@@ -6354,7 +7020,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-190"
+    "icon": "a-r-190",
+    "requires": []
   },
   {
     "id": "pr_2",
@@ -6381,7 +7048,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-839"
+    "icon": "a-r-839",
+    "requires": []
   },
   {
     "id": "pr_3",
@@ -6396,7 +7064,9 @@
     "x": -334.74,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_8"
+    ],
     "stats": [
       {
         "key": "Increased Health",
@@ -6408,7 +7078,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-185"
+    "icon": "a-r-185",
+    "requires": []
   },
   {
     "id": "pr_10",
@@ -6443,7 +7114,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-499"
+    "icon": "a-r-499",
+    "requires": []
   },
   {
     "id": "pr_4",
@@ -6458,7 +7130,9 @@
     "x": -334.74,
     "y": 184.56,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "pr_9"
+    ],
     "stats": [
       {
         "key": "Increased Minion Damage",
@@ -6470,7 +7144,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-199"
+    "icon": "a-r-199",
+    "requires": []
   },
   {
     "id": "pr_5",
@@ -6486,7 +7161,8 @@
     "y": -184.56003,
     "max_points": 6,
     "connections": [
-      "pr_0"
+      "pr_0",
+      "pr_116"
     ],
     "stats": [
       {
@@ -6507,7 +7183,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-239"
+    "icon": "a-r-239",
+    "requires": [
+      {
+        "parent_id": "pr_0",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_6",
@@ -6523,7 +7205,8 @@
     "y": 92.28,
     "max_points": 6,
     "connections": [
-      "pr_1"
+      "pr_1",
+      "pr_115"
     ],
     "stats": [
       {
@@ -6536,7 +7219,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1115"
+    "icon": "a-r-1115",
+    "requires": [
+      {
+        "parent_id": "pr_1",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_8",
@@ -6565,7 +7254,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-715"
+    "icon": "a-r-715",
+    "requires": [
+      {
+        "parent_id": "pr_3",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_7",
@@ -6600,7 +7295,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1301"
+    "icon": "a-r-1301",
+    "requires": []
   },
   {
     "id": "pr_9",
@@ -6633,7 +7329,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-967"
+    "icon": "a-r-967",
+    "requires": [
+      {
+        "parent_id": "pr_4",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_114",
@@ -6660,7 +7362,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-10"
+    "icon": "a-r-10",
+    "requires": []
   },
   {
     "id": "pr_115",
@@ -6676,7 +7379,8 @@
     "y": 92.28,
     "max_points": 5,
     "connections": [
-      "pr_6"
+      "pr_6",
+      "pr_86"
     ],
     "stats": [
       {
@@ -6693,7 +7397,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1096"
+    "icon": "a-r-1096",
+    "requires": [
+      {
+        "parent_id": "pr_6",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "pr_116",
@@ -6726,7 +7436,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-243"
+    "icon": "a-r-243",
+    "requires": [
+      {
+        "parent_id": "pr_5",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "pr_86",
@@ -6755,7 +7471,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-393"
+    "icon": "a-r-393",
+    "requires": [
+      {
+        "parent_id": "pr_115",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_13",
@@ -6770,7 +7492,10 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_15",
+      "pr_16"
+    ],
     "stats": [
       {
         "key": "Increased Melee Damage",
@@ -6782,7 +7507,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-39"
+    "icon": "a-r-39",
+    "requires": []
   },
   {
     "id": "pr_17",
@@ -6813,7 +7539,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-241"
+    "icon": "a-r-241",
+    "requires": []
   },
   {
     "id": "pr_12",
@@ -6840,7 +7567,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-715"
+    "icon": "a-r-715",
+    "requires": []
   },
   {
     "id": "pr_15",
@@ -6856,7 +7584,8 @@
     "y": -92.28003,
     "max_points": 8,
     "connections": [
-      "pr_13"
+      "pr_13",
+      "pr_25"
     ],
     "stats": [
       {
@@ -6869,7 +7598,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-719"
+    "icon": "a-r-719",
+    "requires": [
+      {
+        "parent_id": "pr_13",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_14",
@@ -6900,7 +7635,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-199"
+    "icon": "a-r-199",
+    "requires": []
   },
   {
     "id": "pr_19",
@@ -6915,7 +7651,9 @@
     "x": -416.22,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_18"
+    ],
     "stats": [
       {
         "key": "Aspect of The Boar Duration on Traversal or Evade (Seconds)",
@@ -6927,7 +7665,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-589"
+    "icon": "a-r-589",
+    "requires": []
   },
   {
     "id": "pr_16",
@@ -6960,7 +7699,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-716"
+    "icon": "a-r-716",
+    "requires": [
+      {
+        "parent_id": "pr_13",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_24",
@@ -6991,7 +7736,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-837"
+    "icon": "a-r-837",
+    "requires": []
   },
   {
     "id": "pr_18",
@@ -7020,7 +7766,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-525"
+    "icon": "a-r-525",
+    "requires": [
+      {
+        "parent_id": "pr_19",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "pr_25",
@@ -7045,7 +7797,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-571"
+    "icon": "a-r-571",
+    "requires": [
+      {
+        "parent_id": "pr_15",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_22",
@@ -7084,7 +7842,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-546"
+    "icon": "a-r-546",
+    "requires": []
   },
   {
     "id": "pr_56",
@@ -7115,7 +7874,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-725"
+    "icon": "a-r-725",
+    "requires": []
   },
   {
     "id": "pr_67",
@@ -7146,7 +7906,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-150"
+    "icon": "a-r-150",
+    "requires": []
   },
   {
     "id": "pr_101",
@@ -7173,7 +7934,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-720"
+    "icon": "a-r-720",
+    "requires": []
   },
   {
     "id": "pr_108",
@@ -7208,7 +7970,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1310"
+    "icon": "a-r-1310",
+    "requires": []
   },
   {
     "id": "pr_55",
@@ -7239,7 +8002,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-10"
+    "icon": "a-r-10",
+    "requires": []
   },
   {
     "id": "pr_57",
@@ -7254,7 +8018,9 @@
     "x": 52.26001,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_109"
+    ],
     "stats": [
       {
         "key": "Aspect Of The Shark Chance on Kill or Boss or Rare Hit",
@@ -7266,7 +8032,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-946"
+    "icon": "a-r-946",
+    "requires": []
   },
   {
     "id": "pr_27",
@@ -7297,7 +8064,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-92"
+    "icon": "a-r-92",
+    "requires": []
   },
   {
     "id": "pr_20",
@@ -7324,7 +8092,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1085"
+    "icon": "a-r-1085",
+    "requires": []
   },
   {
     "id": "pr_23",
@@ -7355,7 +8124,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-290"
+    "icon": "a-r-290",
+    "requires": []
   },
   {
     "id": "pr_59",
@@ -7370,7 +8140,9 @@
     "x": 286.50006,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_33"
+    ],
     "stats": [
       {
         "key": "Aspect Duration",
@@ -7386,7 +8158,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-323"
+    "icon": "a-r-323",
+    "requires": []
   },
   {
     "id": "pr_21",
@@ -7401,7 +8174,9 @@
     "x": 169.38,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_28"
+    ],
     "stats": [
       {
         "key": "Casting Companion Abilities Grants Aspect Of The Lynx",
@@ -7417,7 +8192,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-40"
+    "icon": "a-r-40",
+    "requires": []
   },
   {
     "id": "pr_29",
@@ -7448,7 +8224,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-461"
+    "icon": "a-r-461",
+    "requires": []
   },
   {
     "id": "pr_58",
@@ -7463,7 +8240,9 @@
     "x": 169.38,
     "y": 184.56,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "pr_26"
+    ],
     "stats": [
       {
         "key": "Increased Melee Attack Speed",
@@ -7479,7 +8258,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-14"
+    "icon": "a-r-14",
+    "requires": []
   },
   {
     "id": "pr_109",
@@ -7495,6 +8275,7 @@
     "y": -184.56003,
     "max_points": 8,
     "connections": [
+      "pr_30",
       "pr_57"
     ],
     "stats": [
@@ -7508,7 +8289,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-718"
+    "icon": "a-r-718",
+    "requires": [
+      {
+        "parent_id": "pr_57",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_32",
@@ -7539,7 +8326,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-121"
+    "icon": "a-r-121",
+    "requires": []
   },
   {
     "id": "pr_54",
@@ -7562,7 +8350,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1311"
+    "icon": "a-r-1311",
+    "requires": []
   },
   {
     "id": "pr_28",
@@ -7599,7 +8388,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1147"
+    "icon": "a-r-1147",
+    "requires": [
+      {
+        "parent_id": "pr_21",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_26",
@@ -7628,7 +8423,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-869"
+    "icon": "a-r-869",
+    "requires": [
+      {
+        "parent_id": "pr_58",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_30",
@@ -7657,7 +8458,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-31"
+    "icon": "a-r-31",
+    "requires": [
+      {
+        "parent_id": "pr_109",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_33",
@@ -7686,7 +8493,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-171"
+    "icon": "a-r-171",
+    "requires": [
+      {
+        "parent_id": "pr_59",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_31",
@@ -7717,7 +8530,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-57"
+    "icon": "a-r-57",
+    "requires": []
   },
   {
     "id": "pr_34",
@@ -7752,7 +8566,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-324"
+    "icon": "a-r-324",
+    "requires": []
   },
   {
     "id": "pr_40",
@@ -7767,7 +8582,10 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_35",
+      "pr_38"
+    ],
     "stats": [
       {
         "key": "Armor With Active Totem",
@@ -7783,7 +8601,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-304"
+    "icon": "a-r-304",
+    "requires": []
   },
   {
     "id": "pr_36",
@@ -7814,7 +8633,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-379"
+    "icon": "a-r-379",
+    "requires": []
   },
   {
     "id": "pr_41",
@@ -7841,7 +8661,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-128"
+    "icon": "a-r-128",
+    "requires": []
   },
   {
     "id": "pr_38",
@@ -7870,7 +8691,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-840"
+    "icon": "a-r-840",
+    "requires": [
+      {
+        "parent_id": "pr_40",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_60",
@@ -7885,12 +8712,7 @@
     "x": -416.22,
     "y": -3.0517578e-05,
     "max_points": 5,
-    "connections": [
-      "pr_0",
-      "pr_1482888998551552",
-      "pr_0",
-      "pr_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Melee Damage",
@@ -7906,7 +8728,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-966"
+    "icon": "a-r-966",
+    "requires": []
   },
   {
     "id": "pr_61",
@@ -7941,7 +8764,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-724"
+    "icon": "a-r-724",
+    "requires": []
   },
   {
     "id": "pr_35",
@@ -7966,7 +8790,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-393"
+    "icon": "a-r-393",
+    "requires": [
+      {
+        "parent_id": "pr_40",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_62",
@@ -7981,7 +8811,9 @@
     "x": -299.09998,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_102"
+    ],
     "stats": [
       {
         "key": "Attunement",
@@ -7997,7 +8829,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-285"
+    "icon": "a-r-285",
+    "requires": []
   },
   {
     "id": "pr_43",
@@ -8012,7 +8845,9 @@
     "x": -299.09998,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "pr_63"
+    ],
     "stats": [
       {
         "key": "Shared Increased Lightning Damage",
@@ -8024,7 +8859,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-723"
+    "icon": "a-r-723",
+    "requires": []
   },
   {
     "id": "pr_42",
@@ -8039,7 +8875,10 @@
     "x": -299.09998,
     "y": 184.56,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "pr_44",
+      "pr_64"
+    ],
     "stats": [
       {
         "key": "Shared Increased Cold Damage",
@@ -8059,7 +8898,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-143"
+    "icon": "a-r-143",
+    "requires": []
   },
   {
     "id": "pr_37",
@@ -8086,7 +8926,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-43"
+    "icon": "a-r-43",
+    "requires": []
   },
   {
     "id": "pr_44",
@@ -8119,7 +8960,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-552"
+    "icon": "a-r-552",
+    "requires": [
+      {
+        "parent_id": "pr_42",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_46",
@@ -8146,7 +8993,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1301"
+    "icon": "a-r-1301",
+    "requires": []
   },
   {
     "id": "pr_102",
@@ -8179,7 +9027,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-744"
+    "icon": "a-r-744",
+    "requires": [
+      {
+        "parent_id": "pr_62",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_63",
@@ -8208,7 +9062,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-710"
+    "icon": "a-r-710",
+    "requires": [
+      {
+        "parent_id": "pr_43",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "pr_51",
@@ -8235,7 +9095,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-594"
+    "icon": "a-r-594",
+    "requires": []
   },
   {
     "id": "pr_64",
@@ -8272,7 +9133,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1099"
+    "icon": "a-r-1099",
+    "requires": [
+      {
+        "parent_id": "pr_42",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "pr_65",
@@ -8287,7 +9154,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_39"
+    ],
     "stats": [
       {
         "key": "Increased Elemental Melee Damage",
@@ -8295,7 +9164,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-142"
+    "icon": "a-r-142",
+    "requires": []
   },
   {
     "id": "pr_45",
@@ -8318,7 +9188,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-702"
+    "icon": "a-r-702",
+    "requires": []
   },
   {
     "id": "pr_48",
@@ -8333,7 +9204,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_66"
+    ],
     "stats": [
       {
         "key": "Physical Resistance Per Active Totem",
@@ -8349,7 +9222,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-722"
+    "icon": "a-r-722",
+    "requires": []
   },
   {
     "id": "pr_103",
@@ -8364,7 +9238,9 @@
     "x": 52.26001,
     "y": 184.56,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "pr_106"
+    ],
     "stats": [
       {
         "key": "Shared Freeze Rate Multiplier",
@@ -8376,7 +9252,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-987"
+    "icon": "a-r-987",
+    "requires": []
   },
   {
     "id": "pr_39",
@@ -8392,7 +9269,8 @@
     "y": -184.56003,
     "max_points": 10,
     "connections": [
-      "pr_65"
+      "pr_65",
+      "pr_68"
     ],
     "stats": [
       {
@@ -8405,7 +9283,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-466"
+    "icon": "a-r-466",
+    "requires": [
+      {
+        "parent_id": "pr_65",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_50",
@@ -8420,7 +9304,9 @@
     "x": 169.38,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_49"
+    ],
     "stats": [
       {
         "key": "Attunement",
@@ -8432,7 +9318,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1246"
+    "icon": "a-r-1246",
+    "requires": []
   },
   {
     "id": "pr_69",
@@ -8448,10 +9335,7 @@
     "y": -92.28003,
     "max_points": 5,
     "connections": [
-      "pr_0",
-      "pr_1780740685561856",
-      "pr_0",
-      "pr_0"
+      "pr_70"
     ],
     "stats": [
       {
@@ -8468,7 +9352,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-85"
+    "icon": "a-r-85",
+    "requires": []
   },
   {
     "id": "pr_66",
@@ -8493,7 +9378,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1318"
+    "icon": "a-r-1318",
+    "requires": [
+      {
+        "parent_id": "pr_48",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_106",
@@ -8526,7 +9417,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-300"
+    "icon": "a-r-300",
+    "requires": [
+      {
+        "parent_id": "pr_103",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_68",
@@ -8542,7 +9439,8 @@
     "y": -184.56003,
     "max_points": 5,
     "connections": [
-      "pr_39"
+      "pr_39",
+      "pr_70"
     ],
     "stats": [
       {
@@ -8559,7 +9457,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-379"
+    "icon": "a-r-379",
+    "requires": [
+      {
+        "parent_id": "pr_39",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_49",
@@ -8596,7 +9500,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-316"
+    "icon": "a-r-316",
+    "requires": [
+      {
+        "parent_id": "pr_50",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_52",
@@ -8631,7 +9541,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-379"
+    "icon": "a-r-379",
+    "requires": []
   },
   {
     "id": "pr_70",
@@ -8647,8 +9558,8 @@
     "y": -92.28003,
     "max_points": 8,
     "connections": [
-      "pr_69",
-      "pr_68"
+      "pr_68",
+      "pr_69"
     ],
     "stats": [
       {
@@ -8665,7 +9576,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-417"
+    "icon": "a-r-417",
+    "requires": [
+      {
+        "parent_id": "pr_68",
+        "points": 3
+      },
+      {
+        "parent_id": "pr_69",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_53",
@@ -8688,7 +9609,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-984"
+    "icon": "a-r-984",
+    "requires": []
   },
   {
     "id": "pr_107",
@@ -8723,7 +9645,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-77"
+    "icon": "a-r-77",
+    "requires": []
   },
   {
     "id": "pr_71",
@@ -8754,7 +9677,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-284"
+    "icon": "a-r-284",
+    "requires": []
   },
   {
     "id": "pr_73",
@@ -8769,7 +9693,9 @@
     "x": -416.22,
     "y": 92.28,
     "max_points": 7,
-    "connections": [],
+    "connections": [
+      "pr_76"
+    ],
     "stats": [
       {
         "key": "Increased Physical Damage",
@@ -8789,7 +9715,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-957"
+    "icon": "a-r-957",
+    "requires": []
   },
   {
     "id": "pr_72",
@@ -8805,6 +9732,7 @@
     "y": -184.56003,
     "max_points": 10,
     "connections": [
+      "pr_80",
       "pr_98"
     ],
     "stats": [
@@ -8822,7 +9750,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-256"
+    "icon": "a-r-256",
+    "requires": [
+      {
+        "parent_id": "pr_98",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_97",
@@ -8853,7 +9787,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-403"
+    "icon": "a-r-403",
+    "requires": []
   },
   {
     "id": "pr_98",
@@ -8868,7 +9803,10 @@
     "x": -416.22,
     "y": -92.28003,
     "max_points": 7,
-    "connections": [],
+    "connections": [
+      "pr_72",
+      "pr_83"
+    ],
     "stats": [
       {
         "key": "Increased Cold Damage",
@@ -8888,7 +9826,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-90"
+    "icon": "a-r-90",
+    "requires": []
   },
   {
     "id": "pr_81",
@@ -8903,7 +9842,9 @@
     "x": -299.09998,
     "y": -3.0517578e-05,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "pr_110"
+    ],
     "stats": [
       {
         "key": "Increased Damage While Transformed",
@@ -8915,7 +9856,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-263"
+    "icon": "a-r-263",
+    "requires": []
   },
   {
     "id": "pr_76",
@@ -8944,7 +9886,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1143"
+    "icon": "a-r-1143",
+    "requires": [
+      {
+        "parent_id": "pr_73",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_80",
@@ -8977,7 +9925,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-77"
+    "icon": "a-r-77",
+    "requires": [
+      {
+        "parent_id": "pr_72",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_77",
@@ -9010,7 +9964,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-921"
+    "icon": "a-r-921",
+    "requires": [
+      {
+        "parent_id": "pr_89",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_79",
@@ -9045,7 +10005,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-395"
+    "icon": "a-r-395",
+    "requires": []
   },
   {
     "id": "pr_83",
@@ -9090,7 +10051,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-887"
+    "icon": "a-r-887",
+    "requires": [
+      {
+        "parent_id": "pr_98",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_110",
@@ -9115,7 +10082,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-235"
+    "icon": "a-r-235",
+    "requires": [
+      {
+        "parent_id": "pr_81",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "pr_82",
@@ -9142,7 +10115,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-396"
+    "icon": "a-r-396",
+    "requires": []
   },
   {
     "id": "pr_88",
@@ -9169,7 +10143,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-247"
+    "icon": "a-r-247",
+    "requires": []
   },
   {
     "id": "pr_94",
@@ -9204,7 +10179,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1158"
+    "icon": "a-r-1158",
+    "requires": []
   },
   {
     "id": "pr_111",
@@ -9235,7 +10211,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-234"
+    "icon": "a-r-234",
+    "requires": []
   },
   {
     "id": "pr_90",
@@ -9250,12 +10227,7 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 10,
-    "connections": [
-      "pr_0",
-      "pr_2016654649196544",
-      "pr_0",
-      "pr_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Melee Physical Damage",
@@ -9279,7 +10251,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-553"
+    "icon": "a-r-553",
+    "requires": []
   },
   {
     "id": "pr_84",
@@ -9294,7 +10267,10 @@
     "x": 169.38,
     "y": 92.28,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "pr_78",
+      "pr_100"
+    ],
     "stats": [
       {
         "key": "Increased Minion Damage",
@@ -9306,7 +10282,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-392"
+    "icon": "a-r-392",
+    "requires": []
   },
   {
     "id": "pr_87",
@@ -9337,7 +10314,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-262"
+    "icon": "a-r-262",
+    "requires": []
   },
   {
     "id": "pr_93",
@@ -9352,7 +10330,10 @@
     "x": 169.38,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "pr_85",
+      "pr_92"
+    ],
     "stats": [
       {
         "key": "Shapeshifter Duration On Transform (seconds)",
@@ -9368,7 +10349,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-406"
+    "icon": "a-r-406",
+    "requires": []
   },
   {
     "id": "pr_92",
@@ -9397,7 +10379,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-319"
+    "icon": "a-r-319",
+    "requires": [
+      {
+        "parent_id": "pr_93",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "pr_89",
@@ -9413,10 +10401,7 @@
     "y": 184.56,
     "max_points": 7,
     "connections": [
-      "pr_0",
-      "pr_1697676018057216",
-      "pr_0",
-      "pr_0"
+      "pr_77"
     ],
     "stats": [
       {
@@ -9433,7 +10418,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-556"
+    "icon": "a-r-556",
+    "requires": []
   },
   {
     "id": "pr_78",
@@ -9449,7 +10435,8 @@
     "y": 184.56,
     "max_points": 1,
     "connections": [
-      "pr_84"
+      "pr_84",
+      "pr_91"
     ],
     "stats": [
       {
@@ -9470,7 +10457,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-492"
+    "icon": "a-r-492",
+    "requires": [
+      {
+        "parent_id": "pr_84",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_85",
@@ -9499,7 +10492,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-589"
+    "icon": "a-r-589",
+    "requires": [
+      {
+        "parent_id": "pr_93",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "pr_100",
@@ -9532,7 +10531,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-279"
+    "icon": "a-r-279",
+    "requires": [
+      {
+        "parent_id": "pr_84",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "pr_99",
@@ -9559,7 +10564,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-60"
+    "icon": "a-r-60",
+    "requires": []
   },
   {
     "id": "pr_104",
@@ -9586,7 +10592,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-267"
+    "icon": "a-r-267",
+    "requires": []
   },
   {
     "id": "pr_91",
@@ -9615,7 +10622,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-506"
+    "icon": "a-r-506",
+    "requires": [
+      {
+        "parent_id": "pr_78",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "pr_112",
@@ -9650,7 +10663,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-291"
+    "icon": "a-r-291",
+    "requires": []
   },
   {
     "id": "pr_118",
@@ -9677,7 +10691,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-836"
+    "icon": "a-r-836",
+    "requires": []
   },
   {
     "id": "pr_74",
@@ -9704,7 +10719,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-36"
+    "icon": "a-r-36",
+    "requires": []
   },
   {
     "id": "rg_1",
@@ -9719,7 +10735,9 @@
     "x": -533.74,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_7"
+    ],
     "stats": [
       {
         "key": "Dodge Rating",
@@ -9731,7 +10749,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-851"
+    "icon": "a-r-851",
+    "requires": []
   },
   {
     "id": "rg_0",
@@ -9758,7 +10777,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-319"
+    "icon": "a-r-319",
+    "requires": []
   },
   {
     "id": "rg_6",
@@ -9773,7 +10793,9 @@
     "x": -533.74,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_12"
+    ],
     "stats": [
       {
         "key": "Attack Speed",
@@ -9785,7 +10807,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-939"
+    "icon": "a-r-939",
+    "requires": []
   },
   {
     "id": "rg_7",
@@ -9801,7 +10824,8 @@
     "y": -92.28,
     "max_points": 5,
     "connections": [
-      "rg_1"
+      "rg_1",
+      "rg_8"
     ],
     "stats": [
       {
@@ -9814,7 +10838,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-546"
+    "icon": "a-r-546",
+    "requires": [
+      {
+        "parent_id": "rg_1",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_10",
@@ -9829,7 +10859,9 @@
     "x": -335.14,
     "y": 0,
     "max_points": 1,
-    "connections": [],
+    "connections": [
+      "rg_11"
+    ],
     "stats": [
       {
         "key": "Can Equip Swords in Offhand",
@@ -9849,7 +10881,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-863"
+    "icon": "a-r-863",
+    "requires": []
   },
   {
     "id": "rg_8",
@@ -9878,7 +10911,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-30"
+    "icon": "a-r-30",
+    "requires": [
+      {
+        "parent_id": "rg_7",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_9",
@@ -9893,7 +10932,9 @@
     "x": -136.53998,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "rg_18"
+    ],
     "stats": [
       {
         "key": "Dodge Rating",
@@ -9905,7 +10946,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": []
   },
   {
     "id": "rg_12",
@@ -9921,7 +10963,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "rg_6"
+      "rg_6",
+      "rg_16"
     ],
     "stats": [
       {
@@ -9930,7 +10973,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-868"
+    "icon": "a-r-868",
+    "requires": [
+      {
+        "parent_id": "rg_6",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_13",
@@ -9957,7 +11006,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-728"
+    "icon": "a-r-728",
+    "requires": []
   },
   {
     "id": "rg_14",
@@ -9972,7 +11022,9 @@
     "x": 62.059998,
     "y": -92.28,
     "max_points": 4,
-    "connections": [],
+    "connections": [
+      "rg_17"
+    ],
     "stats": [
       {
         "key": "Health Gain",
@@ -9984,7 +11036,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-503"
+    "icon": "a-r-503",
+    "requires": []
   },
   {
     "id": "rg_11",
@@ -10013,7 +11066,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-516"
+    "icon": "a-r-516",
+    "requires": [
+      {
+        "parent_id": "rg_10",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_15",
@@ -10044,7 +11103,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-266"
+    "icon": "a-r-266",
+    "requires": []
   },
   {
     "id": "rg_16",
@@ -10069,7 +11129,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-2"
+    "icon": "a-r-2",
+    "requires": [
+      {
+        "parent_id": "rg_12",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "rg_17",
@@ -10098,7 +11164,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-858"
+    "icon": "a-r-858",
+    "requires": [
+      {
+        "parent_id": "rg_14",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_18",
@@ -10127,7 +11199,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-116"
+    "icon": "a-r-116",
+    "requires": [
+      {
+        "parent_id": "rg_9",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "rg_2",
@@ -10142,7 +11220,9 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "rg_54"
+    ],
     "stats": [
       {
         "key": "Increased Dodge Rating",
@@ -10162,7 +11242,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-90"
+    "icon": "a-r-90",
+    "requires": []
   },
   {
     "id": "rg_49",
@@ -10193,7 +11274,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-546"
+    "icon": "a-r-546",
+    "requires": []
   },
   {
     "id": "rg_50",
@@ -10208,7 +11290,9 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_56"
+    ],
     "stats": [
       {
         "key": "Dexterity",
@@ -10224,7 +11308,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-958"
+    "icon": "a-r-958",
+    "requires": []
   },
   {
     "id": "rg_53",
@@ -10251,7 +11336,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-753"
+    "icon": "a-r-753",
+    "requires": []
   },
   {
     "id": "rg_51",
@@ -10282,7 +11368,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-957"
+    "icon": "a-r-957",
+    "requires": []
   },
   {
     "id": "rg_52",
@@ -10317,7 +11404,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-200"
+    "icon": "a-r-200",
+    "requires": []
   },
   {
     "id": "rg_54",
@@ -10333,7 +11421,8 @@
     "y": -184.56003,
     "max_points": 5,
     "connections": [
-      "rg_2"
+      "rg_2",
+      "rg_57"
     ],
     "stats": [
       {
@@ -10354,7 +11443,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-399"
+    "icon": "a-r-399",
+    "requires": [
+      {
+        "parent_id": "rg_2",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_55",
@@ -10389,7 +11484,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-10"
+    "icon": "a-r-10",
+    "requires": []
   },
   {
     "id": "rg_56",
@@ -10405,7 +11501,9 @@
     "y": 184.56,
     "max_points": 8,
     "connections": [
-      "rg_50"
+      "rg_50",
+      "rg_58",
+      "rg_61"
     ],
     "stats": [
       {
@@ -10418,7 +11516,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-66"
+    "icon": "a-r-66",
+    "requires": [
+      {
+        "parent_id": "rg_50",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_57",
@@ -10451,7 +11555,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1008"
+    "icon": "a-r-1008",
+    "requires": [
+      {
+        "parent_id": "rg_54",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_58",
@@ -10484,7 +11594,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-402"
+    "icon": "a-r-402",
+    "requires": [
+      {
+        "parent_id": "rg_56",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_59",
@@ -10511,7 +11627,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-863"
+    "icon": "a-r-863",
+    "requires": []
   },
   {
     "id": "rg_60",
@@ -10538,7 +11655,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-797"
+    "icon": "a-r-797",
+    "requires": []
   },
   {
     "id": "rg_61",
@@ -10567,7 +11685,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": [
+      {
+        "parent_id": "rg_56",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_62",
@@ -10582,7 +11706,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_65"
+    ],
     "stats": [
       {
         "key": "Increased Damage while Dual Wielding",
@@ -10598,7 +11724,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-499"
+    "icon": "a-r-499",
+    "requires": []
   },
   {
     "id": "rg_63",
@@ -10625,7 +11752,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-200"
+    "icon": "a-r-200",
+    "requires": []
   },
   {
     "id": "rg_64",
@@ -10640,7 +11768,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "rg_67"
+    ],
     "stats": [
       {
         "key": "Dodge Rating",
@@ -10652,7 +11782,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-63"
+    "icon": "a-r-63",
+    "requires": []
   },
   {
     "id": "rg_65",
@@ -10701,7 +11832,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-272"
+    "icon": "a-r-272",
+    "requires": [
+      {
+        "parent_id": "rg_62",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_66",
@@ -10736,7 +11873,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-161"
+    "icon": "a-r-161",
+    "requires": []
   },
   {
     "id": "rg_67",
@@ -10752,7 +11890,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "rg_64"
+      "rg_64",
+      "rg_70"
     ],
     "stats": [
       {
@@ -10769,7 +11908,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-329"
+    "icon": "a-r-329",
+    "requires": [
+      {
+        "parent_id": "rg_64",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_68",
@@ -10784,7 +11929,9 @@
     "x": 286.50006,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "rg_73"
+    ],
     "stats": [
       {
         "key": "Critical Vulnerability Chance",
@@ -10800,7 +11947,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-31"
+    "icon": "a-r-31",
+    "requires": []
   },
   {
     "id": "rg_69",
@@ -10831,7 +11979,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-9"
+    "icon": "a-r-9",
+    "requires": []
   },
   {
     "id": "rg_70",
@@ -10868,7 +12017,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-493"
+    "icon": "a-r-493",
+    "requires": [
+      {
+        "parent_id": "rg_67",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_71",
@@ -10895,7 +12050,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-556"
+    "icon": "a-r-556",
+    "requires": []
   },
   {
     "id": "rg_72",
@@ -10926,7 +12082,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-7"
+    "icon": "a-r-7",
+    "requires": []
   },
   {
     "id": "rg_73",
@@ -10959,7 +12116,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-45"
+    "icon": "a-r-45",
+    "requires": [
+      {
+        "parent_id": "rg_68",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_74",
@@ -10990,7 +12153,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-730"
+    "icon": "a-r-730",
+    "requires": []
   },
   {
     "id": "rg_75",
@@ -11025,7 +12189,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-370"
+    "icon": "a-r-370",
+    "requires": []
   },
   {
     "id": "rg_20",
@@ -11040,7 +12205,9 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_25"
+    ],
     "stats": [
       {
         "key": "Bow Damage",
@@ -11056,7 +12223,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-572"
+    "icon": "a-r-572",
+    "requires": []
   },
   {
     "id": "rg_21",
@@ -11087,7 +12255,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-303"
+    "icon": "a-r-303",
+    "requires": []
   },
   {
     "id": "rg_3",
@@ -11114,7 +12283,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-589"
+    "icon": "a-r-589",
+    "requires": []
   },
   {
     "id": "rg_22",
@@ -11129,7 +12299,9 @@
     "x": -416.22,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_28"
+    ],
     "stats": [
       {
         "key": "More Damage with Concentration",
@@ -11141,7 +12313,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-434"
+    "icon": "a-r-434",
+    "requires": []
   },
   {
     "id": "rg_23",
@@ -11176,7 +12349,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-739"
+    "icon": "a-r-739",
+    "requires": []
   },
   {
     "id": "rg_24",
@@ -11191,7 +12365,10 @@
     "x": -416.22,
     "y": 92.28,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_27",
+      "rg_29"
+    ],
     "stats": [
       {
         "key": "Fire Damage with Elemental Arrow",
@@ -11211,7 +12388,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-674"
+    "icon": "a-r-674",
+    "requires": []
   },
   {
     "id": "rg_25",
@@ -11227,7 +12405,8 @@
     "y": -184.56003,
     "max_points": 10,
     "connections": [
-      "rg_20"
+      "rg_20",
+      "rg_30"
     ],
     "stats": [
       {
@@ -11236,7 +12415,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-670"
+    "icon": "a-r-670",
+    "requires": [
+      {
+        "parent_id": "rg_20",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_26",
@@ -11263,7 +12448,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-588"
+    "icon": "a-r-588",
+    "requires": []
   },
   {
     "id": "rg_27",
@@ -11279,7 +12465,8 @@
     "y": 184.56,
     "max_points": 8,
     "connections": [
-      "rg_24"
+      "rg_24",
+      "rg_32"
     ],
     "stats": [
       {
@@ -11292,7 +12479,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-325"
+    "icon": "a-r-325",
+    "requires": [
+      {
+        "parent_id": "rg_24",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_28",
@@ -11308,7 +12501,8 @@
     "y": -92.28003,
     "max_points": 5,
     "connections": [
-      "rg_22"
+      "rg_22",
+      "rg_31"
     ],
     "stats": [
       {
@@ -11321,7 +12515,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-521"
+    "icon": "a-r-521",
+    "requires": [
+      {
+        "parent_id": "rg_22",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_29",
@@ -11350,7 +12550,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-340"
+    "icon": "a-r-340",
+    "requires": [
+      {
+        "parent_id": "rg_24",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_30",
@@ -11379,7 +12585,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-715"
+    "icon": "a-r-715",
+    "requires": [
+      {
+        "parent_id": "rg_25",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_31",
@@ -11412,7 +12624,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-90"
+    "icon": "a-r-90",
+    "requires": [
+      {
+        "parent_id": "rg_28",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_32",
@@ -11441,7 +12659,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-377"
+    "icon": "a-r-377",
+    "requires": [
+      {
+        "parent_id": "rg_27",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_34",
@@ -11468,7 +12692,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-712"
+    "icon": "a-r-712",
+    "requires": []
   },
   {
     "id": "rg_33",
@@ -11483,7 +12708,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "rg_36"
+    ],
     "stats": [
       {
         "key": "Increased Bow Attack Speed with Arrow Storm",
@@ -11499,7 +12726,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1218"
+    "icon": "a-r-1218",
+    "requires": []
   },
   {
     "id": "rg_76",
@@ -11530,7 +12758,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-890"
+    "icon": "a-r-890",
+    "requires": []
   },
   {
     "id": "rg_35",
@@ -11561,7 +12790,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-341"
+    "icon": "a-r-341",
+    "requires": []
   },
   {
     "id": "rg_39",
@@ -11576,7 +12806,9 @@
     "x": 169.38,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "rg_44"
+    ],
     "stats": [
       {
         "key": "Maximum Chance to Gain Sharpshooter",
@@ -11592,7 +12824,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-70"
+    "icon": "a-r-70",
+    "requires": []
   },
   {
     "id": "rg_36",
@@ -11608,7 +12841,8 @@
     "y": -3.0517578e-05,
     "max_points": 10,
     "connections": [
-      "rg_33"
+      "rg_33",
+      "rg_42"
     ],
     "stats": [
       {
@@ -11617,7 +12851,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-65"
+    "icon": "a-r-65",
+    "requires": [
+      {
+        "parent_id": "rg_33",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_37",
@@ -11644,7 +12884,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-281"
+    "icon": "a-r-281",
+    "requires": []
   },
   {
     "id": "rg_38",
@@ -11675,7 +12916,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-948"
+    "icon": "a-r-948",
+    "requires": []
   },
   {
     "id": "rg_41",
@@ -11690,7 +12932,9 @@
     "x": 286.50006,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "rg_46"
+    ],
     "stats": [
       {
         "key": "Increased Crit Chance per Stack",
@@ -11702,7 +12946,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-740"
+    "icon": "a-r-740",
+    "requires": []
   },
   {
     "id": "rg_40",
@@ -11717,7 +12962,10 @@
     "x": 286.50006,
     "y": 92.28,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "rg_43",
+      "rg_45"
+    ],
     "stats": [
       {
         "key": "Increased Mana",
@@ -11733,7 +12981,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-858"
+    "icon": "a-r-858",
+    "requires": []
   },
   {
     "id": "rg_44",
@@ -11762,7 +13011,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-515"
+    "icon": "a-r-515",
+    "requires": [
+      {
+        "parent_id": "rg_39",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "rg_42",
@@ -11787,7 +13042,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-371"
+    "icon": "a-r-371",
+    "requires": [
+      {
+        "parent_id": "rg_36",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_43",
@@ -11816,7 +13077,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-52"
+    "icon": "a-r-52",
+    "requires": [
+      {
+        "parent_id": "rg_40",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_46",
@@ -11845,7 +13112,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-734"
+    "icon": "a-r-734",
+    "requires": [
+      {
+        "parent_id": "rg_41",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_45",
@@ -11882,7 +13155,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-735"
+    "icon": "a-r-735",
+    "requires": [
+      {
+        "parent_id": "rg_40",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_4",
@@ -11913,7 +13192,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-858"
+    "icon": "a-r-858",
+    "requires": []
   },
   {
     "id": "rg_48",
@@ -11928,7 +13208,10 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_80",
+      "rg_87"
+    ],
     "stats": [
       {
         "key": "Increased Minion Damage",
@@ -11940,7 +13223,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-458"
+    "icon": "a-r-458",
+    "requires": []
   },
   {
     "id": "rg_78",
@@ -11971,7 +13255,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1004"
+    "icon": "a-r-1004",
+    "requires": []
   },
   {
     "id": "rg_79",
@@ -11986,7 +13271,10 @@
     "x": -533.34,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "rg_82",
+      "rg_86"
+    ],
     "stats": [
       {
         "key": "Health",
@@ -11998,7 +13286,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-113"
+    "icon": "a-r-113",
+    "requires": []
   },
   {
     "id": "rg_80",
@@ -12023,7 +13312,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-733"
+    "icon": "a-r-733",
+    "requires": [
+      {
+        "parent_id": "rg_48",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_81",
@@ -12050,7 +13345,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1016"
+    "icon": "a-r-1016",
+    "requires": []
   },
   {
     "id": "rg_82",
@@ -12079,7 +13375,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1002"
+    "icon": "a-r-1002",
+    "requires": [
+      {
+        "parent_id": "rg_79",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_83",
@@ -12094,7 +13396,9 @@
     "x": -299.09998,
     "y": -92.28003,
     "max_points": 7,
-    "connections": [],
+    "connections": [
+      "rg_89"
+    ],
     "stats": [
       {
         "key": "Increased Melee Damage With 2h Weapon",
@@ -12114,7 +13418,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-272"
+    "icon": "a-r-272",
+    "requires": []
   },
   {
     "id": "rg_84",
@@ -12129,7 +13434,9 @@
     "x": -299.09998,
     "y": -3.0517578e-05,
     "max_points": 7,
-    "connections": [],
+    "connections": [
+      "rg_90"
+    ],
     "stats": [
       {
         "key": "Increased Throwing Attack Damage",
@@ -12145,7 +13452,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1207"
+    "icon": "a-r-1207",
+    "requires": []
   },
   {
     "id": "rg_85",
@@ -12176,7 +13484,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-585"
+    "icon": "a-r-585",
+    "requires": []
   },
   {
     "id": "rg_86",
@@ -12209,7 +13518,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-503"
+    "icon": "a-r-503",
+    "requires": [
+      {
+        "parent_id": "rg_79",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "rg_87",
@@ -12242,7 +13557,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-365"
+    "icon": "a-r-365",
+    "requires": [
+      {
+        "parent_id": "rg_48",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_88",
@@ -12273,7 +13594,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-553"
+    "icon": "a-r-553",
+    "requires": []
   },
   {
     "id": "rg_89",
@@ -12310,7 +13632,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-494"
+    "icon": "a-r-494",
+    "requires": [
+      {
+        "parent_id": "rg_83",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "rg_90",
@@ -12339,7 +13667,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-573"
+    "icon": "a-r-573",
+    "requires": [
+      {
+        "parent_id": "rg_84",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "rg_91",
@@ -12370,7 +13704,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-565"
+    "icon": "a-r-565",
+    "requires": []
   },
   {
     "id": "rg_92",
@@ -12385,7 +13720,10 @@
     "x": 52.26001,
     "y": -184.56003,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "rg_94",
+      "rg_102"
+    ],
     "stats": [
       {
         "key": "Dexterity",
@@ -12401,7 +13739,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-704"
+    "icon": "a-r-704",
+    "requires": []
   },
   {
     "id": "rg_93",
@@ -12432,7 +13771,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1011"
+    "icon": "a-r-1011",
+    "requires": []
   },
   {
     "id": "rg_95",
@@ -12467,7 +13807,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-742"
+    "icon": "a-r-742",
+    "requires": []
   },
   {
     "id": "rg_94",
@@ -12500,7 +13841,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-587"
+    "icon": "a-r-587",
+    "requires": [
+      {
+        "parent_id": "rg_92",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_97",
@@ -12527,7 +13874,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-455"
+    "icon": "a-r-455",
+    "requires": []
   },
   {
     "id": "rg_98",
@@ -12543,10 +13891,8 @@
     "y": 184.56,
     "max_points": 6,
     "connections": [
-      "rg_0",
-      "rg_1504707432415232",
-      "rg_0",
-      "rg_0"
+      "rg_101",
+      "rg_107"
     ],
     "stats": [
       {
@@ -12563,7 +13909,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-539"
+    "icon": "a-r-539",
+    "requires": []
   },
   {
     "id": "rg_99",
@@ -12590,7 +13937,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-18"
+    "icon": "a-r-18",
+    "requires": []
   },
   {
     "id": "rg_100",
@@ -12605,7 +13953,9 @@
     "x": 286.50006,
     "y": -3.0517578e-05,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "rg_106"
+    ],
     "stats": [
       {
         "key": "Increased Crit Chance",
@@ -12625,7 +13975,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-670"
+    "icon": "a-r-670",
+    "requires": []
   },
   {
     "id": "rg_101",
@@ -12654,7 +14005,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-943"
+    "icon": "a-r-943",
+    "requires": [
+      {
+        "parent_id": "rg_98",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "rg_102",
@@ -12683,7 +14040,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": [
+      {
+        "parent_id": "rg_92",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "rg_103",
@@ -12714,7 +14077,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-959"
+    "icon": "a-r-959",
+    "requires": []
   },
   {
     "id": "rg_104",
@@ -12741,7 +14105,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-493"
+    "icon": "a-r-493",
+    "requires": []
   },
   {
     "id": "rg_105",
@@ -12776,7 +14141,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1006"
+    "icon": "a-r-1006",
+    "requires": []
   },
   {
     "id": "rg_106",
@@ -12809,7 +14175,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-598"
+    "icon": "a-r-598",
+    "requires": [
+      {
+        "parent_id": "rg_100",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "rg_107",
@@ -12842,7 +14214,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1023"
+    "icon": "a-r-1023",
+    "requires": [
+      {
+        "parent_id": "rg_98",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_49",
@@ -12857,7 +14235,9 @@
     "x": -533.34,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "sn_1"
+    ],
     "stats": [
       {
         "key": "Vitality",
@@ -12869,7 +14249,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-725"
+    "icon": "a-r-725",
+    "requires": []
   },
   {
     "id": "sn_0",
@@ -12900,7 +14281,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": []
   },
   {
     "id": "sn_5",
@@ -12915,7 +14297,9 @@
     "x": -533.34,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_50"
+    ],
     "stats": [
       {
         "key": "Melee Physical Damage",
@@ -12927,7 +14311,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-746"
+    "icon": "a-r-746",
+    "requires": []
   },
   {
     "id": "sn_1",
@@ -12943,6 +14328,7 @@
     "y": -184.56003,
     "max_points": 5,
     "connections": [
+      "sn_3",
       "sn_49"
     ],
     "stats": [
@@ -12956,7 +14342,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-493"
+    "icon": "a-r-493",
+    "requires": [
+      {
+        "parent_id": "sn_49",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_2",
@@ -12971,7 +14363,9 @@
     "x": -334.74,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_8"
+    ],
     "stats": [
       {
         "key": "Armor",
@@ -12983,7 +14377,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-273"
+    "icon": "a-r-273",
+    "requires": []
   },
   {
     "id": "sn_4",
@@ -12998,7 +14393,9 @@
     "x": -334.74,
     "y": 92.28,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_8"
+    ],
     "stats": [
       {
         "key": "Increased Damage",
@@ -13014,7 +14411,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-205"
+    "icon": "a-r-205",
+    "requires": []
   },
   {
     "id": "sn_50",
@@ -13030,7 +14428,8 @@
     "y": 184.56,
     "max_points": 5,
     "connections": [
-      "sn_5"
+      "sn_5",
+      "sn_55"
     ],
     "stats": [
       {
@@ -13039,7 +14438,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-200"
+    "icon": "a-r-200",
+    "requires": [
+      {
+        "parent_id": "sn_5",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_8",
@@ -13069,7 +14474,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-9"
+    "icon": "a-r-9",
+    "requires": [
+      {
+        "parent_id": "sn_2",
+        "points": 1
+      },
+      {
+        "parent_id": "sn_4",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_3",
@@ -13094,7 +14509,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-559"
+    "icon": "a-r-559",
+    "requires": [
+      {
+        "parent_id": "sn_1",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_106",
@@ -13121,7 +14542,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-21"
+    "icon": "a-r-21",
+    "requires": []
   },
   {
     "id": "sn_55",
@@ -13150,7 +14572,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1008"
+    "icon": "a-r-1008",
+    "requires": [
+      {
+        "parent_id": "sn_50",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "sn_7",
@@ -13165,12 +14593,7 @@
     "x": 261.06,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [
-      "sn_0",
-      "sn_1841570307375104",
-      "sn_0",
-      "sn_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Chance To Cast Axe Throw On Hit",
@@ -13178,7 +14601,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-243"
+    "icon": "a-r-243",
+    "requires": []
   },
   {
     "id": "sn_6",
@@ -13209,7 +14633,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-863"
+    "icon": "a-r-863",
+    "requires": []
   },
   {
     "id": "sn_107",
@@ -13236,7 +14661,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-204"
+    "icon": "a-r-204",
+    "requires": []
   },
   {
     "id": "sn_108",
@@ -13263,7 +14689,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-558"
+    "icon": "a-r-558",
+    "requires": []
   },
   {
     "id": "sn_10",
@@ -13278,7 +14705,9 @@
     "x": -533.34,
     "y": -92.28003,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_12"
+    ],
     "stats": [
       {
         "key": "Increased Damage",
@@ -13294,7 +14723,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-46"
+    "icon": "a-r-46",
+    "requires": []
   },
   {
     "id": "sn_58",
@@ -13309,7 +14739,10 @@
     "x": -533.34,
     "y": -3.0517578e-05,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "sn_15",
+      "sn_51"
+    ],
     "stats": [
       {
         "key": "Void Damage",
@@ -13317,7 +14750,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-470"
+    "icon": "a-r-470",
+    "requires": []
   },
   {
     "id": "sn_11",
@@ -13352,7 +14786,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-81"
+    "icon": "a-r-81",
+    "requires": []
   },
   {
     "id": "sn_12",
@@ -13368,7 +14803,8 @@
     "y": -184.56003,
     "max_points": 6,
     "connections": [
-      "sn_10"
+      "sn_10",
+      "sn_20"
     ],
     "stats": [
       {
@@ -13385,7 +14821,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-73"
+    "icon": "a-r-73",
+    "requires": [
+      {
+        "parent_id": "sn_10",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_13",
@@ -13416,7 +14858,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1220"
+    "icon": "a-r-1220",
+    "requires": []
   },
   {
     "id": "sn_14",
@@ -13443,7 +14886,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-80"
+    "icon": "a-r-80",
+    "requires": []
   },
   {
     "id": "sn_15",
@@ -13468,7 +14912,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-809"
+    "icon": "a-r-809",
+    "requires": [
+      {
+        "parent_id": "sn_58",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "sn_16",
@@ -13495,7 +14945,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1126"
+    "icon": "a-r-1126",
+    "requires": []
   },
   {
     "id": "sn_51",
@@ -13524,7 +14975,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-748"
+    "icon": "a-r-748",
+    "requires": [
+      {
+        "parent_id": "sn_58",
+        "points": 2
+      }
+    ]
   },
   {
     "id": "sn_56",
@@ -13551,7 +15008,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-56"
+    "icon": "a-r-56",
+    "requires": []
   },
   {
     "id": "sn_19",
@@ -13566,12 +15024,7 @@
     "x": -181.98001,
     "y": -92.28003,
     "max_points": 10,
-    "connections": [
-      "sn_0",
-      "sn_1598075726462976",
-      "sn_0",
-      "sn_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Increased Spell Damage",
@@ -13587,7 +15040,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-9"
+    "icon": "a-r-9",
+    "requires": []
   },
   {
     "id": "sn_18",
@@ -13614,7 +15068,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-518"
+    "icon": "a-r-518",
+    "requires": []
   },
   {
     "id": "sn_20",
@@ -13643,7 +15098,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1128"
+    "icon": "a-r-1128",
+    "requires": [
+      {
+        "parent_id": "sn_12",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_57",
@@ -13674,7 +15135,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-382"
+    "icon": "a-r-382",
+    "requires": []
   },
   {
     "id": "sn_59",
@@ -13705,7 +15167,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1174"
+    "icon": "a-r-1174",
+    "requires": []
   },
   {
     "id": "sn_60",
@@ -13720,7 +15183,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_61"
+    ],
     "stats": [
       {
         "key": "Time Rot Chance",
@@ -13740,7 +15205,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-562"
+    "icon": "a-r-562",
+    "requires": []
   },
   {
     "id": "sn_63",
@@ -13755,7 +15221,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "sn_61"
+    ],
     "stats": [
       {
         "key": "Physical Penetration",
@@ -13775,7 +15243,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-596"
+    "icon": "a-r-596",
+    "requires": []
   },
   {
     "id": "sn_62",
@@ -13806,7 +15275,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1124"
+    "icon": "a-r-1124",
+    "requires": []
   },
   {
     "id": "sn_22",
@@ -13837,7 +15307,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": []
   },
   {
     "id": "sn_61",
@@ -13871,7 +15342,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1359"
+    "icon": "a-r-1359",
+    "requires": [
+      {
+        "parent_id": "sn_60",
+        "points": 3
+      },
+      {
+        "parent_id": "sn_63",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "sn_23",
@@ -13902,7 +15383,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-44"
+    "icon": "a-r-44",
+    "requires": []
   },
   {
     "id": "sn_40",
@@ -13917,7 +15399,9 @@
     "x": 169.38,
     "y": 184.56,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_79"
+    ],
     "stats": [
       {
         "key": "Echo Chance",
@@ -13933,7 +15417,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-63"
+    "icon": "a-r-63",
+    "requires": []
   },
   {
     "id": "sn_25",
@@ -13948,7 +15433,10 @@
     "x": 169.38,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_24",
+      "sn_54"
+    ],
     "stats": [
       {
         "key": "Void Essence Chance On Kill",
@@ -13960,7 +15448,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-80"
+    "icon": "a-r-80",
+    "requires": []
   },
   {
     "id": "sn_24",
@@ -13989,7 +15478,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-750"
+    "icon": "a-r-750",
+    "requires": [
+      {
+        "parent_id": "sn_25",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_54",
@@ -14014,7 +15509,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-79"
+    "icon": "a-r-79",
+    "requires": [
+      {
+        "parent_id": "sn_25",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_26",
@@ -14029,7 +15530,9 @@
     "x": 403.62,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_102"
+    ],
     "stats": [
       {
         "key": "Increased Void Damage",
@@ -14049,7 +15552,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-749"
+    "icon": "a-r-749",
+    "requires": []
   },
   {
     "id": "sn_79",
@@ -14065,7 +15569,8 @@
     "y": 184.56,
     "max_points": 10,
     "connections": [
-      "sn_40"
+      "sn_40",
+      "sn_102"
     ],
     "stats": [
       {
@@ -14078,7 +15583,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-595"
+    "icon": "a-r-595",
+    "requires": [
+      {
+        "parent_id": "sn_40",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "sn_64",
@@ -14105,7 +15616,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-181"
+    "icon": "a-r-181",
+    "requires": []
   },
   {
     "id": "sn_102",
@@ -14143,7 +15655,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-561"
+    "icon": "a-r-561",
+    "requires": [
+      {
+        "parent_id": "sn_26",
+        "points": 5
+      },
+      {
+        "parent_id": "sn_79",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "sn_27",
@@ -14158,7 +15680,9 @@
     "x": -533.34,
     "y": -184.56003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_29"
+    ],
     "stats": [
       {
         "key": "Armor",
@@ -14174,7 +15698,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-559"
+    "icon": "a-r-559",
+    "requires": []
   },
   {
     "id": "sn_65",
@@ -14189,7 +15714,10 @@
     "x": -533.34,
     "y": -3.0517578e-05,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_30",
+      "sn_53"
+    ],
     "stats": [
       {
         "key": "Strength",
@@ -14213,7 +15741,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1365"
+    "icon": "a-r-1365",
+    "requires": []
   },
   {
     "id": "sn_28",
@@ -14240,7 +15769,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-205"
+    "icon": "a-r-205",
+    "requires": []
   },
   {
     "id": "sn_30",
@@ -14256,7 +15786,9 @@
     "y": -92.28003,
     "max_points": 10,
     "connections": [
-      "sn_65"
+      "sn_52",
+      "sn_65",
+      "sn_110"
     ],
     "stats": [
       {
@@ -14269,7 +15801,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-204"
+    "icon": "a-r-204",
+    "requires": [
+      {
+        "parent_id": "sn_65",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_53",
@@ -14285,7 +15823,8 @@
     "y": 92.28,
     "max_points": 10,
     "connections": [
-      "sn_65"
+      "sn_65",
+      "sn_111"
     ],
     "stats": [
       {
@@ -14314,7 +15853,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-246"
+    "icon": "a-r-246",
+    "requires": [
+      {
+        "parent_id": "sn_65",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_32",
@@ -14349,7 +15894,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": []
   },
   {
     "id": "sn_29",
@@ -14378,7 +15924,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-952"
+    "icon": "a-r-952",
+    "requires": [
+      {
+        "parent_id": "sn_27",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_52",
@@ -14411,7 +15963,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-744"
+    "icon": "a-r-744",
+    "requires": [
+      {
+        "parent_id": "sn_30",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_33",
@@ -14442,7 +16000,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-423"
+    "icon": "a-r-423",
+    "requires": []
   },
   {
     "id": "sn_66",
@@ -14477,7 +16036,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-364"
+    "icon": "a-r-364",
+    "requires": []
   },
   {
     "id": "sn_36",
@@ -14504,7 +16064,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-903"
+    "icon": "a-r-903",
+    "requires": []
   },
   {
     "id": "sn_37",
@@ -14539,7 +16100,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1123"
+    "icon": "a-r-1123",
+    "requires": []
   },
   {
     "id": "sn_110",
@@ -14568,7 +16130,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-116"
+    "icon": "a-r-116",
+    "requires": [
+      {
+        "parent_id": "sn_30",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_39",
@@ -14599,7 +16167,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-271"
+    "icon": "a-r-271",
+    "requires": []
   },
   {
     "id": "sn_111",
@@ -14628,7 +16197,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-558"
+    "icon": "a-r-558",
+    "requires": [
+      {
+        "parent_id": "sn_53",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_34",
@@ -14659,7 +16234,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-921"
+    "icon": "a-r-921",
+    "requires": []
   },
   {
     "id": "sn_31",
@@ -14674,7 +16250,9 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 6,
-    "connections": [],
+    "connections": [
+      "sn_43"
+    ],
     "stats": [
       {
         "key": "Strength",
@@ -14686,7 +16264,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-179"
+    "icon": "a-r-179",
+    "requires": []
   },
   {
     "id": "sn_100",
@@ -14721,7 +16300,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-273"
+    "icon": "a-r-273",
+    "requires": []
   },
   {
     "id": "sn_42",
@@ -14736,7 +16316,9 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_44"
+    ],
     "stats": [
       {
         "key": "Dexterity",
@@ -14752,7 +16334,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-947"
+    "icon": "a-r-947",
+    "requires": []
   },
   {
     "id": "sn_43",
@@ -14768,7 +16351,8 @@
     "y": -184.56003,
     "max_points": 8,
     "connections": [
-      "sn_31"
+      "sn_31",
+      "sn_45"
     ],
     "stats": [
       {
@@ -14777,7 +16361,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-591"
+    "icon": "a-r-591",
+    "requires": [
+      {
+        "parent_id": "sn_31",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_41",
@@ -14792,7 +16382,10 @@
     "x": 169.38,
     "y": -92.28003,
     "max_points": 4,
-    "connections": [],
+    "connections": [
+      "sn_47",
+      "sn_48"
+    ],
     "stats": [
       {
         "key": "Armor with a Shield",
@@ -14800,7 +16393,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-571"
+    "icon": "a-r-571",
+    "requires": []
   },
   {
     "id": "sn_38",
@@ -14815,7 +16409,9 @@
     "x": 169.38,
     "y": 92.28,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_67"
+    ],
     "stats": [
       {
         "key": "Shared Increased Armor On Potion Use",
@@ -14831,7 +16427,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-588"
+    "icon": "a-r-588",
+    "requires": []
   },
   {
     "id": "sn_44",
@@ -14847,7 +16444,8 @@
     "y": 184.56,
     "max_points": 8,
     "connections": [
-      "sn_42"
+      "sn_42",
+      "sn_46"
     ],
     "stats": [
       {
@@ -14856,7 +16454,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-385"
+    "icon": "a-r-385",
+    "requires": [
+      {
+        "parent_id": "sn_42",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_48",
@@ -14872,6 +16476,7 @@
     "y": -3.0517578e-05,
     "max_points": 5,
     "connections": [
+      "sn_35",
       "sn_41"
     ],
     "stats": [
@@ -14889,7 +16494,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-493"
+    "icon": "a-r-493",
+    "requires": [
+      {
+        "parent_id": "sn_41",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_45",
@@ -14922,7 +16533,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-196"
+    "icon": "a-r-196",
+    "requires": [
+      {
+        "parent_id": "sn_43",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "sn_47",
@@ -14959,7 +16576,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1171"
+    "icon": "a-r-1171",
+    "requires": [
+      {
+        "parent_id": "sn_41",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "sn_67",
@@ -14992,7 +16615,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-941"
+    "icon": "a-r-941",
+    "requires": [
+      {
+        "parent_id": "sn_38",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "sn_46",
@@ -15021,7 +16650,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-494"
+    "icon": "a-r-494",
+    "requires": [
+      {
+        "parent_id": "sn_44",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "sn_68",
@@ -15060,7 +16695,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-272"
+    "icon": "a-r-272",
+    "requires": []
   },
   {
     "id": "sn_35",
@@ -15097,7 +16733,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-244"
+    "icon": "a-r-244",
+    "requires": [
+      {
+        "parent_id": "sn_48",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_112",
@@ -15128,7 +16770,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1366"
+    "icon": "a-r-1366",
+    "requires": []
   },
   {
     "id": "sn_72",
@@ -15143,7 +16786,10 @@
     "x": -533.34,
     "y": -92.28003,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_76",
+      "sn_114"
+    ],
     "stats": [
       {
         "key": "Block Effectiveness",
@@ -15159,7 +16805,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-493"
+    "icon": "a-r-493",
+    "requires": []
   },
   {
     "id": "sn_71",
@@ -15190,7 +16837,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-132"
+    "icon": "a-r-132",
+    "requires": []
   },
   {
     "id": "sn_77",
@@ -15233,7 +16881,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-449"
+    "icon": "a-r-449",
+    "requires": []
   },
   {
     "id": "sn_76",
@@ -15249,7 +16898,8 @@
     "y": -184.56003,
     "max_points": 6,
     "connections": [
-      "sn_72"
+      "sn_72",
+      "sn_78"
     ],
     "stats": [
       {
@@ -15266,7 +16916,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-37"
+    "icon": "a-r-37",
+    "requires": [
+      {
+        "parent_id": "sn_72",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_69",
@@ -15297,7 +16953,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-704"
+    "icon": "a-r-704",
+    "requires": []
   },
   {
     "id": "sn_74",
@@ -15313,10 +16970,7 @@
     "y": 92.28,
     "max_points": 4,
     "connections": [
-      "sn_0",
-      "sn_1748184833458176",
-      "sn_0",
-      "sn_0"
+      "sn_80"
     ],
     "stats": [
       {
@@ -15329,7 +16983,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-265"
+    "icon": "a-r-265",
+    "requires": []
   },
   {
     "id": "sn_84",
@@ -15344,7 +16999,9 @@
     "x": -416.22,
     "y": 184.56,
     "max_points": 10,
-    "connections": [],
+    "connections": [
+      "sn_73"
+    ],
     "stats": [
       {
         "key": "Ignite Chance",
@@ -15356,7 +17013,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-965"
+    "icon": "a-r-965",
+    "requires": []
   },
   {
     "id": "sn_94",
@@ -15391,7 +17049,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-13"
+    "icon": "a-r-13",
+    "requires": []
   },
   {
     "id": "sn_78",
@@ -15416,7 +17075,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-501"
+    "icon": "a-r-501",
+    "requires": [
+      {
+        "parent_id": "sn_76",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "sn_83",
@@ -15451,7 +17116,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-255"
+    "icon": "a-r-255",
+    "requires": []
   },
   {
     "id": "sn_80",
@@ -15480,7 +17146,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-752"
+    "icon": "a-r-752",
+    "requires": [
+      {
+        "parent_id": "sn_74",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_73",
@@ -15509,7 +17181,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-246"
+    "icon": "a-r-246",
+    "requires": [
+      {
+        "parent_id": "sn_84",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_70",
@@ -15540,7 +17218,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1246"
+    "icon": "a-r-1246",
+    "requires": []
   },
   {
     "id": "sn_82",
@@ -15571,7 +17250,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-472"
+    "icon": "a-r-472",
+    "requires": []
   },
   {
     "id": "sn_75",
@@ -15602,7 +17282,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-423"
+    "icon": "a-r-423",
+    "requires": []
   },
   {
     "id": "sn_97",
@@ -15629,7 +17310,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-712"
+    "icon": "a-r-712",
+    "requires": []
   },
   {
     "id": "sn_104",
@@ -15644,7 +17326,9 @@
     "x": 52.26001,
     "y": -3.0517578e-05,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "sn_91"
+    ],
     "stats": [
       {
         "key": "Increased Armor",
@@ -15660,7 +17344,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1122"
+    "icon": "a-r-1122",
+    "requires": []
   },
   {
     "id": "sn_90",
@@ -15675,7 +17360,9 @@
     "x": 52.26001,
     "y": 184.56,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "sn_89"
+    ],
     "stats": [
       {
         "key": "Armor While With A Shield",
@@ -15691,7 +17378,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-245"
+    "icon": "a-r-245",
+    "requires": []
   },
   {
     "id": "sn_81",
@@ -15706,7 +17394,9 @@
     "x": 169.38,
     "y": -184.56003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "sn_87"
+    ],
     "stats": [
       {
         "key": "Melee Bleed Chance",
@@ -15726,7 +17416,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-10"
+    "icon": "a-r-10",
+    "requires": []
   },
   {
     "id": "sn_86",
@@ -15757,7 +17448,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-29"
+    "icon": "a-r-29",
+    "requires": []
   },
   {
     "id": "sn_89",
@@ -15794,7 +17486,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-952"
+    "icon": "a-r-952",
+    "requires": [
+      {
+        "parent_id": "sn_90",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_96",
@@ -15821,7 +17519,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-557"
+    "icon": "a-r-557",
+    "requires": []
   },
   {
     "id": "sn_91",
@@ -15858,7 +17557,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-556"
+    "icon": "a-r-556",
+    "requires": [
+      {
+        "parent_id": "sn_104",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_88",
@@ -15873,7 +17578,9 @@
     "x": 286.50006,
     "y": 184.56,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_92"
+    ],
     "stats": [
       {
         "key": "Increased Melee Attack Speed",
@@ -15885,7 +17592,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-232"
+    "icon": "a-r-232",
+    "requires": []
   },
   {
     "id": "sn_87",
@@ -15918,7 +17626,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-317"
+    "icon": "a-r-317",
+    "requires": [
+      {
+        "parent_id": "sn_81",
+        "points": 3
+      }
+    ]
   },
   {
     "id": "sn_98",
@@ -15953,7 +17667,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-558"
+    "icon": "a-r-558",
+    "requires": []
   },
   {
     "id": "sn_95",
@@ -15986,7 +17701,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1163"
+    "icon": "a-r-1163",
+    "requires": [
+      {
+        "parent_id": "sn_119",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_93",
@@ -16027,7 +17748,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-494"
+    "icon": "a-r-494",
+    "requires": [
+      {
+        "parent_id": "sn_119",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_92",
@@ -16056,7 +17783,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-74"
+    "icon": "a-r-74",
+    "requires": [
+      {
+        "parent_id": "sn_88",
+        "points": 4
+      }
+    ]
   },
   {
     "id": "sn_17",
@@ -16071,12 +17804,7 @@
     "x": 52.26001,
     "y": 184.56,
     "max_points": 8,
-    "connections": [
-      "sn_0",
-      "sn_1674083762700288",
-      "sn_0",
-      "sn_0"
-    ],
+    "connections": [],
     "stats": [
       {
         "key": "Increased Cast Speed",
@@ -16096,7 +17824,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-8"
+    "icon": "a-r-8",
+    "requires": []
   },
   {
     "id": "sn_114",
@@ -16125,7 +17854,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-559"
+    "icon": "a-r-559",
+    "requires": [
+      {
+        "parent_id": "sn_72",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "sn_116",
@@ -16156,7 +17891,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1125"
+    "icon": "a-r-1125",
+    "requires": []
   },
   {
     "id": "sn_118",
@@ -16191,7 +17927,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-76"
+    "icon": "a-r-76",
+    "requires": []
   },
   {
     "id": "sn_119",
@@ -16206,7 +17943,10 @@
     "x": 403.62,
     "y": -3.0517578e-05,
     "max_points": 5,
-    "connections": [],
+    "connections": [
+      "sn_93",
+      "sn_95"
+    ],
     "stats": [
       {
         "key": "Increased Holy Aura And Symbols Of Hope Effect",
@@ -16214,7 +17954,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-121"
+    "icon": "a-r-121",
+    "requires": []
   },
   {
     "id": "sn_120",
@@ -16249,7 +17990,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-1365"
+    "icon": "a-r-1365",
+    "requires": []
   },
   {
     "id": "ac_86",
@@ -16265,7 +18007,8 @@
     "y": 92.28,
     "max_points": 8,
     "connections": [
-      "ac_53"
+      "ac_53",
+      "ac_90"
     ],
     "stats": [
       {
@@ -16278,7 +18021,13 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-915"
+    "icon": "a-r-915",
+    "requires": [
+      {
+        "parent_id": "ac_53",
+        "points": 1
+      }
+    ]
   },
   {
     "id": "ac_88",
@@ -16293,7 +18042,9 @@
     "x": -299.09998,
     "y": 92.28,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_94"
+    ],
     "stats": [
       {
         "key": "Increased Necrotic Damage",
@@ -16305,7 +18056,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-295"
+    "icon": "a-r-295",
+    "requires": []
   },
   {
     "id": "ac_97",
@@ -16320,7 +18072,10 @@
     "x": 52.26001,
     "y": -92.28003,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_101",
+      "ac_103"
+    ],
     "stats": [
       {
         "key": "Increased Fire Damage",
@@ -16328,7 +18083,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-913"
+    "icon": "a-r-913",
+    "requires": []
   },
   {
     "id": "ac_98",
@@ -16343,7 +18099,10 @@
     "x": 52.26001,
     "y": 92.28,
     "max_points": 8,
-    "connections": [],
+    "connections": [
+      "ac_101",
+      "ac_104"
+    ],
     "stats": [
       {
         "key": "Increased Necrotic Damage",
@@ -16355,7 +18114,8 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-62"
+    "icon": "a-r-62",
+    "requires": []
   },
   {
     "id": "ac_101",
@@ -16372,7 +18132,8 @@
     "max_points": 8,
     "connections": [
       "ac_97",
-      "ac_98"
+      "ac_98",
+      "ac_110"
     ],
     "stats": [
       {
@@ -16385,7 +18146,17 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-696"
+    "icon": "a-r-696",
+    "requires": [
+      {
+        "parent_id": "ac_97",
+        "points": 5
+      },
+      {
+        "parent_id": "ac_98",
+        "points": 5
+      }
+    ]
   },
   {
     "id": "ac_103",
@@ -16410,6 +18181,12 @@
       }
     ],
     "ability_granted": null,
-    "icon": "a-r-582"
+    "icon": "a-r-582",
+    "requires": [
+      {
+        "parent_id": "ac_97",
+        "points": 5
+      }
+    ]
   }
 ]

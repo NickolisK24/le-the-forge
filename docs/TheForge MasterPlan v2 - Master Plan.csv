@@ -21,9 +21,9 @@ THE FORGE — MASTER DEVELOPMENT PLAN,,,,,,,,
 17,Phase 0,0D-4,Add Beastmaster mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
 18,Phase 0,0D-5,Add Shaman mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
 19,Phase 0,0D-6,Add Druid mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
-20,Phase 0,0E-1,Scrape LET network payload for passive tree connections,Data,CRITICAL,Not Started,FALSE,DevTools → Network → XHR/Fetch. Capture raw node graph JSON with all edges
-21,Phase 0,0E-2,Write passive connection merge script,Engine,CRITICAL,Not Started,FALSE,Merge edges into passives.json without touching stat content we already have
-22,Phase 0,0E-3,Verify BFS path validation post-merge,QA,CRITICAL,Not Started,FALSE,Confirm unreachable nodes cannot be allocated. Test with known tree paths
+20,Phase 0,0E-1,Scrape LET network payload for passive tree connections,Data,CRITICAL,Complete,TRUE,Harvested from LET window.LECharTrees[*].characterTree.nodes[*].requirements (DOM-verified at 2 connectors per edge). 200 directed edges across 5 classes: acolyte=38 mage=40 primalist=40 rogue=40 sentinel=42.
+21,Phase 0,0E-2,Write passive connection merge script,Engine,CRITICAL,Complete,TRUE,backend/scripts/merge_passive_edges.py rebuilds connections[] + new requires[{parent_id,points}] field per node. Strips 35 pointer-hash + pseudo-mastery-entry junk entries. Idempotent; leaves classes without edge payload untouched.
+22,Phase 0,0E-3,Verify BFS path validation post-merge,QA,CRITICAL,Complete,TRUE,backend/app/game_data/passive_tree_validator.py enforces 5 rules (unknown-id / point-range / parent-threshold / BFS reachability / total-budget). 21 tests in test_passive_tree_validator.py. Full backend suite: 10811 passed 0 failed.
 23,Phase 0,0F-1,Generate draft mapping for all 877 passive stat key strings,Data,CRITICAL,Not Started,FALSE,Claude generates full key → BuildStats field + modifier type document for review
 24,Phase 0,0F-2,Review and verify high-impact stat key mappings,Data,CRITICAL,Not Started,FALSE,"Spot-check: damage%, crit, resistances, health, speed keys against in-game tooltips"
 25,Phase 0,0F-3,Build passive_stat_key_map translation layer in engine,Engine,CRITICAL,Not Started,FALSE,Replace the class stat-cycle fallback with real per-node stat resolution
