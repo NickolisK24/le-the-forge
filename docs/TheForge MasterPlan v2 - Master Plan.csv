@@ -81,7 +81,7 @@ THE FORGE — MASTER DEVELOPMENT PLAN,,,,,,,,
 20,Phase 1,1I-2,Test Necromancer skeleton DPS — count × per-minion DPS,QA,HIGH,Not Started,FALSE,Skeleton DPS × active count should approximate total in-game output
 21,Phase 1,1J-1,"Add corrupted attribute stats (Brutality, Madness) to BuildStats schema",Engine,MEDIUM,Not Started,FALSE,"Season 4: Rune of Corruption can convert STR → Brutality, INT → Madness. New stat types"
 22,Phase 1,1J-2,Model Brutality and Madness stat effects in damage pipeline,Engine,MEDIUM,Not Started,FALSE,"Brutality: 0.02% more melee dmg per mana cost, reduced health leech. Madness: crit multi + penalty"
-23,Phase 1,1K-1,Fix gear import from Last Epoch Tools (#155),Import,CRITICAL,Complete,TRUE,Gear slots empty after LET import. Highest-visibility broken feature. Fix before any public sharing
+23,Phase 1,1K-1,Fix gear import from Last Epoch Tools (#155),Import,CRITICAL,Complete,TRUE,LET moved to client-side rendering; re-enabled via browser bookmarklet that captures window.buildInfo and pastes into the JSON tab. Backend endpoint /api/import/let/json reuses the existing mapper including gear parser. Bookmarklet under frontend/public/bookmarklets/
 24,Phase 1,1K-2,Verify Maxroll import coverage across 10+ builds,Import,HIGH,Not Started,FALSE,Document any missing field patterns. Fix edge cases in maxroll_importer.py
 25,Phase 1,1K-3,Verify idol data imports correctly from LET and Maxroll,Import,HIGH,Not Started,FALSE,Idols are a separate gear system. Confirm importers capture idol affixes into idol slots
 26,Phase 1,1K-4,Verify blessing data imports correctly from LET,Import,HIGH,Not Started,FALSE,LET stores blessings in build exports. Confirm our importer captures them

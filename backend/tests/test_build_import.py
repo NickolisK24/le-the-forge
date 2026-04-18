@@ -3636,7 +3636,7 @@ class TestMaxrollFullParseFlow:
 
 
 # ---------------------------------------------------------------------------
-# /api/import/url preview mapper — regression tests for issue #155
+# _map_let_build — regression tests for issue #155
 # (Gear was hardcoded to [] in _map_let_build; now delegates to the full
 #  importer's gear parser.)
 # ---------------------------------------------------------------------------
@@ -3696,3 +3696,86 @@ class TestMapLetBuildGear:
         })
 
         assert "gear_note" not in mapped["_import_meta"]
+
+
+# ---------------------------------------------------------------------------
+# /api/import/let/json — paste raw window.buildInfo from LET
+# (Workaround for LET going client-side: the bookmarklet / DevTools copies
+#  window.buildInfo from the planner page and posts it here for mapping.)
+# ---------------------------------------------------------------------------
+
+class TestImportLetFromJson:
+    def test_rejects_missing_body(self, client):
+        resp = client.post("/api/import/let/json", json={})
+        assert resp.status_code == 400
+        body = resp.get_json()
+        assert "build_info" in body["errors"][0]["message"]
+
+    def test_rejects_non_object_build_info(self, client):
+        resp = client.post("/api/import/let/json", json={"build_info": "nope"})
+        assert resp.status_code == 400
+
+    def test_rejects_payload_without_bio_or_charTree(self, client):
+        resp = client.post(
+            "/api/import/let/json",
+            json={"build_info": {"hud": [], "skillTrees": []}},
+        )
+        assert resp.status_code == 422
+
+    def test_maps_minimal_build_info(self, client):
+        build_info = {
+            "bio": {"level": 85, "characterClass": 2, "chosenMastery": 3},
+            "charTree": {"selected": {"10": 5, "20": 3}},
+            "skillTrees": [
+                {"treeID": "abc", "selected": {"1": 2}, "level": 10, "slotNumber": 0},
+            ],
+            "hud": ["abc", "", "", "", ""],
+        }
+        resp = client.post("/api/import/let/json", json={"build_info": build_info})
+        assert resp.status_code == 200
+        data = resp.get_json()["data"]["build"]
+        assert data["character_class"] == "Sentinel"
+        assert data["mastery"] == "Paladin"
+        assert data["level"] == 85
+        assert len(data["passive_tree"]) == 8  # 5 + 3 points
+        assert len(data["skills"]) == 1
+        assert data["_import_meta"]["source"] == "lastepochtools"
+
+    def test_maps_build_info_with_gear(self, client):
+        build_info = {
+            "bio": {"level": 90, "characterClass": 4, "chosenMastery": 1},
+            "charTree": {"selected": {}},
+            "skillTrees": [],
+            "hud": [],
+            "equipment": {
+                "helm": {"id": 5, "affixes": [], "ir": 0, "ur": 0},
+                "weapon": {"id": 10, "affixes": [], "ir": 0, "ur": 0},
+                "belt": {"id": 7, "affixes": [], "ir": 0, "ur": 0},
+            },
+        }
+        resp = client.post("/api/import/let/json", json={"build_info": build_info})
+        assert resp.status_code == 200
+        build = resp.get_json()["data"]["build"]
+        assert len(build["gear"]) == 3
+        slots = [g["slot"] for g in build["gear"]]
+        assert "helmet" in slots
+        assert "weapon" in slots
+        assert "belt" in slots
+        assert build["_import_meta"]["gear_count"] == 3
+
+    def test_unwraps_data_envelope(self, client):
+        """LET sometimes wraps the real payload under a 'data' key."""
+        payload = {
+            "build_info": {
+                "data": {
+                    "bio": {"level": 70, "characterClass": 1, "chosenMastery": 1},
+                    "charTree": {"selected": {}},
+                    "skillTrees": [],
+                    "hud": [],
+                }
+            }
+        }
+        resp = client.post("/api/import/let/json", json=payload)
+        assert resp.status_code == 200
+        data = resp.get_json()["data"]["build"]
+        assert data["character_class"] == "Mage"
