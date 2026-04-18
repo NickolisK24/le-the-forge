@@ -118,7 +118,7 @@ class GameDataPipeline:
         self._cache["enemies"]        = self._load_enemies(self._version)
         self._cache["skills"]         = self._load_skills(self._version)
         self._cache["classes"]        = self._load_classes()
-        self._cache["skills_meta"]    = self._load_optional("skills_meta", {})
+        self._cache["skills_meta"]    = self._load_skills_metadata()
         self._cache["uniques"]        = self._load_optional("uniques", {})
         self._cache["rarities"]       = self._load_optional("rarities", [])
         self._cache["damage_types"]   = self._load_optional("damage_types", [])
@@ -263,6 +263,95 @@ class GameDataPipeline:
     def _load_optional(self, key: str, default):
         raw = _load_json(key)
         return raw if raw is not None else default
+
+    def _load_skills_metadata(self) -> dict:
+        """
+        Load skills_metadata.json, drop meta-keys (``_schema``, ``_meta``),
+        and validate the Phase-0 0G-1 damage fields whenever they are
+        populated. Missing values are allowed (user fills them in 0G-2..0G-6);
+        malformed values raise at startup so bad data cannot reach the engine.
+        """
+        raw = _load_json("skills_meta")
+        if raw is None:
+            return {}
+        if not isinstance(raw, dict):
+            raise RuntimeError(
+                "pipeline: skills_metadata.json must be a JSON object"
+            )
+
+        skills = {k: v for k, v in raw.items() if not k.startswith("_")}
+        populated = 0
+        missing_any = 0
+        for name, entry in skills.items():
+            if not isinstance(entry, dict):
+                raise RuntimeError(
+                    f"pipeline: skills_metadata.json[{name!r}] must be an object"
+                )
+            self._validate_skill_damage_fields(name, entry)
+            if all(
+                entry.get(f) is not None
+                for f in ("base_damage_min", "base_damage_max",
+                          "damage_scaling_stat", "attack_type")
+            ):
+                populated += 1
+            elif any(
+                f not in entry
+                for f in ("base_damage_min", "base_damage_max",
+                          "damage_scaling_stat", "attack_type")
+            ):
+                missing_any += 1
+
+        log.info(
+            "pipeline.skills_metadata.loaded",
+            total=len(skills),
+            populated_0g=populated,
+            unpopulated_0g=len(skills) - populated,
+            entries_missing_any_0g_field=missing_any,
+        )
+        return skills
+
+    _ALLOWED_ATTACK_TYPES = {
+        "melee", "ranged", "throwing", "spell",
+        "channeled", "dot", "minion", "aura", "utility",
+    }
+    _ALLOWED_SCALING_STATS = {
+        "strength", "intelligence", "dexterity",
+        "vitality", "attunement", "none",
+    }
+
+    def _validate_skill_damage_fields(self, name: str, entry: dict) -> None:
+        """
+        Per-entry check for the 0G-1 fields. Null values are fine.
+        Any populated value must match its declared type / enum.
+        """
+        dmin = entry.get("base_damage_min")
+        dmax = entry.get("base_damage_max")
+        if dmin is not None and not isinstance(dmin, (int, float)):
+            raise RuntimeError(
+                f"skills_metadata[{name!r}].base_damage_min must be numeric or null"
+            )
+        if dmax is not None and not isinstance(dmax, (int, float)):
+            raise RuntimeError(
+                f"skills_metadata[{name!r}].base_damage_max must be numeric or null"
+            )
+        if dmin is not None and dmax is not None and dmin > dmax:
+            raise RuntimeError(
+                f"skills_metadata[{name!r}]: base_damage_min > base_damage_max"
+            )
+
+        scaling = entry.get("damage_scaling_stat")
+        if scaling is not None and scaling not in self._ALLOWED_SCALING_STATS:
+            raise RuntimeError(
+                f"skills_metadata[{name!r}].damage_scaling_stat={scaling!r} "
+                f"not in {sorted(self._ALLOWED_SCALING_STATS)}"
+            )
+
+        atype = entry.get("attack_type")
+        if atype is not None and atype not in self._ALLOWED_ATTACK_TYPES:
+            raise RuntimeError(
+                f"skills_metadata[{name!r}].attack_type={atype!r} "
+                f"not in {sorted(self._ALLOWED_ATTACK_TYPES)}"
+            )
 
     def _detect_version(self) -> str:
         raw = _load_json("affixes")
