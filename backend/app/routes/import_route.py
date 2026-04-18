@@ -237,6 +237,19 @@ def _map_let_build(build_info: dict) -> dict:
 
     skills.sort(key=lambda s: s["slot"])
 
+    # ---- Gear ---------------------------------------------------------------
+    # Delegate to the full importer's gear parser so the preview endpoint
+    # produces the same gear payload as /api/import/build. The method does
+    # not use instance state, so a fresh instance is safe.
+    from app.services.importers import LastEpochToolsImporter
+    gear_missing: List[str] = []
+    try:
+        gear = LastEpochToolsImporter()._parse_gear(build_info, gear_missing)
+    except Exception as exc:
+        logger.warning("import/url: gear parse failed: %s", exc)
+        gear = []
+        gear_missing.append(f"gear_parse_error:{exc}")
+
     return {
         "name": f"Imported — {char_class} {mastery}".strip(),
         "description": (
@@ -248,17 +261,15 @@ def _map_let_build(build_info: dict) -> dict:
         "level": level,
         "passive_tree": passive_tree,
         "skills": skills,
-        "gear": [],
+        "gear": gear,
         "_import_meta": {
             "source": "lastepochtools",
             "char_class_id": char_class_id,
             "mastery_id": mastery_id,
             "skill_count": len(skills),
             "passive_nodes": len(selected_nodes),
-            "gear_note": (
-                "Gear not imported — Last Epoch Tools item IDs "
-                "require a separate database lookup"
-            ),
+            "gear_count": len(gear),
+            "gear_missing_fields": gear_missing,
         },
     }
 
