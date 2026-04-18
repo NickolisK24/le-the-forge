@@ -54,6 +54,7 @@ _PATHS = {
     "base_items":     os.path.join(_ROOT, "data", "items", "base_items.json"),
     "crafting_rules": os.path.join(_ROOT, "data", "items", "crafting_rules.json"),
     "blessings":      os.path.join(_ROOT, "data", "progression", "blessings.json"),
+    "weaver_tree":    os.path.join(_ROOT, "data", "progression", "weaver_tree.json"),
 }
 
 
@@ -138,6 +139,8 @@ class GameDataPipeline:
                     _flat[b["id"]] = b
         self._cache["blessings_flat"] = _flat
 
+        self._cache["weaver_tree"] = self._load_weaver_tree()
+
         log.info("pipeline.load_all.done", version=self._version)
 
     def reload(self) -> None:
@@ -206,6 +209,11 @@ class GameDataPipeline:
     @property
     def blessings_flat(self) -> dict[str, dict]:
         return self._cache.get("blessings_flat", {})
+
+    @property
+    def weaver_tree_nodes(self) -> list[dict]:
+        """Return the list of Weaver Tree nodes (empty until populated in 0L-*)."""
+        return self._cache.get("weaver_tree", [])
 
     def get_enemy(self, enemy_id: str) -> Optional[EnemyProfile]:
         """Return a single EnemyProfile by id, or None."""
@@ -309,6 +317,109 @@ class GameDataPipeline:
             entries_missing_any_0g_field=missing_any,
         )
         return skills
+
+    def _load_weaver_tree(self) -> list[dict]:
+        """
+        Load data/progression/weaver_tree.json, strip the self-describing
+        ``_schema`` wrapper, and return the flat node list. Validates every
+        populated node so bad data cannot reach the engine.
+
+        The file ships as a scaffold with ``nodes: []`` — node content gets
+        captured from the in-game Weaver Tree in a follow-up task. The loader
+        therefore treats an empty list as valid and logs the count at startup.
+        """
+        raw = _load_json("weaver_tree")
+        if raw is None:
+            return []
+        if not isinstance(raw, dict):
+            raise RuntimeError(
+                "pipeline: weaver_tree.json must be a JSON object with a 'nodes' array"
+            )
+        nodes = raw.get("nodes", [])
+        if not isinstance(nodes, list):
+            raise RuntimeError(
+                "pipeline: weaver_tree.json['nodes'] must be a list"
+            )
+
+        seen_ids: set[str] = set()
+        for node in nodes:
+            self._validate_weaver_node(node, seen_ids)
+            seen_ids.add(node["id"])
+
+        log.info(
+            "pipeline.weaver_tree.loaded",
+            nodes=len(nodes),
+        )
+        return nodes
+
+    _REQUIRED_WEAVER_NODE_FIELDS = (
+        "id", "name", "max_points", "connections", "stats",
+    )
+    _ALLOWED_WEAVER_NODE_TYPES = {"root", "key", "circle"}
+
+    def _validate_weaver_node(self, node: object, seen_ids: set[str]) -> None:
+        """
+        Per-node validation. Missing required keys, wrong types, or duplicate
+        IDs raise at startup; the engine never sees malformed tree data.
+        """
+        if not isinstance(node, dict):
+            raise RuntimeError(
+                "pipeline: weaver_tree.json['nodes'] entry is not an object"
+            )
+        missing = [f for f in self._REQUIRED_WEAVER_NODE_FIELDS if f not in node]
+        if missing:
+            raise RuntimeError(
+                f"pipeline: weaver_tree node missing required fields: {missing}"
+            )
+        node_id = node["id"]
+        if not isinstance(node_id, str) or not node_id:
+            raise RuntimeError(
+                "pipeline: weaver_tree node.id must be a non-empty string"
+            )
+        if node_id in seen_ids:
+            raise RuntimeError(
+                f"pipeline: weaver_tree duplicate node id: {node_id!r}"
+            )
+        if not isinstance(node["name"], str):
+            raise RuntimeError(
+                f"pipeline: weaver_tree node[{node_id!r}].name must be a string"
+            )
+        node_type = node.get("node_type")
+        if node_type is not None:
+            if not isinstance(node_type, str):
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}].node_type must be a string"
+                )
+            if node_type not in self._ALLOWED_WEAVER_NODE_TYPES:
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}].node_type must be one of "
+                    f"{sorted(self._ALLOWED_WEAVER_NODE_TYPES)} (got {node_type!r})"
+                )
+        min_points = 0 if node_type == "root" else 1
+        if not isinstance(node["max_points"], int) or node["max_points"] < min_points:
+            raise RuntimeError(
+                f"pipeline: weaver_tree node[{node_id!r}].max_points must be >= {min_points}"
+            )
+        if not isinstance(node["connections"], list):
+            raise RuntimeError(
+                f"pipeline: weaver_tree node[{node_id!r}].connections must be a list"
+            )
+        for conn in node["connections"]:
+            if not isinstance(conn, str) or not conn:
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}] has invalid connection "
+                    f"entry {conn!r}"
+                )
+        if not isinstance(node["stats"], list):
+            raise RuntimeError(
+                f"pipeline: weaver_tree node[{node_id!r}].stats must be a list"
+            )
+        for stat in node["stats"]:
+            if not isinstance(stat, dict) or "key" not in stat or "value" not in stat:
+                raise RuntimeError(
+                    f"pipeline: weaver_tree node[{node_id!r}].stats entry must be "
+                    "{'key': str, 'value': str|number}"
+                )
 
     _ALLOWED_ATTACK_TYPES = {
         "melee", "ranged", "throwing", "spell",
