@@ -152,6 +152,27 @@ def get_skill_base_damage(skill_name: str) -> dict | None:
 
 
 # ---------------------------------------------------------------------------
+# Weaver Tree (Season 4+) — 0L-*
+# ---------------------------------------------------------------------------
+
+def get_weaver_tree_nodes() -> list[dict]:
+    """
+    Returns the full Weaver Tree node list (empty until populated in 0L-*).
+    Each node conforms to the shape declared in
+    ``data/progression/weaver_tree.json``'s ``_schema`` block.
+    """
+    return list(_pipeline().weaver_tree_nodes)
+
+
+def get_weaver_tree_node(node_id: str) -> dict | None:
+    """Returns a single Weaver Tree node by id, or None."""
+    for node in _pipeline().weaver_tree_nodes:
+        if node.get("id") == node_id:
+            return node
+    return None
+
+
+# ---------------------------------------------------------------------------
 # Enemy profiles
 # ---------------------------------------------------------------------------
 

@@ -1,0 +1,29 @@
+{
+  "_schema": {
+    "_comment": "Weaver Tree — Season 4+ progression. Scaffolded empty (CSV 0L-1); node graph populated after user captures ground-truth data from the in-game Weaver Tree UI. No placeholder values: the ``nodes`` list stays empty until every entry carries verified content.",
+    "shape": {
+      "nodes": "list of WeaverNode objects"
+    },
+    "node_fields": {
+      "id":              {"type": "string", "notes": "Stable ID used for allocation + connection graph. Prefer LET-style short IDs when captured."},
+      "raw_node_id":     {"type": "integer|null", "notes": "Numeric ID from the source payload, if available"},
+      "name":            {"type": "string"},
+      "description":     {"type": "string"},
+      "node_type":       {"type": "string|null", "notes": "Enum pending user confirmation; examples to verify in-game: ``minor``, ``major``, ``keystone``, ``webway``"},
+      "tier":            {"type": "integer|null", "notes": "Gating tier if Weaver Tree uses tiered unlocks; user to confirm whether this exists"},
+      "x":               {"type": "number", "notes": "Layout x-coord (any consistent unit)"},
+      "y":               {"type": "number", "notes": "Layout y-coord"},
+      "max_points":      {"type": "integer", "notes": "Maximum points allocatable to this node"},
+      "connections":     {"type": "list[string]", "notes": "IDs of directly connected neighbour nodes"},
+      "stats":           {"type": "list[{key, value}]", "notes": "Same shape as passives.json — ``value`` is the tooltip string (e.g. ``+10%``, ``+1``)"},
+      "ability_granted": {"type": "string|null", "notes": "If the node unlocks an ability rather than a stat"},
+      "icon":            {"type": "string|null", "notes": "Icon ID if captured"}
+    },
+    "capture_checklist": [
+      "Open the Weaver Tree in-game at a character with >= 1 point spent.",
+      "For every node: record id/name/description/node_type, (x,y) position, max_points, connections, stats list, icon if visible.",
+      "Alternatively: DevTools -> Network on a LET planner with a Weaver Tree build, capture the node graph JSON, and paste it here for normalisation."
+    ]
+  },
+  "nodes": []
+}
