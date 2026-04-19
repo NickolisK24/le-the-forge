@@ -63,6 +63,7 @@ def _serialize(node: PassiveNode) -> dict:
         "y": node.y,
         "max_points": node.max_points,
         "connections": node.connections,
+        "requires": node.requires or [],
         "stats": node.stats,
         "ability_granted": node.ability_granted,
         "icon": node.icon,
