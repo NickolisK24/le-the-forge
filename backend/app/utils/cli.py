@@ -221,6 +221,7 @@ def register_commands(app: Flask) -> None:
                 existing.y = node.get("y", 0.0)
                 existing.max_points = node.get("max_points", 1)
                 existing.connections = node.get("connections", [])
+                existing.requires = node.get("requires", [])
                 existing.stats = node.get("stats")
                 existing.ability_granted = node.get("ability_granted")
                 existing.icon = node.get("icon")
@@ -240,6 +241,7 @@ def register_commands(app: Flask) -> None:
                     y=node.get("y", 0.0),
                     max_points=node.get("max_points", 1),
                     connections=node.get("connections", []),
+                    requires=node.get("requires", []),
                     stats=node.get("stats"),
                     ability_granted=node.get("ability_granted"),
                     icon=node.get("icon"),
