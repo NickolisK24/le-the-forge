@@ -25,25 +25,31 @@ log = ForgeLogger(__name__)
 #
 # Coverage (measured against data/classes/passives.json by
 # scripts/verify_passive_coverage.py):
-#   • Overall entries mapped: 31.8% (450 / 1416) — previously 25.1%.
-#   • freq≥2 keys mapped:     69.7% (424 / 608) — previously 56.7%.
+#   • Overall entries mapped: 39.2% (555 / 1416) — pass 1 was 31.8%.
+#   • freq≥2 keys mapped:     79.8% (485 / 608) — pass 1 was 69.7%.
 # The remaining unmapped entries are either conditional mechanics
-# ("while Dual Wielding", "per Stack of Perfection"), type-specific
-# stats for which BuildStats has no dedicated field (e.g. Increased
-# Minion Cold Damage, Frostbite Chance, Freeze Rate Multiplier), or
-# non-numeric flag effects ("Can Equip Swords in Offhand"). They fall
-# through to special_effects so callers can inspect them without the
-# resolver silently over- or under-scaling the additive pool.
+# ("while Dual Wielding", "per Stack of Perfection", "with a Shield"),
+# proc triggers ("Chance To Cast X"), shared-with-minions composites,
+# or non-numeric flag effects ("Can Equip Swords in Offhand"). They
+# fall through to special_effects so callers can inspect them without
+# the resolver silently over- or under-scaling the additive pool.
 #
-# Additions in this batch cover every freq≥2 key that cleanly maps to an
-# existing BuildStats field, plus obvious freq=1 aliases (Crit Multiplier,
-# Increased Totem Damage, etc.). Keys that describe conditional mechanics
-# ("while Dual Wielding", "per Stack", "with a Shield"), proc triggers
-# ("Chance To Cast X"), or type-specific stats for which BuildStats has no
-# dedicated field (e.g. Increased Minion Cold Damage, Frostbite Chance) are
-# intentionally left unmapped — they fall through to special_effects so
-# callers can inspect them without the resolver silently over- or
-# under-scaling the additive pool.
+# Pass 2 additions prioritised meta-build DPS/EHP stats:
+#   - High-frequency universals: Increased Mana Regen (freq 12),
+#     Increased Dodge Rating (6), Increased Health Regen (6),
+#     Increased Mana (4), Increased Leech Rate (3) — all backed by
+#     new BuildStats fields so they stop polluting special_effects.
+#   - Minion specialisation stats relevant to Acolyte/Necromancer
+#     and Primalist Beastmaster builds: cold/necrotic damage,
+#     attack/cast speed, armour, crit multiplier.
+#   - Frequent aliases where the key was a simple case/plural
+#     variation of an already-mapped concept (Bow Damage, Ward per
+#     second, Elemental Resistances, Melee Damage, etc.).
+#   - Type-scoped ailment/crit chance aliases (Melee Bleed Chance,
+#     Melee Crit Chance, Spell Poison Chance, etc.) route to the
+#     generic chance pool; BuildStats doesn't distinguish hit-source
+#     for ailment chances so conflating them matches the existing
+#     "Increased Melee Attack Speed" → attack_speed_pct pattern.
 #
 # Special composite keys (prefixed with underscore) fan out to multiple
 # BuildStats fields inside resolve_passive_stats().
@@ -64,10 +70,15 @@ STAT_KEY_MAP: dict[str, str] = {
     "Increased Health": "health_pct",
     "Max Mana": "max_mana",
     "Mana": "max_mana",
+    "Increased Mana": "mana_pct",               # pass 2: freq 4 — pct of max mana
     "Mana Regen": "mana_regen",
     "Mana Regeneration": "mana_regen",
+    "Increased Mana Regen": "mana_regen_pct",   # pass 2: freq 12 — highest unmapped
+    "Increased Mana Regeneration": "mana_regen_pct",
     "Health Regen": "health_regen",
     "Health Regeneration": "health_regen",
+    "Increased Health Regen": "health_regen_pct",        # pass 2: freq 6
+    "Increased Health Regeneration": "health_regen_pct",
 
     # Defense — armour / dodge / block
     "Armor": "armour",
@@ -75,6 +86,7 @@ STAT_KEY_MAP: dict[str, str] = {
     "Increased Armor": "armour_pct",
     "Increased Armour": "armour_pct",
     "Dodge Rating": "dodge_rating",
+    "Increased Dodge Rating": "dodge_rating_pct",   # pass 2: freq 6 — meta Rogue/Falconer
     "Block Chance": "block_chance",
     "Block Effectiveness": "block_effectiveness",
     "Endurance": "endurance",
@@ -92,7 +104,10 @@ STAT_KEY_MAP: dict[str, str] = {
     "Increased Ward Retention": "ward_retention_pct",
     "Ward Regen": "ward_regen",
     "Ward Per Second": "ward_regen",
+    "Ward per Second": "ward_regen",            # pass 2: case alias
+    "Ward per second": "ward_regen",            # pass 2: case alias
     "Ward Regeneration": "ward_regen",
+    "Ward Decay Threshold": "ward_decay_threshold",  # pass 2: freq 2 — flat threshold
 
     # Defense — resistances
     "Fire Resistance": "fire_res",
@@ -102,29 +117,42 @@ STAT_KEY_MAP: dict[str, str] = {
     "Necrotic Resistance": "necrotic_res",
     "Poison Resistance": "poison_res",
     "Physical Resistance": "physical_res",
-    "Elemental Resistance": "_elemental_res",  # handled specially
-    "All Resistances": "_all_resistances",     # handled specially
+    "Elemental Resistance": "_elemental_res",   # handled specially
+    "Elemental Resistances": "_elemental_res",  # pass 2: plural alias
+    "All Resistances": "_all_resistances",      # handled specially
 
     # Offense — percentage damage
     "Increased Damage": "physical_damage_pct",  # generic damage → physical as default
     "Increased Spell Damage": "spell_damage_pct",
     "Spell Damage": "spell_damage_pct",
     "Increased Physical Damage": "physical_damage_pct",
+    "Physical Damage": "physical_damage_pct",        # pass 2: alias (base-tree node)
     "Increased Fire Damage": "fire_damage_pct",
+    "Fire Damage": "fire_damage_pct",                # pass 2: alias
     "Increased Cold Damage": "cold_damage_pct",
+    "Cold Damage": "cold_damage_pct",                # pass 2: alias
     "Increased Lightning Damage": "lightning_damage_pct",
+    "Global Increased Lightning Damage": "lightning_damage_pct",  # pass 2: alias
     "Increased Necrotic Damage": "necrotic_damage_pct",
+    "Necrotic Damage": "necrotic_damage_pct",        # pass 2: alias
     "Increased Void Damage": "void_damage_pct",
+    "Void Damage": "void_damage_pct",                # pass 2: alias
     "Increased Poison Damage": "poison_damage_pct",
     "Increased Elemental Damage": "elemental_damage_pct",
+    "Elemental Damage": "elemental_damage_pct",      # pass 2: alias
     "Increased Melee Damage": "melee_damage_pct",
+    "Melee Damage": "melee_damage_pct",              # pass 2: alias
     "Increased Throwing Damage": "throwing_damage_pct",
+    "Throwing Damage": "throwing_damage_pct",        # pass 2: alias
     "Throwing Attack Damage": "throwing_damage_pct",
     "Increased Throwing Attack Damage": "throwing_damage_pct",
     "Increased Bow Damage": "bow_damage_pct",
+    "Bow Damage": "bow_damage_pct",                  # pass 2: freq 2 — alias
     "Increased Minion Damage": "minion_damage_pct",
     "Increased DoT Damage": "dot_damage_pct",
     "Increased Damage Over Time": "dot_damage_pct",
+    "Damage Over Time": "dot_damage_pct",            # pass 2: alias
+    "Global Damage Over Time": "dot_damage_pct",     # pass 2: alias
     "Increased Shadow Damage": "shadow_damage_pct",
     "Shadow Damage": "shadow_damage_pct",
 
@@ -154,11 +182,16 @@ STAT_KEY_MAP: dict[str, str] = {
     "Attack Speed": "attack_speed_pct",
     "Increased Attack Speed": "attack_speed_pct",
     "Increased Melee Attack Speed": "attack_speed_pct",
+    "Melee Attack Speed": "attack_speed_pct",        # pass 2: alias
+    "Increased Bow Attack Speed": "attack_speed_pct",  # pass 2: bow attacks are attacks
     "Cast Speed": "cast_speed",
     "Increased Cast Speed": "cast_speed",
+    "Increased Throwing Attack Speed": "throwing_attack_speed",  # pass 2
+    "Throwing Attack Speed": "throwing_attack_speed",            # pass 2
     "Attack And Cast Speed": "_attack_and_cast_speed",  # handled specially
     "Critical Strike Chance": "crit_chance_pct",
     "Increased Critical Strike Chance": "crit_chance_pct",
+    "Increased Melee Critical Strike Chance": "crit_chance_pct",  # pass 2: alias
     "Critical Chance": "crit_chance_pct",
     "Increased Critical Chance": "crit_chance_pct",
     "Increased Crit Chance": "crit_chance_pct",
@@ -169,11 +202,30 @@ STAT_KEY_MAP: dict[str, str] = {
 
     # Offense — ailment chance
     "Poison Chance": "poison_chance_pct",
+    "Melee Poison Chance": "poison_chance_pct",      # pass 2: type-scoped alias
+    "Spell Poison Chance": "poison_chance_pct",      # pass 2: type-scoped alias
     "Bleed Chance": "bleed_chance_pct",
+    "Melee Bleed Chance": "bleed_chance_pct",        # pass 2: freq 3 — type-scoped alias
+    "Throwing Bleed Chance": "bleed_chance_pct",     # pass 2: type-scoped alias
+    "Throwing Attack Bleed Chance": "bleed_chance_pct",  # pass 2: type-scoped alias
     "Ignite Chance": "ignite_chance_pct",
+    "Melee Ignite Chance": "ignite_chance_pct",      # pass 2: type-scoped alias
     "Shock Chance": "shock_chance_pct",
     "Electrify Chance": "shock_chance_pct",     # Electrify is LE's legacy name for Shock
     "Chill Chance": "chill_chance_pct",
+    "Slow Chance": "slow_chance_pct",                # pass 2: alias (field exists)
+
+    # Offense — ailment / DoT duration (generic buckets via ailment_duration_pct)
+    "Ignite Duration": "ailment_duration_pct",       # pass 2
+    "Chill Duration": "ailment_duration_pct",        # pass 2
+    "Shock Duration": "ailment_duration_pct",        # pass 2
+    "Electrify Duration": "ailment_duration_pct",    # pass 2: Electrify == Shock
+    "Poison Duration": "ailment_duration_pct",       # pass 2
+    "Increased Poison Duration": "ailment_duration_pct",  # pass 2
+    "Increased Slow Duration": "ailment_duration_pct",    # pass 2
+
+    # Utility — buff duration
+    "Buff Duration": "buff_duration_pct",            # pass 2: field already exists
 
     # Offense — penetration
     "Physical Penetration": "physical_penetration",
@@ -187,17 +239,37 @@ STAT_KEY_MAP: dict[str, str] = {
     # Offense — shred
     "Armour Shred Chance": "armour_shred_chance",
     "Armor Shred Chance": "armour_shred_chance",
+    "Throwing Armor Shred Chance": "armour_shred_chance",   # pass 2: alias
+    "Throwing Armour Shred Chance": "armour_shred_chance",  # pass 2: alias
     "Fire Shred Chance": "fire_shred_chance",
     "Cold Shred Chance": "cold_shred_chance",
     "Lightning Shred Chance": "lightning_shred_chance",
+    "Lightning Res Shred Chance": "lightning_shred_chance",  # pass 2: alias
 
     # Offense — minion
     "Increased Minion Health": "minion_health_pct",
     "Minion Health": "minion_health_pct",
     "Increased Minion Speed": "minion_speed_pct",
+    "Increased Minion Movement Speed": "minion_speed_pct",   # pass 2: alias
+    "Minion Movespeed": "minion_speed_pct",                  # pass 2: alias
     "Increased Minion Physical Damage": "minion_physical_damage_pct",
     "Increased Minion Spell Damage": "minion_spell_damage_pct",
     "Increased Minion Melee Damage": "minion_melee_damage_pct",
+    "Increased Minion Cold Damage": "minion_cold_damage_pct",      # pass 2: freq 4
+    "Minion Cold Damage": "minion_cold_damage_pct",                # pass 2: alias
+    "Minion Increased Cold Damage": "minion_cold_damage_pct",      # pass 2: alias
+    "Increased Minion Necrotic Damage": "minion_necrotic_damage_pct",  # pass 2: freq 2
+    "Minion Necrotic Damage": "minion_necrotic_damage_pct",        # pass 2: alias
+    "Increased Minion Attack Speed": "minion_attack_speed_pct",    # pass 2: freq 3
+    "Minion Attack Speed": "minion_attack_speed_pct",              # pass 2: alias
+    "Increased Minion Cast Speed": "minion_cast_speed_pct",        # pass 2: freq 3
+    "Minion Increased Cast Speed": "minion_cast_speed_pct",        # pass 2: alias
+    "Minion Cast Speed": "minion_cast_speed_pct",                  # pass 2: alias
+    "Minion Armor": "minion_armour",                               # pass 2: freq 3
+    "Minion Armour": "minion_armour",                              # pass 2: alias
+    "Increased Minion Armor": "minion_armour",                     # pass 2: alias
+    "Increased Minion Armour": "minion_armour",                    # pass 2: alias
+    "Minion Critical Multiplier": "minion_crit_multiplier_pct",    # pass 2: freq 2
     "Companion Damage": "companion_damage_pct",
     "Companion Health": "companion_health_pct",
     "Increased Companion Health": "companion_health_pct",
@@ -209,15 +281,21 @@ STAT_KEY_MAP: dict[str, str] = {
     # Sustain
     "Leech": "leech",
     "Health Leech": "leech",
+    "Increased Health Leech": "leech",               # pass 2: alias
     "Damage Leeched As Health": "leech",
+    "Damage Leeched as Health on Hit": "leech",      # pass 2: alias
     "Melee Damage Leeched as Health": "leech",
+    "Increased Leech Rate": "leech_rate_pct",        # pass 2: freq 3 — distinct field
     "Health On Kill": "health_on_kill",
     "Mana On Kill": "mana_on_kill",
     "Ward On Kill": "ward_on_kill",
     "Health On Block": "health_on_block",
+    "Health Gained On Block": "health_on_block",     # pass 2: alias
+    "Health Gained on Block": "health_on_block",     # pass 2: alias
     "Healing Effectiveness": "healing_effectiveness_pct",
     "Increased Healing Effectiveness": "healing_effectiveness_pct",
     "Increased Healing": "healing_effectiveness_pct",
+    "Healing": "healing_effectiveness_pct",          # pass 2: alias
 
     # Utility
     "Movement Speed": "movement_speed",
