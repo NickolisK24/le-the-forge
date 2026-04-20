@@ -101,6 +101,12 @@ class BuildStats:
     minion_physical_damage_pct: float = 0.0
     minion_spell_damage_pct: float = 0.0
     minion_melee_damage_pct: float = 0.0
+    minion_cold_damage_pct: float = 0.0
+    minion_necrotic_damage_pct: float = 0.0
+    minion_attack_speed_pct: float = 0.0
+    minion_cast_speed_pct: float = 0.0
+    minion_armour: float = 0.0
+    minion_crit_multiplier_pct: float = 0.0
 
     # Defense — health / armour
     max_health: float = 0.0
@@ -111,6 +117,7 @@ class BuildStats:
     # applied multiplicatively to armour in the mitigation calculator.
     armour_pct: float = 0.0
     dodge_rating: float = 0.0
+    dodge_rating_pct: float = 0.0
     block_chance: float = 0.0
     block_effectiveness: float = 0.0
     endurance: float = 0.0
@@ -123,6 +130,7 @@ class BuildStats:
     ward: float = 0.0
     ward_retention_pct: float = 0.0
     ward_regen: float = 0.0
+    ward_decay_threshold: float = 0.0  # flat stacks of ward before decay starts
     mana_to_ward_pct: float = 0.0      # % of mana spent converted to ward
 
     # Defense — resistances
@@ -166,12 +174,16 @@ class BuildStats:
 
     # Resources
     max_mana: float = 0.0
+    mana_pct: float = 0.0
     mana_regen: float = 0.0
+    mana_regen_pct: float = 0.0
     health_regen: float = 0.0
+    health_regen_pct: float = 0.0
     mana_efficiency_pct: float = 0.0
 
     # Sustain
     leech: float = 0.0
+    leech_rate_pct: float = 0.0
     health_on_kill: float = 0.0
     mana_on_kill: float = 0.0
     ward_on_kill: float = 0.0

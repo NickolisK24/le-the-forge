@@ -10,15 +10,15 @@ type-clean stat is missing an alias.
 Two coverage floors are enforced, both measured against the file as it
 ships today:
 
-* ``--overall-floor`` (default ``25.0``) — fraction of all stat entries
-  that hit the map. Keeps a safety margin so a large batch of newly
-  scraped nodes doesn't accidentally drag the number below the pre-fix
-  baseline of 25.1%.
-* ``--freq-floor`` (default ``60.0``) — fraction of entries whose key
+* ``--overall-floor`` (default ``37.0``) — fraction of all stat entries
+  that hit the map. Pass 2 reached 39.2% (pass 1 was 31.8%, pre-fix
+  baseline 25.1%); the floor sits 2pp below the achieved value so a
+  large batch of newly scraped nodes doesn't silently erase the lift.
+* ``--freq-floor`` (default ``77.0``) — fraction of entries whose key
   appears 2+ times in the data file. Workhorse keys (resistances,
   attributes, increased X damage, etc.) should almost all be mapped;
   this floor catches regressions where a common alias is accidentally
-  removed.
+  removed. Pass 2 reached 79.8% (pass 1 was 69.7%).
 
 Exits with status 1 if either floor is breached. Intended for CI.
 """
@@ -62,10 +62,10 @@ def _load_passive_stat_keys() -> Counter[str]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__)
-    parser.add_argument("--overall-floor", type=float, default=25.0,
-                        help="Minimum overall coverage %% (default 25.0).")
-    parser.add_argument("--freq-floor", type=float, default=60.0,
-                        help="Minimum freq>=2 coverage %% (default 60.0).")
+    parser.add_argument("--overall-floor", type=float, default=37.0,
+                        help="Minimum overall coverage %% (default 37.0).")
+    parser.add_argument("--freq-floor", type=float, default=77.0,
+                        help="Minimum freq>=2 coverage %% (default 77.0).")
     parser.add_argument("--top", type=int, default=20,
                         help="How many unmapped keys to print (default 20).")
     args = parser.parse_args()
