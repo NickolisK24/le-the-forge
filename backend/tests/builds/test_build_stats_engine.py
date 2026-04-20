@@ -115,3 +115,42 @@ class TestToEncounterParams:
         params = eng.to_encounter_params(build)
         # Effective damage >= raw because percent pools are additive multipliers
         assert params["base_damage"] >= stats.base_damage
+
+
+class TestPassiveStatsMigration:
+    """compile() should pre-resolve passives from the DB when a Flask
+    context is active and a matching class row exists — routing the
+    result through aggregate_stats(passive_stats=...) instead of
+    silently producing modulo-derived bonuses.
+    """
+
+    def test_compile_uses_resolved_passive_stats_when_db_seeded(self, db):
+        from app.models import PassiveNode
+
+        # Seed a single Acolyte notable with a distinctive, easily-checked
+        # stat — intelligence +7 — that the modulo fallback would never
+        # produce (CORE_STAT_CYCLE gives strength at id 0).
+        db.session.add(PassiveNode(
+            id="ac_500", raw_node_id=500,
+            character_class="Acolyte", mastery=None,
+            mastery_index=0, mastery_requirement=0,
+            name="Resolver Marker", node_type="notable",
+            x=0, y=0, max_points=1, connections=[],
+            stats=[{"key": "Intelligence", "value": "+7"}],
+            ability_granted=None, icon="0",
+        ))
+        db.session.commit()
+
+        build = _lich_build(passive_ids=[500])
+        stats = BuildStatsEngine().compile(build)
+        # A real +7 Intelligence only comes from the resolver path —
+        # no modulo output hits intelligence for node_id=500 on Acolyte.
+        assert stats.intelligence >= 7.0
+
+    def test_compile_falls_back_gracefully_without_matching_db_row(self, db):
+        build = _lich_build(passive_ids=[9999])
+        # No PassiveNode row with raw_node_id=9999 for Acolyte → the
+        # resolver returns None and aggregate_stats uses its modulo
+        # fallback. Compilation must still succeed without error.
+        stats = BuildStatsEngine().compile(build)
+        assert stats.base_damage > 0

@@ -549,9 +549,23 @@ def _get_node_bonus(node_id: int, node_type: str, node_name: str, character_clas
         return {}
     if node_type == "keystone":
         return KEYSTONE_BONUSES.get(node_name, {"spell_damage_pct": 10, "max_health": 50})
+    # Last-resort fallback: the modulo-cycle produces a synthetic stat bonus
+    # derived from node_id alone, which is not real game data. It only fires
+    # when aggregate_stats was called without a resolved passive_stats dict.
+    # Emit a warning so operators can trace which call site still relies on
+    # the fallback instead of resolve_passive_stats().
     cycle = CLASS_STAT_CYCLES.get(character_class, CORE_STAT_CYCLE)
     stat_key, base_amount = cycle[node_id % len(cycle)]
     amount = base_amount * NOTABLE_MULTIPLIER if node_type == "notable" else base_amount
+    log.warning(
+        "stat_engine.passive_node_fallback",
+        node_id=node_id,
+        node_type=node_type,
+        node_name=node_name,
+        character_class=character_class,
+        stat_key=stat_key,
+        amount=amount,
+    )
     return {stat_key: amount}
 
 
