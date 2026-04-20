@@ -23,8 +23,30 @@ log = ForgeLogger(__name__)
 # ---------------------------------------------------------------------------
 # Mapping: human-readable stat key → BuildStats field name
 #
-# Only common stats that map cleanly to BuildStats fields belong here.
-# Everything else falls through to special_effects.
+# Coverage (measured against data/classes/passives.json by
+# scripts/verify_passive_coverage.py):
+#   • Overall entries mapped: 31.8% (450 / 1416) — previously 25.1%.
+#   • freq≥2 keys mapped:     69.7% (424 / 608) — previously 56.7%.
+# The remaining unmapped entries are either conditional mechanics
+# ("while Dual Wielding", "per Stack of Perfection"), type-specific
+# stats for which BuildStats has no dedicated field (e.g. Increased
+# Minion Cold Damage, Frostbite Chance, Freeze Rate Multiplier), or
+# non-numeric flag effects ("Can Equip Swords in Offhand"). They fall
+# through to special_effects so callers can inspect them without the
+# resolver silently over- or under-scaling the additive pool.
+#
+# Additions in this batch cover every freq≥2 key that cleanly maps to an
+# existing BuildStats field, plus obvious freq=1 aliases (Crit Multiplier,
+# Increased Totem Damage, etc.). Keys that describe conditional mechanics
+# ("while Dual Wielding", "per Stack", "with a Shield"), proc triggers
+# ("Chance To Cast X"), or type-specific stats for which BuildStats has no
+# dedicated field (e.g. Increased Minion Cold Damage, Frostbite Chance) are
+# intentionally left unmapped — they fall through to special_effects so
+# callers can inspect them without the resolver silently over- or
+# under-scaling the additive pool.
+#
+# Special composite keys (prefixed with underscore) fan out to multiple
+# BuildStats fields inside resolve_passive_stats().
 # ---------------------------------------------------------------------------
 
 STAT_KEY_MAP: dict[str, str] = {
@@ -50,6 +72,8 @@ STAT_KEY_MAP: dict[str, str] = {
     # Defense — armour / dodge / block
     "Armor": "armour",
     "Armour": "armour",
+    "Increased Armor": "armour_pct",
+    "Increased Armour": "armour_pct",
     "Dodge Rating": "dodge_rating",
     "Block Chance": "block_chance",
     "Block Effectiveness": "block_effectiveness",
@@ -57,12 +81,18 @@ STAT_KEY_MAP: dict[str, str] = {
     "Endurance Threshold": "endurance_threshold",
     "Stun Avoidance": "stun_avoidance",
     "Critical Strike Avoidance": "crit_avoidance",
+    "Crit Avoidance": "crit_avoidance",
+    "Critical Avoidance": "crit_avoidance",
     "Glancing Blow": "glancing_blow",
+    "Glancing Blow Chance": "glancing_blow",
 
     # Defense — ward
     "Ward": "ward",
     "Ward Retention": "ward_retention_pct",
+    "Increased Ward Retention": "ward_retention_pct",
     "Ward Regen": "ward_regen",
+    "Ward Per Second": "ward_regen",
+    "Ward Regeneration": "ward_regen",
 
     # Defense — resistances
     "Fire Resistance": "fire_res",
@@ -73,6 +103,7 @@ STAT_KEY_MAP: dict[str, str] = {
     "Poison Resistance": "poison_res",
     "Physical Resistance": "physical_res",
     "Elemental Resistance": "_elemental_res",  # handled specially
+    "All Resistances": "_all_resistances",     # handled specially
 
     # Offense — percentage damage
     "Increased Damage": "physical_damage_pct",  # generic damage → physical as default
@@ -88,27 +119,60 @@ STAT_KEY_MAP: dict[str, str] = {
     "Increased Elemental Damage": "elemental_damage_pct",
     "Increased Melee Damage": "melee_damage_pct",
     "Increased Throwing Damage": "throwing_damage_pct",
+    "Throwing Attack Damage": "throwing_damage_pct",
+    "Increased Throwing Attack Damage": "throwing_damage_pct",
     "Increased Bow Damage": "bow_damage_pct",
     "Increased Minion Damage": "minion_damage_pct",
     "Increased DoT Damage": "dot_damage_pct",
     "Increased Damage Over Time": "dot_damage_pct",
+    "Increased Shadow Damage": "shadow_damage_pct",
+    "Shadow Damage": "shadow_damage_pct",
+
+    # Offense — flat added melee damage
+    "Melee Physical Damage": "added_melee_physical",
+    "Melee Fire Damage": "added_melee_fire",
+    "Melee Cold Damage": "added_melee_cold",
+    "Melee Lightning Damage": "added_melee_lightning",
+    "Melee Void Damage": "added_melee_void",
+    "Melee Necrotic Damage": "added_melee_necrotic",
+
+    # Offense — flat added spell damage
+    "Spell Fire Damage": "added_spell_fire",
+    "Spell Cold Damage": "added_spell_cold",
+    "Spell Lightning Damage": "added_spell_lightning",
+    "Spell Necrotic Damage": "added_spell_necrotic",
+    "Spell Void Damage": "added_spell_void",
+
+    # Offense — flat added throwing / bow damage
+    "Throwing Physical Damage": "added_throw_physical",
+    "Throwing Fire Damage": "added_throw_fire",
+    "Throwing Cold Damage": "added_throw_cold",
+    "Bow Physical Damage": "added_bow_physical",
+    "Bow Fire Damage": "added_bow_fire",
 
     # Offense — speed / crit
     "Attack Speed": "attack_speed_pct",
     "Increased Attack Speed": "attack_speed_pct",
+    "Increased Melee Attack Speed": "attack_speed_pct",
     "Cast Speed": "cast_speed",
     "Increased Cast Speed": "cast_speed",
     "Attack And Cast Speed": "_attack_and_cast_speed",  # handled specially
     "Critical Strike Chance": "crit_chance_pct",
     "Increased Critical Strike Chance": "crit_chance_pct",
+    "Critical Chance": "crit_chance_pct",
+    "Increased Critical Chance": "crit_chance_pct",
+    "Increased Crit Chance": "crit_chance_pct",
     "Critical Strike Multiplier": "crit_multiplier_pct",
     "Increased Critical Strike Multiplier": "crit_multiplier_pct",
+    "Critical Multiplier": "crit_multiplier_pct",
+    "Crit Multiplier": "crit_multiplier_pct",
 
     # Offense — ailment chance
     "Poison Chance": "poison_chance_pct",
     "Bleed Chance": "bleed_chance_pct",
     "Ignite Chance": "ignite_chance_pct",
     "Shock Chance": "shock_chance_pct",
+    "Electrify Chance": "shock_chance_pct",     # Electrify is LE's legacy name for Shock
     "Chill Chance": "chill_chance_pct",
 
     # Offense — penetration
@@ -118,9 +182,11 @@ STAT_KEY_MAP: dict[str, str] = {
     "Lightning Penetration": "lightning_penetration",
     "Void Penetration": "void_penetration",
     "Necrotic Penetration": "necrotic_penetration",
+    "Poison Penetration": "poison_penetration",
 
     # Offense — shred
     "Armour Shred Chance": "armour_shred_chance",
+    "Armor Shred Chance": "armour_shred_chance",
     "Fire Shred Chance": "fire_shred_chance",
     "Cold Shred Chance": "cold_shred_chance",
     "Lightning Shred Chance": "lightning_shred_chance",
@@ -134,22 +200,36 @@ STAT_KEY_MAP: dict[str, str] = {
     "Increased Minion Melee Damage": "minion_melee_damage_pct",
     "Companion Damage": "companion_damage_pct",
     "Companion Health": "companion_health_pct",
+    "Increased Companion Health": "companion_health_pct",
     "Totem Damage": "totem_damage_pct",
+    "Increased Totem Damage": "totem_damage_pct",
     "Totem Health": "totem_health_pct",
+    "Increased Totem Health": "totem_health_pct",
 
     # Sustain
     "Leech": "leech",
+    "Health Leech": "leech",
+    "Damage Leeched As Health": "leech",
+    "Melee Damage Leeched as Health": "leech",
     "Health On Kill": "health_on_kill",
     "Mana On Kill": "mana_on_kill",
     "Ward On Kill": "ward_on_kill",
     "Health On Block": "health_on_block",
     "Healing Effectiveness": "healing_effectiveness_pct",
+    "Increased Healing Effectiveness": "healing_effectiveness_pct",
+    "Increased Healing": "healing_effectiveness_pct",
 
     # Utility
     "Movement Speed": "movement_speed",
     "Increased Movement Speed": "movement_speed",
+    "Movespeed": "movement_speed",
+    "Increased Movespeed": "movement_speed",
     "Cooldown Recovery Speed": "cooldown_recovery_speed",
+    "Increased Cooldown Recovery Speed": "cooldown_recovery_speed",
     "Increased Area": "area_pct",
+    "Increased Area For Area Skills": "area_pct",
+    "Increased Area for Area Skills": "area_pct",
+    "Area For Area Spells": "area_pct",
 }
 
 
@@ -235,6 +315,11 @@ def resolve_passive_stats(node_ids: list[str]) -> PassiveStats:
                         additive[attr] = additive.get(attr, 0.0) + parsed
                 elif mapped == "_elemental_res":
                     for res in ("fire_res", "cold_res", "lightning_res"):
+                        additive[res] = additive.get(res, 0.0) + parsed
+                elif mapped == "_all_resistances":
+                    for res in ("fire_res", "cold_res", "lightning_res",
+                                "void_res", "necrotic_res", "poison_res",
+                                "physical_res"):
                         additive[res] = additive.get(res, 0.0) + parsed
                 elif mapped == "_attack_and_cast_speed":
                     additive["attack_speed_pct"] = additive.get("attack_speed_pct", 0.0) + parsed
