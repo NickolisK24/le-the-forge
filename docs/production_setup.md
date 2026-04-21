@@ -97,7 +97,65 @@ smoke test that CORS and routing are working end-to-end.
 
 ---
 
-## 4. Operational notes
+## 4. Rotating secrets
+
+Rotate any secret the moment you believe it may be compromised. Treat every
+entry in Render's **Environment** tab as something that should survive a
+rotation in under ten minutes.
+
+### `SECRET_KEY` and `JWT_SECRET_KEY`
+
+Rotating these invalidates every active session — users will be logged out
+and asked to sign in again. That's the intended behaviour.
+
+```bash
+# Generate a fresh value locally
+python -c "import secrets; print(secrets.token_hex(32))"
+```
+
+1. Render → `epochforge-api` → Environment → update both keys.
+2. Click **Save and Deploy** (or wait for the next deploy). The process
+   restarts; `ProductionConfig.validate()` confirms neither value is the
+   dev default.
+3. Smoke test: hit `/api/health` and sign in again with Discord.
+
+### Discord OAuth credentials
+
+If `DISCORD_CLIENT_SECRET` leaks:
+
+1. Discord Developer Portal → your app → **OAuth2 → Reset Secret**.
+2. Copy the new value into Render → `epochforge-api` → Environment →
+   `DISCORD_CLIENT_SECRET`.
+3. Click **Save and Deploy**. Test by signing in.
+
+### `DATABASE_URL` / `REDIS_URL`
+
+These are managed by Render's `fromDatabase` / `fromService` wiring. If the
+underlying database or Redis instance is compromised:
+
+1. Create a new instance (`epochforge-db-new`).
+2. `pg_dump` from the old one, `psql` into the new one (Render shell).
+3. Swap the blueprint reference — or temporarily override `DATABASE_URL`
+   manually in the API's env tab — and redeploy.
+4. Destroy the compromised instance only after confirming the new one is
+   healthy (`/api/health`, a few authenticated reads, a write).
+
+### `DISCORD_IMPORT_WEBHOOK_URL`
+
+Low-risk — webhook URLs only allow posting, not reading. Still, rotate by
+deleting the webhook in Discord → channel → Integrations, creating a new
+one, and updating the env var.
+
+### Checklist after any rotation
+
+- [ ] Confirm `ProductionConfig.validate()` passes (deploy succeeds).
+- [ ] `/api/health` returns 200 with fresh `uptime_seconds`.
+- [ ] One Discord login works end-to-end.
+- [ ] No stack traces in the Render log tail.
+
+---
+
+## 5. Operational notes
 
 - **Rate-limit store**: `REDIS_URL` must be set. The app falls back to
   in-memory rate limiting if Redis is unreachable, which breaks the limiter

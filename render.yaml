@@ -1,16 +1,35 @@
 # ---------------------------------------------------------------------------
 # The Forge — Render Blueprint
 # ---------------------------------------------------------------------------
-# Deploys two services for https://epochforge.gg:
-#   - epochforge-api       (Flask + Gunicorn backend, api.epochforge.gg)
-#   - epochforge-frontend  (Vite static site, epochforge.gg / www.epochforge.gg)
+# Deploys four services for https://epochforge.gg:
+#   - epochforge-db        Render Postgres (Starter plan)
+#   - epochforge-redis     Render Key Value / Redis (Starter plan)
+#   - epochforge-api       Flask + Gunicorn backend       (api.epochforge.gg)
+#   - epochforge-frontend  Vite static site               (epochforge.gg, www)
 #
-# Secrets (DATABASE_URL, REDIS_URL, SECRET_KEY, JWT_SECRET_KEY,
-# DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, etc.) are managed in the Render
-# dashboard — NEVER commit secrets to this file.
+# DATABASE_URL and REDIS_URL are wired automatically via `fromDatabase` /
+# `fromService`. Application secrets (SECRET_KEY, JWT_SECRET_KEY, Discord
+# OAuth, etc.) are marked `sync: false` and must be populated in the Render
+# dashboard — NEVER commit real secrets to this file.
 # ---------------------------------------------------------------------------
 
+databases:
+  - name: epochforge-db
+    databaseName: the_forge
+    user: forge
+    plan: starter
+    postgresMajorVersion: "15"
+
 services:
+  # -------------------------------------------------------------------------
+  # Redis / Key Value — rate limit + cache backend
+  # -------------------------------------------------------------------------
+  - type: redis
+    name: epochforge-redis
+    plan: starter
+    ipAllowList: []   # private-only; only other Render services may connect
+    maxmemoryPolicy: allkeys-lru
+
   # -------------------------------------------------------------------------
   # Backend API — Flask served by Gunicorn
   # -------------------------------------------------------------------------
@@ -32,16 +51,21 @@ services:
         value: wsgi.py
       - key: PYTHON_VERSION
         value: "3.11"
-      - key: FRONTEND_URL
-        value: https://epochforge.gg
       - key: PYTHONUNBUFFERED
         value: "1"
-      # The following are managed in the Render dashboard — set sync:false so
-      # they are not overwritten by blueprint apply.
+      - key: FRONTEND_URL
+        value: https://epochforge.gg
       - key: DATABASE_URL
-        sync: false
+        fromDatabase:
+          name: epochforge-db
+          property: connectionString
       - key: REDIS_URL
-        sync: false
+        fromService:
+          type: redis
+          name: epochforge-redis
+          property: connectionString
+      # Secrets — populate in the Render dashboard. sync:false keeps
+      # `render blueprint apply` from overwriting them.
       - key: SECRET_KEY
         sync: false
       - key: JWT_SECRET_KEY
