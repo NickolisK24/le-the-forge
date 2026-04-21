@@ -60,20 +60,19 @@ def _const(section: str, key: str, default: Any = None) -> Any:
     return _load_constants().get(section, {}).get(key, default)
 
 
-# Derived-stat scaling coefficients — ONLY for expansions NOT already in
-# aggregate_stats ATTRIBUTE_SCALING (dex→dodge and vit→health are handled there).
-# These constants are re-exported for test access.
-# VERIFIED: 1.4.3 spec §1.5 — per-point attribute grants
-# Strength → max_health (per point) — not in ATTRIBUTE_SCALING
-STR_TO_HEALTH: float = 1.0
-# Dexterity → dodge_rating (per point) — mirrors ATTRIBUTE_SCALING["dexterity"]["dodge_rating"]
-DEX_TO_DODGE: float = 4.0
-# Vitality → max_health (per point) — mirrors ATTRIBUTE_SCALING["vitality"]["max_health"]
-VIT_TO_HEALTH: float = 6.0
-# Intelligence → ward_retention_pct (per point) — not in ATTRIBUTE_SCALING
-INT_TO_WARD_RETENTION: float = 4.0
-# Attunement → mana_regen (per point) — not in ATTRIBUTE_SCALING
-ATT_TO_MANA_REGEN: float = 0.2
+# Derived-stat scaling coefficients — per-point grants verified from
+# in-game attribute tooltips and level-1 character sheets. These match
+# the values in stat_engine.ATTRIBUTE_SCALING and are retained here for
+# test access and external callers; all application is centralised in
+# aggregate_stats() step 6 to avoid double-counting.
+DEX_TO_DODGE: float = 4.0              # +4 Dodge Rating per Dexterity
+VIT_TO_HEALTH: float = 6.0             # +6 Health per Vitality
+INT_TO_WARD_RETENTION: float = 2.0     # +2% Ward Retention per Intelligence
+# Legacy coefficients — kept at 0 because the verified in-game tooltips
+# confirm Strength and Attunement grant no direct health or mana regen;
+# preserved as names so old imports and parametric tests resolve.
+STR_TO_HEALTH: float = 0.0
+ATT_TO_MANA_REGEN: float = 0.0
 
 
 # ---------------------------------------------------------------------------
@@ -83,15 +82,21 @@ ATT_TO_MANA_REGEN: float = 0.2
 def apply_derived_stats(stats: BuildStats) -> None:
     """Expand primary attributes into secondary stats (Layer 6).
 
-    Handles ONLY the derived expansions that are NOT already covered by
-    aggregate_stats() ATTRIBUTE_SCALING (Step 6).  Those are:
-      dex → dodge_rating  (3/pt via ATTRIBUTE_SCALING["dexterity"]["dodge_rating"])
-      vit → max_health    (10/pt via ATTRIBUTE_SCALING["vitality"]["max_health"])
+    Applies the verified in-game per-point grants for callers that build
+    a BuildStats manually (e.g. unit tests that bypass aggregate_stats):
 
-    Expansions applied here (absent from ATTRIBUTE_SCALING):
-    - Strength     → max_health (+STR_TO_HEALTH per point)
-    - Intelligence → ward_retention_pct (+INT_TO_WARD_RETENTION per point)
-    - Attunement   → mana_regen (+ATT_TO_MANA_REGEN per point)
+      Dexterity    → +4 Dodge Rating per point
+      Vitality     → +6 Health per point
+      Intelligence → +2% Ward Retention per point
+
+    ``STR_TO_HEALTH`` and ``ATT_TO_MANA_REGEN`` are retained at 0.0 —
+    the verified in-game tooltips show neither attribute grants direct
+    health or mana regen (attribute-scaled skill damage is handled at
+    the skill calc layer, not here).
+
+    :func:`resolve_final_stats` does NOT call this function, because
+    :func:`aggregate_stats` step 6 is the canonical application point
+    inside the full pipeline — calling both would double-apply.
 
     Modifies *stats* in place.
     """
@@ -406,8 +411,11 @@ def resolve_final_stats(
 
     # ------------------------------------------------------------------
     # Layer 6 — Derived Stats (attribute expansion)
+    # Attribute scaling is applied by aggregate_stats step 6 (canonical
+    # application point). Skipping apply_derived_stats here avoids double-
+    # counting attribute grants; the Layer 6 snapshot therefore mirrors
+    # the Layer 5 post-conversion state.
     # ------------------------------------------------------------------
-    apply_derived_stats(stats)
     if capture_snapshots:
         from dataclasses import asdict as _ad
         snapshots["6_derived_stats"] = _ad(stats)

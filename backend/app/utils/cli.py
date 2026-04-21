@@ -221,6 +221,7 @@ def register_commands(app: Flask) -> None:
                 existing.y = node.get("y", 0.0)
                 existing.max_points = node.get("max_points", 1)
                 existing.connections = node.get("connections", [])
+                existing.requires = node.get("requires", [])
                 existing.stats = node.get("stats")
                 existing.ability_granted = node.get("ability_granted")
                 existing.icon = node.get("icon")
@@ -240,6 +241,7 @@ def register_commands(app: Flask) -> None:
                     y=node.get("y", 0.0),
                     max_points=node.get("max_points", 1),
                     connections=node.get("connections", []),
+                    requires=node.get("requires", []),
                     stats=node.get("stats"),
                     ability_granted=node.get("ability_granted"),
                     icon=node.get("icon"),
@@ -250,6 +252,18 @@ def register_commands(app: Flask) -> None:
         click.echo(f"✓ Passive nodes seeded: {inserted} inserted, {updated} updated.")
         if warnings:
             click.echo(f"  {warnings} dangling connection ID(s) logged above.")
+
+        # Prune rows that no longer exist in the JSON export — otherwise
+        # older synthetic ids (e.g. collision-disambiguated mg_m0_54 from
+        # earlier sync_game_data.py runs) stick around and get served by
+        # the API, appearing as ghost nodes in the UI.
+        json_ids = all_ids
+        stale = PassiveNode.query.filter(~PassiveNode.id.in_(json_ids)).all()
+        if stale:
+            for row in stale:
+                db.session.delete(row)
+            db.session.commit()
+            click.echo(f"  Pruned {len(stale)} stale row(s) not present in passives.json.")
 
     @app.cli.command("create-admin")
     @click.argument("username")

@@ -132,6 +132,46 @@ def get_all_skills_metadata() -> dict:
     return _pipeline().skills_metadata
 
 
+def get_skill_base_damage(skill_name: str) -> dict | None:
+    """
+    Returns the 0G-1 base-damage payload for a skill, or None when the
+    skill is unknown or its damage fields are not yet populated.
+
+    Shape: {base_damage_min, base_damage_max, damage_scaling_stat, attack_type}
+    Any field can be None independently of the others until 0G-2..0G-6
+    finish populating values per class.
+    """
+    meta = _pipeline().skills_metadata.get(skill_name)
+    if not meta:
+        return None
+    fields = ("base_damage_min", "base_damage_max",
+              "damage_scaling_stat", "attack_type")
+    if all(meta.get(f) is None for f in fields):
+        return None
+    return {f: meta.get(f) for f in fields}
+
+
+# ---------------------------------------------------------------------------
+# Weaver Tree (Season 4+) — 0L-*
+# ---------------------------------------------------------------------------
+
+def get_weaver_tree_nodes() -> list[dict]:
+    """
+    Returns the full Weaver Tree node list (empty until populated in 0L-*).
+    Each node conforms to the shape declared in
+    ``data/progression/weaver_tree.json``'s ``_schema`` block.
+    """
+    return list(_pipeline().weaver_tree_nodes)
+
+
+def get_weaver_tree_node(node_id: str) -> dict | None:
+    """Returns a single Weaver Tree node by id, or None."""
+    for node in _pipeline().weaver_tree_nodes:
+        if node.get("id") == node_id:
+            return node
+    return None
+
+
 # ---------------------------------------------------------------------------
 # Enemy profiles
 # ---------------------------------------------------------------------------

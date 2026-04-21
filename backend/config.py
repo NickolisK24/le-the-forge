@@ -49,6 +49,7 @@ class Config:
 class DevelopmentConfig(Config):
     DEBUG = True
     SQLALCHEMY_ECHO = False  # Set True to log all SQL
+    LOG_LEVEL = "DEBUG"
     # Much higher limits in dev so testing never hits the ceiling
     RATELIMIT_DEFAULT = "10000 per day;2000 per hour;200 per minute"
 
@@ -56,6 +57,9 @@ class DevelopmentConfig(Config):
 class ProductionConfig(Config):
     DEBUG = False
     SQLALCHEMY_ECHO = False
+    LOG_LEVEL = "INFO"
+    # Emit structured JSON logs so Render's log search can filter by field.
+    LOG_FORMAT_JSON = True
 
     # Production-hardened pool settings for higher concurrency
     SQLALCHEMY_ENGINE_OPTIONS = {

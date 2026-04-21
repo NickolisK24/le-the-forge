@@ -125,8 +125,8 @@ export default function PassiveTreePage() {
 
   // Part 6: Available nodes cached via useMemo
   const availableIds = useMemo(
-    () => computeAvailableNodes(filteredNodes, allocatedIds, totalBasePointsSpent),
-    [filteredNodes, allocatedIds, totalBasePointsSpent],
+    () => computeAvailableNodes(filteredNodes, allocatedIds, totalBasePointsSpent, allocatedPoints),
+    [filteredNodes, allocatedIds, totalBasePointsSpent, allocatedPoints],
   );
 
   // Passive stat aggregation — recomputes when allocations change

@@ -132,15 +132,17 @@ class TestDPSSnapshots:
     """
 
     def test_fireball_l20_dps(self):
-        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
-        assert calculate_dps(_mage(), "Fireball", 20).dps == 621
+        # updated: verified in-game data — Intelligence no longer grants
+        # +0.5% spell_damage_pct per point (removed from ATTRIBUTE_SCALING).
+        assert calculate_dps(_mage(), "Fireball", 20).dps == 549
 
     def test_fireball_l20_hit_damage(self):
-        assert calculate_dps(_mage(), "Fireball", 20).hit_damage == 451
+        # updated: verified in-game data — see note above.
+        assert calculate_dps(_mage(), "Fireball", 20).hit_damage == 415
 
     def test_fireball_l20_average_hit(self):
-        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
-        assert calculate_dps(_mage(), "Fireball", 20).average_hit == 474
+        # updated: verified in-game data — see note above.
+        assert calculate_dps(_mage(), "Fireball", 20).average_hit == 436
 
     def test_fireball_l20_total_dps_equals_dps_no_ailments(self):
         r = calculate_dps(_mage(), "Fireball", 20)
@@ -151,24 +153,28 @@ class TestDPSSnapshots:
         assert set(r.damage_by_type.keys()) == {"fire"}
 
     def test_rive_l20_dps(self):
-        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
-        assert calculate_dps(_paladin(), "Rive", 20).dps == 692
+        # updated: verified in-game data — Strength no longer grants direct
+        # physical_damage_pct (removed from ATTRIBUTE_SCALING).
+        assert calculate_dps(_paladin(), "Rive", 20).dps == 620
 
     def test_rive_l20_ailment_snapshot(self):
         stats = _paladin()
         stats.bleed_chance_pct  = 100
         stats.ignite_chance_pct = 100
         r = calculate_dps(stats, "Rive", 20)
-        assert r.bleed_dps   == 346
-        assert r.ignite_dps  == 219
-        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
-        assert r.total_dps   == 1257
+        # updated: verified in-game data — ailment DPS derives from hit
+        # damage, which is now lower without strength's phys-damage scaling.
+        assert r.bleed_dps   == 310
+        assert r.ignite_dps  == 216
+        assert r.total_dps   == 1146
 
     def test_level_scaling_monotone(self):
         stats = _mage()
-        # VERIFIED: 1.4.3 spec §2.2 — base crit multiplier 2.0×
-        assert calculate_dps(stats, "Fireball",  1).dps == 189
-        assert calculate_dps(stats, "Fireball", 20).dps == 621
+        # updated: verified in-game data — Intelligence no longer adds
+        # spell_damage_pct, so DPS-at-L1 and DPS-at-L20 both drop, but
+        # monotonicity is preserved.
+        assert calculate_dps(stats, "Fireball",  1).dps == 167
+        assert calculate_dps(stats, "Fireball", 20).dps == 549
 
     def test_conversion_flows_through_pipeline(self):
         # 100% phys → fire: damage_by_type must show fire, not physical
@@ -373,11 +379,14 @@ class TestSystemIntegration:
         # source and target scaling are equal.
         convs = [DamageConversion(DamageType.PHYSICAL, DamageType.FIRE, 100.0)]
 
-        # Case 1: source scaling present, no target scaling. The Paladin
-        # baseline has physical_damage_pct > 0 from class stats but no
-        # fire_damage_pct, so converting away loses the physical pool and
-        # effective hit damage must drop.
+        # Case 1: source scaling present, no target scaling. Strength no
+        # longer adds physical_damage_pct directly — so we give the build
+        # an explicit physical_damage_pct pool to create the asymmetric
+        # scaling needed for the test.
+        # updated: verified in-game data — previously leaned on Strength's
+        # implicit 0.5%/pt physical scaling which has been removed.
         stats = _paladin()
+        stats.physical_damage_pct = 50.0  # explicit source pool
         assert stats.physical_damage_pct > 0
         assert stats.fire_damage_pct == 0
         r_plain = calculate_dps(stats, "Rive", 20)
