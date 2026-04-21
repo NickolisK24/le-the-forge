@@ -26,12 +26,25 @@ Forge to production at https://epochforge.gg. It assumes the Render Blueprint
 
 ## 1. Create the Render services
 
+The Blueprint in `render.yaml` creates all four services in the correct
+order (databases first, then API, then frontend). If you are doing this
+manually instead of via Blueprint, follow the same order:
+
+1. **`epochforge-db`** (Postgres, Starter plan) — nothing depends on it yet,
+   but the API needs its connection string before it can boot.
+2. **`epochforge-redis`** (Redis / Key Value, Starter plan) — same reason.
+3. **`epochforge-api`** (Python web service) — wires `DATABASE_URL` and
+   `REDIS_URL` from the two services above via `fromDatabase` / `fromService`.
+4. **`epochforge-frontend`** (static site) — only needs `VITE_API_BASE_URL`
+   pointed at the API's custom domain.
+
+### Blueprint flow
+
 1. Push `render.yaml` to the branch Render tracks.
 2. In the Render dashboard: **New → Blueprint → Connect repo**. Render will
-   create `epochforge-api` and `epochforge-frontend` from the blueprint.
-3. Provision **Render Postgres** and **Render Redis** from the dashboard.
-4. Open `epochforge-api → Environment` and paste the required secrets
-   (values should come from the new Postgres / Redis / your Discord app):
+   provision all four services in one pass.
+3. Open `epochforge-api → Environment` and paste the required secrets
+   (values should come from your Discord app + `secrets.token_hex(32)`):
 
    | Variable                     | Source                                       |
    | ---------------------------- | -------------------------------------------- |
@@ -93,10 +106,12 @@ Create three records:
 
 ### SSL / TLS
 
-Cloudflare → **SSL/TLS → Overview**: set mode to **Full** (not Strict — Render
-already serves valid certs on `*.onrender.com` but the custom-domain cert
-is provisioned asynchronously; Full is safest during the initial cut-over).
-Revisit and move to **Full (strict)** once Render finishes provisioning.
+Cloudflare → **SSL/TLS → Overview**: set mode to **Full** — *not*
+**Full (strict)**. Full trusts Render's auto-provisioned cert even while it's
+still being issued for the custom domain; Full (strict) will return 526
+errors for the first few hours of the cut-over while the cert propagates.
+You can revisit Full (strict) a week after launch if you want the extra
+hardening, but Full is the correct default here.
 
 Cloudflare → **SSL/TLS → Edge Certificates**: enable **Always Use HTTPS** and
 **Automatic HTTPS Rewrites**.
@@ -115,22 +130,61 @@ Cloudflare → **SSL/TLS → Edge Certificates**: enable **Always Use HTTPS** an
 
 ---
 
-## 5. Verifying the cut-over
+## 5. Smoke test checklist
+
+Run each of these after the initial deploy and after every non-trivial
+release. Anything that returns non-200 or an unexpected body is a launch
+blocker.
+
+### Backend
 
 ```bash
-# API health
+# 1. Health check — must return status:ok with a small uptime after a deploy
 curl -sSf https://api.epochforge.gg/api/health | jq
 # → { "status": "ok", "version": "0.8.0", "patch_version": "1.4.3", "uptime_seconds": 12 }
 
-# Frontend
-curl -sSfI https://epochforge.gg | head -1
-# → HTTP/2 200
+# 2. Version endpoint — commit should match the latest green main
+curl -sSf https://api.epochforge.gg/api/version | jq
 
-# SPA fallback (must also return index.html)
-curl -sSfI https://epochforge.gg/builds/some-slug | head -1
-# → HTTP/2 200
+# 3. CORS preflight — must echo only allowed origins
+curl -sSI -X OPTIONS https://api.epochforge.gg/api/health \
+  -H "Origin: https://epochforge.gg" \
+  -H "Access-Control-Request-Method: GET" \
+  | grep -i access-control-allow-origin
+# → access-control-allow-origin: https://epochforge.gg
+
+# 4. CORS block on unknown origin — must NOT return an allow-origin header
+curl -sSI -X OPTIONS https://api.epochforge.gg/api/health \
+  -H "Origin: https://evil.example.com" \
+  -H "Access-Control-Request-Method: GET" \
+  | grep -i access-control-allow-origin || echo "blocked (correct)"
+
+# 5. Rate limit — 61st request within a minute must 429
+for i in $(seq 1 62); do
+  curl -s -o /dev/null -w "%{http_code}\n" https://api.epochforge.gg/api/health
+done | tail -5
+# → … 200 200 429
 ```
 
-CORS: use an incognito window and confirm the app can authenticate via Discord
-without console errors. Only `https://epochforge.gg` and
-`https://www.epochforge.gg` are accepted as origins in production.
+### Frontend
+
+```bash
+# 6. Root must return index.html (HTTP 200 + html content-type)
+curl -sSfI https://epochforge.gg | head -1
+
+# 7. SPA fallback — any client-side route must also return index.html
+curl -sSfI https://epochforge.gg/builds/some-slug | head -1
+
+# 8. Assets cached aggressively
+curl -sSI https://epochforge.gg/assets/index-<hash>.js | grep -i cache-control
+# → cache-control: public, max-age=31536000, immutable
+```
+
+### End-to-end
+
+- Open https://epochforge.gg in an incognito window. Network tab should
+  show every `fetch` going to `https://api.epochforge.gg/...`, not
+  `localhost` or a relative `/api/...`.
+- Sign in with Discord. The redirect should land back on
+  `https://epochforge.gg` with a valid session (no `?auth=failed` query).
+- Load `/debug/backend` and confirm every endpoint reports a green 200.
