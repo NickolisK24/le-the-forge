@@ -1,0 +1,82 @@
+# ---------------------------------------------------------------------------
+# The Forge — Render Blueprint
+# ---------------------------------------------------------------------------
+# Deploys two services for https://epochforge.gg:
+#   - epochforge-api       (Flask + Gunicorn backend, api.epochforge.gg)
+#   - epochforge-frontend  (Vite static site, epochforge.gg / www.epochforge.gg)
+#
+# Secrets (DATABASE_URL, REDIS_URL, SECRET_KEY, JWT_SECRET_KEY,
+# DISCORD_CLIENT_ID, DISCORD_CLIENT_SECRET, etc.) are managed in the Render
+# dashboard — NEVER commit secrets to this file.
+# ---------------------------------------------------------------------------
+
+services:
+  # -------------------------------------------------------------------------
+  # Backend API — Flask served by Gunicorn
+  # -------------------------------------------------------------------------
+  - type: web
+    name: epochforge-api
+    runtime: python
+    plan: starter
+    region: oregon
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: flask db upgrade
+    startCommand: gunicorn wsgi:app --workers=4 --threads=2 --timeout=120 --bind=0.0.0.0:$PORT --access-logfile=- --error-logfile=- --preload
+    healthCheckPath: /api/health
+    autoDeploy: false
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: wsgi.py
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: FRONTEND_URL
+        value: https://epochforge.gg
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      # The following are managed in the Render dashboard — set sync:false so
+      # they are not overwritten by blueprint apply.
+      - key: DATABASE_URL
+        sync: false
+      - key: REDIS_URL
+        sync: false
+      - key: SECRET_KEY
+        sync: false
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_CLIENT_SECRET
+        sync: false
+      - key: DISCORD_REDIRECT_URI
+        sync: false
+      - key: DISCORD_IMPORT_WEBHOOK_URL
+        sync: false
+
+  # -------------------------------------------------------------------------
+  # Frontend — Vite-built static site
+  # -------------------------------------------------------------------------
+  - type: web
+    name: epochforge-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: false
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: VITE_API_BASE_URL
+        value: https://api.epochforge.gg
+    routes:
+      # SPA fallback — every unknown path serves index.html so React Router
+      # can take over. Must come last.
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

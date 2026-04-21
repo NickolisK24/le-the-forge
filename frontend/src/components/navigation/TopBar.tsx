@@ -66,8 +66,9 @@ function SaveStatusIndicator({ status }: { status: TopBarProps["saveStatus"] }) 
 }
 
 export default function TopBar({ onSearchOpen, onSidebarToggle, saveStatus, buildName }: TopBarProps) {
-  const authUrl = `${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`;
-  const devLoginUrl = `${import.meta.env.VITE_API_URL ?? "/api"}/auth/dev-login`;
+  const apiBase = import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api";
+  const authUrl = `${apiBase}/auth/discord`;
+  const devLoginUrl = `${apiBase}/auth/dev-login`;
   const isDev = import.meta.env.DEV;
   const { user, logout } = useAuthStore();
   const navigate = useNavigate();
