@@ -35,6 +35,7 @@ def _init_limiter(app: Flask) -> None:
 def create_app(env: str = "development") -> Flask:
     app = Flask(__name__)
     app.config.from_object(config[env])
+    app.extensions["start_time"] = time.time()
 
     # -----------------------------------------------------------------------
     # Production safety checks — refuse to start with insecure defaults
@@ -60,11 +61,18 @@ def create_app(env: str = "development") -> Flask:
     configure_logging(app)
 
     # -----------------------------------------------------------------------
-    # CORS — restrict to frontend origin
+    # CORS — restrict to frontend origin(s)
     # -----------------------------------------------------------------------
+    if env == "production":
+        cors_origins = [
+            "https://epochforge.gg",
+            "https://www.epochforge.gg",
+        ]
+    else:
+        cors_origins = [app.config["FRONTEND_URL"]]
     CORS(
         app,
-        origins=[app.config["FRONTEND_URL"]],
+        origins=cors_origins,
         supports_credentials=True,
     )
 
@@ -228,16 +236,31 @@ def create_app(env: str = "development") -> Flask:
     from app.utils.cli import register_commands
     register_commands(app)
 
-    # Health check
+    # Health check — used by Render (and any external monitor) to verify
+    # the process is alive. Rate-limited to 60 req/min per IP to prevent
+    # abuse while still allowing frequent probes.
     @app.get("/api/health")
+    @limiter.limit("60 per minute")
     def health():
+        import json as _json
+        from pathlib import Path as _Path
         from app.routes.version import _read_version
+
+        patch_version = app.config.get("CURRENT_PATCH", "1.4.3")
+        version_path = _Path(__file__).resolve().parent.parent.parent / "data" / "version.json"
+        try:
+            with open(version_path, encoding="utf-8") as _f:
+                patch_version = _json.load(_f).get("patch", patch_version)
+        except (FileNotFoundError, _json.JSONDecodeError):
+            pass
+
+        uptime_seconds = int(time.time() - app.extensions.get("start_time", time.time()))
+
         return {
             "status": "ok",
-            "env": env,
             "version": _read_version(),
-            "current_patch": app.config.get("CURRENT_PATCH", "1.4.3"),
-            "current_season": app.config.get("CURRENT_SEASON", 4),
+            "patch_version": patch_version,
+            "uptime_seconds": uptime_seconds,
         }
 
     return app
