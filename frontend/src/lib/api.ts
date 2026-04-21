@@ -42,7 +42,14 @@ import type {
 } from "@/types";
 import type { BlessingTimeline } from "@/types/blessings";
 
-const BASE_URL = import.meta.env.VITE_API_URL ?? "/api";
+// VITE_API_BASE_URL is the canonical production variable (e.g.
+// https://api.epochforge.gg). VITE_API_URL is kept as a legacy fallback for
+// existing local dev configs. In dev with no env set, "/api" hits the Vite
+// proxy which forwards to the local Flask backend.
+const BASE_URL =
+  (import.meta.env.VITE_API_BASE_URL as string | undefined) ??
+  (import.meta.env.VITE_API_URL as string | undefined) ??
+  "/api";
 
 // Token stored in memory — survives page navigation but not hard refresh.
 // For "remember me" you'd also persist to sessionStorage.
@@ -520,11 +527,14 @@ export interface ImportedBuild {
   gear: unknown[];
   _import_meta?: {
     source: string;
-    char_class_id: number;
-    mastery_id: number;
-    skill_count: number;
-    passive_nodes: number;
-    gear_note: string;
+    char_class_id?: number;
+    mastery_id?: number;
+    skill_count?: number;
+    passive_nodes?: number;
+    gear_count?: number;
+    gear_missing_fields?: string[];
+    /** Deprecated: superseded by gear_count / gear_missing_fields. */
+    gear_note?: string;
   };
 }
 
@@ -533,6 +543,8 @@ export const importApi = {
     post<{ build: ImportedBuild; source_code: string }>("/import/url", { url }),
   importBuild: (url: string) =>
     post<ImportBuildResponse>("/import/build", { url }),
+  letFromJson: (buildInfo: unknown) =>
+    post<{ build: ImportedBuild }>("/import/let/json", { build_info: buildInfo }),
 };
 
 // ---------------------------------------------------------------------------

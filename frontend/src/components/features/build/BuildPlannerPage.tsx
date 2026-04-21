@@ -1184,7 +1184,7 @@ export default function BuildPlannerPage() {
               </Button>
             )}
             <a
-              href={`${import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}
+              href={`${import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api"}/auth/discord`}
               onClick={() => sessionStorage.setItem("forge_login_attempted", "1")}
             >
               <Button variant="primary" size="sm">Sign In</Button>

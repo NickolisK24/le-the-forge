@@ -305,7 +305,13 @@ class PassiveNode(db.Model):
     max_points = db.Column(db.SmallInteger, default=1, nullable=False)
 
     # Connected node IDs (namespaced strings, e.g. ["ac_1", "ac_5"])
+    # Symmetric neighbour list — includes both parents and children.
     connections = db.Column(db.JSON, nullable=False, default=list)
+
+    # Directed parent requirements: [{parent_id: str, points: int}, ...]
+    # A node unlocks once ANY parent has >= points allocated (LE OR-of-parents).
+    # Empty list = tier root (freely selectable once mastery_requirement is met).
+    requires = db.Column(db.JSON, nullable=False, default=list)
 
     # Stat effects as a JSON array of {key, value} dicts
     stats = db.Column(db.JSON, nullable=True, default=list)

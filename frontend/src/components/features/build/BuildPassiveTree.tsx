@@ -223,14 +223,14 @@ export default function BuildPassiveTree({
 
       if (key === "__base__") {
         // Base tree: always accessible, tier gating within the tree
-        result[key] = computeAvailableNodes(sd.nodes, allocatedIds, basePointsSpent);
+        result[key] = computeAvailableNodes(sd.nodes, allocatedIds, basePointsSpent, allocatedPoints);
       } else if (!masteryTreesUnlocked) {
         // Mastery trees locked until 20 base points
         result[key] = new Set();
       } else {
         // Mastery tree: compute available nodes using that tree's own points for tier gating
         const sectionPoints = pointsBySection[key] ?? 0;
-        const available = computeAvailableNodes(sd.nodes, allocatedIds, sectionPoints);
+        const available = computeAvailableNodes(sd.nodes, allocatedIds, sectionPoints, allocatedPoints);
         // Remove mastery-locked nodes from available set
         for (const id of masteryLockedIds) {
           available.delete(id);
@@ -239,7 +239,7 @@ export default function BuildPassiveTree({
       }
     }
     return result;
-  }, [sectionKeys, sectionData, allocatedIds, basePointsSpent, masteryTreesUnlocked, pointsBySection, masteryLockedIds]);
+  }, [sectionKeys, sectionData, allocatedIds, allocatedPoints, basePointsSpent, masteryTreesUnlocked, pointsBySection, masteryLockedIds]);
 
   // Section cap: how many more points can go into a section
   const sectionCapRemaining = useCallback(

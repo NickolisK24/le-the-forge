@@ -43,7 +43,7 @@ const GET_ENDPOINTS = [
   "/api/version",
 ];
 
-const BASE = import.meta.env.VITE_API_URL ?? "/api";
+const BASE = import.meta.env.VITE_API_BASE_URL ?? import.meta.env.VITE_API_URL ?? "/api";
 
 function resolveUrl(ep: string): string {
   // If endpoint starts with /api/, replace with BASE

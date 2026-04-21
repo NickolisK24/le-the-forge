@@ -32,8 +32,9 @@ export const enum NodeState {
  * Build a bidirectional adjacency map from the node list.
  * Computed once per tree load via useMemo in the page.
  *
- * The API `connections` field lists a node's PARENTS. We add edges in
- * both directions so BFS can traverse parent→child and child→parent.
+ * ``connections`` is already symmetric (each edge lists both endpoints),
+ * but we iterate defensively — any one-sided entry still produces a
+ * valid bidirectional edge in the returned map.
  */
 export function buildBidirectionalAdjacency(nodes: PassiveNode[]): Map<string, Set<string>> {
   const adj = new Map<string, Set<string>>();
@@ -43,10 +44,10 @@ export function buildBidirectionalAdjacency(nodes: PassiveNode[]): Map<string, S
   }
 
   for (const node of nodes) {
-    for (const parentId of node.connections) {
-      if (!adj.has(parentId)) adj.set(parentId, new Set());
-      adj.get(node.id)!.add(parentId);
-      adj.get(parentId)!.add(node.id);
+    for (const neighborId of node.connections) {
+      if (!adj.has(neighborId)) adj.set(neighborId, new Set());
+      adj.get(node.id)!.add(neighborId);
+      adj.get(neighborId)!.add(node.id);
     }
   }
 
@@ -63,13 +64,15 @@ export const buildAdjacency = buildBidirectionalAdjacency;
 /**
  * Find starting nodes — the true graph roots.
  *
- * Start nodes: mastery_requirement === 0 AND no parent connections.
- * These are the BFS seeds for reachability checks.
+ * Start nodes: mastery_requirement === 0 AND zero parent requirements.
+ * Parents live in ``requires[]`` after the 0E-* merge; ``connections[]``
+ * is now a symmetric neighbour list that includes children too, so it
+ * can't be used to detect roots.
  */
 export function findStartNodes(nodes: PassiveNode[]): Set<string> {
   const starts = new Set<string>();
   for (const node of nodes) {
-    if (node.mastery_requirement === 0 && node.connections.length === 0) {
+    if (node.mastery_requirement === 0 && (node.requires?.length ?? 0) === 0) {
       starts.add(node.id);
     }
   }
@@ -127,27 +130,41 @@ export function getReachableNodes(
  * A node is available if:
  *   1. mastery_requirement <= totalBasePointsSpent (tier gate met)
  *   2. AND one of:
- *      a. No parent connections (tier root — freely selectable at this tier)
- *      b. At least one parent connection is already allocated
+ *      a. No parent requirements (tier root — freely selectable at this tier)
+ *      b. At least one parent in ``requires[]`` is allocated with
+ *         ``allocated[parent] >= points_required`` (LE is OR-of-parents)
+ *
+ * ``allocatedPoints`` maps node_id -> currently-allocated points. The
+ * threshold check uses it; if it's omitted we fall back to treating any
+ * allocation as satisfying the threshold, which preserves the old
+ * behaviour for callers that only track a set of allocated ids.
  */
 export function computeAvailableNodes(
   nodes: PassiveNode[],
   allocatedIds: Set<string>,
   totalBasePointsSpent: number,
+  allocatedPoints?: Map<string, number> | Record<string, number>,
 ): Set<string> {
   const available = new Set<string>();
+
+  const pointsFor = (id: string): number => {
+    if (!allocatedPoints) return allocatedIds.has(id) ? Number.POSITIVE_INFINITY : 0;
+    if (allocatedPoints instanceof Map) return allocatedPoints.get(id) ?? 0;
+    return allocatedPoints[id] ?? 0;
+  };
 
   for (const node of nodes) {
     if (allocatedIds.has(node.id)) continue;
     if (totalBasePointsSpent < node.mastery_requirement) continue;
 
-    if (node.connections.length === 0) {
+    const reqs = node.requires ?? [];
+    if (reqs.length === 0) {
       available.add(node.id);
       continue;
     }
 
-    for (const parentId of node.connections) {
-      if (allocatedIds.has(parentId)) {
+    for (const req of reqs) {
+      if (pointsFor(req.parent_id) >= req.points) {
         available.add(node.id);
         break;
       }
@@ -195,13 +212,13 @@ export function canRemoveNode(
   if (remaining.size === 0) return true;
 
   // Find ALL valid roots in the remaining set.
-  // A root is any node with no parent connections (connections.length === 0).
+  // A root is any node with no parent requirements (requires.length === 0).
   // These are independently valid at their tier and don't need a path from startIds.
   const roots = new Set<string>();
 
   if (nodes) {
     for (const node of nodes) {
-      if (remaining.has(node.id) && node.connections.length === 0) {
+      if (remaining.has(node.id) && (node.requires?.length ?? 0) === 0) {
         roots.add(node.id);
       }
     }

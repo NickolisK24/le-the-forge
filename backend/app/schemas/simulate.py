@@ -24,7 +24,7 @@ class StatsInputSchema(Schema):
     base_damage = fields.Float(load_default=0.0, validate=validate.Range(min=0))
     attack_speed = fields.Float(load_default=1.0, validate=validate.Range(min=0.1, max=20.0))
     crit_chance = fields.Float(load_default=0.05, validate=validate.Range(min=0.0, max=1.0))
-    crit_multiplier = fields.Float(load_default=1.5, validate=validate.Range(min=1.0, max=20.0))
+    crit_multiplier = fields.Float(load_default=2.0, validate=validate.Range(min=1.0, max=20.0))
 
     # Offense — percentage damage pools
     spell_damage_pct = fields.Float(load_default=0.0)

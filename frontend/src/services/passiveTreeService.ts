@@ -16,6 +16,11 @@ export interface PassiveNodeStat {
   value: string | number;
 }
 
+export interface PassiveRequirement {
+  parent_id: string;
+  points: number;
+}
+
 export interface PassiveNode {
   id: string;             // namespaced, e.g. "ac_0"
   raw_node_id: number;
@@ -29,7 +34,8 @@ export interface PassiveNode {
   x: number;
   y: number;
   max_points: number;
-  connections: string[];  // IDs of parent/adjacent nodes
+  connections: string[];  // symmetric neighbor ids (for rendering)
+  requires: PassiveRequirement[]; // directed parents with point thresholds
   stats: PassiveNodeStat[];
   ability_granted: string | null;
   icon: string | null;

@@ -61,7 +61,7 @@ class HitResolutionEngine:
         target: TargetEntity,
         position: Vector2,
         crit_chance: float = 0.0,
-        crit_multiplier: float = 1.5,
+        crit_multiplier: float = 2.0,  # verified: player base is 200%
     ) -> HitResult:
         """
         Apply *damage* to *target*, rolling for a crit.
@@ -96,7 +96,7 @@ class HitResolutionEngine:
         base_damage: float,
         falloff: float = 0.0,
         crit_chance: float = 0.0,
-        crit_multiplier: float = 1.5,
+        crit_multiplier: float = 2.0,  # verified: player base is 200%
     ) -> AoeHitResult:
         """
         Apply *base_damage* to all alive targets whose position is inside *shape*.

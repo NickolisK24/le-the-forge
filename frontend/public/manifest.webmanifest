@@ -1,0 +1,17 @@
+{
+  "name": "The Forge — Last Epoch Community Hub",
+  "short_name": "The Forge",
+  "description": "Plan builds, simulate DPS and survivability, and explore the Last Epoch meta.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#06080f",
+  "theme_color": "#06080f",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}

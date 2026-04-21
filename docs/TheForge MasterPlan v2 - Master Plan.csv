@@ -1,0 +1,155 @@
+THE FORGE — MASTER DEVELOPMENT PLAN,,,,,,,,
+#,Phase,Task ID,Description,Category,Priority,Status,✓,Verification Criteria / Notes
+⚠  PHASE 0 — GROUND TRUTH DATA,,,,,,,,
+    Complete before writing any feature code — bad data poisons everything downstream,,,,,,,,
+1,Phase 0,0A-1,Verify Sentinel base stats in-game,Data,CRITICAL,Complete,TRUE,"Level 1 character: record exact health, mana, STR/INT/DEX/VIT/ATT from character sheet"
+2,Phase 0,0A-2,Verify Mage base stats in-game,Data,CRITICAL,Complete,TRUE,"Level 1 character: record exact health, mana, STR/INT/DEX/VIT/ATT from character sheet"
+3,Phase 0,0A-3,Verify Acolyte base stats in-game,Data,CRITICAL,Complete,TRUE,"Level 1 character: record exact health, mana, STR/INT/DEX/VIT/ATT from character sheet"
+4,Phase 0,0A-4,Verify Primalist base stats in-game,Data,CRITICAL,Complete,TRUE,"Level 1 character: record exact health, mana, STR/INT/DEX/VIT/ATT from character sheet"
+5,Phase 0,0A-5,Verify Rogue base stats in-game,Data,CRITICAL,Complete,TRUE,"Level 1 character: record exact health, mana, STR/INT/DEX/VIT/ATT from character sheet"
+6,Phase 0,0A-6,Update CLASS_BASE_STATS in stat_engine.py,Engine,CRITICAL,Complete,TRUE,Replace all 5 classes with verified values. Re-run full test suite
+7,Phase 0,0B-1,Fix Intelligence scaling (currently → max_mana; should → ward_retention),Engine,CRITICAL,Complete,TRUE,INT → spell_damage_pct + ward_retention_pct. NOT mana. Verify per-point rate in-game
+8,Phase 0,0B-2,Verify Strength per-point values,Data,CRITICAL,Complete,TRUE,Confirm exact STR → physical_damage_pct and armor per point
+9,Phase 0,0B-3,Verify Dexterity per-point values,Data,CRITICAL,Complete,TRUE,Confirm exact DEX → dodge_rating and attack_speed_pct per point
+10,Phase 0,0B-4,Verify Vitality per-point values,Data,CRITICAL,Complete,TRUE,Likely 15 HP/pt not 10. Confirm in-game character sheet
+11,Phase 0,0B-5,Verify Attunement per-point values,Data,CRITICAL,Complete,TRUE,"ATT → mana, mana_regen, cast_speed. Confirm exact rates for all three"
+12,Phase 0,0B-6,Update ATTRIBUTE_SCALING in stat_engine.py,Engine,CRITICAL,Complete,TRUE,Rewrite all 5 attribute entries. Update downstream tests
+13,Phase 0,0C-1,Fix BASE_CRIT_MULTIPLIER (1.5 → 2.0),Engine,CRITICAL,Complete,TRUE,Game base is 200% = 2.0×. Update constant + every test that expected 1.5-based output
+14,Phase 0,0D-1,Add Void Knight mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+15,Phase 0,0D-2,Add Falconer mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+16,Phase 0,0D-3,Add Spellblade mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+17,Phase 0,0D-4,Add Beastmaster mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+18,Phase 0,0D-5,Add Shaman mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+19,Phase 0,0D-6,Add Druid mastery bonuses,Data,CRITICAL,Not Started,FALSE,Pull exact values from mastery selection screen in-game
+20,Phase 0,0E-1,Scrape LET network payload for passive tree connections,Data,CRITICAL,Complete,TRUE,Harvested from LET window.LECharTrees[*].characterTree.nodes[*].requirements (DOM-verified at 2 connectors per edge). 200 directed edges across 5 classes: acolyte=38 mage=40 primalist=40 rogue=40 sentinel=42.
+21,Phase 0,0E-2,Write passive connection merge script,Engine,CRITICAL,Complete,TRUE,backend/scripts/merge_passive_edges.py rebuilds connections[] + new requires[{parent_id,points}] field per node. Strips 35 pointer-hash + pseudo-mastery-entry junk entries. Idempotent; leaves classes without edge payload untouched.
+22,Phase 0,0E-3,Verify BFS path validation post-merge,QA,CRITICAL,Complete,TRUE,backend/app/game_data/passive_tree_validator.py enforces 5 rules (unknown-id / point-range / parent-threshold / BFS reachability / total-budget). 21 tests in test_passive_tree_validator.py. Full backend suite: 10811 passed 0 failed.
+23,Phase 0,0F-1,Generate draft mapping for all 877 passive stat key strings,Data,CRITICAL,Not Started,FALSE,Claude generates full key → BuildStats field + modifier type document for review
+24,Phase 0,0F-2,Review and verify high-impact stat key mappings,Data,CRITICAL,Not Started,FALSE,"Spot-check: damage%, crit, resistances, health, speed keys against in-game tooltips"
+25,Phase 0,0F-3,Build passive_stat_key_map translation layer in engine,Engine,CRITICAL,Not Started,FALSE,Replace the class stat-cycle fallback with real per-node stat resolution
+26,Phase 0,0F-4,Classify 85 behavioral / flag passive stats,Engine,HIGH,Not Started,FALSE,"Create passive_flags set on BuildStats. Examples: CanEquipAxeOffhand, EffectTripledAtLowLife"
+27,Phase 0,0G-1,Add base damage schema fields to skills_metadata.json,Data,CRITICAL,Complete,TRUE,"Schema live on all 161 skills as null placeholders; _schema block self-documents enums; pipeline validates populated values and strips meta keys; new get_skill_base_damage() accessor. Values populated per class in 0G-2..0G-6."
+28,Phase 0,0G-2,Populate skill base damage — Sentinel (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
+29,Phase 0,0G-3,Populate skill base damage — Mage (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
+30,Phase 0,0G-4,Populate skill base damage — Acolyte (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
+31,Phase 0,0G-5,Populate skill base damage — Primalist (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
+32,Phase 0,0G-6,Populate skill base damage — Rogue (all skills),Data,CRITICAL,Not Started,FALSE,Source: LET skill DB + in-game tooltips
+33,Phase 0,0H-1,Document all Monolith blessings — normal and grand variants,Data,CRITICAL,Not Started,FALSE,12 blessing slots per character. Each timeline has its own blessing pool. Huge stat contributor
+34,Phase 0,0H-2,Build blessings data schema and populate all blessings,Data,CRITICAL,Not Started,FALSE,"Fields: timeline_id, blessing_name, stat_key, value_min, value_max, is_grand"
+35,Phase 0,0H-3,Add blessings stat contribution to stat pipeline,Engine,CRITICAL,Not Started,FALSE,Blessings feed into aggregate_stats() as a separate source layer. Missing = wrong endgame totals
+36,Phase 0,0I-1,Document all 8 idol sizes and their grid placement rules,Data,CRITICAL,Not Started,FALSE,"1×1, 1×2, 2×1, 1×3, 3×1, 1×4, 4×1, 2×2. Larger idols are class-specific"
+37,Phase 0,0I-2,Separate idol affix pool from gear affix pool,Data,CRITICAL,Not Started,FALSE,Idol affixes cannot be crafted. Their pool is distinct from gear. Needs its own data file
+38,Phase 0,0I-3,Model Idol Altar — Refracted Slots (Season 4),Data,HIGH,Not Started,FALSE,Idol Altars modify the grid layout with slots granting +10–50% increased effect of prefixes
+39,Phase 0,0I-4,Add idol stat contribution to stat pipeline,Engine,CRITICAL,Not Started,FALSE,Idol affixes must feed into aggregate_stats() same as gear affixes but from separate pool
+40,Phase 0,0J-1,Build unique item database schema,Data,CRITICAL,Not Started,FALSE,"Fields: name, base_type, fixed_affixes (with min/max ranges), LP_range, class_req"
+41,Phase 0,0J-2,Populate unique item database — all current uniques,Data,CRITICAL,Not Started,FALSE,Source: LET item DB. ~200+ uniques. Build-defining items must be accurate
+42,Phase 0,0J-3,Model Legendary Potential and Eternity Cache crafting,Engine,HIGH,Not Started,FALSE,LP 1–4 determines how many exalted affixes transfer. Temporal Sanctum / Eternity Cache flow
+43,Phase 0,0J-4,Model Weaver's Will items (Erased uniques),Data,HIGH,Not Started,FALSE,Weaver's Will uniques gain random affixes through gameplay. Different from LP crafting
+44,Phase 0,0K-1,Verify item implicit data is captured for all base types,Data,HIGH,Not Started,FALSE,Every base item has 1–3 implicits with their own ranges. Rerollable via Rune of Shaping
+45,Phase 0,0K-2,Add implicit stat contribution to gear import pipeline,Engine,HIGH,Not Started,FALSE,"Imported gear must carry its implicit values into the stat pipeline, not just affixes"
+46,Phase 0,0L-1,Scrape or extract Weaver Tree node data,Data,HIGH,Complete,TRUE,Complete: all 77 Weaver Tree nodes captured from LET window.LEWeaverTree (game 1.4.2 / tree payload 10) into data/progression/weaver_tree.json with _schema + provenance block. Validator enforces node_type enum (root/key/circle) and exempts root from max_points>=1; stat values support null for flag-style effects. 19 tests cover file contract, loader round-trip, and validator branches. Season 4 addition. Separate tree from main passives. Earn points via Woven Echoes / The Woven
+47,Phase 0,0L-2,Add Weaver Tree stat contribution to stat pipeline,Engine,HIGH,Not Started,FALSE,Weaver Tree nodes feed into aggregate_stats() as their own source layer
+48,Phase 0,0M-1,Document all set items and their set bonus thresholds,Data,MEDIUM,Not Started,FALSE,Sets grant bonus stats when wearing N pieces. Track which sets exist and their bonuses
+49,Phase 0,0M-2,Add set bonus detection to stat pipeline,Engine,MEDIUM,Not Started,FALSE,"When N pieces of a set are equipped, apply set bonus to BuildStats"
+50,Phase 0,0N-1,Add data_version field to all saved builds,System,HIGH,Not Started,FALSE,Tracks which game patch version a build was created under. Critical for correctness over time
+51,Phase 0,0N-2,Document the patch data update workflow,System,HIGH,Not Started,FALSE,"Which files re-scraped, how new data validated against old, who approves. Must be repeatable"
+52,Phase 0,0O-1,QA Gate: Warpath Void Knight DPS within ±15% of in-game,QA,CRITICAL,Not Started,FALSE,Known community build with documented values. Must pass before Phase 1
+53,Phase 0,0O-2,QA Gate: Ballista Falconer DPS within ±15% of in-game,QA,CRITICAL,Not Started,FALSE,Known community build with documented values. Must pass before Phase 1
+54,Phase 0,0O-3,QA Gate: Endgame build stat totals match in-game with blessings + idols,QA,CRITICAL,Not Started,FALSE,Full character with blessings and idols. Character sheet values must match our stat panel
+,,,,,,,,
+⚙  PHASE 1 — ENGINE MATH VERIFICATION,,,,,,,,
+    Verify every formula against known in-game values. Hit all quality gates before Phase 2,,,,,,,,
+1,Phase 1,1A-1,Audit more_damage_multiplier stacking logic,Engine,HIGH,Not Started,FALSE,"Multiple 'more' sources must multiply together (1.2 × 1.3), not add. Verify StatPool.add_more()"
+2,Phase 1,1A-2,Verify damage pipeline end-to-end with clean Phase 0 data,Engine,HIGH,Not Started,FALSE,Trace: base → increased → more → crit. Log each stage with debug=True. Verify against in-game
+3,Phase 1,1B-1,Add verified enemy armor values to enemy profiles,Data,HIGH,Not Started,FALSE,"Default: Emp Monolith level 100 baseline. formula: Armor / (Armor + 10×EnemyLevel), cap 85%"
+4,Phase 1,1B-2,Verify armor mitigation formula output vs in-game,QA,HIGH,Not Started,FALSE,Cross-check computed mitigation % against known in-game values at various armor totals
+5,Phase 1,1C-1,Implement enemy penetration in resistance calculation,Engine,HIGH,Not Started,FALSE,"effective_res = min(75, your_res) − enemy_pen. Currently enemy_pen is not modeled"
+6,Phase 1,1C-2,Add enemy pen values to enemy profiles,Data,HIGH,Not Started,FALSE,Empowered Monolith enemies have documented pen. Source from community / LET enemy data
+7,Phase 1,1D-1,Fix ward decay formula — model threshold correctly,Engine,HIGH,Not Started,FALSE,Ward above threshold decays at % per second. Threshold is its own stat. Currently modeled as flat HP
+8,Phase 1,1D-2,Verify ward survivability calculations for Lich and Runemaster,QA,HIGH,Not Started,FALSE,High-ward builds depend on threshold. Wrong formula = badly wrong EHP for these masteries
+9,Phase 1,1E-1,"Fix leech — model as rate-limited over time, not instant",Engine,MEDIUM,Not Started,FALSE,Leech recovers HP at a rate (% of max HP/second). Has a total cap per second. Not instant
+10,Phase 1,1E-2,Add leech rate and leech cap to sustain model,Engine,MEDIUM,Not Started,FALSE,Affects burst-damage survivability calculation. Important for leech-reliant builds
+11,Phase 1,1F-1,Implement stun threshold mechanic,Engine,MEDIUM,Not Started,FALSE,Stun occurs when single hit > stun threshold (tied to endurance threshold). Affects survival model
+12,Phase 1,1G-1,Validate Bleed DPS formula and stack model,Engine,HIGH,Not Started,FALSE,Test with Primalist/Sentinel bleed build. Match known stacks-per-second community data
+13,Phase 1,1G-2,Validate Poison DPS formula and stack model,Engine,HIGH,Not Started,FALSE,Test with Rogue/Acolyte poison build against documented values
+14,Phase 1,1G-3,Validate Ignite DPS — uses hit's base damage as seed,Engine,HIGH,Not Started,FALSE,"Ignite DoT scales from hit damage, not a flat stat. Confirm formula is correctly implemented"
+15,Phase 1,1G-4,Model Shock as damage-taken multiplier (not a DPS source),Engine,MEDIUM,Not Started,FALSE,"Shock increases damage enemy takes. Affects hit DPS indirectly, not an ailment DPS line"
+16,Phase 1,1H-1,Implement real damage type conversion logic,Engine,HIGH,Not Started,FALSE,Converted % exits source type's damage% pool and enters target type's pool. Not additive
+17,Phase 1,1H-2,Test conversion with Void Knight Abyssal Echoes,QA,HIGH,Not Started,FALSE,VK conversion is identity-defining. Physical → void conversion must produce accurate output
+18,Phase 1,1H-3,Test conversion with Paladin Holy Aura (physical → fire/lightning),QA,HIGH,Not Started,FALSE,Paladin conversion builds widely played. Must verify formula
+19,Phase 1,1I-1,Implement minion base damage context,Engine,HIGH,Not Started,FALSE,"Minion DPS uses the summoning skill's base damage, not the player's. Separate context required"
+20,Phase 1,1I-2,Test Necromancer skeleton DPS — count × per-minion DPS,QA,HIGH,Not Started,FALSE,Skeleton DPS × active count should approximate total in-game output
+21,Phase 1,1J-1,"Add corrupted attribute stats (Brutality, Madness) to BuildStats schema",Engine,MEDIUM,Not Started,FALSE,"Season 4: Rune of Corruption can convert STR → Brutality, INT → Madness. New stat types"
+22,Phase 1,1J-2,Model Brutality and Madness stat effects in damage pipeline,Engine,MEDIUM,Not Started,FALSE,"Brutality: 0.02% more melee dmg per mana cost, reduced health leech. Madness: crit multi + penalty"
+23,Phase 1,1K-1,Fix gear import from Last Epoch Tools (#155),Import,CRITICAL,Complete,TRUE,LET moved to client-side rendering; re-enabled via browser bookmarklet that captures window.buildInfo and pastes into the JSON tab. Backend endpoint /api/import/let/json reuses the existing mapper including gear parser. Bookmarklet under frontend/public/bookmarklets/
+24,Phase 1,1K-2,Verify Maxroll import coverage across 10+ builds,Import,HIGH,Not Started,FALSE,Document any missing field patterns. Fix edge cases in maxroll_importer.py
+25,Phase 1,1K-3,Verify idol data imports correctly from LET and Maxroll,Import,HIGH,Not Started,FALSE,Idols are a separate gear system. Confirm importers capture idol affixes into idol slots
+26,Phase 1,1K-4,Verify blessing data imports correctly from LET,Import,HIGH,Not Started,FALSE,LET stores blessings in build exports. Confirm our importer captures them
+27,Phase 1,1L-1,QA Gate: Physical hit build DPS within ±15%,QA,CRITICAL,Not Started,FALSE,"Known community build — Warpath, Forge Strike, or Rive. Documented DPS required"
+28,Phase 1,1L-2,QA Gate: Spell build DPS within ±15%,QA,CRITICAL,Not Started,FALSE,Lightning Blast Sorcerer or Erasing Strike VK with documented DPS
+29,Phase 1,1L-3,QA Gate: Ailment build DPS within ±15%,QA,CRITICAL,Not Started,FALSE,Known bleed or poison build with documented stack rate and DPS
+30,Phase 1,1L-4,QA Gate: Ward build EHP correctly models decay threshold,QA,HIGH,Not Started,FALSE,"Lich or Runemaster build. EHP must reflect threshold-gated decay, not flat ward"
+,,,,,,,,
+🖥  PHASE 2 — BUILD PLANNER UX OVERHAUL,,,,,,,,
+"    Unified workspace layout. Passive tree always visible. Gear, skills, stats in one view",,,,,,,,
+1,Phase 2,2A-1,Unify BuildPlannerPage — single workspace for create / view / edit,UI,CRITICAL,Not Started,FALSE,No mode-switching layouts. Same structure always. Interactivity determined by ownership only
+2,Phase 2,2A-2,"Left sidebar: class identity, mode flags, share, import",UI,HIGH,Not Started,FALSE,"Class portrait, mastery badge, level, SSF/HC/Ladder/Budget toggles, share button, import CTA"
+3,Phase 2,2A-3,Center-top: 5 skill slots always visible,UI,HIGH,Not Started,FALSE,Click slot → skill spec tree overlay. Spec points shown. Read-only if not owner
+4,Phase 2,2A-4,Center-main: gear grid with anatomical layout (12 slots + idol grid),UI,HIGH,Not Started,FALSE,Helm/chest/gloves/boots/rings/amulet/weapon/offhand/belt/relic + 5×5 idol grid section
+5,Phase 2,2A-5,Idol grid UI — 5×5 with size/class restrictions enforced,UI,CRITICAL,Not Started,FALSE,Center + 4 corners blocked. Size placement rules enforced. Class-specific idol slots locked by class
+6,Phase 2,2A-6,Idol Altar slot UI (Season 4),UI,MEDIUM,Not Started,FALSE,Slot above idol grid. Shows Refracted Slots when altar is equipped. Visual modifier indicators
+7,Phase 2,2A-7,Blessings section in build planner,UI,CRITICAL,Not Started,FALSE,12 blessing slots. Each slot shows timeline name + selected blessing. Required for endgame builds
+8,Phase 2,2A-8,Weaver Tree section in build planner,UI,HIGH,Not Started,FALSE,Separate tree panel or expandable section. Node allocation tracked in build data
+9,Phase 2,2A-9,Right panel: passive tree always visible and embedded,UI,CRITICAL,Not Started,FALSE,PassiveTreeRenderer in build planner. Same component. readOnly={!isOwner}. Stats update live
+10,Phase 2,2A-10,Far-right: stat panel with live updates — organized by game sections,UI,HIGH,Not Started,FALSE,"Sections: Attributes, General, Resistances, Additional Defenses, Damage, Defenses, Minions, Other"
+11,Phase 2,2A-11,Analyze Build button lives in stat panel. Always visible,UI,HIGH,Not Started,FALSE,Not buried. First-class action. Shows loading state with progress. Timeout handling
+12,Phase 2,2B-1,Single PassiveTreeRenderer component used everywhere,UI,CRITICAL,Not Started,FALSE,Build planner + standalone debug page both consume same component. No divergence allowed
+13,Phase 2,2B-2,debugMode prop on PassiveTreeRenderer,UI,MEDIUM,Not Started,FALSE,"debugMode={true} shows node IDs, raw stat values, connection validation. Not user-facing"
+14,Phase 2,2B-3,Remove standalone passive tree from user navigation,UI,HIGH,Not Started,FALSE,Keep in codebase as internal debug tool. Remove from nav. Users never see it
+15,Phase 2,2C-1,Unique item selector in gear slots,UI,HIGH,Not Started,FALSE,Separate flow for equipping uniques. Fixed affixes shown with roll ranges. LP indicator
+16,Phase 2,2C-2,Legendary crafting UI (LP transfer visualization),UI,MEDIUM,Not Started,FALSE,Show which affixes transfer at LP 1–4. Eternity Cache probability display
+17,Phase 2,2D-1,Build browser: card layout with filters,UI,HIGH,Not Started,FALSE,"Filter by class, mastery, skill, mode flags. Sort by votes, recency, views"
+18,Phase 2,2D-2,"Build card content: class, mastery, primary skill, DPS estimate, EHP",UI,MEDIUM,Not Started,FALSE,Consistent card format. Season tag visible. Outdated badge if build data version < current patch
+19,Phase 2,2D-3,Season tag on build cards,UI,HIGH,Not Started,FALSE,Every build shows which season it was created for. Filter by current season in browser
+20,Phase 2,2E-1,Import CTA always visible in sidebar (not buried in modal),UI,HIGH,Not Started,FALSE,LET and Maxroll import are first-class actions. Never more than one click away
+21,Phase 2,2F-1,Mobile responsiveness audit,UI,MEDIUM,Not Started,FALSE,Build planner usable on tablet. Phone = read-only view with share/copy. No broken layouts
+,,,,,,,,
+📊  PHASE 3 — SIMULATION OUTPUT REDESIGN,,,,,,,,
+    Human-readable analysis. Confidence transparency. Upgrade recommendations,,,,,,,,
+1,Phase 3,3A-1,Analyze Build: summary card with computed confidence score,UI,CRITICAL,Not Started,FALSE,DPS + EHP estimates. Confidence = computed % of inputs that are verified vs estimated
+2,Phase 3,3A-2,Analyze Build: damage source breakdown visual,UI,HIGH,Not Started,FALSE,"% of total DPS from: base hits, crits, ailments, minions. Bar chart. Shows where damage comes from"
+3,Phase 3,3A-3,Analyze Build: defense layer breakdown,UI,HIGH,Not Started,FALSE,EHP contribution by layer: health / armor mit / resist / dodge / endurance / ward / leech
+4,Phase 3,3A-4,Analyze Build: top 3 upgrade recommendations phrased as actions,UI,HIGH,Not Started,FALSE,'Adding X (one T6 affix) would increase DPS by ~Y%.' Concrete and actionable
+5,Phase 3,3A-5,Analyze Build: confidence transparency note on output,UI,HIGH,Not Started,FALSE,Flag any estimated values. 'These values are estimated. Results within ±15% of actual.' Honest
+6,Phase 3,3B-1,Implement systematic simulation confidence score,System,HIGH,Not Started,FALSE,Computed value: ratio of verified vs estimated inputs. Stored in DB per simulation result
+7,Phase 3,3B-2,Track confidence score improvement over time,System,MEDIUM,Not Started,FALSE,"As Phase 0 data gaps close, confidence score rises. Chart this in admin dashboard"
+8,Phase 3,3C-1,Add 'Report an Error' button to simulation output,UI,HIGH,Not Started,FALSE,"Logs: build slug, stat being questioned, user's reported in-game value. Free community QA"
+9,Phase 3,3C-2,Admin dashboard for reported errors,System,MEDIUM,Not Started,FALSE,Triage incoming error reports. Sort by frequency — same stat reported wrong multiple times = real bug
+10,Phase 3,3D-1,Proper loading state for Analyze Build button,UI,HIGH,Not Started,FALSE,Progress indicator. Estimated completion time. User must not see a blank panel for 30 seconds
+11,Phase 3,3D-2,Timeout and error handling for simulation requests,System,HIGH,Not Started,FALSE,"If simulation times out or fails, show a clear message. Never leave the user stuck"
+12,Phase 3,3E-1,Wire Layer 8 conditional stats into simulation output,Engine,MEDIUM,Not Started,FALSE,"Moving, ward active, low life, channeling, etc. Show conditional DPS estimate separately"
+13,Phase 3,3F-1,Make Corruption Scaling a first-class feature on its own page,UI,MEDIUM,Not Started,FALSE,Input your build → see DPS and survivability projected from corruption 100 → 1000+
+14,Phase 3,3F-2,Build comparison — two builds side-by-side with delta visualization,UI,MEDIUM,Not Started,FALSE,Stat diffs highlighted. Per-category winner. Helps players choose between build options
+,,,,,,,,
+🌐  PHASE 4 — POLISH & COMMUNITY,,,,,,,,
+"    Only after Phases 0-3 are solid. Organic growth, season awareness, monitoring",,,,,,,,
+1,Phase 4,4A-1,Shareable build image cards for Discord / Reddit,UI,HIGH,Not Started,FALSE,"Renders build as an image: class, mastery, skills, key stats, The Forge watermark. One-click share"
+2,Phase 4,4A-2,Community validation — recruit 5–10 theorcrafters before launch,Community,HIGH,Not Started,FALSE,Last Epoch subreddit / Discord / streamers. Give early access. Watch them break the simulation
+3,Phase 4,4A-3,Build guide text support — context and reasoning per build,UI,MEDIUM,Not Started,FALSE,Allow build authors to write why certain nodes are taken. Differentiates from LET's pure data
+4,Phase 4,4B-1,Meta analytics: most popular skills across all community builds,Analytics,MEDIUM,Not Started,FALSE,Aggregated from saved builds. Drives return visits. Resets each season
+5,Phase 4,4B-2,Meta analytics: most common passive paths per mastery,Analytics,MEDIUM,Not Started,FALSE,Which passive nodes appear in top-rated builds per mastery
+6,Phase 4,4B-3,Meta analytics: mastery distribution in top-voted builds,Analytics,LOW,Not Started,FALSE,Which masteries dominate the competitive meta
+7,Phase 4,4C-1,Season cycle tagging on builds,System,HIGH,Not Started,FALSE,Tag every build with season name (e.g. Season 4 — Shattered Omens). Filter in build browser
+8,Phase 4,4C-2,Outdated build detection when data updates,System,HIGH,Not Started,FALSE,"When passive/skill data updates, flag builds using changed nodes. Prompt authors to update"
+9,Phase 4,4C-3,Season transition workflow — archive old cycle builds,System,MEDIUM,Not Started,FALSE,"At season end, archive prior-season builds. New season = clean meta slate"
+10,Phase 4,4D-1,Automated weekly smoke tests against live LET and Maxroll build URLs,System,HIGH,Not Started,FALSE,LET and Maxroll change formats without warning. Catch breaks before users do
+11,Phase 4,4D-2,Import format version tracking,System,MEDIUM,Not Started,FALSE,Log which version of LET/Maxroll format each import used. Speeds diagnosis when formats change
+12,Phase 4,4E-1,Patch change tracking — flag builds affected by skill / passive changes,System,MEDIUM,Not Started,FALSE,"When data updates, cross-reference saved builds against changed nodes. Alert affected authors"
+13,Phase 4,4F-1,Discord bot integration for build sharing,Community,LOW,Not Started,FALSE,"Share build link → Discord embed with class, mastery, key stats, The Forge watermark"
+,,,,,,,,
+🚫  NOT BUILDING,,,,,,,,
+    Excluded — do not revisit without a direct simulation use case to justify it,,,,,,,,
+1,Not Building,NB-1,Standalone database / encyclopedia page,EXCL,—,Not Started,FALSE,LET does this. Our advantage is simulation depth. Add item lookup only if it serves analysis directly
+2,Not Building,NB-2,Loot filter editor,EXCL,—,Not Started,FALSE,High maintenance burden. Requires full item/affix parity with every patch. No simulation tie-in
+3,Not Building,NB-3,Tier lists,EXCL,—,Not Started,FALSE,Opinion content with no calculation backing. Not what this platform is for
+4,Not Building,NB-4,Player trading / marketplace,EXCL,—,Not Started,FALSE,Requires real-time game data we cannot access. Out of scope permanently

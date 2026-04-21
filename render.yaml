@@ -1,0 +1,106 @@
+# ---------------------------------------------------------------------------
+# The Forge — Render Blueprint
+# ---------------------------------------------------------------------------
+# Deploys four services for https://epochforge.gg:
+#   - epochforge-db        Render Postgres (Starter plan)
+#   - epochforge-redis     Render Key Value / Redis (Starter plan)
+#   - epochforge-api       Flask + Gunicorn backend       (api.epochforge.gg)
+#   - epochforge-frontend  Vite static site               (epochforge.gg, www)
+#
+# DATABASE_URL and REDIS_URL are wired automatically via `fromDatabase` /
+# `fromService`. Application secrets (SECRET_KEY, JWT_SECRET_KEY, Discord
+# OAuth, etc.) are marked `sync: false` and must be populated in the Render
+# dashboard — NEVER commit real secrets to this file.
+# ---------------------------------------------------------------------------
+
+databases:
+  - name: epochforge-db
+    databaseName: the_forge
+    user: forge
+    plan: starter
+    postgresMajorVersion: "15"
+
+services:
+  # -------------------------------------------------------------------------
+  # Redis / Key Value — rate limit + cache backend
+  # -------------------------------------------------------------------------
+  - type: redis
+    name: epochforge-redis
+    plan: starter
+    ipAllowList: []   # private-only; only other Render services may connect
+    maxmemoryPolicy: allkeys-lru
+
+  # -------------------------------------------------------------------------
+  # Backend API — Flask served by Gunicorn
+  # -------------------------------------------------------------------------
+  - type: web
+    name: epochforge-api
+    runtime: python
+    plan: starter
+    region: oregon
+    rootDir: backend
+    buildCommand: pip install -r requirements.txt
+    preDeployCommand: flask db upgrade
+    startCommand: gunicorn wsgi:app --workers=4 --threads=2 --timeout=120 --bind=0.0.0.0:$PORT --access-logfile=- --error-logfile=- --preload
+    healthCheckPath: /api/health
+    autoDeploy: false
+    envVars:
+      - key: FLASK_ENV
+        value: production
+      - key: FLASK_APP
+        value: wsgi.py
+      - key: PYTHON_VERSION
+        value: "3.11"
+      - key: PYTHONUNBUFFERED
+        value: "1"
+      - key: FRONTEND_URL
+        value: https://epochforge.gg
+      - key: DATABASE_URL
+        fromDatabase:
+          name: epochforge-db
+          property: connectionString
+      - key: REDIS_URL
+        fromService:
+          type: redis
+          name: epochforge-redis
+          property: connectionString
+      # Secrets — populate in the Render dashboard. sync:false keeps
+      # `render blueprint apply` from overwriting them.
+      - key: SECRET_KEY
+        sync: false
+      - key: JWT_SECRET_KEY
+        sync: false
+      - key: DISCORD_CLIENT_ID
+        sync: false
+      - key: DISCORD_CLIENT_SECRET
+        sync: false
+      - key: DISCORD_REDIRECT_URI
+        sync: false
+      - key: DISCORD_IMPORT_WEBHOOK_URL
+        sync: false
+
+  # -------------------------------------------------------------------------
+  # Frontend — Vite-built static site
+  # -------------------------------------------------------------------------
+  - type: web
+    name: epochforge-frontend
+    runtime: static
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    staticPublishPath: dist
+    autoDeploy: false
+    envVars:
+      - key: NODE_VERSION
+        value: "20"
+      - key: VITE_API_BASE_URL
+        value: https://api.epochforge.gg
+    routes:
+      # SPA fallback — every unknown path serves index.html so React Router
+      # can take over. Must come last.
+      - type: rewrite
+        source: /*
+        destination: /index.html
+    headers:
+      - path: /assets/*
+        name: Cache-Control
+        value: public, max-age=31536000, immutable

@@ -374,16 +374,22 @@ class TestBuildStatePassiveIntegration:
         state_no_passives = BuildState(character_class="Sentinel")
         stats_base = state_no_passives.recompute()
 
-        # With passives — 3 minor health nodes (ids 0, 10, 20 all → max_health)
+        # With passives — 3 minor max_health nodes. Sentinel's CLASS_STAT_CYCLES
+        # slot 3 maps to ("max_health", 10), so node_ids % 10 == 3 hit that
+        # bucket directly.
+        # updated: verified in-game data — Strength no longer grants health
+        # (STR_TO_HEALTH = 0), so the old (0, 10, 20) allocation — which
+        # mapped to the strength cycle slot — no longer produces an HP
+        # increase. Pick the max_health cycle slot directly instead.
         nodes = [
-            PassiveNode(node_id=0, name="V1", node_type="minor"),
-            PassiveNode(node_id=10, name="V2", node_type="minor"),
-            PassiveNode(node_id=20, name="V3", node_type="minor"),
+            PassiveNode(node_id=3, name="V1", node_type="minor"),
+            PassiveNode(node_id=13, name="V2", node_type="minor"),
+            PassiveNode(node_id=23, name="V3", node_type="minor"),
         ]
-        ps = _make_passive_system(*nodes, allocate_ids=[0, 10, 20])
+        ps = _make_passive_system(*nodes, allocate_ids=[3, 13, 23])
         state_with_passives = BuildState(
             character_class="Sentinel",
-            passive_node_ids={0, 10, 20},
+            passive_node_ids={3, 13, 23},
             passive_system=ps,
         )
         stats_passive = state_with_passives.recompute()
