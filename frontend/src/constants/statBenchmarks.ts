@@ -36,3 +36,6 @@ export const BENCHMARK_COLORS: Record<BenchmarkTier, string> = {
 
 export const BENCHMARK_DISCLAIMER =
   "Benchmarks are approximate and vary by build type and content.";
+
+export const KNOWN_LIMITATIONS_URL =
+  "https://github.com/NickolisK24/le-the-forge/blob/main/docs/KNOWN_LIMITATIONS.md";

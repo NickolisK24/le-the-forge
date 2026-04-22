@@ -5,6 +5,46 @@ Format follows [Keep a Changelog](https://keepachangelog.com/en/1.0.0/).
 
 ---
 
+## [0.8.1] -- 2026-04-21
+
+### Deployed
+
+- **Production launch at epochforge.gg** -- Render (API + static frontend + managed Postgres + managed Redis) behind Cloudflare DNS with Full (not Strict) SSL, CNAME flattening for the apex, and CI-driven deploys via Render deploy hook.
+
+### Added
+
+- **`/api/health` blueprint** (`backend/app/routes/health.py`) -- unauthenticated liveness probe used by Render `healthCheckPath` and external monitors; returns `{status, version, patch_version, uptime_seconds}` with a 60/min rate limit.
+- **`render.yaml` Blueprint** at repo root declaring four services: `epochforge-db` (Postgres), `epochforge-redis`, `epochforge-api` (Python web), `epochforge-frontend` (static). `DATABASE_URL` and `REDIS_URL` wired via `fromDatabase` / `fromService`.
+- **`ProductionConfig.validate()`** in `backend/config.py` -- hard-fails startup if `SECRET_KEY` / `JWT_SECRET_KEY` are still dev defaults or `DATABASE_URL` points at localhost.
+- **Production CORS allowlist** -- `epochforge.gg`, `www.epochforge.gg` only; dev origins (`localhost:5173`, `localhost:3000`, `127.0.0.1:5173`) retained with credentials + max-age + expose_headers in development.
+- **Development log-level config** -- `LOG_LEVEL=DEBUG` on `DevelopmentConfig`, `LOG_LEVEL=INFO` on `ProductionConfig`; `configure_logging()` routes to stdout and suppresses werkzeug/sqlalchemy chatter.
+- **Passive tree edge ground-truth** -- merged LET-sourced edges into `data/classes/passives.json` (PRs #235, #236, #237); `seed-passives` CLI prunes stale rows to drop ghost nodes.
+- **`docs/deployment.md`**, **`docs/production_setup.md`**, **`docs/rollback.md`** -- end-to-end deploy runbook covering service creation order, custom domains, Cloudflare SSL mode, smoke tests, secret rotation, and Postgres-backup/Render-rollback procedures.
+- **`docs/deployment_readiness.md`** -- 2026-04-21 audit covering 19 backend, 8 frontend, 3 root, 2 CI/CD, and 3 documentation readiness items.
+- **`docs/KNOWN_LIMITATIONS.md`** -- public-facing transparency document listing verified, approximate, and incomplete systems, plus data pipeline status and reporting guidance.
+- **`docs/audits/issue-board-audit-2026-04-22.md`** -- per-issue reconciliation report driving the post-launch documentation audit.
+- **Favicon and web manifest** -- `frontend/public/favicon.svg` and `frontend/public/manifest.webmanifest` (both were previously referenced by `index.html` but missing from the repo).
+- **15 deployment readiness tests** (`backend/tests/test_deployment_readiness.py`) -- guard `render.yaml` shape, `.env.example` coverage, production config validation, and the health-endpoint contract.
+
+### Fixed
+
+- **Craft engine RNG determinism** (PR #225 merged 2026-04-15, closes [#223](https://github.com/NickolisK24/le-the-forge/issues/223)) -- `simulate_craft_attempt(..., seed=N)` now threads the seeded RNG through `apply_craft_action`, `add_affix` / `upgrade_affix` / `remove_affix` / `seal_affix` / `unseal_affix` and `roll_fp_cost`. Seeded calls produce byte-identical `(success, fp_spent, fractured)` pairs regardless of test ordering or surrounding global-random state. Verified with 10 isolated runs + 10 full-suite runs + 200 adversarial invocations. `xfail` marker on `test_simulate_craft_attempt_is_deterministic_with_seed` removed.
+- **LE Tools gear import** (closes [#155](https://github.com/NickolisK24/le-the-forge/issues/155)) -- `_parse_gear()` at `backend/app/services/importers/lastepochtools_importer.py:938` now resolves base items (plain int / string int / base64-decoded), affixes (direct numeric lookup + base64 + multi-strategy `_resolve_affix`), rarity (via `ur` flag and affix count), slot aliases, and unique names. `_map_let_build()` in `backend/app/routes/import_route.py:244` returns real gear; the legacy `"Gear not imported — …"` `gear_note` is no longer emitted. Residual ID-map coverage tracked in [#247](https://github.com/NickolisK24/le-the-forge/issues/247).
+- **Passive stat resolver** -- expanded `STAT_KEY_MAP` and migrated stray `aggregate_stats` callers to real node data (PRs #239, #240). Meta build priority sweep brought numeric stat-key coverage to 39.2% (79.8% of stat keys that appear on 2+ nodes). Four S4 meta builds validated with zero stat leakage into `special_effects`.
+- **Passive tree lock-direction** -- `requires[]` is now the source of truth rather than `connections[]` (PR #236); prevents false parent directions in the BFS allocation validator.
+- **CI trigger coverage** -- `.github/workflows/ci.yml` now runs on PRs targeting both `dev` and `main` (previously `main` only).
+
+### Documentation
+
+- README: status section added with current patch, data sync date, test count, and link to Known Limitations.
+- README: Known Limitations section updated to remove resolved items (#155, #223) and add new ones (#246 armor shred, #247 import ID residuals).
+- README: feature-list and data-confidence claims updated to match current code (145/179 skills high-confidence, 1,160+ affixes, 10,865 tests, 264 test files).
+- ARCHITECTURE.md: blueprint count corrected to 25 with `health_bp` row added; affix sync count updated to 1,160+.
+- ROADMAP.md: Phase 9 moved to Completed; pre-launch blockers #155/#223 removed.
+- api_reference.md: `/api/health` documented under System.
+
+---
+
 ## [0.8.0] -- 2026-04-08
 
 ### Added

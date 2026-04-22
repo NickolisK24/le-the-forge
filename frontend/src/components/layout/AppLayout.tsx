@@ -82,8 +82,18 @@ export default function AppLayout() {
         {/* Footer */}
         <footer className="border-t border-forge-border py-4 px-6 shrink-0">
           <div className="mx-auto max-w-7xl flex items-center justify-between">
-            <span className="font-mono text-xs text-forge-dim">
-              The Forge — Last Epoch Build Analyzer
+            <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
+              <span>The Forge — Last Epoch Build Analyzer</span>
+              <span className="text-forge-border">|</span>
+              <a
+                href="https://github.com/NickolisK24/le-the-forge/blob/main/docs/KNOWN_LIMITATIONS.md"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-forge-dim hover:text-forge-amber underline decoration-dotted underline-offset-2"
+                title="Public-facing disclosure of verified, approximate, and incomplete systems"
+              >
+                known limitations
+              </a>
             </span>
             <span className="font-mono text-xs text-forge-dim flex items-center gap-2">
               {versionString && versionString !== "0.0.0" && (
