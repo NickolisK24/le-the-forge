@@ -241,7 +241,80 @@ the two-column layout so phase 2 has a stable DOM target.
 
 ## 5. Build State Shape
 
-_To be filled in._
+### 5.1 Why a new store (minimum-necessary refactor)
+
+The current state layer is **not** adequate for the unified page. `BuildPlannerPage` holds build
+data in ~13 separate `useState` hooks with no shared object, which means:
+
+- There is no way for a sibling component (e.g. the analysis rail in phase 2) to observe the
+  working build without being a child of the page.
+- There is no stable identity for "the working build" that future undo/redo can snapshot.
+- Immutability is not enforced — callbacks like `onChange(gear)` hand back an array whose
+  provenance (new array vs. mutated array) is not guaranteed.
+
+The brief says: "If the current state management does not support [the unified pattern] — for
+example, if planner and edit each maintain their own local state — introduce the minimum necessary
+state layer to make the unified page work. Prefer extending the existing state management over
+introducing a new library."
+
+The project already uses Zustand (`useAuthStore`, `useCraftStore`). Adding a third Zustand slice
+is the minimum-necessary refactor. No new dependency, no new pattern.
+
+### 5.2 Store file and API
+
+`frontend/src/store/buildWorkspace.ts` exports `useBuildWorkspaceStore`. Re-exported from
+`frontend/src/store/index.ts` alongside the existing `useAuthStore` / `useCraftStore`.
+
+Shape (TypeScript):
+
+```ts
+export type BuildWorkspaceBuild = Omit<
+  Build,
+  | "id" | "slug" | "vote_count" | "view_count"
+  | "created_at" | "updated_at" | "author" | "user_vote" | "tier"
+>;
+// The "working copy" excludes server-only fields that the editor cannot mutate.
+// Server identity (id, slug) and audit metadata are held as a sibling field:
+
+export interface BuildWorkspaceState {
+  build: BuildWorkspaceBuild;
+  identity: { id: string | null; slug: string | null };
+  status: "empty" | "loading" | "ready";
+
+  // Actions — each produces a new `build` object via Zustand `set`.
+  initializeFromServer: (b: Build) => void;
+  initializeEmpty: () => void;
+  reset: () => void;
+
+  setMeta: (patch: Partial<Pick<BuildWorkspaceBuild,
+    | "name" | "description" | "character_class" | "mastery" | "level"
+    | "is_ssf" | "is_hc" | "is_ladder_viable" | "is_budget"
+    | "patch_version" | "cycle" | "is_public"
+  >>) => void;
+  setSkills: (skills: BuildSkill[]) => void;
+  setGear: (gear: GearSlot[]) => void;
+  setPassiveTree: (nodeIds: number[]) => void;
+  setBlessings: (blessings: SelectedBlessing[]) => void;
+}
+```
+
+### 5.3 Immutability guarantee
+
+Every action assigns a new top-level object via `set(...)` and, for collection fields, returns a
+new array from the caller's input. Section wrappers that expose fine-grained callbacks (e.g.
+`onAddSkill`) compute the new collection with a pure helper and call `setSkills(next)`. The
+underlying leaf editor components already pass full replacement arrays through their `onChange`
+callbacks, so no defensive copying is required at the store boundary.
+
+### 5.4 What the store is NOT
+
+- **Not a React Query replacement.** Server fetch and save stay in `hooks/index.ts`.
+- **Not a persistence layer.** No localStorage. The legacy `forge_draft_build` localStorage key
+  used by `BuildPlannerPage` is intentionally not touched — the old planner still owns it.
+- **Not an undo/redo stack.** That arrives in a later phase. The immutability guarantee is
+  scaffolding for it, nothing more.
+- **Not a global singleton beyond this feature.** Only the unified page and its section wrappers
+  import the store. The old planner keeps its `useState` hooks.
 
 ## 6. Intentional Deviations from Parity
 
