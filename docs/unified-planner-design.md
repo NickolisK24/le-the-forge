@@ -135,7 +135,47 @@ The store never fetches, and React Query never owns editable state.
 
 ## 3. Route Structure
 
-_To be filled in._
+### 3.1 Requested vs. available URL space
+
+The phase brief specifies the new unified page should live at `/build/:buildId` and `/build/new`.
+The existing `BuildPlannerPage` already owns `/build` and `/build/:slug`. Any plan that puts the
+new shell at `/build/:buildId` for existing builds would either (a) shadow the existing planner at
+its canonical URL, breaking the "old routes must remain functional" constraint, or (b) require
+retargeting `/build/:slug` to the new shell, which is a cutover — explicitly reserved for phase 5.
+
+The brief also refers to `/edit/:buildId` as an "old route that must continue to work." As noted
+in §1.1, no such route exists. Nothing needs to be preserved for it.
+
+### 3.2 Routes registered in phase 1
+
+To satisfy both constraints (new shell is reachable and independently testable; old planner keeps
+working at its canonical URL), the new shell is registered under a distinct namespace:
+
+| Route                | Component           | Behavior                                                    |
+|----------------------|---------------------|-------------------------------------------------------------|
+| `/workspace/new`     | `UnifiedBuildPage`  | Initializes the store with a default empty build.           |
+| `/workspace/:slug`   | `UnifiedBuildPage`  | Fetches `Build` by slug, initializes the store with result. |
+
+These routes are declared in `App.tsx` alongside the existing planner routes. Static segments
+(e.g. `new`) take precedence over dynamic segments in React Router v6, so ordering is not a
+concern, but the `new` route is declared first by convention for readability.
+
+### 3.3 Routes left untouched
+
+| Route                | Component           | Status                                                      |
+|----------------------|---------------------|-------------------------------------------------------------|
+| `/build`             | `BuildPlannerPage`  | Unchanged.                                                  |
+| `/build/:slug`       | `BuildPlannerPage`  | Unchanged.                                                  |
+| `/planner`           | `AliasRedirect→/build` | Unchanged.                                               |
+| `/build-editor`      | `BuildEditorPage`   | Unchanged (encounter simulator; not part of this consolidation). |
+
+### 3.4 Cutover plan (phase 5, not this phase)
+
+In the migration cutover phase, `/build` and `/build/:slug` will be retargeted to
+`UnifiedBuildPage`, and `/workspace/*` will be kept as a stable internal alias or retired entirely.
+`BuildPlannerPage` will then be deleted. None of that happens in phase 1. The `/workspace/*`
+namespace is a phase-1 staging area, explicitly called out as a temporary deviation from the brief's
+requested URL shape, chosen to preserve the "old routes must remain functional" constraint.
 
 ## 4. Component Tree
 
