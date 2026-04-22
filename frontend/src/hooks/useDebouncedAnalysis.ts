@@ -129,6 +129,12 @@ export function useDebouncedAnalysis(
 
   const timerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const mountedRef = useRef(true);
+  // Phase 2 step 5: skip the debounce on the very first fire after the
+  // workspace transitions to "ready". This is what makes /workspace/:slug
+  // display analysis immediately on mount for an already-populated build,
+  // instead of waiting 400 ms for nothing. Flips to false after the first
+  // scheduled fire, after which the standard debounce applies.
+  const isInitialLoadRef = useRef(true);
 
   // runAnalysis reads the latest build from the store rather than from a
   // captured closure — this is important because the module-level
@@ -171,10 +177,14 @@ export function useDebouncedAnalysis(
     // simulatable.
 
     if (timerRef.current !== null) clearTimeout(timerRef.current);
+    const delay = isInitialLoadRef.current ? 0 : debounceMs;
+    // Flip the flag eagerly so a rapid pair of "ready → edit" transitions
+    // does not double-count as initial loads.
+    isInitialLoadRef.current = false;
     timerRef.current = setTimeout(() => {
       timerRef.current = null;
       void runAnalysis();
-    }, debounceMs);
+    }, delay);
 
     return () => {
       if (timerRef.current !== null) {

@@ -136,6 +136,20 @@ function seedStore(build: BuildWorkspaceBuild = makeSimulatableBuild()) {
   s.setBlessings(build.blessings);
 }
 
+/**
+ * Consume the hook's initial-load 0 ms fire so the rest of the test can
+ * reason about edits in isolation. Tests that specifically exercise the
+ * initial-load behaviour should NOT call this helper.
+ */
+async function flushInitialFire() {
+  await act(async () => {
+    vi.advanceTimersByTime(0);
+    await Promise.resolve();
+    await Promise.resolve();
+  });
+  buildInline.mockClear();
+}
+
 // ---------------------------------------------------------------------------
 // Pure helper tests
 // ---------------------------------------------------------------------------
@@ -259,8 +273,8 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
-    // Trigger a field change.
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 99 });
     });
@@ -274,6 +288,7 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 99 });
@@ -291,13 +306,20 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 90 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(100);
       useBuildWorkspaceStore.getState().setMeta({ level: 91 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(100);
       useBuildWorkspaceStore.getState().setMeta({ level: 92 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(100);
       useBuildWorkspaceStore.getState().setMeta({ level: 93 });
     });
@@ -322,9 +344,12 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse("Fireball"));
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 99 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
       await Promise.resolve();
       await Promise.resolve();
@@ -339,9 +364,12 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiError("Invalid mastery"));
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 99 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
       await Promise.resolve();
       await Promise.resolve();
@@ -356,6 +384,7 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     const { unmount } = renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 99 });
@@ -379,16 +408,23 @@ describe("useDebouncedAnalysis", () => {
     const fast = new Promise((r) => {
       resolveFast = r;
     });
+    // First call (the initial 0 ms fire) resolves immediately so we can
+    // reason about subsequent edits; the next two calls are the slow/fast
+    // pair under test.
     buildInline
+      .mockResolvedValueOnce(fakeApiResponse("initial"))
       .mockReturnValueOnce(slow)
       .mockReturnValueOnce(fast);
 
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     // Edit 1 → schedule slow request.
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 80 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
     });
     expect(buildInline).toHaveBeenCalledTimes(1);
@@ -396,6 +432,8 @@ describe("useDebouncedAnalysis", () => {
     // Edit 2 → schedule fast request (bumps requestId, slow's id is now stale).
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 81 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
     });
     expect(buildInline).toHaveBeenCalledTimes(2);
@@ -425,9 +463,12 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     renderHook(() => useDebouncedAnalysis());
+    await flushInitialFire();
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 90 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
       await Promise.resolve();
       await Promise.resolve();
@@ -436,6 +477,8 @@ describe("useDebouncedAnalysis", () => {
 
     await act(async () => {
       useBuildWorkspaceStore.getState().setMeta({ level: 91 });
+    });
+    await act(async () => {
       vi.advanceTimersByTime(400);
       await Promise.resolve();
       await Promise.resolve();
@@ -464,14 +507,112 @@ describe("useDebouncedAnalysis", () => {
     buildInline.mockResolvedValue(fakeApiResponse());
     seedStore();
     renderHook(() => useDebouncedAnalysis());
-
-    // Let the initial render effect settle without waiting for the debounce.
-    await act(async () => {
-      await Promise.resolve();
-    });
+    await flushInitialFire();
 
     await act(async () => {
       runAnalysisNow();
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(buildInline).toHaveBeenCalledTimes(1);
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Initial-load fast path (phase 2 step 5)
+// ---------------------------------------------------------------------------
+
+describe("useDebouncedAnalysis — initial load", () => {
+  beforeEach(() => {
+    vi.useFakeTimers();
+    buildInline.mockReset();
+    useBuildWorkspaceStore.getState().reset();
+  });
+
+  afterEach(() => {
+    vi.useRealTimers();
+  });
+
+  it("fires the initial analysis immediately (0 ms) when mounted with a simulatable build", async () => {
+    buildInline.mockResolvedValue(fakeApiResponse());
+    seedStore();
+    renderHook(() => useDebouncedAnalysis());
+
+    // No 400 ms wait — advance only the microtask queue and a trivial tick.
+    await act(async () => {
+      vi.advanceTimersByTime(0);
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(buildInline).toHaveBeenCalledTimes(1);
+  });
+
+  it("uses the standard 400 ms debounce on subsequent edits", async () => {
+    buildInline.mockResolvedValue(fakeApiResponse());
+    seedStore();
+    renderHook(() => useDebouncedAnalysis());
+
+    // Consume the initial 0 ms fire.
+    await act(async () => {
+      vi.advanceTimersByTime(0);
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(buildInline).toHaveBeenCalledTimes(1);
+
+    // Edit — flushes the state update so the effect re-runs BEFORE the
+    // clock advances, so the new 400 ms timer is scheduled at t=0-rel.
+    await act(async () => {
+      useBuildWorkspaceStore.getState().setMeta({ level: 99 });
+    });
+    await act(async () => {
+      vi.advanceTimersByTime(399);
+    });
+    expect(buildInline).toHaveBeenCalledTimes(1);
+
+    await act(async () => {
+      vi.advanceTimersByTime(1);
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    expect(buildInline).toHaveBeenCalledTimes(2);
+  });
+
+  it("for /workspace/new the initial 0 ms fire is a no-op (not simulatable) and later edits use 400 ms", async () => {
+    buildInline.mockResolvedValue(fakeApiResponse());
+    // Store starts empty + not simulatable.
+    useBuildWorkspaceStore.getState().initializeEmpty();
+    renderHook(() => useDebouncedAnalysis());
+
+    await act(async () => {
+      vi.advanceTimersByTime(0);
+      await Promise.resolve();
+      await Promise.resolve();
+    });
+    // No request fired — the 0 ms timer ran but runAnalysis bailed because
+    // the empty build is not simulatable.
+    expect(buildInline).not.toHaveBeenCalled();
+
+    // User makes the build simulatable. The edit should use the normal
+    // 400 ms debounce, not another 0 ms fire.
+    await act(async () => {
+      const s = useBuildWorkspaceStore.getState();
+      s.setMeta({ character_class: "Mage", mastery: "Sorcerer" });
+      s.setSkills([
+        {
+          id: "s1",
+          slot: 0,
+          skill_name: "Fireball",
+          points_allocated: 20,
+          spec_tree: [],
+        } as BuildSkill,
+      ]);
+      vi.advanceTimersByTime(100);
+    });
+    expect(buildInline).not.toHaveBeenCalled();
+
+    await act(async () => {
+      vi.advanceTimersByTime(400);
       await Promise.resolve();
       await Promise.resolve();
     });
