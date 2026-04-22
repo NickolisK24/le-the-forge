@@ -249,6 +249,33 @@ to the project owner (see §7).
 All styles are Tailwind utility classes, consistent with the rest of the
 project. No new dependency, no CSS-in-JS, no global CSS edits.
 
+## 8. Step-7 verification results
+
+Run on the feature branch immediately before the final commit.
+
+- **`pytest tests/ -x -q`** — 10865 passed, 377 skipped, 0 failures.
+  Identical to the phase-1 baseline.
+- **`npx tsc --noEmit`** — clean. 0 TypeScript errors.
+- **`flask validate-data`** — "✓ Data validation passed — 52 files
+  checked."
+- **Frontend test suite (`vitest run`)** — 673 passed, 17 pre-existing
+  baseline failures in `__tests__/components/navigation.test.tsx` and
+  `__tests__/integration/layout.test.tsx`. These failures are unrelated
+  to phase 2 and were carried over from the phase-1 baseline — they
+  match the exact same failing cases the phase-1 commit called out
+  (Sidebar/GlobalSearch render tests and Ctrl+K toggles). They were not
+  fixed in this phase per the brief's direction.
+
+Total new tests landed in phase 2:
+
+| Suite                                              | Added |
+|----------------------------------------------------|-------|
+| `store/build-workspace-store.test.ts`              |    11 |
+| `hooks/use-debounced-analysis.test.ts`             |    22 |
+| `components/analysis-panel.test.tsx`               |    10 |
+| `pages/unified-build-page.test.tsx` (updated only) |     0 |
+| **Total**                                          | **43** |
+
 ## 7. Manual verification checklist for the reviewer
 
 This sandbox has no display; the project owner performs the following
