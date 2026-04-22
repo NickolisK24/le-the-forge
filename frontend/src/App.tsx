@@ -12,6 +12,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "@/components/features/HomePage";
 import BuildsPage from "@/components/features/builds/BuildsPage";
 import BuildPlannerPage from "@/components/features/build/BuildPlannerPage";
+import UnifiedBuildPage from "@/components/features/build-workspace/UnifiedBuildPage";
 import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
@@ -209,6 +210,11 @@ export default function App() {
                 <Route path="/builds" element={<BuildsPage />} />
                 <Route path="/build" element={<BuildPlannerPage />} />
                 <Route path="/build/:slug" element={<BuildPlannerPage />} />
+                {/* Unified build workspace — phase 1 of planner/edit consolidation.
+                    Lives under /workspace/* to avoid colliding with the legacy
+                    planner at /build. See docs/unified-planner-design.md §3. */}
+                <Route path="/workspace/new" element={<UnifiedBuildPage />} />
+                <Route path="/workspace/:slug" element={<UnifiedBuildPage />} />
                 <Route path="/craft" element={<CraftSimulatorPage />} />
                 <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
                 <Route path="/affixes" element={<AffixEditorPage />} />
