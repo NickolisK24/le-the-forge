@@ -318,4 +318,61 @@ callbacks, so no defensive copying is required at the store boundary.
 
 ## 6. Intentional Deviations from Parity
 
-_To be filled in._
+The brief requires feature parity: every editable surface on the old pages present on the unified
+page, every edit persists correctly, every build that loads on the old pages loads on the unified
+page. Parity is met with the following documented deviations.
+
+### 6.1 Routes
+
+- **New routes use `/workspace/*`, not `/build/:buildId`** — see §3 for rationale. Preserving the
+  old planner at its canonical URL was the overriding constraint.
+
+### 6.2 Save/analyze UI
+
+- **No "Save" button in phase 1.** The store holds a working copy; it does not call
+  `useUpdateBuild` or `useCreateBuild` on its own. Persistence wiring is a phase-2+ concern
+  because the reveal-animation phase needs to decide how edits commit (on blur, on explicit
+  save, on navigation). For phase 1, edits update the store and are lost on refresh. This is
+  called out explicitly so reviewers do not assume the shell is production-ready: it is a shell.
+
+- **No "Analyze Build" button in phase 1.** The analysis panel is a placeholder. The old planner
+  retains its analyze button and its full analysis flow.
+
+### 6.3 Surfaces
+
+- **No Weaver Tree section.** No Weaver Tree editor component exists in the frontend today
+  (backend data pipeline exists but no UI). There is nothing to consolidate. The tab strip is
+  designed so a `<WeaverTreeSection>` can be added later without shell changes.
+
+- **Idols remain inside Gear.** `GearEditor` already has an "idols" internal tab. The unified
+  shell reuses that and does not promote Idols to its own top-level section. This matches the
+  existing component boundary and keeps this phase zero-touch on leaf editors.
+
+- **No BuildEditorPage ("encounter simulator") integration.** Out of scope — see §1.1.
+
+### 6.4 Create-mode UX
+
+- The old planner's create mode uses an inline `QuickGearGrid` instead of the full `GearEditor`.
+  The unified shell uses `GearEditor` uniformly for both create (`/workspace/new`) and edit
+  (`/workspace/:slug`). This is structurally simpler and eliminates one source of the duplication
+  called out in §1.6. Functionally `GearEditor` is a superset of `QuickGearGrid`.
+
+### 6.5 Draft persistence
+
+- The old planner's `forge_draft_build` localStorage autosave is **not** reimplemented on the
+  unified page. Phase 2's real-time analysis and phase 3's animation layer will redefine when
+  and how edits commit; autosaving to localStorage before those decisions are made would create
+  throwaway code. Users on `/workspace/new` will lose their work on refresh in phase 1. The old
+  planner's draft autosave continues to work at its existing URLs.
+
+### 6.6 Visual parity
+
+- Pixel-perfect visual match is not claimed and not required by the brief. The shell uses the
+  project's existing Tailwind/forge design tokens and reuses the leaf editors unmodified, so
+  each surface looks identical in isolation. The containing chrome (tab strip, analysis rail)
+  is new.
+
+---
+
+_End of phase 1 design note. Phase 2 (real-time analysis wiring) and later phases will update
+this document in place rather than forking a new one._
