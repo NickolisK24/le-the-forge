@@ -90,7 +90,48 @@ object** — every editor surface reads and writes through ad-hoc callbacks on `
 
 ## 2. Target Architecture
 
-_To be filled in._
+A single page component — `UnifiedBuildPage` — renders all editor surfaces against a single
+Zustand store, `useBuildWorkspaceStore`. The store owns the working copy of a `Build` object.
+Every editor surface reads from the store (via selector hooks) and writes through a small,
+documented action API. Analysis is a separate concern, triggered by a side-panel that reads
+the same store but lives in its own component — in this phase that side-panel is a placeholder.
+
+**Three rules that govern the target architecture**:
+
+1. **One source of truth.** The store holds a `BuildWorkspaceState` object whose `build` field is
+   the full working-copy `Build`. Editor components never maintain their own copy of any field
+   that also lives on `build`. They may hold local UI state (which slot modal is open, which tab
+   is active), but they do not hold build data.
+
+2. **All updates go through the action API.** The store exposes intent-named actions
+   (`setSkills`, `setGear`, `setPassiveTree`, `setBlessings`, `setMeta`, `initialize`, `reset`).
+   Every action returns a new `build` object — never an in-place mutation. Zustand's default
+   `set()` already produces a new state object at the top level; the store's reducers ensure
+   nested fields (`gear`, `skills`, etc.) are replaced rather than mutated. This invariant is
+   required for the reveal-animation diffing in phase 2 and the undo/redo stack in a later
+   phase.
+
+3. **Analysis is decoupled from editing.** The shell does not trigger analysis as a side effect
+   of edits in phase 1. A placeholder `AnalysisPanel` reads from the store but renders a
+   "wired up in next phase" message. In phase 2 the real-time analysis hook will replace this
+   placeholder; no shell code should need to change.
+
+### 2.1 Coexistence with the old pages
+
+Phase 1 is **additive**. `BuildPlannerPage` at `/build` and `/build/:slug` is unchanged. Nothing
+imports the old planner into the new shell and the new shell does not import anything from the
+old planner beyond the leaf editor components (`GearEditor`, `SkillSelector`, `BuildPassiveTree`,
+`PassiveProgressBar`, `BlessingsPanel`). Those leaf components take `value` + `onChange` style
+callbacks today and therefore bind to the store trivially via thin section wrappers.
+
+The encounter simulator at `/build-editor` is untouched and remains out of scope.
+
+### 2.2 Separation between the store and the server
+
+The store is a pure client-side working copy. Loading (`useBuild`) and saving
+(`useCreateBuild` / `useUpdateBuild`) remain the responsibility of React Query. The shell calls
+`useBuild(slug)` on mount, waits for the server object, and hands it to `store.initialize(build)`.
+The store never fetches, and React Query never owns editable state.
 
 ## 3. Route Structure
 
