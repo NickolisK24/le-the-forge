@@ -185,7 +185,69 @@ Documenting for the same reason phase 1 documented its route deviation.
 
 ## 6. Layout stability verification
 
-_(filled in at the end of step 6 — placeholder)_
+Phase-2 step-6 static verification. Browser-based confirmation is deferred
+to the project owner (see §7).
+
+### 6.1 What the panel does to guarantee stability
+
+- **Fixed minimum height.** `AnalysisPanel` applies
+  `min-h-[520px]` on its outermost `<aside>`. This reserves vertical space
+  on initial paint, before any analysis has resolved, so the panel occupies
+  the same footprint in idle, pending-skeleton, error, and freshly
+  successful states.
+- **Panel width is set by the parent column**
+  (`frontend/src/components/features/build-workspace/UnifiedBuildPage.tsx`:
+  `<div className="w-full lg:w-80 lg:flex-none">`). Internal panel content
+  does not influence the column width, so no state transition can push or
+  pull adjacent editors horizontally.
+- **Previous result is preserved during pending.** When a new request is in
+  flight and a previous result exists, the panel keeps rendering that
+  result and overlays a small "Updating…" badge in the panel header. The
+  visible DOM does not swap to a spinner or skeleton — the dashboard stays
+  mounted. This eliminates the common "dashboard → spinner → dashboard"
+  flicker loop under rapid edits.
+- **Skeleton mirrors the dashboard's rough block layout.** On the rare
+  transition from no-prior-result pending to a successful result, the
+  skeleton's stacked blocks sit in roughly the same vertical positions the
+  dashboard's summary strip / 2-up grids occupy. Some settling is
+  unavoidable because the dashboard's exact height depends on how many
+  recharts bars the result produces, but the skeleton gets within ~1-2
+  card-heights of the final layout.
+- **Error state renders in the same container geometry.** The
+  `ErrorPanel` is centred in a `min-h-[440px]` flex column inside the
+  panel, meaning the retry button sits in the vertical centre of the
+  reserved 520px outer frame. This keeps it well away from the editor
+  controls on the left side of the main column in desktop layout, and
+  below them in the stacked mobile layout.
+
+### 6.2 Assessment against the three transitions called out in the brief
+
+| Transition                        | Panel width | Panel contents vertical jump | Editor reflow risk |
+|----------------------------------|-------------|-------------------------------|--------------------|
+| success → pending (with result)  | Unchanged — width is fixed by column | None — result stays, only header badge toggles | None — the editor column is a separate flex item |
+| pending → success                | Unchanged   | Small settling possible only on the very first success of the session (skeleton → dashboard); subsequent success transitions are result-on-top-of-result no-ops | None |
+| idle/pending → error             | Unchanged   | Error block is centred in the reserved 520 px frame, so moves toward the middle when the panel was previously taller | None; retry button stays within the panel column |
+| error → success (retry path)    | Unchanged   | Error block swaps for dashboard within the same min-height frame | None |
+
+### 6.3 Known limitations
+
+- **Dashboard height is content-dependent.** On a build with fewer skill
+  upgrades or a very sparse resistance profile, `SimulationDashboard`'s
+  own charts shrink. A dramatic drop in dashboard height between two
+  sequential successful results could cause the panel's footprint to
+  shrink. This does not reflow editor surfaces (they are in the sibling
+  flex column), but the page's overall height will change. Phase 3 owns
+  presentation redesign; reserving a hard maximum is that phase's call.
+- **Stacked (mobile) layout.** On narrow viewports the panel stacks below
+  the editor column. State transitions on the panel can push content
+  below it (e.g. page footer) further down. This is acceptable — nothing
+  the user is editing is displaced — but is worth noting for phase 3
+  UX review.
+
+### 6.4 No new styling library introduced
+
+All styles are Tailwind utility classes, consistent with the rest of the
+project. No new dependency, no CSS-in-JS, no global CSS edits.
 
 ## 7. Manual verification checklist for the reviewer
 
