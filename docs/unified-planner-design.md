@@ -179,7 +179,65 @@ requested URL shape, chosen to preserve the "old routes must remain functional" 
 
 ## 4. Component Tree
 
-_To be filled in._
+All new files live under `frontend/src/components/features/build-workspace/`, matching the
+existing feature-folder convention (`features/build/`, `features/encounter/`, `features/craft/`,
+`features/builds/`, etc.). No files are moved, renamed, or modified outside this folder and a
+single-line addition to the router in `App.tsx` plus a single-line re-export in `store/index.ts`.
+
+```
+<UnifiedBuildPage>                     // frontend/src/components/features/build-workspace/UnifiedBuildPage.tsx
+├── <BuildWorkspaceLayout>             // two-column layout: editor area + analysis rail
+│   ├── <SectionNav>                   // tabs: Meta / Gear / Skills / Passives / Blessings
+│   └── <section content>
+│       ├── <MetaSection>              // name, description, class, mastery, level, flags
+│       │     (reads/writes: meta fields via setMeta action)
+│       ├── <GearSection>              // wraps <GearEditor> (includes idol tab)
+│       │     (reads: build.gear; writes: setGear)
+│       ├── <SkillsSection>            // wraps <SkillSelector>
+│       │     (reads: build.skills + build.character_class + build.mastery;
+│       │      writes: setSkills, via add/remove/points/tree-alloc adapters)
+│       ├── <PassivesSection>          // wraps <BuildPassiveTree> + <PassiveProgressBar>
+│       │     (reads: build.passive_tree + class/mastery;
+│       │      writes: setPassiveTree)
+│       └── <BlessingsSection>         // wraps <BlessingsPanel>
+│             (reads: build.blessings; writes: setBlessings)
+└── <AnalysisPanel>                    // placeholder — renders "wired up in phase 2"
+```
+
+### 4.1 Section wrappers
+
+Each `*Section` is a thin adapter: ~20–50 lines, no business logic, no local build state.
+It subscribes to the store via a narrow selector (e.g. `useBuildWorkspaceStore(s => s.build.gear)`),
+passes that value to the underlying editor as a prop, and wires the editor's `onChange` (or
+per-callback variants) to the store's action. Section wrappers exist so that the existing editor
+components remain **unmodified** in this phase — the brief is explicit that this phase is
+structural consolidation, not component rewrites.
+
+### 4.2 Navigation pattern
+
+The existing `BuildPlannerPage` does not use tabs — it stacks sections vertically and uses
+`AccordionSection` (`components/features/build/simulation/AccordionSection.tsx`) for the analysis
+output only. The brief says to match the existing convention "unless that convention is clearly
+worse than an alternative."
+
+**Choice: tabs, not vertical stacking.** Rationale:
+
+- A vertical stack of six full editor surfaces (Meta, Gear, Skills, Passives, Blessings, plus idols
+  inside Gear) combined with a persistent analysis rail produces an unusable amount of scroll.
+  The existing planner dodges this by only rendering a subset at a time (view vs. create vs. edit)
+  and by omitting several surfaces in the create-mode quick path.
+- Last Epoch Tools and Maxroll — both referenced in the brief as the target pattern — use tab/
+  section navigation, not infinite scroll.
+- Tabs also give the phase 2 reveal-animation layer a natural surface boundary to animate around.
+
+The tab strip is implemented inline in `UnifiedBuildPage`; no new UI-kit component is introduced.
+
+### 4.3 Analysis rail
+
+`AnalysisPanel` is a pure-presentational component in this phase. It reads nothing from the
+server and triggers nothing. It renders a single card containing the working build's class/mastery
+summary plus the string "Analysis panel — wired up in next phase." It exists primarily to lock in
+the two-column layout so phase 2 has a stable DOM target.
 
 ## 5. Build State Shape
 
