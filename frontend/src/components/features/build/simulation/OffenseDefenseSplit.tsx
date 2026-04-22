@@ -13,6 +13,7 @@ import {
   getBenchmarkTier,
   BENCHMARK_COLORS,
   BENCHMARK_DISCLAIMER,
+  KNOWN_LIMITATIONS_URL,
   type BenchmarkTier,
 } from "@/constants/statBenchmarks";
 
@@ -207,7 +208,16 @@ export default function OffenseDefenseSplit({ dps, defense, stats }: OffenseDefe
         <DefenseCard def={defense} />
       </div>
       <p className="font-mono text-[10px] italic text-forge-dim px-1">
-        {BENCHMARK_DISCLAIMER}
+        {BENCHMARK_DISCLAIMER}{" "}
+        <a
+          href={KNOWN_LIMITATIONS_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="not-italic text-forge-amber hover:text-forge-amberHot underline decoration-dotted underline-offset-2"
+        >
+          See known limitations
+        </a>
+        .
       </p>
     </div>
   );
