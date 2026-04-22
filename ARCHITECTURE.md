@@ -26,7 +26,7 @@ The Flask application uses the app factory pattern (`create_app()` in `app/__ini
 
 At startup, the data pipeline loads game data into registries: `AffixRegistry`, `SkillRegistry`, `EnemyRegistry`.
 
-**24 registered blueprints:**
+**25 registered blueprints:**
 
 | Blueprint | URL Prefix | Purpose |
 |-----------|-----------|---------|
@@ -54,6 +54,7 @@ At startup, the data pipeline loads game data into registries: `AffixRegistry`, 
 | `meta_bp` | `/api/meta` | Meta analytics and trending builds |
 | `views_bp` | `/api/builds` | View tracking |
 | `report_bp` | `/api/builds` | Shared build reports |
+| `health_bp` | `/api` | Liveness probe (`/api/health`) used by Render health check and external monitors; returns `{status, version, patch_version, uptime_seconds}`, unauthenticated, rate-limited 60/min |
 
 ### Engine Layer
 
@@ -250,7 +251,7 @@ data/
 ### Data Sync Pipeline
 
 `scripts/sync_game_data.py` transforms raw exports from `last-epoch-data/` into normalized JSON files in `/data/`. It handles:
-- Affix normalization (946+ equipment + idol affixes with tier conversion)
+- Affix normalization (1,160+ equipment + idol affixes with tier conversion)
 - Passive tree node generation with namespaced IDs and layout coordinates
 - Skill metadata extraction
 - Patch version detection from source metadata

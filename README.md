@@ -3,10 +3,17 @@
 **A deterministic Last Epoch build analysis and simulation platform.**
 
 [![CI](https://github.com/NickolisK24/le-the-forge/actions/workflows/ci.yml/badge.svg)](https://github.com/NickolisK24/le-the-forge/actions/workflows/ci.yml)
-![Tests](https://img.shields.io/badge/tests-10%2C750_passing-brightgreen)
+![Tests](https://img.shields.io/badge/tests-10%2C865_passing-brightgreen)
 ![TypeScript](https://img.shields.io/badge/TypeScript-0_errors-blue)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 ![Version](https://img.shields.io/badge/version-0.8.0-orange)
+
+### Status
+
+- **Live at** [epochforge.gg](https://epochforge.gg) since 2026-04-21
+- **Game data synced to:** patch 1.4.3, Season 4 (last sync 2026-04-21)
+- **Tests:** 10,865 passing / 377 skipped
+- **[See known limitations →](docs/KNOWN_LIMITATIONS.md)**
 
 <p align="center">
   <img src="docs/screenshots/20260323_184859_01_home.png" alt="The Forge — Home" width="720" />
@@ -20,7 +27,7 @@ The Forge is a build analysis platform for Last Epoch. It takes a character buil
 
 Unlike build planners that stop at showing stat totals, The Forge simulates the full combat loop: skill execution, crit weighting, Monte Carlo damage variance, boss encounter phases, mana gating, and enemy-specific resistance and armour mitigation. The goal is mechanical accuracy — every number traces back to a formula you can inspect, and the engine runs the same calculation every time for the same inputs.
 
-The project is currently at **v0.8.0**, approaching a v1.0.0-beta community launch. The core simulation pipeline is stable and backed by 10,750+ tests, but some input data — particularly skill base damage values and enemy armour profiles — are benchmarked approximations rather than verified game extracts. These are noted honestly throughout the tool and in the [Known Limitations](#known-limitations-beta) section below. Community validation of these values is actively sought and is one of the most impactful ways to contribute.
+The project is currently at **v0.8.0** and went live at [epochforge.gg](https://epochforge.gg) on 2026-04-21. The core simulation pipeline is stable and backed by 10,865 tests, but some input data — particularly skill base damage values and enemy armour profiles — are benchmarked approximations rather than verified game extracts. These are noted honestly throughout the tool, in the [Known Limitations](#known-limitations-beta) section below, and in the dedicated [transparency document](docs/KNOWN_LIMITATIONS.md). Community validation of these values is actively sought and is one of the most impactful ways to contribute.
 
 ---
 
@@ -36,7 +43,7 @@ The project is currently at **v0.8.0**, approaching a v1.0.0-beta community laun
 
 ### Build Tools
 
-- **Build import** from Last Epoch Tools and Maxroll URLs — class, mastery, passives, and skills transfer automatically; gear import is [in active development](#known-limitations-beta)
+- **Build import** from Last Epoch Tools and Maxroll URLs — class, mastery, passive tree, skills, and gear all import from Last Epoch Tools URLs (Maxroll end-to-end coverage is still being validated against live builds, see [#163](https://github.com/NickolisK24/le-the-forge/issues/163))
 - **Skill tree UI** with interactive node graph, point allocation, and BFS path validation
 - **Passive tree** with real in-game node positions, hexagonal rendering, BFS reachability validation, and leveling path tracker
 - **Primary skill auto-detection** with manual override
@@ -64,7 +71,7 @@ The project is currently at **v0.8.0**, approaching a v1.0.0-beta community laun
 | Cache | Redis 7, Flask-Limiter |
 | ORM | SQLAlchemy + Flask-Migrate (Alembic) |
 | Auth | Discord OAuth2 (Flask-Dance), JWT (Flask-JWT-Extended) |
-| Testing | pytest (10,750+ tests), TypeScript strict mode, Vitest |
+| Testing | pytest (10,865 tests), TypeScript strict mode, Vitest |
 | Desktop | Electron 41 (optional, scaffolded) |
 | CI/CD | GitHub Actions (pytest, tsc, ESLint, Docker build) |
 | Infrastructure | Docker Compose (local), Gunicorn (production) |
@@ -173,7 +180,7 @@ le-the-forge/
 │   ├── combat/             Hit resolution, spatial simulation
 │   ├── migrations/         Alembic migration versions
 │   ├── scripts/            Verification scripts (verify_base_stats.py)
-│   └── tests/              10,750+ tests across 250+ test files
+│   └── tests/              10,865 tests across 264 test files
 ├── frontend/
 │   └── src/
 │       ├── components/     Feature components (build, craft, encounter, optimizer, bis)
@@ -210,7 +217,7 @@ le-the-forge/
 The `data/` directory contains canonical game data extracted from Last Epoch and normalized into JSON:
 
 - **`data/classes/`** — class definitions with base stats, passive tree nodes with layout coordinates, skill metadata, and skill specialization trees
-- **`data/items/`** — 1,000+ affixes with tier ranges, base items, uniques, crafting rules, implicit stats, and rarity definitions
+- **`data/items/`** — 1,160+ affixes with tier ranges, base items, uniques, crafting rules, implicit stats, and rarity definitions
 - **`data/combat/`** — damage types, ailment definitions, monster modifiers
 - **`data/entities/`** — enemy and boss profiles with health, armour, and resistance values
 
@@ -234,7 +241,7 @@ Not all values in the game data are verified extracts. The confidence model:
 | Class base stats | Verified | Recorded from level-1 character sheets, no gear, no passives |
 | Attribute scaling | Verified | Confirmed per-point grants from in-game tooltips |
 | Affix definitions and tier ranges | High | Extracted from game files |
-| Skill base damage (141 of 175 skills) | High | Extracted from game data |
+| Skill base damage (145 of 179 skills) | High | Extracted from game data |
 | Skill base damage (34 skills) | 70-80% | Calibrated estimates; community validation welcome ([#148](https://github.com/NickolisK24/le-the-forge/issues/148)) |
 | Enemy armour and resistance profiles | Estimated | Community documentation, not verified against game files ([#162](https://github.com/NickolisK24/le-the-forge/issues/162)) |
 | Passive node stat grants | Mixed | Being migrated from estimated cycles to real node data ([#156](https://github.com/NickolisK24/le-the-forge/issues/156)) |
@@ -251,7 +258,7 @@ For full details — the 24 API blueprints, engine inventory, database schema, R
 
 ## Testing
 
-The test suite currently has **10,750 passing tests** (377 skipped) covering:
+The test suite currently has **10,865 passing tests** (377 skipped) covering:
 
 - **Stat pipeline** — all 8 layers, attribute scaling, class base stats, derived stat registry
 - **Combat simulation** — DPS calculation, crit weighting, Monte Carlo variance, boss encounters, multi-target
@@ -313,10 +320,9 @@ Open an issue on [GitHub Issues](https://github.com/NickolisK24/le-the-forge/iss
 
 ## Known Limitations (Beta)
 
-The Forge is approaching its community launch but is honest about what is not yet complete:
+The Forge is live in beta and is honest about what is not yet complete. The full public-facing disclosure lives in [`docs/KNOWN_LIMITATIONS.md`](docs/KNOWN_LIMITATIONS.md); the headline items:
 
-- **Gear import from Last Epoch Tools does not include items** — class, mastery, passives, and skills import correctly, but gear requires an item ID mapping that is still being built ([#155](https://github.com/NickolisK24/le-the-forge/issues/155))
-- **Maxroll import is unverified** — the importer exists but has not been end-to-end tested against current Maxroll URLs ([#163](https://github.com/NickolisK24/le-the-forge/issues/163))
+- **Maxroll import is unverified** — the importer parses class, mastery, passives, skills, and gear but has not been end-to-end tested against current Maxroll URLs ([#163](https://github.com/NickolisK24/le-the-forge/issues/163))
 - **Passive node stats partially mapped to simulation** — all 541 passive nodes now load their real stat payload from the game data file rather than the estimated modulo cycle, and 39.2% of stat entries (79.8% of stat keys that appear on 2+ nodes) resolve into numeric BuildStats fields; the four S4 meta builds (Ballista Falconer, Warpath Void Knight, Profane Veil Warlock, Lightning Blast Runemaster) are validated with zero stat leakage into special_effects for their canonical allocations
 - **Remaining 60.8% of passive stat entries are preserved in special_effects** — conditional mechanics ("while Dual Wielding"), proc triggers, and flag-style effects don't feed the numeric simulation yet; continued mapping is ongoing and the modulo cycle is kept only as a last-resort fallback, logged on use, for node IDs with no DB entry ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
 - **34 skill base damage values are approximations** at 70-80% confidence — community validation welcome ([#148](https://github.com/NickolisK24/le-the-forge/issues/148))
@@ -324,32 +330,27 @@ The Forge is approaching its community launch but is honest about what is not ye
 - **Minion DPS is not modeled** — affects Necromancer and Beastmaster builds; minion skills show 0 DPS ([#157](https://github.com/NickolisK24/le-the-forge/issues/157))
 - **Ailment DPS (Ignite, Bleed, Poison) is unverified** against live gameplay values ([#159](https://github.com/NickolisK24/le-the-forge/issues/159))
 - **Conditional stat bonuses are calculated but not wired into DPS** — bonuses like "while moving" or "against bosses" are computed by Layer 8 but not yet consumed by the combat simulation ([#158](https://github.com/NickolisK24/le-the-forge/issues/158))
-- **Craft engine determinism bug** — `simulate_craft_attempt` does not fully thread its RNG seed through all subroutines ([#223](https://github.com/NickolisK24/le-the-forge/issues/223))
+- **Armor-shred stack accumulation is not modeled** — single-hit shred is consumed but stacks do not accumulate over fight duration; DPS against heavily armoured bosses can be understated by 20–50% ([#246](https://github.com/NickolisK24/le-the-forge/issues/246))
+- **LE Tools / Maxroll item-ID resolution residuals** — the gear importer covers the canonical meta item set cleanly; rare or newly introduced base items and affixes may still land in `gear_missing` ([#247](https://github.com/NickolisK24/le-the-forge/issues/247))
 
 ---
 
 ## Roadmap
 
-The project follows a phased development plan. Phases 1-8 are complete.
+Phases 1–9 are complete. Phase 9 (Deploy & Launch) landed on 2026-04-21 with production live at [epochforge.gg](https://epochforge.gg) on Render + Cloudflare.
 
-**Pre-Launch (blocking v1.0.0-beta):**
+**Post-launch priorities:**
 
-1. **Full Gear Import** — complete item ID mapping for Last Epoch Tools and Maxroll ([#155](https://github.com/NickolisK24/le-the-forge/issues/155))
-2. **Real Passive Node Data** — migrate all passive nodes from estimated cycles to verified per-node stats ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
-3. **Craft Engine Determinism** — thread the local RNG seed through all craft simulation subroutines to guarantee reproducible results ([#223](https://github.com/NickolisK24/le-the-forge/issues/223))
-4. **Phase 9 — Deploy and Launch** — CI/CD pipeline, production deployment, performance audit, mobile responsiveness, community launch
+1. **Passive Node Coverage Expansion** — grow the 39.2% numeric stat-key coverage in the passive tree resolver toward parity with in-game tooltips ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
+2. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
+3. **Phase 11 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path ([#158](https://github.com/NickolisK24/le-the-forge/issues/158))
+4. **Phase 12 — Minion Engine** — per-minion-type damage modeling for summoner builds ([#157](https://github.com/NickolisK24/le-the-forge/issues/157))
+5. **Phase 13 — Advanced Crafting Models** — probabilistic outcome prediction beyond Monte Carlo
+6. **Phase 14 — Encounter-Specific Optimization** — stat recommendations targeting specific boss fights
+7. **Phase 15 — Patch Auto-Sync** — GitHub Actions pipeline to automatically update game data when patches release
+8. **Phase 16 — AI-Powered Build Q&A** — natural language build analysis and recommendations
 
-**Post-Launch:**
-
-5. **Phase 10 — Desktop Packaging** — Electron wrapper with bundled backend for offline use
-6. **Phase 11 — Conditional DPS Integration** — wire Layer 8 conditional bonuses into the combat simulation path
-7. **Phase 12 — Minion Engine** — per-minion-type damage modeling for summoner builds
-8. **Phase 13 — Advanced Crafting Models** — probabilistic outcome prediction beyond Monte Carlo
-9. **Phase 14 — Encounter-Specific Optimization** — stat recommendations targeting specific boss fights
-10. **Phase 15 — Patch Auto-Sync** — GitHub Actions pipeline to automatically update game data when patches release
-11. **Phase 16 — AI-Powered Build Q&A** — natural language build analysis and recommendations
-
-See the full [Roadmap](ROADMAP.md) and the [GitHub Issues](https://github.com/NickolisK24/le-the-forge/issues) for current status.
+See the full [Roadmap](ROADMAP.md), the [Known Limitations](docs/KNOWN_LIMITATIONS.md), and the [GitHub Issues](https://github.com/NickolisK24/le-the-forge/issues) for current status.
 
 ---
 
