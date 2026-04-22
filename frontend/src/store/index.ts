@@ -13,6 +13,7 @@ import type { User, CraftAffix } from "@/types";
 
 export { useBuildWorkspaceStore } from "./buildWorkspace";
 export type {
+  AnalysisStatus,
   BuildWorkspaceBuild,
   BuildWorkspaceIdentity,
   BuildWorkspaceState,

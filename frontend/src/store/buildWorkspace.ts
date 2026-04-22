@@ -17,6 +17,7 @@ import type {
   GearSlot,
 } from "@/types";
 import type { SelectedBlessing } from "@/types/blessings";
+import type { BuildSimulationResult } from "@/lib/api";
 
 // ---------------------------------------------------------------------------
 // Working-copy shape
@@ -99,6 +100,23 @@ export function emptyBuild(): BuildWorkspaceBuild {
 }
 
 // ---------------------------------------------------------------------------
+// Analysis state (phase 2)
+// ---------------------------------------------------------------------------
+
+/**
+ * AnalysisStatus is a discriminated union of request lifecycle states:
+ *   - "idle":    no analysis has run yet (initial mount or after reset).
+ *   - "pending": a request is in flight. Previous `analysisResult` may still
+ *                hold the last successful response — the panel renders it
+ *                while the next one computes.
+ *   - "success": the most recent request completed and `analysisResult` is
+ *                populated.
+ *   - "error":   the most recent request failed and `analysisError` holds
+ *                the message.
+ */
+export type AnalysisStatus = "idle" | "pending" | "success" | "error";
+
+// ---------------------------------------------------------------------------
 // Store interface
 // ---------------------------------------------------------------------------
 
@@ -108,6 +126,19 @@ export interface BuildWorkspaceState {
   build: BuildWorkspaceBuild;
   identity: BuildWorkspaceIdentity;
   status: WorkspaceStatus;
+
+  // Analysis state (phase 2) — kept in the same store as the build so edits
+  // and their derived analysis stay in sync. See docs/unified-planner-design.md
+  // §2 "Analysis is decoupled from editing" for why the store owns this slice
+  // rather than a separate analysis store.
+  analysisStatus: AnalysisStatus;
+  analysisResult: BuildSimulationResult | null;
+  analysisError: string | null;
+  // Monotonic counter — every requestAnalysis() bumps this by 1. Responses
+  // tagged with a requestId lower than the current value are discarded as
+  // stale, preventing a slow older response from overwriting a fresh newer
+  // one.
+  analysisRequestId: number;
 
   // Lifecycle
   initializeFromServer: (b: Build) => void;
@@ -121,16 +152,33 @@ export interface BuildWorkspaceState {
   setGear: (gear: GearSlot[]) => void;
   setPassiveTree: (nodeIds: number[]) => void;
   setBlessings: (blessings: SelectedBlessing[]) => void;
+
+  // Analysis actions (phase 2)
+  requestAnalysis: () => number;
+  setAnalysisResult: (
+    requestId: number,
+    result: BuildSimulationResult,
+  ) => void;
+  setAnalysisError: (requestId: number, error: string) => void;
+  resetAnalysis: () => void;
 }
 
 // ---------------------------------------------------------------------------
 // Store implementation
 // ---------------------------------------------------------------------------
 
+const EMPTY_ANALYSIS = {
+  analysisStatus: "idle" as AnalysisStatus,
+  analysisResult: null,
+  analysisError: null,
+  analysisRequestId: 0,
+};
+
 export const useBuildWorkspaceStore = create<BuildWorkspaceState>((set) => ({
   build: emptyBuild(),
   identity: { id: null, slug: null },
   status: "empty",
+  ...EMPTY_ANALYSIS,
 
   initializeFromServer: (b) =>
     set({
@@ -154,6 +202,7 @@ export const useBuildWorkspaceStore = create<BuildWorkspaceState>((set) => ({
         is_public: !!b.is_public,
       },
       status: "ready",
+      ...EMPTY_ANALYSIS,
     }),
 
   initializeEmpty: () =>
@@ -161,6 +210,7 @@ export const useBuildWorkspaceStore = create<BuildWorkspaceState>((set) => ({
       identity: { id: null, slug: null },
       build: emptyBuild(),
       status: "ready",
+      ...EMPTY_ANALYSIS,
     }),
 
   setLoading: () => set({ status: "loading" }),
@@ -170,6 +220,7 @@ export const useBuildWorkspaceStore = create<BuildWorkspaceState>((set) => ({
       identity: { id: null, slug: null },
       build: emptyBuild(),
       status: "empty",
+      ...EMPTY_ANALYSIS,
     }),
 
   setMeta: (patch) =>
@@ -186,4 +237,47 @@ export const useBuildWorkspaceStore = create<BuildWorkspaceState>((set) => ({
 
   setBlessings: (blessings) =>
     set((s) => ({ build: { ...s.build, blessings: [...blessings] } })),
+
+  // -------------------------------------------------------------------------
+  // Analysis actions
+  // -------------------------------------------------------------------------
+
+  requestAnalysis: () => {
+    let nextId = 0;
+    set((s) => {
+      nextId = s.analysisRequestId + 1;
+      // Do NOT clear analysisResult here — keeping the previous result
+      // visible during the pending state prevents flicker on rapid edits.
+      return {
+        analysisRequestId: nextId,
+        analysisStatus: "pending",
+        analysisError: null,
+      };
+    });
+    return nextId;
+  },
+
+  setAnalysisResult: (requestId, result) =>
+    set((s) =>
+      requestId === s.analysisRequestId
+        ? {
+            analysisStatus: "success",
+            analysisResult: result,
+            analysisError: null,
+          }
+        : // Stale response — silently discard.
+          s,
+    ),
+
+  setAnalysisError: (requestId, error) =>
+    set((s) =>
+      requestId === s.analysisRequestId
+        ? {
+            analysisStatus: "error",
+            analysisError: error,
+          }
+        : s,
+    ),
+
+  resetAnalysis: () => set(EMPTY_ANALYSIS),
 }));
