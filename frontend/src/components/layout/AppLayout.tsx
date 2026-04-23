@@ -84,8 +84,11 @@ export default function AppLayout() {
 
         {/* Page content — single scroll container for the app shell. min-h-0
             lets this flex child actually shrink below its content size so that
-            overflow-y-auto kicks in instead of pushing the footer off-screen. */}
-        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6 md:px-6 md:py-8">
+            overflow-y-auto kicks in instead of pushing the footer off-screen.
+            The horizontal padding (px-4 / md:px-6 / xl:px-8) is the gutter
+            between page content and the sidebar on the left / viewport edge
+            on the right — it lands on every route. */}
+        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6 md:px-6 md:py-8 xl:px-8">
           <div className={contentWrapperClass}>
             <Outlet />
           </div>
