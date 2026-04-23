@@ -207,6 +207,30 @@ describe("AnalysisPanel — pending", () => {
     expect(screen.getByTestId("analysis-pending-indicator")).toBeInTheDocument();
     expect(screen.queryByTestId("score-card-skeleton")).toBeNull();
   });
+
+  it("preserves every sub-component with the prior result during a pending re-request (phase-2 contract)", () => {
+    // Rapid-edit scenario: result r1 lands, user edits again, another
+    // request is in flight. All phase-3 sub-components must continue
+    // rendering r1 so the panel doesn't flicker between dashboard and
+    // skeletons.
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id1 = s.requestAnalysis();
+    s.setAnalysisResult(id1, fakeResult("first"));
+    s.requestAnalysis(); // status -> pending, analysisResult stays "first"
+    renderPanel();
+
+    expect(screen.getByTestId("analysis-pending-indicator")).toBeInTheDocument();
+    expect(screen.getByTestId("build-score-card")).toBeInTheDocument();
+    expect(screen.getByTestId("offense-card")).toBeInTheDocument();
+    expect(screen.getByTestId("defense-card")).toBeInTheDocument();
+    expect(screen.getByTestId("primary-skill-breakdown")).toBeInTheDocument();
+    expect(screen.getByTestId("skills-summary-table")).toBeInTheDocument();
+    expect(screen.getByTestId("advanced-analysis-accordion")).toBeInTheDocument();
+    // Skeletons must NOT render over the prior result.
+    expect(screen.queryByTestId("score-card-skeleton")).toBeNull();
+    expect(screen.queryByTestId("analysis-skeleton-grid")).toBeNull();
+  });
 });
 
 // ---------------------------------------------------------------------------
