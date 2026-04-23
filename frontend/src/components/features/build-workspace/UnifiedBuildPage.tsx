@@ -125,17 +125,15 @@ export default function UnifiedBuildPage() {
     <div
       data-testid="unified-build-page"
       // Width strategy:
-      //   < lg  (1024 px): single column, stacked.
-      //   lg to xl-1:      two columns — 320 px analysis rail, editor fills rest.
-      //   xl+ (1280 px+):  break out of AppLayout's max-w-7xl cap using negative
-      //                    margins so the workspace fills the viewport, then
-      //                    give the editor + analysis a 3:1 flex ratio so both
-      //                    columns expand proportionally on wide desktops.
-      className={
-        "flex flex-col gap-4 p-4 min-w-0 " +
-        "lg:flex-row " +
-        "xl:w-screen xl:-mx-[calc((100vw-80rem)/2)] xl:px-6 xl:gap-6"
-      }
+      //   < lg (1024 px): single column, stacked.
+      //   lg to xl-1:     two columns — 320 px analysis rail, editor fills rest.
+      //   xl+ (1280 px+): editor + analysis in a 3:1 flex ratio so both
+      //                   columns expand proportionally. The page does not
+      //                   try to break out of the parent wrapper — AppLayout
+      //                   lifts the max-w-7xl cap for /workspace/* routes,
+      //                   which is what keeps the content aligned with the
+      //                   sidebar across collapse states.
+      className="flex flex-col gap-4 min-w-0 lg:flex-row xl:gap-6"
     >
       <main className="flex-1 space-y-4 min-w-0 xl:flex-[3_1_0%]">
         <nav
