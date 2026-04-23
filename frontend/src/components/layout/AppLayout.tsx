@@ -45,6 +45,18 @@ export default function AppLayout() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, []);
 
+  // Routes that opt out of the default `max-w-7xl` content cap. The unified
+  // build workspace is a two-column editor + analysis layout that needs the
+  // full main-column width to avoid truncating the analysis rail on wide
+  // displays. Keeping the opt-out here (rather than inside UnifiedBuildPage
+  // with a CSS break-out trick) is what lets the sidebar resize without the
+  // page overlapping into it — the page only ever occupies the main column's
+  // own width, whatever that happens to be.
+  const isFullWidthRoute = location.pathname.startsWith("/workspace");
+  const contentWrapperClass = isFullWidthRoute
+    ? "w-full"
+    : "mx-auto max-w-7xl";
+
   return (
     <div className="h-screen bg-forge-bg text-forge-text font-body overflow-hidden flex">
       {/* Sidebar — fixed drawer on mobile, in-flow on md+ */}
@@ -72,9 +84,12 @@ export default function AppLayout() {
 
         {/* Page content — single scroll container for the app shell. min-h-0
             lets this flex child actually shrink below its content size so that
-            overflow-y-auto kicks in instead of pushing the footer off-screen. */}
-        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6 md:px-6 md:py-8">
-          <div className="mx-auto max-w-7xl">
+            overflow-y-auto kicks in instead of pushing the footer off-screen.
+            The horizontal padding (px-4 / md:px-6 / xl:px-8) is the gutter
+            between page content and the sidebar on the left / viewport edge
+            on the right — it lands on every route. */}
+        <main className="flex-1 min-h-0 overflow-y-auto overflow-x-hidden px-4 py-6 md:px-6 md:py-8 xl:px-8">
+          <div className={contentWrapperClass}>
             <Outlet />
           </div>
         </main>
