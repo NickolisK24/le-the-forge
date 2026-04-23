@@ -232,11 +232,81 @@ remain phase-1/phase-2 surface area.
 ## 5. Open questions (deferred to phase 4+)
 
 - Per-section skeletons during pending-with-no-prior-result. Phase 2 rendered
-  a single panel-wide skeleton. Phase 3 keeps that for now because per-section
-  skeletons are a perf concern (more DOM, more layout work); phase 4 decides.
-- Override-primary-skill wiring. The legacy `PrimarySkillBreakdown` uses its
-  own `onSelectSkill` prop but there is no matching action on
-  `useBuildWorkspaceStore` to pin the primary skill to a user-chosen slot.
-  Phase 3 leaves the button in place, wired to a no-op at the workspace
-  boundary, and documents it here. Real wiring is a phase-5 concern because
-  it requires a new action and backend support.
+  a single panel-wide skeleton. Phase 3 upgrades this slightly: the score
+  card renders a structurally-correct skeleton and the offense / defense /
+  primary-skill / skills-summary sections each render placeholder rectangles
+  of the right rough height. Further refinement is a phase-4 perf concern.
+- Override-primary-skill wiring. The phase-3 `BuildScoreCard` and
+  `PrimarySkillBreakdown` have a "Change" button but the workspace store
+  has no action to pin a primary-skill override — the button currently
+  routes through `onOpenSkills` so the user can switch which skills are
+  slotted. Real override wiring requires a new store action and backend
+  support; deferred to phase 5.
+
+## 6. Phase-3 step-9 verification — empty state and reveal
+
+### 6.1 Empty-state copy change
+
+Before phase 3 the idle message read "Edit your build to see analysis."
+That instruction is technically correct but meaningless to a user who
+just landed on `/workspace/new` and hasn't yet understood that the panel
+is waiting for a simulatable build. Phase 3 splits the idle copy into two:
+
+| Workspace state                                   | Copy                                                    |
+|---------------------------------------------------|---------------------------------------------------------|
+| Not simulatable (no class + mastery or no skills) | "Select a class and specialize a skill to see analysis."|
+| Simulatable but no request has fired yet          | "Edit your build to see analysis."                      |
+
+The second branch only fires when the hook has not yet produced any
+response — e.g. between the first keystroke that makes the build
+simulatable and the debounce landing. In practice this flicker-window
+is ~0..400 ms, which is why keeping the old copy for this branch is fine.
+
+A subtle SVG "sun / focus" icon renders above the message using the
+`forge-dim` stroke colour. Source is inline in `AnalysisPanel.tsx` — no
+new asset file, no new icon library. The icon picks up no additional
+characters the message didn't already carry, so the aria-live region
+continues to announce the message alone.
+
+### 6.2 Reveal behaviour on /workspace/new
+
+The phase-2 hook has an `isInitialLoadRef` 0-ms fast path that was designed
+for `/workspace/:slug` — an already-populated build that is simulatable
+at mount time. `/workspace/new` begins non-simulatable. The reveal path
+for a fresh `/workspace/new` is:
+
+1. Mount → `initializeEmpty()` sets `status = "ready"`.
+2. `useDebouncedAnalysis` sees the ready transition and schedules a 0 ms
+   fire. `runAnalysis` runs, checks `buildIsSimulatable`, returns early
+   because there are no skills yet.
+3. `isInitialLoadRef` flipped to `false` (phase-2 semantics: the flag
+   discharges on the first scheduled fire, whether or not the run
+   actually posts a request).
+4. User sets class → `Mage`, mastery → `Sorcerer`, opens the Skills tab,
+   adds `Fireball`. Each edit re-schedules the debounced fire. Now-
+   standard 400 ms debounce applies.
+5. 400 ms after the last edit, `runAnalysis` fires. `buildIsSimulatable`
+   is true, the request posts, the panel transitions to `pending` (with
+   skeletons) and then `success`.
+
+The prompt explicitly calls out that "If the first fire after becoming
+simulatable uses the 400 ms debounce, that is acceptable". It is — the
+user is mid-edit, and a real-time analysis panel that reacts within
+half a second is indistinguishable from "instant" to a human user.
+
+### 6.3 Edge cases observed during step-9 implementation
+
+- **Class change after full build**: switching `Mage → Rogue` on a
+  fully-specialized build makes the cached `primary_skill` (e.g.
+  `Fireball`) a mismatch for the new class. The next analysis request
+  returns an engine error because the mastery / skill combo is invalid.
+  The existing error-state retry covers this — phase 3 does not special-
+  case class changes.
+- **Rapid skill swap**: the phase-2 stale-response protection (monotonic
+  `analysisRequestId`) already handles two requests in flight; phase 3
+  inherits that without change.
+- **Analysis returning a non-primary skill for the slotted skill set**:
+  the primary-skill detector on the backend can pick a different skill
+  than the user expects. The `BuildScoreCard` "Change" button + the
+  SkillsSummaryTable's "Primary" badge give the user visibility into
+  which skill drove the render.
