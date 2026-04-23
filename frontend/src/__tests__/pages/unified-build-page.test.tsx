@@ -204,13 +204,13 @@ describe("UnifiedBuildPage — /workspace/new", () => {
     expect(screen.getByTestId("workspace-section-meta")).toBeInTheDocument();
   });
 
-  it("shows the idle analysis empty-state on a fresh /workspace/new", () => {
-    // Phase 2 replaced the placeholder with a real analysis rail. An empty
-    // build is not simulatable, so the panel shows the idle empty-state
-    // message rather than a dashboard or spinner.
+  it("shows the phase-3 empty-state on a fresh /workspace/new", () => {
+    // Phase 2 replaced the placeholder with a real analysis rail. Phase 3
+    // rewrote the empty-state copy to explicitly nudge the user toward
+    // picking a class and specializing a skill — the path to analysis.
     mountAt("/workspace/new");
     expect(
-      screen.getByText(/edit your build to see analysis/i),
+      screen.getByText(/select a class and specialize a skill/i),
     ).toBeInTheDocument();
   });
 });

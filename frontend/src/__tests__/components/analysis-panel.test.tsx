@@ -1,36 +1,42 @@
 /**
- * AnalysisPanel — phase 2 tests.
+ * AnalysisPanel — phase 3 composition tests.
  *
- * Covers:
- *  - Idle state renders the empty-state message.
- *  - Non-simulatable build always shows the empty-state message.
- *  - Pending state (no prior result) renders the skeleton.
- *  - Pending state with a prior result keeps the result visible and adds a
- *    subtle "Updating…" indicator.
- *  - Success state renders the SimulationDashboard.
- *  - Error state renders the error message and a retry button.
- *  - Retry button invokes runAnalysisNow (bypassing the debounce).
+ * Phase 2 tests verified state transitions (idle, pending, error, success)
+ * against a mocked `SimulationDashboard`. Phase 3 replaces that single
+ * render target with a vertical stack of purpose-built sub-components, so
+ * these tests verify each expected sub-component mounts in the correct
+ * state and that the idle / pending / error guards still work.
  */
 
 import { describe, it, expect, vi, beforeEach } from "vitest";
 import { render, screen, fireEvent } from "@testing-library/react";
-import React from "react";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 
-// ---------------------------------------------------------------------------
-// Mock the dashboard — it pulls in recharts which is heavy and we only need
-// to verify it rendered.
-// ---------------------------------------------------------------------------
-vi.mock("@/components/features/build/SimulationDashboard", () => ({
-  default: ({ result }: any) => (
-    <div data-testid="mock-simulation-dashboard">
-      primary={result?.primary_skill}
-    </div>
+// Mocks — slug-scoped leaf panels (heavy, use React Query). Replace with
+// lightweight probes so tests stay hermetic. These are legacy components
+// phase 3 reuses verbatim.
+vi.mock("@/components/features/build/BossEncounterPanel", () => ({
+  default: ({ slug }: { slug: string }) => (
+    <div data-testid="mock-boss-panel">boss:{slug}</div>
   ),
 }));
+vi.mock("@/components/features/build/CorruptionScalingPanel", () => ({
+  default: ({ slug }: { slug: string }) => (
+    <div data-testid="mock-corruption-panel">corr:{slug}</div>
+  ),
+}));
+vi.mock("@/components/features/build/GearUpgradePanel", () => ({
+  default: ({ slug }: { slug: string }) => (
+    <div data-testid="mock-gear-panel">gear:{slug}</div>
+  ),
+}));
+vi.mock("@/components/features/build/StatUpgradePanel", () => ({
+  default: () => <div data-testid="mock-stat-upgrade-panel" />,
+}));
+vi.mock("@/components/features/build/UpgradeCandidatesPanel", () => ({
+  default: () => <div data-testid="mock-upgrade-candidates-panel" />,
+}));
 
-// Mock runAnalysisNow so tests can verify the retry path without firing
-// actual HTTP calls. buildIsSimulatable is pure and exported from the same
-// module; keep its real implementation.
 vi.mock("@/hooks/useDebouncedAnalysis", async () => {
   const actual = await vi.importActual<
     typeof import("@/hooks/useDebouncedAnalysis")
@@ -46,9 +52,23 @@ import AnalysisPanel from "@/components/features/build-workspace/AnalysisPanel";
 import { useBuildWorkspaceStore } from "@/store";
 import type { BuildSkill } from "@/types";
 
-const runAnalysisNowMock = runAnalysisNow as unknown as ReturnType<
-  typeof vi.fn
->;
+const runAnalysisNowMock = runAnalysisNow as unknown as ReturnType<typeof vi.fn>;
+
+// ---------------------------------------------------------------------------
+// React Query wrapper — required because the "What to improve next" section
+// uses `useQuery` when a slug is present.
+// ---------------------------------------------------------------------------
+
+function renderPanel(props: Parameters<typeof AnalysisPanel>[0] = {}) {
+  const qc = new QueryClient({
+    defaultOptions: { queries: { retry: false } },
+  });
+  return render(
+    <QueryClientProvider client={qc}>
+      <AnalysisPanel {...props} />
+    </QueryClientProvider>,
+  );
+}
 
 // ---------------------------------------------------------------------------
 // Helpers
@@ -71,138 +91,234 @@ function seedSimulatableBuild() {
   s.setSkills([simulatableSkill()]);
 }
 
-function fakeResult(tag = "Fireball") {
+function seedSavedBuild(slug: string) {
+  const s = useBuildWorkspaceStore.getState();
+  s.initializeEmpty();
+  s.setMeta({ character_class: "Mage", mastery: "Sorcerer" });
+  s.setSkills([simulatableSkill()]);
+  // Push a synthetic identity without going through initializeFromServer —
+  // the full Build object is not necessary for these tests.
+  useBuildWorkspaceStore.setState({
+    identity: { id: "id-1", slug },
+  });
+}
+
+function fakeResult(primary = "Fireball") {
   return {
-    primary_skill: tag,
+    primary_skill: primary,
     skill_level: 20,
-    stats: {},
-    dps: {},
-    monte_carlo: {},
-    defense: {},
+    stats: { crit_chance: 0.25 },
+    dps: {
+      hit_damage: 400, average_hit: 500, dps: 10_000,
+      effective_attack_speed: 1.3, crit_contribution_pct: 20,
+      flat_damage_added: 50, bleed_dps: 0, ignite_dps: 0,
+      poison_dps: 0, ailment_dps: 0, total_dps: 10_000,
+    },
+    monte_carlo: {
+      mean_dps: 10_000, min_dps: 9_000, max_dps: 11_000,
+      std_dev: 500, percentile_25: 9_500, percentile_75: 10_500,
+      n_simulations: 1_000,
+    },
+    defense: {
+      max_health: 1_200, effective_hp: 5_000,
+      armor_reduction_pct: 30, avg_resistance: 60,
+      fire_res: 60, cold_res: 60, lightning_res: 60,
+      void_res: 40, necrotic_res: 40, physical_res: 40, poison_res: 40,
+      dodge_chance_pct: 0, block_chance_pct: 0, block_mitigation_pct: 0,
+      endurance_pct: 20, endurance_threshold_pct: 20,
+      crit_avoidance_pct: 0, glancing_blow_pct: 0, stun_avoidance_pct: 0,
+      ward_buffer: 0, total_ehp: 5_000,
+      ward_regen_per_second: 0, ward_decay_per_second: 0,
+      net_ward_per_second: 0, leech_pct: 0, health_on_kill: 0,
+      mana_on_kill: 0, ward_on_kill: 0, health_regen: 0, mana_regen: 0,
+      survivability_score: 65, sustain_score: 50,
+      weaknesses: [], strengths: [],
+    },
     stat_upgrades: [],
     seed: null,
     dps_per_skill: [],
-    combined_dps: 0,
+    combined_dps: 10_000,
   } as any;
 }
 
 beforeEach(() => {
   useBuildWorkspaceStore.getState().reset();
   runAnalysisNowMock.mockReset();
+  window.localStorage.clear();
 });
 
 // ---------------------------------------------------------------------------
-// Tests
+// Idle state
 // ---------------------------------------------------------------------------
 
-describe("AnalysisPanel — idle state", () => {
-  it("renders the empty-state message on /workspace/new with no data", () => {
-    render(<AnalysisPanel />);
+describe("AnalysisPanel — idle", () => {
+  it("renders the phase-3 empty-state message on /workspace/new with no data", () => {
+    renderPanel();
     expect(screen.getByTestId("analysis-idle")).toHaveTextContent(
-      /edit your build to see analysis/i,
+      /select a class and specialize a skill/i,
     );
-    expect(screen.queryByTestId("mock-simulation-dashboard")).toBeNull();
+    expect(screen.queryByTestId("build-score-card")).toBeNull();
   });
 
-  it("renders the empty-state message when the build is simulatable but no request has fired", () => {
+  it("renders the idle message when simulatable but no request has fired yet", () => {
     seedSimulatableBuild();
-    render(<AnalysisPanel />);
+    renderPanel();
     expect(screen.getByTestId("analysis-idle")).toHaveTextContent(
       /edit your build to see analysis/i,
     );
   });
 
-  it("renders the empty-state message when the build is not simulatable even if a prior result exists", () => {
+  it("hides the panel body when not simulatable even if a prior result exists", () => {
+    seedSimulatableBuild();
     const s = useBuildWorkspaceStore.getState();
-    seedSimulatableBuild();
     const id = s.requestAnalysis();
     s.setAnalysisResult(id, fakeResult());
-    // Now drop the skill to make the build non-simulatable.
-    s.setSkills([]);
-    render(<AnalysisPanel />);
+    s.setSkills([]); // now non-simulatable
+    renderPanel();
     expect(screen.getByTestId("analysis-idle")).toBeInTheDocument();
-    expect(screen.queryByTestId("mock-simulation-dashboard")).toBeNull();
+    expect(screen.queryByTestId("build-score-card")).toBeNull();
   });
 });
 
-describe("AnalysisPanel — pending state", () => {
-  it("renders the skeleton when no previous result exists", () => {
+// ---------------------------------------------------------------------------
+// Pending state
+// ---------------------------------------------------------------------------
+
+describe("AnalysisPanel — pending", () => {
+  it("renders section skeletons + score-card skeleton when no prior result exists", () => {
     seedSimulatableBuild();
     useBuildWorkspaceStore.getState().requestAnalysis();
-    render(<AnalysisPanel />);
-    expect(screen.getByTestId("analysis-skeleton")).toBeInTheDocument();
-    expect(screen.getByTestId("analysis-pending-indicator")).toBeInTheDocument();
+    renderPanel();
+    expect(screen.getByTestId("score-card-skeleton")).toBeInTheDocument();
+    expect(screen.getByTestId("analysis-skeleton-grid")).toBeInTheDocument();
+    // No pending indicator because there's no prior result yet.
+    expect(screen.queryByTestId("analysis-pending-indicator")).toBeNull();
   });
 
-  it("keeps the previous result visible and shows a subtle indicator when a request is pending", () => {
+  it("keeps the result visible and shows the Updating… badge when a prior result exists", () => {
     seedSimulatableBuild();
     const s = useBuildWorkspaceStore.getState();
     const id = s.requestAnalysis();
     s.setAnalysisResult(id, fakeResult("old"));
     // Kick off a new request — status moves to pending but result stays.
     s.requestAnalysis();
-    render(<AnalysisPanel />);
-    expect(screen.getByTestId("mock-simulation-dashboard")).toHaveTextContent(
-      "primary=old",
-    );
+    renderPanel();
+    expect(screen.getByTestId("build-score-card")).toBeInTheDocument();
     expect(screen.getByTestId("analysis-pending-indicator")).toBeInTheDocument();
-    // No skeleton because we have a previous result to show.
-    expect(screen.queryByTestId("analysis-skeleton")).toBeNull();
+    expect(screen.queryByTestId("score-card-skeleton")).toBeNull();
   });
 });
 
-describe("AnalysisPanel — success state", () => {
-  it("renders the SimulationDashboard with the returned result", () => {
+// ---------------------------------------------------------------------------
+// Success state — full composition
+// ---------------------------------------------------------------------------
+
+describe("AnalysisPanel — success composition", () => {
+  it("renders the score card, offense + defense, primary skill, skills table, and accordion", () => {
     seedSimulatableBuild();
     const s = useBuildWorkspaceStore.getState();
     const id = s.requestAnalysis();
-    s.setAnalysisResult(id, fakeResult("Fireball"));
-    render(<AnalysisPanel />);
-    expect(screen.getByTestId("mock-simulation-dashboard")).toHaveTextContent(
-      "primary=Fireball",
+    s.setAnalysisResult(id, fakeResult());
+    renderPanel();
+
+    expect(screen.getByTestId("build-score-card")).toBeInTheDocument();
+    expect(screen.getByTestId("offense-card")).toBeInTheDocument();
+    expect(screen.getByTestId("defense-card")).toBeInTheDocument();
+    expect(screen.getByTestId("primary-skill-breakdown")).toBeInTheDocument();
+    expect(screen.getByTestId("skills-summary-table")).toBeInTheDocument();
+    expect(screen.getByTestId("advanced-analysis-accordion")).toBeInTheDocument();
+  });
+
+  it("renders the advanced accordion collapsed by default", () => {
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    s.setAnalysisResult(id, fakeResult());
+    renderPanel();
+    expect(
+      screen.getByTestId("advanced-analysis-accordion").getAttribute("data-open"),
+    ).toBe("false");
+  });
+
+  it("omits the What-to-improve-next section when no slug is present", () => {
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    s.setAnalysisResult(id, fakeResult());
+    renderPanel();
+    expect(screen.queryByTestId("improve-next-section")).toBeNull();
+  });
+
+  it("includes the What-to-improve-next section when a slug is present", () => {
+    seedSavedBuild("cool-build");
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    s.setAnalysisResult(id, fakeResult());
+    renderPanel();
+    expect(screen.getByTestId("improve-next-section")).toBeInTheDocument();
+    expect(screen.getByTestId("improve-next-section")).toHaveTextContent(
+      /what to improve next/i,
     );
-    expect(screen.queryByTestId("analysis-idle")).toBeNull();
-    expect(screen.queryByTestId("analysis-pending-indicator")).toBeNull();
-    expect(screen.queryByTestId("analysis-error")).toBeNull();
+    expect(screen.getByTestId("improve-next-section")).toHaveTextContent(
+      /per forge potential invested/i,
+    );
   });
 });
 
-describe("AnalysisPanel — error state", () => {
-  it("renders the error message and a retry button", () => {
+// ---------------------------------------------------------------------------
+// Error state (unchanged from phase 2)
+// ---------------------------------------------------------------------------
+
+describe("AnalysisPanel — error", () => {
+  it("renders the error block and retry button", () => {
     seedSimulatableBuild();
     const s = useBuildWorkspaceStore.getState();
     const id = s.requestAnalysis();
     s.setAnalysisError(id, "Something broke");
-    render(<AnalysisPanel />);
+    renderPanel();
     expect(screen.getByTestId("analysis-error")).toHaveTextContent(
       "Something broke",
     );
-    expect(screen.getByTestId("analysis-retry")).toBeInTheDocument();
-  });
-
-  it("retry button calls runAnalysisNow (bypassing the debounce)", () => {
-    seedSimulatableBuild();
-    const s = useBuildWorkspaceStore.getState();
-    const id = s.requestAnalysis();
-    s.setAnalysisError(id, "boom");
-    render(<AnalysisPanel />);
-    fireEvent.click(screen.getByTestId("analysis-retry"));
+    const retry = screen.getByTestId("analysis-retry");
+    fireEvent.click(retry);
     expect(runAnalysisNowMock).toHaveBeenCalledTimes(1);
   });
 });
 
+// ---------------------------------------------------------------------------
+// Layout stability
+// ---------------------------------------------------------------------------
+
 describe("AnalysisPanel — layout stability", () => {
-  it("the panel always carries a min-height class to reserve vertical space", () => {
-    render(<AnalysisPanel />);
+  it("keeps the min-h-[520px] class on the outer panel", () => {
+    renderPanel();
     const panel = screen.getByTestId("workspace-analysis-panel");
     expect(panel.className).toMatch(/min-h-\[520px\]/);
   });
 
-  it("exposes the current status via data-analysis-status for styling hooks", () => {
+  it("exposes the analysis status via data-analysis-status", () => {
     seedSimulatableBuild();
     useBuildWorkspaceStore.getState().requestAnalysis();
-    render(<AnalysisPanel />);
-    const panel = screen.getByTestId("workspace-analysis-panel");
-    expect(panel.getAttribute("data-analysis-status")).toBe("pending");
+    renderPanel();
+    expect(
+      screen.getByTestId("workspace-analysis-panel").getAttribute("data-analysis-status"),
+    ).toBe("pending");
+  });
+});
+
+// ---------------------------------------------------------------------------
+// Skill-tab callback
+// ---------------------------------------------------------------------------
+
+describe("AnalysisPanel — onOpenSkills wiring", () => {
+  it("forwards the callback to the BuildScoreCard change button", () => {
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    s.setAnalysisResult(id, fakeResult());
+    const onOpenSkills = vi.fn();
+    renderPanel({ onOpenSkills });
+    fireEvent.click(screen.getByTestId("score-card-change-skill"));
+    expect(onOpenSkills).toHaveBeenCalledTimes(1);
   });
 });

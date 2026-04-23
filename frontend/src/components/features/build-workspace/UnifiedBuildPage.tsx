@@ -157,7 +157,7 @@ export default function UnifiedBuildPage() {
       </main>
 
       <div className="w-full lg:w-80 lg:flex-none">
-        <AnalysisPanel />
+        <AnalysisPanel onOpenSkills={() => setActiveSection("skills")} />
       </div>
     </div>
   );
