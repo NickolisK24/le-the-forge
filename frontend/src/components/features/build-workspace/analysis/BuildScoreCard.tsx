@@ -104,6 +104,35 @@ export interface SummaryInput {
   survivabilityScore: number;
   weaknesses: string[];
   topUpgrade?: StatUpgrade | null;
+  /**
+   * Elemental resistance values (fire / cold / lightning / void / necrotic).
+   * When every value is within `ELEMENTAL_RES_TIGHT_SPREAD_PCT` of every
+   * other value, the summary uses generic "elemental resistances" phrasing
+   * instead of singling out one — there is no real "weakest" when they are
+   * all equally low.
+   */
+  elementalResistances?: number[];
+}
+
+/**
+ * Threshold (in percentage points) under which all elemental resistances
+ * are considered "tied" and the summary should not single one out.
+ */
+export const ELEMENTAL_RES_TIGHT_SPREAD_PCT = 5;
+
+/**
+ * Returns true when the spread (max - min) of the provided resistance
+ * values is within `ELEMENTAL_RES_TIGHT_SPREAD_PCT`. A list with fewer
+ * than two entries is trivially "tight" — no meaningful single call-out
+ * is possible.
+ */
+export function elementalResistancesAreTight(xs: readonly number[]): boolean {
+  if (!xs || xs.length < 2) return true;
+  const finite = xs.filter((n) => Number.isFinite(n));
+  if (finite.length < 2) return true;
+  const min = Math.min(...finite);
+  const max = Math.max(...finite);
+  return max - min <= ELEMENTAL_RES_TIGHT_SPREAD_PCT;
 }
 
 /**
@@ -124,7 +153,13 @@ export interface SummaryInput {
  *  4. Fallback → "Balanced build with room for refinement."
  */
 export function computeSummary(input: SummaryInput): string {
-  const { rating, survivabilityScore, weaknesses, topUpgrade } = input;
+  const {
+    rating,
+    survivabilityScore,
+    weaknesses,
+    topUpgrade,
+    elementalResistances,
+  } = input;
   const { dpsEfficiency, score } = rating;
 
   // Branch 0 — catastrophically low score (fresh-build floor).
@@ -145,6 +180,16 @@ export function computeSummary(input: SummaryInput): string {
 
   // Branch 2 — low survivability.
   if (survivabilityScore < 50) {
+    // If every elemental resistance is within 5 % of every other, there is
+    // no real "weakest" — singling one out reads as arbitrary. Use the
+    // generic plural phrasing instead.
+    if (
+      elementalResistances &&
+      elementalResistances.length >= 2 &&
+      elementalResistancesAreTight(elementalResistances)
+    ) {
+      return "Balanced build with low survivability. Consider improving elemental resistances.";
+    }
     const weakest = pickFirstNonEmpty(weaknesses);
     if (weakest) {
       return `Balanced build with low survivability. Consider improving ${weakest}.`;
@@ -314,6 +359,13 @@ export default function BuildScoreCard({
     survivabilityScore: surv,
     weaknesses: result.defense.weaknesses ?? [],
     topUpgrade: result.stat_upgrades?.[0] ?? null,
+    elementalResistances: [
+      result.defense.fire_res,
+      result.defense.cold_res,
+      result.defense.lightning_res,
+      result.defense.void_res,
+      result.defense.necrotic_res,
+    ],
   });
 
   const hasPrimarySkill =

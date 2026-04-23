@@ -15,6 +15,7 @@ import { render, screen, fireEvent } from "@testing-library/react";
 import BuildScoreCard, {
   computeBuildRating,
   computeSummary,
+  elementalResistancesAreTight,
   DPS_UPPER_BOUND,
   EHP_UPPER_BOUND,
 } from "@/components/features/build-workspace/analysis/BuildScoreCard";
@@ -254,6 +255,67 @@ describe("computeSummary — branch coverage", () => {
     });
     expect(s).toContain("low survivability");
     expect(s).toContain("weakest resistance");
+  });
+
+  it("branch 2 tight-spread: all elemental resistances within 5 % uses plural phrasing", () => {
+    const rating = computeBuildRating(
+      0.8 * DPS_UPPER_BOUND,
+      0.8 * EHP_UPPER_BOUND,
+      40,
+    );
+    const s = computeSummary({
+      rating,
+      survivabilityScore: 40,
+      // Backend picked "Low Fire Resistance (42%)" as the weakest, but
+      // every resistance is between 42 and 45 — a 3-point spread.
+      weaknesses: ["Low Fire Resistance (42%)"],
+      topUpgrade: null,
+      elementalResistances: [42, 45, 43, 44, 42],
+    });
+    expect(s).toContain("elemental resistances");
+    // Must NOT name the single resistance — tight spread means no real
+    // weakest.
+    expect(s).not.toContain("Fire Resistance");
+  });
+
+  it("branch 2 wide-spread: one genuinely low resistance is singled out", () => {
+    const rating = computeBuildRating(
+      0.8 * DPS_UPPER_BOUND,
+      0.8 * EHP_UPPER_BOUND,
+      40,
+    );
+    const s = computeSummary({
+      rating,
+      survivabilityScore: 40,
+      weaknesses: ["Low Fire Resistance (20%)"],
+      topUpgrade: null,
+      // Fire is 20 while the others are in the 60s — spread = 45 > 5.
+      elementalResistances: [20, 65, 60, 65, 60],
+    });
+    expect(s).toContain("Low Fire Resistance (20%)");
+  });
+});
+
+describe("elementalResistancesAreTight", () => {
+  it("returns true when max - min <= 5", () => {
+    expect(elementalResistancesAreTight([40, 42, 45, 45, 43])).toBe(true);
+    expect(elementalResistancesAreTight([70, 70, 70, 70, 70])).toBe(true);
+    expect(elementalResistancesAreTight([60, 65])).toBe(true);
+  });
+
+  it("returns false when max - min > 5", () => {
+    expect(elementalResistancesAreTight([40, 60, 60, 60, 60])).toBe(false);
+    expect(elementalResistancesAreTight([-30, 70, 70, 70, 70])).toBe(false);
+  });
+
+  it("treats empty / single-entry lists as tight (no meaningful call-out)", () => {
+    expect(elementalResistancesAreTight([])).toBe(true);
+    expect(elementalResistancesAreTight([70])).toBe(true);
+  });
+
+  it("ignores NaN / Infinity entries when computing spread", () => {
+    expect(elementalResistancesAreTight([70, NaN, 70, 70, 70])).toBe(true);
+    expect(elementalResistancesAreTight([NaN, NaN])).toBe(true);
   });
 
   it("branch 3: weak DPS mentions the top stat upgrade label", () => {
