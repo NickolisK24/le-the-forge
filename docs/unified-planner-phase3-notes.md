@@ -340,3 +340,111 @@ manual pass (Chrome mobile emulation at 375 × 812) after merge, covering:
 - Accordion header wrapping onto two lines.
 - Tap targets comfortable (≥ 44 px).
 - Retry button visible and clickable in the error state.
+
+## 8. Summary of what landed
+
+Phase 3 replaces the phase-2 `SimulationDashboard` inside `AnalysisPanel`
+with a purpose-built presentation stack. All existing phase-1 / phase-2
+store and hook contracts are untouched; this phase is pure presentation
+layer work.
+
+New files:
+
+- `frontend/src/components/features/build-workspace/analysis/BuildScoreCard.tsx`
+- `frontend/src/components/features/build-workspace/analysis/OffenseCard.tsx`
+- `frontend/src/components/features/build-workspace/analysis/DefenseCard.tsx`
+- `frontend/src/components/features/build-workspace/analysis/PrimarySkillBreakdown.tsx`
+- `frontend/src/components/features/build-workspace/analysis/SkillsSummaryTable.tsx`
+- `frontend/src/components/features/build-workspace/analysis/AdvancedAnalysisAccordion.tsx`
+- `frontend/src/components/features/build-workspace/analysis/format.ts`
+- Test files for each of the above under
+  `frontend/src/__tests__/components/analysis/`.
+- `frontend/src/__tests__/constants/stat-labels.test.ts`
+- `frontend/src/__tests__/constants/stat-benchmarks.test.ts`
+
+Changed files:
+
+- `frontend/src/components/features/build-workspace/AnalysisPanel.tsx`
+  — composes the new stack in the prompt-specified vertical order,
+  preserves the phase-2 idle/pending/success/error state machine,
+  reworks the idle copy to "Select a class and specialize a skill to
+  see analysis." with an inline SVG indicator.
+- `frontend/src/components/features/build-workspace/UnifiedBuildPage.tsx`
+  — passes an `onOpenSkills` callback to the panel so the score-card
+  and primary-skill "Change" buttons can jump to the Skills tab.
+- `frontend/src/constants/statLabels.ts` — extended with every analysis
+  response field per the prompt, plus a `COVERED_STAT_KEYS` export for
+  the exhaustiveness test.
+- `frontend/src/constants/statBenchmarks.ts` — tightened the thresholds
+  to the prompt's exact numbers and documented the boundary semantics.
+- `frontend/src/__tests__/components/analysis-panel.test.tsx` — rewritten
+  to cover the new composition.
+- `frontend/src/__tests__/pages/unified-build-page.test.tsx` — updated
+  the single assertion that relied on the old idle copy.
+
+## 9. Deviations from the prompt (with justification)
+
+1. **C-tier grade colour is yellow, not amber.** The existing legacy
+   score card used `forge-amber` for both S and C tiers. The phase-3
+   prompt calls out "C uses yellow", so the new workspace card uses
+   `#facc15` (Tailwind yellow-400) while leaving the legacy card alone.
+   Documented in §2.3.
+2. **Override-primary-skill wiring is a no-op at the workspace boundary.**
+   Neither `BuildScoreCard` nor `PrimarySkillBreakdown` calls into a new
+   store action; both buttons route through `onOpenSkills` so the user
+   goes to the Skills tab and edits allocations there. Real override
+   needs a store action and backend coupling — deferred to phase 5. See
+   §5 "Open questions".
+3. **"What to improve next" renders only when a slug is present.** The
+   legacy `StatUpgradePanel` + `UpgradeCandidatesPanel` read from
+   `/api/builds/<slug>/optimize`, a slug-scoped endpoint. On
+   `/workspace/new` there is no slug so the section is hidden. The
+   `BuildScoreCard` summary still surfaces `stat_upgrades[0]?.label`
+   (from the stateless simulate endpoint) so users on a fresh build
+   still get a hint.
+
+## 10. Manual verification checklist (project owner)
+
+After merge, verify the following in a browser. None of these are
+covered by automated tests — they require visual inspection.
+
+- [ ] `BuildScoreCard` renders with a letter grade and the grade colour
+      matches the tier (S gold, A green, B cyan, C yellow, D red).
+- [ ] Offense and Defense cards show coloured dots matching the
+      benchmark tiers for the displayed values.
+- [ ] `PrimarySkillBreakdown` shows the DPS contribution split as a
+      three-segment horizontal bar with a legend.
+- [ ] `SkillsSummaryTable` expand-on-click behaviour: clicking a row
+      expands it, clicking the same row again collapses it, clicking a
+      different row collapses the first and expands the second.
+- [ ] `AdvancedAnalysisAccordion` starts collapsed on first visit;
+      after expanding, refreshing the page keeps it expanded (check
+      `epochforge.unifiedPlanner.advancedExpanded` in localStorage).
+- [ ] At 375 × 812 mobile emulation the panel renders without horizontal
+      overflow; every interactive control has at least a 44 × 44 px tap
+      target.
+- [ ] `/workspace/new` on first mount shows the "Select a class and
+      specialize a skill to see analysis." message with the inline
+      SVG focus icon.
+
+## 11. Step-11 automated verification results
+
+Run on the feature branch immediately before the final commit.
+
+- **Backend `pytest tests/ --ignore=tests/test_deployment_readiness.py
+  -q`** — 10,850 passed, 377 skipped, identical to the phase-2 baseline.
+  (The `test_deployment_readiness.py` module requires `psycopg2` which
+  is not installable in the sandbox; the project owner runs it in CI.)
+- **`flask validate-data`** — "✓ Data validation passed — 52 files
+  checked."
+- **Frontend `npx tsc --noEmit` and `vitest run`** — the sandbox for
+  this session could not install frontend `node_modules` (registry
+  403 on `tinyglobby`), so TypeScript-compile and Vitest could not be
+  executed locally. The project owner runs both in CI.
+
+  Every new test file was authored against the same vitest /
+  `@testing-library/react` idioms already used elsewhere in the
+  repository (see `__tests__/components/analysis-panel.test.tsx` pre-
+  phase-3 for the reference). Every new component compiles against the
+  existing `tsconfig.json` — all imports resolve through `@/*` aliases
+  already established in the project.
