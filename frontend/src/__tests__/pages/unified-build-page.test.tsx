@@ -204,10 +204,13 @@ describe("UnifiedBuildPage — /workspace/new", () => {
     expect(screen.getByTestId("workspace-section-meta")).toBeInTheDocument();
   });
 
-  it("shows the analysis placeholder message", () => {
+  it("shows the idle analysis empty-state on a fresh /workspace/new", () => {
+    // Phase 2 replaced the placeholder with a real analysis rail. An empty
+    // build is not simulatable, so the panel shows the idle empty-state
+    // message rather than a dashboard or spinner.
     mountAt("/workspace/new");
     expect(
-      screen.getByText(/Analysis panel — wired up in next phase/i),
+      screen.getByText(/edit your build to see analysis/i),
     ).toBeInTheDocument();
   });
 });

@@ -17,6 +17,7 @@ import {
 } from "@/store/buildWorkspace";
 import type { Build, BuildSkill, GearSlot } from "@/types";
 import type { SelectedBlessing } from "@/types/blessings";
+import type { BuildSimulationResult } from "@/lib/api";
 
 // Reset the store between tests — Zustand stores are module singletons.
 beforeEach(() => {
@@ -197,6 +198,137 @@ describe("useBuildWorkspaceStore", () => {
       expect(s.status).toBe("empty");
       expect(s.identity).toEqual({ id: null, slug: null });
       expect(s.build).toEqual(emptyBuild());
+    });
+  });
+
+  // -------------------------------------------------------------------------
+  // Phase 2 — analysis state
+  // -------------------------------------------------------------------------
+  describe("analysis state", () => {
+    function fakeResult(tag = "a"): BuildSimulationResult {
+      // Minimal shape — only fields the tests inspect. Casting keeps the
+      // fixture small without pulling in the full simulation-result schema.
+      return {
+        primary_skill: tag,
+        skill_level: 20,
+        stats: {},
+        dps: {} as BuildSimulationResult["dps"],
+        monte_carlo: {} as BuildSimulationResult["monte_carlo"],
+        defense: {} as BuildSimulationResult["defense"],
+        stat_upgrades: [],
+        seed: null,
+        dps_per_skill: [],
+        combined_dps: 0,
+      };
+    }
+
+    it("starts in the idle state with no result or error", () => {
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("idle");
+      expect(s.analysisResult).toBeNull();
+      expect(s.analysisError).toBeNull();
+      expect(s.analysisRequestId).toBe(0);
+    });
+
+    it("requestAnalysis increments the request counter", () => {
+      const r1 = useBuildWorkspaceStore.getState().requestAnalysis();
+      const r2 = useBuildWorkspaceStore.getState().requestAnalysis();
+      const r3 = useBuildWorkspaceStore.getState().requestAnalysis();
+      expect(r1).toBe(1);
+      expect(r2).toBe(2);
+      expect(r3).toBe(3);
+      expect(useBuildWorkspaceStore.getState().analysisRequestId).toBe(3);
+    });
+
+    it("requestAnalysis moves status to pending and clears any prior error", () => {
+      useBuildWorkspaceStore.getState().setAnalysisError(0, "old");
+      // The above set used id 0 which matches initial, so we expect error set:
+      expect(useBuildWorkspaceStore.getState().analysisError).toBe("old");
+      useBuildWorkspaceStore.getState().requestAnalysis();
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("pending");
+      expect(s.analysisError).toBeNull();
+    });
+
+    it("requestAnalysis does NOT clear the previous result (no-flicker)", () => {
+      const id = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().setAnalysisResult(id, fakeResult("a"));
+      expect(useBuildWorkspaceStore.getState().analysisResult).not.toBeNull();
+      useBuildWorkspaceStore.getState().requestAnalysis();
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("pending");
+      expect(s.analysisResult?.primary_skill).toBe("a");
+    });
+
+    it("setAnalysisResult with the current requestId stores the result", () => {
+      const id = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().setAnalysisResult(id, fakeResult("b"));
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("success");
+      expect(s.analysisResult?.primary_skill).toBe("b");
+      expect(s.analysisError).toBeNull();
+    });
+
+    it("setAnalysisResult with a stale requestId is discarded", () => {
+      const staleId = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().requestAnalysis(); // bump past stale
+      useBuildWorkspaceStore
+        .getState()
+        .setAnalysisResult(staleId, fakeResult("stale"));
+      const s = useBuildWorkspaceStore.getState();
+      // Status must still be "pending" — the fresh request hasn't completed.
+      expect(s.analysisStatus).toBe("pending");
+      expect(s.analysisResult).toBeNull();
+    });
+
+    it("setAnalysisError with the current requestId records the message", () => {
+      const id = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().setAnalysisError(id, "boom");
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("error");
+      expect(s.analysisError).toBe("boom");
+    });
+
+    it("setAnalysisError with a stale requestId is discarded", () => {
+      const staleId = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore
+        .getState()
+        .setAnalysisError(staleId, "stale-boom");
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("pending");
+      expect(s.analysisError).toBeNull();
+    });
+
+    it("resetAnalysis clears result, error, status, and request counter", () => {
+      const id = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().setAnalysisResult(id, fakeResult("x"));
+      useBuildWorkspaceStore.getState().resetAnalysis();
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("idle");
+      expect(s.analysisResult).toBeNull();
+      expect(s.analysisError).toBeNull();
+      expect(s.analysisRequestId).toBe(0);
+    });
+
+    it("initializeFromServer clears analysis state", () => {
+      const id = useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().setAnalysisResult(id, fakeResult("y"));
+      useBuildWorkspaceStore
+        .getState()
+        .initializeFromServer(makeServerBuild());
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("idle");
+      expect(s.analysisResult).toBeNull();
+      expect(s.analysisRequestId).toBe(0);
+    });
+
+    it("initializeEmpty clears analysis state", () => {
+      useBuildWorkspaceStore.getState().requestAnalysis();
+      useBuildWorkspaceStore.getState().initializeEmpty();
+      const s = useBuildWorkspaceStore.getState();
+      expect(s.analysisStatus).toBe("idle");
+      expect(s.analysisRequestId).toBe(0);
     });
   });
 });

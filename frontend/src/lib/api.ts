@@ -422,9 +422,26 @@ export interface BuildSimulationResult {
   combined_dps: number;
 }
 
+// Stateless analysis payload — matches SimulateBuildSchema on the backend.
+// Used by the real-time AnalysisPanel on the unified workspace page
+// (phase 2), which needs to analyse the client's in-progress working copy
+// rather than a persisted Build row.
+export interface SimulateBuildInlinePayload {
+  character_class: string;
+  mastery: string;
+  skill_name: string;
+  skill_level?: number;
+  allocated_node_ids?: number[];
+  gear_affixes?: { name: string; tier: number }[];
+  n_simulations?: number;
+  seed?: number | null;
+}
+
 export const simulateApi = {
   build: (slug: string) =>
     post<BuildSimulationResult>(`/builds/${slug}/simulate`),
+  buildInline: (payload: SimulateBuildInlinePayload) =>
+    post<BuildSimulationResult>("/simulate/build", payload),
   conditional: (payload: object) =>
     post<ConditionalResult>("/simulate/conditional", payload),
   multiTarget: (payload: object) =>

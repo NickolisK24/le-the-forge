@@ -18,6 +18,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 import { useBuild } from "@/hooks";
+import { useDebouncedAnalysis } from "@/hooks/useDebouncedAnalysis";
 import { useBuildWorkspaceStore } from "@/store";
 
 import AnalysisPanel from "./AnalysisPanel";
@@ -75,6 +76,11 @@ export default function UnifiedBuildPage() {
   const status = useBuildWorkspaceStore((s) => s.status);
 
   const [activeSection, setActiveSection] = useState<SectionId>("meta");
+
+  // Phase 2 — real-time analysis. Mount the hook once at the page level so
+  // a single HTTP dispatcher watches every surface. Per-section mounting
+  // would duplicate the request.
+  useDebouncedAnalysis();
 
   // Initialize / reinitialize the store when the route changes.
   useEffect(() => {
