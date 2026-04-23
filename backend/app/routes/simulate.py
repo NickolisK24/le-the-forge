@@ -26,6 +26,7 @@ The client then polls GET /api/jobs/<job_id> until status == "done".
 """
 
 import os
+import time
 
 from flask import Blueprint, request
 from marshmallow import ValidationError
@@ -303,6 +304,9 @@ def simulate_build():
     if cached is not None:
         resp = ok(data=cached)
         resp[0].headers["X-Cache"] = "HIT"
+        # Pipeline did not run on a cache hit — report 0 so phase-4
+        # measurement tooling can distinguish cache hits from cold compute.
+        resp[0].headers["X-Analysis-Compute-MS"] = "0.0"
         return resp
 
     sim_kwargs = dict(
@@ -323,6 +327,10 @@ def simulate_build():
         job_id = jobs.enqueue(simulation_service.simulate_full_build, **sim_kwargs)
         return ok(data={"job_id": job_id}), 202
 
+    compute_start = time.perf_counter()
     result = simulation_service.simulate_full_build(**sim_kwargs)
+    compute_ms = (time.perf_counter() - compute_start) * 1000
     cache_set(cache_key, result, _SIM_CACHE_TTL)
-    return ok(data=result)
+    resp = ok(data=result)
+    resp[0].headers["X-Analysis-Compute-MS"] = f"{compute_ms:.2f}"
+    return resp
