@@ -240,28 +240,58 @@ describe("AnalysisPanel — success composition", () => {
     ).toBe("false");
   });
 
-  it("omits the What-to-improve-next section when no slug is present", () => {
+  it("omits the What-to-improve-next section on an unsaved build with no stat_upgrades", () => {
     seedSimulatableBuild();
     const s = useBuildWorkspaceStore.getState();
     const id = s.requestAnalysis();
-    s.setAnalysisResult(id, fakeResult());
+    s.setAnalysisResult(id, fakeResult()); // stat_upgrades: []
     renderPanel();
     expect(screen.queryByTestId("improve-next-section")).toBeNull();
   });
 
-  it("includes the What-to-improve-next section when a slug is present", () => {
+  it("renders the fallback What-to-improve-next list on an unsaved build when stat_upgrades are present", () => {
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    const r = fakeResult();
+    r.stat_upgrades = [
+      { stat: "spell_damage", label: "Spell Damage", dps_gain_pct: 12, ehp_gain_pct: 0 },
+      { stat: "crit_chance",  label: "Crit Chance",  dps_gain_pct: 9,  ehp_gain_pct: 0 },
+    ];
+    s.setAnalysisResult(id, r);
+    renderPanel();
+    const section = screen.getByTestId("improve-next-section");
+    expect(section.getAttribute("data-mode")).toBe("fallback");
+    expect(screen.getByTestId("improve-next-inline-list")).toBeInTheDocument();
+    expect(section).toHaveTextContent(/Spell Damage/);
+    expect(section).toHaveTextContent(/Crit Chance/);
+  });
+
+  it("includes the slug-scoped What-to-improve-next section when a slug is present", () => {
     seedSavedBuild("cool-build");
     const s = useBuildWorkspaceStore.getState();
     const id = s.requestAnalysis();
     s.setAnalysisResult(id, fakeResult());
     renderPanel();
-    expect(screen.getByTestId("improve-next-section")).toBeInTheDocument();
-    expect(screen.getByTestId("improve-next-section")).toHaveTextContent(
-      /what to improve next/i,
-    );
-    expect(screen.getByTestId("improve-next-section")).toHaveTextContent(
-      /per forge potential invested/i,
-    );
+    const section = screen.getByTestId("improve-next-section");
+    expect(section.getAttribute("data-mode")).toBe("saved");
+    expect(section).toHaveTextContent(/what to improve next/i);
+    expect(section).toHaveTextContent(/per forge potential invested/i);
+  });
+
+  it("renders What-to-improve-next above the AdvancedAnalysisAccordion", () => {
+    seedSavedBuild("cool-build");
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    s.setAnalysisResult(id, fakeResult());
+    renderPanel();
+    const improve = screen.getByTestId("improve-next-section");
+    const accordion = screen.getByTestId("advanced-analysis-accordion");
+    // Document order: improve should come first.
+    expect(
+      improve.compareDocumentPosition(accordion) &
+        Node.DOCUMENT_POSITION_FOLLOWING,
+    ).toBeTruthy();
   });
 });
 

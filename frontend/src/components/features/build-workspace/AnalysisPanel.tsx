@@ -29,6 +29,7 @@ import { useQuery } from "@tanstack/react-query";
 
 import { buildsApi } from "@/lib/api";
 import type { OptimizeMode } from "@/types";
+import type { StatUpgrade } from "@/lib/api";
 import { useState } from "react";
 
 import { useBuildWorkspaceStore } from "@/store";
@@ -163,8 +164,17 @@ export default function AnalysisPanel({ onOpenSkills }: AnalysisPanelProps = {})
             <SectionSkeleton height="h-48" />
           )}
 
-          {/* 5. What to improve next — slug-scoped */}
-          {slug && <ImproveNextSection slug={slug} hasResult={!!result} />}
+          {/* 5. What to improve next. On saved builds this uses the slug-
+               scoped `/api/builds/<slug>/optimize` endpoint for the richer
+               dual-panel layout. On unsaved builds (`/workspace/new`) it
+               falls back to the top stat_upgrades from the stateless
+               simulate response so the section still appears. */}
+          {result && (
+            <ImproveNextSection
+              slug={slug}
+              statUpgradesFallback={result.stat_upgrades ?? []}
+            />
+          )}
 
           {/* 6. Advanced analysis accordion */}
           <AdvancedAnalysisAccordion slug={slug} />
@@ -289,30 +299,82 @@ function SectionSkeletonGrid() {
 }
 
 // ---------------------------------------------------------------------------
-// "What to improve next" section — slug-scoped
+// "What to improve next" section.
+//
+// On saved builds (slug present), renders StatUpgradePanel +
+// UpgradeCandidatesPanel backed by /api/builds/<slug>/optimize (which
+// returns the richer rankings + gear affix candidates).
+//
+// On unsaved builds (no slug), falls back to the top `stat_upgrades`
+// already present in the stateless `/api/simulate/build` response —
+// `StatUpgradePanel` is driven by the slug endpoint's `StatRankingEntry`
+// shape, so we render a compact inline list instead. No new API call.
 // ---------------------------------------------------------------------------
 
-function ImproveNextSection({ slug, hasResult }: { slug: string; hasResult: boolean }) {
+function ImproveNextSection({
+  slug,
+  statUpgradesFallback,
+}: {
+  slug: string | null;
+  statUpgradesFallback: StatUpgrade[];
+}) {
+  if (!slug) {
+    if (!statUpgradesFallback.length) return null;
+    return (
+      <section
+        data-testid="improve-next-section"
+        data-mode="fallback"
+        className="flex flex-col gap-3 min-w-0"
+      >
+        <ImproveNextHeader />
+        <InlineUpgradeList upgrades={statUpgradesFallback} />
+      </section>
+    );
+  }
+  return (
+    <SavedBuildImproveNext
+      slug={slug}
+      statUpgradesFallback={statUpgradesFallback}
+    />
+  );
+}
+
+function ImproveNextHeader() {
+  return (
+    <div className="flex flex-col gap-1">
+      <h3 className="font-display text-lg font-bold tracking-wider text-forge-text">
+        What to improve next
+      </h3>
+      <p className="font-body text-sm text-forge-dim">
+        These stats will give you the biggest improvement per forge
+        potential invested.
+      </p>
+    </div>
+  );
+}
+
+function SavedBuildImproveNext({
+  slug,
+  statUpgradesFallback,
+}: {
+  slug: string;
+  statUpgradesFallback: StatUpgrade[];
+}) {
   const [mode, setMode] = useState<OptimizeMode>("balanced");
   const query = useQuery({
     queryKey: ["optimize", slug, mode],
     queryFn: () => buildsApi.optimize(slug, mode),
-    enabled: hasResult,
     staleTime: 30 * 60 * 1000,
     select: (res) => res.data,
   });
 
   return (
-    <section data-testid="improve-next-section" className="flex flex-col gap-3 min-w-0">
-      <div className="flex flex-col gap-1">
-        <h3 className="font-display text-lg font-bold tracking-wider text-forge-text">
-          What to improve next
-        </h3>
-        <p className="font-body text-sm text-forge-dim">
-          These stats will give you the biggest improvement per forge
-          potential invested.
-        </p>
-      </div>
+    <section
+      data-testid="improve-next-section"
+      data-mode="saved"
+      className="flex flex-col gap-3 min-w-0"
+    >
+      <ImproveNextHeader />
       <div className="grid gap-4 lg:grid-cols-2 min-w-0">
         <StatUpgradePanel
           rankings={query.data?.stat_rankings ?? []}
@@ -329,6 +391,47 @@ function ImproveNextSection({ slug, hasResult }: { slug: string; hasResult: bool
           onRetry={() => query.refetch()}
         />
       </div>
+      {/* Fallback row: the stateless stat_upgrades travel with every
+          simulate response, so we can always show a compact top-5 list
+          even before the optimize query resolves. Keeps the section from
+          looking empty while the heavier query is in flight. */}
+      {statUpgradesFallback.length > 0 && !query.data && (
+        <InlineUpgradeList upgrades={statUpgradesFallback} />
+      )}
     </section>
+  );
+}
+
+function InlineUpgradeList({ upgrades }: { upgrades: StatUpgrade[] }) {
+  if (!upgrades.length) return null;
+  return (
+    <ul
+      data-testid="improve-next-inline-list"
+      className="divide-y divide-forge-border/30 rounded border border-forge-border bg-forge-surface overflow-hidden"
+    >
+      {upgrades.slice(0, 5).map((u, idx) => (
+        <li
+          key={`${u.stat}-${idx}`}
+          className="flex items-center justify-between gap-3 px-4 py-2"
+        >
+          <div className="flex items-center gap-2 min-w-0">
+            <span className="font-mono text-[10px] text-forge-dim w-5 text-right shrink-0">
+              #{idx + 1}
+            </span>
+            <span className="font-body text-sm text-forge-text truncate">
+              {u.label}
+            </span>
+          </div>
+          <div className="flex items-center gap-3 shrink-0 font-mono text-xs tabular-nums">
+            <span className="text-forge-amber">
+              +{u.dps_gain_pct.toFixed(1)}% DPS
+            </span>
+            <span className="text-forge-cyan">
+              +{u.ehp_gain_pct.toFixed(1)}% EHP
+            </span>
+          </div>
+        </li>
+      ))}
+    </ul>
   );
 }
