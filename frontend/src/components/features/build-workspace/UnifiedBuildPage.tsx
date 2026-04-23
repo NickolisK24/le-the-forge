@@ -124,9 +124,20 @@ export default function UnifiedBuildPage() {
   return (
     <div
       data-testid="unified-build-page"
-      className="flex flex-col gap-4 p-4 lg:flex-row"
+      // Width strategy:
+      //   < lg  (1024 px): single column, stacked.
+      //   lg to xl-1:      two columns — 320 px analysis rail, editor fills rest.
+      //   xl+ (1280 px+):  break out of AppLayout's max-w-7xl cap using negative
+      //                    margins so the workspace fills the viewport, then
+      //                    give the editor + analysis a 3:1 flex ratio so both
+      //                    columns expand proportionally on wide desktops.
+      className={
+        "flex flex-col gap-4 p-4 min-w-0 " +
+        "lg:flex-row " +
+        "xl:w-screen xl:-mx-[calc((100vw-80rem)/2)] xl:px-6 xl:gap-6"
+      }
     >
-      <main className="flex-1 space-y-4">
+      <main className="flex-1 space-y-4 min-w-0 xl:flex-[3_1_0%]">
         <nav
           data-testid="workspace-section-nav"
           className="flex flex-wrap gap-1 border-b border-white/10 pb-2"
@@ -156,7 +167,14 @@ export default function UnifiedBuildPage() {
         </div>
       </main>
 
-      <div className="w-full lg:w-80 lg:flex-none">
+      <div
+        data-testid="workspace-analysis-column"
+        // At lg the analysis rail is pinned to 320 px so the editor owns the
+        // remaining space. At xl+ it joins the flex-basis pool with a 1-share
+        // growth factor (editor takes 3) and a 36 rem cap so it never eats
+        // more than roughly a third of a very wide viewport.
+        className="w-full lg:w-80 lg:flex-none xl:w-auto xl:flex-[1_1_0%] xl:max-w-[36rem]"
+      >
         <AnalysisPanel onOpenSkills={() => setActiveSection("skills")} />
       </div>
     </div>
