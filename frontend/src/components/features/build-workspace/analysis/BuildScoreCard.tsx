@@ -314,29 +314,45 @@ export default function BuildScoreCard({
       data-grade={rating.letter}
       className="flex flex-col gap-3 rounded border border-forge-border bg-forge-surface p-4"
     >
-      {/* Row 1 — primary skill + class/mastery */}
+      {/* Row 1 — title + class/mastery.
+           "Build Rating" is the header (phase-3 follow-up: the old
+           "Analyzing: {skill}" duplicated the PrimarySkillBreakdown card's
+           title). The detected primary skill is surfaced as a subtitle. */}
       <div className="flex flex-wrap items-baseline justify-between gap-2">
-        <div className="flex items-center gap-2 min-w-0">
-          {hasPrimarySkill ? (
-            <h3 className="font-display text-lg font-bold text-forge-text tracking-wider truncate min-w-0">
-              Analyzing:{" "}
-              <span className="text-forge-amber">{result.primary_skill}</span>
-            </h3>
-          ) : (
-            <h3 className="font-display text-lg font-bold text-forge-muted tracking-wider truncate">
-              No primary skill detected
-            </h3>
-          )}
-          {onOpenSkills && (
-            <button
-              type="button"
-              onClick={onOpenSkills}
-              data-testid="score-card-change-skill"
-              className="rounded-sm border border-forge-border px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-forge-muted hover:border-forge-amber hover:text-forge-amber transition-colors min-h-[44px] sm:min-h-0"
-            >
-              {hasPrimarySkill ? "Change" : "Go to skills"}
-            </button>
-          )}
+        <div className="flex flex-col gap-0.5 min-w-0">
+          <h3
+            data-testid="score-card-title"
+            className="font-display text-lg font-bold text-forge-text tracking-wider"
+          >
+            Build Rating
+          </h3>
+          <div
+            data-testid="score-card-subtitle"
+            className="flex items-center gap-2 min-w-0"
+          >
+            <span className="font-mono text-[10px] uppercase tracking-widest text-forge-dim truncate">
+              {hasPrimarySkill ? (
+                <>
+                  Analyzing{" "}
+                  <span className="text-forge-amber">
+                    {result.primary_skill}
+                  </span>
+                </>
+              ) : (
+                "No primary skill detected"
+              )}
+            </span>
+            {onOpenSkills && (
+              <button
+                type="button"
+                onClick={onOpenSkills}
+                data-testid="score-card-change-skill"
+                className="shrink-0 rounded-sm border border-forge-border px-2 py-1 font-mono text-[10px] uppercase tracking-widest text-forge-muted hover:border-forge-amber hover:text-forge-amber transition-colors min-h-[44px] sm:min-h-0"
+              >
+                {hasPrimarySkill ? "Change" : "Go to skills"}
+              </button>
+            )}
+          </div>
         </div>
         <div className="flex flex-wrap items-center gap-2 font-mono text-[11px] uppercase tracking-widest">
           <span className="rounded-sm border border-forge-purple/40 bg-forge-purple/10 px-2 py-0.5 text-forge-purple">
