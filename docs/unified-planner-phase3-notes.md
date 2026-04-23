@@ -310,3 +310,33 @@ half a second is indistinguishable from "instant" to a human user.
   than the user expects. The `BuildScoreCard` "Change" button + the
   SkillsSummaryTable's "Primary" badge give the user visibility into
   which skill drove the render.
+
+## 7. Responsive verification (step 10)
+
+Targets a minimum viewport width of **375 px** — the project's smallest
+supported phone width. The JSDOM tests in
+`frontend/src/__tests__/components/analysis/responsive-layout.test.tsx`
+pin the Tailwind classnames that enforce the behaviour so regressions
+surface in CI; the list below summarises each contract.
+
+| Surface                       | Mobile behaviour                                                        | Enforced by                                   |
+|-------------------------------|-------------------------------------------------------------------------|-----------------------------------------------|
+| `BuildScoreCard` pill grid    | Single column below `sm` (640 px), 3-up at `sm`+                        | `grid-cols-1 sm:grid-cols-3`                 |
+| Offense / Defense cards       | Stacked below `md` (768 px), 2-up at `md`+                              | `grid-cols-1 md:grid-cols-2` in `AnalysisPanel` |
+| `SkillsSummaryTable`          | Horizontally scrollable; table never truncates                          | `overflow-x-auto` wrapper + `min-w-[480px]`   |
+| `AdvancedAnalysisAccordion`   | Header wraps cleanly; no horizontal overflow                             | `whitespace-normal break-words` on the title  |
+| Change buttons, row headers, retry | ≥ 44 px tall on mobile (WCAG touch-target minimum)                 | `min-h-[44px]` guard on each interactive control |
+| `UnifiedBuildPage` column     | Analysis column stacks below editor column until `lg` (1024 px)          | `flex-col gap-4 p-4 lg:flex-row`              |
+
+### 7.1 Known limitation
+
+Phase 3's responsive tests are classname-based. They do not *render* at
+375 px — that requires a browser. The project owner performs the full
+manual pass (Chrome mobile emulation at 375 × 812) after merge, covering:
+
+- Score-card pills stacked vertically, grade tile on top.
+- Offense and Defense cards stacked, each fitting the viewport width.
+- Skills table horizontal-scrolling without overlapping controls.
+- Accordion header wrapping onto two lines.
+- Tap targets comfortable (≥ 44 px).
+- Retry button visible and clickable in the error state.
