@@ -229,20 +229,52 @@ interface PillProps {
 
 function StatPill({ label, value, tier }: PillProps) {
   const color = BENCHMARK_COLORS[tier];
+  const TIER_LABEL: Record<BenchmarkTier, string> = {
+    strong: "Strong",
+    average: "Average",
+    weak: "Weak",
+  };
+  // Phase-3 follow-up: the pill used to carry tier information only through a
+  // low-opacity border + coloured value text. On a fresh build with score 3
+  // (all three pills in the "weak" tier) those cues disappeared into the
+  // surface colour. Now the pill leads with a left accent bar + a coloured
+  // dot next to the tier label — the same visual vocabulary the offense /
+  // defense cards already use — so the indicator is unmissable regardless
+  // of the value's colour contrast.
   return (
     <div
       data-testid={`score-pill-${tier}`}
-      className="flex flex-col gap-0.5 rounded-sm border bg-forge-surface2 px-3 py-2 min-w-0 flex-1"
-      style={{ borderColor: `${color}55` }}
+      data-tier={tier}
+      className="relative overflow-hidden flex flex-col gap-0.5 rounded-sm border bg-forge-surface2 pl-3 pr-3 py-2 min-w-0 flex-1"
+      style={{
+        borderColor: `${color}80`,
+        boxShadow: `inset 3px 0 0 ${color}`,
+      }}
     >
-      <span className="font-mono text-[9px] uppercase tracking-widest text-forge-dim truncate">
-        {label}
-      </span>
+      <div className="flex items-center gap-1.5 min-w-0">
+        <span
+          aria-hidden="true"
+          className="shrink-0 w-1.5 h-1.5 rounded-full"
+          style={{
+            backgroundColor: color,
+            boxShadow: `0 0 6px ${color}80`,
+          }}
+        />
+        <span className="font-mono text-[9px] uppercase tracking-widest text-forge-dim truncate">
+          {label}
+        </span>
+      </div>
       <span
         className="font-display text-lg font-bold tabular-nums truncate"
         style={{ color }}
       >
         {value}
+      </span>
+      <span
+        className="font-mono text-[9px] uppercase tracking-widest"
+        style={{ color }}
+      >
+        {TIER_LABEL[tier]}
       </span>
     </div>
   );

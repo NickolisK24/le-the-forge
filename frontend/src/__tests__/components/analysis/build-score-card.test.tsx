@@ -429,6 +429,31 @@ describe("BuildScoreCard — pill benchmark tiers", () => {
     );
     expect(screen.getAllByTestId("score-pill-strong").length).toBe(3);
   });
+
+  it("weak pills carry a visible tier label so the colour cue is not the only signal", () => {
+    // Regression test: a fresh build at score 3 has all three pills in the
+    // weak tier, but the earlier design relied on border tint + value colour
+    // alone which was too subtle on the dark surface. Each pill must now
+    // carry an explicit tier word ("Weak") so the indicator is unmissable.
+    const result = makeResult({
+      dps: 100,
+      ehp: 100,
+      survivabilityScore: 5,
+    });
+    render(
+      <BuildScoreCard
+        result={result}
+        status="success"
+        characterClass="Mage"
+        mastery="Sorcerer"
+      />,
+    );
+    const weakPills = screen.getAllByTestId("score-pill-weak");
+    expect(weakPills.length).toBe(3);
+    for (const pill of weakPills) {
+      expect(pill.textContent?.toLowerCase()).toContain("weak");
+    }
+  });
 });
 
 // ---------------------------------------------------------------------------
