@@ -291,6 +291,34 @@ describe("AnalysisPanel — success composition", () => {
     expect(section).toHaveTextContent(/Crit Chance/);
   });
 
+  it("renders every stat_upgrade row with rank, label, and the DPS gain chip", () => {
+    seedSimulatableBuild();
+    const s = useBuildWorkspaceStore.getState();
+    const id = s.requestAnalysis();
+    const r = fakeResult();
+    r.stat_upgrades = [
+      { stat: "a", label: "+40% Spell Damage",    dps_gain_pct: 35.3, ehp_gain_pct: 0, explanation: "Pure offense boost." },
+      { stat: "b", label: "+40% Fire Damage",     dps_gain_pct: 30.1, ehp_gain_pct: 0 },
+      { stat: "c", label: "+40% Elemental Dmg",   dps_gain_pct: 25.0, ehp_gain_pct: 0 },
+      { stat: "d", label: "+15 Flat Spell Dmg",   dps_gain_pct: 13.8, ehp_gain_pct: 0 },
+      { stat: "e", label: "+10% Cast Speed",      dps_gain_pct: 9.6,  ehp_gain_pct: 0 },
+    ];
+    s.setAnalysisResult(id, r);
+    renderPanel();
+
+    // All 5 rows render as data-testid'd list items.
+    for (let i = 0; i < 5; i++) {
+      expect(screen.getByTestId(`improve-next-row-${i}`)).toBeInTheDocument();
+    }
+    // First row shows the rank, the label, and a DPS chip with the engine's
+    // value — this is the rendering regression the phase-3 follow-up fixed.
+    const row0 = screen.getByTestId("improve-next-row-0");
+    expect(row0).toHaveTextContent("#1");
+    expect(row0).toHaveTextContent("+40% Spell Damage");
+    expect(row0).toHaveTextContent(/\+?35\.3% DPS/);
+    expect(row0).toHaveTextContent("Pure offense boost.");
+  });
+
   it("includes the slug-scoped What-to-improve-next section when a slug is present", () => {
     seedSavedBuild("cool-build");
     const s = useBuildWorkspaceStore.getState();

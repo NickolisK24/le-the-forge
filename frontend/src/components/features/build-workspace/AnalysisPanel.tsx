@@ -402,36 +402,85 @@ function SavedBuildImproveNext({
   );
 }
 
+/**
+ * Compact list renderer for the `StatUpgrade[]` payload the stateless
+ * simulate endpoint returns. Each row shows a rank chip (top-3 get a
+ * podium tint), the upgrade label, a DPS/EHP gain pair, and the engine
+ * explanation when available.
+ *
+ * The gain pills live on their own line below the label on narrow panels
+ * so they never compete with the label for space; above `sm` the layout
+ * goes back to a single row.
+ */
 function InlineUpgradeList({ upgrades }: { upgrades: StatUpgrade[] }) {
   if (!upgrades.length) return null;
   return (
     <ul
       data-testid="improve-next-inline-list"
-      className="divide-y divide-forge-border/30 rounded border border-forge-border bg-forge-surface overflow-hidden"
+      className="flex flex-col divide-y divide-forge-border/30 rounded border border-forge-border bg-forge-surface overflow-hidden"
     >
       {upgrades.slice(0, 5).map((u, idx) => (
         <li
           key={`${u.stat}-${idx}`}
-          className="flex items-center justify-between gap-3 px-4 py-2"
+          data-testid={`improve-next-row-${idx}`}
+          className="flex flex-col gap-1 px-4 py-3"
         >
-          <div className="flex items-center gap-2 min-w-0">
-            <span className="font-mono text-[10px] text-forge-dim w-5 text-right shrink-0">
-              #{idx + 1}
-            </span>
-            <span className="font-body text-sm text-forge-text truncate">
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
+            <RankChip rank={idx + 1} />
+            <span className="font-body text-sm text-forge-text font-semibold min-w-0">
               {u.label}
             </span>
+            <div className="ml-auto flex items-center gap-2 font-mono text-[11px] tabular-nums shrink-0">
+              {u.dps_gain_pct !== 0 && (
+                <span
+                  className="rounded-sm border border-forge-amber/40 bg-forge-amber/10 text-forge-amber px-1.5 py-0.5"
+                  title="Projected DPS gain"
+                >
+                  {u.dps_gain_pct > 0 ? "+" : ""}
+                  {u.dps_gain_pct.toFixed(1)}% DPS
+                </span>
+              )}
+              {u.ehp_gain_pct !== 0 && (
+                <span
+                  className="rounded-sm border border-forge-cyan/40 bg-forge-cyan/10 text-forge-cyan px-1.5 py-0.5"
+                  title="Projected EHP gain"
+                >
+                  {u.ehp_gain_pct > 0 ? "+" : ""}
+                  {u.ehp_gain_pct.toFixed(1)}% EHP
+                </span>
+              )}
+            </div>
           </div>
-          <div className="flex items-center gap-3 shrink-0 font-mono text-xs tabular-nums">
-            <span className="text-forge-amber">
-              +{u.dps_gain_pct.toFixed(1)}% DPS
-            </span>
-            <span className="text-forge-cyan">
-              +{u.ehp_gain_pct.toFixed(1)}% EHP
-            </span>
-          </div>
+          {u.explanation && (
+            <p className="font-body text-[11px] text-forge-dim leading-snug">
+              {u.explanation}
+            </p>
+          )}
         </li>
       ))}
     </ul>
+  );
+}
+
+const RANK_PODIUM: Record<number, string> = {
+  1: "border-forge-gold/60 bg-forge-gold/10 text-forge-gold",
+  2: "border-forge-amber/60 bg-forge-amber/10 text-forge-amber",
+  3: "border-forge-cyan/60 bg-forge-cyan/10 text-forge-cyan",
+};
+
+function RankChip({ rank }: { rank: number }) {
+  const classes =
+    RANK_PODIUM[rank] ?? "border-forge-border bg-forge-surface2 text-forge-muted";
+  return (
+    <span
+      aria-label={`Rank ${rank}`}
+      className={
+        "inline-flex items-center justify-center font-mono text-[11px] font-bold " +
+        "w-6 h-6 rounded-sm border tabular-nums shrink-0 " +
+        classes
+      }
+    >
+      #{rank}
+    </span>
   );
 }
