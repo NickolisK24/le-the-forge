@@ -107,9 +107,13 @@ export interface SummaryInput {
 }
 
 /**
- * Returns the one-sentence build summary. Prompt-specified branches, in
- * order of priority:
+ * Returns the one-sentence build summary. Branches, in priority order:
  *
+ *  0. Overall score is below 20 → "Build needs significant investment
+ *     before analysis is meaningful. Allocate skill points, passives,
+ *     and gear to see accurate results."  This catches the freshly-
+ *     initialised build case where the weighted score is a single digit
+ *     and the "balanced" language of the fallback is misleading.
  *  1. Both DPS efficiency and survivability are strong (DPS efficiency
  *     >= 0.6 AND survivability score >= 75, matching
  *     `STAT_BENCHMARKS.survivability_score.strong`) → "Well-rounded ...".
@@ -121,7 +125,15 @@ export interface SummaryInput {
  */
 export function computeSummary(input: SummaryInput): string {
   const { rating, survivabilityScore, weaknesses, topUpgrade } = input;
-  const { dpsEfficiency } = rating;
+  const { dpsEfficiency, score } = rating;
+
+  // Branch 0 — catastrophically low score (fresh-build floor).
+  if (score < 20) {
+    return (
+      "Build needs significant investment before analysis is meaningful. " +
+      "Allocate skill points, passives, and gear to see accurate results."
+    );
+  }
 
   // Branch 1 — both DPS efficiency and survivability are strong.
   // "Strong" is read against the statBenchmarks tiers: DPS >= 0.6 clears

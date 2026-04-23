@@ -158,6 +158,42 @@ describe("computeBuildRating — letter grade boundaries", () => {
 // ---------------------------------------------------------------------------
 
 describe("computeSummary — branch coverage", () => {
+  it("branch 0: score < 20 emits the 'needs significant investment' message", () => {
+    // uniform(10) gives a score of 10 — well below the branch-0 floor.
+    const rating = computeBuildRating(
+      0.1 * DPS_UPPER_BOUND,
+      0.1 * EHP_UPPER_BOUND,
+      10,
+    );
+    const s = computeSummary({
+      rating,
+      survivabilityScore: 10,
+      weaknesses: ["Low Fire Resistance (5%)"],
+      topUpgrade: null,
+    });
+    expect(s).toContain("significant investment");
+    expect(s).toContain("Allocate skill points");
+    // Crucially, it must NOT inherit the low-survivability branch even
+    // though survivability is 10 — branch 0 runs first.
+    expect(s).not.toContain("Low Fire Resistance");
+    expect(s).not.toContain("Balanced");
+  });
+
+  it("branch 0 boundary: score 20 is NOT branch-0", () => {
+    const rating = computeBuildRating(
+      0.2 * DPS_UPPER_BOUND,
+      0.2 * EHP_UPPER_BOUND,
+      20,
+    );
+    const s = computeSummary({
+      rating,
+      survivabilityScore: 20,
+      weaknesses: [],
+      topUpgrade: null,
+    });
+    expect(s).not.toContain("significant investment");
+  });
+
   it("branch 1: well-rounded when DPS efficiency >= 0.6 and survivability >= 75", () => {
     const rating = computeBuildRating(
       0.7 * DPS_UPPER_BOUND,
@@ -390,6 +426,52 @@ describe("BuildScoreCard — idle hiding", () => {
 // ---------------------------------------------------------------------------
 // Bonus: Primary-skill change button behaviour
 // ---------------------------------------------------------------------------
+
+describe("BuildScoreCard — header + subtitle", () => {
+  it('uses "Build Rating" as the card title, not the primary skill name', () => {
+    const result = makeResult({ primarySkill: "Fireball" });
+    render(
+      <BuildScoreCard
+        result={result}
+        status="success"
+        characterClass="Mage"
+        mastery="Sorcerer"
+      />,
+    );
+    expect(screen.getByTestId("score-card-title")).toHaveTextContent(/build rating/i);
+    // The title does NOT duplicate the PrimarySkillBreakdown header.
+    expect(screen.getByTestId("score-card-title")).not.toHaveTextContent(/fireball/i);
+  });
+
+  it('surfaces the primary skill as a subtitle "Analyzing {skill}"', () => {
+    const result = makeResult({ primarySkill: "Fireball" });
+    render(
+      <BuildScoreCard
+        result={result}
+        status="success"
+        characterClass="Mage"
+        mastery="Sorcerer"
+      />,
+    );
+    expect(screen.getByTestId("score-card-subtitle")).toHaveTextContent(/analyzing/i);
+    expect(screen.getByTestId("score-card-subtitle")).toHaveTextContent(/fireball/i);
+  });
+
+  it('falls back to "No primary skill detected" subtitle when none is present', () => {
+    const result = makeResult({ primarySkill: "" });
+    render(
+      <BuildScoreCard
+        result={result}
+        status="success"
+        characterClass="Mage"
+        mastery="Sorcerer"
+      />,
+    );
+    expect(screen.getByTestId("score-card-subtitle")).toHaveTextContent(
+      /no primary skill detected/i,
+    );
+  });
+});
 
 describe("BuildScoreCard — primary skill change button", () => {
   it('shows "Change" and triggers onOpenSkills when a primary skill is detected', () => {
