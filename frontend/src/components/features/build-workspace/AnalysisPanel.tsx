@@ -124,9 +124,11 @@ export default function AnalysisPanel({ onOpenSkills }: AnalysisPanelProps = {})
             onOpenSkills={onOpenSkills}
           />
 
-          {/* 2. Offense + Defense */}
+          {/* 2. Offense + Defense — stacked until xl because below xl the
+               analysis rail is pinned to 320 px (see UnifiedBuildPage) and a
+               side-by-side grid at that width makes the labels truncate. */}
           {result ? (
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
               <OffenseCard dps={result.dps} stats={result.stats} />
               <DefenseCard defense={result.defense} />
             </div>
@@ -276,7 +278,10 @@ function SectionSkeleton({ height = "h-24" }: { height?: string }) {
 
 function SectionSkeletonGrid() {
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-4" data-testid="analysis-skeleton-grid">
+    <div
+      className="grid grid-cols-1 xl:grid-cols-2 gap-4"
+      data-testid="analysis-skeleton-grid"
+    >
       <SectionSkeleton height="h-40" />
       <SectionSkeleton height="h-40" />
     </div>

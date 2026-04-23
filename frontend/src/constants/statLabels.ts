@@ -14,7 +14,14 @@
 
 export const STAT_LABELS: Record<string, string> = {
   // ---------------------------------------------------------------------
-  // Offense — DPSResult
+  // Offense — DPSResult.
+  //
+  // Labels here are shortened where necessary so they fit in the narrow
+  // offense/defense card on the pinned-320-px analysis rail at lg without
+  // truncating to "Total D...", "Critic...", etc. The phase-3 prompt's
+  // exact label strings (e.g. "Critical Strike Chance") are documented in
+  // docs/unified-planner-phase3-notes.md §2; the shortened form is the
+  // one rendered.
   // ---------------------------------------------------------------------
   dps:                      "Total DPS",
   total_dps:                "Total DPS",
@@ -26,17 +33,17 @@ export const STAT_LABELS: Record<string, string> = {
   average_hit:              "Average Hit",
   hit_damage:               "Hit Damage",
   effective_attack_speed:   "Attacks Per Second",
-  crit_chance:              "Critical Strike Chance",
-  crit_multiplier:          "Critical Strike Multiplier",
+  crit_chance:              "Crit Chance",
+  crit_multiplier:          "Crit Multiplier",
   crit_contribution_pct:    "Crit Contribution to DPS",
   flat_damage_added:        "Flat Added Damage",
 
   // ---------------------------------------------------------------------
   // Defense — DefenseResult
   // ---------------------------------------------------------------------
-  max_health:               "Maximum Health",
+  max_health:               "Max Health",
   effective_hp:             "Effective Health Pool",
-  total_ehp:                "Total Effective HP (with Ward)",
+  total_ehp:                "Total Effective HP",
   ward_buffer:              "Ward Buffer",
   ward_regen_per_second:    "Ward Regen / Sec",
   ward_decay_per_second:    "Ward Decay / Sec",
@@ -48,7 +55,7 @@ export const STAT_LABELS: Record<string, string> = {
   // a clearer name. Both keys resolve to the same label so we do not need
   // a migration when the engine renames the field.
   armor_mitigation_pct:     "Armor Damage Reduction",
-  avg_resistance:           "Average Elemental Resistance",
+  avg_resistance:           "Avg Elemental Res",
   fire_res:                 "Fire Resistance",
   cold_res:                 "Cold Resistance",
   lightning_res:            "Lightning Resistance",

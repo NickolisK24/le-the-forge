@@ -29,12 +29,18 @@ describe("STAT_LABELS — exhaustiveness", () => {
     }
   });
 
-  it("includes the exact labels required by the phase-3 prompt", () => {
-    // The prompt calls out each of these explicitly; the label must match
-    // verbatim so copy on the UI stays consistent with the spec.
+  it("includes the prompt's labels — verbatim for the ones that fit, shortened where truncation forced it", () => {
+    // The phase-3 prompt pinned the long-form strings for these, but a
+    // follow-up adjustment authorised shortening any that ellipsis inside
+    // the 320 px analysis rail. "Average Elemental Resistance" (28 chars)
+    // was the worst offender; "Critical Strike Chance" / "Critical Strike
+    // Multiplier" also did not fit. The shortened forms are documented
+    // in docs/unified-planner-phase3-notes.md §2.
     expect(STAT_LABELS.effective_hp).toBe("Effective Health Pool");
     expect(STAT_LABELS.armor_mitigation_pct).toBe("Armor Damage Reduction");
-    expect(STAT_LABELS.avg_resistance).toBe("Average Elemental Resistance");
+    expect(STAT_LABELS.avg_resistance).toBe("Avg Elemental Res");
+    expect(STAT_LABELS.crit_chance).toBe("Crit Chance");
+    expect(STAT_LABELS.crit_multiplier).toBe("Crit Multiplier");
     expect(STAT_LABELS.crit_contribution_pct).toBe("Crit Contribution to DPS");
     expect(STAT_LABELS.effective_attack_speed).toBe("Attacks Per Second");
     expect(STAT_LABELS.survivability_score).toBe("Survivability Rating");

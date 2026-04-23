@@ -382,6 +382,39 @@ Changed files:
 - `frontend/src/__tests__/pages/unified-build-page.test.tsx` — updated
   the single assertion that relied on the old idle copy.
 
+## 8b. Follow-up adjustments (post-phase-3-initial-commit)
+
+- **Wide-viewport whitespace fix.** `AppLayout` caps `<Outlet />` at
+  `max-w-7xl` (1280 px), leaving big gutters on > 1280 px monitors.
+  `UnifiedBuildPage` now escapes that cap at xl+ via
+  `xl:w-screen xl:-mx-[calc((100vw-80rem)/2)]` and gives the editor
+  and analysis columns a 3:1 flex ratio (`xl:flex-[3_1_0%]` /
+  `xl:flex-[1_1_0%] xl:max-w-[36rem]`). Below xl the layout is
+  unchanged — phones and laptops still see the 320 px analysis rail.
+- **Label shortening.** The phase-3 step-2 prompt pinned long-form stat
+  labels ("Critical Strike Chance", "Average Elemental Resistance",
+  etc.). In practice those overflowed the 320 px analysis rail at lg,
+  ellipsising to "Critic…", "Avg El…". A follow-up authorised shortening
+  the offenders. The `STAT_LABELS` in
+  `frontend/src/constants/statLabels.ts` now use:
+
+  | Key                  | Before                          | After                       |
+  |----------------------|---------------------------------|-----------------------------|
+  | `crit_chance`        | Critical Strike Chance          | Crit Chance                 |
+  | `crit_multiplier`    | Critical Strike Multiplier      | Crit Multiplier             |
+  | `avg_resistance`     | Average Elemental Resistance    | Avg Elemental Res           |
+  | `max_health`         | Maximum Health                  | Max Health                  |
+  | `total_ehp`          | Total Effective HP (with Ward)  | Total Effective HP          |
+
+  "Effective Health Pool", "Armor Damage Reduction", "Survivability
+  Rating", "Attacks Per Second", and all three "× Improvement" labels
+  are unchanged — they already fit.
+- **Offense/Defense grid stacks until xl.** The pair previously went
+  2-up at `md` (768 px viewport), which packed them into the pinned
+  320 px rail at lg and forced label truncation. The grid now uses
+  `md:grid-cols-1 xl:grid-cols-2` so the cards stack until the analysis
+  rail widens at xl.
+
 ## 9. Deviations from the prompt (with justification)
 
 1. **C-tier grade colour is yellow, not amber.** The existing legacy
