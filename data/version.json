@@ -1,5 +1,7 @@
 {
-  "patch": "1.4.3",
-  "season": 4,
-  "version": "1.0.0-beta"
+  "patch_version": "unknown",
+  "synced_at": "2026-04-26T01:32:48.052920+00:00",
+  "files_updated": [
+    "data\\items\\affixes.json"
+  ]
 }
