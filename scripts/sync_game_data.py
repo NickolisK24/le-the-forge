@@ -114,10 +114,15 @@ def sync_affixes(existing: list[dict], dry_run: bool = False) -> list[dict]:
     Merge raw export affixes with existing curated data.
 
     Strategy:
-    - All 946 equipment affixes from new data are matched by name to existing.
+    - All ~1112 equipment affixes from new data are matched by name to existing.
+      (Count was 946 prior to LE 1.4.x; now 840 PREFIX + 272 SUFFIX.)
     - stat_key, id (slug) preserved from existing data.
     - Tier values: new data uses normalized floats (0.10), multiply × 100 for backend.
     - New fields added: title, group, reroll_chance, t6_compatible, modifier_type.
+    - The reroll_chance field is sourced from upstream `weighting` (renamed
+      from `rerollChance` in the LE 1.4.x TT-based extractor). For older
+      exports we fall back to `rerollChance` so this script remains
+      backward-compatible.
     - Affixes present in existing but not in new export are kept unchanged.
     """
     src_path = SRC_DIR / "affixes.json"
@@ -221,7 +226,12 @@ def sync_affixes(existing: list[dict], dry_run: bool = False) -> list[dict]:
             "title": raw_affix.get("title", ""),
             "group": raw_affix.get("group", ""),
             "modifier_type": raw_affix.get("modifierType", ""),
-            "reroll_chance": round(raw_affix.get("rerollChance", 1.0), 4),
+            # 'weighting' is the LE 1.4.x rename of 'rerollChance'. Fall back
+            # to the old name so this script works against pre-1.4.x exports.
+            "reroll_chance": round(
+                raw_affix.get("weighting", raw_affix.get("rerollChance", 1.0)),
+                4,
+            ),
             "t6_compatible": t6_compat,
         }
         return entry
