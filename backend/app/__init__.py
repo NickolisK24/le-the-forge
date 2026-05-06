@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from flask_limiter import Limiter
 from flask_limiter.util import get_remote_address
+from pathlib import Path
 import time
 
 from config import config
@@ -13,6 +14,18 @@ db = SQLAlchemy()
 migrate = Migrate()
 jwt = JWTManager()
 limiter = Limiter(key_func=get_remote_address)
+
+
+def _read_package_version() -> str:
+    """Read the canonical app version from the top-level VERSION file."""
+    version_path = Path(__file__).resolve().parent.parent.parent / "VERSION"
+    try:
+        return version_path.read_text(encoding="utf-8").strip() or "0.0.0"
+    except OSError:
+        return "0.0.0"
+
+
+__version__ = _read_package_version()
 
 
 def _init_limiter(app: Flask) -> None:
@@ -35,6 +48,7 @@ def _init_limiter(app: Flask) -> None:
 def create_app(env: str = "development") -> Flask:
     app = Flask(__name__)
     app.config.from_object(config[env])
+    app.extensions["start_time"] = time.time()
 
     # -----------------------------------------------------------------------
     # Production safety checks — refuse to start with insecure defaults
@@ -60,13 +74,34 @@ def create_app(env: str = "development") -> Flask:
     configure_logging(app)
 
     # -----------------------------------------------------------------------
-    # CORS — restrict to frontend origin
+    # CORS — production locks the allowlist to epochforge.gg and www; dev
+    # accepts the usual local Vite/CRA ports so the frontend team doesn't
+    # have to think about it. Tests override origins via TestingConfig.
     # -----------------------------------------------------------------------
+    if env == "production":
+        cors_origins = [
+            "https://epochforge.gg",
+            "https://www.epochforge.gg",
+        ]
+    else:
+        cors_origins = [
+            "http://localhost:5173",
+            "http://localhost:3000",
+            "http://127.0.0.1:5173",
+        ]
+        # If FRONTEND_URL points somewhere else (e.g. a tunnel hostname), add
+        # it too so nobody has to edit code to test against a staging box.
+        configured = app.config.get("FRONTEND_URL")
+        if configured and configured not in cors_origins:
+            cors_origins.append(configured)
     CORS(
         app,
-        origins=[app.config["FRONTEND_URL"]],
+        origins=cors_origins,
         supports_credentials=True,
+        expose_headers=["X-Response-Time"],
+        max_age=3600,
     )
+    app.config["CORS_ORIGINS"] = cors_origins
 
     # -----------------------------------------------------------------------
     # Security headers — applied to every response
@@ -179,6 +214,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.meta import meta_bp
     from app.routes.views import views_bp
     from app.routes.report import report_bp
+    from app.routes.health import health_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -204,6 +240,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(meta_bp, url_prefix="/api/meta")
     app.register_blueprint(views_bp, url_prefix="/api/builds")
     app.register_blueprint(report_bp, url_prefix="/api/builds")
+    app.register_blueprint(health_bp, url_prefix="/api")
 
     # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError
@@ -227,17 +264,5 @@ def create_app(env: str = "development") -> Flask:
     # Register CLI commands
     from app.utils.cli import register_commands
     register_commands(app)
-
-    # Health check
-    @app.get("/api/health")
-    def health():
-        from app.routes.version import _read_version
-        return {
-            "status": "ok",
-            "env": env,
-            "version": _read_version(),
-            "current_patch": app.config.get("CURRENT_PATCH", "1.4.3"),
-            "current_season": app.config.get("CURRENT_SEASON", 4),
-        }
 
     return app

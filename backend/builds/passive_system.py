@@ -109,6 +109,17 @@ class PassiveSystem:
         Nodes without registry metadata are skipped — their stats are
         handled by aggregate_stats via the modulo fallback or by
         pre-resolved passive_stats from the DB resolver.
+
+        DEPRECATED:
+            This method and ``_get_node_stat_bonus`` below still rely on
+            the CLASS_STAT_CYCLES modulo heuristic, which fabricates stat
+            values from node_id rather than reading game data. It is
+            retained because ``BuildState.recompute`` (exercised by
+            tests/test_equipment_pipeline.py) constructs PassiveSystem
+            instances without attaching the real PassiveNode rows. New
+            production paths should pre-resolve stats via
+            ``app.services.passive_stat_resolver.resolve_passive_stats``
+            and pass the result through ``aggregate_stats(passive_stats=…)``.
         """
         from app.utils.logging import ForgeLogger
         log = ForgeLogger(__name__)

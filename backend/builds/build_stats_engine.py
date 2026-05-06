@@ -23,6 +23,40 @@ if TYPE_CHECKING:
     from app.engines.stat_engine import BuildStats
 
 
+def _resolve_passive_stats_if_available(
+    character_class: str,
+    passive_ids: list[int],
+) -> dict | None:
+    """Pre-resolve passive stats from the PassiveNode table when a Flask
+    application context is active.
+
+    Returns the resolver's ``{"additive": ..., "special_effects": ...}``
+    dict when every required dependency is available, or ``None`` when the
+    environment can't support a DB query (no app context, no class-matching
+    rows, or any DB error). Returning ``None`` is non-fatal — ``aggregate_stats``
+    falls back to its modulo heuristic, matching pre-migration behaviour.
+    """
+    if not passive_ids:
+        return None
+    try:
+        from flask import has_app_context
+        if not has_app_context():
+            return None
+        from app.models import PassiveNode
+        from app.services.passive_stat_resolver import resolve_passive_stats
+
+        db_nodes = PassiveNode.query.filter_by(character_class=character_class).all()
+        if not db_nodes:
+            return None
+        raw_to_str = {n.raw_node_id: n.id for n in db_nodes}
+        str_ids = [raw_to_str[nid] for nid in passive_ids if nid in raw_to_str]
+        if not str_ids:
+            return None
+        return resolve_passive_stats(str_ids)
+    except Exception:
+        return None
+
+
 class BuildStatsEngine:
     """
     Stateless compiler: BuildDefinition → BuildStats.
@@ -47,6 +81,14 @@ class BuildStatsEngine:
             in stat_engine.  When omitted (or empty), passive bonuses fall back
             to the modulo heuristic inside stat_engine.
 
+        When a Flask application context is active and the PassiveNode table
+        is populated, this method pre-resolves real per-node stats via
+        ``resolve_passive_stats`` and forwards them to ``aggregate_stats``.
+        That bypasses the synthetic modulo fallback for every non-keystone
+        node with registered game data. Outside a Flask context (e.g. in
+        isolated unit tests) the resolution step is skipped and callers
+        continue to receive the fallback behaviour.
+
         Returns
         -------
         BuildStats (from app.engines.stat_engine)
@@ -58,6 +100,12 @@ class BuildStatsEngine:
         # Flatten all gear affixes (each item → list of {"name": str, "tier": int})
         gear_affixes = build.all_gear_affixes()
 
+        # Pre-resolve passive stats from the DB when possible so stat_engine
+        # uses real node data instead of the CLASS_STAT_CYCLES modulo.
+        passive_stats = _resolve_passive_stats_if_available(
+            build.character_class, build.passive_ids,
+        )
+
         # Base stats from class + mastery + passives + gear
         stats = aggregate_stats(
             character_class=build.character_class,
@@ -65,6 +113,7 @@ class BuildStatsEngine:
             allocated_node_ids=build.passive_ids,
             nodes=node_dicts,
             gear_affixes=gear_affixes,
+            passive_stats=passive_stats,
         )
 
         # Source base_damage from the selected skill. Class base stats no

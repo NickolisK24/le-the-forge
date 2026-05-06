@@ -31,6 +31,37 @@ from app.utils.logging import ForgeLogger
 log = ForgeLogger(__name__)
 
 
+def _resolve_passive_stats_if_available(
+    character_class: str,
+    passive_ids: list[int],
+) -> dict | None:
+    """Pre-resolve passive stats from the PassiveNode table when running
+    inside a Flask application context. Returns ``None`` if no context is
+    active, if the class has no registered nodes, or on any DB error —
+    callers should treat that as "fall back to stat_engine's modulo
+    heuristic" rather than as a hard failure.
+    """
+    if not passive_ids:
+        return None
+    try:
+        from flask import has_app_context
+        if not has_app_context():
+            return None
+        from app.models import PassiveNode
+        from app.services.passive_stat_resolver import resolve_passive_stats
+
+        db_nodes = PassiveNode.query.filter_by(character_class=character_class).all()
+        if not db_nodes:
+            return None
+        raw_to_str = {n.raw_node_id: n.id for n in db_nodes}
+        str_ids = [raw_to_str[nid] for nid in passive_ids if nid in raw_to_str]
+        if not str_ids:
+            return None
+        return resolve_passive_stats(str_ids)
+    except Exception:
+        return None
+
+
 def _normalize_skill_name(skill_name: str) -> str:
     """Convert a skill name from snake_case / lowercase / CamelCase to the
     title-case-with-spaces form used as keys in ``combat_engine.SKILL_STATS``.
@@ -540,12 +571,18 @@ def find_best_affix_upgrade(
         for affix in slot_item.get("suffixes", []):
             gear_affixes.append(affix)
 
+    # Pre-resolve passive stats from the DB so stat_engine uses real node
+    # data instead of the CLASS_STAT_CYCLES modulo fallback. Returns None
+    # outside a Flask context or when the PassiveNode table is empty.
+    passive_stats = _resolve_passive_stats_if_available(character_class, allocated_ids)
+
     stats = aggregate_stats(
         character_class,
         mastery,
         allocated_ids,
         nodes_dicts,
         gear_affixes,
+        passive_stats=passive_stats,
     )
 
     # Derive conversions from the per-skill spec_tree if the build dict

@@ -28,22 +28,35 @@ Boss encounter simulation with multi-phase transitions and enrage timers, corrup
 ### Phase 8 -- Community Tools (v0.8.0)
 Build comparison engine with weighted DPS/EHP scoring, meta analytics with class/mastery distribution and trending builds, view tracking with privacy-safe IP hashing, shared build reports with OpenGraph meta tags.
 
+### Phase 9 -- Deploy & Launch (v0.8.1, 2026-04-21)
+
+Production deployment to [epochforge.gg](https://epochforge.gg) on Render + Cloudflare. Delivered:
+
+- Render Blueprint (`render.yaml`) provisioning Postgres, Redis, API, and static frontend in one pass
+- Cloudflare DNS with proxied CNAMEs and Full (not Strict) SSL
+- `/api/health` liveness probe blueprint used by Render health check and external monitors
+- `ProductionConfig.validate()` hard-fails startup if production secrets are still dev defaults
+- Production CORS allowlist (`epochforge.gg`, `www.epochforge.gg`)
+- Production/dev log-level split with stdout routing
+- GitHub Actions deploy workflow triggered on merges to `main` via Render deploy hook
+- CI expanded to run on PRs into both `dev` and `main`
+- 15 deployment-readiness tests (`backend/tests/test_deployment_readiness.py`) guarding the deploy invariants
+- Documentation bundle: `docs/deployment.md`, `docs/production_setup.md`, `docs/rollback.md`, `docs/deployment_readiness.md`
+- Post-launch transparency document at `docs/KNOWN_LIMITATIONS.md`
+
+Issues closed in the launch window: [#223](https://github.com/NickolisK24/le-the-forge/issues/223) (craft-engine determinism), [#155](https://github.com/NickolisK24/le-the-forge/issues/155) (LE Tools gear import). New issues opened from the post-launch audit: [#246](https://github.com/NickolisK24/le-the-forge/issues/246) (armor-shred stacking), [#247](https://github.com/NickolisK24/le-the-forge/issues/247) (LE Tools residual ID resolution).
+
 ---
 
-## In Progress
+## Post-Launch Priorities
 
-### Phase 9 -- Deploy & Launch
+Ordered by impact on simulation accuracy and user-visible behaviour.
 
-- CI/CD pipeline with GitHub Actions (lint, test, type-check, deploy)
-- Production deployment (hosting platform TBD)
-- Domain and SSL configuration
-- Production environment configuration (Gunicorn, production database)
-- Performance audit and Redis caching verification
-- Mobile responsiveness audit
-- Community launch (r/LastEpoch, Last Epoch Discord)
-- Demo video walkthrough
-
----
+1. **Passive Node Coverage Expansion** -- grow the 39.2% numeric stat-key coverage in `backend/app/services/passive_stat_resolver.py` toward parity with in-game tooltips ([#156](https://github.com/NickolisK24/le-the-forge/issues/156))
+2. **Conditional DPS Integration** -- wire Layer 8 conditional bonuses into the combat simulation path ([#158](https://github.com/NickolisK24/le-the-forge/issues/158))
+3. **Minion Damage Engine** -- per-minion-type damage modeling for summoner builds ([#157](https://github.com/NickolisK24/le-the-forge/issues/157))
+4. **Armor-Shred Stack Accumulation** -- model shred stacks over fight duration in the combat simulator ([#246](https://github.com/NickolisK24/le-the-forge/issues/246))
+5. **Skill Base-Damage Community Validation** -- gather in-game dummy benchmarks for the 34 estimated skills ([#148](https://github.com/NickolisK24/le-the-forge/issues/148))
 
 ## Future Phases
 

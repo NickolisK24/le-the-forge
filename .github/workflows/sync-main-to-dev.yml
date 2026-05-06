@@ -1,0 +1,133 @@
+name: Sync main back to dev
+
+# Why this exists
+# ----------------
+# Every time main is updated (via a dev→main release PR), the merge-base
+# between main and dev can drift. If releases ever get squash-merged, the
+# drift becomes permanent and every subsequent dev→main PR trips fake
+# "conflict" errors on GitHub even though dev is strictly ahead.
+#
+# This workflow runs after every push to main and opens a PR that merges
+# main back into dev. The merge uses `-X ours` so dev's content is the
+# tiebreaker — nothing on dev gets silently overwritten. If main is
+# already an ancestor of dev (no drift), the job exits cleanly without
+# opening a PR.
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+  pull-requests: write
+
+concurrency:
+  group: sync-main-to-dev
+  cancel-in-progress: false
+
+jobs:
+  open-sync-pr:
+    name: Open main → dev sync PR
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout dev with full history
+        uses: actions/checkout@v4
+        with:
+          ref: dev
+          fetch-depth: 0
+          # Use the default GITHUB_TOKEN for push/PR creation
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Check for drift between main and dev
+        id: drift
+        run: |
+          git fetch origin main
+          if git merge-base --is-ancestor origin/main HEAD; then
+            echo "drift=false" >> "$GITHUB_OUTPUT"
+            echo "main is already an ancestor of dev — nothing to sync."
+          else
+            echo "drift=true" >> "$GITHUB_OUTPUT"
+            echo "main has commits not on dev — sync PR needed."
+          fi
+
+      - name: Create sync branch
+        if: steps.drift.outputs.drift == 'true'
+        id: branch
+        run: |
+          SHORT_SHA="${GITHUB_SHA:0:7}"
+          SYNC_BRANCH="chore/sync-main-to-dev-${SHORT_SHA}"
+          echo "branch=${SYNC_BRANCH}" >> "$GITHUB_OUTPUT"
+
+          # If a branch with the same name already exists on origin (e.g. a
+          # previous run for the same SHA that didn't merge), reuse it to
+          # avoid duplicate PRs.
+          if git ls-remote --exit-code --heads origin "${SYNC_BRANCH}" >/dev/null 2>&1; then
+            echo "Branch ${SYNC_BRANCH} already exists on origin; resetting to latest dev."
+            git checkout -B "${SYNC_BRANCH}" HEAD
+          else
+            git checkout -b "${SYNC_BRANCH}"
+          fi
+
+      - name: Merge main into sync branch (dev wins conflicts)
+        if: steps.drift.outputs.drift == 'true'
+        id: merge
+        run: |
+          set +e
+          git merge origin/main -X ours --no-ff \
+            -m "chore: sync main back into dev
+
+          Keeps the merge-base between main and dev current so future
+          dev→main PRs don't trip fake conflicts. No file changes expected
+          when dev is strictly ahead of main.
+
+          Triggered by push to main at ${GITHUB_SHA}."
+          MERGE_EXIT=$?
+          set -e
+
+          if [ $MERGE_EXIT -ne 0 ]; then
+            echo "::error::Automatic merge failed even with -X ours. This usually means main has genuinely independent changes that dev doesn't have. Resolve manually."
+            git merge --abort || true
+            exit 1
+          fi
+
+      - name: Push sync branch
+        if: steps.drift.outputs.drift == 'true'
+        run: |
+          git push --force-with-lease origin "${{ steps.branch.outputs.branch }}"
+
+      - name: Open or update pull request
+        if: steps.drift.outputs.drift == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          BRANCH="${{ steps.branch.outputs.branch }}"
+
+          # If a PR from this branch to dev already exists, do nothing —
+          # the push above updated it. Otherwise open a new one.
+          EXISTING_PR=$(gh pr list --head "${BRANCH}" --base dev --state open --json number --jq '.[0].number // empty')
+
+          if [ -n "${EXISTING_PR}" ]; then
+            echo "PR #${EXISTING_PR} already open for ${BRANCH} — updated via push."
+            exit 0
+          fi
+
+          gh pr create \
+            --base dev \
+            --head "${BRANCH}" \
+            --title "chore: sync main back into dev" \
+            --body "$(cat <<'EOF'
+          Automated sync PR — keeps \`dev\`'s merge-base with \`main\` current so future dev→main PRs don't trip fake conflicts.
+
+          **Expected state when dev is strictly ahead of main:** zero file changes. The merge commit itself is the useful artifact.
+
+          **If there are file changes:** they represent genuine commits on \`main\` that aren't on \`dev\`. Review carefully before merging.
+
+          Safe to merge immediately if the diff is empty.
+          EOF
+          )"

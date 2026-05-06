@@ -390,6 +390,20 @@ Poll status of an async simulation job.
 
 ## System
 
+### `GET /api/health`
+Unauthenticated liveness probe. Used by Render `healthCheckPath` and external monitors.
+**Response:**
+```json
+{
+  "status": "ok",
+  "version": "0.8.0",
+  "patch_version": "1.4.3",
+  "uptime_seconds": 42
+}
+```
+If `data/version.json` is missing or malformed, `patch_version` is returned as `"unknown"` but the endpoint still returns 200 -- Render only cares that the process is alive.
+**Rate limit:** 60/min
+
 ### `GET /api/version`
 Version metadata.
 
