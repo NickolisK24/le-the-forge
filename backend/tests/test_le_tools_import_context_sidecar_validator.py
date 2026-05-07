@@ -5,7 +5,12 @@ import pytest
 
 from app.game_data.bundle_item_adapter_report import validate_output_path
 from app.game_data.le_tools_import_context_sidecar import build_sidecar_from_fixture
-from app.game_data.le_tools_import_context_sidecar_validator import validate_sidecar_artifact
+from app.game_data.le_tools_import_context_sidecar_validator import load_sidecar, validate_sidecar_artifact
+
+
+SAVED_SIDECAR_FIXTURE = (
+    Path(__file__).parent / "fixtures" / "le_tools_import_context_sidecar_current.json"
+)
 
 
 def _sidecar():
@@ -27,6 +32,73 @@ def test_current_built_sidecar_validates_with_warning_not_failed():
         "deferred": 0,
         "unresolved": 1,
     }
+
+
+def test_saved_sidecar_fixture_loads_and_validates_independently():
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    result = validate_sidecar_artifact(sidecar)
+
+    assert result["status"] == "warning"
+    assert result["errors"] == []
+    assert sidecar["production_safe"] is False
+    assert all(item["resolver"]["production_safe"] is False for item in sidecar["items"])
+    assert result["summary"] == {
+        "total_items": 12,
+        "resolved": 8,
+        "needs_context": 2,
+        "needs_review": 1,
+        "deferred": 0,
+        "unresolved": 1,
+    }
+    for item in sidecar["items"]:
+        assert {"raw", "mapped", "resolver", "context"}.issubset(item)
+
+
+def test_saved_sidecar_fixture_summary_matches_items():
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    statuses = [item["resolver"]["status"] for item in sidecar["items"]]
+
+    assert sidecar["summary"]["total_items"] == len(sidecar["items"])
+    assert sidecar["summary"]["resolved"] == statuses.count("resolved")
+    assert sidecar["summary"]["needs_context"] == statuses.count("needs_context")
+    assert sidecar["summary"]["needs_review"] == statuses.count("needs_review")
+    assert sidecar["summary"]["deferred"] == statuses.count("deferred")
+    assert sidecar["summary"]["unresolved"] == statuses.count("unresolved")
+
+
+def test_saved_sidecar_unsafe_mutations_fail_validation():
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["production_safe"] = True
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
+
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["items"][0]["resolver"]["production_safe"] = True
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
+
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["items"][9]["resolver"]["status"] = "resolved"
+    sidecar["items"][9]["resolver"]["bundle_item_type_id"] = "belt"
+    sidecar["summary"]["needs_context"] -= 1
+    sidecar["summary"]["resolved"] += 1
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
+
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["items"][11]["resolver"]["status"] = "resolved"
+    sidecar["items"][11]["resolver"]["bundle_item_type_id"] = "helmet"
+    sidecar["summary"]["unresolved"] -= 1
+    sidecar["summary"]["resolved"] += 1
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
+
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["items"][10]["resolver"]["status"] = "resolved"
+    sidecar["items"][10]["resolver"]["bundle_item_type_id"] = "two_handed_spear"
+    sidecar["summary"]["needs_review"] -= 1
+    sidecar["summary"]["resolved"] += 1
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
+
+    sidecar = load_sidecar(SAVED_SIDECAR_FIXTURE)
+    sidecar["summary"]["resolved"] = 999
+    assert validate_sidecar_artifact(sidecar)["status"] == "failed"
 
 
 def test_production_safe_true_fails():

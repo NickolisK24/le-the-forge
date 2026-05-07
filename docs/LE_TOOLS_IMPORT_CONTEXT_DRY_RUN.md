@@ -169,6 +169,24 @@ docs/generated/le_tools_import_context_sidecar_validation_report.md
 
 `warning` is the expected current status. `failed` blocks any future non-production consumer work.
 
+Saved sidecar fixture:
+
+```text
+backend/tests/fixtures/le_tools_import_context_sidecar_current.json
+```
+
+Validate the saved sidecar independently:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --sidecar tests\fixtures\le_tools_import_context_sidecar_current.json
+```
+
+Saved-fixture validation report:
+
+```text
+docs/generated/le_tools_import_context_sidecar_saved_fixture_validation_report.md
+```
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:

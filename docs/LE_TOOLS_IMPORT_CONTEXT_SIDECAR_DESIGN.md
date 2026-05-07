@@ -363,3 +363,38 @@ Validation statuses:
 The current sidecar validates as `warning`, not `failed`, because it is synthetic/offline, mapped output lacks item type, some records require context, one record is unresolved, one requires review, and one raw record has subtype-only context. These warnings are expected and block production use, but they do not indicate malformed sidecar output.
 
 Validation fails for `production_safe=true`, resolved subtype-only records, resolved name-only records, resolved `spear`, resolved collapsed slugs without `base_type_id`, missing sections, invalid statuses, and summary mismatches.
+
+## 15. Saved Sidecar Fixture
+
+A persisted developer-only sidecar JSON fixture exists at:
+
+```text
+backend/tests/fixtures/le_tools_import_context_sidecar_current.json
+```
+
+Build/update it from the current builder:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py --json --output tests\fixtures\le_tools_import_context_sidecar_current.json
+```
+
+Validate the saved artifact independently from the builder path:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --sidecar tests\fixtures\le_tools_import_context_sidecar_current.json
+```
+
+Saved-fixture validation report:
+
+```text
+docs/generated/le_tools_import_context_sidecar_saved_fixture_validation_report.md
+```
+
+This proves the full diagnostic chain:
+
+```text
+builder -> saved sidecar JSON artifact -> validator
+```
+
+The expected status remains `warning` with no errors. The warnings are the same current limitations: synthetic/offline fixture, mapped output lacks item type, test-only pairing is required, subtype-only context exists, and some records remain `needs_context`, `needs_review`, or `unresolved`.

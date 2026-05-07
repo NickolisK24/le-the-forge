@@ -170,3 +170,18 @@ docs/generated/le_tools_import_context_sidecar_validation_report.md
 ```
 
 Current validation status is `warning` with no errors. Warnings are expected because the fixture is synthetic/offline, mapped output lacks item type context, and some records intentionally remain `needs_context`, `needs_review`, or `unresolved`.
+
+Persisted sidecar fixture:
+
+```text
+backend/tests/fixtures/le_tools_import_context_sidecar_current.json
+```
+
+Independent validation command:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --sidecar tests\fixtures\le_tools_import_context_sidecar_current.json
+```
+
+This validates the saved artifact without rebuilding it first.
