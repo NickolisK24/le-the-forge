@@ -74,6 +74,37 @@ The fixture proves that base-type-backed parsed gear records can resolve through
 
 It does not prove production importer compatibility, change importer output, or make any mapping production-safe.
 
+## Offline BuildInfo Fixture
+
+A synthetic offline LET `buildInfo`-style fixture lives at:
+
+```text
+backend/tests/fixtures/le_tools_offline_buildinfo_equipment_sample.json
+```
+
+It is used by:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests\test_le_tools_importer_fixture_context.py -q
+```
+
+The test maps the fixture through the existing importer path, copies the mapped gear into a diagnostic-only context shape, and then runs the context report. The copy is needed because production importer output preserves `base_type_id` but does not expose raw `item_type`; the test reads `_raw.item_type` only for diagnostics and asserts importer output is unchanged.
+
+Generated report:
+
+```text
+docs/generated/le_tools_offline_buildinfo_context_report.md
+```
+
+Expected summary:
+
+- `resolved`: 10
+- `needs_context`: 2
+- `needs_review`: 1
+- `deferred`: 0
+- `unresolved`: 1
+- `production_safe`: false
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:

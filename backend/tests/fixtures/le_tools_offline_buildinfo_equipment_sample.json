@@ -1,0 +1,149 @@
+{
+  "fixture": "le_tools_offline_buildinfo_equipment_sample",
+  "purpose": "Developer-only offline synthetic LET buildInfo-style equipment fixture for item type context diagnostics.",
+  "production_safe": false,
+  "source": "synthetic_offline_not_captured_from_live_let",
+  "notes": [
+    "This fixture is shaped for the existing LastEpochToolsImporter buildInfo parser.",
+    "It is not claimed to be captured from a live LE Tools payload.",
+    "Raw item_type fields are diagnostic hints only and are not production schema assumptions."
+  ],
+  "build_info": {
+    "bio": {
+      "level": 90,
+      "characterClass": 4,
+      "chosenMastery": 1
+    },
+    "charTree": {
+      "selected": {}
+    },
+    "skillTrees": [],
+    "hud": [],
+    "equipment": [
+      {
+        "slot": "helm",
+        "item_type": "helm",
+        "baseTypeID": 0,
+        "name": "Offline Synthetic Helmet",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "chest",
+        "item_type": "chest",
+        "baseTypeID": 1,
+        "name": "Offline Synthetic Body Armor",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "baseTypeID": 5,
+        "name": "Offline Synthetic One-Handed Axe",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "baseTypeID": 12,
+        "name": "Offline Synthetic Two-Handed Axe",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "mace",
+        "baseTypeID": 7,
+        "name": "Offline Synthetic One-Handed Mace",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "mace",
+        "baseTypeID": 13,
+        "name": "Offline Synthetic Two-Handed Mace",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "sword",
+        "baseTypeID": 9,
+        "name": "Offline Synthetic One-Handed Sword",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "sword",
+        "baseTypeID": 16,
+        "name": "Offline Synthetic Two-Handed Sword",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "idol_altar",
+        "item_type": "idol_1x1",
+        "baseTypeID": 25,
+        "name": "Offline Synthetic Eterra Idol",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "idol_altar",
+        "item_type": "idol_1x1",
+        "baseTypeID": 26,
+        "name": "Offline Synthetic Lagon Idol",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "name": "Offline Synthetic Axe Missing Base Type",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "weapon",
+        "item_type": "spear",
+        "baseTypeID": 14,
+        "name": "Offline Synthetic Spear Review Case",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "unknown",
+        "item_type": "unknown_type",
+        "name": "Offline Synthetic Unknown Type",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      },
+      {
+        "slot": "belt",
+        "item_type": "belt",
+        "subTypeID": 1,
+        "name": "Offline Synthetic Subtype-Only Belt",
+        "affixes": [],
+        "ir": 0,
+        "ur": 0
+      }
+    ]
+  }
+}

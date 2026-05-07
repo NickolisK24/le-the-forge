@@ -70,3 +70,28 @@ Create or capture a developer-only offline LET `buildInfo` fixture with realisti
 2. The LE Tools import context dry-run against a copy of the mapped `gear[]`, asserting `production_safe=false` and reporting `resolved` / `needs_context` / `needs_review` / `unresolved`.
 
 Do not modify importer output yet. If realistic raw payloads still lack explicit `baseTypeID`, identify the earliest parser stage where `base_type_id` is decoded and preserve it in a developer-only diagnostic sidecar before any production migration is considered.
+
+## 7. Offline Synthetic BuildInfo Follow-Up
+
+An offline synthetic LET-style fixture now exists at:
+
+```text
+backend/tests/fixtures/le_tools_offline_buildinfo_equipment_sample.json
+```
+
+The fixture is explicitly marked synthetic and is not claimed to be captured from a live LE Tools payload. It is shaped for the current `LastEpochToolsImporter` / `_map_let_build` path and includes representative equipment entries for armor, collapsed weapon types, idol splits, missing `baseTypeID`, `spear`, unknown type, and subtype-only context.
+
+The importer accepted the fixture directly. For context reporting, a test-local diagnostic copy was needed because the production mapped gear output preserves `base_type_id` but does not expose raw `item_type`. The copy reads `_raw.item_type` where present and does not mutate importer output.
+
+Offline fixture context summary from copied mapped output:
+
+| Metric | Count |
+| --- | ---: |
+| total_items | 14 |
+| resolved | 10 |
+| needs_context | 2 |
+| needs_review | 1 |
+| deferred | 0 |
+| unresolved | 1 |
+
+This proves the current importer path can preserve `base_type_id` through mapped output for ID-backed records. It does not prove live LET payload correctness, and it does not change production importer behavior.
