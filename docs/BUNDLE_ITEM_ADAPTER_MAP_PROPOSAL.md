@@ -271,6 +271,14 @@ Validate the fixture assumptions from the backend directory:
 
 The fixture keeps `production_safe=false` globally and per entry. Before any non-production consumer uses the mapping, the `needs_adapter` entries should be manually reviewed, adapter translation behavior should be tested, and fallback diagnostics should remain visible. Production consumption still requires a separate migration step.
 
+The reviewed `needs_adapter` translations are captured separately in:
+
+```text
+backend/tests/fixtures/bundle_item_type_adapter_translations.json
+```
+
+That fixture contains only the 15 adapter-required mappings. It is still developer-only and requires `base_type_id` context for every translation. It intentionally excludes `spear`, accepted direct matches, deferred bundle-only records, and all `needs_review` entries.
+
 ## 9. What Not To Do Yet
 
 - Do not replace item loaders yet.

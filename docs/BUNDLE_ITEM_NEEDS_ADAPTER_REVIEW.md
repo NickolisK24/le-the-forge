@@ -104,7 +104,15 @@ The adapter exists because Forge shape vocabulary collapses bundle-specific idol
 
 ## 6. Proposed Future Adapter Fixture Shape
 
-Do not create this fixture in this task. A later developer-only step could introduce a separate translation fixture shaped like:
+The developer-only translation fixture is:
+
+```text
+backend/tests/fixtures/bundle_item_type_adapter_translations.json
+```
+
+It contains the 15 reviewed `needs_adapter` mappings and remains test/diagnostic data only. It is not production adapter code and is not imported by production loaders.
+
+Its shape is:
 
 ```json
 {
@@ -124,7 +132,7 @@ Do not create this fixture in this task. A later developer-only step could intro
 }
 ```
 
-That future fixture should remain developer-only until a separate migration explicitly defines a consumer, fallback behavior, and test coverage.
+The fixture keeps `production_safe=false` globally and per translation. Every translation requires `base_type_id` context. Weapon and idol aliases are represented as separate translations per `bundle_base_type_id` so the fixture does not collapse meaningful bundle distinctions.
 
 ## 7. Test Requirements Before Use
 
@@ -140,6 +148,12 @@ Before a developer-only non-production consumer can use adapter translations:
 - `production_safe` remains false
 - missing translation causes a warning, not silent fallback
 - `spear` remains blocked unless a later source-backed mapping is reviewed
+
+Current fixture validation is covered by:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests\test_bundle_item_adapter_translations.py tests\test_bundle_item_mapping_review.py tests\test_bundle_item_adapter_report.py tests\test_bundle_item_diff.py tests\test_data_bundle_compat.py -q
+```
 
 ## 8. What Not To Do Yet
 
