@@ -74,6 +74,7 @@ class AdapterReport:
     subtype_identity_risk: str | None
     readiness_counts: dict[str, int]
     match_method_counts: dict[str, int]
+    safety_warnings: list[str]
     recommendation: str
 
     def to_dict(self) -> dict[str, Any]:
@@ -89,7 +90,10 @@ class AdapterReport:
             "unmapped_bundle_item_types": self.unmapped_bundle_item_types,
             "subtype_identity_risk": self.subtype_identity_risk,
             "readiness_counts": self.readiness_counts,
+            "readiness_summary": self.readiness_counts,
             "match_method_counts": self.match_method_counts,
+            "match_method_summary": self.match_method_counts,
+            "safety_warnings": self.safety_warnings,
             "recommendation": self.recommendation,
         }
 
@@ -253,6 +257,12 @@ def build_adapter_report(
         for record in records
         if record.forge_item_type and record.bundle_item_type_id is None
     )
+    safety_warnings = [
+        "production_safe is false for every proposed adapter record.",
+        "This report is diagnostic-only and does not activate bundle-backed production loading.",
+    ]
+    if subtype_risk:
+        safety_warnings.append(subtype_risk)
 
     return AdapterReport(
         bundle_dir=str(bundle_dir),
@@ -266,11 +276,46 @@ def build_adapter_report(
         subtype_identity_risk=subtype_risk,
         readiness_counts=readiness_counts,
         match_method_counts=match_method_counts,
+        safety_warnings=safety_warnings,
         recommendation=(
             "Review Needs adapter and Deferred records manually, then add tests for accepted "
             "item type mappings before any production loader migration."
         ),
     )
+
+
+def assert_report_safety_invariants(report: AdapterReport) -> tuple[list[str], list[str]]:
+    """Return developer diagnostic invariant errors and warnings for a report."""
+    errors: list[str] = []
+    warnings: list[str] = []
+
+    if any(record.production_safe for record in report.adapter_records):
+        errors.append("All adapter records must keep production_safe=false.")
+    if any(record.match_method == "subtype_id" for record in report.adapter_records):
+        errors.append("Adapter records must not use subtype_id-only matching.")
+    if not report.adapter_records:
+        errors.append("Adapter report produced no records.")
+    if report.readiness_counts.get(READINESS_READY, 0) < 1:
+        errors.append("Expected at least one Ready candidate mapping.")
+    if report.readiness_counts.get(READINESS_NEEDS_ADAPTER, 0) < 1:
+        errors.append("Expected at least one Needs adapter mapping.")
+    if (
+        report.readiness_counts.get(READINESS_DEFERRED, 0)
+        + report.readiness_counts.get(READINESS_NEEDS_REVIEW, 0)
+        < 1
+    ):
+        errors.append("Expected at least one Deferred or Needs review mapping.")
+    if not report.readiness_counts:
+        errors.append("Missing readiness counts.")
+    if not report.match_method_counts:
+        errors.append("Missing match method counts.")
+    if "subtype_id" in report.match_method_counts:
+        errors.append("Match method summary must not include subtype_id.")
+
+    if not report.unmapped_forge_types:
+        warnings.append("No unmapped Forge item types were reported.")
+
+    return errors, warnings
 
 
 def load_forge_mapping_sources() -> dict[str, Any]:
@@ -327,6 +372,10 @@ def render_adapter_report(report: AdapterReport) -> str:
         "## Subtype Identity Risk",
         "",
         report.subtype_identity_risk or "No active subtype_id-only mapping was detected.",
+        "",
+        "## Safety Warnings",
+        "",
+        *_format_list(report.safety_warnings),
         "",
         "## Proposed Adapter Records",
         "",

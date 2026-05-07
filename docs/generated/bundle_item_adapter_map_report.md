@@ -52,6 +52,11 @@ Bundle path: `D:\Forge\last-epoch-data\data_bundle`
 
 No active subtype_id-only mapping was detected.
 
+## Safety Warnings
+
+- production_safe is false for every proposed adapter record.
+- This report is diagnostic-only and does not activate bundle-backed production loading.
+
 ## Proposed Adapter Records
 
 - forge=helm slot=head bundle=helmet base_type_id=0 method=base_type_id readiness=Needs adapter confidence=Verified production_safe=false

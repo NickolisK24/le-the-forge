@@ -182,6 +182,18 @@ Write a developer report only when an output path is explicit:
 
 The command refuses production data output paths such as `data/items/*`. It does not activate migration and does not write unless `--output` is provided.
 
+Assert broad safety invariants for the current local report:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_adapter_map.py --bundle-dir D:\Forge\last-epoch-data\data_bundle --assert-current-report
+```
+
+JSON invariant output:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_adapter_map.py --bundle-dir D:\Forge\last-epoch-data\data_bundle --assert-current-report --json
+```
+
 Readiness categories in the report:
 
 - `Ready candidate`: strong ID-backed match.
@@ -192,6 +204,36 @@ Readiness categories in the report:
 - `Unsafe`: would require `subtype_id` alone or prose/name-only inference for production.
 
 Every proposed adapter record has `production_safe=false` by default until migration tests and consumer-specific fallback behavior are added.
+
+## Locked Diagnostic Assumptions
+
+Developer-only tests now lock the following assumptions before any bundle-backed consumer is introduced:
+
+- every proposed adapter record keeps `production_safe=false`
+- `subtype_id` alone is never used as a mapping method
+- `base_type_id`-backed mappings are preferred over slug or name matching
+- exact slug matches without source ID backing remain `Needs review`
+- normalized name matches remain advisory and `Needs review`
+- unmapped bundle-only item types are classified as `Deferred` or `Needs review`, not `Ready candidate`
+- unmapped Forge item types are reported rather than silently ignored
+- readiness and match method summaries are present in serialized output
+- JSON output includes adapter records, unmapped summaries, safety warnings, and recommendation context
+
+Run the diagnostic tests from the backend directory:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests\test_bundle_item_adapter_report.py tests\test_bundle_item_diff.py tests\test_data_bundle_compat.py -q
+```
+
+There is also an opt-in local snapshot guard for the currently observed report counts:
+
+- `Ready candidate`: 19
+- `Needs adapter`: 15
+- `Needs review`: 8
+- `Deferred`: 8
+- `Not comparable`: 1
+
+That snapshot test is skipped unless `FORGE_DATA_BUNDLE_DIR` is set. The counts are local diagnostic expectations, not production compatibility guarantees. Changing them is reasonable only after the bundle source, Forge constants, or accepted mapping assumptions are intentionally updated and the adapter report is reviewed again.
 
 ## 9. What Not To Do Yet
 
