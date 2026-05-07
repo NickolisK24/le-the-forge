@@ -1,0 +1,98 @@
+{
+  "fixture": "le_tools_parsed_gear_context_sample",
+  "purpose": "Developer-only representative parsed LE Tools gear context for bundle item type dry-run diagnostics.",
+  "production_safe": false,
+  "gear": [
+    {
+      "slot": "helmet",
+      "item_type": "helm",
+      "baseTypeID": 0,
+      "name": "Sample Helmet With Base Type"
+    },
+    {
+      "slot": "body_armour",
+      "item_type": "chest",
+      "baseTypeID": 1,
+      "name": "Sample Body Armor With Base Type"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "axe",
+      "baseTypeID": 5,
+      "name": "Sample One-Handed Axe"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "axe",
+      "baseTypeID": 12,
+      "name": "Sample Two-Handed Axe"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "mace",
+      "baseTypeID": 7,
+      "name": "Sample One-Handed Mace"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "mace",
+      "baseTypeID": 13,
+      "name": "Sample Two-Handed Mace"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "sword",
+      "baseTypeID": 9,
+      "name": "Sample One-Handed Sword"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "sword",
+      "baseTypeID": 16,
+      "name": "Sample Two-Handed Sword"
+    },
+    {
+      "slot": "idol",
+      "item_type": "idol_1x1",
+      "baseTypeID": 25,
+      "name": "Sample Eterra Idol"
+    },
+    {
+      "slot": "idol",
+      "item_type": "idol_1x1",
+      "baseTypeID": 26,
+      "name": "Sample Lagon Idol"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "axe",
+      "name": "Sample Axe Missing Base Type"
+    },
+    {
+      "slot": "idol",
+      "item_type": "idol_1x1",
+      "name": "Sample Idol Missing Base Type"
+    },
+    {
+      "slot": "weapon",
+      "item_type": "spear",
+      "baseTypeID": 14,
+      "name": "Sample Spear Review Case"
+    },
+    {
+      "slot": "unknown",
+      "item_type": "unknown_type",
+      "name": "Sample Unknown Type"
+    },
+    {
+      "slot": "belt",
+      "item_type": "belt",
+      "subTypeID": 1,
+      "name": "Sample Subtype Only Belt"
+    },
+    {
+      "slot": "helmet",
+      "name": "Iron Casque"
+    }
+  ]
+}
