@@ -281,3 +281,48 @@ The sidecar should become the single diagnostic object that carries raw context,
 - What is the first non-production consumer that would use the sidecar?
 - How should a future live LET capture be stored safely?
 - Should the sidecar eventually become an internal debug API, or stay CLI-only?
+
+## 13. Initial Developer Implementation
+
+The initial developer-only sidecar builder now lives at:
+
+```text
+backend/app/game_data/le_tools_import_context_sidecar.py
+```
+
+CLI:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py --json
+```
+
+Generated report:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py --output D:\Forge\le-the-forge\docs\generated\le_tools_import_context_sidecar_report.md
+```
+
+The implementation remains developer-only. It builds from the offline stage fixture, copies mapped importer output, pairs raw and mapped records for diagnostics, runs the existing dry-run resolver, validates sidecar safety rules, and keeps `production_safe=false`.
+
+Current summary:
+
+| Metric | Count |
+| --- | ---: |
+| total_items | 12 |
+| resolved | 8 |
+| needs_context | 2 |
+| needs_review | 1 |
+| deferred | 0 |
+| unresolved | 1 |
+| raw_with_base_type_id | 9 |
+| mapped_with_base_type_id | 9 |
+| mapped_missing_item_type | 12 |
+| requires_test_pairing | 11 |
+| raw_with_subtype_only | 1 |

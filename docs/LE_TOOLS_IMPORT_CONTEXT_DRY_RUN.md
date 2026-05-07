@@ -133,6 +133,28 @@ docs/generated/le_tools_import_stage_context_report.md
 
 This report compares raw fixture equipment records to the current mapped importer output. It shows that mapped output preserves `base_type_id`, but does not expose item type context, so any future non-production diagnostic consumer would need explicit context threading rather than relying on production mapped gear alone.
 
+## Sidecar Builder
+
+The sidecar builder creates a single developer-only diagnostic object with raw, mapped, resolver, and context sections:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py --json
+```
+
+Output:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py --output D:\Forge\le-the-forge\docs\generated\le_tools_import_context_sidecar_report.md
+```
+
+The sidecar remains developer-only, does not change importer output, and keeps `production_safe=false` globally and per item.
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:

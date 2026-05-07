@@ -139,3 +139,26 @@ Stage comparison summary:
 | unresolved | 1 |
 
 The key result is that mapped importer output preserves `base_type_id`, which is useful for future diagnostics, but it does not expose item type context. The stage comparison therefore uses explicit test-only pairing between raw fixture records and mapped gear records. That pairing is diagnostic-only and does not change importer output.
+
+## 9. Sidecar Builder
+
+A developer-only sidecar builder now consolidates raw, mapped, resolver, and context data:
+
+```text
+backend/app/game_data/le_tools_import_context_sidecar.py
+```
+
+Command:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\build_le_tools_import_context_sidecar.py
+```
+
+Generated report:
+
+```text
+docs/generated/le_tools_import_context_sidecar_report.md
+```
+
+The sidecar keeps production importer output unchanged. It copies mapped gear, pairs it with raw fixture records for diagnostics, runs the existing dry-run resolver, and validates that `production_safe=false`, subtype-only records do not resolve, name-only records do not resolve, and collapsed slugs missing `base_type_id` stay `needs_context`.
