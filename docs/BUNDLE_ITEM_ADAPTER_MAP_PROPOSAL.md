@@ -159,6 +159,40 @@ Current likely classification:
 
 The adapter should be treated as a bridge, not a new source of truth. The long-term source of truth should remain the validated bundle family plus explicit consumer mapping metadata.
 
+## Developer Adapter Report Command
+
+Generate the proposed mapping report from the backend directory:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\report_bundle_item_adapter_map.py --bundle-dir D:\Forge\last-epoch-data\data_bundle
+```
+
+JSON output:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_adapter_map.py --bundle-dir D:\Forge\last-epoch-data\data_bundle --json
+```
+
+Write a developer report only when an output path is explicit:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_adapter_map.py --bundle-dir D:\Forge\last-epoch-data\data_bundle --output ..\docs\generated\bundle_item_adapter_map_report.md
+```
+
+The command refuses production data output paths such as `data/items/*`. It does not activate migration and does not write unless `--output` is provided.
+
+Readiness categories in the report:
+
+- `Ready candidate`: strong ID-backed match.
+- `Needs adapter`: Forge slug differs, but `base_type_id` or equivalent mapping exists.
+- `Needs review`: slug/name matching only or incomplete metadata.
+- `Not comparable`: current Forge lacks required IDs.
+- `Deferred`: non-equipment or unsupported type.
+- `Unsafe`: would require `subtype_id` alone or prose/name-only inference for production.
+
+Every proposed adapter record has `production_safe=false` by default until migration tests and consumer-specific fallback behavior are added.
+
 ## 9. What Not To Do Yet
 
 - Do not replace item loaders yet.
