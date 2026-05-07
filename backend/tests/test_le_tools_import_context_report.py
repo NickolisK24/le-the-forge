@@ -6,8 +6,12 @@ from app.game_data.bundle_item_adapter_report import validate_output_path
 from app.game_data.le_tools_import_context_report import (
     build_le_tools_import_context_report,
     extract_import_item_records,
+    load_payload,
     render_le_tools_import_context_report,
 )
+
+
+FIXTURE_PATH = Path(__file__).parent / "fixtures" / "le_tools_parsed_gear_context_sample.json"
 
 
 def test_helm_with_base_type_id_resolves():
@@ -109,3 +113,58 @@ def test_rendered_report_contains_status_sections():
 def test_output_path_guard_refuses_production_data_directory():
     with pytest.raises(ValueError):
         validate_output_path(Path(__file__).resolve().parents[2] / "data" / "items" / "let.md")
+
+
+def test_representative_le_tools_fixture_loads_and_counts_are_stable():
+    report = build_le_tools_import_context_report(load_payload(FIXTURE_PATH), source="fixture")
+
+    assert report["production_safe"] is False
+    assert report["total_items"] == 16
+    assert report["status_counts"] == {
+        "resolved": 10,
+        "needs_context": 3,
+        "needs_review": 1,
+        "deferred": 0,
+        "unresolved": 2,
+    }
+    assert all(item["production_safe"] is False for item in report["items"])
+
+
+def test_representative_fixture_resolves_base_type_backed_records():
+    report = build_le_tools_import_context_report(load_payload(FIXTURE_PATH), source="fixture")
+    resolved = {
+        (item["forge_item_type"], item["base_type_id"]): item["bundle_item_type_id"]
+        for item in report["items"]
+        if item["resolver_status"] == "resolved"
+    }
+
+    assert resolved[("helm", 0)] == "helmet"
+    assert resolved[("chest", 1)] == "body_armor"
+    assert resolved[("axe", 5)] == "one_handed_axe"
+    assert resolved[("axe", 12)] == "two_handed_axe"
+    assert resolved[("mace", 7)] == "one_handed_maces"
+    assert resolved[("mace", 13)] == "two_handed_mace"
+    assert resolved[("sword", 9)] == "one_handed_sword"
+    assert resolved[("sword", 16)] == "two_handed_sword"
+    assert resolved[("idol_1x1", 25)] == "idol_1x1_eterra"
+    assert resolved[("idol_1x1", 26)] == "idol_1x1_lagon"
+
+
+def test_representative_fixture_keeps_context_gaps_unresolved_or_warned():
+    report = build_le_tools_import_context_report(load_payload(FIXTURE_PATH), source="fixture")
+
+    needs_context = [
+        item for item in report["items"] if item["resolver_status"] == "needs_context"
+    ]
+    needs_review = [
+        item for item in report["items"] if item["resolver_status"] == "needs_review"
+    ]
+    unresolved = [
+        item for item in report["items"] if item["resolver_status"] == "unresolved"
+    ]
+
+    assert {item["forge_item_type"] for item in needs_context} == {"axe", "idol_1x1", "belt"}
+    assert any(item["subtype_id_present"] for item in needs_context)
+    assert needs_review[0]["forge_item_type"] == "spear"
+    assert {item["forge_item_type"] for item in unresolved} == {"unknown_type", None}
+    assert all(item["bundle_item_type_id"] is None for item in needs_context + needs_review + unresolved)

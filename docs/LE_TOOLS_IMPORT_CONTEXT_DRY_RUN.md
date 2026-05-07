@@ -36,6 +36,44 @@ Output file:
 
 The command writes only when `--output` is provided and refuses production data directories such as `data/items`.
 
+## Representative Fixture
+
+A representative developer-only parsed gear fixture lives at:
+
+```text
+backend/tests/fixtures/le_tools_parsed_gear_context_sample.json
+```
+
+Run it with:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_context.py --fixture tests\fixtures\le_tools_parsed_gear_context_sample.json
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_context.py --fixture tests\fixtures\le_tools_parsed_gear_context_sample.json --json
+```
+
+Generated report:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_context.py --fixture tests\fixtures\le_tools_parsed_gear_context_sample.json --output ..\docs\generated\le_tools_import_context_fixture_report.md
+```
+
+Expected fixture summary:
+
+- `resolved`: 10
+- `needs_context`: 3
+- `needs_review`: 1
+- `deferred`: 0
+- `unresolved`: 2
+
+The fixture proves that base-type-backed parsed gear records can resolve through the existing developer-only dry-run resolver, including collapsed weapon and idol groups when `baseTypeID` is present. It also proves that missing `baseTypeID`, subtype-only records, name-only records, `spear`, and unknown item types do not silently resolve.
+
+It does not prove production importer compatibility, change importer output, or make any mapping production-safe.
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:
