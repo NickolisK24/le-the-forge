@@ -155,6 +155,20 @@ Output:
 
 The sidecar remains developer-only, does not change importer output, and keeps `production_safe=false` globally and per item.
 
+Validate the current sidecar:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --build-current
+```
+
+Validation report:
+
+```text
+docs/generated/le_tools_import_context_sidecar_validation_report.md
+```
+
+`warning` is the expected current status. `failed` blocks any future non-production consumer work.
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:

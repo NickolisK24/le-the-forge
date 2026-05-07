@@ -162,3 +162,11 @@ docs/generated/le_tools_import_context_sidecar_report.md
 ```
 
 The sidecar keeps production importer output unchanged. It copies mapped gear, pairs it with raw fixture records for diagnostics, runs the existing dry-run resolver, and validates that `production_safe=false`, subtype-only records do not resolve, name-only records do not resolve, and collapsed slugs missing `base_type_id` stay `needs_context`.
+
+Sidecar validation report:
+
+```text
+docs/generated/le_tools_import_context_sidecar_validation_report.md
+```
+
+Current validation status is `warning` with no errors. Warnings are expected because the fixture is synthetic/offline, mapped output lacks item type context, and some records intentionally remain `needs_context`, `needs_review`, or `unresolved`.

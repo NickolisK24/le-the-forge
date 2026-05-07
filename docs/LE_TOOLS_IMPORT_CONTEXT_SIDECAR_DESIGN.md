@@ -326,3 +326,40 @@ Current summary:
 | mapped_missing_item_type | 12 |
 | requires_test_pairing | 11 |
 | raw_with_subtype_only | 1 |
+
+## 14. Sidecar Validation
+
+The developer-only validator lives at:
+
+```text
+backend/app/game_data/le_tools_import_context_sidecar_validator.py
+```
+
+Validate the current built sidecar:
+
+```powershell
+cd D:\Forge\le-the-forge\backend
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --build-current
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --build-current --json
+```
+
+Generated report:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\validate_le_tools_import_context_sidecar.py --build-current --output D:\Forge\le-the-forge\docs\generated\le_tools_import_context_sidecar_validation_report.md
+```
+
+Validation statuses:
+
+- `passed`: no errors or warnings.
+- `warning`: no blocking errors, but known diagnostic limitations remain.
+- `failed`: unsafe or inconsistent sidecar state.
+
+The current sidecar validates as `warning`, not `failed`, because it is synthetic/offline, mapped output lacks item type, some records require context, one record is unresolved, one requires review, and one raw record has subtype-only context. These warnings are expected and block production use, but they do not indicate malformed sidecar output.
+
+Validation fails for `production_safe=true`, resolved subtype-only records, resolved name-only records, resolved `spear`, resolved collapsed slugs without `base_type_id`, missing sections, invalid statuses, and summary mismatches.
