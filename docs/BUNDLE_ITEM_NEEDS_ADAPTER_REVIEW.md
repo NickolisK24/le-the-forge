@@ -172,6 +172,14 @@ Example:
 
 This command is still diagnostic-only and does not activate bundle item type consumption.
 
+The context coverage report quantifies where `base_type_id` is already available:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_type_context.py
+```
+
+It reports `with_base_type_id`, `missing_base_type_id`, resolver status counts, collapsed slug groups, and examples. This should be used before any developer-only consumer adopts the dry-run resolver, because missing context must produce warnings rather than silent fallback.
+
 ## 8. What Not To Do Yet
 
 - Do not wire translations into production loaders.

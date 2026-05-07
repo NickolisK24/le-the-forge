@@ -308,6 +308,33 @@ Resolver statuses:
 
 The resolver is diagnostic-only. Missing `base_type_id` returns `needs_context` because slug-only matching would collapse bundle distinctions for weapons and idols. Every result keeps `production_safe=false`.
 
+Developer-only context coverage report:
+
+```text
+backend/app/game_data/bundle_item_type_context_report.py
+backend/scripts/report_bundle_item_type_context.py
+```
+
+Run it from the backend directory:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_type_context.py
+```
+
+JSON output:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_type_context.py --json
+```
+
+Explicit report output:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_bundle_item_type_context.py --output ..\docs\generated\bundle_item_type_context_report.md
+```
+
+The report measures which current Forge item type inputs have `base_type_id` context and which inputs only have Forge slugs. `needs_context` means a reviewed mapping may exist, but the resolver refuses to guess without `base_type_id`. This identifies where source IDs must be threaded before even a non-production consumer can use canonical bundle item type IDs.
+
 ## 9. What Not To Do Yet
 
 - Do not replace item loaders yet.
