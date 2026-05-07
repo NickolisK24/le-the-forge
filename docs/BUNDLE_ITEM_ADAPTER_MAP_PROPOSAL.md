@@ -235,6 +235,42 @@ There is also an opt-in local snapshot guard for the currently observed report c
 
 That snapshot test is skipped unless `FORGE_DATA_BUNDLE_DIR` is set. The counts are local diagnostic expectations, not production compatibility guarantees. Changing them is reasonable only after the bundle source, Forge constants, or accepted mapping assumptions are intentionally updated and the adapter report is reviewed again.
 
+## Reviewed Mapping Fixture
+
+The current diagnostic review decisions are preserved in:
+
+```text
+backend/tests/fixtures/bundle_item_type_mapping_review.json
+```
+
+This fixture is developer-only test data. It is not imported by production loaders and must not be used as runtime item data.
+
+Review categories:
+
+- `accepted`: diagnostic-only mappings that are `base_type_id`-backed and do not require slug translation.
+- `needs_adapter`: `base_type_id`-backed mappings where Forge slugs differ from bundle `item_type.id` values.
+- `needs_review`: unmapped or ambiguous records that require manual review before any adapter can rely on them.
+- `deferred`: non-equipment or unsupported bundle-only types with no current Forge item type consumer.
+- `unsafe`: mappings that would require invalid identity assumptions, such as `subtype_id` alone.
+
+The current reviewed split is:
+
+- `accepted`: 19
+- `needs_adapter`: 15
+- `needs_review`: 9
+- `deferred`: 8
+- `unsafe`: 0
+
+The extra `needs_review` entry beyond the report readiness count is `spear`, which is `Not comparable` in the report and is intentionally not accepted.
+
+Validate the fixture assumptions from the backend directory:
+
+```powershell
+.\.venv\Scripts\python.exe -m pytest tests\test_bundle_item_mapping_review.py tests\test_bundle_item_adapter_report.py tests\test_bundle_item_diff.py tests\test_data_bundle_compat.py -q
+```
+
+The fixture keeps `production_safe=false` globally and per entry. Before any non-production consumer uses the mapping, the `needs_adapter` entries should be manually reviewed, adapter translation behavior should be tested, and fallback diagnostics should remain visible. Production consumption still requires a separate migration step.
+
 ## 9. What Not To Do Yet
 
 - Do not replace item loaders yet.
