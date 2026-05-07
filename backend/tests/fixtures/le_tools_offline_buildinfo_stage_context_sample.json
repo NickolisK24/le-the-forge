@@ -1,0 +1,114 @@
+{
+  "fixture": "le_tools_offline_buildinfo_stage_context_sample",
+  "purpose": "Developer-only offline LET buildInfo-style fixture for raw-stage versus mapped-output item type context diagnostics.",
+  "production_safe": false,
+  "source": "synthetic_offline_not_captured_from_live_let",
+  "notes": [
+    "This fixture mirrors the expected buildInfo/equipment shape used by the current importer tests more closely than a parsed gear fixture.",
+    "It is not captured from live LE Tools.",
+    "item_type fields are diagnostic raw/source signals only and are not production schema assumptions."
+  ],
+  "expected_summary": {
+    "total_items": 12,
+    "resolved": 8,
+    "needs_context": 2,
+    "needs_review": 1,
+    "deferred": 0,
+    "unresolved": 1
+  },
+  "build_info": {
+    "bio": {
+      "level": 90,
+      "characterClass": 4,
+      "chosenMastery": 1
+    },
+    "charTree": {
+      "selected": {}
+    },
+    "skillTrees": [],
+    "hud": [],
+    "equipment": [
+      {
+        "slot": "helm",
+        "item_type": "helm",
+        "baseTypeID": 0,
+        "name": "Stage Helmet",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "chest",
+        "item_type": "chest",
+        "baseTypeID": 1,
+        "name": "Stage Body Armor",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "baseTypeID": 5,
+        "name": "Stage One-Handed Axe",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "baseTypeID": 12,
+        "name": "Stage Two-Handed Axe",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "mace",
+        "baseTypeID": 7,
+        "name": "Stage One-Handed Mace",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "sword",
+        "baseTypeID": 16,
+        "name": "Stage Two-Handed Sword",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "idol_altar",
+        "item_type": "idol_1x1",
+        "baseTypeID": 25,
+        "name": "Stage Eterra Idol",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "idol_altar",
+        "item_type": "idol_1x1",
+        "baseTypeID": 26,
+        "name": "Stage Lagon Idol",
+        "expected_diagnostic_category": "resolved"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "axe",
+        "name": "Stage Axe Missing Base Type",
+        "expected_diagnostic_category": "needs_context"
+      },
+      {
+        "slot": "belt",
+        "item_type": "belt",
+        "subTypeID": 1,
+        "name": "Stage Subtype-Only Belt",
+        "expected_diagnostic_category": "needs_context"
+      },
+      {
+        "slot": "weapon",
+        "item_type": "spear",
+        "baseTypeID": 14,
+        "name": "Stage Spear Review Case",
+        "expected_diagnostic_category": "needs_review"
+      },
+      {
+        "slot": "helmet",
+        "name": "Stage Name-Only Helmet",
+        "expected_diagnostic_category": "unresolved"
+      }
+    ]
+  }
+}

@@ -95,3 +95,47 @@ Offline fixture context summary from copied mapped output:
 | unresolved | 1 |
 
 This proves the current importer path can preserve `base_type_id` through mapped output for ID-backed records. It does not prove live LET payload correctness, and it does not change production importer behavior.
+
+## 8. Stage Context Comparison
+
+A more explicit raw-stage versus mapped-output fixture lives at:
+
+```text
+backend/tests/fixtures/le_tools_offline_buildinfo_stage_context_sample.json
+```
+
+Run the stage comparison command from `backend`:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_stage_context.py
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_stage_context.py --json
+```
+
+Generated report:
+
+```text
+docs/generated/le_tools_import_stage_context_report.md
+```
+
+Stage comparison summary:
+
+| Metric | Count |
+| --- | ---: |
+| total_items | 12 |
+| raw_with_base_type_id | 9 |
+| mapped_with_base_type_id | 9 |
+| raw_missing_base_type_id | 3 |
+| mapped_missing_item_type | 12 |
+| needs_test_only_pairing | 11 |
+| raw_with_subtype_only | 1 |
+| resolved | 8 |
+| needs_context | 2 |
+| needs_review | 1 |
+| unresolved | 1 |
+
+The key result is that mapped importer output preserves `base_type_id`, which is useful for future diagnostics, but it does not expose item type context. The stage comparison therefore uses explicit test-only pairing between raw fixture records and mapped gear records. That pairing is diagnostic-only and does not change importer output.

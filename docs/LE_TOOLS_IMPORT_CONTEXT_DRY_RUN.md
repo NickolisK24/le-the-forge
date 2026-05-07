@@ -105,6 +105,34 @@ Expected summary:
 - `unresolved`: 1
 - `production_safe`: false
 
+## Stage Context Comparison
+
+The raw-stage versus mapped-output comparison uses:
+
+```text
+backend/tests/fixtures/le_tools_offline_buildinfo_stage_context_sample.json
+```
+
+Command:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_stage_context.py
+```
+
+JSON:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_le_tools_import_stage_context.py --json
+```
+
+Generated report:
+
+```text
+docs/generated/le_tools_import_stage_context_report.md
+```
+
+This report compares raw fixture equipment records to the current mapped importer output. It shows that mapped output preserves `base_type_id`, but does not expose item type context, so any future non-production diagnostic consumer would need explicit context threading rather than relying on production mapped gear alone.
+
 ## Built-In Sample
 
 When no fixture is provided, the command runs a small built-in sample:
