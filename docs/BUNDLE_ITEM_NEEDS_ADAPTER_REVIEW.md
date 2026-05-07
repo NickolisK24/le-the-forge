@@ -155,6 +155,23 @@ Current fixture validation is covered by:
 .\.venv\Scripts\python.exe -m pytest tests\test_bundle_item_adapter_translations.py tests\test_bundle_item_mapping_review.py tests\test_bundle_item_adapter_report.py tests\test_bundle_item_diff.py tests\test_data_bundle_compat.py -q
 ```
 
+Developer-only dry-run behavior is covered by:
+
+```text
+backend/app/game_data/bundle_item_type_dry_run_resolver.py
+backend/scripts/dry_run_bundle_item_type_resolver.py
+```
+
+The resolver applies accepted direct mappings and adapter translations only when the required `base_type_id` context is present. If context is missing, it returns `needs_context` and warns instead of falling back to slug, name, or `subtype_id` matching.
+
+Example:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\dry_run_bundle_item_type_resolver.py --sample helm:0 --sample axe --sample idol_1x1 --sample spear
+```
+
+This command is still diagnostic-only and does not activate bundle item type consumption.
+
 ## 8. What Not To Do Yet
 
 - Do not wire translations into production loaders.

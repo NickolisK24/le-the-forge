@@ -279,6 +279,35 @@ backend/tests/fixtures/bundle_item_type_adapter_translations.json
 
 That fixture contains only the 15 adapter-required mappings. It is still developer-only and requires `base_type_id` context for every translation. It intentionally excludes `spear`, accepted direct matches, deferred bundle-only records, and all `needs_review` entries.
 
+Developer-only dry-run resolver:
+
+```text
+backend/app/game_data/bundle_item_type_dry_run_resolver.py
+backend/scripts/dry_run_bundle_item_type_resolver.py
+```
+
+Run it from the backend directory against current Forge constants:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\dry_run_bundle_item_type_resolver.py --current-forge
+```
+
+Run explicit samples:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\dry_run_bundle_item_type_resolver.py --sample helm:0 --sample axe --sample spear --json
+```
+
+Resolver statuses:
+
+- `resolved`: reviewed direct mapping or adapter translation matched with required `base_type_id`.
+- `needs_context`: a reviewed mapping may exist, but required `base_type_id` context is missing or mismatched.
+- `needs_review`: the input is known but blocked for manual review, such as `spear`.
+- `deferred`: reserved for deferred bundle-only categories.
+- `unresolved`: no reviewed mapping exists.
+
+The resolver is diagnostic-only. Missing `base_type_id` returns `needs_context` because slug-only matching would collapse bundle distinctions for weapons and idols. Every result keeps `production_safe=false`.
+
 ## 9. What Not To Do Yet
 
 - Do not replace item loaders yet.
