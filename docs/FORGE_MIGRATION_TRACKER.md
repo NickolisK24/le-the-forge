@@ -157,7 +157,7 @@ Current disposition:
 
 - Affix `910` has a duplicate `canRollOn` target that is accepted as a known decoded-source duplicate for diagnostic planning only.
 - Accepted diagnostic policy: exact raw-source duplicate eligibility targets may be downgraded to warning-only diagnostically only when stable source identity exists, targets do not conflict, normalized target identity is unchanged, raw duplicate count is preserved, and duplicate positions remain visible.
-- Affix `910` is a candidate for this proposed warning-only classification because both raw entries are source `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
+- Affix `910` satisfies this accepted warning-only classification because both raw entries are source `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
 - Phase 3 now reports `validation_status=warning` after applying the accepted policy in the diagnostic validator/report.
 - Phase 4 `affix_tags` / category validation exists as a warning-level diagnostic gate, but it does not claim eligibility is safe and remains separate from identity and eligibility.
 - Phase 5 saved-vs-fresh comparison is stable with zero count, warning, and error deltas. Its combined `migration_gate_status` is `warning`.

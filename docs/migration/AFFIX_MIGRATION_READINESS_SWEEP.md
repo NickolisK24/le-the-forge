@@ -101,7 +101,7 @@ Sidecar diagnostics:
 | Unsupported/unresolved eligibility fields | 115 |
 | `production_safe` | `false` |
 
-Current blocker:
+Current warning-only finding:
 
 - Affix `910` retains duplicate raw-source `canRollOn` evidence for `IDOL_4x1`, but it now satisfies the accepted exact-duplicate diagnostic policy and is warning-only.
 - The generated Phase 3 report preserves raw duplicate count `2`, duplicate positions `[0, 1]`, and labels the normalized unique-target view as diagnostic-only.
