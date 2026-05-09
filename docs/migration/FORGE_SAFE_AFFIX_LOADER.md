@@ -72,3 +72,13 @@ Optional query parameters:
 The endpoint loads the configured file on demand through `ForgeSafeAffixLoader`; it does not duplicate validation logic and does not auto-load the export at app startup. When the flag is disabled, the endpoint returns a disabled debug response.
 
 This endpoint does NOT power production planner logic, APIs, UI, crafting, simulation, or gameplay behavior. It is read-only and debug-only.
+
+## Frontend Debug Page
+
+Development builds register a matching frontend inspection page:
+
+`/debug/forge-safe-affixes`
+
+The page calls `GET /debug/forge-safe-affixes`, displays the loader summary, warning state, debug/read-only flags, and a limited sample of records. It also supports a `limit` control and an optional affix ID lookup.
+
+This page is available only through the frontend debug route block. It does not fetch from production-facing pages, does not mutate planner state, and does not replace existing affix UI/data.
