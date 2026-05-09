@@ -25,6 +25,7 @@ The current migration program is diagnostics-first.
 | Importer behavior | Production importer output remains unchanged. |
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
+| Follow-on affix diagnostics | `last-epoch-data` now has a Phase 1 affix / embedded tier source-shape validator. It is diagnostic-only, warning-level, and does not generate or consume affix bundle families. |
 
 Current diagnostic counts:
 
@@ -54,6 +55,26 @@ Current sidecar comparison checkpoint:
 | Saved/fresh count deltas | zero |
 | Warning deltas | intentional and visible |
 | Production safety | `production_safe=false` |
+
+Follow-on affix diagnostic checkpoint:
+
+| Metric | Current Value |
+| --- | ---: |
+| Affix shape validation status | `warning` |
+| Total affixes | 1227 |
+| Equipment affixes | 1112 |
+| Idol affixes | 115 |
+| Total embedded tiers | 6959 |
+| Missing required affix identity fields | 0 |
+| Missing required tier fields | 0 |
+| Duplicate source identities | 0 |
+| Ambiguous name collisions | 28 |
+| Malformed tier range warnings | 136 |
+| Missing stat/modifier reference warnings | 115 |
+| Unsupported/unresolved field warnings | 1112 |
+| Production safety | `production_safe=false` |
+
+The affix checkpoint is outside this item milestone. It records that source-shape diagnostics have started for the next family area, not that affix migration is complete. `affix_eligibility` and `affix_tags` remain out of scope for this phase.
 
 ## 3. What Has Been Proven
 
@@ -179,7 +200,8 @@ Production behavior remains anchored to existing Forge static data, loaders, imp
 ### Data/Bundle
 
 - Many Required Now families remain deferred or warning-only.
-- Affixes, affix tiers, affix eligibility, and affix tags are not migrated.
+- Affixes and embedded affix tiers have a Phase 1 source-shape validator only; they are not generated as bundle families and are not migrated.
+- Affix eligibility and affix tags are not validated in Phase 1 and remain separate gates.
 - Implicit references are preserved only as references; they are not resolved mechanics.
 - Enemy profiles and corruption scaling remain unresolved.
 - Tooltip/prose-derived mechanics are not sufficient for canonical simulation behavior.
@@ -280,6 +302,8 @@ The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation
 
 The next canonical planning target is not production consumption. It should be a diagnostic-first source audit and migration plan for `affixes` and `affix_tiers`, with `affix_eligibility` and `affix_tags` kept separate unless source evidence is clear.
 
+That planning has started in `last-epoch-data`: the affix source audit exists, and Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
+
 Any next data-family planning step should:
 
 - Keep the sidecar diagnostics milestone as a completed diagnostic boundary.
@@ -287,10 +311,11 @@ Any next data-family planning step should:
 - Remain explicitly developer-only.
 - Preserve visible warning/deferred/block states.
 - Prove the next data-family source and validation contract before implementation.
+- Keep `affix_eligibility` and `affix_tags` out of scope until their own diagnostic gates exist.
 
 Recommended output for the next step:
 
-- A planning-only source audit for `affixes` / `affix_tiers`.
+- An affix identity/provenance validator for `affixes` / embedded `affix_tiers`.
 - A separate decision on whether `affix_eligibility` and `affix_tags` have enough source evidence to plan now or should remain deferred.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
@@ -309,6 +334,8 @@ Do not:
 - Treat `implicit_refs` as stat mechanics.
 - Jump into DPS, enemy, corruption, or runtime mechanic migration before data architecture is stable.
 - Mark anything `production_safe=true`.
+- Treat affix source-shape validation as migration completion.
+- Validate or consume `affix_eligibility` and `affix_tags` through the Phase 1 affix shape diagnostic.
 
 ## 11. Milestone Exit Conditions
 
@@ -321,7 +348,8 @@ Moving beyond this milestone requires more than diagnostics existing. Exit condi
 - Production-safe criteria documented before any production migration.
 - Validated source ID preservation for the relevant input path.
 - Confirmed live LET payload shape if LET migration is in scope.
-- Affix migration planning complete before affix/eligibility consumption begins.
+- Affix identity/provenance validation complete before affix family generation or Forge consumption begins.
+- Separate eligibility and tag diagnostics complete before affix eligibility or tag consumption begins.
 - Tests covering collapsed groups, missing context, blocked mappings, and unsafe mutation cases.
 
 Until those conditions are satisfied, the program remains in the diagnostic checkpoint phase.
