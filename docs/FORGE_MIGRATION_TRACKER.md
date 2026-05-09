@@ -31,6 +31,7 @@ Short version:
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
 - The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
+- The diagnostic-only modifier resolution policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; unresolved, malformed, and unsupported stat/modifier evidence must remain unresolved in any future controlled modifier resolver prototype.
 
 ## 2. Current Safety Boundary
 
@@ -164,7 +165,7 @@ Current disposition:
 
 Next safe step:
 
-- Treat the non-production affix inspection stack as complete for read-only diagnostics. The next architecture target should be a stat/modifier reference audit, because gameplay correctness cannot advance safely until affix modifier references, unsupported fields, and missing stat/modifier evidence are audited separately from identity, eligibility, and tag/category inspection.
+- Treat the non-production affix inspection stack as complete for read-only diagnostics. The next architecture target should follow the diagnostic-only modifier resolution policy in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; gameplay correctness cannot advance safely until unresolved references, unsupported fields, and malformed stat/modifier evidence are kept out of resolved semantics.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -387,7 +388,7 @@ Next safe step:
 | `metadata` | `exports_json/metadata.json` | generated; warning | compatibility reader only | High for patch/build; Partial for full extractor/source hash coverage | Normalized | control-plane only | Keep linked to bundle validation and compatibility checks. |
 | `item_types` | `exports_json/items.json` base type records | generated; passed | diagnostics only; not production-consumed | Verified for base_type_id/name; Partial/Inferred for slug/slot/category | Canonical-ready for identity/type only | `production_safe=false` | Plan first non-production diagnostic consumer. |
 | `base_items` | `exports_json/items.json` subtype records | generated; passed | diagnostics only; not production-consumed | Verified for composite IDs/name/requirements where present; Partial for implicits/tags | Canonical-ready for identity/basic requirements only | no name-only migration | Block production use until Forge has source IDs/composite matching. |
-| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Non-production inspection stack is complete through Phase 6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact. Next safe architecture target is a stat/modifier reference audit, not production consumption. |
+| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Non-production inspection stack is complete through Phase 6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact. Modifier resolution policy exists for future inspection-only resolver planning; no production consumption. |
 | `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate tier normalization and semantics separately. |
 | `affix_eligibility` | `exports_json/affixes.json` `canRollOn`, `rollsOn`, `classSpecificity`; `data_bundle/families/item_types.json` reference set | diagnostic `warning`; deferred | current Forge simplified/static logic | Partial/Unknown | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity | Preserve affix 910 raw duplicate evidence and warning metadata in any broader non-production inspection or resolver prototype. |
 | `affix_tags` | `exports_json/affixes.json` `tags`, `derivedTags`, display category, group, property, modifier type, special affix type, and `rollsOn` | diagnostic `warning`; deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity or eligibility | Keep warning state visible; do not generate family or Forge consumption. |
@@ -803,8 +804,8 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 
 ### Later
 
-1. Next architecture target: plan a stat/modifier reference audit before any controlled modifier resolver. This most directly advances safe gameplay correctness because current diagnostics still report missing stat/modifier references, unsupported fields, and warning-only tier/modifier semantics.
-2. Defer a controlled non-production affix modifier resolver until stat/modifier references have their own diagnostic evidence, failure modes, and warning propagation.
+1. Treat `docs/migration/MODIFIER_RESOLUTION_POLICY.md` as the contract for any future controlled modifier resolver prototype.
+2. Defer a controlled non-production affix modifier resolver until it can preserve unresolved, malformed, and unsupported references exactly as the policy requires.
 3. Defer a non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
 4. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
 5. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.

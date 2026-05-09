@@ -722,3 +722,12 @@ Constraints:
 ```
 
 Rationale: the inspection stack now proves affix record identity, provenance, eligibility warning state, tag/category warning state, deterministic resolver output, and per-affix diagnostic records. The next step that most directly moves toward safe gameplay correctness is not a UI/report surface or production consumer; it is a stat/modifier reference audit that determines whether affix modifier evidence can be trusted enough to design a later controlled, non-production modifier resolver.
+
+Policy update:
+
+- `docs/migration/MODIFIER_RESOLUTION_POLICY.md` defines the current diagnostic-only modifier resolution policy.
+- The policy records current audited categories: 6844 structurally present references, 115 unresolved references, 136 malformed or semantically unresolved structures, and 1112 unsupported or unresolved structures.
+- A future controlled modifier resolver prototype may include only inspection-safe structurally present references and must keep unresolved, malformed, and unsupported evidence out of resolved semantics.
+- Unsupported structures cannot be guessed.
+- Warning metadata and provenance must propagate.
+- The policy does not implement a resolver, does not change generated data, and does not make affixes production-safe.
