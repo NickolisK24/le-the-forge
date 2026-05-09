@@ -116,8 +116,14 @@ Follow-on affix eligibility checkpoint:
 Current blocking finding:
 
 - Equipment affix `910` at `exports_json/affixes.json` path `equipment[910].canRollOn` has duplicate raw target values `["IDOL_4x1", "IDOL_4x1"]`, normalized to duplicate target `IDOL_4X1`.
-- Diagnostic classification: `exact_duplicate_in_current_export`.
-- Origin assessment before `exports_json/affixes.json`: `unresolved/unknown`.
+- Earliest available decoded source: `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn`, where raw values are `[31, 31]`.
+- Enum `31` resolves to `IDOL_4x1`.
+- `exports_json/affixes.json` preserves the duplicate as `["IDOL_4x1", "IDOL_4x1"]`.
+- Normalization changes only casing/format to `IDOL_4X1`; it does not change identity.
+- Current evidence does not show `process_affixes.py` or `process_affixes_tt.py` introduced the duplicate after `MasterAffixesList.json`.
+- Byte-level/game-raw origin remains unresolved.
+- Disposition: known decoded-source duplicate for diagnostic planning only. Diagnostic-only consumers may report both raw duplicate count and a normalized unique target view, but source/generated data must not be deduplicated.
+- Phase 3 remains `validation_status=error` until a separate policy decides whether raw-source exact duplicates are blocking or warning-only.
 
 Warning-only context:
 
@@ -354,7 +360,9 @@ The next canonical planning target is not production consumption. It should be a
 
 That planning has started in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, and Phase 3 eligibility validation is complete as error-level diagnostic output. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
-The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved, so the eligibility gate remains error-level and `production_safe=false`.
+The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved.
+
+Disposition: treat this as a known decoded-source duplicate for diagnostic planning only. Diagnostic-only consumers may present both the raw duplicate count and a normalized unique-target view, but that view is a report convenience, not a mutation of source evidence. Production deduplication is not allowed. Phase 3 remains `validation_status=error` until an explicit policy decides whether raw-source exact duplicates are blocking or warning-only. `production_safe=false` remains unchanged.
 
 Any next data-family planning step should:
 
@@ -365,11 +373,12 @@ Any next data-family planning step should:
 - Prove the next data-family source and validation contract before implementation.
 - Keep `affix_tags` out of scope until its own diagnostic gate exists; keep `affix_eligibility` separate from affix identity and blocked until its error state is reviewed or resolved.
 - Preserve the affix 910 raw duplicate report; do not deduplicate source or generated data as part of diagnostics.
+- Phase 4 `affix_tags` may be planned after this disposition, but it must not claim affix eligibility is safe or bypass the Phase 3 error policy.
 
 Recommended output for the next step:
 
-- Decide the explicit disposition for the Phase 3 duplicate `canRollOn` target finding: accept it as a known decoded-source duplicate with visible error-level diagnostics, or perform a separate byte-level `resources.assets` / TypeTree-walker trace before any migration gate advances.
-- Defer Phase 4 `affix_tags` planning until the duplicate eligibility evidence has that explicit disposition; then make a separate decision on whether `affix_tags` has enough source evidence to plan now or should remain deferred.
+- Decide in a separate policy task whether the known decoded-source duplicate should remain blocking or become warning-only; until then Phase 3 remains `error`.
+- Plan Phase 4 `affix_tags` as a separate diagnostic-only gate if source evidence is sufficient, without claiming affix eligibility is safe.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
