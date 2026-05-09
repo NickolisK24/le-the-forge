@@ -134,7 +134,7 @@ Accepted exact duplicate eligibility policy:
 - Exact duplicates may be downgraded to warning-only diagnostically if stable source identity exists, no conflicting targets exist, normalized target identity is unchanged, raw duplicate count is preserved, duplicate positions are reported, and `production_safe=false` remains explicit.
 - Affix `910` satisfies warning-only diagnostic classification under this accepted policy because both raw entries are enum `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
 - The policy does not deduplicate source data, does not approve production output changes, does not claim eligibility is production-safe, and does not automatically authorize production migration.
-- Phase 3 is warning-only because the policy has been explicitly accepted and implemented in the diagnostic validator/report. Phase 6 may be planned only as read-only diagnostic consumer design while still keeping `production_safe=false`.
+- Phase 3 is warning-only because the policy has been explicitly accepted and implemented in the diagnostic validator/report. Phase 6 is implemented only as a CLI-only read-only diagnostic consumer while still keeping `production_safe=false`.
 
 Warning-only context:
 
@@ -186,7 +186,7 @@ Follow-on affix readiness sweep:
 | Metric | Current Value |
 | --- | --- |
 | Report path | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` |
-| `non_production_consumer_allowed` | `true` for planning only |
+| `non_production_consumer_allowed` | `true` for the minimum read-only diagnostic consumer |
 | Phase 1 status | `warning` |
 | Phase 2 status | `warning` |
 | Phase 3 status | `warning` |
@@ -197,7 +197,7 @@ Follow-on affix readiness sweep:
 | Error deltas | 0 |
 | Production safety | `production_safe=false` |
 
-The readiness sweep is diagnostic-only. It concludes that minimum safe Phase 6 affix consumer planning is allowed only for a read-only, developer-only diagnostic consumer because Phase 3 is warning-level and Phase 5 is warning-level with zero deltas. This does not authorize production migration or bundle family generation.
+The readiness sweep is diagnostic-only. It allowed the minimum safe Phase 6 affix consumer only as a read-only, developer-only diagnostic consumer because Phase 3 is warning-level and Phase 5 is warning-level with zero deltas. This does not authorize production migration or bundle family generation.
 
 Affix diagnostics milestone closeout:
 
@@ -206,9 +206,10 @@ Affix diagnostics milestone closeout:
 - Phase 3 affix eligibility diagnostic is complete with `warning` status after accepted exact duplicate policy application.
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
-- Affix readiness sweep is complete and allows Phase 6 diagnostic consumer planning only.
+- Affix readiness sweep is complete and allowed the minimum Phase 6 diagnostic consumer.
 - Phase 6 diagnostic consumer planning is complete in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
 - Phase 6 diagnostic consumer implementation is complete as a CLI-only read-only report over approved generated diagnostic artifacts.
+- Phase 6 report status is `non_production_inspection_allowed=true`, with all Phase 1-5 statuses still warning-level and `production_safe=false`.
 - Count deltas, warning deltas, and error deltas are all zero across the comparison.
 - Combined `migration_gate_status` is `warning`.
 - Affix `910` duplicate `canRollOn` evidence remains warning-only and is not deduplicated.
@@ -440,7 +441,7 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. This closes the current sidecar diagnostics milestone as complete for non-production validation.
 
-The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics and allows Phase 6 read-only diagnostic consumer implementation planning, but production migration remains blocked.
+The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics, including the minimum Phase 6 read-only diagnostic consumer, but production migration remains blocked.
 
 That planning has reached a diagnostic-complete checkpoint in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as warning-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=warning`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
@@ -461,8 +462,8 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Consider a saved-vs-fresh comparison for the Phase 6 affix diagnostic consumer report if the report becomes a baseline artifact.
-- Keep Phase 6 scope CLI-only, read-only, developer-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
+- Plan a broader non-production affix inspection surface or a controlled affix resolver prototype.
+- Keep any next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

@@ -32,7 +32,7 @@ The Phase 6 consumer may:
 - Compare or restate Phase 5 saved-vs-fresh agreement.
 - Keep all output explicitly diagnostic-only and `production_safe=false`.
 
-The first implementation should be CLI-only and read-only. It should not be exposed through Flask routes, frontend screens, importers, loaders, simulation code, or crafting/optimizer systems.
+The implementation is CLI-only and read-only. It must not be exposed through Flask routes, frontend screens, importers, loaders, simulation code, or crafting/optimizer systems.
 
 ## 3. Forbidden Scope
 
@@ -297,16 +297,27 @@ Current generated report status:
 
 This implementation remains inspection-only and non-production.
 
+Closeout boundary:
+
+- The consumer exists and reads generated diagnostic artifacts only.
+- It is read-only and non-production only.
+- It does not consume production bundle data.
+- It does not power build math, item generation, crafting, APIs, frontend, simulation, or gameplay output.
+- It does not replace existing Forge affix behavior.
+- It does not silently deduplicate affix `910`.
+- It does not make affixes, tiers, eligibility, or tags production-ready.
+- Production migration is still forbidden.
+
 ## 13. Recommended Next Implementation Prompt
 
 Recommended next task:
 
 ```text
-Create a saved-vs-fresh comparison for the Phase 6 affix diagnostic consumer report if this report should become a baseline artifact.
+Plan a broader non-production affix inspection surface or a controlled affix resolver prototype.
 
 Constraints:
 - Diagnostic-only.
-- Read generated diagnostics and saved Phase 6 report artifacts only.
+- Read generated diagnostics and Phase 6 report artifacts only unless a separate diagnostic input contract is approved.
 - Preserve production_safe=false.
 - Preserve warning metadata.
 - Preserve affix 910 raw duplicate count and duplicate positions.
