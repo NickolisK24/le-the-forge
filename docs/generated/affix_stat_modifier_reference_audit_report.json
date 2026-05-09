@@ -1,0 +1,132 @@
+{
+  "diagnostic": "affix_stat_modifier_reference_audit",
+  "diagnostic_only": true,
+  "diagnostics_dir": "D:\\Forge\\last-epoch-data\\docs\\generated",
+  "errors": [],
+  "findings": [
+    {
+      "code": "malformed_modifier_structures",
+      "message": "136 modifier/tier structures are malformed or semantically unresolved.",
+      "severity": "warning",
+      "source": "phase_1_source_shape"
+    },
+    {
+      "code": "unresolved_stat_modifier_references",
+      "message": "115 stat/modifier references are unresolved.",
+      "severity": "warning",
+      "source": "phase_1_source_shape"
+    },
+    {
+      "code": "unsupported_modifier_structures",
+      "message": "1112 records contain unsupported or unresolved modifier structures.",
+      "severity": "warning",
+      "source": "phase_1_source_shape"
+    }
+  ],
+  "forbidden_production_usage": [
+    "Do not use this report to power build math.",
+    "Do not use this report for item generation.",
+    "Do not use this report for crafting legality.",
+    "Do not expose this report through production APIs or frontend behavior.",
+    "Do not replace existing Forge affix behavior.",
+    "Do not generate or mutate bundle families from this report.",
+    "Do not silently deduplicate affix 910.",
+    "Do not mark production_safe=true.",
+    "Do not use this audit as a gameplay modifier resolver.",
+    "Do not treat structurally present references as gameplay-correct modifiers."
+  ],
+  "minimum_guarantees_before_modifier_resolver": [
+    "Every modifier reference must have stable source identity and provenance.",
+    "No modifier may rely on display-name-only identity.",
+    "No modifier may rely on subtype_id-only identity.",
+    "Unresolved stat/modifier references must be zero or explicitly policy-classified as warning-only.",
+    "Malformed tier/modifier structures need a documented semantic policy before resolution.",
+    "Unsupported TypeTree or extra fields must be modeled or explicitly excluded.",
+    "Diagnostic output must remain deterministic with saved-vs-fresh comparison coverage.",
+    "A future modifier resolver must stay non-production until a separate production readiness review."
+  ],
+  "modifier_families": [
+    {
+      "count": 1112,
+      "family": "equipment_affix_modifier_evidence",
+      "status": "diagnostic_only"
+    },
+    {
+      "count": 115,
+      "family": "idol_affix_modifier_evidence",
+      "status": "diagnostic_only"
+    },
+    {
+      "count": 6959,
+      "family": "embedded_tier_modifier_slots",
+      "status": "structurally_present_only"
+    },
+    {
+      "count": 11,
+      "family": "tag_category_modifier_context",
+      "status": "warning_metadata_only"
+    }
+  ],
+  "notes": [
+    "Resolved means structurally present in diagnostic evidence, not gameplay-ready.",
+    "This audit does not interpret tooltip prose or modifier formulas.",
+    "This audit does not create an affix modifier resolver.",
+    "production_safe remains false."
+  ],
+  "per_affix_artifact_path": "D:\\Forge\\le-the-forge\\docs\\generated\\controlled_affix_per_affix_diagnostic_records.json",
+  "production_safe": false,
+  "scope": "non_production_read_only_stat_modifier_reference_audit",
+  "structurally_safe_categories": [
+    {
+      "category": "diagnostic_embedded_tier_reference_slots",
+      "count": 6959,
+      "notes": "Tier/reference slots are countable and deterministic, but not gameplay-ready.",
+      "status": "structurally_present_only"
+    },
+    {
+      "category": "references_with_structural_evidence",
+      "count": 6844,
+      "notes": "These references are present in diagnostics; formulas and gameplay semantics remain unaudited.",
+      "status": "inspection_safe"
+    }
+  ],
+  "summary": {
+    "ambiguous_references": 0,
+    "deterministic_inspection_output_stable": true,
+    "duplicate_references": 0,
+    "equipment_affixes": 1112,
+    "idol_affixes": 115,
+    "malformed_modifier_structures": 136,
+    "missing_provenance_source_references": 0,
+    "production_safe": false,
+    "resolved_references": 6844,
+    "total_affix_stat_modifier_references": 6959,
+    "total_affixes": 1227,
+    "unresolved_references": 115,
+    "unsafe_identity_assumption_references": 0,
+    "unsupported_modifier_structures": 1112
+  },
+  "unsafe_categories": [
+    {
+      "category": "unresolved_references",
+      "count": 115,
+      "status": "unsafe_for_modifier_resolver"
+    },
+    {
+      "category": "malformed_modifier_structures",
+      "count": 136,
+      "status": "unsafe_until_semantics_audited"
+    },
+    {
+      "category": "unsupported_modifier_structures",
+      "count": 1112,
+      "status": "unsafe_until_modeled"
+    }
+  ],
+  "validation_status": "warning",
+  "warnings": [
+    "136 modifier/tier structures are malformed or semantically unresolved.",
+    "115 stat/modifier references are unresolved.",
+    "1112 records contain unsupported or unresolved modifier structures."
+  ]
+}

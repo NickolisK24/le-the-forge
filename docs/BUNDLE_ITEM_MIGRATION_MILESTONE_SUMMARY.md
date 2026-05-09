@@ -229,6 +229,25 @@ Non-production affix inspection stack closeout:
 - Warning metadata remains attached and visible.
 - This closes the inspection stack milestone only. Production migration is still forbidden.
 
+Stat/modifier reference audit checkpoint:
+
+- Diagnostic module and reports now exist for stat/modifier reference evidence.
+- Report paths: `docs/generated/affix_stat_modifier_reference_audit_report.md` and `docs/generated/affix_stat_modifier_reference_audit_report.json`.
+- Current status is `validation_status=warning`.
+- Total affix stat/modifier reference slots: 6959.
+- Structurally present references: 6844.
+- Unresolved references: 115.
+- Duplicate references: 0.
+- Ambiguous references: 0.
+- Malformed or semantically unresolved modifier structures: 136.
+- Unsupported or unresolved modifier structures: 1112.
+- Missing provenance/source references: 0.
+- Unsafe identity assumption references: 0.
+- Deterministic inspection output remains stable.
+- `production_safe=false`.
+
+This audit does not create a gameplay modifier resolver and does not prove gameplay correctness. It shows the next blockers that must be addressed before any controlled modifier resolver prototype can be designed safely.
+
 ## 3. What Has Been Proven
 
 ### Bundle Control Plane
@@ -479,6 +498,7 @@ Recommended output for the next step:
 - Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
 - Do not implement a controlled affix modifier resolver until stat/modifier references, unsupported fields, and missing modifier evidence have their own diagnostic audit.
+- After the stat/modifier reference audit, do not proceed to a modifier resolver while unresolved references, malformed structures, and unsupported structures remain warning-level blockers without explicit policy.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

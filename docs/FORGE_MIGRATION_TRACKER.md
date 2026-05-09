@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | The non-production affix inspection stack milestone is complete. It includes Phase 1 source/tier shape diagnostics, Phase 2 identity/provenance diagnostics, Phase 3 eligibility diagnostics with accepted exact duplicate policy handling, Phase 4 tag/category diagnostics, Phase 5 saved-vs-fresh comparison, Phase 6 read-only diagnostic consumer, controlled affix resolver prototype, saved-vs-fresh resolver comparison, and the per-affix diagnostic record artifact. All reports remain diagnostic-only. Phase 1-5 are `warning`; Phase 5 has zero count/warning/error deltas; Phase 6 records `non_production_inspection_allowed=true`; the resolver comparison is `warning` with deterministic output agreement; the per-affix artifact has 1227 records, 1112 equipment records, 115 idol records, and 6959 embedded tiers. Affix `910` duplicate eligibility evidence and warning metadata remain preserved. `production_safe=false` remains explicit. No affix bundle family is generated or consumed. |
+| Current affix diagnostic state | The non-production affix inspection stack milestone is complete. It includes Phase 1 source/tier shape diagnostics, Phase 2 identity/provenance diagnostics, Phase 3 eligibility diagnostics with accepted exact duplicate policy handling, Phase 4 tag/category diagnostics, Phase 5 saved-vs-fresh comparison, Phase 6 read-only diagnostic consumer, controlled affix resolver prototype, saved-vs-fresh resolver comparison, and the per-affix diagnostic record artifact. All reports remain diagnostic-only. Phase 1-5 are `warning`; Phase 5 has zero count/warning/error deltas; Phase 6 records `non_production_inspection_allowed=true`; the resolver comparison is `warning` with deterministic output agreement; the per-affix artifact has 1227 records, 1112 equipment records, 115 idol records, and 6959 embedded tiers. The stat/modifier reference audit now exists as a separate diagnostic layer with `validation_status=warning`: 6959 total reference slots, 6844 structurally present references, 115 unresolved references, 136 malformed/semantic warnings, 1112 unsupported/unresolved structures, 0 duplicate references, 0 ambiguous references, and `production_safe=false`. Affix `910` duplicate eligibility evidence and warning metadata remain preserved. No affix bundle family is generated or consumed. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -30,7 +30,7 @@ Short version:
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
-- The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
+- The non-production affix inspection stack is complete for diagnostics, and the first stat/modifier reference audit now exists as warning-level diagnostic evidence. Production affix migration remains forbidden.
 
 ## 2. Current Safety Boundary
 
@@ -701,6 +701,30 @@ These values come from the diagnostic-only per-affix record artifact generated f
 
 Each record carries stable source identity, display label as display-only, equipment/idol classification, tier inspection summary, provenance, eligibility summary, tag/category summary, attached warning categories, raw duplicate evidence where present, diagnostic-only normalized views where present, `production_safe=false`, and `diagnostic_only=true`. This artifact does not silently deduplicate affix `910` and does not approve production consumption.
 
+### Current Affix Stat/Modifier Reference Audit
+
+These values come from the diagnostic-only stat/modifier reference audit:
+
+- Markdown: `docs/generated/affix_stat_modifier_reference_audit_report.md`
+- JSON: `docs/generated/affix_stat_modifier_reference_audit_report.json`
+
+| Metric | Value |
+| --- | ---: |
+| validation_status | `warning` |
+| total affix stat/modifier references | 6959 |
+| structurally present references | 6844 |
+| unresolved references | 115 |
+| duplicate references | 0 |
+| ambiguous references | 0 |
+| malformed modifier structures | 136 |
+| unsupported modifier structures | 1112 |
+| missing provenance/source references | 0 |
+| unsafe identity assumption references | 0 |
+| deterministic inspection output stable | `true` |
+| production_safe | `false` |
+
+This audit is not a modifier resolver. `resolved_references` means structurally present in diagnostic evidence, not gameplay-correct. The audit keeps unresolved references, malformed tier/modifier structures, and unsupported/unresolved structures as warning-level blockers for any future controlled modifier resolver.
+
 ## 7. Current Blockers
 
 - Live LET payload shape is unconfirmed.
@@ -716,6 +740,7 @@ Each record carries stable source identity, display label as display-only, equip
 - Affix Phase 5 saved-vs-fresh comparison is stable with zero deltas, and the combined gate is warning-only.
 - Controlled affix resolver saved-vs-fresh comparison is stable with zero count, phase-status, and warning-category deltas, deterministic output agreement, and affix `910` duplicate evidence agreement.
 - Controlled affix per-affix diagnostic records exist for inspection only, but they are not a canonical bundle family and do not contain gameplay-safe tier semantics.
+- Stat/modifier reference audit is warning-level: 115 unresolved references, 136 malformed/semantically unresolved modifier structures, and 1112 unsupported/unresolved structures block any controlled modifier resolver prototype.
 
 ## 8. Current Risks
 
