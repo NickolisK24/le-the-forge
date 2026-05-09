@@ -467,4 +467,7 @@ Policy update:
 - It requires unresolved, malformed, and unsupported references to remain unresolved or unsupported in resolver output.
 - It forbids guessing unsupported modifier semantics.
 - It keeps warning metadata, provenance, `diagnostic_only=true`, and `production_safe=false` mandatory.
-- It does not authorize resolver implementation, gameplay correctness claims, or production migration.
+- The first controlled modifier resolver prototype is now implemented as CLI-only read-only diagnostic tooling in `backend/app/game_data/controlled_modifier_resolver_prototype.py` and `backend/scripts/report_controlled_modifier_resolver_prototype.py`.
+- The generated reports are `docs/generated/controlled_modifier_resolver_prototype_report.md` and `docs/generated/controlled_modifier_resolver_prototype_report.json`.
+- Current resolver summary: 6959 total modifier references, 5596 resolved structural inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
+- The implementation does not authorize gameplay correctness claims or production migration.

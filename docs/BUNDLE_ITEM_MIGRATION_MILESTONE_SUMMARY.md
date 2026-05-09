@@ -476,14 +476,17 @@ Any next data-family planning step should:
 Recommended output for the next step:
 
 - The diagnostic-only modifier resolution policy is now captured in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`.
-- The policy permits only inspection-safe resolution planning. It does not implement a resolver and does not claim gameplay correctness.
+- The policy permits only inspection-safe resolution. It does not claim gameplay correctness.
 - Structurally present references, currently 6844, may be included only as inspection-safe normalized reference objects.
 - Unresolved references, currently 115, must remain unresolved.
 - Malformed or semantically unresolved structures, currently 136, must remain unresolved until a semantic policy exists.
 - Unsupported or unresolved structures, currently 1112, must remain unsupported until explicitly modeled or excluded.
 - Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
-- Do not implement a controlled affix modifier resolver unless it uses the policy as a failure contract and keeps unresolved/malformed/unsupported references out of resolved modifier semantics.
+- The controlled modifier resolver prototype is now implemented as CLI-only read-only diagnostic tooling in `backend/app/game_data/controlled_modifier_resolver_prototype.py` and `backend/scripts/report_controlled_modifier_resolver_prototype.py`.
+- Generated reports exist at `docs/generated/controlled_modifier_resolver_prototype_report.md` and `docs/generated/controlled_modifier_resolver_prototype_report.json`.
+- Current modifier resolver summary: 6959 total modifier references, 5596 resolved structural inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
+- The prototype uses the policy as a failure contract and keeps unresolved/malformed/unsupported references out of resolved modifier semantics.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
