@@ -531,6 +531,14 @@ Output:
 
 This gate remains separate from affix/tier identity.
 
+Current status:
+
+- Implemented as diagnostic-only tooling in `last-epoch-data`.
+- Current validation status is `warning`.
+- Current report inspects 1227 affixes, finds tag/category evidence for all 1227, reports 148 unknown or unsupported tag/category values, 110 ambiguous tag/category mappings, 0 duplicate tag/category records, 0 name-only records, 0 subtype_id-only records, and 0 missing provenance records.
+- Phase 3 eligibility remains `validation_status=error` and unchanged. Phase 4 does not resolve or downgrade the affix `910` duplicate eligibility finding.
+- `production_safe=false` remains unchanged.
+
 ### Phase 5 — Saved-vs-Fresh Diagnostic Comparison
 
 Goal:
