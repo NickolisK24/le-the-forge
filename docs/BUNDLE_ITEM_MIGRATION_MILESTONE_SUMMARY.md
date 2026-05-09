@@ -354,6 +354,8 @@ The next canonical planning target is not production consumption. It should be a
 
 That planning has started in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, and Phase 3 eligibility validation is complete as error-level diagnostic output. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
+The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved, so the eligibility gate remains error-level and `production_safe=false`.
+
 Any next data-family planning step should:
 
 - Keep the sidecar diagnostics milestone as a completed diagnostic boundary.
@@ -362,11 +364,12 @@ Any next data-family planning step should:
 - Preserve visible warning/deferred/block states.
 - Prove the next data-family source and validation contract before implementation.
 - Keep `affix_tags` out of scope until its own diagnostic gate exists; keep `affix_eligibility` separate from affix identity and blocked until its error state is reviewed or resolved.
+- Preserve the affix 910 raw duplicate report; do not deduplicate source or generated data as part of diagnostics.
 
 Recommended output for the next step:
 
-- Review or resolve the Phase 3 duplicate `canRollOn` target finding without changing production behavior, including whether it originated in raw source data or during extraction/transformation.
-- Defer Phase 4 `affix_tags` planning until the duplicate eligibility evidence is understood; then make a separate decision on whether `affix_tags` has enough source evidence to plan now or should remain deferred.
+- Decide the explicit disposition for the Phase 3 duplicate `canRollOn` target finding: accept it as a known decoded-source duplicate with visible error-level diagnostics, or perform a separate byte-level `resources.assets` / TypeTree-walker trace before any migration gate advances.
+- Defer Phase 4 `affix_tags` planning until the duplicate eligibility evidence has that explicit disposition; then make a separate decision on whether `affix_tags` has enough source evidence to plan now or should remain deferred.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
