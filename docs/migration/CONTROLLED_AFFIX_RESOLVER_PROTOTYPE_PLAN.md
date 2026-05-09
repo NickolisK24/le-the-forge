@@ -14,6 +14,14 @@ The prototype has now been implemented as CLI-only read-only diagnostic tooling 
 - `docs/generated/controlled_affix_resolver_prototype_report.md`
 - `docs/generated/controlled_affix_resolver_prototype_report.json`
 
+The saved-vs-fresh comparison for the prototype has also been implemented as CLI-only read-only diagnostic tooling in:
+
+- `backend/app/game_data/controlled_affix_resolver_comparison.py`
+- `backend/scripts/compare_controlled_affix_resolver_prototype.py`
+- `backend/tests/test_controlled_affix_resolver_comparison.py`
+- `docs/generated/controlled_affix_resolver_comparison_report.md`
+- `docs/generated/controlled_affix_resolver_comparison_report.json`
+
 This implementation does not generate bundle families, replace Forge affix loaders, change runtime behavior, power crafting or build math, expose APIs, or mark any output `production_safe=true`.
 
 Current commands:
@@ -24,6 +32,10 @@ cd D:\Forge\le-the-forge
 .\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --json
 .\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --output docs\generated\controlled_affix_resolver_prototype_report.md
 .\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --json --output docs\generated\controlled_affix_resolver_prototype_report.json
+.\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py
+.\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --json
+.\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --output docs\generated\controlled_affix_resolver_comparison_report.md
+.\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --json --output docs\generated\controlled_affix_resolver_comparison_report.json
 ```
 
 Current boundary:
@@ -31,6 +43,7 @@ Current boundary:
 - `production_safe=false` remains required globally and per record.
 - Phase 1-5 affix diagnostics remain warning-level.
 - Phase 6 diagnostic consumer exists only for read-only inspection of generated diagnostic artifacts.
+- Saved-vs-fresh resolver comparison is `comparison_status=warning` with zero count deltas, zero phase-status deltas, zero warning-category deltas, deterministic output agreement, and affix `910` duplicate evidence agreement.
 - Affix `910` duplicate eligibility evidence remains visible and must not be silently deduplicated.
 - Production affix migration is not approved.
 
@@ -360,8 +373,8 @@ Even after this resolver prototype exists, production migration planning remains
 
 Required later milestones:
 
-1. Implement the controlled resolver prototype as developer-only tooling.
-2. Add saved-vs-fresh comparison for resolver output.
+1. Implement the controlled resolver prototype as developer-only tooling. COMPLETE.
+2. Add saved-vs-fresh comparison for resolver output. COMPLETE.
 3. Add a validated per-affix diagnostic record artifact if full normalized records are needed.
 4. Define canonical bundle family shapes for `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags`.
 5. Validate each family independently.
@@ -374,7 +387,7 @@ Until those milestones complete, the resolver prototype remains diagnostic-only 
 
 ## 16. Recommended Implementation Step
 
-Implementation status: complete for the first controlled prototype.
+Implementation status: complete for the first controlled prototype and its saved-vs-fresh comparison.
 
 Current generated report summary:
 
@@ -391,10 +404,28 @@ Current generated report summary:
 | production_safe | `false` |
 | affix 910 duplicate evidence | preserved |
 
+Current saved-vs-fresh comparison summary:
+
+| Metric | Value |
+| --- | ---: |
+| comparison_status | `warning` |
+| saved resolver status | `warning` |
+| fresh resolver status | `warning` |
+| total normalized affix delta | 0 |
+| equipment affix delta | 0 |
+| idol affix delta | 0 |
+| embedded tier delta | 0 |
+| phase status deltas | 0 |
+| warning category deltas | 0 |
+| deterministic output agreement | `true` |
+| affix 910 duplicate evidence agreement | `true` |
+| production_safe agreement | `true` |
+| non-production inspection allowed agreement | `true` |
+
 Next implementation task, if approved:
 
 ```text
-Add a saved-vs-fresh comparison for controlled affix resolver prototype output, or design a validated per-affix diagnostic record artifact if richer normalized object details are required.
+Design a validated per-affix diagnostic record artifact if richer normalized object details are required.
 ```
 
 That task must not generate bundle families, change Forge production behavior, or claim production readiness.
