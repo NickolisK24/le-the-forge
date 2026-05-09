@@ -18,7 +18,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current bundle status | `last-epoch-data` bundle validates as `WARN` with no critical errors. |
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
-| Current sidecar state | Sidecar builder and validator exist; saved sidecar fixture validates with warning and no errors. |
+| Current sidecar state | Sidecar builder, validator, saved fixture validation, and saved-sidecar diagnostic consumer exist; all remain developer-only. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -28,7 +28,7 @@ Short version:
 - No production bundle consumer activated.
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
-- The next safe work is a milestone summary and a decision about the first non-production diagnostic consumer.
+- The next safe work is deciding whether to expand diagnostics from saved sidecar consumption to freshly built sidecar consumption, still outside production behavior.
 
 ## 2. Current Safety Boundary
 
@@ -44,6 +44,7 @@ Short version:
 - LET importer mapped output can preserve `base_type_id` when input has it.
 - Sidecar builder and validator chain works.
 - Saved sidecar JSON validates independently from the builder path.
+- A CLI-only consumer can read the saved sidecar after validation and report resolver results without production behavior changes.
 
 ### Not Activated
 
@@ -214,23 +215,31 @@ Next safe step:
 
 - Validate any future non-production diagnostic consumer against the saved sidecar fixture before reading live importer output.
 
-### Phase 6 — Future Non-Production Consumer
+### Phase 6 — First Non-Production Diagnostic Consumer
 
-Status: NOT_STARTED
+Status: COMPLETE for saved-sidecar diagnostic consumption; NOT_STARTED for any live/fresh importer diagnostic consumer.
 
 Target:
 
-- A developer-only CLI/report or equivalent diagnostics-only consumer that reads saved sidecar or copied context and reports canonical bundle item type IDs without changing app behavior.
+- A developer-only CLI/report that reads saved sidecar diagnostics and reports canonical bundle item type resolver results without changing app behavior.
+
+Completed milestones:
+
+- Sidecar-backed diagnostic consumer design.
+- `backend/app/game_data/le_tools_sidecar_diagnostic_consumer.py`.
+- `backend/scripts/consume_le_tools_sidecar_diagnostic.py`.
+- `backend/tests/test_le_tools_sidecar_diagnostic_consumer.py`.
+- `docs/generated/le_tools_sidecar_diagnostic_consumer_report.md`.
 
 Current blockers:
 
-- Consumer scope not chosen.
-- Fallback behavior not defined.
-- Tests not defined.
+- Consumer is intentionally limited to saved sidecar artifacts.
+- It does not prove live LET payload shape.
+- It does not prove production importer or bundle consumption readiness.
 
 Next safe step:
 
-- Write a milestone summary and design the first non-production consumer contract.
+- Decide whether to design a second diagnostic step that consumes freshly built sidecars, still behind validation and still outside production behavior.
 
 ### Phase 7 — Future Production Migration
 
@@ -304,6 +313,8 @@ Next safe step:
 - [x] sidecar builder.
 - [x] sidecar validator.
 - [x] saved sidecar validation.
+- [x] sidecar-backed diagnostic consumer design.
+- [x] saved sidecar diagnostic consumer.
 
 ## 5. Canonical Family Status Table
 
@@ -432,6 +443,7 @@ last-epoch-data bundle generator
   -> sidecar builder
   -> sidecar validator
   -> saved artifact validation
+  -> saved sidecar diagnostic consumer
 ```
 
 This chain is diagnostic-only. It proves contract, mapping, context, and validation behavior before production migration. It does not replace loaders, change importer output, expose sidecars publicly, or activate bundle IDs in the app.
@@ -440,11 +452,11 @@ This chain is diagnostic-only. It proves contract, mapping, context, and validat
 
 ### Immediate
 
-1. Create a milestone summary for the completed item family diagnostic chain.
-2. Decide the first non-production consumer candidate.
-3. Design a sidecar-backed non-production diagnostic consumer.
-4. Validate the consumer against the saved sidecar fixture.
-5. Keep production output unchanged.
+1. Keep the saved-sidecar diagnostic consumer developer-only.
+2. Decide whether the next diagnostic should consume freshly built sidecars.
+3. If yes, design that expansion with validation gating before implementation.
+4. Keep production output unchanged.
+5. Keep `production_safe=false`.
 
 ### Later
 
@@ -506,4 +518,3 @@ Suggested update workflow:
 4. Update blockers and risks.
 5. Update next safe steps.
 6. Note whether the change is diagnostic-only, non-production, or production.
-

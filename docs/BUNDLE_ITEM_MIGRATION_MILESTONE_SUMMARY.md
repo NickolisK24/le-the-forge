@@ -232,9 +232,10 @@ bundle generator
 -> sidecar builder
 -> sidecar validator
 -> saved artifact validation
+-> saved sidecar diagnostic consumer
 ```
 
-This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, and persisted safely without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
+This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, and consumed by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
 
 ## 8. Criteria Before First Non-Production Consumer
 
@@ -260,21 +261,22 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 ## 9. Recommended Next Step
 
-Design the first non-production diagnostic consumer.
+The first saved-sidecar diagnostic consumer now exists. The next step is to decide whether to design a second diagnostic expansion that consumes freshly built sidecars, still behind validation and still outside production behavior.
 
-The first consumer should:
+Any next diagnostic expansion should:
 
-- Consume saved sidecar diagnostics only.
-- Avoid live importer output as the first input.
+- Keep the saved sidecar consumer as the baseline.
+- Validate sidecars before consumption.
+- Avoid live importer output unless explicitly scoped and reviewed.
 - Avoid production loaders and production API responses.
 - Remain explicitly developer-only.
-- Display or report resolver status, missing context, blocked mappings, and warning counts.
-- Prove end-to-end diagnostic consumption before any production migration planning.
+- Preserve visible resolver status, missing context, blocked mappings, and warning counts.
+- Prove the next diagnostic input source before any production migration planning.
 
 Recommended output for the next step:
 
-- A short design document for the first sidecar-backed non-production diagnostic consumer.
-- A defined input artifact, likely `D:\Forge\le-the-forge\backend\tests\fixtures\le_tools_import_context_sidecar_current.json`.
+- A short design document for freshly built sidecar diagnostic consumption, if that expansion is accepted.
+- A defined input source and validator gate.
 - Explicit tests proving no production behavior is touched.
 
 ## 10. What Not To Do Next
