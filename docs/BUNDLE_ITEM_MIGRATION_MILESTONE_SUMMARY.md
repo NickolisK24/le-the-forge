@@ -26,7 +26,7 @@ The current migration program is diagnostics-first.
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
 | Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only and stable. Shape, identity/provenance, eligibility, and tag/category are warning-level; the comparison gate is warning-level with zero count/warning/error deltas. None generate or consume affix bundle families. |
-| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only. Production migration remains blocked. |
+| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only. The Phase 6 plan is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`. Production migration remains blocked. |
 
 Current diagnostic counts:
 
@@ -169,8 +169,8 @@ Follow-on affix saved-vs-fresh comparison checkpoint:
 | Phases expected | 4 |
 | Phases compared | 4 |
 | Phases missing | 0 |
-| Phases with error status | 1 |
-| Phases with warning status | 3 |
+| Phases with error status | 0 |
+| Phases with warning status | 4 |
 | Count deltas | 0 |
 | Warning deltas | 0 |
 | Error deltas | 0 |
@@ -207,11 +207,12 @@ Affix diagnostics milestone closeout:
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
 - Affix readiness sweep is complete and allows Phase 6 diagnostic consumer planning only.
+- Phase 6 diagnostic consumer planning is complete in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`; implementation is not started.
 - Count deltas, warning deltas, and error deltas are all zero across the comparison.
 - Combined `migration_gate_status` is `warning`.
 - Affix `910` duplicate `canRollOn` evidence remains warning-only and is not deduplicated.
 - `production_safe=false` remains unchanged.
-- Phase 6 affix non-production consumer planning may begin, but only as read-only diagnostic design. No production consumer should be built.
+- Phase 6 affix non-production consumer planning is complete. Implementation may begin only as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts. No production consumer should be built.
 
 ## 3. What Has Been Proven
 
@@ -438,7 +439,7 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. This closes the current sidecar diagnostics milestone as complete for non-production validation.
 
-The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics but migration-blocked.
+The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics and allows Phase 6 read-only diagnostic consumer implementation planning, but production migration remains blocked.
 
 That planning has reached a diagnostic-complete checkpoint in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as warning-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=warning`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
@@ -453,14 +454,14 @@ Any next data-family planning step should:
 - Remain explicitly developer-only.
 - Preserve visible warning/deferred/block states.
 - Prove the next data-family source and validation contract before implementation.
-- Keep `affix_tags` separate from affix identity and eligibility; keep `affix_eligibility` blocked until its error state is reviewed or resolved.
+- Keep `affix_tags` separate from affix identity and eligibility; keep `affix_eligibility` warning-preserving and non-production after the accepted exact duplicate policy.
 - Preserve the affix 910 raw duplicate report; do not deduplicate source or generated data as part of diagnostics.
 - Keep Phase 4 `affix_tags` warning-level; it does not claim affix eligibility is safe and remains separate from the Phase 3 exact duplicate policy.
 
 Recommended output for the next step:
 
-- Design the minimum safe Phase 6 affix diagnostic consumer.
-- Keep Phase 6 scope read-only, developer-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
+- Implement the minimum safe Phase 6 affix diagnostic consumer from `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
+- Keep Phase 6 scope CLI-only, read-only, developer-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
@@ -480,7 +481,7 @@ Do not:
 - Mark anything `production_safe=true`.
 - Treat affix source-shape or identity/provenance validation as migration completion.
 - Treat Phase 5 saved-vs-fresh affix agreement as migration unblocked.
-- Treat Phase 6 affix consumer planning as production migration or production readiness.
+- Treat Phase 6 affix consumer planning or implementation as production migration or production readiness.
 - Merge `affix_eligibility` into affix identity or production consumers.
 - Merge `affix_tags` into affix identity, eligibility, production loaders, or Forge consumers.
 
@@ -495,7 +496,7 @@ Moving beyond this milestone requires more than diagnostics existing. Exit condi
 - Production-safe criteria documented before any production migration.
 - Validated source ID preservation for the relevant input path.
 - Confirmed live LET payload shape if LET migration is in scope.
-- Affix eligibility error reviewed or resolved, and tag boundaries clear before affix family generation or Forge consumption begins.
+- Affix eligibility warning policy preserved, and tag boundaries clear before affix family generation or Forge consumption begins.
 - Separate eligibility and tag diagnostics complete before affix eligibility or tag consumption begins.
 - Tests covering collapsed groups, missing context, blocked mappings, and unsafe mutation cases.
 

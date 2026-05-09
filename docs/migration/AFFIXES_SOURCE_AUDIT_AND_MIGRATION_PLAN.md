@@ -15,7 +15,7 @@ Current boundary:
 - The Phase 3 affix `910` duplicate eligibility finding has a diagnostic disposition only: it is a known decoded-source duplicate, not a production-safe eligibility result.
 - Phases 1-5 are implemented and stable as diagnostics; the combined migration gate is warning-only after accepted Phase 3 exact duplicate policy application.
 - The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` currently reports `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only.
-- Phase 6 production work must not begin. Phase 6 diagnostic consumer planning may begin only with `production_safe=false`, warning preservation, and no generated data mutation.
+- Phase 6 production work must not begin. Phase 6 diagnostic consumer planning is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md` and remains limited to `production_safe=false`, warning preservation, and no generated data mutation.
 
 ## 2. Current Known Affix Sources
 
@@ -589,7 +589,7 @@ Milestone closeout:
 
 ### Phase 6 — Non-Production Consumer Only
 
-Status: planning allowed for diagnostic-only design; not implemented.
+Status: design complete; implementation not started.
 
 Goal:
 
@@ -607,6 +607,7 @@ Current boundary:
 - Phase 3 eligibility is warning-only because affix `910` satisfies the accepted exact duplicate diagnostic policy.
 - Phase 5 saved-vs-fresh comparison is `migration_gate_status=warning`.
 - The readiness sweep reports `non_production_consumer_allowed=true` for planning only.
+- The Phase 6 plan is documented in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
 - Phase 6 must not generate bundle families, replace loaders, change runtime behavior, or set `production_safe=true`.
 
 ### Phase 7 — Production Migration Planning
@@ -664,11 +665,11 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Design the minimum safe Phase 6 non-production affix diagnostic consumer.
+Implement the minimum safe Phase 6 non-production affix diagnostic consumer from docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md.
 
 Scope:
-- Keep the policy diagnostic-only.
-- Reclassify only exact raw-source duplicate target evidence that satisfies the documented downgrade criteria.
+- Keep the consumer diagnostic-only and CLI-only.
+- Read approved generated diagnostic artifacts only.
 - Preserve raw duplicate reporting.
 - Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.
