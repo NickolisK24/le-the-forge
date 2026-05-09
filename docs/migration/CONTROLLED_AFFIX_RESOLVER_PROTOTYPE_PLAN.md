@@ -6,7 +6,25 @@ This document designs the first controlled affix resolver prototype after the Ph
 
 The prototype is non-production, read-only, and diagnostic-only. Its purpose is to prove that validated/generated affix diagnostic artifacts can be transformed into deterministic, inspection-safe normalized affix objects while preserving provenance, warnings, and raw source evidence.
 
-This plan does not implement the resolver. It does not generate bundle families, replace Forge affix loaders, change runtime behavior, power crafting or build math, expose APIs, or mark any output `production_safe=true`.
+The prototype has now been implemented as CLI-only read-only diagnostic tooling in:
+
+- `backend/app/game_data/controlled_affix_resolver_prototype.py`
+- `backend/scripts/report_controlled_affix_resolver_prototype.py`
+- `backend/tests/test_controlled_affix_resolver_prototype.py`
+- `docs/generated/controlled_affix_resolver_prototype_report.md`
+- `docs/generated/controlled_affix_resolver_prototype_report.json`
+
+This implementation does not generate bundle families, replace Forge affix loaders, change runtime behavior, power crafting or build math, expose APIs, or mark any output `production_safe=true`.
+
+Current commands:
+
+```powershell
+cd D:\Forge\le-the-forge
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --json
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --output docs\generated\controlled_affix_resolver_prototype_report.md
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_resolver_prototype.py --json --output docs\generated\controlled_affix_resolver_prototype_report.json
+```
 
 Current boundary:
 
@@ -356,10 +374,27 @@ Until those milestones complete, the resolver prototype remains diagnostic-only 
 
 ## 16. Recommended Implementation Step
 
+Implementation status: complete for the first controlled prototype.
+
+Current generated report summary:
+
+| Metric | Value |
+| --- | ---: |
+| total normalized affixes | 1227 |
+| equipment affixes | 1112 |
+| idol affixes | 115 |
+| total embedded tiers | 6959 |
+| warning categories | 10 |
+| warning count | 1904 |
+| Phase 5 migration gate | `warning` |
+| non-production inspection allowed | `true` |
+| production_safe | `false` |
+| affix 910 duplicate evidence | preserved |
+
 Next implementation task, if approved:
 
 ```text
-Implement the controlled affix resolver prototype as a CLI-only, read-only diagnostic module that consumes approved generated diagnostic artifacts, preserves Phase 1-5 warning metadata, preserves affix 910 raw duplicate evidence, emits deterministic normalized inspection objects, and keeps production_safe=false.
+Add a saved-vs-fresh comparison for controlled affix resolver prototype output, or design a validated per-affix diagnostic record artifact if richer normalized object details are required.
 ```
 
 That task must not generate bundle families, change Forge production behavior, or claim production readiness.

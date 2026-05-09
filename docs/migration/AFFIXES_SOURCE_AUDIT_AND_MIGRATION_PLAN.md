@@ -16,7 +16,7 @@ Current boundary:
 - Phases 1-5 are implemented and stable as diagnostics; the combined migration gate is warning-only after accepted Phase 3 exact duplicate policy application.
 - The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` currently reports `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only.
 - Phase 6 production work must not begin. Phase 6 diagnostic consumer planning is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`; the implemented consumer remains limited to `production_safe=false`, generated diagnostic artifacts only, warning preservation, and no generated data mutation.
-- Controlled affix resolver prototype planning is captured in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. That planned prototype remains diagnostic-only, generated-artifact-backed, read-only, warning-preserving, and isolated from production loaders, APIs, crafting, simulation, and gameplay output.
+- Controlled affix resolver prototype planning and implementation are captured in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. The implemented prototype remains diagnostic-only, generated-artifact-backed, read-only, warning-preserving, and isolated from production loaders, APIs, crafting, simulation, and gameplay output.
 
 ## 2. Current Known Affix Sources
 
@@ -631,9 +631,9 @@ Required before this phase:
 - Production-safe criteria documented.
 - `production_safe` remains false until a separate explicit production readiness review.
 
-### Controlled Affix Resolver Prototype — Future Diagnostic Step
+### Controlled Affix Resolver Prototype — Diagnostic Step
 
-Status: planned only.
+Status: implemented as CLI-only read-only diagnostic tooling.
 
 Goal:
 
@@ -653,6 +653,8 @@ Boundary:
 Reference:
 
 - `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`
+- `docs/generated/controlled_affix_resolver_prototype_report.md`
+- `docs/generated/controlled_affix_resolver_prototype_report.json`
 
 ## 13. Forge Evaluation Criteria
 
@@ -694,12 +696,12 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Implement the controlled affix resolver prototype from docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md.
+Add a saved-vs-fresh comparison for controlled affix resolver prototype output, or design a validated per-affix diagnostic record artifact if richer normalized object details are required.
 
 Scope:
 - Keep the next step diagnostic-only and developer-only.
 - Read approved generated diagnostic artifacts and Phase 6 report artifacts only unless a separate diagnostic input contract is approved.
-- Produce inspection-safe normalized affix objects only.
+- Preserve inspection-safe normalized affix objects only.
 - Preserve raw duplicate reporting.
 - Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.
