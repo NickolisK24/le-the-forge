@@ -550,6 +550,16 @@ Output:
 
 - Combined comparison report with `production_safe=false`.
 
+Current status:
+
+- Implemented as diagnostic-only tooling in `last-epoch-data`.
+- Current `migration_gate_status` is `blocked`.
+- Saved and fresh diagnostics agree for all four phases: Phase 1 `warning`, Phase 2 `warning`, Phase 3 `error`, Phase 4 `warning`.
+- Count deltas are zero, warning deltas are zero, and error deltas are zero.
+- Phase 3 affix `910` duplicate eligibility remains unresolved and blocks the combined migration gate.
+- Phase 4 tag/category warnings remain present and visible.
+- `production_safe=false` remains unchanged.
+
 ### Phase 6 — Non-Production Consumer Only
 
 Goal:

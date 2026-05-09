@@ -25,7 +25,7 @@ The current migration program is diagnostics-first.
 | Importer behavior | Production importer output remains unchanged. |
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
-| Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, and Phase 4 tag/category validation. All are diagnostic-only. Shape, identity/provenance, and tag/category are warning-level; eligibility remains error-level. None generate or consume affix bundle families. |
+| Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only. Shape, identity/provenance, and tag/category are warning-level; eligibility remains error-level; the comparison gate is blocked. None generate or consume affix bundle families. |
 
 Current diagnostic counts:
 
@@ -149,6 +149,25 @@ Follow-on affix tag/category checkpoint:
 | Production safety | `production_safe=false` |
 
 The tag/category checkpoint is a separate Phase 4 diagnostic gate. It does not resolve or downgrade the Phase 3 affix `910` eligibility error, does not make eligibility safe, and does not generate or consume an `affix_tags` bundle family.
+
+Follow-on affix saved-vs-fresh comparison checkpoint:
+
+| Metric | Current Value |
+| --- | ---: |
+| migration_gate_status | `blocked` |
+| Phases expected | 4 |
+| Phases compared | 4 |
+| Phases missing | 0 |
+| Phases with error status | 1 |
+| Phases with warning status | 3 |
+| Count deltas | 0 |
+| Warning deltas | 0 |
+| Error deltas | 0 |
+| Phase 3 affix 910 duplicate unresolved | `true` |
+| Phase 4 tag/category warnings present | `true` |
+| Production safety | `production_safe=false` |
+
+The saved-vs-fresh comparison confirms current diagnostic agreement across Phase 1 through Phase 4. It remains blocked because Phase 3 eligibility is still error-level. It does not deduplicate affix `910`, does not downgrade eligibility, and does not approve affix bundle generation or Forge consumption.
 
 ## 3. What Has Been Proven
 
@@ -377,7 +396,7 @@ The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation
 
 The next canonical planning target is not production consumption. It should be a diagnostic-first source audit and migration plan for `affixes` and `affix_tiers`, with `affix_eligibility` and `affix_tags` kept separate unless source evidence is clear.
 
-That planning has started in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as error-level diagnostic output, and Phase 4 tag/category validation is complete as warning-level diagnostic output. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
+That planning has started in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as error-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=blocked`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
 The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved.
 
