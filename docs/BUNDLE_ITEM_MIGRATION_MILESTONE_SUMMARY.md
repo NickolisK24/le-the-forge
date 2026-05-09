@@ -26,7 +26,7 @@ The current migration program is diagnostics-first.
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
 | Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only and stable. Shape, identity/provenance, eligibility, and tag/category are warning-level; the comparison gate is warning-level with zero count/warning/error deltas. None generate or consume affix bundle families. |
-| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for a minimum read-only diagnostic consumer. The Phase 6 plan is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`, and the CLI-only consumer now generates `docs/generated/affix_diagnostic_consumer_report.md` and `docs/generated/affix_diagnostic_consumer_report.json`. Production migration remains blocked. |
+| Follow-on affix readiness | The non-production affix inspection stack milestone is complete. `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for a minimum read-only diagnostic consumer. The stack now includes Phase 6 consumer reports, controlled resolver prototype reports, saved-vs-fresh resolver comparison reports, and the per-affix diagnostic record artifact. All remain `diagnostic_only=true` / `production_safe=false`. Production migration remains forbidden. |
 
 Current diagnostic counts:
 
@@ -219,6 +219,15 @@ Affix diagnostics milestone closeout:
 - Controlled affix resolver prototype implementation is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_resolver_prototype_report.md` and `docs/generated/controlled_affix_resolver_prototype_report.json`, with 1227 normalized inspection objects, 6959 embedded tiers summarized, affix `910` duplicate evidence preserved, and `production_safe=false`.
 - Controlled affix resolver saved-vs-fresh comparison is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_resolver_comparison_report.md` and `docs/generated/controlled_affix_resolver_comparison_report.json`, with `comparison_status=warning`, zero count deltas, zero phase-status deltas, zero warning-category deltas, deterministic output agreement, affix `910` duplicate evidence agreement, and `production_safe=false`.
 - Controlled affix per-affix diagnostic record artifact is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_per_affix_diagnostic_records.md` and `docs/generated/controlled_affix_per_affix_diagnostic_records.json`, with 1227 inspection-only records, 1112 equipment records, 115 idol records, 6959 embedded tiers summarized, affix `910` duplicate evidence preserved, `diagnostic_only=true`, and `production_safe=false`.
+
+Non-production affix inspection stack closeout:
+
+- The completed stack now covers diagnostics, Phase 6 read-only consumption, controlled resolver output, saved-vs-fresh resolver comparison, and per-affix diagnostic records.
+- Current state is `diagnostic_only=true`, `production_safe=false`, and `non_production_inspection_allowed=true`.
+- The per-affix artifact contains 1227 records: 1112 equipment records and 115 idol records, with 6959 embedded tiers summarized.
+- Affix `910` raw duplicate eligibility evidence remains preserved; no source or generated data is deduplicated.
+- Warning metadata remains attached and visible.
+- This closes the inspection stack milestone only. Production migration is still forbidden.
 
 ## 3. What Has Been Proven
 
@@ -445,7 +454,7 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. This closes the current sidecar diagnostics milestone as complete for non-production validation.
 
-The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics, including the minimum Phase 6 read-only diagnostic consumer, but production migration remains blocked.
+The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics, including the minimum Phase 6 read-only diagnostic consumer, controlled affix resolver prototype, saved-vs-fresh resolver comparison, and per-affix diagnostic record artifact, but production migration remains blocked.
 
 That planning has reached a diagnostic-complete checkpoint in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as warning-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=warning`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
@@ -466,9 +475,10 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Plan a validated per-tier or source-row diagnostic artifact only if richer tier/value semantics are needed beyond the current per-affix diagnostic record artifact.
+- Choose option D: create a stat/modifier reference audit as the next architecture target. This is the most direct path toward safe gameplay correctness because the current inspection stack proves affix identity, provenance, eligibility, tags, and record inspection, but it does not prove what affix modifiers mean mechanically.
 - Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
+- Do not implement a controlled affix modifier resolver until stat/modifier references, unsupported fields, and missing modifier evidence have their own diagnostic audit.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

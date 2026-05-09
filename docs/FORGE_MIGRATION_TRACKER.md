@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. All four phase reports are `warning`. Phase 3 applies the accepted exact duplicate eligibility policy to affix `910`, preserving raw duplicate count and positions while treating the exact duplicate as warning-only. Phase 5 gate is stable and `warning` with zero count/warning/error deltas. The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for a minimum read-only diagnostic consumer. The Phase 6 plan and CLI-only consumer now exist, with generated reports at `docs/generated/affix_diagnostic_consumer_report.md` and `docs/generated/affix_diagnostic_consumer_report.json`. The controlled affix resolver prototype now exists as CLI-only diagnostic tooling with reports at `docs/generated/controlled_affix_resolver_prototype_report.md` and `docs/generated/controlled_affix_resolver_prototype_report.json`. Saved-vs-fresh resolver comparison now exists with `comparison_status=warning`, zero count deltas, zero warning-category deltas, deterministic output agreement, and affix `910` duplicate evidence agreement. A richer per-affix diagnostic record artifact now exists at `docs/generated/controlled_affix_per_affix_diagnostic_records.md` and `docs/generated/controlled_affix_per_affix_diagnostic_records.json`, with 1227 inspection-only records and `production_safe=false`. No affix bundle family is generated or consumed. |
+| Current affix diagnostic state | The non-production affix inspection stack milestone is complete. It includes Phase 1 source/tier shape diagnostics, Phase 2 identity/provenance diagnostics, Phase 3 eligibility diagnostics with accepted exact duplicate policy handling, Phase 4 tag/category diagnostics, Phase 5 saved-vs-fresh comparison, Phase 6 read-only diagnostic consumer, controlled affix resolver prototype, saved-vs-fresh resolver comparison, and the per-affix diagnostic record artifact. All reports remain diagnostic-only. Phase 1-5 are `warning`; Phase 5 has zero count/warning/error deltas; Phase 6 records `non_production_inspection_allowed=true`; the resolver comparison is `warning` with deterministic output agreement; the per-affix artifact has 1227 records, 1112 equipment records, 115 idol records, and 6959 embedded tiers. Affix `910` duplicate eligibility evidence and warning metadata remain preserved. `production_safe=false` remains explicit. No affix bundle family is generated or consumed. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -30,7 +30,7 @@ Short version:
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
-- `affixes` / embedded `affix_tiers` now have Phase 1 source-shape and Phase 2 identity/provenance diagnostics in `last-epoch-data`; `affix_eligibility` has a separate Phase 3 diagnostic with warning-only exact duplicate policy handling for affix `910`; `affix_tags` / category evidence has a separate Phase 4 diagnostic with a warning state; Phase 5 saved-vs-fresh comparison is stable and warning-only.
+- The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
 
 ## 2. Current Safety Boundary
 
@@ -164,7 +164,7 @@ Current disposition:
 
 Next safe step:
 
-- Treat the Phase 6 affix diagnostic consumer, controlled affix resolver prototype, saved-vs-fresh resolver comparison, and per-affix diagnostic record artifact as implemented for inspection-only use. Next work should validate any future richer per-tier or source-row artifact separately, still without generating bundle families or creating production Forge consumers.
+- Treat the non-production affix inspection stack as complete for read-only diagnostics. The next architecture target should be a stat/modifier reference audit, because gameplay correctness cannot advance safely until affix modifier references, unsupported fields, and missing stat/modifier evidence are audited separately from identity, eligibility, and tag/category inspection.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -387,7 +387,7 @@ Next safe step:
 | `metadata` | `exports_json/metadata.json` | generated; warning | compatibility reader only | High for patch/build; Partial for full extractor/source hash coverage | Normalized | control-plane only | Keep linked to bundle validation and compatibility checks. |
 | `item_types` | `exports_json/items.json` base type records | generated; passed | diagnostics only; not production-consumed | Verified for base_type_id/name; Partial/Inferred for slug/slot/category | Canonical-ready for identity/type only | `production_safe=false` | Plan first non-production diagnostic consumer. |
 | `base_items` | `exports_json/items.json` subtype records | generated; passed | diagnostics only; not production-consumed | Verified for composite IDs/name/requirements where present; Partial for implicits/tags | Canonical-ready for identity/basic requirements only | no name-only migration | Block production use until Forge has source IDs/composite matching. |
-| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Phase 6 minimum diagnostic consumer, controlled resolver prototype, saved-vs-fresh resolver comparison, and per-affix diagnostic record artifact exist for inspection only; next step is separate per-tier/source-row planning if needed, not production consumption. |
+| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Non-production inspection stack is complete through Phase 6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact. Next safe architecture target is a stat/modifier reference audit, not production consumption. |
 | `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate tier normalization and semantics separately. |
 | `affix_eligibility` | `exports_json/affixes.json` `canRollOn`, `rollsOn`, `classSpecificity`; `data_bundle/families/item_types.json` reference set | diagnostic `warning`; deferred | current Forge simplified/static logic | Partial/Unknown | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity | Preserve affix 910 raw duplicate evidence and warning metadata in any broader non-production inspection or resolver prototype. |
 | `affix_tags` | `exports_json/affixes.json` `tags`, `derivedTags`, display category, group, property, modifier type, special affix type, and `rollsOn` | diagnostic `warning`; deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity or eligibility | Keep warning state visible; do not generate family or Forge consumption. |
@@ -796,16 +796,18 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 9. Phase 6 affix non-production consumer implementation is complete as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts.
 10. Treat the controlled affix resolver prototype and saved-vs-fresh resolver comparison as complete for inspection-only use.
 11. Treat the controlled per-affix diagnostic record artifact as complete for inspection-only use.
-12. Keep production output unchanged.
-13. Keep `production_safe=false`.
+12. Treat the non-production affix inspection stack milestone as closed: `diagnostic_only=true`, `non_production_inspection_allowed=true`, `production_safe=false`, 1227 per-affix records, 1112 equipment records, 115 idol records, and 6959 embedded tiers are documented as inspection-only facts.
+13. Preserve affix `910` raw duplicate eligibility evidence and all warning metadata in every future diagnostic layer.
+14. Keep production output unchanged.
+15. Keep `production_safe=false`.
 
 ### Later
 
-1. Treat the minimum Phase 6 affix diagnostic consumer as complete for inspection-only use.
-2. Treat the controlled affix resolver prototype and saved-vs-fresh resolver comparison as implemented for inspection-only use.
-3. Treat the controlled per-affix diagnostic record artifact as implemented for inspection-only use.
-4. Plan a validated per-tier or source-row diagnostic artifact only if richer tier/value semantics are needed.
-5. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production inspection or resolver diagnostics prove safe behavior.
+1. Next architecture target: plan a stat/modifier reference audit before any controlled modifier resolver. This most directly advances safe gameplay correctness because current diagnostics still report missing stat/modifier references, unsupported fields, and warning-only tier/modifier semantics.
+2. Defer a controlled non-production affix modifier resolver until stat/modifier references have their own diagnostic evidence, failure modes, and warning propagation.
+3. Defer a non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
+4. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
+5. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.
 6. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
 7. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
 
