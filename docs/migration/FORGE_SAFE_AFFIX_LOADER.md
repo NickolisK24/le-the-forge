@@ -30,3 +30,19 @@ The loader does not infer missing modifier mappings, gameplay behavior, or speci
 ## Current Boundary
 
 This loader is experimental and controlled. It is safe for tests and explicit developer tooling, but it is not a production consumer. Existing Forge data, planner behavior, build math, crafting, and simulation remain unchanged.
+
+## Inspection CLI
+
+The backend includes a developer-only inspection command that loads an explicit export path through the same loader:
+
+```powershell
+D:\Forge\le-the-forge\backend\.venv\Scripts\python.exe backend\scripts\inspect_forge_safe_affixes.py --input D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json
+```
+
+Machine-readable output:
+
+```powershell
+D:\Forge\le-the-forge\backend\.venv\Scripts\python.exe backend\scripts\inspect_forge_safe_affixes.py --input D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json --json
+```
+
+The command prints the source path, loaded record count, loader warnings, export policy, export summary metadata, and a small sample of affix IDs/names. It does not modify the export, register data globally, or wire the export into production behavior.
