@@ -12,6 +12,7 @@ Current boundary:
 - `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` remain deferred/blocking bundle families.
 - `affix_eligibility` and `affix_tags` remain separate validation gates unless later source evidence clearly proves they are safe to merge.
 - No Forge production loaders consume canonical affix bundle families yet.
+- The Phase 3 affix `910` duplicate eligibility finding has a diagnostic disposition only: it is a known decoded-source duplicate, not a production-safe eligibility result.
 
 ## 2. Current Known Affix Sources
 
@@ -44,12 +45,14 @@ Verified source facts from current repo state:
 - Idol affixes are parsed from `AffixImport.csv`.
 - Tiers are currently embedded inside affix records, not emitted as a separate canonical `affix_tiers` bundle family.
 - `derivedTags` exist but are derived fields, not yet an accepted canonical `affix_tags` family.
+- Affix `910` has duplicate eligibility source evidence: `extracted_raw/MasterAffixesList.json` contains `multiAffixes[399].canRollOn == [31, 31]`; enum `31` resolves to `IDOL_4x1`; `exports_json/affixes.json` preserves this as duplicate `["IDOL_4x1", "IDOL_4x1"]`.
 
 Assumptions that must not be promoted without validation:
 
 - Affix IDs are globally stable across equipment and idol sources.
 - Embedded tier rows are already normalized enough for production planner/crafting use.
 - `canRollOn` is a complete eligibility model.
+- Duplicate `canRollOn` entries can be silently collapsed for production use.
 - `derivedTags` are authoritative category/tags.
 - Display names, shard names, or tooltip text are stable identities.
 
@@ -208,6 +211,20 @@ Known source candidates:
 - item family records from `data_bundle/families/item_types.json` and `data_bundle/families/base_items.json`.
 
 Do not treat `canRollOn` alone as full eligibility until validated against item base/type/subtype identity and Forge consumer needs.
+
+Current Phase 3 duplicate disposition:
+
+- Affix `910` has duplicate `canRollOn` target evidence for `IDOL_4x1`.
+- Earliest available decoded source: `extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn`, with raw values `[31, 31]`.
+- `extracted_raw/enums/enums.json` maps EquipmentType enum `31` to `IDOL_4x1`.
+- `exports_json/affixes.json` preserves the duplicate as `["IDOL_4x1", "IDOL_4x1"]`.
+- Normalization changes only casing/format to `IDOL_4X1`; it does not change identity.
+- Current evidence does not show `process_affixes.py` or `process_affixes_tt.py` introduced the duplicate after `MasterAffixesList.json`.
+- Byte-level/game-raw origin remains unresolved at the resources.assets / TypeTree-walker boundary.
+- Production deduplication is not allowed yet.
+- Diagnostic-only reports may show both raw duplicate count and normalized unique-target view. The normalized view is a diagnostic presentation aid, not source mutation.
+- Phase 3 remains `validation_status=error` until a separate policy decides whether raw-source exact duplicates are blocking or warning-only.
+- Phase 4 `affix_tags` may be planned only after this disposition is recorded, and it must not claim affix eligibility is safe.
 
 ### `affix_tags`
 
@@ -490,12 +507,23 @@ Output:
 
 This gate remains separate from affix/tier identity.
 
+Current disposition for the affix `910` duplicate target:
+
+- Treat as a known decoded-source duplicate for diagnostic planning only.
+- Keep raw duplicate reporting visible.
+- Permit diagnostic-only normalized unique-target presentation.
+- Do not deduplicate source data, generated exports, or bundle candidates.
+- Keep `production_safe=false`.
+- Keep Phase 3 `validation_status=error` until a policy explicitly decides whether raw-source exact duplicates should remain blocking or become warning-only.
+
 ### Phase 4 — Tag/Category Diagnostic Validator
 
 Goal:
 
 - Evaluate `tags`, `derivedTags`, display category, group, property, modifier type, and derivation rules.
 - Validate `derived_tag_version` and unknown decode behavior.
+- Do not use Phase 4 to bypass the Phase 3 duplicate eligibility policy.
+- Do not claim affix eligibility is safe.
 
 Output:
 
@@ -600,4 +628,3 @@ Constraints:
 - Do not modify production Forge behavior.
 - Keep production_safe=false.
 ```
-
