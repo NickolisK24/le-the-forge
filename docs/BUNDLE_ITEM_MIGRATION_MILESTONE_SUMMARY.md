@@ -497,6 +497,10 @@ Recommended output for the next step:
 - Missing modifier reference mapping policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`.
 - The policy keeps the current 115 missing mappings unresolved until source-backed mapping evidence exists, requires raw reference evidence, provenance/source path, and warning metadata to remain attached, and forbids mapping inference from display names or `subtype_id` alone.
 - Missing mappings continue to block gameplay correctness claims; they may be carried by future resolver prototypes only as unresolved diagnostic objects with `diagnostic_only=true` and `production_safe=false`.
+- Missing modifier reference mapping validation is implemented in `backend/app/game_data/missing_modifier_reference_mapping_validator.py` and `backend/scripts/report_missing_modifier_reference_mapping.py`.
+- Generated validation reports exist at `docs/generated/missing_modifier_reference_mapping_report.md` and `docs/generated/missing_modifier_reference_mapping_report.json`.
+- Current missing mapping validation summary: `validation_status=warning`, `production_safe=false`, 115 total missing mapping records, 115 raw reference evidence records preserved, 115 stable affix source identities preserved, 115 provenance records preserved, 115 warning metadata records preserved, 115 records remaining unresolved, 0 name-only mapping inference records, 0 `subtype_id`-only mapping inference records, saved-vs-fresh agreement available, and saved-vs-fresh unresolved delta 0.
+- The validator does not add modifier mappings and does not convert missing mapping records into resolved modifier behavior.
 - Malformed tier/value shape policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`. It covers the current 136 malformed structures and requires raw `minRoll`, `maxRoll`, source order, provenance, and warning metadata to remain visible.
 - The policy allows diagnostic-only normalized views only when they are explicitly labeled as inspection views, preserve raw evidence, and do not infer sign direction, desirability, stacking, formula, or gameplay meaning.
 - The policy forbids normalization when raw bounds or provenance are missing, numeric shape is ambiguous, or normalization would become gameplay truth.
@@ -518,7 +522,7 @@ Controlled modifier inspection stack closeout:
 - Affix `910` duplicate eligibility evidence agreement is `true`.
 - No gameplay, crafting, simulation, build-math, API, frontend, or production loader semantics are inferred.
 - Production migration remains forbidden.
-- Next recommended architecture target: implement diagnostic validation for the missing modifier reference mapping policy, or document policy for unsupported special behavior. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it continues to preserve raw evidence before any resolver output changes.
+- Next recommended architecture target: document and validate policy for unsupported special behavior. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it continues to preserve raw evidence before any resolver output changes.
 
 ## 10. What Not To Do Next
 

@@ -212,6 +212,10 @@ Current implementation:
 - malformed tier/value shape validator CLI: `backend/scripts/report_malformed_tier_value_shape.py`
 - malformed tier/value shape validator markdown report: `docs/generated/malformed_tier_value_shape_report.md`
 - malformed tier/value shape validator JSON report: `docs/generated/malformed_tier_value_shape_report.json`
+- missing modifier reference mapping validator module: `backend/app/game_data/missing_modifier_reference_mapping_validator.py`
+- missing modifier reference mapping validator CLI: `backend/scripts/report_missing_modifier_reference_mapping.py`
+- missing modifier reference mapping validator markdown report: `docs/generated/missing_modifier_reference_mapping_report.md`
+- missing modifier reference mapping validator JSON report: `docs/generated/missing_modifier_reference_mapping_report.json`
 
 The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
 
@@ -273,6 +277,23 @@ Mappings must not be guessed from `subtype_id` alone. `subtype_id` is scoped und
 Missing mappings block gameplay correctness claims. As long as 115 modifier references remain unmapped, Forge cannot claim complete affix modifier interpretation, stat math correctness, crafting correctness, or production migration readiness. Future prototypes may show these records for inspection, but they must remain unresolved and excluded from gameplay semantics.
 
 `production_safe=false` remains required because the current evidence supports diagnostic visibility, not production-safe modifier resolution. The policy permits future diagnostic validation of mapping evidence; it does not authorize semantic modifier resolution, loader changes, runtime behavior changes, or production consumption.
+
+Current missing modifier reference mapping validation summary:
+
+- validation status: `warning`
+- `production_safe=false`
+- total missing reference mapping records: 115
+- raw reference evidence preserved: 115
+- stable affix source identity preserved: 115
+- provenance preserved: 115
+- warning metadata preserved: 115
+- records remaining unresolved: 115
+- name-only mapping inference records: 0
+- `subtype_id`-only mapping inference records: 0
+- saved-vs-fresh agreement available: `true`
+- saved-vs-fresh unresolved delta: 0
+
+This validation does not add modifier mappings. It only confirms the current missing mapping records preserve enough diagnostic evidence to remain visible and unresolved until source-backed mapping evidence exists.
 
 ## 13. Malformed Tier/Value Shape Policy
 
@@ -378,6 +399,7 @@ Current disposition after the controlled modifier inspection stack:
 - `production_safe=false` remains explicit.
 - unresolved modifier category triage classifies 115 unresolved references as likely missing reference mapping.
 - missing modifier reference mapping policy is documented; those 115 references must stay unresolved until source-backed mapping evidence exists, and mappings must not be inferred from display names or `subtype_id` alone.
+- missing modifier reference mapping validation confirms all 115 records preserve raw evidence, source identity, provenance, and warning metadata; all 115 remain unresolved; no name-only or `subtype_id`-only mapping inference is present; saved-vs-fresh unresolved delta is 0.
 - malformed modifier category triage classifies 136 malformed structures as malformed tier/value shape.
 - unsupported modifier category triage classifies 1112 unsupported structures as unsupported special behavior.
 - all triaged categories remain unresolved and diagnostic-only.
@@ -385,7 +407,7 @@ Current disposition after the controlled modifier inspection stack:
 
 This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
 
-Recommended next architecture target: diagnostic validation for the missing modifier reference mapping policy, or diagnostic policy for unsupported special behavior. These policies must not resolve gameplay semantics, mutate source data, or change production behavior.
+Recommended next architecture target: diagnostic policy and validation for unsupported special behavior. That policy must not resolve gameplay semantics, mutate source data, or change production behavior.
 
 Malformed tier/value policy status: documented and diagnostically validated. No semantic resolver behavior has been implemented from it.
-Missing modifier reference mapping policy status: documented. No mapping validator or semantic resolver behavior has been implemented from it.
+Missing modifier reference mapping policy status: documented and diagnostically validated. No modifier mappings or semantic resolver behavior have been implemented from it.
