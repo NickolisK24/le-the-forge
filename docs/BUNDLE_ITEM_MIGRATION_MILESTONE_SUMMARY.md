@@ -234,9 +234,10 @@ bundle generator
 -> saved artifact validation
 -> saved sidecar diagnostic consumer
 -> fresh sidecar diagnostic validation
+-> saved-vs-fresh sidecar diagnostic comparison
 ```
 
-This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, consumed, and revalidated from fresh sidecar builds by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
+This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, consumed, revalidated from fresh sidecar builds, and compared against saved expectations by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
 
 ## 8. Criteria Before First Non-Production Consumer
 
@@ -262,12 +263,13 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 ## 9. Recommended Next Step
 
-The first saved-sidecar diagnostic consumer and fresh-sidecar diagnostic validation layer now exist. The next step is to decide whether to design a broader non-production diagnostic surface that compares saved and fresh sidecar validation outputs, still behind validation and still outside production behavior.
+The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. The next step is to decide whether this completes the current item-type diagnostic milestone or whether more sidecar hardening is needed before moving to the next canonical data family.
 
 Any next diagnostic expansion should:
 
 - Keep the saved sidecar consumer as the baseline.
 - Validate saved and fresh sidecars before consumption.
+- Preserve saved-vs-fresh comparison as a warning-level gate while warnings remain.
 - Avoid live importer output unless explicitly scoped and reviewed.
 - Avoid production loaders and production API responses.
 - Remain explicitly developer-only.
@@ -276,9 +278,9 @@ Any next diagnostic expansion should:
 
 Recommended output for the next step:
 
-- A short design document for comparing saved and fresh sidecar diagnostic outputs, if that expansion is accepted.
-- A defined input source and validator gate.
-- Explicit tests proving no production behavior is touched.
+- Either a short checkpoint note that this sidecar diagnostic chain is complete for now, or a narrow hardening plan for remaining warning deltas.
+- If moving on, a planning-only source audit for the next canonical data family.
+- Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
 
