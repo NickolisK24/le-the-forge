@@ -45,6 +45,14 @@ class Config:
     RATELIMIT_STORAGE_URI = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
     RATELIMIT_DEFAULT = "200 per day;50 per hour"
 
+    # Developer-only controlled ingestion inspection. Disabled by default and
+    # never used by production loaders, planner logic, crafting, or simulation.
+    FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

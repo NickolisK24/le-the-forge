@@ -215,6 +215,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.views import views_bp
     from app.routes.report import report_bp
     from app.routes.health import health_bp
+    from app.routes.debug import debug_bp
 
     app.register_blueprint(auth_bp, url_prefix="/api/auth")
     app.register_blueprint(builds_bp, url_prefix="/api/builds")
@@ -241,6 +242,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(views_bp, url_prefix="/api/builds")
     app.register_blueprint(report_bp, url_prefix="/api/builds")
     app.register_blueprint(health_bp, url_prefix="/api")
+    app.register_blueprint(debug_bp, url_prefix="/debug")
 
     # Global error handlers — always return JSON so frontend can parse the response
     from app.utils.exceptions import ForgeError
