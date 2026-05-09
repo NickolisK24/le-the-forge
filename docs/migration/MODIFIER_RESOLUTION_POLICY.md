@@ -208,6 +208,10 @@ Current implementation:
 - unresolved category triage CLI: `backend/scripts/report_modifier_unresolved_category_triage.py`
 - unresolved category triage markdown report: `docs/generated/modifier_unresolved_category_triage_report.md`
 - unresolved category triage JSON report: `docs/generated/modifier_unresolved_category_triage_report.json`
+- malformed tier/value shape validator module: `backend/app/game_data/malformed_tier_value_shape_validator.py`
+- malformed tier/value shape validator CLI: `backend/scripts/report_malformed_tier_value_shape.py`
+- malformed tier/value shape validator markdown report: `docs/generated/malformed_tier_value_shape_report.md`
+- malformed tier/value shape validator JSON report: `docs/generated/malformed_tier_value_shape_report.json`
 
 The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
 
@@ -259,7 +263,24 @@ A downgrade from malformed to warning-only normalized inspection requires:
 - no inferred gameplay semantics
 - saved-vs-fresh agreement for counts and warning metadata
 
-Until those conditions are implemented and tested, the 136 malformed structures remain unresolved for semantic resolver purposes.
+Those conditions are now implemented and tested as a diagnostic validation layer, not as semantic modifier resolution. The validator confirms the current 136 malformed tier/value records preserve raw evidence and may expose a labeled diagnostic-only normalized inspection view, while all 136 records remain unresolved for semantic resolver purposes.
+
+Current malformed tier/value shape validation summary:
+
+- validation status: `warning`
+- `production_safe=false`
+- total malformed tier/value records: 136
+- raw `minRoll` / `maxRoll` preserved: 136
+- raw source order preserved: 136
+- provenance preserved: 136
+- warning metadata preserved: 136
+- diagnostic-only normalized views labeled `diagnostic_only_not_source_mutation`: 136
+- inverted numeric ranges detected: 136
+- inverted negative ranges detected: 34
+- records missing raw evidence: 0
+- unlabeled normalized views: 0
+
+This validation does not infer sign direction, desirability, stacking behavior, formulas, or gameplay meaning. It only proves the diagnostic artifacts preserve enough raw evidence to inspect malformed tier/value shapes without mutating source data.
 
 ## 13. Requirements Before Gameplay Correctness Claims
 
@@ -300,9 +321,10 @@ Current disposition after the controlled modifier inspection stack:
 - malformed modifier category triage classifies 136 malformed structures as malformed tier/value shape.
 - unsupported modifier category triage classifies 1112 unsupported structures as unsupported special behavior.
 - all triaged categories remain unresolved and diagnostic-only.
+- malformed tier/value shape validation confirms raw min/max/order evidence, provenance, and warning metadata are preserved for all 136 records; any normalized bounds are explicitly labeled diagnostic-only and not source mutation.
 
 This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
 
-Recommended next architecture target: diagnostic policies for the triaged modifier categories, starting with malformed tier/value shape. That policy should decide whether inverted negative ranges can be normalized for inspection, must remain unresolved, or require explicit exclusion. It must not resolve gameplay semantics, mutate source data, or change production behavior.
+Recommended next architecture target: diagnostic policy and validation for the remaining unresolved modifier categories, starting with missing reference mapping or unsupported special behavior. These policies must not resolve gameplay semantics, mutate source data, or change production behavior.
 
-Malformed tier/value policy status: proposed and documented. No semantic resolver behavior has been implemented from it yet.
+Malformed tier/value policy status: documented and diagnostically validated. No semantic resolver behavior has been implemented from it.

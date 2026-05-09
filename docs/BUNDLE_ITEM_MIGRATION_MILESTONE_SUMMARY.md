@@ -497,6 +497,10 @@ Recommended output for the next step:
 - Malformed tier/value shape policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`. It covers the current 136 malformed structures and requires raw `minRoll`, `maxRoll`, source order, provenance, and warning metadata to remain visible.
 - The policy allows diagnostic-only normalized views only when they are explicitly labeled as inspection views, preserve raw evidence, and do not infer sign direction, desirability, stacking, formula, or gameplay meaning.
 - The policy forbids normalization when raw bounds or provenance are missing, numeric shape is ambiguous, or normalization would become gameplay truth.
+- Malformed tier/value shape validation is implemented in `backend/app/game_data/malformed_tier_value_shape_validator.py` and `backend/scripts/report_malformed_tier_value_shape.py`.
+- Generated validation reports exist at `docs/generated/malformed_tier_value_shape_report.md` and `docs/generated/malformed_tier_value_shape_report.json`.
+- Current malformed tier/value validation summary: `validation_status=warning`, `production_safe=false`, 136 total malformed records, 136 raw min/max values preserved, 136 raw source orders preserved, 136 provenance records preserved, 136 warning metadata records preserved, 136 diagnostic normalized views labeled `diagnostic_only_not_source_mutation`, 136 inverted numeric ranges, 34 inverted negative ranges, 0 records missing raw evidence, and 0 unlabeled normalized views.
+- The validator does not infer gameplay semantics and does not convert malformed records into resolved modifier behavior.
 
 Controlled modifier inspection stack closeout:
 
@@ -511,7 +515,7 @@ Controlled modifier inspection stack closeout:
 - Affix `910` duplicate eligibility evidence agreement is `true`.
 - No gameplay, crafting, simulation, build-math, API, frontend, or production loader semantics are inferred.
 - Production migration remains forbidden.
-- Next recommended architecture target: implement diagnostic validation for the malformed tier/value shape policy. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it verifies raw evidence preservation before any resolver output changes.
+- Next recommended architecture target: create diagnostic policy and validation for the remaining unresolved modifier categories, starting with missing reference mapping or unsupported special behavior. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it continues to preserve raw evidence before any resolver output changes.
 
 ## 10. What Not To Do Next
 
