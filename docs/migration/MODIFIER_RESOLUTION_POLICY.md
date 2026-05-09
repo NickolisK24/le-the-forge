@@ -362,7 +362,76 @@ Current malformed tier/value shape validation summary:
 
 This validation does not infer sign direction, desirability, stacking behavior, formulas, or gameplay meaning. It only proves the diagnostic artifacts preserve enough raw evidence to inspect malformed tier/value shapes without mutating source data.
 
-## 14. Requirements Before Gameplay Correctness Claims
+## 14. Unsupported Special Behavior Policy
+
+Current unsupported special behavior count: `1112`.
+
+`unsupported_special_behavior` means the diagnostic stack found preserved modifier-adjacent source evidence that is not modeled by the controlled modifier resolver and cannot be safely represented as a generic stat modifier. The current unresolved category triage derives this category from `affix_record.extra_typetree_fields`, where equipment affix records carry preserved TypeTree fields that remain intentionally outside resolver semantics.
+
+Required raw evidence to preserve:
+
+- source affix identity
+- source section, such as `equipment` or `idol`
+- source affix ID
+- raw field name or source warning field that exposed the unsupported evidence
+- raw warning message
+- any preserved raw source payload path or diagnostic record path available
+- diagnostic phase or report that emitted the unsupported evidence
+
+Required provenance and warning metadata:
+
+- source artifact path must remain attached when available
+- source phase or diagnostic layer must remain attached
+- source warning code must remain attached
+- warning category must remain attached
+- warning message must remain attached
+- affected affix identity must remain attached
+- future saved-vs-fresh comparisons must preserve count and warning-category agreement
+
+Future resolver prototypes must carry unsupported special behavior as unsupported diagnostic objects, not as resolved modifier semantics. They may include these fields for inspection:
+
+```json
+{
+  "diagnostic_only": true,
+  "production_safe": false,
+  "source_affix_identity": "equipment:<id> or idol:<id>",
+  "reference_status": "unsupported",
+  "unresolved_category": "unsupported_special_behavior",
+  "raw_unsupported_evidence": {},
+  "provenance": {},
+  "warnings": []
+}
+```
+
+Unsupported structures must not be guessed from prose, text, labels, display names, tags, or categories. Those fields can be useful for inspection, but they are not source-backed mechanics. Treating them as semantics would turn descriptive or grouping metadata into gameplay behavior.
+
+Unsupported structures must not be collapsed into generic stat modifiers. Generic stat objects lose the distinctions that may matter for correctness, such as condition, target, entity scope, trigger timing, skill binding, or scripted behavior. Collapsing them would create false confidence by making unknown mechanics appear resolved.
+
+Potentially unsafe unsupported behavior categories include:
+
+- conditional behavior
+- entity-scope behavior
+- minion/player target behavior
+- skill-specific behavior
+- triggered or special behavior
+- unique scripted behavior
+- unknown behavior
+
+An unsupported behavior may become resolved only after a separate diagnostic policy or validator provides source-backed semantic evidence. Required evidence before resolving unsupported behavior:
+
+- stable source identity for the affix and unsupported field
+- raw source field semantics documented from decoded source, schema, or verified extraction evidence
+- provenance showing where the semantic interpretation came from
+- evidence that the behavior is not inferred from prose, display names, labels, tags, or categories
+- no conflicting interpretation for the same raw evidence
+- deterministic saved-vs-fresh agreement for counts and warning metadata
+- tests proving unsupported records are not silently converted when semantic evidence is missing
+
+Unsupported structures block gameplay correctness claims. As long as 1112 structures remain unsupported, Forge cannot claim complete affix modifier interpretation, stat math correctness, crafting correctness, or production migration readiness. Future prototypes may expose these structures for inspection, but they must remain unsupported and excluded from gameplay semantics.
+
+`production_safe=false` remains required because the current evidence supports diagnostic visibility, not production-safe modifier resolution. This policy does not authorize semantic modifier resolution, loader changes, runtime behavior changes, or production consumption.
+
+## 15. Requirements Before Gameplay Correctness Claims
 
 Forge must not claim gameplay correctness until all of the following are true:
 
@@ -379,7 +448,7 @@ Forge must not claim gameplay correctness until all of the following are true:
 
 Until then, modifier resolution remains diagnostic-only and `production_safe=false`.
 
-## 15. Current Disposition
+## 16. Current Disposition
 
 Current disposition after the controlled modifier inspection stack:
 
@@ -402,12 +471,14 @@ Current disposition after the controlled modifier inspection stack:
 - missing modifier reference mapping validation confirms all 115 records preserve raw evidence, source identity, provenance, and warning metadata; all 115 remain unresolved; no name-only or `subtype_id`-only mapping inference is present; saved-vs-fresh unresolved delta is 0.
 - malformed modifier category triage classifies 136 malformed structures as malformed tier/value shape.
 - unsupported modifier category triage classifies 1112 unsupported structures as unsupported special behavior.
+- unsupported special behavior policy is documented; those 1112 structures must stay unsupported until source-backed semantic evidence exists, must not be inferred from text/name/tag/category evidence, and must not be collapsed into generic stat modifiers.
 - all triaged categories remain unresolved and diagnostic-only.
 - malformed tier/value shape validation confirms raw min/max/order evidence, provenance, and warning metadata are preserved for all 136 records; any normalized bounds are explicitly labeled diagnostic-only and not source mutation.
 
 This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
 
-Recommended next architecture target: diagnostic policy and validation for unsupported special behavior. That policy must not resolve gameplay semantics, mutate source data, or change production behavior.
+Recommended next architecture target: diagnostic validation for unsupported special behavior. That validation must preserve raw evidence, provenance, and warning metadata without resolving gameplay semantics, mutating source data, or changing production behavior.
 
 Malformed tier/value policy status: documented and diagnostically validated. No semantic resolver behavior has been implemented from it.
 Missing modifier reference mapping policy status: documented and diagnostically validated. No modifier mappings or semantic resolver behavior have been implemented from it.
+Unsupported special behavior policy status: documented. No unsupported behavior validator or semantic resolver behavior has been implemented from it.
