@@ -23,7 +23,7 @@ The current migration program is diagnostics-first.
 | Forge production consumers | None. No production bundle consumer exists. |
 | Production safety | `production_safe=false` across mappings, translations, resolver output, sidecars, and validators. |
 | Importer behavior | Production importer output remains unchanged. |
-| Sidecar diagnostics | Developer-only. Not exposed in API responses or frontend behavior. |
+| Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
 
 Current diagnostic counts:
@@ -43,6 +43,17 @@ Current diagnostic counts:
 | Sidecar unresolved records | 1 |
 
 These are current diagnostic values, not permanent truths. They should be updated when bundle generation, Forge diagnostics, or fixture coverage changes.
+
+Current sidecar comparison checkpoint:
+
+| Metric | Current Value |
+| --- | --- |
+| Saved sidecar status | `warning` |
+| Fresh sidecar status | `warning` |
+| Saved/fresh shape agreement | confirmed |
+| Saved/fresh count deltas | zero |
+| Warning deltas | intentional and visible |
+| Production safety | `production_safe=false` |
 
 ## 3. What Has Been Proven
 
@@ -239,6 +250,8 @@ bundle generator
 
 This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, consumed, revalidated from fresh sidecar builds, and compared against saved expectations by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
 
+The sidecar diagnostics milestone is complete as a non-production validation surface. It is not production migration completion. The comparison remains warning-level because warning deltas are intentionally preserved and visible.
+
 ## 8. Criteria Before First Non-Production Consumer
 
 Before any non-production consumer is allowed, all of the following criteria must be satisfied:
@@ -263,23 +276,22 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 ## 9. Recommended Next Step
 
-The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. The next step is to decide whether this completes the current item-type diagnostic milestone or whether more sidecar hardening is needed before moving to the next canonical data family.
+The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. This closes the current sidecar diagnostics milestone as complete for non-production validation.
 
-Any next diagnostic expansion should:
+The next canonical planning target is not production consumption. It should be a diagnostic-first source audit and migration plan for `affixes` and `affix_tiers`, with `affix_eligibility` and `affix_tags` kept separate unless source evidence is clear.
 
-- Keep the saved sidecar consumer as the baseline.
-- Validate saved and fresh sidecars before consumption.
-- Preserve saved-vs-fresh comparison as a warning-level gate while warnings remain.
-- Avoid live importer output unless explicitly scoped and reviewed.
+Any next data-family planning step should:
+
+- Keep the sidecar diagnostics milestone as a completed diagnostic boundary.
 - Avoid production loaders and production API responses.
 - Remain explicitly developer-only.
-- Preserve visible resolver status, missing context, blocked mappings, and warning counts.
-- Prove the next diagnostic input source before any production migration planning.
+- Preserve visible warning/deferred/block states.
+- Prove the next data-family source and validation contract before implementation.
 
 Recommended output for the next step:
 
-- Either a short checkpoint note that this sidecar diagnostic chain is complete for now, or a narrow hardening plan for remaining warning deltas.
-- If moving on, a planning-only source audit for the next canonical data family.
+- A planning-only source audit for `affixes` / `affix_tiers`.
+- A separate decision on whether `affix_eligibility` and `affix_tags` have enough source evidence to plan now or should remain deferred.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
