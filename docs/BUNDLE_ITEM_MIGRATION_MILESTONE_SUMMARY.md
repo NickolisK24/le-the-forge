@@ -491,6 +491,9 @@ Recommended output for the next step:
 - Generated comparison reports exist at `docs/generated/controlled_modifier_resolver_comparison_report.md` and `docs/generated/controlled_modifier_resolver_comparison_report.json`.
 - Current comparison summary: `comparison_status=warning`, zero count deltas, zero warning category deltas, deterministic output agreement, provenance coverage agreement, diagnostic-only agreement, production-safe agreement, and affix `910` duplicate evidence agreement.
 - Explicit preservation of the production boundary and `production_safe=false`.
+- Unresolved modifier category triage is implemented in `backend/app/game_data/modifier_unresolved_category_triage.py` and `backend/scripts/report_modifier_unresolved_category_triage.py`.
+- Generated triage reports exist at `docs/generated/modifier_unresolved_category_triage_report.md` and `docs/generated/modifier_unresolved_category_triage_report.json`.
+- Current triage summary: 115 unresolved references are classified as likely missing reference mapping, 136 malformed structures as malformed tier/value shape, and 1112 unsupported structures as unsupported special behavior. All three categories remain unresolved and diagnostic-only.
 
 Controlled modifier inspection stack closeout:
 
@@ -498,13 +501,14 @@ Controlled modifier inspection stack closeout:
 - Current state is `diagnostic_only=true` and `production_safe=false`.
 - Saved-vs-fresh comparison is `comparison_status=warning`, not pass, because unresolved, malformed, and unsupported modifier evidence remains visible.
 - Current counts are 6959 total modifier references, 5596 resolved inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
+- Triage classifies the remaining unresolved evidence into actionable diagnostic categories without resolving gameplay semantics.
 - Count deltas are 0 and warning category deltas are 0.
 - Deterministic output agreement is `true`.
 - Provenance coverage agreement is `true`.
 - Affix `910` duplicate eligibility evidence agreement is `true`.
 - No gameplay, crafting, simulation, build-math, API, frontend, or production loader semantics are inferred.
 - Production migration remains forbidden.
-- Next recommended architecture target: unresolved modifier category triage. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it directly classifies the unresolved/malformed/unsupported evidence that blocks useful gameplay correctness.
+- Next recommended architecture target: diagnostic policies for the triaged modifier categories, starting with malformed tier/value shape. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it narrows one blocker category before any semantic resolver work.
 
 ## 10. What Not To Do Next
 
