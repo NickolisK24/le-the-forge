@@ -6,12 +6,12 @@ This is a diagnostic-only readiness audit. It does not modify production importe
 
 | Field | Result |
 | --- | --- |
-| `non_production_consumer_allowed` | `false` |
-| Reason | Current generated diagnostics still show Phase 3 eligibility as `error` and Phase 5 saved-vs-fresh comparison as `blocked`. |
+| `non_production_consumer_allowed` | `true` for planning a minimum read-only diagnostic consumer only |
+| Reason | The accepted exact duplicate eligibility policy has been applied in generated diagnostics. Phase 3 is now `warning`, Phase 5 is now `warning`, no phase has error status, and saved/fresh count, warning, and error deltas are zero. |
 | Production safety | `production_safe=false` |
-| Consumer status | No Phase 6 affix consumer should be created yet. |
+| Consumer status | Phase 6 design/planning may begin; production migration and production consumers remain blocked. |
 
-The exact duplicate eligibility policy has been proposed in Forge planning docs, but the current generated reports available under `D:\Forge\last-epoch-data\docs\generated` do not show the policy applied. The readiness sweep therefore treats the system as not ready for a minimum safe non-production affix consumer.
+The exact duplicate eligibility policy has been accepted and applied only in the Phase 3 diagnostic validator/report. This does not deduplicate source data, does not generate affix bundle families, does not change Forge behavior, and does not make affix eligibility production-safe.
 
 ## 2. Sources Reviewed
 
@@ -41,10 +41,10 @@ Sidecar diagnostics:
 | Sidecar diagnostics | `warning` comparison state | `false` | No | Saved/fresh shape agreement is confirmed; warning states remain visible. |
 | Phase 1 affix source/tier shape | `warning` | `false` | No | Shape/tier report exists; eligibility and tags are out of scope. |
 | Phase 2 affix identity/provenance | `warning` | `false` | No | Stable source identity exists for 1227 affixes; display-name collisions remain warnings. |
-| Phase 3 affix eligibility | `error` | `false` | Yes | Affix `910` duplicate `canRollOn` target remains error-level in generated reports. |
+| Phase 3 affix eligibility | `warning` | `false` | No | Affix `910` duplicate `canRollOn` target satisfies the accepted exact-duplicate diagnostic policy and remains visible as warning-only raw duplicate evidence. |
 | Phase 4 affix tag/category | `warning` | `false` | No | Tag/category evidence remains a separate warning-level gate. |
-| Phase 5 saved-vs-fresh comparison | `blocked` | `false` | Yes, inherited from Phase 3 | Saved and fresh reports agree, but agreement is on a blocked state. |
-| Affix 910 duplicate policy | Proposed only in Forge docs | `false` | Yes, until applied | No generated report currently shows Phase 3 downgraded to warning-only. |
+| Phase 5 saved-vs-fresh comparison | `warning` | `false` | No | Saved and fresh reports agree with zero count/warning/error deltas; the combined gate is warning-only because all phases remain diagnostic warnings. |
+| Affix 910 duplicate policy | Applied in diagnostics only | `false` | No | The generated Phase 3 report records raw duplicate count, duplicate positions, and a diagnostic-only unique-target view. |
 
 ## 4. Current Generated Report Facts
 
@@ -87,7 +87,7 @@ Sidecar diagnostics:
 
 | Metric | Value |
 | --- | ---: |
-| Validation status | `error` |
+| Validation status | `warning` |
 | Total affixes inspected | 1227 |
 | Affixes with eligibility evidence | 1227 |
 | Affixes missing eligibility evidence | 0 |
@@ -103,9 +103,9 @@ Sidecar diagnostics:
 
 Current blocker:
 
-- Affix `910` retains duplicate raw-source `canRollOn` evidence for `IDOL_4x1`.
-- The policy proposal classifies affix `910` as a candidate for warning-only diagnostic handling, but the generated Phase 3 report still records the duplicate as an error.
-- No diagnostic report currently proves the policy was accepted, implemented, and rerun.
+- Affix `910` retains duplicate raw-source `canRollOn` evidence for `IDOL_4x1`, but it now satisfies the accepted exact-duplicate diagnostic policy and is warning-only.
+- The generated Phase 3 report preserves raw duplicate count `2`, duplicate positions `[0, 1]`, and labels the normalized unique-target view as diagnostic-only.
+- This is still not production-safe and does not deduplicate source or generated data.
 
 ### Phase 4 Tag/Category
 
@@ -128,24 +128,25 @@ Current blocker:
 
 | Metric | Value |
 | --- | ---: |
-| `migration_gate_status` | `blocked` |
+| `migration_gate_status` | `warning` |
 | Phases expected | 4 |
 | Phases compared | 4 |
 | Missing phase reports | 0 |
 | Count deltas | 0 |
 | Warning deltas | 0 |
 | Error deltas | 0 |
-| Phases with warning status | 3 |
-| Phases with error status | 1 |
-| Phase 3 affix 910 duplicate unresolved | `true` |
+| Phases with warning status | 4 |
+| Phases with error status | 0 |
+| Phase 3 affix 910 duplicate unresolved | `false` |
+| Phase 3 affix 910 duplicate warning-only | `true` |
 | Phase 4 tag/category warnings present | `true` |
 | `production_safe` | `false` |
 
-Phase agreement is stable, but it is stable on the current blocked state:
+Phase agreement is stable and warning-only:
 
 - Phase 1 saved `warning`, fresh `warning`.
 - Phase 2 saved `warning`, fresh `warning`.
-- Phase 3 saved `error`, fresh `error`.
+- Phase 3 saved `warning`, fresh `warning`.
 - Phase 4 saved `warning`, fresh `warning`.
 
 ## 5. Remaining Warning Categories
@@ -164,9 +165,6 @@ These warnings are intentionally visible. They should not be downgraded or hidde
 
 ## 6. Remaining Blocked Assumptions
 
-- The affix `910` exact duplicate policy is proposed but not reflected in current generated Phase 3 output.
-- Phase 3 remains `validation_status=error`.
-- Phase 5 remains `migration_gate_status=blocked`.
 - No affix bundle family exists.
 - No Forge affix consumer scope has been implemented or validated.
 - Affix eligibility remains separate from affix identity and tags.
@@ -177,18 +175,20 @@ These warnings are intentionally visible. They should not be downgraded or hidde
 
 ## 7. Consumer Readiness Decision
 
-`non_production_consumer_allowed=false`
+`non_production_consumer_allowed=true`
 
-The minimum safe non-production affix consumer is not allowed yet because:
+The minimum safe non-production affix consumer may now be planned because:
 
-1. Phase 3 eligibility still has `validation_status=error`.
-2. Phase 5 saved-vs-fresh comparison still reports `migration_gate_status=blocked`.
-3. The affix `910` exact duplicate policy has not been applied in generated diagnostics.
-4. The Phase 6 consumer scope has not been separately designed against warning-only diagnostics.
+1. Phase 3 eligibility now has `validation_status=warning`, not `error`.
+2. Phase 5 saved-vs-fresh comparison now reports `migration_gate_status=warning`, not `blocked`.
+3. Affix `910` raw duplicate evidence remains visible and warning-only under the accepted policy.
+4. Count, warning, and error deltas remain zero.
+
+This permits only a future read-only, diagnostic-only, developer-only Phase 6 consumer design. It does not authorize production migration.
 
 ## 8. Future Allowed Consumer Scope
 
-If the duplicate policy is accepted, implemented, and rerun successfully, the first Phase 6 consumer may be planned only within this scope:
+The first Phase 6 consumer may be planned only within this scope:
 
 - Read-only.
 - Diagnostic-only.
@@ -204,17 +204,10 @@ If the duplicate policy is accepted, implemented, and rerun successfully, the fi
 - Must keep `production_safe=false`.
 - Must fail or warn visibly when eligibility, tag/category, tier, or stat reference diagnostics are incomplete.
 
-This scope would permit planning a consumer only after updated diagnostics show no error-level Phase 3 blocker and no blocked Phase 5 gate. It would not authorize production migration.
+This scope permits planning only. It would not authorize production migration.
 
 ## 9. Required Next Step
 
-Apply the proposed exact duplicate eligibility policy in the Phase 3 diagnostic validator/report, then regenerate Phase 3 and Phase 5 reports.
+Design the minimum safe Phase 6 non-production affix diagnostic consumer.
 
-The readiness sweep should be rerun only after:
-
-1. Phase 3 reports `warning` instead of `error` for the affix `910` exact duplicate class.
-2. Phase 5 reports `warning` or `diagnostic_only_pass` instead of `blocked`.
-3. Count, warning, and error deltas remain zero or are explicitly explained.
-4. `production_safe=false` remains present in every report.
-
-No Phase 6 consumer should be implemented in the same task as the policy application.
+The consumer design must be read-only, developer-only, warning-preserving, and explicitly scoped to saved/generated diagnostics. It must not generate bundle families, replace loaders, feed runtime math, silently deduplicate affix `910`, or set `production_safe=true`.
