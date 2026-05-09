@@ -492,6 +492,20 @@ Recommended output for the next step:
 - Current comparison summary: `comparison_status=warning`, zero count deltas, zero warning category deltas, deterministic output agreement, provenance coverage agreement, diagnostic-only agreement, production-safe agreement, and affix `910` duplicate evidence agreement.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
+Controlled modifier inspection stack closeout:
+
+- The diagnostic-only stack is complete through the stat/modifier reference audit, modifier resolution policy, controlled modifier resolver prototype, and saved-vs-fresh controlled modifier resolver comparison.
+- Current state is `diagnostic_only=true` and `production_safe=false`.
+- Saved-vs-fresh comparison is `comparison_status=warning`, not pass, because unresolved, malformed, and unsupported modifier evidence remains visible.
+- Current counts are 6959 total modifier references, 5596 resolved inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
+- Count deltas are 0 and warning category deltas are 0.
+- Deterministic output agreement is `true`.
+- Provenance coverage agreement is `true`.
+- Affix `910` duplicate eligibility evidence agreement is `true`.
+- No gameplay, crafting, simulation, build-math, API, frontend, or production loader semantics are inferred.
+- Production migration remains forbidden.
+- Next recommended architecture target: unresolved modifier category triage. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it directly classifies the unresolved/malformed/unsupported evidence that blocks useful gameplay correctness.
+
 ## 10. What Not To Do Next
 
 Do not:
