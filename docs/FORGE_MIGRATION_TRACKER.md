@@ -11,7 +11,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 
 | Area | Current State |
 | --- | --- |
-| Current phase | Sidecar diagnostics milestone complete; affix diagnostic gates through Phase 4 tag/category validation are in place. |
+| Current phase | Sidecar diagnostics milestone complete; affix diagnostic gates through Phase 5 saved-vs-fresh comparison are in place. |
 | Current boundary | Developer-only diagnostics; no production bundle consumption. |
 | Current compatibility state | `compatible_with_warnings` expected from Forge compatibility reader. |
 | Current production status | Existing Forge loaders, importers, API behavior, frontend behavior, and simulation behavior remain unchanged. |
@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, and Phase 4 tag/category validator exist as diagnostic-only tooling. Shape, identity/provenance, and tag/category are `warning`; eligibility is `error` because one duplicate `canRollOn` target is present. No affix bundle family is generated or consumed. |
+| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. Shape, identity/provenance, and tag/category are `warning`; eligibility is `error` because one duplicate `canRollOn` target is present. Phase 5 gate is `blocked`. No affix bundle family is generated or consumed. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -30,7 +30,7 @@ Short version:
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
-- `affixes` / embedded `affix_tiers` now have Phase 1 source-shape and Phase 2 identity/provenance diagnostics in `last-epoch-data`; `affix_eligibility` has a separate Phase 3 diagnostic with an error state; `affix_tags` / category evidence has a separate Phase 4 diagnostic with a warning state.
+- `affixes` / embedded `affix_tiers` now have Phase 1 source-shape and Phase 2 identity/provenance diagnostics in `last-epoch-data`; `affix_eligibility` has a separate Phase 3 diagnostic with an error state; `affix_tags` / category evidence has a separate Phase 4 diagnostic with a warning state; Phase 5 saved-vs-fresh comparison is blocked while Phase 3 remains error-level.
 
 ## 2. Current Safety Boundary
 
@@ -160,7 +160,7 @@ Current disposition:
 
 Next safe step:
 
-- Plan Phase 5 saved-vs-fresh affix diagnostic comparison. Do not generate bundle families or Forge consumers yet.
+- Decide the Phase 3 raw-source duplicate policy in a separate diagnostic policy task. Do not generate bundle families or Forge consumers yet.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -356,7 +356,7 @@ Next safe step:
 - [x] affix eligibility diagnostic validator.
 - [x] generated affix eligibility diagnostic report.
 - [x] affix tag/category diagnostic validator.
-- [ ] saved-vs-fresh affix diagnostic comparison.
+- [x] saved-vs-fresh affix diagnostic comparison.
 
 ## 5. Canonical Family Status Table
 
@@ -553,6 +553,34 @@ Current warning-level findings:
 - Numeric `displayCategory` / `specialAffixType` values remain unknown or unsupported as tag/category evidence.
 - Phase 3 eligibility remains `validation_status=error` and unchanged. The affix `910` duplicate eligibility finding is not resolved or downgraded by Phase 4.
 
+### Current Affix Saved-vs-Fresh Diagnostic Comparison
+
+These values come from the diagnostic-only Phase 5 comparison in `D:\Forge\last-epoch-data`. The comparison checks saved/generated Phase 1-4 reports against freshly built reports and does not create a production consumer.
+
+| Metric | Value |
+| --- | ---: |
+| migration_gate_status | `blocked` |
+| phases expected | 4 |
+| phases compared | 4 |
+| phases missing | 0 |
+| phases with error status | 1 |
+| phases with warning status | 3 |
+| phases with count deltas | 0 |
+| phases with warning deltas | 0 |
+| phases with error deltas | 0 |
+| Phase 3 affix 910 duplicate unresolved | `true` |
+| Phase 4 tag/category warnings present | `true` |
+| `production_safe` | `false` |
+
+Phase status agreement:
+
+- Phase 1 source/tier shape: saved `warning`, fresh `warning`.
+- Phase 2 identity/provenance: saved `warning`, fresh `warning`.
+- Phase 3 eligibility: saved `error`, fresh `error`.
+- Phase 4 tag/category: saved `warning`, fresh `warning`.
+
+The gate is blocked because Phase 3 remains error-level. The comparison does not deduplicate affix `910`, downgrade eligibility, generate affix bundle families, or mark any output production-safe.
+
 ## 7. Current Blockers
 
 - Live LET payload shape is unconfirmed.
@@ -621,9 +649,10 @@ affix source audit and migration plan
   -> generated affix 910 source trace report
   -> affix tag/category validator
   -> generated tag/category diagnostic report
+  -> saved-vs-fresh affix diagnostic comparison
 ```
 
-This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status; the completed Phase 3 eligibility validator reports error-level status; the completed Phase 4 tag/category validator reports warning-level status. The affix 910 source trace shows the duplicate `IDOL_4x1` eligibility target is already present in the earliest available decoded source, `last-epoch-data/extracted_raw/MasterAffixesList.json`, before `exports_json/affixes.json`. The diagnostic disposition accepts this as a known decoded-source duplicate for planning only: diagnostics may report both raw duplicate count and normalized unique target view, but source/generated data must not be deduplicated. The byte-level game-data versus TypeTree-walker boundary remains unresolved, so Phase 3 stays `validation_status=error` until an explicit policy decides whether raw-source exact duplicates are blocking or warning-only. Phase 4 does not resolve or downgrade that error. All keep `production_safe=false`.
+This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status; the completed Phase 3 eligibility validator reports error-level status; the completed Phase 4 tag/category validator reports warning-level status; the completed Phase 5 comparison reports `migration_gate_status=blocked`. The affix 910 source trace shows the duplicate `IDOL_4x1` eligibility target is already present in the earliest available decoded source, `last-epoch-data/extracted_raw/MasterAffixesList.json`, before `exports_json/affixes.json`. The diagnostic disposition accepts this as a known decoded-source duplicate for planning only: diagnostics may report both raw duplicate count and normalized unique target view, but source/generated data must not be deduplicated. The byte-level game-data versus TypeTree-walker boundary remains unresolved, so Phase 3 stays `validation_status=error` until an explicit policy decides whether raw-source exact duplicates are blocking or warning-only. Phase 4 and Phase 5 do not resolve or downgrade that error. All keep `production_safe=false`.
 
 ## 10. Next Safe Steps
 
@@ -642,7 +671,7 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 ### Later
 
 9. Decide whether to keep the Phase 3 raw-source exact duplicate policy as blocking or downgrade it to warning-only in a separate policy task; until then, Phase 3 remains `error`.
-10. Plan Phase 5 saved-vs-fresh affix diagnostic comparison, including tag/category warning state, but do not use it to bypass the Phase 3 eligibility error.
+10. Treat Phase 5 saved-vs-fresh affix diagnostic comparison as complete and blocked while Phase 3 remains error-level.
 11. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after eligibility/tag boundaries are clear and warning/error states are accepted or resolved.
 12. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
 13. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
