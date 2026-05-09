@@ -132,8 +132,8 @@ Accepted exact duplicate eligibility policy:
 - Raw evidence duplicate means the preserved source/export list with duplicate count and positions. A normalized unique-target view is only a diagnostic report convenience and must not mutate source or generated data.
 - Exact duplicates remain error/blocking if source identity is unstable, target normalization changes identity, raw duplicate count or positions are hidden, targets conflict after normalization, item references are unresolved, or extraction/transformation origin is unclear enough to risk masking a tooling bug.
 - Exact duplicates may be downgraded to warning-only diagnostically if stable source identity exists, no conflicting targets exist, normalized target identity is unchanged, raw duplicate count is preserved, duplicate positions are reported, and `production_safe=false` remains explicit.
-- Affix `910` is a candidate for warning-only diagnostic classification under this proposal because both raw entries are enum `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
-- The proposal does not deduplicate source data, does not approve production output changes, does not claim eligibility is production-safe, and does not automatically unblock Phase 6.
+- Affix `910` satisfies warning-only diagnostic classification under this accepted policy because both raw entries are enum `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
+- The policy does not deduplicate source data, does not approve production output changes, does not claim eligibility is production-safe, and does not automatically authorize production migration.
 - Phase 3 is warning-only because the policy has been explicitly accepted and implemented in the diagnostic validator/report. Phase 6 may be planned only as read-only diagnostic consumer design while still keeping `production_safe=false`.
 
 Warning-only context:
