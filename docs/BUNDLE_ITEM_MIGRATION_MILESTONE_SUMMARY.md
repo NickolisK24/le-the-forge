@@ -494,6 +494,9 @@ Recommended output for the next step:
 - Unresolved modifier category triage is implemented in `backend/app/game_data/modifier_unresolved_category_triage.py` and `backend/scripts/report_modifier_unresolved_category_triage.py`.
 - Generated triage reports exist at `docs/generated/modifier_unresolved_category_triage_report.md` and `docs/generated/modifier_unresolved_category_triage_report.json`.
 - Current triage summary: 115 unresolved references are classified as likely missing reference mapping, 136 malformed structures as malformed tier/value shape, and 1112 unsupported structures as unsupported special behavior. All three categories remain unresolved and diagnostic-only.
+- Missing modifier reference mapping policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`.
+- The policy keeps the current 115 missing mappings unresolved until source-backed mapping evidence exists, requires raw reference evidence, provenance/source path, and warning metadata to remain attached, and forbids mapping inference from display names or `subtype_id` alone.
+- Missing mappings continue to block gameplay correctness claims; they may be carried by future resolver prototypes only as unresolved diagnostic objects with `diagnostic_only=true` and `production_safe=false`.
 - Malformed tier/value shape policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`. It covers the current 136 malformed structures and requires raw `minRoll`, `maxRoll`, source order, provenance, and warning metadata to remain visible.
 - The policy allows diagnostic-only normalized views only when they are explicitly labeled as inspection views, preserve raw evidence, and do not infer sign direction, desirability, stacking, formula, or gameplay meaning.
 - The policy forbids normalization when raw bounds or provenance are missing, numeric shape is ambiguous, or normalization would become gameplay truth.
@@ -515,7 +518,7 @@ Controlled modifier inspection stack closeout:
 - Affix `910` duplicate eligibility evidence agreement is `true`.
 - No gameplay, crafting, simulation, build-math, API, frontend, or production loader semantics are inferred.
 - Production migration remains forbidden.
-- Next recommended architecture target: create diagnostic policy and validation for the remaining unresolved modifier categories, starting with missing reference mapping or unsupported special behavior. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it continues to preserve raw evidence before any resolver output changes.
+- Next recommended architecture target: implement diagnostic validation for the missing modifier reference mapping policy, or document policy for unsupported special behavior. That target is safer than a broader inspection UI, item-affix-modifier join, or gameplay stat semantics policy because it continues to preserve raw evidence before any resolver output changes.
 
 ## 10. What Not To Do Next
 
