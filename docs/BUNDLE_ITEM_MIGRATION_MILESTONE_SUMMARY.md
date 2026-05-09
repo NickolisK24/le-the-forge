@@ -215,6 +215,7 @@ Affix diagnostics milestone closeout:
 - Affix `910` duplicate `canRollOn` evidence remains warning-only and is not deduplicated.
 - `production_safe=false` remains unchanged.
 - Phase 6 affix non-production consumer implementation is complete as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts. No production consumer should be built.
+- Controlled affix resolver prototype planning is complete in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. The planned prototype remains isolated, read-only, generated-artifact-backed, warning-preserving, and `production_safe=false`.
 
 ## 3. What Has Been Proven
 
@@ -462,8 +463,9 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Plan a broader non-production affix inspection surface or a controlled affix resolver prototype.
-- Keep any next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
+- Implement the controlled affix resolver prototype described in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`, if approved.
+- Keep the prototype CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
+- Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
