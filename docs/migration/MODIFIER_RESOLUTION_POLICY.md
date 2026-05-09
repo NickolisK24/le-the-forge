@@ -204,6 +204,10 @@ Current implementation:
 - saved-vs-fresh comparison CLI: `backend/scripts/report_controlled_modifier_resolver_comparison.py`
 - comparison markdown report: `docs/generated/controlled_modifier_resolver_comparison_report.md`
 - comparison JSON report: `docs/generated/controlled_modifier_resolver_comparison_report.json`
+- unresolved category triage module: `backend/app/game_data/modifier_unresolved_category_triage.py`
+- unresolved category triage CLI: `backend/scripts/report_modifier_unresolved_category_triage.py`
+- unresolved category triage markdown report: `docs/generated/modifier_unresolved_category_triage_report.md`
+- unresolved category triage JSON report: `docs/generated/modifier_unresolved_category_triage_report.json`
 
 The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
 
@@ -242,7 +246,11 @@ Current disposition after the controlled modifier inspection stack:
 - provenance coverage agreement is `true`.
 - affix `910` duplicate evidence agreement is `true`.
 - `production_safe=false` remains explicit.
+- unresolved modifier category triage classifies 115 unresolved references as likely missing reference mapping.
+- malformed modifier category triage classifies 136 malformed structures as malformed tier/value shape.
+- unsupported modifier category triage classifies 1112 unsupported structures as unsupported special behavior.
+- all triaged categories remain unresolved and diagnostic-only.
 
 This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
 
-Recommended next architecture target: unresolved modifier category triage. It should classify the unresolved, malformed, and unsupported evidence into diagnostic categories without resolving semantics, mutating source data, or changing production behavior. This is the shortest path toward useful gameplay correctness because it narrows the evidence that blocks any future semantic modifier policy.
+Recommended next architecture target: diagnostic policies for the triaged modifier categories, starting with malformed tier/value shape. That policy should decide whether inverted negative ranges can be normalized for inspection, must remain unresolved, or require explicit exclusion. It must not resolve gameplay semantics, mutate source data, or change production behavior.
