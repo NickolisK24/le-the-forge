@@ -13,6 +13,8 @@ Current boundary:
 - `affix_eligibility` and `affix_tags` remain separate validation gates unless later source evidence clearly proves they are safe to merge.
 - No Forge production loaders consume canonical affix bundle families yet.
 - The Phase 3 affix `910` duplicate eligibility finding has a diagnostic disposition only: it is a known decoded-source duplicate, not a production-safe eligibility result.
+- Phases 1-5 are implemented and stable as diagnostics, but the combined migration gate remains blocked.
+- Phase 6 non-production consumer work must not begin until the Phase 3 duplicate eligibility policy is decided.
 
 ## 2. Current Known Affix Sources
 
@@ -560,7 +562,20 @@ Current status:
 - Phase 4 tag/category warnings remain present and visible.
 - `production_safe=false` remains unchanged.
 
+Milestone closeout:
+
+- Phase 1 affix source/tier shape diagnostic is complete with `warning` status.
+- Phase 2 affix identity/provenance diagnostic is complete with `warning` status.
+- Phase 3 affix eligibility diagnostic is complete but `error` and blocking.
+- Phase 4 affix tag/category diagnostic is complete with `warning` status.
+- Phase 5 saved-vs-fresh comparison is complete and stable.
+- Diagnostic agreement does not unblock migration.
+- Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
+- No Phase 6 consumer should be built until the eligibility duplicate policy is decided.
+
 ### Phase 6 — Non-Production Consumer Only
+
+Status: blocked.
 
 Goal:
 
@@ -572,6 +587,12 @@ Output:
 
 - Developer-only report or CLI consumer.
 - Explicit warning labels.
+
+Current blocker:
+
+- Phase 3 eligibility remains `validation_status=error` because affix `910` has duplicate decoded-source `canRollOn` evidence.
+- Phase 5 saved-vs-fresh comparison remains `migration_gate_status=blocked`.
+- A separate policy must decide whether the raw-source exact duplicate remains blocking or becomes warning-only before Phase 6 starts.
 
 ### Phase 7 — Production Migration Planning
 
@@ -628,21 +649,19 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Implement a diagnostic-only affix source shape validator for last-epoch-data.
+Create a diagnostic policy disposition for the affix 910 duplicate eligibility blocker.
 
 Scope:
-- Read exports_json/affixes.json.
-- Validate top-level _meta/equipment/idol shape.
-- Validate equipment/idol record required fields.
-- Validate embedded tier array shape.
-- Count missing IDs, name-only identity risks, tier shape risks, and unknown decode counters.
-- Emit a non-production report under reports/ or docs/generated/.
-- Add fixture-based tests.
+- Decide whether exact decoded-source duplicate eligibility evidence remains blocking or can become warning-only.
+- Preserve raw duplicate reporting.
+- Preserve diagnostic-only normalized unique-target views as report presentation only.
+- Keep source/generated data unchanged.
+- Keep Phase 6 consumer work blocked until this policy is recorded.
 
 Constraints:
-- Do not generate data_bundle/families/affixes.json yet.
-- Do not generate data_bundle/families/affix_tiers.json yet.
-- Do not migrate affix_eligibility or affix_tags.
-- Do not modify production Forge behavior.
+- Do not deduplicate affix 910.
+- Do not generate affix bundle families.
+- Do not create Forge consumers.
+- Do not change production Forge behavior.
 - Keep production_safe=false.
 ```

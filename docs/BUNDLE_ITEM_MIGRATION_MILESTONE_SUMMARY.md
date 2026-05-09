@@ -25,7 +25,7 @@ The current migration program is diagnostics-first.
 | Importer behavior | Production importer output remains unchanged. |
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
-| Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only. Shape, identity/provenance, and tag/category are warning-level; eligibility remains error-level; the comparison gate is blocked. None generate or consume affix bundle families. |
+| Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only and stable. Shape, identity/provenance, and tag/category are warning-level; eligibility remains error-level; the comparison gate is blocked with zero count/warning/error deltas. None generate or consume affix bundle families. Phase 6 affix consumer work is blocked. |
 
 Current diagnostic counts:
 
@@ -168,6 +168,19 @@ Follow-on affix saved-vs-fresh comparison checkpoint:
 | Production safety | `production_safe=false` |
 
 The saved-vs-fresh comparison confirms current diagnostic agreement across Phase 1 through Phase 4. It remains blocked because Phase 3 eligibility is still error-level. It does not deduplicate affix `910`, does not downgrade eligibility, and does not approve affix bundle generation or Forge consumption.
+
+Affix diagnostics milestone closeout:
+
+- Phase 1 affix source/tier shape diagnostic is complete with `warning` status.
+- Phase 2 affix identity/provenance diagnostic is complete with `warning` status.
+- Phase 3 affix eligibility diagnostic is complete but `error` and blocking.
+- Phase 4 affix tag/category diagnostic is complete with `warning` status.
+- Phase 5 saved-vs-fresh comparison is complete and stable.
+- Count deltas, warning deltas, and error deltas are all zero across the comparison.
+- Combined `migration_gate_status` is `blocked`.
+- Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
+- `production_safe=false` remains unchanged.
+- No Phase 6 affix non-production consumer should be built until the eligibility duplicate policy is decided.
 
 ## 3. What Has Been Proven
 
@@ -394,9 +407,9 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 The first saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation layer, and saved-vs-fresh comparison report now exist. The comparison is warning-level, not production-ready. This closes the current sidecar diagnostics milestone as complete for non-production validation.
 
-The next canonical planning target is not production consumption. It should be a diagnostic-first source audit and migration plan for `affixes` and `affix_tiers`, with `affix_eligibility` and `affix_tags` kept separate unless source evidence is clear.
+The next canonical planning target is not production consumption. The affix diagnostic milestone is complete as diagnostics but migration-blocked.
 
-That planning has started in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as error-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=blocked`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
+That planning has reached a diagnostic-complete checkpoint in `last-epoch-data`: the affix source audit exists, Phase 1 source-shape validation for affix records and embedded tier records is complete as warning-level diagnostic output, Phase 2 identity/provenance validation is complete as warning-level diagnostic output, Phase 3 eligibility validation is complete as error-level diagnostic output, Phase 4 tag/category validation is complete as warning-level diagnostic output, and Phase 5 saved-vs-fresh comparison is complete with `migration_gate_status=blocked`. This does not change the item milestone boundary and does not approve affix bundle generation or Forge consumption.
 
 The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved.
 
@@ -416,7 +429,7 @@ Any next data-family planning step should:
 Recommended output for the next step:
 
 - Decide in a separate policy task whether the known decoded-source duplicate should remain blocking or become warning-only; until then Phase 3 remains `error`.
-- Treat Phase 4 `affix_tags` as a separate warning-level diagnostic gate, without claiming affix eligibility is safe.
+- Keep Phase 6 affix consumer work blocked until that policy is decided.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
@@ -435,6 +448,8 @@ Do not:
 - Jump into DPS, enemy, corruption, or runtime mechanic migration before data architecture is stable.
 - Mark anything `production_safe=true`.
 - Treat affix source-shape or identity/provenance validation as migration completion.
+- Treat Phase 5 saved-vs-fresh affix agreement as migration unblocked.
+- Begin Phase 6 affix consumer work while Phase 3 remains error-level.
 - Merge `affix_eligibility` into affix identity or production consumers.
 - Merge `affix_tags` into affix identity, eligibility, production loaders, or Forge consumers.
 
