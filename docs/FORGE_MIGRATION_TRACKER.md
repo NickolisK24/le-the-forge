@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | `last-epoch-data` Phase 1 affix/embedded tier shape validator exists as diagnostic-only tooling. Current status is `warning`; no affix bundle family is generated or consumed. |
+| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator and Phase 2 identity/provenance validator exist as diagnostic-only tooling. Current status is `warning`; no affix bundle family is generated or consumed. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -30,7 +30,7 @@ Short version:
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
-- `affixes` / embedded `affix_tiers` now have a Phase 1 source-shape diagnostic in `last-epoch-data`; `affix_eligibility` and `affix_tags` remain separate out-of-scope validation gates.
+- `affixes` / embedded `affix_tiers` now have Phase 1 source-shape and Phase 2 identity/provenance diagnostics in `last-epoch-data`; `affix_eligibility` and `affix_tags` remain separate out-of-scope validation gates.
 
 ## 2. Current Safety Boundary
 
@@ -69,7 +69,7 @@ Short version:
 - Sidecar validation is `warning` because fixtures are synthetic/offline and mapped output lacks item type context.
 - Current LET fixture evidence does not prove live LET payload shape.
 - Saved/fresh sidecar shape agreement is confirmed and count deltas are zero, but warning deltas remain intentional and visible.
-- Affix source-shape validation is warning-only: it checks `affix` and embedded tier structure but does not validate eligibility, tags, importer use, loader use, or simulation semantics.
+- Affix source-shape and identity/provenance validation are warning-only: they check affix/tier structure, source IDs, provenance, and display-name collision risks, but do not validate eligibility, tags, importer use, loader use, or simulation semantics.
 
 ### Must Not Be Done Yet
 
@@ -81,7 +81,7 @@ Short version:
 - Do not expose sidecars publicly.
 - Do not create production adapter code.
 - Do not mark `production_safe=true`.
-- Do not treat affix source-shape validation as affix migration completion.
+- Do not treat affix source-shape or identity/provenance validation as affix migration completion.
 - Do not merge `affix_eligibility` or `affix_tags` into the affix gate without separate source evidence and diagnostics.
 
 ## 3. Migration Phases
@@ -147,12 +147,12 @@ Current blockers:
 - Forge production consumers are not migrated.
 - Base item production migration is blocked by missing `base_type_id` / `subtype_id` in current Forge base item data.
 - Implicit refs are not mechanics.
-- Affixes and embedded tiers have only a diagnostic source-shape validator; no canonical affix bundle family exists.
+- Affixes and embedded tiers have only diagnostic shape and identity/provenance validators; no canonical affix bundle family exists.
 - Affix eligibility and affix tags are not validated or migrated.
 
 Next safe step:
 
-- Continue diagnostic-first affix planning with an identity/provenance validator before any bundle family generation or Forge consumption.
+- Continue diagnostic-first affix planning with the next separate gate: eligibility diagnostics. Do not generate bundle families or Forge consumers yet.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -343,7 +343,8 @@ Next safe step:
 - [x] affix source audit and migration plan.
 - [x] affix / embedded affix tier source-shape validator.
 - [x] generated affix source-shape diagnostic report.
-- [ ] affix identity and provenance validator.
+- [x] affix identity and provenance validator.
+- [x] generated affix identity/provenance diagnostic report.
 - [ ] affix eligibility diagnostic validator.
 - [ ] affix tag/category diagnostic validator.
 - [ ] saved-vs-fresh affix diagnostic comparison.
@@ -355,10 +356,10 @@ Next safe step:
 | `metadata` | `exports_json/metadata.json` | generated; warning | compatibility reader only | High for patch/build; Partial for full extractor/source hash coverage | Normalized | control-plane only | Keep linked to bundle validation and compatibility checks. |
 | `item_types` | `exports_json/items.json` base type records | generated; passed | diagnostics only; not production-consumed | Verified for base_type_id/name; Partial/Inferred for slug/slot/category | Canonical-ready for identity/type only | `production_safe=false` | Plan first non-production diagnostic consumer. |
 | `base_items` | `exports_json/items.json` subtype records | generated; passed | diagnostics only; not production-consumed | Verified for composite IDs/name/requirements where present; Partial for implicits/tags | Canonical-ready for identity/basic requirements only | no name-only migration | Block production use until Forge has source IDs/composite matching. |
-| `affixes` | `exports_json/affixes.json` | deferred; block; source-shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; shape diagnostic only | not a bundle family; `production_safe=false` | Next: identity/provenance validator before any family generation or Forge consumption. |
-| `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate identity/provenance and tier semantics separately. |
-| `affix_eligibility` | not yet canonicalized | deferred; block | current Forge simplified/static logic | Deferred/Unknown | Raw Extracted | explicitly out of scope for affix Phase 1 | Audit source evidence in a separate validation gate. |
-| `affix_tags` | derived/export data exists, not bundle family | deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted | explicitly out of scope for affix Phase 1 | Audit tag derivation and schema separately. |
+| `affixes` | `exports_json/affixes.json` | deferred; block; shape and identity/provenance diagnostics `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity only | not a bundle family; `production_safe=false` | Next: eligibility diagnostics as a separate gate before any family generation or Forge consumption. |
+| `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate tier normalization and semantics separately. |
+| `affix_eligibility` | not yet canonicalized | deferred; block | current Forge simplified/static logic | Deferred/Unknown | Raw Extracted | explicitly out of scope for affix Phases 1-2 | Audit source evidence in a separate validation gate. |
+| `affix_tags` | derived/export data exists, not bundle family | deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted | explicitly out of scope for affix Phases 1-2 | Audit tag derivation and schema separately. |
 | `uniques` | `exports_json/uniques.json` | deferred; degrade | current Forge static data/import resolution | Partial | Raw Extracted | tooltip/special effects not mechanics | Defer until item/affix foundations stabilize. |
 | `idols` | `exports_json/items.json`, affixes, current Forge data | deferred; degrade | current Forge static item handling | Partial | Raw Extracted | shape/context risks | Keep covered by item type diagnostics; no production migration. |
 | `blessings` | `exports_json/blessings.json` | deferred; degrade | current Forge static/fallback data | Partial | Raw Extracted | not migrated | Audit if promoted for planner/stat use. |
@@ -455,6 +456,30 @@ Out of scope for this phase:
 - `affix_eligibility`
 - `affix_tags`
 
+### Current Affix Identity/Provenance Diagnostic
+
+These values come from the diagnostic-only Phase 2 validator in `D:\Forge\last-epoch-data`. They show source-backed identity evidence for future non-production work, not production readiness.
+
+| Metric | Value |
+| --- | ---: |
+| validation_status | `warning` |
+| total affixes | 1227 |
+| equipment affixes | 1112 |
+| idol affixes | 115 |
+| affixes with stable source identity | 1227 |
+| affixes missing source identity | 0 |
+| affixes relying on name-only identity | 0 |
+| affixes relying on subtype_id-only identity | 0 |
+| duplicate source identities | 0 |
+| ambiguous display-name collisions | 137 |
+| missing source/provenance fields | 0 |
+| `production_safe` | `false` |
+
+Out of scope for this phase:
+
+- `affix_eligibility`
+- `affix_tags`
+
 ## 7. Current Blockers
 
 - Live LET payload shape is unconfirmed.
@@ -466,7 +491,7 @@ Out of scope for this phase:
 - Production loaders still use static/hardcoded/fallback data.
 - No first non-production bundle item consumer has been selected.
 - No production-safe adapter, fallback behavior, or rollback strategy exists.
-- Affix Phase 1 validates source shape only; identity/provenance, eligibility, tags, and production semantics are still blocked.
+- Affix Phase 1 validates source shape and Phase 2 validates identity/provenance evidence only; eligibility, tags, tier normalization, and production semantics are still blocked.
 
 ## 8. Current Risks
 
@@ -481,7 +506,7 @@ Out of scope for this phase:
 - Silent fallback from missing `base_type_id`.
 - Treating synthetic/offline LET fixtures as proof of live LET payload shape.
 - Treating sidecar diagnostics as importer output.
-- Treating affix shape validation as evidence that affix eligibility, tags, tier semantics, or simulation behavior are safe.
+- Treating affix shape or identity/provenance validation as evidence that affix eligibility, tags, tier semantics, or simulation behavior are safe.
 
 ## 9. Current Diagnostic Chain
 
@@ -515,12 +540,13 @@ Current affix diagnostic chain:
 affix source audit and migration plan
   -> affix / embedded tier source-shape validator
   -> generated source-shape diagnostic report
-  -> future identity/provenance validator
+  -> affix identity/provenance validator
+  -> generated identity/provenance diagnostic report
   -> future eligibility validator
   -> future tag/category validator
 ```
 
-This affix chain is also diagnostic-only. The completed Phase 1 validator reports source-shape warnings and keeps `production_safe=false`.
+This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status and keep `production_safe=false`.
 
 ## 10. Next Safe Steps
 
@@ -529,14 +555,15 @@ This affix chain is also diagnostic-only. The completed Phase 1 validator report
 1. Treat the saved/fresh/comparison sidecar diagnostics milestone as complete for non-production validation.
 2. Preserve the current warning state; do not downgrade warning-level diagnostics to passing.
 3. Treat the `affixes` / embedded `affix_tiers` Phase 1 source-shape validator as complete only for diagnostic shape safety.
-4. Implement the next affix gate as an identity/provenance validator before generating bundle families or Forge consumers.
+4. Treat the Phase 2 affix identity/provenance validator as complete only for diagnostic identity evidence.
 5. Keep `affix_eligibility` and `affix_tags` as separate diagnostic-first planning gates unless source evidence is clear.
-6. Keep production output unchanged.
-7. Keep `production_safe=false`.
+6. Implement the next affix gate as an eligibility diagnostic validator, still separate from affix identity.
+7. Keep production output unchanged.
+8. Keep `production_safe=false`.
 
 ### Later
 
-8. Plan `affixes` and `affix_tiers` as likely canonical families in `last-epoch-data` only after identity/provenance diagnostics are in place.
+8. Plan `affixes` and `affix_tiers` as likely canonical families in `last-epoch-data` only after eligibility/tag boundaries are clear and warning states are accepted or resolved.
 9. Plan `affix_eligibility` separately after source evidence is clear.
 10. Plan `affix_tags` separately if derivation and schema are stable.
 11. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
@@ -556,8 +583,8 @@ This affix chain is also diagnostic-only. The completed Phase 1 validator report
 - Do not remove current Forge fallback/static data.
 - Do not jump into DPS, enemy, corruption, or runtime mechanics before item/affix architecture is stable.
 - Do not infer mechanics from tooltip/prose.
-- Do not treat affix source-shape validation as canonical affix migration.
-- Do not validate or consume `affix_eligibility` or `affix_tags` through the Phase 1 affix shape diagnostic.
+- Do not treat affix source-shape or identity/provenance validation as canonical affix migration.
+- Do not validate or consume `affix_eligibility` or `affix_tags` through the Phase 1 shape or Phase 2 identity/provenance diagnostics.
 
 ## 12. Update Instructions
 
