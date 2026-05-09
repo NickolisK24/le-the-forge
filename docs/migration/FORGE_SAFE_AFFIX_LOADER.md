@@ -46,3 +46,29 @@ D:\Forge\le-the-forge\backend\.venv\Scripts\python.exe backend\scripts\inspect_f
 ```
 
 The command prints the source path, loaded record count, loader warnings, export policy, export summary metadata, and a small sample of affix IDs/names. It does not modify the export, register data globally, or wire the export into production behavior.
+
+## Debug API
+
+The backend also exposes a disabled-by-default debug endpoint for inspecting the configured export from a running Flask app:
+
+`GET /debug/forge-safe-affixes`
+
+Required configuration:
+
+- `FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED=true`
+- `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
+
+Example request:
+
+```powershell
+Invoke-RestMethod "http://localhost:5050/debug/forge-safe-affixes?limit=5"
+```
+
+Optional query parameters:
+
+- `limit`: maximum sample records to return, capped by the backend
+- `affix_id`: return a sample for a specific affix ID
+
+The endpoint loads the configured file on demand through `ForgeSafeAffixLoader`; it does not duplicate validation logic and does not auto-load the export at app startup. When the flag is disabled, the endpoint returns a disabled debug response.
+
+This endpoint does NOT power production planner logic, APIs, UI, crafting, simulation, or gameplay behavior. It is read-only and debug-only.
