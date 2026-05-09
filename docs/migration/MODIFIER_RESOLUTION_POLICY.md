@@ -211,7 +211,57 @@ Current implementation:
 
 The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
 
-## 12. Requirements Before Gameplay Correctness Claims
+## 12. Malformed Tier/Value Shape Policy
+
+Current malformed or semantically unresolved count: `136`.
+
+`malformed_tier_value_shape` currently means a tier record has value/range evidence that cannot be safely interpreted by the diagnostic stack. The known current pattern is `affix_tier.inverted_numeric_range`, where a tier row has `minRoll` greater than `maxRoll`. Current examples are negative-valued ranges such as `minRoll=-0.07000000029802322` and `maxRoll=-0.07999999821186066`.
+
+Raw source evidence must be preserved exactly:
+
+- raw `minRoll`
+- raw `maxRoll`
+- raw tier index or warning message when available
+- raw source order
+- source affix identity
+- source section
+- source provenance path
+- warning code and message
+
+Diagnostic-only normalization may be allowed only as an additional view when all of the following are true:
+
+- the raw values and raw order remain present in the report
+- the normalized view is explicitly labeled `diagnostic_only_not_source_mutation`
+- normalization only sorts or pairs values for inspection and does not infer sign direction, desirability, stacking, formula, or gameplay meaning
+- the record remains warning-level and `production_safe=false`
+- provenance and warning metadata are preserved
+
+Diagnostic-only normalization is forbidden when:
+
+- either raw bound is missing
+- either raw bound is non-numeric or ambiguous
+- the diagnostic cannot identify the tier/source affix provenance
+- normalization would require guessing whether a negative range is beneficial, harmful, additive, more/increased, conditional, class-specific, minion/player-targeted, or otherwise semantic
+- downstream output would treat the normalized order as gameplay truth
+
+Normalization never implies gameplay correctness. Inverted negative ranges may be valid game data, may require sign-aware display handling, or may represent effects where lower numeric values are stronger. The diagnostic stack is not allowed to choose among those meanings without a separate semantic policy.
+
+Future resolver prototypes must carry malformed tier/value records as unresolved diagnostic objects unless an accepted diagnostic policy proves that a specific structure can be normalized for inspection without changing source evidence. Even then, the output must keep both raw evidence and normalized view side by side and must remain `production_safe=false`.
+
+A downgrade from malformed to warning-only normalized inspection requires:
+
+- stable source affix identity
+- stable tier/reference provenance
+- raw min/max/order evidence preserved
+- normalized view labeled as diagnostic-only
+- no missing raw bounds
+- no ambiguous numeric shape
+- no inferred gameplay semantics
+- saved-vs-fresh agreement for counts and warning metadata
+
+Until those conditions are implemented and tested, the 136 malformed structures remain unresolved for semantic resolver purposes.
+
+## 13. Requirements Before Gameplay Correctness Claims
 
 Forge must not claim gameplay correctness until all of the following are true:
 
@@ -228,7 +278,7 @@ Forge must not claim gameplay correctness until all of the following are true:
 
 Until then, modifier resolution remains diagnostic-only and `production_safe=false`.
 
-## 13. Current Disposition
+## 14. Current Disposition
 
 Current disposition after the controlled modifier inspection stack:
 
@@ -254,3 +304,5 @@ Current disposition after the controlled modifier inspection stack:
 This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
 
 Recommended next architecture target: diagnostic policies for the triaged modifier categories, starting with malformed tier/value shape. That policy should decide whether inverted negative ranges can be normalized for inspection, must remain unresolved, or require explicit exclusion. It must not resolve gameplay semantics, mutate source data, or change production behavior.
+
+Malformed tier/value policy status: proposed and documented. No semantic resolver behavior has been implemented from it yet.
