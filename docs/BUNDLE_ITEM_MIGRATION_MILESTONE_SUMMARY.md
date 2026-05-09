@@ -123,7 +123,17 @@ Current blocking finding:
 - Current evidence does not show `process_affixes.py` or `process_affixes_tt.py` introduced the duplicate after `MasterAffixesList.json`.
 - Byte-level/game-raw origin remains unresolved.
 - Disposition: known decoded-source duplicate for diagnostic planning only. Diagnostic-only consumers may report both raw duplicate count and a normalized unique target view, but source/generated data must not be deduplicated.
-- Phase 3 remains `validation_status=error` until a separate policy decides whether raw-source exact duplicates are blocking or warning-only.
+- Phase 3 remains `validation_status=error` until a separate accepted policy is implemented in diagnostics to classify raw-source exact duplicates as blocking or warning-only.
+
+Proposed exact duplicate eligibility policy:
+
+- Exact duplicate means the same raw target value appears more than once in the same eligibility target list for the same stable source affix identity and field.
+- Raw evidence duplicate means the preserved source/export list with duplicate count and positions. A normalized unique-target view is only a diagnostic report convenience and must not mutate source or generated data.
+- Exact duplicates remain error/blocking if source identity is unstable, target normalization changes identity, raw duplicate count or positions are hidden, targets conflict after normalization, item references are unresolved, or extraction/transformation origin is unclear enough to risk masking a tooling bug.
+- Exact duplicates may be downgraded to warning-only diagnostically if stable source identity exists, no conflicting targets exist, normalized target identity is unchanged, raw duplicate count is preserved, duplicate positions are reported, and `production_safe=false` remains explicit.
+- Affix `910` is a candidate for warning-only diagnostic classification under this proposal because both raw entries are enum `31`, both resolve to `IDOL_4x1`, and normalization only changes casing/format to `IDOL_4X1`.
+- The proposal does not deduplicate source data, does not approve production output changes, does not claim eligibility is production-safe, and does not automatically unblock Phase 6.
+- Phase 3 can become warning-only only if the policy is explicitly accepted and implemented in the diagnostic validator/report. Phase 6 can be planned only after Phase 3 and Phase 5 are rerun and show the gate is no longer blocked, while still keeping `production_safe=false`.
 
 Warning-only context:
 
@@ -180,7 +190,7 @@ Affix diagnostics milestone closeout:
 - Combined `migration_gate_status` is `blocked`.
 - Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
 - `production_safe=false` remains unchanged.
-- No Phase 6 affix non-production consumer should be built until the eligibility duplicate policy is decided.
+- No Phase 6 affix non-production consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, and verified through Phase 5.
 
 ## 3. What Has Been Proven
 
@@ -413,7 +423,7 @@ That planning has reached a diagnostic-complete checkpoint in `last-epoch-data`:
 
 The Phase 3 duplicate eligibility source trace is also complete as diagnostic evidence. It shows affix `910` has duplicate `canRollOn` target `IDOL_4x1` already in `last-epoch-data/extracted_raw/MasterAffixesList.json` at `multiAffixes[399].canRollOn` as raw values `[31, 31]`, before `exports_json/affixes.json` decodes them to `["IDOL_4x1", "IDOL_4x1"]`. Current decode and normalization preserve the duplicate; normalization only canonicalizes casing/format to `IDOL_4X1`. The byte-level game data versus TypeTree-walker boundary remains unresolved.
 
-Disposition: treat this as a known decoded-source duplicate for diagnostic planning only. Diagnostic-only consumers may present both the raw duplicate count and a normalized unique-target view, but that view is a report convenience, not a mutation of source evidence. Production deduplication is not allowed. Phase 3 remains `validation_status=error` until an explicit policy decides whether raw-source exact duplicates are blocking or warning-only. `production_safe=false` remains unchanged.
+Disposition: treat this as a known decoded-source duplicate for diagnostic planning only. Diagnostic-only consumers may present both the raw duplicate count and a normalized unique-target view, but that view is a report convenience, not a mutation of source evidence. Production deduplication is not allowed. A diagnostic-only exact duplicate policy is now proposed: exact duplicates may become warning-only only when stable source identity, non-conflicting targets, unchanged normalized identity, preserved raw duplicate count, and visible duplicate positions are all present. Affix `910` is a candidate under that proposal, but Phase 3 remains `validation_status=error` until the policy is accepted and implemented in the diagnostic validator/report. `production_safe=false` remains unchanged.
 
 Any next data-family planning step should:
 
@@ -428,8 +438,8 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Decide in a separate policy task whether the known decoded-source duplicate should remain blocking or become warning-only; until then Phase 3 remains `error`.
-- Keep Phase 6 affix consumer work blocked until that policy is decided.
+- Accept and implement the proposed exact duplicate eligibility policy in the Phase 3 diagnostic validator/report.
+- Rerun Phase 3 and Phase 5 after implementation; keep Phase 6 affix consumer work blocked unless Phase 3 becomes warning-only and Phase 5 is no longer blocked.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
