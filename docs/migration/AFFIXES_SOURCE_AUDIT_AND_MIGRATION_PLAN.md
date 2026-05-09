@@ -17,6 +17,8 @@ Current boundary:
 - The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` currently reports `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only.
 - Phase 6 production work must not begin. Phase 6 diagnostic consumer planning is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`; the implemented consumer remains limited to `production_safe=false`, generated diagnostic artifacts only, warning preservation, and no generated data mutation.
 - Controlled affix resolver prototype planning and implementation are captured in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. The implemented prototype remains diagnostic-only, generated-artifact-backed, read-only, warning-preserving, and isolated from production loaders, APIs, crafting, simulation, and gameplay output.
+- The non-production affix inspection stack milestone is complete through Phase 1-6 diagnostics, controlled resolver output, saved-vs-fresh resolver comparison, and per-affix diagnostic records. Current inspection state is `diagnostic_only=true`, `production_safe=false`, `non_production_inspection_allowed=true`, 1227 per-affix records, 1112 equipment records, 115 idol records, 6959 embedded tiers, affix `910` duplicate evidence preserved, and warning metadata preserved.
+- The stat/modifier reference audit now exists as a separate diagnostic layer. It reports `validation_status=warning`, 6959 total reference slots, 6844 structurally present references, 115 unresolved references, 136 malformed/semantic warning structures, 1112 unsupported/unresolved structures, 0 duplicate references, 0 ambiguous references, and `production_safe=false`.
 
 ## 2. Current Known Affix Sources
 
@@ -615,6 +617,7 @@ Current boundary:
 - The Phase 6 report states `non_production_inspection_allowed=true` and `production_safe=false`.
 - Phase 1-5 remain warning-level, Phase 5 remains `migration_gate_status=warning`, affix `910` evidence remains preserved, and tag/category warnings remain preserved.
 - Phase 6 must not generate bundle families, replace loaders, change runtime behavior, or set `production_safe=true`.
+- The broader non-production affix inspection stack now also includes the controlled resolver prototype, saved-vs-fresh resolver comparison, and per-affix diagnostic record artifact. These layers remain inspection-only and do not advance Phase 7 production migration planning.
 
 ### Phase 7 — Production Migration Planning
 
@@ -696,12 +699,12 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Add a saved-vs-fresh comparison for controlled affix resolver prototype output, or design a validated per-affix diagnostic record artifact if richer normalized object details are required.
+Create a diagnostic-only stat/modifier reference audit for affix modifier evidence.
 
 Scope:
 - Keep the next step diagnostic-only and developer-only.
-- Read approved generated diagnostic artifacts and Phase 6 report artifacts only unless a separate diagnostic input contract is approved.
-- Preserve inspection-safe normalized affix objects only.
+- Read approved generated diagnostic artifacts and explicit diagnostic source evidence only under a documented input contract.
+- Audit stat/modifier references, unsupported fields, missing references, malformed tier/modifier evidence, and warning categories before any controlled modifier resolver exists.
 - Preserve raw duplicate reporting.
 - Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.
@@ -718,3 +721,7 @@ Constraints:
 - Do not change production Forge behavior.
 - Keep production_safe=false.
 ```
+
+Rationale: the inspection stack now proves affix record identity, provenance, eligibility warning state, tag/category warning state, deterministic resolver output, and per-affix diagnostic records. The next step that most directly moves toward safe gameplay correctness is not a UI/report surface or production consumer; it is a stat/modifier reference audit that determines whether affix modifier evidence can be trusted enough to design a later controlled, non-production modifier resolver.
+
+Status update: the first stat/modifier reference audit has been implemented as diagnostic-only tooling. Its reports are `docs/generated/affix_stat_modifier_reference_audit_report.md` and `docs/generated/affix_stat_modifier_reference_audit_report.json`. The audit remains warning-level, does not create a gameplay resolver, and blocks any controlled modifier resolver prototype until unresolved references, malformed structures, and unsupported structures have explicit diagnostic policies.

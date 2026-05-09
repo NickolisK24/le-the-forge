@@ -57,6 +57,9 @@ Current boundary:
 - Phase 6 diagnostic consumer exists only for read-only inspection of generated diagnostic artifacts.
 - Saved-vs-fresh resolver comparison is `comparison_status=warning` with zero count deltas, zero phase-status deltas, zero warning-category deltas, deterministic output agreement, and affix `910` duplicate evidence agreement.
 - Per-affix diagnostic records exist only for read-only inspection and emit `diagnostic_only=true` plus `production_safe=false`.
+- The non-production affix inspection stack milestone is complete through diagnostics, Phase 6 consumer, controlled resolver output, saved-vs-fresh resolver comparison, and per-affix diagnostic records.
+- Current per-affix artifact state: 1227 records, 1112 equipment records, 115 idol records, 6959 embedded tiers, affix `910` duplicate evidence preserved, warning metadata preserved, `diagnostic_only=true`, `non_production_inspection_allowed=true`, and `production_safe=false`.
+- Stat/modifier reference audit now exists as a separate diagnostic layer with `validation_status=warning`: 6959 total reference slots, 6844 structurally present references, 115 unresolved references, 136 malformed/semantic warning structures, 1112 unsupported/unresolved structures, zero duplicate references, zero ambiguous references, deterministic inspection output stable, and `production_safe=false`.
 - Affix `910` duplicate eligibility evidence remains visible and must not be silently deduplicated.
 - Production affix migration is not approved.
 
@@ -453,7 +456,9 @@ Current per-affix diagnostic artifact summary:
 Next implementation task, if approved:
 
 ```text
-Design a validated per-tier or source-row diagnostic artifact only if richer tier/value semantics are required.
+Design a diagnostic-only stat/modifier reference audit for affix modifier evidence.
 ```
 
-That task must not generate bundle families, change Forge production behavior, or claim production readiness.
+That task should come before any controlled non-production affix modifier resolver. The current inspection stack proves record identity, provenance, eligibility warning state, tag/category warning state, and deterministic inspection output; it does not prove gameplay meaning for stat/modifier references. The next audit must remain read-only, warning-preserving, and `production_safe=false`, and it must not generate bundle families, change Forge production behavior, or claim production readiness.
+
+Status update: the diagnostic-only stat/modifier reference audit has been implemented and generated at `docs/generated/affix_stat_modifier_reference_audit_report.md` and `docs/generated/affix_stat_modifier_reference_audit_report.json`. The result is warning-level, not resolver-ready. A controlled modifier resolver prototype should not be implemented until unresolved references, malformed tier/modifier structures, and unsupported/unresolved structures have their own accepted diagnostic policies.
