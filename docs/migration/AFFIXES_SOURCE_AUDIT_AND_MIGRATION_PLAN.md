@@ -14,6 +14,7 @@ Current boundary:
 - No Forge production loaders consume canonical affix bundle families yet.
 - The Phase 3 affix `910` duplicate eligibility finding has a diagnostic disposition only: it is a known decoded-source duplicate, not a production-safe eligibility result.
 - Phases 1-5 are implemented and stable as diagnostics, but the combined migration gate remains blocked.
+- The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` currently reports `non_production_consumer_allowed=false`.
 - Phase 6 non-production consumer work must not begin until the proposed Phase 3 duplicate eligibility policy is accepted, implemented in diagnostics, and rerun through Phase 5.
 
 ## 2. Current Known Affix Sources
@@ -582,9 +583,10 @@ Milestone closeout:
 - Phase 3 affix eligibility diagnostic is complete but `error` and blocking.
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
+- Affix readiness sweep is complete and currently reports `non_production_consumer_allowed=false`.
 - Diagnostic agreement does not unblock migration.
 - Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
-- No Phase 6 consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, and verified through Phase 5.
+- No Phase 6 consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, verified through Phase 5, and the readiness sweep reports `non_production_consumer_allowed=true`.
 
 ### Phase 6 — Non-Production Consumer Only
 
@@ -605,7 +607,8 @@ Current blocker:
 
 - Phase 3 eligibility remains `validation_status=error` because affix `910` has duplicate decoded-source `canRollOn` evidence.
 - Phase 5 saved-vs-fresh comparison remains `migration_gate_status=blocked`.
-- The proposed exact duplicate policy must be accepted, implemented in diagnostics, and verified through Phase 5 before Phase 6 starts.
+- The readiness sweep currently reports `non_production_consumer_allowed=false`.
+- The proposed exact duplicate policy must be accepted, implemented in diagnostics, verified through Phase 5, and followed by a passing readiness sweep before Phase 6 starts.
 
 ### Phase 7 — Production Migration Planning
 
@@ -671,8 +674,8 @@ Scope:
 - Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.
 - Keep source/generated data unchanged.
-- Rerun Phase 3 and Phase 5 after the diagnostic policy change.
-- Keep Phase 6 consumer work blocked until updated diagnostics show Phase 3 is warning-only and Phase 5 is no longer blocked.
+- Rerun Phase 3, Phase 5, and the readiness sweep after the diagnostic policy change.
+- Keep Phase 6 consumer work blocked until updated diagnostics show Phase 3 is warning-only, Phase 5 is no longer blocked, and readiness reports `non_production_consumer_allowed=true`.
 
 Constraints:
 - Do not deduplicate affix 910.

@@ -26,6 +26,7 @@ The current migration program is diagnostics-first.
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
 | Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only and stable. Shape, identity/provenance, and tag/category are warning-level; eligibility remains error-level; the comparison gate is blocked with zero count/warning/error deltas. None generate or consume affix bundle families. Phase 6 affix consumer work is blocked. |
+| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=false` because current generated diagnostics still show Phase 3 as `error` and Phase 5 as `blocked`. |
 
 Current diagnostic counts:
 
@@ -179,6 +180,24 @@ Follow-on affix saved-vs-fresh comparison checkpoint:
 
 The saved-vs-fresh comparison confirms current diagnostic agreement across Phase 1 through Phase 4. It remains blocked because Phase 3 eligibility is still error-level. It does not deduplicate affix `910`, does not downgrade eligibility, and does not approve affix bundle generation or Forge consumption.
 
+Follow-on affix readiness sweep:
+
+| Metric | Current Value |
+| --- | --- |
+| Report path | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` |
+| `non_production_consumer_allowed` | `false` |
+| Phase 1 status | `warning` |
+| Phase 2 status | `warning` |
+| Phase 3 status | `error` |
+| Phase 4 status | `warning` |
+| Phase 5 `migration_gate_status` | `blocked` |
+| Count deltas | 0 |
+| Warning deltas | 0 |
+| Error deltas | 0 |
+| Production safety | `production_safe=false` |
+
+The readiness sweep is diagnostic-only. It concludes that a minimum safe Phase 6 affix consumer is not allowed yet because the generated reports still show Phase 3 eligibility as error-level and Phase 5 as blocked. The proposed duplicate eligibility policy is not enough by itself; it must be implemented in diagnostics and rerun before readiness can change.
+
 Affix diagnostics milestone closeout:
 
 - Phase 1 affix source/tier shape diagnostic is complete with `warning` status.
@@ -186,11 +205,12 @@ Affix diagnostics milestone closeout:
 - Phase 3 affix eligibility diagnostic is complete but `error` and blocking.
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
+- Affix readiness sweep is complete and currently blocks Phase 6.
 - Count deltas, warning deltas, and error deltas are all zero across the comparison.
 - Combined `migration_gate_status` is `blocked`.
 - Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
 - `production_safe=false` remains unchanged.
-- No Phase 6 affix non-production consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, and verified through Phase 5.
+- No Phase 6 affix non-production consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, verified through Phase 5, and the readiness sweep reports `non_production_consumer_allowed=true`.
 
 ## 3. What Has Been Proven
 
@@ -439,7 +459,7 @@ Any next data-family planning step should:
 Recommended output for the next step:
 
 - Accept and implement the proposed exact duplicate eligibility policy in the Phase 3 diagnostic validator/report.
-- Rerun Phase 3 and Phase 5 after implementation; keep Phase 6 affix consumer work blocked unless Phase 3 becomes warning-only and Phase 5 is no longer blocked.
+- Rerun Phase 3, Phase 5, and the readiness sweep after implementation; keep Phase 6 affix consumer work blocked unless Phase 3 becomes warning-only, Phase 5 is no longer blocked, and the readiness sweep reports `non_production_consumer_allowed=true`.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

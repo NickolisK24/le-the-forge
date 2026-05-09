@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. Shape, identity/provenance, and tag/category are `warning`; eligibility is `error` because one duplicate `canRollOn` target is present. A diagnostic-only exact duplicate eligibility policy is now proposed, but not implemented. Phase 5 gate is stable and `blocked` with zero count/warning/error deltas. No affix bundle family is generated or consumed. Phase 6 affix consumer work remains blocked until the policy is accepted and diagnostics are rerun. |
+| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. Shape, identity/provenance, and tag/category are `warning`; eligibility is `error` because one duplicate `canRollOn` target is present. A diagnostic-only exact duplicate eligibility policy is now proposed, but not implemented in generated diagnostics. The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=false`. Phase 5 gate is stable and `blocked` with zero count/warning/error deltas. No affix bundle family is generated or consumed. Phase 6 affix consumer work remains blocked until the policy is accepted, diagnostics are rerun, and the readiness sweep passes. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -361,6 +361,7 @@ Next safe step:
 - [x] generated affix eligibility diagnostic report.
 - [x] affix tag/category diagnostic validator.
 - [x] saved-vs-fresh affix diagnostic comparison.
+- [x] affix migration readiness sweep.
 
 ## 5. Canonical Family Status Table
 
@@ -527,6 +528,13 @@ Current blocking finding:
 - Diagnostic disposition: known decoded-source duplicate; keep raw duplicate count visible and allow diagnostic-only unique-target views, but do not mutate or deduplicate source/generated data.
 - Phase 3 policy state: a diagnostic-only exact duplicate policy is proposed, but Phase 3 stays `validation_status=error` until that policy is accepted, implemented in diagnostics, and rerun through Phase 5.
 
+Current readiness sweep:
+
+- Report: `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md`.
+- Result: `non_production_consumer_allowed=false`.
+- Reason: current generated diagnostics still show Phase 3 eligibility as `error` and Phase 5 saved-vs-fresh comparison as `blocked`.
+- The sweep confirms count, warning, and error deltas are zero in Phase 5, but this only proves stable agreement on the blocked state.
+
 Warning-only context:
 
 - Idol records expose `rollsOn=Idols` but no precise idol shape/base eligibility target in this source shape.
@@ -671,14 +679,14 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 6. Treat the affix 910 source trace as complete diagnostic evidence that the duplicate exists in `extracted_raw/MasterAffixesList.json` and is preserved by later decode/normalization; do not deduplicate generated output.
 7. Treat Phase 4 `affix_tags` / category validation as complete only as a separate warning-level diagnostic gate; it does not claim eligibility is safe.
 8. Treat Phase 5 saved-vs-fresh affix diagnostic comparison as complete and blocked.
-9. Do not begin Phase 6 affix non-production consumer work until the eligibility duplicate policy is accepted, implemented in diagnostics, and verified through Phase 5.
+9. Do not begin Phase 6 affix non-production consumer work until the eligibility duplicate policy is accepted, implemented in diagnostics, verified through Phase 5, and the readiness sweep reports `non_production_consumer_allowed=true`.
 10. Keep production output unchanged.
 11. Keep `production_safe=false`.
 
 ### Later
 
 9. Implement the proposed exact duplicate eligibility policy only in the Phase 3 diagnostic validator/report, preserving raw duplicate reporting and `production_safe=false`.
-10. Rerun Phase 3 and Phase 5 after policy implementation; Phase 6 remains blocked unless Phase 3 becomes warning-only and Phase 5 is no longer `blocked`.
+10. Rerun Phase 3, Phase 5, and the readiness sweep after policy implementation; Phase 6 remains blocked unless Phase 3 becomes warning-only, Phase 5 is no longer `blocked`, and the sweep reports `non_production_consumer_allowed=true`.
 11. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after eligibility/tag boundaries are clear and warning/error states are accepted or resolved.
 12. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
 13. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
