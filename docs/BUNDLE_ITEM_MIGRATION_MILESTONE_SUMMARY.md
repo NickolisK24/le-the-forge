@@ -115,7 +115,9 @@ Follow-on affix eligibility checkpoint:
 
 Current blocking finding:
 
-- Equipment affix `910` has duplicate `canRollOn` target `IDOL_4X1`.
+- Equipment affix `910` at `exports_json/affixes.json` path `equipment[910].canRollOn` has duplicate raw target values `["IDOL_4x1", "IDOL_4x1"]`, normalized to duplicate target `IDOL_4X1`.
+- Diagnostic classification: `exact_duplicate_in_current_export`.
+- Origin assessment before `exports_json/affixes.json`: `unresolved/unknown`.
 
 Warning-only context:
 
@@ -363,8 +365,8 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Review or resolve the Phase 3 duplicate `canRollOn` target finding without changing production behavior.
-- A separate decision on whether `affix_tags` has enough source evidence to plan now or should remain deferred.
+- Review or resolve the Phase 3 duplicate `canRollOn` target finding without changing production behavior, including whether it originated in raw source data or during extraction/transformation.
+- Defer Phase 4 `affix_tags` planning until the duplicate eligibility evidence is understood; then make a separate decision on whether `affix_tags` has enough source evidence to plan now or should remain deferred.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next
