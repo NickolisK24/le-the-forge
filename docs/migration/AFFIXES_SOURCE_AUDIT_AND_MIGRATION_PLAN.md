@@ -14,7 +14,7 @@ Current boundary:
 - No Forge production loaders consume canonical affix bundle families yet.
 - The Phase 3 affix `910` duplicate eligibility finding has a diagnostic disposition only: it is a known decoded-source duplicate, not a production-safe eligibility result.
 - Phases 1-5 are implemented and stable as diagnostics, but the combined migration gate remains blocked.
-- Phase 6 non-production consumer work must not begin until the Phase 3 duplicate eligibility policy is decided.
+- Phase 6 non-production consumer work must not begin until the proposed Phase 3 duplicate eligibility policy is accepted, implemented in diagnostics, and rerun through Phase 5.
 
 ## 2. Current Known Affix Sources
 
@@ -225,8 +225,21 @@ Current Phase 3 duplicate disposition:
 - Byte-level/game-raw origin remains unresolved at the resources.assets / TypeTree-walker boundary.
 - Production deduplication is not allowed yet.
 - Diagnostic-only reports may show both raw duplicate count and normalized unique-target view. The normalized view is a diagnostic presentation aid, not source mutation.
-- Phase 3 remains `validation_status=error` until a separate policy decides whether raw-source exact duplicates are blocking or warning-only.
+- Phase 3 remains `validation_status=error` until a separate accepted policy is implemented in diagnostics to classify raw-source exact duplicates as blocking or warning-only.
 - Phase 4 `affix_tags` may be planned only after this disposition is recorded, and it must not claim affix eligibility is safe.
+
+Proposed diagnostic policy for exact duplicate eligibility targets:
+
+- This policy is proposed only. It does not mutate source data, generated exports, bundle candidates, Forge loaders, or production behavior.
+- An exact duplicate eligibility target is the same raw target value appearing more than once in the same eligibility target list for the same stable source affix identity and source field. Example: `MasterAffixesList.json` `multiAffixes[399].canRollOn == [31, 31]`.
+- A raw evidence duplicate is the source-preserved duplicate list, including duplicate count and positions. A normalized unique-target view is a diagnostic presentation that may show the unique normalized target once, while still reporting the raw duplicate evidence.
+- Exact duplicates should remain `error` / blocking when source identity is unstable or missing, target normalization changes identity, duplicate positions are not reported, raw duplicate count is not preserved, targets conflict after normalization, item references are unresolved, or the duplicate could have been introduced by extraction/transformation.
+- Exact duplicates may be downgraded to `warning` diagnostically only when all required evidence is present: stable source identity, no conflicting targets, normalized target identity unchanged, raw duplicate count preserved, duplicate positions exposed, no unresolved item target references, and a report label that the unique-target view is diagnostic-only.
+- Production data must not be silently deduplicated because that would erase source evidence, hide upstream anomalies, mask future extractor regressions, and change generated output without a production migration review.
+- Under this proposed policy, affix `910` is a candidate for diagnostic warning-only classification because the available evidence is stable and exact: source `multiAffixes[399]`, raw values `[31, 31]`, enum `31` resolving both entries to `IDOL_4x1`, exported values `["IDOL_4x1", "IDOL_4x1"]`, and normalization only changing casing/format to `IDOL_4X1`.
+- The affix `910` candidate classification does not prove byte-level/game-raw origin, does not approve production deduplication, and does not make eligibility production-safe.
+- If this policy is explicitly accepted and the Phase 3 validator/report implements it, Phase 3 may become warning-only for this exact duplicate class. Until then, Phase 3 remains `validation_status=error`.
+- If the policy is accepted and Phase 3 plus Phase 5 are rerun with warning-only status and zero unexpected deltas, Phase 6 non-production consumer planning may begin. That would still be diagnostic-only and `production_safe=false`; it would not authorize production migration.
 
 ### `affix_tags`
 
@@ -571,7 +584,7 @@ Milestone closeout:
 - Phase 5 saved-vs-fresh comparison is complete and stable.
 - Diagnostic agreement does not unblock migration.
 - Affix `910` duplicate `canRollOn` evidence remains unresolved and is not deduplicated.
-- No Phase 6 consumer should be built until the eligibility duplicate policy is decided.
+- No Phase 6 consumer should be built until the eligibility duplicate policy is accepted, implemented in diagnostics, and verified through Phase 5.
 
 ### Phase 6 — Non-Production Consumer Only
 
@@ -592,7 +605,7 @@ Current blocker:
 
 - Phase 3 eligibility remains `validation_status=error` because affix `910` has duplicate decoded-source `canRollOn` evidence.
 - Phase 5 saved-vs-fresh comparison remains `migration_gate_status=blocked`.
-- A separate policy must decide whether the raw-source exact duplicate remains blocking or becomes warning-only before Phase 6 starts.
+- The proposed exact duplicate policy must be accepted, implemented in diagnostics, and verified through Phase 5 before Phase 6 starts.
 
 ### Phase 7 — Production Migration Planning
 
@@ -649,14 +662,17 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Create a diagnostic policy disposition for the affix 910 duplicate eligibility blocker.
+Accept and implement the proposed exact duplicate eligibility target policy in the Phase 3 diagnostic validator/report.
 
 Scope:
-- Decide whether exact decoded-source duplicate eligibility evidence remains blocking or can become warning-only.
+- Keep the policy diagnostic-only.
+- Reclassify only exact raw-source duplicate target evidence that satisfies the documented downgrade criteria.
 - Preserve raw duplicate reporting.
+- Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.
 - Keep source/generated data unchanged.
-- Keep Phase 6 consumer work blocked until this policy is recorded.
+- Rerun Phase 3 and Phase 5 after the diagnostic policy change.
+- Keep Phase 6 consumer work blocked until updated diagnostics show Phase 3 is warning-only and Phase 5 is no longer blocked.
 
 Constraints:
 - Do not deduplicate affix 910.
