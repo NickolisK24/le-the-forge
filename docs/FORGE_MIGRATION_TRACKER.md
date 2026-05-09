@@ -11,14 +11,14 @@ It tracks current migration state, completed milestones, known blockers, safety 
 
 | Area | Current State |
 | --- | --- |
-| Current phase | Diagnostics and pre-consumer migration planning. |
+| Current phase | Sidecar diagnostics milestone complete; next canonical family planning. |
 | Current boundary | Developer-only diagnostics; no production bundle consumption. |
 | Current compatibility state | `compatible_with_warnings` expected from Forge compatibility reader. |
 | Current production status | Existing Forge loaders, importers, API behavior, frontend behavior, and simulation behavior remain unchanged. |
 | Current bundle status | `last-epoch-data` bundle validates as `WARN` with no critical errors. |
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
-| Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics exist; all remain developer-only. |
+| Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -28,7 +28,7 @@ Short version:
 - No production bundle consumer activated.
 - `item_types` and `base_items` are generated, but not production-consumed.
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
-- The next safe work is deciding whether to keep hardening sidecar diagnostics or move to a new planning-only task for the next canonical data family.
+- The sidecar diagnostics milestone is complete for non-production validation. The next safe work is planning the next canonical data family, likely `affixes` / `affix_tiers` with `affix_eligibility` kept as a separate diagnostic-first planning gate.
 
 ## 2. Current Safety Boundary
 
@@ -66,6 +66,7 @@ Short version:
 - `item_types` and `base_items` are generated but Forge-side use is diagnostic-only.
 - Sidecar validation is `warning` because fixtures are synthetic/offline and mapped output lacks item type context.
 - Current LET fixture evidence does not prove live LET payload shape.
+- Saved/fresh sidecar shape agreement is confirmed and count deltas are zero, but warning deltas remain intentional and visible.
 
 ### Must Not Be Done Yet
 
@@ -219,7 +220,7 @@ Next safe step:
 
 ### Phase 6 — First Non-Production Diagnostic Consumer
 
-Status: COMPLETE for saved-sidecar diagnostic consumption, fresh-sidecar diagnostic validation, and saved-vs-fresh diagnostic comparison; NOT_STARTED for any live importer diagnostic consumer.
+Status: COMPLETE for saved-sidecar diagnostic consumption, fresh-sidecar diagnostic validation, and saved-vs-fresh diagnostic comparison as non-production validation surfaces; NOT_STARTED for any live importer diagnostic consumer or production migration.
 
 Target:
 
@@ -245,13 +246,14 @@ Current blockers:
 
 - Consumer is intentionally limited to saved sidecar artifacts.
 - Fresh-sidecar validation is diagnostic-only and does not make fresh sidecars production-safe.
-- Comparison result is currently warning-level because warning deltas remain visible.
+- Saved/fresh shape agreement is confirmed and count deltas are zero.
+- Comparison result remains `warning` because warning deltas remain visible by design.
 - It does not prove live LET payload shape.
 - It does not prove production importer or bundle consumption readiness.
 
 Next safe step:
 
-- Decide whether to keep hardening sidecar diagnostics or move to planning for the next canonical data family. Do not start production migration.
+- Treat this sidecar milestone as complete for now and move to planning for the next canonical data family. Do not start production migration.
 
 ### Phase 7 — Future Production Migration
 
@@ -468,11 +470,12 @@ This chain is diagnostic-only. It proves contract, mapping, context, and validat
 
 ### Immediate
 
-1. Keep saved, fresh, and comparison sidecar diagnostics developer-only.
-2. Review whether the warning-level sidecar diagnostic chain is sufficient for the current item-type milestone.
-3. If yes, move to planning for the next canonical data family.
-4. Keep production output unchanged.
-5. Keep `production_safe=false`.
+1. Treat the saved/fresh/comparison sidecar diagnostics milestone as complete for non-production validation.
+2. Preserve the current warning state; do not downgrade warning-level diagnostics to passing.
+3. Move to planning for the next canonical data family: likely `affixes` and `affix_tiers`.
+4. Keep `affix_eligibility` and `affix_tags` as separate diagnostic-first planning gates unless source evidence is clear.
+5. Keep production output unchanged.
+6. Keep `production_safe=false`.
 
 ### Later
 
