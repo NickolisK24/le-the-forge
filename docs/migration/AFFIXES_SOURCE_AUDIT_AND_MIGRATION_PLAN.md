@@ -239,7 +239,7 @@ Accepted diagnostic policy for exact duplicate eligibility targets:
 - Production data must not be silently deduplicated because that would erase source evidence, hide upstream anomalies, mask future extractor regressions, and change generated output without a production migration review.
 - Under this accepted policy, affix `910` is classified as diagnostic warning-only because the available evidence is stable and exact: source `multiAffixes[399]`, raw values `[31, 31]`, enum `31` resolving both entries to `IDOL_4x1`, exported values `["IDOL_4x1", "IDOL_4x1"]`, and normalization only changing casing/format to `IDOL_4X1`.
 - The affix `910` candidate classification does not prove byte-level/game-raw origin, does not approve production deduplication, and does not make eligibility production-safe.
-- Phase 3 is warning-only for this exact duplicate class. Phase 6 non-production consumer planning may begin only as diagnostic design. That remains diagnostic-only and `production_safe=false`; it does not authorize production migration.
+- Phase 3 is warning-only for this exact duplicate class. Phase 6 is implemented only as a read-only diagnostic consumer. That remains diagnostic-only and `production_safe=false`; it does not authorize production migration.
 
 ### `affix_tags`
 
@@ -583,7 +583,7 @@ Milestone closeout:
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
 - Affix readiness sweep is complete and currently reports `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only.
-- Diagnostic agreement unblocks only Phase 6 diagnostic consumer planning; it does not unblock production migration.
+- Diagnostic agreement unblocked only the minimum Phase 6 diagnostic consumer; it does not unblock production migration.
 - Affix `910` duplicate `canRollOn` evidence remains warning-only and is not deduplicated.
 - No production consumer should be built; Phase 6 work must remain diagnostic-only and warning-preserving.
 
@@ -607,9 +607,12 @@ Current boundary:
 
 - Phase 3 eligibility is warning-only because affix `910` satisfies the accepted exact duplicate diagnostic policy.
 - Phase 5 saved-vs-fresh comparison is `migration_gate_status=warning`.
-- The readiness sweep reports `non_production_consumer_allowed=true` for planning only.
+- The readiness sweep reports `non_production_consumer_allowed=true` for the minimum read-only diagnostic consumer.
 - The Phase 6 plan is documented in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
 - The Phase 6 consumer is implemented in `backend/app/game_data/affix_diagnostic_consumer.py` and `backend/scripts/report_affix_diagnostic_consumer.py`.
+- The generated Phase 6 reports are `docs/generated/affix_diagnostic_consumer_report.md` and `docs/generated/affix_diagnostic_consumer_report.json`.
+- The Phase 6 report states `non_production_inspection_allowed=true` and `production_safe=false`.
+- Phase 1-5 remain warning-level, Phase 5 remains `migration_gate_status=warning`, affix `910` evidence remains preserved, and tag/category warnings remain preserved.
 - Phase 6 must not generate bundle families, replace loaders, change runtime behavior, or set `production_safe=true`.
 
 ### Phase 7 — Production Migration Planning
@@ -667,11 +670,11 @@ Do not update them to claim production readiness unless a separate production mi
 Recommended next task:
 
 ```text
-Create a saved-vs-fresh comparison for the Phase 6 affix diagnostic consumer report if this report should become a baseline artifact.
+Plan a broader non-production affix inspection surface or a controlled affix resolver prototype.
 
 Scope:
-- Keep the comparison diagnostic-only and CLI-only.
-- Read approved generated diagnostic artifacts only.
+- Keep the next step diagnostic-only and developer-only.
+- Read approved generated diagnostic artifacts and Phase 6 report artifacts only unless a separate diagnostic input contract is approved.
 - Preserve raw duplicate reporting.
 - Preserve duplicate positions.
 - Preserve diagnostic-only normalized unique-target views as report presentation only.

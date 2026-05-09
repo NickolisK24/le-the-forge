@@ -380,9 +380,9 @@ Next safe step:
 | `metadata` | `exports_json/metadata.json` | generated; warning | compatibility reader only | High for patch/build; Partial for full extractor/source hash coverage | Normalized | control-plane only | Keep linked to bundle validation and compatibility checks. |
 | `item_types` | `exports_json/items.json` base type records | generated; passed | diagnostics only; not production-consumed | Verified for base_type_id/name; Partial/Inferred for slug/slot/category | Canonical-ready for identity/type only | `production_safe=false` | Plan first non-production diagnostic consumer. |
 | `base_items` | `exports_json/items.json` subtype records | generated; passed | diagnostics only; not production-consumed | Verified for composite IDs/name/requirements where present; Partial for implicits/tags | Canonical-ready for identity/basic requirements only | no name-only migration | Block production use until Forge has source IDs/composite matching. |
-| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Design minimum safe Phase 6 non-production diagnostic consumer; do not generate bundle family or production consumer. |
+| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Phase 6 minimum diagnostic consumer exists for inspection only; next planning target is broader non-production inspection or a controlled resolver prototype, not production consumption. |
 | `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate tier normalization and semantics separately. |
-| `affix_eligibility` | `exports_json/affixes.json` `canRollOn`, `rollsOn`, `classSpecificity`; `data_bundle/families/item_types.json` reference set | diagnostic `warning`; deferred | current Forge simplified/static logic | Partial/Unknown | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity | Preserve affix 910 raw duplicate evidence and warning metadata in any Phase 6 diagnostic design. |
+| `affix_eligibility` | `exports_json/affixes.json` `canRollOn`, `rollsOn`, `classSpecificity`; `data_bundle/families/item_types.json` reference set | diagnostic `warning`; deferred | current Forge simplified/static logic | Partial/Unknown | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity | Preserve affix 910 raw duplicate evidence and warning metadata in any broader non-production inspection or resolver prototype. |
 | `affix_tags` | `exports_json/affixes.json` `tags`, `derivedTags`, display category, group, property, modifier type, special affix type, and `rollsOn` | diagnostic `warning`; deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity or eligibility | Keep warning state visible; do not generate family or Forge consumption. |
 | `uniques` | `exports_json/uniques.json` | deferred; degrade | current Forge static data/import resolution | Partial | Raw Extracted | tooltip/special effects not mechanics | Defer until item/affix foundations stabilize. |
 | `idols` | `exports_json/items.json`, affixes, current Forge data | deferred; degrade | current Forge static item handling | Partial | Raw Extracted | shape/context risks | Keep covered by item type diagnostics; no production migration. |
@@ -604,6 +604,30 @@ Phase status agreement:
 
 The gate is warning-only because all phases remain diagnostic warnings. The comparison does not deduplicate affix `910`, generate affix bundle families, create Forge consumers, or mark any output production-safe.
 
+### Current Phase 6 Affix Diagnostic Consumer
+
+These values come from the CLI-only read-only diagnostic consumer in `D:\Forge\le-the-forge`. The consumer reads generated diagnostic artifacts from `D:\Forge\last-epoch-data\docs\generated` only. It does not read production bundle data, production loaders, importers, APIs, frontend code, crafting, simulation, build math, or gameplay output.
+
+| Metric | Value |
+| --- | ---: |
+| consumer report path | `docs/generated/affix_diagnostic_consumer_report.md` |
+| JSON report path | `docs/generated/affix_diagnostic_consumer_report.json` |
+| non_production_inspection_allowed | `true` |
+| production_safe | `false` |
+| total affixes | 1227 |
+| equipment affixes | 1112 |
+| idol affixes | 115 |
+| embedded tiers | 6959 |
+| Phase 1 source/tier shape status | `warning` |
+| Phase 2 identity/provenance status | `warning` |
+| Phase 3 eligibility status | `warning` |
+| Phase 4 tag/category status | `warning` |
+| Phase 5 migration_gate_status | `warning` |
+| affix 910 duplicate evidence | preserved |
+| tag/category warning state | preserved |
+
+This is the first minimum affix diagnostic consumer. It proves inspection-only consumption of generated diagnostics, not production readiness.
+
 ## 7. Current Blockers
 
 - Live LET payload shape is unconfirmed.
@@ -674,6 +698,7 @@ affix source audit and migration plan
   -> affix tag/category validator
   -> generated tag/category diagnostic report
   -> saved-vs-fresh affix diagnostic comparison
+  -> Phase 6 affix diagnostic consumer
 ```
 
 This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status; the completed Phase 3 eligibility validator now reports warning-level status after applying the accepted exact duplicate policy; the completed Phase 4 tag/category validator reports warning-level status; the completed Phase 5 comparison reports `migration_gate_status=warning`. The affix 910 source trace shows the duplicate `IDOL_4x1` eligibility target is already present in the earliest available decoded source, `last-epoch-data/extracted_raw/MasterAffixesList.json`, before `exports_json/affixes.json`. The diagnostic disposition accepts this as a known decoded-source duplicate for planning only: diagnostics report both raw duplicate count and normalized unique target view, but source/generated data is not deduplicated. All keep `production_safe=false`.
@@ -696,9 +721,9 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 
 ### Later
 
-9. Consider a saved-vs-fresh comparison for the Phase 6 consumer output if the report becomes a baseline artifact.
-10. Keep the Phase 6 scope CLI-only, read-only, developer-only, warning-preserving, and `production_safe=false`.
-11. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after a non-production consumer proves safe diagnostic behavior.
+9. Treat the minimum Phase 6 affix diagnostic consumer as complete for inspection-only use.
+10. Plan the next non-production step as either a broader inspection surface or a controlled affix resolver prototype; keep it diagnostic-only and `production_safe=false`.
+11. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production inspection or resolver diagnostics prove safe behavior.
 12. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
 13. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
 
