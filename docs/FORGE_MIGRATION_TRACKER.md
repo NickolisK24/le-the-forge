@@ -583,10 +583,12 @@ affix source audit and migration plan
   -> generated identity/provenance diagnostic report
   -> affix eligibility validator
   -> generated eligibility diagnostic report
+  -> affix 910 eligibility source trace
+  -> generated affix 910 source trace report
   -> future tag/category validator
 ```
 
-This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status; the completed Phase 3 eligibility validator reports error-level status. All keep `production_safe=false`.
+This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 validators report warning-level diagnostic status; the completed Phase 3 eligibility validator reports error-level status. The affix 910 source trace shows the duplicate `IDOL_4x1` eligibility target is already present in the earliest available decoded source, `last-epoch-data/extracted_raw/MasterAffixesList.json`, before `exports_json/affixes.json`. The byte-level game-data versus TypeTree-walker boundary remains unresolved, so the duplicate stays an error-level diagnostic finding. All keep `production_safe=false`.
 
 ## 10. Next Safe Steps
 
@@ -597,17 +599,18 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 3. Treat the `affixes` / embedded `affix_tiers` Phase 1 source-shape validator as complete only for diagnostic shape safety.
 4. Treat the Phase 2 affix identity/provenance validator as complete only for diagnostic identity evidence.
 5. Treat the Phase 3 affix eligibility validator as complete only as a diagnostic gate, currently blocked by one error-level duplicate target.
-6. Keep `affix_tags` as a separate diagnostic-first planning gate unless source evidence is clear.
-7. Keep production output unchanged.
-8. Keep `production_safe=false`.
+6. Treat the affix 910 source trace as complete diagnostic evidence that the duplicate exists in `extracted_raw/MasterAffixesList.json` and is preserved by later decode/normalization; do not deduplicate generated output.
+7. Keep `affix_tags` as a separate diagnostic-first planning gate unless source evidence is clear.
+8. Keep production output unchanged.
+9. Keep `production_safe=false`.
 
 ### Later
 
-8. Review or resolve the Phase 3 duplicate `canRollOn` target finding, including whether it originated in raw source data or during extraction/transformation.
-9. Delay Phase 4 `affix_tags` until the duplicate eligibility evidence is understood, then plan tags separately if derivation and schema are stable.
-10. Plan `affixes`, `affix_tiers`, and `affix_eligibility` as likely canonical families only after eligibility/tag boundaries are clear and warning/error states are accepted or resolved.
-11. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
-12. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
+9. Decide the explicit disposition for the Phase 3 duplicate: accept it as a known decoded-source duplicate with a visible diagnostic error, or perform a separate byte-level resources.assets/TypeTree-walker trace before any migration gate advances.
+10. Delay Phase 4 `affix_tags` until the duplicate eligibility evidence has that explicit disposition, then plan tags separately if derivation and schema are stable.
+11. Plan `affixes`, `affix_tiers`, and `affix_eligibility` as likely canonical families only after eligibility/tag boundaries are clear and warning/error states are accepted or resolved.
+12. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
+13. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
 
 ## 11. What Not To Do Yet
 
