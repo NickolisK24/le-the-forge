@@ -233,9 +233,10 @@ bundle generator
 -> sidecar validator
 -> saved artifact validation
 -> saved sidecar diagnostic consumer
+-> fresh sidecar diagnostic validation
 ```
 
-This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, and consumed by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
+This chain is intentionally isolated from production behavior. It validates that context can be generated, reviewed, resolved, persisted, consumed, and revalidated from fresh sidecar builds by developer-only diagnostics without changing loaders, importer output, API behavior, frontend behavior, or simulation behavior.
 
 ## 8. Criteria Before First Non-Production Consumer
 
@@ -261,12 +262,12 @@ Passing these criteria would allow a developer-only diagnostic consumer. It woul
 
 ## 9. Recommended Next Step
 
-The first saved-sidecar diagnostic consumer now exists. The next step is to decide whether to design a second diagnostic expansion that consumes freshly built sidecars, still behind validation and still outside production behavior.
+The first saved-sidecar diagnostic consumer and fresh-sidecar diagnostic validation layer now exist. The next step is to decide whether to design a broader non-production diagnostic surface that compares saved and fresh sidecar validation outputs, still behind validation and still outside production behavior.
 
 Any next diagnostic expansion should:
 
 - Keep the saved sidecar consumer as the baseline.
-- Validate sidecars before consumption.
+- Validate saved and fresh sidecars before consumption.
 - Avoid live importer output unless explicitly scoped and reviewed.
 - Avoid production loaders and production API responses.
 - Remain explicitly developer-only.
@@ -275,7 +276,7 @@ Any next diagnostic expansion should:
 
 Recommended output for the next step:
 
-- A short design document for freshly built sidecar diagnostic consumption, if that expansion is accepted.
+- A short design document for comparing saved and fresh sidecar diagnostic outputs, if that expansion is accepted.
 - A defined input source and validator gate.
 - Explicit tests proving no production behavior is touched.
 
