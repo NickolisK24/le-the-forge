@@ -216,6 +216,7 @@ Affix diagnostics milestone closeout:
 - `production_safe=false` remains unchanged.
 - Phase 6 affix non-production consumer implementation is complete as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts. No production consumer should be built.
 - Controlled affix resolver prototype planning is complete in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. The planned prototype remains isolated, read-only, generated-artifact-backed, warning-preserving, and `production_safe=false`.
+- Controlled affix resolver prototype implementation is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_resolver_prototype_report.md` and `docs/generated/controlled_affix_resolver_prototype_report.json`, with 1227 normalized inspection objects, 6959 embedded tiers summarized, affix `910` duplicate evidence preserved, and `production_safe=false`.
 
 ## 3. What Has Been Proven
 
@@ -463,8 +464,8 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Implement the controlled affix resolver prototype described in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`, if approved.
-- Keep the prototype CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
+- Add a saved-vs-fresh comparison for controlled resolver prototype output, or plan a validated per-affix diagnostic record artifact if richer normalized object details are needed.
+- Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
