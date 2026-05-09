@@ -470,4 +470,6 @@ Policy update:
 - The first controlled modifier resolver prototype is now implemented as CLI-only read-only diagnostic tooling in `backend/app/game_data/controlled_modifier_resolver_prototype.py` and `backend/scripts/report_controlled_modifier_resolver_prototype.py`.
 - The generated reports are `docs/generated/controlled_modifier_resolver_prototype_report.md` and `docs/generated/controlled_modifier_resolver_prototype_report.json`.
 - Current resolver summary: 6959 total modifier references, 5596 resolved structural inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
+- Saved-vs-fresh modifier resolver comparison is implemented in `backend/app/game_data/controlled_modifier_resolver_comparison.py` and `backend/scripts/report_controlled_modifier_resolver_comparison.py`.
+- Current comparison summary: `comparison_status=warning`, zero count deltas, zero warning category deltas, provenance coverage agreement, deterministic output agreement, `diagnostic_only=true`, `production_safe=false`, and affix `910` duplicate evidence agreement.
 - The implementation does not authorize gameplay correctness claims or production migration.

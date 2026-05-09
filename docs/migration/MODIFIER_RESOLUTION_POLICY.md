@@ -200,6 +200,10 @@ Current implementation:
 - CLI: `backend/scripts/report_controlled_modifier_resolver_prototype.py`
 - markdown report: `docs/generated/controlled_modifier_resolver_prototype_report.md`
 - JSON report: `docs/generated/controlled_modifier_resolver_prototype_report.json`
+- saved-vs-fresh comparison module: `backend/app/game_data/controlled_modifier_resolver_comparison.py`
+- saved-vs-fresh comparison CLI: `backend/scripts/report_controlled_modifier_resolver_comparison.py`
+- comparison markdown report: `docs/generated/controlled_modifier_resolver_comparison_report.md`
+- comparison JSON report: `docs/generated/controlled_modifier_resolver_comparison_report.json`
 
 The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
 
@@ -231,6 +235,7 @@ Current disposition after the controlled modifier resolver prototype:
 - no current duplicate or ambiguous reference blocker is reported.
 - no current missing provenance or unsafe identity blocker is reported.
 - affix `910` duplicate eligibility evidence remains visible as upstream warning metadata.
+- saved-vs-fresh comparison status is `warning`, with zero count deltas and deterministic output agreement.
 - `production_safe=false` remains explicit.
 
-The prototype is not gameplay-correctness proof. The next step, if needed, should be a saved-vs-fresh comparison for modifier resolver output or a richer per-reference diagnostic source, not production migration.
+The prototype is not gameplay-correctness proof. The next step, if needed, should be a richer per-reference diagnostic source or a broader inspection surface, not production migration.

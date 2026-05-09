@@ -487,6 +487,9 @@ Recommended output for the next step:
 - Generated reports exist at `docs/generated/controlled_modifier_resolver_prototype_report.md` and `docs/generated/controlled_modifier_resolver_prototype_report.json`.
 - Current modifier resolver summary: 6959 total modifier references, 5596 resolved structural inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references.
 - The prototype uses the policy as a failure contract and keeps unresolved/malformed/unsupported references out of resolved modifier semantics.
+- Saved-vs-fresh modifier resolver comparison is implemented in `backend/app/game_data/controlled_modifier_resolver_comparison.py` and `backend/scripts/report_controlled_modifier_resolver_comparison.py`.
+- Generated comparison reports exist at `docs/generated/controlled_modifier_resolver_comparison_report.md` and `docs/generated/controlled_modifier_resolver_comparison_report.json`.
+- Current comparison summary: `comparison_status=warning`, zero count deltas, zero warning category deltas, deterministic output agreement, provenance coverage agreement, diagnostic-only agreement, production-safe agreement, and affix `910` duplicate evidence agreement.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

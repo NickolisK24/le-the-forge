@@ -31,7 +31,7 @@ Short version:
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
 - The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
-- The diagnostic-only modifier resolution policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; the first controlled modifier resolver prototype now exists as CLI-only read-only diagnostic tooling and keeps unresolved, malformed, and unsupported stat/modifier evidence out of resolved semantics.
+- The diagnostic-only modifier resolution policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; the first controlled modifier resolver prototype and saved-vs-fresh comparison now exist as CLI-only read-only diagnostic tooling and keep unresolved, malformed, and unsupported stat/modifier evidence out of resolved semantics.
 
 ## 2. Current Safety Boundary
 
@@ -165,7 +165,7 @@ Current disposition:
 
 Next safe step:
 
-- Treat the non-production affix inspection stack as complete for read-only diagnostics. The controlled modifier resolver prototype now follows the diagnostic-only modifier resolution policy in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; gameplay correctness cannot advance safely until unresolved references, unsupported fields, and malformed stat/modifier evidence have separate semantic policies or remain explicitly unresolved.
+- Treat the non-production affix inspection stack as complete for read-only diagnostics. The controlled modifier resolver prototype and saved-vs-fresh comparison now follow the diagnostic-only modifier resolution policy in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; gameplay correctness cannot advance safely until unresolved references, unsupported fields, and malformed stat/modifier evidence have separate semantic policies or remain explicitly unresolved.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -388,7 +388,7 @@ Next safe step:
 | `metadata` | `exports_json/metadata.json` | generated; warning | compatibility reader only | High for patch/build; Partial for full extractor/source hash coverage | Normalized | control-plane only | Keep linked to bundle validation and compatibility checks. |
 | `item_types` | `exports_json/items.json` base type records | generated; passed | diagnostics only; not production-consumed | Verified for base_type_id/name; Partial/Inferred for slug/slot/category | Canonical-ready for identity/type only | `production_safe=false` | Plan first non-production diagnostic consumer. |
 | `base_items` | `exports_json/items.json` subtype records | generated; passed | diagnostics only; not production-consumed | Verified for composite IDs/name/requirements where present; Partial for implicits/tags | Canonical-ready for identity/basic requirements only | no name-only migration | Block production use until Forge has source IDs/composite matching. |
-| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Non-production inspection stack is complete through Phase 6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact. Controlled modifier resolver prototype exists for aggregate inspection-only modifier evidence; no production consumption. |
+| `affixes` | `exports_json/affixes.json` | deferred; shape, identity/provenance, eligibility, tag/category diagnostics `warning`; saved-vs-fresh gate `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; diagnostic identity/eligibility evidence only | not a bundle family; `production_safe=false` | Non-production inspection stack is complete through Phase 6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact. Controlled modifier resolver prototype and saved-vs-fresh comparison exist for aggregate inspection-only modifier evidence; no production consumption. |
 | `affix_tiers` | embedded rows in `exports_json/affixes.json` | deferred; block; embedded tier shape diagnostic `warning` | current Forge static/hardcoded paths | Partial | Raw Extracted; embedded shape diagnostic only | not a bundle family; eligibility out of scope | Validate tier normalization and semantics separately. |
 | `affix_eligibility` | `exports_json/affixes.json` `canRollOn`, `rollsOn`, `classSpecificity`; `data_bundle/families/item_types.json` reference set | diagnostic `warning`; deferred | current Forge simplified/static logic | Partial/Unknown | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity | Preserve affix 910 raw duplicate evidence and warning metadata in any broader non-production inspection or resolver prototype. |
 | `affix_tags` | `exports_json/affixes.json` `tags`, `derivedTags`, display category, group, property, modifier type, special affix type, and `rollsOn` | diagnostic `warning`; deferred; block | current Forge static/derived assumptions | Partial | Raw Extracted; diagnostic evidence only | separate gate; not merged into affix identity or eligibility | Keep warning state visible; do not generate family or Forge consumption. |
@@ -800,18 +800,18 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 12. Treat the non-production affix inspection stack milestone as closed: `diagnostic_only=true`, `non_production_inspection_allowed=true`, `production_safe=false`, 1227 per-affix records, 1112 equipment records, 115 idol records, and 6959 embedded tiers are documented as inspection-only facts.
 13. Preserve affix `910` raw duplicate eligibility evidence and all warning metadata in every future diagnostic layer.
 14. Treat the controlled modifier resolver prototype as complete for aggregate inspection-only modifier evidence: 6959 total modifier references, 5596 resolved structural inspection objects, 115 unresolved references, 136 malformed references, and 1112 unsupported references; all remain `diagnostic_only=true` and `production_safe=false`.
-15. Keep production output unchanged.
-16. Keep `production_safe=false`.
+15. Treat the controlled modifier resolver saved-vs-fresh comparison as complete with `comparison_status=warning`, zero count deltas, zero warning category deltas, deterministic output agreement, provenance coverage agreement, and affix `910` duplicate evidence agreement.
+16. Keep production output unchanged.
+17. Keep `production_safe=false`.
 
 ### Later
 
 1. Treat `docs/migration/MODIFIER_RESOLUTION_POLICY.md` as the contract for the controlled modifier resolver prototype and any later modifier diagnostics.
-2. Consider a saved-vs-fresh comparison for controlled modifier resolver output before any broader modifier inspection surface.
-3. Defer a non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
-4. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
-5. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.
-6. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
-7. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
+2. Defer a non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
+3. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
+4. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.
+5. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
+6. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
 
 ## 11. What Not To Do Yet
 
