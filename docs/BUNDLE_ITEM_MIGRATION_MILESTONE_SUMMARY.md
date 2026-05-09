@@ -218,6 +218,7 @@ Affix diagnostics milestone closeout:
 - Controlled affix resolver prototype planning is complete in `docs/migration/CONTROLLED_AFFIX_RESOLVER_PROTOTYPE_PLAN.md`. The planned prototype remains isolated, read-only, generated-artifact-backed, warning-preserving, and `production_safe=false`.
 - Controlled affix resolver prototype implementation is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_resolver_prototype_report.md` and `docs/generated/controlled_affix_resolver_prototype_report.json`, with 1227 normalized inspection objects, 6959 embedded tiers summarized, affix `910` duplicate evidence preserved, and `production_safe=false`.
 - Controlled affix resolver saved-vs-fresh comparison is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_resolver_comparison_report.md` and `docs/generated/controlled_affix_resolver_comparison_report.json`, with `comparison_status=warning`, zero count deltas, zero phase-status deltas, zero warning-category deltas, deterministic output agreement, affix `910` duplicate evidence agreement, and `production_safe=false`.
+- Controlled affix per-affix diagnostic record artifact is complete as CLI-only read-only diagnostic tooling. It emits `docs/generated/controlled_affix_per_affix_diagnostic_records.md` and `docs/generated/controlled_affix_per_affix_diagnostic_records.json`, with 1227 inspection-only records, 1112 equipment records, 115 idol records, 6959 embedded tiers summarized, affix `910` duplicate evidence preserved, `diagnostic_only=true`, and `production_safe=false`.
 
 ## 3. What Has Been Proven
 
@@ -465,7 +466,7 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Plan a validated per-affix diagnostic record artifact if richer normalized object details are needed beyond the current resolver summary.
+- Plan a validated per-tier or source-row diagnostic artifact only if richer tier/value semantics are needed beyond the current per-affix diagnostic record artifact.
 - Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
 - Explicit preservation of the production boundary and `production_safe=false`.

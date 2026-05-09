@@ -22,6 +22,14 @@ The saved-vs-fresh comparison for the prototype has also been implemented as CLI
 - `docs/generated/controlled_affix_resolver_comparison_report.md`
 - `docs/generated/controlled_affix_resolver_comparison_report.json`
 
+The richer per-affix diagnostic record artifact has also been implemented as CLI-only read-only diagnostic tooling in:
+
+- `backend/app/game_data/controlled_affix_per_affix_diagnostic.py`
+- `backend/scripts/report_controlled_affix_per_affix_diagnostic.py`
+- `backend/tests/test_controlled_affix_per_affix_diagnostic.py`
+- `docs/generated/controlled_affix_per_affix_diagnostic_records.md`
+- `docs/generated/controlled_affix_per_affix_diagnostic_records.json`
+
 This implementation does not generate bundle families, replace Forge affix loaders, change runtime behavior, power crafting or build math, expose APIs, or mark any output `production_safe=true`.
 
 Current commands:
@@ -36,6 +44,10 @@ cd D:\Forge\le-the-forge
 .\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --json
 .\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --output docs\generated\controlled_affix_resolver_comparison_report.md
 .\backend\.venv\Scripts\python.exe backend\scripts\compare_controlled_affix_resolver_prototype.py --json --output docs\generated\controlled_affix_resolver_comparison_report.json
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_per_affix_diagnostic.py
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_per_affix_diagnostic.py --json
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_per_affix_diagnostic.py --output docs\generated\controlled_affix_per_affix_diagnostic_records.md
+.\backend\.venv\Scripts\python.exe backend\scripts\report_controlled_affix_per_affix_diagnostic.py --json --output docs\generated\controlled_affix_per_affix_diagnostic_records.json
 ```
 
 Current boundary:
@@ -44,6 +56,7 @@ Current boundary:
 - Phase 1-5 affix diagnostics remain warning-level.
 - Phase 6 diagnostic consumer exists only for read-only inspection of generated diagnostic artifacts.
 - Saved-vs-fresh resolver comparison is `comparison_status=warning` with zero count deltas, zero phase-status deltas, zero warning-category deltas, deterministic output agreement, and affix `910` duplicate evidence agreement.
+- Per-affix diagnostic records exist only for read-only inspection and emit `diagnostic_only=true` plus `production_safe=false`.
 - Affix `910` duplicate eligibility evidence remains visible and must not be silently deduplicated.
 - Production affix migration is not approved.
 
@@ -375,7 +388,7 @@ Required later milestones:
 
 1. Implement the controlled resolver prototype as developer-only tooling. COMPLETE.
 2. Add saved-vs-fresh comparison for resolver output. COMPLETE.
-3. Add a validated per-affix diagnostic record artifact if full normalized records are needed.
+3. Add a validated per-affix diagnostic record artifact if full normalized records are needed. COMPLETE.
 4. Define canonical bundle family shapes for `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags`.
 5. Validate each family independently.
 6. Prove Forge non-production consumers can inspect resolver output without changing runtime behavior.
@@ -387,7 +400,7 @@ Until those milestones complete, the resolver prototype remains diagnostic-only 
 
 ## 16. Recommended Implementation Step
 
-Implementation status: complete for the first controlled prototype and its saved-vs-fresh comparison.
+Implementation status: complete for the first controlled prototype, its saved-vs-fresh comparison, and the per-affix diagnostic record artifact.
 
 Current generated report summary:
 
@@ -422,10 +435,25 @@ Current saved-vs-fresh comparison summary:
 | production_safe agreement | `true` |
 | non-production inspection allowed agreement | `true` |
 
+Current per-affix diagnostic artifact summary:
+
+| Metric | Value |
+| --- | ---: |
+| total records | 1227 |
+| equipment records | 1112 |
+| idol records | 115 |
+| embedded tier count | 6959 |
+| warning category count | 17 |
+| records with warnings | 1227 |
+| diagnostic_only | `true` |
+| production_safe | `false` |
+| non-production inspection allowed | `true` |
+| affix 910 duplicate evidence preserved | `true` |
+
 Next implementation task, if approved:
 
 ```text
-Design a validated per-affix diagnostic record artifact if richer normalized object details are required.
+Design a validated per-tier or source-row diagnostic artifact only if richer tier/value semantics are required.
 ```
 
 That task must not generate bundle families, change Forge production behavior, or claim production readiness.
