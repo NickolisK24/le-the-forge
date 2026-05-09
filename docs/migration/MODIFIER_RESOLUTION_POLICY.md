@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document defines the diagnostic-only policy for how Forge should treat affix stat/modifier reference evidence before any controlled modifier resolver prototype is implemented.
+This document defines the diagnostic-only policy for how Forge should treat affix stat/modifier reference evidence before and during the controlled modifier resolver prototype.
 
 This is policy only. It does not implement a resolver, change production loaders, change importer behavior, change generated production output, change runtime behavior, power crafting/build math/simulation/gameplay, or mark anything `production_safe=true`.
 
@@ -12,7 +12,7 @@ Current policy state:
 - `production_safe=false`
 - no gameplay correctness claim
 - no production readiness claim
-- no controlled modifier resolver exists yet
+- the first controlled modifier resolver prototype exists as CLI-only diagnostic tooling
 
 ## 2. Current Diagnostic Inputs
 
@@ -172,7 +172,7 @@ Warning-only output may continue only if unresolved/malformed/unsupported refere
 
 ## 11. Inspection-Only Resolver Scope
 
-A future controlled modifier resolver prototype may produce inspection-only objects such as:
+The controlled modifier resolver prototype produces inspection-only objects such as:
 
 ```json
 {
@@ -194,6 +194,15 @@ A future controlled modifier resolver prototype may produce inspection-only obje
 
 This object is not a runtime modifier model.
 
+Current implementation:
+
+- module: `backend/app/game_data/controlled_modifier_resolver_prototype.py`
+- CLI: `backend/scripts/report_controlled_modifier_resolver_prototype.py`
+- markdown report: `docs/generated/controlled_modifier_resolver_prototype_report.md`
+- JSON report: `docs/generated/controlled_modifier_resolver_prototype_report.json`
+
+The prototype emits deterministic aggregate inspection groups because the approved generated diagnostics expose modifier reference counts and warning categories, not validated per-reference gameplay semantics. This is intentional: it avoids inventing per-reference mechanics while still preserving unresolved, malformed, unsupported, and warning evidence.
+
 ## 12. Requirements Before Gameplay Correctness Claims
 
 Forge must not claim gameplay correctness until all of the following are true:
@@ -213,13 +222,15 @@ Until then, modifier resolution remains diagnostic-only and `production_safe=fal
 
 ## 13. Current Disposition
 
-Current disposition for future planning:
+Current disposition after the controlled modifier resolver prototype:
 
-- 6844 structurally present references can be considered for inspection-only normalized objects.
+- 5596 references are represented as resolved structural inspection-only modifier objects after excluding unresolved, malformed, and unsupported evidence.
 - 115 unresolved references must remain unresolved.
 - 136 malformed or semantically unresolved structures must remain unresolved.
 - 1112 unsupported/unresolved structures must remain unsupported.
 - no current duplicate or ambiguous reference blocker is reported.
 - no current missing provenance or unsafe identity blocker is reported.
+- affix `910` duplicate eligibility evidence remains visible as upstream warning metadata.
+- `production_safe=false` remains explicit.
 
-The next implementation may design a controlled modifier resolver prototype only if it preserves these unresolved/malformed/unsupported states and does not claim gameplay correctness.
+The prototype is not gameplay-correctness proof. The next step, if needed, should be a saved-vs-fresh comparison for modifier resolver output or a richer per-reference diagnostic source, not production migration.

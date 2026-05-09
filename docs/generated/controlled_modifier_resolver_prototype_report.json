@@ -1,0 +1,303 @@
+{
+  "affix_910_duplicate_evidence": {
+    "diagnostic_unique_targets": [
+      "IDOL_4X1"
+    ],
+    "diagnostic_unique_targets_label": "diagnostic_only_not_source_mutation",
+    "duplicate_positions": [
+      0,
+      1
+    ],
+    "message": "Eligibility target 'IDOL_4X1' appears 2 times for this affix. Classification: exact_duplicate_in_current_export; origin assessment: unresolved/unknown before exports_json/affixes.json; policy result: warning_only.",
+    "normalized_canRollOn": [
+      "IDOL_4X1",
+      "IDOL_4X1"
+    ],
+    "origin_assessment": "unresolved/unknown before exports_json/affixes.json",
+    "policy_result": "warning_only",
+    "raw_canRollOn": [
+      "IDOL_4x1",
+      "IDOL_4x1"
+    ],
+    "raw_duplicate_count": 2,
+    "record_id": 910,
+    "record_path": "equipment[910].canRollOn",
+    "section": "equipment"
+  },
+  "diagnostic_only": true,
+  "diagnostics_dir": "D:\\Forge\\last-epoch-data\\docs\\generated",
+  "errors": [],
+  "forbidden_production_usage": [
+    "Do not use this report to power build math.",
+    "Do not use this report for item generation.",
+    "Do not use this report for crafting legality.",
+    "Do not expose this report through production APIs or frontend behavior.",
+    "Do not replace existing Forge affix behavior.",
+    "Do not generate or mutate bundle families from this report.",
+    "Do not silently deduplicate affix 910.",
+    "Do not mark production_safe=true.",
+    "Do not use this modifier resolver prototype as a gameplay stat model.",
+    "Do not infer additive, increased, more, conditional, ailment, minion, skill, class, or stacking semantics.",
+    "Do not treat aggregate inspection objects as per-reference gameplay rows."
+  ],
+  "input_artifacts": {
+    "phase_1_source_shape": {
+      "diagnostic": "affix_source_shape_validator",
+      "error_count": 0,
+      "filename": "affix_source_shape_diagnostic_report.json",
+      "generated_at": "2026-05-09T00:43:00+00:00",
+      "migration_gate_status": null,
+      "phase": "phase_1_source_shape",
+      "production_safe": false,
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\affixes.json",
+      "validation_status": "warning",
+      "warning_count": 1391
+    },
+    "phase_2_identity_provenance": {
+      "diagnostic": "affix_identity_provenance_validator",
+      "error_count": 0,
+      "filename": "affix_identity_provenance_diagnostic_report.json",
+      "generated_at": "2026-05-09T00:49:52+00:00",
+      "migration_gate_status": null,
+      "phase": "phase_2_identity_provenance",
+      "production_safe": false,
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\affixes.json",
+      "validation_status": "warning",
+      "warning_count": 137
+    },
+    "phase_3_eligibility": {
+      "diagnostic": "affix_eligibility_validator",
+      "error_count": 0,
+      "filename": "affix_eligibility_diagnostic_report.json",
+      "generated_at": "2026-05-09T02:35:20+00:00",
+      "migration_gate_status": null,
+      "phase": "phase_3_eligibility",
+      "production_safe": false,
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\affixes.json",
+      "validation_status": "warning",
+      "warning_count": 116
+    },
+    "phase_4_tag_category": {
+      "diagnostic": "affix_tag_category_validator",
+      "error_count": 0,
+      "filename": "affix_tag_category_diagnostic_report.json",
+      "generated_at": "2026-05-09T01:20:16+00:00",
+      "migration_gate_status": null,
+      "phase": "phase_4_tag_category",
+      "production_safe": false,
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\affixes.json",
+      "validation_status": "warning",
+      "warning_count": 258
+    },
+    "phase_5_saved_vs_fresh": {
+      "diagnostic": "affix_saved_vs_fresh_diagnostic_comparison",
+      "error_count": 0,
+      "filename": "affix_saved_vs_fresh_diagnostic_comparison_report.json",
+      "generated_at": "2026-05-09T02:35:25+00:00",
+      "migration_gate_status": "warning",
+      "phase": "phase_5_saved_vs_fresh",
+      "production_safe": false,
+      "source_path": null,
+      "validation_status": "warning",
+      "warning_count": 2
+    }
+  },
+  "modifier_objects": [
+    {
+      "diagnostic_only": true,
+      "duplicate_raw_evidence_refs": [
+        "affix_910_duplicate_evidence"
+      ],
+      "modifier_family": "structurally_present",
+      "normalized_inspection_structure": {
+        "gameplay_semantics": null,
+        "kind": "aggregate_reference_group",
+        "resolution": "inspection_safe_structural_reference",
+        "source_mutation": false
+      },
+      "notes": [
+        "Resolved only means structurally safe for inspection.",
+        "No gameplay formula, stacking, conditional, or crafting semantics are inferred."
+      ],
+      "production_safe": false,
+      "reference_count": 5596,
+      "source_affix_identity": "aggregate:multiple_affixes",
+      "source_affix_identity_scope": "aggregate_generated_diagnostic_counts",
+      "source_provenance_path": "phase_1_source_shape.summary.total_embedded_tiers",
+      "stable_modifier_identity": "modifier_reference_group:resolved_structural",
+      "state": "resolved",
+      "warnings": []
+    },
+    {
+      "diagnostic_only": true,
+      "duplicate_raw_evidence_refs": [
+        "affix_910_duplicate_evidence"
+      ],
+      "modifier_family": "missing_stat_modifier_reference",
+      "normalized_inspection_structure": null,
+      "notes": [
+        "Unresolved references are carried as unresolved diagnostic evidence.",
+        "They are excluded from resolved modifier semantics."
+      ],
+      "production_safe": false,
+      "reference_count": 115,
+      "source_affix_identity": "aggregate:multiple_affixes",
+      "source_affix_identity_scope": "aggregate_generated_diagnostic_counts",
+      "source_provenance_path": "phase_1_source_shape.summary.total_embedded_tiers",
+      "stable_modifier_identity": "modifier_reference_group:unresolved",
+      "state": "unresolved",
+      "warnings": [
+        {
+          "category": "missing_stat_modifier_references",
+          "message": "Warning category preserved from generated diagnostics.",
+          "source": "phase_1_source_shape"
+        }
+      ]
+    },
+    {
+      "diagnostic_only": true,
+      "duplicate_raw_evidence_refs": [
+        "affix_910_duplicate_evidence"
+      ],
+      "modifier_family": "malformed_or_semantically_unresolved_structure",
+      "normalized_inspection_structure": null,
+      "notes": [
+        "Malformed or semantically unresolved structures are not resolved.",
+        "A separate semantic policy is required before any normalized value can be emitted."
+      ],
+      "production_safe": false,
+      "reference_count": 136,
+      "source_affix_identity": "aggregate:multiple_affixes",
+      "source_affix_identity_scope": "aggregate_generated_diagnostic_counts",
+      "source_provenance_path": "phase_1_source_shape.summary.total_embedded_tiers",
+      "stable_modifier_identity": "modifier_reference_group:malformed",
+      "state": "malformed",
+      "warnings": [
+        {
+          "category": "malformed_tier_ranges",
+          "message": "Warning category preserved from generated diagnostics.",
+          "source": "phase_1_source_shape"
+        }
+      ]
+    },
+    {
+      "diagnostic_only": true,
+      "duplicate_raw_evidence_refs": [
+        "affix_910_duplicate_evidence"
+      ],
+      "modifier_family": "unsupported_or_unresolved_structure",
+      "normalized_inspection_structure": null,
+      "notes": [
+        "Unsupported structures are not guessed.",
+        "They require explicit modeling or explicit exclusion before resolver work can advance."
+      ],
+      "production_safe": false,
+      "reference_count": 1112,
+      "source_affix_identity": "aggregate:multiple_affixes",
+      "source_affix_identity_scope": "aggregate_generated_diagnostic_counts",
+      "source_provenance_path": "phase_1_source_shape.summary.total_embedded_tiers",
+      "stable_modifier_identity": "modifier_reference_group:unsupported",
+      "state": "unsupported",
+      "warnings": [
+        {
+          "category": "unsupported_or_unresolved_fields",
+          "message": "Warning category preserved from generated diagnostics.",
+          "source": "phase_1_source_shape"
+        }
+      ]
+    }
+  ],
+  "non_production_inspection_allowed": true,
+  "notes": [
+    "Diagnostic-only: consumes generated diagnostic artifacts only.",
+    "Resolved means structurally safe for inspection, not gameplay-correct.",
+    "Unresolved, malformed, and unsupported modifier evidence remains visible and excluded from resolved semantics.",
+    "Generated artifacts currently expose aggregate modifier warning counts; this prototype emits deterministic aggregate inspection objects rather than invented per-reference mechanics.",
+    "Affix 910 raw duplicate eligibility evidence remains visible as upstream warning metadata."
+  ],
+  "phase5_migration_gate_status": "warning",
+  "phase_status_summary": {
+    "phase_1_source_shape": "warning",
+    "phase_2_identity_provenance": "warning",
+    "phase_3_eligibility": "warning",
+    "phase_4_tag_category": "warning",
+    "phase_5_saved_vs_fresh": "warning"
+  },
+  "policy": "docs/migration/MODIFIER_RESOLUTION_POLICY.md",
+  "production_safe": false,
+  "resolver": "controlled_modifier_resolver_prototype",
+  "scope": "non_production_read_only_cli_report",
+  "source": "generated_diagnostic_artifacts",
+  "summary": {
+    "affix_910_duplicate_evidence_preserved": true,
+    "deterministic_output_status": "stable",
+    "malformed_modifier_objects": 136,
+    "non_production_inspection_allowed": true,
+    "resolved_modifier_objects": 5596,
+    "total_modifier_references": 6959,
+    "unresolved_modifier_objects": 115,
+    "unsupported_modifier_objects": 1112,
+    "warning_categories": 9
+  },
+  "warning_category_summary": [
+    {
+      "category": "unresolved_modifier_references",
+      "count": 115,
+      "phase": "modifier_resolution_policy"
+    },
+    {
+      "category": "malformed_modifier_structures",
+      "count": 136,
+      "phase": "modifier_resolution_policy"
+    },
+    {
+      "category": "unsupported_modifier_structures",
+      "count": 1112,
+      "phase": "modifier_resolution_policy"
+    },
+    {
+      "category": "ambiguous_name_collisions",
+      "count": 28,
+      "phase": "phase_1_source_shape"
+    },
+    {
+      "category": "ambiguous_display_name_collisions",
+      "count": 137,
+      "phase": "phase_2_identity_provenance"
+    },
+    {
+      "category": "duplicate_or_ambiguous_eligibility_records",
+      "count": 1,
+      "phase": "phase_3_eligibility"
+    },
+    {
+      "category": "unknown_or_unsupported_tag_category_values",
+      "count": 148,
+      "phase": "phase_4_tag_category"
+    },
+    {
+      "category": "ambiguous_tag_category_mappings",
+      "count": 110,
+      "phase": "phase_4_tag_category"
+    },
+    {
+      "category": "phases_with_warning_status",
+      "count": 4,
+      "phase": "phase_5_saved_vs_fresh"
+    }
+  ],
+  "warnings": [
+    "phase_1_source_shape remains warning-level and non-production.",
+    "phase_1_source_shape contains 1391 diagnostic warnings.",
+    "phase_2_identity_provenance remains warning-level and non-production.",
+    "phase_2_identity_provenance contains 137 diagnostic warnings.",
+    "phase_3_eligibility remains warning-level and non-production.",
+    "phase_3_eligibility contains 116 diagnostic warnings.",
+    "phase_4_tag_category remains warning-level and non-production.",
+    "phase_4_tag_category contains 258 diagnostic warnings.",
+    "phase_5_saved_vs_fresh remains warning-level and non-production.",
+    "phase_5_saved_vs_fresh contains 2 diagnostic warnings.",
+    "Unresolved, malformed, and unsupported modifier evidence remains visible and excluded from resolved semantics.",
+    "Warning categories are preserved; this is not production readiness."
+  ]
+}
