@@ -507,7 +507,9 @@ These values come from the diagnostic-only Phase 3 validator in `D:\Forge\last-e
 
 Current blocking finding:
 
-- Equipment affix `910` has duplicate `canRollOn` target `IDOL_4X1`.
+- Equipment affix `910` at `exports_json/affixes.json` path `equipment[910].canRollOn` has duplicate raw target values `["IDOL_4x1", "IDOL_4x1"]`, normalized to duplicate target `IDOL_4X1`.
+- Diagnostic classification: `exact_duplicate_in_current_export`.
+- Origin assessment before `exports_json/affixes.json`: `unresolved/unknown`.
 
 Warning-only context:
 
@@ -601,8 +603,8 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 
 ### Later
 
-8. Review or resolve the Phase 3 duplicate `canRollOn` target finding.
-9. Plan `affix_tags` separately if derivation and schema are stable.
+8. Review or resolve the Phase 3 duplicate `canRollOn` target finding, including whether it originated in raw source data or during extraction/transformation.
+9. Delay Phase 4 `affix_tags` until the duplicate eligibility evidence is understood, then plan tags separately if derivation and schema are stable.
 10. Plan `affixes`, `affix_tiers`, and `affix_eligibility` as likely canonical families only after eligibility/tag boundaries are clear and warning/error states are accepted or resolved.
 11. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
 12. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
