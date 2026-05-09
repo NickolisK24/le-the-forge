@@ -26,7 +26,7 @@ The current migration program is diagnostics-first.
 | Sidecar diagnostics | Complete as non-production validation surfaces. Developer-only. Not exposed in API responses or frontend behavior. |
 | Loader behavior | Existing production loaders remain in place. |
 | Follow-on affix diagnostics | `last-epoch-data` now has Phase 1 affix / embedded tier source-shape validation, Phase 2 affix identity/provenance validation, Phase 3 affix eligibility validation, Phase 4 tag/category validation, and Phase 5 saved-vs-fresh comparison. All are diagnostic-only and stable. Shape, identity/provenance, eligibility, and tag/category are warning-level; the comparison gate is warning-level with zero count/warning/error deltas. None generate or consume affix bundle families. |
-| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only. The Phase 6 plan is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`. Production migration remains blocked. |
+| Follow-on affix readiness | `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for a minimum read-only diagnostic consumer. The Phase 6 plan is captured in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`, and the CLI-only consumer now generates `docs/generated/affix_diagnostic_consumer_report.md` and `docs/generated/affix_diagnostic_consumer_report.json`. Production migration remains blocked. |
 
 Current diagnostic counts:
 
@@ -207,12 +207,13 @@ Affix diagnostics milestone closeout:
 - Phase 4 affix tag/category diagnostic is complete with `warning` status.
 - Phase 5 saved-vs-fresh comparison is complete and stable.
 - Affix readiness sweep is complete and allows Phase 6 diagnostic consumer planning only.
-- Phase 6 diagnostic consumer planning is complete in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`; implementation is not started.
+- Phase 6 diagnostic consumer planning is complete in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
+- Phase 6 diagnostic consumer implementation is complete as a CLI-only read-only report over approved generated diagnostic artifacts.
 - Count deltas, warning deltas, and error deltas are all zero across the comparison.
 - Combined `migration_gate_status` is `warning`.
 - Affix `910` duplicate `canRollOn` evidence remains warning-only and is not deduplicated.
 - `production_safe=false` remains unchanged.
-- Phase 6 affix non-production consumer planning is complete. Implementation may begin only as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts. No production consumer should be built.
+- Phase 6 affix non-production consumer implementation is complete as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts. No production consumer should be built.
 
 ## 3. What Has Been Proven
 
@@ -460,7 +461,7 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Implement the minimum safe Phase 6 affix diagnostic consumer from `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`.
+- Consider a saved-vs-fresh comparison for the Phase 6 affix diagnostic consumer report if the report becomes a baseline artifact.
 - Keep Phase 6 scope CLI-only, read-only, developer-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Explicit preservation of the production boundary and `production_safe=false`.
 

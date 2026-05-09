@@ -2,7 +2,7 @@
 
 ## 1. Purpose
 
-This document designs the minimum safe Phase 6 affix diagnostic consumer. It is planning only. It does not implement a consumer, change Forge production behavior, generate bundle families, or make affix data production-safe.
+This document designs the minimum safe Phase 6 affix diagnostic consumer. The current implementation follows this plan as CLI-only diagnostic tooling in `backend/app/game_data/affix_diagnostic_consumer.py` and `backend/scripts/report_affix_diagnostic_consumer.py`. It does not change Forge production behavior, generate bundle families, or make affix data production-safe.
 
 Phase 6 is allowed only because the current readiness sweep permits planning for a read-only, non-production diagnostic consumer. The consumer must inspect approved diagnostic artifacts and preserve their warning state. It must not power build math, item generation, crafting, runtime gameplay output, production APIs, or production loaders.
 
@@ -167,23 +167,29 @@ Blocked reporting must not mutate inputs or try to repair data.
 
 ## 8. CLI and Reporting Behavior
 
-Recommended CLI-only implementation:
+Current CLI-only implementation:
 
 ```powershell
 cd D:\Forge\le-the-forge\backend
 .\.venv\Scripts\python.exe scripts\report_affix_diagnostic_consumer.py --diagnostics-dir D:\Forge\last-epoch-data\docs\generated
 ```
 
-Recommended JSON output:
+JSON output:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\report_affix_diagnostic_consumer.py --diagnostics-dir D:\Forge\last-epoch-data\docs\generated --json
 ```
 
-Recommended generated report:
+Generated markdown report:
 
 ```powershell
 .\.venv\Scripts\python.exe scripts\report_affix_diagnostic_consumer.py --diagnostics-dir D:\Forge\last-epoch-data\docs\generated --output ..\docs\generated\affix_diagnostic_consumer_report.md
+```
+
+Generated JSON report:
+
+```powershell
+.\.venv\Scripts\python.exe scripts\report_affix_diagnostic_consumer.py --diagnostics-dir D:\Forge\last-epoch-data\docs\generated --json --output ..\docs\generated\affix_diagnostic_consumer_report.json
 ```
 
 Required CLI behavior:
@@ -267,27 +273,44 @@ Before any production migration planning, the program still needs:
 
 Production migration remains forbidden until those later gates are satisfied.
 
-## 12. Recommended Next Implementation Prompt
+## 12. Current Implementation Status
+
+Implemented artifacts:
+
+- `backend/app/game_data/affix_diagnostic_consumer.py`
+- `backend/scripts/report_affix_diagnostic_consumer.py`
+- `backend/tests/test_affix_diagnostic_consumer.py`
+- `docs/generated/affix_diagnostic_consumer_report.md`
+- `docs/generated/affix_diagnostic_consumer_report.json`
+
+Current generated report status:
+
+- `non_production_inspection_allowed=true`
+- `production_safe=false`
+- Phase 1 status: `warning`
+- Phase 2 status: `warning`
+- Phase 3 status: `warning`
+- Phase 4 status: `warning`
+- Phase 5 `migration_gate_status=warning`
+- affix `910` raw duplicate evidence preserved
+- tag/category warnings preserved
+
+This implementation remains inspection-only and non-production.
+
+## 13. Recommended Next Implementation Prompt
 
 Recommended next task:
 
 ```text
-Implement Phase 6 as a CLI-only, read-only affix diagnostic consumer.
-
-Inputs:
-- D:\Forge\last-epoch-data\docs\generated\affix_source_shape_diagnostic_report.json
-- D:\Forge\last-epoch-data\docs\generated\affix_identity_provenance_diagnostic_report.json
-- D:\Forge\last-epoch-data\docs\generated\affix_eligibility_diagnostic_report.json
-- D:\Forge\last-epoch-data\docs\generated\affix_tag_category_diagnostic_report.json
-- D:\Forge\last-epoch-data\docs\generated\affix_saved_vs_fresh_diagnostic_comparison_report.json
+Create a saved-vs-fresh comparison for the Phase 6 affix diagnostic consumer report if this report should become a baseline artifact.
 
 Constraints:
-- Read generated diagnostics only.
+- Diagnostic-only.
+- Read generated diagnostics and saved Phase 6 report artifacts only.
 - Preserve production_safe=false.
 - Preserve warning metadata.
 - Preserve affix 910 raw duplicate count and duplicate positions.
 - Do not read production loaders/importers/routes/frontend/simulation.
-- Do not read raw affix source files in the minimum consumer.
 - Do not generate bundle families.
 - Do not deduplicate.
 - Do not claim production readiness.

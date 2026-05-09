@@ -19,7 +19,7 @@ It tracks current migration state, completed milestones, known blockers, safety 
 | Current item migration state | `item_types` and `base_items` are generated in the bundle and validated, but only diagnostic consumers exist in Forge. |
 | Current importer migration state | LET diagnostics can inspect copied/synthetic/offline context; production importer output is unchanged. |
 | Current sidecar state | Sidecar builder, validator, saved fixture validation, saved-sidecar diagnostic consumer, fresh-sidecar diagnostic validation, and saved-vs-fresh comparison diagnostics are complete as non-production validation surfaces; all remain developer-only and warning states stay visible. |
-| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. All four phase reports are `warning`. Phase 3 applies the accepted exact duplicate eligibility policy to affix `910`, preserving raw duplicate count and positions while treating the exact duplicate as warning-only. Phase 5 gate is stable and `warning` with zero count/warning/error deltas. The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for planning a minimum read-only diagnostic consumer only. The Phase 6 plan now exists at `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`. No affix bundle family is generated or consumed. |
+| Current affix diagnostic state | `last-epoch-data` Phase 1 shape validator, Phase 2 identity/provenance validator, Phase 3 eligibility validator, Phase 4 tag/category validator, and Phase 5 saved-vs-fresh comparison exist as diagnostic-only tooling. All four phase reports are `warning`. Phase 3 applies the accepted exact duplicate eligibility policy to affix `910`, preserving raw duplicate count and positions while treating the exact duplicate as warning-only. Phase 5 gate is stable and `warning` with zero count/warning/error deltas. The readiness sweep in `docs/migration/AFFIX_MIGRATION_READINESS_SWEEP.md` records `non_production_consumer_allowed=true` for a minimum read-only diagnostic consumer. The Phase 6 plan and CLI-only consumer now exist, with generated reports at `docs/generated/affix_diagnostic_consumer_report.md` and `docs/generated/affix_diagnostic_consumer_report.json`. No affix bundle family is generated or consumed. |
 | Current production safety | `production_safe=false` across mapping fixtures, adapter translations, resolver output, sidecars, and validators. |
 
 Short version:
@@ -164,7 +164,7 @@ Current disposition:
 
 Next safe step:
 
-- Implement the minimum safe Phase 6 affix diagnostic consumer exactly as a CLI-only, read-only, developer-only report over approved generated diagnostic artifacts. It must preserve warning metadata and `production_safe=false`; do not generate bundle families or create production Forge consumers.
+- Treat the Phase 6 affix diagnostic consumer as implemented for inspection-only use. Next work should validate whether its generated report is stable enough for a saved-vs-fresh consumer comparison, still without generating bundle families or creating production Forge consumers.
 
 ### Phase 3 — Forge Item Diagnostics
 
@@ -238,7 +238,7 @@ Next safe step:
 
 ### Phase 6 — First Non-Production Diagnostic Consumer
 
-Status: COMPLETE for saved-sidecar diagnostic consumption, fresh-sidecar diagnostic validation, and saved-vs-fresh diagnostic comparison as non-production validation surfaces; NOT_STARTED for any live importer diagnostic consumer or production migration.
+Status: COMPLETE for saved-sidecar diagnostic consumption, fresh-sidecar diagnostic validation, saved-vs-fresh sidecar comparison, and minimum affix diagnostic artifact consumption as non-production validation surfaces; NOT_STARTED for any live importer diagnostic consumer or production migration.
 
 Target:
 
@@ -259,6 +259,12 @@ Completed milestones:
 - `backend/scripts/compare_le_tools_sidecar_diagnostics.py`.
 - `backend/tests/test_le_tools_sidecar_diagnostic_comparison.py`.
 - `docs/generated/le_tools_sidecar_diagnostic_comparison_report.md`.
+- Phase 6 affix diagnostic consumer design.
+- `backend/app/game_data/affix_diagnostic_consumer.py`.
+- `backend/scripts/report_affix_diagnostic_consumer.py`.
+- `backend/tests/test_affix_diagnostic_consumer.py`.
+- `docs/generated/affix_diagnostic_consumer_report.md`.
+- `docs/generated/affix_diagnostic_consumer_report.json`.
 
 Current blockers:
 
@@ -268,10 +274,11 @@ Current blockers:
 - Comparison result remains `warning` because warning deltas remain visible by design.
 - It does not prove live LET payload shape.
 - It does not prove production importer or bundle consumption readiness.
+- The affix diagnostic consumer reads generated diagnostic artifacts only and does not consume production bundle data, source exports, loaders, importers, APIs, frontend behavior, crafting, simulation, or gameplay output.
 
 Next safe step:
 
-- Treat this sidecar milestone as complete for now and move to planning for the next canonical data family. Do not start production migration.
+- Treat this diagnostic consumer milestone as complete for inspection-only use. Do not start production migration.
 
 ### Phase 7 — Future Production Migration
 
@@ -363,6 +370,8 @@ Next safe step:
 - [x] saved-vs-fresh affix diagnostic comparison.
 - [x] affix migration readiness sweep.
 - [x] Phase 6 affix diagnostic consumer plan.
+- [x] Phase 6 affix diagnostic consumer.
+- [x] Phase 6 generated markdown and JSON reports.
 
 ## 5. Canonical Family Status Table
 
@@ -681,13 +690,13 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 6. Treat the affix 910 source trace as complete diagnostic evidence that the duplicate exists in `extracted_raw/MasterAffixesList.json` and is preserved by later decode/normalization; do not deduplicate generated output.
 7. Treat Phase 4 `affix_tags` / category validation as complete only as a separate warning-level diagnostic gate; it does not claim eligibility is safe.
 8. Treat Phase 5 saved-vs-fresh affix diagnostic comparison as complete and warning-only.
-9. Phase 6 affix non-production consumer planning is complete in `docs/migration/PHASE_6_AFFIX_DIAGNOSTIC_CONSUMER_PLAN.md`; implementation may begin only as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts.
+9. Phase 6 affix non-production consumer implementation is complete as a CLI-only read-only diagnostic report over approved generated diagnostic artifacts.
 10. Keep production output unchanged.
 11. Keep `production_safe=false`.
 
 ### Later
 
-9. Implement the minimum safe Phase 6 affix diagnostic consumer against saved/generated diagnostic reports.
+9. Consider a saved-vs-fresh comparison for the Phase 6 consumer output if the report becomes a baseline artifact.
 10. Keep the Phase 6 scope CLI-only, read-only, developer-only, warning-preserving, and `production_safe=false`.
 11. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after a non-production consumer proves safe diagnostic behavior.
 12. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.

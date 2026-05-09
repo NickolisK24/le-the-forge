@@ -1,0 +1,195 @@
+{
+  "affix_910_duplicate_eligibility_evidence": {
+    "diagnostic_unique_targets": [
+      "IDOL_4X1"
+    ],
+    "diagnostic_unique_targets_label": "diagnostic_only_not_source_mutation",
+    "duplicate_positions": [
+      0,
+      1
+    ],
+    "message": "Eligibility target 'IDOL_4X1' appears 2 times for this affix. Classification: exact_duplicate_in_current_export; origin assessment: unresolved/unknown before exports_json/affixes.json; policy result: warning_only.",
+    "normalized_canRollOn": [
+      "IDOL_4X1",
+      "IDOL_4X1"
+    ],
+    "origin_assessment": "unresolved/unknown before exports_json/affixes.json",
+    "policy_result": "warning_only",
+    "raw_canRollOn": [
+      "IDOL_4x1",
+      "IDOL_4x1"
+    ],
+    "raw_duplicate_count": 2,
+    "record_id": 910,
+    "record_path": "equipment[910].canRollOn",
+    "section": "equipment"
+  },
+  "consumer_scope": "non_production_read_only",
+  "diagnostic": "phase_6_affix_diagnostic_consumer",
+  "diagnostics_dir": "D:\\Forge\\last-epoch-data\\docs\\generated",
+  "errors": [],
+  "forbidden_production_usage": [
+    "Do not use this report to power build math.",
+    "Do not use this report for item generation.",
+    "Do not use this report for crafting legality.",
+    "Do not expose this report through production APIs or frontend behavior.",
+    "Do not replace existing Forge affix behavior.",
+    "Do not generate or mutate bundle families from this report.",
+    "Do not silently deduplicate affix 910.",
+    "Do not mark production_safe=true."
+  ],
+  "input_artifacts": {
+    "phase_1_source_shape": {
+      "diagnostic": "affix_source_shape_validator",
+      "error_count": 0,
+      "filename": "affix_source_shape_diagnostic_report.json",
+      "migration_gate_status": null,
+      "phase": "phase_1_source_shape",
+      "production_safe": false,
+      "validation_status": "warning",
+      "warning_count": 1391
+    },
+    "phase_2_identity_provenance": {
+      "diagnostic": "affix_identity_provenance_validator",
+      "error_count": 0,
+      "filename": "affix_identity_provenance_diagnostic_report.json",
+      "migration_gate_status": null,
+      "phase": "phase_2_identity_provenance",
+      "production_safe": false,
+      "validation_status": "warning",
+      "warning_count": 137
+    },
+    "phase_3_eligibility": {
+      "diagnostic": "affix_eligibility_validator",
+      "error_count": 0,
+      "filename": "affix_eligibility_diagnostic_report.json",
+      "migration_gate_status": null,
+      "phase": "phase_3_eligibility",
+      "production_safe": false,
+      "validation_status": "warning",
+      "warning_count": 116
+    },
+    "phase_4_tag_category": {
+      "diagnostic": "affix_tag_category_validator",
+      "error_count": 0,
+      "filename": "affix_tag_category_diagnostic_report.json",
+      "migration_gate_status": null,
+      "phase": "phase_4_tag_category",
+      "production_safe": false,
+      "validation_status": "warning",
+      "warning_count": 258
+    },
+    "phase_5_saved_vs_fresh": {
+      "diagnostic": "affix_saved_vs_fresh_diagnostic_comparison",
+      "error_count": 0,
+      "filename": "affix_saved_vs_fresh_diagnostic_comparison_report.json",
+      "migration_gate_status": "warning",
+      "phase": "phase_5_saved_vs_fresh",
+      "production_safe": false,
+      "validation_status": "warning",
+      "warning_count": 2
+    }
+  },
+  "non_production_inspection_allowed": true,
+  "phase5_migration_gate_status": "warning",
+  "phase_validation_statuses": {
+    "phase_1_source_shape": "warning",
+    "phase_2_identity_provenance": "warning",
+    "phase_3_eligibility": "warning",
+    "phase_4_tag_category": "warning",
+    "phase_5_saved_vs_fresh": "warning"
+  },
+  "production_safe": false,
+  "recommendations": [
+    "Phase 6 inspection may remain read-only and non-production.",
+    "Keep this consumer limited to generated diagnostic artifacts.",
+    "Do not generate affix bundle families or production Forge consumers from this report.",
+    "Preserve affix 910 raw duplicate evidence in all downstream diagnostics."
+  ],
+  "remaining_warning_categories": [
+    {
+      "category": "ambiguous_name_collisions",
+      "count": 28,
+      "phase": "phase_1_source_shape"
+    },
+    {
+      "category": "malformed_tier_ranges",
+      "count": 136,
+      "phase": "phase_1_source_shape"
+    },
+    {
+      "category": "missing_stat_modifier_references",
+      "count": 115,
+      "phase": "phase_1_source_shape"
+    },
+    {
+      "category": "unsupported_or_unresolved_fields",
+      "count": 1112,
+      "phase": "phase_1_source_shape"
+    },
+    {
+      "category": "ambiguous_display_name_collisions",
+      "count": 137,
+      "phase": "phase_2_identity_provenance"
+    },
+    {
+      "category": "duplicate_or_ambiguous_eligibility_records",
+      "count": 1,
+      "phase": "phase_3_eligibility"
+    },
+    {
+      "category": "unsupported_or_unresolved_eligibility_fields",
+      "count": 115,
+      "phase": "phase_3_eligibility"
+    },
+    {
+      "category": "unknown_or_unsupported_tag_category_values",
+      "count": 148,
+      "phase": "phase_4_tag_category"
+    },
+    {
+      "category": "ambiguous_tag_category_mappings",
+      "count": 110,
+      "phase": "phase_4_tag_category"
+    },
+    {
+      "category": "phases_with_warning_status",
+      "count": 4,
+      "phase": "phase_5_saved_vs_fresh"
+    }
+  ],
+  "summary": {
+    "affix_910_duplicate_evidence_present": true,
+    "equipment_affixes": 1112,
+    "idol_affixes": 115,
+    "phase5_migration_gate_status": "warning",
+    "remaining_warning_categories": 10,
+    "tag_category_warnings_present": true,
+    "total_affixes": 1227,
+    "total_embedded_tiers": 6959
+  },
+  "tag_category_warning_state": {
+    "ambiguous_tag_category_mappings": 110,
+    "duplicate_tag_category_records": 0,
+    "name_only_tag_category_records": 0,
+    "phase3_eligibility_status_from_phase3_report": "warning",
+    "phase3_relationship_note": "Phase 4 remains a separate tag/category gate and does not resolve eligibility.",
+    "subtype_id_only_tag_category_records": 0,
+    "unknown_or_unsupported_tag_category_values": 148,
+    "validation_status": "warning",
+    "warning_count": 258
+  },
+  "warnings": [
+    "phase_1_source_shape contains 1391 diagnostic warnings.",
+    "phase_1_source_shape remains warning-level and non-production.",
+    "phase_2_identity_provenance contains 137 diagnostic warnings.",
+    "phase_2_identity_provenance remains warning-level and non-production.",
+    "phase_3_eligibility contains 116 diagnostic warnings.",
+    "phase_3_eligibility remains warning-level and non-production.",
+    "phase_4_tag_category contains 258 diagnostic warnings.",
+    "phase_4_tag_category remains warning-level and non-production.",
+    "phase_5_saved_vs_fresh contains 2 diagnostic warnings.",
+    "phase_5_saved_vs_fresh remains warning-level and non-production.",
+    "Warning categories remain visible; do not treat this consumer as production readiness."
+  ]
+}
