@@ -31,7 +31,7 @@ Short version:
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
 - The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
-- The diagnostic-only modifier resolution policy is documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`; the first controlled modifier resolver prototype and saved-vs-fresh comparison now exist as CLI-only read-only diagnostic tooling and keep unresolved, malformed, and unsupported stat/modifier evidence out of resolved semantics.
+- The controlled modifier inspection stack milestone is complete for diagnostics: stat/modifier reference audit, modifier resolution policy, controlled modifier resolver prototype, and saved-vs-fresh comparison all exist as non-production, read-only tooling. Current state is `diagnostic_only=true`, `production_safe=false`, `comparison_status=warning`, 6959 total modifier references, 5596 resolved inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references. Count deltas and warning category deltas are zero; deterministic output, provenance coverage, and affix `910` duplicate evidence all agree. No gameplay/crafting/build-math semantics are inferred.
 
 ## 2. Current Safety Boundary
 
@@ -807,11 +807,14 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 ### Later
 
 1. Treat `docs/migration/MODIFIER_RESOLUTION_POLICY.md` as the contract for the controlled modifier resolver prototype and any later modifier diagnostics.
-2. Defer a non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
-3. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
-4. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.
-5. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
-6. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
+2. Next recommended architecture target: unresolved modifier category triage. This most directly moves Forge toward useful gameplay correctness without production migration because it classifies the 115 unresolved references, 136 malformed structures, and 1112 unsupported structures before any semantic resolver can safely exist.
+3. Defer a broader non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
+4. Defer a controlled item-affix-modifier join prototype until unresolved modifier categories have triage labels and no name-only or `subtype_id`-only joins are needed.
+5. Defer gameplay stat semantics policy until the unresolved/malformed/unsupported categories are understood well enough to write specific semantic rules.
+6. Plan item-family eligibility cross-checks after item family identity and affix eligibility diagnostics can be joined without name-only or `subtype_id`-only assumptions.
+7. Plan `affixes`, `affix_tiers`, `affix_eligibility`, and `affix_tags` as likely canonical families only after broader non-production diagnostics prove safe behavior.
+8. Plan passives, skills, enemies, corruption, and runtime/script mechanics only after their source audits and validation contracts are ready.
+9. Only consider production migration after non-production diagnostics prove safe behavior, fallback, tests, and rollback.
 
 ## 11. What Not To Do Yet
 

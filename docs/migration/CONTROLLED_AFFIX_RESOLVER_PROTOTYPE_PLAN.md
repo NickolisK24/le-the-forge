@@ -473,3 +473,4 @@ Policy update:
 - Saved-vs-fresh modifier resolver comparison is implemented in `backend/app/game_data/controlled_modifier_resolver_comparison.py` and `backend/scripts/report_controlled_modifier_resolver_comparison.py`.
 - Current comparison summary: `comparison_status=warning`, zero count deltas, zero warning category deltas, provenance coverage agreement, deterministic output agreement, `diagnostic_only=true`, `production_safe=false`, and affix `910` duplicate evidence agreement.
 - The implementation does not authorize gameplay correctness claims or production migration.
+- Modifier inspection stack closeout: complete as diagnostic-only. The next recommended architecture target is unresolved modifier category triage, not production migration, because the unresolved, malformed, and unsupported evidence must be categorized before any useful gameplay semantics policy can be written.

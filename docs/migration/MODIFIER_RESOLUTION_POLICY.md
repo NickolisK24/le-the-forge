@@ -226,7 +226,7 @@ Until then, modifier resolution remains diagnostic-only and `production_safe=fal
 
 ## 13. Current Disposition
 
-Current disposition after the controlled modifier resolver prototype:
+Current disposition after the controlled modifier inspection stack:
 
 - 5596 references are represented as resolved structural inspection-only modifier objects after excluding unresolved, malformed, and unsupported evidence.
 - 115 unresolved references must remain unresolved.
@@ -235,7 +235,14 @@ Current disposition after the controlled modifier resolver prototype:
 - no current duplicate or ambiguous reference blocker is reported.
 - no current missing provenance or unsafe identity blocker is reported.
 - affix `910` duplicate eligibility evidence remains visible as upstream warning metadata.
-- saved-vs-fresh comparison status is `warning`, with zero count deltas and deterministic output agreement.
+- saved-vs-fresh comparison status is `warning`.
+- count deltas are 0.
+- warning category deltas are 0.
+- deterministic output agreement is `true`.
+- provenance coverage agreement is `true`.
+- affix `910` duplicate evidence agreement is `true`.
 - `production_safe=false` remains explicit.
 
-The prototype is not gameplay-correctness proof. The next step, if needed, should be a richer per-reference diagnostic source or a broader inspection surface, not production migration.
+This closes the controlled modifier inspection stack as diagnostic-complete, not production-ready. The stack proves stable inspection output, not gameplay correctness.
+
+Recommended next architecture target: unresolved modifier category triage. It should classify the unresolved, malformed, and unsupported evidence into diagnostic categories without resolving semantics, mutating source data, or changing production behavior. This is the shortest path toward useful gameplay correctness because it narrows the evidence that blocks any future semantic modifier policy.
