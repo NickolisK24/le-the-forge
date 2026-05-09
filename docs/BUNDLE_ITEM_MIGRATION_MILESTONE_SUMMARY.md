@@ -475,10 +475,15 @@ Any next data-family planning step should:
 
 Recommended output for the next step:
 
-- Choose option D: create a stat/modifier reference audit as the next architecture target. This is the most direct path toward safe gameplay correctness because the current inspection stack proves affix identity, provenance, eligibility, tags, and record inspection, but it does not prove what affix modifiers mean mechanically.
+- The diagnostic-only modifier resolution policy is now captured in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`.
+- The policy permits only inspection-safe resolution planning. It does not implement a resolver and does not claim gameplay correctness.
+- Structurally present references, currently 6844, may be included only as inspection-safe normalized reference objects.
+- Unresolved references, currently 115, must remain unresolved.
+- Malformed or semantically unresolved structures, currently 136, must remain unresolved until a semantic policy exists.
+- Unsupported or unresolved structures, currently 1112, must remain unsupported until explicitly modeled or excluded.
 - Keep the next step CLI-only or otherwise explicitly developer-only, read-only, warning-preserving, and `production_safe=false`; do not generate affix bundle families or production consumers.
 - Preserve raw-source warning/error metadata, including affix `910` duplicate count and duplicate positions.
-- Do not implement a controlled affix modifier resolver until stat/modifier references, unsupported fields, and missing modifier evidence have their own diagnostic audit.
+- Do not implement a controlled affix modifier resolver unless it uses the policy as a failure contract and keeps unresolved/malformed/unsupported references out of resolved modifier semantics.
 - Explicit preservation of the production boundary and `production_safe=false`.
 
 ## 10. What Not To Do Next

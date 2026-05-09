@@ -459,3 +459,12 @@ Design a diagnostic-only stat/modifier reference audit for affix modifier eviden
 ```
 
 That task should come before any controlled non-production affix modifier resolver. The current inspection stack proves record identity, provenance, eligibility warning state, tag/category warning state, and deterministic inspection output; it does not prove gameplay meaning for stat/modifier references. The next audit must remain read-only, warning-preserving, and `production_safe=false`, and it must not generate bundle families, change Forge production behavior, or claim production readiness.
+
+Policy update:
+
+- `docs/migration/MODIFIER_RESOLUTION_POLICY.md` now defines the diagnostic-only failure contract for any future controlled modifier resolver prototype.
+- The policy allows only inspection-safe handling of structurally present references.
+- It requires unresolved, malformed, and unsupported references to remain unresolved or unsupported in resolver output.
+- It forbids guessing unsupported modifier semantics.
+- It keeps warning metadata, provenance, `diagnostic_only=true`, and `production_safe=false` mandatory.
+- It does not authorize resolver implementation, gameplay correctness claims, or production migration.
