@@ -31,7 +31,7 @@ Short version:
 - LET importer context diagnostics exist, but live LET payload shape is not proven.
 - The sidecar diagnostics milestone is complete for non-production validation.
 - The non-production affix inspection stack is complete for diagnostics: Phase 1-6, controlled resolver prototype, resolver comparison, and per-affix diagnostic record artifact all exist, while production affix migration remains forbidden.
-- The controlled modifier inspection stack milestone is complete for diagnostics: stat/modifier reference audit, modifier resolution policy, controlled modifier resolver prototype, saved-vs-fresh comparison, and unresolved modifier category triage all exist as non-production, read-only tooling. Current state is `diagnostic_only=true`, `production_safe=false`, `comparison_status=warning`, 6959 total modifier references, 5596 resolved inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references. The unresolved triage classifies those blockers as missing reference mapping, malformed tier/value shape, and unsupported special behavior. Count deltas and warning category deltas are zero; deterministic output, provenance coverage, and affix `910` duplicate evidence all agree. No gameplay/crafting/build-math semantics are inferred.
+- The controlled modifier inspection stack milestone is complete for diagnostics: stat/modifier reference audit, modifier resolution policy, controlled modifier resolver prototype, saved-vs-fresh comparison, unresolved modifier category triage, and malformed tier/value shape policy all exist as non-production, read-only planning/tooling. Current state is `diagnostic_only=true`, `production_safe=false`, `comparison_status=warning`, 6959 total modifier references, 5596 resolved inspection-only references, 115 unresolved references, 136 malformed references, and 1112 unsupported references. The unresolved triage classifies those blockers as missing reference mapping, malformed tier/value shape, and unsupported special behavior. The malformed tier/value policy defines when diagnostic-only normalization may be considered while preserving raw min/max/order evidence. Count deltas and warning category deltas are zero; deterministic output, provenance coverage, and affix `910` duplicate evidence all agree. No gameplay/crafting/build-math semantics are inferred.
 
 ## 2. Current Safety Boundary
 
@@ -802,13 +802,14 @@ This affix chain is also diagnostic-only. The completed Phase 1 and Phase 2 vali
 14. Treat the controlled modifier resolver prototype as complete for aggregate inspection-only modifier evidence: 6959 total modifier references, 5596 resolved structural inspection objects, 115 unresolved references, 136 malformed references, and 1112 unsupported references; all remain `diagnostic_only=true` and `production_safe=false`.
 15. Treat the controlled modifier resolver saved-vs-fresh comparison as complete with `comparison_status=warning`, zero count deltas, zero warning category deltas, deterministic output agreement, provenance coverage agreement, and affix `910` duplicate evidence agreement.
 16. Treat unresolved modifier category triage as complete for diagnostic planning: 115 unresolved references are classified as likely missing reference mapping, 136 malformed structures as malformed tier/value shape, and 1112 unsupported structures as unsupported special behavior. All categories remain unresolved and eligible only for future diagnostic policy.
-17. Keep production output unchanged.
-18. Keep `production_safe=false`.
+17. Treat malformed tier/value shape policy as documented in `docs/migration/MODIFIER_RESOLUTION_POLICY.md`: raw min/max/order evidence, provenance, and warning metadata must be preserved; diagnostic-only normalization may be shown only as a labeled inspection view and never as gameplay truth.
+18. Keep production output unchanged.
+19. Keep `production_safe=false`.
 
 ### Later
 
 1. Treat `docs/migration/MODIFIER_RESOLUTION_POLICY.md` as the contract for the controlled modifier resolver prototype and any later modifier diagnostics.
-2. Next recommended architecture target: diagnostic policies for the triaged modifier categories, starting with malformed tier/value shape. This most directly moves Forge toward useful gameplay correctness without production migration because it can define when inverted negative ranges remain unresolved, become normalized for inspection, or require exclusion.
+2. Next recommended architecture target: implement diagnostic validation for the malformed tier/value shape policy. This should verify raw min/max/order preservation and any future diagnostic-only normalized view labeling before changing resolver output.
 3. Defer a broader non-production inspection UI/report surface until the CLI/report artifacts remain stable enough to justify presentation work.
 4. Defer a controlled item-affix-modifier join prototype until triaged modifier categories have diagnostic policies and no name-only or `subtype_id`-only joins are needed.
 5. Defer gameplay stat semantics policy until the unresolved/malformed/unsupported categories have specific diagnostic policies.
