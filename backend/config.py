@@ -51,6 +51,10 @@ class Config:
         os.environ.get("FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED", "").lower()
         in {"1", "true", "yes", "on"}
     )
+    FORGE_SAFE_AFFIX_CATALOG_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_CATALOG_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
     FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
 
 

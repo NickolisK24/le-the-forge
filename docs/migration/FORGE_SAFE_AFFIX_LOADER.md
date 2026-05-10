@@ -97,3 +97,31 @@ The repository:
 - returns defensive copies so callers cannot mutate repository state
 
 This repository is not registered globally and is not wired into planner, crafting, simulation, frontend, or production affix behavior. Future consumers must opt into it explicitly behind an experimental/config-controlled boundary.
+
+## Experimental Catalog Endpoint
+
+`GET /experimental/forge-safe-affixes` exposes the repository as a controlled read-only backend data-consumption endpoint.
+
+Required configuration:
+
+- `FORGE_SAFE_AFFIX_CATALOG_ENABLED=true`
+- `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
+
+Example request:
+
+```powershell
+Invoke-RestMethod "http://localhost:5050/experimental/forge-safe-affixes?limit=25&q=void"
+```
+
+Supported query parameters:
+
+- `limit`
+- `offset`
+- `q` or `search`
+- `affix_id`
+- `source_type`
+- `item_type`
+
+The endpoint constructs a `ForgeSafeAffixRepository` on request, which loads through `ForgeSafeAffixLoader`. It does not bypass loader validation, does not mutate the production affix registry, and returns `experimental=true`, `read_only=true`, and `production_consumer=false`.
+
+This endpoint is the first controlled Forge-side consumption surface for the 573 currently loadable Forge-safe affixes. It still does not power planner logic, crafting, simulation, gameplay calculations, or existing affix APIs.
