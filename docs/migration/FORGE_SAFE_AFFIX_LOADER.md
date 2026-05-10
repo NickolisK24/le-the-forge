@@ -82,3 +82,18 @@ Development builds register a matching frontend inspection page:
 The page calls `GET /debug/forge-safe-affixes`, displays the loader summary, warning state, debug/read-only flags, and a limited sample of records. It also supports a `limit` control and an optional affix ID lookup.
 
 This page is available only through the frontend debug route block. It does not fetch from production-facing pages, does not mutate planner state, and does not replace existing affix UI/data.
+
+## Internal Consumption Repository
+
+`backend/data/repositories/forge_safe_affix_repository.py` is the first controlled internal Forge consumption layer for the validated export.
+
+The repository:
+
+- loads through `ForgeSafeAffixLoader`
+- keeps loader validation as the single safety gate
+- preserves source path, loader warnings, export policy, export status, total seen, excluded count, and loaded count
+- supports read-only lookup by affix ID
+- supports listing, name/ID search, source-type filtering, and item-type filtering
+- returns defensive copies so callers cannot mutate repository state
+
+This repository is not registered globally and is not wired into planner, crafting, simulation, frontend, or production affix behavior. Future consumers must opt into it explicitly behind an experimental/config-controlled boundary.
