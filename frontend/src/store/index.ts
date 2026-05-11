@@ -1,14 +1,25 @@
 /**
  * Zustand global state stores.
  *
- * Two slices:
- *   useAuthStore  — current user + JWT token lifecycle
- *   useCraftStore — active craft session UI state (not persisted to DB yet)
+ * Slices:
+ *   useAuthStore            — current user + JWT token lifecycle
+ *   useCraftStore           — active craft session UI state (not persisted to DB yet)
+ *   useBuildWorkspaceStore  — unified build workspace working copy (phase 1)
  */
 
 import { create } from "zustand";
 import { setToken } from "@/lib/api";
 import type { User, CraftAffix } from "@/types";
+
+export { useBuildWorkspaceStore } from "./buildWorkspace";
+export type {
+  AnalysisStatus,
+  BuildWorkspaceBuild,
+  BuildWorkspaceIdentity,
+  BuildWorkspaceState,
+  WorkspaceMetaPatch,
+  WorkspaceStatus,
+} from "./buildWorkspace";
 
 // ---------------------------------------------------------------------------
 // Auth store

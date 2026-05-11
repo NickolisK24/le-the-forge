@@ -1,0 +1,167 @@
+{
+  "affix_910_duplicate_evidence_agreement": {
+    "agrees": true,
+    "fresh": {
+      "diagnostic_unique_targets": [
+        "IDOL_4X1"
+      ],
+      "diagnostic_unique_targets_label": "diagnostic_only_not_source_mutation",
+      "duplicate_positions": [
+        0,
+        1
+      ],
+      "normalized_canRollOn": [
+        "IDOL_4X1",
+        "IDOL_4X1"
+      ],
+      "policy_result": "warning_only",
+      "raw_canRollOn": [
+        "IDOL_4x1",
+        "IDOL_4x1"
+      ],
+      "raw_duplicate_count": 2,
+      "record_id": 910,
+      "record_path": "equipment[910].canRollOn",
+      "section": "equipment"
+    },
+    "saved": {
+      "diagnostic_unique_targets": [
+        "IDOL_4X1"
+      ],
+      "diagnostic_unique_targets_label": "diagnostic_only_not_source_mutation",
+      "duplicate_positions": [
+        0,
+        1
+      ],
+      "normalized_canRollOn": [
+        "IDOL_4X1",
+        "IDOL_4X1"
+      ],
+      "policy_result": "warning_only",
+      "raw_canRollOn": [
+        "IDOL_4x1",
+        "IDOL_4x1"
+      ],
+      "raw_duplicate_count": 2,
+      "record_id": 910,
+      "record_path": "equipment[910].canRollOn",
+      "section": "equipment"
+    }
+  },
+  "comparison_status": "warning",
+  "count_deltas": {
+    "malformed_modifier_objects": {
+      "delta": 0,
+      "fresh": 136,
+      "saved": 136
+    },
+    "resolved_modifier_objects": {
+      "delta": 0,
+      "fresh": 5596,
+      "saved": 5596
+    },
+    "total_modifier_references": {
+      "delta": 0,
+      "fresh": 6959,
+      "saved": 6959
+    },
+    "unresolved_modifier_objects": {
+      "delta": 0,
+      "fresh": 115,
+      "saved": 115
+    },
+    "unsupported_modifier_objects": {
+      "delta": 0,
+      "fresh": 1112,
+      "saved": 1112
+    }
+  },
+  "deterministic_output_agreement": true,
+  "diagnostic": "controlled_modifier_resolver_saved_vs_fresh_comparison",
+  "diagnostic_only": true,
+  "diagnostic_only_agreement": {
+    "agrees": true,
+    "fresh": true,
+    "saved": true
+  },
+  "diagnostics_dir": "D:\\Forge\\last-epoch-data\\docs\\generated",
+  "errors": [],
+  "fresh_resolver_output_status": "warning",
+  "production_safe": false,
+  "production_safe_agreement": {
+    "agrees": true,
+    "fresh": false,
+    "saved": false
+  },
+  "provenance_coverage_agreement": {
+    "agrees": true,
+    "fresh": {
+      "missing_provenance": 0,
+      "total_modifier_objects": 4,
+      "with_provenance": 4
+    },
+    "saved": {
+      "missing_provenance": 0,
+      "total_modifier_objects": 4,
+      "with_provenance": 4
+    }
+  },
+  "recommendations": [
+    "Keep the modifier resolver prototype diagnostic-only and non-production.",
+    "Review count, warning, or deterministic-output drift before using fresh output as a new baseline.",
+    "Do not generate affix bundle families or production consumers from this comparison."
+  ],
+  "saved_report_path": "D:\\Forge\\le-the-forge\\docs\\generated\\controlled_modifier_resolver_prototype_report.json",
+  "saved_resolver_output_status": "warning",
+  "warning_category_delta": {
+    "modifier_resolution_policy::malformed_modifier_structures": {
+      "delta": 0,
+      "fresh": 136,
+      "saved": 136
+    },
+    "modifier_resolution_policy::unresolved_modifier_references": {
+      "delta": 0,
+      "fresh": 115,
+      "saved": 115
+    },
+    "modifier_resolution_policy::unsupported_modifier_structures": {
+      "delta": 0,
+      "fresh": 1112,
+      "saved": 1112
+    },
+    "phase_1_source_shape::ambiguous_name_collisions": {
+      "delta": 0,
+      "fresh": 28,
+      "saved": 28
+    },
+    "phase_2_identity_provenance::ambiguous_display_name_collisions": {
+      "delta": 0,
+      "fresh": 137,
+      "saved": 137
+    },
+    "phase_3_eligibility::duplicate_or_ambiguous_eligibility_records": {
+      "delta": 0,
+      "fresh": 1,
+      "saved": 1
+    },
+    "phase_4_tag_category::ambiguous_tag_category_mappings": {
+      "delta": 0,
+      "fresh": 110,
+      "saved": 110
+    },
+    "phase_4_tag_category::unknown_or_unsupported_tag_category_values": {
+      "delta": 0,
+      "fresh": 148,
+      "saved": 148
+    },
+    "phase_5_saved_vs_fresh::phases_with_warning_status": {
+      "delta": 0,
+      "fresh": 4,
+      "saved": 4
+    }
+  },
+  "warnings": [
+    "Unresolved, malformed, or unsupported modifier evidence remains visible; comparison is warning-level.",
+    "Modifier resolver outputs remain warning-level and non-production."
+  ]
+}

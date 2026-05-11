@@ -1,95 +1,127 @@
-# Forge-safe Affix Loader and Controlled Consumption
+# Forge-Safe Affix Loader
 
-The Forge-safe canonical affix export is now available as a controlled internal catalog data source. It is intentionally read-only and does **not** replace planner, crafting, or simulation behavior by default.
+## Purpose
 
-## Export contract
+`backend/data/loaders/forge_safe_affixes_loader.py` is a controlled loader for the `last-epoch-data` Forge-safe canonical affix export.
 
-* Export path: `FORGE_SAFE_AFFIX_EXPORT_PATH`.
-* Accepted records must include `safety.forge_safe=true`.
-* Records with `production_safe=true` are rejected with a clean loader error.
-* Missing mappings are not inferred.
-* Gameplay behavior is not inferred from tooltip text.
-* Endpoint payloads always expose `production_consumer=false`.
+This is an ingestion boundary only. It does not replace existing Forge affix systems, planner behavior, crafting behavior, simulation behavior, API responses, or frontend behavior.
 
-## Backend components
+## Input
 
-* Loader: `backend/data/loaders/forge_safe_affixes_loader.py`
-* Repository: `backend/data/repositories/forge_safe_affix_repository.py`
-* Service: `backend/app/services/affix_catalog_service.py`
-* Routes: `backend/app/routes/affixes.py`
-* Comparison tool: `backend/scripts/compare_forge_safe_affixes.py`
+The expected external artifact is:
 
-`AffixCatalogService` chooses between the legacy registry and the Forge-safe repository. It does not mutate `app.extensions["affix_registry"]` or any global affix registry.
+`last-epoch-data/docs/generated/forge_safe_canonical_affixes.json`
 
-## Environment variables and modes
+The loader accepts an explicit JSON path. The artifact is not wired into production data loading by default.
 
-```env
-FORGE_SAFE_AFFIX_CATALOG_ENABLED=false
-FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED=false
-FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json
-FORGE_SAFE_AFFIX_CONSUMPTION_MODE=shadow
+## Safety Rules
+
+The loader:
+
+- accepts only records with `safety.forge_safe=true`
+- rejects records with `production_safe=true`
+- rejects top-level or summary `production_safe=true`
+- requires `affix_id`, `source_type`, and `safety` metadata
+- rejects duplicate `affix_id` values
+- reports summary count drift as a warning
+
+The loader does not infer missing modifier mappings, gameplay behavior, or special behavior from text. It only validates and returns the exported records that already passed the `last-epoch-data` export gates.
+
+## Current Boundary
+
+This loader is experimental and controlled. It is safe for tests and explicit developer tooling, but it is not a production consumer. Existing Forge data, planner behavior, build math, crafting, and simulation remain unchanged.
+
+## Inspection CLI
+
+The backend includes a developer-only inspection command that loads an explicit export path through the same loader:
+
+```powershell
+D:\Forge\le-the-forge\backend\.venv\Scripts\python.exe backend\scripts\inspect_forge_safe_affixes.py --input D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json
 ```
 
-Modes:
+Machine-readable output:
 
-* `shadow`: load/compare only; stable catalog endpoints remain unavailable to users.
-* `read_only`: stable catalog endpoints and the development UI can browse the Forge-safe export. No planner/crafting/simulation usage.
-* `active`: allowed as the source for affix catalog browsing only. Planner/crafting/simulation still require a separate dedicated migration flag before they can consume Forge-safe affixes.
-
-Default is disabled + `shadow`.
-
-## Stable catalog endpoints
-
-All stable endpoints are feature-gated by `FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED=true` and require mode `read_only` or `active`.
-
-* `GET /api/affixes/catalog`
-  * Query params: `limit`, `offset`, `q`/`query`, `source_type`, `item_type`.
-  * Returns paginated catalog records and metadata including `data_source`.
-* `GET /api/affixes/catalog/{affix_id}`
-  * Returns one catalog record or a clean 404.
-* `GET /api/affixes/catalog/summary`
-  * Returns active source, mode, legacy count, Forge-safe count, and safe metadata.
-
-The existing experimental endpoint is preserved under the affix route namespace:
-
-* `GET /api/affixes/experimental/forge-safe-affixes`
-
-## Frontend route
-
-* Route/page: `/affix-catalog`
-* Page component: `frontend/src/components/features/affixCatalog/AffixCatalogPage.tsx`
-* Frontend gate: `VITE_FORGE_SAFE_AFFIX_CATALOG_ENABLED=true` or Vite development mode.
-
-The page shows the Forge-safe count, data source label, search, `source_type` filtering, `item_type` filtering, and selected affix detail. It does not feed planner/crafting selections.
-
-## Shadow comparison tooling
-
-Run:
-
-```bash
-cd backend
-python scripts/compare_forge_safe_affixes.py --export-path "D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json"
+```powershell
+D:\Forge\le-the-forge\backend\.venv\Scripts\python.exe backend\scripts\inspect_forge_safe_affixes.py --input D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json --json
 ```
 
-The report includes:
+The command prints the source path, loaded record count, loader warnings, export policy, export summary metadata, and a small sample of affix IDs/names. It does not modify the export, register data globally, or wire the export into production behavior.
 
-* Forge-safe affixes not in legacy.
-* Legacy affixes not in Forge-safe.
-* Matching IDs.
-* Name mismatches.
-* Source/type mismatches.
-* Item-type mismatches.
-* Total counts.
+## Debug API
 
-## Rollback plan
+The backend also exposes a disabled-by-default debug endpoint for inspecting the configured export from a running Flask app:
 
-1. Set `FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED=false`.
-2. Set `FORGE_SAFE_AFFIX_CATALOG_ENABLED=false` if the experimental endpoint should also be hidden.
-3. Leave `FORGE_SAFE_AFFIX_EXPORT_PATH` unset or remove the file mount.
-4. Restart backend and frontend processes.
+`GET /debug/forge-safe-affixes`
 
-Because the implementation does not mutate legacy registries and does not wire into planner/crafting/simulation, rollback is configuration-only.
+Required configuration:
 
-## Not yet migrated
+- `FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED=true`
+- `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
 
-Planner, crafting, simulation, BIS generation, and stat aggregation continue to use the existing legacy systems. Migrating any of those consumers must be done separately behind a dedicated feature flag with focused tests.
+Example request:
+
+```powershell
+Invoke-RestMethod "http://localhost:5050/debug/forge-safe-affixes?limit=5"
+```
+
+Optional query parameters:
+
+- `limit`: maximum sample records to return, capped by the backend
+- `affix_id`: return a sample for a specific affix ID
+
+The endpoint loads the configured file on demand through `ForgeSafeAffixLoader`; it does not duplicate validation logic and does not auto-load the export at app startup. When the flag is disabled, the endpoint returns a disabled debug response.
+
+This endpoint does NOT power production planner logic, APIs, UI, crafting, simulation, or gameplay behavior. It is read-only and debug-only.
+
+## Frontend Debug Page
+
+Development builds register a matching frontend inspection page:
+
+`/debug/forge-safe-affixes`
+
+The page calls `GET /debug/forge-safe-affixes`, displays the loader summary, warning state, debug/read-only flags, and a limited sample of records. It also supports a `limit` control and an optional affix ID lookup.
+
+This page is available only through the frontend debug route block. It does not fetch from production-facing pages, does not mutate planner state, and does not replace existing affix UI/data.
+
+## Internal Consumption Repository
+
+`backend/data/repositories/forge_safe_affix_repository.py` is the first controlled internal Forge consumption layer for the validated export.
+
+The repository:
+
+- loads through `ForgeSafeAffixLoader`
+- keeps loader validation as the single safety gate
+- preserves source path, loader warnings, export policy, export status, total seen, excluded count, and loaded count
+- supports read-only lookup by affix ID
+- supports listing, name/ID search, source-type filtering, and item-type filtering
+- returns defensive copies so callers cannot mutate repository state
+
+This repository is not registered globally and is not wired into planner, crafting, simulation, frontend, or production affix behavior. Future consumers must opt into it explicitly behind an experimental/config-controlled boundary.
+
+## Experimental Catalog Endpoint
+
+`GET /experimental/forge-safe-affixes` exposes the repository as a controlled read-only backend data-consumption endpoint.
+
+Required configuration:
+
+- `FORGE_SAFE_AFFIX_CATALOG_ENABLED=true`
+- `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
+
+Example request:
+
+```powershell
+Invoke-RestMethod "http://localhost:5050/experimental/forge-safe-affixes?limit=25&q=void"
+```
+
+Supported query parameters:
+
+- `limit`
+- `offset`
+- `q` or `search`
+- `affix_id`
+- `source_type`
+- `item_type`
+
+The endpoint constructs a `ForgeSafeAffixRepository` on request, which loads through `ForgeSafeAffixLoader`. It does not bypass loader validation, does not mutate the production affix registry, and returns `experimental=true`, `read_only=true`, and `production_consumer=false`.
+
+This endpoint is the first controlled Forge-side consumption surface for the 573 currently loadable Forge-safe affixes. It still does not power planner logic, crafting, simulation, gameplay calculations, or existing affix APIs.

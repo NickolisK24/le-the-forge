@@ -12,6 +12,7 @@ import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "@/components/features/HomePage";
 import BuildsPage from "@/components/features/builds/BuildsPage";
 import BuildPlannerPage from "@/components/features/build/BuildPlannerPage";
+import UnifiedBuildPage from "@/components/features/build-workspace/UnifiedBuildPage";
 import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
@@ -52,6 +53,7 @@ const VisualizationDebugPage = lazy(() => import("@/pages/debug/VisualizationDeb
 const CraftDebugPage = lazy(() => import("@/pages/debug/CraftDebugPage"));
 const BackendDebugDashboard = lazy(() => import("@/pages/debug/BackendDebugDashboard"));
 const DataFlowHarness = lazy(() => import("@/pages/debug/DataFlowHarness"));
+const ForgeSafeAffixesDebugPage = lazy(() => import("@/pages/debug/ForgeSafeAffixesDebugPage"));
 
 // ---------------------------------------------------------------------------
 // Route alias redirect — preserves the current location's search string so
@@ -210,6 +212,11 @@ export default function App() {
                 <Route path="/builds" element={<BuildsPage />} />
                 <Route path="/build" element={<BuildPlannerPage />} />
                 <Route path="/build/:slug" element={<BuildPlannerPage />} />
+                {/* Unified build workspace — phase 1 of planner/edit consolidation.
+                    Lives under /workspace/* to avoid colliding with the legacy
+                    planner at /build. See docs/unified-planner-design.md §3. */}
+                <Route path="/workspace/new" element={<UnifiedBuildPage />} />
+                <Route path="/workspace/:slug" element={<UnifiedBuildPage />} />
                 <Route path="/craft" element={<CraftSimulatorPage />} />
                 <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
                 <Route path="/affixes" element={<AffixEditorPage />} />
@@ -248,6 +255,7 @@ export default function App() {
                     <Route path="/viz-debug" element={<Suspense fallback={<PageLoader />}><VisualizationDebugPage /></Suspense>} />
                     <Route path="/craft-debug" element={<Suspense fallback={<PageLoader />}><CraftDebugPage /></Suspense>} />
                     <Route path="/debug" element={<Suspense fallback={<PageLoader />}><BackendDebugDashboard /></Suspense>} />
+                    <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
                     <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
                   </>
                 )}

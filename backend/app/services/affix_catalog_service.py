@@ -11,7 +11,7 @@ from typing import Any
 
 from flask import current_app
 
-from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoadError
+from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
 from data.repositories.forge_safe_affix_repository import ForgeSafeAffixRepository
 
 VALID_MODES = {"shadow", "read_only", "active"}
@@ -72,8 +72,7 @@ class AffixCatalogService:
     def get_affix(self, affix_id: str) -> dict[str, Any] | None:
         affix_id = str(affix_id)
         if self.active_source == "forge_safe":
-            record = self._repo().get(affix_id)
-            return record.to_catalog_dict() if record else None
+            return self._repo().get_by_affix_id(affix_id)
         for record in self._legacy_records():
             if str(record.get("id")) == affix_id or str(record.get("affix_id")) == affix_id:
                 return record
@@ -93,10 +92,10 @@ class AffixCatalogService:
         }
         if self.consumption_enabled:
             try:
-                forge_summary = self._repo().summary()
+                forge_summary = self._repo().get_summary()
                 summary["forge_safe"] = forge_summary
-                summary["forge_safe_count"] = forge_summary["count"]
-            except ForgeSafeAffixLoadError as exc:
+                summary["forge_safe_count"] = forge_summary["loaded_record_count"]
+            except ForgeSafeAffixLoaderError as exc:
                 summary["forge_safe_error"] = str(exc)
                 if self.mode in {"read_only", "active"}:
                     raise AffixCatalogUnavailable(str(exc)) from exc
@@ -110,14 +109,14 @@ class AffixCatalogService:
         path = self.config.get("FORGE_SAFE_AFFIX_EXPORT_PATH")
         if not path:
             raise AffixCatalogUnavailable("FORGE_SAFE_AFFIX_EXPORT_PATH is not configured")
-        self._repository = ForgeSafeAffixRepository(path)
+        self._repository = ForgeSafeAffixRepository(path).load()
         return self._repository
 
     def _active_records(self) -> list[dict[str, Any]]:
         if self.active_source == "forge_safe":
             try:
-                return [record.to_catalog_dict() for record in self._repo().all()]
-            except ForgeSafeAffixLoadError as exc:
+                return self._repo().list_affixes()
+            except ForgeSafeAffixLoaderError as exc:
                 raise AffixCatalogUnavailable(str(exc)) from exc
         return self._legacy_records()
 
@@ -150,10 +149,19 @@ class AffixCatalogService:
         for record in records:
             if source_type and str(record.get("source_type") or "").lower() != source_type:
                 continue
-            item_types = [str(v).lower() for v in record.get("item_types", [])]
-            if item_type and item_type not in item_types:
-                continue
-            if q and q not in str(record.get("name", "")).lower() and q not in str(record.get("id", "")).lower():
-                continue
+            # Support both forge-safe records (item_type + eligible_item_types)
+            # and legacy records (item_types list)
+            if item_type:
+                record_item_type = str(record.get("item_type", "")).lower()
+                legacy_item_types = [str(v).lower() for v in record.get("item_types", [])]
+                eligible = [str(v).lower() for v in (record.get("eligible_item_types") or [])]
+                if item_type != record_item_type and item_type not in legacy_item_types and item_type not in eligible:
+                    continue
+            if q:
+                name = str(record.get("name") or record.get("affix_name") or "").lower()
+                display = str(record.get("display_name") or "").lower()
+                rec_id = str(record.get("id") or record.get("affix_id") or "").lower()
+                if q not in name and q not in display and q not in rec_id:
+                    continue
             output.append(record)
         return output
