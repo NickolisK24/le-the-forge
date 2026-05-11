@@ -37,6 +37,13 @@ class Config:
 
     FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 
+
+    # Controlled Forge-safe affix consumption. Disabled by default.
+    FORGE_SAFE_AFFIX_CATALOG_ENABLED = os.environ.get("FORGE_SAFE_AFFIX_CATALOG_ENABLED", "false").lower() == "true"
+    FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED", "false").lower() == "true"
+    FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
+    FORGE_SAFE_AFFIX_CONSUMPTION_MODE = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_MODE", "shadow")
+
     # Pagination defaults
     DEFAULT_PAGE_SIZE = 20
     MAX_PAGE_SIZE = 100

@@ -39,6 +39,8 @@ import type {
   FullMetaSnapshot,
   TrendingBuild,
   BuildReport,
+  AffixCatalogEntry,
+  AffixCatalogSummary,
 } from "@/types";
 import type { BlessingTimeline } from "@/types/blessings";
 
@@ -269,6 +271,26 @@ export const refApi = {
   baseItemsBySlot: (slot: string) => get<BaseItemDef[]>(`/ref/base-items?slot=${encodeURIComponent(slot)}`),
   fpRanges: () => get<Record<string, { min_fp: number; max_fp: number }>>("/ref/fp-ranges"),
   getBlessings: () => get<BlessingTimeline[]>("/ref/blessings"),
+};
+
+
+// ---------------------------------------------------------------------------
+// Controlled Forge-safe affix catalog
+// ---------------------------------------------------------------------------
+
+export const affixCatalogApi = {
+  list: (params: { q?: string; source_type?: string; item_type?: string; limit?: number; offset?: number } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params)
+          .filter(([, v]) => v !== undefined && v !== "")
+          .map(([k, v]) => [k, String(v)])
+      )
+    ).toString();
+    return get<AffixCatalogEntry[]>(`/affixes/catalog${qs ? "?" + qs : ""}`);
+  },
+  get: (affixId: string) => get<AffixCatalogEntry>(`/affixes/catalog/${encodeURIComponent(affixId)}`),
+  summary: () => get<AffixCatalogSummary>("/affixes/catalog/summary"),
 };
 
 // ---------------------------------------------------------------------------

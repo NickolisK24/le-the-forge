@@ -17,6 +17,7 @@ import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
 import NotFoundPage from "@/components/features/NotFoundPage";
 import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
+import AffixCatalogPage from "@/components/features/affixCatalog/AffixCatalogPage";
 
 import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
 import ReportPage from "@/components/features/builds/ReportPage";
@@ -212,6 +213,7 @@ export default function App() {
                 <Route path="/craft" element={<CraftSimulatorPage />} />
                 <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
                 <Route path="/affixes" element={<AffixEditorPage />} />
+                <Route path="/affix-catalog" element={<AffixCatalogPage />} />
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
                 <Route path="/report/:slug" element={<ReportPage />} />
