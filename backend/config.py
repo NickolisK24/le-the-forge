@@ -56,6 +56,11 @@ class Config:
         in {"1", "true", "yes", "on"}
     )
     FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
+    FORGE_SAFE_AFFIX_BUNDLE_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_BUNDLE_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    FORGE_SAFE_AFFIX_BUNDLE_PATH = os.environ.get("FORGE_SAFE_AFFIX_BUNDLE_PATH", "")
 
 
 class DevelopmentConfig(Config):

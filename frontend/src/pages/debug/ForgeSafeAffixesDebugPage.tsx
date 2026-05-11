@@ -3,18 +3,27 @@ import { FormEvent, useEffect, useMemo, useState } from "react";
 interface ForgeSafeAffixSample {
   affix_id: number | string;
   name?: string | null;
+  affix_name?: string | null;
+  display_name?: string | null;
   source_type?: string | null;
   item_type?: string | null;
   eligible_item_types?: string[];
+  modifier_count?: number;
+  modifiers?: Array<Record<string, unknown>>;
 }
 
 interface ForgeSafeAffixDebugResponse {
   success: boolean;
+  experimental?: boolean;
   debug_only?: boolean;
   read_only?: boolean;
   production_consumer?: boolean;
+  data_source?: string;
   source_path?: string;
   loaded_record_count?: number;
+  total_loaded_count?: number;
+  total_affixes?: number;
+  total_modifiers?: number | null;
   warning_count?: number;
   warnings?: string[];
   export_policy?: string;
@@ -23,21 +32,28 @@ interface ForgeSafeAffixDebugResponse {
   excluded_affix_records?: number;
   sample_count?: number;
   sample_records?: ForgeSafeAffixSample[];
+  result_count?: number;
+  records?: ForgeSafeAffixSample[];
   error?: string;
   message?: string;
 }
 
 const DEFAULT_LIMIT = 10;
 
-function buildDebugUrl(limit: number, affixId: string): string {
+function buildDebugUrl(limit: number, affixId: string, includeModifiers: boolean): string {
   const params = new URLSearchParams();
   params.set("limit", String(limit));
+  if (includeModifiers) params.set("include_modifiers", "true");
   if (affixId.trim()) params.set("affix_id", affixId.trim());
-  return `/debug/forge-safe-affixes?${params.toString()}`;
+  return `/experimental/forge-safe-affixes?${params.toString()}`;
 }
 
-async function fetchForgeSafeAffixes(limit: number, affixId: string): Promise<ForgeSafeAffixDebugResponse> {
-  const res = await fetch(buildDebugUrl(limit, affixId));
+async function fetchForgeSafeAffixes(
+  limit: number,
+  affixId: string,
+  includeModifiers: boolean,
+): Promise<ForgeSafeAffixDebugResponse> {
+  const res = await fetch(buildDebugUrl(limit, affixId, includeModifiers));
   const json = await res.json().catch(() => null);
   if (!json || typeof json !== "object") {
     return {
@@ -51,17 +67,22 @@ async function fetchForgeSafeAffixes(limit: number, affixId: string): Promise<Fo
 
 export default function ForgeSafeAffixesDebugPage() {
   const [limit, setLimit] = useState(DEFAULT_LIMIT);
+  const [includeModifiers, setIncludeModifiers] = useState(false);
   const [affixIdInput, setAffixIdInput] = useState("");
   const [activeAffixId, setActiveAffixId] = useState("");
   const [data, setData] = useState<ForgeSafeAffixDebugResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
-  const load = async (nextLimit = limit, nextAffixId = activeAffixId) => {
+  const load = async (
+    nextLimit = limit,
+    nextAffixId = activeAffixId,
+    nextIncludeModifiers = includeModifiers,
+  ) => {
     setLoading(true);
     setError(null);
     try {
-      const response = await fetchForgeSafeAffixes(nextLimit, nextAffixId);
+      const response = await fetchForgeSafeAffixes(nextLimit, nextAffixId, nextIncludeModifiers);
       setData(response);
       if (!response.success) {
         setError(response.message || response.error || "Debug endpoint returned an error.");
@@ -83,18 +104,21 @@ export default function ForgeSafeAffixesDebugPage() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setActiveAffixId(affixIdInput);
-    load(limit, affixIdInput);
+    load(limit, affixIdInput, includeModifiers);
   }
 
+  const records = data?.records ?? data?.sample_records ?? [];
   const summary = useMemo(
     () => [
-      ["Loaded records", data?.loaded_record_count ?? "n/a"],
+      ["Data source", data?.data_source ?? "n/a"],
+      ["Loaded affixes", data?.total_affixes ?? data?.total_loaded_count ?? data?.loaded_record_count ?? "n/a"],
+      ["Loaded modifiers", data?.total_modifiers ?? "n/a"],
       ["Warnings", data?.warning_count ?? "n/a"],
       ["Export policy", data?.export_policy ?? "n/a"],
       ["Export status", data?.export_status ?? "n/a"],
       ["Total seen", data?.total_affix_records_seen ?? "n/a"],
       ["Excluded", data?.excluded_affix_records ?? "n/a"],
-      ["Debug only", String(data?.debug_only ?? false)],
+      ["Debug only", String((data?.debug_only ?? data?.experimental) ?? false)],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
     ],
@@ -108,7 +132,7 @@ export default function ForgeSafeAffixesDebugPage() {
           Debug / Experimental / Read-only
         </p>
         <h1 className="mt-2 font-display text-2xl text-[#f5a623]">
-          Forge-safe affix export inspection
+          Forge-safe affix catalog inspection
         </h1>
         <p className="mt-2 max-w-3xl text-sm text-gray-400">
           This page is debug-only and does not power planner behavior.
@@ -137,6 +161,15 @@ export default function ForgeSafeAffixesDebugPage() {
               className="w-44 rounded border border-[#2a3050] bg-[#0f172a] px-3 py-2 text-gray-100"
             />
           </label>
+          <label className="flex items-center gap-2 pb-2 text-sm text-gray-300">
+            <input
+              type="checkbox"
+              checked={includeModifiers}
+              onChange={(event) => setIncludeModifiers(event.target.checked)}
+              className="h-4 w-4 rounded border border-[#2a3050] bg-[#0f172a]"
+            />
+            Include modifier detail
+          </label>
           <button
             type="submit"
             className="rounded bg-[#f5a623] px-4 py-2 text-sm font-semibold text-[#10152a] hover:bg-[#f5a623cc]"
@@ -148,7 +181,7 @@ export default function ForgeSafeAffixesDebugPage() {
             onClick={() => {
               setAffixIdInput("");
               setActiveAffixId("");
-              load(limit, "");
+              load(limit, "", includeModifiers);
             }}
             className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-300 hover:border-gray-500"
           >
@@ -168,7 +201,7 @@ export default function ForgeSafeAffixesDebugPage() {
           <h2 className="text-sm font-semibold text-red-300">Debug endpoint unavailable</h2>
           <p className="mt-2 text-sm text-red-100">{error}</p>
           <p className="mt-2 text-xs text-red-200/80">
-            Enable the backend debug flag and configure the export path before using this page.
+            Enable the backend experimental catalog flag and configure the Forge-safe export or bundle path before using this page.
           </p>
         </section>
       )}
@@ -206,7 +239,7 @@ export default function ForgeSafeAffixesDebugPage() {
             <div className="border-b border-[#2a3050] p-4">
               <h2 className="text-sm font-semibold text-gray-100">Sample records</h2>
               <p className="mt-1 text-xs text-gray-500">
-                Showing {data.sample_records?.length ?? 0} records returned by the debug endpoint.
+                Showing {records.length} records returned by the experimental endpoint.
               </p>
             </div>
             <div className="overflow-x-auto">
@@ -218,17 +251,21 @@ export default function ForgeSafeAffixesDebugPage() {
                     <th className="px-4 py-3">Source</th>
                     <th className="px-4 py-3">Item Type</th>
                     <th className="px-4 py-3">Eligible Types</th>
+                    <th className="px-4 py-3">Modifiers</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#2a3050]">
-                  {(data.sample_records ?? []).map((record) => (
+                  {records.map((record) => (
                     <tr key={`${record.source_type}-${record.affix_id}`}>
                       <td className="px-4 py-3 font-mono text-[#f5a623]">{record.affix_id}</td>
-                      <td className="px-4 py-3 text-gray-100">{record.name ?? "n/a"}</td>
+                      <td className="px-4 py-3 text-gray-100">{record.affix_name ?? record.display_name ?? record.name ?? "n/a"}</td>
                       <td className="px-4 py-3 text-gray-300">{record.source_type ?? "n/a"}</td>
                       <td className="px-4 py-3 text-gray-300">{record.item_type ?? "n/a"}</td>
                       <td className="px-4 py-3 text-gray-400">
                         {(record.eligible_item_types ?? []).join(", ") || "none"}
+                      </td>
+                      <td className="px-4 py-3 font-mono text-gray-300">
+                        {record.modifier_count ?? record.modifiers?.length ?? "n/a"}
                       </td>
                     </tr>
                   ))}
