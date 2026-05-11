@@ -31,6 +31,26 @@ The loader does not infer missing modifier mappings, gameplay behavior, or speci
 
 This loader is experimental and controlled. It is safe for tests and explicit developer tooling, but it is not a production consumer. Existing Forge data, planner behavior, build math, crafting, and simulation remain unchanged.
 
+## Forge-Safe Affix Bundle
+
+The preferred controlled consumption artifact is now:
+
+`last-epoch-data/docs/generated/forge_safe_affix_bundle.json`
+
+The bundle pairs Forge-safe affix records with Forge-safe modifier records and includes cross-reference validation. The current finalized bundle reports:
+
+- `export_policy=deterministic_affix_bundle`
+- 1098 Forge-safe affixes
+- 1624 Forge-safe modifiers
+- `cross_reference_validation.status=pass`
+- zero unmatched affixes/modifiers
+- zero duplicate affix/modifier IDs
+- `production_safe=false`
+
+`backend/data/loaders/forge_safe_affix_bundle_loader.py` validates this bundle without using JSON Schema. It requires the bundle export policy, cross-reference pass state, `summary.production_safe=false`, `summary.forge_safe_records_only=true`, `safety.forge_safe=true` on every affix and modifier, and rejects `production_safe=true` anywhere meaningful.
+
+`backend/data/repositories/forge_safe_affix_bundle_repository.py` is the read-only repository over that validated bundle. It supports affix lookup, source identity lookup, modifier lookup by affix, search/filter operations, and summary metadata. It is not registered globally and does not power planner, crafting, simulation, or existing affix behavior.
+
 ## Inspection CLI
 
 The backend includes a developer-only inspection command that loads an explicit export path through the same loader:
@@ -79,7 +99,7 @@ Development builds register a matching frontend inspection page:
 
 `/debug/forge-safe-affixes`
 
-The page calls `GET /debug/forge-safe-affixes`, displays the loader summary, warning state, debug/read-only flags, and a limited sample of records. It also supports a `limit` control and an optional affix ID lookup.
+The page calls `GET /experimental/forge-safe-affixes` so it can display the preferred bundle data source, total affix/modifier counts, warning state, modifier counts per affix, and optional modifier detail through `include_modifiers=true`. It also supports a `limit` control and an optional affix ID lookup. The backend endpoint still requires explicit experimental configuration and remains read-only.
 
 This page is available only through the frontend debug route block. It does not fetch from production-facing pages, does not mutate planner state, and does not replace existing affix UI/data.
 
@@ -105,7 +125,10 @@ This repository is not registered globally and is not wired into planner, crafti
 Required configuration:
 
 - `FORGE_SAFE_AFFIX_CATALOG_ENABLED=true`
-- `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
+- Canonical fallback mode: `FORGE_SAFE_AFFIX_EXPORT_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_canonical_affixes.json`
+- Preferred bundle mode:
+  - `FORGE_SAFE_AFFIX_BUNDLE_ENABLED=true`
+  - `FORGE_SAFE_AFFIX_BUNDLE_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_affix_bundle.json`
 
 Example request:
 
@@ -121,7 +144,33 @@ Supported query parameters:
 - `affix_id`
 - `source_type`
 - `item_type`
+- `include_modifiers=true` when bundle mode is enabled
 
-The endpoint constructs a `ForgeSafeAffixRepository` on request, which loads through `ForgeSafeAffixLoader`. It does not bypass loader validation, does not mutate the production affix registry, and returns `experimental=true`, `read_only=true`, and `production_consumer=false`.
+When bundle mode is enabled, the endpoint constructs a `ForgeSafeAffixBundleRepository` on request, which loads through `ForgeSafeAffixBundleLoader`. The response includes `data_source=forge_safe_affix_bundle`, `total_affixes`, `total_modifiers`, `bundle_summary`, and `modifier_count` for each affix. With `include_modifiers=true`, each returned affix includes its validated modifier records.
 
-This endpoint is the first controlled Forge-side consumption surface for the 573 currently loadable Forge-safe affixes. It still does not power planner logic, crafting, simulation, gameplay calculations, or existing affix APIs.
+`GET /experimental/forge-safe-affixes/<affix_id>` returns one affix record. In bundle mode it can include the affix modifiers with `include_modifiers=true`.
+
+Example bundle response shape:
+
+```json
+{
+  "success": true,
+  "experimental": true,
+  "read_only": true,
+  "production_consumer": false,
+  "data_source": "forge_safe_affix_bundle",
+  "total_affixes": 1098,
+  "total_modifiers": 1624,
+  "records": [
+    {
+      "affix_id": 0,
+      "affix_name": "Void Penetration",
+      "modifier_count": 1
+    }
+  ]
+}
+```
+
+If bundle mode is disabled, the endpoint preserves the earlier canonical affix export fallback using `ForgeSafeAffixRepository`.
+
+This endpoint is the controlled Forge-side consumption surface for the finalized Forge-safe affix bundle. It still does not power planner logic, crafting, simulation, gameplay calculations, or existing affix APIs.
