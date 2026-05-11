@@ -215,6 +215,7 @@ def create_app(env: str = "development") -> Flask:
     from app.routes.views import views_bp
     from app.routes.report import report_bp
     from app.routes.health import health_bp
+    from app.routes.affixes import affixes_bp
     from app.routes.debug import debug_bp
     from app.routes.experimental import experimental_bp
 
@@ -243,6 +244,7 @@ def create_app(env: str = "development") -> Flask:
     app.register_blueprint(views_bp, url_prefix="/api/builds")
     app.register_blueprint(report_bp, url_prefix="/api/builds")
     app.register_blueprint(health_bp, url_prefix="/api")
+    app.register_blueprint(affixes_bp, url_prefix="/api/affixes")
     app.register_blueprint(debug_bp, url_prefix="/debug")
     app.register_blueprint(experimental_bp, url_prefix="/experimental")
 
