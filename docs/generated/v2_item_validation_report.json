@@ -1,0 +1,27 @@
+{
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "phase": "phase_4_item_base_implicit_infrastructure",
+    "production_consumer": false,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false,
+    "uses_canonical_contracts": true
+  },
+  "summary": {
+    "duplicate_implicit_id_count": 0,
+    "duplicate_item_base_id_count": 0,
+    "error_count": 0,
+    "implicit_base_link_missing_count": 0,
+    "implicit_count": 1182,
+    "invalid_trust_level_count": 0,
+    "item_base_count": 542,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "stable_calculable_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}
