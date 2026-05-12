@@ -174,3 +174,30 @@ Example bundle response shape:
 If bundle mode is disabled, the endpoint preserves the earlier canonical affix export fallback using `ForgeSafeAffixRepository`.
 
 This endpoint is the controlled Forge-side consumption surface for the finalized Forge-safe affix bundle. It still does not power planner logic, crafting, simulation, gameplay calculations, or existing affix APIs.
+
+## Legacy Comparison Diagnostic
+
+`GET /experimental/forge-safe-affixes/compare-legacy` compares legacy Forge affix data from the same JSON fallback used by `/api/ref/affixes` against the configured Forge-safe affix bundle.
+
+Required configuration:
+
+- `FORGE_SAFE_AFFIX_CATALOG_ENABLED=true`
+- `FORGE_SAFE_AFFIX_BUNDLE_ENABLED=true`
+- `FORGE_SAFE_AFFIX_BUNDLE_PATH=D:\Forge\last-epoch-data\docs\generated\forge_safe_affix_bundle.json`
+
+Supported query parameters:
+
+- `limit`: maximum records returned in each detail list
+- `include_details=true`: reserved in the response metadata for future expanded diagnostics
+
+The diagnostic reports exact `affix_id` matches only. It does not fuzzy-match names, infer stat semantics, normalize gameplay behavior, write files, mutate registries, or authorize migration. Reported differences are migration-planning evidence, not automatic bugs.
+
+The comparison categories are:
+
+- identity and source/category
+- slot and item applicability
+- tier/value structure and malformed tier signals
+- legacy `stat_key` versus bundle modifier/property references
+- Forge-safe safety and provenance flags
+
+This endpoint must remain experimental/read-only. It must not be used by production planner, crafting, stat resolution, simulation, or `/api/ref/affixes`; migration requires a separate explicit implementation and test gate.
