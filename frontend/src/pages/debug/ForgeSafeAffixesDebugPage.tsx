@@ -1,18 +1,8 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
-interface ForgeSafeAffixSample {
-  affix_id: number | string;
-  name?: string | null;
-  affix_name?: string | null;
-  display_name?: string | null;
-  source_type?: string | null;
-  item_type?: string | null;
-  eligible_item_types?: string[];
-  modifier_count?: number;
-  modifiers?: Array<Record<string, unknown>>;
-}
+import type { CanonicalAffix } from "@/types";
 
-interface ForgeSafeAffixDebugResponse {
+interface V2AffixDebugResponse {
   success: boolean;
   experimental?: boolean;
   debug_only?: boolean;
@@ -31,9 +21,10 @@ interface ForgeSafeAffixDebugResponse {
   total_affix_records_seen?: number;
   excluded_affix_records?: number;
   sample_count?: number;
-  sample_records?: ForgeSafeAffixSample[];
+  sample_records?: CanonicalAffix[];
   result_count?: number;
-  records?: ForgeSafeAffixSample[];
+  records?: CanonicalAffix[];
+  summary?: Record<string, unknown>;
   error?: string;
   message?: string;
 }
@@ -45,14 +36,14 @@ function buildDebugUrl(limit: number, affixId: string, includeModifiers: boolean
   params.set("limit", String(limit));
   if (includeModifiers) params.set("include_modifiers", "true");
   if (affixId.trim()) params.set("affix_id", affixId.trim());
-  return `/experimental/forge-safe-affixes?${params.toString()}`;
+  return `/experimental/v2/affixes?${params.toString()}`;
 }
 
 async function fetchForgeSafeAffixes(
   limit: number,
   affixId: string,
   includeModifiers: boolean,
-): Promise<ForgeSafeAffixDebugResponse> {
+): Promise<V2AffixDebugResponse> {
   const res = await fetch(buildDebugUrl(limit, affixId, includeModifiers));
   const json = await res.json().catch(() => null);
   if (!json || typeof json !== "object") {
@@ -62,7 +53,7 @@ async function fetchForgeSafeAffixes(
       message: `Backend returned an unreadable response (${res.status}).`,
     };
   }
-  return json as ForgeSafeAffixDebugResponse;
+  return json as V2AffixDebugResponse;
 }
 
 export default function ForgeSafeAffixesDebugPage() {
@@ -70,7 +61,7 @@ export default function ForgeSafeAffixesDebugPage() {
   const [includeModifiers, setIncludeModifiers] = useState(false);
   const [affixIdInput, setAffixIdInput] = useState("");
   const [activeAffixId, setActiveAffixId] = useState("");
-  const [data, setData] = useState<ForgeSafeAffixDebugResponse | null>(null);
+  const [data, setData] = useState<V2AffixDebugResponse | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -116,8 +107,8 @@ export default function ForgeSafeAffixesDebugPage() {
       ["Warnings", data?.warning_count ?? "n/a"],
       ["Export policy", data?.export_policy ?? "n/a"],
       ["Export status", data?.export_status ?? "n/a"],
-      ["Total seen", data?.total_affix_records_seen ?? "n/a"],
-      ["Excluded", data?.excluded_affix_records ?? "n/a"],
+      ["Support", summarizeMap(data?.summary, "support_status_counts")],
+      ["Domains", summarizeMap(data?.summary, "affix_domain_counts")],
       ["Debug only", String((data?.debug_only ?? data?.experimental) ?? false)],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
@@ -134,8 +125,8 @@ export default function ForgeSafeAffixesDebugPage() {
         <h1 className="mt-2 font-display text-2xl text-[#f5a623]">
           Forge-safe affix catalog inspection
         </h1>
-        <p className="mt-2 max-w-3xl text-sm text-gray-400">
-          This page is debug-only and does not power planner behavior.
+          <p className="mt-2 max-w-3xl text-sm text-gray-400">
+          This page reads the v2 canonical affix bundle for diagnostics and does not power planner behavior.
         </p>
       </header>
 
@@ -201,7 +192,7 @@ export default function ForgeSafeAffixesDebugPage() {
           <h2 className="text-sm font-semibold text-red-300">Debug endpoint unavailable</h2>
           <p className="mt-2 text-sm text-red-100">{error}</p>
           <p className="mt-2 text-xs text-red-200/80">
-            Enable the backend experimental catalog flag and configure the Forge-safe export or bundle path before using this page.
+            Generate the v2 affix bundle or configure V2_AFFIX_BUNDLE_PATH before using this page.
           </p>
         </section>
       )}
@@ -246,26 +237,30 @@ export default function ForgeSafeAffixesDebugPage() {
               <table className="w-full min-w-[760px] text-left text-sm">
                 <thead className="bg-[#0f172a] text-xs uppercase text-gray-500">
                   <tr>
-                    <th className="px-4 py-3">Affix ID</th>
+                    <th className="px-4 py-3">Canonical ID</th>
                     <th className="px-4 py-3">Name</th>
+                    <th className="px-4 py-3">Support</th>
+                    <th className="px-4 py-3">Trust</th>
                     <th className="px-4 py-3">Source</th>
-                    <th className="px-4 py-3">Item Type</th>
-                    <th className="px-4 py-3">Eligible Types</th>
+                    <th className="px-4 py-3">Domain</th>
+                    <th className="px-4 py-3">Slots</th>
                     <th className="px-4 py-3">Modifiers</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-[#2a3050]">
                   {records.map((record) => (
-                    <tr key={`${record.source_type}-${record.affix_id}`}>
-                      <td className="px-4 py-3 font-mono text-[#f5a623]">{record.affix_id}</td>
-                      <td className="px-4 py-3 text-gray-100">{record.affix_name ?? record.display_name ?? record.name ?? "n/a"}</td>
+                    <tr key={record.canonical_id}>
+                      <td className="px-4 py-3 font-mono text-[#f5a623]">{record.canonical_id}</td>
+                      <td className="px-4 py-3 text-gray-100">{record.display_name}</td>
+                      <td className="px-4 py-3">{statusBadge(record.support_status)}</td>
+                      <td className="px-4 py-3 text-gray-300">{record.trust_level}</td>
                       <td className="px-4 py-3 text-gray-300">{record.source_type ?? "n/a"}</td>
-                      <td className="px-4 py-3 text-gray-300">{record.item_type ?? "n/a"}</td>
+                      <td className="px-4 py-3 text-gray-300">{record.affix_domain}</td>
                       <td className="px-4 py-3 text-gray-400">
-                        {(record.eligible_item_types ?? []).join(", ") || "none"}
+                        {(record.slot_restrictions ?? []).join(", ") || "none"}
                       </td>
                       <td className="px-4 py-3 font-mono text-gray-300">
-                        {record.modifier_count ?? record.modifiers?.length ?? "n/a"}
+                        {record.modifier_reference_count ?? record.modifier_references?.length ?? "n/a"}
                       </td>
                     </tr>
                   ))}
@@ -276,5 +271,27 @@ export default function ForgeSafeAffixesDebugPage() {
         </>
       )}
     </div>
+  );
+}
+
+function summarizeMap(summary: Record<string, unknown> | undefined, key: string): string {
+  const value = summary?.[key];
+  if (!value || typeof value !== "object" || Array.isArray(value)) return "n/a";
+  return Object.entries(value as Record<string, unknown>)
+    .map(([name, count]) => `${name}: ${count}`)
+    .join(", ");
+}
+
+function statusBadge(status: string) {
+  const classes =
+    status === "trusted"
+      ? "border-emerald-700 bg-emerald-950 text-emerald-200"
+      : status === "partial"
+        ? "border-yellow-700 bg-yellow-950 text-yellow-200"
+        : "border-gray-700 bg-gray-900 text-gray-300";
+  return (
+    <span className={`inline-flex rounded border px-2 py-1 font-mono text-xs ${classes}`}>
+      {status}
+    </span>
   );
 }

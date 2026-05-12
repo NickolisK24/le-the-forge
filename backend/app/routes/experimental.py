@@ -12,6 +12,7 @@ from typing import Any
 
 from flask import Blueprint, current_app, jsonify, request
 
+from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
 from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoaderError
 from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
 from data.repositories.forge_safe_affix_bundle_repository import ForgeSafeAffixBundleRepository
@@ -26,6 +27,8 @@ experimental_bp = Blueprint("experimental", __name__)
 
 DEFAULT_LIMIT = 50
 MAX_LIMIT = 100
+ROOT = Path(__file__).resolve().parents[3]
+DEFAULT_V2_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_affix_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -145,6 +148,117 @@ def forge_safe_affix_detail(affix_id: str):
     if _bundle_catalog_enabled():
         return _forge_safe_affix_bundle_catalog(parsed, detail=True)
     return _forge_safe_canonical_affix_catalog(parsed, detail=True)
+
+
+@experimental_bp.route("/v2/affixes", methods=["GET"])
+def v2_affix_catalog():
+    """Query the read-only v2 canonical affix bundle."""
+
+    parsed = _parse_v2_affix_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+
+    try:
+        repository = _load_v2_affix_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2AffixBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    if parsed["affix_id"]:
+        record = repository.get_affix(parsed["affix_id"])
+        records = [record] if record is not None else []
+    else:
+        records = repository.filter_affixes(
+            query=parsed["q"],
+            slot=parsed["slot"],
+            item_type=parsed["item_type"],
+            class_id=parsed["class_id"],
+            support_status=parsed["support_status"],
+            limit=parsed["limit"],
+            offset=parsed["offset"],
+        )
+
+    return jsonify(_v2_affix_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/affixes/<path:affix_id>", methods=["GET"])
+def v2_affix_detail(affix_id: str):
+    """Return one v2 canonical affix record by canonical ID."""
+
+    try:
+        repository = _load_v2_affix_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2AffixBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    record = repository.get_affix(affix_id)
+    if record is None:
+        return jsonify({
+            "success": False,
+            "error": "affix_not_found",
+            "message": f"v2 affix not found: {affix_id}",
+        }), 404
+
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_affix_bundle",
+        "source_path": str(repository.bundle_path),
+        "record": record,
+    })
+
+
+@experimental_bp.route("/v2/affixes/debug", methods=["GET"])
+def v2_affix_debug():
+    """Return a debug summary for the read-only v2 affix bundle."""
+
+    try:
+        repository = _load_v2_affix_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2AffixBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_affix_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_affix_bundle",
+        "debug_summary": repository.debug_summary(),
+    })
 
 
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
@@ -309,6 +423,17 @@ def _bundle_catalog_enabled() -> bool:
     return current_app.config.get("FORGE_SAFE_AFFIX_BUNDLE_ENABLED", False)
 
 
+def _configured_v2_affix_bundle_path() -> Path:
+    configured = current_app.config.get("V2_AFFIX_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_AFFIX_BUNDLE_PATH
+
+
+def _load_v2_affix_repository() -> V2AffixRepository:
+    return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
+
+
 def _parse_query_args() -> dict[str, Any]:
     errors: list[str] = []
     limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
@@ -321,6 +446,23 @@ def _parse_query_args() -> dict[str, Any]:
         "source_type": request.args.get("source_type") or "",
         "item_type": request.args.get("item_type") or "",
         "include_modifiers": _parse_bool(request.args.get("include_modifiers")),
+        "errors": errors,
+    }
+
+
+def _parse_v2_affix_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "affix_id": request.args.get("affix_id") or "",
+        "slot": request.args.get("slot") or "",
+        "item_type": request.args.get("item_type") or "",
+        "class_id": request.args.get("class_id") or "",
+        "support_status": request.args.get("support_status") or "",
         "errors": errors,
     }
 
@@ -488,3 +630,39 @@ def _source_affix_identity(record: dict[str, Any]) -> str:
     if isinstance(provenance, dict) and provenance.get("source_affix_identity"):
         return str(provenance["source_affix_identity"])
     return ""
+
+
+def _v2_affix_response(
+    repository: V2AffixRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_affix_bundle",
+        "source_path": str(repository.bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count(),
+        "total_affixes": repository.count(),
+        "total_modifiers": summary["summary"].get("source_modifier_count"),
+        "query": {
+            "limit": parsed["limit"],
+            "offset": parsed["offset"],
+            "q": parsed["q"],
+            "affix_id": parsed["affix_id"],
+            "slot": parsed["slot"],
+            "item_type": parsed["item_type"],
+            "class_id": parsed["class_id"],
+            "support_status": parsed["support_status"],
+        },
+        "warning_count": summary["summary"].get("records_with_warnings_count", 0),
+        "warnings": [],
+        "export_policy": "v2_affix_bundle",
+        "export_status": "pass" if summary["summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary,
+        "records": records,
+    }
