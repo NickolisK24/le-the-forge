@@ -1,0 +1,3838 @@
+{
+  "metadata": {
+    "experimental": true,
+    "phase": "phase_5_unique_set_infrastructure",
+    "production_consumer": false,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false,
+    "uses_canonical_contracts": true
+  },
+  "records": [
+    {
+      "canonical_id": "unique:0",
+      "display_name": "Calamity",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:1",
+      "display_name": "Fractured Crown",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:2",
+      "display_name": "Snowblind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:4",
+      "display_name": "Decayed Skull",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:8",
+      "display_name": "Doublet of Onos Tull",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:10",
+      "display_name": "Urzil's Pride",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:11",
+      "display_name": "Exsanguinous",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:12",
+      "display_name": "Yrun's Wisdom",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:13",
+      "display_name": "Titan Heart",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:18",
+      "display_name": "Chains of Uleros",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:19",
+      "display_name": "Mourningfrost",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:20",
+      "display_name": "Stormtide",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:21",
+      "display_name": "Eterra's Path",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:22",
+      "display_name": "Keeper's Gloves",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:25",
+      "display_name": "Boulderfists",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:27",
+      "display_name": "Wing Guards",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:28",
+      "display_name": "Beast King",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:29",
+      "display_name": "Taste of Blood",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:30",
+      "display_name": "Undisputed",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:31",
+      "display_name": "Tempest Maw",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:32",
+      "display_name": "Frozen Ire",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:33",
+      "display_name": "Culnivar's Claim",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:34",
+      "display_name": "Humming Bee",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:35",
+      "display_name": "Eye of Reen",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:36",
+      "display_name": "Rainbow Edge",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:37",
+      "display_name": "Cinder Song",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:38",
+      "display_name": "Alchemist's Ladle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:39",
+      "display_name": "Reach of the Grave",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:40",
+      "display_name": "Bone Harvester",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:41",
+      "display_name": "Hammer of Lorent",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:42",
+      "display_name": "Torch Of The Pontifex",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:43",
+      "display_name": "Storm Breaker",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:45",
+      "display_name": "Morditas' Reach",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:47",
+      "display_name": "The Last Laugh",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:48",
+      "display_name": "Volcanus",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:50",
+      "display_name": "The Slab",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:51",
+      "display_name": "Close Call",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:52",
+      "display_name": "Soul Bastion",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:54",
+      "display_name": "Strong Mind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:55",
+      "display_name": "Bleeding Heart",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:58",
+      "display_name": "The Claw",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:59",
+      "display_name": "Death Rattle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:60",
+      "display_name": "The Fang",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:61",
+      "display_name": "Orian's Eye",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:62",
+      "display_name": "Ring of the Third Eye",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:65",
+      "display_name": "Arboreal Circuit",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:66",
+      "display_name": "Hollow Finger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:67",
+      "display_name": "Tome of Elements",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:68",
+      "display_name": "Grimoire of Necrotic Elixirs",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:70",
+      "display_name": "Soulfire",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:72",
+      "display_name": "Orchirian's Petals",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:73",
+      "display_name": "Plague Bearer's Staff",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 6
+    },
+    {
+      "canonical_id": "unique:74",
+      "display_name": "Ignivar's Head",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:75",
+      "display_name": "The Scavenger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:81",
+      "display_name": "Ucenui's Sphere",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:82",
+      "display_name": "Arek's Bones",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:84",
+      "display_name": "Heirloom of the Last Nomad",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:93",
+      "display_name": "Kermode's Cage",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:105",
+      "display_name": "The Ashen Crown",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:113",
+      "display_name": "Ribbons of Blood",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:114",
+      "display_name": "Frozen Eyes of Formosus",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:115",
+      "display_name": "Last Steps of the Living",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:116",
+      "display_name": "Atrophy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:119",
+      "display_name": "Bulwark of the Last Abyss",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:123",
+      "display_name": "Symbol of Demise",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:126",
+      "display_name": "Mortality's Grasp",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:130",
+      "display_name": "Gambler's Fallacy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:133",
+      "display_name": "Xithara's Conundrum",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:137",
+      "display_name": "Uethrin's Stand",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:143",
+      "display_name": "Gladiator's Oath",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:146",
+      "display_name": "Troaka's Teeth",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:150",
+      "display_name": "Sunwreath",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:152",
+      "display_name": "Anchor of Oblivion",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:154",
+      "display_name": "Eye of Storms",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:160",
+      "display_name": "Call of the Tundra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:162",
+      "display_name": "Bhuldar's Wrath",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:164",
+      "display_name": "Logi's Hunger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:165",
+      "display_name": "Serpent's Milk",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:167",
+      "display_name": "Ravens' Rise",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:168",
+      "display_name": "Flight of the First",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:172",
+      "display_name": "Herald of the Scurry",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:176",
+      "display_name": "Aurora's Time Glass",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:180",
+      "display_name": "Shattered Chains",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:181",
+      "display_name": "Marina's Lost Soul",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:183",
+      "display_name": "Leviathan Carver",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:184",
+      "display_name": "Lethal Concentration",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:188",
+      "display_name": "Azurral's Fury",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:190",
+      "display_name": "Jasper's Searing Pride",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:192",
+      "display_name": "Fulgurite Shard",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:195",
+      "display_name": "Scales of Eterra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:196",
+      "display_name": "Scales of Eterra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:197",
+      "display_name": "Scales of Eterra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:202",
+      "display_name": "Stormhide Paws",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:205",
+      "display_name": "Curse of Perseverance",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:207",
+      "display_name": "Kelthan Blasting Agent",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:208",
+      "display_name": "Ravenous Void",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 6
+    },
+    {
+      "canonical_id": "unique:209",
+      "display_name": "Aberrant Call",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:211",
+      "display_name": "Throne of Ambition",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 9
+    },
+    {
+      "canonical_id": "unique:212",
+      "display_name": "Eternal Eclipse",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:213",
+      "display_name": "Frostbite Shackles",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:214",
+      "display_name": "Stormcarved Testament",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:217",
+      "display_name": "Sacrificial Embrace",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:218",
+      "display_name": "Yulia's Path",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:219",
+      "display_name": "Trinity of Flames",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:220",
+      "display_name": "Death's Embrace",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:221",
+      "display_name": "Paranoia",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:222",
+      "display_name": "Prismatic Gaze",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:223",
+      "display_name": "Chronostasis",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:224",
+      "display_name": "The Judicator",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:225",
+      "display_name": "Aurelis",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:226",
+      "display_name": "Tu'rani's Bident",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:229",
+      "display_name": "Roots of Vithrasil",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:230",
+      "display_name": "Usurper's Mandate",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:231",
+      "display_name": "Longshot",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:232",
+      "display_name": "Hakar's Phoenix",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:233",
+      "display_name": "Snowdrift",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:235",
+      "display_name": "Silvafrond",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:238",
+      "display_name": "Julra's Stardial",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:239",
+      "display_name": "Somnia",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:240",
+      "display_name": "Julra's Obsession",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:243",
+      "display_name": "Dragonsong",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:246",
+      "display_name": "Singularity",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:248",
+      "display_name": "Flesh of Stone",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:249",
+      "display_name": "Diothaen's Bloody Nib",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:250",
+      "display_name": "Torkrefin's Hunger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:251",
+      "display_name": "Zeurial's Hunt",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:252",
+      "display_name": "Pact Severance",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:253",
+      "display_name": "Foot of the Mountain",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:255",
+      "display_name": "Core of the Mountain",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:256",
+      "display_name": "Peak of the Mountain",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:257",
+      "display_name": "Ashes of Mortality",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:259",
+      "display_name": "Pyre of Affliction",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 7
+    },
+    {
+      "canonical_id": "unique:263",
+      "display_name": "Omen of Thunder",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:264",
+      "display_name": "Vaion's Chariot",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:265",
+      "display_name": "Soul Gambler's Fallacy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:267",
+      "display_name": "Ashes of Orchirian",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:268",
+      "display_name": "Bloodkeeper's Nest",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 7
+    },
+    {
+      "canonical_id": "unique:269",
+      "display_name": "Scales of Lemniscate",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:270",
+      "display_name": "Hive Mind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:271",
+      "display_name": "Gathering Fury",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:272",
+      "display_name": "Aaron's Will",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:273",
+      "display_name": "Lament of the Lost Refuge",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:274",
+      "display_name": "Branch of Hallows",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:275",
+      "display_name": "Unstable Core",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:277",
+      "display_name": "Red Ring of Atlaria",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:280",
+      "display_name": "Telf'un's Mirage",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:281",
+      "display_name": "Vortex Pennant",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:282",
+      "display_name": "Firestarter's Torch",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:283",
+      "display_name": "Rotmind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:284",
+      "display_name": "The Ghost Maker",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:285",
+      "display_name": "Jelkhor's Blast Knife",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:286",
+      "display_name": "Fragment of the Enigma",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:290",
+      "display_name": "Apostate's Sanctuary",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:292",
+      "display_name": "Apogee of Frozen Light",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 8
+    },
+    {
+      "canonical_id": "unique:293",
+      "display_name": "Swaddling of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:294",
+      "display_name": "Font of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:295",
+      "display_name": "Cradle of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:296",
+      "display_name": "Advent of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:298",
+      "display_name": "Knowledge of an Erased Mage",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:300",
+      "display_name": "Ambitions of an Erased Acolyte",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:301",
+      "display_name": "Gambit of an Erased Rogue",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:302",
+      "display_name": "Howl of the West Wind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:303",
+      "display_name": "Cycle of Putrescence",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:307",
+      "display_name": "Crest of Unity",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:308",
+      "display_name": "Abacus Rod",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 6
+    },
+    {
+      "canonical_id": "unique:309",
+      "display_name": "Elecoe's Abandon",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:310",
+      "display_name": "Wrongwarp",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 8
+    },
+    {
+      "canonical_id": "unique:311",
+      "display_name": "Transcriber's Graver",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:314",
+      "display_name": "Cleaver Solution",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:315",
+      "display_name": "Dragorath's Claw",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:316",
+      "display_name": "Apex of Thought",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:317",
+      "display_name": "Frey's Retreat",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:318",
+      "display_name": "The Shattered Cycle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:319",
+      "display_name": "Merophage",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:320",
+      "display_name": "Sierpin's Fractal Tree",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:322",
+      "display_name": "The Cuckoo",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:323",
+      "display_name": "Wheel of Torment",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:324",
+      "display_name": "Unvar's Rise",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:325",
+      "display_name": "Unvar's Hegemony",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:326",
+      "display_name": "Unvar's Exile",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:327",
+      "display_name": "Communion of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:328",
+      "display_name": "Stygian Coal",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:330",
+      "display_name": "Spine of Malatros",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:331",
+      "display_name": "Vial of Volatile Ice",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:333",
+      "display_name": "Falcon Fists",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:334",
+      "display_name": "Talons of Valor",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:335",
+      "display_name": "Wraithlord's Harbour",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:336",
+      "display_name": "Naal's Tooth",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:337",
+      "display_name": "Razorfall",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:338",
+      "display_name": "Sword Catcher",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:339",
+      "display_name": "Black Blade of Chaos",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:340",
+      "display_name": "Orian's Sun Seal",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:341",
+      "display_name": "Cruelty",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:344",
+      "display_name": "Harbinger's Needle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:347",
+      "display_name": "The Inevitable",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:348",
+      "display_name": "Phantom Grip",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:351",
+      "display_name": "Triboelectra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:355",
+      "display_name": "Aberroth's Command",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:356",
+      "display_name": "Stealth",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:358",
+      "display_name": "Null Portent",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:359",
+      "display_name": "Fingers of the Phantom Mire",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:360",
+      "display_name": "Carcinization of Momentum",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:362",
+      "display_name": "Grim Constitution",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:364",
+      "display_name": "Event Horizon",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 10
+    },
+    {
+      "canonical_id": "unique:366",
+      "display_name": "Flames of Midnight",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:367",
+      "display_name": "Celestial Doom",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:368",
+      "display_name": "Mana Guide",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 7
+    },
+    {
+      "canonical_id": "unique:369",
+      "display_name": "Tolmat's Incorrect History of Eterra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:370",
+      "display_name": "Mantle of the Pale Ox",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:373",
+      "display_name": "Ravager's Dart",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:374",
+      "display_name": "Pearls of the Swine",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:375",
+      "display_name": "Pearls of the Swine",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:376",
+      "display_name": "Pearls of the Swine",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:377",
+      "display_name": "Gordian Prism",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:378",
+      "display_name": "Crystalwind",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:379",
+      "display_name": "Cocooned Short Sword",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:380",
+      "display_name": "Cocooned Cleaver",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:381",
+      "display_name": "Cocooned Club",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:382",
+      "display_name": "Cocooned Great Sword",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:383",
+      "display_name": "Cocooned Great Axe",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:384",
+      "display_name": "Cocooned Great Mace",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:385",
+      "display_name": "Cocooned Spear",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:386",
+      "display_name": "Cocooned Staff",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:387",
+      "display_name": "Cocooned Cuirass",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:388",
+      "display_name": "Cocooned Dagger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:389",
+      "display_name": "Cocooned Sceptre",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:390",
+      "display_name": "Cocooned Wand",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:391",
+      "display_name": "Cocooned Bow",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:392",
+      "display_name": "Cocooned Quiver",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:393",
+      "display_name": "Cocooned Shield",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:394",
+      "display_name": "Cocooned Catalyst",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:395",
+      "display_name": "Cocooned Relic",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:396",
+      "display_name": "Cocooned Ring",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:397",
+      "display_name": "Cocooned Amulet",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:398",
+      "display_name": "Cocooned Gloves",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:399",
+      "display_name": "Cocooned Belt",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:400",
+      "display_name": "Cocooned Boots",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:401",
+      "display_name": "Cocooned Helmet",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "Special behavior is retained for display/debug only."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:402",
+      "display_name": "Elecoe's Innovation",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:403",
+      "display_name": "Soul of the Mountain",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:404",
+      "display_name": "Orian's Descent",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:405",
+      "display_name": "Orb Weaver's Fang",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:406",
+      "display_name": "Nest of Nightmares",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:407",
+      "display_name": "Essence Weaver",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:408",
+      "display_name": "Weaver's Gift",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:409",
+      "display_name": "Inheritance of the Erased",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:410",
+      "display_name": "Unearthed Memories",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:411",
+      "display_name": "Countenance of Majasa",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:412",
+      "display_name": "Dominance of the Tundra",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:413",
+      "display_name": "Shattered Worlds",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:414",
+      "display_name": "Downfall of the Righteous",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:415",
+      "display_name": "Immortal Vise",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:417",
+      "display_name": "Clotho's Needle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:418",
+      "display_name": "Scissor of Atropos",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:420",
+      "display_name": "Executioner's Tithe",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 9
+    },
+    {
+      "canonical_id": "unique:421",
+      "display_name": "The Land Before",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:422",
+      "display_name": "Lightning in a Bottle",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:423",
+      "display_name": "Legends Entwined",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:424",
+      "display_name": "Tyrant's Skull",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 9
+    },
+    {
+      "canonical_id": "unique:425",
+      "display_name": "Wildfire Embers",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:426",
+      "display_name": "Thicket of Blinding Light",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:427",
+      "display_name": "Harmony of the First",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:428",
+      "display_name": "Onslaught of Cerata",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:430",
+      "display_name": "Chorus of the Anurok",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:431",
+      "display_name": "Carrion of Creation",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:432",
+      "display_name": "Horn of the Bone Wisp",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:433",
+      "display_name": "Reliquary Nest",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:434",
+      "display_name": "Mask of Indifference",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:435",
+      "display_name": "Permanence of Primal Knowledge",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:437",
+      "display_name": "Primal Cadence",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:438",
+      "display_name": "Whetstone Gavel",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:439",
+      "display_name": "Truesight Glass",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:440",
+      "display_name": "Bluefeather Band",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:441",
+      "display_name": "Hydra Arc",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:442",
+      "display_name": "Velocyn's Jaw",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:443",
+      "display_name": "Army of Skin",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:444",
+      "display_name": "Evolution's End",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:445",
+      "display_name": "Spirit Xylem",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:446",
+      "display_name": "Fangs of the Berserker",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:447",
+      "display_name": "Bones of the Ancestral Pack",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 7
+    },
+    {
+      "canonical_id": "unique:449",
+      "display_name": "The Butcher's Crown",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:450",
+      "display_name": "Unbroken Charge",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:458",
+      "display_name": "Tabi of Dusk and Dawn",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:459",
+      "display_name": "Artifice of Devastation",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "unique:460",
+      "display_name": "Laup's Path",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:461",
+      "display_name": "Ash Wake",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "unique:462",
+      "display_name": "Natural Wrath",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5.",
+        "No v2 item base link was established from extracted base identifiers."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "unique:463",
+      "display_name": "Rahyeh's Embrace",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "unique:469",
+      "display_name": "Exulis",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "unique:470",
+      "display_name": "Oculus of Ruin",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "unique",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:1",
+      "display_name": "Isadora's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "set:2",
+      "display_name": "The Invoker's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:3",
+      "display_name": "Apiarist's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "set:4",
+      "display_name": "Sunforged",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:8",
+      "display_name": "Pebbles'",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:10",
+      "display_name": "Boardman's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "set:11",
+      "display_name": "Zerrick's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "set:13",
+      "display_name": "Sinathia's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:19",
+      "display_name": "Doppelganger's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set:20",
+      "display_name": "Set 20",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:21",
+      "display_name": "Kuzon's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set:23",
+      "display_name": "Keplahan's",
+      "notes": [
+        "Set group is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_group",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_item:5",
+      "display_name": "Isadora's Revenge",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:26",
+      "display_name": "Isadora's Gravechill",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:77",
+      "display_name": "Apiarist's Smoker",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:78",
+      "display_name": "Apiarist's Suit",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_item:79",
+      "display_name": "Apiarist's Comb",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:88",
+      "display_name": "Blade of the Forgotten Knight",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:90",
+      "display_name": "Locket of the Forgotten Knight",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:100",
+      "display_name": "Pebbles' Femur",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:101",
+      "display_name": "Pebbles' Collar",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:102",
+      "display_name": "Pebbles' Bitemarked Sash",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:127",
+      "display_name": "Boardman's Plank",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_item:128",
+      "display_name": "Boardman's Fallacy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 3
+    },
+    {
+      "canonical_id": "set_item:129",
+      "display_name": "Boardman's Legacy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 4
+    },
+    {
+      "canonical_id": "set_item:138",
+      "display_name": "Zerrick's Guile",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:139",
+      "display_name": "Zerrick's Greed",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:170",
+      "display_name": "Sinathia's Dying Breath",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:174",
+      "display_name": "Ruby Fang Aegis",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 5
+    },
+    {
+      "canonical_id": "set_item:186",
+      "display_name": "Vilatria's Downfall",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_item:260",
+      "display_name": "Lich's Envy",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:261",
+      "display_name": "Lich's Scorn",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_item:453",
+      "display_name": "Doppelganger's Facade",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:456",
+      "display_name": "Kuzon's Fury",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:457",
+      "display_name": "Kuzon's Guise",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_item:465",
+      "display_name": "Jormun's Hunger",
+      "notes": [
+        "Unique/set record is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_item",
+      "special_mechanic_classification": "partial_modifier",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:1:0",
+      "display_name": "Isadora's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_bonus:1:2",
+      "display_name": "Isadora's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:2:1",
+      "display_name": "The Invoker's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:3:0",
+      "display_name": "Apiarist's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:3:1",
+      "display_name": "Apiarist's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_bonus:4:0",
+      "display_name": "Sunforged 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:8:1",
+      "display_name": "Pebbles' 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:10:0",
+      "display_name": "Boardman's 1 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:10:1",
+      "display_name": "Boardman's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_bonus:10:2",
+      "display_name": "Boardman's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:11:0",
+      "display_name": "Zerrick's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_bonus:11:2",
+      "display_name": "Zerrick's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    },
+    {
+      "canonical_id": "set_bonus:13:0",
+      "display_name": "Sinathia's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:19:0",
+      "display_name": "Doppelganger's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:19:1",
+      "display_name": "Doppelganger's 3 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:20:0",
+      "display_name": "set:20 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:21:0",
+      "display_name": "Kuzon's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 1
+    },
+    {
+      "canonical_id": "set_bonus:23:0",
+      "display_name": "Keplahan's 2 piece bonus",
+      "notes": [
+        "Set bonus is not stable planner-consumed in Phase 5."
+      ],
+      "record_type": "set_bonus",
+      "special_mechanic_classification": "text_only_effect",
+      "support_status": "partial",
+      "text_evidence_count": 2
+    }
+  ],
+  "summary": {
+    "classification_counts": {
+      "partial_modifier": 296,
+      "text_only_effect": 48
+    },
+    "production_consumed": false,
+    "unsupported_or_text_only_count": 344
+  }
+}
