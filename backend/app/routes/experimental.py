@@ -14,6 +14,7 @@ from flask import Blueprint, current_app, jsonify, request
 
 from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
 from app.repositories.v2.item_repository import V2ItemBundleError, V2ItemRepository
+from app.repositories.v2.unique_set_repository import V2UniqueSetBundleError, V2UniqueSetRepository
 from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoaderError
 from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
 from data.repositories.forge_safe_affix_bundle_repository import ForgeSafeAffixBundleRepository
@@ -32,6 +33,8 @@ ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_V2_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_affix_bundle.json"
 DEFAULT_V2_ITEM_BASE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_base_bundle.json"
 DEFAULT_V2_ITEM_IMPLICIT_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_implicit_bundle.json"
+DEFAULT_V2_UNIQUE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_unique_bundle.json"
+DEFAULT_V2_SET_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_set_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -401,6 +404,160 @@ def v2_item_debug():
     })
 
 
+@experimental_bp.route("/v2/uniques", methods=["GET"])
+def v2_uniques():
+    """Query the read-only v2 unique bundle."""
+
+    parsed = _parse_v2_item_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+    try:
+        repository = _load_v2_unique_set_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2UniqueSetBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    records = repository.filter_uniques(
+        query=parsed["q"],
+        slot=parsed["slot"],
+        item_type=parsed["item_type"],
+        class_id=parsed["class_id"],
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    return jsonify(_v2_unique_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/uniques/<path:unique_id>", methods=["GET"])
+def v2_unique_detail(unique_id: str):
+    """Return one v2 unique record by canonical ID."""
+
+    try:
+        repository = _load_v2_unique_set_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2UniqueSetBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_invalid",
+            "message": str(exc),
+        }), 422
+    record = repository.get_unique(unique_id)
+    if record is None:
+        return jsonify({
+            "success": False,
+            "error": "unique_not_found",
+            "message": f"v2 unique not found: {unique_id}",
+        }), 404
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_unique_bundle",
+        "source_path": str(repository.unique_bundle_path),
+        "record": record,
+    })
+
+
+@experimental_bp.route("/v2/sets", methods=["GET"])
+def v2_sets():
+    """Query the read-only v2 set bundle."""
+
+    parsed = _parse_v2_item_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+    try:
+        repository = _load_v2_unique_set_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2UniqueSetBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_invalid",
+            "message": str(exc),
+        }), 422
+    records = repository.list_sets(limit=parsed["limit"], offset=parsed["offset"])
+    return jsonify(_v2_set_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/sets/<path:set_id>", methods=["GET"])
+def v2_set_detail(set_id: str):
+    """Return one v2 set group with items and bonuses."""
+
+    try:
+        repository = _load_v2_unique_set_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2UniqueSetBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_invalid",
+            "message": str(exc),
+        }), 422
+    record = repository.get_set(set_id)
+    if record is None:
+        return jsonify({
+            "success": False,
+            "error": "set_not_found",
+            "message": f"v2 set not found: {set_id}",
+        }), 404
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_set_bundle",
+        "source_path": str(repository.set_bundle_path),
+        "record": record,
+        "items": repository.get_set_items(set_id),
+        "bonuses": repository.get_set_bonuses(set_id),
+    })
+
+
+@experimental_bp.route("/v2/uniques/debug", methods=["GET"])
+def v2_unique_debug():
+    """Return a debug summary for read-only v2 unique bundle."""
+
+    return _v2_unique_set_debug("v2_unique_bundle")
+
+
+@experimental_bp.route("/v2/sets/debug", methods=["GET"])
+def v2_set_debug():
+    """Return a debug summary for read-only v2 set bundle."""
+
+    return _v2_unique_set_debug("v2_set_bundle")
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -584,6 +741,20 @@ def _configured_v2_item_implicit_bundle_path() -> Path:
     return DEFAULT_V2_ITEM_IMPLICIT_BUNDLE_PATH
 
 
+def _configured_v2_unique_bundle_path() -> Path:
+    configured = current_app.config.get("V2_UNIQUE_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_UNIQUE_BUNDLE_PATH
+
+
+def _configured_v2_set_bundle_path() -> Path:
+    configured = current_app.config.get("V2_SET_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_SET_BUNDLE_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
 
@@ -592,6 +763,13 @@ def _load_v2_item_repository() -> V2ItemRepository:
     return V2ItemRepository(
         _configured_v2_item_base_bundle_path(),
         _configured_v2_item_implicit_bundle_path(),
+    ).load()
+
+
+def _load_v2_unique_set_repository() -> V2UniqueSetRepository:
+    return V2UniqueSetRepository(
+        _configured_v2_unique_bundle_path(),
+        _configured_v2_set_bundle_path(),
     ).load()
 
 
@@ -897,3 +1075,86 @@ def _v2_item_implicit_response(
         "summary": summary["implicit_summary"],
         "records": records,
     }
+
+
+def _v2_unique_response(
+    repository: V2UniqueSetRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_unique_bundle",
+        "source_path": str(repository.unique_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_uniques(),
+        "total_uniques": repository.count_uniques(),
+        "total_sets": repository.count_sets(),
+        "total_set_items": repository.count_set_items(),
+        "total_set_bonuses": repository.count_set_bonuses(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_unique_bundle",
+        "export_status": "pass" if summary["unique_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["unique_summary"],
+        "records": records,
+    }
+
+
+def _v2_set_response(
+    repository: V2UniqueSetRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_set_bundle",
+        "source_path": str(repository.set_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_sets(),
+        "total_uniques": repository.count_uniques(),
+        "total_sets": repository.count_sets(),
+        "total_set_items": repository.count_set_items(),
+        "total_set_bonuses": repository.count_set_bonuses(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_set_bundle",
+        "export_status": "pass" if summary["set_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["set_summary"],
+        "records": records,
+    }
+
+
+def _v2_unique_set_debug(data_source: str):
+    try:
+        repository = _load_v2_unique_set_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2UniqueSetBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_unique_set_bundle_invalid",
+            "message": str(exc),
+        }), 422
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": data_source,
+        "debug_summary": repository.debug_summary(),
+    })
