@@ -1,0 +1,26 @@
+{
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false
+  },
+  "summary": {
+    "duplicate_canonical_id_count": 0,
+    "equipment_affix_count": 615,
+    "error_count": 0,
+    "idol_affix_count": 483,
+    "invalid_slot_restriction_shape_count": 0,
+    "invalid_tier_data_count": 0,
+    "invalid_trust_level_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "record_count": 1098,
+    "stable_calculable_blocked_count": 0,
+    "stable_calculable_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}
