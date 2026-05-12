@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 .env.production
+.codex/
 
 # Python
 __pycache__/
