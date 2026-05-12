@@ -13,6 +13,7 @@ from typing import Any
 from flask import Blueprint, current_app, jsonify, request
 
 from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
+from app.repositories.v2.item_repository import V2ItemBundleError, V2ItemRepository
 from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoaderError
 from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
 from data.repositories.forge_safe_affix_bundle_repository import ForgeSafeAffixBundleRepository
@@ -29,6 +30,8 @@ DEFAULT_LIMIT = 50
 MAX_LIMIT = 100
 ROOT = Path(__file__).resolve().parents[3]
 DEFAULT_V2_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_affix_bundle.json"
+DEFAULT_V2_ITEM_BASE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_base_bundle.json"
+DEFAULT_V2_ITEM_IMPLICIT_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_implicit_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -261,6 +264,143 @@ def v2_affix_debug():
     })
 
 
+@experimental_bp.route("/v2/items/bases", methods=["GET"])
+def v2_item_bases():
+    """Query the read-only v2 item base bundle."""
+
+    parsed = _parse_v2_item_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+    try:
+        repository = _load_v2_item_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2ItemBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    records = repository.filter_bases(
+        query=parsed["q"],
+        slot=parsed["slot"],
+        item_type=parsed["item_type"],
+        class_id=parsed["class_id"],
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    return jsonify(_v2_item_base_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/items/bases/<path:item_base_id>", methods=["GET"])
+def v2_item_base_detail(item_base_id: str):
+    """Return one v2 item base by canonical ID."""
+
+    try:
+        repository = _load_v2_item_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2ItemBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    record = repository.get_base(item_base_id)
+    if record is None:
+        return jsonify({
+            "success": False,
+            "error": "item_base_not_found",
+            "message": f"v2 item base not found: {item_base_id}",
+        }), 404
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_item_base_bundle",
+        "source_path": str(repository.base_bundle_path),
+        "record": record,
+        "implicits": repository.get_implicits_for_base(item_base_id),
+    })
+
+
+@experimental_bp.route("/v2/items/implicits", methods=["GET"])
+def v2_item_implicits():
+    """Query the read-only v2 item implicit bundle."""
+
+    parsed = _parse_v2_item_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+    try:
+        repository = _load_v2_item_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2ItemBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    if parsed["base_id"]:
+        records = repository.get_implicits_for_base(parsed["base_id"])
+    else:
+        records = repository.list_implicits(limit=parsed["limit"], offset=parsed["offset"])
+    return jsonify(_v2_item_implicit_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/items/debug", methods=["GET"])
+def v2_item_debug():
+    """Return a debug summary for read-only v2 item bundles."""
+
+    try:
+        repository = _load_v2_item_repository()
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_missing",
+            "message": str(exc),
+        }), 404
+    except V2ItemBundleError as exc:
+        return jsonify({
+            "success": False,
+            "error": "v2_item_bundle_invalid",
+            "message": str(exc),
+        }), 422
+
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_item_bundles",
+        "debug_summary": repository.debug_summary(),
+    })
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -430,8 +570,29 @@ def _configured_v2_affix_bundle_path() -> Path:
     return DEFAULT_V2_AFFIX_BUNDLE_PATH
 
 
+def _configured_v2_item_base_bundle_path() -> Path:
+    configured = current_app.config.get("V2_ITEM_BASE_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_ITEM_BASE_BUNDLE_PATH
+
+
+def _configured_v2_item_implicit_bundle_path() -> Path:
+    configured = current_app.config.get("V2_ITEM_IMPLICIT_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_ITEM_IMPLICIT_BUNDLE_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
+
+
+def _load_v2_item_repository() -> V2ItemRepository:
+    return V2ItemRepository(
+        _configured_v2_item_base_bundle_path(),
+        _configured_v2_item_implicit_bundle_path(),
+    ).load()
 
 
 def _parse_query_args() -> dict[str, Any]:
@@ -463,6 +624,22 @@ def _parse_v2_affix_query_args() -> dict[str, Any]:
         "item_type": request.args.get("item_type") or "",
         "class_id": request.args.get("class_id") or "",
         "support_status": request.args.get("support_status") or "",
+        "errors": errors,
+    }
+
+
+def _parse_v2_item_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "slot": request.args.get("slot") or "",
+        "item_type": request.args.get("item_type") or "",
+        "class_id": request.args.get("class_id") or "",
+        "base_id": request.args.get("base_id") or request.args.get("item_base_id") or "",
         "errors": errors,
     }
 
@@ -664,5 +841,59 @@ def _v2_affix_response(
         "export_policy": "v2_affix_bundle",
         "export_status": "pass" if summary["summary"].get("validation_error_count", 0) == 0 else "blocked",
         "summary": summary,
+        "records": records,
+    }
+
+
+def _v2_item_base_response(
+    repository: V2ItemRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_item_base_bundle",
+        "source_path": str(repository.base_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_bases(),
+        "total_item_bases": repository.count_bases(),
+        "total_implicits": repository.count_implicits(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_item_base_bundle",
+        "export_status": "pass" if summary["base_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["base_summary"],
+        "records": records,
+    }
+
+
+def _v2_item_implicit_response(
+    repository: V2ItemRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_item_implicit_bundle",
+        "source_path": str(repository.implicit_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_implicits(),
+        "total_item_bases": repository.count_bases(),
+        "total_implicits": repository.count_implicits(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_item_implicit_bundle",
+        "export_status": "pass" if summary["implicit_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["implicit_summary"],
         "records": records,
     }
