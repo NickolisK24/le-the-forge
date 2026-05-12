@@ -33,6 +33,25 @@ export interface PaginationMeta {
   production_consumer?: false;
 }
 
+export type { CanonicalRecord } from "./canonicalBase";
+export type { CanonicalAffix } from "./canonicalAffix";
+export type { CanonicalClass, CanonicalMastery } from "./canonicalClassMastery";
+export type { CanonicalIdol } from "./canonicalIdol";
+export type { CanonicalImplicit, CanonicalItemBase } from "./canonicalItem";
+export type { CanonicalModifier, CanonicalModifierReference } from "./canonicalModifier";
+export type { CanonicalPassiveNode, CanonicalPassiveTree } from "./canonicalPassive";
+export type { CanonicalSet, CanonicalSetItem } from "./canonicalSet";
+export type { CanonicalSkill, CanonicalSkillTree, CanonicalSkillTreeNode } from "./canonicalSkill";
+export type { CanonicalUnique } from "./canonicalUnique";
+export type { SourceProvenance } from "./sourceProvenance";
+export {
+  SUPPORT_STATUSES,
+  TRUST_LEVELS,
+  isStableCalculableStatus,
+  type SupportStatus,
+  type TrustLevel,
+} from "./trustStatus";
+
 // ---------------------------------------------------------------------------
 // Auth
 // ---------------------------------------------------------------------------
