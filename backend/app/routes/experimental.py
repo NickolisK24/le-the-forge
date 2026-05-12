@@ -16,6 +16,10 @@ from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoad
 from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
 from data.repositories.forge_safe_affix_bundle_repository import ForgeSafeAffixBundleRepository
 from data.repositories.forge_safe_affix_repository import ForgeSafeAffixRepository
+from app.services.forge_safe_affix_comparison_service import (
+    CompareOptions,
+    compare_legacy_to_forge_safe_bundle,
+)
 
 
 experimental_bp = Blueprint("experimental", __name__)
@@ -46,6 +50,74 @@ def forge_safe_affix_catalog():
     if _bundle_catalog_enabled():
         return _forge_safe_affix_bundle_catalog(parsed)
     return _forge_safe_canonical_affix_catalog(parsed)
+
+
+@experimental_bp.route("/forge-safe-affixes/compare-legacy", methods=["GET"])
+def compare_forge_safe_affixes_to_legacy():
+    """Compare legacy Forge affix data to the Forge-safe bundle."""
+
+    if not current_app.config.get("FORGE_SAFE_AFFIX_CATALOG_ENABLED", False):
+        return jsonify({
+            "success": False,
+            "error": "experimental_catalog_disabled",
+            "message": "Forge-safe affix catalog is disabled.",
+        }), 404
+    if not _bundle_catalog_enabled():
+        return jsonify({
+            "success": False,
+            "error": "bundle_catalog_disabled",
+            "message": "FORGE_SAFE_AFFIX_BUNDLE_ENABLED must be true for legacy comparison.",
+        }), 404
+
+    parsed = _parse_compare_query_args()
+    if parsed["errors"]:
+        return jsonify({
+            "success": False,
+            "error": "invalid_query",
+            "message": "; ".join(parsed["errors"]),
+        }), 400
+
+    bundle_path = _configured_bundle_path()
+    if not bundle_path:
+        return jsonify({
+            "success": False,
+            "error": "missing_bundle_path",
+            "message": "FORGE_SAFE_AFFIX_BUNDLE_PATH is not configured.",
+        }), 503
+
+    try:
+        report = compare_legacy_to_forge_safe_bundle(
+            str(bundle_path),
+            options=CompareOptions(
+                include_details=parsed["include_details"],
+                limit=parsed["limit"],
+            ),
+        )
+    except FileNotFoundError as exc:
+        return jsonify({
+            "success": False,
+            "error": "bundle_file_missing",
+            "message": str(exc),
+        }), 404
+    except (ForgeSafeAffixBundleLoaderError, ValueError) as exc:
+        return jsonify({
+            "success": False,
+            "error": "bundle_validation_failed",
+            "message": str(exc),
+        }), 422
+
+    return jsonify({
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "legacy_vs_forge_safe_bundle",
+        "query": {
+            "include_details": parsed["include_details"],
+            "limit": parsed["limit"],
+        },
+        "comparison": report,
+    })
 
 
 @experimental_bp.route("/forge-safe-affixes/<affix_id>", methods=["GET"])
@@ -249,6 +321,16 @@ def _parse_query_args() -> dict[str, Any]:
         "source_type": request.args.get("source_type") or "",
         "item_type": request.args.get("item_type") or "",
         "include_modifiers": _parse_bool(request.args.get("include_modifiers")),
+        "errors": errors,
+    }
+
+
+def _parse_compare_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "include_details": _parse_bool(request.args.get("include_details")),
         "errors": errors,
     }
 
