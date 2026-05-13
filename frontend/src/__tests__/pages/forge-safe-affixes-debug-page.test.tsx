@@ -35,7 +35,7 @@ describe("ForgeSafeAffixesDebugPage", () => {
     expect(await screen.findByText("1098")).toBeInTheDocument();
     expect(screen.getAllByText("v2_affix_bundle").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("pass")).toBeInTheDocument();
-    expect(screen.getByText("partial: 1098")).toBeInTheDocument();
+    expect(screen.getAllByText("partial: 1098").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("equipment: 615, idol: 483")).toBeInTheDocument();
     expect(screen.getAllByText("true").length).toBeGreaterThanOrEqual(2);
     expect(screen.getByText("Production consumer")).toBeInTheDocument();

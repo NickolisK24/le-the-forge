@@ -33,8 +33,11 @@ describe("V2ItemsDebugPage", () => {
 
     expect(await screen.findByText("542")).toBeInTheDocument();
     expect(screen.getByText("1182")).toBeInTheDocument();
-    expect(screen.getByText("partial: 542")).toBeInTheDocument();
+    expect(screen.getAllByText("partial: 542").length).toBeGreaterThanOrEqual(1);
     expect(screen.getByText("generated_from_game_data: 542")).toBeInTheDocument();
+    expect(screen.getByText("Support summary")).toBeInTheDocument();
+    expect(screen.getByText("Provenance")).toBeInTheDocument();
+    expect(screen.getByText("Debug contract")).toBeInTheDocument();
     expect(screen.getByText("Iron Casque")).toBeInTheDocument();
     expect(screen.getByText("item_base:equippable:0:1")).toBeInTheDocument();
     expect(screen.getAllByText("helmet").length).toBeGreaterThanOrEqual(1);
