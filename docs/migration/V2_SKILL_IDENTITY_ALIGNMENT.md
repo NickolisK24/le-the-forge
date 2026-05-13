@@ -15,14 +15,14 @@ This Phase 9.5 audit diagnoses the class/mastery to skill identity mismatch repo
 - Total class/mastery skill references: 63
 - Total skill records: 184
 - Exact ID matches: 0
-- Exact raw path matches: 2
-- Top-level path matches: 0
-- Nested path-only matches: 1
+- Exact raw path matches: 61
+- Top-level path matches: 60
+- Nested path-only matches: 0
 - Normalized name matches: 0
 - Ambiguous matches: 1
-- Unresolved references: 61
+- Unresolved references: 2
 - Bridge safe: false
-- Recommended mapping strategy: `do_not_bridge_from_nested_path_evidence`
+- Recommended mapping strategy: `top_level_source_identity_partial_unresolved`
 
 ## Field Inventory
 
@@ -96,7 +96,7 @@ Raw skill records expose these observed path-like fields:
 
 Exact ID matching did not resolve the class/mastery `skill_path:*` references because generated v2 skills use source skill IDs such as `skill:ab0lh`, not numeric path IDs.
 
-Raw path matching found references only where the numeric path ID appears somewhere inside raw skill evidence. These are not accepted as a safe bridge unless they are top-level owner identity fields. In the real report, no top-level owner path matches were found.
+Raw path matching now includes upstream `sourceIdentity.skillPath` when present. Those top-level matches are accepted as safe identity evidence. Nested path evidence is still not accepted as a bridge.
 
 Normalized name matching cannot resolve these references because the class/mastery `skill_path:*` values do not include display names.
 
@@ -104,11 +104,20 @@ Normalized name matching cannot resolve these references because the class/maste
 
 ### Resolved By Safe Identity
 
-- None
+- `skill_path:260926` (resolved; owners: class:acolyte) -> skill:evade1
+- `skill_path:261173` (resolved; owners: class:acolyte) -> skill:bc53
+- `skill_path:261591` (resolved; owners: class:mage) -> skill:en6
+- `skill_path:262309` (resolved; owners: mastery:sentinel:void_knight) -> skill:es6ai
+- `skill_path:262328` (resolved; owners: mastery:rogue:falconer) -> skill:falc0
+- `skill_path:262431` (resolved; owners: class:mage) -> skill:fi9
+- `skill_path:262458` (resolved; owners: class:mage) -> skill:fw3d
+- `skill_path:262473` (resolved; owners: mastery:sentinel:forge_guard) -> skill:fs3e3
+- `skill_path:262497` (resolved; owners: class:mage) -> skill:frc87w
+- `skill_path:262531` (resolved; owners: class:primalist) -> skill:fl13
 
 ### Nested Path Matches Not Accepted As A Bridge
 
-- `skill_path:264015` (nested_path_match_not_bridge_safe; owners: mastery:mage:runemaster) -> skill:fb8fe
+- None
 
 ### Ambiguous
 
@@ -116,21 +125,13 @@ Normalized name matching cannot resolve these references because the class/maste
 
 ### Unresolved
 
-- `skill_path:260926` (unresolved; owners: class:acolyte)
-- `skill_path:261173` (unresolved; owners: class:acolyte)
-- `skill_path:261591` (unresolved; owners: class:mage)
-- `skill_path:262309` (unresolved; owners: mastery:sentinel:void_knight)
-- `skill_path:262328` (unresolved; owners: mastery:rogue:falconer)
-- `skill_path:262431` (unresolved; owners: class:mage)
-- `skill_path:262458` (unresolved; owners: class:mage)
-- `skill_path:262473` (unresolved; owners: mastery:sentinel:forge_guard)
-- `skill_path:262497` (unresolved; owners: class:mage)
-- `skill_path:262531` (unresolved; owners: class:primalist)
+- `skill_path:262953` (unresolved; owners: class:mage)
+- `skill_path:263498` (unresolved; owners: class:acolyte, class:mage, class:primalist)
 
 ## Conclusion
 
-A deterministic bridge is not safe from the current evidence. Phase 7 `skill_path:*` values should remain unresolved until a source export exposes a top-level owning skill path ID or a separate audited identity table proves the mapping.
+A complete deterministic bridge is still not safe from the current evidence. The enriched upstream export resolves the references that have top-level `sourceIdentity.skillPath` evidence, but remaining unresolved or ambiguous references must stay blocked.
 
 ## Recommended Next Action
 
-Before modifier/stat normalization consumes class/mastery skill ownership, add a focused source-export identity alignment task or update the upstream export to include the owning ability path ID on skill records. Do not infer the bridge from nested summoned actor evidence or tooltip text.
+Before modifier/stat normalization consumes class/mastery skill ownership, either resolve the remaining source gaps upstream or carry them as an explicit identity gap. Do not infer the remaining bridge from nested summoned actor evidence or tooltip text.

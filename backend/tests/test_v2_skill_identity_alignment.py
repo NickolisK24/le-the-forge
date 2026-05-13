@@ -64,6 +64,31 @@ def test_top_level_path_match_can_be_safe_when_complete() -> None:
     assert report["summary"]["bridge_safe"] is True
 
 
+def test_source_identity_skill_path_is_top_level_match() -> None:
+    report = build_report(
+        _class_bundle("skill_path:100"),
+        _skill_bundle(_skill("skill:abc", "abc", "A Test Skill")),
+        {},
+        {"classes": []},
+        _source_skills(
+            {
+                "id": "abc",
+                "name": "A Test Skill",
+                "sourceIdentity": {
+                    "skillPath": "skill_path:100",
+                    "identitySource": "SkillTree.ability PPtr",
+                    "identityConfidence": "top_level_owner_pptr",
+                },
+            }
+        ),
+    )
+
+    assert report["summary"]["exact_path_match_count"] == 1
+    assert report["summary"]["top_level_path_match_count"] == 1
+    assert report["summary"]["bridge_safe"] is True
+    assert report["references"][0]["exact_path_matches"][0]["field_path"] == "sourceIdentity.skillPath"
+
+
 def test_nested_path_match_is_not_bridge_safe() -> None:
     report = build_report(
         _class_bundle("skill_path:100"),
