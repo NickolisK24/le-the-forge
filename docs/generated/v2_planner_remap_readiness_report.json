@@ -1,0 +1,2728 @@
+{
+  "dependency_classification_counts": {
+    "blocked_by_behavioral_risk": 2,
+    "blocked_by_identity_resolution": 1,
+    "blocked_by_missing_tests": 1,
+    "blocked_by_unsupported_mechanics": 3,
+    "blocked_by_value_normalization": 4,
+    "manual_only_currently": 1,
+    "ready_for_adapter_later": 3
+  },
+  "dependency_classifications": [
+    {
+      "blockers": [
+        "needs non-calculating API adapter tests"
+      ],
+      "category": "item/base display metadata",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "must stay display-only until value policy is proven"
+      ],
+      "category": "affix display and provenance",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "affix modifier math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "item implicit modifier math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "unsupported/text-only report remains intentionally visible"
+      ],
+      "category": "unique and set mechanics",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "source_units_value_scale",
+        "IDOL_ALTAR warnings remain display-only"
+      ],
+      "category": "idol base and idol affix math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "metadata can be inspected; planner skill ownership remains partially unresolved"
+      ],
+      "category": "class/mastery metadata",
+      "classification": "ready_for_adapter_later"
+    },
+    {
+      "blockers": [
+        "unresolved_refs=2",
+        "ambiguous_refs=1"
+      ],
+      "category": "skill ownership",
+      "classification": "blocked_by_identity_resolution"
+    },
+    {
+      "blockers": [
+        "scripted and unsupported passive records remain non-calculable"
+      ],
+      "category": "passive node behavior",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "scripted and unsupported skill records remain non-calculable"
+      ],
+      "category": "skill and skill tree behavior",
+      "classification": "blocked_by_unsupported_mechanics"
+    },
+    {
+      "blockers": [
+        "unknown_value_scale=13150",
+        "source_units_value_scale=6248"
+      ],
+      "category": "stat/modifier adapter math",
+      "classification": "blocked_by_value_normalization"
+    },
+    {
+      "blockers": [
+        "production behavior depends on legacy craft engine and FP constants"
+      ],
+      "category": "crafting engine",
+      "classification": "blocked_by_behavioral_risk"
+    },
+    {
+      "blockers": [
+        "production behavior depends on legacy stat fields and combat formulas"
+      ],
+      "category": "simulation/combat engine",
+      "classification": "blocked_by_behavioral_risk"
+    },
+    {
+      "blockers": [
+        "routes expose legacy DB/static data and must not switch without compatibility tests"
+      ],
+      "category": "production reference routes",
+      "classification": "manual_only_currently"
+    },
+    {
+      "blockers": [
+        "needs adapter dry-run and UI compatibility tests before remap"
+      ],
+      "category": "frontend planner API clients",
+      "classification": "blocked_by_missing_tests"
+    }
+  ],
+  "future_remap_sequence": [
+    {
+      "goal": "Expose v2 adapter explanations beside current planner output without changing calculations.",
+      "name": "Read-only planner diagnostics using v2 adapter",
+      "order": 1,
+      "required_tests": [
+        "production non-consumption",
+        "adapter read-only",
+        "no output delta"
+      ]
+    },
+    {
+      "goal": "Use v2 IDs, provenance, support status, and debug labels only.",
+      "name": "Non-calculating metadata remap",
+      "order": 2,
+      "required_tests": [
+        "API compatibility",
+        "frontend rendering",
+        "unsupported visibility"
+      ]
+    },
+    {
+      "goal": "Remap item base display and restriction metadata without stat math.",
+      "name": "Item/base display metadata remap",
+      "order": 3,
+      "required_tests": [
+        "item compatibility fixtures",
+        "legacy route comparison",
+        "no stat output delta"
+      ]
+    },
+    {
+      "goal": "Show v2 affix identity/provenance while legacy math remains authoritative.",
+      "name": "Affix display and provenance remap",
+      "order": 4,
+      "required_tests": [
+        "affix list comparison",
+        "crafting UI compatibility",
+        "blocked reason visibility"
+      ]
+    },
+    {
+      "goal": "Use resolved identities for inspection only and keep unresolved skill references blocked.",
+      "name": "Passive/skill identity-only remap where safe",
+      "order": 5,
+      "required_tests": [
+        "identity audit",
+        "unresolved bridge guard",
+        "tree layout comparison"
+      ]
+    },
+    {
+      "goal": "Compare v2 adapter rows against legacy stat outputs without consumption.",
+      "name": "Stat/modifier adapter dry-run comparison",
+      "order": 6,
+      "required_tests": [
+        "golden build fixtures",
+        "blocked reason snapshots",
+        "value-scale guard"
+      ]
+    },
+    {
+      "goal": "Create stable expected outputs for representative builds and crafting flows.",
+      "name": "Golden baseline test creation",
+      "order": 7,
+      "required_tests": [
+        "golden planner outputs",
+        "crafting baselines",
+        "simulation baselines"
+      ]
+    },
+    {
+      "goal": "Add explicitly opt-in experimental comparison mode after stable gates pass.",
+      "name": "Limited opt-in experimental planner adapter mode",
+      "order": 8,
+      "required_tests": [
+        "feature flag guard",
+        "default-off production guard",
+        "route contract tests"
+      ]
+    },
+    {
+      "goal": "Switch production only after value scale, identity, support, and behavior gates are proven.",
+      "name": "Production remap after stable-calculable gates pass",
+      "order": 9,
+      "required_tests": [
+        "full planner regression",
+        "crafting regression",
+        "simulation regression",
+        "rollback checks"
+      ]
+    }
+  ],
+  "gaps_between_current_planner_and_v2": [
+    {
+      "description": "Production BuildStats uses fixed Python/TypeScript fields while v2 has canonical stat IDs.",
+      "id": "legacy_stat_fields_vs_canonical_stats",
+      "impact": "Needs an audited stat field adapter before planner math can consume v2 modifiers."
+    },
+    {
+      "description": "Many v2 modifier rows preserve raw source units.",
+      "id": "source_units_value_scale",
+      "impact": "Planner-normalized values must not be inferred without scale evidence."
+    },
+    {
+      "description": "Unique, passive, and skill records include scripted/text-only mechanics.",
+      "id": "unsupported_scripted_mechanics",
+      "impact": "These must remain display/debug-only until explicitly modeled."
+    },
+    {
+      "description": "A small number of class/mastery skill references remain unresolved or ambiguous.",
+      "id": "skill_identity_gap",
+      "impact": "Skill ownership-sensitive calculations cannot depend on those links."
+    },
+    {
+      "description": "Production reference routes still use legacy DB/static sources.",
+      "id": "legacy_routes_and_db_models",
+      "impact": "Route-level remap requires compatibility wrappers and regression fixtures."
+    }
+  ],
+  "hardcoded_and_legacy_data_sources": [
+    {
+      "finding": "CLASS_META and slot aliases are hardcoded production reference metadata.",
+      "path": "backend/app/routes/ref.py"
+    },
+    {
+      "finding": "Legacy runtime constants consumed by stat and combat engines.",
+      "path": "backend/app/game_data/constants.json"
+    },
+    {
+      "finding": "Legacy class metadata source.",
+      "path": "backend/app/game_data/classes.json"
+    },
+    {
+      "finding": "Legacy skill metadata source.",
+      "path": "backend/app/game_data/skills.json"
+    },
+    {
+      "finding": "Legacy JSON and DB loader for affixes, blessings, and reference data.",
+      "path": "backend/app/game_data/game_data_loader.py"
+    },
+    {
+      "finding": "Manual crafting constants.",
+      "path": "backend/app/constants/crafting.py"
+    },
+    {
+      "finding": "Manual BuildStats field schema and stat aggregation mappings.",
+      "path": "backend/app/engines/stat_engine.py"
+    },
+    {
+      "finding": "Manual layer ordering and blessing stat conversion.",
+      "path": "backend/app/engines/stat_resolution_pipeline.py"
+    },
+    {
+      "finding": "Frontend stat label map.",
+      "path": "frontend/src/constants/statLabels.ts"
+    },
+    {
+      "finding": "Frontend stat benchmark constants.",
+      "path": "frontend/src/constants/statBenchmarks.ts"
+    },
+    {
+      "finding": "Frontend simulation/stat mirror logic.",
+      "path": "frontend/src/lib/simulation.ts"
+    },
+    {
+      "finding": "Frontend crafting helper logic.",
+      "path": "frontend/src/lib/crafting.ts"
+    }
+  ],
+  "metadata": {
+    "audit_only": true,
+    "phase": "16",
+    "planner_remap_performed": false,
+    "production_routes_added": false,
+    "skill_identity_bridge_added": false,
+    "source": "v2_planner_remap_readiness",
+    "value_normalization_promoted": false
+  },
+  "production_inventory": {
+    "backend_entrypoints": [
+      {
+        "path": "backend/app/routes/affixes.py",
+        "role": "legacy affix API route"
+      },
+      {
+        "path": "backend/app/routes/analysis.py",
+        "role": "analysis API route"
+      },
+      {
+        "path": "backend/app/routes/craft.py",
+        "role": "crafting API route"
+      },
+      {
+        "path": "backend/app/routes/optimize.py",
+        "role": "optimizer API route"
+      },
+      {
+        "path": "backend/app/routes/passives.py",
+        "role": "passive API route"
+      },
+      {
+        "path": "backend/app/routes/ref.py",
+        "role": "production reference API route"
+      },
+      {
+        "path": "backend/app/routes/simulate.py",
+        "role": "simulation API route"
+      },
+      {
+        "path": "backend/app/routes/skills.py",
+        "role": "skill API route"
+      },
+      {
+        "path": "backend/app/services/craft_service.py",
+        "role": "crafting service"
+      },
+      {
+        "path": "backend/app/services/passive_stat_resolver.py",
+        "role": "passive stat resolver"
+      },
+      {
+        "path": "backend/app/services/simulation_service.py",
+        "role": "simulation service"
+      },
+      {
+        "path": "backend/app/engines/combat_engine.py",
+        "role": "combat DPS engine"
+      },
+      {
+        "path": "backend/app/engines/combat_simulator.py",
+        "role": "combat simulator"
+      },
+      {
+        "path": "backend/app/engines/craft_engine.py",
+        "role": "crafting math engine"
+      },
+      {
+        "path": "backend/app/engines/craft_simulator.py",
+        "role": "crafting simulator"
+      },
+      {
+        "path": "backend/app/engines/stat_engine.py",
+        "role": "legacy stat aggregation engine"
+      },
+      {
+        "path": "backend/app/engines/stat_resolution_pipeline.py",
+        "role": "stat resolution pipeline"
+      },
+      {
+        "path": "backend/app/game_data/game_data_loader.py",
+        "role": "legacy game data loader"
+      }
+    ],
+    "frontend_entrypoints": [
+      {
+        "path": "frontend/src/components/features/build/BuildPlannerPage.tsx",
+        "role": "frontend planner page"
+      },
+      {
+        "path": "frontend/src/components/features/build-workspace/UnifiedBuildPage.tsx",
+        "role": "frontend build workspace"
+      },
+      {
+        "path": "frontend/src/lib/crafting.ts",
+        "role": "frontend crafting helpers"
+      },
+      {
+        "path": "frontend/src/lib/simulation.ts",
+        "role": "frontend simulation helpers"
+      },
+      {
+        "path": "frontend/src/services/buildApi.ts",
+        "role": "frontend build API client"
+      },
+      {
+        "path": "frontend/src/services/craftingApi.ts",
+        "role": "frontend crafting API client"
+      }
+    ],
+    "scan_note": "Static inventory only; future remap phases need behavioral golden tests before production switching.",
+    "scanned_dependency_file_count": 465,
+    "scanned_dependency_files": [
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/routes/admin.py"
+      },
+      {
+        "entrypoint_hint": "legacy affix API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/routes/affixes.py"
+      },
+      {
+        "entrypoint_hint": "analysis API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "item",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/analysis.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/routes/auth.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/routes/bis_search.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/builds.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "item",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/compare.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/routes/conditional.py"
+      },
+      {
+        "entrypoint_hint": "crafting API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "item",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/routes/craft.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/routes/debug.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "game_data"
+        ],
+        "path": "backend/app/routes/entities.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "idol",
+          "item",
+          "passive",
+          "planner",
+          "reference",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/routes/experimental.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/routes/health.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "passive",
+          "planner",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/import_route.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/routes/jobs.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "game_data",
+          "item",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/load.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build"
+        ],
+        "path": "backend/app/routes/meta.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/routes/multi_target.py"
+      },
+      {
+        "entrypoint_hint": "optimizer API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/routes/optimize.py"
+      },
+      {
+        "entrypoint_hint": "passive API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "constants",
+          "passive",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/routes/passives.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "craft",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/routes/profile.py"
+      },
+      {
+        "entrypoint_hint": "production reference API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "passive",
+          "reference",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/routes/ref.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/report.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/rotation.py"
+      },
+      {
+        "entrypoint_hint": "simulation API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/simulate.py"
+      },
+      {
+        "entrypoint_hint": "skill API route",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/routes/skills.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "reference"
+        ],
+        "path": "backend/app/routes/version.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_route",
+        "matched_keywords": [
+          "build"
+        ],
+        "path": "backend/app/routes/views.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/services/affix_catalog_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "game_data",
+          "item",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/services/build_analysis_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/build_report_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "build",
+          "item",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/services/build_service.py"
+      },
+      {
+        "entrypoint_hint": "crafting service",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "item",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/services/craft_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/discord_notifier.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "item",
+          "planner",
+          "reference",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/services/forge_safe_affix_comparison_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "build",
+          "planner"
+        ],
+        "path": "backend/app/services/importers/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "skill"
+        ],
+        "path": "backend/app/services/importers/base_importer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "planner"
+        ],
+        "path": "backend/app/services/importers/importer_factory.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "idol",
+          "item",
+          "passive",
+          "planner",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/services/importers/lastepochtools_importer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "idol",
+          "item",
+          "passive",
+          "planner",
+          "reference",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/importers/maxroll_importer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/meta_analytics_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/services/multi_target_encounter.py"
+      },
+      {
+        "entrypoint_hint": "passive stat resolver",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "build",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/passive_stat_resolver.py"
+      },
+      {
+        "entrypoint_hint": "simulation service",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "passive",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/simulation_service.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "build",
+          "item",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/services/skill_tree_resolver.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_service",
+        "matched_keywords": [
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/services/state_encounter_integration.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "craft",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/engines/affix_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "item"
+        ],
+        "path": "backend/app/engines/base_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/boss_encounter.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "reference",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/build_optimizer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/build_serializer.py"
+      },
+      {
+        "entrypoint_hint": "combat DPS engine",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "item",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/combat_engine.py"
+      },
+      {
+        "entrypoint_hint": "combat simulator",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/combat_simulator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "item",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/engines/comparison_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/corruption_scaler.py"
+      },
+      {
+        "entrypoint_hint": "crafting math engine",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "craft",
+          "game_data",
+          "item",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/engines/craft_engine.py"
+      },
+      {
+        "entrypoint_hint": "crafting simulator",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "craft",
+          "game_data",
+          "item",
+          "simulate",
+          "simulation"
+        ],
+        "path": "backend/app/engines/craft_simulator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "passive",
+          "stat"
+        ],
+        "path": "backend/app/engines/defense_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "craft",
+          "game_data",
+          "reference",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/efficiency_scorer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "craft",
+          "item",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/engines/fp_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "item",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/gear_upgrade_ranker.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "item"
+        ],
+        "path": "backend/app/engines/item_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "item",
+          "passive",
+          "reference",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/optimization_engine.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "reference",
+          "simulate",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/sensitivity_analyzer.py"
+      },
+      {
+        "entrypoint_hint": "legacy stat aggregation engine",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "passive",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/engines/stat_engine.py"
+      },
+      {
+        "entrypoint_hint": "stat resolution pipeline",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "game_data",
+          "item",
+          "passive",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/stat_resolution_pipeline.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/engines/upgrade_ranker.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_engine",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "passive",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/engines/validators.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_stats",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/stats/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_stats",
+        "matched_keywords": [
+          "build",
+          "item",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/stats/conditional_stats.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_stats",
+        "matched_keywords": [
+          "build",
+          "reference",
+          "stat"
+        ],
+        "path": "backend/app/stats/derived_stats.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_stats",
+        "matched_keywords": [
+          "build",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/stats/runtime_context.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/ailment_duration_scaling.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/ailment_scaling.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build"
+        ],
+        "path": "backend/app/domain/ailment_stacking.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/ailments.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/armor.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/armor_shred.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/buff_duration_scaling.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "stat"
+        ],
+        "path": "backend/app/domain/buff_snapshot.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "passive",
+          "stat"
+        ],
+        "path": "backend/app/domain/build_state.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "item"
+        ],
+        "path": "backend/app/domain/calculators/affix_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/ailment_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/conditional_modifier_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "skill",
+          "unique"
+        ],
+        "path": "backend/app/domain/calculators/conversion_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants"
+        ],
+        "path": "backend/app/domain/calculators/crit_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/damage_type_router.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/enemy_mitigation_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/final_damage_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/increased_damage_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/skill_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/speed_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/calculators/stat_calculator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/combat_timeline.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/domain/combat_validation.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/cooldown.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/critical.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item"
+        ],
+        "path": "backend/app/domain/damage_conversion.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/dodge.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "item",
+          "reference",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/enemy.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "simulate",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/enemy_behavior.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "constants",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/domain/equipment_set.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "skill"
+        ],
+        "path": "backend/app/domain/fight_simulator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "simulate",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/domain/full_combat_loop.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/domain/item.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/mana.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "simulation"
+        ],
+        "path": "backend/app/domain/multi_target.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "skill"
+        ],
+        "path": "backend/app/domain/on_kill.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/passive.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/domain/penetration.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build"
+        ],
+        "path": "backend/app/domain/proc_chain.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "skill"
+        ],
+        "path": "backend/app/domain/registries/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/domain/registries/affix_registry.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/registries/enemy_registry.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/registries/skill_registry.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "item"
+        ],
+        "path": "backend/app/domain/resistance.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "item"
+        ],
+        "path": "backend/app/domain/resistance_shred.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/domain/rotation.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/skill.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/skill_modifiers.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "backend/app/domain/speed_scaling.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/domain/stability.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "build",
+          "stat"
+        ],
+        "path": "backend/app/domain/stat_groups.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/status_interactions.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "item",
+          "simulate",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/timeline.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/domain/triggers.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_domain",
+        "matched_keywords": [
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/domain/ward.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "game_data",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/game_data/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "reference",
+          "simulation",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/affix_diagnostic_consumer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "game_data",
+          "idol",
+          "item",
+          "passive",
+          "reference",
+          "simulation",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/bundle_compat.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/bundle_item_adapter_report.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "game_data",
+          "item"
+        ],
+        "path": "backend/app/game_data/bundle_item_adapter_translations.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "constants",
+          "game_data",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/bundle_item_diff.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "game_data",
+          "item"
+        ],
+        "path": "backend/app/game_data/bundle_item_mapping_review.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/bundle_item_type_context_report.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "game_data",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/bundle_item_type_dry_run_resolver.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "game_data",
+          "stat"
+        ],
+        "path": "backend/app/game_data/classes.json"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "craft",
+          "game_data",
+          "passive",
+          "reference",
+          "simulation",
+          "skill"
+        ],
+        "path": "backend/app/game_data/constants.json"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "simulation",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/controlled_affix_per_affix_diagnostic.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "simulation",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/controlled_affix_resolver_comparison.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "reference",
+          "simulation",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/controlled_affix_resolver_prototype.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "item",
+          "reference",
+          "simulation",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/controlled_modifier_resolver_comparison.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "item",
+          "reference",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/game_data/controlled_modifier_resolver_prototype.py"
+      },
+      {
+        "entrypoint_hint": "legacy game data loader",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "game_data",
+          "item",
+          "passive",
+          "reference",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/game_data_loader.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "item",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_fresh_sidecar_diagnostic.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "game_data",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_import_context_report.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_import_context_sidecar.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_import_context_sidecar_validator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_import_stage_context_report.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "item",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_sidecar_diagnostic_comparison.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "game_data",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/game_data/le_tools_sidecar_diagnostic_consumer.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "item",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/game_data/malformed_tier_value_shape_validator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "reference",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/game_data/missing_modifier_reference_mapping_validator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "game_data",
+          "idol",
+          "item",
+          "reference",
+          "simulation",
+          "stat"
+        ],
+        "path": "backend/app/game_data/modifier_unresolved_category_triage.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "item",
+          "passive"
+        ],
+        "path": "backend/app/game_data/passive_tree_validator.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "game_data",
+          "item",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "backend/app/game_data/pipeline.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "legacy_game_data",
+        "matched_keywords": [
+          "build",
+          "game_data",
+          "skill",
+          "stat"
+        ],
+        "path": "backend/app/game_data/skills.json"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "craft",
+          "item",
+          "stat"
+        ],
+        "path": "backend/app/constants/__init__.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "idol",
+          "item",
+          "unique"
+        ],
+        "path": "backend/app/constants/base_type_id_to_item_type_id.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "passive",
+          "reference",
+          "stat"
+        ],
+        "path": "backend/app/constants/cache.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants"
+        ],
+        "path": "backend/app/constants/classes.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "stat"
+        ],
+        "path": "backend/app/constants/combat.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "affix",
+          "constants",
+          "craft",
+          "item",
+          "planner"
+        ],
+        "path": "backend/app/constants/crafting.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants"
+        ],
+        "path": "backend/app/constants/damage_types.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "passive",
+          "stat"
+        ],
+        "path": "backend/app/constants/defense.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "idol"
+        ],
+        "path": "backend/app/constants/equipment_slots.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "idol",
+          "item"
+        ],
+        "path": "backend/app/constants/game_type_to_item_type_id.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "item",
+          "unique"
+        ],
+        "path": "backend/app/constants/item_rarities.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "idol",
+          "item"
+        ],
+        "path": "backend/app/constants/item_type_ids.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "idol",
+          "item"
+        ],
+        "path": "backend/app/constants/item_type_to_slot.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "backend_constants",
+        "matched_keywords": [
+          "constants",
+          "item",
+          "unique"
+        ],
+        "path": "backend/app/constants/sub_type_id_to_item_type_id.py"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/affix-catalog.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "item",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/advanced-analysis-accordion.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/build-score-card.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/offense-defense-cards.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/primary-skill-breakdown.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/responsive-layout.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis/skills-summary-table.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "item",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/analysis-panel.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "craft",
+          "simulation",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/crafting-simulation.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "item",
+          "passive",
+          "skill",
+          "stat",
+          "unique"
+        ],
+        "path": "frontend/src/__tests__/components/data-management.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "item",
+          "planner",
+          "simulation",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/navigation.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "item",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/components/ui-utilities.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "constants",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/constants/stat-benchmarks.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "constants",
+          "planner",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/constants/stat-labels.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/design-system.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "passive",
+          "simulate",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/hooks/use-debounced-analysis.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/hooks/use-undo-redo.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "item",
+          "planner",
+          "skill"
+        ],
+        "path": "frontend/src/__tests__/integration/layout.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "build",
+          "craft",
+          "passive",
+          "planner",
+          "simulation",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/integration/workspace-routes.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "game_data",
+          "item"
+        ],
+        "path": "frontend/src/__tests__/lib/v2-api-envelope.test.ts"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "game_data",
+          "idol",
+          "item",
+          "planner",
+          "reference",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/forge-safe-affixes-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "build",
+          "passive",
+          "planner",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/unified-build-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "game_data",
+          "passive",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-class-mastery-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "affix",
+          "game_data",
+          "idol",
+          "item",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-idols-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "game_data",
+          "item",
+          "reference",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-items-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "game_data",
+          "passive",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-passives-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "game_data",
+          "skill",
+          "stat"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-skills-debug-page.test.tsx"
+      },
+      {
+        "entrypoint_hint": "",
+        "kind": "frontend",
+        "matched_keywords": [
+          "game_data",
+          "item",
+          "reference",
+          "stat",
+          "unique"
+        ],
+        "path": "frontend/src/__tests__/pages/v2-unique-set-debug-page.test.tsx"
+      }
+    ]
+  },
+  "safety_confirmations": {
+    "ambiguous_skill_reference_count": 1,
+    "blocked_modifier_count": 19398,
+    "crafting_behavior_changed": false,
+    "eligible_planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "safe_normalization_family_count": 0,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "unresolved_skill_reference_count": 2,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "summary": {
+    "blocked_modifier_count": 19398,
+    "dependency_category_count": 15,
+    "eligible_planner_calculable_count": 0,
+    "frontend_planner_entrypoint_count": 6,
+    "generated_at": "2026-05-13T20:59:32.528525+00:00",
+    "legacy_or_hardcoded_source_count": 12,
+    "production_consumed": false,
+    "production_planner_entrypoint_count": 18,
+    "remap_phase_count": 9,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "status": "ready_for_review",
+    "value_normalization_status": "audit_only"
+  },
+  "tests_required_before_remap": [
+    {
+      "area": "planner output",
+      "requirement": "golden baseline tests for representative builds"
+    },
+    {
+      "area": "crafting",
+      "requirement": "legacy versus v2 dry-run comparison fixtures"
+    },
+    {
+      "area": "simulation",
+      "requirement": "combat/stat output parity tests before any consumption"
+    },
+    {
+      "area": "value scale",
+      "requirement": "source contracts or golden baselines for every promoted family"
+    },
+    {
+      "area": "skill identity",
+      "requirement": "guards that unresolved/ambiguous refs remain blocked"
+    },
+    {
+      "area": "unsupported mechanics",
+      "requirement": "tests that text-only/scripted behavior never enters stable math"
+    },
+    {
+      "area": "API compatibility",
+      "requirement": "frontend debug and route envelope compatibility tests"
+    }
+  ]
+}
