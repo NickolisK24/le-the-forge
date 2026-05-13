@@ -1,8 +1,17 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
+import { V2EnvelopePanels } from "@/components/v2/V2EnvelopePanels";
+import {
+  getV2ErrorMessage,
+  getV2Records,
+  getV2Summary,
+  summarizeMap,
+  summarizeV2Support,
+  type V2ApiEnvelope,
+} from "@/lib/v2ApiEnvelope";
 import type { CanonicalSkill } from "@/types";
 
-interface V2SkillResponse {
+interface V2SkillResponse extends V2ApiEnvelope<CanonicalSkill> {
   success: boolean;
   read_only?: boolean;
   production_consumer?: boolean;
@@ -14,7 +23,6 @@ interface V2SkillResponse {
   result_count?: number;
   records?: CanonicalSkill[];
   summary?: Record<string, unknown>;
-  error?: string;
   message?: string;
 }
 
@@ -51,7 +59,7 @@ export default function V2SkillsDebugPage() {
     try {
       const result = await fetchV2Skills(nextLimit, nextQuery, nextClassId);
       setData(result);
-      if (!result.success) setError(result.message || result.error || "Debug endpoint returned an error.");
+      if (!result.success) setError(getV2ErrorMessage(result));
     } catch (err) {
       setData(null);
       setError(err instanceof Error ? err.message : String(err));
@@ -71,19 +79,20 @@ export default function V2SkillsDebugPage() {
     load(limit, query, classId);
   }
 
-  const records = data?.records ?? [];
+  const records = getV2Records(data);
+  const responseSummary = getV2Summary(data);
   const summary = useMemo(
     () => [
       ["Data source", data?.data_source ?? "n/a"],
       ["Skills", data?.total_skills ?? "n/a"],
       ["Trees", data?.total_skill_trees ?? "n/a"],
       ["Nodes", data?.total_skill_nodes ?? "n/a"],
-      ["Support", summarizeMap(data?.summary, "support_status_counts")],
-      ["Behavior", summarizeMap(data?.summary, "skill_special_behavior_classification_counts")],
+      ["Support", summarizeV2Support(data)],
+      ["Behavior", summarizeMap(responseSummary, "skill_special_behavior_classification_counts")],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
     ],
-    [data],
+    [data, responseSummary],
   );
 
   return (
@@ -129,6 +138,7 @@ export default function V2SkillsDebugPage() {
               </div>
             ))}
           </section>
+          <V2EnvelopePanels response={data} />
           <section className="overflow-hidden rounded border border-[#2a3050] bg-[#10152a]">
             <div className="border-b border-[#2a3050] p-4">
               <h2 className="text-sm font-semibold text-gray-100">Skills</h2>
@@ -169,12 +179,6 @@ export default function V2SkillsDebugPage() {
       )}
     </div>
   );
-}
-
-function summarizeMap(summary: Record<string, unknown> | undefined, key: string): string {
-  const value = summary?.[key];
-  if (!value || typeof value !== "object" || Array.isArray(value)) return "n/a";
-  return Object.entries(value as Record<string, unknown>).map(([name, count]) => `${name}: ${count}`).join(", ");
 }
 
 function statusBadge(status: string) {

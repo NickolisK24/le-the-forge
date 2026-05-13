@@ -1,8 +1,17 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
+import { V2EnvelopePanels } from "@/components/v2/V2EnvelopePanels";
+import {
+  getV2ErrorMessage,
+  getV2Records,
+  getV2SourcePath,
+  getV2Summary,
+  summarizeMap,
+  type V2ApiEnvelope,
+} from "@/lib/v2ApiEnvelope";
 import type { CanonicalSet, CanonicalUnique } from "@/types";
 
-interface V2UniqueSetResponse {
+interface V2UniqueSetResponse extends V2ApiEnvelope<CanonicalUnique | CanonicalSet> {
   success: boolean;
   experimental?: boolean;
   read_only?: boolean;
@@ -16,7 +25,6 @@ interface V2UniqueSetResponse {
   result_count?: number;
   records?: Array<CanonicalUnique | CanonicalSet>;
   summary?: Record<string, unknown>;
-  error?: string;
   message?: string;
 }
 
@@ -58,7 +66,7 @@ export default function V2UniqueSetDebugPage() {
     try {
       const result = await fetchV2UniqueSets(nextKind, nextLimit, nextQuery, nextSlot);
       setData(result);
-      if (!result.success) setError(result.message || result.error || "Debug endpoint returned an error.");
+      if (!result.success) setError(getV2ErrorMessage(result));
     } catch (err) {
       setData(null);
       setError(err instanceof Error ? err.message : String(err));
@@ -78,7 +86,8 @@ export default function V2UniqueSetDebugPage() {
     load(kind, limit, query, slot);
   }
 
-  const records = data?.records ?? [];
+  const records = getV2Records(data);
+  const responseSummary = getV2Summary(data);
   const summary = useMemo(
     () => [
       ["Data source", data?.data_source ?? "n/a"],
@@ -86,11 +95,11 @@ export default function V2UniqueSetDebugPage() {
       ["Set groups", data?.total_sets ?? "n/a"],
       ["Set items", data?.total_set_items ?? "n/a"],
       ["Set bonuses", data?.total_set_bonuses ?? "n/a"],
-      ["Special", summarizeMap(data?.summary, "special_mechanic_classification_counts")],
+      ["Special", summarizeMap(responseSummary, "special_mechanic_classification_counts")],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
     ],
-    [data],
+    [data, responseSummary],
   );
 
   return (
@@ -185,8 +194,10 @@ export default function V2UniqueSetDebugPage() {
 
           <section className="rounded border border-[#2a3050] bg-[#10152a] p-4">
             <h2 className="text-sm font-semibold text-gray-100">Source</h2>
-            <p className="mt-2 break-all font-mono text-xs text-gray-400">{data.source_path}</p>
+            <p className="mt-2 break-all font-mono text-xs text-gray-400">{getV2SourcePath(data)}</p>
           </section>
+
+          <V2EnvelopePanels response={data} />
 
           <section className="overflow-hidden rounded border border-[#2a3050] bg-[#10152a]">
             <div className="border-b border-[#2a3050] p-4">
@@ -226,14 +237,6 @@ export default function V2UniqueSetDebugPage() {
       )}
     </div>
   );
-}
-
-function summarizeMap(summary: Record<string, unknown> | undefined, key: string): string {
-  const value = summary?.[key];
-  if (!value || typeof value !== "object" || Array.isArray(value)) return "n/a";
-  return Object.entries(value as Record<string, unknown>)
-    .map(([name, count]) => `${name}: ${count}`)
-    .join(", ");
 }
 
 function statusBadge(status: string) {

@@ -1,8 +1,18 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
+import { V2EnvelopePanels } from "@/components/v2/V2EnvelopePanels";
+import {
+  getV2ErrorMessage,
+  getV2Records,
+  getV2SourcePath,
+  getV2Summary,
+  summarizeMap,
+  summarizeV2Support,
+  type V2ApiEnvelope,
+} from "@/lib/v2ApiEnvelope";
 import type { CanonicalAffix } from "@/types";
 
-interface V2AffixDebugResponse {
+interface V2AffixDebugResponse extends V2ApiEnvelope<CanonicalAffix> {
   success: boolean;
   experimental?: boolean;
   debug_only?: boolean;
@@ -25,7 +35,6 @@ interface V2AffixDebugResponse {
   result_count?: number;
   records?: CanonicalAffix[];
   summary?: Record<string, unknown>;
-  error?: string;
   message?: string;
 }
 
@@ -76,7 +85,7 @@ export default function ForgeSafeAffixesDebugPage() {
       const response = await fetchForgeSafeAffixes(nextLimit, nextAffixId, nextIncludeModifiers);
       setData(response);
       if (!response.success) {
-        setError(response.message || response.error || "Debug endpoint returned an error.");
+        setError(getV2ErrorMessage(response));
       }
     } catch (err) {
       setError(err instanceof Error ? err.message : String(err));
@@ -98,7 +107,8 @@ export default function ForgeSafeAffixesDebugPage() {
     load(limit, affixIdInput, includeModifiers);
   }
 
-  const records = data?.records ?? data?.sample_records ?? [];
+  const records = getV2Records(data);
+  const responseSummary = getV2Summary(data);
   const summary = useMemo(
     () => [
       ["Data source", data?.data_source ?? "n/a"],
@@ -107,13 +117,13 @@ export default function ForgeSafeAffixesDebugPage() {
       ["Warnings", data?.warning_count ?? "n/a"],
       ["Export policy", data?.export_policy ?? "n/a"],
       ["Export status", data?.export_status ?? "n/a"],
-      ["Support", summarizeMap(data?.summary, "support_status_counts")],
-      ["Domains", summarizeMap(data?.summary, "affix_domain_counts")],
+      ["Support", summarizeV2Support(data)],
+      ["Domains", summarizeMap(responseSummary, "affix_domain_counts")],
       ["Debug only", String((data?.debug_only ?? data?.experimental) ?? false)],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
     ],
-    [data],
+    [data, responseSummary],
   );
 
   return (
@@ -210,8 +220,10 @@ export default function ForgeSafeAffixesDebugPage() {
 
           <section className="rounded border border-[#2a3050] bg-[#10152a] p-4">
             <h2 className="text-sm font-semibold text-gray-100">Source</h2>
-            <p className="mt-2 break-all font-mono text-xs text-gray-400">{data.source_path}</p>
+            <p className="mt-2 break-all font-mono text-xs text-gray-400">{getV2SourcePath(data)}</p>
           </section>
+
+          <V2EnvelopePanels response={data} />
 
           <section className="rounded border border-[#2a3050] bg-[#10152a] p-4">
             <h2 className="text-sm font-semibold text-gray-100">Warnings</h2>
@@ -272,14 +284,6 @@ export default function ForgeSafeAffixesDebugPage() {
       )}
     </div>
   );
-}
-
-function summarizeMap(summary: Record<string, unknown> | undefined, key: string): string {
-  const value = summary?.[key];
-  if (!value || typeof value !== "object" || Array.isArray(value)) return "n/a";
-  return Object.entries(value as Record<string, unknown>)
-    .map(([name, count]) => `${name}: ${count}`)
-    .join(", ");
 }
 
 function statusBadge(status: string) {

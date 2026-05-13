@@ -1,8 +1,17 @@
 import { FormEvent, useEffect, useMemo, useState } from "react";
 
+import { V2EnvelopePanels } from "@/components/v2/V2EnvelopePanels";
+import {
+  getV2ErrorMessage,
+  getV2Records,
+  getV2Summary,
+  summarizeMap,
+  summarizeV2Support,
+  type V2ApiEnvelope,
+} from "@/lib/v2ApiEnvelope";
 import type { CanonicalClass, CanonicalMastery } from "@/types";
 
-interface V2ClassMasteryResponse {
+interface V2ClassMasteryResponse extends V2ApiEnvelope<CanonicalClass | CanonicalMastery> {
   success: boolean;
   read_only?: boolean;
   production_consumer?: boolean;
@@ -13,7 +22,6 @@ interface V2ClassMasteryResponse {
   result_count?: number;
   records?: Array<CanonicalClass | CanonicalMastery>;
   summary?: Record<string, unknown>;
-  error?: string;
   message?: string;
 }
 
@@ -51,7 +59,7 @@ export default function V2ClassMasteryDebugPage() {
     try {
       const result = await fetchV2ClassMastery(nextKind, nextLimit, nextQuery, nextClassId);
       setData(result);
-      if (!result.success) setError(result.message || result.error || "Debug endpoint returned an error.");
+      if (!result.success) setError(getV2ErrorMessage(result));
     } catch (err) {
       setData(null);
       setError(err instanceof Error ? err.message : String(err));
@@ -71,18 +79,19 @@ export default function V2ClassMasteryDebugPage() {
     load(kind, limit, query, classId);
   }
 
-  const records = data?.records ?? [];
+  const records = getV2Records(data);
+  const responseSummary = getV2Summary(data);
   const summary = useMemo(
     () => [
       ["Data source", data?.data_source ?? "n/a"],
       ["Classes", data?.total_classes ?? "n/a"],
       ["Masteries", data?.total_masteries ?? "n/a"],
-      ["Support", summarizeMap(data?.summary, "support_status_counts")],
-      ["Trust", summarizeMap(data?.summary, "trust_level_counts")],
+      ["Support", summarizeV2Support(data)],
+      ["Trust", summarizeMap(responseSummary, "trust_level_counts")],
       ["Read only", String(data?.read_only ?? false)],
       ["Production consumer", String(data?.production_consumer ?? false)],
     ],
-    [data],
+    [data, responseSummary],
   );
 
   return (
@@ -135,6 +144,7 @@ export default function V2ClassMasteryDebugPage() {
               </div>
             ))}
           </section>
+          <V2EnvelopePanels response={data} />
           <section className="overflow-hidden rounded border border-[#2a3050] bg-[#10152a]">
             <div className="border-b border-[#2a3050] p-4">
               <h2 className="text-sm font-semibold text-gray-100">Records</h2>
@@ -173,12 +183,6 @@ export default function V2ClassMasteryDebugPage() {
       )}
     </div>
   );
-}
-
-function summarizeMap(summary: Record<string, unknown> | undefined, key: string): string {
-  const value = summary?.[key];
-  if (!value || typeof value !== "object" || Array.isArray(value)) return "n/a";
-  return Object.entries(value as Record<string, unknown>).map(([name, count]) => `${name}: ${count}`).join(", ");
 }
 
 function statusBadge(status: string) {
