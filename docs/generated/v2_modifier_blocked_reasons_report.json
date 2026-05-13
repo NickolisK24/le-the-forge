@@ -1,0 +1,459 @@
+{
+  "examples": {
+    "operation_unknown": [
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_1:passive_node_ac_1_1_effect_0:0:eed3008912",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:1",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:21"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_1:passive_node_ac_1_1_effect_1:1:adf1b815f7",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:1",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:27"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_0:passive_node_ac_1_0_effect_0:0:8009f0edcd",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:0",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:10"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_0:passive_node_ac_1_0_effect_1:1:e32c882c3e",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:0",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:armor"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_0:0:cc9cbeb4b2",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_1:1:697acdee59",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_2:2:17407c3be3",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_0:0:4d614ed224",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:attack_speed"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_1:1:79d95ebda7",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:cast_speed"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_2:2:c17e45248d",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      }
+    ],
+    "source_identity_not_resolved": [
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cost_mana_cost:0:1d089d3a49",
+        "operation": "cost",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:cost_cost_mana_cost"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cooldown_charges_per_second:0:44345c5de5",
+        "operation": "cooldown",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:cooldown_cooldown_charges_per_second"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cooldown_max_charges:0:523290981a",
+        "operation": "cooldown",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:cooldown_cooldown_max_charges"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cast_data_speed_multiplier:0:2b45539764",
+        "operation": "duration",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_speed_multiplier"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cast_data_speed_scaler:0:11dd6c793d",
+        "operation": "duration",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_speed_scaler"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cast_data_use_delay:0:354e3eb363",
+        "operation": "duration",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_use_delay"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_ab0lh:skill_ab0lh_cast_data_use_duration:0:f666f5d9ea",
+        "operation": "duration",
+        "source_id": "skill:ab0lh",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_use_duration"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_aacfl:skill_aacfl_cost_mana_cost:0:58ab1ec737",
+        "operation": "cost",
+        "source_id": "skill:aacfl",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:cost_cost_mana_cost"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_aacfl:skill_aacfl_cast_data_speed_multiplier:0:7deeb250ed",
+        "operation": "duration",
+        "source_id": "skill:aacfl",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_speed_multiplier"
+      },
+      {
+        "canonical_modifier_id": "modifier:skill_structured_value:skill_aacfl:skill_aacfl_cast_data_speed_scaler:0:3f62d31f1a",
+        "operation": "duration",
+        "source_id": "skill:aacfl",
+        "source_type": "skill_structured_value",
+        "stat_id": "stat:duration_cast_data_speed_scaler"
+      }
+    ],
+    "special_behavior_not_calculable": [
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_0:passive_node_ac_1_0_effect_0:0:8009f0edcd",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:0",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:10"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_0:passive_node_ac_1_0_effect_1:1:e32c882c3e",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:0",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:armor"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_2:passive_node_ac_1_2_effect_0:0:aa810a2b2c",
+        "operation": "increased",
+        "source_id": "passive_node:ac_1:2",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:increased_damage"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_2:passive_node_ac_1_2_effect_1:1:7df1a75245",
+        "operation": "increased",
+        "source_id": "passive_node:ac_1:2",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:increased_minion_damage"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_0:0:cc9cbeb4b2",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_1:1:697acdee59",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_3:passive_node_ac_1_3_effect_2:2:17407c3be3",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:3",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_0:0:4d614ed224",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:attack_speed"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_1:1:79d95ebda7",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:cast_speed"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_55:passive_node_ac_1_55_effect_2:2:c17e45248d",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:55",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:54"
+      }
+    ],
+    "stat_id_unknown": [
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_5:passive_node_ac_1_5_effect_3:3:dc4a2befbd",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:5",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_6:passive_node_ac_1_6_effect_2:2:f18e0f3899",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:6",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_7:passive_node_ac_1_7_effect_3:3:6b68c98fb7",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:7",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_56:passive_node_ac_1_56_effect_2:2:9ce90477ae",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:56",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_56:passive_node_ac_1_56_effect_3:3:5f640dd71f",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:56",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_80:passive_node_ac_1_80_effect_1:1:00959dcb5d",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:80",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_83:passive_node_ac_1_83_effect_2:2:6c4e956991",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:83",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_16:passive_node_ac_1_16_effect_2:2:68f605daa5",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:16",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_13:passive_node_ac_1_13_effect_1:1:76fa333bcd",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:13",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      },
+      {
+        "canonical_modifier_id": "modifier:passive_node_modifier:passive_node_ac_1_75:passive_node_ac_1_75_effect_3:3:ff5b3865f6",
+        "operation": "unknown",
+        "source_id": "passive_node:ac_1:75",
+        "source_type": "passive_node_modifier",
+        "stat_id": "stat:unknown"
+      }
+    ],
+    "support_status_not_trusted": [
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+        "operation": "flat",
+        "source_id": "affix:equipment:0",
+        "source_type": "affix",
+        "stat_id": "stat:added_penetration_void"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+        "operation": "increased",
+        "source_id": "affix:equipment:1",
+        "source_type": "affix",
+        "stat_id": "stat:increased_armour_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+        "operation": "increased",
+        "source_id": "affix:equipment:2",
+        "source_type": "affix",
+        "stat_id": "stat:increased_attackspeed_melee"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+        "operation": "flat",
+        "source_id": "affix:equipment:3",
+        "source_type": "affix",
+        "stat_id": "stat:added_blockchance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+        "operation": "increased",
+        "source_id": "affix:equipment:4",
+        "source_type": "affix",
+        "stat_id": "stat:increased_castspeed_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+        "operation": "increased",
+        "source_id": "affix:equipment:5",
+        "source_type": "affix",
+        "stat_id": "stat:increased_criticalchance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+        "operation": "flat",
+        "source_id": "affix:equipment:6",
+        "source_type": "affix",
+        "stat_id": "stat:added_criticalmultiplier_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+        "operation": "flat",
+        "source_id": "affix:equipment:7",
+        "source_type": "affix",
+        "stat_id": "stat:added_voidresistance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+        "operation": "flat",
+        "source_id": "affix:equipment:8",
+        "source_type": "affix",
+        "stat_id": "stat:added_dodgerating_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+        "operation": "increased",
+        "source_id": "affix:equipment:9",
+        "source_type": "affix",
+        "stat_id": "stat:increased_damage_elemental"
+      }
+    ],
+    "value_scale_not_planner_normalized": [
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+        "operation": "flat",
+        "source_id": "affix:equipment:0",
+        "source_type": "affix",
+        "stat_id": "stat:added_penetration_void"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+        "operation": "increased",
+        "source_id": "affix:equipment:1",
+        "source_type": "affix",
+        "stat_id": "stat:increased_armour_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+        "operation": "increased",
+        "source_id": "affix:equipment:2",
+        "source_type": "affix",
+        "stat_id": "stat:increased_attackspeed_melee"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+        "operation": "flat",
+        "source_id": "affix:equipment:3",
+        "source_type": "affix",
+        "stat_id": "stat:added_blockchance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+        "operation": "increased",
+        "source_id": "affix:equipment:4",
+        "source_type": "affix",
+        "stat_id": "stat:increased_castspeed_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+        "operation": "increased",
+        "source_id": "affix:equipment:5",
+        "source_type": "affix",
+        "stat_id": "stat:increased_criticalchance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+        "operation": "flat",
+        "source_id": "affix:equipment:6",
+        "source_type": "affix",
+        "stat_id": "stat:added_criticalmultiplier_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+        "operation": "flat",
+        "source_id": "affix:equipment:7",
+        "source_type": "affix",
+        "stat_id": "stat:added_voidresistance_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+        "operation": "flat",
+        "source_id": "affix:equipment:8",
+        "source_type": "affix",
+        "stat_id": "stat:added_dodgerating_none"
+      },
+      {
+        "canonical_modifier_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+        "operation": "increased",
+        "source_id": "affix:equipment:9",
+        "source_type": "affix",
+        "stat_id": "stat:increased_damage_elemental"
+      }
+    ]
+  },
+  "generated_on": "2026-05-13T01:43:33.429693+00:00",
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_stat_modifier_normalization",
+    "stable_planner_consumed": false
+  },
+  "schema_version": "v2.modifier_blocked_reasons_report.1",
+  "summary": {
+    "blocked_modifier_count": 19398,
+    "blocked_reason_counts": {
+      "operation_unknown": 11606,
+      "source_identity_not_resolved": 11924,
+      "special_behavior_not_calculable": 13036,
+      "stat_id_unknown": 4714,
+      "support_status_not_trusted": 19398,
+      "value_scale_not_planner_normalized": 19398
+    },
+    "modifier_count": 19398,
+    "production_consumed": false
+  }
+}
