@@ -56,8 +56,8 @@ describe("v2 trust summary panels", () => {
       />,
     );
 
-    expect(screen.getByText("Value normalization is still audit-only.")).toBeInTheDocument();
-    expect(screen.getByText("This mechanic is not currently planner-calculable.")).toBeInTheDocument();
+    expect(screen.getAllByText("Value normalization is still audit-only.")).not.toHaveLength(0);
+    expect(screen.getAllByText("This mechanic is not currently planner-calculable.")).not.toHaveLength(0);
   });
 
   it("warning copy does not imply planner calculation support", () => {

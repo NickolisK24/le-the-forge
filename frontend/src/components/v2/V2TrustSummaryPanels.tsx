@@ -1,6 +1,7 @@
 import type { V2ApiEnvelope } from "@/lib/v2ApiEnvelope";
 import { getV2ProvenanceSummary, getV2WarningSummary } from "@/lib/v2TrustSummaries";
 
+import { V2LimitationNotice } from "./V2LimitationNotice";
 import { V2StatusBadgeGroup } from "./V2StatusBadgeGroup";
 
 interface V2TrustSummaryPanelProps {
@@ -32,6 +33,9 @@ export function V2WarningSummaryPanel({ response }: V2TrustSummaryPanelProps) {
           <li key={message}>{message}</li>
         ))}
       </ul>
+      <div className="mt-3">
+        <V2LimitationNotice codes={summary.limitationCodes} />
+      </div>
     </div>
   );
 }

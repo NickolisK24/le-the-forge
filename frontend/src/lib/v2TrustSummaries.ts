@@ -1,5 +1,6 @@
 import type { V2ApiEnvelope } from "@/lib/v2ApiEnvelope";
 import { getV2SourcePath, getV2Summary, isRecord, summarizeObject } from "@/lib/v2ApiEnvelope";
+import { getV2LimitationCodes, getV2LimitationCopy, type V2LimitationCode } from "@/lib/v2Limitations";
 
 export interface V2ProvenanceSummary {
   hasProvenance: boolean;
@@ -12,6 +13,7 @@ export interface V2ProvenanceSummary {
 export interface V2WarningSummary {
   messages: string[];
   hasWarnings: boolean;
+  limitationCodes: V2LimitationCode[];
 }
 
 export function getV2ProvenanceSummary(response: V2ApiEnvelope | null | undefined): V2ProvenanceSummary {
@@ -56,7 +58,11 @@ export function getV2ProvenanceSummary(response: V2ApiEnvelope | null | undefine
 
 export function getV2WarningSummary(response: V2ApiEnvelope | null | undefined): V2WarningSummary {
   if (!response) {
-    return { hasWarnings: true, messages: ["No response data is available for trust and warning summaries."] };
+    return {
+      hasWarnings: true,
+      limitationCodes: ["unknown_limitation"],
+      messages: ["No response data is available for trust and warning summaries."],
+    };
   }
 
   const messages = new Set<string>();
@@ -72,31 +78,33 @@ export function getV2WarningSummary(response: V2ApiEnvelope | null | undefined):
   const supportSummary = response.support_summary;
   const debug = response.debug;
   const meta = response.meta;
+  const limitationCodes = getV2LimitationCodes(response);
 
   if (hasPositiveKey(supportSummary, "unsupported") || hasPositiveKey(summary?.support_status_counts, "unsupported")) {
-    messages.add("Some data is unsupported and remains visible for inspection only.");
+    messages.add(getV2LimitationCopy("unsupported_mechanics").compact);
   }
   if (hasAuditOnly(response, summary)) {
-    messages.add("Value normalization is still audit-only.");
+    messages.add(getV2LimitationCopy("audit_only_value_normalization").compact);
   }
   if (isDisplayOnly(response)) {
-    messages.add("This data is display-only and is not used for planner calculations.");
+    messages.add(getV2LimitationCopy("display_only").compact);
   }
   if (stableCalculableUnavailable(response, summary)) {
-    messages.add("This mechanic is not currently planner-calculable.");
+    messages.add(getV2LimitationCopy("not_planner_calculable").compact);
   }
   if (hasBlockedReasons(response)) {
     messages.add(`Blocked reasons: ${summarizeObject(firstRecord(debug?.blocked_reason_counts, summary?.blocked_reason_counts))}`);
   }
   if (hasSkillIdentityGap(meta, debug, summary)) {
-    messages.add("Some skill identity references are unresolved.");
+    messages.add(getV2LimitationCopy("unresolved_skill_identity").compact);
   }
   if (getV2ProvenanceSummary(response).hasProvenance === false) {
-    messages.add("No provenance summary is available.");
+    messages.add(getV2LimitationCopy("missing_provenance").compact);
   }
 
   return {
     hasWarnings: messages.size > 0,
+    limitationCodes,
     messages: messages.size ? Array.from(messages) : ["No warnings or limitations are summarized for this response."],
   };
 }
