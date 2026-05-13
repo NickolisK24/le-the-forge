@@ -12,6 +12,7 @@ from typing import Any
 
 from flask import Blueprint, current_app, jsonify, request
 
+from app.api_contracts.v2 import standardize_v2_payload
 from app.normalization.v2 import (
     V2ModifierRegistry,
     V2ModifierRegistryError,
@@ -53,6 +54,21 @@ DEFAULT_V2_SKILL_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_skill_bundle.js
 DEFAULT_V2_SKILL_TREE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_skill_tree_bundle.json"
 DEFAULT_V2_STAT_REGISTRY_PATH = ROOT / "docs" / "generated" / "v2_stat_registry.json"
 DEFAULT_V2_MODIFIER_REGISTRY_PATH = ROOT / "docs" / "generated" / "v2_modifier_registry.json"
+
+
+@experimental_bp.after_request
+def _standardize_experimental_v2_contract(response):
+    """Add the shared v2 envelope to experimental v2 JSON responses."""
+
+    if not request.path.startswith("/experimental/v2/") or not response.is_json:
+        return response
+    payload = response.get_json(silent=True)
+    if not isinstance(payload, dict):
+        return response
+    standardized = standardize_v2_payload(payload, path=request.path, status_code=response.status_code)
+    response.set_data(current_app.json.dumps(standardized))
+    response.content_type = "application/json"
+    return response
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
