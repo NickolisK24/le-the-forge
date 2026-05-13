@@ -54,7 +54,9 @@ describe("ForgeSafeAffixesDebugPage", () => {
 
     render(<ForgeSafeAffixesDebugPage />);
 
-    expect(await screen.findByText(/summary\.exported_affix_records=2 does not match loaded record count 1\./)).toBeInTheDocument();
+    expect(
+      await screen.findAllByText(/summary\.exported_affix_records=2 does not match loaded record count 1\./),
+    ).not.toHaveLength(0);
   });
 
   it("uses limit and affix id controls when loading", async () => {
