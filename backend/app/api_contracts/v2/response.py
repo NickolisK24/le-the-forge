@@ -208,6 +208,8 @@ def _unresolved_count(summary: dict[str, Any]) -> int:
 
 def _domain_from_path(path: str) -> str:
     parts = [part for part in path.strip("/").split("/") if part]
+    if parts and parts[0] == "api":
+        parts = parts[1:]
     if len(parts) < 3 or parts[0] != "experimental" or parts[1] != "v2":
         return "unknown"
     domain = parts[2]

@@ -121,3 +121,24 @@ def test_v2_debug_routes_expose_identity_and_value_policy_status(app):
     modifier_debug = client.get("/experimental/v2/modifiers/debug").get_json()
     assert modifier_debug["debug"]["repository_debug_summary"]["modifiers"]["production_safe"] is False
     assert modifier_debug["support_summary"]["stable_calculable"] == 0
+
+
+def test_api_prefixed_v2_modifier_debug_route_matches_frontend_path(app):
+    response = app.test_client().get("/api/experimental/v2/modifiers/debug")
+
+    assert response.status_code == 200
+    body = response.get_json()
+    assert {"data", "meta", "support_summary", "warnings", "provenance", "debug"}.issubset(body)
+    assert body["meta"]["domain"] == "modifiers"
+    assert body["meta"]["read_only"] is True
+    assert body["meta"]["production_consumer"] is False
+    assert body["debug"]["repository_debug_summary"]["stats"]["stat_count"] == 2070
+    assert body["debug"]["repository_debug_summary"]["modifiers"]["modifier_count"] == 19398
+    modifier_summary = body["debug"]["repository_debug_summary"]["modifiers"]["summary"]
+    assert body["debug"]["repository_debug_summary"]["modifiers"]["production_safe"] is False
+    assert body["support_summary"]["stable_calculable"] == 0
+    assert modifier_summary["stable_calculable_count"] == 0
+    assert modifier_summary["value_scale_status_counts"]["source_units"] == 6248
+    assert modifier_summary["value_scale_status_counts"]["unknown"] == 13150
+    assert modifier_summary["blocked_reason_counts"]["value_scale_not_planner_normalized"] == 19398
+    assert modifier_summary["operation_counts"]["unknown"] == 11606

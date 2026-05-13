@@ -60,7 +60,7 @@ DEFAULT_V2_MODIFIER_REGISTRY_PATH = ROOT / "docs" / "generated" / "v2_modifier_r
 def _standardize_experimental_v2_contract(response):
     """Add the shared v2 envelope to experimental v2 JSON responses."""
 
-    if not request.path.startswith("/experimental/v2/") or not response.is_json:
+    if not _is_experimental_v2_path(request.path) or not response.is_json:
         return response
     payload = response.get_json(silent=True)
     if not isinstance(payload, dict):
@@ -69,6 +69,10 @@ def _standardize_experimental_v2_contract(response):
     response.set_data(current_app.json.dumps(standardized))
     response.content_type = "application/json"
     return response
+
+
+def _is_experimental_v2_path(path: str) -> bool:
+    return path.startswith("/experimental/v2/") or path.startswith("/api/experimental/v2/")
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])

@@ -29,7 +29,7 @@ interface V2StatsModifiersDebugResponse extends V2ApiEnvelope {
 }
 
 async function fetchStatsModifiersDebug(): Promise<V2StatsModifiersDebugResponse> {
-  const response = await fetch("/experimental/v2/modifiers/debug");
+  const response = await fetch("/api/experimental/v2/modifiers/debug");
   const json = await response.json().catch(() => null);
   if (!json || typeof json !== "object") {
     return {
