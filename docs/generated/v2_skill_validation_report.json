@@ -1,0 +1,803 @@
+{
+  "cross_reference": {
+    "class_mastery_skill_link_count": 63,
+    "class_mastery_skill_links": [
+      {
+        "class_mastery_skill_source_id": "skill_path:260926",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:261142",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:261173",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:261591",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262309",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262328",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262431",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262458",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262473",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262497",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262531",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262552",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262625",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262645",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262677",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262850",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262912",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262951",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262952",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:262953",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263025",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263035",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263053",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263498",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263704",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263788",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263799",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263800",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263816",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263834",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263841",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263852",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263853",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263871",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263905",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263955",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263956",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:263991",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264015",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264164",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264230",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264237",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264241",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264309",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264355",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264437",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264444",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264451",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264453",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264458",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264461",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264462",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264551",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264554",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264562",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264675",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264730",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264735",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264807",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264863",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264874",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264881",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      },
+      {
+        "class_mastery_skill_source_id": "skill_path:264922",
+        "resolved_skill_id": null,
+        "status": "unresolved"
+      }
+    ],
+    "manual_bridge_count": 0,
+    "resolved_skill_link_count": 0,
+    "unresolved_skill_link_count": 63,
+    "unresolved_skill_source_ids": [
+      "skill_path:260926",
+      "skill_path:261142",
+      "skill_path:261173",
+      "skill_path:261591",
+      "skill_path:262309",
+      "skill_path:262328",
+      "skill_path:262431",
+      "skill_path:262458",
+      "skill_path:262473",
+      "skill_path:262497",
+      "skill_path:262531",
+      "skill_path:262552",
+      "skill_path:262625",
+      "skill_path:262645",
+      "skill_path:262677",
+      "skill_path:262850",
+      "skill_path:262912",
+      "skill_path:262951",
+      "skill_path:262952",
+      "skill_path:262953",
+      "skill_path:263025",
+      "skill_path:263035",
+      "skill_path:263053",
+      "skill_path:263498",
+      "skill_path:263704",
+      "skill_path:263788",
+      "skill_path:263799",
+      "skill_path:263800",
+      "skill_path:263816",
+      "skill_path:263834",
+      "skill_path:263841",
+      "skill_path:263852",
+      "skill_path:263853",
+      "skill_path:263871",
+      "skill_path:263905",
+      "skill_path:263955",
+      "skill_path:263956",
+      "skill_path:263991",
+      "skill_path:264015",
+      "skill_path:264164",
+      "skill_path:264230",
+      "skill_path:264237",
+      "skill_path:264241",
+      "skill_path:264309",
+      "skill_path:264355",
+      "skill_path:264437",
+      "skill_path:264444",
+      "skill_path:264451",
+      "skill_path:264453",
+      "skill_path:264458",
+      "skill_path:264461",
+      "skill_path:264462",
+      "skill_path:264551",
+      "skill_path:264554",
+      "skill_path:264562",
+      "skill_path:264675",
+      "skill_path:264730",
+      "skill_path:264735",
+      "skill_path:264807",
+      "skill_path:264863",
+      "skill_path:264874",
+      "skill_path:264881",
+      "skill_path:264922"
+    ]
+  },
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_skill_validation_report"
+  },
+  "summary": {
+    "duplicate_skill_id_count": 0,
+    "duplicate_skill_node_id_count": 0,
+    "duplicate_skill_tree_id_count": 0,
+    "error_count": 0,
+    "invalid_trust_level_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "skill_count": 184,
+    "skill_node_count": 3919,
+    "skill_node_missing_skill_link_count": 0,
+    "skill_node_missing_tree_link_count": 0,
+    "skill_tree_count": 136,
+    "skill_tree_missing_skill_link_count": 0,
+    "stable_calculable_count": 0,
+    "unsupported_stable_calculation_count": 0,
+    "warning_count": 64
+  },
+  "warnings": [
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:260926.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:261142.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:261173.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:261591.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262309.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262328.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262431.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262458.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262473.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262497.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262531.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262552.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262625.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262645.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262677.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262850.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262912.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262951.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262952.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:262953.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263025.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263035.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263053.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263498.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263704.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263788.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263799.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263800.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263816.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263834.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263841.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263852.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263853.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263871.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263905.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263955.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263956.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:263991.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264015.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264164.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264230.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264237.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264241.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264309.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264355.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264437.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264444.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264451.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264453.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264458.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264461.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264462.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264551.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264554.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264562.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264675.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264730.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264735.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264807.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264863.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264874.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264881.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "unresolved_class_mastery_skill_link",
+      "message": "Class/mastery skill link did not resolve: skill_path:264922.",
+      "record_id": "cross_reference",
+      "severity": "warning"
+    },
+    {
+      "code": "source_skill_id_missing",
+      "message": "Skill source record did not include an id; canonical ID was derived from the display name.",
+      "record_id": "skill:detonate_decoy",
+      "severity": "warning"
+    }
+  ]
+}
