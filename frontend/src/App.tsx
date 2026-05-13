@@ -58,6 +58,7 @@ const V2ItemsDebugPage = lazy(() => import("@/pages/debug/V2ItemsDebugPage"));
 const V2UniqueSetDebugPage = lazy(() => import("@/pages/debug/V2UniqueSetDebugPage"));
 const V2IdolsDebugPage = lazy(() => import("@/pages/debug/V2IdolsDebugPage"));
 const V2ClassMasteryDebugPage = lazy(() => import("@/pages/debug/V2ClassMasteryDebugPage"));
+const V2PassivesDebugPage = lazy(() => import("@/pages/debug/V2PassivesDebugPage"));
 
 // ---------------------------------------------------------------------------
 // Route alias redirect — preserves the current location's search string so
@@ -264,6 +265,7 @@ export default function App() {
                     <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
                     <Route path="/debug/v2-idols" element={<Suspense fallback={<PageLoader />}><V2IdolsDebugPage /></Suspense>} />
                     <Route path="/debug/v2-classes" element={<Suspense fallback={<PageLoader />}><V2ClassMasteryDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-passives" element={<Suspense fallback={<PageLoader />}><V2PassivesDebugPage /></Suspense>} />
                     <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
                   </>
                 )}

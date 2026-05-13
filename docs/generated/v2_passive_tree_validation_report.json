@@ -1,0 +1,62 @@
+{
+  "cross_reference": {
+    "class_mastery_passive_tree_link_count": 5,
+    "class_mastery_passive_tree_links": [
+      {
+        "passive_tree_id": "passive_tree:ac_1",
+        "resolved_tree_id": "passive_tree:ac_1",
+        "status": "resolved"
+      },
+      {
+        "passive_tree_id": "passive_tree:kn_1",
+        "resolved_tree_id": "passive_tree:kn_1",
+        "status": "resolved"
+      },
+      {
+        "passive_tree_id": "passive_tree:mg_1",
+        "resolved_tree_id": "passive_tree:mg_1",
+        "status": "resolved"
+      },
+      {
+        "passive_tree_id": "passive_tree:pr_1",
+        "resolved_tree_id": "passive_tree:pr_1",
+        "status": "resolved"
+      },
+      {
+        "passive_tree_id": "passive_tree:rg_1",
+        "resolved_tree_id": "passive_tree:rg_1",
+        "status": "resolved"
+      }
+    ],
+    "manual_bridge_count": 0,
+    "resolved_passive_tree_link_count": 5,
+    "unresolved_passive_tree_ids": [],
+    "unresolved_passive_tree_link_count": 0
+  },
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_passive_tree_bundle"
+  },
+  "summary": {
+    "duplicate_passive_node_id_count": 0,
+    "duplicate_passive_tree_id_count": 0,
+    "error_count": 0,
+    "invalid_trust_level_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "passive_node_count": 535,
+    "passive_node_missing_class_link_count": 0,
+    "passive_node_missing_tree_link_count": 0,
+    "passive_tree_count": 5,
+    "passive_tree_missing_class_link_count": 0,
+    "production_consumed": false,
+    "stable_calculable_count": 0,
+    "unsupported_stable_calculation_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}
