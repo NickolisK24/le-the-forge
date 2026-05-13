@@ -56,6 +56,7 @@ const DataFlowHarness = lazy(() => import("@/pages/debug/DataFlowHarness"));
 const ForgeSafeAffixesDebugPage = lazy(() => import("@/pages/debug/ForgeSafeAffixesDebugPage"));
 const V2ItemsDebugPage = lazy(() => import("@/pages/debug/V2ItemsDebugPage"));
 const V2UniqueSetDebugPage = lazy(() => import("@/pages/debug/V2UniqueSetDebugPage"));
+const V2IdolsDebugPage = lazy(() => import("@/pages/debug/V2IdolsDebugPage"));
 
 // ---------------------------------------------------------------------------
 // Route alias redirect — preserves the current location's search string so
@@ -260,6 +261,7 @@ export default function App() {
                     <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
                     <Route path="/debug/v2-items" element={<Suspense fallback={<PageLoader />}><V2ItemsDebugPage /></Suspense>} />
                     <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-idols" element={<Suspense fallback={<PageLoader />}><V2IdolsDebugPage /></Suspense>} />
                     <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
                   </>
                 )}

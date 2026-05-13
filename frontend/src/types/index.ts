@@ -36,7 +36,7 @@ export interface PaginationMeta {
 export type { CanonicalRecord } from "./canonicalBase";
 export type { CanonicalAffix } from "./canonicalAffix";
 export type { CanonicalClass, CanonicalMastery } from "./canonicalClassMastery";
-export type { CanonicalIdol } from "./canonicalIdol";
+export type { CanonicalIdol, CanonicalIdolAffix } from "./canonicalIdol";
 export type { CanonicalImplicit, CanonicalItemBase } from "./canonicalItem";
 export type { CanonicalModifier, CanonicalModifierReference } from "./canonicalModifier";
 export type { CanonicalPassiveNode, CanonicalPassiveTree } from "./canonicalPassive";
