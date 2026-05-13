@@ -1,0 +1,803 @@
+{
+  "blocked_reason_counts": {
+    "identity_only_metadata": 4779,
+    "passive_skill_effects_not_planner_calculable": 4779,
+    "skill_identity_ambiguous": 4,
+    "skill_identity_bridge_unresolved": 4239,
+    "stable_calculable_false": 4779,
+    "value_normalization_audit_only": 4779
+  },
+  "fields_excluded_from_calculation": [
+    "modifier_rows",
+    "modifier_references",
+    "effect_hint_classifications",
+    "text_effects",
+    "tooltip_text",
+    "description_text",
+    "damage_types",
+    "skill_tags",
+    "scaling_tags",
+    "cast_data",
+    "cooldown",
+    "cost",
+    "raw_value_min",
+    "raw_value_max",
+    "normalized_value_min",
+    "normalized_value_max"
+  ],
+  "fields_exposed": [
+    "canonical_id",
+    "display_name",
+    "domain",
+    "owner_class_ids",
+    "owner_mastery_ids",
+    "tree_id",
+    "skill_id",
+    "source_id",
+    "source_path",
+    "source_tree_id",
+    "source_skill_id",
+    "source_ability_path_id",
+    "identity_match_status",
+    "ownership_status",
+    "provenance_summary",
+    "support_status",
+    "trust_level",
+    "warnings",
+    "debug_summary",
+    "identity_only_eligible",
+    "planner_calculable",
+    "stable_calculable",
+    "blocked_reasons"
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "passive and skill effect normalization is proven",
+      "value normalization policy moves beyond audit-only",
+      "unresolved and ambiguous skill identity references are resolved from source data",
+      "golden planner baselines exist for passive and skill behavior"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "add display-only planner/debug consumers for passive and skill identity before any passive or skill effect remap"
+  },
+  "generated_at": "2026-05-13T21:46:28.889183+00:00",
+  "identity_match_status_counts": {
+    "ambiguous": 4,
+    "not_applicable": 4595,
+    "not_class_mastery_referenced": 170,
+    "resolved_top_level": 10
+  },
+  "metadata": {
+    "identity_provenance_only": true,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_passive_skill_identity_remap"
+  },
+  "metadata_samples": [
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_tree:ac_1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1",
+        "special_behavior_classification": null,
+        "stable_calculable_source": false
+      },
+      "display_name": "Acolyte Passive Tree",
+      "domain": "passive_tree",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_tree:mg_1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "mg-1",
+        "special_behavior_classification": null,
+        "stable_calculable_source": false
+      },
+      "display_name": "Mage Passive Tree",
+      "domain": "passive_tree",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:mage"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "mg-1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "mg-1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "mg-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:mg_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_tree:pr_1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "pr-1",
+        "special_behavior_classification": null,
+        "stable_calculable_source": false
+      },
+      "display_name": "Primalist Passive Tree",
+      "domain": "passive_tree",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:primalist"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "pr-1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "pr-1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "pr-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:pr_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_tree:rg_1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "rg-1",
+        "special_behavior_classification": null,
+        "stable_calculable_source": false
+      },
+      "display_name": "Rogue Passive Tree",
+      "domain": "passive_tree",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:rogue"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "rg-1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "rg-1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "rg-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:rg_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_tree:kn_1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "kn-1",
+        "special_behavior_classification": null,
+        "stable_calculable_source": false
+      },
+      "display_name": "Sentinel Passive Tree",
+      "domain": "passive_tree",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:sentinel"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "kn-1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "kn-1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "kn-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:kn_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_node:ac_1:1",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1:1",
+        "special_behavior_classification": "partial_modifier",
+        "stable_calculable_source": false
+      },
+      "display_name": "Forbidden Knowledge",
+      "domain": "passive_node",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1:1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1:1",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": []
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_node:ac_1:0",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1:0",
+        "special_behavior_classification": "unsupported_special_behavior",
+        "stable_calculable_source": false
+      },
+      "display_name": "Bone Aura",
+      "domain": "passive_node",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1:0",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1:0",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "not_stable_calculable:unsupported_special_behavior"
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_node:ac_1:2",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1:2",
+        "special_behavior_classification": "unsupported_special_behavior",
+        "stable_calculable_source": false
+      },
+      "display_name": "Blood Aura",
+      "domain": "passive_node",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1:2",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1:2",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "not_stable_calculable:unsupported_special_behavior"
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_node:ac_1:3",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1:3",
+        "special_behavior_classification": "unsupported_special_behavior",
+        "stable_calculable_source": false
+      },
+      "display_name": "Mania of Mortality",
+      "domain": "passive_node",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1:3",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1:3",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "not_stable_calculable:unsupported_special_behavior"
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "identity_only_metadata",
+        "passive_skill_effects_not_planner_calculable",
+        "stable_calculable_false",
+        "value_normalization_audit_only"
+      ],
+      "canonical_id": "passive_node:ac_1:55",
+      "debug_summary": {
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "patch_version": null,
+        "source_id": "ac-1:55",
+        "special_behavior_classification": "unsupported_special_behavior",
+        "stable_calculable_source": false
+      },
+      "display_name": "Dark Rituals",
+      "domain": "passive_node",
+      "identity_match_status": "not_applicable",
+      "identity_only_eligible": true,
+      "owner_class_ids": [
+        "class:acolyte"
+      ],
+      "owner_mastery_ids": [],
+      "ownership_status": "owned",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_data_export",
+        "patch_version": null,
+        "schema_version": null,
+        "source_id": "ac-1:55",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+        "source_type": "generated_from_game_data"
+      },
+      "skill_id": null,
+      "source_ability_path_id": null,
+      "source_id": "ac-1:55",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\passive_trees.json",
+      "source_skill_id": null,
+      "source_tree_id": "ac-1",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tree_id": "passive_tree:ac_1",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "not_stable_calculable:unsupported_special_behavior"
+      ]
+    }
+  ],
+  "ownership_status_counts": {
+    "owned": 4779
+  },
+  "passive_domains": [
+    {
+      "domain": "passive_tree",
+      "identity_record_count": 5
+    },
+    {
+      "domain": "passive_node",
+      "identity_record_count": 535
+    }
+  ],
+  "passive_skill_tree_metadata_treatment": {
+    "notes": [
+      "Tree, owner, and source identity links are exposed as display/provenance metadata only.",
+      "Passive and skill effect text, modifier rows, and node values remain excluded from planner-calculable metadata."
+    ],
+    "passive_node_effects_exposed_as_planner_stats": false,
+    "passive_tree_links_exposed": true,
+    "skill_node_effects_exposed_as_planner_stats": false,
+    "skill_tree_links_exposed": true,
+    "tooltip_text_used_for_mechanics": false
+  },
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_safe": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.passive_skill_identity_remap.1",
+  "skill_domains": [
+    {
+      "domain": "skill",
+      "identity_record_count": 184
+    },
+    {
+      "domain": "skill_tree",
+      "identity_record_count": 136
+    },
+    {
+      "domain": "skill_node",
+      "identity_record_count": 3919
+    }
+  ],
+  "skill_identity_audit_summary": {
+    "ambiguous_refs": 1,
+    "bridge_safe": false,
+    "recommended_mapping_strategy": "top_level_source_identity_partial_unresolved",
+    "safe_top_level_matches": 60,
+    "source_data_missing": true,
+    "total_refs": 63,
+    "unresolved_refs": 2
+  },
+  "skill_identity_examples": {
+    "ambiguous": [
+      {
+        "candidate_skill_ids": [
+          "skill:sps5l",
+          "skill:sr5t",
+          "skill:srtor",
+          "skill:ss37kl"
+        ],
+        "class_mastery_skill_reference": "skill_path:261142",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.abilityResolutionSourcePath.8",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.damageSources.0.sourcePath.8",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Squirrel",
+            "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:sps5l",
+            "source_skill_id": "sps5l",
+            "top_level_identity": false
+          }
+        ],
+        "match_methods": [
+          "exact_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte",
+          "class:mage",
+          "class:primalist",
+          "class:rogue",
+          "class:sentinel"
+        ],
+        "status": "ambiguous"
+      }
+    ],
+    "unresolved": [
+      {
+        "candidate_skill_ids": [],
+        "class_mastery_skill_reference": "skill_path:262953",
+        "exact_id_match": null,
+        "exact_path_matches": [],
+        "match_methods": [],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "unresolved"
+      },
+      {
+        "candidate_skill_ids": [],
+        "class_mastery_skill_reference": "skill_path:263498",
+        "exact_id_match": null,
+        "exact_path_matches": [],
+        "match_methods": [],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte",
+          "class:mage",
+          "class:primalist",
+          "class:rogue",
+          "class:sentinel"
+        ],
+        "status": "unresolved"
+      }
+    ]
+  },
+  "summary": {
+    "identity_only_eligible_count": 4779,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "passive_identity_record_count": 540,
+    "passive_node_count": 535,
+    "passive_tree_count": 5,
+    "planner_calculable_count": 0,
+    "production_consumed": false,
+    "skill_count": 184,
+    "skill_identity_bridge_status": "unbridged",
+    "skill_identity_record_count": 4239,
+    "skill_node_count": 3919,
+    "skill_tree_count": 136,
+    "stable_calculable_count": 0,
+    "top_blocked_reasons": [
+      {
+        "count": 4779,
+        "reason": "identity_only_metadata"
+      },
+      {
+        "count": 4779,
+        "reason": "passive_skill_effects_not_planner_calculable"
+      },
+      {
+        "count": 4779,
+        "reason": "stable_calculable_false"
+      },
+      {
+        "count": 4779,
+        "reason": "value_normalization_audit_only"
+      },
+      {
+        "count": 4239,
+        "reason": "skill_identity_bridge_unresolved"
+      },
+      {
+        "count": 4,
+        "reason": "skill_identity_ambiguous"
+      }
+    ],
+    "value_normalization_status": "audit_only"
+  }
+}
