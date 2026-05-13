@@ -1,0 +1,658 @@
+{
+  "adapter_visible_data": {
+    "description": "Records the v2 adapter can inspect and explain.",
+    "domain_count": 9,
+    "record_count": 19398
+  },
+  "blocked_mechanical_data": [
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "affix modifier math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "item implicit modifier math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unsupported/text-only report remains intentionally visible"
+      ],
+      "category": "unique and set mechanics",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "IDOL_ALTAR warnings remain display-only"
+      ],
+      "category": "idol base and idol affix math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unresolved_refs=2",
+        "ambiguous_refs=1"
+      ],
+      "category": "skill ownership",
+      "classification": "blocked_by_identity_resolution",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "scripted and unsupported passive records remain non-calculable"
+      ],
+      "category": "passive node behavior",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "scripted and unsupported skill records remain non-calculable"
+      ],
+      "category": "skill and skill tree behavior",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unknown_value_scale=13150",
+        "source_units_value_scale=6248"
+      ],
+      "category": "stat/modifier adapter math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "production behavior depends on legacy craft engine and FP constants"
+      ],
+      "category": "crafting engine",
+      "classification": "blocked_by_behavioral_risk",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "production behavior depends on legacy stat fields and combat formulas"
+      ],
+      "category": "simulation/combat engine",
+      "classification": "blocked_by_behavioral_risk",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "routes expose legacy DB/static data and must not switch without compatibility tests"
+      ],
+      "category": "production reference routes",
+      "classification": "manual_only_currently",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "needs adapter dry-run and UI compatibility tests before remap"
+      ],
+      "category": "frontend planner API clients",
+      "classification": "blocked_by_missing_tests",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    }
+  ],
+  "blocked_reason_counts": {
+    "not_stable_calculable": 19398,
+    "scripted_behavior": 7495,
+    "source_units_value_scale": 6248,
+    "text_only_behavior": 265,
+    "unknown_operation": 11606,
+    "unknown_value_scale": 13150,
+    "unresolved_skill_identity": 11924,
+    "unresolved_stat_identity": 4714,
+    "unstable_support_status": 19398,
+    "unsupported_behavior": 5276
+  },
+  "display_only_candidates": [
+    {
+      "category": "item/base display metadata",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "needs non-calculating API adapter tests"
+      ],
+      "planner_calculable": false
+    },
+    {
+      "category": "affix display and provenance",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "must stay display-only until value policy is proven"
+      ],
+      "planner_calculable": false
+    },
+    {
+      "category": "class/mastery metadata",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "metadata can be inspected; planner skill ownership remains partially unresolved"
+      ],
+      "planner_calculable": false
+    }
+  ],
+  "domains": [
+    {
+      "adapter_visible_count": 1624,
+      "blocked_count": 1624,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1624,
+        "source_units_value_scale": 1624,
+        "unstable_support_status": 1624
+      },
+      "domain": "affix",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 647,
+      "blocked_count": 647,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 647,
+        "unknown_value_scale": 647,
+        "unstable_support_status": 647
+      },
+      "domain": "idol_affix_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 1182,
+      "blocked_count": 1182,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1182,
+        "source_units_value_scale": 1182,
+        "unstable_support_status": 1182
+      },
+      "domain": "item_implicit",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 1660,
+      "blocked_count": 1660,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1660,
+        "scripted_behavior": 642,
+        "unknown_operation": 1570,
+        "unknown_value_scale": 1660,
+        "unresolved_stat_identity": 254,
+        "unstable_support_status": 1660,
+        "unsupported_behavior": 841
+      },
+      "domain": "passive_node_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 27,
+      "blocked_count": 27,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 27,
+        "source_units_value_scale": 27,
+        "unstable_support_status": 27
+      },
+      "domain": "set_bonus_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 287,
+      "blocked_count": 287,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 287,
+        "source_units_value_scale": 287,
+        "unstable_support_status": 287
+      },
+      "domain": "set_item_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 10843,
+      "blocked_count": 10843,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 10843,
+        "scripted_behavior": 6347,
+        "unknown_operation": 10036,
+        "unknown_value_scale": 10843,
+        "unresolved_skill_identity": 10843,
+        "unresolved_stat_identity": 4460,
+        "unstable_support_status": 10843,
+        "unsupported_behavior": 4435
+      },
+      "domain": "skill_node_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 1081,
+      "blocked_count": 1081,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1081,
+        "scripted_behavior": 506,
+        "source_units_value_scale": 1081,
+        "text_only_behavior": 265,
+        "unresolved_skill_identity": 1081,
+        "unstable_support_status": 1081
+      },
+      "domain": "skill_structured_value",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "adapter_visible_count": 2047,
+      "blocked_count": 2047,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 2047,
+        "source_units_value_scale": 2047,
+        "unstable_support_status": 2047
+      },
+      "domain": "unique_modifier",
+      "mode": "adapter_visible_blocked",
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    }
+  ],
+  "future_remap_phase_status": [
+    {
+      "goal": "Expose v2 adapter explanations beside current planner output without changing calculations.",
+      "name": "Read-only planner diagnostics using v2 adapter",
+      "order": 1,
+      "required_tests": [
+        "production non-consumption",
+        "adapter read-only",
+        "no output delta"
+      ],
+      "status": "diagnostic_or_display_only_candidate"
+    },
+    {
+      "goal": "Use v2 IDs, provenance, support status, and debug labels only.",
+      "name": "Non-calculating metadata remap",
+      "order": 2,
+      "required_tests": [
+        "API compatibility",
+        "frontend rendering",
+        "unsupported visibility"
+      ],
+      "status": "diagnostic_or_display_only_candidate"
+    },
+    {
+      "goal": "Remap item base display and restriction metadata without stat math.",
+      "name": "Item/base display metadata remap",
+      "order": 3,
+      "required_tests": [
+        "item compatibility fixtures",
+        "legacy route comparison",
+        "no stat output delta"
+      ],
+      "status": "diagnostic_or_display_only_candidate"
+    },
+    {
+      "goal": "Show v2 affix identity/provenance while legacy math remains authoritative.",
+      "name": "Affix display and provenance remap",
+      "order": 4,
+      "required_tests": [
+        "affix list comparison",
+        "crafting UI compatibility",
+        "blocked reason visibility"
+      ],
+      "status": "diagnostic_or_display_only_candidate"
+    },
+    {
+      "goal": "Use resolved identities for inspection only and keep unresolved skill references blocked.",
+      "name": "Passive/skill identity-only remap where safe",
+      "order": 5,
+      "required_tests": [
+        "identity audit",
+        "unresolved bridge guard",
+        "tree layout comparison"
+      ],
+      "status": "diagnostic_or_display_only_candidate"
+    },
+    {
+      "goal": "Compare v2 adapter rows against legacy stat outputs without consumption.",
+      "name": "Stat/modifier adapter dry-run comparison",
+      "order": 6,
+      "required_tests": [
+        "golden build fixtures",
+        "blocked reason snapshots",
+        "value-scale guard"
+      ],
+      "status": "blocked_until_safety_gates_pass"
+    },
+    {
+      "goal": "Create stable expected outputs for representative builds and crafting flows.",
+      "name": "Golden baseline test creation",
+      "order": 7,
+      "required_tests": [
+        "golden planner outputs",
+        "crafting baselines",
+        "simulation baselines"
+      ],
+      "status": "blocked_until_safety_gates_pass"
+    },
+    {
+      "goal": "Add explicitly opt-in experimental comparison mode after stable gates pass.",
+      "name": "Limited opt-in experimental planner adapter mode",
+      "order": 8,
+      "required_tests": [
+        "feature flag guard",
+        "default-off production guard",
+        "route contract tests"
+      ],
+      "status": "blocked_until_safety_gates_pass"
+    },
+    {
+      "goal": "Switch production only after value scale, identity, support, and behavior gates are proven.",
+      "name": "Production remap after stable-calculable gates pass",
+      "order": 9,
+      "required_tests": [
+        "full planner regression",
+        "crafting regression",
+        "simulation regression",
+        "rollback checks"
+      ],
+      "status": "blocked_until_safety_gates_pass"
+    }
+  ],
+  "generated_at": "2026-05-13T21:06:32.567607+00:00",
+  "metadata": {
+    "diagnostic_only": true,
+    "optional_route_added": false,
+    "planner_remap_performed": false,
+    "production_planner_import_required": false,
+    "read_only": true,
+    "source": "v2_planner_adapter_diagnostics"
+  },
+  "planner_calculable_data": {
+    "description": "Records the adapter would allow into planner math today.",
+    "record_count": 0,
+    "stable_calculable_count": 0,
+    "status": "none_available"
+  },
+  "safety_confirmations": {
+    "ambiguous_skill_reference_count": 1,
+    "blocked_modifier_count": 19398,
+    "crafting_behavior_changed": false,
+    "eligible_planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "unresolved_skill_reference_count": 2,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "samples": {
+    "blocked": [
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+        "eligible": false,
+        "operation": "flat",
+        "source_id": "affix:equipment:0",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:added_penetration_void",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+        "eligible": false,
+        "operation": "increased",
+        "source_id": "affix:equipment:1",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:increased_armour_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+        "eligible": false,
+        "operation": "increased",
+        "source_id": "affix:equipment:2",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:increased_attackspeed_melee",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+        "eligible": false,
+        "operation": "flat",
+        "source_id": "affix:equipment:3",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:added_blockchance_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+        "eligible": false,
+        "operation": "increased",
+        "source_id": "affix:equipment:4",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:increased_castspeed_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+        "eligible": false,
+        "operation": "increased",
+        "source_id": "affix:equipment:5",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:increased_criticalchance_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+        "eligible": false,
+        "operation": "flat",
+        "source_id": "affix:equipment:6",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:added_criticalmultiplier_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+        "eligible": false,
+        "operation": "flat",
+        "source_id": "affix:equipment:7",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:added_voidresistance_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+        "eligible": false,
+        "operation": "flat",
+        "source_id": "affix:equipment:8",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:added_dodgerating_none",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      },
+      {
+        "blocked_reasons": [
+          "unstable_support_status",
+          "source_units_value_scale",
+          "not_stable_calculable"
+        ],
+        "canonical_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+        "eligible": false,
+        "operation": "increased",
+        "source_id": "affix:equipment:9",
+        "source_type": "affix",
+        "stable_calculable": false,
+        "stat_id": "stat:increased_damage_elemental",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "value_scale_status": "source_units"
+      }
+    ],
+    "eligible": []
+  },
+  "schema_version": "v2.planner_adapter_diagnostics.1",
+  "summary": {
+    "adapter_visible_record_count": 19398,
+    "blocked_mechanical_category_count": 12,
+    "blocked_record_count": 19398,
+    "display_only_candidate_count": 3,
+    "domains_checked": 9,
+    "planner_calculable_record_count": 0,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "value_normalization_status": "audit_only"
+  },
+  "top_blocked_reasons": [
+    {
+      "count": 19398,
+      "reason": "not_stable_calculable"
+    },
+    {
+      "count": 19398,
+      "reason": "unstable_support_status"
+    },
+    {
+      "count": 13150,
+      "reason": "unknown_value_scale"
+    },
+    {
+      "count": 11924,
+      "reason": "unresolved_skill_identity"
+    },
+    {
+      "count": 11606,
+      "reason": "unknown_operation"
+    },
+    {
+      "count": 7495,
+      "reason": "scripted_behavior"
+    },
+    {
+      "count": 6248,
+      "reason": "source_units_value_scale"
+    },
+    {
+      "count": 5276,
+      "reason": "unsupported_behavior"
+    },
+    {
+      "count": 4714,
+      "reason": "unresolved_stat_identity"
+    },
+    {
+      "count": 265,
+      "reason": "text_only_behavior"
+    }
+  ]
+}
