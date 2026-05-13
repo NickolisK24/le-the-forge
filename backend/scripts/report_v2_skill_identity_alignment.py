@@ -93,7 +93,7 @@ def _write_markdown(path: Path, report: dict[str, Any], command: str) -> None:
         "",
         "Exact ID matching did not resolve the class/mastery `skill_path:*` references because generated v2 skills use source skill IDs such as `skill:ab0lh`, not numeric path IDs.",
         "",
-        "Raw path matching found references only where the numeric path ID appears somewhere inside raw skill evidence. These are not accepted as a safe bridge unless they are top-level owner identity fields. In the real report, no top-level owner path matches were found.",
+        "Raw path matching now includes upstream `sourceIdentity.skillPath` when present. Those top-level matches are accepted as safe identity evidence. Nested path evidence is still not accepted as a bridge.",
         "",
         "Normalized name matching cannot resolve these references because the class/mastery `skill_path:*` values do not include display names.",
         "",
@@ -117,11 +117,11 @@ def _write_markdown(path: Path, report: dict[str, Any], command: str) -> None:
         "",
         "## Conclusion",
         "",
-        "A deterministic bridge is not safe from the current evidence. Phase 7 `skill_path:*` values should remain unresolved until a source export exposes a top-level owning skill path ID or a separate audited identity table proves the mapping.",
+        "A complete deterministic bridge is still not safe from the current evidence. The enriched upstream export resolves the references that have top-level `sourceIdentity.skillPath` evidence, but remaining unresolved or ambiguous references must stay blocked.",
         "",
         "## Recommended Next Action",
         "",
-        "Before modifier/stat normalization consumes class/mastery skill ownership, add a focused source-export identity alignment task or update the upstream export to include the owning ability path ID on skill records. Do not infer the bridge from nested summoned actor evidence or tooltip text.",
+        "Before modifier/stat normalization consumes class/mastery skill ownership, either resolve the remaining source gaps upstream or carry them as an explicit identity gap. Do not infer the remaining bridge from nested summoned actor evidence or tooltip text.",
         "",
     ]
     path.write_text("\n".join(lines), encoding="utf-8")
@@ -223,13 +223,34 @@ def _build_skill_identity_index(skill_records: list[dict[str, Any]], raw_skills:
                 by_normalized_name[normalized].add(canonical_id)
         raw = raw_by_source_id.get(skill.get("source_skill_id"))
         if raw:
+            raw_identity = raw.get("sourceIdentity") if isinstance(raw.get("sourceIdentity"), dict) else {}
+            raw_skill_path = raw_identity.get("skillPath")
+            if isinstance(raw_skill_path, str) and raw_skill_path.startswith("skill_path:"):
+                raw_path_id = raw_skill_path.split(":", 1)[1]
+                path_matches[raw_path_id].append(
+                    {
+                        "skill_id": canonical_id,
+                        "source_skill_id": skill.get("source_skill_id"),
+                        "display_name": skill.get("display_name"),
+                        "field_path": "sourceIdentity.skillPath",
+                        "top_level_identity": True,
+                        "identity_source": raw_identity.get("identitySource"),
+                        "identity_confidence": raw_identity.get("identityConfidence"),
+                    }
+                )
+                path_like_fields.add("sourceIdentity.skillPath")
             raw_tree = raw.get("skillTree") if isinstance(raw.get("skillTree"), dict) else {}
             for value in (raw.get("name"), raw.get("_mName"), raw_tree.get("ability")):
                 normalized = _normalize_name(value)
                 if normalized:
                     by_normalized_name[normalized].add(canonical_id)
+            raw_for_nested_scan = {
+                key: value
+                for key, value in raw.items()
+                if key not in {"sourceIdentity", "source_ability_path_id", "source_tree_path_id"}
+            }
             hits: list[dict[str, Any]] = []
-            _walk_path_ids(raw, [], hits, path_like_fields)
+            _walk_path_ids(raw_for_nested_scan, [], hits, path_like_fields)
             for hit in hits:
                 path_matches[hit["path_id"]].append(
                     {
@@ -293,23 +314,28 @@ def build_report(
 
         candidate_ids: set[str] = set()
         match_methods: list[str] = []
+        safe_candidate_ids: set[str] = set()
         if exact_id:
             candidate_ids.add(exact_id)
+            safe_candidate_ids.add(exact_id)
             exact_id_count += 1
             match_methods.append("exact_id")
         if path_skill_ids:
-            candidate_ids.update(path_skill_ids)
             exact_path_count += 1
             match_methods.append("exact_path")
         if top_level_skill_ids:
+            candidate_ids.update(top_level_skill_ids)
+            safe_candidate_ids.update(top_level_skill_ids)
             top_level_path_count += 1
             match_methods.append("top_level_path")
-        if normalized_name_hits:
+        if normalized_name_hits and not safe_candidate_ids:
             candidate_ids.update(normalized_name_hits)
             normalized_name_count += 1
             match_methods.append("normalized_name")
+        if path_skill_ids and not safe_candidate_ids:
+            candidate_ids.update(path_skill_ids)
 
-        has_safe_identity_match = bool(exact_id or top_level_skill_ids)
+        has_safe_identity_match = bool(safe_candidate_ids)
         if len(candidate_ids) > 1:
             status = "ambiguous"
             ambiguous_count += 1
@@ -342,6 +368,8 @@ def build_report(
     )
     if bridge_safe:
         strategy = "safe_deterministic_bridge_possible"
+    elif top_level_path_count:
+        strategy = "top_level_source_identity_partial_unresolved"
     elif exact_path_count:
         strategy = "do_not_bridge_from_nested_path_evidence"
     else:
