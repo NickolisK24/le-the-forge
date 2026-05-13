@@ -86,8 +86,8 @@ Recommended future CI refinement:
 
 The generated report currently records:
 
-- Required generated reports: `32`
-- Valid generated reports: `32`
+- Required generated reports: `33`
+- Valid generated reports: `33`
 - Missing generated reports: `0`
 - Invalid JSON reports: `0`
 - Backend repository domains: `10`
