@@ -1,0 +1,1872 @@
+{
+  "contract": {
+    "envelope_keys": [
+      "data",
+      "meta",
+      "support_summary",
+      "warnings",
+      "provenance",
+      "debug"
+    ],
+    "error_shape": {
+      "debug": {},
+      "error": {
+        "code": "",
+        "details": {},
+        "message": ""
+      },
+      "meta": {}
+    },
+    "experimental": true,
+    "production_safe": false,
+    "read_only": true
+  },
+  "frontend_compatibility": {
+    "frontend_changes_required": false,
+    "route_paths_preserved": true,
+    "top_level_debug_summary_preserved": true,
+    "top_level_record_preserved": true,
+    "top_level_records_preserved": true
+  },
+  "metadata": {
+    "experimental": true,
+    "planner_consumed": false,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "experimental_v2_api_contract",
+    "unresolved_skill_identity_bridged": false,
+    "value_policy_audit_only": true
+  },
+  "repository_integration": {
+    "repositories": [
+      {
+        "artifacts": [
+          {
+            "artifact_key": "affix_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_affix_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "affix_count": 1098,
+          "affix_domain_counts": {
+            "equipment": 615,
+            "idol": 483
+          },
+          "modifier_reference_count_distribution": {
+            "1": 572,
+            "2": 526
+          },
+          "production_consumer": false,
+          "production_safe": false,
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_affix_bundle.json",
+          "summary": {
+            "affix_count": 1098,
+            "affix_domain_counts": {
+              "equipment": 615,
+              "idol": 483
+            },
+            "modifier_reference_count_distribution": {
+              "1": 572,
+              "2": 526
+            },
+            "prefix_suffix_counts": {
+              "prefix": 832,
+              "suffix": 266
+            },
+            "production_consumed": false,
+            "records_with_warnings_count": 1098,
+            "source_affix_count": 1098,
+            "source_modifier_count": 1624,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 1098
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 1098
+            },
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          },
+          "support_status_counts": {
+            "partial": 1098
+          }
+        },
+        "domain": "affixes",
+        "experimental_routes": [
+          "/experimental/v2/affixes",
+          "/experimental/v2/affixes/<affix_id>",
+          "/experimental/v2/affixes/debug"
+        ],
+        "label": "Affixes",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_affixes": true,
+          "get_affix": true,
+          "list_affixes": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "class_mastery_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_class_mastery_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_class_mastery_bundle.json",
+          "class_count": 5,
+          "cross_reference": {
+            "labels": [
+              {
+                "count": 46,
+                "label": "Acolyte",
+                "mapped_class_id": "class:acolyte",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 34
+                }
+              },
+              {
+                "count": 46,
+                "label": "Mage",
+                "mapped_class_id": "class:mage",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 34
+                }
+              },
+              {
+                "count": 48,
+                "label": "Primalist",
+                "mapped_class_id": "class:primalist",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 36
+                }
+              }
+            ],
+            "mapped_label_count": 3,
+            "mapped_labels": [
+              {
+                "count": 46,
+                "label": "Acolyte",
+                "mapped_class_id": "class:acolyte",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 34
+                }
+              },
+              {
+                "count": 46,
+                "label": "Mage",
+                "mapped_class_id": "class:mage",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 34
+                }
+              },
+              {
+                "count": 48,
+                "label": "Primalist",
+                "mapped_class_id": "class:primalist",
+                "mapped_mastery_id": null,
+                "source_breakdown": {
+                  "v2_idol_bundle.json:idols": 12,
+                  "v2_item_base_bundle.json:item_bases": 36
+                }
+              }
+            ],
+            "restriction_label_count": 140,
+            "unique_restriction_label_count": 3,
+            "unmapped_label_count": 0,
+            "unmapped_labels": []
+          },
+          "mastery_count": 15,
+          "production_consumer": false,
+          "production_safe": false,
+          "summary": {
+            "class_count": 5,
+            "manual_bridge_count": 0,
+            "mapped_restriction_label_count": 3,
+            "mastery_count": 15,
+            "production_consumed": false,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 20
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 20
+            },
+            "unique_restriction_label_count": 3,
+            "unmapped_restriction_label_count": 0,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        },
+        "domain": "classes_masteries",
+        "experimental_routes": [
+          "/experimental/v2/classes",
+          "/experimental/v2/classes/<class_id>",
+          "/experimental/v2/masteries",
+          "/experimental/v2/masteries/<mastery_id>",
+          "/experimental/v2/classes/debug"
+        ],
+        "label": "Classes and masteries",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_classes": true,
+          "get_class": true,
+          "get_mastery": true,
+          "list_classes": true,
+          "list_masteries": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "idol_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_idol_bundle.json"
+          },
+          {
+            "artifact_key": "idol_affix_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_idol_affix_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "idol_affix_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_idol_affix_bundle.json",
+          "idol_affix_count": 483,
+          "idol_affix_summary": {
+            "idol_affix_count": 483,
+            "idol_type_restriction_counts": {
+              "IDOL_1x1_ETERRA": 39,
+              "IDOL_1x1_LAGON": 39,
+              "IDOL_1x2": 41,
+              "IDOL_1x3": 125,
+              "IDOL_1x4": 132,
+              "IDOL_2x1": 40,
+              "IDOL_2x2": 119,
+              "IDOL_3x1": 120,
+              "IDOL_4x1": 128,
+              "IDOL_ALTAR": 20
+            },
+            "modifier_row_count": 647,
+            "prefix_suffix_counts": {
+              "prefix": 290,
+              "suffix": 193
+            },
+            "production_consumed": false,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 483
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 483
+            },
+            "validation_error_count": 0
+          },
+          "idol_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_idol_bundle.json",
+          "idol_count": 71,
+          "idol_summary": {
+            "class_restriction_counts": {
+              "Acolyte": 12,
+              "Any": 35,
+              "Mage": 12,
+              "Primalist": 12
+            },
+            "idol_count": 71,
+            "idol_shape_counts": {
+              "idol_1x1_eterra": 3,
+              "idol_1x1_lagon": 2,
+              "idol_1x2": 2,
+              "idol_1x3": 15,
+              "idol_1x4": 10,
+              "idol_2x1": 2,
+              "idol_2x2": 12,
+              "idol_3x1": 15,
+              "idol_4x1": 10
+            },
+            "production_consumed": false,
+            "records_with_implicits_count": 0,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 71
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 71
+            },
+            "validation_error_count": 0
+          },
+          "production_consumer": false,
+          "production_safe": false
+        },
+        "domain": "idols",
+        "experimental_routes": [
+          "/experimental/v2/idols",
+          "/experimental/v2/idols/<idol_id>",
+          "/experimental/v2/idols/affixes",
+          "/experimental/v2/idols/affixes/<affix_id>",
+          "/experimental/v2/idols/debug"
+        ],
+        "label": "Idols and idol affixes",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_idols": true,
+          "get_affix": true,
+          "get_idol": true,
+          "list_affixes": true,
+          "list_idols": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "item_base_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_base_bundle.json"
+          },
+          {
+            "artifact_key": "item_implicit_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_implicit_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "base_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_base_bundle.json",
+          "base_summary": {
+            "base_type_count": 25,
+            "classification_counts": {
+              "accessory": 154,
+              "armor": 194,
+              "weapon": 194
+            },
+            "excluded_non_phase4_base_type_count": 17,
+            "item_base_count": 542,
+            "item_type_counts": {
+              "amulet": 19,
+              "belt": 15,
+              "body_armor": 71,
+              "boots": 15,
+              "bow": 16,
+              "catalyst": 21,
+              "gloves": 15,
+              "helmet": 71,
+              "one_handed_axe": 17,
+              "one_handed_dagger": 15,
+              "one_handed_maces": 15,
+              "one_handed_sceptre": 14,
+              "one_handed_sword": 16,
+              "quiver": 11,
+              "relic": 72,
+              "ring": 16,
+              "shield": 22,
+              "two_handed_axe": 18,
+              "two_handed_mace": 14,
+              "two_handed_spear": 19,
+              "two_handed_staff": 19,
+              "two_handed_sword": 16,
+              "wand": 15
+            },
+            "production_consumed": false,
+            "records_with_class_restrictions_count": 104,
+            "records_with_implicits_count": 541,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 542
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 542
+            },
+            "validation_error_count": 0
+          },
+          "implicit_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_implicit_bundle.json",
+          "implicit_count": 1182,
+          "implicit_summary": {
+            "implicit_count": 1182,
+            "modifier_row_count_distribution": {
+              "1": 1182
+            },
+            "production_consumed": false,
+            "property_counts": {
+              "AbilityProperty": 12,
+              "AilmentChance": 45,
+              "AllAttributes": 4,
+              "AllResistances": 4,
+              "Armour": 179,
+              "ArmourMitigationAppliesToDamageOverTime": 2,
+              "AttackSpeed": 9,
+              "Attunement": 3,
+              "BlockChance": 24,
+              "BlockEffectiveness": 21,
+              "CastSpeed": 8,
+              "ColdResistance": 13,
+              "CritAvoidance": 3,
+              "CriticalChance": 50,
+              "CriticalMultiplier": 21,
+              "Damage": 337,
+              "DamageTaken": 6,
+              "Dexterity": 3,
+              "DodgeRating": 5,
+              "EffectOfAilmentOnYou": 5,
+              "ElementalResistance": 2,
+              "Endurance": 12,
+              "EnduranceThreshold": 5,
+              "FireResistance": 13,
+              "FreezeRateMultiplier": 6,
+              "GlancingBlowChance": 1,
+              "GlobalConditionalDamage": 4,
+              "HasteOnHitChance": 2,
+              "Health": 17,
+              "HealthGain": 5,
+              "HealthLeech": 14,
+              "HealthRegen": 12,
+              "IncreasedAilmentDuration": 10,
+              "IncreasedAilmentEffect": 1,
+              "IncreasedAreaForAreaSkills": 2,
+              "IncreasedCooldownRecoverySpeed": 11,
+              "IncreasedHealing": 2,
+              "IncreasedLeechRate": 1,
+              "IncreasedStunChance": 18,
+              "IncreasedStunDuration": 2,
+              "Intelligence": 20,
+              "LevelOfSkills": 6,
+              "LightningResistance": 10,
+              "Mana": 26,
+              "ManaCost": 23,
+              "ManaRegen": 25,
+              "ManaSpentGainedAsWard": 7,
+              "MaximumHealthGainedAsEnduranceThreshold": 3,
+              "Movespeed": 27,
+              "NecroticResistance": 8,
+              "Penetration": 14,
+              "PhysicalResistance": 11,
+              "PlayerProperty": 30,
+              "PoisonResistance": 12,
+              "PotionHealth": 1,
+              "PotionSlots": 15,
+              "ReducedBonusDamageTakenFromCrits": 3,
+              "Strength": 4,
+              "StunAvoidance": 5,
+              "Thorns": 1,
+              "Vitality": 4,
+              "VoidResistance": 5,
+              "WardDecayThreshold": 10,
+              "WardGain": 5,
+              "WardOnPotionUse": 1,
+              "WardRegen": 7,
+              "WardRetention": 5
+            },
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 1182
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 1182
+            },
+            "validation_error_count": 0
+          },
+          "item_base_count": 542,
+          "production_consumer": false,
+          "production_safe": false
+        },
+        "domain": "items",
+        "experimental_routes": [
+          "/experimental/v2/items/bases",
+          "/experimental/v2/items/bases/<item_base_id>",
+          "/experimental/v2/items/implicits",
+          "/experimental/v2/items/debug"
+        ],
+        "label": "Item bases and implicits",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_bases": true,
+          "get_base": true,
+          "get_implicit": true,
+          "list_bases": true,
+          "list_implicits": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "modifier_registry",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_modifier_registry.json"
+          }
+        ],
+        "debug_summary": {
+          "modifier_count": 19398,
+          "production_consumer": false,
+          "production_safe": false,
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_modifier_registry.json",
+          "summary": {
+            "ambiguous_skill_reference_count": 1,
+            "blocked_reason_counts": {
+              "operation_unknown": 11606,
+              "source_identity_not_resolved": 11924,
+              "special_behavior_not_calculable": 13036,
+              "stat_id_unknown": 4714,
+              "support_status_not_trusted": 19398,
+              "value_scale_not_planner_normalized": 19398
+            },
+            "modifier_count": 19398,
+            "operation_counts": {
+              "chance": 69,
+              "cooldown": 429,
+              "cost": 440,
+              "duration": 949,
+              "flat": 4627,
+              "increased": 1112,
+              "less": 1,
+              "more": 165,
+              "unknown": 11606
+            },
+            "production_consumed": false,
+            "source_type_counts": {
+              "affix": 1624,
+              "idol_affix_modifier": 647,
+              "item_implicit": 1182,
+              "passive_node_modifier": 1660,
+              "set_bonus_modifier": 27,
+              "set_item_modifier": 287,
+              "skill_node_modifier": 10843,
+              "skill_structured_value": 1081,
+              "unique_modifier": 2047
+            },
+            "stable_calculable_count": 0,
+            "stat_count": 2070,
+            "unresolved_skill_reference_count": 2,
+            "value_scale_status_counts": {
+              "source_units": 6248,
+              "unknown": 13150
+            }
+          }
+        },
+        "domain": "modifiers",
+        "experimental_routes": [
+          "/experimental/v2/modifiers",
+          "/experimental/v2/modifiers/<modifier_id>",
+          "/experimental/v2/modifiers/debug"
+        ],
+        "label": "Modifier registry",
+        "method_coverage": {
+          "debug_summary": true,
+          "get_modifier": true,
+          "list_modifiers": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "passive_tree_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_passive_tree_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_passive_tree_bundle.json",
+          "cross_reference": {
+            "class_mastery_passive_tree_link_count": 5,
+            "class_mastery_passive_tree_links": [
+              {
+                "passive_tree_id": "passive_tree:ac_1",
+                "resolved_tree_id": "passive_tree:ac_1",
+                "status": "resolved"
+              },
+              {
+                "passive_tree_id": "passive_tree:kn_1",
+                "resolved_tree_id": "passive_tree:kn_1",
+                "status": "resolved"
+              },
+              {
+                "passive_tree_id": "passive_tree:mg_1",
+                "resolved_tree_id": "passive_tree:mg_1",
+                "status": "resolved"
+              },
+              {
+                "passive_tree_id": "passive_tree:pr_1",
+                "resolved_tree_id": "passive_tree:pr_1",
+                "status": "resolved"
+              },
+              {
+                "passive_tree_id": "passive_tree:rg_1",
+                "resolved_tree_id": "passive_tree:rg_1",
+                "status": "resolved"
+              }
+            ],
+            "manual_bridge_count": 0,
+            "resolved_passive_tree_link_count": 5,
+            "unresolved_passive_tree_ids": [],
+            "unresolved_passive_tree_link_count": 0
+          },
+          "passive_node_count": 535,
+          "passive_tree_count": 5,
+          "production_consumer": false,
+          "production_safe": false,
+          "summary": {
+            "class_mastery_resolved_passive_tree_link_count": 5,
+            "class_mastery_unresolved_passive_tree_link_count": 0,
+            "layout_matched_node_count": 535,
+            "manual_bridge_count": 0,
+            "passive_node_count": 535,
+            "passive_tree_count": 5,
+            "production_consumed": false,
+            "special_behavior_classification_counts": {
+              "partial_modifier": 72,
+              "scripted_runtime_behavior": 209,
+              "unsupported_special_behavior": 254
+            },
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 540
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 540
+            },
+            "unsupported_or_text_only_count": 463,
+            "validation_error_count": 0,
+            "validation_warning_count": 0
+          }
+        },
+        "domain": "passives",
+        "experimental_routes": [
+          "/experimental/v2/passives",
+          "/experimental/v2/passives/<tree_id>",
+          "/experimental/v2/passives/<tree_id>/nodes/<node_id>",
+          "/experimental/v2/passives/debug"
+        ],
+        "label": "Passive trees",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_trees": true,
+          "get_node": true,
+          "get_nodes_by_tree": true,
+          "get_tree": true,
+          "list_trees": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "skill_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_skill_bundle.json"
+          },
+          {
+            "artifact_key": "skill_tree_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_skill_tree_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "cross_reference": {
+            "class_mastery_skill_link_count": 63,
+            "class_mastery_skill_links": [
+              {
+                "class_mastery_skill_source_id": "skill_path:260926",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:261142",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:261173",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:261591",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262309",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262328",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262431",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262458",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262473",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262497",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262531",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262552",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262625",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262645",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262677",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262850",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262912",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262951",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262952",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:262953",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263025",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263035",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263053",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263498",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263704",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263788",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263799",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263800",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263816",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263834",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263841",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263852",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263853",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263871",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263905",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263955",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263956",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:263991",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264015",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264164",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264230",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264237",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264241",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264309",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264355",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264437",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264444",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264451",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264453",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264458",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264461",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264462",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264551",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264554",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264562",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264675",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264730",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264735",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264807",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264863",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264874",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264881",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              },
+              {
+                "class_mastery_skill_source_id": "skill_path:264922",
+                "resolved_skill_id": null,
+                "status": "unresolved"
+              }
+            ],
+            "manual_bridge_count": 0,
+            "resolved_skill_link_count": 0,
+            "unresolved_skill_link_count": 63,
+            "unresolved_skill_source_ids": [
+              "skill_path:260926",
+              "skill_path:261142",
+              "skill_path:261173",
+              "skill_path:261591",
+              "skill_path:262309",
+              "skill_path:262328",
+              "skill_path:262431",
+              "skill_path:262458",
+              "skill_path:262473",
+              "skill_path:262497",
+              "skill_path:262531",
+              "skill_path:262552",
+              "skill_path:262625",
+              "skill_path:262645",
+              "skill_path:262677",
+              "skill_path:262850",
+              "skill_path:262912",
+              "skill_path:262951",
+              "skill_path:262952",
+              "skill_path:262953",
+              "skill_path:263025",
+              "skill_path:263035",
+              "skill_path:263053",
+              "skill_path:263498",
+              "skill_path:263704",
+              "skill_path:263788",
+              "skill_path:263799",
+              "skill_path:263800",
+              "skill_path:263816",
+              "skill_path:263834",
+              "skill_path:263841",
+              "skill_path:263852",
+              "skill_path:263853",
+              "skill_path:263871",
+              "skill_path:263905",
+              "skill_path:263955",
+              "skill_path:263956",
+              "skill_path:263991",
+              "skill_path:264015",
+              "skill_path:264164",
+              "skill_path:264230",
+              "skill_path:264237",
+              "skill_path:264241",
+              "skill_path:264309",
+              "skill_path:264355",
+              "skill_path:264437",
+              "skill_path:264444",
+              "skill_path:264451",
+              "skill_path:264453",
+              "skill_path:264458",
+              "skill_path:264461",
+              "skill_path:264462",
+              "skill_path:264551",
+              "skill_path:264554",
+              "skill_path:264562",
+              "skill_path:264675",
+              "skill_path:264730",
+              "skill_path:264735",
+              "skill_path:264807",
+              "skill_path:264863",
+              "skill_path:264874",
+              "skill_path:264881",
+              "skill_path:264922"
+            ]
+          },
+          "production_consumer": false,
+          "production_safe": false,
+          "skill_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_skill_bundle.json",
+          "skill_count": 184,
+          "skill_node_count": 3919,
+          "skill_summary": {
+            "class_mastery_resolved_skill_link_count": 0,
+            "class_mastery_unresolved_skill_link_count": 63,
+            "manual_bridge_count": 0,
+            "production_consumed": false,
+            "skill_count": 184,
+            "skill_node_count": 3919,
+            "skill_special_behavior_classification_counts": {
+              "partial_modifier": 57,
+              "scripted_runtime_behavior": 83,
+              "text_only_effect": 44
+            },
+            "skill_tree_count": 136,
+            "skill_with_tree_count": 136,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 184
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 184
+            },
+            "unsupported_or_text_only_skill_count": 127,
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          },
+          "skill_tree_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_skill_tree_bundle.json",
+          "skill_tree_count": 136,
+          "skill_tree_summary": {
+            "layout_matched_node_count": 3919,
+            "node_special_behavior_classification_counts": {
+              "partial_modifier": 31,
+              "scripted_runtime_behavior": 2342,
+              "text_only_effect": 105,
+              "unknown": 30,
+              "unsupported_special_behavior": 1411
+            },
+            "production_consumed": false,
+            "skill_count": 184,
+            "skill_node_count": 3919,
+            "skill_tree_count": 136,
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 4055
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 4055
+            },
+            "unsupported_or_text_only_node_count": 3888,
+            "validation_error_count": 0,
+            "validation_warning_count": 64
+          }
+        },
+        "domain": "skills",
+        "experimental_routes": [
+          "/experimental/v2/skills",
+          "/experimental/v2/skills/<skill_id>",
+          "/experimental/v2/skills/<skill_id>/tree",
+          "/experimental/v2/skills/trees/<tree_id>",
+          "/experimental/v2/skills/trees/<tree_id>/nodes/<node_id>",
+          "/experimental/v2/skills/debug"
+        ],
+        "label": "Skills and skill trees",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_skills": true,
+          "get_node": true,
+          "get_nodes_by_tree": true,
+          "get_skill": true,
+          "get_tree": true,
+          "get_tree_by_skill": true,
+          "list_skills": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "stat_registry",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_stat_registry.json"
+          }
+        ],
+        "debug_summary": {
+          "production_consumer": false,
+          "production_safe": false,
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_stat_registry.json",
+          "stat_count": 2070,
+          "summary": {
+            "modifier_count": 19398,
+            "production_consumed": false,
+            "source_category_counts": {
+              "affix": 705,
+              "idol_affix_modifier": 380,
+              "item_implicit": 184,
+              "passive_node_modifier": 236,
+              "set_bonus_modifier": 27,
+              "set_item_modifier": 175,
+              "skill_node_modifier": 619,
+              "skill_structured_value": 14,
+              "unique_modifier": 846
+            },
+            "stat_count": 2070,
+            "support_status_counts": {
+              "partial": 2070
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 2070
+            }
+          }
+        },
+        "domain": "stats",
+        "experimental_routes": [
+          "/experimental/v2/stats",
+          "/experimental/v2/stats/<stat_id>"
+        ],
+        "label": "Stat registry",
+        "method_coverage": {
+          "debug_summary": true,
+          "get_stat": true,
+          "list_stats": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "unique_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_unique_bundle.json"
+          },
+          {
+            "artifact_key": "set_bundle",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_set_bundle.json"
+          }
+        ],
+        "debug_summary": {
+          "production_consumer": false,
+          "production_safe": false,
+          "set_bonus_count": 45,
+          "set_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_set_bundle.json",
+          "set_group_count": 23,
+          "set_item_count": 59,
+          "set_summary": {
+            "item_type_counts": {
+              "amulet": 3,
+              "belt": 4,
+              "body_armor": 6,
+              "boots": 2,
+              "catalyst": 2,
+              "gloves": 4,
+              "helmet": 9,
+              "one_handed_axe": 2,
+              "one_handed_dagger": 1,
+              "one_handed_maces": 2,
+              "one_handed_sceptre": 2,
+              "one_handed_sword": 4,
+              "relic": 4,
+              "ring": 6,
+              "shield": 4,
+              "two_handed_mace": 1,
+              "two_handed_staff": 2,
+              "wand": 1
+            },
+            "modifier_row_count": 314,
+            "production_consumed": false,
+            "set_bonus_count": 45,
+            "set_bonuses_with_modifier_rows_count": 27,
+            "set_group_count": 23,
+            "set_item_count": 59,
+            "set_items_with_base_links_count": 59,
+            "special_mechanic_classification_counts": {
+              "partial_modifier": 103,
+              "text_only_effect": 24
+            },
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 127
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 127
+            },
+            "validation_error_count": 0
+          },
+          "unique_bundle_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_unique_bundle.json",
+          "unique_count": 409,
+          "unique_summary": {
+            "item_type_counts": {
+              "amulet": 32,
+              "belt": 20,
+              "body_armor": 28,
+              "boots": 27,
+              "bow": 13,
+              "catalyst": 16,
+              "gloves": 30,
+              "helmet": 25,
+              "idol_1x1_eterra": 2,
+              "idol_1x3": 2,
+              "idol_1x4": 1,
+              "idol_2x2": 4,
+              "one_handed_axe": 11,
+              "one_handed_dagger": 9,
+              "one_handed_maces": 6,
+              "one_handed_sceptre": 7,
+              "one_handed_sword": 14,
+              "quiver": 8,
+              "relic": 36,
+              "ring": 26,
+              "shield": 21,
+              "two_handed_axe": 11,
+              "two_handed_mace": 7,
+              "two_handed_spear": 14,
+              "two_handed_staff": 15,
+              "two_handed_sword": 14,
+              "wand": 10
+            },
+            "modifier_row_count": 2047,
+            "production_consumed": false,
+            "records_with_base_links_count": 400,
+            "records_with_tooltip_text_count": 290,
+            "special_mechanic_classification_counts": {
+              "partial_modifier": 385,
+              "text_only_effect": 24
+            },
+            "stable_calculable_count": 0,
+            "support_status_counts": {
+              "partial": 409
+            },
+            "trust_level_counts": {
+              "generated_from_game_data": 409
+            },
+            "unique_count": 409,
+            "validation_error_count": 0
+          }
+        },
+        "domain": "unique_sets",
+        "experimental_routes": [
+          "/experimental/v2/uniques",
+          "/experimental/v2/uniques/<unique_id>",
+          "/experimental/v2/sets",
+          "/experimental/v2/sets/<set_id>",
+          "/experimental/v2/uniques/debug",
+          "/experimental/v2/sets/debug"
+        ],
+        "label": "Uniques and sets",
+        "method_coverage": {
+          "debug_summary": true,
+          "filter_uniques": true,
+          "get_set": true,
+          "get_unique": true,
+          "list_sets": true,
+          "list_uniques": true,
+          "load": true
+        },
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      },
+      {
+        "artifacts": [
+          {
+            "artifact_key": "value_normalization_policy_report",
+            "exists": true,
+            "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_value_normalization_policy_report.json"
+          }
+        ],
+        "debug_summary": {},
+        "domain": "value_policy",
+        "experimental_routes": [],
+        "label": "Value normalization policy",
+        "method_coverage": {},
+        "missing_artifact_count": 0,
+        "missing_methods": [],
+        "production_consumed": false,
+        "status": "ok"
+      }
+    ],
+    "summary": {
+      "invalid_repository_count": 0,
+      "loaded_repository_count": 10,
+      "missing_artifact_count": 0,
+      "production_consumed": false,
+      "repository_domain_count": 10
+    }
+  },
+  "routes": [
+    {
+      "debug_covered": true,
+      "domain": "affixes",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/affixes",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "affixes",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/affixes/<affix_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "affixes",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/affixes/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "classes_masteries",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/classes",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "classes_masteries",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/classes/<class_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "classes_masteries",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/masteries",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "classes_masteries",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/masteries/<mastery_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "classes_masteries",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/classes/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "idols",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/idols",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "idols",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/idols/<idol_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "idols",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/idols/affixes",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "idols",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/idols/affixes/<affix_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "idols",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/idols/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "items",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/items/bases",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "items",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/items/bases/<item_base_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "items",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/items/implicits",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "items",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/items/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "modifiers",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/modifiers",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "modifiers",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/modifiers/<modifier_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "modifiers",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/modifiers/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "passives",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/passives",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "passives",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/passives/<tree_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "passives",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/passives/<tree_id>/nodes/<node_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "passives",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/passives/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills/<skill_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills/<skill_id>/tree",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills/trees/<tree_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills/trees/<tree_id>/nodes/<node_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "skills",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/skills/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "stats",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/stats",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "stats",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/stats/<stat_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/uniques",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/uniques/<unique_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/sets",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/sets/<set_id>",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/uniques/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": true,
+      "domain": "unique_sets",
+      "envelope_covered": true,
+      "error_contract_covered": true,
+      "metadata_covered": true,
+      "production_consumed": false,
+      "provenance_covered": true,
+      "repository_status": "ok",
+      "route": "/experimental/v2/sets/debug",
+      "support_summary_covered": true
+    },
+    {
+      "debug_covered": false,
+      "domain": "value_policy",
+      "envelope_covered": false,
+      "error_contract_covered": false,
+      "metadata_covered": false,
+      "production_consumed": false,
+      "provenance_covered": false,
+      "repository_status": "ok",
+      "route": null,
+      "support_summary_covered": false
+    }
+  ],
+  "summary": {
+    "debug_coverage_count": 38,
+    "error_contract_coverage_count": 38,
+    "frontend_compatibility_status": "preserved_existing_top_level_keys",
+    "generated_at": "2026-05-13T20:06:38.261374+00:00",
+    "metadata_coverage_count": 38,
+    "production_consumed": false,
+    "provenance_coverage_count": 38,
+    "remaining_inconsistency_count": 0,
+    "repository_domain_count": 10,
+    "route_count": 38,
+    "standardized_route_count": 38,
+    "support_summary_coverage_count": 38
+  }
+}

@@ -91,7 +91,7 @@ def test_v2_affix_route_reports_missing_bundle(app, tmp_path):
     response = app.test_client().get("/experimental/v2/affixes")
 
     assert response.status_code == 404
-    assert response.get_json()["error"] == "v2_affix_bundle_missing"
+    assert response.get_json()["error"]["code"] == "v2_affix_bundle_missing"
 
 
 def test_v2_affix_bundle_is_not_referenced_by_production_modules():
