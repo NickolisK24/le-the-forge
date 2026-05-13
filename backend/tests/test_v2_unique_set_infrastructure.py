@@ -156,6 +156,8 @@ def test_v2_unique_set_bundle_is_not_referenced_by_production_modules():
         root / "backend" / "app" / "routes" / "experimental.py",
         root / "backend" / "app" / "repositories" / "v2" / "unique_set_repository.py",
         root / "backend" / "app" / "repositories" / "v2" / "__init__.py",
+        root / "backend" / "app" / "repositories" / "v2" / "paths.py",
+        root / "backend" / "app" / "repositories" / "v2" / "registry.py",
         root / "backend" / "scripts" / "report_v2_unique_set_bundles.py",
         Path(__file__).resolve(),
     }

@@ -99,6 +99,8 @@ def test_v2_modifier_registries_are_not_referenced_by_production_modules():
         root / "backend" / "app" / "normalization" / "v2" / "modifier_registry.py",
         root / "backend" / "app" / "normalization" / "v2" / "stat_registry.py",
         root / "backend" / "app" / "normalization" / "v2" / "__init__.py",
+        root / "backend" / "app" / "repositories" / "v2" / "paths.py",
+        root / "backend" / "app" / "repositories" / "v2" / "registry.py",
         root / "backend" / "scripts" / "report_v2_stat_modifier_normalization.py",
         Path(__file__).resolve(),
     }
