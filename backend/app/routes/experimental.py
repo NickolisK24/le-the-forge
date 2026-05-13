@@ -13,6 +13,7 @@ from typing import Any
 from flask import Blueprint, current_app, jsonify, request
 
 from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
+from app.repositories.v2.class_mastery_repository import V2ClassMasteryBundleError, V2ClassMasteryRepository
 from app.repositories.v2.idol_repository import V2IdolBundleError, V2IdolRepository
 from app.repositories.v2.item_repository import V2ItemBundleError, V2ItemRepository
 from app.repositories.v2.unique_set_repository import V2UniqueSetBundleError, V2UniqueSetRepository
@@ -38,6 +39,7 @@ DEFAULT_V2_UNIQUE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_unique_bundle.
 DEFAULT_V2_SET_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_set_bundle.json"
 DEFAULT_V2_IDOL_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_bundle.json"
 DEFAULT_V2_IDOL_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_affix_bundle.json"
+DEFAULT_V2_CLASS_MASTERY_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_class_mastery_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -653,6 +655,85 @@ def v2_idol_debug():
     return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_idol_bundles", "debug_summary": repository.debug_summary()})
 
 
+@experimental_bp.route("/v2/classes", methods=["GET"])
+def v2_classes():
+    """Query the read-only v2 class bundle."""
+
+    parsed = _parse_v2_class_mastery_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_class_mastery_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_missing", "message": str(exc)}), 404
+    except V2ClassMasteryBundleError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_invalid", "message": str(exc)}), 422
+    records = repository.filter_classes(query=parsed["q"], limit=parsed["limit"], offset=parsed["offset"])
+    return jsonify(_v2_class_mastery_response(repository, records, parsed, data_source="v2_class_mastery_bundle", record_kind="classes"))
+
+
+@experimental_bp.route("/v2/classes/debug", methods=["GET"])
+def v2_class_mastery_debug():
+    """Return a debug summary for read-only v2 class/mastery bundle."""
+
+    try:
+        repository = _load_v2_class_mastery_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_missing", "message": str(exc)}), 404
+    except V2ClassMasteryBundleError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_invalid", "message": str(exc)}), 422
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_class_mastery_bundle", "debug_summary": repository.debug_summary()})
+
+
+@experimental_bp.route("/v2/classes/<path:class_id>", methods=["GET"])
+def v2_class_detail(class_id: str):
+    """Return one v2 class record by canonical ID."""
+
+    try:
+        repository = _load_v2_class_mastery_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_missing", "message": str(exc)}), 404
+    except V2ClassMasteryBundleError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_class(class_id)
+    if record is None:
+        return jsonify({"success": False, "error": "class_not_found", "message": f"v2 class not found: {class_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_class_mastery_bundle", "source_path": str(repository.bundle_path), "record": record, "masteries": repository.get_masteries_by_class(class_id)})
+
+
+@experimental_bp.route("/v2/masteries", methods=["GET"])
+def v2_masteries():
+    """Query the read-only v2 mastery records."""
+
+    parsed = _parse_v2_class_mastery_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_class_mastery_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_missing", "message": str(exc)}), 404
+    except V2ClassMasteryBundleError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_invalid", "message": str(exc)}), 422
+    records = repository.filter_masteries(query=parsed["q"], class_id=parsed["class_id"], limit=parsed["limit"], offset=parsed["offset"])
+    return jsonify(_v2_class_mastery_response(repository, records, parsed, data_source="v2_class_mastery_bundle", record_kind="masteries"))
+
+
+@experimental_bp.route("/v2/masteries/<path:mastery_id>", methods=["GET"])
+def v2_mastery_detail(mastery_id: str):
+    """Return one v2 mastery record by canonical ID."""
+
+    try:
+        repository = _load_v2_class_mastery_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_missing", "message": str(exc)}), 404
+    except V2ClassMasteryBundleError as exc:
+        return jsonify({"success": False, "error": "v2_class_mastery_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_mastery(mastery_id)
+    if record is None:
+        return jsonify({"success": False, "error": "mastery_not_found", "message": f"v2 mastery not found: {mastery_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_class_mastery_bundle", "source_path": str(repository.bundle_path), "record": record})
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -864,6 +945,13 @@ def _configured_v2_idol_affix_bundle_path() -> Path:
     return DEFAULT_V2_IDOL_AFFIX_BUNDLE_PATH
 
 
+def _configured_v2_class_mastery_bundle_path() -> Path:
+    configured = current_app.config.get("V2_CLASS_MASTERY_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_CLASS_MASTERY_BUNDLE_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
 
@@ -887,6 +975,10 @@ def _load_v2_idol_repository() -> V2IdolRepository:
         _configured_v2_idol_bundle_path(),
         _configured_v2_idol_affix_bundle_path(),
     ).load()
+
+
+def _load_v2_class_mastery_repository() -> V2ClassMasteryRepository:
+    return V2ClassMasteryRepository(_configured_v2_class_mastery_bundle_path()).load()
 
 
 def _parse_query_args() -> dict[str, Any]:
@@ -950,6 +1042,19 @@ def _parse_v2_idol_query_args() -> dict[str, Any]:
         "idol_type": request.args.get("idol_type") or request.args.get("item_type") or "",
         "class_id": request.args.get("class_id") or "",
         "mastery": request.args.get("mastery") or "",
+        "errors": errors,
+    }
+
+
+def _parse_v2_class_mastery_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "class_id": request.args.get("class_id") or "",
         "errors": errors,
     }
 
@@ -1344,5 +1449,35 @@ def _v2_idol_affix_response(
         "export_policy": "v2_idol_affix_bundle",
         "export_status": "pass" if summary["idol_affix_summary"].get("validation_error_count", 0) == 0 else "blocked",
         "summary": summary["idol_affix_summary"],
+        "records": records,
+    }
+
+
+def _v2_class_mastery_response(
+    repository: V2ClassMasteryRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+    *,
+    data_source: str,
+    record_kind: str,
+) -> dict[str, Any]:
+    summary = repository.debug_summary()["summary"]
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": data_source,
+        "source_path": str(repository.bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_classes() if record_kind == "classes" else repository.count_masteries(),
+        "total_classes": repository.count_classes(),
+        "total_masteries": repository.count_masteries(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_class_mastery_bundle",
+        "export_status": "pass" if summary.get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary,
         "records": records,
     }

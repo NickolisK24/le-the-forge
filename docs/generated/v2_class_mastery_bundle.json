@@ -1,0 +1,1325 @@
+{
+  "cross_reference": {
+    "labels": [
+      {
+        "count": 46,
+        "label": "Acolyte",
+        "mapped_class_id": "class:acolyte",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 46,
+        "label": "Mage",
+        "mapped_class_id": "class:mage",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 48,
+        "label": "Primalist",
+        "mapped_class_id": "class:primalist",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 36
+        }
+      }
+    ],
+    "mapped_label_count": 3,
+    "mapped_labels": [
+      {
+        "count": 46,
+        "label": "Acolyte",
+        "mapped_class_id": "class:acolyte",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 46,
+        "label": "Mage",
+        "mapped_class_id": "class:mage",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 48,
+        "label": "Primalist",
+        "mapped_class_id": "class:primalist",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 36
+        }
+      }
+    ],
+    "restriction_label_count": 140,
+    "unique_restriction_label_count": 3,
+    "unmapped_label_count": 0,
+    "unmapped_labels": []
+  },
+  "generated_on": "2026-05-12",
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_class_mastery_bundle"
+  },
+  "records": {
+    "classes": [
+      {
+        "base_stats": {
+          "baseAttunement": 1,
+          "baseDexterity": 0,
+          "baseEndurance": 0.20000000298023224,
+          "baseEnduranceThreshold": 0.0,
+          "baseHealth": 100,
+          "baseIntelligence": 0,
+          "baseMana": 50,
+          "baseMoreDoTDamageTaken": -0.15000000596046448,
+          "baseStrength": 2,
+          "baseStunAvoidance": 250,
+          "baseVitality": 0,
+          "enduranceThresholdPerHealth": 0.20000000298023224,
+          "enduranceThresholdPerLevel": 0.0,
+          "healthPerLevel": 10,
+          "healthRegen": 6.0,
+          "healthRegenPerLevel": 0.14000000059604645,
+          "manaPerLevel": 0.5050600171089172,
+          "manaRegen": 8.0,
+          "minionScaling": {
+            "firstLevelForScaling": 26,
+            "lessDamageTakenPerLevel": 0.00800000037997961,
+            "moreDamagePerLevel": 0.00800000037997961
+          },
+          "stunAvoidancePerLevel": 5.0
+        },
+        "canonical_id": "class:primalist",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Primalist",
+        "known_restriction_labels": [
+          "Primalist"
+        ],
+        "linked_passive_tree_source_ids": [
+          "pr-1"
+        ],
+        "linked_skill_source_ids": [
+          "skill_path:261142",
+          "skill_path:262531",
+          "skill_path:262552",
+          "skill_path:262952",
+          "skill_path:263498",
+          "skill_path:263704",
+          "skill_path:264453",
+          "skill_path:264461",
+          "skill_path:264551",
+          "skill_path:264562",
+          "skill_path:264730"
+        ],
+        "manual_bridge": false,
+        "mastery_ids": [
+          "mastery:primalist:beastmaster",
+          "mastery:primalist:shaman",
+          "mastery:primalist:druid"
+        ],
+        "normalized_fields": {
+          "canonical_kind": "class"
+        },
+        "passive_tree_ids": [
+          "passive_tree:pr_1"
+        ],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted class registry record."
+          ],
+          "source_id": "class:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "source_class_id": 0,
+          "treeID": "pr-1"
+        },
+        "skill_ids": [
+          "skill_path:261142",
+          "skill_path:262531",
+          "skill_path:262552",
+          "skill_path:262952",
+          "skill_path:263498",
+          "skill_path:263704",
+          "skill_path:264453",
+          "skill_path:264461",
+          "skill_path:264551",
+          "skill_path:264562",
+          "skill_path:264730"
+        ],
+        "source_class_id": 0,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:0",
+        "source_tree_id": "pr-1",
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "base_stats": {
+          "baseAttunement": 0,
+          "baseDexterity": 0,
+          "baseEndurance": 0.20000000298023224,
+          "baseEnduranceThreshold": 0.0,
+          "baseHealth": 100,
+          "baseIntelligence": 3,
+          "baseMana": 50,
+          "baseMoreDoTDamageTaken": -0.15000000596046448,
+          "baseStrength": 0,
+          "baseStunAvoidance": 250,
+          "baseVitality": 0,
+          "enduranceThresholdPerHealth": 0.20000000298023224,
+          "enduranceThresholdPerLevel": 0.0,
+          "healthPerLevel": 10,
+          "healthRegen": 6.0,
+          "healthRegenPerLevel": 0.14000000059604645,
+          "manaPerLevel": 0.5050600171089172,
+          "manaRegen": 8.0,
+          "minionScaling": {
+            "firstLevelForScaling": 26,
+            "lessDamageTakenPerLevel": 0.00800000037997961,
+            "moreDamagePerLevel": 0.00800000037997961
+          },
+          "stunAvoidancePerLevel": 5.0
+        },
+        "canonical_id": "class:mage",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Mage",
+        "known_restriction_labels": [
+          "Mage"
+        ],
+        "linked_passive_tree_source_ids": [
+          "mg-1"
+        ],
+        "linked_skill_source_ids": [
+          "skill_path:261142",
+          "skill_path:261591",
+          "skill_path:262431",
+          "skill_path:262458",
+          "skill_path:262497",
+          "skill_path:262912",
+          "skill_path:262953",
+          "skill_path:263025",
+          "skill_path:263498",
+          "skill_path:264309",
+          "skill_path:264355",
+          "skill_path:264554"
+        ],
+        "manual_bridge": false,
+        "mastery_ids": [
+          "mastery:mage:sorcerer",
+          "mastery:mage:spellblade",
+          "mastery:mage:runemaster"
+        ],
+        "normalized_fields": {
+          "canonical_kind": "class"
+        },
+        "passive_tree_ids": [
+          "passive_tree:mg_1"
+        ],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted class registry record."
+          ],
+          "source_id": "class:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "source_class_id": 1,
+          "treeID": "mg-1"
+        },
+        "skill_ids": [
+          "skill_path:261142",
+          "skill_path:261591",
+          "skill_path:262431",
+          "skill_path:262458",
+          "skill_path:262497",
+          "skill_path:262912",
+          "skill_path:262953",
+          "skill_path:263025",
+          "skill_path:263498",
+          "skill_path:264309",
+          "skill_path:264355",
+          "skill_path:264554"
+        ],
+        "source_class_id": 1,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:1",
+        "source_tree_id": "mg-1",
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "base_stats": {
+          "baseAttunement": 0,
+          "baseDexterity": 0,
+          "baseEndurance": 0.20000000298023224,
+          "baseEnduranceThreshold": 0.0,
+          "baseHealth": 100,
+          "baseIntelligence": 0,
+          "baseMana": 50,
+          "baseMoreDoTDamageTaken": -0.15000000596046448,
+          "baseStrength": 2,
+          "baseStunAvoidance": 250,
+          "baseVitality": 1,
+          "enduranceThresholdPerHealth": 0.20000000298023224,
+          "enduranceThresholdPerLevel": 0.0,
+          "healthPerLevel": 10,
+          "healthRegen": 6.0,
+          "healthRegenPerLevel": 0.14000000059604645,
+          "manaPerLevel": 0.5050600171089172,
+          "manaRegen": 8.0,
+          "minionScaling": {
+            "firstLevelForScaling": 26,
+            "lessDamageTakenPerLevel": 0.00800000037997961,
+            "moreDamagePerLevel": 0.00800000037997961
+          },
+          "stunAvoidancePerLevel": 5.0
+        },
+        "canonical_id": "class:sentinel",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Sentinel",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [
+          "kn-1"
+        ],
+        "linked_skill_source_ids": [
+          "skill_path:261142",
+          "skill_path:262625",
+          "skill_path:262850",
+          "skill_path:262951",
+          "skill_path:263498",
+          "skill_path:263800",
+          "skill_path:264164",
+          "skill_path:264241",
+          "skill_path:264735",
+          "skill_path:264807",
+          "skill_path:264881"
+        ],
+        "manual_bridge": false,
+        "mastery_ids": [
+          "mastery:sentinel:void_knight",
+          "mastery:sentinel:forge_guard",
+          "mastery:sentinel:paladin"
+        ],
+        "normalized_fields": {
+          "canonical_kind": "class"
+        },
+        "passive_tree_ids": [
+          "passive_tree:kn_1"
+        ],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted class registry record."
+          ],
+          "source_id": "class:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "source_class_id": 2,
+          "treeID": "kn-1"
+        },
+        "skill_ids": [
+          "skill_path:261142",
+          "skill_path:262625",
+          "skill_path:262850",
+          "skill_path:262951",
+          "skill_path:263498",
+          "skill_path:263800",
+          "skill_path:264164",
+          "skill_path:264241",
+          "skill_path:264735",
+          "skill_path:264807",
+          "skill_path:264881"
+        ],
+        "source_class_id": 2,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:2",
+        "source_tree_id": "kn-1",
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "base_stats": {
+          "baseAttunement": 0,
+          "baseDexterity": 0,
+          "baseEndurance": 0.20000000298023224,
+          "baseEnduranceThreshold": 0.0,
+          "baseHealth": 100,
+          "baseIntelligence": 2,
+          "baseMana": 50,
+          "baseMoreDoTDamageTaken": -0.15000000596046448,
+          "baseStrength": 0,
+          "baseStunAvoidance": 250,
+          "baseVitality": 1,
+          "enduranceThresholdPerHealth": 0.20000000298023224,
+          "enduranceThresholdPerLevel": 0.0,
+          "healthPerLevel": 10,
+          "healthRegen": 6.0,
+          "healthRegenPerLevel": 0.14000000059604645,
+          "manaPerLevel": 0.5050600171089172,
+          "manaRegen": 8.0,
+          "minionScaling": {
+            "firstLevelForScaling": 26,
+            "lessDamageTakenPerLevel": 0.00800000037997961,
+            "moreDamagePerLevel": 0.00800000037997961
+          },
+          "stunAvoidancePerLevel": 5.0
+        },
+        "canonical_id": "class:acolyte",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Acolyte",
+        "known_restriction_labels": [
+          "Acolyte"
+        ],
+        "linked_passive_tree_source_ids": [
+          "ac-1"
+        ],
+        "linked_skill_source_ids": [
+          "skill_path:260926",
+          "skill_path:261142",
+          "skill_path:261173",
+          "skill_path:262645",
+          "skill_path:263035",
+          "skill_path:263498",
+          "skill_path:263799",
+          "skill_path:264444",
+          "skill_path:264458",
+          "skill_path:264675",
+          "skill_path:264863"
+        ],
+        "manual_bridge": false,
+        "mastery_ids": [
+          "mastery:acolyte:necromancer",
+          "mastery:acolyte:lich",
+          "mastery:acolyte:warlock"
+        ],
+        "normalized_fields": {
+          "canonical_kind": "class"
+        },
+        "passive_tree_ids": [
+          "passive_tree:ac_1"
+        ],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted class registry record."
+          ],
+          "source_id": "class:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "source_class_id": 3,
+          "treeID": "ac-1"
+        },
+        "skill_ids": [
+          "skill_path:260926",
+          "skill_path:261142",
+          "skill_path:261173",
+          "skill_path:262645",
+          "skill_path:263035",
+          "skill_path:263498",
+          "skill_path:263799",
+          "skill_path:264444",
+          "skill_path:264458",
+          "skill_path:264675",
+          "skill_path:264863"
+        ],
+        "source_class_id": 3,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:3",
+        "source_tree_id": "ac-1",
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "base_stats": {
+          "baseAttunement": 0,
+          "baseDexterity": 3,
+          "baseEndurance": 0.20000000298023224,
+          "baseEnduranceThreshold": 0.0,
+          "baseHealth": 100,
+          "baseIntelligence": 0,
+          "baseMana": 50,
+          "baseMoreDoTDamageTaken": -0.15000000596046448,
+          "baseStrength": 0,
+          "baseStunAvoidance": 250,
+          "baseVitality": 0,
+          "enduranceThresholdPerHealth": 0.20000000298023224,
+          "enduranceThresholdPerLevel": 0.0,
+          "healthPerLevel": 10,
+          "healthRegen": 6.0,
+          "healthRegenPerLevel": 0.14000000059604645,
+          "manaPerLevel": 0.5050600171089172,
+          "manaRegen": 8.0,
+          "minionScaling": {
+            "firstLevelForScaling": 26,
+            "lessDamageTakenPerLevel": 0.00800000037997961,
+            "moreDamagePerLevel": 0.00800000037997961
+          },
+          "stunAvoidancePerLevel": 5.0
+        },
+        "canonical_id": "class:rogue",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Rogue",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [
+          "rg-1"
+        ],
+        "linked_skill_source_ids": [
+          "skill_path:261142",
+          "skill_path:263498",
+          "skill_path:263816",
+          "skill_path:263834",
+          "skill_path:263852",
+          "skill_path:263871",
+          "skill_path:263905",
+          "skill_path:263955",
+          "skill_path:263956",
+          "skill_path:263991",
+          "skill_path:264230"
+        ],
+        "manual_bridge": false,
+        "mastery_ids": [
+          "mastery:rogue:bladedancer",
+          "mastery:rogue:marksman",
+          "mastery:rogue:falconer"
+        ],
+        "normalized_fields": {
+          "canonical_kind": "class"
+        },
+        "passive_tree_ids": [
+          "passive_tree:rg_1"
+        ],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted class registry record."
+          ],
+          "source_id": "class:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "source_class_id": 4,
+          "treeID": "rg-1"
+        },
+        "skill_ids": [
+          "skill_path:261142",
+          "skill_path:263498",
+          "skill_path:263816",
+          "skill_path:263834",
+          "skill_path:263852",
+          "skill_path:263871",
+          "skill_path:263905",
+          "skill_path:263955",
+          "skill_path:263956",
+          "skill_path:263991",
+          "skill_path:264230"
+        ],
+        "source_class_id": 4,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:4",
+        "source_tree_id": "rg-1",
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      }
+    ],
+    "masteries": [
+      {
+        "canonical_id": "mastery:primalist:beastmaster",
+        "class_id": "class:primalist",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Beastmaster",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264437"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:0:mastery:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Beastmaster",
+          "masteryAbilityPathId": 264437,
+          "source_class_id": 0,
+          "source_mastery_index": 1
+        },
+        "skill_ids": [
+          "skill_path:264437"
+        ],
+        "source_class_id": 0,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:0:mastery:1",
+        "source_mastery_id": "Mastery_Beastmaster",
+        "source_mastery_index": 1,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:primalist:shaman",
+        "class_id": "class:primalist",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Shaman",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264451"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:0:mastery:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Shaman",
+          "masteryAbilityPathId": 264451,
+          "source_class_id": 0,
+          "source_mastery_index": 2
+        },
+        "skill_ids": [
+          "skill_path:264451"
+        ],
+        "source_class_id": 0,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:0:mastery:2",
+        "source_mastery_id": "Mastery_Shaman",
+        "source_mastery_index": 2,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:primalist:druid",
+        "class_id": "class:primalist",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Druid",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264922"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:0:mastery:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Druid",
+          "masteryAbilityPathId": 264922,
+          "source_class_id": 0,
+          "source_mastery_index": 3
+        },
+        "skill_ids": [
+          "skill_path:264922"
+        ],
+        "source_class_id": 0,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:0:mastery:3",
+        "source_mastery_id": "Mastery_Druid",
+        "source_mastery_index": 3,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:mage:sorcerer",
+        "class_id": "class:mage",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Sorcerer",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:263053"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:1:mastery:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Sorcerer",
+          "masteryAbilityPathId": 263053,
+          "source_class_id": 1,
+          "source_mastery_index": 1
+        },
+        "skill_ids": [
+          "skill_path:263053"
+        ],
+        "source_class_id": 1,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:1:mastery:1",
+        "source_mastery_id": "Mastery_Sorcerer",
+        "source_mastery_index": 1,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:mage:spellblade",
+        "class_id": "class:mage",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Spellblade",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264237"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:1:mastery:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Spellblade",
+          "masteryAbilityPathId": 264237,
+          "source_class_id": 1,
+          "source_mastery_index": 2
+        },
+        "skill_ids": [
+          "skill_path:264237"
+        ],
+        "source_class_id": 1,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:1:mastery:2",
+        "source_mastery_id": "Mastery_Spellblade",
+        "source_mastery_index": 2,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:mage:runemaster",
+        "class_id": "class:mage",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Runemaster",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264015"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:1:mastery:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Runemaster",
+          "masteryAbilityPathId": 264015,
+          "source_class_id": 1,
+          "source_mastery_index": 3
+        },
+        "skill_ids": [
+          "skill_path:264015"
+        ],
+        "source_class_id": 1,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:1:mastery:3",
+        "source_mastery_id": "Mastery_Runemaster",
+        "source_mastery_index": 3,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:sentinel:void_knight",
+        "class_id": "class:sentinel",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Void Knight",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:262309"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:2:mastery:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_VoidKnight",
+          "masteryAbilityPathId": 262309,
+          "source_class_id": 2,
+          "source_mastery_index": 1
+        },
+        "skill_ids": [
+          "skill_path:262309"
+        ],
+        "source_class_id": 2,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:2:mastery:1",
+        "source_mastery_id": "Mastery_VoidKnight",
+        "source_mastery_index": 1,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:sentinel:forge_guard",
+        "class_id": "class:sentinel",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Forge Guard",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:262473"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:2:mastery:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Forge_Guard",
+          "masteryAbilityPathId": 262473,
+          "source_class_id": 2,
+          "source_mastery_index": 2
+        },
+        "skill_ids": [
+          "skill_path:262473"
+        ],
+        "source_class_id": 2,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:2:mastery:2",
+        "source_mastery_id": "Mastery_Forge_Guard",
+        "source_mastery_index": 2,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:sentinel:paladin",
+        "class_id": "class:sentinel",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Paladin",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:262677"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:2:mastery:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Paladin",
+          "masteryAbilityPathId": 262677,
+          "source_class_id": 2,
+          "source_mastery_index": 3
+        },
+        "skill_ids": [
+          "skill_path:262677"
+        ],
+        "source_class_id": 2,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:2:mastery:3",
+        "source_mastery_id": "Mastery_Paladin",
+        "source_mastery_index": 3,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:acolyte:necromancer",
+        "class_id": "class:acolyte",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Necromancer",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264462"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:3:mastery:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Necromancer",
+          "masteryAbilityPathId": 264462,
+          "source_class_id": 3,
+          "source_mastery_index": 1
+        },
+        "skill_ids": [
+          "skill_path:264462"
+        ],
+        "source_class_id": 3,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:3:mastery:1",
+        "source_mastery_id": "Mastery_Necromancer",
+        "source_mastery_index": 1,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:acolyte:lich",
+        "class_id": "class:acolyte",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Lich",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:263788"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:3:mastery:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Lich",
+          "masteryAbilityPathId": 263788,
+          "source_class_id": 3,
+          "source_mastery_index": 2
+        },
+        "skill_ids": [
+          "skill_path:263788"
+        ],
+        "source_class_id": 3,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:3:mastery:2",
+        "source_mastery_id": "Mastery_Lich",
+        "source_mastery_index": 2,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:acolyte:warlock",
+        "class_id": "class:acolyte",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Warlock",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:264874"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:3:mastery:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Warlock",
+          "masteryAbilityPathId": 264874,
+          "source_class_id": 3,
+          "source_mastery_index": 3
+        },
+        "skill_ids": [
+          "skill_path:264874"
+        ],
+        "source_class_id": 3,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:3:mastery:3",
+        "source_mastery_id": "Mastery_Warlock",
+        "source_mastery_index": 3,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:rogue:bladedancer",
+        "class_id": "class:rogue",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Bladedancer",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:263841"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:4:mastery:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Bladedancer",
+          "masteryAbilityPathId": 263841,
+          "source_class_id": 4,
+          "source_mastery_index": 1
+        },
+        "skill_ids": [
+          "skill_path:263841"
+        ],
+        "source_class_id": 4,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:4:mastery:1",
+        "source_mastery_id": "Mastery_Bladedancer",
+        "source_mastery_index": 1,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:rogue:marksman",
+        "class_id": "class:rogue",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Marksman",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:263853"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:4:mastery:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Marksman",
+          "masteryAbilityPathId": 263853,
+          "source_class_id": 4,
+          "source_mastery_index": 2
+        },
+        "skill_ids": [
+          "skill_path:263853"
+        ],
+        "source_class_id": 4,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:4:mastery:2",
+        "source_mastery_id": "Mastery_Marksman",
+        "source_mastery_index": 2,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      },
+      {
+        "canonical_id": "mastery:rogue:falconer",
+        "class_id": "class:rogue",
+        "consumer_safe_fields": {
+          "debug_only": true,
+          "planner_consumed": false
+        },
+        "display_name": "Falconer",
+        "known_restriction_labels": [],
+        "linked_passive_tree_source_ids": [],
+        "linked_skill_source_ids": [
+          "skill_path:262328"
+        ],
+        "manual_bridge": false,
+        "normalized_fields": {
+          "canonical_kind": "mastery"
+        },
+        "passive_tree_ids": [],
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_data_export",
+          "notes": [
+            "Extracted mastery entry nested under class registry record."
+          ],
+          "source_id": "class:4:mastery:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+          "source_type": "generated_from_game_data"
+        },
+        "raw_reference": {
+          "localizationKey": "Mastery_Falconer",
+          "masteryAbilityPathId": 262328,
+          "source_class_id": 4,
+          "source_mastery_index": 3
+        },
+        "skill_ids": [
+          "skill_path:262328"
+        ],
+        "source_class_id": 4,
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+        "source_id": "class:4:mastery:3",
+        "source_mastery_id": "Mastery_Falconer",
+        "source_mastery_index": 3,
+        "stable_calculable": false,
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": []
+      }
+    ]
+  },
+  "schema_version": "v2.class_mastery_bundle.1",
+  "source_classes_path": "D:\\Forge\\last-epoch-data\\exports_json\\classes.json",
+  "source_metadata": {
+    "class_count": 5,
+    "decode_failures": 0,
+    "disabled_class_count": 0,
+    "game_build": {
+      "gameAssemblySha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+      "installPath": "D:\\LastEpochTools\\game_files\\current\\1.4.6_22986002",
+      "unity": "6000.0.42f1"
+    },
+    "generated_at": "2026-05-06T00:02:36+00:00",
+    "pipeline": "typetree",
+    "pipeline_version": 1,
+    "source": "resources.assets ('Character Class List', parse_as_dict + PPtr deref)",
+    "source_pathid": 260902
+  },
+  "summary": {
+    "class_count": 5,
+    "manual_bridge_count": 0,
+    "mapped_restriction_label_count": 3,
+    "mastery_count": 15,
+    "production_consumed": false,
+    "stable_calculable_count": 0,
+    "support_status_counts": {
+      "partial": 20
+    },
+    "trust_level_counts": {
+      "generated_from_game_data": 20
+    },
+    "unique_restriction_label_count": 3,
+    "unmapped_restriction_label_count": 0,
+    "validation_error_count": 0,
+    "validation_warning_count": 0
+  }
+}

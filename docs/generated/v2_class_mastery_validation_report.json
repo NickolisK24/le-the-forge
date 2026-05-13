@@ -1,0 +1,99 @@
+{
+  "cross_reference": {
+    "labels": [
+      {
+        "count": 46,
+        "label": "Acolyte",
+        "mapped_class_id": "class:acolyte",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 46,
+        "label": "Mage",
+        "mapped_class_id": "class:mage",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 48,
+        "label": "Primalist",
+        "mapped_class_id": "class:primalist",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 36
+        }
+      }
+    ],
+    "mapped_label_count": 3,
+    "mapped_labels": [
+      {
+        "count": 46,
+        "label": "Acolyte",
+        "mapped_class_id": "class:acolyte",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 46,
+        "label": "Mage",
+        "mapped_class_id": "class:mage",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 34
+        }
+      },
+      {
+        "count": 48,
+        "label": "Primalist",
+        "mapped_class_id": "class:primalist",
+        "mapped_mastery_id": null,
+        "source_breakdown": {
+          "v2_idol_bundle.json:idols": 12,
+          "v2_item_base_bundle.json:item_bases": 36
+        }
+      }
+    ],
+    "restriction_label_count": 140,
+    "unique_restriction_label_count": 3,
+    "unmapped_label_count": 0,
+    "unmapped_labels": []
+  },
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_class_mastery_bundle"
+  },
+  "summary": {
+    "class_count": 5,
+    "class_links_missing_mastery_count": 0,
+    "duplicate_class_id_count": 0,
+    "duplicate_mastery_id_count": 0,
+    "error_count": 0,
+    "invalid_trust_level_count": 0,
+    "manual_bridge_count": 0,
+    "manual_bridge_not_marked_count": 0,
+    "mastery_count": 15,
+    "mastery_parent_missing_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "stable_calculable_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}
