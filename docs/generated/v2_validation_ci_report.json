@@ -33,7 +33,7 @@
     "invalid_reports": [],
     "missing_count": 0,
     "missing_reports": [],
-    "valid_count": 32,
+    "valid_count": 33,
     "valid_reports": [
       "v2_affix_bundle.json",
       "v2_affix_validation_report.json",
@@ -51,6 +51,7 @@
       "v2_modifier_blocked_reasons_report.json",
       "v2_modifier_registry.json",
       "v2_modifier_validation_report.json",
+      "v2_planner_adapter_report.json",
       "v2_passive_tree_bundle.json",
       "v2_passive_tree_validation_report.json",
       "v2_passive_unsupported_report.json",
@@ -103,15 +104,15 @@
     "api_route_count": 38,
     "backend_repository_domain_count": 10,
     "error_count": 0,
-    "generated_at": "2026-05-13T20:41:51.597688+00:00",
+    "generated_at": "2026-05-13T20:52:08.500782+00:00",
     "invalid_json_report_count": 0,
     "missing_generated_report_count": 0,
     "production_consumed": false,
-    "required_generated_report_count": 32,
+    "required_generated_report_count": 33,
     "skill_identity_bridged": false,
     "stable_calculable_count": 0,
     "status": "pass",
-    "valid_json_report_count": 32,
+    "valid_json_report_count": 33,
     "value_policy_audit_only": true
   }
 }

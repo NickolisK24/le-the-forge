@@ -26,6 +26,7 @@ REQUIRED_GENERATED_REPORTS = [
     "v2_modifier_blocked_reasons_report.json",
     "v2_modifier_registry.json",
     "v2_modifier_validation_report.json",
+    "v2_planner_adapter_report.json",
     "v2_passive_tree_bundle.json",
     "v2_passive_tree_validation_report.json",
     "v2_passive_unsupported_report.json",
