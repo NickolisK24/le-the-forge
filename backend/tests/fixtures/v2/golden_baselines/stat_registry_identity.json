@@ -1,0 +1,7 @@
+{
+  "fixture_type": "stat_registry_identity_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "unknown_stat_ids_remain_blocked": true,
+  "registry_count_changes_require_review": true
+}

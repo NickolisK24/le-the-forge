@@ -1,0 +1,7 @@
+{
+  "fixture_type": "unique_set_unsupported_exclusions_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "unsupported_records_must_not_be_stable_by_default": true,
+  "text_only_records_must_remain_display_only": true
+}
