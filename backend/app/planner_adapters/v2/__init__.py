@@ -2,6 +2,7 @@
 
 from .adapter import V2PlannerSafeAdapter
 from .contracts import PlannerAdapterDomainSummary, PlannerAdapterRecordEligibility
+from .diagnostics import build_planner_adapter_diagnostics
 from .eligibility import evaluate_modifier_record
 from .errors import V2PlannerAdapterError
 
@@ -10,5 +11,6 @@ __all__ = [
     "PlannerAdapterRecordEligibility",
     "V2PlannerAdapterError",
     "V2PlannerSafeAdapter",
+    "build_planner_adapter_diagnostics",
     "evaluate_modifier_record",
 ]
