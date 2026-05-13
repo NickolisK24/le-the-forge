@@ -1,0 +1,8 @@
+{
+  "fixture_type": "skill_identity_metadata_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "expected_fields": ["canonical_id", "skill_id", "identity_match_status", "planner_calculable"],
+  "expected_planner_calculable": false,
+  "expected_bridge_safe": false
+}

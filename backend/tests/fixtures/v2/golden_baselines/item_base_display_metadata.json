@@ -1,0 +1,7 @@
+{
+  "fixture_type": "item_base_display_metadata_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "expected_fields": ["canonical_id", "display_name", "provenance_summary", "planner_calculable"],
+  "expected_planner_calculable": false
+}
