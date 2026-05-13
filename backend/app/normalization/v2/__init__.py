@@ -7,6 +7,7 @@ from .modifier_policy import (
     is_stable_modifier_eligible,
     normalize_stat_id,
 )
+from .value_scale_policy import classify_family, family_key, stat_family
 from .modifier_registry import V2ModifierRegistry, V2ModifierRegistryError
 from .stat_registry import V2StatRegistry, V2StatRegistryError
 
@@ -19,5 +20,8 @@ __all__ = [
     "V2StatRegistryError",
     "classify_operation",
     "is_stable_modifier_eligible",
+    "classify_family",
+    "family_key",
     "normalize_stat_id",
+    "stat_family",
 ]
