@@ -1,0 +1,959 @@
+{
+  "blocked_reason_counts": {
+    "affix_values_not_planner_normalized": 1098,
+    "display_only_metadata": 1098,
+    "stable_calculable_false": 1098
+  },
+  "domains": [
+    {
+      "affix_count": 615,
+      "domain": "equipment"
+    },
+    {
+      "affix_count": 483,
+      "domain": "idol"
+    }
+  ],
+  "fields_excluded_from_calculation": [
+    "tier_ranges",
+    "normalized_fields",
+    "raw_value_min",
+    "raw_value_max",
+    "normalized_value_min",
+    "normalized_value_max",
+    "min_value",
+    "max_value"
+  ],
+  "fields_exposed": [
+    "canonical_id",
+    "display_name",
+    "domain",
+    "affix_type",
+    "prefix_suffix",
+    "categories",
+    "slot_restrictions",
+    "item_type_restrictions",
+    "class_restrictions",
+    "mastery_restrictions",
+    "tier_count",
+    "modifier_reference_count",
+    "modifier_reference_metadata",
+    "source_path",
+    "provenance_summary",
+    "support_status",
+    "trust_level",
+    "warnings",
+    "debug_summary",
+    "display_only_eligible",
+    "planner_calculable",
+    "stable_calculable",
+    "blocked_reasons"
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "affix value normalization is proven",
+      "affix records pass future stable-calculable gates",
+      "crafting and stat aggregation golden baselines exist"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "add non-calculating planner/debug consumers for affix identity and provenance before affix value remap"
+  },
+  "generated_at": "2026-05-13T21:38:03.744720+00:00",
+  "metadata": {
+    "display_provenance_only": true,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_affix_display_provenance"
+  },
+  "metadata_samples": [
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:0",
+      "categories": [
+        "OFF_TYPE_SPECIFIC",
+        "OffensiveIncrease",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 0,
+        "source_id": "equipment:0",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Void Penetration",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "AMULET"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:0",
+          "modifier_type": "ADDED",
+          "planner_calculable": false,
+          "property": "Penetration",
+          "property_path": "ADDED.Penetration.Void",
+          "source_record_id": "equipment:0",
+          "stable_calculable": false,
+          "tags": [
+            "Void"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:0",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "AMULET"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "suffix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:1",
+      "categories": [
+        "DEF_RESISTANCE",
+        "PassiveDefense",
+        "Standard",
+        "SUFFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 1,
+        "source_id": "equipment:1",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Armor",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BOOTS",
+        "SHIELD"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:1",
+          "modifier_type": "INCREASED",
+          "planner_calculable": false,
+          "property": "Armour",
+          "property_path": "INCREASED.Armour.None",
+          "source_record_id": "equipment:1",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "suffix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:1",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BOOTS",
+        "SHIELD"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:2",
+      "categories": [
+        "OFF_MELEE",
+        "OffensiveIncrease",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 2,
+        "source_id": "equipment:2",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Increased Melee Attack Speed",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "ONE_HANDED_FIST",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_SWORD",
+        "GLOVES"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:2",
+          "modifier_type": "INCREASED",
+          "planner_calculable": false,
+          "property": "AttackSpeed",
+          "property_path": "INCREASED.AttackSpeed.Melee",
+          "source_record_id": "equipment:2",
+          "stable_calculable": false,
+          "tags": [
+            "Melee"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:2",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "ONE_HANDED_FIST",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_SWORD",
+        "GLOVES"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:3",
+      "categories": [
+        "DEF_BLOCK",
+        "PassiveDefense",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 3,
+        "source_id": "equipment:3",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Added Block Chance",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "SHIELD"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:3",
+          "modifier_type": "ADDED",
+          "planner_calculable": false,
+          "property": "BlockChance",
+          "property_path": "ADDED.BlockChance.None",
+          "source_record_id": "equipment:3",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:3",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "SHIELD"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:4",
+      "categories": [
+        "OFF_SPELL",
+        "OffensiveIncrease",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 4,
+        "source_id": "equipment:4",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Increased Cast Speed",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "WAND",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_FIST",
+        "TWO_HANDED_STAFF",
+        "GLOVES",
+        "CATALYST",
+        "RELIC"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:4",
+          "modifier_type": "INCREASED",
+          "planner_calculable": false,
+          "property": "CastSpeed",
+          "property_path": "INCREASED.CastSpeed.None",
+          "source_record_id": "equipment:4",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:4",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "WAND",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_FIST",
+        "TWO_HANDED_STAFF",
+        "GLOVES",
+        "CATALYST",
+        "RELIC"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:5",
+      "categories": [
+        "OFF_GEN",
+        "OffensiveIncrease",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 5,
+        "source_id": "equipment:5",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Increased Critical Strike Chance",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "WAND",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_STAFF",
+        "TWO_HANDED_SWORD",
+        "CATALYST",
+        "AMULET",
+        "RING",
+        "RELIC",
+        "BOW",
+        "CROSSBOW",
+        "QUIVER",
+        "GLOVES"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:5",
+          "modifier_type": "INCREASED",
+          "planner_calculable": false,
+          "property": "CriticalChance",
+          "property_path": "INCREASED.CriticalChance.None",
+          "source_record_id": "equipment:5",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:5",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "WAND",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_STAFF",
+        "TWO_HANDED_SWORD",
+        "CATALYST",
+        "AMULET",
+        "RING",
+        "RELIC",
+        "BOW",
+        "CROSSBOW",
+        "QUIVER",
+        "GLOVES"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:6",
+      "categories": [
+        "OFF_GEN",
+        "OffensiveAddition",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 6,
+        "source_id": "equipment:6",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Added Critical Strike Multiplier",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "RELIC",
+        "AMULET",
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_STAFF",
+        "TWO_HANDED_SWORD",
+        "BOW",
+        "CROSSBOW",
+        "WAND",
+        "CATALYST"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:6",
+          "modifier_type": "ADDED",
+          "planner_calculable": false,
+          "property": "CriticalMultiplier",
+          "property_path": "ADDED.CriticalMultiplier.None",
+          "source_record_id": "equipment:6",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:6",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "RELIC",
+        "AMULET",
+        "ONE_HANDED_AXE",
+        "ONE_HANDED_DAGGER",
+        "ONE_HANDED_MACES",
+        "ONE_HANDED_SCEPTRE",
+        "ONE_HANDED_SWORD",
+        "TWO_HANDED_AXE",
+        "TWO_HANDED_MACE",
+        "TWO_HANDED_SPEAR",
+        "TWO_HANDED_STAFF",
+        "TWO_HANDED_SWORD",
+        "BOW",
+        "CROSSBOW",
+        "WAND",
+        "CATALYST"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "suffix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:7",
+      "categories": [
+        "DEF_RESISTANCE",
+        "PassiveDefense",
+        "Standard",
+        "SUFFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 7,
+        "source_id": "equipment:7",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Void Resistance",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BELT",
+        "GLOVES",
+        "SHIELD",
+        "CATALYST",
+        "AMULET",
+        "RING",
+        "RELIC",
+        "BOOTS",
+        "QUIVER"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:7",
+          "modifier_type": "ADDED",
+          "planner_calculable": false,
+          "property": "VoidResistance",
+          "property_path": "ADDED.VoidResistance.None",
+          "source_record_id": "equipment:7",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "suffix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:7",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BELT",
+        "GLOVES",
+        "SHIELD",
+        "CATALYST",
+        "AMULET",
+        "RING",
+        "RELIC",
+        "BOOTS",
+        "QUIVER"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "suffix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:8",
+      "categories": [
+        "DEF_DODGE",
+        "PassiveDefense",
+        "Standard",
+        "SUFFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 8,
+        "source_id": "equipment:8",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Added Dodge Rating",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BELT",
+        "BOOTS",
+        "GLOVES",
+        "AMULET",
+        "RING",
+        "CATALYST"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:8",
+          "modifier_type": "ADDED",
+          "planner_calculable": false,
+          "property": "DodgeRating",
+          "property_path": "ADDED.DodgeRating.None",
+          "source_record_id": "equipment:8",
+          "stable_calculable": false,
+          "tags": [
+            "None"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "suffix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:8",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "HELMET",
+        "BODY_ARMOR",
+        "BELT",
+        "BOOTS",
+        "GLOVES",
+        "AMULET",
+        "RING",
+        "CATALYST"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "affix_type": "prefix",
+      "blocked_reasons": [
+        "display_only_metadata",
+        "affix_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "affix:equipment:9",
+      "categories": [
+        "OFF_TYPE_SPECIFIC",
+        "OffensiveIncrease",
+        "Standard",
+        "PREFIX"
+      ],
+      "class_restrictions": [],
+      "debug_summary": {
+        "patch_version": null,
+        "polarity_policy": "source_sign_preserved_no_inference",
+        "source_affix_id": 9,
+        "source_id": "equipment:9",
+        "source_type": "equipment",
+        "stable_calculable_source": false,
+        "value_scale_policy": "source_units_preserved_pending_v2_value_normalization"
+      },
+      "display_name": "Increased Elemental Damage",
+      "display_only_eligible": true,
+      "domain": "equipment",
+      "item_type_restrictions": [
+        "AMULET",
+        "RING",
+        "CATALYST",
+        "WAND",
+        "ONE_HANDED_SCEPTRE",
+        "TWO_HANDED_STAFF"
+      ],
+      "mastery_restrictions": [],
+      "modifier_reference_count": 1,
+      "modifier_reference_metadata": [
+        {
+          "modifier_id": "equipment:9",
+          "modifier_type": "INCREASED",
+          "planner_calculable": false,
+          "property": "Damage",
+          "property_path": "INCREASED.Damage.Elemental",
+          "source_record_id": "equipment:9",
+          "stable_calculable": false,
+          "tags": [
+            "Elemental"
+          ]
+        }
+      ],
+      "planner_calculable": false,
+      "prefix_suffix": "prefix",
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "patch_version": null,
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:9",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "slot_restrictions": [
+        "AMULET",
+        "RING",
+        "CATALYST",
+        "WAND",
+        "ONE_HANDED_SCEPTRE",
+        "TWO_HANDED_STAFF"
+      ],
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "tier_count": 8,
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    }
+  ],
+  "prefix_suffix_counts": {
+    "prefix": 832,
+    "suffix": 266
+  },
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.affix_display_provenance.1",
+  "summary": {
+    "affix_count": 1098,
+    "display_only_eligible_count": 1098,
+    "domains_inspected": 2,
+    "modifier_reference_metadata_records_exposed": 1624,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "planner_calculable_count": 0,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "top_blocked_reasons": [
+      {
+        "count": 1098,
+        "reason": "affix_values_not_planner_normalized"
+      },
+      {
+        "count": 1098,
+        "reason": "display_only_metadata"
+      },
+      {
+        "count": 1098,
+        "reason": "stable_calculable_false"
+      }
+    ],
+    "value_normalization_status": "audit_only"
+  },
+  "tier_modifier_metadata_treatment": {
+    "modifier_reference_metadata_records_exposed": 1624,
+    "modifier_values_exposed_as_planner_stats": false,
+    "notes": [
+      "Tier counts and modifier reference labels are display metadata only.",
+      "Tier ranges and source-unit values remain excluded from planner-calculable metadata."
+    ],
+    "tier_counts_exposed": true,
+    "tier_ranges_exposed": false
+  }
+}
