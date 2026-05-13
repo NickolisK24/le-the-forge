@@ -9,6 +9,7 @@ from .errors import V2PlannerAdapterError
 from .item_metadata import V2ItemBaseDisplayMetadata, build_item_base_metadata_view
 from .metadata import V2PlannerMetadataRemap, build_metadata_view
 from .passive_skill_identity import V2PassiveSkillIdentityMetadata
+from .stat_modifier_dry_run import V2StatModifierDryRunComparison
 
 __all__ = [
     "PlannerAdapterDomainSummary",
@@ -19,6 +20,7 @@ __all__ = [
     "V2PassiveSkillIdentityMetadata",
     "V2PlannerSafeAdapter",
     "V2PlannerMetadataRemap",
+    "V2StatModifierDryRunComparison",
     "build_affix_metadata_view",
     "build_item_base_metadata_view",
     "build_planner_adapter_diagnostics",
