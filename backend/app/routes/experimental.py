@@ -16,6 +16,7 @@ from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepo
 from app.repositories.v2.class_mastery_repository import V2ClassMasteryBundleError, V2ClassMasteryRepository
 from app.repositories.v2.idol_repository import V2IdolBundleError, V2IdolRepository
 from app.repositories.v2.item_repository import V2ItemBundleError, V2ItemRepository
+from app.repositories.v2.passive_repository import V2PassiveBundleError, V2PassiveRepository
 from app.repositories.v2.unique_set_repository import V2UniqueSetBundleError, V2UniqueSetRepository
 from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoaderError
 from data.loaders.forge_safe_affixes_loader import ForgeSafeAffixLoaderError
@@ -40,6 +41,7 @@ DEFAULT_V2_SET_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_set_bundle.json"
 DEFAULT_V2_IDOL_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_bundle.json"
 DEFAULT_V2_IDOL_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_affix_bundle.json"
 DEFAULT_V2_CLASS_MASTERY_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_class_mastery_bundle.json"
+DEFAULT_V2_PASSIVE_TREE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_passive_tree_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -734,6 +736,77 @@ def v2_mastery_detail(mastery_id: str):
     return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_class_mastery_bundle", "source_path": str(repository.bundle_path), "record": record})
 
 
+@experimental_bp.route("/v2/passives", methods=["GET"])
+def v2_passives():
+    """Query the read-only v2 passive tree bundle."""
+
+    parsed = _parse_v2_passive_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_passive_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_missing", "message": str(exc)}), 404
+    except V2PassiveBundleError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_invalid", "message": str(exc)}), 422
+    records = repository.filter_trees(
+        query=parsed["q"],
+        class_id=parsed["class_id"],
+        mastery_id=parsed["mastery_id"],
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    return jsonify(_v2_passive_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/passives/debug", methods=["GET"])
+def v2_passive_debug():
+    """Return a debug summary for read-only v2 passive tree bundle."""
+
+    try:
+        repository = _load_v2_passive_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_missing", "message": str(exc)}), 404
+    except V2PassiveBundleError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_invalid", "message": str(exc)}), 422
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_passive_tree_bundle", "debug_summary": repository.debug_summary()})
+
+
+@experimental_bp.route("/v2/passives/<path:tree_id>", methods=["GET"])
+def v2_passive_detail(tree_id: str):
+    """Return one v2 passive tree with its nodes."""
+
+    parsed = _parse_v2_passive_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_passive_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_missing", "message": str(exc)}), 404
+    except V2PassiveBundleError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_tree(tree_id)
+    if record is None:
+        return jsonify({"success": False, "error": "passive_tree_not_found", "message": f"v2 passive tree not found: {tree_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_passive_tree_bundle", "source_path": str(repository.bundle_path), "record": record, "nodes": repository.get_nodes_by_tree(tree_id, limit=parsed["limit"], offset=parsed["offset"])})
+
+
+@experimental_bp.route("/v2/passives/<path:tree_id>/nodes/<path:node_id>", methods=["GET"])
+def v2_passive_node_detail(tree_id: str, node_id: str):
+    """Return one v2 passive node by canonical ID."""
+
+    try:
+        repository = _load_v2_passive_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_missing", "message": str(exc)}), 404
+    except V2PassiveBundleError as exc:
+        return jsonify({"success": False, "error": "v2_passive_tree_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_node(node_id)
+    if record is None or record.get("tree_id") != tree_id:
+        return jsonify({"success": False, "error": "passive_node_not_found", "message": f"v2 passive node not found: {node_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_passive_tree_bundle", "source_path": str(repository.bundle_path), "record": record})
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -952,6 +1025,13 @@ def _configured_v2_class_mastery_bundle_path() -> Path:
     return DEFAULT_V2_CLASS_MASTERY_BUNDLE_PATH
 
 
+def _configured_v2_passive_tree_bundle_path() -> Path:
+    configured = current_app.config.get("V2_PASSIVE_TREE_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_PASSIVE_TREE_BUNDLE_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
 
@@ -979,6 +1059,10 @@ def _load_v2_idol_repository() -> V2IdolRepository:
 
 def _load_v2_class_mastery_repository() -> V2ClassMasteryRepository:
     return V2ClassMasteryRepository(_configured_v2_class_mastery_bundle_path()).load()
+
+
+def _load_v2_passive_repository() -> V2PassiveRepository:
+    return V2PassiveRepository(_configured_v2_passive_tree_bundle_path()).load()
 
 
 def _parse_query_args() -> dict[str, Any]:
@@ -1055,6 +1139,20 @@ def _parse_v2_class_mastery_query_args() -> dict[str, Any]:
         "offset": offset,
         "q": request.args.get("q") or request.args.get("search") or "",
         "class_id": request.args.get("class_id") or "",
+        "errors": errors,
+    }
+
+
+def _parse_v2_passive_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "class_id": request.args.get("class_id") or "",
+        "mastery_id": request.args.get("mastery_id") or "",
         "errors": errors,
     }
 
@@ -1477,6 +1575,33 @@ def _v2_class_mastery_response(
         "warning_count": 0,
         "warnings": [],
         "export_policy": "v2_class_mastery_bundle",
+        "export_status": "pass" if summary.get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary,
+        "records": records,
+    }
+
+
+def _v2_passive_response(
+    repository: V2PassiveRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()["summary"]
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_passive_tree_bundle",
+        "source_path": str(repository.bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_trees(),
+        "total_passive_trees": repository.count_trees(),
+        "total_passive_nodes": repository.count_nodes(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_passive_tree_bundle",
         "export_status": "pass" if summary.get("validation_error_count", 0) == 0 else "blocked",
         "summary": summary,
         "records": records,
