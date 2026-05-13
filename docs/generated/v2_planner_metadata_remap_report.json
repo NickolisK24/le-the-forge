@@ -1,0 +1,690 @@
+{
+  "blocked_mechanical_data": [
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "affix modifier math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "unstable_support_status"
+      ],
+      "category": "item implicit modifier math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unsupported/text-only report remains intentionally visible"
+      ],
+      "category": "unique and set mechanics",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "IDOL_ALTAR warnings remain display-only"
+      ],
+      "category": "idol base and idol affix math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unresolved_refs=2",
+        "ambiguous_refs=1"
+      ],
+      "category": "skill ownership",
+      "classification": "blocked_by_identity_resolution",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "scripted and unsupported passive records remain non-calculable"
+      ],
+      "category": "passive node behavior",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "scripted and unsupported skill records remain non-calculable"
+      ],
+      "category": "skill and skill tree behavior",
+      "classification": "blocked_by_unsupported_mechanics",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "unknown_value_scale=13150",
+        "source_units_value_scale=6248"
+      ],
+      "category": "stat/modifier adapter math",
+      "classification": "blocked_by_value_normalization",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "production behavior depends on legacy craft engine and FP constants"
+      ],
+      "category": "crafting engine",
+      "classification": "blocked_by_behavioral_risk",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "production behavior depends on legacy stat fields and combat formulas"
+      ],
+      "category": "simulation/combat engine",
+      "classification": "blocked_by_behavioral_risk",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "routes expose legacy DB/static data and must not switch without compatibility tests"
+      ],
+      "category": "production reference routes",
+      "classification": "manual_only_currently",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    },
+    {
+      "blocked_reasons": [
+        "needs adapter dry-run and UI compatibility tests before remap"
+      ],
+      "category": "frontend planner API clients",
+      "classification": "blocked_by_missing_tests",
+      "mode": "blocked_mechanical_data",
+      "planner_calculable": false
+    }
+  ],
+  "blocked_reason_counts": {
+    "not_stable_calculable": 19398,
+    "scripted_behavior": 7495,
+    "source_units_value_scale": 6248,
+    "text_only_behavior": 265,
+    "unknown_operation": 11606,
+    "unknown_value_scale": 13150,
+    "unresolved_skill_identity": 11924,
+    "unresolved_stat_identity": 4714,
+    "unstable_support_status": 19398,
+    "unsupported_behavior": 5276
+  },
+  "display_only_candidates": [
+    {
+      "category": "item/base display metadata",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "needs non-calculating API adapter tests"
+      ],
+      "planner_calculable": false
+    },
+    {
+      "category": "affix display and provenance",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "must stay display-only until value policy is proven"
+      ],
+      "planner_calculable": false
+    },
+    {
+      "category": "class/mastery metadata",
+      "classification": "ready_for_adapter_later",
+      "mode": "display_only_candidate",
+      "notes": [
+        "metadata can be inspected; planner skill ownership remains partially unresolved"
+      ],
+      "planner_calculable": false
+    }
+  ],
+  "domains": [
+    {
+      "display_only_eligible_count": 1624,
+      "domain": "affix",
+      "inspected_count": 1624,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 647,
+      "domain": "idol_affix_modifier",
+      "inspected_count": 647,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 1182,
+      "domain": "item_implicit",
+      "inspected_count": 1182,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 1660,
+      "domain": "passive_node_modifier",
+      "inspected_count": 1660,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 27,
+      "domain": "set_bonus_modifier",
+      "inspected_count": 27,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 287,
+      "domain": "set_item_modifier",
+      "inspected_count": 287,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 10843,
+      "domain": "skill_node_modifier",
+      "inspected_count": 10843,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 1081,
+      "domain": "skill_structured_value",
+      "inspected_count": 1081,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    },
+    {
+      "display_only_eligible_count": 2047,
+      "domain": "unique_modifier",
+      "inspected_count": 2047,
+      "planner_calculable_count": 0,
+      "stable_calculable_count": 0
+    }
+  ],
+  "fields_exposed": [
+    "canonical_id",
+    "display_name",
+    "domain",
+    "source_id",
+    "source_path",
+    "support_status",
+    "trust_level",
+    "provenance_summary",
+    "warnings",
+    "debug_summary",
+    "adapter_blocked_reasons",
+    "planner_calculable",
+    "stable_calculable",
+    "display_only_eligible"
+  ],
+  "forbidden_calculation_fields": [
+    "raw_value_min",
+    "raw_value_max",
+    "normalized_value_min",
+    "normalized_value_max"
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "value normalization is proven",
+      "stable-calculable gates produce nonzero eligible records",
+      "unresolved skill identity remains guarded",
+      "golden planner/crafting/simulation baselines exist"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "create non-calculating planner debug consumers before any mechanical adapter remap"
+  },
+  "generated_at": "2026-05-13T21:15:19.597603+00:00",
+  "metadata": {
+    "non_calculating": true,
+    "optional_route_added": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_planner_metadata_remap"
+  },
+  "metadata_policy": {
+    "display_only_does_not_imply_planner_calculable": true,
+    "non_calculating": true,
+    "read_only": true,
+    "values_exposed_for_planner_math": false
+  },
+  "metadata_samples": [
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+      "debug_summary": {
+        "operation": "flat",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:added_penetration_void",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Void Penetration",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:0",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:0",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+      "debug_summary": {
+        "operation": "increased",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:increased_armour_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Armor",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:1",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:1",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+      "debug_summary": {
+        "operation": "increased",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:increased_attackspeed_melee",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Increased Melee Attack Speed",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:2",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:2",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+      "debug_summary": {
+        "operation": "flat",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:added_blockchance_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Added Block Chance",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:3",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:3",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+      "debug_summary": {
+        "operation": "increased",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:increased_castspeed_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Increased Cast Speed",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:4",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:4",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+      "debug_summary": {
+        "operation": "increased",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:increased_criticalchance_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Increased Critical Strike Chance",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:5",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:5",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+      "debug_summary": {
+        "operation": "flat",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:added_criticalmultiplier_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Added Critical Strike Multiplier",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:6",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:6",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+      "debug_summary": {
+        "operation": "flat",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:added_voidresistance_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Void Resistance",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:7",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:7",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+      "debug_summary": {
+        "operation": "flat",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:added_dodgerating_none",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Added Dodge Rating",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:8",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:8",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    },
+    {
+      "adapter_blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+      "debug_summary": {
+        "operation": "increased",
+        "source_identity_status": "not_applicable",
+        "source_record_status": "modifier_row",
+        "special_behavior_classification": null,
+        "stat_id": "stat:increased_damage_elemental",
+        "value_scale_status": "source_units"
+      },
+      "display_name": "Increased Elemental Damage",
+      "display_only_eligible": true,
+      "domain": "affix",
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "forge_safe_affix_bundle",
+        "schema_version": "v2.affix_bundle.1",
+        "source_id": "equipment:9",
+        "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+        "source_type": "equipment"
+      },
+      "source_id": "affix:equipment:9",
+      "source_path": "/home/user/last-epoch-data/exports_json/affixes.json",
+      "stable_calculable": false,
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Value scale is source-units only; planner normalization is pending."
+      ]
+    }
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.planner_metadata_remap.1",
+  "summary": {
+    "display_only_eligible_count": 19398,
+    "domains_inspected": 9,
+    "metadata_records_inspected": 19398,
+    "optional_route_added": false,
+    "planner_calculable_count": 0,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "value_normalization_status": "audit_only"
+  }
+}

@@ -103,6 +103,7 @@ def test_v2_modifier_registries_are_not_referenced_by_production_modules():
         root / "backend" / "app" / "repositories" / "v2" / "registry.py",
         root / "backend" / "app" / "planner_adapters" / "v2" / "adapter.py",
         root / "backend" / "app" / "planner_adapters" / "v2" / "__init__.py",
+        root / "backend" / "app" / "planner_adapters" / "v2" / "metadata.py",
         root / "backend" / "scripts" / "report_v2_stat_modifier_normalization.py",
         Path(__file__).resolve(),
     }
