@@ -138,6 +138,7 @@ def test_v2_skill_bundle_is_not_referenced_by_production_modules():
         root / "backend" / "app" / "repositories" / "v2" / "__init__.py",
         root / "backend" / "app" / "repositories" / "v2" / "paths.py",
         root / "backend" / "app" / "repositories" / "v2" / "registry.py",
+        root / "backend" / "app" / "planner_adapters" / "v2" / "passive_skill_identity.py",
         root / "backend" / "scripts" / "report_v2_skill_tree_bundle.py",
         Path(__file__).resolve(),
     }
