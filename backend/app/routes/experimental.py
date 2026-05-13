@@ -12,6 +12,12 @@ from typing import Any
 
 from flask import Blueprint, current_app, jsonify, request
 
+from app.normalization.v2 import (
+    V2ModifierRegistry,
+    V2ModifierRegistryError,
+    V2StatRegistry,
+    V2StatRegistryError,
+)
 from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
 from app.repositories.v2.class_mastery_repository import V2ClassMasteryBundleError, V2ClassMasteryRepository
 from app.repositories.v2.idol_repository import V2IdolBundleError, V2IdolRepository
@@ -45,6 +51,8 @@ DEFAULT_V2_CLASS_MASTERY_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_class_m
 DEFAULT_V2_PASSIVE_TREE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_passive_tree_bundle.json"
 DEFAULT_V2_SKILL_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_skill_bundle.json"
 DEFAULT_V2_SKILL_TREE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_skill_tree_bundle.json"
+DEFAULT_V2_STAT_REGISTRY_PATH = ROOT / "docs" / "generated" / "v2_stat_registry.json"
+DEFAULT_V2_MODIFIER_REGISTRY_PATH = ROOT / "docs" / "generated" / "v2_modifier_registry.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -916,6 +924,110 @@ def v2_skill_detail(skill_id: str):
     return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_skill_bundle", "source_path": str(repository.skill_bundle_path), "record": record})
 
 
+@experimental_bp.route("/v2/stats", methods=["GET"])
+def v2_stats():
+    """Return v2 normalized stat registry records."""
+
+    parsed = _parse_v2_modifier_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        registry = _load_v2_stat_registry()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_stat_registry_missing", "message": str(exc)}), 404
+    except V2StatRegistryError as exc:
+        return jsonify({"success": False, "error": "v2_stat_registry_invalid", "message": str(exc)}), 422
+    records = registry.list_stats(limit=parsed["limit"], offset=parsed["offset"])
+    if parsed["q"]:
+        needle = parsed["q"].strip().lower()
+        records = [
+            record for record in records
+            if needle in record["canonical_stat_id"].lower()
+            or needle in str(record.get("display_name", "")).lower()
+        ]
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_stat_registry", "source_path": str(registry.registry_path), "count": len(records), "records": records})
+
+
+@experimental_bp.route("/v2/stats/<path:stat_id>", methods=["GET"])
+def v2_stat_detail(stat_id: str):
+    """Return one v2 normalized stat record."""
+
+    try:
+        registry = _load_v2_stat_registry()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_stat_registry_missing", "message": str(exc)}), 404
+    except V2StatRegistryError as exc:
+        return jsonify({"success": False, "error": "v2_stat_registry_invalid", "message": str(exc)}), 422
+    record = registry.get_stat(stat_id)
+    if record is None:
+        return jsonify({"success": False, "error": "stat_not_found", "message": f"v2 stat not found: {stat_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_stat_registry", "source_path": str(registry.registry_path), "record": record})
+
+
+@experimental_bp.route("/v2/modifiers", methods=["GET"])
+def v2_modifiers():
+    """Return v2 normalized modifier registry records."""
+
+    parsed = _parse_v2_modifier_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        registry = _load_v2_modifier_registry()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_missing", "message": str(exc)}), 404
+    except V2ModifierRegistryError as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_invalid", "message": str(exc)}), 422
+    stable = None
+    if request.args.get("stable_calculable") not in (None, ""):
+        stable = _parse_bool(request.args.get("stable_calculable"))
+    records = registry.list_modifiers(
+        source_type=parsed["source_type"],
+        stat_id=parsed["stat_id"],
+        stable_calculable=stable,
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    if parsed["q"]:
+        needle = parsed["q"].strip().lower()
+        records = [
+            record for record in records
+            if needle in record["canonical_modifier_id"].lower()
+            or needle in str(record.get("source_display_name", "")).lower()
+            or needle in str(record.get("stat_id", "")).lower()
+        ]
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_modifier_registry", "source_path": str(registry.registry_path), "count": len(records), "records": records})
+
+
+@experimental_bp.route("/v2/modifiers/debug", methods=["GET"])
+def v2_modifier_debug():
+    """Return debug summaries for v2 stat and modifier registries."""
+
+    try:
+        modifier_registry = _load_v2_modifier_registry()
+        stat_registry = _load_v2_stat_registry()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_missing", "message": str(exc)}), 404
+    except (V2ModifierRegistryError, V2StatRegistryError) as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_invalid", "message": str(exc)}), 422
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_modifier_registries", "debug_summary": {"modifiers": modifier_registry.debug_summary(), "stats": stat_registry.debug_summary()}})
+
+
+@experimental_bp.route("/v2/modifiers/<path:modifier_id>", methods=["GET"])
+def v2_modifier_detail(modifier_id: str):
+    """Return one v2 normalized modifier record."""
+
+    try:
+        registry = _load_v2_modifier_registry()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_missing", "message": str(exc)}), 404
+    except V2ModifierRegistryError as exc:
+        return jsonify({"success": False, "error": "v2_modifier_registry_invalid", "message": str(exc)}), 422
+    record = registry.get_modifier(modifier_id)
+    if record is None:
+        return jsonify({"success": False, "error": "modifier_not_found", "message": f"v2 modifier not found: {modifier_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_modifier_registry", "source_path": str(registry.registry_path), "record": record})
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -1155,6 +1267,20 @@ def _configured_v2_skill_tree_bundle_path() -> Path:
     return DEFAULT_V2_SKILL_TREE_BUNDLE_PATH
 
 
+def _configured_v2_stat_registry_path() -> Path:
+    configured = current_app.config.get("V2_STAT_REGISTRY_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_STAT_REGISTRY_PATH
+
+
+def _configured_v2_modifier_registry_path() -> Path:
+    configured = current_app.config.get("V2_MODIFIER_REGISTRY_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_MODIFIER_REGISTRY_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
 
@@ -1193,6 +1319,14 @@ def _load_v2_skill_repository() -> V2SkillRepository:
         _configured_v2_skill_bundle_path(),
         _configured_v2_skill_tree_bundle_path(),
     ).load()
+
+
+def _load_v2_stat_registry() -> V2StatRegistry:
+    return V2StatRegistry(_configured_v2_stat_registry_path()).load()
+
+
+def _load_v2_modifier_registry() -> V2ModifierRegistry:
+    return V2ModifierRegistry(_configured_v2_modifier_registry_path()).load()
 
 
 def _parse_query_args() -> dict[str, Any]:
@@ -1297,6 +1431,20 @@ def _parse_v2_skill_query_args() -> dict[str, Any]:
         "q": request.args.get("q") or request.args.get("search") or "",
         "class_id": request.args.get("class_id") or "",
         "mastery_id": request.args.get("mastery_id") or "",
+        "errors": errors,
+    }
+
+
+def _parse_v2_modifier_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "source_type": request.args.get("source_type") or "",
+        "stat_id": request.args.get("stat_id") or "",
         "errors": errors,
     }
 
