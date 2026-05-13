@@ -66,32 +66,45 @@ def test_v2_affix_repository_lookup_filter_and_debug_summary():
 def test_v2_affix_routes_list_detail_and_debug(app, tmp_path):
     bundle_path = tmp_path / "v2_affix_bundle.json"
     bundle_path.write_text(json.dumps(_v2_bundle()), encoding="utf-8")
+    original_path = app.config.get("V2_AFFIX_BUNDLE_PATH")
     app.config["V2_AFFIX_BUNDLE_PATH"] = str(bundle_path)
-    client = app.test_client()
+    try:
+        client = app.test_client()
 
-    list_response = client.get("/experimental/v2/affixes?slot=HELMET")
-    assert list_response.status_code == 200
-    list_payload = list_response.get_json()
-    assert list_payload["success"] is True
-    assert list_payload["production_consumer"] is False
-    assert list_payload["records"][0]["canonical_id"] == "affix:equipment:1"
+        list_response = client.get("/experimental/v2/affixes?slot=HELMET")
+        assert list_response.status_code == 200
+        list_payload = list_response.get_json()
+        assert list_payload["success"] is True
+        assert list_payload["production_consumer"] is False
+        assert list_payload["records"][0]["canonical_id"] == "affix:equipment:1"
 
-    detail_response = client.get("/experimental/v2/affixes/affix:equipment:1")
-    assert detail_response.status_code == 200
-    assert detail_response.get_json()["record"]["display_name"] == "Test Health"
+        detail_response = client.get("/experimental/v2/affixes/affix:equipment:1")
+        assert detail_response.status_code == 200
+        assert detail_response.get_json()["record"]["display_name"] == "Test Health"
 
-    debug_response = client.get("/experimental/v2/affixes/debug")
-    assert debug_response.status_code == 200
-    assert debug_response.get_json()["debug_summary"]["production_safe"] is False
+        debug_response = client.get("/experimental/v2/affixes/debug")
+        assert debug_response.status_code == 200
+        assert debug_response.get_json()["debug_summary"]["production_safe"] is False
+    finally:
+        if original_path is None:
+            app.config.pop("V2_AFFIX_BUNDLE_PATH", None)
+        else:
+            app.config["V2_AFFIX_BUNDLE_PATH"] = original_path
 
 
 def test_v2_affix_route_reports_missing_bundle(app, tmp_path):
+    original_path = app.config.get("V2_AFFIX_BUNDLE_PATH")
     app.config["V2_AFFIX_BUNDLE_PATH"] = str(tmp_path / "missing.json")
+    try:
+        response = app.test_client().get("/experimental/v2/affixes")
 
-    response = app.test_client().get("/experimental/v2/affixes")
-
-    assert response.status_code == 404
-    assert response.get_json()["error"]["code"] == "v2_affix_bundle_missing"
+        assert response.status_code == 404
+        assert response.get_json()["error"]["code"] == "v2_affix_bundle_missing"
+    finally:
+        if original_path is None:
+            app.config.pop("V2_AFFIX_BUNDLE_PATH", None)
+        else:
+            app.config["V2_AFFIX_BUNDLE_PATH"] = original_path
 
 
 def test_v2_affix_bundle_is_not_referenced_by_production_modules():
