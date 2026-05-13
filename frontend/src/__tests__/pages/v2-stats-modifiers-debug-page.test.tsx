@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 
 import V2StatsModifiersDebugPage from "@/pages/debug/V2StatsModifiersDebugPage";
@@ -19,6 +19,16 @@ describe("V2StatsModifiersDebugPage", () => {
 
     expect(await screen.findByText("Debug endpoint unavailable")).toBeInTheDocument();
     expect(screen.getByText("v2 modifier registry not found")).toBeInTheDocument();
+  });
+
+  it("loads the API-prefixed debug endpoint", async () => {
+    mockFetch(successPayload());
+
+    render(<V2StatsModifiersDebugPage />);
+
+    await waitFor(() => {
+      expect(fetch).toHaveBeenCalledWith("/api/experimental/v2/modifiers/debug");
+    });
   });
 
   it("renders stat and modifier summary counts", async () => {
