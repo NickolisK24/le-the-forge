@@ -13,6 +13,7 @@ from typing import Any
 from flask import Blueprint, current_app, jsonify, request
 
 from app.repositories.v2.affix_repository import V2AffixBundleError, V2AffixRepository
+from app.repositories.v2.idol_repository import V2IdolBundleError, V2IdolRepository
 from app.repositories.v2.item_repository import V2ItemBundleError, V2ItemRepository
 from app.repositories.v2.unique_set_repository import V2UniqueSetBundleError, V2UniqueSetRepository
 from data.loaders.forge_safe_affix_bundle_loader import ForgeSafeAffixBundleLoaderError
@@ -35,6 +36,8 @@ DEFAULT_V2_ITEM_BASE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_base_b
 DEFAULT_V2_ITEM_IMPLICIT_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_item_implicit_bundle.json"
 DEFAULT_V2_UNIQUE_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_unique_bundle.json"
 DEFAULT_V2_SET_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_set_bundle.json"
+DEFAULT_V2_IDOL_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_bundle.json"
+DEFAULT_V2_IDOL_AFFIX_BUNDLE_PATH = ROOT / "docs" / "generated" / "v2_idol_affix_bundle.json"
 
 
 @experimental_bp.route("/forge-safe-affixes", methods=["GET"])
@@ -558,6 +561,98 @@ def v2_set_debug():
     return _v2_unique_set_debug("v2_set_bundle")
 
 
+@experimental_bp.route("/v2/idols", methods=["GET"])
+def v2_idols():
+    """Query the read-only v2 idol bundle."""
+
+    parsed = _parse_v2_idol_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_idol_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_missing", "message": str(exc)}), 404
+    except V2IdolBundleError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_invalid", "message": str(exc)}), 422
+    records = repository.filter_idols(
+        query=parsed["q"],
+        shape=parsed["shape"],
+        class_id=parsed["class_id"],
+        mastery=parsed["mastery"],
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    return jsonify(_v2_idol_response(repository, records, parsed, data_source="v2_idol_bundle"))
+
+
+@experimental_bp.route("/v2/idols/<path:idol_id>", methods=["GET"])
+def v2_idol_detail(idol_id: str):
+    """Return one v2 idol record by canonical ID."""
+
+    try:
+        repository = _load_v2_idol_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_missing", "message": str(exc)}), 404
+    except V2IdolBundleError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_idol(idol_id)
+    if record is None:
+        return jsonify({"success": False, "error": "idol_not_found", "message": f"v2 idol not found: {idol_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_idol_bundle", "source_path": str(repository.idol_bundle_path), "record": record})
+
+
+@experimental_bp.route("/v2/idols/affixes", methods=["GET"])
+def v2_idol_affixes():
+    """Query the read-only v2 idol affix bundle."""
+
+    parsed = _parse_v2_idol_query_args()
+    if parsed["errors"]:
+        return jsonify({"success": False, "error": "invalid_query", "message": "; ".join(parsed["errors"])}), 400
+    try:
+        repository = _load_v2_idol_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_missing", "message": str(exc)}), 404
+    except V2IdolBundleError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_invalid", "message": str(exc)}), 422
+    records = repository.filter_affixes(
+        query=parsed["q"],
+        idol_type=parsed["idol_type"] or parsed["shape"],
+        class_id=parsed["class_id"],
+        limit=parsed["limit"],
+        offset=parsed["offset"],
+    )
+    return jsonify(_v2_idol_affix_response(repository, records, parsed))
+
+
+@experimental_bp.route("/v2/idols/affixes/<path:affix_id>", methods=["GET"])
+def v2_idol_affix_detail(affix_id: str):
+    """Return one v2 idol affix by canonical ID."""
+
+    try:
+        repository = _load_v2_idol_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_missing", "message": str(exc)}), 404
+    except V2IdolBundleError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_invalid", "message": str(exc)}), 422
+    record = repository.get_affix(affix_id)
+    if record is None:
+        return jsonify({"success": False, "error": "idol_affix_not_found", "message": f"v2 idol affix not found: {affix_id}"}), 404
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_idol_affix_bundle", "source_path": str(repository.idol_affix_bundle_path), "record": record})
+
+
+@experimental_bp.route("/v2/idols/debug", methods=["GET"])
+def v2_idol_debug():
+    """Return a debug summary for read-only v2 idol bundles."""
+
+    try:
+        repository = _load_v2_idol_repository()
+    except FileNotFoundError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_missing", "message": str(exc)}), 404
+    except V2IdolBundleError as exc:
+        return jsonify({"success": False, "error": "v2_idol_bundle_invalid", "message": str(exc)}), 422
+    return jsonify({"success": True, "experimental": True, "read_only": True, "production_consumer": False, "data_source": "v2_idol_bundles", "debug_summary": repository.debug_summary()})
+
+
 def _forge_safe_canonical_affix_catalog(parsed: dict[str, Any], *, detail: bool = False):
     source_path = _configured_export_path()
     if not source_path:
@@ -755,6 +850,20 @@ def _configured_v2_set_bundle_path() -> Path:
     return DEFAULT_V2_SET_BUNDLE_PATH
 
 
+def _configured_v2_idol_bundle_path() -> Path:
+    configured = current_app.config.get("V2_IDOL_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_IDOL_BUNDLE_PATH
+
+
+def _configured_v2_idol_affix_bundle_path() -> Path:
+    configured = current_app.config.get("V2_IDOL_AFFIX_BUNDLE_PATH")
+    if configured:
+        return Path(configured)
+    return DEFAULT_V2_IDOL_AFFIX_BUNDLE_PATH
+
+
 def _load_v2_affix_repository() -> V2AffixRepository:
     return V2AffixRepository(_configured_v2_affix_bundle_path()).load()
 
@@ -770,6 +879,13 @@ def _load_v2_unique_set_repository() -> V2UniqueSetRepository:
     return V2UniqueSetRepository(
         _configured_v2_unique_bundle_path(),
         _configured_v2_set_bundle_path(),
+    ).load()
+
+
+def _load_v2_idol_repository() -> V2IdolRepository:
+    return V2IdolRepository(
+        _configured_v2_idol_bundle_path(),
+        _configured_v2_idol_affix_bundle_path(),
     ).load()
 
 
@@ -818,6 +934,22 @@ def _parse_v2_item_query_args() -> dict[str, Any]:
         "item_type": request.args.get("item_type") or "",
         "class_id": request.args.get("class_id") or "",
         "base_id": request.args.get("base_id") or request.args.get("item_base_id") or "",
+        "errors": errors,
+    }
+
+
+def _parse_v2_idol_query_args() -> dict[str, Any]:
+    errors: list[str] = []
+    limit = _parse_non_negative_int("limit", request.args.get("limit"), DEFAULT_LIMIT, errors)
+    offset = _parse_non_negative_int("offset", request.args.get("offset"), 0, errors)
+    return {
+        "limit": min(limit, MAX_LIMIT),
+        "offset": offset,
+        "q": request.args.get("q") or request.args.get("search") or "",
+        "shape": request.args.get("shape") or "",
+        "idol_type": request.args.get("idol_type") or request.args.get("item_type") or "",
+        "class_id": request.args.get("class_id") or "",
+        "mastery": request.args.get("mastery") or "",
         "errors": errors,
     }
 
@@ -1158,3 +1290,59 @@ def _v2_unique_set_debug(data_source: str):
         "data_source": data_source,
         "debug_summary": repository.debug_summary(),
     })
+
+
+def _v2_idol_response(
+    repository: V2IdolRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+    *,
+    data_source: str,
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": data_source,
+        "source_path": str(repository.idol_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_idols(),
+        "total_idols": repository.count_idols(),
+        "total_idol_affixes": repository.count_affixes(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_idol_bundle",
+        "export_status": "pass" if summary["idol_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["idol_summary"],
+        "records": records,
+    }
+
+
+def _v2_idol_affix_response(
+    repository: V2IdolRepository,
+    records: list[dict[str, Any]],
+    parsed: dict[str, Any],
+) -> dict[str, Any]:
+    summary = repository.debug_summary()
+    return {
+        "success": True,
+        "experimental": True,
+        "read_only": True,
+        "production_consumer": False,
+        "data_source": "v2_idol_affix_bundle",
+        "source_path": str(repository.idol_affix_bundle_path),
+        "result_count": len(records),
+        "total_loaded_count": repository.count_affixes(),
+        "total_idols": repository.count_idols(),
+        "total_idol_affixes": repository.count_affixes(),
+        "query": parsed,
+        "warning_count": 0,
+        "warnings": [],
+        "export_policy": "v2_idol_affix_bundle",
+        "export_status": "pass" if summary["idol_affix_summary"].get("validation_error_count", 0) == 0 else "blocked",
+        "summary": summary["idol_affix_summary"],
+        "records": records,
+    }
