@@ -1,0 +1,903 @@
+{
+  "blocked_reason_counts": {
+    "display_only_metadata": 542,
+    "implicit_values_not_planner_normalized": 542,
+    "stable_calculable_false": 542
+  },
+  "domains": [
+    {
+      "domain": "accessory",
+      "item_base_count": 154
+    },
+    {
+      "domain": "armor",
+      "item_base_count": 194
+    },
+    {
+      "domain": "weapon",
+      "item_base_count": 194
+    }
+  ],
+  "fields_excluded_from_calculation": [
+    "base_stats",
+    "modifier_rows",
+    "value_range",
+    "value_min",
+    "value_max",
+    "raw_value_min",
+    "raw_value_max",
+    "normalized_value_min",
+    "normalized_value_max"
+  ],
+  "fields_exposed": [
+    "canonical_id",
+    "display_name",
+    "domain",
+    "item_category",
+    "item_type",
+    "subtype",
+    "slot",
+    "classification",
+    "level_requirement",
+    "class_restrictions",
+    "mastery_restrictions",
+    "implicit_count",
+    "implicit_metadata",
+    "source_path",
+    "provenance_summary",
+    "support_status",
+    "trust_level",
+    "warnings",
+    "debug_summary",
+    "display_only_eligible",
+    "planner_calculable",
+    "stable_calculable",
+    "blocked_reasons"
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "implicit value normalization is proven",
+      "item and implicit records pass future stable-calculable gates",
+      "crafting and stat aggregation golden baselines exist"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "add non-calculating planner/debug consumers for item display metadata before any implicit/stat remap"
+  },
+  "generated_at": "2026-05-13T21:24:34.274078+00:00",
+  "implicit_metadata_treatment": {
+    "implicit_metadata_records_exposed": 1182,
+    "implicit_records_loaded": 1182,
+    "modifier_rows_exposed": false,
+    "modifier_values_exposed_as_planner_stats": false,
+    "notes": [
+      "Implicit links are exposed as display/provenance metadata only.",
+      "Implicit modifier row values remain excluded from planner-calculable metadata."
+    ]
+  },
+  "metadata": {
+    "display_metadata_only": true,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_item_base_display_metadata"
+  },
+  "metadata_samples": [
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:0",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:0",
+        "stable_calculable_source": false
+      },
+      "display_name": "Refuge Helmet",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:0:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:0",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:0:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 0,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:0",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Mercenary Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:1",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:1",
+        "stable_calculable_source": false
+      },
+      "display_name": "Jewelled Circlet",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 3,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:1:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:1",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:1:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        },
+        {
+          "canonical_id": "implicit:equippable:0:1:1",
+          "display_name": "ADDED Mana",
+          "item_base_id": "item_base:equippable:0:1",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:1:implicit:1",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        },
+        {
+          "canonical_id": "implicit:equippable:0:1:2",
+          "display_name": "INCREASED Damage [Spell]",
+          "item_base_id": "item_base:equippable:0:1",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:1:implicit:2",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 7,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:1",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Leather Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:2",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:2",
+        "stable_calculable_source": false
+      },
+      "display_name": "Iron Casque",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:2:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:2",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:2:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 10,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:2",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Iron Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:3",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:3",
+        "stable_calculable_source": false
+      },
+      "display_name": "Wolf Helmet",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 2,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:3:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:3",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:3:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        },
+        {
+          "canonical_id": "implicit:equippable:0:3:1",
+          "display_name": "INCREASED HealthRegen",
+          "item_base_id": "item_base:equippable:0:3",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:3:implicit:1",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 20,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:3",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Fur Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:4",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:4",
+        "stable_calculable_source": false
+      },
+      "display_name": "Dome Cap",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:4:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:4",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:4:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 24,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:4",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Dome Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:5",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:5",
+        "stable_calculable_source": false
+      },
+      "display_name": "Bronze Casque",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:5:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:5",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:5:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 39,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:5",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Bronze Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:6",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:6",
+        "stable_calculable_source": false
+      },
+      "display_name": "Gladiator Helmet",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:6:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:6",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:6:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 65,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:6",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Secutor Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:7",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": true,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:7",
+        "stable_calculable_source": false
+      },
+      "display_name": "Forest Helmet",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:7:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:7",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:7:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 35,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:7",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Fur Helmet",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:8",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": false,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:8",
+        "stable_calculable_source": false
+      },
+      "display_name": "Outcast Cage",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 1,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:8:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:8",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:8:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 0,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:8",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Outcast Cage",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    },
+    {
+      "blocked_reasons": [
+        "display_only_metadata",
+        "implicit_values_not_planner_normalized",
+        "stable_calculable_false"
+      ],
+      "canonical_id": "item_base:equippable:0:9",
+      "class_restrictions": [],
+      "classification": "armor",
+      "debug_summary": {
+        "cannot_drop": false,
+        "maximum_affixes": 4,
+        "patch_version": "1.4.6_22986002",
+        "source_id": "equippable:0:9",
+        "stable_calculable_source": false
+      },
+      "display_name": "Bone Mask",
+      "display_only_eligible": true,
+      "domain": "item_base",
+      "implicit_count": 2,
+      "implicit_metadata": [
+        {
+          "canonical_id": "implicit:equippable:0:9:0",
+          "display_name": "ADDED Armour",
+          "item_base_id": "item_base:equippable:0:9",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:9:implicit:0",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        },
+        {
+          "canonical_id": "implicit:equippable:0:9:1",
+          "display_name": "ADDED PoisonResistance",
+          "item_base_id": "item_base:equippable:0:9",
+          "item_type": "helmet",
+          "modifier_reference_count": 1,
+          "planner_calculable": false,
+          "provenance_summary": {
+            "extraction_method": "last_epoch_items_export",
+            "patch_version": "1.4.6_22986002",
+            "schema_version": "v2.item.1",
+            "source_id": "equippable:0:9:implicit:1",
+            "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+            "source_type": "item_implicit"
+          },
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "stable_calculable": false,
+          "support_status": "partial",
+          "trust_level": "generated_from_game_data",
+          "warnings": [
+            "Implicit value scale is source-units only; planner normalization is pending."
+          ]
+        }
+      ],
+      "item_category": "equipment",
+      "item_type": "helmet",
+      "level_requirement": 3,
+      "mastery_restrictions": [],
+      "planner_calculable": false,
+      "provenance_summary": {
+        "extraction_method": "last_epoch_items_export",
+        "patch_version": "1.4.6_22986002",
+        "schema_version": "v2.item.1",
+        "source_id": "equippable:0:9",
+        "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_type": "item_base"
+      },
+      "slot": "helmet",
+      "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+      "stable_calculable": false,
+      "subtype": "Bone Mask",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "warnings": [
+        "Item base is not stable planner-consumed in Phase 4."
+      ]
+    }
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.item_base_display_metadata.1",
+  "summary": {
+    "display_only_eligible_count": 542,
+    "domains_inspected": 3,
+    "implicit_metadata_records_exposed": 1182,
+    "implicit_record_count": 1182,
+    "item_base_count": 542,
+    "optional_frontend_updated": false,
+    "optional_route_added": false,
+    "planner_calculable_count": 0,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "top_blocked_reasons": [
+      {
+        "count": 542,
+        "reason": "display_only_metadata"
+      },
+      {
+        "count": 542,
+        "reason": "implicit_values_not_planner_normalized"
+      },
+      {
+        "count": 542,
+        "reason": "stable_calculable_false"
+      }
+    ],
+    "value_normalization_status": "audit_only"
+  }
+}
