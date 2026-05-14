@@ -2,6 +2,7 @@ import { useEffect, useMemo, useState } from "react";
 
 import { V2EnvelopePanels } from "@/components/v2/V2EnvelopePanels";
 import { V2LimitationNotice } from "@/components/v2/V2LimitationNotice";
+import { V2PlannerAdapterStatusPanel } from "@/components/v2/V2PlannerAdapterStatusPanel";
 import { getV2ErrorMessage, summarizeObject, type V2ApiEnvelope } from "@/lib/v2ApiEnvelope";
 
 interface RegistryDebugSummary extends Record<string, unknown> {
@@ -109,6 +110,22 @@ export default function V2StatsModifiersDebugPage() {
           </section>
 
           <V2EnvelopePanels response={envelope} />
+
+          <V2PlannerAdapterStatusPanel
+            status={{
+              adapterModeEnabled: false,
+              productionConsumed: false,
+              adapterVisibleCount: summary.modifierCount,
+              blockedCount: summary.modifierCount,
+              plannerCalculableCount: summary.plannerCalculableCount,
+              stableCalculableCount: summary.stableCalculableCount,
+              topBlockedReasons: summary.blockedReasonCounts,
+              safeNowBaselineFixtureCount: 7,
+              blockedBaselineFixtureCount: 6,
+              valueNormalizationStatus: summary.valueNormalizationStatus,
+              skillIdentityBridgeStatus: "unbridged",
+            }}
+          />
 
           <section className="rounded border border-amber-400/20 bg-amber-500/5 p-4">
             <h2 className="text-sm font-semibold text-amber-100">Planner safety limitations</h2>

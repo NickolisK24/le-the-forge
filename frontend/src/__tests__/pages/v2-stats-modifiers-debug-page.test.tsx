@@ -38,8 +38,8 @@ describe("V2StatsModifiersDebugPage", () => {
 
     expect(await screen.findByText("2070")).toBeInTheDocument();
     expect(screen.getAllByText("19398").length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText("Planner-calculable")).toBeInTheDocument();
-    expect(screen.getByText("Stable-calculable")).toBeInTheDocument();
+    expect(screen.getAllByText("Planner-calculable").length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText("Stable-calculable").length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText("0").length).toBeGreaterThanOrEqual(2);
   });
 
@@ -64,8 +64,21 @@ describe("V2StatsModifiersDebugPage", () => {
     expect(await screen.findByText("Planner safety limitations")).toBeInTheDocument();
     expect(screen.getAllByText(/Audit-only value normalization:/).length).toBeGreaterThanOrEqual(1);
     expect(screen.getAllByText(/Not planner-calculable:/).length).toBeGreaterThanOrEqual(1);
-    expect(screen.getByText(/must not be treated as planner-normalized/)).toBeInTheDocument();
-    expect(screen.getByText(/blocked from planner math/)).toBeInTheDocument();
+    expect(screen.getAllByText(/must not be treated as planner-normalized/).length).toBeGreaterThanOrEqual(1);
+    expect(screen.getAllByText(/blocked from planner math/).length).toBeGreaterThanOrEqual(1);
+  });
+
+  it("renders planner adapter status panel with disabled production-safe status", async () => {
+    mockFetch(successPayload());
+
+    render(<V2StatsModifiersDebugPage />);
+
+    expect(await screen.findByText("v2 adapter status")).toBeInTheDocument();
+    expect(screen.getByText("Production Unchanged")).toBeInTheDocument();
+    expect(screen.getByText("Adapter-visible")).toBeInTheDocument();
+    expect(screen.getByText("Blocked records")).toBeInTheDocument();
+    expect(screen.getByText("Baseline readiness")).toBeInTheDocument();
+    expect(screen.getByText("unbridged")).toBeInTheDocument();
   });
 
   it("does not imply modifier values are calculation-ready", async () => {
@@ -75,7 +88,7 @@ describe("V2StatsModifiersDebugPage", () => {
 
     await screen.findByText("v2 stats and modifiers inspection");
     expect(screen.getByText(/Modifier values are not used for planner calculations/)).toBeInTheDocument();
-    expect(screen.getByText(/v3 mechanical intelligence is required/i)).toBeInTheDocument();
+    expect(screen.getAllByText(/v3 mechanical intelligence is required/i).length).toBeGreaterThanOrEqual(1);
     expect(screen.queryByText(/calculation-ready/i)).not.toBeInTheDocument();
   });
 });
