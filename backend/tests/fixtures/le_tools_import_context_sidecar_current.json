@@ -1,0 +1,461 @@
+{
+  "build_id": "le_tools_offline_buildinfo_stage_context_sample",
+  "generated_at": "2026-05-07T01:55:44+00:00",
+  "importer": "lastepochtools",
+  "items": [
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 0,
+      "mapped": {
+        "base_type_id": 0,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Rusted Coif",
+        "slot": "helmet",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 0,
+        "item_type": "helm",
+        "name": "Stage Helmet",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "helmet",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through simple_slug_rename translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "helmet"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 1,
+      "mapped": {
+        "base_type_id": 1,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Iron Helm",
+        "slot": "body_armour",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 1,
+        "item_type": "chest",
+        "name": "Stage Body Armor",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "body_armor",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through slot_category_normalization translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "body_armour"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 2,
+      "mapped": {
+        "base_type_id": 5,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Ornate Helm",
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 5,
+        "item_type": "axe",
+        "name": "Stage One-Handed Axe",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "one_handed_axe",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through weapon_type_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 3,
+      "mapped": {
+        "base_type_id": 12,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Plate Mail",
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 12,
+        "item_type": "axe",
+        "name": "Stage Two-Handed Axe",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "two_handed_axe",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through weapon_type_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 4,
+      "mapped": {
+        "base_type_id": 7,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Ruined Tunic",
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 7,
+        "item_type": "mace",
+        "name": "Stage One-Handed Mace",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "one_handed_maces",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through weapon_type_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 5,
+      "mapped": {
+        "base_type_id": 16,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Chain Gloves",
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 16,
+        "item_type": "sword",
+        "name": "Stage Two-Handed Sword",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "two_handed_sword",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through weapon_type_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 6,
+      "mapped": {
+        "base_type_id": 25,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Imperial Boots",
+        "slot": "idol_altar",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 25,
+        "item_type": "idol_1x1",
+        "name": "Stage Eterra Idol",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "idol_1x1_eterra",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through idol_shape_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "idol_altar"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 7,
+      "mapped": {
+        "base_type_id": 26,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Leather Belt",
+        "slot": "idol_altar",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 26,
+        "item_type": "idol_1x1",
+        "name": "Stage Lagon Idol",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": "idol_1x1_lagon",
+        "match_source": "adapter_translation",
+        "notes": [
+          "Resolved through idol_shape_distinction translation."
+        ],
+        "production_safe": false,
+        "status": "resolved",
+        "warnings": []
+      },
+      "slot": "idol_altar"
+    },
+    {
+      "context": {
+        "has_base_type_id": false,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 8,
+      "mapped": {
+        "base_type_id": null,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": null,
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": null,
+        "item_type": "axe",
+        "name": "Stage Axe Missing Base Type",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": null,
+        "match_source": "none",
+        "notes": [
+          "Provide base_type_id to use accepted direct mappings or adapter translations."
+        ],
+        "production_safe": false,
+        "status": "needs_context",
+        "warnings": [
+          "base_type_id is required; resolver will not guess from slug alone."
+        ]
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": false,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": true,
+        "requires_test_pairing": true,
+        "subtype_only": true
+      },
+      "index": 9,
+      "mapped": {
+        "base_type_id": null,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": null,
+        "slot": "belt",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": null,
+        "item_type": "belt",
+        "name": "Stage Subtype-Only Belt",
+        "source_item_id": null,
+        "subtype_id": 1
+      },
+      "resolver": {
+        "bundle_item_type_id": null,
+        "match_source": "none",
+        "notes": [
+          "Provide base_type_id to use accepted direct mappings or adapter translations."
+        ],
+        "production_safe": false,
+        "status": "needs_context",
+        "warnings": [
+          "subtype_id was provided but ignored; subtype_id alone is not a valid identity.",
+          "base_type_id is required; resolver will not guess from slug alone."
+        ]
+      },
+      "slot": "belt"
+    },
+    {
+      "context": {
+        "has_base_type_id": true,
+        "has_raw_item_type_signal": true,
+        "has_subtype_id": false,
+        "requires_test_pairing": true,
+        "subtype_only": false
+      },
+      "index": 10,
+      "mapped": {
+        "base_type_id": 14,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": "Fingerless Gloves",
+        "slot": "weapon",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": 14,
+        "item_type": "spear",
+        "name": "Stage Spear Review Case",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": null,
+        "match_source": "none",
+        "notes": [
+          "No reviewed safe mapping exists."
+        ],
+        "production_safe": false,
+        "status": "needs_review",
+        "warnings": [
+          "Forge item type requires manual review before resolution."
+        ]
+      },
+      "slot": "weapon"
+    },
+    {
+      "context": {
+        "has_base_type_id": false,
+        "has_raw_item_type_signal": false,
+        "has_subtype_id": false,
+        "requires_test_pairing": false,
+        "subtype_only": false
+      },
+      "index": 11,
+      "mapped": {
+        "base_type_id": null,
+        "has_item_type": false,
+        "mapped_item_id": null,
+        "mapped_name": null,
+        "slot": "helmet",
+        "subtype_id": null
+      },
+      "raw": {
+        "base_type_id": null,
+        "item_type": null,
+        "name": "Stage Name-Only Helmet",
+        "source_item_id": null,
+        "subtype_id": null
+      },
+      "resolver": {
+        "bundle_item_type_id": null,
+        "match_source": "none",
+        "notes": [],
+        "production_safe": false,
+        "status": "unresolved",
+        "warnings": [
+          "Missing forge_item_type."
+        ]
+      },
+      "slot": "helmet"
+    }
+  ],
+  "production_safe": false,
+  "source": "le_tools_import_diagnostic",
+  "summary": {
+    "deferred": 0,
+    "mapped_missing_item_type": 12,
+    "mapped_with_base_type_id": 9,
+    "needs_context": 2,
+    "needs_review": 1,
+    "raw_with_base_type_id": 9,
+    "raw_with_subtype_only": 1,
+    "requires_test_pairing": 11,
+    "resolved": 8,
+    "total_items": 12,
+    "unresolved": 1
+  }
+}

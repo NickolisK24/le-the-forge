@@ -3,6 +3,7 @@
 .env.*
 !.env.example
 .env.production
+.codex/
 
 # Python
 __pycache__/
@@ -78,3 +79,6 @@ scripts/missing_icons.txt
 frontend/tsconfig.tsbuildinfo
 frontend/vite.config.d.ts
 le-parser/
+
+docs/generated/controlled_affix_per_affix_diagnostic_records.json
+docs/generated/controlled_affix_resolver_prototype_report.json

@@ -1,0 +1,129 @@
+{
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "phase": "phase_6_idol_infrastructure",
+    "production_consumer": false,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false,
+    "uses_canonical_contracts": true
+  },
+  "summary": {
+    "duplicate_idol_affix_id_count": 0,
+    "duplicate_idol_id_count": 0,
+    "error_count": 0,
+    "idol_affix_count": 483,
+    "idol_affix_mixed_with_equipment_count": 0,
+    "idol_count": 71,
+    "invalid_trust_level_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "stable_calculable_count": 0,
+    "unsupported_stable_calculation_count": 0,
+    "warning_count": 20
+  },
+  "warnings": [
+    {
+      "canonical_id": "idol_affix:1088",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1089",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1092",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1093",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1094",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1096",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1097",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1098",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1099",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1100",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1101",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1102",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1103",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1104",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1105",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1106",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1107",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1095",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1108",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    },
+    {
+      "canonical_id": "idol_affix:1109",
+      "code": "unmatched_idol_type_restriction",
+      "message": "No idol base shape matched IDOL_ALTAR."
+    }
+  ]
+}

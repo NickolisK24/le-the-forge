@@ -12,11 +12,13 @@ import AppLayout from "@/components/layout/AppLayout";
 import HomePage from "@/components/features/HomePage";
 import BuildsPage from "@/components/features/builds/BuildsPage";
 import BuildPlannerPage from "@/components/features/build/BuildPlannerPage";
+import UnifiedBuildPage from "@/components/features/build-workspace/UnifiedBuildPage";
 import CraftSimulatorPage from "@/components/features/craft/CraftSimulatorPage";
 import AuthCallbackPage from "@/components/features/AuthCallbackPage";
 import UserProfilePage from "@/components/features/UserProfilePage";
 import NotFoundPage from "@/components/features/NotFoundPage";
 import AffixEditorPage from "@/components/features/affixes/AffixEditorPage";
+import AffixCatalogPage from "@/components/features/affixCatalog/AffixCatalogPage";
 
 import BuildComparisonPage from "@/components/features/builds/BuildComparisonPage";
 import ReportPage from "@/components/features/builds/ReportPage";
@@ -26,6 +28,9 @@ import BuildEditorPage from "@/components/features/encounter/BuildEditorPage";
 import SimulationPage from "@/pages/simulation/SimulationPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
 import RotationBuilderPage from "@/pages/RotationBuilderPage";
+import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
+import TrustedDataSupportMatrixPage from "@/pages/TrustedDataSupportMatrixPage";
+import PreV3MechanicalReadinessPage from "@/pages/PreV3MechanicalReadinessPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
@@ -51,6 +56,15 @@ const VisualizationDebugPage = lazy(() => import("@/pages/debug/VisualizationDeb
 const CraftDebugPage = lazy(() => import("@/pages/debug/CraftDebugPage"));
 const BackendDebugDashboard = lazy(() => import("@/pages/debug/BackendDebugDashboard"));
 const DataFlowHarness = lazy(() => import("@/pages/debug/DataFlowHarness"));
+const ForgeSafeAffixesDebugPage = lazy(() => import("@/pages/debug/ForgeSafeAffixesDebugPage"));
+const V2ItemsDebugPage = lazy(() => import("@/pages/debug/V2ItemsDebugPage"));
+const V2UniqueSetDebugPage = lazy(() => import("@/pages/debug/V2UniqueSetDebugPage"));
+const V2IdolsDebugPage = lazy(() => import("@/pages/debug/V2IdolsDebugPage"));
+const V2ClassMasteryDebugPage = lazy(() => import("@/pages/debug/V2ClassMasteryDebugPage"));
+const V2PassivesDebugPage = lazy(() => import("@/pages/debug/V2PassivesDebugPage"));
+const V2SkillsDebugPage = lazy(() => import("@/pages/debug/V2SkillsDebugPage"));
+const V2StatsModifiersDebugPage = lazy(() => import("@/pages/debug/V2StatsModifiersDebugPage"));
+const V2DebugNavigationPage = lazy(() => import("@/pages/debug/V2DebugNavigationPage"));
 
 // ---------------------------------------------------------------------------
 // Route alias redirect — preserves the current location's search string so
@@ -209,9 +223,15 @@ export default function App() {
                 <Route path="/builds" element={<BuildsPage />} />
                 <Route path="/build" element={<BuildPlannerPage />} />
                 <Route path="/build/:slug" element={<BuildPlannerPage />} />
+                {/* Unified build workspace — phase 1 of planner/edit consolidation.
+                    Lives under /workspace/* to avoid colliding with the legacy
+                    planner at /build. See docs/unified-planner-design.md §3. */}
+                <Route path="/workspace/new" element={<UnifiedBuildPage />} />
+                <Route path="/workspace/:slug" element={<UnifiedBuildPage />} />
                 <Route path="/craft" element={<CraftSimulatorPage />} />
                 <Route path="/craft/:slug" element={<CraftSimulatorPage />} />
                 <Route path="/affixes" element={<AffixEditorPage />} />
+                <Route path="/affix-catalog" element={<AffixCatalogPage />} />
                 <Route path="/passives" element={<PassiveTreePage />} />
                 <Route path="/compare" element={<BuildComparisonPage />} />
                 <Route path="/report/:slug" element={<ReportPage />} />
@@ -229,6 +249,9 @@ export default function App() {
                 <Route path="/bis-search" element={<BisSearchPage />} />
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
                 <Route path="/profile" element={<UserProfilePage />} />
+                <Route path="/trusted-data" element={<TrustedDataExplanationPage />} />
+                <Route path="/trusted-data/support" element={<TrustedDataSupportMatrixPage />} />
+                <Route path="/trusted-data/pre-v3-readiness" element={<PreV3MechanicalReadinessPage />} />
 
                 {/* Route aliases — redirect legacy/external URL patterns to their
                     canonical paths. `replace` ensures the alias doesn't pollute
@@ -246,6 +269,16 @@ export default function App() {
                     <Route path="/viz-debug" element={<Suspense fallback={<PageLoader />}><VisualizationDebugPage /></Suspense>} />
                     <Route path="/craft-debug" element={<Suspense fallback={<PageLoader />}><CraftDebugPage /></Suspense>} />
                     <Route path="/debug" element={<Suspense fallback={<PageLoader />}><BackendDebugDashboard /></Suspense>} />
+                    <Route path="/debug/v2" element={<Suspense fallback={<PageLoader />}><V2DebugNavigationPage /></Suspense>} />
+                    <Route path="/debug/v2-affixes" element={<AliasRedirect to="/debug/forge-safe-affixes" />} />
+                    <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-items" element={<Suspense fallback={<PageLoader />}><V2ItemsDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-idols" element={<Suspense fallback={<PageLoader />}><V2IdolsDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-classes" element={<Suspense fallback={<PageLoader />}><V2ClassMasteryDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-passives" element={<Suspense fallback={<PageLoader />}><V2PassivesDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-skills" element={<Suspense fallback={<PageLoader />}><V2SkillsDebugPage /></Suspense>} />
+                    <Route path="/debug/v2-stats-modifiers" element={<Suspense fallback={<PageLoader />}><V2StatsModifiersDebugPage /></Suspense>} />
                     <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
                   </>
                 )}

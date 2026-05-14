@@ -1,0 +1,38 @@
+{
+  "errors": [],
+  "generated_on": "2026-05-13T01:43:33.429693+00:00",
+  "metadata": {
+    "experimental": true,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_stat_modifier_normalization",
+    "stable_planner_consumed": false
+  },
+  "schema_version": "v2.modifier_validation_report.1",
+  "summary": {
+    "ambiguous_skill_reference_count": 1,
+    "duplicate_canonical_modifier_id_count": 0,
+    "error_count": 0,
+    "invalid_operation_count": 0,
+    "invalid_trust_level_count": 0,
+    "invalid_value_scale_status_count": 0,
+    "missing_canonical_modifier_id_count": 0,
+    "missing_operation_count": 0,
+    "missing_provenance_count": 0,
+    "missing_source_id_count": 0,
+    "missing_source_type_count": 0,
+    "missing_stat_id_count": 0,
+    "missing_support_status_count": 0,
+    "missing_value_scale_status_count": 0,
+    "modifier_count": 19398,
+    "production_consumed": false,
+    "source_identity_gap_warning_count": 0,
+    "stable_calculable_count": 0,
+    "stat_count": 2070,
+    "unresolved_skill_reference_count": 2,
+    "unsafe_stable_calculable_modifier_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}

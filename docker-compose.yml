@@ -49,6 +49,7 @@ services:
       - "5050:5000"
     volumes:
       - ./backend:/app
+      - ./docs/generated:/docs/generated:ro
       - ./data:/data
       - backend_venv:/venv
     command: sh -c "flask db upgrade && flask seed && flask seed-passives && flask run --host=0.0.0.0 --port=5000 --debug"
@@ -62,7 +63,7 @@ services:
     depends_on:
       - backend
     environment:
-      VITE_API_URL: http://localhost:5050/api
+      VITE_API_BASE_URL: http://backend:5000/api
     ports:
       - "5173:5173"
     volumes:

@@ -39,6 +39,8 @@ import type {
   FullMetaSnapshot,
   TrendingBuild,
   BuildReport,
+  AffixCatalogEntry,
+  AffixCatalogSummary,
 } from "@/types";
 import type { BlessingTimeline } from "@/types/blessings";
 
@@ -271,6 +273,26 @@ export const refApi = {
   getBlessings: () => get<BlessingTimeline[]>("/ref/blessings"),
 };
 
+
+// ---------------------------------------------------------------------------
+// Controlled Forge-safe affix catalog
+// ---------------------------------------------------------------------------
+
+export const affixCatalogApi = {
+  list: (params: { q?: string; source_type?: string; item_type?: string; limit?: number; offset?: number } = {}) => {
+    const qs = new URLSearchParams(
+      Object.fromEntries(
+        Object.entries(params)
+          .filter(([, v]) => v !== undefined && v !== "")
+          .map(([k, v]) => [k, String(v)])
+      )
+    ).toString();
+    return get<AffixCatalogEntry[]>(`/affixes/catalog${qs ? "?" + qs : ""}`);
+  },
+  get: (affixId: string) => get<AffixCatalogEntry>(`/affixes/catalog/${encodeURIComponent(affixId)}`),
+  summary: () => get<AffixCatalogSummary>("/affixes/catalog/summary"),
+};
+
 // ---------------------------------------------------------------------------
 // Profile
 // ---------------------------------------------------------------------------
@@ -422,9 +444,26 @@ export interface BuildSimulationResult {
   combined_dps: number;
 }
 
+// Stateless analysis payload — matches SimulateBuildSchema on the backend.
+// Used by the real-time AnalysisPanel on the unified workspace page
+// (phase 2), which needs to analyse the client's in-progress working copy
+// rather than a persisted Build row.
+export interface SimulateBuildInlinePayload {
+  character_class: string;
+  mastery: string;
+  skill_name: string;
+  skill_level?: number;
+  allocated_node_ids?: number[];
+  gear_affixes?: { name: string; tier: number }[];
+  n_simulations?: number;
+  seed?: number | null;
+}
+
 export const simulateApi = {
   build: (slug: string) =>
     post<BuildSimulationResult>(`/builds/${slug}/simulate`),
+  buildInline: (payload: SimulateBuildInlinePayload) =>
+    post<BuildSimulationResult>("/simulate/build", payload),
   conditional: (payload: object) =>
     post<ConditionalResult>("/simulate/conditional", payload),
   multiTarget: (payload: object) =>

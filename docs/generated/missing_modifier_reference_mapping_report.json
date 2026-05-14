@@ -1,0 +1,4194 @@
+{
+  "comparison_report_path": "D:\\Forge\\le-the-forge\\docs\\generated\\controlled_modifier_resolver_comparison_report.json",
+  "diagnostic": "missing_modifier_reference_mapping_validator",
+  "diagnostic_only": true,
+  "diagnostics_dir": "D:\\Forge\\last-epoch-data\\docs\\generated",
+  "errors": [],
+  "forbidden_production_usage": [
+    "Do not use this report to power build math.",
+    "Do not use this report for item generation.",
+    "Do not use this report for crafting legality.",
+    "Do not expose this report through production APIs or frontend behavior.",
+    "Do not replace existing Forge affix behavior.",
+    "Do not generate or mutate bundle families from this report.",
+    "Do not silently deduplicate affix 910.",
+    "Do not mark production_safe=true.",
+    "Do not add modifier mappings from this validator.",
+    "Do not infer mappings from display names.",
+    "Do not infer mappings from subtype_id-only identity.",
+    "Do not use missing mapping records for gameplay, crafting, simulation, build math, APIs, or frontend behavior."
+  ],
+  "policy": "docs/migration/MODIFIER_RESOLUTION_POLICY.md#missing-modifier-reference-mapping-policy",
+  "production_safe": false,
+  "records": [
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[826]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 826,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:826",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[827]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 827,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:827",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[828]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 828,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:828",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[829]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 829,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:829",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[830]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 830,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:830",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[831]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 831,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:831",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[832]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 832,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:832",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[833]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 833,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:833",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[834]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 834,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:834",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[835]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 835,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:835",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[836]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 836,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:836",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[837]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 837,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:837",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[838]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 838,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:838",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[839]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 839,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:839",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[840]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 840,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:840",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[841]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 841,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:841",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[842]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 842,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:842",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[843]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 843,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:843",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[844]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 844,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:844",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[845]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 845,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:845",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[846]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 846,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:846",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[847]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 847,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:847",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[848]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 848,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:848",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[849]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 849,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:849",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[850]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 850,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:850",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[851]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 851,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:851",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[852]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 852,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:852",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[853]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 853,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:853",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[854]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 854,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:854",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[855]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 855,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:855",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[856]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 856,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:856",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[857]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 857,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:857",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[858]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 858,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:858",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[859]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 859,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:859",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[860]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 860,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:860",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[861]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 861,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:861",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[862]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 862,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:862",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[863]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 863,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:863",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[864]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 864,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:864",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[865]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 865,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:865",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[866]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 866,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:866",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[867]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 867,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:867",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[868]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 868,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:868",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[869]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 869,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:869",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[870]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 870,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:870",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[871]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 871,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:871",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[872]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 872,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:872",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[873]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 873,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:873",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[874]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 874,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:874",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[875]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 875,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:875",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[876]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 876,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:876",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[877]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 877,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:877",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[878]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 878,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:878",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[879]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 879,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:879",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[880]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 880,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:880",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[881]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 881,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:881",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[882]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 882,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:882",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[883]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 883,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:883",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[884]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 884,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:884",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[885]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 885,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:885",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[886]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 886,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:886",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[887]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 887,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:887",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[888]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 888,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:888",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[889]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 889,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:889",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[890]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 890,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:890",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[891]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 891,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:891",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[892]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 892,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:892",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[893]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 893,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:893",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[894]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 894,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:894",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[895]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 895,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:895",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[896]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 896,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:896",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[897]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 897,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:897",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[898]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 898,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:898",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[899]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 899,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:899",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[900]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 900,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:900",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[901]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 901,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:901",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[902]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 902,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:902",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[903]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 903,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:903",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[904]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 904,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:904",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[905]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 905,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:905",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[906]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 906,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:906",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[907]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 907,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:907",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[908]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 908,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:908",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[909]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 909,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:909",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[910]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 910,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:910",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[911]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 911,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:911",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[912]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 912,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:912",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[913]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 913,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:913",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[914]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 914,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:914",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[915]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 915,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:915",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[916]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 916,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:916",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[917]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 917,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:917",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[918]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 918,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:918",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[919]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 919,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:919",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[920]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 920,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:920",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[921]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 921,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:921",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[922]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 922,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:922",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[923]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 923,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:923",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[924]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 924,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:924",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[925]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 925,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:925",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[926]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 926,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:926",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[927]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 927,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:927",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[928]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 928,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:928",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[929]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 929,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:929",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[930]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 930,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:930",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[931]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 931,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:931",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[932]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 932,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:932",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[933]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 933,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:933",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[934]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 934,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:934",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[935]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 935,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:935",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[936]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 936,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:936",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[937]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 937,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:937",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[938]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 938,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:938",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[939]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 939,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:939",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    },
+    {
+      "classification": {
+        "gameplay_semantics_inferred": false,
+        "missing_reference_mapping": true,
+        "name_only_mapping_inference": false,
+        "raw_evidence_missing": false,
+        "stable_affix_identity_missing": false,
+        "subtype_id_only_mapping_inference": false
+      },
+      "diagnostic_only": true,
+      "must_remain_unresolved": true,
+      "normalized_inspection_structure": null,
+      "production_safe": false,
+      "provenance": {
+        "source_path": "idol[940]",
+        "source_phase": "phase_1_source_shape",
+        "source_warning_code": "affix_record.idol_stat_modifier_reference_unmodeled"
+      },
+      "raw_reference_evidence": {
+        "field": null,
+        "record_id": 940,
+        "section": "idol",
+        "warning_code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "warning_message": "Idol affix stat/modifier references are not modeled in this source shape validator."
+      },
+      "reference_status": "unresolved",
+      "resolved_modifier_identity": null,
+      "source_affix_identity": "idol:940",
+      "unresolved_category": "missing_reference_mapping",
+      "warning_metadata": {
+        "code": "affix_record.idol_stat_modifier_reference_unmodeled",
+        "field": null,
+        "message": "Idol affix stat/modifier references are not modeled in this source shape validator.",
+        "severity": "warning"
+      }
+    }
+  ],
+  "saved_vs_fresh_agreement": {
+    "available": true,
+    "comparison_status": "warning",
+    "diagnostic_only": true,
+    "path": "D:\\Forge\\le-the-forge\\docs\\generated\\controlled_modifier_resolver_comparison_report.json",
+    "production_safe": false,
+    "unresolved_delta": 0,
+    "warning_category_delta": 0
+  },
+  "scope": "non_production_read_only_cli_report",
+  "source": "generated_diagnostic_artifacts",
+  "summary": {
+    "name_only_mapping_inference_records": 0,
+    "provenance_preserved": 115,
+    "raw_reference_evidence_preserved": 115,
+    "records_remaining_unresolved": 115,
+    "saved_vs_fresh_agreement_available": true,
+    "saved_vs_fresh_unresolved_delta": 0,
+    "stable_affix_source_identity_preserved": 115,
+    "subtype_id_only_mapping_inference_records": 0,
+    "total_missing_reference_mapping_records": 115,
+    "warning_metadata_preserved": 115
+  },
+  "validation_status": "warning",
+  "warnings": [
+    "115 missing modifier reference mappings remain unresolved.",
+    "Missing mappings are carried as unresolved diagnostic evidence only.",
+    "No mappings are inferred from display names or subtype_id-only identity."
+  ]
+}

@@ -19,13 +19,38 @@ export interface ApiError {
 }
 
 export interface PaginationMeta {
-  page: number;
-  per_page: number;
+  page?: number;
+  per_page?: number;
   total: number;
-  pages: number;
-  has_next: boolean;
-  has_prev: boolean;
+  pages?: number;
+  has_next?: boolean;
+  has_prev?: boolean;
+  limit?: number;
+  offset?: number;
+  data_source?: "forge_safe" | "legacy";
+  mode?: "shadow" | "read_only" | "active";
+  consumption_enabled?: boolean;
+  production_consumer?: false;
 }
+
+export type { CanonicalRecord } from "./canonicalBase";
+export type { CanonicalAffix } from "./canonicalAffix";
+export type { CanonicalClass, CanonicalMastery } from "./canonicalClassMastery";
+export type { CanonicalIdol, CanonicalIdolAffix } from "./canonicalIdol";
+export type { CanonicalImplicit, CanonicalItemBase } from "./canonicalItem";
+export type { CanonicalModifier, CanonicalModifierReference } from "./canonicalModifier";
+export type { CanonicalPassiveNode, CanonicalPassiveTree } from "./canonicalPassive";
+export type { CanonicalSet, CanonicalSetBonus, CanonicalSetItem } from "./canonicalSet";
+export type { CanonicalSkill, CanonicalSkillTree, CanonicalSkillTreeNode } from "./canonicalSkill";
+export type { CanonicalUnique, UniqueSetSpecialMechanicClassification } from "./canonicalUnique";
+export type { SourceProvenance } from "./sourceProvenance";
+export {
+  SUPPORT_STATUSES,
+  TRUST_LEVELS,
+  isStableCalculableStatus,
+  type SupportStatus,
+  type TrustLevel,
+} from "./trustStatus";
 
 // ---------------------------------------------------------------------------
 // Auth
@@ -658,3 +683,22 @@ export interface OpenGraphMeta {
   og_url: string;
 }
 
+
+export interface AffixCatalogEntry {
+  id: string;
+  name: string;
+  source_type: string | null;
+  item_types: string[];
+  data_source: "forge_safe" | "legacy";
+  safety?: { forge_safe?: boolean };
+  production_consumer: false;
+}
+
+export interface AffixCatalogSummary {
+  active_source: "forge_safe" | "legacy";
+  mode: "shadow" | "read_only" | "active";
+  consumption_enabled: boolean;
+  legacy_count: number;
+  forge_safe_count: number;
+  production_consumer: false;
+}

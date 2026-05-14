@@ -16,3 +16,15 @@ debug/
 *.md
 .env
 .env.*
+.pytest_tmp
+.pytest_tmp/
+.pytest_tmp/**
+pytest_bundle_tmp_run
+pytest_bundle_tmp_run/
+pytest_bundle_tmp_run/**
+.pytest_cache
+.pytest_cache/
+.pytest_cache/**
+__pycache__
+__pycache__/
+__pycache__/**

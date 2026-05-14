@@ -1,0 +1,399 @@
+{
+  "allowed_statuses": [
+    "blocked_by_behavioral_risk",
+    "blocked_by_identity_resolution",
+    "blocked_by_missing_existing_baseline",
+    "blocked_by_missing_fixture",
+    "blocked_by_unsupported_mechanics",
+    "blocked_by_value_normalization",
+    "future_mechanical_required",
+    "safe_non_mechanical_now",
+    "unknown_needs_review"
+  ],
+  "baseline_categories": [
+    {
+      "blocker_reason": null,
+      "category_id": "item_base_display_metadata",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Non-calculating item/base identity and provenance metadata.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/item_base_display_metadata.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "metadata envelope compatibility",
+        "planner-calculable remains false"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": null,
+      "category_id": "affix_display_provenance",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Non-calculating affix identity, tier count, and provenance metadata.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/affix_display_provenance.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "modifier values remain absent",
+        "blocked reasons remain visible"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": null,
+      "category_id": "passive_identity_metadata",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Passive tree and node identity/provenance metadata without effect math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/passive_identity_metadata.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "tooltip text is not inferred",
+        "effect rows remain non-calculating"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": null,
+      "category_id": "skill_identity_metadata",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Skill and skill tree identity/provenance metadata without effect math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/skill_identity_metadata.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "unresolved identity refs remain visible",
+        "bridge safe remains false"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": null,
+      "category_id": "stat_registry_identity",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Stat registry identity and source-label coverage.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/stat_registry_identity.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "unknown stat IDs remain blocked",
+        "registry count changes are reviewed"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": null,
+      "category_id": "modifier_identity",
+      "current_status": "safe_non_mechanical_now",
+      "description": "Modifier registry identity, operation, value-scale, and blocked-reason coverage.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/dry_run_summary_snapshot.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "planner-calculable count remains gated",
+        "blocked reason counts remain explicit"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": "v2 affix values are source_units and no planner-normalized scale contract exists",
+      "category_id": "known_item_affix_stat_output",
+      "current_status": "blocked_by_value_normalization",
+      "description": "Existing planner output for representative item affix stat math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_item_affix_stat_output.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "legacy output snapshot",
+        "v2 dry-run parity",
+        "approved value scale family"
+      ],
+      "safe_to_create_now": false
+    },
+    {
+      "blocker_reason": "passive effects include scripted and unsupported behavior that is not planner-calculable",
+      "category_id": "known_passive_node_stat_output",
+      "current_status": "blocked_by_unsupported_mechanics",
+      "description": "Existing planner output for representative passive node stat math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_passive_node_stat_output.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "legacy passive output snapshot",
+        "unsupported behavior remains excluded"
+      ],
+      "safe_to_create_now": false
+    },
+    {
+      "blocker_reason": "skill identity still has unresolved and ambiguous references",
+      "category_id": "known_skill_node_stat_output",
+      "current_status": "blocked_by_identity_resolution",
+      "description": "Existing planner output for representative skill node stat math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_skill_node_stat_output.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "legacy skill output snapshot",
+        "identity gap remains blocked"
+      ],
+      "safe_to_create_now": false
+    },
+    {
+      "blocker_reason": "unique/set special behavior remains text-only or unsupported",
+      "category_id": "unique_set_unsupported_exclusions",
+      "current_status": "blocked_by_unsupported_mechanics",
+      "description": "Assertions that unsupported unique/set mechanics remain excluded from stable math.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/unique_set_unsupported_exclusions.json",
+      "mechanical_calculation_involved": false,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "unsupported report entries never become stable-calculable by default"
+      ],
+      "safe_to_create_now": true
+    },
+    {
+      "blocker_reason": "Phase 10.5 found no safe normalization families",
+      "category_id": "value_scale_normalization_examples",
+      "current_status": "blocked_by_value_normalization",
+      "description": "Golden examples proving source-unit to planner-normalized conversion families.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_value_scale_examples.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "source contract",
+        "before/after normalized values",
+        "legacy parity"
+      ],
+      "safe_to_create_now": false
+    },
+    {
+      "blocker_reason": "operation expectations are not locked against current planner output",
+      "category_id": "operation_examples",
+      "current_status": "blocked_by_missing_existing_baseline",
+      "description": "Golden examples for flat, increased, more, and conditional operation handling.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_operation_examples.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "legacy operation output",
+        "v2 operation classification",
+        "conditional handling rules"
+      ],
+      "safe_to_create_now": false
+    },
+    {
+      "blocker_reason": "requires selected representative builds and dry-run parity harness",
+      "category_id": "planner_output_vs_v2_dry_run_snapshots",
+      "current_status": "future_mechanical_required",
+      "description": "Snapshot comparisons between current planner output and v2 adapter dry-run explanations.",
+      "fixture_path": "backend/tests/fixtures/v2/golden_baselines/future_planner_output_vs_v2_dry_run.json",
+      "mechanical_calculation_involved": true,
+      "production_output_affected": false,
+      "required_future_assertions": [
+        "legacy planner output unchanged",
+        "v2 adapter explains every blocked delta"
+      ],
+      "safe_to_create_now": false
+    }
+  ],
+  "blocker_summary": {
+    "blocked_by_identity_resolution": 1,
+    "blocked_by_missing_existing_baseline": 1,
+    "blocked_by_unsupported_mechanics": 2,
+    "blocked_by_value_normalization": 2,
+    "future_mechanical_required": 1
+  },
+  "dry_run_reference": {
+    "blocked_modifier_count": 19398,
+    "comparison_category_summary": {
+      "blocked_by_value_normalization": 19398
+    },
+    "modifier_row_count": 19398,
+    "value_scale_distribution": {
+      "source_units": 6248,
+      "unknown": 13150
+    }
+  },
+  "fixture_paths": [
+    "backend/tests/fixtures/v2/golden_baselines/affix_display_provenance.json",
+    "backend/tests/fixtures/v2/golden_baselines/dry_run_summary_snapshot.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_item_affix_stat_output.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_operation_examples.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_passive_node_stat_output.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_planner_output_vs_v2_dry_run.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_skill_node_stat_output.json",
+    "backend/tests/fixtures/v2/golden_baselines/future_value_scale_examples.json",
+    "backend/tests/fixtures/v2/golden_baselines/item_base_display_metadata.json",
+    "backend/tests/fixtures/v2/golden_baselines/passive_identity_metadata.json",
+    "backend/tests/fixtures/v2/golden_baselines/skill_identity_metadata.json",
+    "backend/tests/fixtures/v2/golden_baselines/stat_registry_identity.json",
+    "backend/tests/fixtures/v2/golden_baselines/unique_set_unsupported_exclusions.json"
+  ],
+  "future_assertion_requirements": [
+    {
+      "category_id": "item_base_display_metadata",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "metadata envelope compatibility",
+        "planner-calculable remains false"
+      ]
+    },
+    {
+      "category_id": "affix_display_provenance",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "modifier values remain absent",
+        "blocked reasons remain visible"
+      ]
+    },
+    {
+      "category_id": "passive_identity_metadata",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "tooltip text is not inferred",
+        "effect rows remain non-calculating"
+      ]
+    },
+    {
+      "category_id": "skill_identity_metadata",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "unresolved identity refs remain visible",
+        "bridge safe remains false"
+      ]
+    },
+    {
+      "category_id": "stat_registry_identity",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "unknown stat IDs remain blocked",
+        "registry count changes are reviewed"
+      ]
+    },
+    {
+      "category_id": "modifier_identity",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "planner-calculable count remains gated",
+        "blocked reason counts remain explicit"
+      ]
+    },
+    {
+      "category_id": "known_item_affix_stat_output",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "legacy output snapshot",
+        "v2 dry-run parity",
+        "approved value scale family"
+      ]
+    },
+    {
+      "category_id": "known_passive_node_stat_output",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "legacy passive output snapshot",
+        "unsupported behavior remains excluded"
+      ]
+    },
+    {
+      "category_id": "known_skill_node_stat_output",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "legacy skill output snapshot",
+        "identity gap remains blocked"
+      ]
+    },
+    {
+      "category_id": "unique_set_unsupported_exclusions",
+      "mechanical_calculation_involved": false,
+      "required_future_assertions": [
+        "unsupported report entries never become stable-calculable by default"
+      ]
+    },
+    {
+      "category_id": "value_scale_normalization_examples",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "source contract",
+        "before/after normalized values",
+        "legacy parity"
+      ]
+    },
+    {
+      "category_id": "operation_examples",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "legacy operation output",
+        "v2 operation classification",
+        "conditional handling rules"
+      ]
+    },
+    {
+      "category_id": "planner_output_vs_v2_dry_run_snapshots",
+      "mechanical_calculation_involved": true,
+      "required_future_assertions": [
+        "legacy planner output unchanged",
+        "v2 adapter explains every blocked delta"
+      ]
+    }
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "non-mechanical fixtures are reviewed",
+      "representative production builds are selected",
+      "value normalization evidence exists for any mechanical assertion",
+      "dry-run deltas are explainable without changing production output"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "create existing-production-only planner output snapshots before any experimental mechanical adapter mode"
+  },
+  "generated_at": "2026-05-13T22:01:03.626024+00:00",
+  "metadata": {
+    "planner_remap_performed": false,
+    "planning_only": true,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_golden_baseline_plan"
+  },
+  "required_preconditions_before_mechanical_remap": [
+    "stable-calculable gates pass for a limited modifier family",
+    "value scale policy has explicit source contracts or legacy parity baselines",
+    "unresolved and ambiguous skill identity refs remain blocked or are proven by source data",
+    "unsupported/scripted/text-only mechanics remain excluded from stable math",
+    "legacy planner output snapshots exist for representative builds",
+    "v2 dry-run comparison explains every accepted and blocked delta"
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.golden_baseline_plan.1",
+  "status_counts": {
+    "blocked_by_identity_resolution": 1,
+    "blocked_by_missing_existing_baseline": 1,
+    "blocked_by_unsupported_mechanics": 2,
+    "blocked_by_value_normalization": 2,
+    "future_mechanical_required": 1,
+    "safe_non_mechanical_now": 6
+  },
+  "summary": {
+    "baseline_category_count": 13,
+    "blocked_fixture_count": 6,
+    "mechanical_fixture_count": 6,
+    "non_mechanical_fixture_count": 7,
+    "production_consumed": false,
+    "safe_now_fixture_count": 7,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "value_normalization_status": "audit_only"
+  }
+}

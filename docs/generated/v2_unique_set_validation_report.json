@@ -1,0 +1,33 @@
+{
+  "errors": [],
+  "metadata": {
+    "experimental": true,
+    "phase": "phase_5_unique_set_infrastructure",
+    "production_consumer": false,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false,
+    "uses_canonical_contracts": true
+  },
+  "summary": {
+    "duplicate_set_group_id_count": 0,
+    "duplicate_set_item_id_count": 0,
+    "duplicate_unique_id_count": 0,
+    "error_count": 0,
+    "invalid_trust_level_count": 0,
+    "missing_base_link_count": 0,
+    "missing_provenance_count": 0,
+    "missing_support_status_count": 0,
+    "production_consumed": false,
+    "set_bonus_count": 45,
+    "set_bonus_group_missing_count": 0,
+    "set_group_count": 23,
+    "set_group_link_missing_count": 0,
+    "set_item_count": 59,
+    "stable_calculable_count": 0,
+    "unique_count": 409,
+    "unsupported_stable_calculation_count": 0,
+    "warning_count": 0
+  },
+  "warnings": []
+}
