@@ -1,0 +1,536 @@
+{
+  "allowed_promotion_states": [
+    "audit_only",
+    "blocked_by_behavioral_risk",
+    "blocked_by_missing_baseline",
+    "blocked_by_operation_semantics",
+    "blocked_by_source_units",
+    "blocked_by_stat_identity",
+    "blocked_by_unknown_scale",
+    "candidate_needs_evidence",
+    "planner_normalized_experimental",
+    "planner_normalized_stable"
+  ],
+  "blocked_family_counts": {
+    "blocked_family_count": 729,
+    "candidate_family_count": 373,
+    "classification_counts": {
+      "blocked_by_behavioral_risk": 1,
+      "blocked_by_operation_semantics": 1,
+      "blocked_by_source_units": 1,
+      "blocked_by_stat_identity": 1,
+      "blocked_by_unknown_scale": 4,
+      "candidate_needs_evidence": 8
+    },
+    "safe_family_count": 0
+  },
+  "current_family_classifications": [
+    {
+      "blocked_reasons": [
+        "unknown_value_scale"
+      ],
+      "classification": "blocked_by_unknown_scale",
+      "family_id": "all_unknown_value_scales",
+      "modifier_count": 13150,
+      "promotion_state": "blocked_by_unknown_scale"
+    },
+    {
+      "blocked_reasons": [
+        "source_units_value_scale",
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "blocked_by_source_units",
+      "family_id": "all_source_units_value_scales",
+      "modifier_count": 6248,
+      "promotion_state": "blocked_by_source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unknown_operation"
+      ],
+      "classification": "blocked_by_operation_semantics",
+      "family_id": "unknown_operations",
+      "modifier_count": 11606,
+      "promotion_state": "blocked_by_operation_semantics"
+    },
+    {
+      "blocked_reasons": [
+        "unresolved_stat_identity"
+      ],
+      "classification": "blocked_by_stat_identity",
+      "family_id": "unresolved_stat_identities",
+      "modifier_count": 4714,
+      "promotion_state": "blocked_by_stat_identity"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "unique_modifier|flat|added_playerproperty",
+      "modifier_count": 326,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "unique_modifier|flat|added_abilityproperty",
+      "modifier_count": 313,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "item_implicit|flat|added_damage",
+      "modifier_count": 259,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "affix|increased|increased_damage",
+      "modifier_count": 231,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "affix|flat|added_abilityproperty",
+      "modifier_count": 216,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "affix|flat|added_playerproperty",
+      "modifier_count": 205,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "item_implicit|flat|added_armour",
+      "modifier_count": 175,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "missing_explicit_scale_evidence"
+      ],
+      "classification": "candidate_needs_evidence",
+      "family_id": "affix|flat|added_levelofskills",
+      "modifier_count": 135,
+      "promotion_state": "candidate_needs_evidence"
+    },
+    {
+      "blocked_reasons": [
+        "source_identity_gap",
+        "special_behavior_not_calculable",
+        "unknown_operation",
+        "unknown_stat_id",
+        "unknown_value_scale"
+      ],
+      "classification": "blocked_by_unknown_scale",
+      "family_id": "skill_node_modifier|unknown|unknown",
+      "modifier_count": 4460,
+      "promotion_state": "blocked_by_unknown_scale"
+    },
+    {
+      "blocked_reasons": [
+        "source_identity_gap",
+        "special_behavior_not_calculable",
+        "unknown_operation",
+        "unknown_value_scale"
+      ],
+      "classification": "blocked_by_unknown_scale",
+      "family_id": "skill_node_modifier|unknown|54",
+      "modifier_count": 1320,
+      "promotion_state": "blocked_by_unknown_scale"
+    },
+    {
+      "blocked_reasons": [
+        "source_identity_gap",
+        "special_behavior_not_calculable"
+      ],
+      "classification": "blocked_by_behavioral_risk",
+      "family_id": "skill_structured_value|duration|duration_cast",
+      "modifier_count": 744,
+      "promotion_state": "blocked_by_behavioral_risk"
+    },
+    {
+      "blocked_reasons": [
+        "source_identity_gap",
+        "special_behavior_not_calculable",
+        "unknown_operation",
+        "unknown_value_scale"
+      ],
+      "classification": "blocked_by_unknown_scale",
+      "family_id": "skill_node_modifier|unknown|damage",
+      "modifier_count": 323,
+      "promotion_state": "blocked_by_unknown_scale"
+    }
+  ],
+  "current_value_scale_state": {
+    "blocked_modifier_count": 19398,
+    "modifier_row_count": 19398,
+    "planner_calculable_count": 0,
+    "source_units_value_scale_count": 6248,
+    "stable_calculable_count": 0,
+    "unknown_operation_count": 11606,
+    "unknown_value_scale_count": 13150,
+    "unresolved_stat_identity_count": 4714,
+    "value_normalization_status": "audit_only",
+    "value_scale_distribution": {
+      "source_units": 6248,
+      "unknown": 13150
+    }
+  },
+  "disallowed_assumptions": [
+    "Do not infer value scale from display text.",
+    "Do not infer value scale from tooltip text.",
+    "Do not treat source_units as planner-normalized.",
+    "Do not treat unknown values as zero or identity values.",
+    "Do not assume percent-like operations use the same transform family.",
+    "Do not promote a family without operation semantics and stat identity evidence.",
+    "Do not bridge unresolved skill identities to make value normalization pass."
+  ],
+  "future_sequence": [
+    {
+      "description": "Define operation semantics taxonomy.",
+      "order": 1
+    },
+    {
+      "description": "Define stat identity resolution policy.",
+      "order": 2
+    },
+    {
+      "description": "Select one narrow value family candidate.",
+      "order": 3
+    },
+    {
+      "description": "Gather raw source examples.",
+      "order": 4
+    },
+    {
+      "description": "Define transform rule.",
+      "order": 5
+    },
+    {
+      "description": "Create golden baseline.",
+      "order": 6
+    },
+    {
+      "description": "Run dry-run comparison.",
+      "order": 7
+    },
+    {
+      "description": "Mark experimental only after evidence passes.",
+      "order": 8
+    },
+    {
+      "description": "Promote stable only after repeated validation.",
+      "order": 9
+    }
+  ],
+  "generated_at": "2026-05-14T01:09:33.994621+00:00",
+  "metadata": {
+    "design_only": true,
+    "normalization_implemented": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "source": "v3_value_normalization_contract"
+  },
+  "production_remap_blockers": [
+    {
+      "evidence": "audit_only",
+      "id": "value_normalization_audit_only"
+    },
+    {
+      "evidence": 13150,
+      "id": "unknown_value_scales"
+    },
+    {
+      "evidence": 6248,
+      "id": "source_units_value_scales"
+    },
+    {
+      "evidence": 11606,
+      "id": "unknown_operations"
+    },
+    {
+      "evidence": 4714,
+      "id": "unresolved_stat_identities"
+    },
+    {
+      "evidence": [
+        "stable_calculable_count_zero",
+        "value_normalization_audit_only",
+        "unknown_value_scales",
+        "source_units_value_scales",
+        "unknown_operations",
+        "unresolved_stat_identities",
+        "unbridged_skill_identities",
+        "missing_mechanical_golden_baselines",
+        "missing_dry_run_parity"
+      ],
+      "id": "missing_production_remap_gates"
+    }
+  ],
+  "recommended_next_phase": "v3_operation_semantics_taxonomy",
+  "required_contract_fields": [
+    "family_id",
+    "source_scale",
+    "target_scale",
+    "domain",
+    "operation_type",
+    "stat_identity_status",
+    "value_transform_rule",
+    "unit_semantics",
+    "polarity_semantics",
+    "rounding_policy",
+    "stacking_policy_dependency",
+    "applicability_scope",
+    "source_examples",
+    "golden_baseline_refs",
+    "validation_status",
+    "promotion_status",
+    "blocked_reasons",
+    "provenance"
+  ],
+  "required_evidence_before_promotion": [
+    {
+      "description": "Representative source records for the family.",
+      "id": "source_examples"
+    },
+    {
+      "description": "Raw min/max values from trusted source data.",
+      "id": "known_raw_value_examples"
+    },
+    {
+      "description": "Expected planner values approved by policy and baseline evidence.",
+      "id": "expected_normalized_value_examples"
+    },
+    {
+      "description": "Approved operation meaning, stacking, and scope.",
+      "id": "operation_semantics"
+    },
+    {
+      "description": "Canonical stat identity resolved for the target domain.",
+      "id": "resolved_stat_identity"
+    },
+    {
+      "description": "Existing planner output or explicit mechanical baseline.",
+      "id": "golden_baseline_test"
+    },
+    {
+      "description": "Dry-run comparison against current planner output where applicable.",
+      "id": "old_planner_comparison"
+    },
+    {
+      "description": "Proof that scripted and unsupported mechanics remain excluded.",
+      "id": "unsupported_exclusion"
+    },
+    {
+      "description": "Traceable source path and generated bundle provenance.",
+      "id": "provenance_source"
+    },
+    {
+      "description": "Patch/export version associated with the evidence.",
+      "id": "patch_version_traceability"
+    }
+  ],
+  "required_golden_baseline_coverage": [
+    "value scale examples for each proposed family",
+    "operation examples for flat, increased, more, less, duration, cooldown, cost, and chance",
+    "known item affix stat output",
+    "known passive node stat output",
+    "known skill node stat output",
+    "unsupported unique/set exclusion snapshots",
+    "old planner versus v3 dry-run comparison snapshots"
+  ],
+  "required_operation_semantics_dependency": {
+    "current_unknown_operation_count": 11606,
+    "reason": "value transforms cannot be approved until operation meaning and stacking are defined",
+    "required": true
+  },
+  "required_stat_identity_dependency": {
+    "current_unresolved_stat_identity_count": 4714,
+    "reason": "value transforms must target resolved canonical stat identities",
+    "required": true
+  },
+  "safety_confirmations": {
+    "planner_calculable_count": 0,
+    "planner_calculable_promoted": false,
+    "production_consumed": false,
+    "production_planner_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "source_units_values_blocked": true,
+    "stable_calculable_count": 0,
+    "stable_calculable_promoted": false,
+    "unknown_operations_blocked": true,
+    "unknown_values_blocked": true,
+    "unresolved_stat_identities_blocked": true,
+    "value_normalization_status": "audit_only",
+    "values_normalized": false
+  },
+  "schema_version": "v3.value_normalization_contract.1",
+  "value_family_candidates": {
+    "candidate_family_count": 373,
+    "safe_family_count": 0,
+    "sample_candidates": [
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "unique_modifier|flat|added_playerproperty",
+        "modifier_count": 326,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "unique_modifier",
+        "stat_family": "added_playerproperty",
+        "value_scale_counts": {
+          "source_units": 326
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "unique_modifier|flat|added_abilityproperty",
+        "modifier_count": 313,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "unique_modifier",
+        "stat_family": "added_abilityproperty",
+        "value_scale_counts": {
+          "source_units": 313
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "item_implicit|flat|added_damage",
+        "modifier_count": 259,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "item_implicit",
+        "stat_family": "added_damage",
+        "value_scale_counts": {
+          "source_units": 259
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "affix|increased|increased_damage",
+        "modifier_count": 231,
+        "operation": "increased",
+        "policy_status": "candidate_percent_family_requires_source_validation",
+        "source_type": "affix",
+        "stat_family": "increased_damage",
+        "value_scale_counts": {
+          "source_units": 231
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "affix|flat|added_abilityproperty",
+        "modifier_count": 216,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "affix",
+        "stat_family": "added_abilityproperty",
+        "value_scale_counts": {
+          "source_units": 216
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "affix|flat|added_playerproperty",
+        "modifier_count": 205,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "affix",
+        "stat_family": "added_playerproperty",
+        "value_scale_counts": {
+          "source_units": 205
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "item_implicit|flat|added_armour",
+        "modifier_count": 175,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "item_implicit",
+        "stat_family": "added_armour",
+        "value_scale_counts": {
+          "source_units": 175
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "affix|flat|added_levelofskills",
+        "modifier_count": 135,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "affix",
+        "stat_family": "added_levelofskills",
+        "value_scale_counts": {
+          "source_units": 135
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "unique_modifier|flat|added_damage",
+        "modifier_count": 133,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "unique_modifier",
+        "stat_family": "added_damage",
+        "value_scale_counts": {
+          "source_units": 133
+        }
+      },
+      {
+        "blocked_reasons": [
+          "missing_explicit_scale_evidence"
+        ],
+        "family_id": "unique_modifier|flat|added_levelofskills",
+        "modifier_count": 127,
+        "operation": "flat",
+        "policy_status": "candidate_numeric_family_requires_source_validation",
+        "source_type": "unique_modifier",
+        "stat_family": "added_levelofskills",
+        "value_scale_counts": {
+          "source_units": 127
+        }
+      }
+    ]
+  }
+}
