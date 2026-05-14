@@ -1,0 +1,634 @@
+{
+  "classification_counts": {
+    "future_patch_resilience_followup": 1,
+    "known_intentional_limitation": 1,
+    "post_v2_5_polish": 3,
+    "v3_mechanical_blocker": 5
+  },
+  "feature_completion": {
+    "completed_surface_count": 10,
+    "expected_surface_count": 10,
+    "surfaces": [
+      {
+        "coverage": "planned the v2.5 trust and UX layer",
+        "exists": true,
+        "id": "trust_ux_planning_audit",
+        "label": "Trust & UX planning audit",
+        "path": "docs/migration/V2_5_TRUST_UX_PLAN.md",
+        "status": "complete"
+      },
+      {
+        "coverage": "renders support, trust, audit-only, display-only, and non-calculating status badges",
+        "exists": true,
+        "id": "shared_trust_support_badges",
+        "label": "Shared trust/support badges",
+        "path": "frontend/src/components/v2/V2TrustBadge.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "summarizes provenance, warnings, blocked reasons, and limitations",
+        "exists": true,
+        "id": "provenance_warning_panels",
+        "label": "Provenance/warning summary panels",
+        "path": "frontend/src/components/v2/V2TrustSummaryPanels.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "explains display-only, audit-only, unsupported, and not planner-calculable states",
+        "exists": true,
+        "id": "user_facing_limitation_copy",
+        "label": "User-facing limitation copy",
+        "path": "frontend/src/components/v2/V2LimitationNotice.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "shows stat/modifier counts, blocked reasons, value scales, and planner safety status",
+        "exists": true,
+        "id": "stats_modifiers_debug_page",
+        "label": "Stats/modifiers debug page",
+        "path": "frontend/src/pages/debug/V2StatsModifiersDebugPage.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "explains trusted data, provenance, display-only use, and v3 boundaries",
+        "exists": true,
+        "id": "trusted_data_explanation_page",
+        "label": "Trusted-data explanation page",
+        "path": "frontend/src/pages/TrustedDataExplanationPage.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "shows adapter-visible, blocked, planner-calculable, and baseline readiness status",
+        "exists": true,
+        "id": "planner_adapter_status_panel",
+        "label": "Planner adapter status panel",
+        "path": "frontend/src/components/v2/V2PlannerAdapterStatusPanel.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "links the trusted-data explanation, debug routes, support matrix, and pre-v3 dashboard",
+        "exists": true,
+        "id": "report_debug_navigation_cleanup",
+        "label": "Report/debug navigation cleanup",
+        "path": "frontend/src/pages/debug/V2DebugNavigationPage.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "summarizes domain support, display-only status, blockers, and next tracks",
+        "exists": true,
+        "id": "support_matrix",
+        "label": "User-facing support matrix",
+        "path": "frontend/src/pages/TrustedDataSupportMatrixPage.tsx",
+        "status": "complete"
+      },
+      {
+        "coverage": "summarizes what remains blocked before mechanical planner work can start",
+        "exists": true,
+        "id": "pre_v3_readiness_dashboard",
+        "label": "Pre-v3 mechanical readiness dashboard",
+        "path": "frontend/src/pages/PreV3MechanicalReadinessPage.tsx",
+        "status": "complete"
+      }
+    ]
+  },
+  "frontend_trust_ux_surface_coverage": {
+    "debug_navigation": {
+      "exists": true,
+      "path": "frontend/src/pages/debug/V2DebugNavigationPage.tsx"
+    },
+    "pre_v3_readiness_dashboard": {
+      "exists": true,
+      "path": "frontend/src/pages/PreV3MechanicalReadinessPage.tsx"
+    },
+    "stats_modifiers_debug": {
+      "exists": true,
+      "path": "frontend/src/pages/debug/V2StatsModifiersDebugPage.tsx"
+    },
+    "support_matrix": {
+      "exists": true,
+      "path": "frontend/src/pages/TrustedDataSupportMatrixPage.tsx"
+    },
+    "trusted_data_explanation": {
+      "exists": true,
+      "path": "frontend/src/pages/TrustedDataExplanationPage.tsx"
+    }
+  },
+  "generated_at": "2026-05-14T00:50:03.987095+00:00",
+  "key_route_coverage": [
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/trusted-data",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "Trusted-data explanation page"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/trusted-data/support",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "User-facing support matrix"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/trusted-data/pre-v3-readiness",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "Pre-v3 mechanical readiness dashboard"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/debug/v2",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "V2 debug navigation page"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/debug/v2-stats-modifiers",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "Stats/modifiers debug page"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/debug/forge-safe-affixes",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "Forge-safe affixes debug page"
+    },
+    {
+      "coverage_type": "static_route_inventory",
+      "registered": true,
+      "route": "/debug/v2-affixes",
+      "source": "frontend/src/App.tsx",
+      "status": "registered",
+      "surface": "Alias redirect to forge-safe affixes"
+    }
+  ],
+  "known_manual_verification_results": [
+    {
+      "expected_status": 200,
+      "target": "/trusted-data"
+    },
+    {
+      "expected_status": 200,
+      "target": "/trusted-data/support"
+    },
+    {
+      "expected_status": 200,
+      "target": "/trusted-data/pre-v3-readiness"
+    },
+    {
+      "expected_status": 200,
+      "target": "/debug/v2"
+    },
+    {
+      "expected_status": 200,
+      "target": "/debug/v2-stats-modifiers"
+    },
+    {
+      "expected_status": 200,
+      "target": "/debug/forge-safe-affixes"
+    },
+    {
+      "expected_status": 200,
+      "target": "/api/experimental/v2/modifiers/debug"
+    }
+  ],
+  "limitation_copy_coverage": {
+    "component": "frontend/src/components/v2/V2LimitationNotice.tsx",
+    "covered_concepts": [
+      "display_only",
+      "audit_only_value_normalization",
+      "not_planner_calculable",
+      "unsupported_mechanics",
+      "partial_support",
+      "unresolved_skill_identity",
+      "missing_provenance",
+      "experimental_only",
+      "stable_calculable_unavailable",
+      "production_not_consuming_v2"
+    ]
+  },
+  "manual_qa_checklist": [
+    {
+      "description": "Trusted-data page loads.",
+      "id": "trusted_data_loads",
+      "target": "/trusted-data"
+    },
+    {
+      "description": "Support matrix page loads.",
+      "id": "support_matrix_loads",
+      "target": "/trusted-data/support"
+    },
+    {
+      "description": "Pre-v3 readiness page loads.",
+      "id": "pre_v3_readiness_loads",
+      "target": "/trusted-data/pre-v3-readiness"
+    },
+    {
+      "description": "Debug navigation page loads.",
+      "id": "debug_navigation_loads",
+      "target": "/debug/v2"
+    },
+    {
+      "description": "Stats/modifiers debug page loads.",
+      "id": "stats_modifiers_loads",
+      "target": "/debug/v2-stats-modifiers"
+    },
+    {
+      "description": "Affixes debug page loads through the actual route.",
+      "id": "affixes_actual_route_loads",
+      "target": "/debug/forge-safe-affixes"
+    },
+    {
+      "description": "Affix alias route works.",
+      "id": "affix_alias_works",
+      "target": "/debug/v2-affixes"
+    },
+    {
+      "description": "Limitation copy appears.",
+      "id": "limitation_copy_visible",
+      "target": "v2.5 pages"
+    },
+    {
+      "description": "Planner-calculable count remains 0.",
+      "id": "planner_calculable_zero",
+      "target": "v2.5 pages"
+    },
+    {
+      "description": "Stable-calculable count remains 0.",
+      "id": "stable_calculable_zero",
+      "target": "v2.5 pages"
+    },
+    {
+      "description": "No copy implies production planner math is active.",
+      "id": "no_production_math_claims",
+      "target": "v2.5 pages"
+    }
+  ],
+  "metadata": {
+    "audit_only": true,
+    "backend_behavior_changed": false,
+    "documentation_only": true,
+    "frontend_behavior_changed": false,
+    "production_consumed": false,
+    "source": "v2_5_release_readiness"
+  },
+  "pre_v3_readiness_dashboard_coverage": {
+    "covered_sections": [
+      "current readiness decision",
+      "what is already complete",
+      "what remains blocked",
+      "value normalization blockers",
+      "operation semantics blockers",
+      "stat identity blockers",
+      "skill identity blockers",
+      "unsupported/scripted/text-only mechanic blockers",
+      "golden baseline requirements",
+      "what v3 must prove"
+    ],
+    "route": "/trusted-data/pre-v3-readiness"
+  },
+  "provenance_warning_coverage": {
+    "component": "frontend/src/components/v2/V2TrustSummaryPanels.tsx",
+    "covered_concepts": [
+      "source information",
+      "missing provenance",
+      "warnings",
+      "blocked reasons",
+      "display-only limitations",
+      "not planner-calculable limitations"
+    ]
+  },
+  "readiness_decision": {
+    "production_planner_ready": false,
+    "recommended_next_track": "v3_mechanical_intelligence_planning",
+    "v2_5_trust_ux_ready": true,
+    "v3_mechanical_ready": false
+  },
+  "remaining_items": [
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Tighten spacing and visual hierarchy across trusted-data pages after user review.",
+      "id": "visual_polish"
+    },
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Review all trust and limitation copy with real player feedback.",
+      "id": "copy_review"
+    },
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Consider broader application navigation entry points after v2.5 release.",
+      "id": "route_discoverability"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Define and prove value normalization contracts before mechanical math.",
+      "id": "value_normalization_contracts"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Resolve operation semantics for additive, increased, more, flat, conditional, scripted, and unsupported behaviors.",
+      "id": "operation_semantics"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Resolve blocked stat identities before stable stat aggregation.",
+      "id": "stat_identity_resolution"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Keep unresolved and ambiguous skill identities unbridged until source evidence is sufficient.",
+      "id": "skill_identity_policy"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Implement golden mechanical baseline tests before production planner remap.",
+      "id": "golden_mechanical_baselines"
+    },
+    {
+      "classification": "future_patch_resilience_followup",
+      "description": "Keep future patch schema drift visible in validation and reports.",
+      "id": "patch_schema_drift_watch"
+    },
+    {
+      "classification": "known_intentional_limitation",
+      "description": "Stable-calculable count remains intentionally 0 until v3 gates pass.",
+      "id": "stable_calculable_zero"
+    }
+  ],
+  "remaining_ux_gaps": [
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Tighten spacing and visual hierarchy across trusted-data pages after user review.",
+      "id": "visual_polish"
+    },
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Review all trust and limitation copy with real player feedback.",
+      "id": "copy_review"
+    },
+    {
+      "classification": "post_v2_5_polish",
+      "description": "Consider broader application navigation entry points after v2.5 release.",
+      "id": "route_discoverability"
+    }
+  ],
+  "remaining_v3_blockers": [
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Define and prove value normalization contracts before mechanical math.",
+      "id": "value_normalization_contracts"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Resolve operation semantics for additive, increased, more, flat, conditional, scripted, and unsupported behaviors.",
+      "id": "operation_semantics"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Resolve blocked stat identities before stable stat aggregation.",
+      "id": "stat_identity_resolution"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Keep unresolved and ambiguous skill identities unbridged until source evidence is sufficient.",
+      "id": "skill_identity_policy"
+    },
+    {
+      "classification": "v3_mechanical_blocker",
+      "description": "Implement golden mechanical baseline tests before production planner remap.",
+      "id": "golden_mechanical_baselines"
+    }
+  ],
+  "required_v2_5_docs": [
+    {
+      "doc": "V2_5_TRUST_UX_PLAN.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_TRUST_UX_PLAN.md"
+    },
+    {
+      "doc": "V2_5_TRUST_SUPPORT_BADGES.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_TRUST_SUPPORT_BADGES.md"
+    },
+    {
+      "doc": "V2_5_PROVENANCE_WARNING_PANELS.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_PROVENANCE_WARNING_PANELS.md"
+    },
+    {
+      "doc": "V2_5_USER_FACING_LIMITATION_COPY.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_USER_FACING_LIMITATION_COPY.md"
+    },
+    {
+      "doc": "V2_5_STATS_MODIFIERS_DEBUG_PAGE.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_STATS_MODIFIERS_DEBUG_PAGE.md"
+    },
+    {
+      "doc": "V2_5_TRUSTED_DATA_EXPLANATION_PAGE.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_TRUSTED_DATA_EXPLANATION_PAGE.md"
+    },
+    {
+      "doc": "V2_5_PLANNER_ADAPTER_STATUS_PANEL.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_PLANNER_ADAPTER_STATUS_PANEL.md"
+    },
+    {
+      "doc": "V2_5_REPORT_DEBUG_NAVIGATION_CLEANUP.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_REPORT_DEBUG_NAVIGATION_CLEANUP.md"
+    },
+    {
+      "doc": "V2_5_SUPPORT_MATRIX.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_SUPPORT_MATRIX.md"
+    },
+    {
+      "doc": "V2_5_PRE_V3_MECHANICAL_READINESS_DASHBOARD.md",
+      "exists": true,
+      "path": "docs/migration/V2_5_PRE_V3_MECHANICAL_READINESS_DASHBOARD.md"
+    }
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "experimental_mode_enabled_by_default": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "production_consumed": false,
+    "production_planner_ready": false,
+    "production_planner_remap_performed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "v2_infrastructure_ready": true,
+    "v3_mechanical_ready": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2_5.release_readiness.1",
+  "source_reports": {
+    "experimental_mode_summary": {
+      "adapter_visible_modifier_count": 19398,
+      "blocked_baseline_fixture_count": 6,
+      "blocked_mechanical_category_count": 12,
+      "blocked_modifier_count": 19398,
+      "display_only_candidate_count": 3,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "safe_now_baseline_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "summaries_included": [
+        "adapter_eligibility",
+        "planner_adapter_diagnostics",
+        "planner_metadata",
+        "item_base_display_metadata",
+        "affix_display_provenance",
+        "passive_skill_identity",
+        "stat_modifier_dry_run",
+        "golden_baseline_readiness"
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "golden_baseline_summary": {
+      "baseline_category_count": 13,
+      "blocked_fixture_count": 6,
+      "mechanical_fixture_count": 6,
+      "non_mechanical_fixture_count": 7,
+      "production_consumed": false,
+      "safe_now_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "value_normalization_status": "audit_only"
+    },
+    "stat_modifier_dry_run_summary": {
+      "adapter_visible_modifier_count": 19398,
+      "blocked_modifier_count": 19398,
+      "modifier_row_count": 19398,
+      "planner_calculable_modifier_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "source_unit_value_scale_count": 6248,
+      "stable_calculable_modifier_count": 0,
+      "stat_registry_count": 2070,
+      "top_blocked_reasons": [
+        {
+          "count": 19398,
+          "reason": "not_stable_calculable"
+        },
+        {
+          "count": 19398,
+          "reason": "unstable_support_status"
+        },
+        {
+          "count": 13150,
+          "reason": "unknown_value_scale"
+        },
+        {
+          "count": 11924,
+          "reason": "unresolved_skill_identity"
+        },
+        {
+          "count": 11606,
+          "reason": "unknown_operation"
+        },
+        {
+          "count": 7495,
+          "reason": "scripted_behavior"
+        },
+        {
+          "count": 6248,
+          "reason": "source_units_value_scale"
+        },
+        {
+          "count": 5276,
+          "reason": "unsupported_behavior"
+        },
+        {
+          "count": 4714,
+          "reason": "unresolved_stat_identity"
+        },
+        {
+          "count": 265,
+          "reason": "text_only_behavior"
+        }
+      ],
+      "unknown_value_scale_count": 13150,
+      "value_normalization_status": "audit_only"
+    },
+    "v2_5_trust_ux_plan_summary": {
+      "blocked_by_v3_mechanics_count": 1,
+      "debug_only_count": 1,
+      "frontend_inventory_count": 10,
+      "mechanical_remap_ready": false,
+      "needs_copy_design_count": 5,
+      "needs_frontend_component_count": 5,
+      "production_planner_ready": false,
+      "ready_for_v2_5_count": 2,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "ux_item_count": 14,
+      "v2_infrastructure_ready": true,
+      "value_normalization_status": "audit_only"
+    },
+    "v2_release_readiness": {
+      "mechanical_remap_ready": false,
+      "production_planner_ready": false,
+      "recommended_next_track": "v2_5_trust_ux_layer",
+      "v2_infrastructure_ready": true
+    }
+  },
+  "stats_modifiers_debug_page_coverage": {
+    "data_source": "/api/experimental/v2/modifiers/debug",
+    "modifier_row_count": 19398,
+    "planner_calculable_count": 0,
+    "route": "/debug/v2-stats-modifiers",
+    "stable_calculable_count": 0,
+    "stat_registry_count": 2070,
+    "value_normalization_status": "audit_only"
+  },
+  "support_matrix_coverage": {
+    "domains": [
+      "Items / item bases",
+      "Affixes",
+      "Unique/set items",
+      "Idols",
+      "Classes/masteries",
+      "Passive trees",
+      "Skills / skill trees",
+      "Stats",
+      "Modifiers",
+      "Planner adapter"
+    ],
+    "route": "/trusted-data/support"
+  },
+  "support_trust_badge_coverage": {
+    "component": "frontend/src/components/v2/V2TrustBadge.tsx",
+    "covered_concepts": [
+      "trusted",
+      "generated",
+      "validated",
+      "display-only",
+      "audit-only",
+      "experimental",
+      "not planner-calculable",
+      "unknown status"
+    ],
+    "group_component": "frontend/src/components/v2/V2StatusBadgeGroup.tsx"
+  }
+}
