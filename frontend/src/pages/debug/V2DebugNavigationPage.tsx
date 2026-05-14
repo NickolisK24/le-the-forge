@@ -6,6 +6,13 @@ import { V2SupportBadge } from "@/components/v2/V2TrustBadge";
 
 const DEBUG_LINKS = [
   {
+    title: "Pre-v3 Readiness",
+    path: "/trusted-data/pre-v3-readiness",
+    label: "User-facing guide",
+    description: "Mechanical readiness blockers that must be solved before production planner remap.",
+    statuses: ["Audit Only", "Not Planner-Calculable"],
+  },
+  {
     title: "Support Matrix",
     path: "/trusted-data/support",
     label: "User-facing guide",

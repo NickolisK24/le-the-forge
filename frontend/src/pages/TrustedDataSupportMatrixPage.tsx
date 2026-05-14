@@ -166,6 +166,9 @@ export default function TrustedDataSupportMatrixPage() {
             <Link className="rounded border border-[#2a3050] px-3 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]" to="/debug/v2-stats-modifiers">
               Stats/modifiers debug
             </Link>
+            <Link className="rounded border border-[#2a3050] px-3 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]" to="/trusted-data/pre-v3-readiness">
+              Pre-v3 readiness
+            </Link>
           </div>
         </div>
       </section>
