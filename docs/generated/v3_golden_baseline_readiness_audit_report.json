@@ -1,0 +1,2112 @@
+{
+  "allowed_baseline_readiness_states": [
+    "audit_only",
+    "blocked_by_ambiguous_mapping",
+    "blocked_by_candidate_status",
+    "blocked_by_missing_golden_baseline",
+    "blocked_by_operation_semantics",
+    "blocked_by_skill_identity_bridge",
+    "blocked_by_stat_identity_policy",
+    "blocked_by_unsupported_behavior",
+    "blocked_by_value_normalization",
+    "unknown_needs_review"
+  ],
+  "baseline_case_type_requirements": [
+    "single_modifier_flat_stat",
+    "single_modifier_increased_stat",
+    "multiple_modifiers_same_stat",
+    "mixed_operation_same_stat",
+    "item_affix_source_only",
+    "passive_source_only",
+    "skill_tree_source_only",
+    "idol_source_only",
+    "class_attribute_source",
+    "resistance_source",
+    "negative_or_cost_modifier",
+    "conditional_modifier_exclusion",
+    "unsupported_behavior_exclusion"
+  ],
+  "baseline_evidence_requirements": [
+    "confirmed canonical stat ID",
+    "confirmed source stat ID/path",
+    "stable source record references",
+    "input modifier examples",
+    "expected normalized value examples",
+    "approved operation semantic examples",
+    "expected final stat delta",
+    "unsupported behavior exclusion notes",
+    "old planner comparison evidence",
+    "dry-run comparison evidence",
+    "repeat validation evidence",
+    "patch/version provenance"
+  ],
+  "baseline_readiness_entry_fields": [
+    "candidate_id",
+    "canonical_stat_id",
+    "baseline_readiness_state",
+    "candidate_status_from_phase_5",
+    "promotion_allowed",
+    "baseline_creation_allowed",
+    "required_baseline_case_types",
+    "missing_baseline_evidence",
+    "dependency_blockers",
+    "operation_semantics_status",
+    "value_normalization_status",
+    "stat_identity_status",
+    "skill_identity_bridge_status",
+    "unsupported_behavior_risk",
+    "repeat_validation_requirement",
+    "recommended_future_action",
+    "provenance"
+  ],
+  "candidate_readiness_distribution": {
+    "blocked_by_unsupported_behavior": 20,
+    "blocked_by_value_normalization": 10
+  },
+  "dependency_blockers": {
+    "operation_semantics": {
+      "status": "taxonomy_only",
+      "unknown_operation_count": 11606
+    },
+    "skill_identity": {
+      "status": "unbridged"
+    },
+    "stat_identity": {
+      "ambiguous_mapping_stat_count": 253,
+      "status": "policy_only",
+      "unresolved_stat_identity_count": 4714
+    },
+    "value_normalization": {
+      "source_units_value_scale_count": 6248,
+      "status": "audit_only",
+      "unknown_value_scale_count": 13150
+    }
+  },
+  "excluded_baseline_categories": [
+    "unique/set scripted mechanics",
+    "tooltip-only mechanics",
+    "conditional runtime effects",
+    "conversion mechanics",
+    "threshold mechanics",
+    "minion inheritance",
+    "skill-specific behavior without skill bridge",
+    "ambiguous source mappings",
+    "unknown operation semantics",
+    "unknown/source-unit value scales",
+    "unsupported behavior"
+  ],
+  "excluded_candidate_readiness_entries": [
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_armour",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_armour",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_armour",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:increased_movespeed",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:increased_movespeed",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_movespeed",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_ailmentchance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_ailmentchance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_ailmentchance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_intelligence",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_intelligence",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_intelligence",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "class_attribute_source",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_mana",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_mana",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_mana",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:increased_damage_minion",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:increased_damage_minion",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_damage_minion",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_health",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_health",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_health",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:increased_manaregen",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:increased_manaregen",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_manaregen",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_increasedailmentduration",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_increasedailmentduration",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_increasedailmentduration",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_blockchance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_blockchance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_blockchance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_blockeffectiveness",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_blockeffectiveness",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_blockeffectiveness",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:increased_attackspeed_melee",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:increased_attackspeed_melee",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_attackspeed_melee",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_allattributes",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_allattributes",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_allattributes",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_coldresistance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_coldresistance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_coldresistance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "resistance_source",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_criticalchance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_criticalchance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_criticalchance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_endurance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_endurance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_endurance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_lightningresistance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_lightningresistance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_lightningresistance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "resistance_source",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_physicalresistance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_physicalresistance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_physicalresistance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "resistance_source",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:increased_castspeed",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:increased_castspeed",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_castspeed",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_unsupported_behavior",
+      "candidate_id": "candidate:added_poisonresistance",
+      "candidate_status_from_phase_5": "excluded_unsupported_behavior",
+      "canonical_stat_id": "stat:added_poisonresistance",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "unsupported behavior remains excluded",
+        "unsupported_behavior_exclusion_required",
+        "unsupported_unique_set_behavior",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_poisonresistance",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "keep excluded until unsupported behavior policy and baselines exist",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "multiple_modifiers_same_stat",
+        "resistance_source",
+        "single_modifier_flat_stat",
+        "unsupported_behavior_exclusion"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "high",
+      "value_normalization_status": "audit_only"
+    }
+  ],
+  "generated_at": "2026-05-14T01:36:38.032180+00:00",
+  "metadata": {
+    "audit_only": true,
+    "golden_baselines_created": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "source": "v3_golden_baseline_readiness_audit"
+  },
+  "missing_evidence_summary": [
+    {
+      "candidate_ids": [
+        "candidate:added_attunement_none",
+        "candidate:added_intelligence_none",
+        "candidate:increased_castspeed_none",
+        "candidate:added_dexterity_none",
+        "candidate:added_increasedareaforareaskills_none",
+        "candidate:added_criticalmultiplier_bow",
+        "candidate:added_strength_none",
+        "candidate:added_healthleech_none",
+        "candidate:added_increasedleechrate_none",
+        "candidate:added_morefreezerateperstackofchill_none"
+      ],
+      "id": "all_recommended_candidates_missing_complete_baseline_evidence",
+      "missing_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ]
+    },
+    {
+      "blockers": [
+        "value_normalization_audit_only",
+        "operation_semantics_taxonomy_only",
+        "stat_identity_policy_only",
+        "skill_identity_bridge_unbridged",
+        "missing_repeat_validation"
+      ],
+      "id": "all_candidates_blocked_by_upstream_dependencies"
+    }
+  ],
+  "production_remap_blockers": [
+    "planner-calculable count remains 0",
+    "stable-calculable count remains 0",
+    "production consumed remains false",
+    "value normalization remains audit_only",
+    "operation semantics remain taxonomy-only",
+    "stat identity policy remains audit-only",
+    "skill identity bridge remains unbridged",
+    "golden baselines are not created",
+    "repeat validation has not run"
+  ],
+  "proposed_future_fixture_schema": {
+    "description": "Future schema only; no fixture files are created in this phase.",
+    "fields": [
+      "baseline_id",
+      "candidate_id",
+      "canonical_stat_id",
+      "source_record_refs",
+      "input_modifiers",
+      "expected_normalized_values",
+      "expected_operation_semantics",
+      "expected_final_stat_delta",
+      "excluded_behavior_notes",
+      "patch_version",
+      "provenance",
+      "validation_status"
+    ]
+  },
+  "recommended_next_phase": "v3_skill_identity_bridge_policy",
+  "recommended_pilot_candidates_reviewed": [
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_attunement_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_attunement_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_attunement_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "class_attribute_source",
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_intelligence_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_intelligence_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_intelligence_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "class_attribute_source",
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:increased_castspeed_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:increased_castspeed_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:increased_castspeed_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_increased_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_dexterity_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_dexterity_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_dexterity_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "class_attribute_source",
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_increasedareaforareaskills_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_increasedareaforareaskills_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_increasedareaforareaskills_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_criticalmultiplier_bow",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_criticalmultiplier_bow",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_criticalmultiplier_bow",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_strength_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_strength_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_strength_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "class_attribute_source",
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_healthleech_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_healthleech_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_healthleech_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_increasedleechrate_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_increasedleechrate_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_increasedleechrate_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    },
+    {
+      "baseline_creation_allowed": false,
+      "baseline_readiness_state": "blocked_by_value_normalization",
+      "candidate_id": "candidate:added_morefreezerateperstackofchill_none",
+      "candidate_status_from_phase_5": "candidate_blocked_by_value_normalization",
+      "canonical_stat_id": "stat:added_morefreezerateperstackofchill_none",
+      "dependency_blockers": [
+        "missing_golden_baseline",
+        "missing_repeat_validation",
+        "operation_semantics_taxonomy_only",
+        "value normalization remains audit_only",
+        "value_normalization_audit_only"
+      ],
+      "missing_baseline_evidence": [
+        "confirmed canonical stat ID",
+        "confirmed source stat ID/path",
+        "stable source record references",
+        "input modifier examples",
+        "expected normalized value examples",
+        "approved operation semantic examples",
+        "expected final stat delta",
+        "unsupported behavior exclusion notes",
+        "old planner comparison evidence",
+        "dry-run comparison evidence",
+        "repeat validation evidence",
+        "patch/version provenance"
+      ],
+      "operation_semantics_status": "taxonomy_only",
+      "promotion_allowed": false,
+      "provenance": {
+        "extraction_method": "v2_stat_modifier_normalization",
+        "generated_on": "2026-05-13T01:43:33.429693+00:00",
+        "notes": [
+          "Collected from generated v2 modifier-like rows; values remain source-preserved unless explicitly planner-normalized."
+        ],
+        "schema_version": "v2.stat_registry.1",
+        "source_id": "stat:added_morefreezerateperstackofchill_none",
+        "source_path": "docs/generated/v2_*_bundle.json",
+        "source_type": "v2_stat_registry"
+      },
+      "recommended_future_action": "wait for value normalization evidence",
+      "repeat_validation_requirement": {
+        "minimum_repeated_runs": 3,
+        "requires_distinct_exports_or_patch_snapshots": true,
+        "requires_dry_run_comparison": true,
+        "requires_no_unexplained_delta": true,
+        "requires_old_planner_comparison": true,
+        "requires_reversible_promotion_record": true
+      },
+      "required_baseline_case_types": [
+        "item_affix_source_only",
+        "multiple_modifiers_same_stat",
+        "single_modifier_flat_stat"
+      ],
+      "skill_identity_bridge_status": "unbridged",
+      "stat_identity_status": "canonical_candidate_needs_evidence",
+      "unsupported_behavior_risk": "low",
+      "value_normalization_status": "audit_only"
+    }
+  ],
+  "repeat_validation_policy": {
+    "minimum_repeated_runs": 3,
+    "requires_distinct_exports_or_patch_snapshots": true,
+    "requires_dry_run_comparison": true,
+    "requires_no_unexplained_delta": true,
+    "requires_old_planner_comparison": true,
+    "requires_reversible_promotion_record": true
+  },
+  "safety_confirmations": {
+    "ambiguous_mappings_blocked": true,
+    "canonical_candidates_promoted": false,
+    "golden_baselines_created": false,
+    "operation_semantics_implemented": false,
+    "planner_calculable_count": 0,
+    "planner_calculable_promoted": false,
+    "production_consumed": false,
+    "production_planner_changed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stable_calculable_promoted": false,
+    "stat_calculations_changed": false,
+    "stat_identities_promoted": false,
+    "unresolved_stat_identities_blocked": true,
+    "value_normalization_status": "audit_only",
+    "values_normalized": false
+  },
+  "schema_version": "v3.golden_baseline_readiness_audit.1",
+  "source_report_evidence": {
+    "dry_run_top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "phase_5_candidate_status_distribution": {
+      "candidate_blocked_by_ambiguity": 253,
+      "candidate_blocked_by_behavioral_context": 52,
+      "candidate_blocked_by_operation_semantics": 5,
+      "candidate_blocked_by_skill_identity_bridge": 389,
+      "candidate_blocked_by_value_normalization": 444,
+      "excluded_unsupported_behavior": 926,
+      "unknown_needs_review": 1
+    },
+    "phase_5_recommended_candidate_ids": [
+      "candidate:added_attunement_none",
+      "candidate:added_intelligence_none",
+      "candidate:increased_castspeed_none",
+      "candidate:added_dexterity_none",
+      "candidate:added_increasedareaforareaskills_none",
+      "candidate:added_criticalmultiplier_bow",
+      "candidate:added_strength_none",
+      "candidate:added_healthleech_none",
+      "candidate:added_increasedleechrate_none",
+      "candidate:added_morefreezerateperstackofchill_none"
+    ],
+    "v3_plan_production_remap_gates": [
+      "stable-calculable count greater than zero only through proven policy",
+      "value normalization contracts approved",
+      "operation semantics approved",
+      "stat identities resolved for target domain",
+      "skill identity bridge policy approved",
+      "unsupported/scripted mechanics excluded",
+      "golden baselines passing",
+      "old planner versus v3 dry-run comparison passing",
+      "production non-consumption guard intentionally updated only when remap is approved",
+      "rollback and debug path exists"
+    ]
+  },
+  "summary": {
+    "explicitly_excluded_candidate_count_in_report": 20,
+    "phase_5_inventory_entry_count_in_report": 50,
+    "planner_calculable_count": 0,
+    "production_consumed": false,
+    "recommended_pilot_candidate_count": 10,
+    "stable_calculable_count": 0,
+    "total_candidate_count_from_phase_5": 2070
+  }
+}
