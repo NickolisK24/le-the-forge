@@ -1,0 +1,594 @@
+{
+  "allowed_promotion_states": [
+    "audit_only",
+    "blocked_by_conditional_behavior",
+    "blocked_by_missing_baseline",
+    "blocked_by_stat_identity",
+    "blocked_by_unknown_operation",
+    "blocked_by_unsupported_behavior",
+    "blocked_by_value_normalization",
+    "candidate_needs_evidence",
+    "planner_semantics_experimental",
+    "planner_semantics_stable"
+  ],
+  "blocked_operation_categories": [
+    {
+      "classification": "blocked_by_unknown_operation",
+      "count": 11606,
+      "id": "unknown_operations"
+    },
+    {
+      "classification": "blocked_by_value_normalization",
+      "count": 19398,
+      "id": "value_normalization_audit_only"
+    },
+    {
+      "classification": "blocked_by_stat_identity",
+      "count": 4714,
+      "id": "unresolved_stat_identities"
+    },
+    {
+      "classification": "blocked_by_missing_baseline",
+      "count": 11,
+      "id": "missing_operation_baselines"
+    },
+    {
+      "classification": "blocked_by_value_normalization",
+      "count": 19398,
+      "id": "source_units_and_unknown_values"
+    },
+    {
+      "classification": "blocked_by_unsupported_behavior",
+      "count": 5276,
+      "id": "unsupported_scripted_text_only_behavior"
+    }
+  ],
+  "current_operation_distribution": {
+    "blocked_modifier_count": 19398,
+    "modifier_row_count": 19398,
+    "operation_distribution": {
+      "chance": 69,
+      "cooldown": 429,
+      "cost": 440,
+      "duration": 949,
+      "flat": 4627,
+      "increased": 1112,
+      "less": 1,
+      "more": 165,
+      "unknown": 11606
+    },
+    "planner_calculable_count": 0,
+    "stable_calculable_count": 0,
+    "unknown_operation_count": 11606
+  },
+  "dependencies": {
+    "stat_identity": {
+      "reason": "operation semantics must target resolved canonical stats",
+      "required": true,
+      "unresolved_stat_identity_count": 4714
+    },
+    "unsupported_scripted_behavior_exclusions": {
+      "counts": {
+        "source_record_status_counts": {
+          "modifier_row": 19398
+        },
+        "special_behavior_classification_counts": {
+          "none": 5814,
+          "partial_modifier": 548,
+          "scripted_runtime_behavior": 7495,
+          "text_only_effect": 265,
+          "unsupported_special_behavior": 5276
+        }
+      },
+      "reason": "scripted, text-only, and unsupported mechanics remain excluded unless explicitly modeled",
+      "required": true
+    },
+    "value_normalization": {
+      "reason": "operation semantics cannot affect planner math until value scale treatment is approved",
+      "required": true,
+      "status": "audit_only"
+    }
+  },
+  "disallowed_assumptions": [
+    "Do not infer operation semantics from tooltip text.",
+    "Do not treat structural operation labels as planner-safe semantics.",
+    "Do not assume flat, increased, and more share stacking behavior.",
+    "Do not treat unknown operations as no-op or flat operations.",
+    "Do not model conditional behavior without explicit policy and baselines.",
+    "Do not promote operations while value normalization remains audit-only.",
+    "Do not bridge unresolved skill identities to make operation semantics pass."
+  ],
+  "future_sequence": [
+    {
+      "description": "Classify source operation labels.",
+      "order": 1
+    },
+    {
+      "description": "Identify one narrow operation candidate.",
+      "order": 2
+    },
+    {
+      "description": "Confirm stat identity requirements.",
+      "order": 3
+    },
+    {
+      "description": "Confirm value normalization dependency.",
+      "order": 4
+    },
+    {
+      "description": "Define stacking and polarity semantics.",
+      "order": 5
+    },
+    {
+      "description": "Create operation golden baseline.",
+      "order": 6
+    },
+    {
+      "description": "Run dry-run comparison.",
+      "order": 7
+    },
+    {
+      "description": "Mark experimental only after evidence passes.",
+      "order": 8
+    },
+    {
+      "description": "Promote stable only after repeated validation.",
+      "order": 9
+    }
+  ],
+  "generated_at": "2026-05-14T01:15:05.113540+00:00",
+  "known_operation_families": [
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 4627,
+      "operation_id": "flat",
+      "operation_label": "Flat",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 1112,
+      "operation_id": "increased",
+      "operation_label": "Increased",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 165,
+      "operation_id": "more",
+      "operation_label": "More",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 949,
+      "operation_id": "duration",
+      "operation_label": "Duration",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 440,
+      "operation_id": "cost",
+      "operation_label": "Cost",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 429,
+      "operation_id": "cooldown",
+      "operation_label": "Cooldown",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 69,
+      "operation_id": "chance",
+      "operation_label": "Chance",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    }
+  ],
+  "metadata": {
+    "design_only": true,
+    "operation_semantics_implemented": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "source": "v3_operation_semantics_taxonomy"
+  },
+  "operation_families": [
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 4627,
+      "operation_id": "flat",
+      "operation_label": "Flat",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 1112,
+      "operation_id": "increased",
+      "operation_label": "Increased",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 165,
+      "operation_id": "more",
+      "operation_label": "More",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 949,
+      "operation_id": "duration",
+      "operation_label": "Duration",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 440,
+      "operation_id": "cost",
+      "operation_label": "Cost",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 429,
+      "operation_id": "cooldown",
+      "operation_label": "Cooldown",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "value_normalization_audit_only",
+        "missing_operation_baseline",
+        "stat_identity_dependency"
+      ],
+      "classification": "candidate_needs_evidence",
+      "current_count": 69,
+      "operation_id": "chance",
+      "operation_label": "Chance",
+      "planner_semantics_safe": false,
+      "promotion_status": "candidate_needs_evidence",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "conditional_behavior_not_modeled",
+        "missing_golden_baseline"
+      ],
+      "classification": "blocked_by_conditional_behavior",
+      "current_count": 0,
+      "operation_id": "threshold",
+      "operation_label": "Threshold",
+      "planner_semantics_safe": false,
+      "promotion_status": "blocked_by_conditional_behavior",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "conditional_behavior_not_modeled",
+        "missing_golden_baseline"
+      ],
+      "classification": "blocked_by_conditional_behavior",
+      "current_count": 0,
+      "operation_id": "conditional",
+      "operation_label": "Conditional",
+      "planner_semantics_safe": false,
+      "promotion_status": "blocked_by_conditional_behavior",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "not_present_in_current_distribution",
+        "missing_golden_baseline"
+      ],
+      "classification": "audit_only",
+      "current_count": 0,
+      "operation_id": "conversion",
+      "operation_label": "Conversion",
+      "planner_semantics_safe": false,
+      "promotion_status": "audit_only",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": true,
+      "requires_value_normalization": true
+    },
+    {
+      "blocked_reasons": [
+        "unknown_operation"
+      ],
+      "classification": "blocked_by_unknown_operation",
+      "current_count": 11606,
+      "operation_id": "unknown",
+      "operation_label": "Unknown",
+      "planner_semantics_safe": false,
+      "promotion_status": "blocked_by_unknown_operation",
+      "requires_golden_baseline": true,
+      "requires_stat_identity": false,
+      "requires_value_normalization": false
+    }
+  ],
+  "recommended_next_phase": "v3_stat_identity_resolution_policy",
+  "required_evidence_before_promotion": [
+    {
+      "description": "Representative source rows for each operation label.",
+      "id": "source_operation_examples"
+    },
+    {
+      "description": "Plain semantic meaning approved before calculation use.",
+      "id": "expected_planner_interpretation"
+    },
+    {
+      "description": "Canonical target stat identities for the operation domain.",
+      "id": "resolved_stat_identity"
+    },
+    {
+      "description": "Value scale normalized or explicitly proven scale-independent.",
+      "id": "normalized_or_scale_independent_value"
+    },
+    {
+      "description": "Known stacking and ordering behavior.",
+      "id": "stacking_behavior"
+    },
+    {
+      "description": "Known positive, negative, inverse, and reduction semantics.",
+      "id": "polarity_behavior"
+    },
+    {
+      "description": "Conditional behavior either excluded or modeled with proof.",
+      "id": "conditional_behavior_policy"
+    },
+    {
+      "description": "Representative old planner and operation-specific baselines.",
+      "id": "golden_baseline_coverage"
+    },
+    {
+      "description": "Candidate output compared without production consumption.",
+      "id": "dry_run_comparison_result"
+    },
+    {
+      "description": "Source path, bundle provenance, and patch/export version.",
+      "id": "provenance_patch_traceability"
+    }
+  ],
+  "required_golden_baseline_coverage": [
+    "flat operation examples",
+    "increased operation examples",
+    "more/less operation examples",
+    "duration/cooldown/cost operation examples",
+    "chance operation examples",
+    "conditional and threshold exclusion examples",
+    "unknown operation blocked examples",
+    "old planner versus dry-run operation comparison snapshots"
+  ],
+  "safety_confirmations": {
+    "modifier_calculations_changed": false,
+    "operation_semantics_implemented": false,
+    "planner_calculable_count": 0,
+    "planner_calculable_promoted": false,
+    "production_consumed": false,
+    "production_planner_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stable_calculable_promoted": false,
+    "unknown_operations_blocked": true,
+    "unresolved_stat_identities_blocked": true,
+    "unsupported_scripted_behavior_excluded": true,
+    "value_normalization_status": "audit_only",
+    "values_normalized": false
+  },
+  "schema_version": "v3.operation_semantics_taxonomy.1",
+  "semantic_contract_fields": [
+    "operation_id",
+    "operation_label",
+    "source_operation_values",
+    "planner_semantic_meaning",
+    "allowed_domains",
+    "stat_identity_dependency",
+    "value_normalization_dependency",
+    "stacking_semantics",
+    "polarity_semantics",
+    "rounding_policy_dependency",
+    "conditional_requirements",
+    "exclusion_rules",
+    "source_examples",
+    "golden_baseline_refs",
+    "validation_status",
+    "promotion_status",
+    "blocked_reasons",
+    "provenance"
+  ],
+  "source_report_evidence": {
+    "dry_run_comparison_category_summary": {
+      "blocked_by_value_normalization": 19398
+    },
+    "v3_plan_recommended_sequence": [
+      {
+        "description": "Design value normalization contracts and source-unit policy.",
+        "id": "v3_value_normalization_contract_design",
+        "order": 1
+      },
+      {
+        "description": "Define operation taxonomy and unsupported operation handling.",
+        "id": "v3_operation_semantics_taxonomy",
+        "order": 2
+      },
+      {
+        "description": "Define stat identity resolution policy and target-domain scope.",
+        "id": "v3_stat_identity_resolution_policy",
+        "order": 3
+      },
+      {
+        "description": "Define evidence requirements for skill identity bridges.",
+        "id": "v3_skill_identity_bridge_policy",
+        "order": 4
+      },
+      {
+        "description": "Create existing-production golden baselines before mechanical changes.",
+        "id": "v3_golden_mechanical_baseline_creation",
+        "order": 5
+      },
+      {
+        "description": "Design deterministic adapter behavior and explanations.",
+        "id": "v3_deterministic_stat_resolution_adapter_design",
+        "order": 6
+      },
+      {
+        "description": "Add opt-in dry-run comparison without changing production output.",
+        "id": "v3_experimental_mechanical_dry_run_mode",
+        "order": 7
+      },
+      {
+        "description": "Compare item and affix mechanical output under approved gates.",
+        "id": "v3_item_affix_mechanical_comparison",
+        "order": 8
+      },
+      {
+        "description": "Compare passive and skill output under approved identity and unsupported policies.",
+        "id": "v3_passive_skill_mechanical_comparison",
+        "order": 9
+      },
+      {
+        "description": "Expose limited opt-in mechanical adapter mode after dry-run evidence.",
+        "id": "v3_limited_opt_in_mechanical_adapter_mode",
+        "order": 10
+      },
+      {
+        "description": "Audit production remap gates and rollback/debug path.",
+        "id": "v3_production_planner_remap_gate_audit",
+        "order": 11
+      },
+      {
+        "description": "Production remap only after all stable-calculable gates pass.",
+        "id": "v3_production_remap_after_stable_gates",
+        "order": 12
+      }
+    ],
+    "value_contract_recommended_next_phase": "v3_operation_semantics_taxonomy"
+  },
+  "unknown_operation_count": 11606
+}
