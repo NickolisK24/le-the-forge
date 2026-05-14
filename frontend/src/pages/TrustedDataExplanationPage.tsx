@@ -136,6 +136,12 @@ export default function TrustedDataExplanationPage() {
         </p>
         <div className="mt-4 flex flex-wrap gap-3">
           <Link
+            to="/debug/v2"
+            className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]"
+          >
+            Open v2 debug index
+          </Link>
+          <Link
             to="/debug/v2-stats-modifiers"
             className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]"
           >
