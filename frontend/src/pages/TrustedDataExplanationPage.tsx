@@ -142,6 +142,12 @@ export default function TrustedDataExplanationPage() {
             Open support matrix
           </Link>
           <Link
+            to="/trusted-data/pre-v3-readiness"
+            className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]"
+          >
+            Open pre-v3 readiness
+          </Link>
+          <Link
             to="/debug/v2"
             className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]"
           >
