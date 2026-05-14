@@ -1,0 +1,4893 @@
+{
+  "generated_on": "2026-05-12",
+  "metadata": {
+    "experimental": true,
+    "phase": "phase_6_idol_infrastructure",
+    "production_consumer": false,
+    "production_safe": false,
+    "read_only": true,
+    "stable_planner_consumed": false,
+    "uses_canonical_contracts": true
+  },
+  "records": {
+    "idols": [
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:25:0",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Small Eterran Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 1
+        },
+        "display_name": "Small Eterran Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x1_eterra",
+        "idol_size": "Small Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x1_ETERRA",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 25,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:25:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 25,
+          "name": "Small Eterran Idol",
+          "subTypeID": 0,
+          "type": "IDOL_1x1_ETERRA"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:25:0",
+        "stable_calculable": false,
+        "subtype": "Small Eterran Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:25:1",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Small Orobyss Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 1
+        },
+        "display_name": "Small Orobyss Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x1_eterra",
+        "idol_size": "Small Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x1_ETERRA",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 25,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:25:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 25,
+          "name": "Small Orobyss Idol",
+          "subTypeID": 1,
+          "type": "IDOL_1x1_ETERRA"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:25:1",
+        "stable_calculable": false,
+        "subtype": "Small Orobyss Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:25:2",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Small Weaver Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 1
+        },
+        "display_name": "Small Weaver Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x1_eterra",
+        "idol_size": "Small Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x1_ETERRA",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 25,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:25:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 25,
+          "name": "Small Weaver Idol",
+          "subTypeID": 2,
+          "type": "IDOL_1x1_ETERRA"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:25:2",
+        "stable_calculable": false,
+        "subtype": "Small Weaver Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:26:0",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Minor Lagonian Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 1
+        },
+        "display_name": "Minor Lagonian Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x1_lagon",
+        "idol_size": "Minor Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x1_LAGON",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 26,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:26:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 26,
+          "name": "Small Lagonian Idol",
+          "subTypeID": 0,
+          "type": "IDOL_1x1_LAGON"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:26:0",
+        "stable_calculable": false,
+        "subtype": "Small Lagonian Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:26:1",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Minor Weaver Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 1
+        },
+        "display_name": "Minor Weaver Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x1_lagon",
+        "idol_size": "Minor Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x1_LAGON",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 26,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:26:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 26,
+          "name": "Minor Weaver Idol",
+          "subTypeID": 1,
+          "type": "IDOL_1x1_LAGON"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:26:1",
+        "stable_calculable": false,
+        "subtype": "Minor Weaver Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:27:0",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Humble Eterran Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 2
+        },
+        "display_name": "Humble Eterran Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x1",
+        "idol_size": "Humble Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 27,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:27:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 27,
+          "name": "Humble Eterran Idol",
+          "subTypeID": 0,
+          "type": "IDOL_2x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:27:0",
+        "stable_calculable": false,
+        "subtype": "Humble Eterran Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:27:1",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Humble Weaver Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 2
+        },
+        "display_name": "Humble Weaver Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x1",
+        "idol_size": "Humble Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 27,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:27:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 27,
+          "name": "Humble Weaver Idol",
+          "subTypeID": 1,
+          "type": "IDOL_2x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:27:1",
+        "stable_calculable": false,
+        "subtype": "Humble Weaver Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:28:0",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Stout Lagonian Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 1
+        },
+        "display_name": "Stout Lagonian Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x2",
+        "idol_size": "Stout Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 28,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:28:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 28,
+          "name": "Stout Lagonian Idol",
+          "subTypeID": 0,
+          "type": "IDOL_1x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:28:0",
+        "stable_calculable": false,
+        "subtype": "Stout Lagonian Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:28:1",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Stout Weaver Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 1
+        },
+        "display_name": "Stout Weaver Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x2",
+        "idol_size": "Stout Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 28,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:28:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 28,
+          "name": "Stout Weaver Idol",
+          "subTypeID": 1,
+          "type": "IDOL_1x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:28:1",
+        "stable_calculable": false,
+        "subtype": "Stout Weaver Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:0",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Heorot Idol",
+          "subTypeID": 0,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:0",
+        "stable_calculable": false,
+        "subtype": "Grand Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:1",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Glass Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Glass Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Glass Idol",
+          "subTypeID": 1,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:1",
+        "stable_calculable": false,
+        "subtype": "Grand Glass Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:2",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Solar Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Solar Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Solar Idol",
+          "subTypeID": 2,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:2",
+        "stable_calculable": false,
+        "subtype": "Grand Solar Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:3",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Bone Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Bone Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 3
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Bone Idol",
+          "subTypeID": 3,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:3",
+        "stable_calculable": false,
+        "subtype": "Grand Bone Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:4",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 4
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Majasan Idol",
+          "subTypeID": 4,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:4",
+        "stable_calculable": false,
+        "subtype": "Grand Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:5",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Grand Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Heretical Grand Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 5
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:5",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Heretical Grand Heorot Idol",
+          "subTypeID": 5,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:5",
+        "stable_calculable": false,
+        "subtype": "Heretical Grand Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:6",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Grand Glass Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Heretical Grand Glass Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 6
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:6",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Heretical Grand Glass Idol",
+          "subTypeID": 6,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:6",
+        "stable_calculable": false,
+        "subtype": "Heretical Grand Glass Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:7",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Grand Solar Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Heretical Grand Solar Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 7
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:7",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Heretical Grand Solar Idol",
+          "subTypeID": 7,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:7",
+        "stable_calculable": false,
+        "subtype": "Heretical Grand Solar Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:8",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Grand Bone Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Heretical Grand Bone Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 8
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:8",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Heretical Grand Bone Idol",
+          "subTypeID": 8,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:8",
+        "stable_calculable": false,
+        "subtype": "Heretical Grand Bone Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:9",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Grand Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Heretical Grand Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 9
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:9",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Heretical Grand Majasan Idol",
+          "subTypeID": 9,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:9",
+        "stable_calculable": false,
+        "subtype": "Heretical Grand Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:10",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Primal Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Primal Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 10
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:10",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Primal Omen Idol",
+          "subTypeID": 10,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:10",
+        "stable_calculable": false,
+        "subtype": "Grand Primal Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:11",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Arcane Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Arcane Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 11
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:11",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Arcane Omen Idol",
+          "subTypeID": 11,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:11",
+        "stable_calculable": false,
+        "subtype": "Grand Arcane Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:12",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Iron Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Iron Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 12
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:12",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Iron Omen Idol",
+          "subTypeID": 12,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:12",
+        "stable_calculable": false,
+        "subtype": "Grand Iron Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:13",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Spectral Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Spectral Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 13
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:13",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Spectral Omen Idol",
+          "subTypeID": 13,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:13",
+        "stable_calculable": false,
+        "subtype": "Grand Spectral Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:29:14",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Grand Umbral Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 3
+        },
+        "display_name": "Grand Umbral Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_3x1",
+        "idol_size": "Grand Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_3x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 29,
+            "subTypeID": 14
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:29:14",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 29,
+          "name": "Grand Umbral Omen Idol",
+          "subTypeID": 14,
+          "type": "IDOL_3x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:29:14",
+        "stable_calculable": false,
+        "subtype": "Grand Umbral Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:0",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Nomad Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Nomad Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Nomad Idol",
+          "subTypeID": 0,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:0",
+        "stable_calculable": false,
+        "subtype": "Large Nomad Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:1",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Arcane Idol",
+          "subTypeID": 1,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:1",
+        "stable_calculable": false,
+        "subtype": "Large Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:2",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Rahyeh Idol",
+          "subTypeID": 2,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:2",
+        "stable_calculable": false,
+        "subtype": "Large Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:3",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 3
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Immortal Idol",
+          "subTypeID": 3,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:3",
+        "stable_calculable": false,
+        "subtype": "Large Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:4",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Shadow Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Shadow Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 4
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Shadow Idol",
+          "subTypeID": 4,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:4",
+        "stable_calculable": false,
+        "subtype": "Large Shadow Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:5",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Large Nomad Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Heretical Large Nomad Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 5
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:5",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Heretical Large Nomad Idol",
+          "subTypeID": 5,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:5",
+        "stable_calculable": false,
+        "subtype": "Heretical Large Nomad Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:6",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Large Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Heretical Large Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 6
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:6",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Heretical Large Arcane Idol",
+          "subTypeID": 6,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:6",
+        "stable_calculable": false,
+        "subtype": "Heretical Large Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:7",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Large Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Heretical Large Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 7
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:7",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Heretical Large Rahyeh Idol",
+          "subTypeID": 7,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:7",
+        "stable_calculable": false,
+        "subtype": "Heretical Large Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:8",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Large Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Heretical Large Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 8
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:8",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Heretical Large Immortal Idol",
+          "subTypeID": 8,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:8",
+        "stable_calculable": false,
+        "subtype": "Heretical Large Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:9",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Large Shadow Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Heretical Large Shadow Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 9
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:9",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Heretical Large Shadow Idol",
+          "subTypeID": 9,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:9",
+        "stable_calculable": false,
+        "subtype": "Heretical Large Shadow Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:10",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Primal Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Primal Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 10
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:10",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Primal Omen Idol",
+          "subTypeID": 10,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:10",
+        "stable_calculable": false,
+        "subtype": "Large Primal Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:11",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Arcane Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Arcane Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 11
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:11",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Arcane Omen Idol",
+          "subTypeID": 11,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:11",
+        "stable_calculable": false,
+        "subtype": "Large Arcane Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:12",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Iron Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Iron Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 12
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:12",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Iron Omen Idol",
+          "subTypeID": 12,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:12",
+        "stable_calculable": false,
+        "subtype": "Large Iron Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:13",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Spectral Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Spectral Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 13
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:13",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Spectral Omen Idol",
+          "subTypeID": 13,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:13",
+        "stable_calculable": false,
+        "subtype": "Large Spectral Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:30:14",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Large Umbral Omen Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 3,
+          "width": 1
+        },
+        "display_name": "Large Umbral Omen Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x3",
+        "idol_size": "Large Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x3",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 30,
+            "subTypeID": 14
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:30:14",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 30,
+          "name": "Large Umbral Omen Idol",
+          "subTypeID": 14,
+          "type": "IDOL_1x3"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:30:14",
+        "stable_calculable": false,
+        "subtype": "Large Umbral Omen Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:0",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Ornate Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Ornate Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Ornate Heorot Idol",
+          "subTypeID": 0,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:0",
+        "stable_calculable": false,
+        "subtype": "Ornate Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:1",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Ornate Glass Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Ornate Glass Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Ornate Glass Idol",
+          "subTypeID": 1,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:1",
+        "stable_calculable": false,
+        "subtype": "Ornate Glass Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:2",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Ornate Solar Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Ornate Solar Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Ornate Solar Idol",
+          "subTypeID": 2,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:2",
+        "stable_calculable": false,
+        "subtype": "Ornate Solar Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:3",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Ornate Bone Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Ornate Bone Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 3
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Ornate Bone Idol",
+          "subTypeID": 3,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:3",
+        "stable_calculable": false,
+        "subtype": "Ornate Bone Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:4",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Ornate Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Ornate Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 4
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Ornate Majasan Idol",
+          "subTypeID": 4,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:4",
+        "stable_calculable": false,
+        "subtype": "Ornate Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:5",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Ornate Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Heretical Ornate Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 5
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:5",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Heretical Ornate Heorot Idol",
+          "subTypeID": 5,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:5",
+        "stable_calculable": false,
+        "subtype": "Heretical Ornate Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:6",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Ornate Glass Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Heretical Ornate Glass Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 6
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:6",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Heretical Ornate Glass Idol",
+          "subTypeID": 6,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:6",
+        "stable_calculable": false,
+        "subtype": "Heretical Ornate Glass Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:7",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Ornate Solar Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Heretical Ornate Solar Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 7
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:7",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Heretical Ornate Solar Idol",
+          "subTypeID": 7,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:7",
+        "stable_calculable": false,
+        "subtype": "Heretical Ornate Solar Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:8",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Ornate Bone Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Heretical Ornate Bone Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 8
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:8",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Heretical Ornate Bone Idol",
+          "subTypeID": 8,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:8",
+        "stable_calculable": false,
+        "subtype": "Heretical Ornate Bone Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:31:9",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Ornate Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 1,
+          "width": 4
+        },
+        "display_name": "Heretical Ornate Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_4x1",
+        "idol_size": "Ornate Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_4x1",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 31,
+            "subTypeID": 9
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:31:9",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 31,
+          "name": "Heretical Ornate Majasan Idol",
+          "subTypeID": 9,
+          "type": "IDOL_4x1"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:31:9",
+        "stable_calculable": false,
+        "subtype": "Heretical Ornate Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:0",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Huge Nomad Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Huge Nomad Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Huge Nomad Idol",
+          "subTypeID": 0,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:0",
+        "stable_calculable": false,
+        "subtype": "Huge Nomad Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:1",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Huge Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Huge Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Huge Arcane Idol",
+          "subTypeID": 1,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:1",
+        "stable_calculable": false,
+        "subtype": "Huge Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:2",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Huge Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Huge Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Huge Rahyeh Idol",
+          "subTypeID": 2,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:2",
+        "stable_calculable": false,
+        "subtype": "Huge Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:3",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Huge Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Huge Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 3
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Huge Immortal Idol",
+          "subTypeID": 3,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:3",
+        "stable_calculable": false,
+        "subtype": "Huge Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:4",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Huge Shadow Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Huge Shadow Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 4
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Huge Shadow Idol",
+          "subTypeID": 4,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:4",
+        "stable_calculable": false,
+        "subtype": "Huge Shadow Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:5",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Huge Nomad Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Heretical Huge Nomad Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 5
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:5",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Heretical Huge Nomad Idol",
+          "subTypeID": 5,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:5",
+        "stable_calculable": false,
+        "subtype": "Heretical Huge Nomad Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:6",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Huge Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Heretical Huge Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 6
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:6",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Heretical Huge Arcane Idol",
+          "subTypeID": 6,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:6",
+        "stable_calculable": false,
+        "subtype": "Heretical Huge Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:7",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Huge Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Heretical Huge Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 7
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:7",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Heretical Huge Rahyeh Idol",
+          "subTypeID": 7,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:7",
+        "stable_calculable": false,
+        "subtype": "Heretical Huge Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:8",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Huge Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Heretical Huge Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 8
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:8",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Heretical Huge Immortal Idol",
+          "subTypeID": 8,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:8",
+        "stable_calculable": false,
+        "subtype": "Heretical Huge Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:32:9",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Huge Shadow Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 4,
+          "width": 1
+        },
+        "display_name": "Heretical Huge Shadow Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_1x4",
+        "idol_size": "Huge Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_1x4",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 32,
+            "subTypeID": 9
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:32:9",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 32,
+          "name": "Heretical Huge Shadow Idol",
+          "subTypeID": 9,
+          "type": "IDOL_1x4"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:32:9",
+        "stable_calculable": false,
+        "subtype": "Heretical Huge Shadow Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:0",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 0
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:0",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Heorot Idol",
+          "subTypeID": 0,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:0",
+        "stable_calculable": false,
+        "subtype": "Adorned Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:1",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 1
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:1",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Arcane Idol",
+          "subTypeID": 1,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:1",
+        "stable_calculable": false,
+        "subtype": "Adorned Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:2",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 2
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:2",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Rahyeh Idol",
+          "subTypeID": 2,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:2",
+        "stable_calculable": false,
+        "subtype": "Adorned Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:3",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 3
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:3",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Immortal Idol",
+          "subTypeID": 3,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:3",
+        "stable_calculable": false,
+        "subtype": "Adorned Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:4",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 4
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:4",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Majasan Idol",
+          "subTypeID": 4,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:4",
+        "stable_calculable": false,
+        "subtype": "Adorned Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:5",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Silver Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Silver Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 5
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:5",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Silver Idol",
+          "subTypeID": 5,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:5",
+        "stable_calculable": false,
+        "subtype": "Adorned Silver Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:6",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Adorned Volcano Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Adorned Volcano Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 6
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:6",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Adorned Volcano Idol",
+          "subTypeID": 6,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:6",
+        "stable_calculable": false,
+        "subtype": "Adorned Volcano Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:7",
+        "class_restrictions": [
+          "Primalist"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Adorned Heorot Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Heretical Adorned Heorot Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 7
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:7",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Heretical Adorned Heorot Idol",
+          "subTypeID": 7,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Primalist",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:7",
+        "stable_calculable": false,
+        "subtype": "Heretical Adorned Heorot Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:8",
+        "class_restrictions": [
+          "Mage"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Adorned Arcane Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Heretical Adorned Arcane Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 8
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:8",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Heretical Adorned Arcane Idol",
+          "subTypeID": 8,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Mage",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:8",
+        "stable_calculable": false,
+        "subtype": "Heretical Adorned Arcane Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:9",
+        "class_restrictions": [
+          "Acolyte"
+        ],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Adorned Rahyeh Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Heretical Adorned Rahyeh Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 9
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:9",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Heretical Adorned Rahyeh Idol",
+          "subTypeID": 9,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Acolyte",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:9",
+        "stable_calculable": false,
+        "subtype": "Heretical Adorned Rahyeh Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:10",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Adorned Immortal Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Heretical Adorned Immortal Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 10
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:10",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Heretical Adorned Immortal Idol",
+          "subTypeID": 10,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:10",
+        "stable_calculable": false,
+        "subtype": "Heretical Adorned Immortal Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      },
+      {
+        "allowed_affix_ids": [],
+        "attribute_requirements": {},
+        "canonical_id": "idol:33:11",
+        "class_restrictions": [],
+        "classification": "idol",
+        "consumer_safe_fields": {
+          "display_name": "Heretical Adorned Majasan Idol",
+          "stable_calculable": false,
+          "support_status": "partial"
+        },
+        "dimensions": {
+          "height": 2,
+          "width": 2
+        },
+        "display_name": "Heretical Adorned Majasan Idol",
+        "equipment_slot": "idol",
+        "idol_shape": "idol_2x2",
+        "idol_size": "Adorned Idol",
+        "item_category": "idol",
+        "item_type": "IDOL_2x2",
+        "level_requirement": 0,
+        "mastery_restrictions": [],
+        "modifier_references": [],
+        "modifier_rows": [],
+        "normalized_fields": {
+          "modifier_references": []
+        },
+        "patch_version": "1.4.6_22986002",
+        "provenance": {
+          "extraction_method": "last_epoch_items_export",
+          "notes": [
+            "Generated from extracted idol subtype data."
+          ],
+          "patch_version": "1.4.6_22986002",
+          "raw_reference": {
+            "baseTypeID": 33,
+            "subTypeID": 11
+          },
+          "schema_version": "v2.idol.1",
+          "source_id": "idol:33:11",
+          "source_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+          "source_type": "idol"
+        },
+        "raw_reference": {
+          "baseTypeID": 33,
+          "name": "Heretical Adorned Majasan Idol",
+          "subTypeID": 11,
+          "type": "IDOL_2x2"
+        },
+        "requirements": {
+          "attributes": {},
+          "class": "Any",
+          "level": 0,
+          "mastery": "Any"
+        },
+        "slot": "idol",
+        "source_file": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+        "source_id": "idol:33:11",
+        "stable_calculable": false,
+        "subtype": "Heretical Adorned Majasan Idol",
+        "support_status": "partial",
+        "trust_level": "generated_from_game_data",
+        "warnings": [
+          "Idol base is not stable planner-consumed in Phase 6."
+        ]
+      }
+    ]
+  },
+  "schema_version": "v2.idol_bundle.1",
+  "source_items_path": "D:\\Forge\\last-epoch-data\\exports_json\\items.json",
+  "source_metadata": {
+    "equippable_base_types": 42,
+    "equippable_subtypes": 898,
+    "game_build": {
+      "gameAssemblySha256": "d4a68f3f087005f4c16fbcaf3738dd8a80ee017da3c2a0e3ee6fb86ddfc88ae1",
+      "installPath": "D:\\LastEpochTools\\game_files\\current\\1.4.6_22986002",
+      "unity": "6000.0.42f1"
+    },
+    "generated_at": "2026-05-06T00:02:56+00:00",
+    "non_equippable_base_types": 8,
+    "non_equippable_subtypes": 610,
+    "pipeline": "typetree",
+    "pipeline_version": 1,
+    "source": "resources.assets (MasterItemsList, parse_as_dict)",
+    "source_pathid": 270538
+  },
+  "summary": {
+    "class_restriction_counts": {
+      "Acolyte": 12,
+      "Any": 35,
+      "Mage": 12,
+      "Primalist": 12
+    },
+    "idol_count": 71,
+    "idol_shape_counts": {
+      "idol_1x1_eterra": 3,
+      "idol_1x1_lagon": 2,
+      "idol_1x2": 2,
+      "idol_1x3": 15,
+      "idol_1x4": 10,
+      "idol_2x1": 2,
+      "idol_2x2": 12,
+      "idol_3x1": 15,
+      "idol_4x1": 10
+    },
+    "production_consumed": false,
+    "records_with_implicits_count": 0,
+    "stable_calculable_count": 0,
+    "support_status_counts": {
+      "partial": 71
+    },
+    "trust_level_counts": {
+      "generated_from_game_data": 71
+    },
+    "validation_error_count": 0
+  }
+}

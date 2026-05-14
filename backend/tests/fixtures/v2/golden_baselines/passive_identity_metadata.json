@@ -1,0 +1,8 @@
+{
+  "fixture_type": "passive_identity_metadata_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "expected_fields": ["canonical_id", "tree_id", "source_path", "planner_calculable"],
+  "expected_planner_calculable": false,
+  "tooltip_text_used_for_mechanics": false
+}

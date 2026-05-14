@@ -152,8 +152,9 @@ def _scan_env_refs() -> set[str]:
     os.environ.get(...) in the backend source tree."""
     pattern = re.compile(r"os\.environ(?:\.get)?\(\s*['\"]([A-Z_][A-Z0-9_]*)['\"]")
     keys: set[str] = set()
+    ignored_parts = {"tests", "__pycache__", "migrations", ".venv", "venv"}
     for py in BACKEND_SRC.rglob("*.py"):
-        if "tests" in py.parts or "__pycache__" in py.parts or "migrations" in py.parts:
+        if ignored_parts.intersection(py.parts):
             continue
         try:
             text = py.read_text(encoding="utf-8")

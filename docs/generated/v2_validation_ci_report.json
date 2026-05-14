@@ -1,0 +1,118 @@
+{
+  "backend_checks": {
+    "api_contract_report_generation": "command_documented",
+    "generated_report_json": "covered",
+    "missing_invalid_artifact_errors": "covered_by_v2_repository_tests",
+    "production_non_consumption_guard": "command_documented",
+    "repository_report_generation": "command_documented",
+    "v2_api_contract_tests": "command_documented",
+    "v2_repository_tests": "command_documented"
+  },
+  "commands": {
+    "backend": [
+      ".\\backend\\.venv\\Scripts\\python.exe -m pytest backend\\tests\\test_v2_* -q",
+      ".\\backend\\.venv\\Scripts\\python.exe -m pytest backend\\tests\\test_forge_safe_production_non_consumption.py -q",
+      ".\\backend\\.venv\\Scripts\\python.exe backend\\scripts\\report_v2_backend_repository_layer.py",
+      ".\\backend\\.venv\\Scripts\\python.exe backend\\scripts\\report_v2_api_contract.py",
+      "python -m json.tool docs\\generated\\v2_backend_repository_report.json",
+      "python -m json.tool docs\\generated\\v2_api_contract_report.json"
+    ],
+    "frontend": [
+      "npm --prefix frontend run type-check",
+      "npm --prefix frontend test -- v2-api-envelope.test.ts v2-items-debug-page.test.tsx v2-idols-debug-page.test.tsx v2-unique-set-debug-page.test.tsx v2-class-mastery-debug-page.test.tsx v2-passives-debug-page.test.tsx v2-skills-debug-page.test.tsx forge-safe-affixes-debug-page.test.tsx --run"
+    ]
+  },
+  "frontend_checks": {
+    "full_suite": "not_required_for_phase_14_due_known_unrelated_failures",
+    "type_check": "command_documented",
+    "v2_api_envelope_tests": "command_documented",
+    "v2_debug_page_tests": "command_documented"
+  },
+  "json_reports": {
+    "invalid_count": 0,
+    "invalid_reports": [],
+    "missing_count": 0,
+    "missing_reports": [],
+    "valid_count": 33,
+    "valid_reports": [
+      "v2_affix_bundle.json",
+      "v2_affix_validation_report.json",
+      "v2_api_contract_report.json",
+      "v2_backend_repository_report.json",
+      "v2_canonical_contract_report.json",
+      "v2_class_mastery_bundle.json",
+      "v2_class_mastery_validation_report.json",
+      "v2_idol_affix_bundle.json",
+      "v2_idol_bundle.json",
+      "v2_idol_validation_report.json",
+      "v2_item_base_bundle.json",
+      "v2_item_implicit_bundle.json",
+      "v2_item_validation_report.json",
+      "v2_modifier_blocked_reasons_report.json",
+      "v2_modifier_registry.json",
+      "v2_modifier_validation_report.json",
+      "v2_planner_adapter_report.json",
+      "v2_passive_tree_bundle.json",
+      "v2_passive_tree_validation_report.json",
+      "v2_passive_unsupported_report.json",
+      "v2_set_bundle.json",
+      "v2_skill_bundle.json",
+      "v2_skill_identity_alignment_report.json",
+      "v2_skill_tree_bundle.json",
+      "v2_skill_unsupported_report.json",
+      "v2_skill_validation_report.json",
+      "v2_source_inventory.json",
+      "v2_stat_registry.json",
+      "v2_unique_bundle.json",
+      "v2_unique_set_unsupported_report.json",
+      "v2_unique_set_validation_report.json",
+      "v2_value_normalization_candidate_families.json",
+      "v2_value_normalization_policy_report.json"
+    ]
+  },
+  "known_caveats": [
+    {
+      "id": "frontend_full_suite_navigation_layout_search_assertions",
+      "notes": [
+        "The full frontend test suite currently has unrelated navigation/layout search assertion failures.",
+        "Focused v2 envelope and debug page tests are the frontend-owned validation target for this checkpoint."
+      ],
+      "status": "known_unrelated_failure"
+    }
+  ],
+  "metadata": {
+    "experimental": true,
+    "planner_consumed": false,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_validation_ci_hardening",
+    "unresolved_skill_identity_bridged": false,
+    "value_policy_audit_only": true
+  },
+  "safety": {
+    "ambiguous_skill_reference_count": 1,
+    "production_consumed": false,
+    "safe_normalization_family_count": 0,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stable_calculable_status": "intentionally_blocked",
+    "unresolved_skill_reference_count": 2,
+    "value_normalization_policy_status": "audit_only"
+  },
+  "summary": {
+    "api_route_count": 38,
+    "backend_repository_domain_count": 10,
+    "error_count": 0,
+    "generated_at": "2026-05-13T20:52:08.500782+00:00",
+    "invalid_json_report_count": 0,
+    "missing_generated_report_count": 0,
+    "production_consumed": false,
+    "required_generated_report_count": 33,
+    "skill_identity_bridged": false,
+    "stable_calculable_count": 0,
+    "status": "pass",
+    "valid_json_report_count": 33,
+    "value_policy_audit_only": true
+  }
+}

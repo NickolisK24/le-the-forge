@@ -1,0 +1,665 @@
+{
+  "classification_counts": {
+    "future_patch_resilience_followup": 1,
+    "known_intentional_limitation": 1,
+    "v2_5_trust_ux_followup": 4,
+    "v3_mechanical_intelligence_blocker": 5
+  },
+  "classified_remaining_work": [
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Improve user-facing support, trust, and provenance badges.",
+      "id": "trust_badges"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Make unsupported and text-only mechanic messaging clearer in debug and planner-adjacent views.",
+      "id": "unsupported_messaging"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Add dedicated frontend pages for stat and modifier registry exploration.",
+      "id": "stats_modifier_debug_pages"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Improve navigation across trusted-data reports and experimental debug routes.",
+      "id": "route_report_navigation"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Define source-unit to planner-normalized value contracts with proof.",
+      "id": "value_normalization_contracts"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Resolve unknown operation semantics before mechanical stat math.",
+      "id": "operation_semantics"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Resolve unknown stat identities before stable stat aggregation.",
+      "id": "stat_identity_resolution"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Keep remaining skill identity gaps blocked unless future source data proves them.",
+      "id": "skill_identity_bridge_policy"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Lock representative current planner output before any mechanical remap.",
+      "id": "golden_mechanical_baselines"
+    },
+    {
+      "classification": "future_patch_resilience_followup",
+      "description": "Keep report validation resilient to future source export schema changes.",
+      "id": "patch_schema_drift_watch"
+    },
+    {
+      "classification": "known_intentional_limitation",
+      "description": "Stable-calculable count remains intentionally zero for v2 infrastructure release.",
+      "id": "stable_count_zero"
+    }
+  ],
+  "future_next_step": {
+    "recommended_track": "v2_5_trust_ux_layer",
+    "v2_5_goal": "make trust, support, provenance, warnings, and limitations easier to understand without changing planner math",
+    "v3_goal": "mechanical intelligence after value, operation, identity, and golden baseline blockers are resolved"
+  },
+  "generated_at": "2026-05-13T22:22:25.273528+00:00",
+  "infrastructure_completeness": {
+    "api_contracts": "complete",
+    "dry_run_comparison": "complete_non_calculating",
+    "experimental_mode": "complete_disabled_by_default",
+    "frontend_debug_consumption": "complete_with_known_full_suite_caveat",
+    "golden_baseline_scaffold": "complete_non_mechanical",
+    "metadata_display_remaps": "complete_non_calculating",
+    "planner_adapter_boundary": "complete_read_only",
+    "repository_layer": "complete",
+    "trusted_data_bundles": "complete_for_v2_infrastructure",
+    "validation_ci": "pass"
+  },
+  "metadata": {
+    "audit_only": true,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_release_readiness"
+  },
+  "platform_status": {
+    "adapter_boundary": {
+      "blocked_modifier_count": 19398,
+      "domain_count": 9,
+      "eligible_planner_calculable_count": 0,
+      "inspected_modifier_count": 19398,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "top_blocked_reasons": [
+        {
+          "count": 19398,
+          "reason": "not_stable_calculable"
+        },
+        {
+          "count": 19398,
+          "reason": "unstable_support_status"
+        },
+        {
+          "count": 13150,
+          "reason": "unknown_value_scale"
+        },
+        {
+          "count": 11924,
+          "reason": "unresolved_skill_identity"
+        },
+        {
+          "count": 11606,
+          "reason": "unknown_operation"
+        },
+        {
+          "count": 7495,
+          "reason": "scripted_behavior"
+        },
+        {
+          "count": 6248,
+          "reason": "source_units_value_scale"
+        },
+        {
+          "count": 5276,
+          "reason": "unsupported_behavior"
+        },
+        {
+          "count": 4714,
+          "reason": "unresolved_stat_identity"
+        },
+        {
+          "count": 265,
+          "reason": "text_only_behavior"
+        }
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "affix_display_provenance": {
+      "affix_count": 1098,
+      "display_only_eligible_count": 1098,
+      "domains_inspected": 2,
+      "modifier_reference_metadata_records_exposed": 1624,
+      "optional_frontend_updated": false,
+      "optional_route_added": false,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "top_blocked_reasons": [
+        {
+          "count": 1098,
+          "reason": "affix_values_not_planner_normalized"
+        },
+        {
+          "count": 1098,
+          "reason": "display_only_metadata"
+        },
+        {
+          "count": 1098,
+          "reason": "stable_calculable_false"
+        }
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "diagnostics": {
+      "adapter_visible_record_count": 19398,
+      "blocked_mechanical_category_count": 12,
+      "blocked_record_count": 19398,
+      "display_only_candidate_count": 3,
+      "domains_checked": 9,
+      "planner_calculable_record_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "value_normalization_status": "audit_only"
+    },
+    "experimental_mode": {
+      "adapter_visible_modifier_count": 19398,
+      "blocked_baseline_fixture_count": 6,
+      "blocked_mechanical_category_count": 12,
+      "blocked_modifier_count": 19398,
+      "display_only_candidate_count": 3,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "safe_now_baseline_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "summaries_included": [
+        "adapter_eligibility",
+        "planner_adapter_diagnostics",
+        "planner_metadata",
+        "item_base_display_metadata",
+        "affix_display_provenance",
+        "passive_skill_identity",
+        "stat_modifier_dry_run",
+        "golden_baseline_readiness"
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "golden_baselines": {
+      "baseline_category_count": 13,
+      "blocked_fixture_count": 6,
+      "mechanical_fixture_count": 6,
+      "non_mechanical_fixture_count": 7,
+      "production_consumed": false,
+      "safe_now_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "value_normalization_status": "audit_only"
+    },
+    "item_base_display_metadata": {
+      "display_only_eligible_count": 542,
+      "domains_inspected": 3,
+      "implicit_metadata_records_exposed": 1182,
+      "implicit_record_count": 1182,
+      "item_base_count": 542,
+      "optional_frontend_updated": false,
+      "optional_route_added": false,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "top_blocked_reasons": [
+        {
+          "count": 542,
+          "reason": "display_only_metadata"
+        },
+        {
+          "count": 542,
+          "reason": "implicit_values_not_planner_normalized"
+        },
+        {
+          "count": 542,
+          "reason": "stable_calculable_false"
+        }
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "passive_skill_identity": {
+      "identity_only_eligible_count": 4779,
+      "optional_frontend_updated": false,
+      "optional_route_added": false,
+      "passive_identity_record_count": 540,
+      "passive_node_count": 535,
+      "passive_tree_count": 5,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "skill_count": 184,
+      "skill_identity_bridge_status": "unbridged",
+      "skill_identity_record_count": 4239,
+      "skill_node_count": 3919,
+      "skill_tree_count": 136,
+      "stable_calculable_count": 0,
+      "top_blocked_reasons": [
+        {
+          "count": 4779,
+          "reason": "identity_only_metadata"
+        },
+        {
+          "count": 4779,
+          "reason": "passive_skill_effects_not_planner_calculable"
+        },
+        {
+          "count": 4779,
+          "reason": "stable_calculable_false"
+        },
+        {
+          "count": 4779,
+          "reason": "value_normalization_audit_only"
+        },
+        {
+          "count": 4239,
+          "reason": "skill_identity_bridge_unresolved"
+        },
+        {
+          "count": 4,
+          "reason": "skill_identity_ambiguous"
+        }
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "planner_metadata": {
+      "display_only_eligible_count": 19398,
+      "domains_inspected": 9,
+      "metadata_records_inspected": 19398,
+      "optional_route_added": false,
+      "planner_calculable_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "top_blocked_reasons": [
+        {
+          "count": 19398,
+          "reason": "not_stable_calculable"
+        },
+        {
+          "count": 19398,
+          "reason": "unstable_support_status"
+        },
+        {
+          "count": 13150,
+          "reason": "unknown_value_scale"
+        },
+        {
+          "count": 11924,
+          "reason": "unresolved_skill_identity"
+        },
+        {
+          "count": 11606,
+          "reason": "unknown_operation"
+        },
+        {
+          "count": 7495,
+          "reason": "scripted_behavior"
+        },
+        {
+          "count": 6248,
+          "reason": "source_units_value_scale"
+        },
+        {
+          "count": 5276,
+          "reason": "unsupported_behavior"
+        },
+        {
+          "count": 4714,
+          "reason": "unresolved_stat_identity"
+        },
+        {
+          "count": 265,
+          "reason": "text_only_behavior"
+        }
+      ],
+      "value_normalization_status": "audit_only"
+    },
+    "stat_modifier_dry_run": {
+      "adapter_visible_modifier_count": 19398,
+      "blocked_modifier_count": 19398,
+      "modifier_row_count": 19398,
+      "planner_calculable_modifier_count": 0,
+      "production_consumed": false,
+      "skill_identity_bridge_status": "unbridged",
+      "source_unit_value_scale_count": 6248,
+      "stable_calculable_modifier_count": 0,
+      "stat_registry_count": 2070,
+      "top_blocked_reasons": [
+        {
+          "count": 19398,
+          "reason": "not_stable_calculable"
+        },
+        {
+          "count": 19398,
+          "reason": "unstable_support_status"
+        },
+        {
+          "count": 13150,
+          "reason": "unknown_value_scale"
+        },
+        {
+          "count": 11924,
+          "reason": "unresolved_skill_identity"
+        },
+        {
+          "count": 11606,
+          "reason": "unknown_operation"
+        },
+        {
+          "count": 7495,
+          "reason": "scripted_behavior"
+        },
+        {
+          "count": 6248,
+          "reason": "source_units_value_scale"
+        },
+        {
+          "count": 5276,
+          "reason": "unsupported_behavior"
+        },
+        {
+          "count": 4714,
+          "reason": "unresolved_stat_identity"
+        },
+        {
+          "count": 265,
+          "reason": "text_only_behavior"
+        }
+      ],
+      "unknown_value_scale_count": 13150,
+      "value_normalization_status": "audit_only"
+    }
+  },
+  "production_blockers": [
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Stable-calculable count is 0.",
+      "evidence": 0,
+      "id": "stable_calculable_zero",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Value normalization remains audit-only.",
+      "evidence": "audit_only",
+      "id": "value_normalization_audit_only",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Source-unit value scales remain unresolved.",
+      "evidence": 6248,
+      "id": "source_units_unresolved",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Unknown value scales remain unresolved.",
+      "evidence": 13150,
+      "id": "unknown_value_scales_unresolved",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Unknown operations remain unresolved.",
+      "evidence": 11606,
+      "id": "unknown_operations_unresolved",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Unresolved stat identities remain blocked.",
+      "evidence": 4714,
+      "id": "unresolved_stat_identities_blocked",
+      "status": "blocked"
+    },
+    {
+      "classification": "known_intentional_limitation",
+      "description": "Unresolved and ambiguous skill identities remain unbridged.",
+      "evidence": {
+        "ambiguous_refs": 1,
+        "bridge_safe": false,
+        "recommended_mapping_strategy": "top_level_source_identity_partial_unresolved",
+        "safe_top_level_matches": 60,
+        "source_data_missing": true,
+        "total_refs": 63,
+        "unresolved_refs": 2
+      },
+      "id": "skill_identity_gaps_unbridged",
+      "status": "blocked"
+    },
+    {
+      "classification": "known_intentional_limitation",
+      "description": "Unsupported, scripted, and text-only mechanics remain excluded.",
+      "evidence": {
+        "source_record_status_counts": {
+          "modifier_row": 19398
+        },
+        "special_behavior_classification_counts": {
+          "none": 5814,
+          "partial_modifier": 548,
+          "scripted_runtime_behavior": 7495,
+          "text_only_effect": 265,
+          "unsupported_special_behavior": 5276
+        }
+      },
+      "id": "unsupported_scripted_text_only_excluded",
+      "status": "blocked"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Golden mechanical baselines are not implemented yet.",
+      "evidence": 6,
+      "id": "mechanical_baselines_missing",
+      "status": "blocked"
+    },
+    {
+      "classification": "known_intentional_limitation",
+      "description": "Experimental adapter mode is disabled by default and is not production mode.",
+      "evidence": false,
+      "id": "experimental_mode_not_production_mode",
+      "status": "blocked"
+    }
+  ],
+  "readiness_decision": {
+    "mechanical_remap_ready": false,
+    "production_planner_ready": false,
+    "recommended_next_track": "v2_5_trust_ux_layer",
+    "v2_infrastructure_ready": true
+  },
+  "readiness_evidence": {
+    "all_required_reports_present": true,
+    "api_route_count": 38,
+    "experimental_mode_default_enabled": false,
+    "invalid_json_report_count": 0,
+    "invalid_repository_count": 0,
+    "missing_artifact_count": 0,
+    "missing_generated_report_count": 0,
+    "missing_method_count": 0,
+    "production_consumed": false,
+    "repository_domain_count": 10,
+    "repository_loaded_domain_count": 10,
+    "valid_json_report_count": 33,
+    "validation_status": "pass"
+  },
+  "required_previous_reports": [
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_backend_repository_report.json",
+      "report": "v2_backend_repository_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_api_contract_report.json",
+      "report": "v2_api_contract_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_validation_ci_report.json",
+      "report": "v2_validation_ci_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_planner_adapter_report.json",
+      "report": "v2_planner_adapter_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_planner_remap_readiness_report.json",
+      "report": "v2_planner_remap_readiness_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_planner_adapter_diagnostics_report.json",
+      "report": "v2_planner_adapter_diagnostics_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_planner_metadata_remap_report.json",
+      "report": "v2_planner_metadata_remap_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_base_display_metadata_report.json",
+      "report": "v2_item_base_display_metadata_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_affix_display_provenance_report.json",
+      "report": "v2_affix_display_provenance_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_passive_skill_identity_remap_report.json",
+      "report": "v2_passive_skill_identity_remap_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_stat_modifier_dry_run_report.json",
+      "report": "v2_stat_modifier_dry_run_report.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_golden_baseline_plan.json",
+      "report": "v2_golden_baseline_plan.json"
+    },
+    {
+      "exists": true,
+      "path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_experimental_planner_adapter_mode_report.json",
+      "report": "v2_experimental_planner_adapter_mode_report.json"
+    }
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "experimental_mode_enabled_by_default": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "production_consumed": false,
+    "production_planner_remap_performed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.release_readiness.1",
+  "trusted_data_coverage": {
+    "experimental_routes": 38,
+    "loaded_domains": 10,
+    "modifier_records_inspected": 19398,
+    "repository_domains": 10,
+    "stat_registry_entries": 2070,
+    "valid_json_reports": 33
+  },
+  "v2_5_trust_ux_followups": [
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Improve user-facing support, trust, and provenance badges.",
+      "id": "trust_badges"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Make unsupported and text-only mechanic messaging clearer in debug and planner-adjacent views.",
+      "id": "unsupported_messaging"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Add dedicated frontend pages for stat and modifier registry exploration.",
+      "id": "stats_modifier_debug_pages"
+    },
+    {
+      "classification": "v2_5_trust_ux_followup",
+      "description": "Improve navigation across trusted-data reports and experimental debug routes.",
+      "id": "route_report_navigation"
+    }
+  ],
+  "v3_mechanical_intelligence_blockers": [
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Define source-unit to planner-normalized value contracts with proof.",
+      "id": "value_normalization_contracts"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Resolve unknown operation semantics before mechanical stat math.",
+      "id": "operation_semantics"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Resolve unknown stat identities before stable stat aggregation.",
+      "id": "stat_identity_resolution"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Keep remaining skill identity gaps blocked unless future source data proves them.",
+      "id": "skill_identity_bridge_policy"
+    },
+    {
+      "classification": "v3_mechanical_intelligence_blocker",
+      "description": "Lock representative current planner output before any mechanical remap.",
+      "id": "golden_mechanical_baselines"
+    }
+  ],
+  "validation_evidence": {
+    "backend_validation_status": "pass",
+    "focused_frontend_caveat": [
+      {
+        "id": "frontend_full_suite_navigation_layout_search_assertions",
+        "notes": [
+          "The full frontend test suite currently has unrelated navigation/layout search assertion failures.",
+          "Focused v2 envelope and debug page tests are the frontend-owned validation target for this checkpoint."
+        ],
+        "status": "known_unrelated_failure"
+      }
+    ],
+    "invalid_json_report_count": 0,
+    "missing_generated_report_count": 0,
+    "production_non_consumption_guard": "command_documented",
+    "valid_json_report_count": 33
+  }
+}

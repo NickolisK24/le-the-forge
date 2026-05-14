@@ -1,0 +1,8 @@
+{
+  "fixture_type": "affix_display_provenance_scaffold",
+  "mechanical_calculation_involved": false,
+  "production_output_affected": false,
+  "expected_fields": ["canonical_id", "display_name", "blocked_reasons", "planner_calculable"],
+  "expected_planner_calculable": false,
+  "modifier_values_must_be_absent": true
+}

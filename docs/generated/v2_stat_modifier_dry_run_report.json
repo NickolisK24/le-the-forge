@@ -1,0 +1,398 @@
+{
+  "allowed_comparison_categories": [
+    "blocked_by_identity_resolution",
+    "blocked_by_missing_golden_baseline",
+    "blocked_by_schema_mismatch",
+    "blocked_by_stable_calculable_policy",
+    "blocked_by_unknown_operation",
+    "blocked_by_unsupported_behavior",
+    "blocked_by_value_normalization",
+    "matches_current_expectation",
+    "unknown_needs_review"
+  ],
+  "blocked_reason_counts": {
+    "not_stable_calculable": 19398,
+    "scripted_behavior": 7495,
+    "source_units_value_scale": 6248,
+    "text_only_behavior": 265,
+    "unknown_operation": 11606,
+    "unknown_value_scale": 13150,
+    "unresolved_skill_identity": 11924,
+    "unresolved_stat_identity": 4714,
+    "unstable_support_status": 19398,
+    "unsupported_behavior": 5276
+  },
+  "blocked_samples": [
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "flat",
+      "raw_stat_id": "Penetration",
+      "raw_stat_name": "Penetration",
+      "source_id": "affix:equipment:0",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_penetration_void",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "increased",
+      "raw_stat_id": "Armour",
+      "raw_stat_name": "Armour",
+      "source_id": "affix:equipment:1",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_armour_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "increased",
+      "raw_stat_id": "AttackSpeed",
+      "raw_stat_name": "AttackSpeed",
+      "source_id": "affix:equipment:2",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_attackspeed_melee",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "flat",
+      "raw_stat_id": "BlockChance",
+      "raw_stat_name": "BlockChance",
+      "source_id": "affix:equipment:3",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_blockchance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "increased",
+      "raw_stat_id": "CastSpeed",
+      "raw_stat_name": "CastSpeed",
+      "source_id": "affix:equipment:4",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_castspeed_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "increased",
+      "raw_stat_id": "CriticalChance",
+      "raw_stat_name": "CriticalChance",
+      "source_id": "affix:equipment:5",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_criticalchance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "flat",
+      "raw_stat_id": "CriticalMultiplier",
+      "raw_stat_name": "CriticalMultiplier",
+      "source_id": "affix:equipment:6",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_criticalmultiplier_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "flat",
+      "raw_stat_id": "VoidResistance",
+      "raw_stat_name": "VoidResistance",
+      "source_id": "affix:equipment:7",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_voidresistance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "flat",
+      "raw_stat_id": "DodgeRating",
+      "raw_stat_name": "DodgeRating",
+      "source_id": "affix:equipment:8",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_dodgerating_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+      "comparison_category": "blocked_by_value_normalization",
+      "eligible": false,
+      "operation": "increased",
+      "raw_stat_id": "Damage",
+      "raw_stat_name": "Damage",
+      "source_id": "affix:equipment:9",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_damage_elemental",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    }
+  ],
+  "comparison_category_summary": {
+    "blocked_by_value_normalization": 19398
+  },
+  "current_planner_expectation_gaps": [
+    "v2 values are still source_units or unknown, while planner math requires normalized values",
+    "v2 operation identity is unknown for many passive and skill rows",
+    "v2 stat identity still includes stat:unknown and raw serialized stat IDs",
+    "v2 scripted, unsupported, and text-only mechanics are intentionally blocked",
+    "skill-derived modifier rows retain unresolved or ambiguous source identity gaps",
+    "golden output baselines do not yet exist for mechanical remap"
+  ],
+  "future_next_step": {
+    "blocked_until": [
+      "value normalization is proven",
+      "unknown operations are classified safely",
+      "stat and source identity gaps are resolved",
+      "golden baseline comparisons exist for representative planner outputs"
+    ],
+    "planner_remap_ready": false,
+    "recommendation": "create mechanical golden baselines before any stat/modifier planner remap"
+  },
+  "generated_at": "2026-05-13T21:52:33.028135+00:00",
+  "golden_baseline_requirements": [
+    "known item affix stat output",
+    "known passive node stat output",
+    "known skill node stat output",
+    "known unique/set unsupported behavior exclusions",
+    "value scale examples for each normalization family",
+    "operation examples for flat, increased, more, and conditional behavior",
+    "old planner output versus v2 adapter dry-run comparison snapshots"
+  ],
+  "metadata": {
+    "dry_run_only": true,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "read_only": true,
+    "source": "v2_stat_modifier_dry_run"
+  },
+  "modifier_identity_coverage": {
+    "canonical_modifier_id_count": 19398,
+    "source_identity_status_counts": {
+      "not_applicable": 7474,
+      "partially_unresolved": 11924
+    },
+    "source_record_status_counts": {
+      "modifier_row": 19398
+    },
+    "source_type_counts": {
+      "affix": 1624,
+      "idol_affix_modifier": 647,
+      "item_implicit": 1182,
+      "passive_node_modifier": 1660,
+      "set_bonus_modifier": 27,
+      "set_item_modifier": 287,
+      "skill_node_modifier": 10843,
+      "skill_structured_value": 1081,
+      "unique_modifier": 2047
+    }
+  },
+  "operation_distribution": {
+    "chance": 69,
+    "cooldown": 429,
+    "cost": 440,
+    "duration": 949,
+    "flat": 4627,
+    "increased": 1112,
+    "less": 1,
+    "more": 165,
+    "unknown": 11606
+  },
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v2.stat_modifier_dry_run.1",
+  "source_type_distribution": {
+    "affix": 1624,
+    "idol_affix_modifier": 647,
+    "item_implicit": 1182,
+    "passive_node_modifier": 1660,
+    "set_bonus_modifier": 27,
+    "set_item_modifier": 287,
+    "skill_node_modifier": 10843,
+    "skill_structured_value": 1081,
+    "unique_modifier": 2047
+  },
+  "stat_identity_findings": {
+    "canonicalized": 14684,
+    "unknown": 4714
+  },
+  "summary": {
+    "adapter_visible_modifier_count": 19398,
+    "blocked_modifier_count": 19398,
+    "modifier_row_count": 19398,
+    "planner_calculable_modifier_count": 0,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "source_unit_value_scale_count": 6248,
+    "stable_calculable_modifier_count": 0,
+    "stat_registry_count": 2070,
+    "top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "unknown_value_scale_count": 13150,
+    "value_normalization_status": "audit_only"
+  },
+  "unsupported_scripted_text_only_counts": {
+    "source_record_status_counts": {
+      "modifier_row": 19398
+    },
+    "special_behavior_classification_counts": {
+      "none": 5814,
+      "partial_modifier": 548,
+      "scripted_runtime_behavior": 7495,
+      "text_only_effect": 265,
+      "unsupported_special_behavior": 5276
+    }
+  },
+  "value_scale_distribution": {
+    "source_units": 6248,
+    "unknown": 13150
+  }
+}

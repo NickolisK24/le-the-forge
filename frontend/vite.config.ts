@@ -44,6 +44,10 @@ export default defineConfig(({ mode }) => {
           target: devProxyTarget,
           changeOrigin: true,
         },
+        "/experimental": {
+          target: devProxyTarget,
+          changeOrigin: true,
+        },
       },
     },
   };

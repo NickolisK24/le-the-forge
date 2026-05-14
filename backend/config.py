@@ -37,6 +37,13 @@ class Config:
 
     FRONTEND_URL = os.environ.get("FRONTEND_URL", "http://localhost:5173")
 
+
+    # Controlled Forge-safe affix consumption. Disabled by default.
+    FORGE_SAFE_AFFIX_CATALOG_ENABLED = os.environ.get("FORGE_SAFE_AFFIX_CATALOG_ENABLED", "false").lower() == "true"
+    FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_ENABLED", "false").lower() == "true"
+    FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
+    FORGE_SAFE_AFFIX_CONSUMPTION_MODE = os.environ.get("FORGE_SAFE_AFFIX_CONSUMPTION_MODE", "shadow")
+
     # Pagination defaults
     DEFAULT_PAGE_SIZE = 20
     MAX_PAGE_SIZE = 100
@@ -44,6 +51,23 @@ class Config:
     # Rate limiting
     RATELIMIT_STORAGE_URI = os.environ.get("REDIS_URL", "redis://localhost:6379/0")
     RATELIMIT_DEFAULT = "200 per day;50 per hour"
+
+    # Developer-only controlled ingestion inspection. Disabled by default and
+    # never used by production loaders, planner logic, crafting, or simulation.
+    FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_DEBUG_ENDPOINT_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    FORGE_SAFE_AFFIX_CATALOG_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_CATALOG_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    FORGE_SAFE_AFFIX_EXPORT_PATH = os.environ.get("FORGE_SAFE_AFFIX_EXPORT_PATH", "")
+    FORGE_SAFE_AFFIX_BUNDLE_ENABLED = (
+        os.environ.get("FORGE_SAFE_AFFIX_BUNDLE_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    FORGE_SAFE_AFFIX_BUNDLE_PATH = os.environ.get("FORGE_SAFE_AFFIX_BUNDLE_PATH", "")
 
 
 class DevelopmentConfig(Config):
@@ -115,7 +139,9 @@ class TestingConfig(Config):
     SQLALCHEMY_DATABASE_URI = "sqlite:///:memory:"
     WTF_CSRF_ENABLED = False
     JWT_ACCESS_TOKEN_EXPIRES = timedelta(minutes=5)
-    # Use in-process memory storage so tests never need a running Redis
+    # Tests must not read or write external Redis state.
+    REDIS_URL = "memory://"
+    # Use in-process memory storage so tests never need a running Redis.
     RATELIMIT_STORAGE_URI = "memory://"
     RATELIMIT_ENABLED = False
 

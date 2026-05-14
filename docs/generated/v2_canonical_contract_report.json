@@ -1,0 +1,112 @@
+{
+  "backend_contract_modules": [
+    "backend/app/data_contracts/trust_status.py",
+    "backend/app/data_contracts/trust_level.py",
+    "backend/app/data_contracts/source_provenance.py",
+    "backend/app/data_contracts/canonical_id.py",
+    "backend/app/data_contracts/canonical_modifier.py",
+    "backend/app/data_contracts/canonical_affix.py",
+    "backend/app/data_contracts/canonical_item.py",
+    "backend/app/data_contracts/canonical_idol.py",
+    "backend/app/data_contracts/canonical_unique.py",
+    "backend/app/data_contracts/canonical_set.py",
+    "backend/app/data_contracts/canonical_class_mastery.py",
+    "backend/app/data_contracts/canonical_passive.py",
+    "backend/app/data_contracts/canonical_skill.py",
+    "backend/app/data_contracts/validation.py"
+  ],
+  "canonical_models": [
+    "CanonicalRecord",
+    "CanonicalModifierReference",
+    "CanonicalModifier",
+    "CanonicalAffix",
+    "CanonicalImplicit",
+    "CanonicalItemBase",
+    "CanonicalIdol",
+    "CanonicalUnique",
+    "CanonicalSetItem",
+    "CanonicalSet",
+    "CanonicalClass",
+    "CanonicalMastery",
+    "CanonicalPassiveNode",
+    "CanonicalPassiveTree",
+    "CanonicalSkill",
+    "CanonicalSkillTreeNode",
+    "CanonicalSkillTree"
+  ],
+  "deferred_until_later_phases": [
+    "bundle generation",
+    "backend repository loading",
+    "API route changes",
+    "frontend runtime consumption",
+    "planner remapping",
+    "crafting remapping",
+    "stat aggregation remapping",
+    "simulation remapping"
+  ],
+  "frontend_type_files": [
+    "frontend/src/types/trustStatus.ts",
+    "frontend/src/types/sourceProvenance.ts",
+    "frontend/src/types/canonicalBase.ts",
+    "frontend/src/types/canonicalModifier.ts",
+    "frontend/src/types/canonicalAffix.ts",
+    "frontend/src/types/canonicalItem.ts",
+    "frontend/src/types/canonicalIdol.ts",
+    "frontend/src/types/canonicalUnique.ts",
+    "frontend/src/types/canonicalSet.ts",
+    "frontend/src/types/canonicalClassMastery.ts",
+    "frontend/src/types/canonicalPassive.ts",
+    "frontend/src/types/canonicalSkill.ts"
+  ],
+  "metadata": {
+    "checkpoint": "checkpoint_2",
+    "generated_on": "2026-05-12",
+    "phase": "phase_2_canonical_data_contract",
+    "production_safe": false,
+    "read_only_report": true,
+    "source": "canonical_contract_modules"
+  },
+  "stable_calculation_policy": {
+    "blocked_support_statuses": [
+      "unknown",
+      "unsupported",
+      "text_only",
+      "experimental"
+    ],
+    "blocked_trust_levels": [
+      "placeholder",
+      "inferred",
+      "deprecated",
+      "manual_bridge"
+    ],
+    "manual_bridge_requires_explicit_marking": true,
+    "partial_requires_policy": true,
+    "stable_calculable_support_statuses": [
+      "trusted"
+    ]
+  },
+  "summary": {
+    "backend_contract_module_count": 14,
+    "canonical_model_count": 17,
+    "frontend_type_file_count": 12,
+    "production_consumed": false,
+    "support_status_count": 6,
+    "trust_level_count": 6
+  },
+  "support_statuses": [
+    "trusted",
+    "partial",
+    "text_only",
+    "unsupported",
+    "experimental",
+    "unknown"
+  ],
+  "trust_levels": [
+    "game_extracted",
+    "generated_from_game_data",
+    "manual_bridge",
+    "inferred",
+    "placeholder",
+    "deprecated"
+  ]
+}

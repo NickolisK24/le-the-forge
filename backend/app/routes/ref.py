@@ -151,6 +151,22 @@ def _get_affix_seed_data() -> list[dict]:
     return result
 
 
+def _get_passive_seed_data(char_class: str | None = None, mastery: str | None = None) -> list[dict]:
+    """Read passive nodes from the JSON export when DB seed data is unavailable."""
+    import json
+    from pathlib import Path
+
+    passives_path = Path(__file__).resolve().parents[3] / "data" / "classes" / "passives.json"
+    with open(passives_path, encoding="utf-8") as f:
+        nodes: list[dict] = json.load(f)
+
+    if char_class:
+        nodes = [n for n in nodes if n.get("character_class") == char_class]
+    if mastery and char_class:
+        nodes = [n for n in nodes if n.get("mastery") == mastery or n.get("mastery") is None]
+    return nodes
+
+
 @ref_bp.get("/classes")
 @cached_route("ref:classes", ttl=REF_STATIC_CACHE_TTL)
 def get_classes():
@@ -296,7 +312,29 @@ def get_passives():
             (PassiveNode.mastery == mastery) | (PassiveNode.mastery.is_(None))
         )
 
-    nodes = q.all()
+    try:
+        nodes = q.all()
+    except Exception:
+        current_app.logger.exception("DB query failed in get_ref_passives")
+        nodes = []
+
+    if not nodes:
+        fallback_nodes = _get_passive_seed_data(char_class, mastery)
+        return ok(data=[
+            {
+                "id": n.get("id"),
+                "name": n.get("name"),
+                "description": n.get("description"),
+                "node_type": n.get("node_type"),
+                "x": n.get("x"),
+                "y": n.get("y"),
+                "max_points": n.get("max_points"),
+                "connections": n.get("connections"),
+                "mastery": n.get("mastery"),
+            }
+            for n in fallback_nodes
+        ])
+
     return ok(data=[
         {
             "id": n.id,

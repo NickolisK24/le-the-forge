@@ -1,0 +1,2606 @@
+{
+  "examples": {
+    "ambiguous_records": [
+      {
+        "candidate_skill_ids": [
+          "skill:sps5l",
+          "skill:sr5t",
+          "skill:srtor",
+          "skill:ss37kl"
+        ],
+        "class_mastery_skill_reference": "skill_path:261142",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.abilityResolutionSourcePath.8",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Raptor",
+            "field_path": "summonedActors.0.abilities.0.damageSources.0.sourcePath.8",
+            "skill_id": "skill:srtor",
+            "source_skill_id": "srtor",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton",
+            "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+            "skill_id": "skill:ss37kl",
+            "source_skill_id": "ss37kl",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Skeleton Rogue",
+            "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+            "skill_id": "skill:sr5t",
+            "source_skill_id": "sr5t",
+            "top_level_identity": false
+          },
+          {
+            "display_name": "Summon Squirrel",
+            "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+            "skill_id": "skill:sps5l",
+            "source_skill_id": "sps5l",
+            "top_level_identity": false
+          }
+        ],
+        "match_methods": [
+          "exact_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte",
+          "class:mage",
+          "class:primalist",
+          "class:rogue",
+          "class:sentinel"
+        ],
+        "status": "ambiguous"
+      }
+    ],
+    "nested_path_only_records": [],
+    "resolved_records": [
+      {
+        "candidate_skill_ids": [
+          "skill:evade1"
+        ],
+        "class_mastery_skill_reference": "skill_path:260926",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Evade",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_class_ability_pptr",
+            "identity_source": "CharacterClass ability PPtr",
+            "skill_id": "skill:evade1",
+            "source_skill_id": "evade1",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:bc53"
+        ],
+        "class_mastery_skill_reference": "skill_path:261173",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Bone Curse",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:bc53",
+            "source_skill_id": "bc53",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:en6"
+        ],
+        "class_mastery_skill_reference": "skill_path:261591",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Elemental Nova",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:en6",
+            "source_skill_id": "en6",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:es6ai"
+        ],
+        "class_mastery_skill_reference": "skill_path:262309",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Erasing Strike",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:es6ai",
+            "source_skill_id": "es6ai",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "mastery:sentinel:void_knight"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:falc0"
+        ],
+        "class_mastery_skill_reference": "skill_path:262328",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Falconry",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:falc0",
+            "source_skill_id": "falc0",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "mastery:rogue:falconer"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:fi9"
+        ],
+        "class_mastery_skill_reference": "skill_path:262431",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Fireball",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:fi9",
+            "source_skill_id": "fi9",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:fw3d"
+        ],
+        "class_mastery_skill_reference": "skill_path:262458",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Flame Ward",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:fw3d",
+            "source_skill_id": "fw3d",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:fs3e3"
+        ],
+        "class_mastery_skill_reference": "skill_path:262473",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Forge Strike",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:fs3e3",
+            "source_skill_id": "fs3e3",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "mastery:sentinel:forge_guard"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:frc87w"
+        ],
+        "class_mastery_skill_reference": "skill_path:262497",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Frost Claw",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:frc87w",
+            "source_skill_id": "frc87w",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "resolved"
+      },
+      {
+        "candidate_skill_ids": [
+          "skill:fl13"
+        ],
+        "class_mastery_skill_reference": "skill_path:262531",
+        "exact_id_match": null,
+        "exact_path_matches": [
+          {
+            "display_name": "Fury Leap",
+            "field_path": "sourceIdentity.skillPath",
+            "identity_confidence": "top_level_owner_pptr",
+            "identity_source": "SkillTree.ability PPtr",
+            "skill_id": "skill:fl13",
+            "source_skill_id": "fl13",
+            "top_level_identity": true
+          }
+        ],
+        "match_methods": [
+          "exact_path",
+          "top_level_path"
+        ],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:primalist"
+        ],
+        "status": "resolved"
+      }
+    ],
+    "unresolved_records": [
+      {
+        "candidate_skill_ids": [],
+        "class_mastery_skill_reference": "skill_path:262953",
+        "exact_id_match": null,
+        "exact_path_matches": [],
+        "match_methods": [],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:mage"
+        ],
+        "status": "unresolved"
+      },
+      {
+        "candidate_skill_ids": [],
+        "class_mastery_skill_reference": "skill_path:263498",
+        "exact_id_match": null,
+        "exact_path_matches": [],
+        "match_methods": [],
+        "normalized_name_matches": [],
+        "owners": [
+          "class:acolyte",
+          "class:mage",
+          "class:primalist",
+          "class:rogue",
+          "class:sentinel"
+        ],
+        "status": "unresolved"
+      }
+    ]
+  },
+  "field_inventory": {
+    "class_mastery_skill_reference_fields": [
+      "linked_skill_source_ids",
+      "skill_ids"
+    ],
+    "raw_class_skill_reference_fields": [
+      "classes[].abilities.defaultPathIds",
+      "classes[].abilities.knownPathIds",
+      "classes[].abilities.unlockable[].abilityPathId",
+      "classes[].masteries[].masteryAbilityPathId"
+    ],
+    "raw_skill_path_like_fields": [
+      "comboAbility",
+      "damageSources.0.pathId",
+      "damageSources.0.sourcePath",
+      "damageSources.1.pathId",
+      "damageSources.1.sourcePath",
+      "damageSources.2.pathId",
+      "damageSources.2.sourcePath",
+      "isZoneAbility",
+      "minionsUseAbility",
+      "mutatorHints.0.pathId",
+      "mutatorHints.0.sourcePath",
+      "mutatorHints.1.pathId",
+      "mutatorHints.1.sourcePath",
+      "mutatorHints.2.pathId",
+      "mutatorHints.2.sourcePath",
+      "sharedCooldownAbilityRefs",
+      "skillTree.ability",
+      "skillTree.nodes.0.effectHints.0.sourcePath",
+      "skillTree.nodes.0.effectHints.1.sourcePath",
+      "skillTree.nodes.0.effectHints.2.sourcePath",
+      "skillTree.nodes.0.effectHints.3.sourcePath",
+      "skillTree.nodes.1.effectHints.0.sourcePath",
+      "skillTree.nodes.1.effectHints.1.sourcePath",
+      "skillTree.nodes.1.effectHints.2.sourcePath",
+      "skillTree.nodes.1.effectHints.3.sourcePath",
+      "skillTree.nodes.1.effectHints.4.sourcePath",
+      "skillTree.nodes.10.effectHints.0.sourcePath",
+      "skillTree.nodes.10.effectHints.1.sourcePath",
+      "skillTree.nodes.10.effectHints.2.sourcePath",
+      "skillTree.nodes.10.effectHints.3.sourcePath",
+      "skillTree.nodes.10.effectHints.4.sourcePath",
+      "skillTree.nodes.10.effectHints.5.sourcePath",
+      "skillTree.nodes.11.effectHints.0.sourcePath",
+      "skillTree.nodes.11.effectHints.1.sourcePath",
+      "skillTree.nodes.11.effectHints.2.sourcePath",
+      "skillTree.nodes.11.effectHints.3.sourcePath",
+      "skillTree.nodes.11.effectHints.4.sourcePath",
+      "skillTree.nodes.11.effectHints.5.sourcePath",
+      "skillTree.nodes.12.effectHints.0.sourcePath",
+      "skillTree.nodes.12.effectHints.1.sourcePath",
+      "skillTree.nodes.12.effectHints.2.sourcePath",
+      "skillTree.nodes.12.effectHints.3.sourcePath",
+      "skillTree.nodes.12.effectHints.4.sourcePath",
+      "skillTree.nodes.13.effectHints.0.sourcePath",
+      "skillTree.nodes.13.effectHints.1.sourcePath",
+      "skillTree.nodes.13.effectHints.2.sourcePath",
+      "skillTree.nodes.13.effectHints.3.sourcePath",
+      "skillTree.nodes.13.effectHints.4.sourcePath",
+      "skillTree.nodes.14.effectHints.0.sourcePath",
+      "skillTree.nodes.14.effectHints.1.sourcePath",
+      "skillTree.nodes.14.effectHints.2.sourcePath",
+      "skillTree.nodes.14.effectHints.3.sourcePath",
+      "skillTree.nodes.14.effectHints.4.sourcePath",
+      "skillTree.nodes.14.effectHints.5.sourcePath",
+      "skillTree.nodes.15.effectHints.0.sourcePath",
+      "skillTree.nodes.15.effectHints.1.sourcePath",
+      "skillTree.nodes.15.effectHints.2.sourcePath",
+      "skillTree.nodes.15.effectHints.3.sourcePath",
+      "skillTree.nodes.15.effectHints.4.sourcePath",
+      "skillTree.nodes.16.effectHints.0.sourcePath",
+      "skillTree.nodes.16.effectHints.1.sourcePath",
+      "skillTree.nodes.16.effectHints.2.sourcePath",
+      "skillTree.nodes.16.effectHints.3.sourcePath",
+      "skillTree.nodes.16.effectHints.4.sourcePath",
+      "skillTree.nodes.16.effectHints.5.sourcePath",
+      "skillTree.nodes.17.effectHints.0.sourcePath",
+      "skillTree.nodes.17.effectHints.1.sourcePath",
+      "skillTree.nodes.17.effectHints.2.sourcePath",
+      "skillTree.nodes.17.effectHints.3.sourcePath",
+      "skillTree.nodes.17.effectHints.4.sourcePath",
+      "skillTree.nodes.18.effectHints.0.sourcePath",
+      "skillTree.nodes.18.effectHints.1.sourcePath",
+      "skillTree.nodes.18.effectHints.2.sourcePath",
+      "skillTree.nodes.18.effectHints.3.sourcePath",
+      "skillTree.nodes.18.effectHints.4.sourcePath",
+      "skillTree.nodes.18.effectHints.5.sourcePath",
+      "skillTree.nodes.19.effectHints.0.sourcePath",
+      "skillTree.nodes.19.effectHints.1.sourcePath",
+      "skillTree.nodes.19.effectHints.2.sourcePath",
+      "skillTree.nodes.19.effectHints.3.sourcePath",
+      "skillTree.nodes.19.effectHints.4.sourcePath",
+      "skillTree.nodes.19.effectHints.5.sourcePath",
+      "skillTree.nodes.2.effectHints.0.sourcePath",
+      "skillTree.nodes.2.effectHints.1.sourcePath",
+      "skillTree.nodes.2.effectHints.2.sourcePath",
+      "skillTree.nodes.2.effectHints.3.sourcePath",
+      "skillTree.nodes.2.effectHints.4.sourcePath",
+      "skillTree.nodes.20.effectHints.0.sourcePath",
+      "skillTree.nodes.20.effectHints.1.sourcePath",
+      "skillTree.nodes.20.effectHints.2.sourcePath",
+      "skillTree.nodes.20.effectHints.3.sourcePath",
+      "skillTree.nodes.20.effectHints.4.sourcePath",
+      "skillTree.nodes.21.effectHints.0.sourcePath",
+      "skillTree.nodes.21.effectHints.1.sourcePath",
+      "skillTree.nodes.21.effectHints.2.sourcePath",
+      "skillTree.nodes.21.effectHints.3.sourcePath",
+      "skillTree.nodes.21.effectHints.4.sourcePath",
+      "skillTree.nodes.21.effectHints.5.sourcePath",
+      "skillTree.nodes.22.effectHints.0.sourcePath",
+      "skillTree.nodes.22.effectHints.1.sourcePath",
+      "skillTree.nodes.22.effectHints.2.sourcePath",
+      "skillTree.nodes.22.effectHints.3.sourcePath",
+      "skillTree.nodes.22.effectHints.4.sourcePath",
+      "skillTree.nodes.22.effectHints.5.sourcePath",
+      "skillTree.nodes.23.effectHints.0.sourcePath",
+      "skillTree.nodes.23.effectHints.1.sourcePath",
+      "skillTree.nodes.23.effectHints.2.sourcePath",
+      "skillTree.nodes.23.effectHints.3.sourcePath",
+      "skillTree.nodes.23.effectHints.4.sourcePath",
+      "skillTree.nodes.23.effectHints.5.sourcePath",
+      "skillTree.nodes.24.effectHints.0.sourcePath",
+      "skillTree.nodes.24.effectHints.1.sourcePath",
+      "skillTree.nodes.24.effectHints.2.sourcePath",
+      "skillTree.nodes.24.effectHints.3.sourcePath",
+      "skillTree.nodes.24.effectHints.4.sourcePath",
+      "skillTree.nodes.24.effectHints.5.sourcePath",
+      "skillTree.nodes.24.effectHints.6.sourcePath",
+      "skillTree.nodes.25.effectHints.0.sourcePath",
+      "skillTree.nodes.25.effectHints.1.sourcePath",
+      "skillTree.nodes.25.effectHints.2.sourcePath",
+      "skillTree.nodes.25.effectHints.3.sourcePath",
+      "skillTree.nodes.25.effectHints.4.sourcePath",
+      "skillTree.nodes.26.effectHints.0.sourcePath",
+      "skillTree.nodes.26.effectHints.1.sourcePath",
+      "skillTree.nodes.26.effectHints.2.sourcePath",
+      "skillTree.nodes.26.effectHints.3.sourcePath",
+      "skillTree.nodes.26.effectHints.4.sourcePath",
+      "skillTree.nodes.26.effectHints.5.sourcePath",
+      "skillTree.nodes.27.effectHints.0.sourcePath",
+      "skillTree.nodes.27.effectHints.1.sourcePath",
+      "skillTree.nodes.27.effectHints.2.sourcePath",
+      "skillTree.nodes.27.effectHints.3.sourcePath",
+      "skillTree.nodes.27.effectHints.4.sourcePath",
+      "skillTree.nodes.28.effectHints.0.sourcePath",
+      "skillTree.nodes.28.effectHints.1.sourcePath",
+      "skillTree.nodes.28.effectHints.2.sourcePath",
+      "skillTree.nodes.28.effectHints.3.sourcePath",
+      "skillTree.nodes.28.effectHints.4.sourcePath",
+      "skillTree.nodes.29.effectHints.0.sourcePath",
+      "skillTree.nodes.29.effectHints.1.sourcePath",
+      "skillTree.nodes.29.effectHints.2.sourcePath",
+      "skillTree.nodes.29.effectHints.3.sourcePath",
+      "skillTree.nodes.29.effectHints.4.sourcePath",
+      "skillTree.nodes.3.effectHints.0.sourcePath",
+      "skillTree.nodes.3.effectHints.1.sourcePath",
+      "skillTree.nodes.3.effectHints.2.sourcePath",
+      "skillTree.nodes.3.effectHints.3.sourcePath",
+      "skillTree.nodes.3.effectHints.4.sourcePath",
+      "skillTree.nodes.30.effectHints.0.sourcePath",
+      "skillTree.nodes.30.effectHints.1.sourcePath",
+      "skillTree.nodes.30.effectHints.2.sourcePath",
+      "skillTree.nodes.30.effectHints.3.sourcePath",
+      "skillTree.nodes.30.effectHints.4.sourcePath",
+      "skillTree.nodes.30.effectHints.5.sourcePath",
+      "skillTree.nodes.31.effectHints.0.sourcePath",
+      "skillTree.nodes.31.effectHints.1.sourcePath",
+      "skillTree.nodes.31.effectHints.2.sourcePath",
+      "skillTree.nodes.31.effectHints.3.sourcePath",
+      "skillTree.nodes.31.effectHints.4.sourcePath",
+      "skillTree.nodes.32.effectHints.0.sourcePath",
+      "skillTree.nodes.32.effectHints.1.sourcePath",
+      "skillTree.nodes.32.effectHints.2.sourcePath",
+      "skillTree.nodes.32.effectHints.3.sourcePath",
+      "skillTree.nodes.32.effectHints.4.sourcePath",
+      "skillTree.nodes.32.effectHints.5.sourcePath",
+      "skillTree.nodes.33.effectHints.0.sourcePath",
+      "skillTree.nodes.33.effectHints.1.sourcePath",
+      "skillTree.nodes.33.effectHints.2.sourcePath",
+      "skillTree.nodes.33.effectHints.3.sourcePath",
+      "skillTree.nodes.34.effectHints.0.sourcePath",
+      "skillTree.nodes.34.effectHints.1.sourcePath",
+      "skillTree.nodes.4.effectHints.0.sourcePath",
+      "skillTree.nodes.4.effectHints.1.sourcePath",
+      "skillTree.nodes.4.effectHints.2.sourcePath",
+      "skillTree.nodes.4.effectHints.3.sourcePath",
+      "skillTree.nodes.4.effectHints.4.sourcePath",
+      "skillTree.nodes.4.effectHints.5.sourcePath",
+      "skillTree.nodes.5.effectHints.0.sourcePath",
+      "skillTree.nodes.5.effectHints.1.sourcePath",
+      "skillTree.nodes.5.effectHints.2.sourcePath",
+      "skillTree.nodes.5.effectHints.3.sourcePath",
+      "skillTree.nodes.5.effectHints.4.sourcePath",
+      "skillTree.nodes.5.effectHints.5.sourcePath",
+      "skillTree.nodes.5.effectHints.6.sourcePath",
+      "skillTree.nodes.6.effectHints.0.sourcePath",
+      "skillTree.nodes.6.effectHints.1.sourcePath",
+      "skillTree.nodes.6.effectHints.2.sourcePath",
+      "skillTree.nodes.6.effectHints.3.sourcePath",
+      "skillTree.nodes.6.effectHints.4.sourcePath",
+      "skillTree.nodes.6.effectHints.5.sourcePath",
+      "skillTree.nodes.7.effectHints.0.sourcePath",
+      "skillTree.nodes.7.effectHints.1.sourcePath",
+      "skillTree.nodes.7.effectHints.2.sourcePath",
+      "skillTree.nodes.7.effectHints.3.sourcePath",
+      "skillTree.nodes.7.effectHints.4.sourcePath",
+      "skillTree.nodes.7.effectHints.5.sourcePath",
+      "skillTree.nodes.8.effectHints.0.sourcePath",
+      "skillTree.nodes.8.effectHints.1.sourcePath",
+      "skillTree.nodes.8.effectHints.2.sourcePath",
+      "skillTree.nodes.8.effectHints.3.sourcePath",
+      "skillTree.nodes.8.effectHints.4.sourcePath",
+      "skillTree.nodes.8.effectHints.5.sourcePath",
+      "skillTree.nodes.9.effectHints.0.sourcePath",
+      "skillTree.nodes.9.effectHints.1.sourcePath",
+      "skillTree.nodes.9.effectHints.2.sourcePath",
+      "skillTree.nodes.9.effectHints.3.sourcePath",
+      "skillTree.nodes.9.effectHints.4.sourcePath",
+      "skillTree.nodes.9.effectHints.5.sourcePath",
+      "sourceIdentity.skillPath",
+      "source_skill_path",
+      "summonedActors.0.abilities.0.abilityName",
+      "summonedActors.0.abilities.0.abilityRefKey",
+      "summonedActors.0.abilities.0.abilityResolutionMethod",
+      "summonedActors.0.abilities.0.abilityResolutionSourcePath",
+      "summonedActors.0.abilities.0.abilityResolutionStatus",
+      "summonedActors.0.abilities.0.actorPrefabPath",
+      "summonedActors.0.abilities.0.componentPathId",
+      "summonedActors.0.abilities.0.damageSources.0.pathId",
+      "summonedActors.0.abilities.0.damageSources.0.sourcePath",
+      "summonedActors.0.abilities.0.prefabPath",
+      "summonedActors.0.abilities.0.resolvedAbilityName",
+      "summonedActors.0.abilities.0.resolvedAbilityPathId",
+      "summonedActors.0.abilities.0.sourcePath",
+      "summonedActors.0.abilities.1.abilityName",
+      "summonedActors.0.abilities.1.abilityRefKey",
+      "summonedActors.0.abilities.1.abilityResolutionMethod",
+      "summonedActors.0.abilities.1.abilityResolutionSourcePath",
+      "summonedActors.0.abilities.1.abilityResolutionStatus",
+      "summonedActors.0.abilities.1.actorPrefabPath",
+      "summonedActors.0.abilities.1.componentPathId",
+      "summonedActors.0.abilities.1.damageSources.0.pathId",
+      "summonedActors.0.abilities.1.damageSources.0.sourcePath",
+      "summonedActors.0.abilities.1.prefabPath",
+      "summonedActors.0.abilities.1.resolvedAbilityName",
+      "summonedActors.0.abilities.1.resolvedAbilityPathId",
+      "summonedActors.0.abilities.1.sourcePath",
+      "summonedActors.0.abilities.2.abilityName",
+      "summonedActors.0.abilities.2.abilityRefKey",
+      "summonedActors.0.abilities.2.abilityResolutionMethod",
+      "summonedActors.0.abilities.2.abilityResolutionSourcePath",
+      "summonedActors.0.abilities.2.abilityResolutionStatus",
+      "summonedActors.0.abilities.2.actorPrefabPath",
+      "summonedActors.0.abilities.2.componentPathId",
+      "summonedActors.0.abilities.2.damageSources.0.pathId",
+      "summonedActors.0.abilities.2.damageSources.0.sourcePath",
+      "summonedActors.0.abilities.2.prefabPath",
+      "summonedActors.0.abilities.2.resolvedAbilityName",
+      "summonedActors.0.abilities.2.resolvedAbilityPathId",
+      "summonedActors.0.abilities.2.sourcePath",
+      "summonedActors.0.abilities.3.abilityName",
+      "summonedActors.0.abilities.3.abilityRefKey",
+      "summonedActors.0.abilities.3.abilityResolutionMethod",
+      "summonedActors.0.abilities.3.abilityResolutionSourcePath",
+      "summonedActors.0.abilities.3.abilityResolutionStatus",
+      "summonedActors.0.abilities.3.actorPrefabPath",
+      "summonedActors.0.abilities.3.componentPathId",
+      "summonedActors.0.abilities.3.damageSources.0.pathId",
+      "summonedActors.0.abilities.3.damageSources.0.sourcePath",
+      "summonedActors.0.abilities.3.prefabPath",
+      "summonedActors.0.abilities.3.resolvedAbilityName",
+      "summonedActors.0.abilities.3.resolvedAbilityPathId",
+      "summonedActors.0.abilities.3.sourcePath",
+      "summonedActors.0.abilityEnumerationStatus",
+      "summonedActors.0.actorDataPathId",
+      "summonedActors.0.actorPrefabAssetPath",
+      "summonedActors.0.prefabPath",
+      "summonedActors.0.sourcePath",
+      "summonedActors.0.visualsPath",
+      "summonedActors.1.abilities.0.abilityName",
+      "summonedActors.1.abilities.0.abilityRefKey",
+      "summonedActors.1.abilities.0.abilityResolutionMethod",
+      "summonedActors.1.abilities.0.abilityResolutionSourcePath",
+      "summonedActors.1.abilities.0.abilityResolutionStatus",
+      "summonedActors.1.abilities.0.actorPrefabPath",
+      "summonedActors.1.abilities.0.componentPathId",
+      "summonedActors.1.abilities.0.damageSources.0.pathId",
+      "summonedActors.1.abilities.0.damageSources.0.sourcePath",
+      "summonedActors.1.abilities.0.prefabPath",
+      "summonedActors.1.abilities.0.resolvedAbilityName",
+      "summonedActors.1.abilities.0.resolvedAbilityPathId",
+      "summonedActors.1.abilities.0.sourcePath",
+      "summonedActors.1.abilities.1.abilityName",
+      "summonedActors.1.abilities.1.abilityRefKey",
+      "summonedActors.1.abilities.1.abilityResolutionMethod",
+      "summonedActors.1.abilities.1.abilityResolutionSourcePath",
+      "summonedActors.1.abilities.1.abilityResolutionStatus",
+      "summonedActors.1.abilities.1.actorPrefabPath",
+      "summonedActors.1.abilities.1.componentPathId",
+      "summonedActors.1.abilities.1.damageSources.0.pathId",
+      "summonedActors.1.abilities.1.damageSources.0.sourcePath",
+      "summonedActors.1.abilities.1.prefabPath",
+      "summonedActors.1.abilities.1.resolvedAbilityName",
+      "summonedActors.1.abilities.1.resolvedAbilityPathId",
+      "summonedActors.1.abilities.1.sourcePath",
+      "summonedActors.1.abilities.2.abilityName",
+      "summonedActors.1.abilities.2.abilityRefKey",
+      "summonedActors.1.abilities.2.abilityResolutionMethod",
+      "summonedActors.1.abilities.2.abilityResolutionSourcePath",
+      "summonedActors.1.abilities.2.abilityResolutionStatus",
+      "summonedActors.1.abilities.2.actorPrefabPath",
+      "summonedActors.1.abilities.2.componentPathId",
+      "summonedActors.1.abilities.2.damageSources.0.pathId",
+      "summonedActors.1.abilities.2.damageSources.0.sourcePath",
+      "summonedActors.1.abilities.2.prefabPath",
+      "summonedActors.1.abilities.2.resolvedAbilityName",
+      "summonedActors.1.abilities.2.resolvedAbilityPathId",
+      "summonedActors.1.abilities.2.sourcePath",
+      "summonedActors.1.abilityEnumerationStatus",
+      "summonedActors.1.actorDataPathId",
+      "summonedActors.1.actorPrefabAssetPath",
+      "summonedActors.1.prefabPath",
+      "summonedActors.1.sourcePath",
+      "summonedActors.1.visualsPath",
+      "summonedActors.2.abilities.0.abilityName",
+      "summonedActors.2.abilities.0.abilityRefKey",
+      "summonedActors.2.abilities.0.abilityResolutionMethod",
+      "summonedActors.2.abilities.0.abilityResolutionSourcePath",
+      "summonedActors.2.abilities.0.abilityResolutionStatus",
+      "summonedActors.2.abilities.0.actorPrefabPath",
+      "summonedActors.2.abilities.0.componentPathId",
+      "summonedActors.2.abilities.0.damageSources.0.pathId",
+      "summonedActors.2.abilities.0.damageSources.0.sourcePath",
+      "summonedActors.2.abilities.0.prefabPath",
+      "summonedActors.2.abilities.0.resolvedAbilityName",
+      "summonedActors.2.abilities.0.resolvedAbilityPathId",
+      "summonedActors.2.abilities.0.sourcePath",
+      "summonedActors.2.abilities.1.abilityName",
+      "summonedActors.2.abilities.1.abilityRefKey",
+      "summonedActors.2.abilities.1.abilityResolutionMethod",
+      "summonedActors.2.abilities.1.abilityResolutionSourcePath",
+      "summonedActors.2.abilities.1.abilityResolutionStatus",
+      "summonedActors.2.abilities.1.actorPrefabPath",
+      "summonedActors.2.abilities.1.componentPathId",
+      "summonedActors.2.abilities.1.prefabPath",
+      "summonedActors.2.abilities.1.resolvedAbilityName",
+      "summonedActors.2.abilities.1.resolvedAbilityPathId",
+      "summonedActors.2.abilities.1.sourcePath",
+      "summonedActors.2.abilityEnumerationStatus",
+      "summonedActors.2.actorDataPathId",
+      "summonedActors.2.actorPrefabAssetPath",
+      "summonedActors.2.prefabPath",
+      "summonedActors.2.sourcePath",
+      "summonedActors.2.visualsPath",
+      "summonedActors.3.abilities.0.abilityName",
+      "summonedActors.3.abilities.0.abilityRefKey",
+      "summonedActors.3.abilities.0.abilityResolutionMethod",
+      "summonedActors.3.abilities.0.abilityResolutionSourcePath",
+      "summonedActors.3.abilities.0.abilityResolutionStatus",
+      "summonedActors.3.abilities.0.actorPrefabPath",
+      "summonedActors.3.abilities.0.componentPathId",
+      "summonedActors.3.abilities.0.damageSources.0.pathId",
+      "summonedActors.3.abilities.0.damageSources.0.sourcePath",
+      "summonedActors.3.abilities.0.prefabPath",
+      "summonedActors.3.abilities.0.resolvedAbilityName",
+      "summonedActors.3.abilities.0.resolvedAbilityPathId",
+      "summonedActors.3.abilities.0.sourcePath",
+      "summonedActors.3.abilityEnumerationStatus",
+      "summonedActors.3.actorDataPathId",
+      "summonedActors.3.actorPrefabAssetPath",
+      "summonedActors.3.prefabPath",
+      "summonedActors.3.sourcePath",
+      "summonedActors.3.visualsPath"
+    ],
+    "skill_identity_fields": [
+      "canonical_id",
+      "display_name",
+      "source_skill_id",
+      "raw_reference.source_skill_id",
+      "skill_tree_id"
+    ],
+    "top_path_match_contexts": [
+      {
+        "field_path": "sourceIdentity.skillPath",
+        "match_count": 60
+      },
+      {
+        "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+        "match_count": 2
+      },
+      {
+        "field_path": "summonedActors.0.abilities.0.abilityResolutionSourcePath.8",
+        "match_count": 2
+      },
+      {
+        "field_path": "summonedActors.0.abilities.0.damageSources.0.sourcePath.8",
+        "match_count": 2
+      },
+      {
+        "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+        "match_count": 2
+      },
+      {
+        "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+        "match_count": 2
+      },
+      {
+        "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+        "match_count": 2
+      },
+      {
+        "field_path": "skillTree.nodes.28.requirements.0.nodeId",
+        "match_count": 1
+      },
+      {
+        "field_path": "skillTree.nodes.28.effectHints.3.nodeId",
+        "match_count": 1
+      }
+    ]
+  },
+  "metadata": {
+    "experimental": true,
+    "generated_on": "2026-05-13",
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_class_mastery_bundle + v2_skill_bundle + source exports",
+    "source_class_count": 5,
+    "source_skill_count": 184
+  },
+  "references": [
+    {
+      "candidate_skill_ids": [
+        "skill:evade1"
+      ],
+      "class_mastery_skill_reference": "skill_path:260926",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Evade",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_class_ability_pptr",
+          "identity_source": "CharacterClass ability PPtr",
+          "skill_id": "skill:evade1",
+          "source_skill_id": "evade1",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sps5l",
+        "skill:sr5t",
+        "skill:srtor",
+        "skill:ss37kl"
+      ],
+      "class_mastery_skill_reference": "skill_path:261142",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Raptor",
+          "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+          "skill_id": "skill:srtor",
+          "source_skill_id": "srtor",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Raptor",
+          "field_path": "summonedActors.0.abilities.0.abilityResolutionSourcePath.8",
+          "skill_id": "skill:srtor",
+          "source_skill_id": "srtor",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Raptor",
+          "field_path": "summonedActors.0.abilities.0.damageSources.0.sourcePath.8",
+          "skill_id": "skill:srtor",
+          "source_skill_id": "srtor",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton",
+          "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+          "skill_id": "skill:ss37kl",
+          "source_skill_id": "ss37kl",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton",
+          "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+          "skill_id": "skill:ss37kl",
+          "source_skill_id": "ss37kl",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton",
+          "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+          "skill_id": "skill:ss37kl",
+          "source_skill_id": "ss37kl",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton Rogue",
+          "field_path": "summonedActors.2.abilities.0.resolvedAbilityPathId",
+          "skill_id": "skill:sr5t",
+          "source_skill_id": "sr5t",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton Rogue",
+          "field_path": "summonedActors.2.abilities.0.abilityResolutionSourcePath.11",
+          "skill_id": "skill:sr5t",
+          "source_skill_id": "sr5t",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Skeleton Rogue",
+          "field_path": "summonedActors.2.abilities.0.damageSources.0.sourcePath.11",
+          "skill_id": "skill:sr5t",
+          "source_skill_id": "sr5t",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Summon Squirrel",
+          "field_path": "summonedActors.0.abilities.0.resolvedAbilityPathId",
+          "skill_id": "skill:sps5l",
+          "source_skill_id": "sps5l",
+          "top_level_identity": false
+        }
+      ],
+      "match_methods": [
+        "exact_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte",
+        "class:mage",
+        "class:primalist",
+        "class:rogue",
+        "class:sentinel"
+      ],
+      "status": "ambiguous"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:bc53"
+      ],
+      "class_mastery_skill_reference": "skill_path:261173",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Bone Curse",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:bc53",
+          "source_skill_id": "bc53",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:en6"
+      ],
+      "class_mastery_skill_reference": "skill_path:261591",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Elemental Nova",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:en6",
+          "source_skill_id": "en6",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:es6ai"
+      ],
+      "class_mastery_skill_reference": "skill_path:262309",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Erasing Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:es6ai",
+          "source_skill_id": "es6ai",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:sentinel:void_knight"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:falc0"
+      ],
+      "class_mastery_skill_reference": "skill_path:262328",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Falconry",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:falc0",
+          "source_skill_id": "falc0",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:rogue:falconer"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:fi9"
+      ],
+      "class_mastery_skill_reference": "skill_path:262431",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Fireball",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:fi9",
+          "source_skill_id": "fi9",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:fw3d"
+      ],
+      "class_mastery_skill_reference": "skill_path:262458",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Flame Ward",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:fw3d",
+          "source_skill_id": "fw3d",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:fs3e3"
+      ],
+      "class_mastery_skill_reference": "skill_path:262473",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Forge Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:fs3e3",
+          "source_skill_id": "fs3e3",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:sentinel:forge_guard"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:frc87w"
+      ],
+      "class_mastery_skill_reference": "skill_path:262497",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Frost Claw",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:frc87w",
+          "source_skill_id": "frc87w",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:fl13"
+      ],
+      "class_mastery_skill_reference": "skill_path:262531",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Fury Leap",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:fl13",
+          "source_skill_id": "fl13",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ga2st"
+      ],
+      "class_mastery_skill_reference": "skill_path:262552",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Gathering Storm",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ga2st",
+          "source_skill_id": "ga2st",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ht16aw"
+      ],
+      "class_mastery_skill_reference": "skill_path:262625",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Hammer Throw",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ht16aw",
+          "source_skill_id": "ht16aw",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ha84"
+      ],
+      "class_mastery_skill_reference": "skill_path:262645",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Harvest",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ha84",
+          "source_skill_id": "ha84",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ah443"
+      ],
+      "class_mastery_skill_reference": "skill_path:262677",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Holy Aura",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ah443",
+          "source_skill_id": "ah443",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:sentinel:paladin"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:javeli"
+      ],
+      "class_mastery_skill_reference": "skill_path:262850",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Javelin",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:javeli",
+          "source_skill_id": "javeli",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:lb23il"
+      ],
+      "class_mastery_skill_reference": "skill_path:262912",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Lightning Blast",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:lb23il",
+          "source_skill_id": "lb23il",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:lu25ng"
+      ],
+      "class_mastery_skill_reference": "skill_path:262951",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Lunge",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:lu25ng",
+          "source_skill_id": "lu25ng",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:mas54"
+      ],
+      "class_mastery_skill_reference": "skill_path:262952",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Maelstrom",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:mas54",
+          "source_skill_id": "mas54",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [],
+      "class_mastery_skill_reference": "skill_path:262953",
+      "exact_id_match": null,
+      "exact_path_matches": [],
+      "match_methods": [],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ms26"
+      ],
+      "class_mastery_skill_reference": "skill_path:263025",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Mana Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ms26",
+          "source_skill_id": "ms26",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:bp2nk"
+      ],
+      "class_mastery_skill_reference": "skill_path:263035",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Marrow Shards",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:bp2nk",
+          "source_skill_id": "bp2nk",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:me27"
+      ],
+      "class_mastery_skill_reference": "skill_path:263053",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Meteor",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:me27",
+          "source_skill_id": "me27",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:mage:sorcerer"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [],
+      "class_mastery_skill_reference": "skill_path:263498",
+      "exact_id_match": null,
+      "exact_path_matches": [],
+      "match_methods": [],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte",
+        "class:mage",
+        "class:primalist",
+        "class:rogue",
+        "class:sentinel"
+      ],
+      "status": "unresolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:evade3"
+      ],
+      "class_mastery_skill_reference": "skill_path:263704",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Evade",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_class_ability_pptr",
+          "identity_source": "CharacterClass ability PPtr",
+          "skill_id": "skill:evade3",
+          "source_skill_id": "evade3",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:rf1azz"
+      ],
+      "class_mastery_skill_reference": "skill_path:263788",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Reaper Form",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:rf1azz",
+          "source_skill_id": "rf1azz",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:acolyte:lich"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:rb31pl"
+      ],
+      "class_mastery_skill_reference": "skill_path:263799",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Rip Blood",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:rb31pl",
+          "source_skill_id": "rb31pl",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sndr1"
+      ],
+      "class_mastery_skill_reference": "skill_path:263800",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Rive",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sndr1",
+          "source_skill_id": "sndr1",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:aacfl"
+      ],
+      "class_mastery_skill_reference": "skill_path:263816",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Acid Flask",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:aacfl",
+          "source_skill_id": "aacfl",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:cstri"
+      ],
+      "class_mastery_skill_reference": "skill_path:263834",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Cinder Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:cstri",
+          "source_skill_id": "cstri",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:dacn33"
+      ],
+      "class_mastery_skill_reference": "skill_path:263841",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Dancing Strikes",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:dacn33",
+          "source_skill_id": "dacn33",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:rogue:bladedancer"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:deeco"
+      ],
+      "class_mastery_skill_reference": "skill_path:263852",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Decoy",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:deeco",
+          "source_skill_id": "deeco",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:detar"
+      ],
+      "class_mastery_skill_reference": "skill_path:263853",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Detonating Arrow",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:detar",
+          "source_skill_id": "detar",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:rogue:marksman"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:flur3"
+      ],
+      "class_mastery_skill_reference": "skill_path:263871",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Flurry",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:flur3",
+          "source_skill_id": "flur3",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:pun22"
+      ],
+      "class_mastery_skill_reference": "skill_path:263905",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Puncture",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:pun22",
+          "source_skill_id": "pun22",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:shiif"
+      ],
+      "class_mastery_skill_reference": "skill_path:263955",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Shift",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:shiif",
+          "source_skill_id": "shiif",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:srk21"
+      ],
+      "class_mastery_skill_reference": "skill_path:263956",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Shurikens",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:srk21",
+          "source_skill_id": "srk21",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:evade4"
+      ],
+      "class_mastery_skill_reference": "skill_path:263991",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Evade",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_class_ability_pptr",
+          "identity_source": "CharacterClass ability PPtr",
+          "skill_id": "skill:evade4",
+          "source_skill_id": "evade4",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:rn7iv"
+      ],
+      "class_mastery_skill_reference": "skill_path:264015",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Runebolt",
+          "field_path": "skillTree.nodes.28.requirements.0.nodeId",
+          "skill_id": "skill:fb8fe",
+          "source_skill_id": "fb8fe",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Runebolt",
+          "field_path": "skillTree.nodes.28.effectHints.3.nodeId",
+          "skill_id": "skill:fb8fe",
+          "source_skill_id": "fb8fe",
+          "top_level_identity": false
+        },
+        {
+          "display_name": "Runic Invocation",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:rn7iv",
+          "source_skill_id": "rn7iv",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:mage:runemaster"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:evade5"
+      ],
+      "class_mastery_skill_reference": "skill_path:264164",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Evade",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_class_ability_pptr",
+          "identity_source": "CharacterClass ability PPtr",
+          "skill_id": "skill:evade5",
+          "source_skill_id": "evade5",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sh4re"
+      ],
+      "class_mastery_skill_reference": "skill_path:264230",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Shadow Rend",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sh4re",
+          "source_skill_id": "sh4re",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:rogue"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ss3tre"
+      ],
+      "class_mastery_skill_reference": "skill_path:264237",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Shatter Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ss3tre",
+          "source_skill_id": "ss3tre",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:mage:spellblade"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sb4h"
+      ],
+      "class_mastery_skill_reference": "skill_path:264241",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Shield Bash",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sb4h",
+          "source_skill_id": "sb4h",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sw31a"
+      ],
+      "class_mastery_skill_reference": "skill_path:264309",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Snap Freeze",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sw31a",
+          "source_skill_id": "sw31a",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:st47ic"
+      ],
+      "class_mastery_skill_reference": "skill_path:264355",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Static",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:st47ic",
+          "source_skill_id": "st47ic",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:srtor"
+      ],
+      "class_mastery_skill_reference": "skill_path:264437",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Raptor",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:srtor",
+          "source_skill_id": "srtor",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:primalist:beastmaster"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ss37kl"
+      ],
+      "class_mastery_skill_reference": "skill_path:264444",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Skeleton",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ss37kl",
+          "source_skill_id": "ss37kl",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:st38ml"
+      ],
+      "class_mastery_skill_reference": "skill_path:264451",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Storm Totem",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:st38ml",
+          "source_skill_id": "st38ml",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:primalist:shaman"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:th39"
+      ],
+      "class_mastery_skill_reference": "skill_path:264453",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Thorn Totem",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:th39",
+          "source_skill_id": "th39",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:svz81"
+      ],
+      "class_mastery_skill_reference": "skill_path:264458",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Volatile Zombie",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:svz81",
+          "source_skill_id": "svz81",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:wo42"
+      ],
+      "class_mastery_skill_reference": "skill_path:264461",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Wolf",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:wo42",
+          "source_skill_id": "wo42",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sw42ih"
+      ],
+      "class_mastery_skill_reference": "skill_path:264462",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Summon Wraith",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sw42ih",
+          "source_skill_id": "sw42ih",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:acolyte:necromancer"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:sw43"
+      ],
+      "class_mastery_skill_reference": "skill_path:264551",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Swipe",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:sw43",
+          "source_skill_id": "sw43",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:te44"
+      ],
+      "class_mastery_skill_reference": "skill_path:264554",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Teleport",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:te44",
+          "source_skill_id": "te44",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:mage"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ts85i"
+      ],
+      "class_mastery_skill_reference": "skill_path:264562",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Tempest Strike",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ts85i",
+          "source_skill_id": "ts85i",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ts50pl"
+      ],
+      "class_mastery_skill_reference": "skill_path:264675",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Transplant",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ts50pl",
+          "source_skill_id": "ts50pl",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:uph41"
+      ],
+      "class_mastery_skill_reference": "skill_path:264730",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Upheaval",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:uph41",
+          "source_skill_id": "uph41",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:primalist"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:gs15de"
+      ],
+      "class_mastery_skill_reference": "skill_path:264735",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Vengeance",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:gs15de",
+          "source_skill_id": "gs15de",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:v01cv"
+      ],
+      "class_mastery_skill_reference": "skill_path:264807",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Void Cleave",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:v01cv",
+          "source_skill_id": "v01cv",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ws54hm"
+      ],
+      "class_mastery_skill_reference": "skill_path:264863",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Wandering Spirits",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ws54hm",
+          "source_skill_id": "ws54hm",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:acolyte"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:ch0fs"
+      ],
+      "class_mastery_skill_reference": "skill_path:264874",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Chthonic Fissure",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:ch0fs",
+          "source_skill_id": "ch0fs",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:acolyte:warlock"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:va53st"
+      ],
+      "class_mastery_skill_reference": "skill_path:264881",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Warpath",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:va53st",
+          "source_skill_id": "va53st",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "class:sentinel"
+      ],
+      "status": "resolved"
+    },
+    {
+      "candidate_skill_ids": [
+        "skill:wb8fo"
+      ],
+      "class_mastery_skill_reference": "skill_path:264922",
+      "exact_id_match": null,
+      "exact_path_matches": [
+        {
+          "display_name": "Werebear Form",
+          "field_path": "sourceIdentity.skillPath",
+          "identity_confidence": "top_level_owner_pptr",
+          "identity_source": "SkillTree.ability PPtr",
+          "skill_id": "skill:wb8fo",
+          "source_skill_id": "wb8fo",
+          "top_level_identity": true
+        }
+      ],
+      "match_methods": [
+        "exact_path",
+        "top_level_path"
+      ],
+      "normalized_name_matches": [],
+      "owners": [
+        "mastery:primalist:druid"
+      ],
+      "status": "resolved"
+    }
+  ],
+  "summary": {
+    "ambiguous_match_count": 1,
+    "bridge_safe": false,
+    "exact_id_match_count": 0,
+    "exact_path_match_count": 61,
+    "nested_path_only_match_count": 0,
+    "normalized_name_match_count": 0,
+    "production_consumed": false,
+    "recommended_mapping_strategy": "top_level_source_identity_partial_unresolved",
+    "source_data_missing": true,
+    "top_level_path_match_count": 60,
+    "total_class_mastery_skill_references": 63,
+    "total_skill_records": 184,
+    "unresolved_reference_count": 2
+  }
+}

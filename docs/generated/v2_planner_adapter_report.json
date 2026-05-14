@@ -1,0 +1,394 @@
+{
+  "blocked_reason_counts": {
+    "not_stable_calculable": 19398,
+    "scripted_behavior": 7495,
+    "source_units_value_scale": 6248,
+    "text_only_behavior": 265,
+    "unknown_operation": 11606,
+    "unknown_value_scale": 13150,
+    "unresolved_skill_identity": 11924,
+    "unresolved_stat_identity": 4714,
+    "unstable_support_status": 19398,
+    "unsupported_behavior": 5276
+  },
+  "blocked_samples": [
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_0:equipment_0:0:9b016b85ce",
+      "eligible": false,
+      "operation": "flat",
+      "source_id": "affix:equipment:0",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_penetration_void",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_1:equipment_1:0:de49d58130",
+      "eligible": false,
+      "operation": "increased",
+      "source_id": "affix:equipment:1",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_armour_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_2:equipment_2:0:30b065768a",
+      "eligible": false,
+      "operation": "increased",
+      "source_id": "affix:equipment:2",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_attackspeed_melee",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_3:equipment_3:0:dbb2a8f26c",
+      "eligible": false,
+      "operation": "flat",
+      "source_id": "affix:equipment:3",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_blockchance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_4:equipment_4:0:2d76ebdd3e",
+      "eligible": false,
+      "operation": "increased",
+      "source_id": "affix:equipment:4",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_castspeed_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_5:equipment_5:0:9a329a7a0a",
+      "eligible": false,
+      "operation": "increased",
+      "source_id": "affix:equipment:5",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_criticalchance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_6:equipment_6:0:0225a2e1c8",
+      "eligible": false,
+      "operation": "flat",
+      "source_id": "affix:equipment:6",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_criticalmultiplier_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_7:equipment_7:0:7585328309",
+      "eligible": false,
+      "operation": "flat",
+      "source_id": "affix:equipment:7",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_voidresistance_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_8:equipment_8:0:6f795210a7",
+      "eligible": false,
+      "operation": "flat",
+      "source_id": "affix:equipment:8",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:added_dodgerating_none",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    },
+    {
+      "blocked_reasons": [
+        "unstable_support_status",
+        "source_units_value_scale",
+        "not_stable_calculable"
+      ],
+      "canonical_id": "modifier:affix:affix_equipment_9:equipment_9:0:a0b9a09a13",
+      "eligible": false,
+      "operation": "increased",
+      "source_id": "affix:equipment:9",
+      "source_type": "affix",
+      "stable_calculable": false,
+      "stat_id": "stat:increased_damage_elemental",
+      "support_status": "partial",
+      "trust_level": "generated_from_game_data",
+      "value_scale_status": "source_units"
+    }
+  ],
+  "domains": [
+    {
+      "blocked_count": 1624,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1624,
+        "source_units_value_scale": 1624,
+        "unstable_support_status": 1624
+      },
+      "domain": "affix",
+      "eligible_count": 0,
+      "inspected_count": 1624,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 647,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 647,
+        "unknown_value_scale": 647,
+        "unstable_support_status": 647
+      },
+      "domain": "idol_affix_modifier",
+      "eligible_count": 0,
+      "inspected_count": 647,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 1182,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1182,
+        "source_units_value_scale": 1182,
+        "unstable_support_status": 1182
+      },
+      "domain": "item_implicit",
+      "eligible_count": 0,
+      "inspected_count": 1182,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 1660,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1660,
+        "scripted_behavior": 642,
+        "unknown_operation": 1570,
+        "unknown_value_scale": 1660,
+        "unresolved_stat_identity": 254,
+        "unstable_support_status": 1660,
+        "unsupported_behavior": 841
+      },
+      "domain": "passive_node_modifier",
+      "eligible_count": 0,
+      "inspected_count": 1660,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 27,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 27,
+        "source_units_value_scale": 27,
+        "unstable_support_status": 27
+      },
+      "domain": "set_bonus_modifier",
+      "eligible_count": 0,
+      "inspected_count": 27,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 287,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 287,
+        "source_units_value_scale": 287,
+        "unstable_support_status": 287
+      },
+      "domain": "set_item_modifier",
+      "eligible_count": 0,
+      "inspected_count": 287,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 10843,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 10843,
+        "scripted_behavior": 6347,
+        "unknown_operation": 10036,
+        "unknown_value_scale": 10843,
+        "unresolved_skill_identity": 10843,
+        "unresolved_stat_identity": 4460,
+        "unstable_support_status": 10843,
+        "unsupported_behavior": 4435
+      },
+      "domain": "skill_node_modifier",
+      "eligible_count": 0,
+      "inspected_count": 10843,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 1081,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 1081,
+        "scripted_behavior": 506,
+        "source_units_value_scale": 1081,
+        "text_only_behavior": 265,
+        "unresolved_skill_identity": 1081,
+        "unstable_support_status": 1081
+      },
+      "domain": "skill_structured_value",
+      "eligible_count": 0,
+      "inspected_count": 1081,
+      "stable_calculable_count": 0
+    },
+    {
+      "blocked_count": 2047,
+      "blocked_reason_counts": {
+        "not_stable_calculable": 2047,
+        "source_units_value_scale": 2047,
+        "unstable_support_status": 2047
+      },
+      "domain": "unique_modifier",
+      "eligible_count": 0,
+      "inspected_count": 2047,
+      "stable_calculable_count": 0
+    }
+  ],
+  "eligible_samples": [],
+  "future_remap_readiness": {
+    "planner_remap_ready": false,
+    "reasons": [
+      "stable-calculable count is zero",
+      "value normalization remains audit-only",
+      "skill identity bridge remains unbridged",
+      "partial, unsupported, text-only, scripted, or source-unit records remain blocked"
+    ]
+  },
+  "generated_at": "2026-05-13T20:49:52.282296+00:00",
+  "metadata": {
+    "experimental": true,
+    "planner_consumed": false,
+    "production_consumed": false,
+    "production_safe": false,
+    "read_only": true,
+    "source": "v2_planner_safe_adapter",
+    "unresolved_skill_identity_bridged": false,
+    "value_policy_audit_only": true
+  },
+  "safety_gates": [
+    "trusted_or_explicitly_supported_support_status",
+    "known_canonical_id",
+    "valid_provenance",
+    "non_unsupported_mechanics",
+    "non_text_only_behavior",
+    "non_scripted_behavior",
+    "planner_normalized_value_scale",
+    "resolved_stat_identity",
+    "resolved_source_identity",
+    "backend_policy_stable_calculable"
+  ],
+  "schema_version": "v2.planner_adapter_report.1",
+  "summary": {
+    "blocked_modifier_count": 19398,
+    "domain_count": 9,
+    "eligible_planner_calculable_count": 0,
+    "inspected_modifier_count": 19398,
+    "production_consumed": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "value_normalization_status": "audit_only"
+  }
+}
