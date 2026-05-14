@@ -1,0 +1,577 @@
+{
+  "classification_counts": {
+    "blocked_by_behavioral_risk": 1,
+    "blocked_by_missing_golden_baseline": 3,
+    "blocked_by_operation_semantics": 1,
+    "blocked_by_skill_identity": 1,
+    "blocked_by_unsupported_mechanics": 2,
+    "blocked_by_value_normalization": 2,
+    "ready_for_policy_design": 3
+  },
+  "current_readiness_status": {
+    "safety": {
+      "crafting_behavior_changed": false,
+      "mechanical_remap_ready": false,
+      "planner_calculable_count": 0,
+      "planner_output_changed": false,
+      "production_consumed": false,
+      "production_planner_ready": false,
+      "runtime_behavior_changed": false,
+      "simulation_behavior_changed": false,
+      "skill_identity_bridge_added": false,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "stat_aggregation_behavior_changed": false,
+      "v2_5_trust_ux_ready": true,
+      "v2_infrastructure_ready": true,
+      "value_normalization_promoted": false,
+      "value_normalization_status": "audit_only"
+    },
+    "v2": {
+      "mechanical_remap_ready": false,
+      "production_planner_ready": false,
+      "recommended_next_track": "v2_5_trust_ux_layer",
+      "v2_infrastructure_ready": true
+    },
+    "v2_5": {
+      "production_planner_ready": false,
+      "recommended_next_track": "v3_mechanical_intelligence_planning",
+      "v2_5_trust_ux_ready": true,
+      "v3_mechanical_ready": false
+    }
+  },
+  "generated_at": "2026-05-14T01:00:13.470327+00:00",
+  "mechanical_blocker_summary": {
+    "blocked_modifier_count": 19398,
+    "golden_baselines": {
+      "baseline_category_count": 13,
+      "blocked_fixture_count": 6,
+      "mechanical_fixture_count": 6,
+      "non_mechanical_fixture_count": 7,
+      "production_consumed": false,
+      "safe_now_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "value_normalization_status": "audit_only"
+    },
+    "operation_semantics": {
+      "operation_distribution": {
+        "chance": 69,
+        "cooldown": 429,
+        "cost": 440,
+        "duration": 949,
+        "flat": 4627,
+        "increased": 1112,
+        "less": 1,
+        "more": 165,
+        "unknown": 11606
+      },
+      "unknown_operation_count": 11606
+    },
+    "skill_identity": {
+      "ambiguous_refs": 1,
+      "bridge_safe": false,
+      "recommended_mapping_strategy": "top_level_source_identity_partial_unresolved",
+      "safe_top_level_matches": 60,
+      "source_data_missing": true,
+      "total_refs": 63,
+      "unresolved_refs": 2
+    },
+    "stat_identity": {
+      "canonicalized": 14684,
+      "unknown": 4714
+    },
+    "top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "value_normalization": {
+      "source_unit_value_scale_count": 6248,
+      "status": "audit_only",
+      "unknown_value_scale_count": 13150
+    }
+  },
+  "mechanical_domains": [
+    {
+      "classification": "ready_for_policy_design",
+      "depends_on": [],
+      "description": "Define source-unit and unknown value scale contracts before any planner math uses v2 values.",
+      "id": "value_normalization",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_value_normalization",
+      "depends_on": [
+        "value_normalization"
+      ],
+      "description": "Define flat, increased, more, less, chance, duration, cooldown, cost, conditional, and unknown operation semantics.",
+      "id": "operation_semantics",
+      "severity": "critical"
+    },
+    {
+      "classification": "ready_for_policy_design",
+      "depends_on": [],
+      "description": "Resolve canonical stat identities for target domains before stable stat aggregation.",
+      "id": "stat_identity_resolution",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_operation_semantics",
+      "depends_on": [
+        "value_normalization",
+        "operation_semantics",
+        "stat_identity_resolution"
+      ],
+      "description": "Define deterministic modifier application order, stacking, scope, and exclusion behavior.",
+      "id": "modifier_application_semantics",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_missing_golden_baseline",
+      "depends_on": [
+        "value_normalization",
+        "operation_semantics",
+        "stat_identity_resolution",
+        "golden_mechanical_baselines"
+      ],
+      "description": "Compare item base, implicit, and affix stat output against current planner behavior.",
+      "id": "item_affix_stat_output",
+      "severity": "high"
+    },
+    {
+      "classification": "blocked_by_unsupported_mechanics",
+      "depends_on": [
+        "operation_semantics",
+        "golden_mechanical_baselines",
+        "unsupported_mechanic_policy"
+      ],
+      "description": "Compare passive node effects only after unsupported/scripted behavior and baselines are explicit.",
+      "id": "passive_node_stat_output",
+      "severity": "high"
+    },
+    {
+      "classification": "blocked_by_skill_identity",
+      "depends_on": [
+        "skill_identity_bridge_policy",
+        "operation_semantics",
+        "golden_mechanical_baselines"
+      ],
+      "description": "Compare skill node effects only after skill identity and unsupported behavior policies are approved.",
+      "id": "skill_node_stat_output",
+      "severity": "high"
+    },
+    {
+      "classification": "blocked_by_unsupported_mechanics",
+      "depends_on": [
+        "unsupported_mechanic_policy"
+      ],
+      "description": "Keep unique/set scripted and text-only mechanics explicitly excluded unless future policy proves support.",
+      "id": "unique_set_unsupported_behavior_exclusions",
+      "severity": "high"
+    },
+    {
+      "classification": "blocked_by_value_normalization",
+      "depends_on": [
+        "value_normalization",
+        "operation_semantics",
+        "stat_identity_resolution"
+      ],
+      "description": "Classify idol affix mechanics through the same value, operation, identity, and baseline gates.",
+      "id": "idol_mechanic_treatment",
+      "severity": "medium"
+    },
+    {
+      "classification": "ready_for_policy_design",
+      "depends_on": [],
+      "description": "Define when source evidence is sufficient to bridge skill identities without guessing.",
+      "id": "skill_identity_bridge_policy",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_missing_golden_baseline",
+      "depends_on": [
+        "value_normalization",
+        "operation_semantics",
+        "stat_identity_resolution",
+        "golden_mechanical_baselines"
+      ],
+      "description": "Design a deterministic adapter that can explain every accepted and blocked stat effect.",
+      "id": "deterministic_stat_resolution_adapter",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_missing_golden_baseline",
+      "depends_on": [
+        "deterministic_stat_resolution_adapter",
+        "golden_mechanical_baselines"
+      ],
+      "description": "Compare old planner output with v3 candidate output without changing production behavior.",
+      "id": "experimental_mechanical_dry_run_comparison",
+      "severity": "critical"
+    },
+    {
+      "classification": "blocked_by_behavioral_risk",
+      "depends_on": [
+        "experimental_mechanical_dry_run_comparison"
+      ],
+      "description": "Audit all gates before any approved production planner remap.",
+      "id": "production_planner_remap_gates",
+      "severity": "critical"
+    }
+  ],
+  "metadata": {
+    "planner_remap_performed": false,
+    "planning_only": true,
+    "production_consumed": false,
+    "runtime_behavior_changed": false,
+    "source": "v3_mechanical_intelligence_plan"
+  },
+  "production_remap_gate_requirements": [
+    "stable-calculable count greater than zero only through proven policy",
+    "value normalization contracts approved",
+    "operation semantics approved",
+    "stat identities resolved for target domain",
+    "skill identity bridge policy approved",
+    "unsupported/scripted mechanics excluded",
+    "golden baselines passing",
+    "old planner versus v3 dry-run comparison passing",
+    "production non-consumption guard intentionally updated only when remap is approved",
+    "rollback and debug path exists"
+  ],
+  "production_remap_readiness": {
+    "blocked_by": [
+      "stable_calculable_count_zero",
+      "value_normalization_audit_only",
+      "unknown_value_scales",
+      "source_units_value_scales",
+      "unknown_operations",
+      "unresolved_stat_identities",
+      "unbridged_skill_identities",
+      "missing_mechanical_golden_baselines",
+      "missing_dry_run_parity"
+    ],
+    "ready": false
+  },
+  "readiness_decision": {
+    "production_planner_remap_ready": false,
+    "recommended_next_phase": "v3_value_normalization_contract_design",
+    "v3_mechanical_implementation_ready": false,
+    "v3_planning_ready": true
+  },
+  "recommended_v3_phase_sequence": [
+    {
+      "description": "Design value normalization contracts and source-unit policy.",
+      "id": "v3_value_normalization_contract_design",
+      "order": 1
+    },
+    {
+      "description": "Define operation taxonomy and unsupported operation handling.",
+      "id": "v3_operation_semantics_taxonomy",
+      "order": 2
+    },
+    {
+      "description": "Define stat identity resolution policy and target-domain scope.",
+      "id": "v3_stat_identity_resolution_policy",
+      "order": 3
+    },
+    {
+      "description": "Define evidence requirements for skill identity bridges.",
+      "id": "v3_skill_identity_bridge_policy",
+      "order": 4
+    },
+    {
+      "description": "Create existing-production golden baselines before mechanical changes.",
+      "id": "v3_golden_mechanical_baseline_creation",
+      "order": 5
+    },
+    {
+      "description": "Design deterministic adapter behavior and explanations.",
+      "id": "v3_deterministic_stat_resolution_adapter_design",
+      "order": 6
+    },
+    {
+      "description": "Add opt-in dry-run comparison without changing production output.",
+      "id": "v3_experimental_mechanical_dry_run_mode",
+      "order": 7
+    },
+    {
+      "description": "Compare item and affix mechanical output under approved gates.",
+      "id": "v3_item_affix_mechanical_comparison",
+      "order": 8
+    },
+    {
+      "description": "Compare passive and skill output under approved identity and unsupported policies.",
+      "id": "v3_passive_skill_mechanical_comparison",
+      "order": 9
+    },
+    {
+      "description": "Expose limited opt-in mechanical adapter mode after dry-run evidence.",
+      "id": "v3_limited_opt_in_mechanical_adapter_mode",
+      "order": 10
+    },
+    {
+      "description": "Audit production remap gates and rollback/debug path.",
+      "id": "v3_production_planner_remap_gate_audit",
+      "order": 11
+    },
+    {
+      "description": "Production remap only after all stable-calculable gates pass.",
+      "id": "v3_production_remap_after_stable_gates",
+      "order": 12
+    }
+  ],
+  "required_adapter_gates": [
+    {
+      "description": "Adapter remains read-only by default.",
+      "id": "read_only_default"
+    },
+    {
+      "description": "Mechanical dry-run requires explicit opt-in.",
+      "id": "explicit_opt_in"
+    },
+    {
+      "description": "Stable-calculable records require approved value, operation, identity, and baseline evidence.",
+      "id": "stable_calculable_policy"
+    },
+    {
+      "description": "Production guard remains false until a deliberate remap approval.",
+      "id": "production_non_consumption_guard"
+    }
+  ],
+  "required_dry_run_comparison_layers": [
+    {
+      "description": "Capture existing planner output without changing it.",
+      "id": "legacy_output_snapshot_layer"
+    },
+    {
+      "description": "Compute candidate output in opt-in dry-run mode only.",
+      "id": "v3_candidate_output_layer"
+    },
+    {
+      "description": "Explain every accepted, rejected, and blocked delta.",
+      "id": "delta_explanation_layer"
+    },
+    {
+      "description": "Limit dry-run scope to domains with approved policies and baselines.",
+      "id": "domain_gate_layer"
+    }
+  ],
+  "required_golden_baselines": [
+    {
+      "current_status": "blocked_by_value_normalization",
+      "description": "Existing planner output for representative item affix stat math.",
+      "id": "known_item_affix_stat_output",
+      "required_future_assertions": [
+        "legacy output snapshot",
+        "v2 dry-run parity",
+        "approved value scale family"
+      ]
+    },
+    {
+      "current_status": "blocked_by_unsupported_mechanics",
+      "description": "Existing planner output for representative passive node stat math.",
+      "id": "known_passive_node_stat_output",
+      "required_future_assertions": [
+        "legacy passive output snapshot",
+        "unsupported behavior remains excluded"
+      ]
+    },
+    {
+      "current_status": "blocked_by_identity_resolution",
+      "description": "Existing planner output for representative skill node stat math.",
+      "id": "known_skill_node_stat_output",
+      "required_future_assertions": [
+        "legacy skill output snapshot",
+        "identity gap remains blocked"
+      ]
+    },
+    {
+      "current_status": "blocked_by_unsupported_mechanics",
+      "description": "Assertions that unsupported unique/set mechanics remain excluded from stable math.",
+      "id": "unique_set_unsupported_exclusions",
+      "required_future_assertions": [
+        "unsupported report entries never become stable-calculable by default"
+      ]
+    },
+    {
+      "current_status": "blocked_by_value_normalization",
+      "description": "Golden examples proving source-unit to planner-normalized conversion families.",
+      "id": "value_scale_normalization_examples",
+      "required_future_assertions": [
+        "source contract",
+        "before/after normalized values",
+        "legacy parity"
+      ]
+    },
+    {
+      "current_status": "blocked_by_missing_existing_baseline",
+      "description": "Golden examples for flat, increased, more, and conditional operation handling.",
+      "id": "operation_examples",
+      "required_future_assertions": [
+        "legacy operation output",
+        "v2 operation classification",
+        "conditional handling rules"
+      ]
+    },
+    {
+      "current_status": "future_mechanical_required",
+      "description": "Snapshot comparisons between current planner output and v2 adapter dry-run explanations.",
+      "id": "planner_output_vs_v2_dry_run_snapshots",
+      "required_future_assertions": [
+        "legacy planner output unchanged",
+        "v2 adapter explains every blocked delta"
+      ]
+    }
+  ],
+  "required_policy_decisions": [
+    {
+      "description": "Which source value families may be converted, and with what proof.",
+      "id": "value_scale_family_policy"
+    },
+    {
+      "description": "Unknown value scales remain blocked until source contracts or baselines prove them.",
+      "id": "unknown_value_policy"
+    },
+    {
+      "description": "Each operation must have deterministic stacking and scope semantics.",
+      "id": "operation_taxonomy_policy"
+    },
+    {
+      "description": "Target domains need resolved canonical stat identities before aggregation.",
+      "id": "stat_identity_policy"
+    },
+    {
+      "description": "Bridges require source-stable evidence; display-name guessing remains disallowed.",
+      "id": "skill_identity_bridge_policy"
+    },
+    {
+      "description": "Scripted, text-only, and unsupported mechanics remain excluded by default.",
+      "id": "unsupported_mechanic_policy"
+    }
+  ],
+  "safety_confirmations": {
+    "crafting_behavior_changed": false,
+    "mechanical_remap_ready": false,
+    "planner_calculable_count": 0,
+    "planner_output_changed": false,
+    "production_consumed": false,
+    "production_planner_ready": false,
+    "runtime_behavior_changed": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stat_aggregation_behavior_changed": false,
+    "v2_5_trust_ux_ready": true,
+    "v2_infrastructure_ready": true,
+    "value_normalization_promoted": false,
+    "value_normalization_status": "audit_only"
+  },
+  "schema_version": "v3.mechanical_intelligence_plan.1",
+  "source_report_evidence": {
+    "blocked_modifier_count": 19398,
+    "golden_baseline_summary": {
+      "baseline_category_count": 13,
+      "blocked_fixture_count": 6,
+      "mechanical_fixture_count": 6,
+      "non_mechanical_fixture_count": 7,
+      "production_consumed": false,
+      "safe_now_fixture_count": 7,
+      "skill_identity_bridge_status": "unbridged",
+      "stable_calculable_count": 0,
+      "value_normalization_status": "audit_only"
+    },
+    "modifier_row_count": 19398,
+    "operation_distribution": {
+      "chance": 69,
+      "cooldown": 429,
+      "cost": 440,
+      "duration": 949,
+      "flat": 4627,
+      "increased": 1112,
+      "less": 1,
+      "more": 165,
+      "unknown": 11606
+    },
+    "skill_identity_audit": {
+      "ambiguous_refs": 1,
+      "bridge_safe": false,
+      "recommended_mapping_strategy": "top_level_source_identity_partial_unresolved",
+      "safe_top_level_matches": 60,
+      "source_data_missing": true,
+      "total_refs": 63,
+      "unresolved_refs": 2
+    },
+    "source_unit_value_scale_count": 6248,
+    "stat_identity_findings": {
+      "canonicalized": 14684,
+      "unknown": 4714
+    },
+    "stat_registry_count": 2070,
+    "unknown_value_scale_count": 13150
+  },
+  "systems_that_must_remain_blocked": [
+    {
+      "description": "Unknown values remain blocked from mechanical use.",
+      "id": "unknown_value_scales"
+    },
+    {
+      "description": "Source-unit values remain blocked until conversion contracts are approved.",
+      "id": "source_units_without_contracts"
+    },
+    {
+      "description": "Unknown operations remain blocked.",
+      "id": "unknown_operations"
+    },
+    {
+      "description": "Unresolved stat identities remain blocked.",
+      "id": "unresolved_stat_identities"
+    },
+    {
+      "description": "Unresolved or ambiguous skill identities remain unbridged.",
+      "id": "unresolved_skill_identities"
+    },
+    {
+      "description": "Scripted, text-only, and unsupported mechanics remain excluded by default.",
+      "id": "scripted_text_only_unsupported_mechanics"
+    }
+  ]
+}
