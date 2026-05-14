@@ -18,3 +18,15 @@ electron
 extracted_*
 scripts/found_*.txt
 scripts/missing_*.txt
+backend/.pytest_tmp
+backend/.pytest_tmp/
+backend/.pytest_tmp/**
+backend/pytest_bundle_tmp_run
+backend/pytest_bundle_tmp_run/
+backend/pytest_bundle_tmp_run/**
+**/.pytest_cache
+**/.pytest_cache/
+**/.pytest_cache/**
+**/__pycache__
+**/__pycache__/
+**/__pycache__/**
