@@ -62,6 +62,7 @@ const V2ClassMasteryDebugPage = lazy(() => import("@/pages/debug/V2ClassMasteryD
 const V2PassivesDebugPage = lazy(() => import("@/pages/debug/V2PassivesDebugPage"));
 const V2SkillsDebugPage = lazy(() => import("@/pages/debug/V2SkillsDebugPage"));
 const V2StatsModifiersDebugPage = lazy(() => import("@/pages/debug/V2StatsModifiersDebugPage"));
+const V2DebugNavigationPage = lazy(() => import("@/pages/debug/V2DebugNavigationPage"));
 
 // ---------------------------------------------------------------------------
 // Route alias redirect — preserves the current location's search string so
@@ -264,6 +265,8 @@ export default function App() {
                     <Route path="/viz-debug" element={<Suspense fallback={<PageLoader />}><VisualizationDebugPage /></Suspense>} />
                     <Route path="/craft-debug" element={<Suspense fallback={<PageLoader />}><CraftDebugPage /></Suspense>} />
                     <Route path="/debug" element={<Suspense fallback={<PageLoader />}><BackendDebugDashboard /></Suspense>} />
+                    <Route path="/debug/v2" element={<Suspense fallback={<PageLoader />}><V2DebugNavigationPage /></Suspense>} />
+                    <Route path="/debug/v2-affixes" element={<AliasRedirect to="/debug/forge-safe-affixes" />} />
                     <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
                     <Route path="/debug/v2-items" element={<Suspense fallback={<PageLoader />}><V2ItemsDebugPage /></Suspense>} />
                     <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
