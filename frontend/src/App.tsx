@@ -29,6 +29,7 @@ import SimulationPage from "@/pages/simulation/SimulationPage";
 import OptimizerPage from "@/components/features/optimizer/OptimizerPage";
 import RotationBuilderPage from "@/pages/RotationBuilderPage";
 import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
+import TrustedDataSupportMatrixPage from "@/pages/TrustedDataSupportMatrixPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
@@ -248,6 +249,7 @@ export default function App() {
                 <Route path="/crafting-workspace" element={<CraftingWorkspace />} />
                 <Route path="/profile" element={<UserProfilePage />} />
                 <Route path="/trusted-data" element={<TrustedDataExplanationPage />} />
+                <Route path="/trusted-data/support" element={<TrustedDataSupportMatrixPage />} />
 
                 {/* Route aliases — redirect legacy/external URL patterns to their
                     canonical paths. `replace` ensures the alias doesn't pollute
