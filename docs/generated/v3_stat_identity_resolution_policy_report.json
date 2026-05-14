@@ -1,0 +1,608 @@
+{
+  "classification_philosophy": {
+    "principles": [
+      "trusted",
+      "validated",
+      "explainable",
+      "patch_resilient",
+      "then_intelligent"
+    ],
+    "reversibility_required": true,
+    "summary": "Stat identities are versioned evidence claims, not permanent truths."
+  },
+  "current_allowed_identity_states": [
+    "audit_only",
+    "blocked_by_ambiguous_mapping",
+    "blocked_by_behavioral_context",
+    "blocked_by_missing_baseline",
+    "blocked_by_missing_source_id",
+    "blocked_by_operation_semantics",
+    "blocked_by_unknown_stat",
+    "blocked_by_value_normalization",
+    "canonical_candidate_needs_evidence",
+    "source_known",
+    "unknown_needs_review"
+  ],
+  "current_stat_identity_landscape": {
+    "blocker_counts": {
+      "behavioral_context_not_planner_safe": 694,
+      "candidate_requires_complete_evidence": 1816,
+      "multiple_raw_names_for_canonical_stat": 253,
+      "unique_set_behavior_exclusion_required": 927,
+      "unknown_stat": 1,
+      "value_normalization_audit_only": 807
+    },
+    "classification_counts": {
+      "blocked_by_ambiguous_mapping": 253,
+      "blocked_by_unknown_stat": 1,
+      "canonical_candidate_needs_evidence": 1816
+    },
+    "modifier_counts_by_identity_state": {
+      "blocked_by_ambiguous_mapping": 7064,
+      "blocked_by_unknown_stat": 4714,
+      "canonical_candidate_needs_evidence": 7620
+    },
+    "modifier_row_count": 19398,
+    "modifier_rows_affected_by_unresolved_stat_identity": 4714,
+    "sample_identity_classifications": [
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 10,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 9,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "candidate_requires_complete_evidence"
+        ],
+        "canonical_stat_id": "stat:10001",
+        "identity_state": "canonical_candidate_needs_evidence",
+        "modifier_count": 1,
+        "planner_identity_safe": false,
+        "promotion_status": "canonical_candidate_needs_evidence",
+        "raw_name_count": 1,
+        "source_category_count": 1,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10002",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 5,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 5,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10003",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 2,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 2,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10005",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 46,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 28,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10007",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 11,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 11,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10008",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 2,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 2,
+        "source_category_count": 1,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10009",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 19,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 12,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "candidate_requires_complete_evidence"
+        ],
+        "canonical_stat_id": "stat:10012",
+        "identity_state": "canonical_candidate_needs_evidence",
+        "modifier_count": 1,
+        "planner_identity_safe": false,
+        "promotion_status": "canonical_candidate_needs_evidence",
+        "raw_name_count": 1,
+        "source_category_count": 1,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10014",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 19,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 10,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "candidate_requires_complete_evidence"
+        ],
+        "canonical_stat_id": "stat:10015",
+        "identity_state": "canonical_candidate_needs_evidence",
+        "modifier_count": 1,
+        "planner_identity_safe": false,
+        "promotion_status": "canonical_candidate_needs_evidence",
+        "raw_name_count": 1,
+        "source_category_count": 1,
+        "source_stat_id_count": 1
+      },
+      {
+        "blocked_reasons": [
+          "behavioral_context_not_planner_safe",
+          "multiple_raw_names_for_canonical_stat"
+        ],
+        "canonical_stat_id": "stat:10016",
+        "identity_state": "blocked_by_ambiguous_mapping",
+        "modifier_count": 31,
+        "planner_identity_safe": false,
+        "promotion_status": "blocked_by_ambiguous_mapping",
+        "raw_name_count": 18,
+        "source_category_count": 2,
+        "source_stat_id_count": 1
+      }
+    ],
+    "source_type_counts": {
+      "affix": 1624,
+      "idol_affix_modifier": 647,
+      "item_implicit": 1182,
+      "passive_node_modifier": 1660,
+      "set_bonus_modifier": 27,
+      "set_item_modifier": 287,
+      "skill_node_modifier": 10843,
+      "skill_structured_value": 1081,
+      "unique_modifier": 2047
+    },
+    "stat_registry_count": 2070,
+    "top_modifier_stat_ids": [
+      {
+        "count": 4714,
+        "stat_id": "stat:unknown"
+      },
+      {
+        "count": 1544,
+        "stat_id": "stat:54"
+      },
+      {
+        "count": 298,
+        "stat_id": "stat:mana_cost"
+      },
+      {
+        "count": 254,
+        "stat_id": "stat:area"
+      },
+      {
+        "count": 210,
+        "stat_id": "stat:damage"
+      },
+      {
+        "count": 204,
+        "stat_id": "stat:duration"
+      },
+      {
+        "count": 192,
+        "stat_id": "stat:added_armour"
+      },
+      {
+        "count": 184,
+        "stat_id": "stat:duration_cast_data_speed_multiplier"
+      },
+      {
+        "count": 184,
+        "stat_id": "stat:duration_cast_data_speed_scaler"
+      },
+      {
+        "count": 184,
+        "stat_id": "stat:duration_cast_data_use_duration"
+      }
+    ],
+    "unresolved_stat_identity_count": 4714
+  },
+  "disallowed_assumptions": [
+    "Do not infer stat identity from tooltip text.",
+    "Do not guess semantic identity from labels alone.",
+    "Do not infer planner behavior without approved operation semantics.",
+    "Do not infer planner behavior without value normalization evidence.",
+    "Do not assume scripted or runtime mechanics from structural names.",
+    "Do not assume unsupported unique or set mechanics are calculable.",
+    "Do not bridge skill identities to make stat identity promotion pass.",
+    "Do not apply cross-domain identity mappings without domain-specific evidence."
+  ],
+  "evidence_requirements": [
+    {
+      "description": "Source stat ID and source path are present and version-traceable.",
+      "id": "source_stat_id_path"
+    },
+    {
+      "description": "Canonical target stat ID is explicit and reversible.",
+      "id": "canonical_stat_id"
+    },
+    {
+      "description": "Representative source examples are stable across exports.",
+      "id": "stable_source_examples"
+    },
+    {
+      "description": "Representative modifier examples reference the candidate identity.",
+      "id": "modifier_examples"
+    },
+    {
+      "description": "Operation semantics are approved for the candidate domain.",
+      "id": "known_operation_semantics"
+    },
+    {
+      "description": "Value scale is approved or explicitly irrelevant to identity use.",
+      "id": "known_value_scale_or_unnecessary"
+    },
+    {
+      "description": "Unsupported, scripted, and text-only mechanics are excluded or modeled.",
+      "id": "unsupported_scripted_behavior_exclusions"
+    },
+    {
+      "description": "Existing behavior and candidate identity behavior have golden coverage.",
+      "id": "golden_baseline_coverage"
+    },
+    {
+      "description": "Patch, export, and provenance traceability is recorded.",
+      "id": "patch_version_provenance"
+    },
+    {
+      "description": "Dry-run comparison proves no production planner consumption.",
+      "id": "dry_run_comparison_evidence"
+    },
+    {
+      "description": "Repeated validation confirms the mapping remains stable.",
+      "id": "repeat_validation_evidence"
+    }
+  ],
+  "future_sequence": [
+    {
+      "description": "Inventory source stat identity forms.",
+      "order": 1
+    },
+    {
+      "description": "Classify identity states.",
+      "order": 2
+    },
+    {
+      "description": "Select narrow canonical candidate.",
+      "order": 3
+    },
+    {
+      "description": "Collect source examples.",
+      "order": 4
+    },
+    {
+      "description": "Collect modifier examples.",
+      "order": 5
+    },
+    {
+      "description": "Verify operation semantics.",
+      "order": 6
+    },
+    {
+      "description": "Verify value normalization.",
+      "order": 7
+    },
+    {
+      "description": "Establish golden baseline.",
+      "order": 8
+    },
+    {
+      "description": "Run dry-run comparison.",
+      "order": 9
+    },
+    {
+      "description": "Mark experimental only.",
+      "order": 10
+    },
+    {
+      "description": "Repeat validation.",
+      "order": 11
+    },
+    {
+      "description": "Promote stable only after sustained evidence.",
+      "order": 12
+    }
+  ],
+  "generated_at": "2026-05-14T01:23:44.687469+00:00",
+  "golden_baseline_dependencies": [
+    "source stat inventory baseline",
+    "canonical candidate mapping baseline",
+    "modifier example baseline",
+    "operation dependency baseline",
+    "value scale dependency baseline",
+    "old planner versus dry-run stat identity comparison"
+  ],
+  "identity_classification_summaries": [
+    {
+      "identity_state": "audit_only",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "blocked_by_ambiguous_mapping",
+      "modifier_count": 7064,
+      "planner_identity_safe": false,
+      "stat_count": 253
+    },
+    {
+      "identity_state": "blocked_by_behavioral_context",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "blocked_by_missing_baseline",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "blocked_by_missing_source_id",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "blocked_by_operation_semantics",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "blocked_by_unknown_stat",
+      "modifier_count": 4714,
+      "planner_identity_safe": false,
+      "stat_count": 1
+    },
+    {
+      "identity_state": "blocked_by_value_normalization",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "canonical_candidate_needs_evidence",
+      "modifier_count": 7620,
+      "planner_identity_safe": false,
+      "stat_count": 1816
+    },
+    {
+      "identity_state": "source_known",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    },
+    {
+      "identity_state": "unknown_needs_review",
+      "modifier_count": 0,
+      "planner_identity_safe": false,
+      "stat_count": 0
+    }
+  ],
+  "identity_states": [
+    "audit_only",
+    "blocked_by_ambiguous_mapping",
+    "blocked_by_behavioral_context",
+    "blocked_by_missing_baseline",
+    "blocked_by_missing_source_id",
+    "blocked_by_operation_semantics",
+    "blocked_by_unknown_stat",
+    "blocked_by_value_normalization",
+    "canonical_candidate_needs_evidence",
+    "planner_identity_experimental",
+    "planner_identity_stable",
+    "source_known",
+    "unknown_needs_review"
+  ],
+  "metadata": {
+    "design_only": true,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "source": "v3_stat_identity_resolution_policy",
+    "stat_identity_resolution_implemented": false
+  },
+  "operation_semantic_dependencies": {
+    "reason": "stat identity promotion cannot affect planner math until operation semantics are approved.",
+    "required": true,
+    "status": "blocked",
+    "unknown_operation_count": 11606
+  },
+  "policy_fields": [
+    "stat_identity_id",
+    "canonical_stat_id",
+    "source_stat_id",
+    "source_label",
+    "domain",
+    "identity_state",
+    "match_method",
+    "confidence_level",
+    "source_examples",
+    "modifier_examples",
+    "operation_dependencies",
+    "value_scale_dependencies",
+    "golden_baseline_refs",
+    "unsupported_behavior_exclusions",
+    "validation_status",
+    "promotion_status",
+    "blocked_reasons",
+    "provenance"
+  ],
+  "production_remap_blockers": [
+    {
+      "blocked": true,
+      "detail": "planner-calculable modifier count remains 0",
+      "id": "planner_calculable_zero"
+    },
+    {
+      "blocked": true,
+      "detail": "stable-calculable modifier count remains 0",
+      "id": "stable_calculable_zero"
+    },
+    {
+      "blocked": true,
+      "detail": "4714 modifier rows remain affected by unresolved stat identity",
+      "id": "unresolved_stat_identities"
+    },
+    {
+      "blocked": true,
+      "detail": "operation semantics remain taxonomy-only",
+      "id": "operation_semantics_unapproved"
+    },
+    {
+      "blocked": true,
+      "detail": "value normalization remains audit-only",
+      "id": "value_normalization_audit_only"
+    },
+    {
+      "blocked": true,
+      "detail": "mechanical stat identity baselines are not implemented",
+      "id": "missing_golden_baselines"
+    }
+  ],
+  "recommended_next_phase": "v3_skill_identity_bridge_policy",
+  "safety_confirmations": {
+    "operation_semantics_implemented": false,
+    "planner_calculable_count": 0,
+    "planner_calculable_promoted": false,
+    "production_consumed": false,
+    "production_planner_changed": false,
+    "skill_identity_bridge_added": false,
+    "skill_identity_bridge_status": "unbridged",
+    "stable_calculable_count": 0,
+    "stable_calculable_promoted": false,
+    "stat_calculations_changed": false,
+    "stat_identities_promoted": false,
+    "unresolved_stat_identities_blocked": true,
+    "value_normalization_status": "audit_only",
+    "values_normalized": false
+  },
+  "schema_version": "v3.stat_identity_resolution_policy.1",
+  "source_report_evidence": {
+    "dry_run_top_blocked_reasons": [
+      {
+        "count": 19398,
+        "reason": "not_stable_calculable"
+      },
+      {
+        "count": 19398,
+        "reason": "unstable_support_status"
+      },
+      {
+        "count": 13150,
+        "reason": "unknown_value_scale"
+      },
+      {
+        "count": 11924,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 11606,
+        "reason": "unknown_operation"
+      },
+      {
+        "count": 7495,
+        "reason": "scripted_behavior"
+      },
+      {
+        "count": 6248,
+        "reason": "source_units_value_scale"
+      },
+      {
+        "count": 5276,
+        "reason": "unsupported_behavior"
+      },
+      {
+        "count": 4714,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 265,
+        "reason": "text_only_behavior"
+      }
+    ],
+    "operation_taxonomy_recommended_next_phase": "v3_stat_identity_resolution_policy",
+    "v3_plan_recommended_next_phase": "v3_value_normalization_contract_design",
+    "value_contract_recommended_next_phase": "v3_operation_semantics_taxonomy"
+  },
+  "value_normalization_dependencies": {
+    "reason": "stat identity promotion cannot imply value conversion while normalization is audit-only.",
+    "required": true,
+    "source_units_value_scale_count": 6248,
+    "status": "audit_only",
+    "unknown_value_scale_count": 13150
+  }
+}
