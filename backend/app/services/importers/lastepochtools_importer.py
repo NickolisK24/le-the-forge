@@ -87,7 +87,7 @@ def _get_skill_id_map() -> Dict[str, str]:
 
     try:
         path = os.path.join(_project_root(), "data", "classes", "skills_metadata.json")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             skills_data = json.load(f)
         _SKILL_ID_TO_NAME = {
             v["id"]: v["name"]
@@ -111,7 +111,7 @@ def _get_base_item_map() -> Dict[int, dict]:
     _BASE_ITEM_MAP = {}
     try:
         path = os.path.join(_project_root(), "data", "items", "base_items.json")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
         idx = 0
         for slot_name, items in data.items():
@@ -148,7 +148,7 @@ def _get_item_subtype_map() -> Dict[Tuple[int, int], str]:
     _BASE_TYPE_TO_SLOT = {}
     try:
         path = os.path.join(_project_root(), "data", "items", "items.json")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             items_data = json.load(f)
         for eq in items_data.get("equippable", []):
             btid = eq.get("baseTypeID")
@@ -180,7 +180,7 @@ def _get_affix_map() -> Dict[str, dict]:
     _AFFIX_MAP = {}
     try:
         path = os.path.join(_project_root(), "data", "items", "affixes.json")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             affixes = json.load(f)
         for affix in affixes:
             affix_id = affix.get("affix_id") or affix.get("id")
@@ -222,7 +222,7 @@ def _get_unique_items() -> Dict[str, List[dict]]:
     _UNIQUE_ITEMS = {}
     try:
         path = os.path.join(_project_root(), "data", "items", "uniques.json")
-        with open(path) as f:
+        with open(path, encoding="utf-8") as f:
             data = json.load(f)
         count = 0
         for key, item in data.items():

@@ -7,10 +7,52 @@ from app.services.affix_catalog_service import AffixCatalogFilters, AffixCatalog
 
 def write_export(tmp_path):
     path = tmp_path / "forge_safe.json"
-    path.write_text(json.dumps({"affixes": [
-        {"id": "health", "name": "Health", "source_type": "prefix", "item_types": ["helm"], "safety": {"forge_safe": True}},
-        {"id": "fire_res", "name": "Fire Resistance", "source_type": "suffix", "item_types": ["ring"], "safety": {"forge_safe": True}},
-    ]}), encoding="utf-8")
+    path.write_text(json.dumps({
+        "export_policy": "diagnostic_read_only",
+        "production_safe": False,
+        "summary": {
+            "exported_affix_records": 2,
+            "total_affix_records_seen": 2,
+            "excluded_affix_records": 0,
+            "forge_safe_records_only": True,
+            "production_safe": False,
+            "export_status": "pass",
+        },
+        "records": [
+            {
+                "id": "health",
+                "affix_id": "health",
+                "name": "Health",
+                "affix_name": "Health",
+                "display_name": "Health",
+                "source_type": "prefix",
+                "item_types": ["helm"],
+                "eligible_item_types": ["helm"],
+                "production_consumer": False,
+                "safety": {
+                    "forge_safe": True,
+                    "export_policy": "diagnostic_read_only",
+                    "production_safe": False,
+                },
+            },
+            {
+                "id": "fire_res",
+                "affix_id": "fire_res",
+                "name": "Fire Resistance",
+                "affix_name": "Fire Resistance",
+                "display_name": "Fire Resistance",
+                "source_type": "suffix",
+                "item_types": ["ring"],
+                "eligible_item_types": ["ring"],
+                "production_consumer": False,
+                "safety": {
+                    "forge_safe": True,
+                    "export_policy": "diagnostic_read_only",
+                    "production_safe": False,
+                },
+            },
+        ],
+    }), encoding="utf-8")
     return path
 
 
