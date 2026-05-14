@@ -6,6 +6,13 @@ import { V2SupportBadge } from "@/components/v2/V2TrustBadge";
 
 const DEBUG_LINKS = [
   {
+    title: "Support Matrix",
+    path: "/trusted-data/support",
+    label: "User-facing guide",
+    description: "Compact support overview for trusted-data domains and planner calculation limits.",
+    statuses: ["Display Only", "Not Planner-Calculable"],
+  },
+  {
     title: "Trusted Data Explanation",
     path: "/trusted-data",
     label: "User-facing guide",
