@@ -1,0 +1,123 @@
+{
+  "admission_aware_policy_evaluation": {
+    "admission_aware_policy_records": [
+      {
+        "admission_aware_policy_id": "v3_1_admission_policy_20cf367c12da66bc",
+        "admission_aware_policy_status": "policy_satisfied_for_review",
+        "admission_status": "admitted_for_review",
+        "fixture_id": null,
+        "fixture_input_status": "unsupported",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "non_production_authorization": {
+          "legacy_planner_ownership_preserved": true,
+          "policy_authorizes_production_routing": false,
+          "satisfied_for_review_is_production_approval": false,
+          "trusted_default_routing": false
+        },
+        "original_policy_status": "unsupported",
+        "original_reason_codes": [
+          "unsupported_fixture_set_visible"
+        ],
+        "production_output_affected": false,
+        "remaining_blockers": [],
+        "source_admission_impact": "unsupported_source_reclassified_by_admission",
+        "source_id": "v3_1_persisted_fixture_sets_report"
+      }
+    ],
+    "admission_aware_status_counts": {
+      "blocked_invalid_review_state": 0,
+      "blocked_missing_admission_record": 0,
+      "blocked_missing_fixture_input": 0,
+      "blocked_policy_failure": 0,
+      "blocked_source_not_admitted": 0,
+      "policy_satisfied_for_review": 1
+    },
+    "blocker_reason_counts": {},
+    "deterministic_hash": "e12700ae0a732d421457a52756aeab67c214eb581557468417f87778e8a4f0ba",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_admission_aware_policy_evaluation",
+      "stable_generation_token": "v3_1_phase_12_admission_aware_policy_evaluation_token"
+    },
+    "remaining_blocker_summary": [],
+    "run": {
+      "fixture_source_admission_hash": "e45176c79cec01924368d35333c35857e969b396456814f38a56be5d3af00ffe",
+      "record_count": 1,
+      "review_policy_evaluation_hash": "e4c4d8158ed053e7f882796308ae244780a41a203a6c44608789c091cddab766",
+      "reviewed_fixture_inputs_hash": "bcc71a0573a2de21ed29ab1a7cae6ac04323875d4abccc85e387f4f266f6e077",
+      "run_id": "v3_1_phase_12_admission_aware_policy_evaluation"
+    },
+    "safety_confirmations": {
+      "admission_aware_policy_authorizes_production_routing": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "remaining_blockers_hidden": false,
+      "runtime_state_mutated": false,
+      "satisfied_for_review_is_production_approval": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.admission_aware_policy_evaluation.1",
+    "source_admission_impact_summary": {
+      "unsupported_source_reclassified_by_admission": 1
+    },
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "records_evaluated": 1,
+      "satisfied_for_review_count": 1,
+      "trusted_data_default_truth": false
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "e12700ae0a732d421457a52756aeab67c214eb581557468417f87778e8a4f0ba",
+    "sample_hash": "e12700ae0a732d421457a52756aeab67c214eb581557468417f87778e8a4f0ba",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_admission_aware_policy_evaluation_report"
+  },
+  "phase": "v3.1_phase_12_admission_aware_policy_evaluation",
+  "phase_12_boundaries": [
+    "admission-aware policy evaluation is observational governance metadata only",
+    "policy_satisfied_for_review is not production approval",
+    "admission-aware policy does not authorize production routing",
+    "non-source policy failures remain visible",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.admission_aware_policy_evaluation_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "records_evaluated": 1,
+    "satisfied_for_review_count": 1,
+    "trusted_data_default_truth": false
+  }
+}

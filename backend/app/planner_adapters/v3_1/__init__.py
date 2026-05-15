@@ -41,6 +41,10 @@ from .approval_blocker_diagnosis import (
     APPROVAL_BLOCKER_CLASSIFICATIONS,
     build_approval_blocker_diagnosis,
 )
+from .admission_aware_policy_evaluation import (
+    ADMISSION_AWARE_POLICY_STATUSES,
+    build_admission_aware_policy_evaluation,
+)
 from .approval_manifest_diff_audit import (
     APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
     audit_approval_manifest_diffs,
@@ -72,6 +76,7 @@ __all__ = [
     "FIXTURE_SOURCE_ADMISSION_STATUSES",
     "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
     "APPROVAL_BLOCKER_CLASSIFICATIONS",
+    "ADMISSION_AWARE_POLICY_STATUSES",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
     "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
@@ -91,6 +96,7 @@ __all__ = [
     "evaluate_fixture_source_admission_policy",
     "build_approval_manifest_candidates",
     "build_approval_blocker_diagnosis",
+    "build_admission_aware_policy_evaluation",
     "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
