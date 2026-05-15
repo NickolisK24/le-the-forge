@@ -26,15 +26,20 @@ from typing import Any, Callable, Optional
 import redis as redis_lib
 
 _client: Optional[redis_lib.Redis] = None
+_client_url: Optional[str] = None
 
 
 def _get_client() -> redis_lib.Redis:
     """Return a shared Redis client, creating it on first use."""
-    global _client
-    if _client is None:
-        from flask import current_app
-        url = current_app.config["REDIS_URL"]
+    global _client, _client_url
+    from flask import current_app
+
+    url = current_app.config["REDIS_URL"]
+    if url == "memory://":
+        raise RuntimeError("Redis cache disabled for in-process test mode")
+    if _client is None or _client_url != url:
         _client = redis_lib.from_url(url, decode_responses=True, socket_connect_timeout=2)
+        _client_url = url
     return _client
 
 

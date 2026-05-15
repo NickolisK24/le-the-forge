@@ -4,6 +4,9 @@ from app.planner_adapters.v2.golden_baselines import BASELINE_STATUSES, build_go
 from scripts.report_v2_golden_baseline_plan import build_v2_golden_baseline_plan_report
 
 
+REPO_ROOT = Path(__file__).resolve().parents[2]
+
+
 def test_v2_golden_baseline_plan_has_required_top_level_keys():
     report = build_v2_golden_baseline_plan_report()
 
@@ -36,7 +39,9 @@ def test_v2_golden_baseline_fixture_paths_are_unique_and_exist_for_safe_now():
     assert len(plan["fixture_paths"]) == len(set(fixture_paths))
     for category in plan["baseline_categories"]:
         if category["safe_to_create_now"]:
-            assert Path(category["fixture_path"]).exists()
+            fixture_path = Path(category["fixture_path"])
+            assert not fixture_path.is_absolute()
+            assert (REPO_ROOT / fixture_path).exists()
 
 
 def test_v2_golden_baseline_mechanical_categories_are_blocked():
