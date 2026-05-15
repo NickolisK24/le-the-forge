@@ -69,6 +69,18 @@ class Config:
     )
     FORGE_SAFE_AFFIX_BUNDLE_PATH = os.environ.get("FORGE_SAFE_AFFIX_BUNDLE_PATH", "")
 
+    # v3.1 trusted repository production shadow consumption. Disabled by
+    # default; when enabled it is observational only and cannot become the
+    # production planner/runtime truth source.
+    V3_1_TRUSTED_PRODUCTION_SHADOW_CONSUMPTION_ENABLED = (
+        os.environ.get("V3_1_TRUSTED_PRODUCTION_SHADOW_CONSUMPTION_ENABLED", "").lower()
+        in {"1", "true", "yes", "on"}
+    )
+    V3_1_TRUSTED_PRODUCTION_SHADOW_ALLOWED_DOMAINS = os.environ.get(
+        "V3_1_TRUSTED_PRODUCTION_SHADOW_ALLOWED_DOMAINS",
+        "affix,item_base,passive_skill",
+    )
+
 
 class DevelopmentConfig(Config):
     DEBUG = True

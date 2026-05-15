@@ -1,0 +1,244 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "0381c24254add958e4905bcdd250b90c059ab8e65e487a0f517e345e4ac0ff5e",
+    "sample_hash": "0381c24254add958e4905bcdd250b90c059ab8e65e487a0f517e345e4ac0ff5e",
+    "timestamp_excluded_from_hash": true
+  },
+  "disabled_gate_sample": {
+    "deterministic_hash": "410a361efcfedb9298e5d3e036581f5a0405fbd1ed9473ce29ce9314450044f7",
+    "fallback_behavior": {
+      "fallback_occurred": false,
+      "fallback_possible": true,
+      "fallback_silent": false,
+      "fallback_target": "legacy_production_runtime",
+      "reported_unavailable_repositories": [],
+      "reported_unsupported_domains": []
+    },
+    "gate": {
+      "default_enabled": false,
+      "enabled": false,
+      "legacy_path_still_active": true,
+      "mode": "disabled",
+      "name": "V3_1_TRUSTED_PRODUCTION_SHADOW_CONSUMPTION_ENABLED",
+      "production_output_affected": false,
+      "production_truth_source": "legacy",
+      "shadow_only": true,
+      "trusted_path_shadowed_only": false
+    },
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "legacy_routing": {
+      "active": true,
+      "output_hash": "fb55fe26bac749857408949a969da4d2b77d23ac0d26a7c2f9e0516cd2b3dcee",
+      "path_name": "legacy_production_runtime",
+      "production_truth_source": true,
+      "trusted_shadow_can_replace_output": false
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_trusted_shadow_consumption"
+    },
+    "routing_category_counts": {},
+    "run": {
+      "allowed_domains": [
+        "affix",
+        "item_base",
+        "passive_skill"
+      ],
+      "probe_count": 0,
+      "run_id": "v3_1_phase_1_trusted_shadow_consumption"
+    },
+    "safety_confirmations": {
+      "legacy_path_removed": false,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "silent_fallback_allowed": false,
+      "trusted_repository_used_as_truth_source": false,
+      "unsupported_domains_production_safe": false
+    },
+    "schema_version": "v3_1.trusted_shadow_consumption.1",
+    "summary": {
+      "deterministic": true,
+      "legacy_path_still_active": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "trusted_entity_count": 0,
+      "trusted_path_shadowed_only": false,
+      "trusted_repository_available": false,
+      "trusted_repository_available_count": 0,
+      "trusted_repository_unavailable_count": 0,
+      "unsupported_domain_count": 0
+    },
+    "trusted_repository_rows": [],
+    "unsupported_or_blocked_domains": []
+  },
+  "enabled_shadow_sample": {
+    "deterministic_hash": "0381c24254add958e4905bcdd250b90c059ab8e65e487a0f517e345e4ac0ff5e",
+    "fallback_behavior": {
+      "fallback_occurred": false,
+      "fallback_possible": true,
+      "fallback_silent": false,
+      "fallback_target": "legacy_production_runtime",
+      "reported_unavailable_repositories": [],
+      "reported_unsupported_domains": []
+    },
+    "gate": {
+      "default_enabled": false,
+      "enabled": true,
+      "legacy_path_still_active": true,
+      "mode": "shadow",
+      "name": "V3_1_TRUSTED_PRODUCTION_SHADOW_CONSUMPTION_ENABLED",
+      "production_output_affected": false,
+      "production_truth_source": "legacy",
+      "shadow_only": true,
+      "trusted_path_shadowed_only": true
+    },
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "legacy_routing": {
+      "active": true,
+      "output_hash": "fb55fe26bac749857408949a969da4d2b77d23ac0d26a7c2f9e0516cd2b3dcee",
+      "path_name": "legacy_production_runtime",
+      "production_truth_source": true,
+      "trusted_shadow_can_replace_output": false
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_trusted_shadow_consumption"
+    },
+    "routing_category_counts": {
+      "trusted_repository_shadowed": 3
+    },
+    "run": {
+      "allowed_domains": [
+        "affix",
+        "item_base",
+        "passive_skill"
+      ],
+      "probe_count": 3,
+      "run_id": "v3_1_phase_1_trusted_shadow_consumption"
+    },
+    "safety_confirmations": {
+      "legacy_path_removed": false,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "silent_fallback_allowed": false,
+      "trusted_repository_used_as_truth_source": false,
+      "unsupported_domains_production_safe": false
+    },
+    "schema_version": "v3_1.trusted_shadow_consumption.1",
+    "summary": {
+      "deterministic": true,
+      "legacy_path_still_active": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "trusted_entity_count": 1645,
+      "trusted_path_shadowed_only": true,
+      "trusted_repository_available": true,
+      "trusted_repository_available_count": 3,
+      "trusted_repository_unavailable_count": 0,
+      "unsupported_domain_count": 0
+    },
+    "trusted_repository_rows": [
+      {
+        "blocked_reasons": [],
+        "domain": "affix",
+        "fallback_behavior": "none_required_shadow_only",
+        "legacy_path_still_active": true,
+        "metadata": {
+          "entity_count": 1098,
+          "schema_version": "v2.affix_bundle.1",
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_affix_bundle.json"
+        },
+        "production_output_affected": false,
+        "repository_name": "v2_affix_bundle",
+        "routing_status": "trusted_repository_shadowed",
+        "trusted_entity_count": 1098,
+        "trusted_path_shadowed_only": true,
+        "trusted_repository_available": true
+      },
+      {
+        "blocked_reasons": [],
+        "domain": "item_base",
+        "fallback_behavior": "none_required_shadow_only",
+        "legacy_path_still_active": true,
+        "metadata": {
+          "entity_count": 542,
+          "schema_version": "v2.item_base_bundle.1",
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_item_base_bundle.json"
+        },
+        "production_output_affected": false,
+        "repository_name": "v2_item_base_bundle",
+        "routing_status": "trusted_repository_shadowed",
+        "trusted_entity_count": 542,
+        "trusted_path_shadowed_only": true,
+        "trusted_repository_available": true
+      },
+      {
+        "blocked_reasons": [],
+        "domain": "passive_skill",
+        "fallback_behavior": "none_required_shadow_only",
+        "legacy_path_still_active": true,
+        "metadata": {
+          "entity_count": 5,
+          "schema_version": "v2.passive_tree_bundle.1",
+          "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v2_passive_tree_bundle.json"
+        },
+        "production_output_affected": false,
+        "repository_name": "v2_passive_tree_bundle",
+        "routing_status": "trusted_repository_shadowed",
+        "trusted_entity_count": 5,
+        "trusted_path_shadowed_only": true,
+        "trusted_repository_available": true
+      }
+    ],
+    "unsupported_or_blocked_domains": []
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_trusted_shadow_consumption_report"
+  },
+  "phase": "v3.1_phase_1_trusted_production_shadow_consumption_gate",
+  "phase_1_boundaries": [
+    "trusted repositories may be inspected only in shadow mode",
+    "legacy production routing remains the truth source",
+    "trusted repository availability failures are reported explicitly",
+    "unsupported trusted domains remain blocked",
+    "production default routing is not authorized"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.trusted_shadow_consumption_report.1",
+  "summary": {
+    "deterministic": true,
+    "disabled_production_output_affected": false,
+    "enabled_production_output_affected": false,
+    "gate_default_enabled": false,
+    "legacy_path_still_active": true,
+    "trusted_entity_count": 1645,
+    "trusted_path_shadowed_only": true,
+    "trusted_repository_available_count": 3,
+    "trusted_repository_unavailable_count": 0,
+    "unsupported_domain_count": 0
+  }
+}
