@@ -1,0 +1,1850 @@
+{
+  "blocked_comparison_categories": [
+    "blocked_missing_candidate",
+    "blocked_missing_current",
+    "blocked_missing_provenance",
+    "blocked_unsupported_mechanic",
+    "blocked_text_only_mechanic",
+    "blocked_scripted_mechanic",
+    "blocked_unknown_operation",
+    "blocked_unresolved_stat_identity",
+    "blocked_unresolved_skill_identity",
+    "blocked_ambiguous_skill_identity",
+    "blocked_value_normalization",
+    "blocked_conditional_semantics",
+    "blocked_triggered_semantics"
+  ],
+  "blocked_reasons": [
+    {
+      "count": 1,
+      "reason": "ambiguous_skill_identity"
+    },
+    {
+      "count": 1,
+      "reason": "candidate_delta_not_approved_for_dry_run"
+    },
+    {
+      "count": 1,
+      "reason": "conditional_semantics_unresolved"
+    },
+    {
+      "count": 1,
+      "reason": "missing_candidate_output"
+    },
+    {
+      "count": 1,
+      "reason": "missing_candidate_provenance"
+    },
+    {
+      "count": 1,
+      "reason": "scripted_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "text_only_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "triggered_semantics_unresolved"
+    },
+    {
+      "count": 1,
+      "reason": "unknown_operation_semantics"
+    },
+    {
+      "count": 1,
+      "reason": "unresolved_skill_identity"
+    },
+    {
+      "count": 1,
+      "reason": "unresolved_stat_identity"
+    },
+    {
+      "count": 1,
+      "reason": "unsupported_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "value_normalization_audit_only"
+    }
+  ],
+  "component_summary": {
+    "passive_node": 2,
+    "skill_modifier": 3,
+    "skill_node": 11
+  },
+  "current_limitations": [
+    "candidate rows are fixtures or future adapter output, not production planner execution",
+    "passive and skill identity gaps remain blocking conditions",
+    "conditional and triggered semantics are visible blockers, not implemented formulas",
+    "cooldown, duration, chance, proc, scripted, text-only, combat, DPS, crafting, and simulation behavior remains blocked",
+    "changed deltas require explicit dry-run approval and baseline snapshot evidence"
+  ],
+  "delta_category_counts": {
+    "accepted_explicit_dry_run_delta": 1,
+    "accepted_unchanged": 3,
+    "blocked_ambiguous_skill_identity": 1,
+    "blocked_conditional_semantics": 1,
+    "blocked_missing_candidate": 1,
+    "blocked_missing_provenance": 1,
+    "blocked_scripted_mechanic": 1,
+    "blocked_text_only_mechanic": 1,
+    "blocked_triggered_semantics": 1,
+    "blocked_unknown_operation": 1,
+    "blocked_unresolved_skill_identity": 1,
+    "blocked_unresolved_stat_identity": 1,
+    "blocked_unsupported_mechanic": 1,
+    "blocked_value_normalization": 1,
+    "rejected_unapproved_delta": 1
+  },
+  "disabled_response": {
+    "blocked_reasons": [],
+    "candidate_snapshot": {
+      "metadata_by_key": {},
+      "snapshot_id": null,
+      "value_count": 0
+    },
+    "comparison_rows": [],
+    "component_summary": {},
+    "delta_category_counts": {},
+    "generated_at": "2026-05-15T01:05:08.190265+00:00",
+    "metadata": {
+      "default_enabled": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "domain": "passive_skill",
+      "experimental": true,
+      "planner_remap_performed": false,
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "source": "v3_passive_skill_mechanical_comparison",
+      "supported_component_types": [
+        "passive_node",
+        "skill_modifier",
+        "skill_node"
+      ]
+    },
+    "mode": {
+      "active": false,
+      "default_enabled": false,
+      "enabled": false,
+      "experimental": true,
+      "gate_mechanism": "explicit_enabled_argument",
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "status": "disabled"
+    },
+    "operation_summary": {},
+    "rollback_visibility": {
+      "debug_visibility": [
+        "deterministic_hash",
+        "delta_category_counts",
+        "blocked_reasons",
+        "comparison_rows"
+      ],
+      "rollback_required_for_production": false,
+      "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+    },
+    "run": {
+      "comparison_row_count": 0,
+      "component_types": [
+        "passive_node",
+        "skill_modifier",
+        "skill_node"
+      ],
+      "domain": "passive_skill",
+      "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+    },
+    "safety_confirmations": {
+      "conditional_semantics_implemented": false,
+      "cooldown_duration_chance_formulas_added": false,
+      "mechanical_calculations_performed": false,
+      "passive_skill_domain_only": true,
+      "planner_remap_performed": false,
+      "production_consumed": false,
+      "production_enabled": false,
+      "production_planner_output_changed": false,
+      "runtime_stat_aggregation_changed": false,
+      "skill_identity_bridge_added": false,
+      "tooltip_semantics_inferred": false,
+      "triggered_semantics_implemented": false
+    },
+    "schema_version": "v3.passive_skill_mechanical_comparison.1",
+    "semantic_summary": {},
+    "skill_identity_summary": {},
+    "summary": {
+      "accepted_delta_count": 0,
+      "blocked_delta_count": 0,
+      "candidate_row_count": 0,
+      "candidate_simple_explainable_row_count": 0,
+      "current_row_count": 0,
+      "deterministic": true,
+      "domain": "passive_skill",
+      "mechanical_calculations_performed": false,
+      "production_consumed": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 0
+    }
+  },
+  "generated_at": "2026-05-15T01:05:08.191655+00:00",
+  "metadata": {
+    "default_enabled": false,
+    "experimental": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_consumer": false,
+    "read_only": true,
+    "source": "v3_passive_skill_mechanical_comparison"
+  },
+  "mode_disabled_behavior": {
+    "active": false,
+    "default_enabled": false,
+    "enabled": false,
+    "experimental": true,
+    "gate_mechanism": "explicit_enabled_argument",
+    "production_consumer": false,
+    "production_enabled": false,
+    "read_only": true,
+    "status": "disabled"
+  },
+  "mode_enabled_behavior": {
+    "active": true,
+    "default_enabled": false,
+    "enabled": true,
+    "experimental": true,
+    "gate_mechanism": "explicit_enabled_argument",
+    "production_consumer": false,
+    "production_enabled": false,
+    "read_only": true,
+    "status": "enabled"
+  },
+  "operation_summary": {
+    "chance": 1,
+    "flat": 8,
+    "increased": 5,
+    "more": 1,
+    "unknown": 1
+  },
+  "remaining_blockers_before_limited_opt_in_mechanical_adapter_mode": [
+    "approved passive and skill identity bridge policy",
+    "approved conditional and triggered operation semantics",
+    "cooldown, duration, and chance formula contracts",
+    "passive and skill mechanical golden baselines",
+    "candidate passive and skill adapters backed by source data, not tooltip inference",
+    "dry-run parity review across item, affix, passive, and skill domains",
+    "explicit limited opt-in adapter gate review"
+  ],
+  "safety_confirmations": {
+    "accepted_delta_count": 4,
+    "blocked_delta_count": 12,
+    "candidate_inputs_only": true,
+    "conditional_semantics_implemented": false,
+    "cooldown_duration_chance_formulas_added": false,
+    "crafting_behavior_changed": false,
+    "mechanical_calculations_performed": false,
+    "passive_skill_domain_only": true,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "production_enabled": false,
+    "production_planner_imported": false,
+    "production_planner_output_changed": false,
+    "rejected_delta_count": 1,
+    "runtime_stat_aggregation_changed": false,
+    "scripted_mechanics_promoted": false,
+    "simulation_behavior_changed": false,
+    "skill_identity_bridge_added": false,
+    "stat_aggregation_behavior_changed": false,
+    "text_only_mechanics_promoted": false,
+    "tooltip_semantics_inferred": false,
+    "triggered_semantics_implemented": false,
+    "unsupported_mechanics_promoted": false,
+    "value_normalization_promoted": false
+  },
+  "sample_comparison": {
+    "blocked_reasons": [
+      {
+        "count": 1,
+        "reason": "ambiguous_skill_identity"
+      },
+      {
+        "count": 1,
+        "reason": "candidate_delta_not_approved_for_dry_run"
+      },
+      {
+        "count": 1,
+        "reason": "conditional_semantics_unresolved"
+      },
+      {
+        "count": 1,
+        "reason": "missing_candidate_output"
+      },
+      {
+        "count": 1,
+        "reason": "missing_candidate_provenance"
+      },
+      {
+        "count": 1,
+        "reason": "scripted_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "text_only_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "triggered_semantics_unresolved"
+      },
+      {
+        "count": 1,
+        "reason": "unknown_operation_semantics"
+      },
+      {
+        "count": 1,
+        "reason": "unresolved_skill_identity"
+      },
+      {
+        "count": 1,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 1,
+        "reason": "unsupported_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "value_normalization_audit_only"
+      }
+    ],
+    "candidate_snapshot": {
+      "metadata_by_key": {
+        "acolyte:passive:1::passive_node::passive:1::none::health::flat": {
+          "approval_status": null,
+          "component_type": "passive_node",
+          "entity_id": "acolyte:passive:1",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "none",
+          "skill_identity_status": "resolved",
+          "source_id": "passive:1",
+          "stat_id": "health",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "mage:skill:fireball:2::skill_node::skill:fireball:2::fireball::fire_damage::increased": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "mage:skill:fireball:2",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:fireball:2",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "mage:skill:fireball:3::skill_modifier::skill:fireball:3::fireball::mana_cost::flat": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "mage:skill:fireball:3",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:fireball:3",
+          "stat_id": "mana_cost",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "sentinel:passive:delta::passive_node::passive:delta::none::armor::flat": {
+          "approval_status": "accepted_dry_run_delta",
+          "component_type": "passive_node",
+          "entity_id": "sentinel:passive:delta",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "none",
+          "skill_identity_status": "resolved",
+          "source_id": "passive:delta",
+          "stat_id": "armor",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:ambiguous::skill_node::skill:ambiguous::ambiguous::cold_damage::increased": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:ambiguous",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "ambiguous",
+          "skill_identity_status": "ambiguous",
+          "source_id": "skill:ambiguous",
+          "stat_id": "cold_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:audit-value::skill_node::skill:audit-value::fireball::minion_damage::increased": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:audit-value",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:audit-value",
+          "stat_id": "minion_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "audit_only"
+        },
+        "skill:conditional::skill_node::skill:conditional::fireball::fire_damage::more": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:conditional",
+          "operation": "more",
+          "semantic_status": "conditional",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:conditional",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:missing-provenance::skill_node::skill:missing-provenance::fireball::health::flat": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:missing-provenance",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:missing-provenance",
+          "stat_id": "health",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:rejected-delta::skill_node::skill:rejected-delta::fireball::fire_damage::increased": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:rejected-delta",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:rejected-delta",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:scripted::skill_modifier::skill:scripted::fireball::scripted_proc::flat": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "skill:scripted",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:scripted",
+          "stat_id": "scripted_proc",
+          "stat_identity_status": "resolved",
+          "support_status": "scripted",
+          "value_normalization_status": "approved"
+        },
+        "skill:text-only::skill_node::skill:text-only::fireball::display_note::flat": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:text-only",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:text-only",
+          "stat_id": "display_note",
+          "stat_identity_status": "resolved",
+          "support_status": "text_only",
+          "value_normalization_status": "approved"
+        },
+        "skill:triggered::skill_modifier::skill:triggered::fireball::ignite_chance::chance": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "skill:triggered",
+          "operation": "chance",
+          "semantic_status": "triggered",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:triggered",
+          "stat_id": "ignite_chance",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:unknown-operation::skill_node::skill:unknown-operation::fireball::void_damage::unknown": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unknown-operation",
+          "operation": "unknown",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unknown-operation",
+          "stat_id": "void_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:unknown-stat::skill_node::skill:unknown-stat::fireball::unknown_stat::flat": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unknown-stat",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unknown-stat",
+          "stat_id": "unknown_stat",
+          "stat_identity_status": "unresolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:unresolved::skill_node::skill:unresolved::unknown::fire_damage::increased": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unresolved",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "unknown",
+          "skill_identity_status": "unresolved",
+          "source_id": "skill:unresolved",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "skill:unsupported::skill_node::skill:unsupported::fireball::summon_behavior::flat": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unsupported",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unsupported",
+          "stat_id": "summon_behavior",
+          "stat_identity_status": "resolved",
+          "support_status": "unsupported",
+          "value_normalization_status": "approved"
+        }
+      },
+      "snapshot_id": "v3_passive_skill_candidate",
+      "value_count": 16
+    },
+    "comparison_rows": [
+      {
+        "blocked_reasons": [],
+        "candidate_value": 10,
+        "current_value": 10,
+        "delta_category": "accepted_unchanged",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "acolyte:passive:1::passive_node::passive:1::none::health::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "passive_node",
+          "entity_id": "acolyte:passive:1",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "none",
+          "skill_identity_status": "resolved",
+          "source_id": "passive:1",
+          "stat_id": "health",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [],
+        "candidate_value": 20,
+        "current_value": 20,
+        "delta_category": "accepted_unchanged",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "mage:skill:fireball:2::skill_node::skill:fireball:2::fireball::fire_damage::increased",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "mage:skill:fireball:2",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:fireball:2",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [],
+        "candidate_value": -2,
+        "current_value": -2,
+        "delta_category": "accepted_unchanged",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "mage:skill:fireball:3::skill_modifier::skill:fireball:3::fireball::mana_cost::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "mage:skill:fireball:3",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:fireball:3",
+          "stat_id": "mana_cost",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [],
+        "candidate_value": 7,
+        "current_value": 5,
+        "delta_category": "accepted_explicit_dry_run_delta",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "sentinel:passive:delta::passive_node::passive:delta::none::armor::flat",
+        "passive_skill_metadata": {
+          "approval_status": "accepted_dry_run_delta",
+          "component_type": "passive_node",
+          "entity_id": "sentinel:passive:delta",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "none",
+          "skill_identity_status": "resolved",
+          "source_id": "passive:delta",
+          "stat_id": "armor",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture",
+          "baseline:passive_skill_delta_sample"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [
+          "missing_candidate_output"
+        ],
+        "candidate_value": null,
+        "current_value": 4,
+        "delta_category": "blocked_missing_candidate",
+        "metadata": {
+          "candidate_operation_status": null,
+          "candidate_present": false,
+          "candidate_semantic_status": null,
+          "candidate_skill_identity_status": null,
+          "candidate_stat_identity_status": null,
+          "candidate_support_status": null,
+          "candidate_value_normalization_status": null,
+          "current_present": true
+        },
+        "output_key": "sentinel:passive:missing-candidate::passive_node::passive:missing-candidate::none::block_chance::increased",
+        "passive_skill_metadata": {},
+        "provenance": [],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "ambiguous_skill_identity"
+        ],
+        "candidate_value": 3,
+        "current_value": 3,
+        "delta_category": "blocked_ambiguous_skill_identity",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "ambiguous",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:ambiguous::skill_node::skill:ambiguous::ambiguous::cold_damage::increased",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:ambiguous",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "ambiguous",
+          "skill_identity_status": "ambiguous",
+          "source_id": "skill:ambiguous",
+          "stat_id": "cold_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "value_normalization_audit_only"
+        ],
+        "candidate_value": 8,
+        "current_value": 8,
+        "delta_category": "blocked_value_normalization",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "audit_only",
+          "current_present": true
+        },
+        "output_key": "skill:audit-value::skill_node::skill:audit-value::fireball::minion_damage::increased",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:audit-value",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:audit-value",
+          "stat_id": "minion_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "audit_only"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "conditional_semantics_unresolved"
+        ],
+        "candidate_value": 15,
+        "current_value": 15,
+        "delta_category": "blocked_conditional_semantics",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "conditional",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:conditional::skill_node::skill:conditional::fireball::fire_damage::more",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:conditional",
+          "operation": "more",
+          "semantic_status": "conditional",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:conditional",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "missing_candidate_provenance"
+        ],
+        "candidate_value": 8,
+        "current_value": 8,
+        "delta_category": "blocked_missing_provenance",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:missing-provenance::skill_node::skill:missing-provenance::fireball::health::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:missing-provenance",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:missing-provenance",
+          "stat_id": "health",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "candidate_delta_not_approved_for_dry_run"
+        ],
+        "candidate_value": 9,
+        "current_value": 7,
+        "delta_category": "rejected_unapproved_delta",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:rejected-delta::skill_node::skill:rejected-delta::fireball::fire_damage::increased",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:rejected-delta",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:rejected-delta",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "rejected"
+      },
+      {
+        "blocked_reasons": [
+          "scripted_mechanic"
+        ],
+        "candidate_value": 1,
+        "current_value": 1,
+        "delta_category": "blocked_scripted_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "scripted",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:scripted::skill_modifier::skill:scripted::fireball::scripted_proc::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "skill:scripted",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:scripted",
+          "stat_id": "scripted_proc",
+          "stat_identity_status": "resolved",
+          "support_status": "scripted",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "text_only_mechanic"
+        ],
+        "candidate_value": 1,
+        "current_value": 1,
+        "delta_category": "blocked_text_only_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "text_only",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:text-only::skill_node::skill:text-only::fireball::display_note::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:text-only",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:text-only",
+          "stat_id": "display_note",
+          "stat_identity_status": "resolved",
+          "support_status": "text_only",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "triggered_semantics_unresolved"
+        ],
+        "candidate_value": 10,
+        "current_value": 10,
+        "delta_category": "blocked_triggered_semantics",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "triggered",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:triggered::skill_modifier::skill:triggered::fireball::ignite_chance::chance",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_modifier",
+          "entity_id": "skill:triggered",
+          "operation": "chance",
+          "semantic_status": "triggered",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:triggered",
+          "stat_id": "ignite_chance",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unknown_operation_semantics"
+        ],
+        "candidate_value": 7,
+        "current_value": 7,
+        "delta_category": "blocked_unknown_operation",
+        "metadata": {
+          "candidate_operation_status": "unknown",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:unknown-operation::skill_node::skill:unknown-operation::fireball::void_damage::unknown",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unknown-operation",
+          "operation": "unknown",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unknown-operation",
+          "stat_id": "void_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unresolved_stat_identity"
+        ],
+        "candidate_value": 2,
+        "current_value": 2,
+        "delta_category": "blocked_unresolved_stat_identity",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "unresolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:unknown-stat::skill_node::skill:unknown-stat::fireball::unknown_stat::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unknown-stat",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unknown-stat",
+          "stat_id": "unknown_stat",
+          "stat_identity_status": "unresolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unresolved_skill_identity"
+        ],
+        "candidate_value": 3,
+        "current_value": 3,
+        "delta_category": "blocked_unresolved_skill_identity",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "unresolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:unresolved::skill_node::skill:unresolved::unknown::fire_damage::increased",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unresolved",
+          "operation": "increased",
+          "semantic_status": "simple",
+          "skill_id": "unknown",
+          "skill_identity_status": "unresolved",
+          "source_id": "skill:unresolved",
+          "stat_id": "fire_damage",
+          "stat_identity_status": "resolved",
+          "support_status": "supported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unsupported_mechanic"
+        ],
+        "candidate_value": 1,
+        "current_value": 1,
+        "delta_category": "blocked_unsupported_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_semantic_status": "simple",
+          "candidate_skill_identity_status": "resolved",
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "unsupported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill:unsupported::skill_node::skill:unsupported::fireball::summon_behavior::flat",
+        "passive_skill_metadata": {
+          "approval_status": null,
+          "component_type": "skill_node",
+          "entity_id": "skill:unsupported",
+          "operation": "flat",
+          "semantic_status": "simple",
+          "skill_id": "fireball",
+          "skill_identity_status": "resolved",
+          "source_id": "skill:unsupported",
+          "stat_id": "summon_behavior",
+          "stat_identity_status": "resolved",
+          "support_status": "unsupported",
+          "value_normalization_status": "approved"
+        },
+        "provenance": [
+          "candidate:passive_skill_fixture"
+        ],
+        "status": "blocked"
+      }
+    ],
+    "component_summary": {
+      "passive_node": 2,
+      "skill_modifier": 3,
+      "skill_node": 11
+    },
+    "delta_category_counts": {
+      "accepted_explicit_dry_run_delta": 1,
+      "accepted_unchanged": 3,
+      "blocked_ambiguous_skill_identity": 1,
+      "blocked_conditional_semantics": 1,
+      "blocked_missing_candidate": 1,
+      "blocked_missing_provenance": 1,
+      "blocked_scripted_mechanic": 1,
+      "blocked_text_only_mechanic": 1,
+      "blocked_triggered_semantics": 1,
+      "blocked_unknown_operation": 1,
+      "blocked_unresolved_skill_identity": 1,
+      "blocked_unresolved_stat_identity": 1,
+      "blocked_unsupported_mechanic": 1,
+      "blocked_value_normalization": 1,
+      "rejected_unapproved_delta": 1
+    },
+    "deterministic_hash": "b967b7bd4d2251ef9234ee2d3962bbebce31c05ead1f046ad77f219c7f0cd0c3",
+    "dry_run_envelope": {
+      "blocked_reasons": [
+        {
+          "count": 1,
+          "reason": "ambiguous_skill_identity"
+        },
+        {
+          "count": 1,
+          "reason": "candidate_delta_not_approved_for_dry_run"
+        },
+        {
+          "count": 1,
+          "reason": "conditional_semantics_unresolved"
+        },
+        {
+          "count": 1,
+          "reason": "missing_candidate_output"
+        },
+        {
+          "count": 1,
+          "reason": "missing_candidate_provenance"
+        },
+        {
+          "count": 1,
+          "reason": "scripted_mechanic"
+        },
+        {
+          "count": 1,
+          "reason": "text_only_mechanic"
+        },
+        {
+          "count": 1,
+          "reason": "triggered_semantics_unresolved"
+        },
+        {
+          "count": 1,
+          "reason": "unknown_operation_semantics"
+        },
+        {
+          "count": 1,
+          "reason": "unresolved_skill_identity"
+        },
+        {
+          "count": 1,
+          "reason": "unresolved_stat_identity"
+        },
+        {
+          "count": 1,
+          "reason": "unsupported_mechanic"
+        },
+        {
+          "count": 1,
+          "reason": "value_normalization_audit_only"
+        }
+      ],
+      "comparison_rows": [
+        {
+          "blocked_reasons": [],
+          "candidate_value": 10,
+          "current_value": 10,
+          "delta_category": "accepted_unchanged",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "acolyte:passive:1::passive_node::passive:1::none::health::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "accepted"
+        },
+        {
+          "blocked_reasons": [],
+          "candidate_value": 20,
+          "current_value": 20,
+          "delta_category": "accepted_unchanged",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "mage:skill:fireball:2::skill_node::skill:fireball:2::fireball::fire_damage::increased",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "accepted"
+        },
+        {
+          "blocked_reasons": [],
+          "candidate_value": -2,
+          "current_value": -2,
+          "delta_category": "accepted_unchanged",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "mage:skill:fireball:3::skill_modifier::skill:fireball:3::fireball::mana_cost::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "accepted"
+        },
+        {
+          "blocked_reasons": [],
+          "candidate_value": 7,
+          "current_value": 5,
+          "delta_category": "accepted_explicit_dry_run_delta",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "sentinel:passive:delta::passive_node::passive:delta::none::armor::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture",
+            "baseline:passive_skill_delta_sample"
+          ],
+          "status": "accepted"
+        },
+        {
+          "blocked_reasons": [
+            "missing_candidate_output"
+          ],
+          "candidate_value": null,
+          "current_value": 4,
+          "delta_category": "blocked_missing_candidate",
+          "metadata": {
+            "candidate_operation_status": null,
+            "candidate_present": false,
+            "candidate_semantic_status": null,
+            "candidate_skill_identity_status": null,
+            "candidate_stat_identity_status": null,
+            "candidate_support_status": null,
+            "candidate_value_normalization_status": null,
+            "current_present": true
+          },
+          "output_key": "sentinel:passive:missing-candidate::passive_node::passive:missing-candidate::none::block_chance::increased",
+          "provenance": [],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "ambiguous_skill_identity"
+          ],
+          "candidate_value": 3,
+          "current_value": 3,
+          "delta_category": "blocked_ambiguous_skill_identity",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "ambiguous",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:ambiguous::skill_node::skill:ambiguous::ambiguous::cold_damage::increased",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "value_normalization_audit_only"
+          ],
+          "candidate_value": 8,
+          "current_value": 8,
+          "delta_category": "blocked_value_normalization",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "audit_only",
+            "current_present": true
+          },
+          "output_key": "skill:audit-value::skill_node::skill:audit-value::fireball::minion_damage::increased",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "conditional_semantics_unresolved"
+          ],
+          "candidate_value": 15,
+          "current_value": 15,
+          "delta_category": "blocked_conditional_semantics",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "conditional",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:conditional::skill_node::skill:conditional::fireball::fire_damage::more",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "missing_candidate_provenance"
+          ],
+          "candidate_value": 8,
+          "current_value": 8,
+          "delta_category": "blocked_missing_provenance",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:missing-provenance::skill_node::skill:missing-provenance::fireball::health::flat",
+          "provenance": [],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "candidate_delta_not_approved_for_dry_run"
+          ],
+          "candidate_value": 9,
+          "current_value": 7,
+          "delta_category": "rejected_unapproved_delta",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:rejected-delta::skill_node::skill:rejected-delta::fireball::fire_damage::increased",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "rejected"
+        },
+        {
+          "blocked_reasons": [
+            "scripted_mechanic"
+          ],
+          "candidate_value": 1,
+          "current_value": 1,
+          "delta_category": "blocked_scripted_mechanic",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "scripted",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:scripted::skill_modifier::skill:scripted::fireball::scripted_proc::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "text_only_mechanic"
+          ],
+          "candidate_value": 1,
+          "current_value": 1,
+          "delta_category": "blocked_text_only_mechanic",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "text_only",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:text-only::skill_node::skill:text-only::fireball::display_note::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "triggered_semantics_unresolved"
+          ],
+          "candidate_value": 10,
+          "current_value": 10,
+          "delta_category": "blocked_triggered_semantics",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "triggered",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:triggered::skill_modifier::skill:triggered::fireball::ignite_chance::chance",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "unknown_operation_semantics"
+          ],
+          "candidate_value": 7,
+          "current_value": 7,
+          "delta_category": "blocked_unknown_operation",
+          "metadata": {
+            "candidate_operation_status": "unknown",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:unknown-operation::skill_node::skill:unknown-operation::fireball::void_damage::unknown",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "unresolved_stat_identity"
+          ],
+          "candidate_value": 2,
+          "current_value": 2,
+          "delta_category": "blocked_unresolved_stat_identity",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "unresolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:unknown-stat::skill_node::skill:unknown-stat::fireball::unknown_stat::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "unresolved_skill_identity"
+          ],
+          "candidate_value": 3,
+          "current_value": 3,
+          "delta_category": "blocked_unresolved_skill_identity",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "unresolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "supported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:unresolved::skill_node::skill:unresolved::unknown::fire_damage::increased",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        },
+        {
+          "blocked_reasons": [
+            "unsupported_mechanic"
+          ],
+          "candidate_value": 1,
+          "current_value": 1,
+          "delta_category": "blocked_unsupported_mechanic",
+          "metadata": {
+            "candidate_operation_status": "known",
+            "candidate_present": true,
+            "candidate_semantic_status": "simple",
+            "candidate_skill_identity_status": "resolved",
+            "candidate_stat_identity_status": "resolved",
+            "candidate_support_status": "unsupported",
+            "candidate_value_normalization_status": "approved",
+            "current_present": true
+          },
+          "output_key": "skill:unsupported::skill_node::skill:unsupported::fireball::summon_behavior::flat",
+          "provenance": [
+            "candidate:passive_skill_fixture"
+          ],
+          "status": "blocked"
+        }
+      ],
+      "delta_category_counts": {
+        "accepted_explicit_dry_run_delta": 1,
+        "accepted_unchanged": 3,
+        "blocked_ambiguous_skill_identity": 1,
+        "blocked_conditional_semantics": 1,
+        "blocked_missing_candidate": 1,
+        "blocked_missing_provenance": 1,
+        "blocked_scripted_mechanic": 1,
+        "blocked_text_only_mechanic": 1,
+        "blocked_triggered_semantics": 1,
+        "blocked_unknown_operation": 1,
+        "blocked_unresolved_skill_identity": 1,
+        "blocked_unresolved_stat_identity": 1,
+        "blocked_unsupported_mechanic": 1,
+        "blocked_value_normalization": 1,
+        "rejected_unapproved_delta": 1
+      },
+      "deterministic_hash": "b0b11cd46af86d4490b9bd490711fad766b2f08e80ace4498996c076cdbed6e3",
+      "generated_at": "2026-05-15T01:05:08.190519+00:00",
+      "metadata": {
+        "default_enabled": false,
+        "deterministic_serializer": "json_sort_keys_sha256",
+        "experimental": true,
+        "planner_remap_performed": false,
+        "production_consumer": false,
+        "read_only": true,
+        "source": "v3_experimental_mechanical_dry_run"
+      },
+      "mode": {
+        "active": true,
+        "default_enabled": false,
+        "enabled": true,
+        "experimental": true,
+        "gate_mechanism": "explicit_enabled_argument",
+        "production_consumer": false,
+        "production_enabled": false,
+        "read_only": true,
+        "status": "enabled"
+      },
+      "rollback_visibility": {
+        "baseline_snapshot_id": "baseline:v3_phase_9_passive_skill_sample",
+        "debug_visibility": [
+          "deterministic_hash",
+          "delta_category_counts",
+          "blocked_reasons",
+          "comparison_rows",
+          "safety_confirmations"
+        ],
+        "rollback_required_for_production": false,
+        "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+      },
+      "run": {
+        "baseline_snapshot_id": "baseline:v3_phase_9_passive_skill_sample",
+        "candidate_snapshot_id": "v3_passive_skill_candidate",
+        "comparison_row_count": 17,
+        "current_snapshot_id": "current_passive_skill_baseline",
+        "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+      },
+      "safety_confirmations": {
+        "accepted_delta_count": 4,
+        "blocked_delta_count": 12,
+        "candidate_inputs_only": true,
+        "crafting_behavior_changed": false,
+        "mechanical_calculations_performed": false,
+        "planner_remap_performed": false,
+        "production_consumed": false,
+        "production_enabled": false,
+        "production_planner_imported": false,
+        "production_planner_output_changed": false,
+        "rejected_delta_count": 1,
+        "scripted_mechanics_promoted": false,
+        "simulation_behavior_changed": false,
+        "stat_aggregation_behavior_changed": false,
+        "text_only_mechanics_promoted": false,
+        "unsupported_mechanics_promoted": false,
+        "value_normalization_promoted": false
+      },
+      "schema_version": "v3.experimental_mechanical_dry_run.1",
+      "summary": {
+        "accepted_delta_count": 4,
+        "blocked_delta_count": 12,
+        "candidate_output_count": 16,
+        "current_output_count": 17,
+        "deterministic": true,
+        "mechanical_calculations_performed": false,
+        "production_consumed": false,
+        "production_planner_output_changed": false,
+        "rejected_delta_count": 1
+      }
+    },
+    "generated_at": "2026-05-15T01:05:08.190937+00:00",
+    "metadata": {
+      "default_enabled": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "domain": "passive_skill",
+      "experimental": true,
+      "planner_remap_performed": false,
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "source": "v3_passive_skill_mechanical_comparison",
+      "supported_component_types": [
+        "passive_node",
+        "skill_modifier",
+        "skill_node"
+      ]
+    },
+    "mode": {
+      "active": true,
+      "default_enabled": false,
+      "enabled": true,
+      "experimental": true,
+      "gate_mechanism": "explicit_enabled_argument",
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "status": "enabled"
+    },
+    "operation_summary": {
+      "chance": 1,
+      "flat": 8,
+      "increased": 5,
+      "more": 1,
+      "unknown": 1
+    },
+    "rollback_visibility": {
+      "baseline_snapshot_id": "baseline:v3_phase_9_passive_skill_sample",
+      "debug_visibility": [
+        "deterministic_hash",
+        "delta_category_counts",
+        "blocked_reasons",
+        "comparison_rows",
+        "safety_confirmations"
+      ],
+      "rollback_required_for_production": false,
+      "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+    },
+    "run": {
+      "baseline_snapshot_id": "baseline:v3_phase_9_passive_skill_sample",
+      "candidate_snapshot_id": "v3_passive_skill_candidate",
+      "comparison_row_count": 17,
+      "component_types": [
+        "passive_node",
+        "skill_modifier",
+        "skill_node"
+      ],
+      "current_snapshot_id": "current_passive_skill_baseline",
+      "domain": "passive_skill",
+      "run_id": "v3_phase_9_passive_skill_mechanical_comparison"
+    },
+    "safety_confirmations": {
+      "accepted_delta_count": 4,
+      "blocked_delta_count": 12,
+      "candidate_inputs_only": true,
+      "conditional_semantics_implemented": false,
+      "cooldown_duration_chance_formulas_added": false,
+      "crafting_behavior_changed": false,
+      "mechanical_calculations_performed": false,
+      "passive_skill_domain_only": true,
+      "planner_remap_performed": false,
+      "production_consumed": false,
+      "production_enabled": false,
+      "production_planner_imported": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 1,
+      "runtime_stat_aggregation_changed": false,
+      "scripted_mechanics_promoted": false,
+      "simulation_behavior_changed": false,
+      "skill_identity_bridge_added": false,
+      "stat_aggregation_behavior_changed": false,
+      "text_only_mechanics_promoted": false,
+      "tooltip_semantics_inferred": false,
+      "triggered_semantics_implemented": false,
+      "unsupported_mechanics_promoted": false,
+      "value_normalization_promoted": false
+    },
+    "schema_version": "v3.passive_skill_mechanical_comparison.1",
+    "semantic_summary": {
+      "conditional": 1,
+      "simple": 14,
+      "triggered": 1
+    },
+    "skill_identity_summary": {
+      "ambiguous": 1,
+      "resolved": 14,
+      "unresolved": 1
+    },
+    "summary": {
+      "accepted_delta_count": 4,
+      "blocked_delta_count": 12,
+      "candidate_output_count": 16,
+      "candidate_row_count": 16,
+      "candidate_simple_explainable_row_count": 5,
+      "current_output_count": 17,
+      "current_row_count": 17,
+      "deterministic": true,
+      "domain": "passive_skill",
+      "mechanical_calculations_performed": false,
+      "production_consumed": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 1
+    }
+  },
+  "schema_version": "v3.passive_skill_mechanical_comparison_report.1",
+  "semantic_summary": {
+    "conditional": 1,
+    "simple": 14,
+    "triggered": 1
+  },
+  "skill_identity_summary": {
+    "ambiguous": 1,
+    "resolved": 14,
+    "unresolved": 1
+  },
+  "summary": {
+    "accepted_delta_count": 4,
+    "blocked_delta_count": 12,
+    "candidate_output_count": 16,
+    "candidate_row_count": 16,
+    "candidate_simple_explainable_row_count": 5,
+    "current_output_count": 17,
+    "current_row_count": 17,
+    "deterministic": true,
+    "domain": "passive_skill",
+    "mechanical_calculations_performed": false,
+    "production_consumed": false,
+    "production_planner_output_changed": false,
+    "rejected_delta_count": 1
+  },
+  "supported_comparison_categories": [
+    "accepted_unchanged",
+    "accepted_explicit_dry_run_delta",
+    "rejected_unapproved_delta"
+  ]
+}

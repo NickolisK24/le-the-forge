@@ -193,6 +193,35 @@ class TestGetMasteryTree:
 
 
 # ---------------------------------------------------------------------------
+# GET /api/ref/passives
+# ---------------------------------------------------------------------------
+
+class TestReferencePassives:
+
+    def test_ref_passives_falls_back_to_json_when_db_is_empty(self, client, db):
+        resp = client.get("/api/ref/passives?class=Acolyte&mastery=Lich")
+
+        assert resp.status_code == 200
+        nodes = resp.get_json()["data"]
+        assert len(nodes) > 0
+        assert {node["mastery"] for node in nodes} <= {"Lich", None}
+
+    def test_ref_passives_uses_seeded_db_rows_when_available(self, client, seeded_passives):
+        resp = client.get("/api/ref/passives?class=Acolyte&mastery=Lich&cache_case=seeded")
+
+        assert resp.status_code == 200
+        nodes = resp.get_json()["data"]
+        returned_ids = {node["id"] for node in nodes}
+        expected_ids = {
+            node["id"]
+            for node in _ACOLYTE_NODES
+            if node["character_class"] == "Acolyte"
+            and (node["mastery"] == "Lich" or node["mastery"] is None)
+        }
+        assert returned_ids == expected_ids
+
+
+# ---------------------------------------------------------------------------
 # POST /api/builds — passive tree node ID validation
 # ---------------------------------------------------------------------------
 

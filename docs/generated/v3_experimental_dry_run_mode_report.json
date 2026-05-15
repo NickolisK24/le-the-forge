@@ -1,0 +1,590 @@
+{
+  "blocked_reasons": [
+    {
+      "count": 1,
+      "reason": "candidate_delta_not_approved_for_dry_run"
+    },
+    {
+      "count": 1,
+      "reason": "missing_candidate_output"
+    },
+    {
+      "count": 1,
+      "reason": "missing_candidate_provenance"
+    },
+    {
+      "count": 1,
+      "reason": "missing_current_output"
+    },
+    {
+      "count": 1,
+      "reason": "scripted_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "text_only_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "unknown_operation_semantics"
+    },
+    {
+      "count": 1,
+      "reason": "unresolved_stat_identity"
+    },
+    {
+      "count": 1,
+      "reason": "unsupported_mechanic"
+    },
+    {
+      "count": 1,
+      "reason": "value_normalization_audit_only"
+    }
+  ],
+  "current_limitations": [
+    "candidate outputs are supplied fixtures or future adapter outputs, not production planner execution",
+    "accepted changed deltas require explicit dry-run approval and baseline snapshot evidence",
+    "unsupported, text-only, scripted, unknown-operation, unresolved-identity, and audit-only value rows remain blocked",
+    "no final combat, stat, crafting, DPS, or simulation formulas are implemented"
+  ],
+  "delta_category_counts": {
+    "accepted_explicit_dry_run_delta": 1,
+    "accepted_unchanged": 1,
+    "blocked_missing_candidate": 1,
+    "blocked_missing_current": 1,
+    "blocked_missing_provenance": 1,
+    "blocked_scripted_mechanic": 1,
+    "blocked_text_only_mechanic": 1,
+    "blocked_unknown_operation": 1,
+    "blocked_unresolved_stat_identity": 1,
+    "blocked_unsupported_mechanic": 1,
+    "blocked_value_normalization": 1,
+    "rejected_unapproved_delta": 1
+  },
+  "disabled_response": {
+    "blocked_reasons": [],
+    "comparison_rows": [],
+    "delta_category_counts": {},
+    "deterministic_hash": "cf689b5e6d9aa092907c8de8ceefb1b0c12562f1bee22cd09b8bcf8ed54a28a5",
+    "generated_at": "2026-05-15T00:46:13.485966+00:00",
+    "metadata": {
+      "default_enabled": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "experimental": true,
+      "planner_remap_performed": false,
+      "production_consumer": false,
+      "read_only": true,
+      "source": "v3_experimental_mechanical_dry_run"
+    },
+    "mode": {
+      "active": false,
+      "default_enabled": false,
+      "enabled": false,
+      "experimental": true,
+      "gate_mechanism": "explicit_enabled_argument",
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "status": "disabled"
+    },
+    "rollback_visibility": {
+      "baseline_snapshot_id": null,
+      "debug_visibility": [
+        "deterministic_hash",
+        "delta_category_counts",
+        "blocked_reasons",
+        "comparison_rows",
+        "safety_confirmations"
+      ],
+      "rollback_required_for_production": false,
+      "run_id": "v3_phase_7_foundation"
+    },
+    "run": {
+      "baseline_snapshot_id": null,
+      "candidate_snapshot_id": null,
+      "comparison_row_count": 0,
+      "current_snapshot_id": null,
+      "run_id": "v3_phase_7_foundation"
+    },
+    "safety_confirmations": {
+      "accepted_delta_count": 0,
+      "blocked_delta_count": 0,
+      "candidate_inputs_only": true,
+      "crafting_behavior_changed": false,
+      "mechanical_calculations_performed": false,
+      "planner_remap_performed": false,
+      "production_consumed": false,
+      "production_enabled": false,
+      "production_planner_imported": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 0,
+      "scripted_mechanics_promoted": false,
+      "simulation_behavior_changed": false,
+      "stat_aggregation_behavior_changed": false,
+      "text_only_mechanics_promoted": false,
+      "unsupported_mechanics_promoted": false,
+      "value_normalization_promoted": false
+    },
+    "schema_version": "v3.experimental_mechanical_dry_run.1",
+    "summary": {
+      "accepted_delta_count": 0,
+      "blocked_delta_count": 0,
+      "candidate_output_count": 0,
+      "current_output_count": 0,
+      "deterministic": true,
+      "mechanical_calculations_performed": false,
+      "production_consumed": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 0
+    }
+  },
+  "generated_at": "2026-05-15T00:46:13.486363+00:00",
+  "metadata": {
+    "default_enabled": false,
+    "experimental": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_consumer": false,
+    "read_only": true,
+    "source": "v3_experimental_dry_run_mode"
+  },
+  "mode_disabled_behavior": {
+    "active": false,
+    "default_enabled": false,
+    "enabled": false,
+    "experimental": true,
+    "gate_mechanism": "explicit_enabled_argument",
+    "production_consumer": false,
+    "production_enabled": false,
+    "read_only": true,
+    "status": "disabled"
+  },
+  "mode_enabled_behavior": {
+    "active": true,
+    "default_enabled": false,
+    "enabled": true,
+    "experimental": true,
+    "gate_mechanism": "explicit_enabled_argument",
+    "production_consumer": false,
+    "production_enabled": false,
+    "read_only": true,
+    "status": "enabled"
+  },
+  "remaining_blockers_before_mechanical_remap": [
+    "approved value normalization contracts",
+    "approved operation semantics",
+    "resolved stat identities for target domains",
+    "approved skill identity bridge policy",
+    "mechanical golden baselines",
+    "candidate adapter implementation behind this comparison boundary",
+    "explicit production remap gate review"
+  ],
+  "safety_confirmations": {
+    "accepted_delta_count": 2,
+    "blocked_delta_count": 9,
+    "candidate_inputs_only": true,
+    "crafting_behavior_changed": false,
+    "mechanical_calculations_performed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "production_enabled": false,
+    "production_planner_imported": false,
+    "production_planner_output_changed": false,
+    "rejected_delta_count": 1,
+    "scripted_mechanics_promoted": false,
+    "simulation_behavior_changed": false,
+    "stat_aggregation_behavior_changed": false,
+    "text_only_mechanics_promoted": false,
+    "unsupported_mechanics_promoted": false,
+    "value_normalization_promoted": false
+  },
+  "sample_comparison": {
+    "blocked_reasons": [
+      {
+        "count": 1,
+        "reason": "candidate_delta_not_approved_for_dry_run"
+      },
+      {
+        "count": 1,
+        "reason": "missing_candidate_output"
+      },
+      {
+        "count": 1,
+        "reason": "missing_candidate_provenance"
+      },
+      {
+        "count": 1,
+        "reason": "missing_current_output"
+      },
+      {
+        "count": 1,
+        "reason": "scripted_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "text_only_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "unknown_operation_semantics"
+      },
+      {
+        "count": 1,
+        "reason": "unresolved_stat_identity"
+      },
+      {
+        "count": 1,
+        "reason": "unsupported_mechanic"
+      },
+      {
+        "count": 1,
+        "reason": "value_normalization_audit_only"
+      }
+    ],
+    "comparison_rows": [
+      {
+        "blocked_reasons": [
+          "missing_current_output"
+        ],
+        "candidate_value": 4,
+        "current_value": null,
+        "delta_category": "blocked_missing_current",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": false
+        },
+        "output_key": "candidate.added",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "missing_candidate_output"
+        ],
+        "candidate_value": null,
+        "current_value": 3,
+        "delta_category": "blocked_missing_candidate",
+        "metadata": {
+          "candidate_operation_status": null,
+          "candidate_present": false,
+          "candidate_stat_identity_status": null,
+          "candidate_support_status": null,
+          "candidate_value_normalization_status": null,
+          "current_present": true
+        },
+        "output_key": "candidate.missing",
+        "provenance": [],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [],
+        "candidate_value": 10,
+        "current_value": 10,
+        "delta_category": "accepted_unchanged",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "damage.fire.flat",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [],
+        "candidate_value": 25,
+        "current_value": 20,
+        "delta_category": "accepted_explicit_dry_run_delta",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "damage.fire.increased",
+        "provenance": [
+          "candidate:fixture",
+          "baseline:approved_delta_sample"
+        ],
+        "status": "accepted"
+      },
+      {
+        "blocked_reasons": [
+          "candidate_delta_not_approved_for_dry_run"
+        ],
+        "candidate_value": 35,
+        "current_value": 30,
+        "delta_category": "rejected_unapproved_delta",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "defense.armor.flat",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "rejected"
+      },
+      {
+        "blocked_reasons": [
+          "missing_candidate_provenance"
+        ],
+        "candidate_value": 8,
+        "current_value": 8,
+        "delta_category": "blocked_missing_provenance",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "missing.provenance",
+        "provenance": [],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unknown_operation_semantics"
+        ],
+        "candidate_value": 7,
+        "current_value": 7,
+        "delta_category": "blocked_unknown_operation",
+        "metadata": {
+          "candidate_operation_status": "unknown",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "operation.unknown",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "scripted_mechanic"
+        ],
+        "candidate_value": 1,
+        "current_value": 1,
+        "delta_category": "blocked_scripted_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "scripted",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill.fireball.scripted",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "text_only_mechanic"
+        ],
+        "candidate_value": 1,
+        "current_value": 1,
+        "delta_category": "blocked_text_only_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "text_only",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "skill.unknown.text",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unresolved_stat_identity"
+        ],
+        "candidate_value": 5,
+        "current_value": 5,
+        "delta_category": "blocked_unresolved_stat_identity",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "unresolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "stat.identity.unknown",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "unsupported_mechanic"
+        ],
+        "candidate_value": 9,
+        "current_value": 9,
+        "delta_category": "blocked_unsupported_mechanic",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "unsupported",
+          "candidate_value_normalization_status": "approved",
+          "current_present": true
+        },
+        "output_key": "unsupported.mechanic",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      },
+      {
+        "blocked_reasons": [
+          "value_normalization_audit_only"
+        ],
+        "candidate_value": 2,
+        "current_value": 2,
+        "delta_category": "blocked_value_normalization",
+        "metadata": {
+          "candidate_operation_status": "known",
+          "candidate_present": true,
+          "candidate_stat_identity_status": "resolved",
+          "candidate_support_status": "supported",
+          "candidate_value_normalization_status": "audit_only",
+          "current_present": true
+        },
+        "output_key": "value.source_unit",
+        "provenance": [
+          "candidate:fixture"
+        ],
+        "status": "blocked"
+      }
+    ],
+    "delta_category_counts": {
+      "accepted_explicit_dry_run_delta": 1,
+      "accepted_unchanged": 1,
+      "blocked_missing_candidate": 1,
+      "blocked_missing_current": 1,
+      "blocked_missing_provenance": 1,
+      "blocked_scripted_mechanic": 1,
+      "blocked_text_only_mechanic": 1,
+      "blocked_unknown_operation": 1,
+      "blocked_unresolved_stat_identity": 1,
+      "blocked_unsupported_mechanic": 1,
+      "blocked_value_normalization": 1,
+      "rejected_unapproved_delta": 1
+    },
+    "deterministic_hash": "d07a91ccd056b9f8bfd6037d23598f4d56f85d7a381662116443198c0f618064",
+    "generated_at": "2026-05-15T00:46:13.486187+00:00",
+    "metadata": {
+      "default_enabled": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "experimental": true,
+      "planner_remap_performed": false,
+      "production_consumer": false,
+      "read_only": true,
+      "source": "v3_experimental_mechanical_dry_run"
+    },
+    "mode": {
+      "active": true,
+      "default_enabled": false,
+      "enabled": true,
+      "experimental": true,
+      "gate_mechanism": "explicit_enabled_argument",
+      "production_consumer": false,
+      "production_enabled": false,
+      "read_only": true,
+      "status": "enabled"
+    },
+    "rollback_visibility": {
+      "baseline_snapshot_id": "baseline:v3_phase_7_foundation",
+      "debug_visibility": [
+        "deterministic_hash",
+        "delta_category_counts",
+        "blocked_reasons",
+        "comparison_rows",
+        "safety_confirmations"
+      ],
+      "rollback_required_for_production": false,
+      "run_id": "v3_phase_7_foundation"
+    },
+    "run": {
+      "baseline_snapshot_id": "baseline:v3_phase_7_foundation",
+      "candidate_snapshot_id": "v3_candidate_sample",
+      "comparison_row_count": 12,
+      "current_snapshot_id": "current_planner_baseline_sample",
+      "run_id": "v3_phase_7_foundation"
+    },
+    "safety_confirmations": {
+      "accepted_delta_count": 2,
+      "blocked_delta_count": 9,
+      "candidate_inputs_only": true,
+      "crafting_behavior_changed": false,
+      "mechanical_calculations_performed": false,
+      "planner_remap_performed": false,
+      "production_consumed": false,
+      "production_enabled": false,
+      "production_planner_imported": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 1,
+      "scripted_mechanics_promoted": false,
+      "simulation_behavior_changed": false,
+      "stat_aggregation_behavior_changed": false,
+      "text_only_mechanics_promoted": false,
+      "unsupported_mechanics_promoted": false,
+      "value_normalization_promoted": false
+    },
+    "schema_version": "v3.experimental_mechanical_dry_run.1",
+    "summary": {
+      "accepted_delta_count": 2,
+      "blocked_delta_count": 9,
+      "candidate_output_count": 11,
+      "current_output_count": 11,
+      "deterministic": true,
+      "mechanical_calculations_performed": false,
+      "production_consumed": false,
+      "production_planner_output_changed": false,
+      "rejected_delta_count": 1
+    }
+  },
+  "schema_version": "v3.experimental_dry_run_mode_report.1",
+  "summary": {
+    "accepted_delta_count": 2,
+    "blocked_delta_count": 9,
+    "candidate_output_count": 11,
+    "current_output_count": 11,
+    "deterministic": true,
+    "mechanical_calculations_performed": false,
+    "production_consumed": false,
+    "production_planner_output_changed": false,
+    "rejected_delta_count": 1
+  }
+}

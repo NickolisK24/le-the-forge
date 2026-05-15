@@ -72,7 +72,10 @@ class AffixCatalogService:
     def get_affix(self, affix_id: str) -> dict[str, Any] | None:
         affix_id = str(affix_id)
         if self.active_source == "forge_safe":
-            return self._repo().get_by_affix_id(affix_id)
+            try:
+                return self._repo().get_by_affix_id(affix_id)
+            except (FileNotFoundError, ForgeSafeAffixLoaderError) as exc:
+                raise AffixCatalogUnavailable(str(exc)) from exc
         for record in self._legacy_records():
             if str(record.get("id")) == affix_id or str(record.get("affix_id")) == affix_id:
                 return record
@@ -95,7 +98,7 @@ class AffixCatalogService:
                 forge_summary = self._repo().get_summary()
                 summary["forge_safe"] = forge_summary
                 summary["forge_safe_count"] = forge_summary["loaded_record_count"]
-            except ForgeSafeAffixLoaderError as exc:
+            except (FileNotFoundError, ForgeSafeAffixLoaderError) as exc:
                 summary["forge_safe_error"] = str(exc)
                 if self.mode in {"read_only", "active"}:
                     raise AffixCatalogUnavailable(str(exc)) from exc
@@ -116,7 +119,7 @@ class AffixCatalogService:
         if self.active_source == "forge_safe":
             try:
                 return self._repo().list_affixes()
-            except ForgeSafeAffixLoaderError as exc:
+            except (FileNotFoundError, ForgeSafeAffixLoaderError) as exc:
                 raise AffixCatalogUnavailable(str(exc)) from exc
         return self._legacy_records()
 

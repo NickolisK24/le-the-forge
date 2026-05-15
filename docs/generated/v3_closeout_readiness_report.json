@@ -1,0 +1,273 @@
+{
+  "blocked_mechanic_guarantees": {
+    "blocked_categories": [
+      "blocked_scripted_mechanic",
+      "blocked_text_only_mechanic",
+      "blocked_unsupported_mechanic"
+    ],
+    "blocked_row_count": 6,
+    "passed": true,
+    "promoted_to_execution": []
+  },
+  "closeout_confirmations": {
+    "ambiguous_identities_remain_blocked": true,
+    "candidate_execution_experimental_only": true,
+    "new_candidate_execution_domains_added": false,
+    "production_planner_math_unchanged": true,
+    "production_remap_not_enabled": true,
+    "production_stat_aggregation_added": false,
+    "runtime_planner_behavior_changed": false,
+    "scripted_mechanics_remain_blocked": true,
+    "text_only_mechanics_remain_blocked": true,
+    "unsupported_mechanics_remain_blocked": true
+  },
+  "deterministic_guarantees": {
+    "guarantees": [
+      "comparison rows are sorted by domain and output key before execution",
+      "candidate aggregates are sorted by domain and aggregate key",
+      "stable JSON serialization with sorted keys is used for deterministic hashes",
+      "generated timestamps are excluded from deterministic hashes"
+    ],
+    "passed": true,
+    "repeated_hash": "e677c553535939d66d86604819725419b2b72d1ae6d69a07fa3f2aab77c061cf",
+    "sample_hash": "e677c553535939d66d86604819725419b2b72d1ae6d69a07fa3f2aab77c061cf"
+  },
+  "final_v3_conclusion": "V3_INFRASTRUCTURE_COMPLETE_PRODUCTION_REMAP_NOT_READY",
+  "future_roadmap": [
+    {
+      "goal": "turn audit fixtures and comparison scaffolding into stronger parity evidence while keeping production remap disabled",
+      "name": "Mechanical Parity Hardening",
+      "non_goals": [
+        "production remap",
+        "live DPS replacement",
+        "unsupported mechanic promotion"
+      ],
+      "phase": "v3.1"
+    },
+    {
+      "goal": "expand source-backed candidate coverage only where normalization, operation semantics, identity, provenance, and baselines are approved",
+      "name": "Controlled Mechanical Candidate Expansion",
+      "non_goals": [
+        "default production consumption",
+        "tooltip-derived formulas",
+        "scripted behavior promotion"
+      ],
+      "phase": "v3.5"
+    },
+    {
+      "goal": "consider production promotion only after remap gate audits prove deterministic parity, rollback readiness, policy approval, and stable-calculable domains",
+      "name": "Production Mechanical Promotion Candidate",
+      "non_goals": [
+        "promotion without gate approval",
+        "silent behavior changes",
+        "unsupported mechanic execution"
+      ],
+      "phase": "v4"
+    }
+  ],
+  "generated_at": "2026-05-15T01:35:53.476097+00:00",
+  "metadata": {
+    "closeout_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_consumer": false,
+    "production_remap_performed": false,
+    "source": "v3_closeout_readiness"
+  },
+  "phase": "v3_closeout_and_v3_1_readiness",
+  "production_remap_allowed": false,
+  "production_remap_enabled": false,
+  "production_safety_guarantees": {
+    "candidate_execution_default_enabled": false,
+    "combat_simulation_changed": false,
+    "crafting_behavior_changed": false,
+    "live_stat_aggregation_changed": false,
+    "optimizer_behavior_changed": false,
+    "planner_remap_performed": false,
+    "production_consumed": false,
+    "production_enabled": false,
+    "production_planner_output_changed": false
+  },
+  "remaining_blockers": [
+    {
+      "audit_category": "blocked_by_value_normalization",
+      "explanation": "audit-only or unknown value normalization rows still block remap",
+      "gate_id": "value_normalization_readiness"
+    },
+    {
+      "audit_category": "blocked_by_unknown_operation",
+      "explanation": "unknown, conditional, and triggered operation semantics still block remap",
+      "gate_id": "operation_semantics_readiness"
+    },
+    {
+      "audit_category": "blocked_by_identity_gap",
+      "explanation": "unresolved stat identity rows still block remap",
+      "gate_id": "stat_identity_readiness"
+    },
+    {
+      "audit_category": "blocked_by_identity_gap",
+      "explanation": "unresolved or ambiguous skill identity rows still block remap",
+      "gate_id": "skill_identity_readiness"
+    },
+    {
+      "audit_category": "blocked_by_unsupported_mechanics",
+      "explanation": "unsupported, text-only, and scripted rows remain excluded and block production remap",
+      "gate_id": "unsupported_mechanic_exclusion"
+    },
+    {
+      "audit_category": "blocked_by_missing_provenance",
+      "explanation": "candidate rows without provenance still block remap",
+      "gate_id": "provenance_readiness"
+    },
+    {
+      "audit_category": "blocked_by_missing_baseline",
+      "explanation": "limited adapter fixtures do not constitute production golden baseline approval",
+      "gate_id": "golden_baseline_evidence"
+    },
+    {
+      "audit_category": "partially_ready",
+      "explanation": "executed candidate rows are backed by accepted dry-run comparison rows",
+      "gate_id": "comparison_backed_execution"
+    },
+    {
+      "audit_category": "requires_policy_decision",
+      "explanation": "production remap requires approved identity, operation semantics, rollback, and limited opt-in policies",
+      "gate_id": "policy_decisions"
+    }
+  ],
+  "remap_gate_audit_summary": {
+    "audit_gate_count": 12,
+    "blocking_gate_count": 9,
+    "final_recommendation": "PRODUCTION_REMAP_NOT_READY",
+    "passing_gate_count": 3,
+    "remap_blocked_categories": [
+      "blocked_by_identity_gap",
+      "blocked_by_missing_baseline",
+      "blocked_by_missing_provenance",
+      "blocked_by_unknown_operation",
+      "blocked_by_unsupported_mechanics",
+      "blocked_by_value_normalization",
+      "partially_ready",
+      "requires_policy_decision"
+    ],
+    "remap_ready_categories": [
+      "deterministic_integrity",
+      "production_isolation",
+      "rollback_debug_visibility"
+    ],
+    "stable_calculable_domain_count": 0
+  },
+  "rollback_debug_guarantees": {
+    "debug_visibility": [
+      "deterministic_hash",
+      "execution_category_counts",
+      "execution_rows",
+      "candidate_aggregates",
+      "blocked_reasons",
+      "safety_confirmations"
+    ],
+    "guarantees": [
+      "no production planner output is consumed or mutated",
+      "execution rows retain comparison category, candidate value, provenance, metadata, and blocked reasons",
+      "candidate aggregates retain source output keys and provenance",
+      "domain gates can block an entire domain without deleting comparison evidence"
+    ],
+    "passed": true
+  },
+  "schema_version": "v3.closeout_readiness_report.1",
+  "stable_calculable_findings": [
+    {
+      "blocked_row_count": 9,
+      "domain": "item_affix",
+      "executed_row_count": 4,
+      "finding": "partially_ready",
+      "production_remap_blocker": "domain still has blocked or rejected candidate rows",
+      "rejected_row_count": 1,
+      "stable_calculable_for_dry_run_audit": true,
+      "stable_calculable_for_production_remap": false
+    },
+    {
+      "blocked_row_count": 12,
+      "domain": "passive_skill",
+      "executed_row_count": 4,
+      "finding": "partially_ready",
+      "production_remap_blocker": "domain still has blocked or rejected candidate rows",
+      "rejected_row_count": 1,
+      "stable_calculable_for_dry_run_audit": true,
+      "stable_calculable_for_production_remap": false
+    }
+  ],
+  "v3_1_readiness_plan": {
+    "entry_criteria": [
+      "v3 closeout report accepted",
+      "production remap remains disabled",
+      "limited candidate execution remains opt-in and audit-only",
+      "blocked mechanics remain visibly blocked"
+    ],
+    "exit_criteria": [
+      "expanded golden baselines exist for supported rows",
+      "parity snapshots are deterministic and reviewable",
+      "approved normalization and operation policies are documented",
+      "rollback validation has repeatable evidence",
+      "production remap gate audit can be rerun with reduced blockers"
+    ],
+    "objective": "harden comparison-backed parity evidence before any future production remap gate can be reconsidered",
+    "phase_name": "v3.1 Mechanical Parity Hardening",
+    "workstreams": [
+      "golden baseline expansion",
+      "parity snapshot infrastructure",
+      "delta explanation hardening",
+      "rollback validation",
+      "comparison stability auditing",
+      "approved normalization promotion strategy",
+      "approved operation promotion strategy",
+      "limited stable-calculable domain progression",
+      "explainability hardening",
+      "policy-driven production promotion requirements"
+    ]
+  },
+  "v3_achievements": [
+    {
+      "area": "trusted_data_foundation",
+      "status": "completed",
+      "summary": "v2.5 trusted-data architecture shipped before v3 mechanical work continued."
+    },
+    {
+      "area": "dry_run_comparison",
+      "status": "completed",
+      "summary": "deterministic candidate-vs-current comparison envelopes exist behind explicit opt-in gates."
+    },
+    {
+      "area": "item_affix_comparison",
+      "status": "completed",
+      "summary": "item base, implicit, and standard affix candidate rows can be compared without production consumption."
+    },
+    {
+      "area": "passive_skill_comparison",
+      "status": "completed",
+      "summary": "passive and skill candidate rows can be compared while identity gaps and complex semantics remain blocked."
+    },
+    {
+      "area": "limited_candidate_execution",
+      "status": "completed",
+      "summary": "accepted dry-run rows can produce deterministic audit aggregates without live stat aggregation."
+    },
+    {
+      "area": "production_remap_gate_audit",
+      "status": "completed",
+      "summary": "audit proves production remap is not ready and documents the blocking gates."
+    }
+  ],
+  "v3_success_definition": "mechanical intelligence infrastructure phase, not production remap phase",
+  "why_production_remap_is_blocked": [
+    "no domain is stable-calculable for production remap",
+    "limited adapter output is audit aggregation, not live stat aggregation",
+    "golden baseline evidence is not sufficient for production promotion",
+    "value normalization still has audit-only blocked rows",
+    "unknown, conditional, and triggered operation semantics remain blocked",
+    "stat and skill identity gaps remain blocked",
+    "unsupported, text-only, and scripted mechanics remain excluded",
+    "candidate provenance is not complete",
+    "production promotion policy decisions are still required"
+  ]
+}
