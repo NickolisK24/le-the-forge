@@ -1,0 +1,153 @@
+{
+  "admission_aware_manifest_serialization": {
+    "deterministic_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+    "excluded_candidates": [],
+    "exclusion_reason_counts": {},
+    "input_consumption": {
+      "admission_aware_manifest_candidate_hash": "8a0d679bc854e320f04e678c298cc3481e66b90b5b260bdcf6f410b4f1dd9464",
+      "admission_aware_manifest_candidate_schema": "v3_1.admission_aware_manifest_candidates.1"
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_admission_aware_manifest_serialization",
+      "stable_generation_token": "v3_1_phase_15_admission_aware_manifest_serialization_token"
+    },
+    "original_vs_admission_aware_comparison": {
+      "excluded_not_ready_to_candidate_ready": 1
+    },
+    "run": {
+      "candidate_record_count": 1,
+      "run_id": "v3_1_phase_15_admission_aware_manifest_serialization",
+      "source_candidate_hash": "8a0d679bc854e320f04e678c298cc3481e66b90b5b260bdcf6f410b4f1dd9464"
+    },
+    "safety_confirmations": {
+      "admission_aware_manifests_are_production_authoritative": false,
+      "admission_aware_manifests_authorize_production_routing": false,
+      "all_manifests_non_production_authoritative": true,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "serialized_manifests_are_production_approval": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.admission_aware_manifest_serialization.1",
+    "serialization_status_counts": {
+      "excluded_invalid_candidate_state": 0,
+      "excluded_missing_candidate_status": 0,
+      "excluded_not_ready": 0,
+      "serialized_manifest": 1
+    },
+    "serialized_manifests": [
+      {
+        "authorization_status": {
+          "authorization_state": "non_production_authoritative",
+          "legacy_planner_ownership_preserved": true,
+          "manifest_authorizes_production_routing": false,
+          "manifest_is_production_approved": false,
+          "manifest_is_production_authoritative": false,
+          "trusted_default_routing": false
+        },
+        "candidate_summary": {
+          "candidate_is_non_production_authoritative": true,
+          "candidate_refresh_status": "promoted_to_candidate_ready_for_review",
+          "candidate_status": "candidate_ready",
+          "original_candidate_status": "excluded_not_ready",
+          "original_vs_admission_aware": "excluded_not_ready_to_candidate_ready",
+          "readiness_reclassification": "policy_blocker_cleared_by_admission_aware_policy"
+        },
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "generated_hash": "9230965160579e9025fb5d8e357b60bca37dbeb6f2fe4a426a7654d472393659",
+        "manifest_candidate_id": "v3_1_admission_manifest_candidate_701e7dd28773d5d1",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "stable_generation_token": "v3_1_phase_15_admission_aware_manifest_serialization_token"
+        },
+        "non_production_authoritative": true,
+        "policy_summary": {
+          "admission_aware_policy_status": "policy_satisfied_for_review",
+          "valid_policy_state": true
+        },
+        "production_output_affected": false,
+        "readiness_summary": {
+          "admission_aware_readiness_status": "ready_for_approval_review",
+          "original_block_reason_codes": [
+            "policy_unsupported"
+          ],
+          "original_readiness_status": "blocked_policy_failure",
+          "remaining_blockers": []
+        },
+        "reason_codes": [
+          "admission_aware_candidate_ready_serialized_non_authoritative_manifest"
+        ],
+        "serialization_status": "serialized_manifest",
+        "source_summary": {
+          "associated_fixture_ids": [
+            "v3_1_fixture_6c378a420c0a4ced",
+            "v3_1_fixture_756415e2e7d3feb2",
+            "v3_1_fixture_8118751ba1b46140",
+            "v3_1_fixture_9c3d260c0dda7b4f",
+            "v3_1_fixture_b82b601f9b088bb8"
+          ],
+          "set_key": "sample_migration_readiness_set"
+        }
+      }
+    ],
+    "summary": {
+      "admission_aware_candidates_evaluated": 1,
+      "deterministic": true,
+      "excluded_count": 0,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "serialized_manifest_count": 1,
+      "trusted_data_default_truth": false
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+    "sample_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_admission_aware_manifest_serialization_report"
+  },
+  "phase": "v3.1_phase_15_admission_aware_manifest_serialization",
+  "phase_15_boundaries": [
+    "admission-aware serialized manifests are observational governance artifacts",
+    "serialized manifests are not production approvals",
+    "serialized manifests do not authorize production routing",
+    "every manifest is explicitly non-production-authoritative",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.admission_aware_manifest_serialization_report.1",
+  "summary": {
+    "admission_aware_candidates_evaluated": 1,
+    "deterministic": true,
+    "excluded_count": 0,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "serialized_manifest_count": 1,
+    "trusted_data_default_truth": false
+  }
+}
