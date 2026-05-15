@@ -1,0 +1,136 @@
+{
+  "controlled_test_consumption_only": true,
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+    "sample_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "manifest_consumption_eligibility": {
+    "blocker_reason_counts": {},
+    "deterministic_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+    "eligibility_records": [
+      {
+        "authorization_state": "non_production_authoritative",
+        "blockers": [],
+        "controlled_test_consumption_only": true,
+        "eligibility_authorizes_production_routing": false,
+        "eligibility_record_id": "v3_1_manifest_eligibility_7ba501d6d4a04a67",
+        "eligibility_status": "eligible_for_controlled_test_consumption",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "generated_hash": "9230965160579e9025fb5d8e357b60bca37dbeb6f2fe4a426a7654d472393659",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "required_field_audit": {
+          "candidate_summary_present": true,
+          "generated_hash_present": true,
+          "generated_hash_stable": true,
+          "identity_present": true,
+          "manifest_present": true,
+          "non_production_authoritative": true,
+          "policy_summary_present": true,
+          "readiness_summary_present": true,
+          "source_summary_present": true
+        }
+      }
+    ],
+    "eligibility_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_missing_candidate_summary": 0,
+      "blocked_missing_hash": 0,
+      "blocked_missing_identity": 0,
+      "blocked_missing_manifest": 0,
+      "blocked_missing_policy_summary": 0,
+      "blocked_missing_readiness_summary": 0,
+      "blocked_missing_source_summary": 0,
+      "blocked_unstable_manifest_hash": 0,
+      "eligible_for_controlled_test_consumption": 1
+    },
+    "eligibility_summary": {
+      "blocked_from_controlled_test_consumption": 0,
+      "eligible_for_controlled_test_consumption_only": 1,
+      "production_routing_authorized": false,
+      "runtime_consumption_enabled": false
+    },
+    "metadata": {
+      "controlled_test_consumption_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_manifest_consumption_eligibility",
+      "stable_generation_token": "v3_1_phase_16_manifest_consumption_eligibility_token"
+    },
+    "run": {
+      "manifest_count": 1,
+      "run_id": "v3_1_phase_16_manifest_consumption_eligibility",
+      "source_serialization_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+      "source_serialization_schema": "v3_1.admission_aware_manifest_serialization.1"
+    },
+    "safety_confirmations": {
+      "eligibility_authorizes_production_routing": false,
+      "eligibility_enables_runtime_consumption": false,
+      "eligible_manifests_are_production_approved": false,
+      "eligible_manifests_are_production_authoritative": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.manifest_consumption_eligibility.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "eligible_count": 1,
+      "manifest_runtime_consumption_enabled": false,
+      "manifests_evaluated": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "trusted_data_default_truth": false
+    }
+  },
+  "metadata": {
+    "controlled_test_consumption_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_manifest_consumption_eligibility_report"
+  },
+  "phase": "v3.1_phase_16_manifest_consumption_eligibility",
+  "phase_16_boundaries": [
+    "eligibility is for controlled test consumption only",
+    "eligibility does not authorize production routing",
+    "eligible manifests are not production approvals",
+    "runtime manifest consumption remains disabled",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "schema_version": "v3_1.manifest_consumption_eligibility_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "eligible_count": 1,
+    "manifest_runtime_consumption_enabled": false,
+    "manifests_evaluated": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "trusted_data_default_truth": false
+  }
+}
