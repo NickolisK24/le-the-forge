@@ -1,0 +1,134 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "e4c4d8158ed053e7f882796308ae244780a41a203a6c44608789c091cddab766",
+    "sample_hash": "e4c4d8158ed053e7f882796308ae244780a41a203a6c44608789c091cddab766",
+    "stable_policy_generation_token": "v3_1_phase_5_review_policy_evaluation_token",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_review_policy_evaluation_report"
+  },
+  "phase": "v3.1_phase_5_review_policy_evaluation",
+  "phase_5_boundaries": [
+    "workflows remain observational only",
+    "trusted infrastructure is still not production default",
+    "policy evaluation does not authorize runtime routing",
+    "unsupported and blocked states remain intentionally visible",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "review_policy_evaluation": {
+    "deterministic_hash": "e4c4d8158ed053e7f882796308ae244780a41a203a6c44608789c091cddab766",
+    "evaluations": [
+      {
+        "blocked": false,
+        "deterministic_reason_codes": [
+          "unsupported_fixture_set_visible"
+        ],
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "lifecycle_state": "unsupported",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "policy_outcome": "unsupported",
+        "production_output_affected": false,
+        "production_ownership_metadata": {
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "policy_authorizes_production_routing": false,
+          "trusted_default_routing": false
+        },
+        "review_readiness_classification": "unsupported",
+        "set_key": "sample_migration_readiness_set",
+        "unsupported": true
+      }
+    ],
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_review_policy_evaluation",
+      "stable_policy_generation_token": "v3_1_phase_5_review_policy_evaluation_token"
+    },
+    "policy": {
+      "generation_token": "v3_1_phase_5_review_policy_evaluation_token",
+      "policy_id": "v3_1_default_review_policy",
+      "policy_version": "1",
+      "production_routing_authorized": false,
+      "requires_approved_candidate_state": true,
+      "requires_no_blocked": true,
+      "requires_no_insufficient_data": true,
+      "requires_no_unsupported": true
+    },
+    "policy_outcome_counts": {
+      "blocked": 0,
+      "insufficient_data": 0,
+      "not_evaluated": 0,
+      "passes_policy": 0,
+      "requires_review": 0,
+      "unsupported": 1
+    },
+    "run": {
+      "evaluation_count": 1,
+      "run_id": "v3_1_phase_5_review_policy_evaluation",
+      "source_fixture_set_hash": "d79462e70382b91afc3c448bd8f2a8d865369c728ea77ba2bb9f24308dda23e7",
+      "source_fixture_set_schema": "v3_1.persisted_fixture_sets.1"
+    },
+    "safety_confirmations": {
+      "blocked_states_hidden": false,
+      "hidden_heuristics_used": false,
+      "legacy_planner_ownership_preserved": true,
+      "policy_authorizes_production_routing": false,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false,
+      "unsupported_states_hidden": false
+    },
+    "schema_version": "v3_1.review_policy_evaluation.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "insufficient_data_count": 0,
+      "not_evaluated_count": 0,
+      "policy_pass_count": 0,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "requires_review_count": 0,
+      "total_evaluations": 1,
+      "trusted_data_default_truth": false,
+      "unsupported_count": 1
+    }
+  },
+  "schema_version": "v3_1.review_policy_evaluation_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "insufficient_data_count": 0,
+    "not_evaluated_count": 0,
+    "policy_pass_count": 0,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_output_affected": false,
+    "requires_review_count": 0,
+    "total_evaluations": 1,
+    "trusted_data_default_truth": false,
+    "unsupported_count": 1
+  }
+}
