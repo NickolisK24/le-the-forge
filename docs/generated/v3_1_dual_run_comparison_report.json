@@ -1,0 +1,229 @@
+{
+  "comparison": {
+    "comparison_results": [
+      {
+        "comparison_id": "affix",
+        "deterministic_notes": [
+          "comparison rows sorted by stable key",
+          "comparable values hashed through sorted JSON serialization",
+          "production output is not mutated or replaced"
+        ],
+        "drift_classification": "equivalent",
+        "legacy_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+        "legacy_status": "available",
+        "production_output_affected": false,
+        "reason_codes": [
+          "comparable_value_hash_match"
+        ],
+        "stable_key": "affix",
+        "trusted_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+        "trusted_shadow_gate": {
+          "enabled": true,
+          "mode": "shadow",
+          "shadow_only": true
+        },
+        "trusted_shadow_status": "available",
+        "unsupported_or_blocked_reason": null
+      },
+      {
+        "comparison_id": "idol",
+        "deterministic_notes": [
+          "comparison rows sorted by stable key",
+          "comparable values hashed through sorted JSON serialization",
+          "production output is not mutated or replaced"
+        ],
+        "drift_classification": "legacy_only",
+        "legacy_hash": "dd6f78504144c7e111632e74d742da8c30376ed16c4b6dda8ccd29226bb2191b",
+        "legacy_status": "available",
+        "production_output_affected": false,
+        "reason_codes": [
+          "trusted_shadow_summary_missing"
+        ],
+        "stable_key": "idol",
+        "trusted_hash": null,
+        "trusted_shadow_gate": {
+          "enabled": true,
+          "mode": "shadow",
+          "shadow_only": true
+        },
+        "trusted_shadow_status": "missing",
+        "unsupported_or_blocked_reason": "trusted_shadow_summary_missing"
+      },
+      {
+        "comparison_id": "item_base",
+        "deterministic_notes": [
+          "comparison rows sorted by stable key",
+          "comparable values hashed through sorted JSON serialization",
+          "production output is not mutated or replaced"
+        ],
+        "drift_classification": "divergent",
+        "legacy_hash": "b032e547417db66eacea1c5124714787ab2c3c6319f550f55317408fd7950d5c",
+        "legacy_status": "available",
+        "production_output_affected": false,
+        "reason_codes": [
+          "comparable_value_hash_mismatch"
+        ],
+        "stable_key": "item_base",
+        "trusted_hash": "8750aa1eacbe174b9d0c257d37220cfdaaffcc8b2e32618541873851c3da6113",
+        "trusted_shadow_gate": {
+          "enabled": true,
+          "mode": "shadow",
+          "shadow_only": true
+        },
+        "trusted_shadow_status": "available",
+        "unsupported_or_blocked_reason": null
+      },
+      {
+        "comparison_id": "monolith_echo",
+        "deterministic_notes": [
+          "comparison rows sorted by stable key",
+          "comparable values hashed through sorted JSON serialization",
+          "production output is not mutated or replaced"
+        ],
+        "drift_classification": "unsupported",
+        "legacy_hash": null,
+        "legacy_status": "missing",
+        "production_output_affected": false,
+        "reason_codes": [
+          "unsupported_state_visible"
+        ],
+        "stable_key": "monolith_echo",
+        "trusted_hash": "23d7b286bd429460b92a2a1c21b6afc34110446c5034c17363fda363aa0a7c5d",
+        "trusted_shadow_gate": {
+          "enabled": true,
+          "mode": "shadow",
+          "shadow_only": true
+        },
+        "trusted_shadow_status": "unsupported",
+        "unsupported_or_blocked_reason": "unsupported_trusted_shadow_domain"
+      },
+      {
+        "comparison_id": "passive_skill",
+        "deterministic_notes": [
+          "comparison rows sorted by stable key",
+          "comparable values hashed through sorted JSON serialization",
+          "production output is not mutated or replaced"
+        ],
+        "drift_classification": "unsupported",
+        "legacy_hash": "1c197daef20de3f47eec5e2f735ec6669869d3180cc29f35be4788511e0af0f8",
+        "legacy_status": "unsupported",
+        "production_output_affected": false,
+        "reason_codes": [
+          "unsupported_state_visible"
+        ],
+        "stable_key": "passive_skill",
+        "trusted_hash": "36060134d807a85bd4de45d03754fc36d6f73b2349587345f0f71b5548caeaee",
+        "trusted_shadow_gate": {
+          "enabled": true,
+          "mode": "shadow",
+          "shadow_only": true
+        },
+        "trusted_shadow_status": "available",
+        "unsupported_or_blocked_reason": "unsupported_state_visible"
+      }
+    ],
+    "deterministic_hash": "7f2b7416d55dca68e92d5a5ecd519ddfd7654ae25c458b3dff4eb586ff5ba363",
+    "drift_classification_counts": {
+      "blocked": 0,
+      "divergent": 1,
+      "equivalent": 1,
+      "legacy_only": 1,
+      "not_evaluated": 0,
+      "trusted_only": 0,
+      "unavailable": 0,
+      "unsupported": 2
+    },
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_dual_run_comparison"
+    },
+    "run": {
+      "comparison_count": 5,
+      "legacy_summary_count": 4,
+      "run_id": "v3_1_phase_2_dual_run_comparison",
+      "trusted_summary_count": 4
+    },
+    "safety_confirmations": {
+      "legacy_output_replaced": false,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "silent_missing_legacy_accepted": false,
+      "silent_missing_trusted_accepted": false,
+      "trusted_data_default_truth": false,
+      "unsupported_states_hidden": false
+    },
+    "schema_version": "v3_1.dual_run_comparison.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "divergent_count": 1,
+      "equivalent_count": 1,
+      "legacy_only_count": 1,
+      "not_evaluated_count": 0,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "total_comparisons": 5,
+      "trusted_data_default_truth": false,
+      "trusted_only_count": 0,
+      "unavailable_count": 0,
+      "unsupported_count": 2
+    },
+    "trusted_shadow_gate": {
+      "enabled": true,
+      "mode": "shadow",
+      "production_output_affected": false,
+      "production_truth_source": "legacy",
+      "shadow_only": true
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "7f2b7416d55dca68e92d5a5ecd519ddfd7654ae25c458b3dff4eb586ff5ba363",
+    "sample_hash": "7f2b7416d55dca68e92d5a5ecd519ddfd7654ae25c458b3dff4eb586ff5ba363",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_dual_run_comparison_report"
+  },
+  "phase": "v3.1_phase_2_deterministic_dual_run_comparison",
+  "phase_2_boundaries": [
+    "dual-run comparison accepts summaries and shadow metadata only",
+    "legacy production output remains the truth source",
+    "trusted data is not default production truth",
+    "drift visibility is established through explicit classifications",
+    "unsupported and blocked states are intentionally surfaced"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.dual_run_comparison_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "divergent_count": 1,
+    "equivalent_count": 1,
+    "legacy_only_count": 1,
+    "not_evaluated_count": 0,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_output_affected": false,
+    "total_comparisons": 5,
+    "trusted_data_default_truth": false,
+    "trusted_only_count": 0,
+    "unavailable_count": 0,
+    "unsupported_count": 2
+  }
+}
