@@ -1,0 +1,160 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "87bb0f1888fa99a2bb2bd99fa7806a365d1e4cceaefbd72118fae064d600116e",
+    "sample_hash": "87bb0f1888fa99a2bb2bd99fa7806a365d1e4cceaefbd72118fae064d600116e",
+    "stable_fixture_set_generation_token": "v3_1_phase_5_persisted_fixture_set_token",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_persisted_fixture_sets_report"
+  },
+  "persisted_fixture_sets": {
+    "deterministic_hash": "87bb0f1888fa99a2bb2bd99fa7806a365d1e4cceaefbd72118fae064d600116e",
+    "fixture_sets": [
+      {
+        "associated_fixture_ids": [
+          "v3_1_fixture_6c378a420c0a4ced",
+          "v3_1_fixture_756415e2e7d3feb2",
+          "v3_1_fixture_8118751ba1b46140",
+          "v3_1_fixture_9c3d260c0dda7b4f",
+          "v3_1_fixture_b82b601f9b088bb8"
+        ],
+        "blocked": false,
+        "deterministic_reason_codes": [
+          "unsupported_fixture_present"
+        ],
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "fixture_state_counts": {
+          "insufficient_data": 1,
+          "pending_review": 2,
+          "unsupported": 2
+        },
+        "generation": {
+          "strategy": "stable_token_fixture_membership_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_5_persisted_fixture_set_token"
+        },
+        "lifecycle_state": "unsupported",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "missing_fixture_ids": [],
+        "policy_evaluation_status": "unsupported",
+        "production_output_affected": false,
+        "production_ownership_metadata": {
+          "fixture_set_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "resolved_fixture_ids": [
+          "v3_1_fixture_6c378a420c0a4ced",
+          "v3_1_fixture_756415e2e7d3feb2",
+          "v3_1_fixture_8118751ba1b46140",
+          "v3_1_fixture_9c3d260c0dda7b4f",
+          "v3_1_fixture_b82b601f9b088bb8"
+        ],
+        "set_key": "sample_migration_readiness_set",
+        "unsupported": true
+      }
+    ],
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "lifecycle_state_counts": {
+      "approved_candidate": 0,
+      "archived": 0,
+      "blocked": 0,
+      "draft": 0,
+      "insufficient_data": 0,
+      "partially_approved": 0,
+      "review_ready": 0,
+      "unsupported": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_persisted_fixture_sets",
+      "stable_fixture_set_generation_token": "v3_1_phase_5_persisted_fixture_set_token"
+    },
+    "policy_evaluation_status_counts": {
+      "unsupported": 1
+    },
+    "run": {
+      "fixture_set_count": 1,
+      "run_id": "v3_1_phase_5_persisted_fixture_sets",
+      "source_fixture_workflow_hash": "27a2b6dbe38f81224daa34d9674e92a056c0e5515b71019cfabe7e773c8d1735",
+      "source_fixture_workflow_schema": "v3_1.baseline_fixture_workflows.1"
+    },
+    "safety_confirmations": {
+      "blocked_states_hidden": false,
+      "fixture_set_authorizes_production_routing": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false,
+      "unsupported_states_hidden": false
+    },
+    "schema_version": "v3_1.persisted_fixture_sets.1",
+    "summary": {
+      "approved_candidate_count": 0,
+      "archived_count": 0,
+      "blocked_count": 0,
+      "deterministic": true,
+      "draft_count": 0,
+      "insufficient_data_count": 0,
+      "partially_approved_count": 0,
+      "policy_pass_count": 0,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "requires_review_count": 0,
+      "review_ready_count": 0,
+      "total_fixture_sets": 1,
+      "trusted_data_default_truth": false,
+      "unsupported_count": 1
+    }
+  },
+  "phase": "v3.1_phase_5_persisted_fixture_sets",
+  "phase_5_boundaries": [
+    "workflows remain observational only",
+    "trusted infrastructure is still not production default",
+    "fixture-set membership does not authorize runtime routing",
+    "unsupported and blocked states remain intentionally visible",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.persisted_fixture_sets_report.1",
+  "summary": {
+    "approved_candidate_count": 0,
+    "archived_count": 0,
+    "blocked_count": 0,
+    "deterministic": true,
+    "draft_count": 0,
+    "insufficient_data_count": 0,
+    "partially_approved_count": 0,
+    "policy_pass_count": 0,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_output_affected": false,
+    "requires_review_count": 0,
+    "review_ready_count": 0,
+    "total_fixture_sets": 1,
+    "trusted_data_default_truth": false,
+    "unsupported_count": 1
+  }
+}
