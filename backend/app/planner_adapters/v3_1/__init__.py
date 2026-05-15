@@ -25,6 +25,10 @@ from .review_policy_evaluation import (
     V31ReviewPolicyEvaluation,
     build_sample_review_policy_inputs,
 )
+from .fixture_set_readiness_gate import (
+    FIXTURE_SET_READINESS_CLASSIFICATIONS,
+    build_fixture_set_readiness_gate,
+)
 from .reviewed_fixture_inputs import (
     REVIEWED_FIXTURE_INPUT_STATUSES,
     discover_default_reviewed_fixture_input_sources,
@@ -44,6 +48,7 @@ __all__ = [
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
     "REVIEWED_FIXTURE_INPUT_STATUSES",
+    "FIXTURE_SET_READINESS_CLASSIFICATIONS",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
     "V31BaselineFixtureWorkflows",
     "V31DualRunComparison",
@@ -57,6 +62,7 @@ __all__ = [
     "build_sample_review_policy_inputs",
     "build_sample_dual_run_inputs",
     "build_default_trusted_repository_probes",
+    "build_fixture_set_readiness_gate",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
     "normalize_reviewed_fixture_inputs",
