@@ -1,0 +1,132 @@
+{
+  "admission_aware_readiness_gate": {
+    "admission_aware_readiness_counts": {
+      "blocked_duplicate_inputs": 0,
+      "blocked_insufficient_review": 0,
+      "blocked_invalid_admission_policy_state": 0,
+      "blocked_malformed_inputs": 0,
+      "blocked_missing_admission_aware_policy": 0,
+      "blocked_missing_inputs": 0,
+      "blocked_policy_failure": 0,
+      "ready_for_approval_review": 1
+    },
+    "admission_aware_readiness_records": [
+      {
+        "admission_aware_policy_status": "policy_satisfied_for_review",
+        "admission_aware_readiness_id": "v3_1_admission_readiness_218e9d16d2f25668",
+        "admission_aware_readiness_status": "ready_for_approval_review",
+        "associated_fixture_ids": [
+          "v3_1_fixture_6c378a420c0a4ced",
+          "v3_1_fixture_756415e2e7d3feb2",
+          "v3_1_fixture_8118751ba1b46140",
+          "v3_1_fixture_9c3d260c0dda7b4f",
+          "v3_1_fixture_b82b601f9b088bb8"
+        ],
+        "final_admission_aware_readiness_status": "ready_for_approval_review",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "non_production_authorization": {
+          "legacy_planner_ownership_preserved": true,
+          "readiness_authorizes_production_routing": false,
+          "ready_for_approval_review_is_production_approval": false,
+          "trusted_default_routing": false
+        },
+        "original_block_reason_codes": [
+          "policy_unsupported"
+        ],
+        "original_readiness_status": "blocked_policy_failure",
+        "production_output_affected": false,
+        "readiness_reclassification": "policy_blocker_cleared_by_admission_aware_policy",
+        "remaining_blockers": [],
+        "set_key": "sample_migration_readiness_set"
+      }
+    ],
+    "blocker_reason_counts": {},
+    "deterministic_hash": "d6542e54b2c8517241c3711ce5cf6e93793ad99db6977f7ebc9675cbd24fa8cc",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_admission_aware_readiness_gate",
+      "stable_generation_token": "v3_1_phase_13_admission_aware_readiness_gate_token"
+    },
+    "readiness_reclassification_summary": {
+      "policy_blocker_cleared_by_admission_aware_policy": 1
+    },
+    "remaining_blocker_summary": [],
+    "run": {
+      "admission_aware_policy_evaluation_hash": "e12700ae0a732d421457a52756aeab67c214eb581557468417f87778e8a4f0ba",
+      "fixture_set_readiness_gate_hash": "85dbb478983263c00b093882c9a141e93b186dc688aedcfa6094b50a40040db2",
+      "persisted_fixture_sets_hash": "87bb0f1888fa99a2bb2bd99fa7806a365d1e4cceaefbd72118fae064d600116e",
+      "record_count": 1,
+      "reviewed_fixture_inputs_hash": "bcc71a0573a2de21ed29ab1a7cae6ac04323875d4abccc85e387f4f266f6e077",
+      "run_id": "v3_1_phase_13_admission_aware_readiness_gate"
+    },
+    "safety_confirmations": {
+      "admission_aware_readiness_authorizes_production_routing": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "ready_for_approval_review_is_production_approval": false,
+      "remaining_blockers_hidden": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.admission_aware_readiness_gate.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "ready_for_approval_review_count": 1,
+      "records_evaluated": 1,
+      "trusted_data_default_truth": false
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "d6542e54b2c8517241c3711ce5cf6e93793ad99db6977f7ebc9675cbd24fa8cc",
+    "sample_hash": "d6542e54b2c8517241c3711ce5cf6e93793ad99db6977f7ebc9675cbd24fa8cc",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_admission_aware_readiness_gate_report"
+  },
+  "phase": "v3.1_phase_13_admission_aware_readiness_gate",
+  "phase_13_boundaries": [
+    "admission-aware readiness is observational governance metadata only",
+    "ready_for_approval_review is not production approval",
+    "admission-aware readiness does not authorize production routing",
+    "remaining non-policy blockers stay visible",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.admission_aware_readiness_gate_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "ready_for_approval_review_count": 1,
+    "records_evaluated": 1,
+    "trusted_data_default_truth": false
+  }
+}

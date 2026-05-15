@@ -45,6 +45,10 @@ from .admission_aware_policy_evaluation import (
     ADMISSION_AWARE_POLICY_STATUSES,
     build_admission_aware_policy_evaluation,
 )
+from .admission_aware_readiness_gate import (
+    ADMISSION_AWARE_READINESS_STATUSES,
+    build_admission_aware_readiness_gate,
+)
 from .approval_manifest_diff_audit import (
     APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
     audit_approval_manifest_diffs,
@@ -77,6 +81,7 @@ __all__ = [
     "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
     "APPROVAL_BLOCKER_CLASSIFICATIONS",
     "ADMISSION_AWARE_POLICY_STATUSES",
+    "ADMISSION_AWARE_READINESS_STATUSES",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
     "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
@@ -97,6 +102,7 @@ __all__ = [
     "build_approval_manifest_candidates",
     "build_approval_blocker_diagnosis",
     "build_admission_aware_policy_evaluation",
+    "build_admission_aware_readiness_gate",
     "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
