@@ -29,6 +29,10 @@ from .fixture_set_readiness_gate import (
     FIXTURE_SET_READINESS_CLASSIFICATIONS,
     build_fixture_set_readiness_gate,
 )
+from .approval_manifest_candidates import (
+    APPROVAL_MANIFEST_CANDIDATE_STATUSES,
+    build_approval_manifest_candidates,
+)
 from .reviewed_fixture_inputs import (
     REVIEWED_FIXTURE_INPUT_STATUSES,
     discover_default_reviewed_fixture_input_sources,
@@ -49,6 +53,7 @@ __all__ = [
     "REVIEW_POLICY_OUTCOMES",
     "REVIEWED_FIXTURE_INPUT_STATUSES",
     "FIXTURE_SET_READINESS_CLASSIFICATIONS",
+    "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
     "V31BaselineFixtureWorkflows",
     "V31DualRunComparison",
@@ -63,6 +68,7 @@ __all__ = [
     "build_sample_dual_run_inputs",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
+    "build_approval_manifest_candidates",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
     "normalize_reviewed_fixture_inputs",
