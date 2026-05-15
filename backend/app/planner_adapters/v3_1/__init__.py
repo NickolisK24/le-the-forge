@@ -25,6 +25,11 @@ from .review_policy_evaluation import (
     V31ReviewPolicyEvaluation,
     build_sample_review_policy_inputs,
 )
+from .reviewed_fixture_inputs import (
+    REVIEWED_FIXTURE_INPUT_STATUSES,
+    discover_default_reviewed_fixture_input_sources,
+    normalize_reviewed_fixture_inputs,
+)
 from .trusted_shadow_consumption import (
     SUPPORTED_TRUSTED_SHADOW_DOMAINS,
     V31TrustedProductionShadowConsumption,
@@ -38,6 +43,7 @@ __all__ = [
     "FIXTURE_WORKFLOW_STATES",
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
+    "REVIEWED_FIXTURE_INPUT_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
     "V31BaselineFixtureWorkflows",
     "V31DualRunComparison",
@@ -51,5 +57,7 @@ __all__ = [
     "build_sample_review_policy_inputs",
     "build_sample_dual_run_inputs",
     "build_default_trusted_repository_probes",
+    "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
+    "normalize_reviewed_fixture_inputs",
 ]
