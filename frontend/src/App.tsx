@@ -45,9 +45,8 @@ import DashboardPage from "@/pages/DashboardPage";
 import ClassesPage from "@/pages/classes/ClassesPage";
 
 // ---------------------------------------------------------------------------
-// Debug pages — lazy-loaded, only registered in development builds.
-// In production these routes simply don't exist, so /debug, /viz-debug, etc.
-// correctly fall through to the NotFoundPage catch-all.
+// Debug pages — lazy-loaded. General debug tools stay development-only, while
+// v2.5 trusted-data debug pages are public read-only release QA surfaces.
 // ---------------------------------------------------------------------------
 const IS_DEV = import.meta.env.DEV;
 
@@ -262,23 +261,27 @@ export default function App() {
                 <Route path="/passive-tree" element={<AliasRedirect to="/passives" />} />
                 <Route path="/planner" element={<AliasRedirect to="/build" />} />
 
-                {/* Debug routes — only available in development builds */}
+                {/* v2.5 trusted-data debug routes — available in production as
+                    read-only inspection surfaces. They do not feed production
+                    planner calculations. */}
+                <Route path="/debug/v2" element={<Suspense fallback={<PageLoader />}><V2DebugNavigationPage /></Suspense>} />
+                <Route path="/debug/v2-affixes" element={<AliasRedirect to="/debug/forge-safe-affixes" />} />
+                <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
+                <Route path="/debug/v2-items" element={<Suspense fallback={<PageLoader />}><V2ItemsDebugPage /></Suspense>} />
+                <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
+                <Route path="/debug/v2-idols" element={<Suspense fallback={<PageLoader />}><V2IdolsDebugPage /></Suspense>} />
+                <Route path="/debug/v2-classes" element={<Suspense fallback={<PageLoader />}><V2ClassMasteryDebugPage /></Suspense>} />
+                <Route path="/debug/v2-passives" element={<Suspense fallback={<PageLoader />}><V2PassivesDebugPage /></Suspense>} />
+                <Route path="/debug/v2-skills" element={<Suspense fallback={<PageLoader />}><V2SkillsDebugPage /></Suspense>} />
+                <Route path="/debug/v2-stats-modifiers" element={<Suspense fallback={<PageLoader />}><V2StatsModifiersDebugPage /></Suspense>} />
+
+                {/* General debug routes — only available in development builds */}
                 {IS_DEV && (
                   <>
                     <Route path="/movement-debug" element={<Suspense fallback={<PageLoader />}><MovementDebugPage /></Suspense>} />
                     <Route path="/viz-debug" element={<Suspense fallback={<PageLoader />}><VisualizationDebugPage /></Suspense>} />
                     <Route path="/craft-debug" element={<Suspense fallback={<PageLoader />}><CraftDebugPage /></Suspense>} />
                     <Route path="/debug" element={<Suspense fallback={<PageLoader />}><BackendDebugDashboard /></Suspense>} />
-                    <Route path="/debug/v2" element={<Suspense fallback={<PageLoader />}><V2DebugNavigationPage /></Suspense>} />
-                    <Route path="/debug/v2-affixes" element={<AliasRedirect to="/debug/forge-safe-affixes" />} />
-                    <Route path="/debug/forge-safe-affixes" element={<Suspense fallback={<PageLoader />}><ForgeSafeAffixesDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-items" element={<Suspense fallback={<PageLoader />}><V2ItemsDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-unique-sets" element={<Suspense fallback={<PageLoader />}><V2UniqueSetDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-idols" element={<Suspense fallback={<PageLoader />}><V2IdolsDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-classes" element={<Suspense fallback={<PageLoader />}><V2ClassMasteryDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-passives" element={<Suspense fallback={<PageLoader />}><V2PassivesDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-skills" element={<Suspense fallback={<PageLoader />}><V2SkillsDebugPage /></Suspense>} />
-                    <Route path="/debug/v2-stats-modifiers" element={<Suspense fallback={<PageLoader />}><V2StatsModifiersDebugPage /></Suspense>} />
                     <Route path="/data-flow" element={<Suspense fallback={<PageLoader />}><DataFlowHarness /></Suspense>} />
                   </>
                 )}

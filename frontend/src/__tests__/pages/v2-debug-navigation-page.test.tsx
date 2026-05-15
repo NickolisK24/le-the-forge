@@ -70,6 +70,17 @@ describe("V2DebugNavigationPage", () => {
     expect(app).toContain('path="/debug/v2-affixes"');
     expect(app).toContain('to="/debug/forge-safe-affixes"');
   });
+
+  it("registers v2.5 debug routes outside the development-only debug block", () => {
+    const app = fs.readFileSync("src/App.tsx", "utf8");
+    const v25RouteIndex = app.indexOf('path="/debug/v2"');
+    const devOnlyBlockIndex = app.indexOf("{IS_DEV &&");
+
+    expect(v25RouteIndex).toBeGreaterThan(-1);
+    expect(devOnlyBlockIndex).toBeGreaterThan(-1);
+    expect(v25RouteIndex).toBeLessThan(devOnlyBlockIndex);
+    expect(app.indexOf('path="/debug"', devOnlyBlockIndex)).toBeGreaterThan(devOnlyBlockIndex);
+  });
 });
 
 function renderPage() {
