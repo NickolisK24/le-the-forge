@@ -33,6 +33,14 @@ from .approval_manifest_candidates import (
     APPROVAL_MANIFEST_CANDIDATE_STATUSES,
     build_approval_manifest_candidates,
 )
+from .approval_manifest_diff_audit import (
+    APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
+    audit_approval_manifest_diffs,
+)
+from .approval_manifest_serialization import (
+    SERIALIZED_APPROVAL_MANIFEST_STATUSES,
+    serialize_approval_manifest_candidates,
+)
 from .reviewed_fixture_inputs import (
     REVIEWED_FIXTURE_INPUT_STATUSES,
     discover_default_reviewed_fixture_input_sources,
@@ -54,6 +62,8 @@ __all__ = [
     "REVIEWED_FIXTURE_INPUT_STATUSES",
     "FIXTURE_SET_READINESS_CLASSIFICATIONS",
     "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
+    "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
+    "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
     "V31BaselineFixtureWorkflows",
     "V31DualRunComparison",
@@ -69,7 +79,9 @@ __all__ = [
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "build_approval_manifest_candidates",
+    "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
     "normalize_reviewed_fixture_inputs",
+    "serialize_approval_manifest_candidates",
 ]
