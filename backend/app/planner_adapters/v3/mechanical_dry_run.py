@@ -28,7 +28,11 @@ DELTA_CATEGORIES = frozenset(
         "blocked_scripted_mechanic",
         "blocked_unknown_operation",
         "blocked_unresolved_stat_identity",
+        "blocked_unresolved_skill_identity",
+        "blocked_ambiguous_skill_identity",
         "blocked_value_normalization",
+        "blocked_conditional_semantics",
+        "blocked_triggered_semantics",
     }
 )
 
@@ -42,7 +46,11 @@ BLOCKING_CATEGORIES = frozenset(
         "blocked_scripted_mechanic",
         "blocked_unknown_operation",
         "blocked_unresolved_stat_identity",
+        "blocked_unresolved_skill_identity",
+        "blocked_ambiguous_skill_identity",
         "blocked_value_normalization",
+        "blocked_conditional_semantics",
+        "blocked_triggered_semantics",
     }
 )
 
@@ -298,6 +306,10 @@ def _classify_row(
             "candidate_value_normalization_status": None
             if candidate_entry is None
             else candidate_entry.get("value_normalization_status"),
+            "candidate_skill_identity_status": None
+            if candidate_entry is None
+            else candidate_entry.get("skill_identity_status"),
+            "candidate_semantic_status": None if candidate_entry is None else candidate_entry.get("semantic_status"),
         },
     }
 
@@ -321,6 +333,18 @@ def _candidate_gate_status(candidate_entry: dict[str, Any]) -> tuple[str, list[s
     stat_identity_status = str(candidate_entry.get("stat_identity_status") or "unresolved").lower()
     if stat_identity_status != "resolved":
         return "blocked_unresolved_stat_identity", ["unresolved_stat_identity"]
+
+    skill_identity_status = str(candidate_entry.get("skill_identity_status") or "resolved").lower()
+    if skill_identity_status == "ambiguous":
+        return "blocked_ambiguous_skill_identity", ["ambiguous_skill_identity"]
+    if skill_identity_status != "resolved":
+        return "blocked_unresolved_skill_identity", ["unresolved_skill_identity"]
+
+    semantic_status = str(candidate_entry.get("semantic_status") or "simple").lower()
+    if semantic_status == "conditional":
+        return "blocked_conditional_semantics", ["conditional_semantics_unresolved"]
+    if semantic_status == "triggered":
+        return "blocked_triggered_semantics", ["triggered_semantics_unresolved"]
 
     value_status = str(candidate_entry.get("value_normalization_status") or "audit_only").lower()
     if value_status != "approved":
