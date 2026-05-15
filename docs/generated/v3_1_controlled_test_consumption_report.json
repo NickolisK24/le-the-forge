@@ -1,0 +1,122 @@
+{
+  "controlled_test_consumption": {
+    "blocker_reason_counts": {},
+    "controlled_consumption_records": [
+      {
+        "authorization_state": "non_production_authoritative",
+        "blockers": [],
+        "controlled_consumption_authorizes_production_routing": false,
+        "controlled_consumption_id": "v3_1_controlled_consumption_b60ecb0bbb68340a",
+        "controlled_consumption_status": "consumed_in_controlled_test",
+        "controlled_test_mode": true,
+        "eligibility_status": "eligible_for_controlled_test_consumption",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "not_production_consumption": true,
+        "production_output_affected": false
+      }
+    ],
+    "controlled_consumption_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_missing_eligibility_record": 0,
+      "blocked_missing_manifest": 0,
+      "blocked_not_eligible": 0,
+      "blocked_runtime_consumption_disabled": 0,
+      "consumed_in_controlled_test": 1
+    },
+    "deterministic_hash": "f08b0dd2a540a8f4da38a059b3c0def3d029747cb1416201946a1795e6d30c04",
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_controlled_test_consumption",
+      "stable_generation_token": "v3_1_phase_17_controlled_test_consumption_token"
+    },
+    "run": {
+      "admission_aware_manifest_serialization_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+      "controlled_test_mode": true,
+      "eligibility_record_count": 1,
+      "manifest_consumption_eligibility_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+      "manifest_record_count": 1,
+      "run_id": "v3_1_phase_17_controlled_test_consumption"
+    },
+    "safety_confirmations": {
+      "controlled_consumption_authorizes_production_routing": false,
+      "controlled_consumption_is_production_consumption": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.controlled_test_consumption.1",
+    "summary": {
+      "blocked_count": 0,
+      "controlled_test_consumed_count": 1,
+      "deterministic": true,
+      "manifests_evaluated": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    }
+  },
+  "controlled_test_mode": true,
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "f08b0dd2a540a8f4da38a059b3c0def3d029747cb1416201946a1795e6d30c04",
+    "sample_hash": "f08b0dd2a540a8f4da38a059b3c0def3d029747cb1416201946a1795e6d30c04",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "controlled_test_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_controlled_test_consumption_report"
+  },
+  "phase": "v3.1_phase_17_controlled_test_consumption",
+  "phase_17_boundaries": [
+    "controlled test consumption requires explicit test-only invocation",
+    "controlled test consumption does not authorize production routing",
+    "runtime production manifest consumption remains disabled",
+    "production planner routing remains unchanged",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.controlled_test_consumption_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "controlled_test_consumed_count": 1,
+    "deterministic": true,
+    "manifests_evaluated": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "trusted_data_default_truth": false
+  }
+}
