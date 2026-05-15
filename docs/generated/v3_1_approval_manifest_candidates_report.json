@@ -1,0 +1,139 @@
+{
+  "approval_manifest_candidates": {
+    "candidate_ready_manifest": [],
+    "candidate_status_counts": {
+      "candidate_ready": 0,
+      "excluded_invalid_policy_state": 0,
+      "excluded_missing_readiness": 0,
+      "excluded_not_ready": 1
+    },
+    "deterministic_hash": "26e84f9a9f25f9ad94ddd70e449d328623079c6e651702eaef70285fa445db27",
+    "exclusion_reason_counts": {
+      "policy_unsupported": 1
+    },
+    "input_consumption": {
+      "readiness_gate_hash": "85dbb478983263c00b093882c9a141e93b186dc688aedcfa6094b50a40040db2",
+      "readiness_gate_schema": "v3_1.fixture_set_readiness_gate.1"
+    },
+    "manifest_candidates": [
+      {
+        "authorization_status": {
+          "candidate_authorizes_production_routing": false,
+          "candidate_is_production_approved": false,
+          "legacy_planner_ownership_preserved": true,
+          "trusted_default_routing": false
+        },
+        "candidate_status": "excluded_not_ready",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_candidate_id": "v3_1_manifest_candidate_2db355128ef8ae54",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "policy_summary": {
+          "policy_outcome": "unsupported",
+          "valid_policy_state": false
+        },
+        "production_output_affected": false,
+        "readiness_summary": {
+          "block_reason_codes": [
+            "policy_unsupported"
+          ],
+          "readiness_classification": "blocked_policy_failure"
+        },
+        "reason_codes": [
+          "policy_unsupported"
+        ],
+        "source_summary": {
+          "associated_fixture_ids": [
+            "v3_1_fixture_6c378a420c0a4ced",
+            "v3_1_fixture_756415e2e7d3feb2",
+            "v3_1_fixture_8118751ba1b46140",
+            "v3_1_fixture_9c3d260c0dda7b4f",
+            "v3_1_fixture_b82b601f9b088bb8"
+          ],
+          "input_statuses": {
+            "v3_1_fixture_6c378a420c0a4ced": "reviewed",
+            "v3_1_fixture_756415e2e7d3feb2": "reviewed",
+            "v3_1_fixture_8118751ba1b46140": "unsupported",
+            "v3_1_fixture_9c3d260c0dda7b4f": "unsupported",
+            "v3_1_fixture_b82b601f9b088bb8": "unsupported"
+          },
+          "set_key": "sample_migration_readiness_set"
+        }
+      }
+    ],
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_approval_manifest_candidates",
+      "stable_generation_token": "v3_1_phase_8_approval_manifest_candidates_token"
+    },
+    "run": {
+      "readiness_record_count": 1,
+      "run_id": "v3_1_phase_8_approval_manifest_candidates",
+      "source_readiness_hash": "85dbb478983263c00b093882c9a141e93b186dc688aedcfa6094b50a40040db2"
+    },
+    "safety_confirmations": {
+      "approval_manifest_authorizes_production_routing": false,
+      "legacy_planner_ownership_preserved": true,
+      "manifest_candidates_are_production_approved": false,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.approval_manifest_candidates.1",
+    "summary": {
+      "candidate_ready_count": 0,
+      "deterministic": true,
+      "excluded_count": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "total_readiness_records_evaluated": 1,
+      "trusted_data_default_truth": false
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "26e84f9a9f25f9ad94ddd70e449d328623079c6e651702eaef70285fa445db27",
+    "sample_hash": "26e84f9a9f25f9ad94ddd70e449d328623079c6e651702eaef70285fa445db27",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_approval_manifest_candidates_report"
+  },
+  "phase": "v3.1_phase_8_approval_manifest_candidates",
+  "phase_8_boundaries": [
+    "manifest candidates are observational governance artifacts",
+    "manifest candidates do not authorize production routing",
+    "candidate_ready does not mean production-approved",
+    "trusted infrastructure is still not production default",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.approval_manifest_candidates_report.1",
+  "summary": {
+    "candidate_ready_count": 0,
+    "deterministic": true,
+    "excluded_count": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_output_affected": false,
+    "total_readiness_records_evaluated": 1,
+    "trusted_data_default_truth": false
+  }
+}
