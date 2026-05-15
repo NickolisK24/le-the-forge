@@ -1,0 +1,207 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "e45176c79cec01924368d35333c35857e969b396456814f38a56be5d3af00ffe",
+    "sample_hash": "e45176c79cec01924368d35333c35857e969b396456814f38a56be5d3af00ffe",
+    "timestamp_excluded_from_hash": true
+  },
+  "fixture_source_admission_policy": {
+    "admission_status_counts": {
+      "admitted_for_review": 2,
+      "blocked_missing_metadata": 0,
+      "blocked_missing_review_evidence": 0,
+      "blocked_unknown_source": 0,
+      "blocked_unstable_identity": 0,
+      "blocked_unsupported_schema": 0
+    },
+    "block_reason_counts": {},
+    "deterministic_hash": "e45176c79cec01924368d35333c35857e969b396456814f38a56be5d3af00ffe",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_fixture_source_admission_policy",
+      "stable_generation_token": "v3_1_phase_11_fixture_source_admission_policy_token"
+    },
+    "recommended_next_governance_action": "use admitted sources as governance-review inputs only; do not authorize production routing",
+    "run": {
+      "reviewed_fixture_inputs_hash": "bcc71a0573a2de21ed29ab1a7cae6ac04323875d4abccc85e387f4f266f6e077",
+      "reviewed_fixture_inputs_schema": "v3_1.reviewed_fixture_inputs.1",
+      "run_id": "v3_1_phase_11_fixture_source_admission_policy",
+      "source_count": 2
+    },
+    "safety_confirmations": {
+      "admission_policy_authorizes_production_routing": false,
+      "admitted_sources_are_production_approved": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.fixture_source_admission_policy.1",
+    "source_admission_records": [
+      {
+        "admission_id": "v3_1_source_admission_c4faee3ebd353435",
+        "admission_status": "admitted_for_review",
+        "block_reasons": [
+          "source_identity_schema_and_evidence_present"
+        ],
+        "evidence_summary": {
+          "duplicate_record_count": 0,
+          "malformed_record_count": 0,
+          "missing_source_record_count": 0,
+          "normalized_fixture_ids": [
+            "v3_1_fixture_6c378a420c0a4ced",
+            "v3_1_fixture_756415e2e7d3feb2",
+            "v3_1_fixture_8118751ba1b46140",
+            "v3_1_fixture_9c3d260c0dda7b4f",
+            "v3_1_fixture_b82b601f9b088bb8"
+          ],
+          "payload_digest_count": 5,
+          "reason_code_count": 5,
+          "record_count": 5,
+          "reviewed_record_count": 2,
+          "unsupported_record_count": 3
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "non_production_authorization": {
+          "legacy_planner_ownership_preserved": true,
+          "source_authorizes_production_routing": false,
+          "source_is_production_approved": false,
+          "trusted_default_routing": false
+        },
+        "production_output_affected": false,
+        "source_id": "v3_1_baseline_fixture_workflows_report",
+        "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v3_1_baseline_fixture_workflows_report.json",
+        "source_type": "baseline_fixture_workflows"
+      },
+      {
+        "admission_id": "v3_1_source_admission_0df21f3446faece3",
+        "admission_status": "admitted_for_review",
+        "block_reasons": [
+          "source_identity_schema_and_evidence_present"
+        ],
+        "evidence_summary": {
+          "duplicate_record_count": 0,
+          "malformed_record_count": 0,
+          "missing_source_record_count": 0,
+          "normalized_fixture_ids": [
+            "v3_1_fixture_set_6d3b668a84cfbb69"
+          ],
+          "payload_digest_count": 1,
+          "reason_code_count": 1,
+          "record_count": 1,
+          "reviewed_record_count": 0,
+          "unsupported_record_count": 1
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "non_production_authorization": {
+          "legacy_planner_ownership_preserved": true,
+          "source_authorizes_production_routing": false,
+          "source_is_production_approved": false,
+          "trusted_default_routing": false
+        },
+        "production_output_affected": false,
+        "source_id": "v3_1_persisted_fixture_sets_report",
+        "source_path": "D:\\Forge\\le-the-forge\\docs\\generated\\v3_1_persisted_fixture_sets_report.json",
+        "source_type": "persisted_fixture_sets"
+      }
+    ],
+    "source_evidence_summaries": [
+      {
+        "admission_status": "admitted_for_review",
+        "evidence_summary": {
+          "duplicate_record_count": 0,
+          "malformed_record_count": 0,
+          "missing_source_record_count": 0,
+          "normalized_fixture_ids": [
+            "v3_1_fixture_6c378a420c0a4ced",
+            "v3_1_fixture_756415e2e7d3feb2",
+            "v3_1_fixture_8118751ba1b46140",
+            "v3_1_fixture_9c3d260c0dda7b4f",
+            "v3_1_fixture_b82b601f9b088bb8"
+          ],
+          "payload_digest_count": 5,
+          "reason_code_count": 5,
+          "record_count": 5,
+          "reviewed_record_count": 2,
+          "unsupported_record_count": 3
+        },
+        "source_id": "v3_1_baseline_fixture_workflows_report",
+        "source_type": "baseline_fixture_workflows"
+      },
+      {
+        "admission_status": "admitted_for_review",
+        "evidence_summary": {
+          "duplicate_record_count": 0,
+          "malformed_record_count": 0,
+          "missing_source_record_count": 0,
+          "normalized_fixture_ids": [
+            "v3_1_fixture_set_6d3b668a84cfbb69"
+          ],
+          "payload_digest_count": 1,
+          "reason_code_count": 1,
+          "record_count": 1,
+          "reviewed_record_count": 0,
+          "unsupported_record_count": 1
+        },
+        "source_id": "v3_1_persisted_fixture_sets_report",
+        "source_type": "persisted_fixture_sets"
+      }
+    ],
+    "summary": {
+      "admitted_for_review_count": 2,
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "total_sources_evaluated": 2,
+      "trusted_data_default_truth": false
+    }
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_fixture_source_admission_policy_report"
+  },
+  "phase": "v3.1_phase_11_fixture_source_admission_policy",
+  "phase_11_boundaries": [
+    "source admission is observational governance metadata only",
+    "admitted sources are eligible for governance review only",
+    "admitted sources are not production-approved",
+    "source admission does not authorize production routing",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.fixture_source_admission_policy_report.1",
+  "summary": {
+    "admitted_for_review_count": 2,
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "total_sources_evaluated": 2,
+    "trusted_data_default_truth": false
+  }
+}

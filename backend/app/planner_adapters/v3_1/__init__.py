@@ -29,6 +29,10 @@ from .fixture_set_readiness_gate import (
     FIXTURE_SET_READINESS_CLASSIFICATIONS,
     build_fixture_set_readiness_gate,
 )
+from .fixture_source_admission_policy import (
+    FIXTURE_SOURCE_ADMISSION_STATUSES,
+    evaluate_fixture_source_admission_policy,
+)
 from .approval_manifest_candidates import (
     APPROVAL_MANIFEST_CANDIDATE_STATUSES,
     build_approval_manifest_candidates,
@@ -65,6 +69,7 @@ __all__ = [
     "REVIEW_POLICY_OUTCOMES",
     "REVIEWED_FIXTURE_INPUT_STATUSES",
     "FIXTURE_SET_READINESS_CLASSIFICATIONS",
+    "FIXTURE_SOURCE_ADMISSION_STATUSES",
     "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
     "APPROVAL_BLOCKER_CLASSIFICATIONS",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
@@ -83,6 +88,7 @@ __all__ = [
     "build_sample_dual_run_inputs",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
+    "evaluate_fixture_source_admission_policy",
     "build_approval_manifest_candidates",
     "build_approval_blocker_diagnosis",
     "audit_approval_manifest_diffs",
