@@ -1,0 +1,293 @@
+{
+  "baseline_fixture_workflows": {
+    "approval_state_counts": {
+      "approved_baseline": 0,
+      "approved_candidate": 0,
+      "archived": 0,
+      "blocked": 0,
+      "insufficient_data": 1,
+      "pending_review": 2,
+      "rejected": 0,
+      "unsupported": 2
+    },
+    "deterministic_hash": "505143cc38f7239909dd6c7d73ac357f2b2251576830718a33b0cd196778ed29",
+    "fixtures": [
+      {
+        "approval_state": "pending_review",
+        "associated_snapshot_id": "v3_1_snapshot_372c946743469ec5",
+        "baseline_classification": "comparison_ready",
+        "blocked": false,
+        "comparison_readiness": {
+          "baseline_candidate": false,
+          "comparison_eligible": true,
+          "dual_run_drift_classification": "divergent"
+        },
+        "fixture_id": "v3_1_fixture_6c378a420c0a4ced",
+        "generation": {
+          "strategy": "stable_token_and_sorted_json_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_4_baseline_fixture_workflow_token"
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "production_ownership_state": {
+          "approval_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "reason_codes": [
+          "comparison_ready_requires_review"
+        ],
+        "review_notes": [],
+        "snapshot_stable_key": "item_base",
+        "unsupported": false,
+        "unsupported_or_blocked_reason": null
+      },
+      {
+        "approval_state": "insufficient_data",
+        "associated_snapshot_id": "v3_1_snapshot_42674d7f460ed71c",
+        "baseline_classification": "legacy_only",
+        "blocked": false,
+        "comparison_readiness": {
+          "baseline_candidate": false,
+          "comparison_eligible": false,
+          "dual_run_drift_classification": "legacy_only"
+        },
+        "fixture_id": "v3_1_fixture_b82b601f9b088bb8",
+        "generation": {
+          "strategy": "stable_token_and_sorted_json_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_4_baseline_fixture_workflow_token"
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "production_ownership_state": {
+          "approval_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "reason_codes": [
+          "legacy_only_missing_trusted_shadow"
+        ],
+        "review_notes": [],
+        "snapshot_stable_key": "idol",
+        "unsupported": false,
+        "unsupported_or_blocked_reason": "trusted_shadow_summary_missing"
+      },
+      {
+        "approval_state": "pending_review",
+        "associated_snapshot_id": "v3_1_snapshot_472bcd4c1169053b",
+        "baseline_classification": "baseline_candidate",
+        "blocked": false,
+        "comparison_readiness": {
+          "baseline_candidate": true,
+          "comparison_eligible": true,
+          "dual_run_drift_classification": "equivalent"
+        },
+        "fixture_id": "v3_1_fixture_756415e2e7d3feb2",
+        "generation": {
+          "strategy": "stable_token_and_sorted_json_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_4_baseline_fixture_workflow_token"
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "production_ownership_state": {
+          "approval_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "reason_codes": [
+          "baseline_candidate_requires_review"
+        ],
+        "review_notes": [],
+        "snapshot_stable_key": "affix",
+        "unsupported": false,
+        "unsupported_or_blocked_reason": null
+      },
+      {
+        "approval_state": "unsupported",
+        "associated_snapshot_id": "v3_1_snapshot_4d312622ce8de408",
+        "baseline_classification": "unsupported",
+        "blocked": false,
+        "comparison_readiness": {
+          "baseline_candidate": false,
+          "comparison_eligible": false,
+          "dual_run_drift_classification": "unsupported"
+        },
+        "fixture_id": "v3_1_fixture_8118751ba1b46140",
+        "generation": {
+          "strategy": "stable_token_and_sorted_json_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_4_baseline_fixture_workflow_token"
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "production_ownership_state": {
+          "approval_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "reason_codes": [
+          "unsupported_state_visible"
+        ],
+        "review_notes": [],
+        "snapshot_stable_key": "passive_skill",
+        "unsupported": true,
+        "unsupported_or_blocked_reason": "unsupported_state_visible"
+      },
+      {
+        "approval_state": "unsupported",
+        "associated_snapshot_id": "v3_1_snapshot_7fed448d66ec5b1b",
+        "baseline_classification": "unsupported",
+        "blocked": false,
+        "comparison_readiness": {
+          "baseline_candidate": false,
+          "comparison_eligible": false,
+          "dual_run_drift_classification": "unsupported"
+        },
+        "fixture_id": "v3_1_fixture_9c3d260c0dda7b4f",
+        "generation": {
+          "strategy": "stable_token_and_sorted_json_hash",
+          "timestamp_strategy": "report_level_deterministic_token",
+          "token": "v3_1_phase_4_baseline_fixture_workflow_token"
+        },
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_behavior_changed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "production_ownership_state": {
+          "approval_authorizes_production_routing": false,
+          "legacy_controlled": true,
+          "owner": "legacy",
+          "trusted_default_routing": false
+        },
+        "reason_codes": [
+          "unsupported_state_visible"
+        ],
+        "review_notes": [],
+        "snapshot_stable_key": "monolith_echo",
+        "unsupported": true,
+        "unsupported_or_blocked_reason": "unsupported_trusted_shadow_domain"
+      }
+    ],
+    "generated_at": "2026-05-15T00:00:00+00:00",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_baseline_fixture_workflows",
+      "stable_workflow_generation_token": "v3_1_phase_4_baseline_fixture_workflow_token"
+    },
+    "run": {
+      "approval_override_count": 0,
+      "fixture_count": 5,
+      "run_id": "v3_1_phase_4_baseline_fixture_workflows",
+      "source_snapshot_hash": "afdc78cfd2cd4213f3fda68ef2b6b63296ee4c155d87cbefbdd590f0d9634b61",
+      "source_snapshot_schema": "v3_1.planner_snapshot_baselines.1"
+    },
+    "safety_confirmations": {
+      "approval_status_authorizes_production_routing": false,
+      "automatic_drift_acceptance": false,
+      "blocked_states_hidden": false,
+      "legacy_planner_ownership_preserved": true,
+      "planner_output_replaced": false,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false,
+      "unsupported_states_hidden": false
+    },
+    "schema_version": "v3_1.baseline_fixture_workflows.1",
+    "summary": {
+      "approved_baseline_count": 0,
+      "approved_candidate_count": 0,
+      "archived_count": 0,
+      "blocked_count": 0,
+      "deterministic": true,
+      "insufficient_data_count": 1,
+      "pending_review_count": 2,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "rejected_count": 0,
+      "total_fixtures": 5,
+      "trusted_data_default_truth": false,
+      "unsupported_count": 2
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "505143cc38f7239909dd6c7d73ac357f2b2251576830718a33b0cd196778ed29",
+    "sample_hash": "505143cc38f7239909dd6c7d73ac357f2b2251576830718a33b0cd196778ed29",
+    "stable_workflow_generation_token": "v3_1_phase_4_baseline_fixture_workflow_token",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_baseline_fixture_workflows_report"
+  },
+  "phase": "v3.1_phase_4_baseline_fixture_approval_workflows",
+  "phase_4_boundaries": [
+    "workflows are observational governance infrastructure only",
+    "trusted infrastructure is still not production default",
+    "production planner ownership remains legacy-controlled",
+    "approval workflows are migration-readiness tooling",
+    "unsupported and blocked states remain intentionally visible",
+    "approval status does not imply production routing approval"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.baseline_fixture_workflows_report.1",
+  "summary": {
+    "approved_baseline_count": 0,
+    "approved_candidate_count": 0,
+    "archived_count": 0,
+    "blocked_count": 0,
+    "deterministic": true,
+    "insufficient_data_count": 1,
+    "pending_review_count": 2,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_output_affected": false,
+    "rejected_count": 0,
+    "total_fixtures": 5,
+    "trusted_data_default_truth": false,
+    "unsupported_count": 2
+  }
+}
