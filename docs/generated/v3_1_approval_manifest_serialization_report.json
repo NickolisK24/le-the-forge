@@ -1,0 +1,170 @@
+{
+  "approval_manifest_diff_audit": {
+    "classification_counts": {
+      "added": 0,
+      "changed_authorization_state": 0,
+      "changed_hash": 0,
+      "changed_metadata": 0,
+      "removed": 0,
+      "unchanged": 0
+    },
+    "deterministic_hash": "c0d263f3c5c6fbcae45ea1ba8b52ee0a89f2a5ad00e2ea61662ecf19dabcff3f",
+    "diff_records": [],
+    "diff_summary": {
+      "added_count": 0,
+      "blocked_high_risk_count": 0,
+      "changed_authorization_state_count": 0,
+      "changed_hash_count": 0,
+      "changed_metadata_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "removed_count": 0,
+      "total_diffs_evaluated": 0,
+      "unchanged_count": 0
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_approval_manifest_diff_audit",
+      "stable_generation_token": "v3_1_phase_9_approval_manifest_diff_audit_token"
+    },
+    "run": {
+      "after_manifest_count": 0,
+      "before_manifest_count": 0,
+      "run_id": "v3_1_phase_9_approval_manifest_diff_audit"
+    },
+    "safety_confirmations": {
+      "authorization_state_changes_are_blocked_high_risk": true,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.approval_manifest_diff_audit.1"
+  },
+  "approval_manifest_serialization": {
+    "deterministic_hash": "dea874b9d2a9ea3f2464e7aa51c64cdfa78a7639525aba8aa20a5d697cc992f5",
+    "excluded_candidates": [
+      {
+        "authorization_status": {
+          "authorization_state": "non_production_authoritative",
+          "legacy_planner_ownership_preserved": true,
+          "manifest_authorizes_production_routing": false,
+          "manifest_is_production_approved": false,
+          "trusted_default_routing": false
+        },
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_candidate_id": "v3_1_manifest_candidate_2db355128ef8ae54",
+        "metadata": {
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "reason_codes": [
+          "policy_unsupported"
+        ],
+        "serialization_status": "excluded_not_ready"
+      }
+    ],
+    "exclusion_reason_counts": {
+      "policy_unsupported": 1
+    },
+    "input_consumption": {
+      "approval_manifest_candidate_hash": "26e84f9a9f25f9ad94ddd70e449d328623079c6e651702eaef70285fa445db27",
+      "approval_manifest_candidate_schema": "v3_1.approval_manifest_candidates.1"
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_approval_manifest_serialization",
+      "stable_generation_token": "v3_1_phase_9_approval_manifest_serialization_token"
+    },
+    "run": {
+      "candidate_record_count": 1,
+      "run_id": "v3_1_phase_9_approval_manifest_serialization",
+      "source_candidate_hash": "26e84f9a9f25f9ad94ddd70e449d328623079c6e651702eaef70285fa445db27"
+    },
+    "safety_confirmations": {
+      "all_manifests_non_production_authoritative": true,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "runtime_state_mutated": false,
+      "serialized_manifests_are_production_approved": false,
+      "serialized_manifests_authorize_production_routing": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.approval_manifest_serialization.1",
+    "serialization_status_counts": {
+      "excluded_invalid_policy_state": 0,
+      "excluded_missing_readiness": 0,
+      "excluded_not_ready": 1,
+      "serialized_manifest": 0
+    },
+    "serialized_manifests": [],
+    "summary": {
+      "deterministic": true,
+      "excluded_count": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "serialized_manifest_count": 0,
+      "total_candidates_evaluated": 1,
+      "trusted_data_default_truth": false
+    }
+  },
+  "deterministic_guarantees": {
+    "diff_audit_hash": "c0d263f3c5c6fbcae45ea1ba8b52ee0a89f2a5ad00e2ea61662ecf19dabcff3f",
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "dea874b9d2a9ea3f2464e7aa51c64cdfa78a7639525aba8aa20a5d697cc992f5",
+    "sample_hash": "dea874b9d2a9ea3f2464e7aa51c64cdfa78a7639525aba8aa20a5d697cc992f5",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_approval_manifest_serialization_report"
+  },
+  "phase": "v3.1_phase_9_approval_manifest_serialization_diff_audit",
+  "phase_9_boundaries": [
+    "serialized manifests are observational governance artifacts",
+    "serialized manifests do not authorize production routing",
+    "every serialized manifest is non-production authoritative",
+    "authorization-state changes are surfaced as blocked high-risk diffs",
+    "trusted infrastructure is still not production default",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "schema_version": "v3_1.approval_manifest_serialization_report.1",
+  "summary": {
+    "blocked_high_risk_count": 0,
+    "deterministic": true,
+    "diff_record_count": 0,
+    "excluded_count": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "serialized_manifest_count": 0,
+    "total_candidates_evaluated": 1,
+    "trusted_data_default_truth": false
+  }
+}
