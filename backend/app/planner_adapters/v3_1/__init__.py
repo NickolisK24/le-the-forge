@@ -33,6 +33,10 @@ from .approval_manifest_candidates import (
     APPROVAL_MANIFEST_CANDIDATE_STATUSES,
     build_approval_manifest_candidates,
 )
+from .approval_blocker_diagnosis import (
+    APPROVAL_BLOCKER_CLASSIFICATIONS,
+    build_approval_blocker_diagnosis,
+)
 from .approval_manifest_diff_audit import (
     APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
     audit_approval_manifest_diffs,
@@ -62,6 +66,7 @@ __all__ = [
     "REVIEWED_FIXTURE_INPUT_STATUSES",
     "FIXTURE_SET_READINESS_CLASSIFICATIONS",
     "APPROVAL_MANIFEST_CANDIDATE_STATUSES",
+    "APPROVAL_BLOCKER_CLASSIFICATIONS",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
     "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
@@ -79,6 +84,7 @@ __all__ = [
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "build_approval_manifest_candidates",
+    "build_approval_blocker_diagnosis",
     "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
