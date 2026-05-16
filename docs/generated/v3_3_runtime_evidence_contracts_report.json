@@ -1,0 +1,674 @@
+{
+  "contracts_with_explicit_limitations": {
+    "authorization_signal": [
+      "authorization-prohibited evidence blocks enablement",
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "conflict_signal": [
+      "conflict evidence requires reconciliation",
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "drift_signal": [
+      "drift evidence requires explicit review",
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "extracted_static_record": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "limitation_signal": [
+      "limitation evidence constrains future planning",
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "normalized_static_record": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "observed_runtime_state": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "provenance_signal": [
+      "provenance signal may identify missing evidence",
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_trace_event": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "runtime_trace_event": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only",
+      "runtime trace events are not runtime decisions"
+    ],
+    "unsupported_signal": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only",
+      "unsupported evidence is visible but not usable"
+    ],
+    "validated_static_record": [
+      "runtime evidence contracts are planning-only",
+      "runtime evidence synthesis is not enabled in this phase",
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "contracts_with_explicit_risks": {
+    "authorization_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "conflict_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "drift_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "extracted_static_record": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "limitation_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "normalized_static_record": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "observed_runtime_state": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "provenance_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "replay_trace_event": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "runtime_trace_event": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "unsupported_signal": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ],
+    "validated_static_record": [
+      "classification must not authorize production runtime routing",
+      "runtime evidence without provenance must not be trusted"
+    ]
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "observed_runtime_state",
+      "extracted_static_record",
+      "normalized_static_record",
+      "validated_static_record",
+      "runtime_trace_event",
+      "replay_trace_event",
+      "drift_signal",
+      "conflict_signal",
+      "unsupported_signal",
+      "provenance_signal",
+      "authorization_signal",
+      "limitation_signal"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_deterministic_ranks": [],
+    "duplicate_evidence_labels": [],
+    "duplicate_evidence_type_ids": []
+  },
+  "evidence_contracts_requiring_provenance": [
+    "observed_runtime_state",
+    "extracted_static_record",
+    "normalized_static_record",
+    "validated_static_record",
+    "runtime_trace_event",
+    "replay_trace_event",
+    "drift_signal",
+    "conflict_signal",
+    "unsupported_signal",
+    "provenance_signal",
+    "authorization_signal",
+    "limitation_signal"
+  ],
+  "evidence_contracts_requiring_source_attribution": [
+    "observed_runtime_state",
+    "extracted_static_record",
+    "normalized_static_record",
+    "validated_static_record",
+    "runtime_trace_event",
+    "replay_trace_event",
+    "drift_signal",
+    "conflict_signal",
+    "unsupported_signal",
+    "provenance_signal",
+    "authorization_signal",
+    "limitation_signal"
+  ],
+  "evidence_manifest": {
+    "classification_reference_count": 12,
+    "deterministic_hash": "62b52c9981f7bcd8624b9524fa2dba1b4ec67d71fb3517e9d8f074c30be047e2",
+    "evidence_contracts": [
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "drift_visible": true,
+        "evidence_label": "observed_runtime_state",
+        "evidence_type_id": "runtime_evidence_observed_runtime_state_3f3265c53cf7",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "drift_visible": true,
+        "evidence_label": "extracted_static_record",
+        "evidence_type_id": "runtime_evidence_extracted_static_record_797724886628",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_inferred_9b474e377107",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "drift_visible": true,
+        "evidence_label": "normalized_static_record",
+        "evidence_type_id": "runtime_evidence_normalized_static_record_c7e9acb5a224",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_replay_verified_c386cacc38b4",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "drift_visible": true,
+        "evidence_label": "validated_static_record",
+        "evidence_type_id": "runtime_evidence_validated_static_record_05a1d97b5bd2",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_unstable_02c01f5a9385",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "drift_visible": true,
+        "evidence_label": "runtime_trace_event",
+        "evidence_type_id": "runtime_evidence_runtime_trace_event_4d6985c85ea0",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only",
+          "runtime trace events are not runtime decisions"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_replay_verified_c386cacc38b4",
+          "runtime_intelligence_unstable_02c01f5a9385",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "drift_visible": true,
+        "evidence_label": "replay_trace_event",
+        "evidence_type_id": "runtime_evidence_replay_trace_event_96093dcb6d80",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "drift_visible": true,
+        "evidence_label": "drift_signal",
+        "evidence_type_id": "runtime_evidence_drift_signal_ea46fa921092",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "drift evidence requires explicit review",
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_conflicting_73cf2f5aa267"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "drift_visible": true,
+        "evidence_label": "conflict_signal",
+        "evidence_type_id": "runtime_evidence_conflict_signal_5027f88802d4",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "conflict evidence requires reconciliation",
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "drift_visible": true,
+        "evidence_label": "unsupported_signal",
+        "evidence_type_id": "runtime_evidence_unsupported_signal_823155381335",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only",
+          "unsupported evidence is visible but not usable"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "drift_visible": true,
+        "evidence_label": "provenance_signal",
+        "evidence_type_id": "runtime_evidence_provenance_signal_f78a3b4cc144",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "provenance signal may identify missing evidence",
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "drift_visible": true,
+        "evidence_label": "authorization_signal",
+        "evidence_type_id": "runtime_evidence_authorization_signal_61206e19f0b1",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "authorization-prohibited evidence blocks enablement",
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      },
+      {
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "drift_visible": true,
+        "evidence_label": "limitation_signal",
+        "evidence_type_id": "runtime_evidence_limitation_signal_cabffab5fae2",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "limitation evidence constrains future planning",
+          "runtime evidence contracts are planning-only",
+          "runtime evidence synthesis is not enabled in this phase",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "runtime evidence without provenance must not be trusted"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_evidence_planning_only": true,
+        "runtime_evidence_synthesis_enabled": false,
+        "runtime_reasoning_decisions_enabled": false,
+        "source_required": true
+      }
+    ],
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "runtime_certainty_fabricated": false,
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_evidence_contracts",
+      "unsupported_evidence_visible": true
+    },
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "registry_validation": {
+      "authorization_prohibited_evidence_visible": true,
+      "duplicate_detection": {
+        "duplicate_deterministic_ranks": [],
+        "duplicate_evidence_labels": [],
+        "duplicate_evidence_type_ids": []
+      },
+      "invalid_classification_reference_count": 0,
+      "invalid_classification_references": {},
+      "missing_required_fields": {},
+      "production_authorized_evidence_contracts": [],
+      "provenance_required_by_all_contracts": true,
+      "source_required_by_all_contracts": true,
+      "unknown_labels": [],
+      "unsupported_evidence_visible": true,
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_validation": {
+      "first_hash": "4d679e7cb73addd44fb23b7247e5baa86e9c42e0c485884e257cbbbf95ac84e4",
+      "replay_stable": true,
+      "second_hash": "4d679e7cb73addd44fb23b7247e5baa86e9c42e0c485884e257cbbbf95ac84e4",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "evidence_contract_count": 12,
+      "run_id": "v3_3_phase_2_runtime_evidence_contracts"
+    },
+    "runtime_evidence_planning_only": true,
+    "runtime_evidence_synthesis_enabled": false,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_reasoning_decisions_enabled": false,
+    "schema_version": "v3_3.runtime_evidence_contracts.1"
+  },
+  "evidence_to_classification_compatibility_validation": {
+    "invalid_classification_references": {},
+    "passed": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_evidence_contracts_report"
+  },
+  "phase": "v3.3_phase_2_runtime_evidence_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_EVIDENCE_CONTRACT_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "replay_validation_results": {
+    "first_hash": "4d679e7cb73addd44fb23b7247e5baa86e9c42e0c485884e257cbbbf95ac84e4",
+    "replay_stable": true,
+    "second_hash": "4d679e7cb73addd44fb23b7247e5baa86e9c42e0c485884e257cbbbf95ac84e4",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "runtime_evidence_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "no_evidence_contract_is_production_authorized": true,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "runtime_evidence_remains_planning_only": true,
+    "runtime_evidence_synthesis_enabled": false,
+    "runtime_reasoning_decisions_enabled": false
+  },
+  "schema_version": "v3_3.runtime_evidence_contracts_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "62b52c9981f7bcd8624b9524fa2dba1b4ec67d71fb3517e9d8f074c30be047e2",
+    "passed": true,
+    "repeated_hash": "62b52c9981f7bcd8624b9524fa2dba1b4ec67d71fb3517e9d8f074c30be047e2",
+    "sample_hash": "62b52c9981f7bcd8624b9524fa2dba1b4ec67d71fb3517e9d8f074c30be047e2"
+  },
+  "summary": {
+    "authorization_prohibited_evidence_contract_count": 1,
+    "contracts_with_explicit_limitations_count": 12,
+    "contracts_with_explicit_risks_count": 12,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "drift_visible_evidence_contract_count": 12,
+    "duplicate_detection_passed": true,
+    "evidence_contracts_requiring_provenance_count": 12,
+    "evidence_contracts_requiring_source_count": 12,
+    "invalid_classification_reference_count": 0,
+    "production_authorized_evidence_contract_count": 0,
+    "production_behavior_changed": false,
+    "replay_safe_evidence_contract_count": 6,
+    "replay_validation_passed": true,
+    "stable_hash_valid": true,
+    "total_evidence_contract_count": 12,
+    "unsupported_evidence_contract_count": 1
+  },
+  "unsupported_evidence_visibility": {
+    "authorization_prohibited_evidence_visible": true,
+    "unsupported_evidence_visible": true
+  }
+}
