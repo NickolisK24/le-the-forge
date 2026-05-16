@@ -38,6 +38,24 @@ from .evidence_registry import (
     export_evidence_registry,
     validate_evidence_registry,
 )
+from .explanation_contracts import (
+    EXPLANATION_LABELS,
+    build_explanation_contract,
+    build_runtime_explanation_manifest,
+    default_runtime_explanation_contracts,
+    order_explanation_contracts,
+    serialize_runtime_explanation_manifest,
+)
+from .explanation_hashing import (
+    hash_explanation_manifest,
+    serialize_explanation_manifest,
+    validate_explanation_replay_stability,
+)
+from .explanation_registry import (
+    detect_duplicate_explanation_contracts,
+    export_explanation_registry,
+    validate_explanation_registry,
+)
 from .provenance_contracts import (
     PROVENANCE_LABELS,
     build_provenance_contract,
@@ -102,6 +120,18 @@ __all__ = [
     "detect_duplicate_evidence_contracts",
     "export_evidence_registry",
     "validate_evidence_registry",
+    "EXPLANATION_LABELS",
+    "build_explanation_contract",
+    "build_runtime_explanation_manifest",
+    "default_runtime_explanation_contracts",
+    "order_explanation_contracts",
+    "serialize_runtime_explanation_manifest",
+    "hash_explanation_manifest",
+    "serialize_explanation_manifest",
+    "validate_explanation_replay_stability",
+    "detect_duplicate_explanation_contracts",
+    "export_explanation_registry",
+    "validate_explanation_registry",
     "PROVENANCE_LABELS",
     "build_provenance_contract",
     "build_runtime_provenance_manifest",
