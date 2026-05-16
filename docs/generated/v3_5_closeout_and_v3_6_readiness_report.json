@@ -1,0 +1,2645 @@
+{
+  "closeout_scope": "full_v3_5_orchestration_planning_chain",
+  "closeout_statuses_supported": [
+    "v3_5_blocked_by_missing_phase_report",
+    "v3_5_blocked_by_invalid_phase_status",
+    "v3_5_blocked_by_missing_deterministic_hash",
+    "v3_5_blocked_by_missing_scenario_coverage",
+    "v3_5_blocked_by_phase_chain_incompatibility",
+    "v3_5_blocked_by_missing_documentation",
+    "v3_5_blocked_by_execution_leak",
+    "v3_5_blocked_by_production_consumption_leak",
+    "v3_5_requires_manual_review",
+    "v3_5_closed_out_ready_for_v3_6_planning"
+  ],
+  "deterministic_closeout_hash": "432eb6ef32fab74cedfb0dc9d0d232320c81e4ace84f4bf919901fa40debb474",
+  "deterministic_hash_summary": {
+    "scenario_count": 11,
+    "scenario_with_missing_hash_count": 2,
+    "stable_closeout_hashing": true
+  },
+  "deterministic_report_hash": "4500d8639aa24b49b0b4f5cafc767872d7da1de863341f5fd07623bc9728907a",
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_behavior_enabled": false,
+    "live_replay_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_audit_storage_enabled": false,
+    "production_consumption_enabled": false,
+    "production_state_reads_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_trace_capture_enabled": false,
+    "scheduling_behavior_enabled": false,
+    "v3_6_behavior_enabled": false
+  },
+  "final_closeout_status": "v3_5_closed_out_ready_for_v3_6_planning",
+  "full_phase_coverage": [
+    {
+      "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+      "expected_status": "governance_consumption_ready_for_orchestration_planning",
+      "phase_id": "phase_1",
+      "phase_name": "governance consumption contracts",
+      "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+      "status_field": "final_governance_consumption_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+      "expected_status": "ready_for_future_orchestration_planning",
+      "phase_id": "phase_2",
+      "phase_name": "orchestration readiness evaluation",
+      "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+      "status_field": "final_readiness_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+      "expected_status": "dependency_satisfied",
+      "phase_id": "phase_3",
+      "phase_name": "governance dependency resolution",
+      "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+      "status_field": "final_dependency_resolution_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+      "expected_status": "coordination_ready_for_planning",
+      "phase_id": "phase_4",
+      "phase_name": "orchestration coordination planning",
+      "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+      "status_field": "final_coordination_planning_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+      "expected_status": "visibility_ready_for_planning",
+      "phase_id": "phase_5",
+      "phase_name": "orchestration visibility aggregation",
+      "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+      "status_field": "final_visibility_aggregation_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+      "expected_status": "snapshot_ready_for_replay_planning",
+      "phase_id": "phase_6",
+      "phase_name": "orchestration planning snapshots",
+      "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+      "status_field": "final_snapshot_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+      "expected_status": "snapshot_diff_stable",
+      "phase_id": "phase_7",
+      "phase_name": "snapshot diff and drift analysis",
+      "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+      "status_field": "final_diff_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+      "expected_status": "audit_chain_stable",
+      "phase_id": "phase_8",
+      "phase_name": "orchestration planning audit chains",
+      "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+      "status_field": "final_audit_chain_status"
+    },
+    {
+      "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+      "expected_status": "integrity_audit_stable",
+      "phase_id": "phase_9",
+      "phase_name": "orchestration planning integrity audits",
+      "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+      "status_field": "final_integrity_audit_status"
+    }
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "invalid_status_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "missing_documentation_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "missing_report_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "non_production": true,
+  "phase_chain_compatibility_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "phase_name": "v3.5_phase_10_closeout_and_v3_6_readiness",
+  "planning_only": true,
+  "prohibition_preservation_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "remaining_limitations": [
+    "closeout audit inspects generated artifacts only",
+    "closeout audit does not repair missing reports or infer missing evidence",
+    "closeout audit does not execute, route, mutate, write audit logs, schedule, dispatch, or traverse orchestration",
+    "closeout audit does not perform live replay, capture runtime traces, read production state, persist audit state, or enable v3.6 behavior"
+  ],
+  "scenario_coverage": [
+    "full_v3_5_chain_present_and_stable",
+    "missing_phase_report",
+    "missing_migration_documentation",
+    "invalid_phase_status",
+    "missing_deterministic_hash",
+    "missing_scenario_coverage",
+    "execution_leak_detection",
+    "production_consumption_leak_detection",
+    "phase_chain_incompatibility",
+    "manual_review_readiness_state",
+    "v3_6_planning_blocked_state"
+  ],
+  "scenario_coverage_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "scenario_results": {
+    "execution_leak_detection": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_execution_leak",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "803e54068be7a3f670fcdfb2fb25ca65d66d11ed4a66a7d38bc132da3d990eba",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_execution_leak; closeout entries: phase_1.",
+      "deterministic_hash": "062929443b279264a2d0485b336e4bf2355962e3f5928dbd7382f1972eee2283",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": true,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [
+        "execution_leak:phase_1"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "full_v3_5_chain_present_and_stable": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_closed_out_ready_for_v3_6_planning",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "432eb6ef32fab74cedfb0dc9d0d232320c81e4ace84f4bf919901fa40debb474",
+      "deterministic_explanation_summary": "v3.5 closeout is stable; v3.6 planning discussions may begin, but no execution, routing, mutation, audit writing, graph execution, live replay, persistent audit storage, production state read, or v3.6 behavior is authorized.",
+      "deterministic_hash": "b5d845b29b7e7d9ac2ecd61e2a92530e9c67cf810fd93f7e0804c71e70111a57",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_allowed",
+      "v3_6_readiness_summary": [
+        "v3.6 planning discussions may begin; v3.6 behavior remains disabled"
+      ]
+    },
+    "invalid_phase_status": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_invalid_phase_status",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "f808c80705fe3835646e5301993b42b6d4bfc5dbf06ba3fbdce7210a7a24b128",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_invalid_phase_status; closeout entries: phase_2.",
+      "deterministic_hash": "bcb025ad58ce1d6a09bc0d67d1ab1d82393ed28ff399e7a4b588c2eeebdf44fd",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [
+        "phase_2"
+      ],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 8
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "blocked_by_governance_dependency",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": false
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "manual_review_readiness_state": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_requires_manual_review",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "a76bc2239ed189cc7edaabb74813e8d37ab9b036d9c46fb3d79dbb27f306529b",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_requires_manual_review; closeout entries: manual_closeout_review.",
+      "deterministic_hash": "b510702e226f9f0f119984aee12afa16eac56d5f2c33fe6944fd809a1a0b5d19",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [
+        "manual_closeout_review"
+      ],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_requires_manual_review",
+      "v3_6_readiness_summary": [
+        "v3.6 planning requires manual review before discussions proceed"
+      ]
+    },
+    "missing_deterministic_hash": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_missing_deterministic_hash",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "a0f709bea2dbd8317958eb82f0b8a6848481936eb1239e0e69458601e32d1204",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_missing_deterministic_hash; closeout entries: phase_9.",
+      "deterministic_hash": "87ea1ad646db93f6c1a59e1d4181eaae8178eaf96224438399b2f0b0dfd20ce9",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [
+        "phase_9"
+      ],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 8,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": false,
+          "deterministic_hashes": [],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "missing_migration_documentation": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_missing_documentation",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "001490570c355123e7e127840eb5a712d7b31cce499c855f099393b01204050c",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_missing_documentation; closeout entries: phase_5.",
+      "deterministic_hash": "cba90b1f2eb8af2255130ca782a77b6871f7dc562720ae258c87e5bf4a00ec41",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [
+        "phase_5"
+      ],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 8,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": false,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "missing_phase_report": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_missing_phase_report",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "f35399c5c83a3ac5def46bb903987cf00d244d17f1f2dfb48fc6843f381815b6",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_missing_phase_report; closeout entries: phase_4.",
+      "deterministic_hash": "a169267c08386d648c154c248cf9f602bf31e7b7ba67781e13ab9bf301c6b4c6",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [
+        "phase_4"
+      ],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 8,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 8,
+        "scenario_coverage_present_count": 8,
+        "valid_status_count": 8
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": false,
+          "deterministic_hashes": [],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": null,
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": false,
+          "scenario_coverage_present": false,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": false
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "missing_scenario_coverage": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_missing_scenario_coverage",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "fdabfd1695d430f1a4d67a51bd5b7ed3726eba3e147c1adb272e42bd85c8d253",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_missing_scenario_coverage; closeout entries: phase_3.",
+      "deterministic_hash": "ee44c9ce191bd64a422382bb140d27498c322b0dde4132900d35a33aff2f4295",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [
+        "phase_3"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 8,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": false,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "phase_chain_incompatibility": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_phase_chain_incompatibility",
+      "compatibility_blocker_summary": [
+        "phase_chain_compatibility"
+      ],
+      "deterministic_closeout_hash": "dd182e2b937ccbe62235e45226a822ed3adda44329ae3d9078726f98ee45538b",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_phase_chain_incompatibility; closeout entries: phase_chain_compatibility.",
+      "deterministic_hash": "5799b44653d92d0d476c833b81816c889bbba702abec341ed2c4de99950a7281",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "production_consumption_leak_detection": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_production_consumption_leak",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "465329d62db58f2b02df6156ecc408ed646570f9f17a2e86b76e492edfffad19",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_production_consumption_leak; closeout entries: phase_6.",
+      "deterministic_hash": "c99dab11623257a35e83ad20bfc4a9038ca5c9f506574d4c2b15e41fc8cfa2be",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 9,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": true,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0"
+          ],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [
+        "production_consumption_leak:phase_6"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    },
+    "v3_6_planning_blocked_state": {
+      "audit_log_writing_enabled": false,
+      "closeout_status": "v3_5_blocked_by_missing_deterministic_hash",
+      "compatibility_blocker_summary": [],
+      "deterministic_closeout_hash": "be9b45931b528533bf4a208c1229c48d74c32b4d610b4f4ddb527a2ec062a4e9",
+      "deterministic_explanation_summary": "v3.5 closeout classified as v3_5_blocked_by_missing_deterministic_hash; closeout entries: phase_7.",
+      "deterministic_hash": "3e15b7d583f955b5ea361abd6e9504dc60b235e41bedeb9595ffa8a87c0a0de0",
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "invalid_phase_status_list": [],
+      "limitation_summary": [
+        "closeout audit does not execute, dispatch, route, mutate, write audit logs, schedule, or traverse orchestration",
+        "closeout audit does not perform live replay, capture runtime traces, or read production state",
+        "closeout audit does not repair missing reports, infer missing evidence, persist audit state, or enable v3.6 behavior",
+        "closeout audit inspects declarative generated artifacts only"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "missing_deterministic_hash_list": [
+        "phase_7"
+      ],
+      "missing_documentation_list": [],
+      "missing_report_list": [],
+      "missing_scenario_coverage_list": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "phase_coverage_summary": {
+        "deterministic_hash_present_count": 8,
+        "documentation_present_count": 9,
+        "expected_phase_count": 9,
+        "report_present_count": 9,
+        "scenario_coverage_present_count": 9,
+        "valid_status_count": 9
+      },
+      "phase_results": [
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "c2e4a674de51414f0779221489f995749a3e1d30d16dbe4abeb2b737af6f72f1"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_CONSUMPTION_CONTRACTS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "governance_consumption_ready_for_orchestration_planning",
+          "phase_id": "phase_1",
+          "phase_name": "governance consumption contracts",
+          "phase_status": "governance_consumption_ready_for_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_consumption_contracts_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_governance_consumption_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "68f65f6e7372140ccb97b5990012b2ccd900ebd3af5df71e5fa5f4f07cf22782"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_READINESS_EVALUATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "ready_for_future_orchestration_planning",
+          "phase_id": "phase_2",
+          "phase_name": "orchestration readiness evaluation",
+          "phase_status": "ready_for_future_orchestration_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_readiness_evaluation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_readiness_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8"
+          ],
+          "documentation_path": "docs/migration/V3_5_GOVERNANCE_DEPENDENCY_RESOLUTION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "dependency_satisfied",
+          "phase_id": "phase_3",
+          "phase_name": "governance dependency resolution",
+          "phase_status": "dependency_satisfied",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_governance_dependency_resolution_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_dependency_resolution_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_COORDINATION_PLANNING.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "coordination_ready_for_planning",
+          "phase_id": "phase_4",
+          "phase_name": "orchestration coordination planning",
+          "phase_status": "coordination_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_coordination_planning_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_coordination_planning_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_VISIBILITY_AGGREGATION.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "visibility_ready_for_planning",
+          "phase_id": "phase_5",
+          "phase_name": "orchestration visibility aggregation",
+          "phase_status": "visibility_ready_for_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_visibility_aggregation_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_visibility_aggregation_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "12c046e49e39312047e1c56bc1624e527857ffa41736489b75231bf0a00a3fce"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_PLANNING_SNAPSHOT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_ready_for_replay_planning",
+          "phase_id": "phase_6",
+          "phase_name": "orchestration planning snapshots",
+          "phase_status": "snapshot_ready_for_replay_planning",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_planning_snapshot_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_snapshot_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": false,
+          "deterministic_hashes": [],
+          "documentation_path": "docs/migration/V3_5_SNAPSHOT_DIFF_AND_DRIFT_ANALYSIS.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "snapshot_diff_stable",
+          "phase_id": "phase_7",
+          "phase_name": "snapshot diff and drift analysis",
+          "phase_status": "snapshot_diff_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_snapshot_diff_and_drift_analysis_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_diff_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_AUDIT_CHAIN.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "audit_chain_stable",
+          "phase_id": "phase_8",
+          "phase_name": "orchestration planning audit chains",
+          "phase_status": "audit_chain_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_audit_chain_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_audit_chain_status",
+          "status_valid": true
+        },
+        {
+          "deterministic_hash_present": true,
+          "deterministic_hashes": [
+            "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64"
+          ],
+          "documentation_path": "docs/migration/V3_5_ORCHESTRATION_INTEGRITY_AUDIT.md",
+          "documentation_present": true,
+          "execution_leak_detected": false,
+          "expected_status": "integrity_audit_stable",
+          "phase_id": "phase_9",
+          "phase_name": "orchestration planning integrity audits",
+          "phase_status": "integrity_audit_stable",
+          "production_consumption_leak_detected": false,
+          "report_path": "docs/generated/v3_5_orchestration_integrity_audit_report.json",
+          "report_present": true,
+          "scenario_coverage_present": true,
+          "status_field": "final_integrity_audit_status",
+          "status_valid": true
+        }
+      ],
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "prohibition_preservation_summary": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "v3_6_behavior_enabled": false,
+      "v3_6_planning_readiness": "v3_6_planning_blocked",
+      "v3_6_readiness_summary": [
+        "v3.6 planning is blocked by closeout findings"
+      ]
+    }
+  },
+  "schema_version": "v3_5.closeout_and_v3_6_readiness_report.1",
+  "status_distribution": {
+    "v3_5_blocked_by_execution_leak": 1,
+    "v3_5_blocked_by_invalid_phase_status": 1,
+    "v3_5_blocked_by_missing_deterministic_hash": 2,
+    "v3_5_blocked_by_missing_documentation": 1,
+    "v3_5_blocked_by_missing_phase_report": 1,
+    "v3_5_blocked_by_missing_scenario_coverage": 1,
+    "v3_5_blocked_by_phase_chain_incompatibility": 1,
+    "v3_5_blocked_by_production_consumption_leak": 1,
+    "v3_5_closed_out_ready_for_v3_6_planning": 1,
+    "v3_5_requires_manual_review": 1
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 10,
+    "deterministic_outputs": true,
+    "documentation_presence_validated": true,
+    "expected_phase_count": 9,
+    "prohibition_preservation_validated": true,
+    "report_presence_validated": true,
+    "scenario_count": 11,
+    "stable_closeout_hashing": true,
+    "stable_scenario_count": 1,
+    "stable_serialization": true
+  },
+  "v3_6_planning_classifications_supported": [
+    "v3_6_planning_allowed",
+    "v3_6_planning_blocked",
+    "v3_6_planning_requires_manual_review"
+  ],
+  "v3_6_planning_readiness_classification": "v3_6_planning_allowed"
+}
