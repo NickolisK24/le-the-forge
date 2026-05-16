@@ -58,6 +58,26 @@ from .decision_boundary_registry import (
     export_decision_boundary_registry,
     validate_decision_boundary_registry,
 )
+from .drift_audit_contracts import (
+    DRIFT_LABELS,
+    VALID_DRIFT_ACTIONS,
+    VALID_DRIFT_CATEGORIES,
+    build_drift_audit_contract,
+    build_runtime_drift_audit_manifest,
+    default_runtime_drift_audit_contracts,
+    order_drift_audit_contracts,
+    serialize_runtime_drift_audit_manifest,
+)
+from .drift_audit_hashing import (
+    hash_drift_audit_manifest,
+    serialize_drift_audit_manifest,
+    validate_drift_audit_replay_stability,
+)
+from .drift_audit_registry import (
+    detect_duplicate_drift_audit_contracts,
+    export_drift_audit_registry,
+    validate_drift_audit_registry,
+)
 from .evidence_contracts import (
     EVIDENCE_LABELS,
     build_evidence_contract,
@@ -209,6 +229,20 @@ __all__ = [
     "detect_duplicate_decision_boundary_contracts",
     "export_decision_boundary_registry",
     "validate_decision_boundary_registry",
+    "DRIFT_LABELS",
+    "VALID_DRIFT_ACTIONS",
+    "VALID_DRIFT_CATEGORIES",
+    "build_drift_audit_contract",
+    "build_runtime_drift_audit_manifest",
+    "default_runtime_drift_audit_contracts",
+    "order_drift_audit_contracts",
+    "serialize_runtime_drift_audit_manifest",
+    "hash_drift_audit_manifest",
+    "serialize_drift_audit_manifest",
+    "validate_drift_audit_replay_stability",
+    "detect_duplicate_drift_audit_contracts",
+    "export_drift_audit_registry",
+    "validate_drift_audit_registry",
     "EVIDENCE_LABELS",
     "build_evidence_contract",
     "build_runtime_evidence_manifest",
