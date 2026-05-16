@@ -1,0 +1,1658 @@
+{
+  "architectural_purpose": "deterministic graph compatibility reasoning",
+  "autonomous_orchestration_enabled": false,
+  "background_graph_processing_enabled": false,
+  "compatibility_classification_counts": {
+    "compatibility_restricted": 2,
+    "compatible": 3,
+    "experimental": 4,
+    "governance_restricted": 5,
+    "incompatible": 3,
+    "prohibited": 3,
+    "unknown": 3,
+    "unsupported": 3
+  },
+  "compatibility_counts": {
+    "continuity_evidence_count": 1,
+    "domain_count": 8,
+    "edge_result_count": 2,
+    "finding_count": 7,
+    "node_result_count": 2,
+    "rule_count": 7
+  },
+  "compatibility_does_not_authorize_execution": true,
+  "compatibility_findings_are_structural_planning_evidence_only": true,
+  "compatibility_map": {
+    "aggregation": {
+      "compatibility_restricted_count": 1,
+      "compatible_relationship_count": 1,
+      "edge_relationship_count": 2,
+      "experimental_relationship_count": 2,
+      "fail_visible_finding_count": 7,
+      "governance_restricted_count": 3,
+      "incompatible_relationship_count": 1,
+      "node_relationship_count": 2,
+      "prohibited_relationship_count": 1,
+      "unknown_relationship_count": 1,
+      "unsupported_relationship_count": 1
+    },
+    "autonomous_orchestration_enabled": false,
+    "background_graph_processing_enabled": false,
+    "compatibility_does_not_authorize_execution": true,
+    "compatibility_phase_id": "v3_7_graph_compatibility_reasoning",
+    "compatibility_reasoning_is_non_executable": true,
+    "continuity_evidence": [
+      {
+        "compatibility_lineage_references": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "continuity_id": "v3_7_graph_compatibility_continuity_evidence",
+        "deterministic_hash_references": [
+          "v3_7_graph_compatibility_hash"
+        ],
+        "domain_ids": [
+          "compat_domain_compatibility_boundary",
+          "compat_domain_experimental_governance",
+          "compat_domain_governance_visibility",
+          "compat_domain_graph_execution",
+          "compat_domain_graph_structure",
+          "compat_domain_legacy_structure",
+          "compat_domain_runtime_dispatch",
+          "compat_domain_unknown_external"
+        ],
+        "edge_relationship_ids": [
+          "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "explainability_lineage_references": [
+          "v3_7_graph_compatibility_explainability"
+        ],
+        "finding_ids": [
+          "finding_rule_compat_governance_to_structure",
+          "finding_rule_compat_graph_execution_prohibited",
+          "finding_rule_compat_legacy_incompatible",
+          "finding_rule_compat_runtime_dispatch_unsupported",
+          "finding_rule_compat_structure_to_experimental",
+          "finding_rule_compat_structure_to_structure",
+          "finding_rule_compat_unknown_external"
+        ],
+        "governance_lineage_references": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "node_relationship_ids": [
+          "node_compat_v3_7_node_governance_boundary_visibility_to_v3_7_node_provenance_continuity",
+          "node_compat_v3_7_node_provenance_continuity_to_v3_7_node_explainability_continuity"
+        ],
+        "provenance_lineage_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-rule_compat_governance_to_structure",
+          "v3-7-provenance-rule_compat_graph_execution_prohibited",
+          "v3-7-provenance-rule_compat_legacy_incompatible",
+          "v3-7-provenance-rule_compat_runtime_dispatch_unsupported",
+          "v3-7-provenance-rule_compat_structure_to_experimental",
+          "v3-7-provenance-rule_compat_structure_to_structure",
+          "v3-7-provenance-rule_compat_unknown_external"
+        ],
+        "replay_lineage_references": [
+          "v3_7_graph_replay_continuity"
+        ],
+        "rollback_lineage_references": [
+          "v3_7_graph_rollback_continuity"
+        ],
+        "rule_ids": [
+          "rule_compat_governance_to_structure",
+          "rule_compat_graph_execution_prohibited",
+          "rule_compat_legacy_incompatible",
+          "rule_compat_runtime_dispatch_unsupported",
+          "rule_compat_structure_to_experimental",
+          "rule_compat_structure_to_structure",
+          "rule_compat_unknown_external"
+        ]
+      }
+    ],
+    "dispatch_enabled": false,
+    "domains": [
+      {
+        "compatibility_classification": "compatibility_restricted",
+        "domain_id": "compat_domain_compatibility_boundary",
+        "domain_name": "Compatibility Boundary",
+        "governance_domain_id": "domain_compatibility_boundary_visibility",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_compatibility_boundary",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_compatibility_boundary",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_compatibility_boundary",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_compatibility_restricted_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "experimental",
+        "domain_id": "compat_domain_experimental_governance",
+        "domain_name": "Experimental Governance",
+        "governance_domain_id": "domain_graph_governance_boundary_intelligence",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_experimental_governance",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_experimental_governance",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_experimental_governance",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_experimental_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "governance_restricted",
+        "domain_id": "compat_domain_governance_visibility",
+        "domain_name": "Governance Visibility",
+        "governance_domain_id": "domain_governance_visibility",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_governance_visibility",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_governance_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_governance_visibility",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_governance_restricted_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "prohibited",
+        "domain_id": "compat_domain_graph_execution",
+        "domain_name": "Graph Execution",
+        "governance_domain_id": "domain_graph_execution",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_graph_execution",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_graph_execution",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_graph_execution",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_prohibited_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "compatible",
+        "domain_id": "compat_domain_graph_structure",
+        "domain_name": "Graph Structure",
+        "governance_domain_id": "domain_graph_structure_modeling",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_graph_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_graph_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_graph_structure",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_compatible_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "incompatible",
+        "domain_id": "compat_domain_legacy_structure",
+        "domain_name": "Legacy Structure",
+        "governance_domain_id": "domain_graph_structure_modeling",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_legacy_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_legacy_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_legacy_structure",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_incompatible_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "unsupported",
+        "domain_id": "compat_domain_runtime_dispatch",
+        "domain_name": "Runtime Dispatch",
+        "governance_domain_id": "domain_runtime_dispatch",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_runtime_dispatch",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_runtime_dispatch",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_runtime_dispatch",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_unsupported_compatibility"
+        ]
+      },
+      {
+        "compatibility_classification": "unknown",
+        "domain_id": "compat_domain_unknown_external",
+        "domain_name": "Unknown External",
+        "governance_domain_id": "domain_optimization",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "compat_domain_unknown_external",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-compat_domain_unknown_external",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "compat_domain_unknown_external",
+          "source_kind": "graph_compatibility_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_unknown_compatibility"
+        ]
+      }
+    ],
+    "edge_compatibility_does_not_imply_traversal": true,
+    "edge_results": [
+      {
+        "compatibility_classification": "governance_restricted",
+        "domain_compatibility_classification": "governance_restricted",
+        "edge_compatibility_implies_traversal": false,
+        "edge_governance_classification": "governance_restricted_relationship",
+        "edge_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "explainability_evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge"
+        ],
+        "finding_ids": [],
+        "governance_rule_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "edge_compatibility_result",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_type": "governance_visibility_supports_provenance_continuity",
+        "rule_id": "rule_compat_governance_to_structure",
+        "source_node_id": "v3_7_node_governance_boundary_visibility",
+        "target_node_id": "v3_7_node_provenance_continuity",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_classification": "compatibility_restricted",
+        "domain_compatibility_classification": "compatibility_restricted",
+        "edge_compatibility_implies_traversal": false,
+        "edge_governance_classification": "compatibility_restricted_relationship",
+        "edge_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "explainability_evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge"
+        ],
+        "finding_ids": [],
+        "governance_rule_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "edge_compatibility_result",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_type": "provenance_continuity_supports_explainability_continuity",
+        "rule_id": "rule_compat_structure_to_experimental",
+        "source_node_id": "v3_7_node_provenance_continuity",
+        "target_node_id": "v3_7_node_explainability_continuity",
+        "traversal_enabled": false
+      }
+    ],
+    "edge_traversal_execution_enabled": false,
+    "findings": [
+      {
+        "compatibility_classification": "governance_restricted",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_governance_to_structure",
+        "finding_kind": "governance_restricted_compatibility",
+        "governance_rule_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_governance_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_governance_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_governance_to_structure",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "governance visibility relationships are compatible with governance restrictions",
+        "rule_id": "rule_compat_governance_to_structure",
+        "subject_id": "rule_compat_governance_to_structure",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "prohibited",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_graph_execution_prohibited",
+        "finding_kind": "prohibited_compatibility",
+        "governance_rule_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_graph_execution_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_graph_execution_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_graph_execution_prohibited",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "graph execution compatibility is prohibited",
+        "rule_id": "rule_compat_graph_execution_prohibited",
+        "subject_id": "rule_compat_graph_execution_prohibited",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "incompatible",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_legacy_incompatible",
+        "finding_kind": "incompatible_compatibility",
+        "governance_rule_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_legacy_incompatible",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_legacy_incompatible",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_legacy_incompatible",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning",
+        "rule_id": "rule_compat_legacy_incompatible",
+        "subject_id": "rule_compat_legacy_incompatible",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "unsupported",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_runtime_dispatch_unsupported",
+        "finding_kind": "unsupported_compatibility",
+        "governance_rule_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_runtime_dispatch_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_runtime_dispatch_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_runtime_dispatch_unsupported",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "runtime dispatch compatibility is unsupported",
+        "rule_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "experimental",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_structure_to_experimental",
+        "finding_kind": "experimental_compatibility",
+        "governance_rule_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_structure_to_experimental",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_structure_to_experimental",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_structure_to_experimental",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "experimental governance relationships remain visible as experimental compatibility",
+        "rule_id": "rule_compat_structure_to_experimental",
+        "subject_id": "rule_compat_structure_to_experimental",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "compatible",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_structure_to_structure",
+        "finding_kind": "compatible_compatibility",
+        "governance_rule_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_structure_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_structure_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_structure_to_structure",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "graph structure relationships are structurally compatible",
+        "rule_id": "rule_compat_structure_to_structure",
+        "subject_id": "rule_compat_structure_to_structure",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      },
+      {
+        "compatibility_classification": "unknown",
+        "fail_visible": true,
+        "finding_id": "finding_rule_compat_unknown_external",
+        "finding_kind": "unknown_compatibility",
+        "governance_rule_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_unknown_external",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_unknown_external",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_unknown_external",
+          "source_kind": "compatibility_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "unknown external compatibility remains visible and unresolved",
+        "rule_id": "rule_compat_unknown_external",
+        "subject_id": "rule_compat_unknown_external",
+        "subject_type": "compatibility_rule",
+        "visibility_status": "compatibility_visibility_visible"
+      }
+    ],
+    "graph_execution_enabled": false,
+    "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+    "graph_optimization_enabled": false,
+    "graph_path_selection_enabled": false,
+    "node_compatibility_does_not_imply_runtime_ordering": true,
+    "node_execution_enabled": false,
+    "node_results": [
+      {
+        "compatibility_classification": "governance_restricted",
+        "explainability_evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes"
+        ],
+        "finding_ids": [],
+        "governance_rule_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "metadata": [],
+        "node_relationship_implies_runtime_ordering": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "node_compatibility_result",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_id": "node_compat_v3_7_node_governance_boundary_visibility_to_v3_7_node_provenance_continuity",
+        "rule_id": "rule_compat_governance_to_structure",
+        "source_domain_id": "compat_domain_governance_visibility",
+        "source_governance_classification": "governance_restricted",
+        "source_node_id": "v3_7_node_governance_boundary_visibility",
+        "target_domain_id": "compat_domain_graph_structure",
+        "target_governance_classification": "supported",
+        "target_node_id": "v3_7_node_provenance_continuity"
+      },
+      {
+        "compatibility_classification": "experimental",
+        "explainability_evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes"
+        ],
+        "finding_ids": [],
+        "governance_rule_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "metadata": [],
+        "node_relationship_implies_runtime_ordering": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "node_compatibility_result",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_id": "node_compat_v3_7_node_provenance_continuity_to_v3_7_node_explainability_continuity",
+        "rule_id": "rule_compat_structure_to_experimental",
+        "source_domain_id": "compat_domain_graph_structure",
+        "source_governance_classification": "supported",
+        "source_node_id": "v3_7_node_provenance_continuity",
+        "target_domain_id": "compat_domain_experimental_governance",
+        "target_governance_classification": "experimental",
+        "target_node_id": "v3_7_node_explainability_continuity"
+      }
+    ],
+    "recommendation_enabled": false,
+    "routing_enabled": false,
+    "rules": [
+      {
+        "compatibility_classification": "governance_restricted",
+        "governance_rule_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_governance_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_governance_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_governance_to_structure",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "governance visibility relationships are compatible with governance restrictions",
+        "rule_id": "rule_compat_governance_to_structure",
+        "rule_kind": "governance_aware_compatibility",
+        "source_domain_id": "compat_domain_governance_visibility",
+        "target_domain_id": "compat_domain_graph_structure",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "prohibited",
+        "governance_rule_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_graph_execution_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_graph_execution_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_graph_execution_prohibited",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "graph execution compatibility is prohibited",
+        "rule_id": "rule_compat_graph_execution_prohibited",
+        "rule_kind": "prohibited_relationship",
+        "source_domain_id": "compat_domain_graph_execution",
+        "target_domain_id": "compat_domain_graph_structure",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "incompatible",
+        "governance_rule_ids": [],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_legacy_incompatible",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_legacy_incompatible",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_legacy_incompatible",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning",
+        "rule_id": "rule_compat_legacy_incompatible",
+        "rule_kind": "incompatible_relationship",
+        "source_domain_id": "compat_domain_legacy_structure",
+        "target_domain_id": "compat_domain_graph_structure",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "unsupported",
+        "governance_rule_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_runtime_dispatch_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_runtime_dispatch_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_runtime_dispatch_unsupported",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "runtime dispatch compatibility is unsupported",
+        "rule_id": "rule_compat_runtime_dispatch_unsupported",
+        "rule_kind": "unsupported_relationship",
+        "source_domain_id": "compat_domain_runtime_dispatch",
+        "target_domain_id": "compat_domain_graph_structure",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "experimental",
+        "governance_rule_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_structure_to_experimental",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_structure_to_experimental",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_structure_to_experimental",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "experimental governance relationships remain visible as experimental compatibility",
+        "rule_id": "rule_compat_structure_to_experimental",
+        "rule_kind": "compatibility_restricted",
+        "source_domain_id": "compat_domain_graph_structure",
+        "target_domain_id": "compat_domain_experimental_governance",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "compatible",
+        "governance_rule_ids": [],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_structure_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_structure_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_structure_to_structure",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "graph structure relationships are structurally compatible",
+        "rule_id": "rule_compat_structure_to_structure",
+        "rule_kind": "node_edge_compatibility",
+        "source_domain_id": "compat_domain_graph_structure",
+        "target_domain_id": "compat_domain_graph_structure",
+        "visible": true
+      },
+      {
+        "compatibility_classification": "unknown",
+        "governance_rule_ids": [],
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_compat_unknown_external",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_compat_unknown_external",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_compat_unknown_external",
+          "source_kind": "graph_compatibility_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "unknown external compatibility remains visible and unresolved",
+        "rule_id": "rule_compat_unknown_external",
+        "rule_kind": "unknown_relationship",
+        "source_domain_id": "compat_domain_unknown_external",
+        "target_domain_id": "compat_domain_compatibility_boundary",
+        "visible": true
+      }
+    ],
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_enabled": false,
+    "scheduling_enabled": false,
+    "structural_planning_evidence_only": true
+  },
+  "compatibility_reasoning": true,
+  "compatibility_reasoning_is_non_executable": true,
+  "coverage": {
+    "deterministic_hash_stability": true,
+    "explainability_coverage": true,
+    "non_execution_coverage": true,
+    "prohibited_visibility_coverage": true,
+    "provenance_coverage": true,
+    "unknown_visibility_coverage": true,
+    "unsupported_visibility_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "compatibility_hash": "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+    "explainability_hash": "0557a33140a3984c24d7af10d73ef6e505308b326de9afdb7a446a27c2c00a9f",
+    "hash_stable": true,
+    "provenance_hash": "295069c9878a2d8f03152aa1f864258b406e032c9f5a45f8dc330e8962210520",
+    "serialization_stable": true,
+    "validation_hash": "914375a4f3e097f69802c3a542317aadadf76c29c859f3c925aa03fd7b8c8065"
+  },
+  "deterministic_report_hash": "bb8870f0ad462c5376520299a9c970694cac8f698119d0c3db800a9cea86ec9d",
+  "dispatch_enabled": false,
+  "edge_compatibility_counts": {
+    "compatibility_restricted": 1,
+    "governance_restricted": 1
+  },
+  "edge_compatibility_does_not_imply_traversal": true,
+  "edge_traversal_execution_enabled": false,
+  "execution_routing": false,
+  "explainability_continuity_totals": {
+    "compatible_explanation_count": 1,
+    "edge_explanation_count": 2,
+    "explainability_status": "v3_7_graph_compatibility_explainability_stable",
+    "explanation_count": 11,
+    "incompatible_explanation_count": 1,
+    "node_explanation_count": 2,
+    "prohibited_explanation_count": 1,
+    "unknown_explanation_count": 1,
+    "unsupported_explanation_count": 1
+  },
+  "explainability_result": {
+    "compatible_explanation_count": 1,
+    "deterministic_explainability_hash": "0557a33140a3984c24d7af10d73ef6e505308b326de9afdb7a446a27c2c00a9f",
+    "edge_explanation_count": 2,
+    "explainability_status": "v3_7_graph_compatibility_explainability_stable",
+    "explanation_count": 11,
+    "explanations": [
+      {
+        "compatibility_classification": "governance_restricted",
+        "explanation_id": "explain_edge_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "governance_influences": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "domain_compatibility",
+          "edge_governance_classification",
+          "edge_identity",
+          "no_graph_traversal"
+        ],
+        "replay_safe": true,
+        "subject_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "subject_type": "edge_compatibility",
+        "why_compatible_or_blocked": "governance visibility relationships are compatible with governance restrictions"
+      },
+      {
+        "compatibility_classification": "compatibility_restricted",
+        "explanation_id": "explain_edge_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_influences": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "domain_compatibility",
+          "edge_governance_classification",
+          "edge_identity",
+          "no_graph_traversal"
+        ],
+        "replay_safe": true,
+        "subject_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "edge_compatibility",
+        "why_compatible_or_blocked": "experimental governance relationships remain visible as experimental compatibility"
+      },
+      {
+        "compatibility_classification": "governance_restricted",
+        "explanation_id": "explain_finding_finding_rule_compat_governance_to_structure",
+        "governance_influences": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_lineage": [
+          "rule_compat_governance_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "fail_visible_compatibility_finding",
+          "governance_restricted",
+          "non_executable_planning_evidence"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_governance_to_structure",
+        "subject_type": "governance_restricted_compatibility",
+        "why_compatible_or_blocked": "governance visibility relationships are compatible with governance restrictions"
+      },
+      {
+        "compatibility_classification": "prohibited",
+        "explanation_id": "explain_finding_finding_rule_compat_graph_execution_prohibited",
+        "governance_influences": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance_lineage": [
+          "rule_compat_graph_execution_prohibited",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "fail_visible_compatibility_finding",
+          "non_executable_planning_evidence",
+          "prohibited"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_graph_execution_prohibited",
+        "subject_type": "prohibited_compatibility",
+        "why_compatible_or_blocked": "graph execution compatibility is prohibited"
+      },
+      {
+        "compatibility_classification": "incompatible",
+        "explanation_id": "explain_finding_finding_rule_compat_legacy_incompatible",
+        "governance_influences": [],
+        "provenance_lineage": [
+          "rule_compat_legacy_incompatible",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "fail_visible_compatibility_finding",
+          "incompatible",
+          "non_executable_planning_evidence"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_legacy_incompatible",
+        "subject_type": "incompatible_compatibility",
+        "why_compatible_or_blocked": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning"
+      },
+      {
+        "compatibility_classification": "unsupported",
+        "explanation_id": "explain_finding_finding_rule_compat_runtime_dispatch_unsupported",
+        "governance_influences": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance_lineage": [
+          "rule_compat_runtime_dispatch_unsupported",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "fail_visible_compatibility_finding",
+          "non_executable_planning_evidence",
+          "unsupported"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "unsupported_compatibility",
+        "why_compatible_or_blocked": "runtime dispatch compatibility is unsupported"
+      },
+      {
+        "compatibility_classification": "experimental",
+        "explanation_id": "explain_finding_finding_rule_compat_structure_to_experimental",
+        "governance_influences": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "rule_compat_structure_to_experimental",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "experimental",
+          "fail_visible_compatibility_finding",
+          "non_executable_planning_evidence"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_structure_to_experimental",
+        "subject_type": "experimental_compatibility",
+        "why_compatible_or_blocked": "experimental governance relationships remain visible as experimental compatibility"
+      },
+      {
+        "compatibility_classification": "compatible",
+        "explanation_id": "explain_finding_finding_rule_compat_structure_to_structure",
+        "governance_influences": [],
+        "provenance_lineage": [
+          "rule_compat_structure_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "compatible",
+          "fail_visible_compatibility_finding",
+          "non_executable_planning_evidence"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_structure_to_structure",
+        "subject_type": "compatible_compatibility",
+        "why_compatible_or_blocked": "graph structure relationships are structurally compatible"
+      },
+      {
+        "compatibility_classification": "unknown",
+        "explanation_id": "explain_finding_finding_rule_compat_unknown_external",
+        "governance_influences": [],
+        "provenance_lineage": [
+          "rule_compat_unknown_external",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "fail_visible_compatibility_finding",
+          "non_executable_planning_evidence",
+          "unknown"
+        ],
+        "replay_safe": true,
+        "subject_id": "finding_rule_compat_unknown_external",
+        "subject_type": "unknown_compatibility",
+        "why_compatible_or_blocked": "unknown external compatibility remains visible and unresolved"
+      },
+      {
+        "compatibility_classification": "governance_restricted",
+        "explanation_id": "explain_node_node_compat_v3_7_node_governance_boundary_visibility_to_v3_7_node_provenance_continuity",
+        "governance_influences": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "governance_classification",
+          "non_executable_planning_evidence",
+          "source_node_domain",
+          "target_node_domain"
+        ],
+        "replay_safe": true,
+        "subject_id": "node_compat_v3_7_node_governance_boundary_visibility_to_v3_7_node_provenance_continuity",
+        "subject_type": "node_compatibility",
+        "why_compatible_or_blocked": "governance visibility relationships are compatible with governance restrictions"
+      },
+      {
+        "compatibility_classification": "experimental",
+        "explanation_id": "explain_node_node_compat_v3_7_node_provenance_continuity_to_v3_7_node_explainability_continuity",
+        "governance_influences": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "reasoning_chain": [
+          "compatibility_rule",
+          "governance_classification",
+          "non_executable_planning_evidence",
+          "source_node_domain",
+          "target_node_domain"
+        ],
+        "replay_safe": true,
+        "subject_id": "node_compat_v3_7_node_provenance_continuity_to_v3_7_node_explainability_continuity",
+        "subject_type": "node_compatibility",
+        "why_compatible_or_blocked": "experimental governance relationships remain visible as experimental compatibility"
+      }
+    ],
+    "governance_influenced_explanation_count": 8,
+    "incompatible_explanation_count": 1,
+    "missing_explanation_subjects": [],
+    "node_explanation_count": 2,
+    "prohibited_explanation_count": 1,
+    "replay_safe": true,
+    "unknown_explanation_count": 1,
+    "unsupported_explanation_count": 1
+  },
+  "explicit_limitations": [
+    "compatibility reasoning is non-executable",
+    "compatibility does not authorize graph execution",
+    "edge compatibility does not imply traversal",
+    "node compatibility does not imply runtime ordering",
+    "compatibility findings are structural planning evidence only",
+    "prohibited, unsupported, and unknown states remain visible",
+    "compatibility reasoning is not execution routing"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "governance_aware_compatibility_totals": {
+    "compatibility_restricted_count": 1,
+    "governance_aware_outcome_count": 3,
+    "governance_influenced_explanation_count": 8,
+    "governance_restricted_count": 3
+  },
+  "graph_execution_enabled": false,
+  "graph_level_compatibility_totals": {
+    "compatibility_restricted_count": 1,
+    "compatible_relationship_count": 1,
+    "experimental_relationship_count": 2,
+    "fail_visible_finding_count": 7,
+    "governance_restricted_count": 3,
+    "incompatible_relationship_count": 1,
+    "prohibited_relationship_count": 1,
+    "unknown_relationship_count": 1,
+    "unsupported_relationship_count": 1
+  },
+  "graph_optimization_enabled": false,
+  "graph_path_selection_enabled": false,
+  "node_compatibility_counts": {
+    "experimental": 1,
+    "governance_restricted": 1
+  },
+  "node_compatibility_does_not_imply_runtime_ordering": true,
+  "node_execution_enabled": false,
+  "non_executable": true,
+  "phase_name": "v3.7_graph_compatibility_reasoning",
+  "planning_only": true,
+  "prohibited_compatibility_findings": [
+    {
+      "finding_id": "finding_rule_compat_graph_execution_prohibited",
+      "reason": "graph execution compatibility is prohibited",
+      "rule_id": "rule_compat_graph_execution_prohibited"
+    }
+  ],
+  "prohibited_unsupported_unknown_states_remain_visible": true,
+  "provenance_continuity_totals": {
+    "domain_provenance_preserved": true,
+    "edge_result_provenance_preserved": true,
+    "finding_provenance_preserved": true,
+    "node_result_provenance_preserved": true,
+    "provenance_record_count": 26,
+    "provenance_status": "v3_7_graph_compatibility_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rule_provenance_preserved": true
+  },
+  "provenance_result": {
+    "compatibility_continuity_preserved": true,
+    "deterministic_provenance_hash": "295069c9878a2d8f03152aa1f864258b406e032c9f5a45f8dc330e8962210520",
+    "domain_provenance_preserved": true,
+    "edge_result_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "finding_provenance_preserved": true,
+    "governance_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "node_result_provenance_preserved": true,
+    "provenance_record_count": 26,
+    "provenance_status": "v3_7_graph_compatibility_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rule_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "routing_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_compatibility_reasoning_report.1",
+  "summary": {
+    "compatibility_reasoning": true,
+    "compatibility_reasoning_status": "v3_7_graph_compatibility_validation_stable",
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "execution_routing": false,
+    "explainability_continuity_verified": true,
+    "non_execution_guarantee_verified": true,
+    "provenance_continuity_verified": true
+  },
+  "unknown_compatibility_findings": [
+    {
+      "finding_id": "finding_rule_compat_unknown_external",
+      "reason": "unknown external compatibility remains visible and unresolved",
+      "rule_id": "rule_compat_unknown_external"
+    }
+  ],
+  "unsupported_compatibility_findings": [
+    {
+      "finding_id": "finding_rule_compat_runtime_dispatch_unsupported",
+      "reason": "runtime dispatch compatibility is unsupported",
+      "rule_id": "rule_compat_runtime_dispatch_unsupported"
+    }
+  ],
+  "validation_result": {
+    "deterministic_compatibility_hash": "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+    "deterministic_validation_hash": "914375a4f3e097f69802c3a542317aadadf76c29c859f3c925aa03fd7b8c8065",
+    "error_count": 0,
+    "explainability_continuity_preserved": true,
+    "finding_count": 5,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_compatibility_compatible_visible:compatibility_rule:rule_compat_structure_to_structure",
+        "message": "graph structure relationships are structurally compatible",
+        "severity": "visibility",
+        "status": "v3_7_graph_compatibility_compatible_visible",
+        "subject_id": "rule_compat_structure_to_structure",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_compatibility_incompatible_visible:compatibility_rule:rule_compat_legacy_incompatible",
+        "message": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning",
+        "severity": "visibility",
+        "status": "v3_7_graph_compatibility_incompatible_visible",
+        "subject_id": "rule_compat_legacy_incompatible",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_compatibility_prohibited_visible:compatibility_rule:rule_compat_graph_execution_prohibited",
+        "message": "graph execution compatibility is prohibited",
+        "severity": "visibility",
+        "status": "v3_7_graph_compatibility_prohibited_visible",
+        "subject_id": "rule_compat_graph_execution_prohibited",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_compatibility_unknown_visible:compatibility_rule:rule_compat_unknown_external",
+        "message": "unknown external compatibility remains visible and unresolved",
+        "severity": "visibility",
+        "status": "v3_7_graph_compatibility_unknown_visible",
+        "subject_id": "rule_compat_unknown_external",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_compatibility_unsupported_visible:compatibility_rule:rule_compat_runtime_dispatch_unsupported",
+        "message": "runtime dispatch compatibility is unsupported",
+        "severity": "visibility",
+        "status": "v3_7_graph_compatibility_unsupported_visible",
+        "subject_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "compatibility_rule"
+      }
+    ],
+    "governance_aware_outcome_count": 3,
+    "hash_stable": true,
+    "incompatible_edge_relationship_count": 0,
+    "incompatible_node_relationship_count": 0,
+    "missing_metadata_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "prohibited_state_count": 0,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "serialization_stable": true,
+    "unknown_state_count": 0,
+    "unsupported_state_count": 0,
+    "valid": true,
+    "validation_status": "v3_7_graph_compatibility_validation_stable",
+    "visibility_finding_count": 5
+  },
+  "validation_totals": {
+    "error_count": 0,
+    "finding_count": 5,
+    "governance_aware_outcome_count": 3,
+    "missing_metadata_count": 0,
+    "prohibited_state_count": 0,
+    "unknown_state_count": 0,
+    "unsupported_state_count": 0,
+    "valid": true,
+    "validation_status": "v3_7_graph_compatibility_validation_stable",
+    "visibility_finding_count": 5
+  }
+}
