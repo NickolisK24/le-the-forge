@@ -1,0 +1,966 @@
+{
+  "active_runtime_reasoning_decisions_enabled": false,
+  "confidence_floor_ceiling_validation": {
+    "floor_ceiling_violations": {},
+    "passed": true
+  },
+  "confidence_manifest": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "classification_reference_count": 12,
+    "confidence_contracts": [
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_classification_summary_87b58582c015",
+          "runtime_explanation_confidence_summary_544afff0e78d"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc",
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": false,
+        "can_upgrade_without_revalidation": true,
+        "certainty_level": "deterministic",
+        "confidence_ceiling": 100,
+        "confidence_floor": 95,
+        "confidence_label": "deterministic_verified",
+        "confidence_type_id": "runtime_confidence_deterministic_verified_4340c66b744e",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": false,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "verified"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_replay_verified_c386cacc38b4",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_replay_trace_event_96093dcb6d80",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_confidence_summary_544afff0e78d",
+          "runtime_explanation_replay_summary_8ce39999bce8"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_replay_trace_source_31aa8d85b9f3",
+          "runtime_provenance_trusted_bundle_source_af6de7794920"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_replay_check_a7afe7b94593"
+        ],
+        "blocker_visible": false,
+        "can_upgrade_without_revalidation": true,
+        "certainty_level": "replay_stable",
+        "confidence_ceiling": 100,
+        "confidence_floor": 90,
+        "confidence_label": "replay_verified",
+        "confidence_type_id": "runtime_confidence_replay_verified_72845e570513",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "requires_provenance": true,
+        "requires_replay_validation": true,
+        "risk_visible": false,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "replay_verified"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_normalized_static_record_c7e9acb5a224",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_classification_summary_87b58582c015",
+          "runtime_explanation_evidence_summary_22622e08e084"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_normalized_data_source_5f5894115bb8",
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc"
+        ],
+        "blocker_visible": false,
+        "can_upgrade_without_revalidation": true,
+        "certainty_level": "static_validated",
+        "confidence_ceiling": 95,
+        "confidence_floor": 80,
+        "confidence_label": "validated_static",
+        "confidence_type_id": "runtime_confidence_validated_static_4b5c840478e5",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": false,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "validated"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_confidence_summary_544afff0e78d",
+          "runtime_explanation_limitation_summary_f2f98f34d5ec"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_limitation_detection_38aa50fe9fdb"
+        ],
+        "blocker_visible": false,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "partial",
+        "confidence_ceiling": 79,
+        "confidence_floor": 50,
+        "confidence_label": "partially_validated",
+        "confidence_type_id": "runtime_confidence_partially_validated_9a31daa63c03",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "partial"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_inferred_9b474e377107"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_normalized_static_record_c7e9acb5a224"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_classification_summary_87b58582c015",
+          "runtime_explanation_limitation_summary_f2f98f34d5ec"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd",
+          "runtime_provenance_normalized_data_source_5f5894115bb8"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc",
+          "runtime_reasoning_limitation_detection_38aa50fe9fdb"
+        ],
+        "blocker_visible": false,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "limited_inference",
+        "confidence_ceiling": 60,
+        "confidence_floor": 30,
+        "confidence_label": "inferred_limited",
+        "confidence_type_id": "runtime_confidence_inferred_limited_4cb864b6b08d",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "inferred_limited"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c",
+          "runtime_explanation_limitation_summary_f2f98f34d5ec"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2",
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_compatibility_check_4ebca54a4934",
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "experimental_only",
+        "confidence_ceiling": 60,
+        "confidence_floor": 20,
+        "confidence_label": "experimental_only",
+        "confidence_type_id": "runtime_confidence_experimental_only_c99a4bcbef26",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "experimental"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_provenance_summary_bbe496bab320",
+          "runtime_explanation_unsupported_summary_b505bd55fb56"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_provenance_validation_e8d9d32629cc"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "provenance_incomplete",
+        "confidence_ceiling": 49,
+        "confidence_floor": 0,
+        "confidence_label": "provenance_incomplete",
+        "confidence_type_id": "runtime_confidence_provenance_incomplete_00f371a2724c",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "incomplete"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_conflict_signal_5027f88802d4"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_risk_summary_432ecbeba2c3"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_conflict_detection_source_3613f58125c5"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_risk_detection_5c956b6207ca"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "conflicting",
+        "confidence_ceiling": 40,
+        "confidence_floor": 0,
+        "confidence_label": "conflict_present",
+        "confidence_type_id": "runtime_confidence_conflict_present_f7187d16258f",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "conflict"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_drift_signal_ea46fa921092",
+          "runtime_evidence_runtime_trace_event_4d6985c85ea0"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_drift_summary_0b1b6f6c76f2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_drift_detection_source_daa432255d9c",
+          "runtime_provenance_runtime_trace_source_708da759489c"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_drift_check_673a1752a5b4"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "drift_visible",
+        "confidence_ceiling": 40,
+        "confidence_floor": 0,
+        "confidence_label": "drift_present",
+        "confidence_type_id": "runtime_confidence_drift_present_97df275b9cef",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "drift"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_unsupported_signal_823155381335"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_unsupported_summary_b505bd55fb56"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_unsupported_source_94cc358079cf"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "unsupported",
+        "confidence_ceiling": 0,
+        "confidence_floor": 0,
+        "confidence_label": "unsupported",
+        "confidence_type_id": "runtime_confidence_unsupported_d6c853a4bc95",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "unsupported"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_conflict_signal_5027f88802d4"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_blocker_summary_03d55672f51c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2",
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff",
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "blocked",
+        "confidence_ceiling": 0,
+        "confidence_floor": 0,
+        "confidence_label": "blocked",
+        "confidence_type_id": "runtime_confidence_blocked_6776a7386682",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "blocked"
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "blocker_visible": true,
+        "can_upgrade_without_revalidation": false,
+        "certainty_level": "authorization_prohibited",
+        "confidence_ceiling": 0,
+        "confidence_floor": 0,
+        "confidence_label": "authorization_prohibited",
+        "confidence_type_id": "runtime_confidence_authorization_prohibited_1247516a6db6",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live scoring and probabilistic inference are not enabled",
+          "runtime confidence contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "confidence contracts must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "live_confidence_scoring_enabled": false,
+        "probabilistic_inference_enabled": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "requires_provenance": true,
+        "requires_replay_validation": false,
+        "risk_visible": true,
+        "runtime_confidence_planning_only": true,
+        "trust_level": "prohibited"
+      }
+    ],
+    "deterministic_hash": "41a73ad27a22dbe90fda31093e3f7f2fac6c1f19e8e842171a7dd3736386e3be",
+    "evidence_reference_count": 12,
+    "explanation_reference_count": 12,
+    "live_confidence_scoring_enabled": false,
+    "metadata": {
+      "authorization_prohibited_confidence_visible": true,
+      "confidence_certainty_fabricated": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_confidence_contracts",
+      "unsupported_confidence_visible": true
+    },
+    "probabilistic_inference_enabled": false,
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "provenance_reference_count": 12,
+    "reasoning_stage_reference_count": 12,
+    "recommendation_logic_enabled": false,
+    "registry_validation": {
+      "authorization_prohibited_confidence_visible": true,
+      "blocked_confidence_visible": true,
+      "blocker_visible_confidence_visible": true,
+      "conflict_present_confidence_visible": true,
+      "drift_present_confidence_visible": true,
+      "duplicate_detection": {
+        "duplicate_confidence_labels": [],
+        "duplicate_confidence_type_ids": [],
+        "duplicate_deterministic_ranks": []
+      },
+      "floor_ceiling_violation_count": 0,
+      "floor_ceiling_violations": {},
+      "invalid_classification_reference_count": 0,
+      "invalid_classification_references": {},
+      "invalid_evidence_reference_count": 0,
+      "invalid_evidence_references": {},
+      "invalid_explanation_reference_count": 0,
+      "invalid_explanation_references": {},
+      "invalid_provenance_reference_count": 0,
+      "invalid_provenance_references": {},
+      "invalid_reasoning_stage_reference_count": 0,
+      "invalid_reasoning_stage_references": {},
+      "limitation_visible_confidence_visible": true,
+      "missing_required_fields": {},
+      "non_upgradeable_violation_count": 0,
+      "non_upgradeable_violations": [],
+      "production_authorized_confidences": [],
+      "provenance_incomplete_confidence_visible": true,
+      "risk_visible_confidence_visible": true,
+      "unknown_labels": [],
+      "unsupported_confidence_visible": true,
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_validation": {
+      "first_hash": "5361c5408f562ba458b5d280bc747a365355220fd1ae7c1e1c5a46a5a5c4f76a",
+      "replay_stable": true,
+      "second_hash": "5361c5408f562ba458b5d280bc747a365355220fd1ae7c1e1c5a46a5a5c4f76a",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "confidence_contract_count": 12,
+      "run_id": "v3_3_phase_6_runtime_confidence_contracts"
+    },
+    "runtime_confidence_planning_only": true,
+    "runtime_manifest_consumption_enabled": false,
+    "schema_version": "v3_3.runtime_confidence_contracts.1"
+  },
+  "confidence_to_classification_compatibility_validation": {
+    "invalid_classification_references": {},
+    "passed": true
+  },
+  "confidence_to_evidence_compatibility_validation": {
+    "invalid_evidence_references": {},
+    "passed": true
+  },
+  "confidence_to_explanation_compatibility_validation": {
+    "invalid_explanation_references": {},
+    "passed": true
+  },
+  "confidence_to_provenance_compatibility_validation": {
+    "invalid_provenance_references": {},
+    "passed": true
+  },
+  "confidence_to_reasoning_compatibility_validation": {
+    "invalid_reasoning_stage_references": {},
+    "passed": true
+  },
+  "contracts_with_explicit_limitations": {
+    "authorization_prohibited": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "blocked": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "conflict_present": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "deterministic_verified": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "drift_present": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "experimental_only": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "inferred_limited": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "partially_validated": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "provenance_incomplete": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_verified": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "unsupported": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "validated_static": [
+      "live scoring and probabilistic inference are not enabled",
+      "runtime confidence contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "contracts_with_explicit_risks": {
+    "authorization_prohibited": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "blocked": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "conflict_present": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "deterministic_verified": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "drift_present": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "experimental_only": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "inferred_limited": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "partially_validated": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "provenance_incomplete": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "replay_verified": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "unsupported": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ],
+    "validated_static": [
+      "classification must not authorize production runtime routing",
+      "confidence contracts must not fabricate runtime certainty"
+    ]
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "deterministic_verified",
+      "replay_verified",
+      "validated_static",
+      "partially_validated",
+      "inferred_limited",
+      "experimental_only",
+      "provenance_incomplete",
+      "conflict_present",
+      "drift_present",
+      "unsupported",
+      "blocked",
+      "authorization_prohibited"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_confidence_labels": [],
+    "duplicate_confidence_type_ids": [],
+    "duplicate_deterministic_ranks": []
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_confidence_contracts_report"
+  },
+  "non_upgradeable_confidence_validation": {
+    "non_upgradeable_violations": [],
+    "passed": true
+  },
+  "phase": "v3.3_phase_6_runtime_confidence_contracts",
+  "probabilistic_inference_enabled": false,
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_CONFIDENCE_CONTRACT_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "recommendation_logic_enabled": false,
+  "replay_validation_results": {
+    "first_hash": "5361c5408f562ba458b5d280bc747a365355220fd1ae7c1e1c5a46a5a5c4f76a",
+    "replay_stable": true,
+    "second_hash": "5361c5408f562ba458b5d280bc747a365355220fd1ae7c1e1c5a46a5a5c4f76a",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "runtime_confidence_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "no_confidence_contract_is_production_authorized": true,
+    "probabilistic_inference_enabled": false,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "recommendation_logic_enabled": false,
+    "runtime_confidence_remains_planning_only": true
+  },
+  "schema_version": "v3_3.runtime_confidence_contracts_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "41a73ad27a22dbe90fda31093e3f7f2fac6c1f19e8e842171a7dd3736386e3be",
+    "passed": true,
+    "repeated_hash": "41a73ad27a22dbe90fda31093e3f7f2fac6c1f19e8e842171a7dd3736386e3be",
+    "sample_hash": "41a73ad27a22dbe90fda31093e3f7f2fac6c1f19e8e842171a7dd3736386e3be"
+  },
+  "summary": {
+    "authorization_prohibited_confidence_count": 1,
+    "blocked_confidence_count": 1,
+    "blocker_visible_confidence_count": 7,
+    "conflict_present_confidence_count": 1,
+    "contracts_with_explicit_limitations_count": 12,
+    "contracts_with_explicit_risks_count": 12,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "drift_present_confidence_count": 1,
+    "drift_visible_confidence_count": 12,
+    "duplicate_detection_passed": true,
+    "floor_ceiling_violation_count": 0,
+    "invalid_classification_reference_count": 0,
+    "invalid_evidence_reference_count": 0,
+    "invalid_explanation_reference_count": 0,
+    "invalid_provenance_reference_count": 0,
+    "invalid_reasoning_stage_reference_count": 0,
+    "limitation_visible_confidence_count": 12,
+    "non_upgradeable_violation_count": 0,
+    "production_authorized_confidence_count": 0,
+    "production_behavior_changed": false,
+    "provenance_incomplete_confidence_count": 1,
+    "replay_safe_confidence_count": 4,
+    "replay_validation_passed": true,
+    "risk_visible_confidence_count": 9,
+    "stable_hash_valid": true,
+    "total_confidence_contract_count": 12,
+    "unsupported_confidence_count": 1,
+    "upgrade_without_revalidation_count": 3
+  }
+}
