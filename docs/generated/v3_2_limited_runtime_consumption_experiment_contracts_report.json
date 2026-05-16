@@ -1,0 +1,326 @@
+{
+  "default_manifest_consumption_disabled_verification": {
+    "default_manifest_consumption_enabled": false,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "determinism_compatibility_distributions": {
+    "runtime_determinism_satisfied": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "8288bb42945565bcf82b0763cb3eadf9a19686701b11b3688a6e4fa93343a01f",
+    "sample_hash": "8288bb42945565bcf82b0763cb3eadf9a19686701b11b3688a6e4fa93343a01f",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_compatibility_distributions": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "drift_detection_compatibility_distributions": {
+    "runtime_drift_not_detected": 1
+  },
+  "experiment_authorization_distributions": {
+    "experiment_authorized": 1
+  },
+  "experiment_blocker_distributions": {},
+  "experiment_consumption_mode_distributions": {
+    "experimental_only_consumption_mode": 1
+  },
+  "experiment_eligibility_distributions": {
+    "experiment_eligibility_evaluated": 1
+  },
+  "experiment_intent_distributions": {
+    "limited_runtime_consumption_experiment_intent_explicit": 1
+  },
+  "experiment_manifest_authority_distributions": {
+    "non_production_authoritative": 1
+  },
+  "experiment_production_prohibition_distributions": {
+    "production_runtime_prohibited": 1
+  },
+  "experiment_scope_distributions": {
+    "non_production_isolated_reversible_limited_scope": 1
+  },
+  "future_phase_foundation": [
+    "future kill-switch phases may consume deterministic experiment eligibility evidence",
+    "future closeout phases must preserve non-production manifest authority",
+    "future runtime planning must continue to block default manifest consumption and production routing"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_compatibility_distributions": {
+    "runtime_isolation_satisfied": 1
+  },
+  "limited_runtime_consumption_experiment_contracts": {
+    "determinism_compatibility_distribution": {
+      "runtime_determinism_satisfied": 1
+    },
+    "deterministic_hash": "8288bb42945565bcf82b0763cb3eadf9a19686701b11b3688a6e4fa93343a01f",
+    "diff_audit_compatibility_distribution": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "drift_detection_compatibility_distribution": {
+      "runtime_drift_not_detected": 1
+    },
+    "experiment_authorization_distribution": {
+      "experiment_authorized": 1
+    },
+    "experiment_blocker_distribution": {},
+    "experiment_consumption_mode_distribution": {
+      "experimental_only_consumption_mode": 1
+    },
+    "experiment_eligibility_distribution": {
+      "experiment_eligibility_evaluated": 1
+    },
+    "experiment_intent_distribution": {
+      "limited_runtime_consumption_experiment_intent_explicit": 1
+    },
+    "experiment_manifest_authority_distribution": {
+      "non_production_authoritative": 1
+    },
+    "experiment_production_prohibition_distribution": {
+      "production_runtime_prohibited": 1
+    },
+    "experiment_scope_distribution": {
+      "non_production_isolated_reversible_limited_scope": 1
+    },
+    "isolation_compatibility_distribution": {
+      "runtime_isolation_satisfied": 1
+    },
+    "limited_runtime_consumption_mode_status_counts": {
+      "experiment_consumption_mode_invalid": 0,
+      "experiment_default_manifest_consumption_prohibited": 0,
+      "experiment_production_routing_prohibited": 0,
+      "limited_runtime_experiment_eligible": 1
+    },
+    "limited_runtime_experiment_contracts": [
+      {
+        "determinism_contract_status": "runtime_determinism_satisfied",
+        "diff_audit_contract_status": "runtime_diff_audit_satisfied",
+        "drift_detection_contract_status": "runtime_drift_not_detected",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "experiment_authorization_state": "experiment_authorized",
+        "experiment_blocker_state": "unblocked_for_experiment_review_only",
+        "experiment_blockers": [],
+        "experiment_consumption_mode_state": "experimental_only_consumption_mode",
+        "experiment_eligibility_state": "experiment_eligibility_evaluated",
+        "experiment_intent_state": "limited_runtime_consumption_experiment_intent_explicit",
+        "experiment_manifest_authority_state": "non_production_authoritative",
+        "experiment_production_prohibition_state": "production_runtime_prohibited",
+        "experiment_scope_state": "non_production_isolated_reversible_limited_scope",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "limited_runtime_consumption_mode_status": "limited_runtime_experiment_eligible",
+        "limited_runtime_experiment_authorizes_production_routing": false,
+        "limited_runtime_experiment_authorizes_runtime_consumption": false,
+        "limited_runtime_experiment_contract_id": "v3_2_limited_runtime_experiment_8433ac3695793b4a",
+        "limited_runtime_experiment_status": "limited_runtime_experiment_eligible",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_experiment_logic_allowed": false,
+          "governance_only": true,
+          "implicit_runtime_consumption_allowed": false,
+          "limited_runtime_consumption_experiment_contract_only": true,
+          "planner_remap_performed": false,
+          "production_authoritative_manifest_treatment_prohibited": true,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "silent_experiment_eligibility_allowed": false
+        },
+        "production_authoritative_manifest_treatment": false,
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_routing_authorized_by_experiment": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "replayability_contract_status": "runtime_replayability_satisfied",
+        "rollback_contract_status": "runtime_rollback_ready",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_manifest_consumption_enabled_by_default": false,
+        "runtime_production_consumption_enabled": false,
+        "safety_contract_status": "runtime_safety_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "traceability_contract_status": "runtime_traceability_satisfied"
+      }
+    ],
+    "limited_runtime_experiment_status_counts": {
+      "experiment_authorization_missing": 0,
+      "experiment_consumption_mode_invalid": 0,
+      "experiment_default_manifest_consumption_prohibited": 0,
+      "experiment_determinism_compatibility_missing": 0,
+      "experiment_diff_audit_compatibility_missing": 0,
+      "experiment_drift_detection_compatibility_missing": 0,
+      "experiment_intent_missing": 0,
+      "experiment_isolation_compatibility_missing": 0,
+      "experiment_manifest_authority_invalid": 0,
+      "experiment_production_routing_prohibited": 0,
+      "experiment_replayability_compatibility_missing": 0,
+      "experiment_rollback_readiness_missing": 0,
+      "experiment_safety_rollback_compatibility_missing": 0,
+      "experiment_scope_missing": 0,
+      "experiment_scope_unsafe": 0,
+      "experiment_session_compatibility_missing": 0,
+      "experiment_traceability_compatibility_missing": 0,
+      "limited_runtime_experiment_blocked": 0,
+      "limited_runtime_experiment_eligible": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "limited_runtime_consumption_experiment_contract_only": true,
+      "planner_remap_performed": false,
+      "production_authoritative_manifest_treatment_prohibited": true,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "source": "v3_2_limited_runtime_consumption_experiment_contracts",
+      "stable_generation_token": "v3_2_phase_10_limited_runtime_consumption_experiment_contracts_token"
+    },
+    "replayability_compatibility_distribution": {
+      "runtime_replayability_satisfied": 1
+    },
+    "rollback_readiness_distribution": {
+      "runtime_rollback_ready": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "limited_runtime_experiment_request_count": 1,
+      "limited_runtime_experiment_requests_hash": "5485356b1bd8a7d00cd6e16fc5c7d15c61d9e1a2ceacd3d9a0ebb7033ef888f8",
+      "run_id": "v3_2_phase_10_limited_runtime_consumption_experiment_contracts",
+      "runtime_determinism_validation_contract_count": 1,
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_drift_detection_contract_count": 1,
+      "runtime_isolation_contract_count": 1,
+      "runtime_replayability_contract_count": 1,
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_traceability_contract_count": 1
+    },
+    "runtime_disabled_path_verification": {
+      "default_manifest_consumption_enabled": false,
+      "fallback_experiment_logic_allowed": false,
+      "implicit_runtime_consumption_allowed": false,
+      "production_authoritative_manifest_treatment": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_experiment_eligibility_allowed": false
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "limited_runtime_experiment_authorizes_production_routing": false,
+      "limited_runtime_experiment_enables_runtime_manifest_consumption": false,
+      "limited_runtime_experiment_treats_manifest_as_production_authoritative": false,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "safety_rollback_compatibility_distribution": {
+      "runtime_safety_satisfied": 1
+    },
+    "schema_version": "v3_2.limited_runtime_consumption_experiment_contracts.1",
+    "session_compatibility_distribution": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "experiment_authorization_missing_count": 0,
+      "experiment_consumption_mode_invalid_count": 0,
+      "experiment_manifest_authority_invalid_count": 0,
+      "experiment_scope_unsafe_count": 0,
+      "limited_runtime_experiment_blocked_count": 0,
+      "limited_runtime_experiment_eligible_count": 1,
+      "production_authoritative_manifest_treatment": false,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "traceability_compatibility_distribution": {
+      "runtime_traceability_satisfied": 1
+    }
+  },
+  "metadata": {
+    "governance_only": true,
+    "limited_runtime_consumption_experiment_contract_only": true,
+    "planner_remap_performed": false,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "source": "v3_2_limited_runtime_consumption_experiment_contracts_report"
+  },
+  "phase": "v3.2_phase_10_limited_runtime_consumption_experiment_contracts",
+  "phase_10_boundaries": [
+    "limited runtime consumption experiment contracts are governance only",
+    "this phase is not production runtime enablement",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "production-authoritative manifest treatment remains prohibited",
+    "experiment eligibility requires explicit authorization, intent, and limited non-production scope"
+  ],
+  "production_authoritative_manifest_treatment": false,
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "LIMITED_RUNTIME_CONSUMPTION_EXPERIMENT_ELIGIBLE_FOR_FUTURE_KILL_SWITCH_DESIGN_ONLY",
+  "replayability_compatibility_distributions": {
+    "runtime_replayability_satisfied": 1
+  },
+  "rollback_readiness_distributions": {
+    "runtime_rollback_ready": 1
+  },
+  "runtime_disabled_path_verification": {
+    "default_manifest_consumption_enabled": false,
+    "fallback_experiment_logic_allowed": false,
+    "implicit_runtime_consumption_allowed": false,
+    "production_authoritative_manifest_treatment": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_experiment_eligibility_allowed": false
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "safety_rollback_compatibility_distributions": {
+    "runtime_safety_satisfied": 1
+  },
+  "schema_version": "v3_2.limited_runtime_consumption_experiment_contracts_report.1",
+  "session_compatibility_distributions": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "experiment_authorization_missing_count": 0,
+    "experiment_consumption_mode_invalid_count": 0,
+    "experiment_manifest_authority_invalid_count": 0,
+    "experiment_scope_unsafe_count": 0,
+    "limited_runtime_experiment_blocked_count": 0,
+    "limited_runtime_experiment_eligible_count": 1,
+    "production_authoritative_manifest_treatment": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  },
+  "traceability_compatibility_distributions": {
+    "runtime_traceability_satisfied": 1
+  }
+}
