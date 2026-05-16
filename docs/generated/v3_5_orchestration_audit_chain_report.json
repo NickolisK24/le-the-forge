@@ -1,0 +1,1329 @@
+{
+  "audit_chain_statuses_supported": [
+    "audit_chain_prohibited",
+    "audit_chain_unsupported",
+    "audit_chain_integrity_compromised",
+    "audit_chain_blocked_by_missing_snapshot",
+    "audit_chain_blocked_by_missing_diff_analysis",
+    "audit_chain_blocked_by_lineage_gap",
+    "audit_chain_blocked_by_replay_gap",
+    "audit_chain_blocked_by_hash_instability",
+    "audit_chain_requires_manual_review",
+    "audit_chain_stable"
+  ],
+  "blocker_continuity_summary": {
+    "gap_count": 0,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 0
+  },
+  "compatibility_continuity_summary": {
+    "gap_count": 1,
+    "reference_count": 10,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 1
+  },
+  "deterministic_audit_chain_hash_examples": {
+    "compatibility_continuity_drift": "f68477ed9e92fb713b3d31574d3b5d100bc405068331c82e80cd9b222ad2637c",
+    "fully_stable_audit_chain": "f48fc3324cc0f8a17ce8fd4329f523286d8b752a741eb1f1ebf961d288bd4387",
+    "governance_continuity_drift": "d06df792e0b9c16d9157098d39c63848b52daf94628fc9769153641ee00abbf9",
+    "integrity_compromise_detection": "472ef645bf1ae764cae591e3127e07b3295344a852138f8f1da1909f752683b3",
+    "lineage_gap_detection": "43ad00a4b526035871db4c75577f731728e4235c611177b7aa0fe5d2843f8474",
+    "missing_diff_analysis_detection": "b831d0e45ab44fcebbd90ff8f45f217cd4ad1c0b1ffd267804aeae6586cac09b",
+    "missing_snapshot_detection": "d14a323ceb50792ffc65521ef0c5c2543918cc2d9354e592c5d614e45eefa392",
+    "multiple_simultaneous_continuity_constraints": "17379cc42f5912763e373be3460eda5836c7e610249398b0f6e3ea938f9bcdb5",
+    "prohibited_audit_chain_state": "a29a4a33a39e9a57276106e3aefe831902fc1a4331143e5a4d275760f1163cd1",
+    "replay_continuity_gap": "dd44e92ae916f4414a50b6cca86dafeeb264869e25dd166c7ff39d813ffcf009",
+    "unsupported_audit_chain_state": "867f5d91bf29dbbe86e00775735b517c63a59458f3c26fa2c7c25e60d74e6b7a"
+  },
+  "deterministic_report_hash": "572293ab704db5fe0a0fc2543144be5dce69e416de3b3533e97342f2d33b760b",
+  "diff_analysis_continuity_summary": {
+    "entry_count": 9,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 9
+  },
+  "environment_continuity_summary": {
+    "gap_count": 0,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 0
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_behavior_enabled": false,
+    "live_replay_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_audit_storage_enabled": false,
+    "production_consumption_enabled": false,
+    "production_state_reads_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_trace_capture_enabled": false,
+    "scheduling_behavior_enabled": false
+  },
+  "final_audit_chain_status": "audit_chain_stable",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "governance_continuity_summary": {
+    "gap_count": 1,
+    "reference_count": 10,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 1
+  },
+  "integrity_validation_summary": {
+    "entry_count": 3,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 3
+  },
+  "limitation_summary": {
+    "entry_count": 163,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 11
+  },
+  "lineage_continuity_summary": {
+    "gap_count": 2,
+    "reference_count": 9,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 2
+  },
+  "lineage_gap_summary": {
+    "entry_count": 3,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 3
+  },
+  "manual_review_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_8_orchestration_planning_audit_chain_contracts",
+  "planning_only": true,
+  "priority_order": [
+    "audit_chain_prohibited",
+    "audit_chain_unsupported",
+    "audit_chain_integrity_compromised",
+    "audit_chain_blocked_by_missing_snapshot",
+    "audit_chain_blocked_by_missing_diff_analysis",
+    "audit_chain_blocked_by_lineage_gap",
+    "audit_chain_blocked_by_replay_gap",
+    "audit_chain_blocked_by_hash_instability",
+    "audit_chain_requires_manual_review",
+    "audit_chain_stable"
+  ],
+  "priority_order_documentation": [
+    "prohibited audit-chain states dominate all other audit-chain states",
+    "unsupported audit-chain states dominate integrity and missing-state blockers",
+    "integrity compromise dominates missing snapshot and missing diff-analysis blockers",
+    "missing snapshot dominates missing diff-analysis",
+    "missing diff analysis dominates lineage and replay gaps",
+    "lineage gaps dominate replay gaps",
+    "replay gaps dominate hash instability",
+    "hash instability dominates manual review",
+    "manual review dominates stable",
+    "stable is selected only when no higher-priority audit-chain constraints exist"
+  ],
+  "remaining_limitations": [
+    "audit-chain construction models declarative planning provenance only",
+    "audit-chain construction does not persist audit state",
+    "audit-chain construction does not execute, route, mutate, write, schedule, or dispatch orchestration",
+    "audit-chain construction does not perform live replay, capture runtime traces, or read production state"
+  ],
+  "replay_continuity_summary": {
+    "gap_count": 2,
+    "reference_count": 9,
+    "scenario_count": 11,
+    "scenario_with_gaps_count": 2
+  },
+  "replay_gap_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "scenario_coverage": [
+    "fully_stable_audit_chain",
+    "lineage_gap_detection",
+    "replay_continuity_gap",
+    "missing_snapshot_detection",
+    "missing_diff_analysis_detection",
+    "integrity_compromise_detection",
+    "prohibited_audit_chain_state",
+    "unsupported_audit_chain_state",
+    "governance_continuity_drift",
+    "compatibility_continuity_drift",
+    "multiple_simultaneous_continuity_constraints"
+  ],
+  "scenario_results": {
+    "compatibility_continuity_drift": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_integrity_compromised",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [
+          "compatibility_continuity_references"
+        ],
+        "references": []
+      },
+      "deterministic_audit_chain_hash": "f68477ed9e92fb713b3d31574d3b5d100bc405068331c82e80cd9b222ad2637c",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_integrity_compromised; continuity entries: compatibility_continuity_gap.",
+      "deterministic_hash": "bb7e2b989e65de7bf89cf97add0005c30896320655a8ad948f4dd0a0b8451393",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [
+        "compatibility_continuity_gap"
+      ],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "fully_stable_audit_chain": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_stable",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "f48fc3324cc0f8a17ce8fd4329f523286d8b752a741eb1f1ebf961d288bd4387",
+      "deterministic_explanation_summary": "Audit chain is stable; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, live replay, persistent audit storage, runtime trace capture, or production state read is authorized.",
+      "deterministic_hash": "e73bf1225f0165deb2cb8921335072e8868a4deba5bb94ff9db203a539cfaebb",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "governance_continuity_drift": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_blocked_by_lineage_gap",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "d06df792e0b9c16d9157098d39c63848b52daf94628fc9769153641ee00abbf9",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_blocked_by_lineage_gap; continuity entries: governance_continuity_references.",
+      "deterministic_hash": "0fef0eb78b2aea660b1c269a48a180eedc8c78fdcedd6b897cbc2665e865cb0f",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [
+          "governance_continuity_references"
+        ],
+        "references": []
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [
+        "governance_continuity_references"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "integrity_compromise_detection": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_integrity_compromised",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "472ef645bf1ae764cae591e3127e07b3295344a852138f8f1da1909f752683b3",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_integrity_compromised; continuity entries: diff_source_snapshot_hash_mismatch.",
+      "deterministic_hash": "d217d9116eb474314029260b38f9c38316e3fde8dba7281bfab4ee50f34f9343",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [
+        "diff_source_snapshot_hash_mismatch"
+      ],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "lineage_gap_detection": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_blocked_by_lineage_gap",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "43ad00a4b526035871db4c75577f731728e4235c611177b7aa0fe5d2843f8474",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_blocked_by_lineage_gap; continuity entries: lineage_continuity_references.",
+      "deterministic_hash": "5ce58ef280513e85bb2174669d16efae2a766c0ee4cffff717ff66850e0f3300",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [
+          "lineage_continuity_references"
+        ],
+        "references": []
+      },
+      "lineage_gap_summary": [
+        "lineage_continuity_references"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "missing_diff_analysis_detection": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_blocked_by_missing_diff_analysis",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "b831d0e45ab44fcebbd90ff8f45f217cd4ad1c0b1ffd267804aeae6586cac09b",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_blocked_by_missing_diff_analysis; continuity entries: diff_analysis_sequence.",
+      "deterministic_hash": "4480460ac6a2969f15bf667f8129c83ddbae4c608e969c72507994d5c8dff90e",
+      "diff_analysis_gap_summary": [
+        "diff_analysis_sequence"
+      ],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "missing_snapshot_detection": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_blocked_by_missing_snapshot",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "d14a323ceb50792ffc65521ef0c5c2543918cc2d9354e592c5d614e45eefa392",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_blocked_by_missing_snapshot; continuity entries: snapshot_sequence[1].",
+      "deterministic_hash": "838c0d6080fbbc2982314d8b14a8b1e3cda3a0ceb81cf801d3795c7dcd559b68",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": [
+        "snapshot_sequence[1]"
+      ]
+    },
+    "multiple_simultaneous_continuity_constraints": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_prohibited",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "17379cc42f5912763e373be3460eda5836c7e610249398b0f6e3ea938f9bcdb5",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_prohibited; continuity entries: deterministic_serialization_not_verified, diff_analysis_sequence, lineage_continuity_references, manual_audit_chain_review, replay_continuity_references.",
+      "deterministic_hash": "f2a7c2c4b13e8d4b76340601e1c11e4f7a4218450e0273084cd6533ffac21f29",
+      "diff_analysis_gap_summary": [
+        "diff_analysis_sequence"
+      ],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [
+        "deterministic_serialization_not_verified"
+      ],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [
+          "lineage_continuity_references"
+        ],
+        "references": []
+      },
+      "lineage_gap_summary": [
+        "lineage_continuity_references"
+      ],
+      "live_replay_enabled": false,
+      "manual_review_summary": [
+        "manual_audit_chain_review"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [
+          "replay_continuity_references"
+        ],
+        "references": []
+      },
+      "replay_gap_summary": [
+        "replay_continuity_references"
+      ],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "prohibited_audit_chain_state": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_prohibited",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "a29a4a33a39e9a57276106e3aefe831902fc1a4331143e5a4d275760f1163cd1",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_prohibited; no execution behavior is authorized.",
+      "deterministic_hash": "f0dadc5d64a92b25491ebebbcd2ba97263e34e1d06743412c4808918cee0c76c",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "replay_continuity_gap": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_blocked_by_replay_gap",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "dd44e92ae916f4414a50b6cca86dafeeb264869e25dd166c7ff39d813ffcf009",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_blocked_by_replay_gap; continuity entries: replay_continuity_references.",
+      "deterministic_hash": "383fdd93dfcb56c88cc9134ed576b3b09026f35d4a5930b1a279885cf5736b7e",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [
+          "replay_continuity_references"
+        ],
+        "references": []
+      },
+      "replay_gap_summary": [
+        "replay_continuity_references"
+      ],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    },
+    "unsupported_audit_chain_state": {
+      "audit_chain_id": "audit-chain-v3-5-phase-8",
+      "audit_chain_status": "audit_chain_unsupported",
+      "audit_log_writing_enabled": false,
+      "blocker_continuity": {
+        "continuity_type": "blocker",
+        "gaps": [],
+        "references": [
+          "blocker-continuity-v3-5-phase-8"
+        ]
+      },
+      "chain_diff_analysis_sequence": [
+        "snapshot-diff-v3-5-phase-7"
+      ],
+      "chain_root_snapshot_id": "snapshot-v3-5-phase-6",
+      "chain_snapshot_sequence": [
+        "snapshot-v3-5-phase-6",
+        "snapshot-v3-5-phase-6"
+      ],
+      "compatibility_continuity": {
+        "continuity_type": "compatibility",
+        "gaps": [],
+        "references": [
+          "compatibility-continuity-v3-5-phase-8"
+        ]
+      },
+      "deterministic_audit_chain_hash": "867f5d91bf29dbbe86e00775735b517c63a59458f3c26fa2c7c25e60d74e6b7a",
+      "deterministic_explanation_summary": "Audit chain classified as audit_chain_unsupported; no execution behavior is authorized.",
+      "deterministic_hash": "45d6ab59c329c815f9674aa37cf33ecbd623460bbe2c640f19fba8c4e3a58807",
+      "diff_analysis_gap_summary": [],
+      "environment_continuity": {
+        "continuity_type": "environment",
+        "gaps": [],
+        "references": [
+          "environment-continuity-v3-5-phase-8"
+        ]
+      },
+      "governance_continuity": {
+        "continuity_type": "governance",
+        "gaps": [],
+        "references": [
+          "governance-continuity-v3-5-phase-8"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_summary": [],
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_continuity": {
+        "continuity_type": "lineage",
+        "gaps": [],
+        "references": [
+          "lineage-v3-5-phase-8"
+        ]
+      },
+      "lineage_gap_summary": [],
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "replay_continuity": {
+        "continuity_type": "replay",
+        "gaps": [],
+        "references": [
+          "replay-continuity-v3-5-phase-8"
+        ]
+      },
+      "replay_gap_summary": [],
+      "rollback_continuity": {
+        "continuity_type": "rollback",
+        "gaps": [],
+        "references": [
+          "rollback-continuity-v3-5-phase-8"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_gap_summary": []
+    }
+  },
+  "schema_version": "v3_5.orchestration_audit_chain_report.1",
+  "snapshot_continuity_summary": {
+    "entry_count": 21,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 11
+  },
+  "status_distribution": {
+    "audit_chain_blocked_by_hash_instability": 0,
+    "audit_chain_blocked_by_lineage_gap": 2,
+    "audit_chain_blocked_by_missing_diff_analysis": 1,
+    "audit_chain_blocked_by_missing_snapshot": 1,
+    "audit_chain_blocked_by_replay_gap": 1,
+    "audit_chain_integrity_compromised": 2,
+    "audit_chain_prohibited": 2,
+    "audit_chain_requires_manual_review": 0,
+    "audit_chain_stable": 1,
+    "audit_chain_unsupported": 1
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 10,
+    "deterministic_outputs": true,
+    "priority_order_status_selection": true,
+    "replay_safe_provenance_evidence": true,
+    "rollback_safe_provenance_evidence": true,
+    "scenario_count": 11,
+    "stable_audit_chain_hashing": true,
+    "stable_scenario_count": 1,
+    "stable_serialization": true,
+    "supported_status_count": 10
+  }
+}
