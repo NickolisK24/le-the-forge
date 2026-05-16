@@ -1,0 +1,892 @@
+{
+  "active_runtime_reasoning_decisions_enabled": false,
+  "contracts_with_explicit_limitations": {
+    "blocker_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "classification_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "confidence_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "decision_boundary_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "drift_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "evidence_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "limitation_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "provenance_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "reasoning_chain_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "risk_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "unsupported_summary": [
+      "active runtime explanation decisions are not enabled",
+      "runtime explanation contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "contracts_with_explicit_risks": {
+    "blocker_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "classification_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "confidence_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "decision_boundary_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "drift_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "evidence_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "limitation_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "provenance_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "reasoning_chain_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "replay_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "risk_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ],
+    "unsupported_summary": [
+      "classification must not authorize production runtime routing",
+      "explanations must not fabricate runtime certainty"
+    ]
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "evidence_summary",
+      "provenance_summary",
+      "classification_summary",
+      "reasoning_chain_summary",
+      "blocker_summary",
+      "risk_summary",
+      "limitation_summary",
+      "drift_summary",
+      "replay_summary",
+      "confidence_summary",
+      "decision_boundary_summary",
+      "unsupported_summary"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_deterministic_ranks": [],
+    "duplicate_explanation_labels": [],
+    "duplicate_explanation_type_ids": []
+  },
+  "explanation_manifest": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "classification_reference_count": 12,
+    "deterministic_hash": "b0f0e69029bf609079ea8d8ccbfd4a40b02aaa46221193482f7de18a4bf354d1",
+    "evidence_reference_count": 12,
+    "explanation_contracts": [
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_observed_runtime_state_3f3265c53cf7",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_evidence_collection_cdc85bd4b173",
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "evidence_summary",
+        "explanation_type_id": "runtime_explanation_evidence_summary_22622e08e084",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "classification",
+          "evidence",
+          "limitations"
+        ],
+        "risk_visible": false,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_extraction_source_d4ed747288b2",
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f",
+          "runtime_reasoning_provenance_validation_e8d9d32629cc"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "provenance_summary",
+        "explanation_type_id": "runtime_explanation_provenance_summary_bbe496bab320",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "limitations",
+          "provenance",
+          "source"
+        ],
+        "risk_visible": false,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_inferred_9b474e377107",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc",
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "classification_summary",
+        "explanation_type_id": "runtime_explanation_classification_summary_87b58582c015",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "classification",
+          "confidence",
+          "limitations"
+        ],
+        "risk_visible": false,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "reasoning_chain_summary",
+        "explanation_type_id": "runtime_explanation_reasoning_chain_summary_815485c9f880",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "limitations",
+          "lineage",
+          "reasoning"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_conflict_signal_5027f88802d4",
+          "runtime_evidence_unsupported_signal_823155381335"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2",
+          "runtime_provenance_unsupported_source_94cc358079cf"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff",
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "blocker_visible": true,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "blocker_summary",
+        "explanation_type_id": "runtime_explanation_blocker_summary_03d55672f51c",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "required_explanation_sections": [
+          "blockers",
+          "decision_boundary",
+          "limitations"
+        ],
+        "risk_visible": false,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267",
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_conflict_signal_5027f88802d4",
+          "runtime_evidence_drift_signal_ea46fa921092"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_conflict_detection_source_3613f58125c5",
+          "runtime_provenance_drift_detection_source_daa432255d9c"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_risk_detection_5c956b6207ca"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "risk_summary",
+        "explanation_type_id": "runtime_explanation_risk_summary_432ecbeba2c3",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "required_explanation_sections": [
+          "drift",
+          "limitations",
+          "risks"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_limitation_detection_38aa50fe9fdb"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "limitation_summary",
+        "explanation_type_id": "runtime_explanation_limitation_summary_f2f98f34d5ec",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "limitations",
+          "risks",
+          "scope"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_drift_signal_ea46fa921092",
+          "runtime_evidence_runtime_trace_event_4d6985c85ea0"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_drift_detection_source_daa432255d9c",
+          "runtime_provenance_runtime_trace_source_708da759489c"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_drift_check_673a1752a5b4"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "drift_summary",
+        "explanation_type_id": "runtime_explanation_drift_summary_0b1b6f6c76f2",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "required_explanation_sections": [
+          "drift",
+          "evidence",
+          "risks"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_replay_verified_c386cacc38b4",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_replay_trace_event_96093dcb6d80",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_replay_trace_source_31aa8d85b9f3",
+          "runtime_provenance_trusted_bundle_source_af6de7794920"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_replay_check_a7afe7b94593"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "replay_summary",
+        "explanation_type_id": "runtime_explanation_replay_summary_8ce39999bce8",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "hash",
+          "limitations",
+          "replay"
+        ],
+        "risk_visible": false,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_inferred_9b474e377107",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_verified_12cc3657fd19"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460",
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc",
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": false,
+        "confidence_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "confidence_summary",
+        "explanation_type_id": "runtime_explanation_confidence_summary_544afff0e78d",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": true,
+        "required_explanation_sections": [
+          "classification",
+          "confidence",
+          "risks"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_experimental_only_7d3bc626dd86"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2",
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "blocker_visible": true,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "decision_boundary_summary",
+        "explanation_type_id": "runtime_explanation_decision_boundary_summary_1f9bc824827c",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "required_explanation_sections": [
+          "blockers",
+          "decision_boundary",
+          "limitations"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_blocked_541cca575a7d",
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8",
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144",
+          "runtime_evidence_unsupported_signal_823155381335"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd",
+          "runtime_provenance_unsupported_source_94cc358079cf"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff",
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476",
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "blocker_visible": true,
+        "confidence_visible": false,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explanation_label": "unsupported_summary",
+        "explanation_type_id": "runtime_explanation_unsupported_summary_b505bd55fb56",
+        "explicit_limitations": [
+          "active runtime explanation decisions are not enabled",
+          "runtime explanation contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "explanations must not fabricate runtime certainty"
+        ],
+        "limitation_visible": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_safe": false,
+        "required_explanation_sections": [
+          "blockers",
+          "limitations",
+          "unsupported"
+        ],
+        "risk_visible": true,
+        "runtime_explanation_planning_only": true
+      }
+    ],
+    "metadata": {
+      "decision_boundary_explanation_visible": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "explanation_certainty_fabricated": false,
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_explanation_contracts",
+      "unsupported_explanation_visible": true
+    },
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "provenance_reference_count": 12,
+    "reasoning_stage_reference_count": 12,
+    "recommendation_logic_enabled": false,
+    "registry_validation": {
+      "blocker_visible_explanation_visible": true,
+      "confidence_visible_explanation_visible": true,
+      "decision_boundary_explanation_visible": true,
+      "duplicate_detection": {
+        "duplicate_deterministic_ranks": [],
+        "duplicate_explanation_labels": [],
+        "duplicate_explanation_type_ids": []
+      },
+      "invalid_classification_reference_count": 0,
+      "invalid_classification_references": {},
+      "invalid_evidence_reference_count": 0,
+      "invalid_evidence_references": {},
+      "invalid_provenance_reference_count": 0,
+      "invalid_provenance_references": {},
+      "invalid_reasoning_stage_reference_count": 0,
+      "invalid_reasoning_stage_references": {},
+      "limitation_visible_explanation_visible": true,
+      "missing_required_fields": {},
+      "production_authorized_explanations": [],
+      "required_section_violation_count": 0,
+      "required_section_violations": {},
+      "risk_visible_explanation_visible": true,
+      "unknown_labels": [],
+      "unsupported_explanation_visible": true,
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_validation": {
+      "first_hash": "cd471e94bd640364d5d63e457f2f3cd96a1fb27ce8a7e53c127edc69e1ae2c32",
+      "replay_stable": true,
+      "second_hash": "cd471e94bd640364d5d63e457f2f3cd96a1fb27ce8a7e53c127edc69e1ae2c32",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "explanation_contract_count": 12,
+      "run_id": "v3_3_phase_5_runtime_explanation_contracts"
+    },
+    "runtime_explanation_planning_only": true,
+    "runtime_manifest_consumption_enabled": false,
+    "schema_version": "v3_3.runtime_explanation_contracts.1"
+  },
+  "explanation_to_classification_compatibility_validation": {
+    "invalid_classification_references": {},
+    "passed": true
+  },
+  "explanation_to_evidence_compatibility_validation": {
+    "invalid_evidence_references": {},
+    "passed": true
+  },
+  "explanation_to_provenance_compatibility_validation": {
+    "invalid_provenance_references": {},
+    "passed": true
+  },
+  "explanation_to_reasoning_compatibility_validation": {
+    "invalid_reasoning_stage_references": {},
+    "passed": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_explanation_contracts_report"
+  },
+  "phase": "v3.3_phase_5_runtime_explanation_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_EXPLANATION_CONTRACT_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "recommendation_logic_enabled": false,
+  "replay_validation_results": {
+    "first_hash": "cd471e94bd640364d5d63e457f2f3cd96a1fb27ce8a7e53c127edc69e1ae2c32",
+    "replay_stable": true,
+    "second_hash": "cd471e94bd640364d5d63e457f2f3cd96a1fb27ce8a7e53c127edc69e1ae2c32",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "required_section_validation": {
+    "passed": true,
+    "required_section_violations": {}
+  },
+  "runtime_explanations_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "no_explanation_contract_is_production_authorized": true,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "recommendation_logic_enabled": false,
+    "runtime_explanations_remain_planning_only": true
+  },
+  "schema_version": "v3_3.runtime_explanation_contracts_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "b0f0e69029bf609079ea8d8ccbfd4a40b02aaa46221193482f7de18a4bf354d1",
+    "passed": true,
+    "repeated_hash": "b0f0e69029bf609079ea8d8ccbfd4a40b02aaa46221193482f7de18a4bf354d1",
+    "sample_hash": "b0f0e69029bf609079ea8d8ccbfd4a40b02aaa46221193482f7de18a4bf354d1"
+  },
+  "summary": {
+    "blocker_visible_explanation_count": 3,
+    "confidence_visible_explanation_count": 2,
+    "contracts_with_explicit_limitations_count": 12,
+    "contracts_with_explicit_risks_count": 12,
+    "decision_boundary_explanation_count": 1,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "drift_visible_explanation_count": 12,
+    "duplicate_detection_passed": true,
+    "invalid_classification_reference_count": 0,
+    "invalid_evidence_reference_count": 0,
+    "invalid_provenance_reference_count": 0,
+    "invalid_reasoning_stage_reference_count": 0,
+    "limitation_visible_explanation_count": 12,
+    "production_authorized_explanation_count": 0,
+    "production_behavior_changed": false,
+    "replay_safe_explanation_count": 7,
+    "replay_validation_passed": true,
+    "required_section_violation_count": 0,
+    "risk_visible_explanation_count": 7,
+    "stable_hash_valid": true,
+    "total_explanation_contract_count": 12,
+    "unsupported_explanation_count": 1
+  }
+}
