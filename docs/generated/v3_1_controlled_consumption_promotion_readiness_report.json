@@ -1,0 +1,141 @@
+{
+  "controlled_consumption_promotion_readiness": {
+    "blocker_reason_counts": {},
+    "deterministic_hash": "65e0814411b9053c2fd50da6c80fbaf960280beee4ddaee2c6a978c32ae6516c",
+    "evidence_chain_summary": {
+      "controlled_consumption_records": 1,
+      "manifest_eligibility_records": 1,
+      "production_routing_authorized": false,
+      "runtime_consumption_enabled": false,
+      "semantic_parity_records": 1,
+      "structural_parity_records": 1,
+      "validated_output_records": 1
+    },
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "future_limited_experimental_consideration_only": true,
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_controlled_consumption_promotion_readiness",
+      "stable_generation_token": "v3_1_phase_24_controlled_consumption_promotion_readiness_token"
+    },
+    "promotion_readiness_records": [
+      {
+        "blockers": [],
+        "controlled_consumption_status": "consumed_in_controlled_test",
+        "eligibility_status": "eligible_for_controlled_test_consumption",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "controlled_test_only": true,
+          "future_limited_experimental_consideration_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "promotion_readiness_authorizes_production_routing": false,
+        "promotion_readiness_id": "v3_1_promotion_readiness_88ebdd1667b59f37",
+        "promotion_readiness_status": "ready_for_limited_experimental_runtime_consideration",
+        "semantic_parity_status": "semantic_parity_confirmed",
+        "structural_parity_status": "parity_confirmed",
+        "validation_status": "valid_controlled_test_output"
+      }
+    ],
+    "promotion_readiness_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_invalid_manifest_eligibility": 0,
+      "blocked_invalid_output_validation": 0,
+      "blocked_missing_controlled_consumption": 0,
+      "blocked_missing_semantic_parity": 0,
+      "blocked_missing_structural_parity": 0,
+      "blocked_runtime_consumption_enabled": 0,
+      "ready_for_limited_experimental_runtime_consideration": 1
+    },
+    "run": {
+      "controlled_consumption_output_validation_hash": "3364892148b06185a66ca86a64243a32ab54324995ed8752be795bed78300677",
+      "controlled_consumption_parity_snapshot_hash": "5e5744d7474cc3e8ca26e1163178c65744e46a07f01674bc4b11acbec486b20c",
+      "controlled_consumption_record_count": 1,
+      "controlled_test_consumption_hash": "f08b0dd2a540a8f4da38a059b3c0def3d029747cb1416201946a1795e6d30c04",
+      "eligibility_record_count": 1,
+      "manifest_consumption_eligibility_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+      "run_id": "v3_1_phase_24_controlled_consumption_promotion_readiness",
+      "semantic_parity_record_count": 1,
+      "structural_parity_record_count": 1,
+      "trace_backfilled_semantic_parity_hash": "1d50646772e3803ae099d697d8a2454b708376454813bbbf286dac3dfdbcf0d7",
+      "validation_record_count": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "promotion_readiness_authorizes_production_routing": false,
+      "promotion_readiness_enables_runtime_consumption": false,
+      "promotion_readiness_is_production_approval": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.controlled_consumption_promotion_readiness.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "ready_count": 1,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "65e0814411b9053c2fd50da6c80fbaf960280beee4ddaee2c6a978c32ae6516c",
+    "sample_hash": "65e0814411b9053c2fd50da6c80fbaf960280beee4ddaee2c6a978c32ae6516c",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "controlled_test_only": true,
+    "future_limited_experimental_consideration_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_controlled_consumption_promotion_readiness_report"
+  },
+  "phase": "v3.1_phase_24_controlled_consumption_promotion_readiness_gate",
+  "phase_24_boundaries": [
+    "promotion readiness is for future limited experimental runtime consideration only",
+    "promotion readiness is not production approval",
+    "promotion readiness does not authorize production routing",
+    "runtime manifest consumption remains disabled",
+    "manifests remain non-production-authoritative",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.controlled_consumption_promotion_readiness_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "ready_count": 1,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  }
+}
