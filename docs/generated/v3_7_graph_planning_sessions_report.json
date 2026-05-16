@@ -1,0 +1,1022 @@
+{
+  "architectural_purpose": "deterministic graph planning session intelligence",
+  "audit_result": {
+    "audit_status": "v3_7_graph_planning_session_audit_stable",
+    "compatibility_continuity_preserved": true,
+    "deterministic_audit_hash": "2ebb5c4b80f27fc39da1bd95f98cc490ca7d35338f08f71e1d48a708532586fc",
+    "error_count": 0,
+    "evaluation_evidence_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "fail_visible_finding_preservation": true,
+    "finding_count": 4,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_visible_blocked:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "blocked session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_visible_blocked",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_visible_prohibited:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "prohibited session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_visible_prohibited",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_visible_unknown:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "unknown session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_visible_unknown",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_visible_unsupported:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "unsupported session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_visible_unsupported",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "graph_hash_continuity_preserved": true,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_evidence_continuity_preserved": true,
+    "rollback_evidence_continuity_preserved": true,
+    "session_identity_stable": true,
+    "snapshot_continuity_preserved": true,
+    "valid": true,
+    "visibility_finding_count": 4
+  },
+  "audit_trail_counts": {
+    "audit_trail_count": 6,
+    "fail_visible_audit_entry_count": 6,
+    "hidden_audit_entry_count": 0
+  },
+  "audit_trails_do_not_imply_runtime_history": true,
+  "autonomous_orchestration_enabled": false,
+  "background_orchestration_processing_enabled": false,
+  "blocked_unsupported_prohibited_unknown_visibility_counts": {
+    "blocked_visible_count": 1,
+    "prohibited_visible_count": 1,
+    "unknown_visible_count": 1,
+    "unsupported_visible_count": 1
+  },
+  "coverage": {
+    "audit_coverage": true,
+    "explainability_coverage": true,
+    "non_execution_coverage": true,
+    "provenance_coverage": true,
+    "replay_continuity_coverage": true,
+    "rollback_continuity_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "audit_hash": "2ebb5c4b80f27fc39da1bd95f98cc490ca7d35338f08f71e1d48a708532586fc",
+    "explainability_hash": "07012a96b45cae625762dda070e1b20a3dfe42fb1b6cf6eac404e2ff8b16be70",
+    "hash_stable": true,
+    "provenance_hash": "2fb8bc917aaaec3960c737ec5acc231a6c360f21ff2929ba49658ebf67adaacf",
+    "serialization_stable": true,
+    "session_hash": "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+    "validation_hash": "4c15682ea59c9da04fe2e3e57ab6f2679a95f92c0101457fb3446dc98046aced"
+  },
+  "deterministic_report_hash": "d65d41dbf4218715baa3e54ed8aa98d647017973c1d137d84b2bf3616e0a1e2e",
+  "dispatch_enabled": false,
+  "execution_capable_session_state_enabled": false,
+  "explainability_continuity_totals": {
+    "blocked_explanation_count": 1,
+    "evaluation_evidence_explanation_count": 1,
+    "explainability_status": "v3_7_graph_planning_session_explainability_stable",
+    "explanation_count": 9,
+    "prohibited_explanation_count": 1,
+    "session_existence_explanation_count": 1,
+    "snapshot_explanation_count": 1,
+    "unknown_explanation_count": 1,
+    "unsupported_explanation_count": 1,
+    "visible_finding_explanation_count": 6
+  },
+  "explainability_result": {
+    "blocked_explanation_count": 1,
+    "continuity_supported_explanation_count": 9,
+    "deterministic_explainability_hash": "07012a96b45cae625762dda070e1b20a3dfe42fb1b6cf6eac404e2ff8b16be70",
+    "evaluation_evidence_explanation_count": 1,
+    "explainability_status": "v3_7_graph_planning_session_explainability_stable",
+    "explanation_count": 9,
+    "explanations": [
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "session_status",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0001_session_status",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "evaluated",
+          "fail_visible",
+          "not_runtime_history"
+        ],
+        "replay_safe": true,
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_audit_0001_session_status",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0001_session_status"
+        ],
+        "why_present": "planning session evaluated structural graph evidence"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "blocked_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0002_blocked_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "blocked",
+          "fail_visible",
+          "not_runtime_history"
+        ],
+        "replay_safe": true,
+        "session_status": "blocked",
+        "subject_id": "v3_7_graph_planning_session_audit_0002_blocked_visibility",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0002_blocked_visibility"
+        ],
+        "why_present": "blocked states remain fail-visible when present"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "unsupported_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "fail_visible",
+          "not_runtime_history",
+          "unsupported"
+        ],
+        "replay_safe": true,
+        "session_status": "unsupported",
+        "subject_id": "v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0003_unsupported_visibility"
+        ],
+        "why_present": "unsupported states remain fail-visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "prohibited_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "fail_visible",
+          "not_runtime_history",
+          "prohibited"
+        ],
+        "replay_safe": true,
+        "session_status": "prohibited",
+        "subject_id": "v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0004_prohibited_visibility"
+        ],
+        "why_present": "prohibited states remain fail-visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "unknown_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0005_unknown_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "fail_visible",
+          "not_runtime_history",
+          "unknown"
+        ],
+        "replay_safe": true,
+        "session_status": "unknown",
+        "subject_id": "v3_7_graph_planning_session_audit_0005_unknown_visibility",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0005_unknown_visibility"
+        ],
+        "why_present": "unknown states remain fail-visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "non_execution_boundary",
+          "v3_7_graph_planning_session_default"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_planning_session_audit_0006_non_execution_boundary",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "audit_trail",
+          "evaluated",
+          "fail_visible",
+          "not_runtime_history"
+        ],
+        "replay_safe": true,
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_audit_0006_non_execution_boundary",
+        "subject_type": "session_audit_trail",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0006_non_execution_boundary"
+        ],
+        "why_present": "planning session contains evidence only"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "7c640679dcd754dd01cd22fa1cb3abd44dc4261baa89500b8efe4adead803ac0"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_v3_7_graph_planning_session_evaluation_evidence",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "reasoning_chain": [
+          "evaluation_findings",
+          "evaluation_hash",
+          "evaluation_traces",
+          "session_scope"
+        ],
+        "replay_safe": true,
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_evaluation_evidence",
+        "subject_type": "session_evaluation_evidence",
+        "visible_finding_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning"
+        ],
+        "why_present": "session references deterministic graph evaluation evidence"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_session_v3_7_graph_planning_session_default",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "evaluation_evidence",
+          "graph_snapshot",
+          "non_executable_container",
+          "session_identity"
+        ],
+        "replay_safe": true,
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "planning_session",
+        "visible_finding_references": [
+          "v3_7_graph_planning_session_audit_0001_session_status",
+          "v3_7_graph_planning_session_audit_0002_blocked_visibility",
+          "v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+          "v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+          "v3_7_graph_planning_session_audit_0005_unknown_visibility",
+          "v3_7_graph_planning_session_audit_0006_non_execution_boundary"
+        ],
+        "why_present": "planning session groups deterministic graph reasoning evidence"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_evaluation_replay_continuity",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "evaluation_evidence_references": [
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_snapshot_v3_7_graph_planning_session_snapshot_default",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "reasoning_chain": [
+          "continuity_references",
+          "graph_hash",
+          "not_execution_state",
+          "snapshot_identity"
+        ],
+        "replay_safe": true,
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_snapshot_default",
+        "subject_type": "session_snapshot",
+        "visible_finding_references": [],
+        "why_present": "snapshot preserves graph identity, hashes, and continuity references without execution state"
+      }
+    ],
+    "missing_explanation_subjects": [],
+    "prohibited_explanation_count": 1,
+    "provenance_supported_explanation_count": 9,
+    "replay_safe": true,
+    "session_existence_explanation_count": 1,
+    "snapshot_explanation_count": 1,
+    "unknown_explanation_count": 1,
+    "unsupported_explanation_count": 1,
+    "visible_finding_explanation_count": 6
+  },
+  "explicit_limitations": [
+    "planning sessions are non-executable",
+    "planning sessions are evidence containers only",
+    "session replay evidence is not runtime replay",
+    "snapshots do not imply execution state",
+    "audit trails do not imply runtime history",
+    "session statuses do not authorize orchestration",
+    "graph planning sessions do not enable routing, scheduling, or dispatch"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "graph_execution_enabled": false,
+  "graph_optimization_enabled": false,
+  "graph_planning_sessions_do_not_enable_routing_scheduling_dispatch": true,
+  "graph_snapshot_counts": {
+    "execution_state_snapshot_count": 0,
+    "non_executable_snapshot_count": 1,
+    "snapshot_count": 1
+  },
+  "graph_traversal_execution_enabled": false,
+  "path_selection_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.7_graph_planning_sessions",
+  "planning_session": {
+    "audit_trail": [
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0001_session_status",
+        "audit_order": 1,
+        "audit_type": "session_status",
+        "evidence_references": [
+          "session_status",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "planning session evaluated structural graph evidence",
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0002_blocked_visibility",
+        "audit_order": 2,
+        "audit_type": "blocked_visibility",
+        "evidence_references": [
+          "blocked_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "blocked states remain fail-visible when present",
+        "session_status": "blocked",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+        "audit_order": 3,
+        "audit_type": "unsupported_visibility",
+        "evidence_references": [
+          "unsupported_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "unsupported states remain fail-visible",
+        "session_status": "unsupported",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+        "audit_order": 4,
+        "audit_type": "prohibited_visibility",
+        "evidence_references": [
+          "prohibited_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "prohibited states remain fail-visible",
+        "session_status": "prohibited",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0005_unknown_visibility",
+        "audit_order": 5,
+        "audit_type": "unknown_visibility",
+        "evidence_references": [
+          "unknown_visibility",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "unknown states remain fail-visible",
+        "session_status": "unknown",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_planning_session_audit_0006_non_execution_boundary",
+        "audit_order": 6,
+        "audit_type": "non_execution_boundary",
+        "evidence_references": [
+          "non_execution_boundary",
+          "v3_7_graph_planning_session_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "planning session contains evidence only",
+        "session_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      }
+    ],
+    "audit_trails_do_not_imply_runtime_history": true,
+    "autonomous_orchestration_enabled": false,
+    "background_orchestration_processing_enabled": false,
+    "continuity_hash_references": [
+      "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+      "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+      "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+    ],
+    "dispatch_enabled": false,
+    "evaluation_evidence": [
+      {
+        "continuity_audit_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "evaluation_finding_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning"
+        ],
+        "evaluation_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "evaluation_trace_references": [
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "evaluation_validation_hash": "7c640679dcd754dd01cd22fa1cb3abd44dc4261baa89500b8efe4adead803ac0",
+        "evidence_id": "v3_7_graph_planning_session_evaluation_evidence",
+        "explainability_references": [
+          "v3_7_graph_evaluation_explainability"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "session_id": "v3_7_graph_planning_session_default",
+        "snapshot_id": "v3_7_graph_planning_session_snapshot_default"
+      }
+    ],
+    "evidence_container_only": true,
+    "execution_capable_session_state_enabled": false,
+    "explainability_reference_ids": [
+      "v3_7_graph_planning_session_explainability"
+    ],
+    "graph_execution_enabled": false,
+    "graph_optimization_enabled": false,
+    "graph_planning_sessions_do_not_enable_routing_scheduling_dispatch": true,
+    "graph_traversal_execution_enabled": false,
+    "identity": {
+      "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+      "phase_id": "v3_7_graph_planning_sessions",
+      "session_id": "v3_7_graph_planning_session_default",
+      "session_version": "v3.7",
+      "stable_identity_key": "a22b3960d8eb3041fd309652eabc372027dc48690b9597c8fcf624535549f53c"
+    },
+    "metadata": [
+      {
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      },
+      {
+        "metadata_key": "session_semantics",
+        "metadata_value": "deterministic_evidence_container_only"
+      },
+      {
+        "metadata_key": "status_authorization",
+        "metadata_value": "statuses_do_not_authorize_orchestration"
+      }
+    ],
+    "path_selection_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "planning_sessions_are_non_executable": true,
+    "provenance": {
+      "compatibility_references": [
+        "v3_6_to_v3_7_graph_foundation_compatibility"
+      ],
+      "explainability_references": [
+        "v3_7_graph_explainability_evidence"
+      ],
+      "governance_references": [
+        "v3_7_non_execution_governance_boundary"
+      ],
+      "lineage_references": [
+        "v3_6_closeout_and_v3_7_readiness",
+        "v3_7_graph_planning_session_default"
+      ],
+      "provenance_id": "v3-7-provenance-v3_7_graph_planning_session_default",
+      "replay_lineage_references": [
+        "v3_6_replay_continuity",
+        "v3_7_graph_replay_continuity"
+      ],
+      "rollback_lineage_references": [
+        "v3_6_rollback_continuity",
+        "v3_7_graph_rollback_continuity"
+      ],
+      "source_artifact_id": "v3_7_graph_planning_session_default",
+      "source_kind": "graph_planning_session",
+      "source_phase_id": "v3_7_graph_foundations"
+    },
+    "recommendation_enabled": false,
+    "replay_evidence": [
+      {
+        "continuity_hashes": [
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_trace_references": [
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "execution_authorization": false,
+        "explainability_references": [
+          "v3_7_graph_evaluation_explainability"
+        ],
+        "non_executable_replay_evidence": true,
+        "orchestration_runtime_packet": false,
+        "provenance_references": [
+          "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+          "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+          "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+          "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+          "v3-7-provenance-evaluation_structural_continuity_warning",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "replay_evidence_id": "v3_7_graph_planning_session_replay_evidence",
+        "replay_packet_references": [
+          "v3_7_graph_evaluation_replay_packet"
+        ],
+        "rollback_evidence_references": [
+          "v3_7_graph_planning_session_rollback_evidence"
+        ],
+        "runtime_replay": false,
+        "session_id": "v3_7_graph_planning_session_default",
+        "snapshot_id": "v3_7_graph_planning_session_snapshot_default"
+      }
+    ],
+    "rollback_evidence": [
+      {
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "rollback_evidence_id": "v3_7_graph_planning_session_rollback_evidence",
+        "rollback_reference_ids": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true,
+        "runtime_state_mutation_enabled": false,
+        "session_id": "v3_7_graph_planning_session_default",
+        "snapshot_id": "v3_7_graph_planning_session_snapshot_default"
+      }
+    ],
+    "routing_enabled": false,
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_enabled": false,
+    "scheduling_enabled": false,
+    "session_driven_orchestration_behavior_enabled": false,
+    "session_execution_enabled": false,
+    "session_replay_evidence_is_not_runtime_replay": true,
+    "session_statuses_do_not_authorize_orchestration": true,
+    "snapshots": [
+      {
+        "compatibility_evidence_references": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "evaluation_evidence_references": [
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "execution_state": false,
+        "explainability_references": [
+          "v3_7_graph_evaluation_explainability",
+          "v3_7_graph_explainability"
+        ],
+        "governance_evidence_references": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "graph_hash": "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+        "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+        "graph_serialization_hash": "012c4d1dd5916c0171a4f0ad0fbb6985396d0487f0a55cd1876102ea2687f751",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_planning_session_snapshot_default"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_planning_session_snapshot_default",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_planning_session_snapshot_default",
+          "source_kind": "graph_planning_session_snapshot",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "replay_continuity_references": [
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_continuity_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "session_id": "v3_7_graph_planning_session_default",
+        "snapshot_id": "v3_7_graph_planning_session_snapshot_default",
+        "snapshot_is_executable": false
+      }
+    ],
+    "snapshots_do_not_imply_execution_state": true,
+    "status": "evaluated"
+  },
+  "planning_session_counts": {
+    "audit_trail_count": 6,
+    "evaluation_evidence_count": 1,
+    "planning_session_count": 1,
+    "replay_evidence_count": 1,
+    "rollback_evidence_count": 1,
+    "snapshot_count": 1
+  },
+  "planning_session_evidence": true,
+  "planning_sessions_are_evidence_containers_only": true,
+  "planning_sessions_are_non_executable": true,
+  "provenance_continuity_totals": {
+    "audit_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "graph_snapshot_provenance_preserved": true,
+    "provenance_record_count": 2,
+    "provenance_status": "v3_7_graph_planning_session_provenance_preserved",
+    "replay_provenance_preserved": true,
+    "rollback_provenance_preserved": true,
+    "session_creation_provenance_preserved": true
+  },
+  "provenance_result": {
+    "audit_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "deterministic_provenance_hash": "2fb8bc917aaaec3960c737ec5acc231a6c360f21ff2929ba49658ebf67adaacf",
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "graph_snapshot_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "provenance_record_count": 2,
+    "provenance_status": "v3_7_graph_planning_session_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "replay_provenance_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rollback_provenance_preserved": true,
+    "session_creation_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "replay_evidence_counts": {
+    "execution_authorization": false,
+    "non_executable_replay_evidence": true,
+    "orchestration_runtime_packet": false,
+    "replay_evidence_count": 1,
+    "runtime_replay": false
+  },
+  "replay_evidence_records": [
+    {
+      "continuity_hashes": [
+        "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+      ],
+      "evaluation_trace_references": [
+        "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+      ],
+      "execution_authorization": false,
+      "explainability_references": [
+        "v3_7_graph_evaluation_explainability"
+      ],
+      "non_executable_replay_evidence": true,
+      "orchestration_runtime_packet": false,
+      "provenance_references": [
+        "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+        "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+        "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+        "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+        "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+        "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+        "v3-7-provenance-evaluation_structural_continuity_warning",
+        "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+      ],
+      "replay_evidence_id": "v3_7_graph_planning_session_replay_evidence",
+      "replay_packet_references": [
+        "v3_7_graph_evaluation_replay_packet"
+      ],
+      "rollback_evidence_references": [
+        "v3_7_graph_planning_session_rollback_evidence"
+      ],
+      "runtime_replay": false,
+      "session_id": "v3_7_graph_planning_session_default",
+      "snapshot_id": "v3_7_graph_planning_session_snapshot_default"
+    }
+  ],
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_evidence_counts": {
+    "rollback_continuity_preserved": true,
+    "rollback_evidence_count": 1
+  },
+  "routing_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_enabled": false,
+  "runtime_orchestration_session_state": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_planning_sessions_report.1",
+  "session_driven_orchestration_behavior_enabled": false,
+  "session_execution_enabled": false,
+  "session_replay_evidence_is_not_runtime_replay": true,
+  "session_status_counts": {
+    "audit_failed": 0,
+    "blocked": 0,
+    "closed": 0,
+    "evaluated": 1,
+    "initialized": 0,
+    "prohibited": 0,
+    "unknown": 0,
+    "unsupported": 0
+  },
+  "session_statuses_do_not_authorize_orchestration": true,
+  "snapshots_do_not_imply_execution_state": true,
+  "summary": {
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "explainability_continuity_verified": true,
+    "non_execution_guarantee_verified": true,
+    "planning_session_evidence": true,
+    "planning_session_status": "v3_7_graph_planning_session_validation_stable",
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "runtime_orchestration_session_state": false
+  },
+  "validation_result": {
+    "audit_trail_continuity_preserved": true,
+    "deterministic_hash_stable": true,
+    "deterministic_serialization_stable": true,
+    "deterministic_session_hash": "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+    "deterministic_validation_hash": "4c15682ea59c9da04fe2e3e57ab6f2679a95f92c0101457fb3446dc98046aced",
+    "duplicate_session_identity_count": 0,
+    "error_count": 0,
+    "explainability_continuity_preserved": true,
+    "finding_count": 3,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_validation_visible_prohibited:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "prohibited session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_validation_visible_prohibited",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_validation_visible_unknown:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "unknown session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_validation_visible_unknown",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_planning_session_validation_visible_unsupported:graph_planning_session:v3_7_graph_planning_session_default",
+        "message": "unsupported session state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_planning_session_validation_visible_unsupported",
+        "subject_id": "v3_7_graph_planning_session_default",
+        "subject_type": "graph_planning_session"
+      }
+    ],
+    "hidden_prohibited_state_count": 0,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0,
+    "invalid_evaluation_evidence_count": 0,
+    "invalid_graph_hash_reference_count": 0,
+    "missing_replay_evidence_count": 0,
+    "missing_rollback_evidence_count": 0,
+    "missing_snapshot_reference_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_planning_session_validation_stable",
+    "visibility_finding_count": 3
+  },
+  "validation_totals": {
+    "duplicate_session_identity_count": 0,
+    "error_count": 0,
+    "finding_count": 3,
+    "hidden_prohibited_state_count": 0,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_planning_session_validation_stable",
+    "visibility_finding_count": 3
+  }
+}
