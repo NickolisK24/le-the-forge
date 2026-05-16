@@ -40,6 +40,10 @@ from .limited_experimental_runtime_guards import (
     LIMITED_EXPERIMENTAL_RUNTIME_GUARD_STATUSES,
     build_limited_experimental_runtime_guards,
 )
+from .limited_experimental_runtime_dry_run import (
+    LIMITED_EXPERIMENTAL_RUNTIME_DRY_RUN_STATUSES,
+    build_limited_experimental_runtime_dry_run,
+)
 from .review_policy_evaluation import (
     REVIEW_POLICY_OUTCOMES,
     V31ReviewPolicyEvaluation,
@@ -125,6 +129,7 @@ __all__ = [
     "TRACE_BACKFILLED_SEMANTIC_PARITY_STATUSES",
     "CONTROLLED_CONSUMPTION_PROMOTION_READINESS_STATUSES",
     "LIMITED_EXPERIMENTAL_RUNTIME_GUARD_STATUSES",
+    "LIMITED_EXPERIMENTAL_RUNTIME_DRY_RUN_STATUSES",
     "FIXTURE_WORKFLOW_STATES",
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
@@ -161,6 +166,7 @@ __all__ = [
     "build_trace_backfilled_semantic_parity",
     "build_controlled_consumption_promotion_readiness",
     "build_limited_experimental_runtime_guards",
+    "build_limited_experimental_runtime_dry_run",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "evaluate_fixture_source_admission_policy",

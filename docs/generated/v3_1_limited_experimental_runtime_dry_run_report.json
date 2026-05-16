@@ -1,0 +1,161 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+    "sample_hash": "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "limited_experimental_runtime_dry_run": {
+    "blocker_reason_counts": {},
+    "deterministic_hash": "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+    "dry_run_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_invalid_guard_status": 0,
+      "blocked_missing_guard_contract": 0,
+      "blocked_missing_manifest": 0,
+      "blocked_missing_promotion_readiness": 0,
+      "blocked_missing_validated_evidence": 0,
+      "blocked_production_routing_authorized": 0,
+      "blocked_runtime_consumption_enabled": 0,
+      "dry_run_ready": 1
+    },
+    "evidence_summary": {
+      "dry_run_mutates_runtime_state": false,
+      "guard_records": 1,
+      "production_routing_authorized": false,
+      "promotion_readiness_records": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "semantic_parity_records": 1,
+      "serialized_manifests": 1,
+      "structural_parity_records": 1,
+      "validation_records": 1
+    },
+    "limited_experimental_runtime_dry_run_records": [
+      {
+        "authorization_state": "non_production_authoritative",
+        "blockers": [],
+        "dry_run_authorizes_production_routing": false,
+        "dry_run_enables_runtime_routing": false,
+        "dry_run_status": "dry_run_ready",
+        "evidence_summary": {
+          "dry_run_mutates_runtime_state": false,
+          "manifest_present": true,
+          "production_routing_authorized": false,
+          "runtime_consumption_enabled": false,
+          "semantic_parity_status": "semantic_parity_confirmed",
+          "structural_parity_status": "parity_confirmed",
+          "validation_status": "valid_controlled_test_output"
+        },
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "guard_status": "guard_contract_ready",
+        "limited_runtime_dry_run_id": "v3_1_limited_runtime_dry_run_45df3b40e83dc4fd",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "dry_run_only": true,
+          "non_mutating": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "runtime_behavior_enabled": false
+        },
+        "production_output_affected": false,
+        "promotion_readiness_status": "ready_for_limited_experimental_runtime_consideration"
+      }
+    ],
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "dry_run_only": true,
+      "non_mutating": true,
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "runtime_behavior_enabled": false,
+      "source": "v3_1_limited_experimental_runtime_dry_run",
+      "stable_generation_token": "v3_1_phase_26_limited_experimental_runtime_dry_run_token"
+    },
+    "run": {
+      "admission_aware_manifest_serialization_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+      "controlled_consumption_output_validation_hash": "3364892148b06185a66ca86a64243a32ab54324995ed8752be795bed78300677",
+      "controlled_consumption_parity_snapshot_hash": "5e5744d7474cc3e8ca26e1163178c65744e46a07f01674bc4b11acbec486b20c",
+      "controlled_consumption_promotion_readiness_hash": "65e0814411b9053c2fd50da6c80fbaf960280beee4ddaee2c6a978c32ae6516c",
+      "guard_record_count": 1,
+      "limited_experimental_runtime_guards_hash": "5545f8146c04f2869bcfe3c76cf1040e08e51ef73d3669d7b415acd22d1ee4e2",
+      "promotion_readiness_record_count": 1,
+      "run_id": "v3_1_phase_26_limited_experimental_runtime_dry_run",
+      "semantic_parity_record_count": 1,
+      "serialized_manifest_count": 1,
+      "structural_parity_record_count": 1,
+      "trace_backfilled_semantic_parity_hash": "1d50646772e3803ae099d697d8a2454b708376454813bbbf286dac3dfdbcf0d7",
+      "validation_record_count": 1
+    },
+    "safety_confirmations": {
+      "dry_run_authorizes_production_routing": false,
+      "dry_run_enables_runtime_routing": false,
+      "dry_run_is_production_approval": false,
+      "dry_run_mutates_runtime_state": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.limited_experimental_runtime_dry_run.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "dry_run_ready_count": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    }
+  },
+  "metadata": {
+    "dry_run_only": true,
+    "non_mutating": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_1_limited_experimental_runtime_dry_run_report"
+  },
+  "phase": "v3.1_phase_26_limited_experimental_runtime_dry_run_adapter",
+  "phase_26_boundaries": [
+    "dry-run is explicit and non-mutating",
+    "dry-run does not enable runtime manifest consumption",
+    "dry-run does not authorize production routing",
+    "manifests remain non-production-authoritative",
+    "production planner routing remains unchanged",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "production_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DRY_RUN_DO_NOT_ENABLE_RUNTIME_MANIFEST_CONSUMPTION",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.limited_experimental_runtime_dry_run_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "dry_run_ready_count": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  }
+}
