@@ -73,6 +73,10 @@ from .controlled_consumption_parity_snapshot import (
     CONTROLLED_CONSUMPTION_PARITY_STATUSES,
     build_controlled_consumption_parity_snapshot,
 )
+from .controlled_consumption_semantic_parity import (
+    CONTROLLED_CONSUMPTION_SEMANTIC_PARITY_STATUSES,
+    build_controlled_consumption_semantic_parity,
+)
 from .approval_manifest_diff_audit import (
     APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
     audit_approval_manifest_diffs,
@@ -112,6 +116,7 @@ __all__ = [
     "CONTROLLED_TEST_CONSUMPTION_STATUSES",
     "CONTROLLED_CONSUMPTION_OUTPUT_VALIDATION_STATUSES",
     "CONTROLLED_CONSUMPTION_PARITY_STATUSES",
+    "CONTROLLED_CONSUMPTION_SEMANTIC_PARITY_STATUSES",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
     "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
@@ -139,6 +144,7 @@ __all__ = [
     "build_controlled_test_consumption",
     "validate_controlled_consumption_output",
     "build_controlled_consumption_parity_snapshot",
+    "build_controlled_consumption_semantic_parity",
     "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
