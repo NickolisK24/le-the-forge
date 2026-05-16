@@ -57,6 +57,25 @@ from .evidence_registry import (
     export_evidence_registry,
     validate_evidence_registry,
 )
+from .evidence_synthesis_contracts import (
+    PRESERVATION_RULES,
+    SYNTHESIS_LABELS,
+    build_evidence_synthesis_contract,
+    build_runtime_evidence_synthesis_manifest,
+    default_runtime_evidence_synthesis_contracts,
+    order_evidence_synthesis_contracts,
+    serialize_runtime_evidence_synthesis_manifest,
+)
+from .evidence_synthesis_hashing import (
+    hash_evidence_synthesis_manifest,
+    serialize_evidence_synthesis_manifest,
+    validate_evidence_synthesis_replay_stability,
+)
+from .evidence_synthesis_registry import (
+    detect_duplicate_evidence_synthesis_contracts,
+    export_evidence_synthesis_registry,
+    validate_evidence_synthesis_registry,
+)
 from .explanation_contracts import (
     EXPLANATION_LABELS,
     build_explanation_contract,
@@ -152,6 +171,19 @@ __all__ = [
     "detect_duplicate_evidence_contracts",
     "export_evidence_registry",
     "validate_evidence_registry",
+    "PRESERVATION_RULES",
+    "SYNTHESIS_LABELS",
+    "build_evidence_synthesis_contract",
+    "build_runtime_evidence_synthesis_manifest",
+    "default_runtime_evidence_synthesis_contracts",
+    "order_evidence_synthesis_contracts",
+    "serialize_runtime_evidence_synthesis_manifest",
+    "hash_evidence_synthesis_manifest",
+    "serialize_evidence_synthesis_manifest",
+    "validate_evidence_synthesis_replay_stability",
+    "detect_duplicate_evidence_synthesis_contracts",
+    "export_evidence_synthesis_registry",
+    "validate_evidence_synthesis_registry",
     "EXPLANATION_LABELS",
     "build_explanation_contract",
     "build_runtime_explanation_manifest",
