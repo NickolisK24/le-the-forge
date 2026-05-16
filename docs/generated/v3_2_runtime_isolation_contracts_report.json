@@ -1,0 +1,249 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+    "sample_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+    "timestamp_excluded_from_hash": true
+  },
+  "future_phase_foundation": [
+    "future phases may evaluate initialization only after isolation contracts remain satisfied",
+    "future phases must preserve entrypoint authorization and explicit opt-in",
+    "future phases must continue to block production routing and planner ownership crossover"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_state_distributions": {
+    "isolation_boundary_satisfied": 1
+  },
+  "manifest_consumption_crossover_distributions": {
+    "manifest_consumption_separated": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_isolation_contract_only": true,
+    "source": "v3_2_runtime_isolation_contracts_report"
+  },
+  "phase": "v3.2_phase_2_runtime_isolation_contracts",
+  "phase_1_entrypoint_compatibility_summary": {
+    "entrypoint_contract_records": 1,
+    "explicit_opt_in_preserved": true,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "requires_experimental_runtime_eligible": true,
+    "rollback_required_states_remain_visible": true,
+    "runtime_disabled_states_remain_visible": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_2_boundaries": [
+    "runtime isolation contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "manifest consumption cannot become implicit runtime behavior",
+    "planner ownership mutation remains blocked",
+    "side effects must be prohibited or isolated, reversible, and non-production"
+  ],
+  "planner_ownership_crossover_distributions": {
+    "planner_ownership_separated": 1
+  },
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_routing_crossover_distributions": {
+    "production_routing_separated": 1
+  },
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_ISOLATION_CONTRACT_READY_FOR_FUTURE_EXPERIMENTAL_RUNTIME_DESIGN_ONLY",
+  "rollback_containment_distributions": {
+    "rollback_contained": 1
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_isolation_allowed": false,
+    "implicit_manifest_consumption_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_runtime_activation_allowed": false
+  },
+  "runtime_isolation_contracts": {
+    "blocker_distribution": {},
+    "deterministic_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+    "isolation_state_distribution": {
+      "isolation_boundary_satisfied": 1
+    },
+    "manifest_consumption_crossover_distribution": {
+      "manifest_consumption_separated": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_isolation_contract_only": true,
+      "source": "v3_2_runtime_isolation_contracts",
+      "stable_generation_token": "v3_2_phase_2_runtime_isolation_contracts_token"
+    },
+    "phase_1_entrypoint_compatibility": {
+      "entrypoint_contract_records": 1,
+      "explicit_opt_in_preserved": true,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "requires_experimental_runtime_eligible": true,
+      "rollback_required_states_remain_visible": true,
+      "runtime_disabled_states_remain_visible": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "planner_ownership_crossover_distribution": {
+      "planner_ownership_separated": 1
+    },
+    "production_routing_crossover_distribution": {
+      "production_routing_separated": 1
+    },
+    "rollback_containment_distribution": {
+      "rollback_contained": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "run_id": "v3_2_phase_2_runtime_isolation_contracts",
+      "runtime_isolation_request_count": 1,
+      "runtime_isolation_requests_hash": "1993f00f2950c193fd3fa1c5403edfb038bdf1f9a86eecbee7f7fd40b73fc7b2"
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_isolation_allowed": false,
+      "implicit_manifest_consumption_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_runtime_activation_allowed": false
+    },
+    "runtime_isolation_contracts": [
+      {
+        "blockers": [],
+        "entrypoint_authorization_state": "non_production_authoritative",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "entrypoint_production_runtime_classification": "production_runtime_prohibited",
+        "experimental_only_execution_scope": "experimental_only",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_blocker_state": "unblocked_for_contract_only",
+        "isolation_contract_authorizes_production_routing": false,
+        "isolation_contract_authorizes_runtime_consumption": false,
+        "isolation_trace_classification": "runtime_isolation_trace_satisfied",
+        "manifest_consumption_separation_state": "manifest_consumption_separated",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_isolation_allowed": false,
+          "governance_only": true,
+          "implicit_manifest_consumption_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_isolation_contract_only": true,
+          "silent_runtime_activation_allowed": false
+        },
+        "planner_ownership_separation_state": "planner_ownership_separated",
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_routing_separation_state": "production_routing_separated",
+        "production_runtime_classification": "production_runtime_prohibited",
+        "rollback_containment_state": "rollback_contained",
+        "runtime_isolation_boundary_state": "isolation_boundary_satisfied",
+        "runtime_isolation_contract_id": "v3_2_runtime_isolation_contract_6e7b1a690ef20ad5",
+        "runtime_isolation_status": "runtime_isolation_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_mutation_prohibition_state": "runtime_mutation_prohibited",
+        "runtime_production_consumption_enabled": false,
+        "runtime_side_effect_prohibition_state": "side_effects_prohibited"
+      }
+    ],
+    "runtime_isolation_status_counts": {
+      "manifest_consumption_crossover_blocked": 0,
+      "planner_ownership_crossover_blocked": 0,
+      "production_routing_crossover_blocked": 0,
+      "rollback_containment_required": 0,
+      "runtime_isolation_blocked": 0,
+      "runtime_isolation_satisfied": 1,
+      "runtime_mutation_blocked": 0,
+      "side_effect_boundary_blocked": 0
+    },
+    "runtime_mutation_blocker_distribution": {
+      "runtime_mutation_prohibited": 1
+    },
+    "safety_confirmations": {
+      "isolation_contract_authorizes_production_routing": false,
+      "isolation_contract_enables_runtime_manifest_consumption": false,
+      "isolation_contract_mutates_planner_ownership": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_2.runtime_isolation_contracts.1",
+    "side_effect_blocker_distribution": {
+      "side_effects_prohibited": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "manifest_consumption_crossover_blocked_count": 0,
+      "planner_ownership_crossover_blocked_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "production_routing_crossover_blocked_count": 0,
+      "records_evaluated": 1,
+      "rollback_containment_required_count": 0,
+      "runtime_isolation_blocked_count": 0,
+      "runtime_isolation_satisfied_count": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_mutation_blocked_count": 0,
+      "runtime_production_consumption_enabled": false,
+      "side_effect_boundary_blocked_count": 0
+    }
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_mutation_blocker_distributions": {
+    "runtime_mutation_prohibited": 1
+  },
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_2.runtime_isolation_contracts_report.1",
+  "side_effect_blocker_distributions": {
+    "side_effects_prohibited": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "manifest_consumption_crossover_blocked_count": 0,
+    "planner_ownership_crossover_blocked_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "production_routing_crossover_blocked_count": 0,
+    "records_evaluated": 1,
+    "rollback_containment_required_count": 0,
+    "runtime_isolation_blocked_count": 0,
+    "runtime_isolation_satisfied_count": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_mutation_blocked_count": 0,
+    "runtime_production_consumption_enabled": false,
+    "side_effect_boundary_blocked_count": 0
+  }
+}
