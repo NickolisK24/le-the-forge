@@ -1,0 +1,170 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+    "sample_hash": "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+    "stability_hash": "60bb71a5baf620bf079153e799392f65031a738508e61b2cfcadbce4cf61bc95",
+    "timestamp_excluded_from_hash": true
+  },
+  "dry_run_result_stability": {
+    "compared_snapshot_summary": {
+      "compared_snapshot_count": 2,
+      "production_routing_authorized": false,
+      "records_per_snapshot": [
+        1,
+        1
+      ],
+      "runtime_manifest_consumption_enabled": false,
+      "snapshot_count_sufficient": true
+    },
+    "deterministic_hash": "60bb71a5baf620bf079153e799392f65031a738508e61b2cfcadbce4cf61bc95",
+    "drift_reason_counts": {},
+    "dry_run_result_stability_records": [
+      {
+        "blockers": [],
+        "compared_snapshot_count": 2,
+        "drift_fields": [],
+        "dry_run_stability_id": "v3_1_dry_run_stability_3c9e01291be49ac1",
+        "field_values": {
+          "authorization_state": [
+            "non_production_authoritative",
+            "non_production_authoritative"
+          ],
+          "dry_run_status": [
+            "dry_run_ready",
+            "dry_run_ready"
+          ],
+          "fixture_set_id": [
+            "v3_1_fixture_set_6d3b668a84cfbb69",
+            "v3_1_fixture_set_6d3b668a84cfbb69"
+          ],
+          "guard_status": [
+            "guard_contract_ready",
+            "guard_contract_ready"
+          ],
+          "manifest_id": [
+            "v3_1_admission_manifest_198a3e2110f9e5e4",
+            "v3_1_admission_manifest_198a3e2110f9e5e4"
+          ],
+          "promotion_readiness_status": [
+            "ready_for_limited_experimental_runtime_consideration",
+            "ready_for_limited_experimental_runtime_consideration"
+          ]
+        },
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "dry_run_governance_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "runtime_behavior_enabled": false,
+          "stability_does_not_authorize_production_routing": true
+        },
+        "production_output_affected": false,
+        "stability_authorizes_production_routing": false,
+        "stability_status": "dry_run_stable"
+      }
+    ],
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "dry_run_governance_only": true,
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "runtime_behavior_enabled": false,
+      "source": "v3_1_dry_run_result_stability",
+      "stable_generation_token": "v3_1_phase_27_dry_run_result_stability_token"
+    },
+    "run": {
+      "run_id": "v3_1_phase_27_dry_run_result_stability",
+      "snapshot_count": 2,
+      "snapshot_hashes": [
+        "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950",
+        "94e78981dd86e29bee96a286817cee5df86ccbf92cbe45fc03963518487f0950"
+      ],
+      "snapshot_record_counts": [
+        1,
+        1
+      ]
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "stability_authorizes_production_routing": false,
+      "stability_enables_runtime_manifest_consumption": false,
+      "stability_is_production_approval": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.dry_run_result_stability.1",
+    "stability_status_counts": {
+      "blocked_authorization_state_drift": 0,
+      "blocked_dry_run_status_drift": 0,
+      "blocked_fixture_set_identity_drift": 0,
+      "blocked_guard_status_drift": 0,
+      "blocked_manifest_identity_drift": 0,
+      "blocked_missing_dry_run_record": 0,
+      "blocked_readiness_status_drift": 0,
+      "blocked_snapshot_count_insufficient": 0,
+      "dry_run_stable": 1
+    },
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "stable_count": 1
+    }
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "dry_run_governance_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_1_dry_run_result_stability_report"
+  },
+  "phase": "v3.1_phase_27_dry_run_result_stability_audit",
+  "phase_27_boundaries": [
+    "stability audit compares repeated dry-run snapshots only",
+    "stability audit does not enable runtime manifest consumption",
+    "stability audit does not authorize production routing",
+    "manifests remain non-production-authoritative",
+    "production planner routing remains unchanged",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "production_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_STABILITY_AUDIT_DO_NOT_ENABLE_RUNTIME_MANIFEST_CONSUMPTION",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.dry_run_result_stability_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "stable_count": 1
+  }
+}
