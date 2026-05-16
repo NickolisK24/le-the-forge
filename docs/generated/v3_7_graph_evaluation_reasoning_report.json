@@ -1,0 +1,2278 @@
+{
+  "architectural_purpose": "deterministic graph evaluation reasoning",
+  "autonomous_orchestration_enabled": false,
+  "continuity_audit_result": {
+    "audit_status": "v3_7_graph_continuity_audit_stable",
+    "compatibility_continuity_preserved": true,
+    "deterministic_audit_hash": "fea91eaf8198894da4d7794bae145be7187cfbb0d6cf2a6cfac9ab08b828b6d2",
+    "error_count": 0,
+    "evaluation_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "finding_count": 3,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_continuity_visible_prohibited:compatibility_rule:rule_compat_graph_execution_prohibited",
+        "message": "prohibited evaluation finding remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_continuity_visible_prohibited",
+        "subject_id": "rule_compat_graph_execution_prohibited",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_continuity_visible_unknown:compatibility_rule:rule_compat_unknown_external",
+        "message": "unknown evaluation finding remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_continuity_visible_unknown",
+        "subject_id": "rule_compat_unknown_external",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_continuity_visible_unsupported:compatibility_rule:rule_compat_runtime_dispatch_unsupported",
+        "message": "unsupported evaluation finding remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_continuity_visible_unsupported",
+        "subject_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "compatibility_rule"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "hashing_continuity_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "replay_packet_count": 1,
+    "rollback_continuity_preserved": true,
+    "serialization_continuity_preserved": true,
+    "valid": true,
+    "visibility_finding_count": 3
+  },
+  "continuity_audit_totals": {
+    "audit_status": "v3_7_graph_continuity_audit_stable",
+    "compatibility_continuity_preserved": true,
+    "error_count": 0,
+    "evaluation_continuity_preserved": true,
+    "finding_count": 3,
+    "governance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "valid": true,
+    "visibility_finding_count": 3
+  },
+  "coverage": {
+    "continuity_audit_coverage": true,
+    "explainability_coverage": true,
+    "non_execution_coverage": true,
+    "prohibited_visibility_coverage": true,
+    "provenance_coverage": true,
+    "unknown_visibility_coverage": true,
+    "unsupported_visibility_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "continuity_audit_hash": "fea91eaf8198894da4d7794bae145be7187cfbb0d6cf2a6cfac9ab08b828b6d2",
+    "evaluation_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+    "explainability_hash": "431571564d309e5e1492b63d53f0a5c29644d4e135591012275066692437d0c7",
+    "hash_stable": true,
+    "provenance_hash": "c6ca2abf152e1a54320b2a580fdcfb88206ae72baa56172c497b59ecdd95c579",
+    "replay_packet_hash_stable": true,
+    "replay_packet_serialization_stable": true,
+    "serialization_stable": true,
+    "validation_hash": "7c640679dcd754dd01cd22fa1cb3abd44dc4261baa89500b8efe4adead803ac0"
+  },
+  "deterministic_report_hash": "57fafd10fa82d8130d8a7102e216338b9d7be7a598d1fe67727945b165376da4",
+  "dispatch_enabled": false,
+  "evaluation_chain": {
+    "autonomous_orchestration_enabled": false,
+    "chain_id": "v3_7_graph_evaluation_reasoning_chain",
+    "continuity_evidence": [
+      {
+        "chain_id": "v3_7_graph_evaluation_reasoning_chain",
+        "compatibility_lineage_references": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "continuity_id": "v3_7_graph_evaluation_continuity_evidence",
+        "deterministic_hash_references": [
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "explainability_lineage_references": [
+          "v3_7_graph_evaluation_explainability"
+        ],
+        "finding_ids": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning"
+        ],
+        "governance_lineage_references": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "provenance_lineage_references": [
+          "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+          "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+          "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+          "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+          "v3-7-provenance-evaluation_structural_continuity_warning"
+        ],
+        "replay_lineage_references": [
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_lineage_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_ids": [
+          "evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "evaluation_step_0009_evaluation_structural_continuity_warning"
+        ],
+        "trace_ids": [
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+        ]
+      }
+    ],
+    "dispatch_enabled": false,
+    "evaluation_findings_are_structural_reasoning_evidence_only": true,
+    "evaluation_ordering_does_not_imply_execution_ordering": true,
+    "evaluation_phase_id": "v3_7_graph_evaluation_reasoning",
+    "evaluation_reasoning_is_non_executable": true,
+    "evaluation_traces_do_not_imply_traversal": true,
+    "findings": [
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge"
+        ],
+        "fail_visible": true,
+        "finding_classification": "compatibility_restricted",
+        "finding_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_reference_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "edge relationship remains compatibility-restricted structural evidence",
+        "subject_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "edge_compatibility"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_governance_to_structure"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_governance_to_structure",
+          "rule_compat_governance_to_structure"
+        ],
+        "fail_visible": true,
+        "finding_classification": "governance_restricted",
+        "finding_id": "evaluation_finding_rule_compat_governance_to_structure",
+        "governance_reference_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_governance_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_governance_to_structure",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "governance visibility relationships are compatible with governance restrictions",
+        "subject_id": "rule_compat_governance_to_structure",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_graph_execution_prohibited",
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "fail_visible": true,
+        "finding_classification": "prohibited",
+        "finding_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "governance_reference_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_graph_execution_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "graph execution compatibility is prohibited",
+        "subject_id": "rule_compat_graph_execution_prohibited",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_legacy_incompatible"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_legacy_incompatible",
+          "rule_compat_legacy_incompatible"
+        ],
+        "fail_visible": true,
+        "finding_classification": "incompatible",
+        "finding_id": "evaluation_finding_rule_compat_legacy_incompatible",
+        "governance_reference_ids": [],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_legacy_incompatible",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_legacy_incompatible",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning",
+        "subject_id": "rule_compat_legacy_incompatible",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_runtime_dispatch_unsupported",
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "fail_visible": true,
+        "finding_classification": "unsupported",
+        "finding_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "governance_reference_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "runtime dispatch compatibility is unsupported",
+        "subject_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_structure_to_experimental",
+          "rule_compat_structure_to_experimental"
+        ],
+        "fail_visible": true,
+        "finding_classification": "experimental",
+        "finding_id": "evaluation_finding_rule_compat_structure_to_experimental",
+        "governance_reference_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_structure_to_experimental",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_structure_to_experimental",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "experimental governance relationships remain visible as experimental compatibility",
+        "subject_id": "rule_compat_structure_to_experimental",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_structure_to_structure"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_structure_to_structure",
+          "rule_compat_structure_to_structure"
+        ],
+        "fail_visible": true,
+        "finding_classification": "compatible",
+        "finding_id": "evaluation_finding_rule_compat_structure_to_structure",
+        "governance_reference_ids": [],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_structure_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_structure_to_structure",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "graph structure relationships are structurally compatible",
+        "subject_id": "rule_compat_structure_to_structure",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "rule_compat_unknown_external"
+        ],
+        "evidence_ids": [
+          "finding_rule_compat_unknown_external",
+          "rule_compat_unknown_external"
+        ],
+        "fail_visible": true,
+        "finding_classification": "unknown",
+        "finding_id": "evaluation_finding_rule_compat_unknown_external",
+        "governance_reference_ids": [],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_unknown_external",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_unknown_external",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "unknown external compatibility remains visible and unresolved",
+        "subject_id": "rule_compat_unknown_external",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "compatibility_reference_ids": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "evidence_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "fail_visible": true,
+        "finding_classification": "continuity_warning",
+        "finding_id": "evaluation_structural_continuity_warning",
+        "governance_reference_ids": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "hidden": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_structural_continuity_warning",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_structural_continuity_warning",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_structural_continuity_warning",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "reason": "structural reasoning continuity requires replay, rollback, provenance, and explainability evidence",
+        "subject_id": "v3-7-deterministic-orchestration-planning-graph",
+        "subject_type": "evaluation_continuity"
+      }
+    ],
+    "graph_evaluation_does_not_authorize_orchestration": true,
+    "graph_execution_enabled": false,
+    "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+    "graph_optimization_enabled": false,
+    "graph_runtime_simulation_enabled": false,
+    "hidden_evaluation_side_effects_enabled": false,
+    "metadata": [
+      {
+        "included_in_hash": true,
+        "metadata_key": "evaluation_semantics",
+        "metadata_value": "structural_reasoning_evidence_only"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "ordering_semantics",
+        "metadata_value": "evaluation_ordering_not_execution_ordering"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      }
+    ],
+    "path_selection_enabled": false,
+    "provenance": {
+      "compatibility_references": [
+        "v3_6_to_v3_7_graph_foundation_compatibility"
+      ],
+      "explainability_references": [
+        "v3_7_graph_explainability_evidence"
+      ],
+      "governance_references": [
+        "v3_7_non_execution_governance_boundary"
+      ],
+      "lineage_references": [
+        "v3_6_closeout_and_v3_7_readiness",
+        "v3_7_graph_evaluation_reasoning_chain"
+      ],
+      "provenance_id": "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+      "replay_lineage_references": [
+        "v3_6_replay_continuity",
+        "v3_7_graph_replay_continuity"
+      ],
+      "rollback_lineage_references": [
+        "v3_6_rollback_continuity",
+        "v3_7_graph_rollback_continuity"
+      ],
+      "source_artifact_id": "v3_7_graph_evaluation_reasoning_chain",
+      "source_kind": "graph_evaluation_chain",
+      "source_phase_id": "v3_7_graph_foundations"
+    },
+    "recommendation_enabled": false,
+    "replay_packets_are_not_orchestration_packets": true,
+    "routing_enabled": false,
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_enabled": false,
+    "scheduling_enabled": false,
+    "steps": [
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "evaluation_statement": "edge relationship remains compatibility-restricted structural evidence",
+        "evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "fail_visible": true,
+        "finding_classification": "compatibility_restricted",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "step_order": 1,
+        "step_type": "compatibility_evaluation",
+        "subject_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_governance_to_structure"
+        ],
+        "evaluation_statement": "governance visibility relationships are compatible with governance restrictions",
+        "evidence_ids": [
+          "finding_rule_compat_governance_to_structure",
+          "rule_compat_governance_to_structure"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_governance_to_structure"
+        ],
+        "fail_visible": true,
+        "finding_classification": "governance_restricted",
+        "governance_evidence_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_governance_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_governance_to_structure",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "step_order": 2,
+        "step_type": "governance_evaluation",
+        "subject_id": "evaluation_finding_rule_compat_governance_to_structure",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "evaluation_statement": "graph execution compatibility is prohibited",
+        "evidence_ids": [
+          "finding_rule_compat_graph_execution_prohibited",
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_graph_execution_prohibited"
+        ],
+        "fail_visible": true,
+        "finding_classification": "prohibited",
+        "governance_evidence_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_graph_execution_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "step_order": 3,
+        "step_type": "prohibited_state",
+        "subject_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_legacy_incompatible"
+        ],
+        "evaluation_statement": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning",
+        "evidence_ids": [
+          "finding_rule_compat_legacy_incompatible",
+          "rule_compat_legacy_incompatible"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_legacy_incompatible"
+        ],
+        "fail_visible": true,
+        "finding_classification": "incompatible",
+        "governance_evidence_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_legacy_incompatible",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_legacy_incompatible",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "step_order": 4,
+        "step_type": "compatibility_evaluation",
+        "subject_id": "evaluation_finding_rule_compat_legacy_incompatible",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "evaluation_statement": "runtime dispatch compatibility is unsupported",
+        "evidence_ids": [
+          "finding_rule_compat_runtime_dispatch_unsupported",
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported"
+        ],
+        "fail_visible": true,
+        "finding_classification": "unsupported",
+        "governance_evidence_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "step_order": 5,
+        "step_type": "unsupported_state",
+        "subject_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "evaluation_statement": "experimental governance relationships remain visible as experimental compatibility",
+        "evidence_ids": [
+          "finding_rule_compat_structure_to_experimental",
+          "rule_compat_structure_to_experimental"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_structure_to_experimental"
+        ],
+        "fail_visible": true,
+        "finding_classification": "experimental",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_structure_to_experimental",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_structure_to_experimental",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "step_order": 6,
+        "step_type": "compatibility_evaluation",
+        "subject_id": "evaluation_finding_rule_compat_structure_to_experimental",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_structure"
+        ],
+        "evaluation_statement": "graph structure relationships are structurally compatible",
+        "evidence_ids": [
+          "finding_rule_compat_structure_to_structure",
+          "rule_compat_structure_to_structure"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_structure_to_structure"
+        ],
+        "fail_visible": true,
+        "finding_classification": "compatible",
+        "governance_evidence_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_structure_to_structure",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_structure_to_structure",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "step_order": 7,
+        "step_type": "compatibility_evaluation",
+        "subject_id": "evaluation_finding_rule_compat_structure_to_structure",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_unknown_external"
+        ],
+        "evaluation_statement": "unknown external compatibility remains visible and unresolved",
+        "evidence_ids": [
+          "finding_rule_compat_unknown_external",
+          "rule_compat_unknown_external"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_unknown_external"
+        ],
+        "fail_visible": true,
+        "finding_classification": "unknown",
+        "governance_evidence_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_finding_rule_compat_unknown_external",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_finding_rule_compat_unknown_external",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "step_order": 8,
+        "step_type": "unknown_state",
+        "subject_id": "evaluation_finding_rule_compat_unknown_external",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      },
+      {
+        "compatibility_evidence_ids": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "evaluation_statement": "structural reasoning continuity requires replay, rollback, provenance, and explainability evidence",
+        "evidence_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "executable_workflow": false,
+        "execution_ordering_enabled": false,
+        "explainability_evidence_ids": [
+          "explain_evaluation_structural_continuity_warning"
+        ],
+        "fail_visible": true,
+        "finding_classification": "continuity_warning",
+        "governance_evidence_ids": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "evaluation_structural_continuity_warning",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-evaluation_structural_continuity_warning",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "evaluation_structural_continuity_warning",
+          "source_kind": "graph_evaluation_finding",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "replay_reference_ids": [
+          "evaluation_structural_continuity_warning",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_structural_continuity_warning",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0009_evaluation_structural_continuity_warning",
+        "step_order": 9,
+        "step_type": "structural_continuity",
+        "subject_id": "evaluation_structural_continuity_warning",
+        "subject_type": "evaluation_finding",
+        "traversal_enabled": false
+      }
+    ],
+    "summary": {
+      "compatibility_restricted_finding_count": 1,
+      "compatible_finding_count": 1,
+      "continuity_warning_count": 1,
+      "experimental_finding_count": 1,
+      "fail_visible_finding_count": 9,
+      "finding_count": 9,
+      "governance_restricted_finding_count": 1,
+      "incompatible_finding_count": 1,
+      "prohibited_finding_count": 1,
+      "step_count": 9,
+      "trace_count": 9,
+      "unknown_finding_count": 1,
+      "unsupported_finding_count": 1
+    },
+    "traces": [
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "deterministic_ordering_key": "0001:evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "evaluation_evidence_ids": [
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "finding_classification": "compatibility_restricted",
+        "finding_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "replay_reference_ids": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "trace_implies_traversal": false,
+        "trace_order": 1
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_governance_to_structure"
+        ],
+        "deterministic_ordering_key": "0002:evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_governance_to_structure",
+          "rule_compat_governance_to_structure"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_governance_to_structure"
+        ],
+        "finding_classification": "governance_restricted",
+        "finding_id": "evaluation_finding_rule_compat_governance_to_structure",
+        "governance_evidence_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "trace_implies_traversal": false,
+        "trace_order": 2
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "deterministic_ordering_key": "0003:evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_graph_execution_prohibited",
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_graph_execution_prohibited"
+        ],
+        "finding_classification": "prohibited",
+        "finding_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "governance_evidence_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "trace_implies_traversal": false,
+        "trace_order": 3
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_legacy_incompatible"
+        ],
+        "deterministic_ordering_key": "0004:evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_legacy_incompatible",
+          "rule_compat_legacy_incompatible"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_legacy_incompatible"
+        ],
+        "finding_classification": "incompatible",
+        "finding_id": "evaluation_finding_rule_compat_legacy_incompatible",
+        "governance_evidence_ids": [],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "trace_implies_traversal": false,
+        "trace_order": 4
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "deterministic_ordering_key": "0005:evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_runtime_dispatch_unsupported",
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported"
+        ],
+        "finding_classification": "unsupported",
+        "finding_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "governance_evidence_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "trace_implies_traversal": false,
+        "trace_order": 5
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "deterministic_ordering_key": "0006:evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_structure_to_experimental",
+          "rule_compat_structure_to_experimental"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_structure_to_experimental"
+        ],
+        "finding_classification": "experimental",
+        "finding_id": "evaluation_finding_rule_compat_structure_to_experimental",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "trace_implies_traversal": false,
+        "trace_order": 6
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_structure"
+        ],
+        "deterministic_ordering_key": "0007:evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_structure_to_structure",
+          "rule_compat_structure_to_structure"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_structure_to_structure"
+        ],
+        "finding_classification": "compatible",
+        "finding_id": "evaluation_finding_rule_compat_structure_to_structure",
+        "governance_evidence_ids": [],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "trace_implies_traversal": false,
+        "trace_order": 7
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_unknown_external"
+        ],
+        "deterministic_ordering_key": "0008:evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "evaluation_evidence_ids": [
+          "finding_rule_compat_unknown_external",
+          "rule_compat_unknown_external"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_finding_rule_compat_unknown_external"
+        ],
+        "finding_classification": "unknown",
+        "finding_id": "evaluation_finding_rule_compat_unknown_external",
+        "governance_evidence_ids": [],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_finding_rule_compat_unknown_external"
+        ],
+        "replay_reference_ids": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "trace_implies_traversal": false,
+        "trace_order": 8
+      },
+      {
+        "compatibility_evidence_ids": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "deterministic_ordering_key": "0009:evaluation_step_0009_evaluation_structural_continuity_warning",
+        "evaluation_evidence_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "explainability_evidence_ids": [
+          "explain_evaluation_structural_continuity_warning"
+        ],
+        "finding_classification": "continuity_warning",
+        "finding_id": "evaluation_structural_continuity_warning",
+        "governance_evidence_ids": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "provenance_evidence_ids": [
+          "v3-7-provenance-evaluation_structural_continuity_warning"
+        ],
+        "replay_reference_ids": [
+          "evaluation_structural_continuity_warning",
+          "v3_7_graph_evaluation_replay_continuity"
+        ],
+        "rollback_reference_ids": [
+          "evaluation_structural_continuity_warning",
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "step_id": "evaluation_step_0009_evaluation_structural_continuity_warning",
+        "trace_authorizes_execution": false,
+        "trace_has_side_effects": false,
+        "trace_id": "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+        "trace_implies_traversal": false,
+        "trace_order": 9
+      }
+    ],
+    "traversal_execution_enabled": false
+  },
+  "evaluation_chain_counts": {
+    "continuity_evidence_count": 1,
+    "evaluation_chain_count": 1,
+    "evaluation_finding_count": 9,
+    "evaluation_step_count": 9,
+    "evaluation_trace_count": 9
+  },
+  "evaluation_finding_counts": {
+    "compatibility_restricted": 1,
+    "compatible": 1,
+    "continuity_warning": 1,
+    "experimental": 1,
+    "governance_restricted": 1,
+    "incompatible": 1,
+    "prohibited": 1,
+    "unknown": 1,
+    "unsupported": 1
+  },
+  "evaluation_findings_are_structural_reasoning_evidence_only": true,
+  "evaluation_ordering_does_not_imply_execution_ordering": true,
+  "evaluation_reasoning": true,
+  "evaluation_reasoning_is_non_executable": true,
+  "evaluation_traces_do_not_imply_traversal": true,
+  "explainability_continuity_totals": {
+    "compatibility_influenced_explanation_count": 18,
+    "continuity_influenced_explanation_count": 18,
+    "explainability_status": "v3_7_graph_evaluation_explainability_stable",
+    "explanation_count": 18,
+    "governance_influenced_explanation_count": 12,
+    "prohibited_explanation_count": 2,
+    "successful_evaluation_explanation_count": 2,
+    "unknown_explanation_count": 2,
+    "unsuccessful_evaluation_explanation_count": 8,
+    "unsupported_explanation_count": 2
+  },
+  "explainability_result": {
+    "compatibility_influenced_explanation_count": 18,
+    "continuity_influenced_explanation_count": 18,
+    "deterministic_explainability_hash": "431571564d309e5e1492b63d53f0a5c29644d4e135591012275066692437d0c7",
+    "explainability_status": "v3_7_graph_evaluation_explainability_stable",
+    "explanation_count": 18,
+    "explanations": [
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "finding_classification": "compatibility_restricted",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_evaluation",
+          "compatibility_restricted",
+          "evaluation_step",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "edge relationship remains compatibility-restricted structural evidence"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_governance_to_structure"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "finding_classification": "governance_restricted",
+        "governance_evidence_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_step",
+          "governance_evaluation",
+          "governance_restricted",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "governance visibility relationships are compatible with governance restrictions"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "finding_classification": "prohibited",
+        "governance_evidence_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_step",
+          "no_execution_authorization",
+          "prohibited",
+          "prohibited_state",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "graph execution compatibility is prohibited"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_legacy_incompatible"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "finding_classification": "incompatible",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_evaluation",
+          "evaluation_step",
+          "incompatible",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "finding_classification": "unsupported",
+        "governance_evidence_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_step",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only",
+          "unsupported",
+          "unsupported_state"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "runtime dispatch compatibility is unsupported"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "finding_classification": "experimental",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_evaluation",
+          "evaluation_step",
+          "experimental",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "experimental governance relationships remain visible as experimental compatibility"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_structure"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "finding_classification": "compatible",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_evaluation",
+          "compatible",
+          "evaluation_step",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "graph structure relationships are structurally compatible"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_unknown_external"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "finding_classification": "unknown",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_step",
+          "no_execution_authorization",
+          "structural_reasoning_evidence_only",
+          "unknown",
+          "unknown_state"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "unknown external compatibility remains visible and unresolved"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_evaluation_step_0009_evaluation_structural_continuity_warning",
+        "finding_classification": "continuity_warning",
+        "governance_evidence_ids": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "provenance_lineage": [
+          "evaluation_structural_continuity_warning",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "continuity_warning",
+          "evaluation_step",
+          "no_execution_authorization",
+          "structural_continuity",
+          "structural_reasoning_evidence_only"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_step_0009_evaluation_structural_continuity_warning",
+        "subject_type": "evaluation_step",
+        "why_evaluated_this_way": "structural reasoning continuity requires replay, rollback, provenance, and explainability evidence"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "finding_classification": "compatibility_restricted",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatibility_restricted",
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "edge relationship remains compatibility-restricted structural evidence"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_governance_to_structure"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_governance_to_structure",
+        "finding_classification": "governance_restricted",
+        "governance_evidence_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "fail_visible",
+          "governance_restricted",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_governance_to_structure",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "governance visibility relationships are compatible with governance restrictions"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_graph_execution_prohibited"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "finding_classification": "prohibited",
+        "governance_evidence_ids": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "prohibited",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "graph execution compatibility is prohibited"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_legacy_incompatible"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_legacy_incompatible",
+        "finding_classification": "incompatible",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "fail_visible",
+          "incompatible",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_legacy_incompatible",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "legacy structural assumptions are incompatible with v3.7 compatibility reasoning"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_runtime_dispatch_unsupported"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "finding_classification": "unsupported",
+        "governance_evidence_ids": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning",
+          "unsupported"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "runtime dispatch compatibility is unsupported"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_experimental"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_structure_to_experimental",
+        "finding_classification": "experimental",
+        "governance_evidence_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "experimental",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_structure_to_experimental",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "experimental governance relationships remain visible as experimental compatibility"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_structure_to_structure"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_structure_to_structure",
+        "finding_classification": "compatible",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "compatible",
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_structure_to_structure",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "graph structure relationships are structurally compatible"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "rule_compat_unknown_external"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_finding_rule_compat_unknown_external",
+        "finding_classification": "unknown",
+        "governance_evidence_ids": [],
+        "provenance_lineage": [
+          "evaluation_finding_rule_compat_unknown_external",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning",
+          "unknown"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_finding_rule_compat_unknown_external",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "unknown external compatibility remains visible and unresolved"
+      },
+      {
+        "compatibility_evidence_ids": [
+          "v3_7_graph_compatibility_reasoning"
+        ],
+        "continuity_rule_ids": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_evaluation_structural_continuity_warning",
+        "finding_classification": "continuity_warning",
+        "governance_evidence_ids": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "provenance_lineage": [
+          "evaluation_structural_continuity_warning",
+          "v3_6_closeout_and_v3_7_readiness"
+        ],
+        "reasoning_chain": [
+          "continuity_warning",
+          "evaluation_finding",
+          "fail_visible",
+          "non_executable_evidence",
+          "replay_safe_reasoning"
+        ],
+        "replay_safe": true,
+        "subject_id": "evaluation_structural_continuity_warning",
+        "subject_type": "evaluation_finding",
+        "why_evaluated_this_way": "structural reasoning continuity requires replay, rollback, provenance, and explainability evidence"
+      }
+    ],
+    "governance_influenced_explanation_count": 12,
+    "missing_explanation_subjects": [],
+    "prohibited_explanation_count": 2,
+    "replay_safe": true,
+    "successful_evaluation_explanation_count": 2,
+    "unknown_explanation_count": 2,
+    "unsuccessful_evaluation_explanation_count": 8,
+    "unsupported_explanation_count": 2
+  },
+  "explicit_limitations": [
+    "evaluation reasoning is non-executable",
+    "replay packets are not orchestration packets",
+    "evaluation traces do not imply traversal",
+    "evaluation ordering does not imply execution ordering",
+    "evaluation findings are structural reasoning evidence only",
+    "graph evaluation does not authorize orchestration",
+    "evaluation reasoning is not runtime orchestration execution"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "graph_evaluation_does_not_authorize_orchestration": true,
+  "graph_execution_enabled": false,
+  "graph_optimization_enabled": false,
+  "graph_runtime_simulation_enabled": false,
+  "hidden_evaluation_side_effects_enabled": false,
+  "non_executable": true,
+  "path_selection_enabled": false,
+  "phase_name": "v3.7_graph_evaluation_reasoning",
+  "planning_only": true,
+  "prohibited_finding_totals": {
+    "prohibited_finding_count": 1,
+    "validation_prohibited_state_count": 1
+  },
+  "provenance_continuity_totals": {
+    "chain_provenance_preserved": true,
+    "finding_provenance_preserved": true,
+    "provenance_record_count": 19,
+    "provenance_status": "v3_7_graph_evaluation_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "replay_provenance_preserved": true,
+    "rollback_continuity_preserved": true,
+    "step_provenance_preserved": true,
+    "trace_provenance_preserved": true
+  },
+  "provenance_result": {
+    "chain_provenance_preserved": true,
+    "compatibility_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "deterministic_provenance_hash": "c6ca2abf152e1a54320b2a580fdcfb88206ae72baa56172c497b59ecdd95c579",
+    "explainability_provenance_preserved": true,
+    "finding_provenance_preserved": true,
+    "governance_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "provenance_record_count": 19,
+    "provenance_status": "v3_7_graph_evaluation_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "replay_provenance_preserved": true,
+    "rollback_continuity_preserved": true,
+    "step_provenance_preserved": true,
+    "trace_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "replay_packet_totals": {
+    "execution_authorization_count": 0,
+    "hash_stable": true,
+    "non_executable_replay_packet_count": 1,
+    "orchestration_runtime_packet_count": 0,
+    "replay_packet_count": 1,
+    "serialization_stable": true
+  },
+  "replay_packets": [
+    {
+      "chain_id": "v3_7_graph_evaluation_reasoning_chain",
+      "compatibility_hash": "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+      "deterministic_replay_hash": "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+      "deterministic_trace_references": [
+        "0001:evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "0002:evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "0003:evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "0004:evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "0005:evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "0006:evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "0007:evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "0008:evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "0009:evaluation_step_0009_evaluation_structural_continuity_warning"
+      ],
+      "dispatch_enabled": false,
+      "evaluation_chain_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+      "execution_authorization": false,
+      "explainability_lineage_references": [
+        "v3_7_graph_evaluation_explainability"
+      ],
+      "finding_ids": [
+        "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "evaluation_finding_rule_compat_governance_to_structure",
+        "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "evaluation_finding_rule_compat_legacy_incompatible",
+        "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "evaluation_finding_rule_compat_structure_to_experimental",
+        "evaluation_finding_rule_compat_structure_to_structure",
+        "evaluation_finding_rule_compat_unknown_external",
+        "evaluation_structural_continuity_warning"
+      ],
+      "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+      "orchestration_runtime_packet": false,
+      "packet_is_non_executable_replay_evidence": true,
+      "provenance_lineage_references": [
+        "v3-7-provenance-evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "v3-7-provenance-evaluation_finding_rule_compat_governance_to_structure",
+        "v3-7-provenance-evaluation_finding_rule_compat_graph_execution_prohibited",
+        "v3-7-provenance-evaluation_finding_rule_compat_legacy_incompatible",
+        "v3-7-provenance-evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "v3-7-provenance-evaluation_finding_rule_compat_structure_to_experimental",
+        "v3-7-provenance-evaluation_finding_rule_compat_structure_to_structure",
+        "v3-7-provenance-evaluation_finding_rule_compat_unknown_external",
+        "v3-7-provenance-evaluation_structural_continuity_warning",
+        "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+      ],
+      "replay_lineage_references": [
+        "v3_7_graph_evaluation_replay_continuity"
+      ],
+      "replay_packet_id": "v3_7_graph_evaluation_replay_packet",
+      "rollback_lineage_references": [
+        "v3_7_graph_evaluation_rollback_continuity"
+      ],
+      "routing_enabled": false,
+      "scheduling_enabled": false,
+      "trace_ids": [
+        "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "trace_evaluation_step_0009_evaluation_structural_continuity_warning"
+      ]
+    }
+  ],
+  "replay_packets_are_not_orchestration_packets": true,
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "routing_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_enabled": false,
+  "runtime_orchestration_execution": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_evaluation_reasoning_report.1",
+  "summary": {
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "evaluation_reasoning": true,
+    "evaluation_reasoning_status": "v3_7_graph_evaluation_validation_stable",
+    "explainability_continuity_verified": true,
+    "non_execution_guarantee_verified": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "runtime_orchestration_execution": false
+  },
+  "traversal_execution_enabled": false,
+  "unknown_finding_totals": {
+    "unknown_finding_count": 1,
+    "validation_unknown_state_count": 1
+  },
+  "unsupported_finding_totals": {
+    "unsupported_finding_count": 1,
+    "validation_unsupported_state_count": 1
+  },
+  "validation_result": {
+    "deterministic_evaluation_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+    "deterministic_hash_stable": true,
+    "deterministic_serialization_stable": true,
+    "deterministic_validation_hash": "7c640679dcd754dd01cd22fa1cb3abd44dc4261baa89500b8efe4adead803ac0",
+    "error_count": 0,
+    "evaluation_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "finding_count": 3,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_evaluation_visible_prohibited:compatibility_rule:rule_compat_graph_execution_prohibited",
+        "message": "prohibited evaluation state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_evaluation_visible_prohibited",
+        "subject_id": "rule_compat_graph_execution_prohibited",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_evaluation_visible_unknown:compatibility_rule:rule_compat_unknown_external",
+        "message": "unknown evaluation state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_evaluation_visible_unknown",
+        "subject_id": "rule_compat_unknown_external",
+        "subject_type": "compatibility_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_evaluation_visible_unsupported:compatibility_rule:rule_compat_runtime_dispatch_unsupported",
+        "message": "unsupported evaluation state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_evaluation_visible_unsupported",
+        "subject_id": "rule_compat_runtime_dispatch_unsupported",
+        "subject_type": "compatibility_rule"
+      }
+    ],
+    "non_execution_guarantee_preserved": true,
+    "prohibited_state_count": 1,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "unknown_state_count": 1,
+    "unsupported_state_count": 1,
+    "valid": true,
+    "validation_status": "v3_7_graph_evaluation_validation_stable",
+    "visibility_finding_count": 3
+  },
+  "validation_totals": {
+    "error_count": 0,
+    "finding_count": 3,
+    "non_execution_guarantee_preserved": true,
+    "prohibited_state_count": 1,
+    "unknown_state_count": 1,
+    "unsupported_state_count": 1,
+    "valid": true,
+    "validation_status": "v3_7_graph_evaluation_validation_stable",
+    "visibility_finding_count": 3
+  }
+}
