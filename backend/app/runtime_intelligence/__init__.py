@@ -56,6 +56,24 @@ from .provenance_registry import (
     export_provenance_registry,
     validate_provenance_registry,
 )
+from .reasoning_chain_contracts import (
+    REASONING_STAGE_LABELS,
+    build_reasoning_stage_contract,
+    build_runtime_reasoning_chain_manifest,
+    default_runtime_reasoning_chain_contracts,
+    order_reasoning_stage_contracts,
+    serialize_runtime_reasoning_chain_manifest,
+)
+from .reasoning_chain_hashing import (
+    hash_reasoning_chain_manifest,
+    serialize_reasoning_chain_manifest,
+    validate_reasoning_chain_replay_stability,
+)
+from .reasoning_chain_registry import (
+    detect_duplicate_reasoning_stage_contracts,
+    export_reasoning_chain_registry,
+    validate_reasoning_chain_registry,
+)
 
 __all__ = [
     "CLASSIFICATION_LABELS",
@@ -96,4 +114,16 @@ __all__ = [
     "detect_duplicate_provenance_contracts",
     "export_provenance_registry",
     "validate_provenance_registry",
+    "REASONING_STAGE_LABELS",
+    "build_reasoning_stage_contract",
+    "build_runtime_reasoning_chain_manifest",
+    "default_runtime_reasoning_chain_contracts",
+    "order_reasoning_stage_contracts",
+    "serialize_runtime_reasoning_chain_manifest",
+    "hash_reasoning_chain_manifest",
+    "serialize_reasoning_chain_manifest",
+    "validate_reasoning_chain_replay_stability",
+    "detect_duplicate_reasoning_stage_contracts",
+    "export_reasoning_chain_registry",
+    "validate_reasoning_chain_registry",
 ]
