@@ -1,0 +1,230 @@
+{
+  "baseline_trace_expectation_backfill": {
+    "baseline_trace_backfill_records": [
+      {
+        "backfilled_expectations_authorize_production_routing": false,
+        "backfilled_fixture_trace_fields": {},
+        "backfilled_manifest_trace_fields": {},
+        "baseline_id": "v3_1_snapshot_372c946743469ec5",
+        "baseline_trace_backfill_id": "v3_1_baseline_trace_backfill_6ce426b2b1644e8e",
+        "blockers": [],
+        "fixture_set_id": null,
+        "manifest_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "original_semantic_expectation_status": "semantic_expectations_partial",
+        "production_output_affected": false,
+        "remaining_unavailable_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ],
+        "trace_backfill_status": "trace_expectations_partial",
+        "trace_conflicts": []
+      },
+      {
+        "backfilled_expectations_authorize_production_routing": false,
+        "backfilled_fixture_trace_fields": {},
+        "backfilled_manifest_trace_fields": {},
+        "baseline_id": "v3_1_snapshot_42674d7f460ed71c",
+        "baseline_trace_backfill_id": "v3_1_baseline_trace_backfill_a3262364e64d3665",
+        "blockers": [],
+        "fixture_set_id": null,
+        "manifest_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "original_semantic_expectation_status": "semantic_expectations_partial",
+        "production_output_affected": false,
+        "remaining_unavailable_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ],
+        "trace_backfill_status": "trace_expectations_partial",
+        "trace_conflicts": []
+      },
+      {
+        "backfilled_expectations_authorize_production_routing": false,
+        "backfilled_fixture_trace_fields": {
+          "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69"
+        },
+        "backfilled_manifest_trace_fields": {
+          "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4"
+        },
+        "baseline_id": "v3_1_snapshot_472bcd4c1169053b",
+        "baseline_trace_backfill_id": "v3_1_baseline_trace_backfill_0649c3b0041786f6",
+        "blockers": [],
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "original_semantic_expectation_status": "semantic_expectations_partial",
+        "production_output_affected": false,
+        "remaining_unavailable_fields": [],
+        "trace_backfill_status": "trace_expectations_backfilled",
+        "trace_conflicts": []
+      },
+      {
+        "backfilled_expectations_authorize_production_routing": false,
+        "backfilled_fixture_trace_fields": {},
+        "backfilled_manifest_trace_fields": {},
+        "baseline_id": "v3_1_snapshot_4d312622ce8de408",
+        "baseline_trace_backfill_id": "v3_1_baseline_trace_backfill_229de2756705b110",
+        "blockers": [],
+        "fixture_set_id": null,
+        "manifest_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "original_semantic_expectation_status": "semantic_expectations_partial",
+        "production_output_affected": false,
+        "remaining_unavailable_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ],
+        "trace_backfill_status": "trace_expectations_partial",
+        "trace_conflicts": []
+      },
+      {
+        "backfilled_expectations_authorize_production_routing": false,
+        "backfilled_fixture_trace_fields": {},
+        "backfilled_manifest_trace_fields": {},
+        "baseline_id": "v3_1_snapshot_7fed448d66ec5b1b",
+        "baseline_trace_backfill_id": "v3_1_baseline_trace_backfill_8651606742e0c061",
+        "blockers": [],
+        "fixture_set_id": null,
+        "manifest_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "original_semantic_expectation_status": "semantic_expectations_partial",
+        "production_output_affected": false,
+        "remaining_unavailable_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ],
+        "trace_backfill_status": "trace_expectations_partial",
+        "trace_conflicts": []
+      }
+    ],
+    "blocker_reason_counts": {},
+    "deterministic_hash": "8acd948034de16ce8c4ec52154b7e9d928509c1fdd9b3b0dd50fbd46cb434d6c",
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_baseline_trace_expectation_backfill",
+      "stable_generation_token": "v3_1_phase_22_baseline_trace_expectation_backfill_token"
+    },
+    "remaining_unavailable_field_counts": {
+      "fixture_trace_fields": 4,
+      "manifest_trace_fields": 4
+    },
+    "run": {
+      "admission_aware_manifest_serialization_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+      "baseline_expectation_record_count": 5,
+      "baseline_semantic_expectations_hash": "676a8712111518f9db713b3bf1d2f3ce6ab0fbf485bc1e7dc5127ac263bcb60d",
+      "controlled_consumption_output_validation_hash": "3364892148b06185a66ca86a64243a32ab54324995ed8752be795bed78300677",
+      "controlled_consumption_parity_snapshot_hash": "5e5744d7474cc3e8ca26e1163178c65744e46a07f01674bc4b11acbec486b20c",
+      "run_id": "v3_1_phase_22_baseline_trace_expectation_backfill",
+      "trace_source_count": 1
+    },
+    "safety_confirmations": {
+      "backfilled_expectations_are_production_approval": false,
+      "backfilled_expectations_authorize_production_routing": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.baseline_trace_expectation_backfill.1",
+    "summary": {
+      "backfilled_count": 1,
+      "baseline_expectation_records_evaluated": 5,
+      "blocked_count": 0,
+      "deterministic": true,
+      "partial_count": 4,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "trace_backfill_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_missing_baseline_expectation": 0,
+      "blocked_missing_trace_source": 0,
+      "blocked_trace_conflict": 0,
+      "trace_expectations_backfilled": 1,
+      "trace_expectations_partial": 4
+    },
+    "trace_conflict_counts": {}
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "8acd948034de16ce8c4ec52154b7e9d928509c1fdd9b3b0dd50fbd46cb434d6c",
+    "sample_hash": "8acd948034de16ce8c4ec52154b7e9d928509c1fdd9b3b0dd50fbd46cb434d6c",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "controlled_test_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_baseline_trace_expectation_backfill_report"
+  },
+  "phase": "v3.1_phase_22_baseline_trace_expectation_backfill",
+  "phase_22_boundaries": [
+    "trace expectation backfill is test-only governance metadata",
+    "backfilled expectations are not production approval",
+    "backfilled expectations do not authorize production routing",
+    "trace fields are sourced only from deterministic governance artifacts",
+    "runtime manifest consumption remains disabled",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.baseline_trace_expectation_backfill_report.1",
+  "summary": {
+    "backfilled_count": 1,
+    "baseline_expectation_records_evaluated": 5,
+    "blocked_count": 0,
+    "deterministic": true,
+    "partial_count": 4,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  }
+}

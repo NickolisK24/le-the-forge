@@ -24,6 +24,10 @@ from .baseline_semantic_expectations import (
     BASELINE_SEMANTIC_EXPECTATION_STATUSES,
     build_baseline_semantic_expectations,
 )
+from .baseline_trace_expectation_backfill import (
+    BASELINE_TRACE_EXPECTATION_BACKFILL_STATUSES,
+    build_baseline_trace_expectation_backfill,
+)
 from .review_policy_evaluation import (
     REVIEW_POLICY_OUTCOMES,
     V31ReviewPolicyEvaluation,
@@ -105,6 +109,7 @@ __all__ = [
     "DRIFT_CLASSIFICATIONS",
     "BASELINE_READINESS_CLASSIFICATIONS",
     "BASELINE_SEMANTIC_EXPECTATION_STATUSES",
+    "BASELINE_TRACE_EXPECTATION_BACKFILL_STATUSES",
     "FIXTURE_WORKFLOW_STATES",
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
@@ -137,6 +142,7 @@ __all__ = [
     "build_sample_review_policy_inputs",
     "build_sample_dual_run_inputs",
     "build_baseline_semantic_expectations",
+    "build_baseline_trace_expectation_backfill",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "evaluate_fixture_source_admission_policy",
