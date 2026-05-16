@@ -1,0 +1,286 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+    "sample_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+    "timestamp_excluded_from_hash": true
+  },
+  "future_phase_foundation": [
+    "future phases may evaluate runtime experiments only after safety and rollback contracts remain satisfied",
+    "future phases must preserve entrypoint, isolation, and session boundary compatibility",
+    "future phases must continue to block irreversible side effects and production impact"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_safety_rollback_contract_only": true,
+    "source": "v3_2_runtime_safety_rollback_contracts_report"
+  },
+  "phase": "v3.2_phase_4_runtime_safety_rollback_contracts",
+  "phase_1_entrypoint_compatibility_summary": {
+    "entrypoint_contract_records": 1,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "requires_experimental_runtime_eligible": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_2_isolation_compatibility_summary": {
+    "isolation_contract_records": 1,
+    "production_routing_authorized": false,
+    "requires_runtime_isolation_satisfied": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_3_session_boundary_compatibility_summary": {
+    "production_routing_authorized": false,
+    "requires_session_boundary_satisfied": true,
+    "runtime_manifest_consumption_enabled": false,
+    "session_boundary_contract_records": 1
+  },
+  "phase_4_boundaries": [
+    "runtime safety and rollback contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "rollback triggers and reversibility must be explicit",
+    "irreversible side effects remain blocked",
+    "production-impacting behavior remains prohibited"
+  ],
+  "production_default_routing_authorized": false,
+  "production_impact_blocker_distributions": {
+    "production_impact_prohibited": 1
+  },
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_SAFETY_ROLLBACK_CONTRACT_READY_FOR_FUTURE_EXPERIMENTAL_RUNTIME_DESIGN_ONLY",
+  "rollback_containment_distributions": {
+    "rollback_contained": 1
+  },
+  "rollback_readiness_state_distributions": {
+    "rollback_readiness_explicitly_ready": 1
+  },
+  "rollback_reversibility_distributions": {
+    "rollback_reversible": 1
+  },
+  "rollback_trigger_distributions": {
+    "rollback_trigger_explicit": 1
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_rollback_logic_allowed": false,
+    "implicit_rollback_readiness_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_runtime_safety_approval_allowed": false
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "runtime_safety_rollback_contracts": {
+    "deterministic_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_safety_rollback_contract_only": true,
+      "source": "v3_2_runtime_safety_rollback_contracts",
+      "stable_generation_token": "v3_2_phase_4_runtime_safety_rollback_contracts_token"
+    },
+    "phase_1_entrypoint_compatibility": {
+      "entrypoint_contract_records": 1,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "requires_experimental_runtime_eligible": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_2_isolation_compatibility": {
+      "isolation_contract_records": 1,
+      "production_routing_authorized": false,
+      "requires_runtime_isolation_satisfied": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_3_session_boundary_compatibility": {
+      "production_routing_authorized": false,
+      "requires_session_boundary_satisfied": true,
+      "runtime_manifest_consumption_enabled": false,
+      "session_boundary_contract_records": 1
+    },
+    "production_impact_blocker_distribution": {
+      "production_impact_prohibited": 1
+    },
+    "rollback_blocker_distribution": {},
+    "rollback_containment_distribution": {
+      "rollback_contained": 1
+    },
+    "rollback_readiness_state_distribution": {
+      "rollback_readiness_explicitly_ready": 1
+    },
+    "rollback_reversibility_distribution": {
+      "rollback_reversible": 1
+    },
+    "rollback_trigger_distribution": {
+      "rollback_trigger_explicit": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "isolation_contract_count": 1,
+      "run_id": "v3_2_phase_4_runtime_safety_rollback_contracts",
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_safety_request_count": 1,
+      "runtime_safety_requests_hash": "67b0a6db96c8c40b4549e8d2da3aaa8e8036d1380f2cf03a12fd79100e368d06",
+      "runtime_session_boundary_contracts_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+      "session_boundary_contract_count": 1
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_rollback_logic_allowed": false,
+      "implicit_rollback_readiness_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_runtime_safety_approval_allowed": false
+    },
+    "runtime_rollback_status_counts": {
+      "rollback_containment_required": 0,
+      "rollback_reversibility_missing": 0,
+      "rollback_trigger_missing": 0,
+      "runtime_rollback_blocked": 0,
+      "runtime_rollback_ready": 1
+    },
+    "runtime_safety_rollback_contracts": [
+      {
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "entrypoint_rollback_compatibility_state": "entrypoint_rollback_compatible",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "isolation_rollback_compatibility_state": "isolation_rollback_compatible",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_rollback_logic_allowed": false,
+          "governance_only": true,
+          "implicit_rollback_readiness_allowed": false,
+          "irreversible_side_effects_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_safety_rollback_contract_only": true,
+          "silent_runtime_safety_approval_allowed": false
+        },
+        "production_impact_prohibition_state": "production_impact_prohibited",
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "rollback_blocker_state": "ready_for_contract_only",
+        "rollback_blockers": [],
+        "rollback_containment_state": "rollback_contained",
+        "rollback_readiness_state": "rollback_readiness_explicitly_ready",
+        "rollback_reversibility_state": "rollback_reversible",
+        "rollback_trace_classification": "runtime_rollback_trace_ready",
+        "rollback_trigger_state": "rollback_trigger_explicit",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_production_consumption_enabled": false,
+        "runtime_rollback_status": "runtime_rollback_ready",
+        "runtime_safety_rollback_contract_id": "v3_2_runtime_safety_rollback_9c9376cb37bf4ecc",
+        "runtime_safety_state": "runtime_safety_explicitly_satisfied",
+        "runtime_safety_status": "runtime_safety_satisfied",
+        "safety_blocker_state": "unblocked_for_contract_only",
+        "safety_blockers": [],
+        "safety_contract_authorizes_production_routing": false,
+        "safety_contract_authorizes_runtime_consumption": false,
+        "safety_trace_classification": "runtime_safety_trace_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "session_rollback_compatibility_state": "session_rollback_compatible",
+        "unsafe_side_effect_prohibition_state": "unsafe_side_effects_prohibited"
+      }
+    ],
+    "runtime_safety_state_distribution": {
+      "runtime_safety_explicitly_satisfied": 1
+    },
+    "runtime_safety_status_counts": {
+      "entrypoint_compatibility_missing": 0,
+      "isolation_compatibility_missing": 0,
+      "production_impact_blocked": 0,
+      "runtime_safety_blocked": 0,
+      "runtime_safety_satisfied": 1,
+      "session_boundary_compatibility_missing": 0,
+      "unsafe_side_effect_blocked": 0
+    },
+    "safety_blocker_distribution": {},
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "safety_contract_allows_irreversible_side_effects": false,
+      "safety_contract_authorizes_production_routing": false,
+      "safety_contract_enables_runtime_manifest_consumption": false
+    },
+    "schema_version": "v3_2.runtime_safety_rollback_contracts.1",
+    "summary": {
+      "deterministic": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_impact_blocked_count": 0,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "rollback_containment_required_count": 0,
+      "rollback_reversibility_missing_count": 0,
+      "rollback_trigger_missing_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_rollback_blocked_count": 0,
+      "runtime_rollback_ready_count": 1,
+      "runtime_safety_blocked_count": 0,
+      "runtime_safety_satisfied_count": 1,
+      "unsafe_side_effect_blocked_count": 0
+    },
+    "unsafe_side_effect_blocker_distribution": {
+      "unsafe_side_effects_prohibited": 1
+    }
+  },
+  "runtime_safety_state_distributions": {
+    "runtime_safety_explicitly_satisfied": 1
+  },
+  "schema_version": "v3_2.runtime_safety_rollback_contracts_report.1",
+  "summary": {
+    "deterministic": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_impact_blocked_count": 0,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "rollback_containment_required_count": 0,
+    "rollback_reversibility_missing_count": 0,
+    "rollback_trigger_missing_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_rollback_blocked_count": 0,
+    "runtime_rollback_ready_count": 1,
+    "runtime_safety_blocked_count": 0,
+    "runtime_safety_satisfied_count": 1,
+    "unsafe_side_effect_blocked_count": 0
+  },
+  "unsafe_side_effect_blocker_distributions": {
+    "unsafe_side_effects_prohibited": 1
+  }
+}
