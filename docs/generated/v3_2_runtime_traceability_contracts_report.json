@@ -1,0 +1,296 @@
+{
+  "determinism_lineage_distributions": {
+    "determinism_lineage_present": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "2c96748c4a7e8a852e604cc6796135b775d9e5b9ad47e834a6a75a9597b73dd1",
+    "sample_hash": "2c96748c4a7e8a852e604cc6796135b775d9e5b9ad47e834a6a75a9597b73dd1",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_lineage_distributions": {
+    "diff_audit_lineage_present": 1
+  },
+  "entrypoint_lineage_distributions": {
+    "entrypoint_lineage_present": 1
+  },
+  "final_classification_lineage_distributions": {
+    "final_classification_lineage_present": 1
+  },
+  "fixture_lineage_distributions": {
+    "fixture_lineage_present": 1
+  },
+  "future_phase_foundation": [
+    "future replayability phases may consume deterministic trace lineage",
+    "future runtime intelligence phases must preserve explainable final classifications",
+    "future runtime work must keep missing trace links and unexplainable evidence visible"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_lineage_distributions": {
+    "isolation_lineage_present": 1
+  },
+  "manifest_lineage_distributions": {
+    "manifest_lineage_present": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_traceability_contract_only": true,
+    "source": "v3_2_runtime_traceability_contracts_report"
+  },
+  "phase": "v3.2_phase_7_runtime_traceability_contracts",
+  "phase_7_boundaries": [
+    "runtime traceability contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "source evidence, manifest, fixture, and governance lineage must remain explicit",
+    "final runtime classifications must remain explainable",
+    "fallback traceability remains prohibited"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_TRACEABILITY_READY_FOR_FUTURE_REPLAYABILITY_AND_RUNTIME_INTELLIGENCE_DESIGN_ONLY",
+  "runtime_disabled_path_verification": {
+    "fallback_traceability_allowed": false,
+    "implicit_lineage_approval_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_traceability_failures_allowed": false
+  },
+  "runtime_evidence_explainability_distributions": {
+    "runtime_evidence_explainable": 1
+  },
+  "runtime_lineage_blocker_distributions": {},
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "runtime_trace_identity_distributions": {
+    "runtime_trace_identity_present": 1
+  },
+  "runtime_traceability_contracts": {
+    "determinism_lineage_distribution": {
+      "determinism_lineage_present": 1
+    },
+    "deterministic_hash": "2c96748c4a7e8a852e604cc6796135b775d9e5b9ad47e834a6a75a9597b73dd1",
+    "diff_audit_lineage_distribution": {
+      "diff_audit_lineage_present": 1
+    },
+    "entrypoint_lineage_distribution": {
+      "entrypoint_lineage_present": 1
+    },
+    "final_classification_lineage_distribution": {
+      "final_classification_lineage_present": 1
+    },
+    "fixture_lineage_distribution": {
+      "fixture_lineage_present": 1
+    },
+    "isolation_lineage_distribution": {
+      "isolation_lineage_present": 1
+    },
+    "manifest_lineage_distribution": {
+      "manifest_lineage_present": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_traceability_contract_only": true,
+      "source": "v3_2_runtime_traceability_contracts",
+      "stable_generation_token": "v3_2_phase_7_runtime_traceability_contracts_token"
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "run_id": "v3_2_phase_7_runtime_traceability_contracts",
+      "runtime_determinism_validation_contract_count": 1,
+      "runtime_determinism_validation_contracts_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_diff_audit_contracts_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+      "runtime_isolation_contract_count": 1,
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_safety_rollback_contracts_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_session_boundary_contracts_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+      "runtime_traceability_request_count": 1,
+      "runtime_traceability_requests_hash": "40f14c3db9e0feff83195789e0a794e6640b8363a6b2d6ee965920fa19d0cd8d"
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_traceability_allowed": false,
+      "implicit_lineage_approval_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_traceability_failures_allowed": false
+    },
+    "runtime_evidence_explainability_distribution": {
+      "runtime_evidence_explainable": 1
+    },
+    "runtime_lineage_blocker_distribution": {},
+    "runtime_lineage_status_counts": {
+      "runtime_determinism_lineage_missing": 0,
+      "runtime_diff_audit_lineage_missing": 0,
+      "runtime_entrypoint_lineage_missing": 0,
+      "runtime_final_classification_lineage_missing": 0,
+      "runtime_fixture_lineage_missing": 0,
+      "runtime_isolation_lineage_missing": 0,
+      "runtime_lineage_broken": 0,
+      "runtime_manifest_lineage_missing": 0,
+      "runtime_safety_rollback_lineage_missing": 0,
+      "runtime_session_lineage_missing": 0,
+      "runtime_source_lineage_missing": 0,
+      "runtime_traceability_satisfied": 1
+    },
+    "runtime_trace_blocker_distribution": {},
+    "runtime_trace_identity_distribution": {
+      "runtime_trace_identity_present": 1
+    },
+    "runtime_traceability_contracts": [
+      {
+        "determinism_contract_status": "runtime_determinism_satisfied",
+        "diff_audit_contract_status": "runtime_diff_audit_satisfied",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "lineage_blockers": [],
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_traceability_allowed": false,
+          "governance_only": true,
+          "implicit_lineage_approval_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_traceability_contract_only": true,
+          "silent_traceability_failures_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "rollback_contract_status": "runtime_rollback_ready",
+        "runtime_determinism_lineage": "determinism_lineage_present",
+        "runtime_diff_audit_lineage": "diff_audit_lineage_present",
+        "runtime_entrypoint_lineage": "entrypoint_lineage_present",
+        "runtime_final_classification_lineage": "final_classification_lineage_present",
+        "runtime_fixture_lineage": "fixture_lineage_present",
+        "runtime_isolation_lineage": "isolation_lineage_present",
+        "runtime_lineage_blocker_state": "unblocked_for_contract_only",
+        "runtime_lineage_status": "runtime_traceability_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_manifest_lineage": "manifest_lineage_present",
+        "runtime_production_consumption_enabled": false,
+        "runtime_safety_rollback_lineage": "safety_rollback_lineage_present",
+        "runtime_session_lineage": "session_lineage_present",
+        "runtime_source_evidence_lineage": "source_lineage_present",
+        "runtime_trace_blocker_state": "unblocked_for_contract_only",
+        "runtime_trace_completeness_state": "runtime_trace_complete",
+        "runtime_trace_explainability_state": "runtime_evidence_explainable",
+        "runtime_trace_id": "v3_2_runtime_trace_163097863d6e97b6",
+        "runtime_trace_identity_state": "runtime_trace_identity_present",
+        "runtime_traceability_authorizes_production_routing": false,
+        "runtime_traceability_authorizes_runtime_consumption": false,
+        "runtime_traceability_contract_id": "v3_2_runtime_traceability_8a5d6be17130787c",
+        "runtime_traceability_status": "runtime_traceability_satisfied",
+        "safety_contract_status": "runtime_safety_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "trace_blockers": []
+      }
+    ],
+    "runtime_traceability_status_counts": {
+      "runtime_determinism_lineage_missing": 0,
+      "runtime_diff_audit_lineage_missing": 0,
+      "runtime_entrypoint_lineage_missing": 0,
+      "runtime_evidence_unexplainable": 0,
+      "runtime_final_classification_lineage_missing": 0,
+      "runtime_fixture_lineage_missing": 0,
+      "runtime_isolation_lineage_missing": 0,
+      "runtime_lineage_broken": 0,
+      "runtime_manifest_lineage_missing": 0,
+      "runtime_safety_rollback_lineage_missing": 0,
+      "runtime_session_lineage_missing": 0,
+      "runtime_source_lineage_missing": 0,
+      "runtime_trace_identity_missing": 0,
+      "runtime_traceability_blocked": 0,
+      "runtime_traceability_satisfied": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_traceability_allows_silent_failures": false,
+      "runtime_traceability_authorizes_production_routing": false,
+      "runtime_traceability_enables_runtime_manifest_consumption": false
+    },
+    "safety_rollback_lineage_distribution": {
+      "safety_rollback_lineage_present": 1
+    },
+    "schema_version": "v3_2.runtime_traceability_contracts.1",
+    "session_lineage_distribution": {
+      "session_lineage_present": 1
+    },
+    "source_lineage_distribution": {
+      "source_lineage_present": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_evidence_unexplainable_count": 0,
+      "runtime_lineage_broken_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_traceability_blocked_count": 0,
+      "runtime_traceability_satisfied_count": 1
+    }
+  },
+  "safety_rollback_lineage_distributions": {
+    "safety_rollback_lineage_present": 1
+  },
+  "schema_version": "v3_2.runtime_traceability_contracts_report.1",
+  "session_lineage_distributions": {
+    "session_lineage_present": 1
+  },
+  "source_lineage_distributions": {
+    "source_lineage_present": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_evidence_unexplainable_count": 0,
+    "runtime_lineage_broken_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_traceability_blocked_count": 0,
+    "runtime_traceability_satisfied_count": 1
+  },
+  "trace_blocker_distributions": {}
+}
