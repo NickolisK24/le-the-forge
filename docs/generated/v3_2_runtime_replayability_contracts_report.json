@@ -1,0 +1,313 @@
+{
+  "determinism_compatibility_distributions": {
+    "runtime_determinism_satisfied": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "754c6488aa306182cfb05d27224a871bd87e563c16504c89ed65627eef623fdb",
+    "sample_hash": "754c6488aa306182cfb05d27224a871bd87e563c16504c89ed65627eef623fdb",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_compatibility_distributions": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "entrypoint_compatibility_distributions": {
+    "experimental_runtime_eligible": 1
+  },
+  "future_phase_foundation": [
+    "future drift detection phases may consume deterministic replayability evidence",
+    "future runtime intelligence phases must preserve replay trace lineage and hash consistency",
+    "future runtime work must keep replay mismatches and output instability visible"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_compatibility_distributions": {
+    "runtime_isolation_satisfied": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_replayability_contract_only": true,
+    "source": "v3_2_runtime_replayability_contracts_report"
+  },
+  "phase": "v3.2_phase_8_runtime_replayability_contracts",
+  "phase_8_boundaries": [
+    "runtime replayability contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "replay inputs and outputs must remain explicit",
+    "replay hash, trace, and lineage mismatches remain visible",
+    "fallback replayability remains prohibited"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_REPLAYABILITY_READY_FOR_FUTURE_DRIFT_DETECTION_AND_RUNTIME_INTELLIGENCE_DESIGN_ONLY",
+  "replay_determinism_distributions": {
+    "runtime_replay_determinism_satisfied": 1
+  },
+  "replay_evidence_completeness_distributions": {
+    "runtime_replay_evidence_complete": 1
+  },
+  "replay_hash_consistency_distributions": {
+    "runtime_replay_hash_consistent": 1
+  },
+  "replay_input_distributions": {
+    "runtime_replay_input_present": 1
+  },
+  "replay_instability_distributions": {
+    "runtime_replay_output_stable": 1
+  },
+  "replay_lineage_preservation_distributions": {
+    "runtime_replay_lineage_preserved": 1
+  },
+  "replay_mismatch_distributions": {
+    "runtime_replay_mismatch_absent": 1
+  },
+  "replay_output_distributions": {
+    "runtime_replay_output_present": 1
+  },
+  "replay_trace_consistency_distributions": {
+    "runtime_replay_trace_consistent": 1
+  },
+  "rollback_compatibility_distributions": {
+    "runtime_rollback_ready": 1
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_replayability_allowed": false,
+    "implicit_replay_approval_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_replay_failures_allowed": false
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "runtime_replayability_contracts": {
+    "determinism_compatibility_distribution": {
+      "runtime_determinism_satisfied": 1
+    },
+    "deterministic_hash": "754c6488aa306182cfb05d27224a871bd87e563c16504c89ed65627eef623fdb",
+    "diff_audit_compatibility_distribution": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "entrypoint_compatibility_distribution": {
+      "experimental_runtime_eligible": 1
+    },
+    "isolation_compatibility_distribution": {
+      "runtime_isolation_satisfied": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_replayability_contract_only": true,
+      "source": "v3_2_runtime_replayability_contracts",
+      "stable_generation_token": "v3_2_phase_8_runtime_replayability_contracts_token"
+    },
+    "replay_determinism_distribution": {
+      "runtime_replay_determinism_satisfied": 1
+    },
+    "replay_evidence_completeness_distribution": {
+      "runtime_replay_evidence_complete": 1
+    },
+    "replay_hash_consistency_distribution": {
+      "runtime_replay_hash_consistent": 1
+    },
+    "replay_input_distribution": {
+      "runtime_replay_input_present": 1
+    },
+    "replay_instability_distribution": {
+      "runtime_replay_output_stable": 1
+    },
+    "replay_lineage_preservation_distribution": {
+      "runtime_replay_lineage_preserved": 1
+    },
+    "replay_mismatch_distribution": {
+      "runtime_replay_mismatch_absent": 1
+    },
+    "replay_output_distribution": {
+      "runtime_replay_output_present": 1
+    },
+    "replay_trace_consistency_distribution": {
+      "runtime_replay_trace_consistent": 1
+    },
+    "rollback_compatibility_distribution": {
+      "runtime_rollback_ready": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "run_id": "v3_2_phase_8_runtime_replayability_contracts",
+      "runtime_determinism_validation_contract_count": 1,
+      "runtime_determinism_validation_contracts_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_diff_audit_contracts_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+      "runtime_isolation_contract_count": 1,
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_replayability_request_count": 1,
+      "runtime_replayability_requests_hash": "77443ee0d3822f8f5f153ca1e245b38a846986444954026194340c982b77cb2f",
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_safety_rollback_contracts_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_session_boundary_contracts_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+      "runtime_traceability_contract_count": 1,
+      "runtime_traceability_contracts_hash": "2c96748c4a7e8a852e604cc6796135b775d9e5b9ad47e834a6a75a9597b73dd1"
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_replayability_allowed": false,
+      "implicit_replay_approval_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_replay_failures_allowed": false
+    },
+    "runtime_replay_blocker_distribution": {},
+    "runtime_replay_instability_blocker_distribution": {},
+    "runtime_replay_mismatch_status_counts": {
+      "runtime_replay_hash_mismatch": 0,
+      "runtime_replay_lineage_broken": 0,
+      "runtime_replay_output_unstable": 0,
+      "runtime_replay_trace_mismatch": 0,
+      "runtime_replayability_satisfied": 1
+    },
+    "runtime_replayability_contracts": [
+      {
+        "determinism_contract_status": "runtime_determinism_satisfied",
+        "diff_audit_contract_status": "runtime_diff_audit_satisfied",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_replayability_allowed": false,
+          "governance_only": true,
+          "implicit_replay_approval_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_replayability_contract_only": true,
+          "silent_replay_failures_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "replay_blockers": [],
+        "replay_instability_blockers": [],
+        "rollback_contract_status": "runtime_rollback_ready",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_production_consumption_enabled": false,
+        "runtime_replay_blocker_state": "unblocked_for_contract_only",
+        "runtime_replay_determinism_state": "runtime_replay_determinism_satisfied",
+        "runtime_replay_evidence_completeness_state": "runtime_replay_evidence_complete",
+        "runtime_replay_hash_state": "runtime_replay_hash_consistent",
+        "runtime_replay_input_state": "runtime_replay_input_present",
+        "runtime_replay_instability_blocker_state": "unblocked_for_contract_only",
+        "runtime_replay_lineage_preservation_state": "runtime_replay_lineage_preserved",
+        "runtime_replay_mismatch_state": "runtime_replay_mismatch_absent",
+        "runtime_replay_mismatch_status": "runtime_replayability_satisfied",
+        "runtime_replay_output_stability_state": "runtime_replay_output_stable",
+        "runtime_replay_output_state": "runtime_replay_output_present",
+        "runtime_replay_trace_state": "runtime_replay_trace_consistent",
+        "runtime_replayability_authorizes_production_routing": false,
+        "runtime_replayability_authorizes_runtime_consumption": false,
+        "runtime_replayability_contract_id": "v3_2_runtime_replayability_acc51000eac5c156",
+        "runtime_replayability_status": "runtime_replayability_satisfied",
+        "safety_contract_status": "runtime_safety_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "traceability_contract_status": "runtime_traceability_satisfied"
+      }
+    ],
+    "runtime_replayability_status_counts": {
+      "runtime_determinism_compatibility_missing": 0,
+      "runtime_diff_audit_compatibility_missing": 0,
+      "runtime_entrypoint_compatibility_missing": 0,
+      "runtime_isolation_compatibility_missing": 0,
+      "runtime_replay_determinism_failed": 0,
+      "runtime_replay_evidence_incomplete": 0,
+      "runtime_replay_hash_mismatch": 0,
+      "runtime_replay_input_missing": 0,
+      "runtime_replay_lineage_broken": 0,
+      "runtime_replay_output_missing": 0,
+      "runtime_replay_output_unstable": 0,
+      "runtime_replay_trace_mismatch": 0,
+      "runtime_replayability_blocked": 0,
+      "runtime_replayability_satisfied": 1,
+      "runtime_rollback_compatibility_missing": 0,
+      "runtime_session_compatibility_missing": 0,
+      "runtime_traceability_compatibility_missing": 0
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_replayability_allows_silent_failures": false,
+      "runtime_replayability_authorizes_production_routing": false,
+      "runtime_replayability_enables_runtime_manifest_consumption": false
+    },
+    "schema_version": "v3_2.runtime_replayability_contracts.1",
+    "session_compatibility_distribution": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_replay_hash_mismatch_count": 0,
+      "runtime_replay_output_unstable_count": 0,
+      "runtime_replay_trace_mismatch_count": 0,
+      "runtime_replayability_blocked_count": 0,
+      "runtime_replayability_satisfied_count": 1
+    },
+    "traceability_compatibility_distribution": {
+      "runtime_traceability_satisfied": 1
+    }
+  },
+  "schema_version": "v3_2.runtime_replayability_contracts_report.1",
+  "session_compatibility_distributions": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_replay_hash_mismatch_count": 0,
+    "runtime_replay_output_unstable_count": 0,
+    "runtime_replay_trace_mismatch_count": 0,
+    "runtime_replayability_blocked_count": 0,
+    "runtime_replayability_satisfied_count": 1
+  },
+  "traceability_compatibility_distributions": {
+    "runtime_traceability_satisfied": 1
+  }
+}
