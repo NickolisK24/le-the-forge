@@ -1,0 +1,1069 @@
+{
+  "aggregate_visibility_statuses_supported": [
+    "visibility_prohibited",
+    "visibility_unsupported",
+    "visibility_blocked_by_readiness",
+    "visibility_blocked_by_dependency",
+    "visibility_blocked_by_coordination",
+    "visibility_blocked_by_lineage_gap",
+    "visibility_blocked_by_compatibility_failure",
+    "visibility_blocked_by_environment_mismatch",
+    "visibility_requires_manual_review",
+    "visibility_ready_for_planning"
+  ],
+  "blocker_aggregation_summary": {
+    "entry_count": 11,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 6
+  },
+  "compatibility_failure_aggregation_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "coordination_aggregation_summary": {
+    "non_ready_source_count": 4,
+    "scenario_count": 11
+  },
+  "dependency_aggregation_summary": {
+    "non_ready_source_count": 6,
+    "scenario_count": 11
+  },
+  "deterministic_hash": "4d43de02cec5b203af861860af5770adb7ffcda3769e67bfdf2c217bb9ce4ec3",
+  "environment_mismatch_aggregation_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "auto_approval_behavior_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_behavior_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "production_consumption_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "scheduling_behavior_enabled": false,
+    "visibility_based_auto_approval_enabled": false
+  },
+  "final_visibility_aggregation_status": "visibility_ready_for_planning",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "limitation_visibility_summary": {
+    "entry_count": 66,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 11
+  },
+  "lineage_gap_aggregation_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "manual_review_aggregation_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_5_orchestration_visibility_aggregation_contracts",
+  "planning_only": true,
+  "priority_order": [
+    "visibility_prohibited",
+    "visibility_unsupported",
+    "visibility_blocked_by_readiness",
+    "visibility_blocked_by_dependency",
+    "visibility_blocked_by_coordination",
+    "visibility_blocked_by_lineage_gap",
+    "visibility_blocked_by_compatibility_failure",
+    "visibility_blocked_by_environment_mismatch",
+    "visibility_requires_manual_review",
+    "visibility_ready_for_planning"
+  ],
+  "priority_order_documentation": [
+    "prohibited states dominate all other visibility states",
+    "unsupported states dominate blockers",
+    "readiness blockers dominate dependency and coordination blockers",
+    "dependency blockers dominate coordination blockers",
+    "coordination blockers dominate lineage, compatibility, environment, and manual-review states",
+    "lineage gaps dominate compatibility and environment failures",
+    "compatibility failures dominate environment failures",
+    "environment mismatches dominate manual review",
+    "manual review dominates ready for planning",
+    "ready for planning is selected only when no higher-priority visibility constraints exist"
+  ],
+  "prohibited_state_aggregation_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "readiness_aggregation_summary": {
+    "non_ready_source_count": 5,
+    "scenario_count": 11
+  },
+  "remaining_limitations": [
+    "visibility aggregation combines declarative planning outputs only",
+    "visibility aggregation does not approve orchestration planning states",
+    "visibility aggregation does not execute, route, mutate, write, schedule, or dispatch orchestration",
+    "visibility aggregation does not perform runtime graph traversal"
+  ],
+  "scenario_coverage": [
+    "fully_visible_ready_planning_state",
+    "readiness_blocker_dominates_final_status",
+    "dependency_blocker_dominates_coordination_ready_state",
+    "coordination_blocker_aggregation",
+    "unsupported_state_dominates_blockers",
+    "prohibited_state_dominates_all_other_states",
+    "lineage_gap_aggregation",
+    "compatibility_failure_aggregation",
+    "environment_mismatch_aggregation",
+    "manual_review_aggregation",
+    "multiple_simultaneous_visibility_constraints"
+  ],
+  "scenario_results": {
+    "compatibility_failure_aggregation": {
+      "aggregate_visibility_status": "visibility_blocked_by_compatibility_failure",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [],
+      "compatibility_failure_summary": [
+        "manual_compatibility_failure"
+      ],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [
+          "manual_compatibility_failure"
+        ],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation is ready for planning-only explanation; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, production consumption, or auto-approval is authorized.",
+      "deterministic_hash": "ab20cd97727d3058eca40276890ff74dc5df8711d81d6640f025c550f3729cbe",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "coordination_blocker_aggregation": {
+      "aggregate_visibility_status": "visibility_blocked_by_coordination",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "dependency_blocker:coordination_visibility_blocker"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [
+          "dependency_blocker:coordination_visibility_blocker"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_blocked_by_dependency",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_blocked_by_coordination; fail-visible entries: dependency_blocker:coordination_visibility_blocker.",
+      "deterministic_hash": "1a2983389d4fa77497e5e1b8559d59d197cb988003d1c04ce05ef59666d86bc6",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "dependency_blocker_dominates_coordination_ready_state": {
+      "aggregate_visibility_status": "visibility_blocked_by_dependency",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "blocked:dependency_visibility_blocker"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [
+          "blocked:dependency_visibility_blocker"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_blocked",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_blocked_by_dependency; fail-visible entries: blocked:dependency_visibility_blocker.",
+      "deterministic_hash": "1577e39977cf519d37d9aadfdc99f69ae3fdcf3c322b113546adceff49e13959",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "environment_mismatch_aggregation": {
+      "aggregate_visibility_status": "visibility_blocked_by_environment_mismatch",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [
+          "manual_environment_mismatch"
+        ],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation is ready for planning-only explanation; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, production consumption, or auto-approval is authorized.",
+      "deterministic_hash": "c4b89313d392b58da44ff1958e37f3b42e79e6bad6514a772a52799d8f060f8a",
+      "environment_mismatch_summary": [
+        "manual_environment_mismatch"
+      ],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "fully_visible_ready_planning_state": {
+      "aggregate_visibility_status": "visibility_ready_for_planning",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation is ready for planning-only explanation; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, production consumption, or auto-approval is authorized.",
+      "deterministic_hash": "b4ebb07b39f050518076639be609dbe0a38dff61044323dbfb73e32ad150b6e4",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "lineage_gap_aggregation": {
+      "aggregate_visibility_status": "visibility_blocked_by_lineage_gap",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [
+          "manual_replay_lineage_gap",
+          "manual_rollback_lineage_gap"
+        ],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation is ready for planning-only explanation; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, production consumption, or auto-approval is authorized.",
+      "deterministic_hash": "4055550881ccdc8e34cfcdba2ffbb546ce81ff15c1a78a7d713cbdf2265ecf8d",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [
+        "manual_replay_lineage_gap",
+        "manual_rollback_lineage_gap"
+      ],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "manual_review_aggregation": {
+      "aggregate_visibility_status": "visibility_requires_manual_review",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation is ready for planning-only explanation; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, production consumption, or auto-approval is authorized.",
+      "deterministic_hash": "b8e73a35a7169bff32970ef8e261c9a720eeb6bf902187eacc485dc230b267be",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [
+        "visibility_manual_review_required"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [
+          "visibility_manual_review_required"
+        ],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "ready_for_future_orchestration_planning",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "multiple_simultaneous_visibility_constraints": {
+      "aggregate_visibility_status": "visibility_prohibited",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "blocked:dependency_visibility_blocker",
+        "prohibited:runtime_execution",
+        "unsupported_state:unsupported_visibility_state"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [
+          "prohibited:runtime_execution"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [
+          "runtime_execution"
+        ],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_prohibited",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [
+          "blocked:dependency_visibility_blocker"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_blocked",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_prohibited; fail-visible entries: blocked:dependency_visibility_blocker, prohibited:runtime_execution, unsupported_state:unsupported_visibility_state.",
+      "deterministic_hash": "67bf6e1afcc30a3d10f8a03d540d8cc397fbc4f74b8142b72acd47726dab7cf8",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [
+        "runtime_execution"
+      ],
+      "readiness_summary": {
+        "blocker_ids": [
+          "unsupported_state:unsupported_visibility_state"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "unsupported_orchestration_request",
+        "unsupported_entries": [
+          "unsupported_visibility_state"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [
+        "unsupported_visibility_state"
+      ],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "prohibited_state_dominates_all_other_states": {
+      "aggregate_visibility_status": "visibility_prohibited",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "blocked:dependency_visibility_blocker",
+        "prohibited:runtime_execution",
+        "unsupported_state:unsupported_visibility_state"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [
+          "prohibited:runtime_execution"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [
+          "runtime_execution"
+        ],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_prohibited",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [
+          "blocked:dependency_visibility_blocker"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_blocked",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_prohibited; fail-visible entries: blocked:dependency_visibility_blocker, prohibited:runtime_execution, unsupported_state:unsupported_visibility_state.",
+      "deterministic_hash": "67bf6e1afcc30a3d10f8a03d540d8cc397fbc4f74b8142b72acd47726dab7cf8",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [
+        "runtime_execution"
+      ],
+      "readiness_summary": {
+        "blocker_ids": [
+          "unsupported_state:unsupported_visibility_state"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "unsupported_orchestration_request",
+        "unsupported_entries": [
+          "unsupported_visibility_state"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [
+        "unsupported_visibility_state"
+      ],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "readiness_blocker_dominates_final_status": {
+      "aggregate_visibility_status": "visibility_blocked_by_readiness",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "authorization_not_satisfied"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_satisfied",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_blocked_by_readiness; fail-visible entries: authorization_not_satisfied.",
+      "deterministic_hash": "814436d0a5caa6cbe7fb4a86adf5bd73d7fe849c448290ba917f183ce94a59c0",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [
+          "authorization_not_satisfied"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "blocked_by_authorization_failure",
+        "unsupported_entries": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    },
+    "unsupported_state_dominates_blockers": {
+      "aggregate_visibility_status": "visibility_unsupported",
+      "audit_log_writing_enabled": false,
+      "auto_approval_behavior_enabled": false,
+      "blocker_summary": [
+        "blocked:dependency_visibility_blocker",
+        "unsupported_state:unsupported_visibility_state"
+      ],
+      "compatibility_failure_summary": [],
+      "coordination_summary": {
+        "blocker_ids": [],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "coordination planning graphs are non-executable"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "coordination-graph-v3-5-phase-4",
+        "source_status": "coordination_ready_for_planning",
+        "unsupported_entries": []
+      },
+      "dependency_summary": {
+        "blocker_ids": [
+          "blocked:dependency_visibility_blocker"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "dependency resolution is declarative and non-fetching"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "v3-5-governance-dependency-resolution",
+        "source_status": "dependency_blocked",
+        "unsupported_entries": []
+      },
+      "deterministic_explanation_summary": "Visibility aggregation classified as visibility_unsupported; fail-visible entries: blocked:dependency_visibility_blocker, unsupported_state:unsupported_visibility_state.",
+      "deterministic_hash": "d069e55cafdcb217fa4d4b3045ed9211a88b4aa276d28dea1ee00c21dc3cbdd1",
+      "environment_mismatch_summary": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_summary": [
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "readiness classification is planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_gap_summary": [],
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "orchestration_planning_graph_id": "coordination-graph-v3-5-phase-4",
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_state_summary": [],
+      "readiness_summary": {
+        "blocker_ids": [
+          "unsupported_state:unsupported_visibility_state"
+        ],
+        "compatibility_failure_entries": [],
+        "environment_mismatch_entries": [],
+        "limitation_entries": [
+          "readiness classification is planning-only"
+        ],
+        "lineage_gap_entries": [],
+        "manual_review_entries": [],
+        "prohibited_entries": [],
+        "source_id": "readiness",
+        "source_status": "unsupported_orchestration_request",
+        "unsupported_entries": [
+          "unsupported_visibility_state"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "unsupported_state_summary": [
+        "unsupported_visibility_state"
+      ],
+      "visibility_aggregation_id": "visibility-aggregation-v3-5-phase-5"
+    }
+  },
+  "schema_version": "v3_5.orchestration_visibility_aggregation_report.1",
+  "status_distribution": {
+    "visibility_blocked_by_compatibility_failure": 1,
+    "visibility_blocked_by_coordination": 1,
+    "visibility_blocked_by_dependency": 1,
+    "visibility_blocked_by_environment_mismatch": 1,
+    "visibility_blocked_by_lineage_gap": 1,
+    "visibility_blocked_by_readiness": 1,
+    "visibility_prohibited": 2,
+    "visibility_ready_for_planning": 1,
+    "visibility_requires_manual_review": 1,
+    "visibility_unsupported": 1
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 10,
+    "deterministic_outputs": true,
+    "fail_visible_orchestration_explanations": true,
+    "priority_order_status_selection": true,
+    "ready_scenario_count": 1,
+    "replay_safe_visibility": true,
+    "rollback_safe_visibility": true,
+    "scenario_count": 11,
+    "stable_serialization": true,
+    "supported_status_count": 10
+  },
+  "unsupported_state_aggregation_summary": {
+    "entry_count": 3,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 3
+  }
+}
