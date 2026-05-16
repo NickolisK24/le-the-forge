@@ -38,6 +38,24 @@ from .evidence_registry import (
     export_evidence_registry,
     validate_evidence_registry,
 )
+from .provenance_contracts import (
+    PROVENANCE_LABELS,
+    build_provenance_contract,
+    build_runtime_provenance_manifest,
+    default_runtime_provenance_contracts,
+    order_provenance_contracts,
+    serialize_runtime_provenance_manifest,
+)
+from .provenance_hashing import (
+    hash_provenance_manifest,
+    serialize_provenance_manifest,
+    validate_provenance_replay_stability,
+)
+from .provenance_registry import (
+    detect_duplicate_provenance_contracts,
+    export_provenance_registry,
+    validate_provenance_registry,
+)
 
 __all__ = [
     "CLASSIFICATION_LABELS",
@@ -66,4 +84,16 @@ __all__ = [
     "detect_duplicate_evidence_contracts",
     "export_evidence_registry",
     "validate_evidence_registry",
+    "PROVENANCE_LABELS",
+    "build_provenance_contract",
+    "build_runtime_provenance_manifest",
+    "default_runtime_provenance_contracts",
+    "order_provenance_contracts",
+    "serialize_runtime_provenance_manifest",
+    "hash_provenance_manifest",
+    "serialize_provenance_manifest",
+    "validate_provenance_replay_stability",
+    "detect_duplicate_provenance_contracts",
+    "export_provenance_registry",
+    "validate_provenance_registry",
 ]
