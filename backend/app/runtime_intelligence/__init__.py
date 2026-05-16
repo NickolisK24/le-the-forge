@@ -20,6 +20,25 @@ from .classification_registry import (
     export_classification_registry,
     validate_classification_registry,
 )
+from .confidence_contracts import (
+    CONFIDENCE_LABELS,
+    NON_UPGRADEABLE_CONFIDENCE_LABELS,
+    build_confidence_contract,
+    build_runtime_confidence_manifest,
+    default_runtime_confidence_contracts,
+    order_confidence_contracts,
+    serialize_runtime_confidence_manifest,
+)
+from .confidence_hashing import (
+    hash_confidence_manifest,
+    serialize_confidence_manifest,
+    validate_confidence_replay_stability,
+)
+from .confidence_registry import (
+    detect_duplicate_confidence_contracts,
+    export_confidence_registry,
+    validate_confidence_registry,
+)
 from .evidence_contracts import (
     EVIDENCE_LABELS,
     build_evidence_contract,
@@ -108,6 +127,19 @@ __all__ = [
     "detect_duplicate_classifications",
     "export_classification_registry",
     "validate_classification_registry",
+    "CONFIDENCE_LABELS",
+    "NON_UPGRADEABLE_CONFIDENCE_LABELS",
+    "build_confidence_contract",
+    "build_runtime_confidence_manifest",
+    "default_runtime_confidence_contracts",
+    "order_confidence_contracts",
+    "serialize_runtime_confidence_manifest",
+    "hash_confidence_manifest",
+    "serialize_confidence_manifest",
+    "validate_confidence_replay_stability",
+    "detect_duplicate_confidence_contracts",
+    "export_confidence_registry",
+    "validate_confidence_registry",
     "EVIDENCE_LABELS",
     "build_evidence_contract",
     "build_runtime_evidence_manifest",
