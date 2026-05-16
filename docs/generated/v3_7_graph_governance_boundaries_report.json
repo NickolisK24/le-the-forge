@@ -1,0 +1,1430 @@
+{
+  "architectural_purpose": "deterministic graph governance boundary intelligence",
+  "autonomous_orchestration_enabled": false,
+  "coverage": {
+    "explainability_coverage": true,
+    "governance_metadata_non_execution_coverage": true,
+    "prohibited_relationship_visibility_coverage": true,
+    "provenance_coverage": true,
+    "unsupported_relationship_visibility_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "explainability_hash": "440c4bb6d2eeba55496be8a3d6531065c1b3f98c5eaaec90200e56237764175b",
+    "governance_hash": "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+    "hash_stable": true,
+    "provenance_hash": "6ec6dcf10b496e952bfcd045854cbfb567369b4caf3e688baff2e7ebb561aa10",
+    "serialization_stable": true,
+    "validation_hash": "33f4125b94c374095f23d34e8d58b150d769f1721f926c36ea54d064d6f1d058"
+  },
+  "deterministic_report_hash": "882f9e098479f2ece2078535bd90b0011f58883d579000a284c9a3a9e2360241",
+  "dispatch_enabled": false,
+  "domain_classification_counts": {
+    "compatibility_restricted": 1,
+    "experimental": 1,
+    "governance_restricted": 1,
+    "prohibited": 2,
+    "supported": 1,
+    "unsupported": 2
+  },
+  "edge_classification_counts": {
+    "compatibility_restricted_relationship": 1,
+    "governance_restricted_relationship": 1
+  },
+  "edge_traversal_execution_enabled": false,
+  "edges_do_not_imply_runtime_traversal": true,
+  "execution_intelligence": false,
+  "explainability_continuity_totals": {
+    "edge_explanation_count": 2,
+    "explainability_status": "v3_7_graph_governance_explainability_stable",
+    "explanation_count": 9,
+    "node_explanation_count": 3,
+    "prohibited_relationship_explanation_count": 5,
+    "unsupported_relationship_explanation_count": 5
+  },
+  "explainability_result": {
+    "compatibility_boundary_explanation_count": 5,
+    "deterministic_explainability_hash": "440c4bb6d2eeba55496be8a3d6531065c1b3f98c5eaaec90200e56237764175b",
+    "edge_explanation_count": 2,
+    "explainability_status": "v3_7_graph_governance_explainability_stable",
+    "explanation_count": 9,
+    "explanations": [
+      {
+        "compatibility_reasons": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explanation_id": "explain_edge_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "governance_classification": "governance_restricted_relationship",
+        "prohibited_relationship_reasons": [],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "reasoning_chain": [
+          "edge_classification",
+          "governance_domain",
+          "no_runtime_traversal",
+          "structural_relationship_only"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "subject_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "subject_type": "edge_governance",
+        "unsupported_relationship_reasons": [],
+        "why_governed": "edge governance classification describes a structural relationship only"
+      },
+      {
+        "compatibility_reasons": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explanation_id": "explain_edge_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_classification": "compatibility_restricted_relationship",
+        "prohibited_relationship_reasons": [],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "reasoning_chain": [
+          "edge_classification",
+          "governance_domain",
+          "no_runtime_traversal",
+          "structural_relationship_only"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_provenance_to_explainability"
+        ],
+        "subject_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "edge_governance",
+        "unsupported_relationship_reasons": [],
+        "why_governed": "edge governance classification describes a structural relationship only"
+      },
+      {
+        "compatibility_reasons": [],
+        "explanation_id": "explain_finding_finding_rule_graph_execution_relationship_prohibited",
+        "governance_classification": "prohibited_structural_relationship",
+        "prohibited_relationship_reasons": [
+          "graph execution relationships are prohibited"
+        ],
+        "provenance_lineage": [
+          "v3-7-provenance-rule_graph_execution_relationship_prohibited"
+        ],
+        "reasoning_chain": [
+          "fail_visible_relationship_visibility",
+          "governance_rule",
+          "non_executable_boundary",
+          "prohibited_relationship"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_graph_execution_relationship_prohibited"
+        ],
+        "subject_id": "finding_rule_graph_execution_relationship_prohibited",
+        "subject_type": "prohibited_relationship",
+        "unsupported_relationship_reasons": [],
+        "why_governed": "graph execution relationships are prohibited"
+      },
+      {
+        "compatibility_reasons": [],
+        "explanation_id": "explain_finding_finding_rule_optimization_relationship_unsupported",
+        "governance_classification": "unsupported_structural_relationship",
+        "prohibited_relationship_reasons": [],
+        "provenance_lineage": [
+          "v3-7-provenance-rule_optimization_relationship_unsupported"
+        ],
+        "reasoning_chain": [
+          "fail_visible_relationship_visibility",
+          "governance_rule",
+          "non_executable_boundary",
+          "unsupported_relationship"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_optimization_relationship_unsupported"
+        ],
+        "subject_id": "finding_rule_optimization_relationship_unsupported",
+        "subject_type": "unsupported_relationship",
+        "unsupported_relationship_reasons": [
+          "optimization feedback relationships are unsupported"
+        ],
+        "why_governed": "optimization feedback relationships are unsupported"
+      },
+      {
+        "compatibility_reasons": [],
+        "explanation_id": "explain_finding_finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+        "governance_classification": "prohibited_structural_relationship",
+        "prohibited_relationship_reasons": [
+          "routing, scheduling, and dispatch relationships are prohibited"
+        ],
+        "provenance_lineage": [
+          "v3-7-provenance-rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "reasoning_chain": [
+          "fail_visible_relationship_visibility",
+          "governance_rule",
+          "non_executable_boundary",
+          "prohibited_relationship"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "subject_id": "finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+        "subject_type": "prohibited_relationship",
+        "unsupported_relationship_reasons": [],
+        "why_governed": "routing, scheduling, and dispatch relationships are prohibited"
+      },
+      {
+        "compatibility_reasons": [],
+        "explanation_id": "explain_finding_finding_rule_runtime_dispatch_relationship_unsupported",
+        "governance_classification": "unsupported_structural_relationship",
+        "prohibited_relationship_reasons": [],
+        "provenance_lineage": [
+          "v3-7-provenance-rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "reasoning_chain": [
+          "fail_visible_relationship_visibility",
+          "governance_rule",
+          "non_executable_boundary",
+          "unsupported_relationship"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "subject_id": "finding_rule_runtime_dispatch_relationship_unsupported",
+        "subject_type": "unsupported_relationship",
+        "unsupported_relationship_reasons": [
+          "runtime dispatch relationships are unsupported"
+        ],
+        "why_governed": "runtime dispatch relationships are unsupported"
+      },
+      {
+        "compatibility_reasons": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explanation_id": "explain_node_v3_7_node_explainability_continuity",
+        "governance_classification": "experimental",
+        "prohibited_relationship_reasons": [
+          "graph execution relationships are prohibited",
+          "routing, scheduling, and dispatch relationships are prohibited"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_explainability_continuity"
+        ],
+        "reasoning_chain": [
+          "governance_domain",
+          "node_classification",
+          "non_executable_boundary",
+          "structural_governance_visibility"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "subject_id": "v3_7_node_explainability_continuity",
+        "subject_type": "node_governance",
+        "unsupported_relationship_reasons": [
+          "optimization feedback relationships are unsupported",
+          "runtime dispatch relationships are unsupported"
+        ],
+        "why_governed": "node governance classification is structural metadata only"
+      },
+      {
+        "compatibility_reasons": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explanation_id": "explain_node_v3_7_node_governance_boundary_visibility",
+        "governance_classification": "governance_restricted",
+        "prohibited_relationship_reasons": [
+          "graph execution relationships are prohibited",
+          "routing, scheduling, and dispatch relationships are prohibited"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_governance_boundary_visibility"
+        ],
+        "reasoning_chain": [
+          "governance_domain",
+          "node_classification",
+          "non_executable_boundary",
+          "structural_governance_visibility"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "subject_id": "v3_7_node_governance_boundary_visibility",
+        "subject_type": "node_governance",
+        "unsupported_relationship_reasons": [
+          "optimization feedback relationships are unsupported",
+          "runtime dispatch relationships are unsupported"
+        ],
+        "why_governed": "node governance classification is structural metadata only"
+      },
+      {
+        "compatibility_reasons": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explanation_id": "explain_node_v3_7_node_provenance_continuity",
+        "governance_classification": "supported",
+        "prohibited_relationship_reasons": [
+          "graph execution relationships are prohibited",
+          "routing, scheduling, and dispatch relationships are prohibited"
+        ],
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_provenance_continuity"
+        ],
+        "reasoning_chain": [
+          "governance_domain",
+          "node_classification",
+          "non_executable_boundary",
+          "structural_governance_visibility"
+        ],
+        "replay_safe": true,
+        "restriction_reasons": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "subject_id": "v3_7_node_provenance_continuity",
+        "subject_type": "node_governance",
+        "unsupported_relationship_reasons": [
+          "optimization feedback relationships are unsupported",
+          "runtime dispatch relationships are unsupported"
+        ],
+        "why_governed": "node governance classification is structural metadata only"
+      }
+    ],
+    "governance_restriction_explanation_count": 9,
+    "missing_explanation_subjects": [],
+    "node_explanation_count": 3,
+    "prohibited_relationship_explanation_count": 5,
+    "replay_safe": true,
+    "unsupported_relationship_explanation_count": 5
+  },
+  "explicit_limitations": [
+    "graphs remain non-executable",
+    "governance metadata does not enable orchestration",
+    "node relationships are structural only",
+    "edges do not imply runtime traversal",
+    "governance reasoning is not orchestration execution",
+    "governance intelligence is not execution intelligence",
+    "routing, scheduling, and dispatch remain prohibited"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "governance_continuity_totals": {
+    "explainability_continuity_preserved": true,
+    "governance_continuity_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true
+  },
+  "governance_counts": {
+    "continuity_evidence_count": 1,
+    "domain_count": 8,
+    "edge_classification_count": 2,
+    "finding_count": 4,
+    "node_classification_count": 3,
+    "rule_count": 6
+  },
+  "governance_intelligence": true,
+  "governance_map": {
+    "autonomous_orchestration_enabled": false,
+    "continuity_evidence": [
+      {
+        "compatibility_lineage_references": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_id": "v3_7_graph_governance_continuity_evidence",
+        "deterministic_hash_references": [
+          "v3_7_graph_governance_hash"
+        ],
+        "domain_ids": [
+          "domain_compatibility_boundary_visibility",
+          "domain_governance_visibility",
+          "domain_graph_execution",
+          "domain_graph_governance_boundary_intelligence",
+          "domain_graph_structure_modeling",
+          "domain_optimization",
+          "domain_routing_scheduling_dispatch",
+          "domain_runtime_dispatch"
+        ],
+        "edge_classification_ids": [
+          "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "explainability_lineage_references": [
+          "v3_7_graph_governance_explainability"
+        ],
+        "finding_ids": [
+          "finding_rule_graph_execution_relationship_prohibited",
+          "finding_rule_optimization_relationship_unsupported",
+          "finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+          "finding_rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "governance_lineage_references": [
+          "v3_7_graph_governance_boundary_intelligence"
+        ],
+        "node_classification_ids": [
+          "v3_7_node_explainability_continuity",
+          "v3_7_node_governance_boundary_visibility",
+          "v3_7_node_provenance_continuity"
+        ],
+        "provenance_lineage_references": [
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-rule_governance_visibility_to_provenance",
+          "v3-7-provenance-rule_graph_execution_relationship_prohibited",
+          "v3-7-provenance-rule_optimization_relationship_unsupported",
+          "v3-7-provenance-rule_provenance_to_explainability",
+          "v3-7-provenance-rule_routing_scheduling_dispatch_relationship_prohibited",
+          "v3-7-provenance-rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "replay_lineage_references": [
+          "v3_7_graph_replay_continuity"
+        ],
+        "rollback_lineage_references": [
+          "v3_7_graph_rollback_continuity"
+        ],
+        "rule_ids": [
+          "rule_governance_visibility_to_provenance",
+          "rule_graph_execution_relationship_prohibited",
+          "rule_optimization_relationship_unsupported",
+          "rule_provenance_to_explainability",
+          "rule_routing_scheduling_dispatch_relationship_prohibited",
+          "rule_runtime_dispatch_relationship_unsupported"
+        ]
+      }
+    ],
+    "dispatch_enabled": false,
+    "domains": [
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "domain_classification": "compatibility_restricted",
+        "domain_id": "domain_compatibility_boundary_visibility",
+        "domain_name": "Compatibility Boundary Visibility",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_compatibility_boundary_visibility",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_compatibility_boundary_visibility",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_compatibility_visible"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "governance_restricted",
+        "domain_id": "domain_governance_visibility",
+        "domain_name": "Governance Visibility",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_governance_visibility",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_governance_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_governance_visibility",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_governance_visible"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "prohibited",
+        "domain_id": "domain_graph_execution",
+        "domain_name": "Graph Execution",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_graph_execution",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_graph_execution",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_graph_execution",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_graph_execution_prohibited"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "experimental",
+        "domain_id": "domain_graph_governance_boundary_intelligence",
+        "domain_name": "Graph Governance Boundary Intelligence",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_graph_governance_boundary_intelligence",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_graph_governance_boundary_intelligence",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_metadata_only"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "supported",
+        "domain_id": "domain_graph_structure_modeling",
+        "domain_name": "Graph Structure Modeling",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_graph_structure_modeling",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_graph_structure_modeling",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_graph_structure_modeling",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_structural_reasoning_only"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "unsupported",
+        "domain_id": "domain_optimization",
+        "domain_name": "Optimization",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_optimization",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_optimization",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_optimization",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_optimization_unsupported"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "prohibited",
+        "domain_id": "domain_routing_scheduling_dispatch",
+        "domain_name": "Routing Scheduling Dispatch",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_routing_scheduling_dispatch",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_routing_scheduling_dispatch",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_routing_scheduling_dispatch_prohibited"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [],
+        "domain_classification": "unsupported",
+        "domain_id": "domain_runtime_dispatch",
+        "domain_name": "Runtime Dispatch",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "domain_runtime_dispatch",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-domain_runtime_dispatch",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "domain_runtime_dispatch",
+          "source_kind": "graph_governance_domain",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "restriction_runtime_dispatch_unsupported"
+        ]
+      }
+    ],
+    "edge_classifications": [
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "edge_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "edge_implies_execution_flow": false,
+        "explainability_evidence_ids": [
+          "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "governance_classification": "governance_restricted_relationship",
+        "governance_domain_ids": [
+          "domain_governance_visibility"
+        ],
+        "metadata": [],
+        "prohibited_relationship_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "edge_governance_classification",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_type": "governance_visibility_supports_provenance_continuity",
+        "restriction_ids": [
+          "rule_governance_visibility_to_provenance"
+        ],
+        "source_node_id": "v3_7_node_governance_boundary_visibility",
+        "target_node_id": "v3_7_node_provenance_continuity",
+        "traversal_execution_enabled": false,
+        "unsupported_relationship_ids": []
+      },
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "edge_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "edge_implies_execution_flow": false,
+        "explainability_evidence_ids": [
+          "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "governance_classification": "compatibility_restricted_relationship",
+        "governance_domain_ids": [
+          "domain_compatibility_boundary_visibility"
+        ],
+        "metadata": [],
+        "prohibited_relationship_ids": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "edge_governance_classification",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_type": "provenance_continuity_supports_explainability_continuity",
+        "restriction_ids": [
+          "rule_provenance_to_explainability"
+        ],
+        "source_node_id": "v3_7_node_provenance_continuity",
+        "target_node_id": "v3_7_node_explainability_continuity",
+        "traversal_execution_enabled": false,
+        "unsupported_relationship_ids": []
+      }
+    ],
+    "edge_traversal_execution_enabled": false,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "finding_rule_graph_execution_relationship_prohibited",
+        "finding_kind": "prohibited_relationship",
+        "governance_classification": "prohibited_structural_relationship",
+        "provenance_references": [
+          "v3-7-provenance-rule_graph_execution_relationship_prohibited"
+        ],
+        "reason": "graph execution relationships are prohibited",
+        "rule_id": "rule_graph_execution_relationship_prohibited",
+        "subject_id": "rule_graph_execution_relationship_prohibited",
+        "subject_type": "governance_rule",
+        "visibility_status": "governance_visibility_visible"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "finding_rule_optimization_relationship_unsupported",
+        "finding_kind": "unsupported_relationship",
+        "governance_classification": "unsupported_structural_relationship",
+        "provenance_references": [
+          "v3-7-provenance-rule_optimization_relationship_unsupported"
+        ],
+        "reason": "optimization feedback relationships are unsupported",
+        "rule_id": "rule_optimization_relationship_unsupported",
+        "subject_id": "rule_optimization_relationship_unsupported",
+        "subject_type": "governance_rule",
+        "visibility_status": "governance_visibility_visible"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+        "finding_kind": "prohibited_relationship",
+        "governance_classification": "prohibited_structural_relationship",
+        "provenance_references": [
+          "v3-7-provenance-rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "reason": "routing, scheduling, and dispatch relationships are prohibited",
+        "rule_id": "rule_routing_scheduling_dispatch_relationship_prohibited",
+        "subject_id": "rule_routing_scheduling_dispatch_relationship_prohibited",
+        "subject_type": "governance_rule",
+        "visibility_status": "governance_visibility_visible"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "finding_rule_runtime_dispatch_relationship_unsupported",
+        "finding_kind": "unsupported_relationship",
+        "governance_classification": "unsupported_structural_relationship",
+        "provenance_references": [
+          "v3-7-provenance-rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "reason": "runtime dispatch relationships are unsupported",
+        "rule_id": "rule_runtime_dispatch_relationship_unsupported",
+        "subject_id": "rule_runtime_dispatch_relationship_unsupported",
+        "subject_type": "governance_rule",
+        "visibility_status": "governance_visibility_visible"
+      }
+    ],
+    "governance_metadata_does_not_enable_orchestration": true,
+    "governance_phase_id": "v3_7_graph_governance_boundary_intelligence",
+    "graph_evaluation_execution_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+    "node_classifications": [
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_governance_explanation_v3_7_node_explainability_continuity"
+        ],
+        "governance_classification": "experimental",
+        "governance_domain_ids": [
+          "domain_graph_governance_boundary_intelligence"
+        ],
+        "metadata": [],
+        "node_id": "v3_7_node_explainability_continuity",
+        "node_type": "structural_boundary",
+        "prohibited_relationship_ids": [
+          "rule_graph_execution_relationship_prohibited",
+          "rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_explainability_continuity",
+          "source_kind": "node_governance_classification",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "unsupported_relationship_ids": [
+          "rule_optimization_relationship_unsupported",
+          "rule_runtime_dispatch_relationship_unsupported"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility"
+        ],
+        "governance_classification": "governance_restricted",
+        "governance_domain_ids": [
+          "domain_governance_visibility"
+        ],
+        "metadata": [],
+        "node_id": "v3_7_node_governance_boundary_visibility",
+        "node_type": "structural_boundary",
+        "prohibited_relationship_ids": [
+          "rule_graph_execution_relationship_prohibited",
+          "rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_governance_boundary_visibility"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_governance_boundary_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_governance_boundary_visibility",
+          "source_kind": "node_governance_classification",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "unsupported_relationship_ids": [
+          "rule_optimization_relationship_unsupported",
+          "rule_runtime_dispatch_relationship_unsupported"
+        ]
+      },
+      {
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_governance_explanation_v3_7_node_provenance_continuity"
+        ],
+        "governance_classification": "supported",
+        "governance_domain_ids": [
+          "domain_graph_structure_modeling"
+        ],
+        "metadata": [],
+        "node_id": "v3_7_node_provenance_continuity",
+        "node_type": "structural_boundary",
+        "prohibited_relationship_ids": [
+          "rule_graph_execution_relationship_prohibited",
+          "rule_routing_scheduling_dispatch_relationship_prohibited"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_provenance_continuity",
+          "source_kind": "node_governance_classification",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "unsupported_relationship_ids": [
+          "rule_optimization_relationship_unsupported",
+          "rule_runtime_dispatch_relationship_unsupported"
+        ]
+      }
+    ],
+    "node_execution_enabled": false,
+    "non_executable": true,
+    "optimization_enabled": false,
+    "recommendation_enabled": false,
+    "routing_enabled": false,
+    "rules": [
+      {
+        "edge_classification": "governance_restricted_relationship",
+        "metadata": [],
+        "node_classification": "governance_restricted",
+        "prohibited_relationship": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_governance_visibility_to_provenance",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_governance_visibility_to_provenance",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_governance_visibility_to_provenance",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "governance visibility can structurally reference provenance continuity",
+        "rule_id": "rule_governance_visibility_to_provenance",
+        "rule_kind": "node_edge_governance",
+        "source_domain_id": "domain_governance_visibility",
+        "target_domain_id": "domain_graph_structure_modeling",
+        "unsupported_relationship": false
+      },
+      {
+        "edge_classification": "prohibited_structural_relationship",
+        "metadata": [],
+        "node_classification": "supported",
+        "prohibited_relationship": true,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_graph_execution_relationship_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_graph_execution_relationship_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_graph_execution_relationship_prohibited",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "graph execution relationships are prohibited",
+        "rule_id": "rule_graph_execution_relationship_prohibited",
+        "rule_kind": "prohibited_relationship",
+        "source_domain_id": "domain_graph_execution",
+        "target_domain_id": "domain_graph_structure_modeling",
+        "unsupported_relationship": false
+      },
+      {
+        "edge_classification": "unsupported_structural_relationship",
+        "metadata": [],
+        "node_classification": "experimental",
+        "prohibited_relationship": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_optimization_relationship_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_optimization_relationship_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_optimization_relationship_unsupported",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "optimization feedback relationships are unsupported",
+        "rule_id": "rule_optimization_relationship_unsupported",
+        "rule_kind": "unsupported_relationship",
+        "source_domain_id": "domain_optimization",
+        "target_domain_id": "domain_graph_governance_boundary_intelligence",
+        "unsupported_relationship": true
+      },
+      {
+        "edge_classification": "compatibility_restricted_relationship",
+        "metadata": [],
+        "node_classification": "supported",
+        "prohibited_relationship": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_provenance_to_explainability",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_provenance_to_explainability",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_provenance_to_explainability",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "provenance continuity can structurally reference explainability continuity",
+        "rule_id": "rule_provenance_to_explainability",
+        "rule_kind": "node_edge_governance",
+        "source_domain_id": "domain_graph_structure_modeling",
+        "target_domain_id": "domain_compatibility_boundary_visibility",
+        "unsupported_relationship": false
+      },
+      {
+        "edge_classification": "prohibited_structural_relationship",
+        "metadata": [],
+        "node_classification": "supported",
+        "prohibited_relationship": true,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_routing_scheduling_dispatch_relationship_prohibited",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_routing_scheduling_dispatch_relationship_prohibited",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_routing_scheduling_dispatch_relationship_prohibited",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "routing, scheduling, and dispatch relationships are prohibited",
+        "rule_id": "rule_routing_scheduling_dispatch_relationship_prohibited",
+        "rule_kind": "prohibited_relationship",
+        "source_domain_id": "domain_routing_scheduling_dispatch",
+        "target_domain_id": "domain_graph_structure_modeling",
+        "unsupported_relationship": false
+      },
+      {
+        "edge_classification": "unsupported_structural_relationship",
+        "metadata": [],
+        "node_classification": "supported",
+        "prohibited_relationship": false,
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "rule_runtime_dispatch_relationship_unsupported",
+            "v3_6_closeout_and_v3_7_readiness"
+          ],
+          "provenance_id": "v3-7-provenance-rule_runtime_dispatch_relationship_unsupported",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "rule_runtime_dispatch_relationship_unsupported",
+          "source_kind": "graph_governance_rule",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "relationship_visible": true,
+        "restriction_summary": "runtime dispatch relationships are unsupported",
+        "rule_id": "rule_runtime_dispatch_relationship_unsupported",
+        "rule_kind": "unsupported_relationship",
+        "source_domain_id": "domain_runtime_dispatch",
+        "target_domain_id": "domain_graph_structure_modeling",
+        "unsupported_relationship": true
+      }
+    ],
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_enabled": false,
+    "scheduling_enabled": false,
+    "structural_governance_artifact_only": true
+  },
+  "governance_metadata_does_not_enable_orchestration": true,
+  "governance_reasoning_is_not_orchestration_execution": true,
+  "graph_evaluation_execution_enabled": false,
+  "graph_execution_enabled": false,
+  "node_classification_counts": {
+    "experimental": 1,
+    "governance_restricted": 1,
+    "supported": 1
+  },
+  "node_execution_enabled": false,
+  "node_relationships_are_structural_only": true,
+  "non_executable": true,
+  "optimization_enabled": false,
+  "phase_name": "v3.7_graph_governance_boundary_intelligence",
+  "planning_only": true,
+  "provenance_continuity_totals": {
+    "domain_provenance_preserved": true,
+    "edge_classification_provenance_preserved": true,
+    "node_classification_provenance_preserved": true,
+    "provenance_record_count": 19,
+    "provenance_status": "v3_7_graph_governance_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rule_provenance_preserved": true
+  },
+  "provenance_result": {
+    "compatibility_continuity_preserved": true,
+    "deterministic_provenance_hash": "6ec6dcf10b496e952bfcd045854cbfb567369b4caf3e688baff2e7ebb561aa10",
+    "domain_provenance_preserved": true,
+    "edge_classification_provenance_preserved": true,
+    "explainability_continuity_preserved": true,
+    "governance_continuity_preserved": true,
+    "missing_provenance_subjects": [],
+    "node_classification_provenance_preserved": true,
+    "provenance_record_count": 19,
+    "provenance_status": "v3_7_graph_governance_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rule_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "relationship_finding_counts": {
+    "prohibited_relationship": 2,
+    "unsupported_relationship": 2
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "routing_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_governance_boundaries_report.1",
+  "summary": {
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "execution_intelligence": false,
+    "explainability_continuity_verified": true,
+    "governance_boundary_status": "v3_7_graph_governance_validation_stable",
+    "governance_continuity_verified": true,
+    "governance_intelligence": true,
+    "non_execution_guarantee_verified": true,
+    "provenance_continuity_verified": true
+  },
+  "validation_result": {
+    "deterministic_governance_hash": "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+    "deterministic_validation_hash": "33f4125b94c374095f23d34e8d58b150d769f1721f926c36ea54d064d6f1d058",
+    "error_count": 0,
+    "explainability_continuity_preserved": true,
+    "finding_count": 4,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_governance_prohibited_relationship_visible:governance_rule:rule_graph_execution_relationship_prohibited",
+        "message": "graph execution relationships are prohibited",
+        "severity": "visibility",
+        "status": "v3_7_graph_governance_prohibited_relationship_visible",
+        "subject_id": "rule_graph_execution_relationship_prohibited",
+        "subject_type": "governance_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_governance_prohibited_relationship_visible:governance_rule:rule_routing_scheduling_dispatch_relationship_prohibited",
+        "message": "routing, scheduling, and dispatch relationships are prohibited",
+        "severity": "visibility",
+        "status": "v3_7_graph_governance_prohibited_relationship_visible",
+        "subject_id": "rule_routing_scheduling_dispatch_relationship_prohibited",
+        "subject_type": "governance_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_governance_unsupported_relationship_visible:governance_rule:rule_optimization_relationship_unsupported",
+        "message": "optimization feedback relationships are unsupported",
+        "severity": "visibility",
+        "status": "v3_7_graph_governance_unsupported_relationship_visible",
+        "subject_id": "rule_optimization_relationship_unsupported",
+        "subject_type": "governance_rule"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_governance_unsupported_relationship_visible:governance_rule:rule_runtime_dispatch_relationship_unsupported",
+        "message": "runtime dispatch relationships are unsupported",
+        "severity": "visibility",
+        "status": "v3_7_graph_governance_unsupported_relationship_visible",
+        "subject_id": "rule_runtime_dispatch_relationship_unsupported",
+        "subject_type": "governance_rule"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "hash_stable": true,
+    "missing_metadata_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "prohibited_edge_relationship_count": 0,
+    "prohibited_relationship_visible_count": 2,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "serialization_stable": true,
+    "unsupported_edge_relationship_count": 0,
+    "unsupported_relationship_visible_count": 2,
+    "valid": true,
+    "validation_status": "v3_7_graph_governance_validation_stable",
+    "visibility_finding_count": 4
+  },
+  "validation_totals": {
+    "error_count": 0,
+    "finding_count": 4,
+    "missing_metadata_count": 0,
+    "prohibited_edge_relationship_count": 0,
+    "prohibited_relationship_visible_count": 2,
+    "unsupported_edge_relationship_count": 0,
+    "unsupported_relationship_visible_count": 2,
+    "valid": true,
+    "validation_status": "v3_7_graph_governance_validation_stable",
+    "visibility_finding_count": 4
+  }
+}
