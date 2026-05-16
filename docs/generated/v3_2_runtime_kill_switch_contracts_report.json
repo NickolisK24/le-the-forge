@@ -1,0 +1,365 @@
+{
+  "default_manifest_consumption_disabled_verification": {
+    "default_manifest_consumption_enabled": false,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "determinism_compatibility_distributions": {
+    "runtime_determinism_satisfied": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "19927ecea88447c43902f82227158e5ea752baf1f623642b3854edefb075f7a4",
+    "sample_hash": "19927ecea88447c43902f82227158e5ea752baf1f623642b3854edefb075f7a4",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_compatibility_distributions": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "drift_compatibility_distributions": {
+    "runtime_drift_not_detected": 1
+  },
+  "entrypoint_compatibility_distributions": {
+    "experimental_runtime_eligible": 1
+  },
+  "experiment_compatibility_distributions": {
+    "limited_runtime_experiment_eligible": 1
+  },
+  "future_phase_foundation": [
+    "final v3.2 closeout can consume deterministic kill-switch evidence",
+    "future runtime planning must preserve explicit emergency shutdown controls",
+    "future runtime planning must continue blocking default manifest consumption and production routing"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_compatibility_distributions": {
+    "runtime_isolation_satisfied": 1
+  },
+  "kill_switch_activation_distributions": {
+    "runtime_kill_switch_inactive": 1
+  },
+  "kill_switch_blocker_distributions": {},
+  "kill_switch_policy_distributions": {
+    "kill_switch_policy_present": 1
+  },
+  "kill_switch_reason_distributions": {
+    "kill_switch_reason_not_required": 1
+  },
+  "kill_switch_scope_distributions": {
+    "kill_switch_scope_limited_runtime_experiment": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_kill_switch_contract_only": true,
+    "source": "v3_2_runtime_kill_switch_contracts_report"
+  },
+  "override_authorization_distributions": {
+    "override_authorization_not_required": 1
+  },
+  "override_blocker_distributions": {},
+  "override_intent_distributions": {
+    "runtime_override_not_requested": 1
+  },
+  "override_safety_distributions": {
+    "override_safety_not_required": 1
+  },
+  "phase": "v3.2_phase_11_runtime_kill_switch_contracts",
+  "phase_11_boundaries": [
+    "runtime kill-switch contracts are governance only",
+    "active kill-switch state blocks experimental runtime continuation",
+    "missing kill-switch policy, scope, or active reason fails visibly",
+    "override allowance is non-production recovery only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "production-authoritative manifest treatment remains prohibited"
+  ],
+  "production_authoritative_manifest_prohibited_verification": {
+    "production_authoritative_manifest_treatment": false,
+    "production_authoritative_manifest_treatment_prohibited": true
+  },
+  "production_authoritative_manifest_treatment": false,
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_KILL_SWITCH_CONTRACT_READY_FOR_FINAL_V3_2_CLOSEOUT_DESIGN_ONLY",
+  "replayability_compatibility_distributions": {
+    "runtime_replayability_satisfied": 1
+  },
+  "rollback_compatibility_distributions": {
+    "runtime_rollback_ready": 1
+  },
+  "runtime_disabled_path_verification": {
+    "default_manifest_consumption_enabled": false,
+    "fallback_kill_switch_logic_allowed": false,
+    "implicit_experiment_continuation_allowed": false,
+    "production_authoritative_manifest_treatment": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_kill_switch_failures_allowed": false
+  },
+  "runtime_kill_switch_contracts": {
+    "determinism_compatibility_distribution": {
+      "runtime_determinism_satisfied": 1
+    },
+    "deterministic_hash": "19927ecea88447c43902f82227158e5ea752baf1f623642b3854edefb075f7a4",
+    "diff_audit_compatibility_distribution": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "drift_compatibility_distribution": {
+      "runtime_drift_not_detected": 1
+    },
+    "entrypoint_compatibility_distribution": {
+      "experimental_runtime_eligible": 1
+    },
+    "experiment_compatibility_distribution": {
+      "limited_runtime_experiment_eligible": 1
+    },
+    "isolation_compatibility_distribution": {
+      "runtime_isolation_satisfied": 1
+    },
+    "kill_switch_activation_distribution": {
+      "runtime_kill_switch_inactive": 1
+    },
+    "kill_switch_blocker_distribution": {},
+    "kill_switch_policy_distribution": {
+      "kill_switch_policy_present": 1
+    },
+    "kill_switch_reason_distribution": {
+      "kill_switch_reason_not_required": 1
+    },
+    "kill_switch_scope_distribution": {
+      "kill_switch_scope_limited_runtime_experiment": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_authoritative_manifest_treatment_prohibited": true,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_kill_switch_contract_only": true,
+      "source": "v3_2_runtime_kill_switch_contracts",
+      "stable_generation_token": "v3_2_phase_11_runtime_kill_switch_contracts_token"
+    },
+    "override_authorization_distribution": {
+      "override_authorization_not_required": 1
+    },
+    "override_blocker_distribution": {},
+    "override_intent_distribution": {
+      "runtime_override_not_requested": 1
+    },
+    "override_safety_distribution": {
+      "override_safety_not_required": 1
+    },
+    "replayability_compatibility_distribution": {
+      "runtime_replayability_satisfied": 1
+    },
+    "rollback_compatibility_distribution": {
+      "runtime_rollback_ready": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "limited_runtime_experiment_contract_count": 1,
+      "run_id": "v3_2_phase_11_runtime_kill_switch_contracts",
+      "runtime_determinism_validation_contract_count": 1,
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_drift_detection_contract_count": 1,
+      "runtime_isolation_contract_count": 1,
+      "runtime_kill_switch_request_count": 1,
+      "runtime_kill_switch_requests_hash": "0ff5a3e42a938be1f2c2c4f9ea3ce825b1e66a3a69e99e73b649b28584bb508c",
+      "runtime_replayability_contract_count": 1,
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_traceability_contract_count": 1
+    },
+    "runtime_disabled_path_verification": {
+      "default_manifest_consumption_enabled": false,
+      "fallback_kill_switch_logic_allowed": false,
+      "implicit_experiment_continuation_allowed": false,
+      "production_authoritative_manifest_treatment": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_kill_switch_failures_allowed": false
+    },
+    "runtime_kill_switch_contracts": [
+      {
+        "determinism_contract_status": "runtime_determinism_satisfied",
+        "diff_audit_contract_status": "runtime_diff_audit_satisfied",
+        "drift_detection_contract_status": "runtime_drift_not_detected",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "kill_switch_activation_state": "runtime_kill_switch_inactive",
+        "kill_switch_blocker_state": "unblocked_for_kill_switch_governance_only",
+        "kill_switch_blockers": [],
+        "kill_switch_override_authorization_state": "override_authorization_not_required",
+        "kill_switch_override_intent_state": "runtime_override_not_requested",
+        "kill_switch_override_safety_state": "override_safety_not_required",
+        "kill_switch_policy_state": "kill_switch_policy_present",
+        "kill_switch_reason_state": "kill_switch_reason_not_required",
+        "kill_switch_scope_state": "kill_switch_scope_limited_runtime_experiment",
+        "kill_switch_shutdown_state": "runtime_shutdown_complete",
+        "limited_runtime_experiment_status": "limited_runtime_experiment_eligible",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_kill_switch_logic_allowed": false,
+          "governance_only": true,
+          "implicit_experiment_continuation_allowed": false,
+          "override_allowed_only_for_non_production_recovery": false,
+          "planner_remap_performed": false,
+          "production_authoritative_manifest_treatment_prohibited": true,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_kill_switch_contract_only": true,
+          "silent_kill_switch_failures_allowed": false
+        },
+        "override_blockers": [],
+        "production_authoritative_manifest_treatment": false,
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "replayability_contract_status": "runtime_replayability_satisfied",
+        "rollback_contract_status": "runtime_rollback_ready",
+        "runtime_experiment_continuation_authorized": false,
+        "runtime_kill_switch_contract_authorizes_production_routing": false,
+        "runtime_kill_switch_contract_authorizes_runtime_consumption": false,
+        "runtime_kill_switch_contract_id": "v3_2_runtime_kill_switch_e4049e1241290e63",
+        "runtime_kill_switch_override_status": "runtime_override_not_requested",
+        "runtime_kill_switch_status": "runtime_kill_switch_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_manifest_consumption_enabled_by_default": false,
+        "runtime_production_consumption_enabled": false,
+        "runtime_shutdown_status": "runtime_shutdown_complete",
+        "safety_contract_status": "runtime_safety_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "traceability_contract_status": "runtime_traceability_satisfied"
+      }
+    ],
+    "runtime_kill_switch_override_status_counts": {
+      "runtime_override_allowed_for_non_production_recovery_only": 0,
+      "runtime_override_blocked": 0,
+      "runtime_override_not_requested": 1,
+      "runtime_override_requested": 0,
+      "runtime_override_unauthorized": 0,
+      "runtime_override_unsafe": 0
+    },
+    "runtime_kill_switch_status_counts": {
+      "runtime_determinism_compatibility_missing": 0,
+      "runtime_diff_audit_compatibility_missing": 0,
+      "runtime_drift_compatibility_missing": 0,
+      "runtime_entrypoint_compatibility_missing": 0,
+      "runtime_experiment_compatibility_missing": 0,
+      "runtime_isolation_compatibility_missing": 0,
+      "runtime_kill_switch_active": 0,
+      "runtime_kill_switch_blocked": 0,
+      "runtime_kill_switch_inactive": 0,
+      "runtime_kill_switch_policy_missing": 0,
+      "runtime_kill_switch_reason_missing": 0,
+      "runtime_kill_switch_satisfied": 1,
+      "runtime_kill_switch_scope_missing": 0,
+      "runtime_override_blocked": 0,
+      "runtime_override_unauthorized": 0,
+      "runtime_override_unsafe": 0,
+      "runtime_replayability_compatibility_missing": 0,
+      "runtime_rollback_compatibility_missing": 0,
+      "runtime_session_compatibility_missing": 0,
+      "runtime_shutdown_incomplete": 0,
+      "runtime_shutdown_required": 0,
+      "runtime_traceability_compatibility_missing": 0
+    },
+    "runtime_shutdown_status_counts": {
+      "runtime_shutdown_complete": 1,
+      "runtime_shutdown_incomplete": 0,
+      "runtime_shutdown_required": 0
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_kill_switch_contract_authorizes_production_routing": false,
+      "runtime_kill_switch_contract_enables_runtime_manifest_consumption": false,
+      "runtime_kill_switch_contract_treats_manifest_as_production_authoritative": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "schema_version": "v3_2.runtime_kill_switch_contracts.1",
+    "session_compatibility_distribution": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "shutdown_state_distribution": {
+      "runtime_shutdown_complete": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_kill_switch_active_count": 0,
+      "runtime_kill_switch_blocked_count": 0,
+      "runtime_kill_switch_satisfied_count": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_override_allowed_non_production_recovery_count": 0,
+      "runtime_override_blocked_count": 0,
+      "runtime_production_consumption_enabled": false,
+      "runtime_shutdown_complete_count": 1,
+      "runtime_shutdown_incomplete_count": 0,
+      "runtime_shutdown_required_count": 0
+    },
+    "traceability_compatibility_distribution": {
+      "runtime_traceability_satisfied": 1
+    }
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_2.runtime_kill_switch_contracts_report.1",
+  "session_compatibility_distributions": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "shutdown_state_distributions": {
+    "runtime_shutdown_complete": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "production_authoritative_manifest_treatment": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_kill_switch_active_count": 0,
+    "runtime_kill_switch_blocked_count": 0,
+    "runtime_kill_switch_satisfied_count": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_override_allowed_non_production_recovery_count": 0,
+    "runtime_override_blocked_count": 0,
+    "runtime_production_consumption_enabled": false,
+    "runtime_shutdown_complete_count": 1,
+    "runtime_shutdown_incomplete_count": 0,
+    "runtime_shutdown_required_count": 0
+  },
+  "traceability_compatibility_distributions": {
+    "runtime_traceability_satisfied": 1
+  }
+}
