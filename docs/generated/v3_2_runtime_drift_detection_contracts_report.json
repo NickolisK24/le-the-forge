@@ -1,0 +1,313 @@
+{
+  "current_runtime_evidence_distributions": {
+    "current_runtime_evidence_present": 1
+  },
+  "determinism_compatibility_distributions": {
+    "runtime_determinism_satisfied": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "4d3b7997dd3cd39b04d2ad17ee0c207ca6e6cac101b9d0d1944170ff617bb0a6",
+    "sample_hash": "4d3b7997dd3cd39b04d2ad17ee0c207ca6e6cac101b9d0d1944170ff617bb0a6",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_compatibility_distributions": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "drift_baseline_evidence_distributions": {
+    "runtime_drift_baseline_present": 1
+  },
+  "drift_blocker_distributions": {},
+  "drift_classification_distributions": {
+    "runtime_drift_not_detected": 1
+  },
+  "drift_comparison_distributions": {
+    "drift_comparison_completed": 1
+  },
+  "drift_severity_blocker_distributions": {},
+  "drift_severity_distributions": {
+    "runtime_drift_severity_none": 1
+  },
+  "entrypoint_compatibility_distributions": {
+    "experimental_runtime_eligible": 1
+  },
+  "expected_drift_distributions": {
+    "runtime_expected_drift_absent": 1
+  },
+  "future_phase_foundation": [
+    "future limited runtime experiments may consume deterministic drift evidence",
+    "future runtime intelligence phases must preserve drift severity and review visibility",
+    "future runtime work must keep unexpected and unreviewed drift blocked"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_compatibility_distributions": {
+    "runtime_isolation_satisfied": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_drift_detection_contract_only": true,
+    "source": "v3_2_runtime_drift_detection_contracts_report"
+  },
+  "phase": "v3.2_phase_9_runtime_drift_detection_contracts",
+  "phase_9_boundaries": [
+    "runtime drift detection contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "drift baselines and current evidence must be explicit",
+    "expected, unexpected, and unreviewed drift remain distinct",
+    "fallback drift detection remains prohibited"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_DRIFT_DETECTION_READY_FOR_FUTURE_LIMITED_RUNTIME_EXPERIMENT_DESIGN_ONLY",
+  "replayability_compatibility_distributions": {
+    "runtime_replayability_satisfied": 1
+  },
+  "rollback_compatibility_distributions": {
+    "runtime_rollback_ready": 1
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_drift_detection_allowed": false,
+    "implicit_drift_approval_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_drift_failures_allowed": false
+  },
+  "runtime_drift_detection_contracts": {
+    "current_runtime_evidence_distribution": {
+      "current_runtime_evidence_present": 1
+    },
+    "determinism_compatibility_distribution": {
+      "runtime_determinism_satisfied": 1
+    },
+    "deterministic_hash": "4d3b7997dd3cd39b04d2ad17ee0c207ca6e6cac101b9d0d1944170ff617bb0a6",
+    "diff_audit_compatibility_distribution": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "drift_baseline_evidence_distribution": {
+      "runtime_drift_baseline_present": 1
+    },
+    "drift_blocker_distribution": {},
+    "drift_classification_distribution": {
+      "runtime_drift_not_detected": 1
+    },
+    "drift_comparison_distribution": {
+      "drift_comparison_completed": 1
+    },
+    "drift_severity_blocker_distribution": {},
+    "drift_severity_distribution": {
+      "runtime_drift_severity_none": 1
+    },
+    "entrypoint_compatibility_distribution": {
+      "experimental_runtime_eligible": 1
+    },
+    "expected_drift_distribution": {
+      "runtime_expected_drift_absent": 1
+    },
+    "isolation_compatibility_distribution": {
+      "runtime_isolation_satisfied": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_drift_detection_contract_only": true,
+      "source": "v3_2_runtime_drift_detection_contracts",
+      "stable_generation_token": "v3_2_phase_9_runtime_drift_detection_contracts_token"
+    },
+    "replayability_compatibility_distribution": {
+      "runtime_replayability_satisfied": 1
+    },
+    "rollback_compatibility_distribution": {
+      "runtime_rollback_ready": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "run_id": "v3_2_phase_9_runtime_drift_detection_contracts",
+      "runtime_determinism_validation_contract_count": 1,
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_drift_detection_request_count": 1,
+      "runtime_drift_detection_requests_hash": "3541701c087ee32ac45abcb028ac43dc335f61ef9f7cb86a8c657a6995930034",
+      "runtime_isolation_contract_count": 1,
+      "runtime_replayability_contract_count": 1,
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_traceability_contract_count": 1
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_drift_detection_allowed": false,
+      "implicit_drift_approval_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_drift_failures_allowed": false
+    },
+    "runtime_drift_detection_contracts": [
+      {
+        "current_runtime_evidence_state": "current_runtime_evidence_present",
+        "determinism_contract_status": "runtime_determinism_satisfied",
+        "diff_audit_contract_status": "runtime_diff_audit_satisfied",
+        "drift_blocker_state": "unblocked_for_contract_only",
+        "drift_blockers": [],
+        "drift_classification_state": "runtime_drift_not_detected",
+        "drift_comparison_state": "drift_comparison_completed",
+        "drift_severity_blocker_state": "unblocked_for_contract_only",
+        "drift_severity_blockers": [],
+        "drift_severity_state": "runtime_drift_severity_none",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "expected_drift_state": "runtime_expected_drift_absent",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_drift_detection_allowed": false,
+          "governance_only": true,
+          "implicit_drift_approval_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_drift_detection_contract_only": true,
+          "silent_drift_failures_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "replayability_contract_status": "runtime_replayability_satisfied",
+        "rollback_contract_status": "runtime_rollback_ready",
+        "runtime_drift_baseline_evidence_state": "runtime_drift_baseline_present",
+        "runtime_drift_detection_authorizes_production_routing": false,
+        "runtime_drift_detection_authorizes_runtime_consumption": false,
+        "runtime_drift_detection_contract_id": "v3_2_runtime_drift_d1f8c0108adcd7c3",
+        "runtime_drift_detection_status": "runtime_drift_not_detected",
+        "runtime_drift_severity_status": "runtime_drift_severity_none",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_production_consumption_enabled": false,
+        "safety_contract_status": "runtime_safety_satisfied",
+        "session_boundary_contract_status": "runtime_session_boundary_satisfied",
+        "traceability_contract_status": "runtime_traceability_satisfied",
+        "unexpected_drift_state": "runtime_unexpected_drift_absent",
+        "unreviewed_drift_state": "runtime_unreviewed_drift_absent"
+      }
+    ],
+    "runtime_drift_detection_status_counts": {
+      "current_runtime_evidence_missing": 0,
+      "runtime_drift_baseline_missing": 0,
+      "runtime_drift_detected": 0,
+      "runtime_drift_detection_blocked": 0,
+      "runtime_drift_detection_satisfied": 0,
+      "runtime_drift_determinism_compatibility_missing": 0,
+      "runtime_drift_diff_audit_compatibility_missing": 0,
+      "runtime_drift_entrypoint_compatibility_missing": 0,
+      "runtime_drift_isolation_compatibility_missing": 0,
+      "runtime_drift_not_detected": 1,
+      "runtime_drift_replayability_compatibility_missing": 0,
+      "runtime_drift_rollback_compatibility_missing": 0,
+      "runtime_drift_session_compatibility_missing": 0,
+      "runtime_drift_traceability_compatibility_missing": 0,
+      "runtime_expected_drift_detected": 0,
+      "runtime_unexpected_drift_detected": 0,
+      "runtime_unreviewed_drift_detected": 0
+    },
+    "runtime_drift_severity_status_counts": {
+      "runtime_drift_severity_critical": 0,
+      "runtime_drift_severity_high": 0,
+      "runtime_drift_severity_low": 0,
+      "runtime_drift_severity_moderate": 0,
+      "runtime_drift_severity_none": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_drift_detection_allows_silent_failures": false,
+      "runtime_drift_detection_authorizes_production_routing": false,
+      "runtime_drift_detection_enables_runtime_manifest_consumption": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "schema_version": "v3_2.runtime_drift_detection_contracts.1",
+    "session_compatibility_distribution": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_drift_detection_blocked_count": 0,
+      "runtime_drift_detection_satisfied_count": 1,
+      "runtime_drift_not_detected_count": 1,
+      "runtime_drift_severity_critical_count": 0,
+      "runtime_expected_drift_detected_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_unexpected_drift_detected_count": 0,
+      "runtime_unreviewed_drift_detected_count": 0
+    },
+    "traceability_compatibility_distribution": {
+      "runtime_traceability_satisfied": 1
+    },
+    "unexpected_drift_distribution": {
+      "runtime_unexpected_drift_absent": 1
+    },
+    "unreviewed_drift_distribution": {
+      "runtime_unreviewed_drift_absent": 1
+    }
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_2.runtime_drift_detection_contracts_report.1",
+  "session_compatibility_distributions": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_drift_detection_blocked_count": 0,
+    "runtime_drift_detection_satisfied_count": 1,
+    "runtime_drift_not_detected_count": 1,
+    "runtime_drift_severity_critical_count": 0,
+    "runtime_expected_drift_detected_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_unexpected_drift_detected_count": 0,
+    "runtime_unreviewed_drift_detected_count": 0
+  },
+  "traceability_compatibility_distributions": {
+    "runtime_traceability_satisfied": 1
+  },
+  "unexpected_drift_distributions": {
+    "runtime_unexpected_drift_absent": 1
+  },
+  "unreviewed_drift_distributions": {
+    "runtime_unreviewed_drift_absent": 1
+  }
+}
