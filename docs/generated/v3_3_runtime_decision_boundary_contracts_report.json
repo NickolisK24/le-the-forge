@@ -1,0 +1,1062 @@
+{
+  "active_runtime_reasoning_decisions_enabled": false,
+  "boundary_action_validation": {
+    "invalid_boundary_actions": [],
+    "passed": true
+  },
+  "boundary_to_classification_compatibility_validation": {
+    "invalid_classification_references": {},
+    "passed": true
+  },
+  "boundary_to_confidence_compatibility_validation": {
+    "invalid_confidence_references": {},
+    "passed": true
+  },
+  "boundary_to_evidence_compatibility_validation": {
+    "invalid_evidence_references": {},
+    "passed": true
+  },
+  "boundary_to_explanation_compatibility_validation": {
+    "invalid_explanation_references": {},
+    "passed": true
+  },
+  "boundary_to_provenance_compatibility_validation": {
+    "invalid_provenance_references": {},
+    "passed": true
+  },
+  "boundary_to_reasoning_compatibility_validation": {
+    "invalid_reasoning_stage_references": {},
+    "passed": true
+  },
+  "boundary_to_synthesis_compatibility_validation": {
+    "invalid_synthesis_references": {},
+    "passed": true
+  },
+  "contracts_with_explicit_limitations": {
+    "authorization_prohibited_hard_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "blocker_detected_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "confidence_ceiling_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "conflict_detected_escalation": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "default_manifest_consumption_hard_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "drift_detected_escalation": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "manual_review_required_boundary": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "production_routing_hard_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "provenance_incomplete_escalation": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "recommendation_prohibited_boundary": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_mismatch_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "unsupported_hard_stop": [
+      "live decision routing is not enabled",
+      "runtime decision boundary contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "contracts_with_explicit_risks": {
+    "authorization_prohibited_hard_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "blocker_detected_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "confidence_ceiling_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "conflict_detected_escalation": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "default_manifest_consumption_hard_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "drift_detected_escalation": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "manual_review_required_boundary": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "production_routing_hard_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "provenance_incomplete_escalation": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "recommendation_prohibited_boundary": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "replay_mismatch_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ],
+    "unsupported_hard_stop": [
+      "classification must not authorize production runtime routing",
+      "decision boundaries must not fabricate boundary certainty"
+    ]
+  },
+  "decision_boundary_manifest": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "boundary_contracts": [
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_unsupported_d6c853a4bc95"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_unsupported_signal_823155381335"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_unsupported_summary_b505bd55fb56"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_unsupported_source_94cc358079cf"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_unsupported_preserving_merge_06283f53596d"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "unsupported_hard_stop",
+        "boundary_type_id": "runtime_boundary_unsupported_hard_stop_26124f194eae",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "authorization_prohibited_hard_stop",
+        "boundary_type_id": "runtime_boundary_authorization_prohibited_hard_stop_006052062dd7",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6",
+          "runtime_confidence_blocked_6776a7386682"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "production_routing_hard_stop",
+        "boundary_type_id": "runtime_boundary_production_routing_hard_stop_de3df957a73e",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6",
+          "runtime_confidence_blocked_6776a7386682"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "default_manifest_consumption_hard_stop",
+        "boundary_type_id": "runtime_boundary_default_manifest_consumption_hard_stop_628fa75f934e",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_inferred_9b474e377107",
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_inferred_limited_4cb864b6b08d",
+          "runtime_confidence_partially_validated_9a31daa63c03"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_confidence_summary_544afff0e78d"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_confidence_bounded_merge_b8ac4ada382d"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "confidence_ceiling_stop",
+        "boundary_type_id": "runtime_boundary_confidence_ceiling_stop_ec518382c778",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_conflict_present_f7187d16258f",
+          "runtime_confidence_replay_verified_72845e570513"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_conflict_signal_5027f88802d4",
+          "runtime_evidence_replay_trace_event_96093dcb6d80"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_replay_summary_8ce39999bce8"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_replay_trace_source_31aa8d85b9f3"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_replay_check_a7afe7b94593"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_replay_verified_merge_dad83040ff8d"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "replay_mismatch_stop",
+        "boundary_type_id": "runtime_boundary_replay_mismatch_stop_52ace03e9c1f",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": true,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": true,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_drift_present_97df275b9cef"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_drift_signal_ea46fa921092"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_drift_summary_0b1b6f6c76f2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_drift_detection_source_daa432255d9c"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_drift_check_673a1752a5b4"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_drift_preserving_merge_f2693c48d54a"
+        ],
+        "blocks_downstream_reasoning": false,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "escalation",
+        "boundary_label": "drift_detected_escalation",
+        "boundary_type_id": "runtime_boundary_drift_detected_escalation_8c1ec1b9ac0c",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_conflict_present_f7187d16258f"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_conflict_signal_5027f88802d4"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_risk_summary_432ecbeba2c3"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_conflict_detection_source_3613f58125c5"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_risk_detection_5c956b6207ca"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_conflict_preserving_merge_2cfbc0b68993"
+        ],
+        "blocks_downstream_reasoning": false,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "escalation",
+        "boundary_label": "conflict_detected_escalation",
+        "boundary_type_id": "runtime_boundary_conflict_detected_escalation_f58b0d82abfd",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": true,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_provenance_incomplete_00f371a2724c"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_provenance_summary_bbe496bab320"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_provenance_validation_e8d9d32629cc"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_provenance_preserving_merge_c7a2f6877ab3"
+        ],
+        "blocks_downstream_reasoning": false,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "escalation",
+        "boundary_label": "provenance_incomplete_escalation",
+        "boundary_type_id": "runtime_boundary_provenance_incomplete_escalation_24cf2c21f6a3",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": true,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6",
+          "runtime_confidence_blocked_6776a7386682"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_conflict_signal_5027f88802d4"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_blocker_summary_03d55672f51c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_blocker_preserving_merge_f881fb035d6c"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "hard_stop",
+        "boundary_label": "blocker_detected_stop",
+        "boundary_type_id": "runtime_boundary_blocker_detected_stop_169d4a8bc417",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": true,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_experimental_only_7d3bc626dd86"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6",
+          "runtime_confidence_experimental_only_c99a4bcbef26"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1",
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_downstream_reasoning": true,
+        "blocks_production_authorization": true,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "prohibition",
+        "boundary_label": "recommendation_prohibited_boundary",
+        "boundary_type_id": "runtime_boundary_recommendation_prohibited_boundary_4355dacb8e0b",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_classification_ids": [
+          "runtime_intelligence_experimental_only_7d3bc626dd86",
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_experimental_only_c99a4bcbef26",
+          "runtime_confidence_partially_validated_9a31daa63c03",
+          "runtime_confidence_provenance_incomplete_00f371a2724c"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2",
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_limitation_summary_f2f98f34d5ec"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_limitation_detection_38aa50fe9fdb"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_limitation_preserving_merge_7c56402fec0e"
+        ],
+        "blocks_downstream_reasoning": false,
+        "blocks_production_authorization": false,
+        "blocks_recommendation_logic": true,
+        "blocks_synthesis_execution": true,
+        "boundary_action": "manual_review_required",
+        "boundary_label": "manual_review_required_boundary",
+        "boundary_type_id": "runtime_boundary_manual_review_required_boundary_7557d4e85832",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live decision routing is not enabled",
+          "runtime decision boundary contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "decision boundaries must not fabricate boundary certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": false,
+        "preserves_limitations": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "requires_hash_validation": true,
+        "requires_manual_review": true,
+        "requires_replay_validation": false,
+        "runtime_decision_boundaries_planning_only": true
+      }
+    ],
+    "classification_reference_count": 12,
+    "confidence_reference_count": 12,
+    "deterministic_hash": "548e326b5f7bae6f652753851eeeb5430408e8a8b55df4e290138eb309938ed3",
+    "evidence_reference_count": 12,
+    "explanation_reference_count": 12,
+    "live_decision_routing_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "metadata": {
+      "boundary_certainty_fabricated": false,
+      "conflict_suppression_allowed": false,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "drift_suppression_allowed": false,
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_decision_boundary_contracts",
+      "unsupported_bypass_allowed": false
+    },
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "provenance_reference_count": 12,
+    "reasoning_stage_reference_count": 12,
+    "recommendation_logic_enabled": false,
+    "registry_validation": {
+      "behavior_rule_violation_count": 0,
+      "behavior_rule_violations": {},
+      "confidence_ceiling_boundary_visible": true,
+      "duplicate_detection": {
+        "duplicate_boundary_labels": [],
+        "duplicate_boundary_type_ids": [],
+        "duplicate_deterministic_ranks": []
+      },
+      "escalation_boundary_visible": true,
+      "hard_stop_boundary_visible": true,
+      "invalid_boundary_action_count": 0,
+      "invalid_boundary_actions": [],
+      "invalid_classification_reference_count": 0,
+      "invalid_classification_references": {},
+      "invalid_confidence_reference_count": 0,
+      "invalid_confidence_references": {},
+      "invalid_evidence_reference_count": 0,
+      "invalid_evidence_references": {},
+      "invalid_explanation_reference_count": 0,
+      "invalid_explanation_references": {},
+      "invalid_provenance_reference_count": 0,
+      "invalid_provenance_references": {},
+      "invalid_reasoning_stage_reference_count": 0,
+      "invalid_reasoning_stage_references": {},
+      "invalid_synthesis_reference_count": 0,
+      "invalid_synthesis_references": {},
+      "manual_review_boundary_visible": true,
+      "missing_required_fields": {},
+      "production_authorized_boundaries": [],
+      "production_prohibited_boundary_visible": true,
+      "recommendation_prohibited_boundary_visible": true,
+      "replay_mismatch_boundary_visible": true,
+      "unknown_labels": [],
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_validation": {
+      "first_hash": "bab4c7c5327cce47f803129e81b537c389683f3e79aa6332aaaf8f0360c1e1e3",
+      "replay_stable": true,
+      "second_hash": "bab4c7c5327cce47f803129e81b537c389683f3e79aa6332aaaf8f0360c1e1e3",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "boundary_contract_count": 12,
+      "run_id": "v3_3_phase_8_runtime_decision_boundary_contracts"
+    },
+    "runtime_decision_boundaries_planning_only": true,
+    "runtime_manifest_consumption_enabled": false,
+    "schema_version": "v3_3.runtime_decision_boundary_contracts.1",
+    "synthesis_reference_count": 12
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "unsupported_hard_stop",
+      "authorization_prohibited_hard_stop",
+      "production_routing_hard_stop",
+      "default_manifest_consumption_hard_stop",
+      "confidence_ceiling_stop",
+      "replay_mismatch_stop",
+      "drift_detected_escalation",
+      "conflict_detected_escalation",
+      "provenance_incomplete_escalation",
+      "blocker_detected_stop",
+      "recommendation_prohibited_boundary",
+      "manual_review_required_boundary"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_boundary_labels": [],
+    "duplicate_boundary_type_ids": [],
+    "duplicate_deterministic_ranks": []
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "live_decision_routing_enabled": false,
+  "live_synthesis_execution_enabled": false,
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_decision_boundary_contracts_report"
+  },
+  "phase": "v3.3_phase_8_runtime_decision_boundary_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_DECISION_BOUNDARY_CONTRACT_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "recommendation_logic_enabled": false,
+  "replay_validation_results": {
+    "first_hash": "bab4c7c5327cce47f803129e81b537c389683f3e79aa6332aaaf8f0360c1e1e3",
+    "replay_stable": true,
+    "second_hash": "bab4c7c5327cce47f803129e81b537c389683f3e79aa6332aaaf8f0360c1e1e3",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "runtime_decision_boundaries_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "live_decision_routing_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "no_boundary_contract_is_production_authorized": true,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "recommendation_logic_enabled": false,
+    "runtime_decision_boundaries_remain_planning_only": true
+  },
+  "schema_version": "v3_3.runtime_decision_boundary_contracts_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "548e326b5f7bae6f652753851eeeb5430408e8a8b55df4e290138eb309938ed3",
+    "passed": true,
+    "repeated_hash": "548e326b5f7bae6f652753851eeeb5430408e8a8b55df4e290138eb309938ed3",
+    "sample_hash": "548e326b5f7bae6f652753851eeeb5430408e8a8b55df4e290138eb309938ed3"
+  },
+  "stop_escalation_prohibition_manual_review_rule_validation": {
+    "behavior_rule_violations": {},
+    "passed": true
+  },
+  "summary": {
+    "behavior_rule_violation_count": 0,
+    "blocker_preserving_boundary_count": 7,
+    "conflict_preserving_boundary_count": 3,
+    "contracts_with_explicit_limitations_count": 12,
+    "contracts_with_explicit_risks_count": 12,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "downstream_reasoning_blocking_boundary_count": 8,
+    "drift_preserving_boundary_count": 1,
+    "duplicate_detection_passed": true,
+    "escalation_boundary_count": 3,
+    "hard_stop_boundary_count": 7,
+    "hash_validation_required_boundary_count": 12,
+    "invalid_boundary_action_count": 0,
+    "invalid_classification_reference_count": 0,
+    "invalid_confidence_reference_count": 0,
+    "invalid_evidence_reference_count": 0,
+    "invalid_explanation_reference_count": 0,
+    "invalid_provenance_reference_count": 0,
+    "invalid_reasoning_stage_reference_count": 0,
+    "invalid_synthesis_reference_count": 0,
+    "limitation_preserving_boundary_count": 12,
+    "manual_review_required_boundary_count": 2,
+    "planning_only_marker_count": 0,
+    "production_authorization_blocking_boundary_count": 6,
+    "production_authorized_boundary_count": 0,
+    "production_behavior_changed": false,
+    "prohibition_boundary_count": 1,
+    "recommendation_logic_blocking_boundary_count": 12,
+    "replay_validation_passed": true,
+    "replay_validation_required_boundary_count": 1,
+    "stable_hash_valid": true,
+    "synthesis_execution_blocking_boundary_count": 12,
+    "total_decision_boundary_contract_count": 12,
+    "unsupported_preserving_boundary_count": 1
+  }
+}

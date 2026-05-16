@@ -39,6 +39,25 @@ from .confidence_registry import (
     export_confidence_registry,
     validate_confidence_registry,
 )
+from .decision_boundary_contracts import (
+    BOUNDARY_LABELS,
+    VALID_BOUNDARY_ACTIONS,
+    build_decision_boundary_contract,
+    build_runtime_decision_boundary_manifest,
+    default_runtime_decision_boundary_contracts,
+    order_decision_boundary_contracts,
+    serialize_runtime_decision_boundary_manifest,
+)
+from .decision_boundary_hashing import (
+    hash_decision_boundary_manifest,
+    serialize_decision_boundary_manifest,
+    validate_decision_boundary_replay_stability,
+)
+from .decision_boundary_registry import (
+    detect_duplicate_decision_boundary_contracts,
+    export_decision_boundary_registry,
+    validate_decision_boundary_registry,
+)
 from .evidence_contracts import (
     EVIDENCE_LABELS,
     build_evidence_contract,
@@ -159,6 +178,19 @@ __all__ = [
     "detect_duplicate_confidence_contracts",
     "export_confidence_registry",
     "validate_confidence_registry",
+    "BOUNDARY_LABELS",
+    "VALID_BOUNDARY_ACTIONS",
+    "build_decision_boundary_contract",
+    "build_runtime_decision_boundary_manifest",
+    "default_runtime_decision_boundary_contracts",
+    "order_decision_boundary_contracts",
+    "serialize_runtime_decision_boundary_manifest",
+    "hash_decision_boundary_manifest",
+    "serialize_decision_boundary_manifest",
+    "validate_decision_boundary_replay_stability",
+    "detect_duplicate_decision_boundary_contracts",
+    "export_decision_boundary_registry",
+    "validate_decision_boundary_registry",
     "EVIDENCE_LABELS",
     "build_evidence_contract",
     "build_runtime_evidence_manifest",
