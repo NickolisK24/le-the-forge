@@ -42,6 +42,29 @@ from .coordination_boundary_models import (
     validate_v3_8_boundary_hash_stability,
     validate_v3_8_boundary_serialization_stability,
 )
+from .coordination_compatibility_reasoning import (
+    count_v3_8_compatibility_states,
+    export_v3_8_coordination_compatibility_reasoning_audit,
+    reason_v3_8_coordination_compatibility,
+)
+from .coordination_compatibility_models import (
+    COMPATIBILITY_STATE_COMPATIBLE,
+    COMPATIBILITY_STATE_EXPERIMENTAL,
+    COMPATIBILITY_STATE_INCOMPATIBLE,
+    COMPATIBILITY_STATE_NON_EXECUTABLE,
+    COMPATIBILITY_STATE_PLANNING_ONLY,
+    COMPATIBILITY_STATE_PROHIBITED,
+    COMPATIBILITY_STATE_UNKNOWN,
+    COMPATIBILITY_STATE_UNSUPPORTED,
+    V3_8_COMPATIBILITY_AUDIT_BLOCKED,
+    V3_8_COMPATIBILITY_AUDIT_STABLE,
+    V38CoordinationCompatibilityAudit,
+    V38CoordinationCompatibilityResult,
+    hash_v3_8_compatibility_audit,
+    serialize_v3_8_compatibility_audit,
+    validate_v3_8_compatibility_hash_stability,
+    validate_v3_8_compatibility_serialization_stability,
+)
 
 __all__ = [
     "V3_8_COORDINATION_FOUNDATION_PHASE_ID",
@@ -75,4 +98,23 @@ __all__ = [
     "serialize_v3_8_boundary_audit",
     "validate_v3_8_boundary_hash_stability",
     "validate_v3_8_boundary_serialization_stability",
+    "count_v3_8_compatibility_states",
+    "export_v3_8_coordination_compatibility_reasoning_audit",
+    "reason_v3_8_coordination_compatibility",
+    "COMPATIBILITY_STATE_COMPATIBLE",
+    "COMPATIBILITY_STATE_EXPERIMENTAL",
+    "COMPATIBILITY_STATE_INCOMPATIBLE",
+    "COMPATIBILITY_STATE_NON_EXECUTABLE",
+    "COMPATIBILITY_STATE_PLANNING_ONLY",
+    "COMPATIBILITY_STATE_PROHIBITED",
+    "COMPATIBILITY_STATE_UNKNOWN",
+    "COMPATIBILITY_STATE_UNSUPPORTED",
+    "V3_8_COMPATIBILITY_AUDIT_BLOCKED",
+    "V3_8_COMPATIBILITY_AUDIT_STABLE",
+    "V38CoordinationCompatibilityAudit",
+    "V38CoordinationCompatibilityResult",
+    "hash_v3_8_compatibility_audit",
+    "serialize_v3_8_compatibility_audit",
+    "validate_v3_8_compatibility_hash_stability",
+    "validate_v3_8_compatibility_serialization_stability",
 ]
