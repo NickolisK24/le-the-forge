@@ -187,6 +187,24 @@ from .replay_orchestration_registry import (
     export_replay_orchestration_registry,
     validate_replay_orchestration_registry,
 )
+from .session_governance_contracts import (
+    SESSION_LABELS,
+    build_runtime_session_governance_manifest,
+    build_session_governance_contract,
+    default_runtime_session_governance_contracts,
+    order_session_governance_contracts,
+    serialize_runtime_session_governance_manifest,
+)
+from .session_governance_hashing import (
+    hash_session_governance_manifest,
+    serialize_session_governance_manifest,
+    validate_session_governance_replay_stability,
+)
+from .session_governance_registry import (
+    detect_duplicate_session_governance_contracts,
+    export_session_governance_registry,
+    validate_session_governance_registry,
+)
 
 __all__ = [
     "CLASSIFICATION_LABELS",
@@ -316,4 +334,16 @@ __all__ = [
     "detect_duplicate_replay_orchestration_contracts",
     "export_replay_orchestration_registry",
     "validate_replay_orchestration_registry",
+    "SESSION_LABELS",
+    "build_runtime_session_governance_manifest",
+    "build_session_governance_contract",
+    "default_runtime_session_governance_contracts",
+    "order_session_governance_contracts",
+    "serialize_runtime_session_governance_manifest",
+    "hash_session_governance_manifest",
+    "serialize_session_governance_manifest",
+    "validate_session_governance_replay_stability",
+    "detect_duplicate_session_governance_contracts",
+    "export_session_governance_registry",
+    "validate_session_governance_registry",
 ]
