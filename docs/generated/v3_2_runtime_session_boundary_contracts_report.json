@@ -1,0 +1,291 @@
+{
+  "authorization_context_distributions": {
+    "non_production_authoritative": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+    "sample_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+    "timestamp_excluded_from_hash": true
+  },
+  "future_phase_foundation": [
+    "future phases may evaluate runtime session representation only after session boundaries remain satisfied",
+    "future phases must preserve entrypoint and isolation compatibility",
+    "future phases must continue to block production routing, leakage, and planner ownership crossover"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_context_distributions": {
+    "runtime_isolated": 1
+  },
+  "leakage_blocker_distributions": {
+    "session_leakage_prohibited": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_session_boundary_contract_only": true,
+    "source": "v3_2_runtime_session_boundary_contracts_report"
+  },
+  "mutation_blocker_distributions": {
+    "session_mutation_prohibited": 1
+  },
+  "ownership_crossover_distributions": {
+    "session_ownership_isolated": 1
+  },
+  "phase": "v3.2_phase_3_runtime_session_boundary_contracts",
+  "phase_1_entrypoint_compatibility_summary": {
+    "entrypoint_contract_records": 1,
+    "explicit_opt_in_preserved": true,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "requires_experimental_runtime_eligible": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_2_isolation_compatibility_summary": {
+    "isolation_contract_records": 1,
+    "production_routing_authorized": false,
+    "requires_runtime_isolation_satisfied": true,
+    "runtime_isolation_preserved": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_3_boundaries": [
+    "runtime session boundary contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "session state cannot leak across requests",
+    "session state cannot mutate production planner ownership",
+    "session reuse must be explicitly scoped, deterministic, and non-production",
+    "session termination and rollback containment remain explicit"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_SESSION_BOUNDARY_CONTRACT_READY_FOR_FUTURE_EXPERIMENTAL_RUNTIME_DESIGN_ONLY",
+  "reuse_blocker_distributions": {
+    "session_reuse_prohibited": 1
+  },
+  "rollback_containment_distributions": {
+    "rollback_contained": 1
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_session_behavior_allowed": false,
+    "implicit_session_reuse_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_runtime_session_activation_allowed": false
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "runtime_session_boundary_contracts": {
+    "authorization_context_distribution": {
+      "non_production_authoritative": 1
+    },
+    "blocker_distribution": {},
+    "deterministic_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+    "isolation_context_distribution": {
+      "runtime_isolated": 1
+    },
+    "leakage_blocker_distribution": {
+      "session_leakage_prohibited": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_session_boundary_contract_only": true,
+      "source": "v3_2_runtime_session_boundary_contracts",
+      "stable_generation_token": "v3_2_phase_3_runtime_session_boundary_contracts_token"
+    },
+    "mutation_blocker_distribution": {
+      "session_mutation_prohibited": 1
+    },
+    "ownership_crossover_distribution": {
+      "session_ownership_isolated": 1
+    },
+    "phase_1_entrypoint_compatibility": {
+      "entrypoint_contract_records": 1,
+      "explicit_opt_in_preserved": true,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "requires_experimental_runtime_eligible": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_2_isolation_compatibility": {
+      "isolation_contract_records": 1,
+      "production_routing_authorized": false,
+      "requires_runtime_isolation_satisfied": true,
+      "runtime_isolation_preserved": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "reuse_blocker_distribution": {
+      "session_reuse_prohibited": 1
+    },
+    "rollback_containment_distribution": {
+      "rollback_contained": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "isolation_contract_count": 1,
+      "run_id": "v3_2_phase_3_runtime_session_boundary_contracts",
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_session_request_count": 1,
+      "runtime_session_requests_hash": "03db6fc091ca3692ab956c105fe9d426d2c806b2bb5ce23d9d7152da12ea4367"
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_session_behavior_allowed": false,
+      "implicit_session_reuse_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_runtime_session_activation_allowed": false
+    },
+    "runtime_session_boundary_contracts": [
+      {
+        "blockers": [],
+        "entrypoint_authorization_state": "non_production_authoritative",
+        "entrypoint_contract_status": "experimental_runtime_eligible",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_contract_status": "runtime_isolation_satisfied",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_session_behavior_allowed": false,
+          "governance_only": true,
+          "implicit_session_reuse_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_session_boundary_contract_only": true,
+          "silent_runtime_session_activation_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "rollback_containment_state": "rollback_contained",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_production_consumption_enabled": false,
+        "runtime_session_boundary_contract_id": "v3_2_runtime_session_boundary_656458b63f6d576d",
+        "runtime_session_boundary_status": "runtime_session_boundary_satisfied",
+        "session_authorization_context": "non_production_authoritative",
+        "session_blocker_state": "unblocked_for_contract_only",
+        "session_boundary_authorizes_production_routing": false,
+        "session_boundary_authorizes_runtime_consumption": false,
+        "session_initialization_state": "session_initialization_explicit",
+        "session_isolation_context": "runtime_isolated",
+        "session_leakage_prohibition_state": "session_leakage_prohibited",
+        "session_lifecycle_state": "session_lifecycle_initialized_for_contract_only",
+        "session_mutation_prohibition_state": "session_mutation_prohibited",
+        "session_ownership_state": "session_ownership_isolated",
+        "session_reuse_prohibition_state": "session_reuse_prohibited",
+        "session_termination_requirement_state": "session_termination_required_and_explicit",
+        "session_trace_classification": "runtime_session_boundary_trace_satisfied"
+      }
+    ],
+    "runtime_session_boundary_status_counts": {
+      "runtime_session_boundary_blocked": 0,
+      "runtime_session_boundary_satisfied": 1,
+      "session_authorization_context_missing": 0,
+      "session_initialization_blocked": 0,
+      "session_isolation_context_missing": 0,
+      "session_leakage_blocked": 0,
+      "session_mutation_blocked": 0,
+      "session_ownership_crossover_blocked": 0,
+      "session_reuse_blocked": 0,
+      "session_rollback_containment_required": 0,
+      "session_termination_required": 0
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "session_boundary_authorizes_production_routing": false,
+      "session_boundary_enables_runtime_manifest_consumption": false,
+      "session_boundary_mutates_planner_ownership": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_2.runtime_session_boundary_contracts.1",
+    "session_boundary_state_distribution": {
+      "session_lifecycle_initialized_for_contract_only": 1
+    },
+    "session_initialization_blocker_distribution": {
+      "session_initialization_explicit": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_session_boundary_blocked_count": 0,
+      "runtime_session_boundary_satisfied_count": 1,
+      "session_authorization_context_missing_count": 0,
+      "session_initialization_blocked_count": 0,
+      "session_isolation_context_missing_count": 0,
+      "session_leakage_blocked_count": 0,
+      "session_mutation_blocked_count": 0,
+      "session_ownership_crossover_blocked_count": 0,
+      "session_reuse_blocked_count": 0,
+      "session_rollback_containment_required_count": 0,
+      "session_termination_required_count": 0
+    },
+    "termination_required_distribution": {
+      "session_termination_required_and_explicit": 1
+    }
+  },
+  "schema_version": "v3_2.runtime_session_boundary_contracts_report.1",
+  "session_boundary_state_distributions": {
+    "session_lifecycle_initialized_for_contract_only": 1
+  },
+  "session_initialization_blocker_distributions": {
+    "session_initialization_explicit": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_session_boundary_blocked_count": 0,
+    "runtime_session_boundary_satisfied_count": 1,
+    "session_authorization_context_missing_count": 0,
+    "session_initialization_blocked_count": 0,
+    "session_isolation_context_missing_count": 0,
+    "session_leakage_blocked_count": 0,
+    "session_mutation_blocked_count": 0,
+    "session_ownership_crossover_blocked_count": 0,
+    "session_reuse_blocked_count": 0,
+    "session_rollback_containment_required_count": 0,
+    "session_termination_required_count": 0
+  },
+  "termination_required_distributions": {
+    "session_termination_required_and_explicit": 1
+  }
+}
