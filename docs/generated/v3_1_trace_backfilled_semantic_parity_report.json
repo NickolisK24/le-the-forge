@@ -1,0 +1,144 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "1d50646772e3803ae099d697d8a2454b708376454813bbbf286dac3dfdbcf0d7",
+    "sample_hash": "1d50646772e3803ae099d697d8a2454b708376454813bbbf286dac3dfdbcf0d7",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "controlled_test_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_trace_backfilled_semantic_parity_report"
+  },
+  "phase": "v3.1_phase_23_trace_backfilled_semantic_parity_refresh",
+  "phase_23_boundaries": [
+    "trace-backfilled semantic parity is test-only governance metadata",
+    "confirmed semantic parity is not production approval",
+    "confirmed semantic parity does not authorize production routing",
+    "trace expectations must match deterministic controlled output evidence",
+    "runtime manifest consumption remains disabled",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.trace_backfilled_semantic_parity_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "promoted_from_partial_count": 1,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "semantic_parity_confirmed_count": 1,
+    "semantic_parity_partial_count": 0
+  },
+  "trace_backfilled_semantic_parity": {
+    "blocker_reason_counts": {},
+    "deterministic_hash": "1d50646772e3803ae099d697d8a2454b708376454813bbbf286dac3dfdbcf0d7",
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_trace_backfilled_semantic_parity",
+      "stable_generation_token": "v3_1_phase_23_trace_backfilled_semantic_parity_token"
+    },
+    "mismatched_field_counts": {},
+    "remaining_unavailable_field_counts": {},
+    "run": {
+      "baseline_trace_expectation_backfill_hash": "8acd948034de16ce8c4ec52154b7e9d928509c1fdd9b3b0dd50fbd46cb434d6c",
+      "controlled_consumption_output_validation_hash": "3364892148b06185a66ca86a64243a32ab54324995ed8752be795bed78300677",
+      "controlled_consumption_semantic_parity_hash": "47279660e764a52abdd3e61f0e157f89af79d8b3d74d124dcd329535b83beb22",
+      "run_id": "v3_1_phase_23_trace_backfilled_semantic_parity",
+      "semantic_parity_record_count": 1,
+      "trace_backfill_record_count": 5,
+      "validated_output_record_count": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "semantic_parity_authorizes_production_routing": false,
+      "semantic_parity_is_production_approval": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.trace_backfilled_semantic_parity.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "promoted_from_partial_count": 1,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "semantic_parity_confirmed_count": 1,
+      "semantic_parity_partial_count": 0
+    },
+    "trace_backfilled_semantic_parity_records": [
+      {
+        "backfill_status": "trace_expectations_backfilled",
+        "baseline_id": "v3_1_snapshot_472bcd4c1169053b",
+        "blockers": [],
+        "compared_trace_fields": [
+          {
+            "actual": "v3_1_admission_manifest_198a3e2110f9e5e4",
+            "expected": "v3_1_admission_manifest_198a3e2110f9e5e4",
+            "field": "manifest_id",
+            "matches": true
+          },
+          {
+            "actual": "v3_1_fixture_set_6d3b668a84cfbb69",
+            "expected": "v3_1_fixture_set_6d3b668a84cfbb69",
+            "field": "fixture_set_id",
+            "matches": true
+          }
+        ],
+        "final_semantic_parity_status": "semantic_parity_confirmed",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "mismatched_fields": [],
+        "original_semantic_parity_status": "semantic_parity_partial",
+        "production_output_affected": false,
+        "promoted_from_partial": true,
+        "remaining_unavailable_fields": [],
+        "semantic_parity_authorizes_production_routing": false,
+        "trace_backfilled_semantic_parity_id": "v3_1_trace_backfilled_semantic_parity_08ac4b6263ae4975"
+      }
+    ],
+    "trace_backfilled_semantic_parity_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_missing_backfilled_expectation": 0,
+      "blocked_missing_controlled_output": 0,
+      "blocked_missing_semantic_parity_record": 0,
+      "blocked_trace_conflict": 0,
+      "semantic_parity_confirmed": 1,
+      "semantic_parity_partial": 0
+    }
+  }
+}
