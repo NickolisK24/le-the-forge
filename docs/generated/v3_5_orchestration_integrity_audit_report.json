@@ -1,0 +1,1832 @@
+{
+  "audit_chain_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "coordination_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "dependency_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "deterministic_integrity_hash_examples": {
+    "audit_chain_integrity_failure": "5accdd60b2899e4003f5818f152995233468cdadfe50b529e74cbb0a9729e21c",
+    "coordination_integrity_failure": "204fea2b0658d2aa8dcd23af3d2851ba04e39562bf6d185aab93cc4ac6a35bde",
+    "dependency_integrity_failure": "f291352fcd2cc79616b38aa1567884bc2196c1ab81c513456c2d231fe2f5f981",
+    "diff_drift_integrity_failure": "17a0ee6a485632366337c4e685ef37851b7f692e5dd40fd47ad58c9436057c85",
+    "fully_stable_orchestration_planning_stack": "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1",
+    "governance_integrity_failure": "a95a9571712a8d94c0992cb2ba3606cac1ea599ee16803be5efa06bbd2cfe82d",
+    "hash_instability_failure": "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1",
+    "multiple_simultaneous_integrity_constraints": "d7028f19fdf8bf0114568b135a66f5d4bce17ac8b565ed17d9635bca238e687b",
+    "replay_continuity_failure": "3b21da2329bda35322befac8c0bd841618d8e69887a2be33487883ca5c1b19a2",
+    "snapshot_integrity_failure": "5549c2096e818308d29c4fbb40f92c451f38e0240f6542f84788475346899053",
+    "visibility_integrity_failure": "0d3f7616aefdab3967534e1fecf958acae6ee22f8f54300240206704650835ec"
+  },
+  "deterministic_report_hash": "373ea04da02914df04efad1504d917a116867b1f54734dfba35b9ac974aaac64",
+  "diff_drift_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_behavior_enabled": false,
+    "live_replay_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_audit_storage_enabled": false,
+    "production_consumption_enabled": false,
+    "production_state_reads_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_trace_capture_enabled": false,
+    "scheduling_behavior_enabled": false
+  },
+  "failure_classification_summary": {
+    "entry_count": 20,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 10
+  },
+  "final_integrity_audit_status": "integrity_audit_stable",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "governance_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 9,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "hash_stability_summary": {
+    "failure_count": 1,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 1
+  },
+  "integrity_statuses_supported": [
+    "integrity_audit_prohibited",
+    "integrity_audit_unsupported",
+    "integrity_audit_integrity_compromised",
+    "integrity_audit_blocked_by_governance_failure",
+    "integrity_audit_blocked_by_dependency_failure",
+    "integrity_audit_blocked_by_coordination_failure",
+    "integrity_audit_blocked_by_visibility_failure",
+    "integrity_audit_blocked_by_snapshot_failure",
+    "integrity_audit_blocked_by_diff_failure",
+    "integrity_audit_blocked_by_audit_chain_failure",
+    "integrity_audit_blocked_by_hash_instability",
+    "integrity_audit_requires_manual_review",
+    "integrity_audit_stable"
+  ],
+  "limitation_summary": {
+    "entry_count": 209,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 11
+  },
+  "lineage_integrity_summary": {
+    "failure_count": 1,
+    "reference_count": 10,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 1
+  },
+  "manual_review_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_9_orchestration_planning_integrity_audit_contracts",
+  "planning_only": true,
+  "priority_order": [
+    "integrity_audit_prohibited",
+    "integrity_audit_unsupported",
+    "integrity_audit_integrity_compromised",
+    "integrity_audit_blocked_by_governance_failure",
+    "integrity_audit_blocked_by_dependency_failure",
+    "integrity_audit_blocked_by_coordination_failure",
+    "integrity_audit_blocked_by_visibility_failure",
+    "integrity_audit_blocked_by_snapshot_failure",
+    "integrity_audit_blocked_by_diff_failure",
+    "integrity_audit_blocked_by_audit_chain_failure",
+    "integrity_audit_blocked_by_hash_instability",
+    "integrity_audit_requires_manual_review",
+    "integrity_audit_stable"
+  ],
+  "priority_order_documentation": [
+    "prohibited integrity states dominate all other integrity states",
+    "unsupported integrity states dominate integrity compromise and phase failures",
+    "integrity compromise dominates phase-specific failures",
+    "governance failures dominate dependency failures",
+    "dependency failures dominate coordination failures",
+    "coordination failures dominate visibility failures",
+    "visibility failures dominate snapshot failures",
+    "snapshot failures dominate diff/drift failures",
+    "diff/drift failures dominate audit-chain failures",
+    "audit-chain failures dominate hash instability",
+    "hash instability dominates manual review",
+    "manual review dominates stable",
+    "stable is selected only when no higher-priority integrity constraints exist"
+  ],
+  "readiness_integrity_summary": {
+    "failure_count": 0,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 0
+  },
+  "remaining_limitations": [
+    "integrity auditing validates declarative planning evidence only",
+    "integrity auditing does not persist audit state",
+    "integrity auditing does not execute, route, mutate, write, schedule, dispatch, traverse, or repair orchestration",
+    "integrity auditing does not perform live replay, capture runtime traces, or read production state"
+  ],
+  "replay_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 9,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "rollback_integrity_summary": {
+    "failure_count": 1,
+    "reference_count": 10,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 1
+  },
+  "scenario_coverage": [
+    "fully_stable_orchestration_planning_stack",
+    "governance_integrity_failure",
+    "dependency_integrity_failure",
+    "coordination_integrity_failure",
+    "visibility_integrity_failure",
+    "snapshot_integrity_failure",
+    "diff_drift_integrity_failure",
+    "audit_chain_integrity_failure",
+    "replay_continuity_failure",
+    "hash_instability_failure",
+    "multiple_simultaneous_integrity_constraints"
+  ],
+  "scenario_results": {
+    "audit_chain_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [
+          "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap"
+        ],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_blocked_by_lineage_gap"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_audit_chain_failure; integrity entries: audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap.",
+      "deterministic_hash": "15656b938d53b70ac2daba020a8f1f130ff103ce6cc8bcbbbd41ee74eba79933",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "5accdd60b2899e4003f5818f152995233468cdadfe50b529e74cbb0a9729e21c"
+        ]
+      },
+      "deterministic_integrity_hash": "5accdd60b2899e4003f5818f152995233468cdadfe50b529e74cbb0a9729e21c",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_audit_chain_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "coordination_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "coordination_integrity_failure:coordination_blocked_by_dependency"
+      ],
+      "coordination_integrity": {
+        "failures": [
+          "coordination_integrity_failure:coordination_blocked_by_dependency"
+        ],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_blocked_by_dependency"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_coordination_failure; integrity entries: coordination_integrity_failure:coordination_blocked_by_dependency.",
+      "deterministic_hash": "0fddaffa30fcfc52590d8d4380a8fec53d8499bdb75d81995067d8ef421ee66e",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "204fea2b0658d2aa8dcd23af3d2851ba04e39562bf6d185aab93cc4ac6a35bde"
+        ]
+      },
+      "deterministic_integrity_hash": "204fea2b0658d2aa8dcd23af3d2851ba04e39562bf6d185aab93cc4ac6a35bde",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "coordination_integrity_failure:coordination_blocked_by_dependency"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_coordination_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "dependency_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "dependency_integrity_failure:dependency_missing"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [
+          "dependency_integrity_failure:dependency_missing"
+        ],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_missing"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_dependency_failure; integrity entries: dependency_integrity_failure:dependency_missing.",
+      "deterministic_hash": "47bbd928ebf6073dd7c170ddfd8ce2eb86fcf6209a468ccd1856fbc0c7e59d45",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "f291352fcd2cc79616b38aa1567884bc2196c1ab81c513456c2d231fe2f5f981"
+        ]
+      },
+      "deterministic_integrity_hash": "f291352fcd2cc79616b38aa1567884bc2196c1ab81c513456c2d231fe2f5f981",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "dependency_integrity_failure:dependency_missing"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_dependency_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "diff_drift_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "diff_drift_integrity_failure:snapshot_diff_drift_detected"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_diff_failure; integrity entries: diff_drift_integrity_failure:snapshot_diff_drift_detected.",
+      "deterministic_hash": "445815f1f0b89dfdc1fef3d6435ad835eb58e632d006d95685ab6518d162c4e8",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "17a0ee6a485632366337c4e685ef37851b7f692e5dd40fd47ad58c9436057c85"
+        ]
+      },
+      "deterministic_integrity_hash": "17a0ee6a485632366337c4e685ef37851b7f692e5dd40fd47ad58c9436057c85",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [
+          "diff_drift_integrity_failure:snapshot_diff_drift_detected"
+        ],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_drift_detected"
+        ]
+      },
+      "failure_classification_summary": [
+        "diff_drift_integrity_failure:snapshot_diff_drift_detected"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_diff_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "fully_stable_orchestration_planning_stack": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit is stable; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, live replay, persistent audit storage, runtime trace capture, or production state read is authorized.",
+      "deterministic_hash": "8b798e57740c8d4f5098222ae2ff197465ce6e5e007957743c4ebbd9d4c1f292",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1"
+        ]
+      },
+      "deterministic_integrity_hash": "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_stable",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "governance_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "governance_integrity_references"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_governance_failure; integrity entries: governance_integrity_references.",
+      "deterministic_hash": "56b859b35f609916ee1609073aff4aef49d0d0af653ffe2cac5e4f401a752512",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "a95a9571712a8d94c0992cb2ba3606cac1ea599ee16803be5efa06bbd2cfe82d"
+        ]
+      },
+      "deterministic_integrity_hash": "a95a9571712a8d94c0992cb2ba3606cac1ea599ee16803be5efa06bbd2cfe82d",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "governance_integrity_references"
+      ],
+      "governance_integrity": {
+        "failures": [
+          "governance_integrity_references"
+        ],
+        "integrity_type": "governance",
+        "references": []
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_governance_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "hash_instability_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "integrity_hash_mismatch"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_hash_instability; integrity entries: integrity_hash_mismatch.",
+      "deterministic_hash": "123330a702a595b2c86ef65f4bca9c0998d66d59b95c3524da54fee64ff1e044",
+      "deterministic_hash_stability": {
+        "failures": [
+          "integrity_hash_mismatch"
+        ],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1"
+        ]
+      },
+      "deterministic_integrity_hash": "e44916ae0d3748c7088e444b7480d91a2e335a6d23b26228892bc26b9f0c42b1",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "integrity_hash_mismatch"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_hash_instability",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "multiple_simultaneous_integrity_constraints": {
+      "audit_chain_integrity": {
+        "failures": [
+          "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap"
+        ],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_blocked_by_lineage_gap"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap",
+        "coordination_integrity_failure:coordination_blocked_by_dependency",
+        "dependency_integrity_failure:dependency_missing",
+        "deterministic_serialization_not_verified",
+        "diff_drift_integrity_failure:snapshot_diff_drift_detected",
+        "governance_integrity_references",
+        "lineage_integrity_references",
+        "replay_integrity_references",
+        "rollback_integrity_references",
+        "snapshot_integrity_failure:snapshot_blocked_by_visibility_state",
+        "visibility_integrity_failure:visibility_blocked_by_readiness"
+      ],
+      "coordination_integrity": {
+        "failures": [
+          "coordination_integrity_failure:coordination_blocked_by_dependency"
+        ],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_blocked_by_dependency"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [
+          "dependency_integrity_failure:dependency_missing"
+        ],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_missing"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_prohibited; integrity entries: audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap, coordination_integrity_failure:coordination_blocked_by_dependency, dependency_integrity_failure:dependency_missing, deterministic_serialization_not_verified, diff_drift_integrity_failure:snapshot_diff_drift_detected, governance_integrity_references, lineage_integrity_references, manual_integrity_review, replay_integrity_references, rollback_integrity_references, runtime_execution, snapshot_integrity_failure:snapshot_blocked_by_visibility_state, visibility_integrity_failure:visibility_blocked_by_readiness.",
+      "deterministic_hash": "9aaf0ca94e00cca045330c8bbc90b49188943ccf356ccc5656e284701287ab2d",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "d7028f19fdf8bf0114568b135a66f5d4bce17ac8b565ed17d9635bca238e687b"
+        ]
+      },
+      "deterministic_integrity_hash": "d7028f19fdf8bf0114568b135a66f5d4bce17ac8b565ed17d9635bca238e687b",
+      "deterministic_serialization_integrity": {
+        "failures": [
+          "deterministic_serialization_not_verified"
+        ],
+        "integrity_type": "deterministic_serialization",
+        "references": []
+      },
+      "diff_drift_integrity": {
+        "failures": [
+          "diff_drift_integrity_failure:snapshot_diff_drift_detected"
+        ],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_drift_detected"
+        ]
+      },
+      "failure_classification_summary": [
+        "audit_chain_integrity_failure:audit_chain_blocked_by_lineage_gap",
+        "coordination_integrity_failure:coordination_blocked_by_dependency",
+        "dependency_integrity_failure:dependency_missing",
+        "deterministic_serialization_not_verified",
+        "diff_drift_integrity_failure:snapshot_diff_drift_detected",
+        "governance_integrity_references",
+        "lineage_integrity_references",
+        "replay_integrity_references",
+        "rollback_integrity_references",
+        "snapshot_integrity_failure:snapshot_blocked_by_visibility_state",
+        "visibility_integrity_failure:visibility_blocked_by_readiness"
+      ],
+      "governance_integrity": {
+        "failures": [
+          "governance_integrity_references"
+        ],
+        "integrity_type": "governance",
+        "references": []
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_prohibited",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [
+          "lineage_integrity_references"
+        ],
+        "integrity_type": "lineage",
+        "references": []
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [
+        "manual_integrity_review"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [
+          "replay_integrity_references"
+        ],
+        "integrity_type": "replay",
+        "references": []
+      },
+      "rollback_integrity": {
+        "failures": [
+          "rollback_integrity_references"
+        ],
+        "integrity_type": "rollback",
+        "references": []
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [
+          "snapshot_integrity_failure:snapshot_blocked_by_visibility_state"
+        ],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_blocked_by_visibility_state"
+        ]
+      },
+      "unsupported_prohibited_summary": [
+        "runtime_execution"
+      ],
+      "visibility_integrity": {
+        "failures": [
+          "visibility_integrity_failure:visibility_blocked_by_readiness"
+        ],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_blocked_by_readiness"
+        ]
+      }
+    },
+    "replay_continuity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "replay_integrity_references"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_integrity_compromised; integrity entries: replay_integrity_references.",
+      "deterministic_hash": "806e85579c88796e5bc45756f5e47f2443632ae9b673617fdf728e14810232eb",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "3b21da2329bda35322befac8c0bd841618d8e69887a2be33487883ca5c1b19a2"
+        ]
+      },
+      "deterministic_integrity_hash": "3b21da2329bda35322befac8c0bd841618d8e69887a2be33487883ca5c1b19a2",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "replay_integrity_references"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_integrity_compromised",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [
+          "replay_integrity_references"
+        ],
+        "integrity_type": "replay",
+        "references": []
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "snapshot_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "snapshot_integrity_failure:snapshot_blocked_by_visibility_state"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_snapshot_failure; integrity entries: snapshot_integrity_failure:snapshot_blocked_by_visibility_state.",
+      "deterministic_hash": "437bb58f38dca498c827f0882c68794c20df8f3ff9be8c67a0a4bfba1c4c385f",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "5549c2096e818308d29c4fbb40f92c451f38e0240f6542f84788475346899053"
+        ]
+      },
+      "deterministic_integrity_hash": "5549c2096e818308d29c4fbb40f92c451f38e0240f6542f84788475346899053",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "snapshot_integrity_failure:snapshot_blocked_by_visibility_state"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_snapshot_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [
+          "snapshot_integrity_failure:snapshot_blocked_by_visibility_state"
+        ],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_blocked_by_visibility_state"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_ready_for_planning"
+        ]
+      }
+    },
+    "visibility_integrity_failure": {
+      "audit_chain_integrity": {
+        "failures": [],
+        "integrity_type": "audit_chain",
+        "references": [
+          "audit_chain_stable"
+        ]
+      },
+      "audit_log_writing_enabled": false,
+      "blocker_summary": [
+        "visibility_integrity_failure:visibility_blocked_by_readiness"
+      ],
+      "coordination_integrity": {
+        "failures": [],
+        "integrity_type": "coordination",
+        "references": [
+          "coordination_ready_for_planning"
+        ]
+      },
+      "dependency_integrity": {
+        "failures": [],
+        "integrity_type": "dependency",
+        "references": [
+          "dependency_satisfied"
+        ]
+      },
+      "deterministic_explanation_summary": "Integrity audit classified as integrity_audit_blocked_by_visibility_failure; integrity entries: visibility_integrity_failure:visibility_blocked_by_readiness.",
+      "deterministic_hash": "b65535c9c715ed730ee6ea4b96db7095908fe718072b81523c30f3ae7548440d",
+      "deterministic_hash_stability": {
+        "failures": [],
+        "integrity_type": "deterministic_hash",
+        "references": [
+          "0d3f7616aefdab3967534e1fecf958acae6ee22f8f54300240206704650835ec"
+        ]
+      },
+      "deterministic_integrity_hash": "0d3f7616aefdab3967534e1fecf958acae6ee22f8f54300240206704650835ec",
+      "deterministic_serialization_integrity": {
+        "failures": [],
+        "integrity_type": "deterministic_serialization",
+        "references": [
+          "verified"
+        ]
+      },
+      "diff_drift_integrity": {
+        "failures": [],
+        "integrity_type": "diff_drift",
+        "references": [
+          "snapshot_diff_stable"
+        ]
+      },
+      "failure_classification_summary": [
+        "visibility_integrity_failure:visibility_blocked_by_readiness"
+      ],
+      "governance_integrity": {
+        "failures": [],
+        "integrity_type": "governance",
+        "references": [
+          "governance-consumption-v3-5-phase-1"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "integrity_audit_id": "integrity-audit-v3-5-phase-9",
+      "integrity_audit_status": "integrity_audit_blocked_by_visibility_failure",
+      "limitation_summary": [
+        "audit-chain construction does not capture runtime lineage or traces",
+        "audit-chain construction does not persist audit state",
+        "audit-chain construction does not read production state",
+        "audit-chain construction is declarative and planning-only",
+        "coordination planning graphs are non-executable",
+        "dependency resolution is declarative and non-fetching",
+        "integrity auditing does not capture runtime traces, perform live replay, or read production state",
+        "integrity auditing does not execute, dispatch, route, mutate, write, schedule, or traverse orchestration",
+        "integrity auditing does not persist audit state",
+        "integrity auditing is declarative and planning-only",
+        "no_snapshot_drift_detected",
+        "readiness classification is planning-only",
+        "snapshot generation does not authorize orchestration execution",
+        "snapshot generation does not capture runtime traces",
+        "snapshot generation does not read production state",
+        "snapshot generation is declarative and planning-only",
+        "visibility aggregation does not authorize orchestration execution",
+        "visibility aggregation does not auto-approve planning states",
+        "visibility aggregation is declarative and planning-only"
+      ],
+      "lineage_integrity": {
+        "failures": [],
+        "integrity_type": "lineage",
+        "references": [
+          "lineage-integrity-v3-5-phase-9"
+        ]
+      },
+      "live_replay_enabled": false,
+      "manual_review_summary": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "persistent_audit_storage_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_integrity": {
+        "failures": [],
+        "integrity_type": "readiness",
+        "references": [
+          "ready_for_future_orchestration_planning"
+        ]
+      },
+      "replay_integrity": {
+        "failures": [],
+        "integrity_type": "replay",
+        "references": [
+          "replay-integrity-v3-5-phase-9"
+        ]
+      },
+      "rollback_integrity": {
+        "failures": [],
+        "integrity_type": "rollback",
+        "references": [
+          "rollback-integrity-v3-5-phase-9"
+        ]
+      },
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "snapshot_integrity": {
+        "failures": [],
+        "integrity_type": "snapshot",
+        "references": [
+          "snapshot_ready_for_replay_planning"
+        ]
+      },
+      "unsupported_prohibited_summary": [],
+      "visibility_integrity": {
+        "failures": [
+          "visibility_integrity_failure:visibility_blocked_by_readiness"
+        ],
+        "integrity_type": "visibility",
+        "references": [
+          "visibility_blocked_by_readiness"
+        ]
+      }
+    }
+  },
+  "schema_version": "v3_5.orchestration_integrity_audit_report.1",
+  "serialization_integrity_summary": {
+    "failure_count": 1,
+    "reference_count": 10,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 1
+  },
+  "snapshot_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  },
+  "status_distribution": {
+    "integrity_audit_blocked_by_audit_chain_failure": 1,
+    "integrity_audit_blocked_by_coordination_failure": 1,
+    "integrity_audit_blocked_by_dependency_failure": 1,
+    "integrity_audit_blocked_by_diff_failure": 1,
+    "integrity_audit_blocked_by_governance_failure": 1,
+    "integrity_audit_blocked_by_hash_instability": 1,
+    "integrity_audit_blocked_by_snapshot_failure": 1,
+    "integrity_audit_blocked_by_visibility_failure": 1,
+    "integrity_audit_integrity_compromised": 1,
+    "integrity_audit_prohibited": 1,
+    "integrity_audit_requires_manual_review": 0,
+    "integrity_audit_stable": 1,
+    "integrity_audit_unsupported": 0
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 10,
+    "deterministic_outputs": true,
+    "priority_order_status_selection": true,
+    "replay_safe_integrity_evidence": true,
+    "rollback_safe_integrity_evidence": true,
+    "scenario_count": 11,
+    "stable_integrity_hashing": true,
+    "stable_scenario_count": 1,
+    "stable_serialization": true,
+    "supported_status_count": 13
+  },
+  "visibility_integrity_summary": {
+    "failure_count": 2,
+    "reference_count": 11,
+    "scenario_count": 11,
+    "scenario_with_failures_count": 2
+  }
+}
