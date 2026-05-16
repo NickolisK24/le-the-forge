@@ -1,0 +1,1354 @@
+{
+  "architectural_purpose": "deterministic orchestration planning graph foundations",
+  "autonomous_orchestration_enabled": false,
+  "background_processing_enabled": false,
+  "coverage": {
+    "deterministic_hashing_coverage": true,
+    "deterministic_serialization_coverage": true,
+    "explainability_coverage": true,
+    "governance_continuity_coverage": true,
+    "prohibited_state_detection_coverage": true,
+    "provenance_coverage": true,
+    "replay_continuity_coverage": true,
+    "rollback_continuity_coverage": true,
+    "unsupported_state_detection_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "explainability_hash": "e7a8c1726a4f2c96b65ebf15e1e5f531b8f88a94d32f0548fc227c0f7a483df6",
+    "graph_hash": "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+    "hash_stable": true,
+    "provenance_hash": "d3b6d810591046d98048c1306d3e2b8c41f70650252cb4d1e0c1194fcebb5823",
+    "serialization_stable": true,
+    "validation_hash": "179f7a852f2d89f8af23d4abf34e05d2f6107f739369d7d9b346a7e4d6265070"
+  },
+  "deterministic_report_hash": "0009993d4270eecb3ea3e1d97efcb5582216aefaf6f88f50afac2402794b06a2",
+  "edges_do_not_imply_execution_flow": true,
+  "explainability_result": {
+    "compatibility_visibility_count": 1,
+    "continuity_reference_count": 1,
+    "deterministic_explainability_hash": "e7a8c1726a4f2c96b65ebf15e1e5f531b8f88a94d32f0548fc227c0f7a483df6",
+    "edge_explanation_count": 2,
+    "evidence": [
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "subject_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "subject_type": "edge",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "edge preserves a structural reasoning relationship and does not imply execution flow"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "subject_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "edge",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "edge preserves a structural reasoning relationship and does not imply execution flow"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_explainability_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_explainability_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_explainability_continuity"
+        ],
+        "subject_id": "v3_7_node_explainability_continuity",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_governance_boundary_visibility"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_governance_boundary_visibility"
+        ],
+        "subject_id": "v3_7_node_governance_boundary_visibility",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_provenance_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_provenance_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_provenance_continuity"
+        ],
+        "subject_id": "v3_7_node_provenance_continuity",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      }
+    ],
+    "explainability_status": "v3_7_graph_explainability_stable",
+    "governance_restriction_count": 2,
+    "missing_explanation_subjects": [],
+    "node_explanation_count": 3,
+    "prohibited_boundary_count": 2,
+    "replay_safe": true,
+    "structural_reasoning_only": true,
+    "unsupported_boundary_count": 2
+  },
+  "explicit_limitations": [
+    "graphs are non-executable",
+    "edges do not imply execution",
+    "nodes do not imply executable behavior",
+    "no orchestration capability exists in this graph foundation",
+    "no runtime routing exists",
+    "no scheduling exists",
+    "no dispatch exists",
+    "no execution flow exists",
+    "structural orchestration reasoning only"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "graph_execution_enabled": false,
+  "graph_export": {
+    "autonomous_orchestration_enabled": false,
+    "background_processing_enabled": false,
+    "blockers": [
+      {
+        "finding_id": "v3_7_blocker_execution_prohibited",
+        "finding_kind": "blocker",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "execution capability is prohibited for graph foundations",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      },
+      {
+        "finding_id": "v3_7_blocker_routing_scheduling_dispatch_prohibited",
+        "finding_kind": "blocker",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "routing, scheduling, and dispatch remain prohibited",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      }
+    ],
+    "compatibility_boundaries": [
+      {
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "boundary_id": "v3_6_to_v3_7_graph_foundation_compatibility",
+        "compatibility_status": "compatible_for_structural_reasoning_only",
+        "metadata": [],
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "provenance_id": "v3-7-provenance-v3_6_to_v3_7_graph_foundation_compatibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_6_to_v3_7_graph_foundation_compatibility",
+          "source_kind": "compatibility_boundary",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "source_domain": "v3_6_closeout_and_v3_7_readiness",
+        "target_domain": "v3_7_graph_foundations",
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      }
+    ],
+    "continuity_evidence": [
+      {
+        "compatibility_lineage_references": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_id": "v3_7_graph_continuity_evidence",
+        "deterministic_hash_references": [
+          "v3_7_graph_hash"
+        ],
+        "explainability_lineage_references": [
+          "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_evidence_v3_7_node_explainability_continuity",
+          "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "v3_7_evidence_v3_7_node_provenance_continuity"
+        ],
+        "governance_lineage_references": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "provenance_lineage_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3-7-provenance-v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3-7-provenance-v3_7_node_explainability_continuity",
+          "v3-7-provenance-v3_7_node_governance_boundary_visibility",
+          "v3-7-provenance-v3_7_node_provenance_continuity"
+        ],
+        "replay_lineage_references": [
+          "v3_6_replay_continuity",
+          "v3_7_graph_replay_continuity"
+        ],
+        "rollback_lineage_references": [
+          "v3_6_rollback_continuity",
+          "v3_7_graph_rollback_continuity"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "edge_executable": false,
+        "execution_flow_enabled": false,
+        "explainability_evidence_ids": [
+          "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "governance_boundary_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "identity": {
+          "edge_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "relationship_type": "governance_visibility_supports_provenance_continuity",
+          "source_node_id": "v3_7_node_governance_boundary_visibility",
+          "structural_purpose": "structural_relationship_only_not_execution_flow",
+          "target_node_id": "v3_7_node_provenance_continuity"
+        },
+        "metadata": [],
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "edge",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "traversal_enabled": false,
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      },
+      {
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "edge_executable": false,
+        "execution_flow_enabled": false,
+        "explainability_evidence_ids": [
+          "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "governance_boundary_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "identity": {
+          "edge_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "relationship_type": "provenance_continuity_supports_explainability_continuity",
+          "source_node_id": "v3_7_node_provenance_continuity",
+          "structural_purpose": "structural_relationship_only_not_execution_flow",
+          "target_node_id": "v3_7_node_explainability_continuity"
+        },
+        "metadata": [],
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "edge",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "traversal_enabled": false,
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      }
+    ],
+    "explainability_evidence": [
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_governance_visibility_to_provenance_continuity"
+        ],
+        "subject_id": "v3_7_edge_governance_visibility_to_provenance_continuity",
+        "subject_type": "edge",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "edge preserves a structural reasoning relationship and does not imply execution flow"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_edge_provenance_continuity_to_explainability_continuity"
+        ],
+        "subject_id": "v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "subject_type": "edge",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "edge preserves a structural reasoning relationship and does not imply execution flow"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_explainability_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_explainability_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_explainability_continuity"
+        ],
+        "subject_id": "v3_7_node_explainability_continuity",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_governance_boundary_visibility"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_governance_boundary_visibility"
+        ],
+        "subject_id": "v3_7_node_governance_boundary_visibility",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      },
+      {
+        "compatibility_visibility": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_id": "v3_7_evidence_v3_7_node_provenance_continuity",
+        "governance_restrictions": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "prohibited_boundaries": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_evidence_v3_7_node_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_evidence_v3_7_node_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_evidence_v3_7_node_provenance_continuity",
+          "source_kind": "explainability_evidence",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "provenance_lineage": [
+          "v3_6_closeout_and_v3_7_readiness",
+          "v3_7_node_provenance_continuity"
+        ],
+        "subject_id": "v3_7_node_provenance_continuity",
+        "subject_type": "node",
+        "unsupported_boundaries": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ],
+        "why_exists": "node preserves deterministic structural graph boundary evidence"
+      }
+    ],
+    "governance_boundaries": [
+      {
+        "boundary_id": "v3_7_governance_visibility_boundary",
+        "boundary_type": "governance_visibility",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_governance_visibility_boundary"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_governance_visibility_boundary",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_governance_visibility_boundary",
+          "source_kind": "governance_boundary",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "governance restrictions remain visible in graph evidence",
+        "visibility_status": "visible"
+      },
+      {
+        "boundary_id": "v3_7_non_execution_governance_boundary",
+        "boundary_type": "non_execution",
+        "metadata": [],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_non_execution_governance_boundary",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_non_execution_governance_boundary",
+          "source_kind": "governance_boundary",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "restriction_summary": "graphs model structural orchestration reasoning only",
+        "visibility_status": "visible"
+      }
+    ],
+    "graph_execution_enabled": false,
+    "graph_traversal_execution_enabled": false,
+    "identity": {
+      "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+      "graph_version": "v3.7",
+      "phase_id": "v3_7_graph_foundations",
+      "schema_version": "v3_7.orchestration_planning_graph.1",
+      "structural_purpose": "structural_orchestration_reasoning_only"
+    },
+    "metadata": [
+      {
+        "included_in_hash": true,
+        "metadata_key": "deterministic_serializer",
+        "metadata_value": "json_sort_keys_stable_tuples"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "edge_semantics",
+        "metadata_value": "structural_relationship_only"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "node_semantics",
+        "metadata_value": "declarative_boundary_only"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      }
+    ],
+    "mutation_enabled": false,
+    "nodes": [
+      {
+        "action_enabled": false,
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_evidence_v3_7_node_explainability_continuity"
+        ],
+        "governance_boundary_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "identity": {
+          "node_id": "v3_7_node_explainability_continuity",
+          "node_label": "explainability_continuity",
+          "node_type": "structural_boundary",
+          "structural_purpose": "structural_orchestration_reasoning_only"
+        },
+        "metadata": [],
+        "node_executable": false,
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_explainability_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_explainability_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_explainability_continuity",
+          "source_kind": "node",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      },
+      {
+        "action_enabled": false,
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_evidence_v3_7_node_governance_boundary_visibility"
+        ],
+        "governance_boundary_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "identity": {
+          "node_id": "v3_7_node_governance_boundary_visibility",
+          "node_label": "governance_boundary_visibility",
+          "node_type": "structural_boundary",
+          "structural_purpose": "structural_orchestration_reasoning_only"
+        },
+        "metadata": [],
+        "node_executable": false,
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_governance_boundary_visibility"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_governance_boundary_visibility",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_governance_boundary_visibility",
+          "source_kind": "node",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      },
+      {
+        "action_enabled": false,
+        "blocker_ids": [
+          "v3_7_blocker_execution_prohibited",
+          "v3_7_blocker_routing_scheduling_dispatch_prohibited"
+        ],
+        "compatibility_boundary_ids": [
+          "v3_6_to_v3_7_graph_foundation_compatibility"
+        ],
+        "explainability_evidence_ids": [
+          "v3_7_evidence_v3_7_node_provenance_continuity"
+        ],
+        "governance_boundary_ids": [
+          "v3_7_governance_visibility_boundary",
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "identity": {
+          "node_id": "v3_7_node_provenance_continuity",
+          "node_label": "provenance_continuity",
+          "node_type": "structural_boundary",
+          "structural_purpose": "structural_orchestration_reasoning_only"
+        },
+        "metadata": [],
+        "node_executable": false,
+        "prohibited_domain_ids": [
+          "v3_7_prohibited_graph_execution_domain",
+          "v3_7_prohibited_routing_scheduling_dispatch_domain"
+        ],
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_node_provenance_continuity"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_node_provenance_continuity",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_node_provenance_continuity",
+          "source_kind": "node",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "unsupported_domain_ids": [
+          "v3_7_unsupported_optimization_domain",
+          "v3_7_unsupported_runtime_dispatch_domain"
+        ]
+      }
+    ],
+    "non_executable": true,
+    "optimization_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "planning_only": true,
+    "prohibited_domains": [
+      {
+        "finding_id": "v3_7_prohibited_graph_execution_domain",
+        "finding_kind": "prohibited_domain",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "graph execution is prohibited",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      },
+      {
+        "finding_id": "v3_7_prohibited_routing_scheduling_dispatch_domain",
+        "finding_kind": "prohibited_domain",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "routing, scheduling, and dispatch are prohibited",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      }
+    ],
+    "provenance": {
+      "compatibility_references": [
+        "v3_6_to_v3_7_graph_foundation_compatibility"
+      ],
+      "explainability_references": [
+        "v3_7_graph_explainability_evidence"
+      ],
+      "governance_references": [
+        "v3_7_non_execution_governance_boundary"
+      ],
+      "lineage_references": [
+        "v3-7-deterministic-orchestration-planning-graph",
+        "v3_6_closeout_and_v3_7_readiness"
+      ],
+      "provenance_id": "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+      "replay_lineage_references": [
+        "v3_6_replay_continuity",
+        "v3_7_graph_replay_continuity"
+      ],
+      "rollback_lineage_references": [
+        "v3_6_rollback_continuity",
+        "v3_7_graph_rollback_continuity"
+      ],
+      "source_artifact_id": "v3-7-deterministic-orchestration-planning-graph",
+      "source_kind": "graph",
+      "source_phase_id": "v3_7_graph_foundations"
+    },
+    "recommendation_enabled": false,
+    "routing_enabled": false,
+    "runtime_dispatch_enabled": false,
+    "scheduling_enabled": false,
+    "structural_reasoning_only": true,
+    "unsupported_domains": [
+      {
+        "finding_id": "v3_7_unsupported_optimization_domain",
+        "finding_kind": "unsupported_domain",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "optimization systems are outside the graph foundation domain",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      },
+      {
+        "finding_id": "v3_7_unsupported_runtime_dispatch_domain",
+        "finding_kind": "unsupported_domain",
+        "provenance_references": [
+          "v3_7_non_execution_governance_boundary"
+        ],
+        "reason": "runtime dispatch is outside the graph foundation domain",
+        "scope_id": "v3-7-deterministic-orchestration-planning-graph",
+        "visibility_status": "visible"
+      }
+    ]
+  },
+  "graph_model_counts": {
+    "graph_compatibility_boundary_models": 1,
+    "graph_continuity_evidence_models": 1,
+    "graph_edge_identity_models": 1,
+    "graph_edge_models": 1,
+    "graph_explainability_evidence_models": 1,
+    "graph_explainability_result_models": 1,
+    "graph_governance_boundary_models": 1,
+    "graph_identity_models": 1,
+    "graph_metadata_models": 1,
+    "graph_node_identity_models": 1,
+    "graph_node_models": 1,
+    "graph_provenance_models": 1,
+    "graph_provenance_result_models": 1,
+    "graph_validation_models": 2,
+    "graph_visibility_finding_models": 1
+  },
+  "graph_schema_version": "v3_7.orchestration_planning_graph.1",
+  "graph_structure_counts": {
+    "blocker_count": 2,
+    "compatibility_boundary_count": 1,
+    "continuity_evidence_count": 1,
+    "edge_count": 2,
+    "explainability_evidence_count": 5,
+    "governance_boundary_count": 2,
+    "metadata_count": 4,
+    "node_count": 3,
+    "prohibited_domain_count": 2,
+    "unsupported_domain_count": 2
+  },
+  "graph_traversal_execution_enabled": false,
+  "mutation_enabled": false,
+  "nodes_do_not_imply_executable_behavior": true,
+  "non_executable": true,
+  "optimization_enabled": false,
+  "orchestration_execution_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.7_deterministic_orchestration_graph_foundations",
+  "planning_only": true,
+  "provenance_result": {
+    "compatibility_provenance_preserved": true,
+    "deterministic_provenance_hash": "d3b6d810591046d98048c1306d3e2b8c41f70650252cb4d1e0c1194fcebb5823",
+    "edge_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "governance_provenance_preserved": true,
+    "graph_creation_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "node_provenance_preserved": true,
+    "provenance_record_count": 14,
+    "provenance_status": "v3_7_graph_provenance_continuity_preserved",
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true
+  },
+  "recommendation_enabled": false,
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "routing_enabled": false,
+  "runtime_dispatch_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_foundations_report.1",
+  "structural_orchestration_reasoning_only": true,
+  "summary": {
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "explainability_continuity_verified": true,
+    "governance_continuity_verified": true,
+    "graph_foundations_status": "v3_7_graph_validation_stable",
+    "non_execution_guarantee_verified": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "structural_orchestration_reasoning_only": true
+  },
+  "validation_result": {
+    "deterministic_graph_hash": "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+    "deterministic_validation_hash": "179f7a852f2d89f8af23d4abf34e05d2f6107f739369d7d9b346a7e4d6265070",
+    "duplicate_edge_identity_count": 0,
+    "duplicate_node_identity_count": 0,
+    "error_count": 0,
+    "explainability_continuity_preserved": true,
+    "finding_count": 4,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_prohibited_state_visible:prohibited_domain:v3_7_prohibited_graph_execution_domain",
+        "message": "graph execution is prohibited",
+        "severity": "visibility",
+        "status": "v3_7_graph_prohibited_state_visible",
+        "subject_id": "v3_7_prohibited_graph_execution_domain",
+        "subject_type": "prohibited_domain"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_prohibited_state_visible:prohibited_domain:v3_7_prohibited_routing_scheduling_dispatch_domain",
+        "message": "routing, scheduling, and dispatch are prohibited",
+        "severity": "visibility",
+        "status": "v3_7_graph_prohibited_state_visible",
+        "subject_id": "v3_7_prohibited_routing_scheduling_dispatch_domain",
+        "subject_type": "prohibited_domain"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_unsupported_state_visible:unsupported_domain:v3_7_unsupported_optimization_domain",
+        "message": "optimization systems are outside the graph foundation domain",
+        "severity": "visibility",
+        "status": "v3_7_graph_unsupported_state_visible",
+        "subject_id": "v3_7_unsupported_optimization_domain",
+        "subject_type": "unsupported_domain"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_unsupported_state_visible:unsupported_domain:v3_7_unsupported_runtime_dispatch_domain",
+        "message": "runtime dispatch is outside the graph foundation domain",
+        "severity": "visibility",
+        "status": "v3_7_graph_unsupported_state_visible",
+        "subject_id": "v3_7_unsupported_runtime_dispatch_domain",
+        "subject_type": "unsupported_domain"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "hash_stable": true,
+    "invalid_edge_reference_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "prohibited_state_visible_count": 2,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "serialization_stable": true,
+    "unsupported_state_visible_count": 2,
+    "valid": true,
+    "validation_status": "v3_7_graph_validation_stable",
+    "visibility_finding_count": 4
+  },
+  "validation_totals": {
+    "duplicate_edge_identity_count": 0,
+    "duplicate_node_identity_count": 0,
+    "error_count": 0,
+    "finding_count": 4,
+    "invalid_edge_reference_count": 0,
+    "prohibited_state_visible_count": 2,
+    "unsupported_state_visible_count": 2,
+    "valid": true,
+    "validation_status": "v3_7_graph_validation_stable",
+    "visibility_finding_count": 4
+  }
+}
