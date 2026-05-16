@@ -1,0 +1,137 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "5545f8146c04f2869bcfe3c76cf1040e08e51ef73d3669d7b415acd22d1ee4e2",
+    "sample_hash": "5545f8146c04f2869bcfe3c76cf1040e08e51ef73d3669d7b415acd22d1ee4e2",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "limited_experimental_runtime_guards": {
+    "blocker_reason_counts": {},
+    "deterministic_hash": "5545f8146c04f2869bcfe3c76cf1040e08e51ef73d3669d7b415acd22d1ee4e2",
+    "guard_contract_status_counts": {
+      "blocked_invalid_authorization_state": 0,
+      "blocked_invalid_manifest_eligibility": 0,
+      "blocked_missing_non_production_manifest": 0,
+      "blocked_missing_promotion_readiness": 0,
+      "blocked_production_routing_authorized": 0,
+      "blocked_runtime_consumption_enabled": 0,
+      "guard_contract_ready": 1
+    },
+    "limited_experimental_runtime_guard_records": [
+      {
+        "authorization_state": "non_production_authoritative",
+        "blockers": [],
+        "eligibility_status": "eligible_for_controlled_test_consumption",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "guard_contract_status": "guard_contract_ready",
+        "guard_readiness_authorizes_production_routing": false,
+        "guard_readiness_enables_runtime_behavior": false,
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "guard_contract_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "runtime_behavior_enabled": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "promotion_readiness_status": "ready_for_limited_experimental_runtime_consideration",
+        "runtime_consumption_enabled": false,
+        "runtime_guard_contract_id": "v3_1_limited_runtime_guard_44d3e56c7546418d"
+      }
+    ],
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "guard_contract_only": true,
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "runtime_behavior_enabled": false,
+      "source": "v3_1_limited_experimental_runtime_guards",
+      "stable_generation_token": "v3_1_phase_25_limited_experimental_runtime_guards_token"
+    },
+    "required_guard_conditions": {
+      "authorization_state_required": "non_production_authoritative",
+      "manifest_eligibility_required": "eligible_for_controlled_test_consumption",
+      "production_routing_authorized_required": false,
+      "promotion_readiness_required": "ready_for_limited_experimental_runtime_consideration",
+      "runtime_manifest_consumption_enabled_required": false,
+      "serialized_manifest_must_be_non_production_authoritative": true
+    },
+    "run": {
+      "admission_aware_manifest_serialization_hash": "8fa65134e7e0bf7f839c2ad01b22b26b7fc59c26787f23b7c13331fc5654ecda",
+      "controlled_consumption_promotion_readiness_hash": "65e0814411b9053c2fd50da6c80fbaf960280beee4ddaee2c6a978c32ae6516c",
+      "manifest_consumption_eligibility_hash": "e5776401439dbe2ac5feef32f9c0ae924d7769f691ea3e90fcb1774f39fcbbf4",
+      "manifest_eligibility_record_count": 1,
+      "promotion_readiness_record_count": 1,
+      "run_id": "v3_1_phase_25_limited_experimental_runtime_guards",
+      "serialized_manifest_count": 1
+    },
+    "safety_confirmations": {
+      "guard_readiness_authorizes_production_routing": false,
+      "guard_readiness_enables_runtime_behavior": false,
+      "guard_readiness_is_production_approval": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.limited_experimental_runtime_guards.1",
+    "summary": {
+      "blocked_count": 0,
+      "deterministic": true,
+      "guard_contract_ready_count": 1,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    }
+  },
+  "metadata": {
+    "guard_contract_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_1_limited_experimental_runtime_guards_report"
+  },
+  "phase": "v3.1_phase_25_limited_experimental_runtime_guard_design",
+  "phase_25_boundaries": [
+    "runtime guard readiness is a design contract only",
+    "guard readiness does not enable runtime manifest consumption",
+    "guard readiness does not authorize production routing",
+    "manifests remain non-production-authoritative",
+    "production planner routing remains unchanged",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_RUNTIME_MANIFEST_CONSUMPTION",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.limited_experimental_runtime_guards_report.1",
+  "summary": {
+    "blocked_count": 0,
+    "deterministic": true,
+    "guard_contract_ready_count": 1,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  }
+}
