@@ -1,0 +1,1158 @@
+{
+  "architectural_purpose": "deterministic classification and audit of orchestration-planning coordination boundaries",
+  "audit_status": "v3_8_coordination_boundary_intelligence_stable",
+  "boundary_audit": {
+    "audit_id": "v3_8_coordination_boundary_intelligence_audit",
+    "audit_status": "v3_8_coordination_boundary_intelligence_stable",
+    "boundary_records": [
+      {
+        "classification": "experimental",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_boundary_intelligence_hash",
+          "evidence_id": "evidence_v3_8_boundary_experimental_audit_only",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_relationship_chain_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_relationship_chain_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "boundary intelligence is experimental audit evidence only and does not enable runtime capability",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_boundary_experimental_audit_only",
+          "boundary_source_id": "v3-8-deterministic-coordination-foundation",
+          "boundary_source_type": "coordination_boundary_intelligence_phase",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "non_executable",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_boundary_non_executable_coordination",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "coordination boundary intelligence remains non-executable",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_boundary_non_executable_coordination",
+          "boundary_source_id": "v3-8-deterministic-coordination-foundation",
+          "boundary_source_type": "coordination_foundation",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "planning_only",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_boundary_planning_only_coordination",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "coordination structures are planning-only evidence and do not select runtime paths",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_boundary_planning_only_coordination",
+          "boundary_source_id": "v3-8-deterministic-coordination-foundation",
+          "boundary_source_type": "coordination_foundation",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_prohibited_execution_authorization",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "prohibited coordination state is intentionally blocked: execution authorization is prohibited",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_prohibited_execution_authorization",
+          "boundary_source_id": "v3_8_prohibited_execution_authorization",
+          "boundary_source_type": "prohibited_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_prohibited_orchestration_execution",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "prohibited coordination state is intentionally blocked: orchestration execution is prohibited in v3.8 coordination foundations",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_prohibited_orchestration_execution",
+          "boundary_source_id": "v3_8_prohibited_orchestration_execution",
+          "boundary_source_type": "prohibited_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_prohibited_routing_scheduling_dispatch",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "prohibited coordination state is intentionally blocked: routing, scheduling, and dispatch are prohibited",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_prohibited_routing_scheduling_dispatch",
+          "boundary_source_id": "v3_8_prohibited_routing_scheduling_dispatch",
+          "boundary_source_type": "prohibited_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_prohibited_traversal_execution",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "prohibited coordination state is intentionally blocked: graph traversal execution is prohibited",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_prohibited_traversal_execution",
+          "boundary_source_id": "v3_8_prohibited_traversal_execution",
+          "boundary_source_type": "prohibited_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "supported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_fail_visible_uncertainty_boundary",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "coordination boundary v3_8_fail_visible_uncertainty_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_fail_visible_uncertainty_boundary",
+          "boundary_source_id": "v3_8_fail_visible_uncertainty_boundary",
+          "boundary_source_type": "coordination_boundary",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "supported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_non_execution_coordination_boundary",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "coordination boundary v3_8_non_execution_coordination_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_non_execution_coordination_boundary",
+          "boundary_source_id": "v3_8_non_execution_coordination_boundary",
+          "boundary_source_type": "coordination_boundary",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "supported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_non_routing_scheduling_dispatch_boundary",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "coordination boundary v3_8_non_routing_scheduling_dispatch_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_non_routing_scheduling_dispatch_boundary",
+          "boundary_source_id": "v3_8_non_routing_scheduling_dispatch_boundary",
+          "boundary_source_type": "coordination_boundary",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "supported_risk_hidden": false,
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "unknown",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_unknown_coordination_capability_fail_visible",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "unknown coordination state lacks deterministic support evidence: unknown coordination capabilities must remain fail-visible until explicitly modeled",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_unknown_coordination_capability_fail_visible",
+          "boundary_source_id": "v3_8_unknown_coordination_capability_fail_visible",
+          "boundary_source_type": "unknown_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unknown",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_unknown_runtime_state_fail_visible",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "unknown coordination state lacks deterministic support evidence: unknown runtime states cannot be inferred as supported coordination behavior",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_unknown_runtime_state_fail_visible",
+          "boundary_source_id": "v3_8_unknown_runtime_state_fail_visible",
+          "boundary_source_type": "unknown_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_unsupported_autonomous_orchestration",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "unsupported coordination state remains fail-visible: autonomous orchestration remains outside deterministic coordination foundations",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_unsupported_autonomous_orchestration",
+          "boundary_source_id": "v3_8_unsupported_autonomous_orchestration",
+          "boundary_source_type": "unsupported_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_unsupported_coordination_optimization",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "unsupported coordination state remains fail-visible: coordination optimization is not modeled by v3.8 foundations",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_unsupported_coordination_optimization",
+          "boundary_source_id": "v3_8_unsupported_coordination_optimization",
+          "boundary_source_type": "unsupported_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "evidence": {
+          "continuity_reference": "v3_8_coordination_continuity_state",
+          "deterministic_hash_reference": "v3_8_coordination_foundation_hash",
+          "evidence_id": "evidence_v3_8_unsupported_runtime_coordination_execution",
+          "evidence_scope": "coordination_boundary_audit_evidence_only",
+          "non_executable": true,
+          "provenance_preserved": true,
+          "provenance_reference": "v3_8_coordination_provenance_state",
+          "replay_evidence_reference": "v3_8_coordination_foundation_replay_evidence",
+          "replay_safe": true,
+          "rollback_evidence_reference": "v3_8_coordination_foundation_rollback_evidence",
+          "rollback_safe": true,
+          "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+        },
+        "execution_capability_enabled": false,
+        "explanation": "unsupported coordination state remains fail-visible: runtime coordination execution is outside the v3.8 foundation scope",
+        "fail_visible": true,
+        "hidden": false,
+        "identity": {
+          "boundary_id": "v3_8_unsupported_runtime_coordination_execution",
+          "boundary_source_id": "v3_8_unsupported_runtime_coordination_execution",
+          "boundary_source_type": "unsupported_state",
+          "phase_id": "v3_8_coordination_boundary_intelligence",
+          "schema_version": "v3_8.coordination_boundary_intelligence.1"
+        },
+        "non_executable": true,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "supported_risk_hidden": false,
+        "visibility_status": "fail_visible"
+      }
+    ],
+    "callable_coordination_flow_enabled": false,
+    "classification_counts": {
+      "experimental": 1,
+      "non_executable": 1,
+      "planning_only": 1,
+      "prohibited": 4,
+      "supported": 3,
+      "unknown": 2,
+      "unsupported": 3
+    },
+    "coordination_execution_enabled": false,
+    "deterministic_boundary_hash": "ee0460f5c7f623bfa73bee63955dc30646f5d0ae04ecd94f707ab9252b4dc1f8",
+    "dispatch_enabled": false,
+    "execution_authorization_enabled": false,
+    "findings": [
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "experimental",
+        "boundary_id": "v3_8_boundary_experimental_audit_only",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "boundary intelligence is experimental audit evidence only and does not enable runtime capability",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_experimental_v3_8_boundary_experimental_audit_only",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "non_executable",
+        "boundary_id": "v3_8_boundary_non_executable_coordination",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "coordination boundary intelligence remains non-executable",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_non_executable_v3_8_boundary_non_executable_coordination",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "planning_only",
+        "boundary_id": "v3_8_boundary_planning_only_coordination",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "coordination structures are planning-only evidence and do not select runtime paths",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_planning_only_v3_8_boundary_planning_only_coordination",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "prohibited",
+        "boundary_id": "v3_8_prohibited_execution_authorization",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "prohibited coordination state is intentionally blocked: execution authorization is prohibited",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_prohibited_v3_8_prohibited_execution_authorization",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "prohibited",
+        "boundary_id": "v3_8_prohibited_orchestration_execution",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "prohibited coordination state is intentionally blocked: orchestration execution is prohibited in v3.8 coordination foundations",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_prohibited_v3_8_prohibited_orchestration_execution",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "prohibited",
+        "boundary_id": "v3_8_prohibited_routing_scheduling_dispatch",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "prohibited coordination state is intentionally blocked: routing, scheduling, and dispatch are prohibited",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_prohibited_v3_8_prohibited_routing_scheduling_dispatch",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "prohibited",
+        "boundary_id": "v3_8_prohibited_traversal_execution",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "prohibited coordination state is intentionally blocked: graph traversal execution is prohibited",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_prohibited_v3_8_prohibited_traversal_execution",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "blocked",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "supported",
+        "boundary_id": "v3_8_fail_visible_uncertainty_boundary",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "coordination boundary v3_8_fail_visible_uncertainty_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_supported_v3_8_fail_visible_uncertainty_boundary",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "supported",
+        "boundary_id": "v3_8_non_execution_coordination_boundary",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "coordination boundary v3_8_non_execution_coordination_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_supported_v3_8_non_execution_coordination_boundary",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "supported",
+        "boundary_id": "v3_8_non_routing_scheduling_dispatch_boundary",
+        "deterministic_visibility_status": "visible",
+        "execution_behavior_detected": false,
+        "explanation": "coordination boundary v3_8_non_routing_scheduling_dispatch_boundary is supported as deterministic audit evidence",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_supported_v3_8_non_routing_scheduling_dispatch_boundary",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "info",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "unknown",
+        "boundary_id": "v3_8_unknown_coordination_capability_fail_visible",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "unknown coordination state lacks deterministic support evidence: unknown coordination capabilities must remain fail-visible until explicitly modeled",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_unknown_v3_8_unknown_coordination_capability_fail_visible",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "unknown",
+        "boundary_id": "v3_8_unknown_runtime_state_fail_visible",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "unknown coordination state lacks deterministic support evidence: unknown runtime states cannot be inferred as supported coordination behavior",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_unknown_v3_8_unknown_runtime_state_fail_visible",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "unsupported",
+        "boundary_id": "v3_8_unsupported_autonomous_orchestration",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "unsupported coordination state remains fail-visible: autonomous orchestration remains outside deterministic coordination foundations",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_unsupported_v3_8_unsupported_autonomous_orchestration",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "unsupported",
+        "boundary_id": "v3_8_unsupported_coordination_optimization",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "unsupported coordination state remains fail-visible: coordination optimization is not modeled by v3.8 foundations",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_unsupported_v3_8_unsupported_coordination_optimization",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "blocks_boundary_intelligence": false,
+        "boundary_classification": "unsupported",
+        "boundary_id": "v3_8_unsupported_runtime_coordination_execution",
+        "deterministic_visibility_status": "fail_visible",
+        "execution_behavior_detected": false,
+        "explanation": "unsupported coordination state remains fail-visible: runtime coordination execution is outside the v3.8 foundation scope",
+        "fail_visible": true,
+        "finding_id": "v3_8_boundary_unsupported_v3_8_unsupported_runtime_coordination_execution",
+        "hidden": false,
+        "non_execution_confirmation": true,
+        "provenance_reference": "v3_8_coordination_provenance_state",
+        "replay_safe_evidence": [
+          "v3_8_coordination_foundation_replay_evidence"
+        ],
+        "rollback_safe_evidence": [
+          "v3_8_coordination_foundation_rollback_evidence"
+        ],
+        "severity": "warning",
+        "source_coordination_reference": "v3-8-deterministic-coordination-foundation"
+      }
+    ],
+    "hidden_transition_enabled": false,
+    "non_executable": true,
+    "optimization_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_runtime_mutation_enabled": false,
+    "recommendation_enabled": false,
+    "routing_enabled": false,
+    "scheduling_enabled": false,
+    "silent_fallback_enabled": false,
+    "source_foundation_id": "v3-8-deterministic-coordination-foundation",
+    "traversal_execution_enabled": false,
+    "validation_totals": {
+      "blocking_finding_count": 0,
+      "boundary_count": 15,
+      "execution_boundary_violation_count": 0,
+      "experimental_boundary_count": 1,
+      "fail_visible_prohibited_count": 4,
+      "fail_visible_unknown_count": 2,
+      "fail_visible_unsupported_count": 3,
+      "finding_count": 15,
+      "hidden_finding_count": 0,
+      "non_executable_boundary_count": 1,
+      "non_executable_finding_count": 15,
+      "planning_only_boundary_count": 1,
+      "prohibited_boundary_count": 4,
+      "provenance_continuity_count": 15,
+      "replay_safe_evidence_count": 15,
+      "rollback_safe_evidence_count": 15,
+      "supported_boundary_count": 3,
+      "supported_hidden_risk_count": 0,
+      "unknown_boundary_count": 2,
+      "unsupported_boundary_count": 3,
+      "valid": true
+    }
+  },
+  "boundary_totals": {
+    "boundary_count": 15,
+    "execution_boundary_violation_count": 0,
+    "experimental_boundary_count": 1,
+    "finding_count": 15,
+    "non_executable_boundary_count": 1,
+    "planning_only_boundary_count": 1,
+    "prohibited_boundary_count": 4,
+    "provenance_continuity_count": 15,
+    "replay_safe_evidence_count": 15,
+    "rollback_safe_evidence_count": 15,
+    "supported_boundary_count": 3,
+    "unknown_boundary_count": 2,
+    "unsupported_boundary_count": 3
+  },
+  "callable_coordination_flow_enabled": false,
+  "classification_counts": {
+    "experimental": 1,
+    "non_executable": 1,
+    "planning_only": 1,
+    "prohibited": 4,
+    "supported": 3,
+    "unknown": 2,
+    "unsupported": 3
+  },
+  "classification_semantics": {
+    "experimental": "audit-only evidence with no runtime capability",
+    "non_executable": "explicit confirmation that execution behavior is absent",
+    "planning_only": "coordination evidence only, not runtime path selection",
+    "prohibited": "intentionally blocked and kept fail-visible",
+    "supported": "deterministically supported as planning coordination boundary evidence",
+    "unknown": "not enough deterministic evidence exists and kept fail-visible",
+    "unsupported": "not currently supported and kept fail-visible"
+  },
+  "coordination_execution_enabled": false,
+  "deterministic_guarantees": {
+    "boundary_hash": "ee0460f5c7f623bfa73bee63955dc30646f5d0ae04ecd94f707ab9252b4dc1f8",
+    "boundary_hash_stable": true,
+    "boundary_serialization_stable": true,
+    "hash_algorithm": "sha256_stable_json_v3_8_boundary_intelligence",
+    "serialization_first_length": 37026,
+    "serialization_second_length": 37026
+  },
+  "deterministic_report_hash": "b00e87b59c99fbae44cc49e16b6cbdbb5b42dcf48048de4aea88ec7ce655c785",
+  "dispatch_enabled": false,
+  "execution_authorization_enabled": false,
+  "explicit_limitations": [
+    "v3.8 Phase 2 is non-executable",
+    "v3.8 Phase 2 does not enable orchestration execution",
+    "v3.8 Phase 2 does not enable runtime coordination engines",
+    "v3.8 Phase 2 does not enable routing, scheduling, dispatch, or traversal execution",
+    "v3.8 Phase 2 does not enable optimization or recommendation systems",
+    "v3.8 Phase 2 does not enable execution authorization",
+    "v3.8 Phase 2 does not enable callable coordination flows",
+    "v3.8 Phase 2 does not enable persistent runtime mutation",
+    "v3.8 Phase 2 does not enable hidden transitions or silent fallback behavior"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "hidden_transition_enabled": false,
+  "non_executable": true,
+  "non_execution_guarantees": {
+    "callable_coordination_flow_absent": true,
+    "coordination_execution_absent": true,
+    "dispatch_absent": true,
+    "execution_authorization_absent": true,
+    "execution_boundary_violation_count": 0,
+    "hidden_transition_absent": true,
+    "optimization_absent": true,
+    "orchestration_execution_absent": true,
+    "persistent_runtime_mutation_absent": true,
+    "recommendation_absent": true,
+    "routing_absent": true,
+    "scheduling_absent": true,
+    "silent_fallback_absent": true,
+    "traversal_execution_absent": true
+  },
+  "optimization_enabled": false,
+  "orchestration_execution_enabled": false,
+  "persistent_runtime_mutation_enabled": false,
+  "phase_name": "v3.8_coordination_boundary_intelligence",
+  "provenance_guarantees": {
+    "all_findings_preserve_provenance": true,
+    "provenance_continuity_count": 15
+  },
+  "recommendation_enabled": false,
+  "replay_guarantees": {
+    "all_findings_have_replay_evidence": true,
+    "replay_safe_evidence_count": 15
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_guarantees": {
+    "all_findings_have_rollback_evidence": true,
+    "rollback_safe_evidence_count": 15
+  },
+  "routing_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_8.coordination_boundary_intelligence_report.1",
+  "silent_fallback_enabled": false,
+  "source_foundation_id": "v3-8-deterministic-coordination-foundation",
+  "summary": {
+    "audit_status": "v3_8_coordination_boundary_intelligence_stable",
+    "boundary_count": 15,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "execution_boundary_violation_count": 0,
+    "finding_count": 15,
+    "non_executable_verified": true,
+    "orchestration_boundaries_enforced": true,
+    "prohibited_fail_visible": true,
+    "provenance_verified": true,
+    "replay_verified": true,
+    "rollback_verified": true,
+    "unknown_fail_visible": true,
+    "unsupported_fail_visible": true
+  },
+  "traversal_execution_enabled": false,
+  "visibility_guarantees": {
+    "hidden_finding_count": 0,
+    "prohibited_fail_visible": true,
+    "supported_hidden_risk_count": 0,
+    "unknown_fail_visible": true,
+    "unsupported_fail_visible": true
+  }
+}
