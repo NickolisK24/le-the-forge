@@ -1,0 +1,1680 @@
+{
+  "blocked_dependency_summary": {
+    "blocker_count": 2,
+    "scenario_count": 11,
+    "scenario_with_blockers_count": 2
+  },
+  "compatibility_validation_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "dependency_statuses_supported": [
+    "dependency_prohibited",
+    "dependency_blocked",
+    "dependency_missing",
+    "dependency_lineage_gap",
+    "dependency_environment_mismatch",
+    "dependency_incompatible",
+    "dependency_unsupported",
+    "dependency_requires_manual_review",
+    "dependency_satisfied"
+  ],
+  "deterministic_hash": "f723618b063c9e7e2fc062a9ae56279e9da6ba5ed4adaa5e4e6bf009e7056cd8",
+  "environment_validation_summary": {
+    "entry_count": 4,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "automatic_remediation_enabled": false,
+    "dependency_auto_repair_enabled": false,
+    "dependency_auto_resolution_from_external_sources_enabled": false,
+    "external_dependency_fetching_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_execution_enabled": false,
+    "production_consumption_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false
+  },
+  "final_dependency_resolution_status": "dependency_satisfied",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "lineage_propagation_summary": {
+    "cross_scope_lineage_scenario_count": 1,
+    "lineage_gap_scenario_count": 2,
+    "non_executable_lineage_propagation": true,
+    "scenario_count": 11
+  },
+  "manual_review_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "missing_dependency_summary": {
+    "entry_count": 4,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_3_governance_dependency_resolution_contracts",
+  "planning_only": true,
+  "prohibited_dependency_summary": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "remaining_limitations": [
+    "dependency resolution classifies declarative governance dependency inputs only",
+    "dependency resolution does not execute orchestration",
+    "dependency resolution does not authorize orchestration execution",
+    "dependency resolution does not fetch dependencies from external sources",
+    "dependency resolution does not automatically repair missing dependencies"
+  ],
+  "satisfied_dependency_summary": {
+    "entry_count": 29,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 10
+  },
+  "scenario_coverage": [
+    "fully_satisfied_dependency",
+    "missing_required_evidence",
+    "blocked_dependency",
+    "unsupported_dependency",
+    "prohibited_dependency",
+    "manual_review_required",
+    "compatibility_failure",
+    "environment_mismatch",
+    "dependency_lineage_gap",
+    "multiple_simultaneous_dependency_blockers",
+    "cross_scope_lineage_propagation"
+  ],
+  "scenario_results": {
+    "blocked_dependency": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "blocked_dependency",
+          "blocker_id": "blocked:governance_blocker_visible",
+          "dependency_status": "dependency_blocked",
+          "deterministic_rank": 30,
+          "explanation": "dependency blocker must remain fail-visible",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [
+          "governance_blocker_visible"
+        ],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_blocked",
+      "deterministic_explanation_summary": "Dependency classified as dependency_blocked; fail-visible blockers: blocked:governance_blocker_visible.",
+      "deterministic_hash": "3b9c0a45012c450c41a282e57fe6f87aae4c32041e019358d2b40bafbc9ade02",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "compatibility_failure": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "compatibility_failure",
+          "blocker_id": "compatibility_failure:compatibility_not_verified",
+          "dependency_status": "dependency_incompatible",
+          "deterministic_rank": 50,
+          "explanation": "compatibility dependency failure must remain visible",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [
+        "compatibility_not_verified"
+      ],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": false,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_incompatible",
+      "deterministic_explanation_summary": "Dependency classified as dependency_incompatible; fail-visible blockers: compatibility_failure:compatibility_not_verified.",
+      "deterministic_hash": "78aa7c5ead26567f3fece5a48ea73d117539bb2769519f154d38dbd14ccc1772",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "cross_scope_lineage_propagation": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_governance_dependency_resolution",
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness",
+            "v3_5_governance_consumption_contract"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_satisfied",
+      "deterministic_explanation_summary": "Dependency is satisfied for planning-only governance resolution; no execution, routing, mutation, audit writing, production consumption, external fetching, or automatic remediation is authorized.",
+      "deterministic_hash": "9d5f69fe9ce21e797819d723c6bac9725dd11e17586248b49c559d39f94e0056",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "dependency_lineage_gap": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage_gap",
+          "blocker_id": "lineage_gap:replay_lineage_references",
+          "dependency_status": "dependency_lineage_gap",
+          "deterministic_rank": 70,
+          "explanation": "dependency lineage gap must remain explicit and non-executable",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage_gap",
+          "blocker_id": "lineage_gap:rollback_lineage_references",
+          "dependency_status": "dependency_lineage_gap",
+          "deterministic_rank": 70,
+          "explanation": "dependency lineage gap must remain explicit and non-executable",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [],
+          "rollback_lineage_references": [],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_lineage_gap",
+      "deterministic_explanation_summary": "Dependency classified as dependency_lineage_gap; fail-visible blockers: lineage_gap:replay_lineage_references, lineage_gap:rollback_lineage_references.",
+      "deterministic_hash": "0b8d7be991d9f0585a587fcf97641abc5e36a4b763d9ed613623fe8a4a1842e0",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [
+        "replay_lineage_references",
+        "rollback_lineage_references"
+      ],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [],
+        "rollback_lineage_references": [],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "environment_mismatch": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "environment_mismatch",
+          "blocker_id": "environment_mismatch:environment_not_verified",
+          "dependency_status": "dependency_environment_mismatch",
+          "deterministic_rank": 60,
+          "explanation": "environment dependency mismatch must preserve non-production isolation",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "environment_mismatch",
+          "blocker_id": "environment_mismatch:missing:non_production_environment_isolated",
+          "dependency_status": "dependency_environment_mismatch",
+          "deterministic_rank": 60,
+          "explanation": "environment dependency mismatch must preserve non-production isolation",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": false,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_environment_mismatch",
+      "deterministic_explanation_summary": "Dependency classified as dependency_environment_mismatch; fail-visible blockers: environment_mismatch:environment_not_verified, environment_mismatch:missing:non_production_environment_isolated.",
+      "deterministic_hash": "095c38c5f87d145534277e23af851a612ddefd61dbb3332e1292129068347e1f",
+      "environment_mismatches": [
+        "environment_not_verified",
+        "missing:non_production_environment_isolated"
+      ],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "fully_satisfied_dependency": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_satisfied",
+      "deterministic_explanation_summary": "Dependency is satisfied for planning-only governance resolution; no execution, routing, mutation, audit writing, production consumption, external fetching, or automatic remediation is authorized.",
+      "deterministic_hash": "38e99e9a7a81e50306ecea1e0c8a4ad2a84dc8b9943792592867470edda5949e",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "manual_review_required": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "manual_review",
+          "blocker_id": "manual_review:dependency_owner_review_required",
+          "dependency_status": "dependency_requires_manual_review",
+          "deterministic_rank": 80,
+          "explanation": "manual review requirement must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [
+          "dependency_owner_review_required"
+        ],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_requires_manual_review",
+      "deterministic_explanation_summary": "Dependency classified as dependency_requires_manual_review; fail-visible blockers: manual_review:dependency_owner_review_required.",
+      "deterministic_hash": "2830992e5022b18d153b008bec852b0fc0fff4b3371da8bfe75968e09a4b0e56",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [
+        "dependency_owner_review_required"
+      ],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "missing_required_evidence": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "missing_evidence",
+          "blocker_id": "missing_evidence:v3_5_orchestration_readiness_evaluation",
+          "dependency_status": "dependency_missing",
+          "deterministic_rank": 20,
+          "explanation": "required dependency evidence is missing",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_missing",
+      "deterministic_explanation_summary": "Dependency classified as dependency_missing; fail-visible blockers: missing_evidence:v3_5_orchestration_readiness_evaluation.",
+      "deterministic_hash": "25d3357adb0e9d24f23fe62d4350a9298dd16875b40932fc946e1ef56b53e1a7",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract"
+      ],
+      "unsupported_reasons": []
+    },
+    "multiple_simultaneous_dependency_blockers": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "prohibited_dependency",
+          "blocker_id": "prohibited:prohibited_domain:runtime_execution",
+          "dependency_status": "dependency_prohibited",
+          "deterministic_rank": 5,
+          "explanation": "prohibited dependency request must not be downgraded",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "missing_evidence",
+          "blocker_id": "missing_evidence:v3_4_closeout_and_v3_5_readiness",
+          "dependency_status": "dependency_missing",
+          "deterministic_rank": 20,
+          "explanation": "required dependency evidence is missing",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "missing_evidence",
+          "blocker_id": "missing_evidence:v3_5_governance_consumption_contract",
+          "dependency_status": "dependency_missing",
+          "deterministic_rank": 20,
+          "explanation": "required dependency evidence is missing",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "missing_evidence",
+          "blocker_id": "missing_evidence:v3_5_orchestration_readiness_evaluation",
+          "dependency_status": "dependency_missing",
+          "deterministic_rank": 20,
+          "explanation": "required dependency evidence is missing",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "blocked_dependency",
+          "blocker_id": "blocked:governance_blocker_visible",
+          "dependency_status": "dependency_blocked",
+          "deterministic_rank": 30,
+          "explanation": "dependency blocker must remain fail-visible",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported_dependency",
+          "blocker_id": "unsupported:dependency_not_supported",
+          "dependency_status": "dependency_unsupported",
+          "deterministic_rank": 40,
+          "explanation": "unsupported dependency state must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported_dependency",
+          "blocker_id": "unsupported:unsupported_dependency_scope",
+          "dependency_status": "dependency_unsupported",
+          "deterministic_rank": 40,
+          "explanation": "unsupported dependency state must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "compatibility_failure",
+          "blocker_id": "compatibility_failure:compatibility_not_verified",
+          "dependency_status": "dependency_incompatible",
+          "deterministic_rank": 50,
+          "explanation": "compatibility dependency failure must remain visible",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "environment_mismatch",
+          "blocker_id": "environment_mismatch:environment_not_verified",
+          "dependency_status": "dependency_environment_mismatch",
+          "deterministic_rank": 60,
+          "explanation": "environment dependency mismatch must preserve non-production isolation",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "environment_mismatch",
+          "blocker_id": "environment_mismatch:missing:non_production_environment_isolated",
+          "dependency_status": "dependency_environment_mismatch",
+          "deterministic_rank": 60,
+          "explanation": "environment dependency mismatch must preserve non-production isolation",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage_gap",
+          "blocker_id": "lineage_gap:replay_lineage_references",
+          "dependency_status": "dependency_lineage_gap",
+          "deterministic_rank": 70,
+          "explanation": "dependency lineage gap must remain explicit and non-executable",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage_gap",
+          "blocker_id": "lineage_gap:rollback_lineage_references",
+          "dependency_status": "dependency_lineage_gap",
+          "deterministic_rank": 70,
+          "explanation": "dependency lineage gap must remain explicit and non-executable",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "manual_review",
+          "blocker_id": "manual_review:dependency_owner_review_required",
+          "dependency_status": "dependency_requires_manual_review",
+          "deterministic_rank": 80,
+          "explanation": "manual review requirement must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [
+        "compatibility_not_verified"
+      ],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [
+          "governance_blocker_visible"
+        ],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": false,
+        "dependency_domain": "runtime_execution",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": false,
+        "environment_evidence_ids": [],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": false,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [],
+          "rollback_lineage_references": [],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [
+          "dependency_owner_review_required"
+        ],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": [
+          "unsupported_dependency_scope"
+        ]
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_prohibited",
+      "deterministic_explanation_summary": "Dependency classified as dependency_prohibited; fail-visible blockers: prohibited:prohibited_domain:runtime_execution, missing_evidence:v3_4_closeout_and_v3_5_readiness, missing_evidence:v3_5_governance_consumption_contract, missing_evidence:v3_5_orchestration_readiness_evaluation, blocked:governance_blocker_visible, unsupported:dependency_not_supported, unsupported:unsupported_dependency_scope, compatibility_failure:compatibility_not_verified, environment_mismatch:environment_not_verified, environment_mismatch:missing:non_production_environment_isolated, lineage_gap:replay_lineage_references, lineage_gap:rollback_lineage_references, manual_review:dependency_owner_review_required.",
+      "deterministic_hash": "93ab8361527804f2e16f6c2a7288caa2c3f1c628d79f2f78f9aa4cdd3363def5",
+      "environment_mismatches": [
+        "environment_not_verified",
+        "missing:non_production_environment_isolated"
+      ],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [
+        "replay_lineage_references",
+        "rollback_lineage_references"
+      ],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [],
+        "rollback_lineage_references": [],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [
+        "dependency_owner_review_required"
+      ],
+      "missing_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [
+        "prohibited_domain:runtime_execution"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [],
+      "unsupported_reasons": [
+        "dependency_not_supported",
+        "unsupported_dependency_scope"
+      ]
+    },
+    "prohibited_dependency": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "prohibited_dependency",
+          "blocker_id": "prohibited:prohibited_domain:runtime_execution",
+          "dependency_status": "dependency_prohibited",
+          "deterministic_rank": 5,
+          "explanation": "prohibited dependency request must not be downgraded",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "runtime_execution",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": true,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": []
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_prohibited",
+      "deterministic_explanation_summary": "Dependency classified as dependency_prohibited; fail-visible blockers: prohibited:prohibited_domain:runtime_execution.",
+      "deterministic_hash": "1a4bcd7b0a3633068995962136a79ff6395df9b78b8cb9bde09c07eb14473410",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [
+        "prohibited_domain:runtime_execution"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": []
+    },
+    "unsupported_dependency": {
+      "audit_log_writing_enabled": false,
+      "automatic_remediation_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported_dependency",
+          "blocker_id": "unsupported:dependency_not_supported",
+          "dependency_status": "dependency_unsupported",
+          "deterministic_rank": 40,
+          "explanation": "unsupported dependency state must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported_dependency",
+          "blocker_id": "unsupported:unsupported_dependency_scope",
+          "dependency_status": "dependency_unsupported",
+          "deterministic_rank": 40,
+          "explanation": "unsupported dependency state must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "compatibility_failures": [],
+      "contract": {
+        "audit_log_writing_enabled": false,
+        "automatic_remediation_enabled": false,
+        "blocker_reasons": [],
+        "compatibility_evidence_ids": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_requirements": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "compatibility_verified": true,
+        "dependency_domain": "governance_consumption_planning",
+        "dependency_id": "v3-5-governance-dependency-resolution",
+        "dependency_prohibited": false,
+        "dependency_supported": false,
+        "environment_evidence_ids": [
+          "non_production_environment_isolated"
+        ],
+        "environment_requirements": [
+          "non_production_environment_isolated"
+        ],
+        "environment_verified": true,
+        "external_dependency_fetching_enabled": false,
+        "lineage": {
+          "compatibility_lineage_references": [
+            "v3_4_governance_chain_compatible"
+          ],
+          "downstream_dependency_ids": [
+            "v3_5_orchestration_readiness_evaluation"
+          ],
+          "environment_lineage_references": [
+            "non_production_environment_isolated"
+          ],
+          "replay_lineage_references": [
+            "replay-lineage-v3-5-governance-consumption"
+          ],
+          "rollback_lineage_references": [
+            "rollback-lineage-v3-5-governance-consumption"
+          ],
+          "source_governance_contract_id": "v3_5_governance_consumption_contract",
+          "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+          "upstream_dependency_ids": [
+            "v3_4_closeout_and_v3_5_readiness"
+          ]
+        },
+        "manual_review_reasons": [],
+        "mutation_behavior_enabled": false,
+        "orchestration_execution_enabled": false,
+        "production_consumption_enabled": false,
+        "prohibited_reasons": [],
+        "provided_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "required_evidence_ids": [
+          "v3_4_closeout_and_v3_5_readiness",
+          "v3_5_governance_consumption_contract",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_contract_id": "v3_5_governance_consumption_contract",
+        "target_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "unsupported_reasons": [
+          "unsupported_dependency_scope"
+        ]
+      },
+      "dependency_id": "v3-5-governance-dependency-resolution",
+      "dependency_status": "dependency_unsupported",
+      "deterministic_explanation_summary": "Dependency classified as dependency_unsupported; fail-visible blockers: unsupported:dependency_not_supported, unsupported:unsupported_dependency_scope.",
+      "deterministic_hash": "4477339bbefd0b55cf584429d49d621dd459b4e0d695bda4ad39895fd899773e",
+      "environment_mismatches": [],
+      "external_dependency_fetching_enabled": false,
+      "lineage_gaps": [],
+      "lineage_propagation": {
+        "automatic_repair_enabled": false,
+        "compatibility_lineage_references": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_dependency_ids": [
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "environment_lineage_references": [
+          "non_production_environment_isolated"
+        ],
+        "external_graph_lookup_enabled": false,
+        "non_executable": true,
+        "replay_lineage_references": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_references": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "source_governance_contract_id": "v3_5_governance_consumption_contract",
+        "target_orchestration_scope_id": "orchestration-scope-v3-5-governance-consumption",
+        "upstream_dependency_ids": [
+          "v3_4_closeout_and_v3_5_readiness"
+        ]
+      },
+      "manual_review_reasons": [],
+      "missing_evidence": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "prohibited_reasons": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "satisfied_evidence": [
+        "v3_4_closeout_and_v3_5_readiness",
+        "v3_5_governance_consumption_contract",
+        "v3_5_orchestration_readiness_evaluation"
+      ],
+      "unsupported_reasons": [
+        "dependency_not_supported",
+        "unsupported_dependency_scope"
+      ]
+    }
+  },
+  "schema_version": "v3_5.governance_dependency_resolution_report.1",
+  "status_distribution": {
+    "dependency_blocked": 1,
+    "dependency_environment_mismatch": 1,
+    "dependency_incompatible": 1,
+    "dependency_lineage_gap": 1,
+    "dependency_missing": 1,
+    "dependency_prohibited": 2,
+    "dependency_requires_manual_review": 1,
+    "dependency_satisfied": 2,
+    "dependency_unsupported": 1
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 9,
+    "deterministic_outputs": true,
+    "fail_visible_dependency_blockers": true,
+    "prohibited_reason_preservation": true,
+    "replay_safe_lineage_visibility": true,
+    "rollback_safe_lineage_visibility": true,
+    "satisfied_scenario_count": 2,
+    "scenario_count": 11,
+    "stable_serialization": true,
+    "supported_status_count": 9,
+    "unsupported_reason_preservation": true
+  },
+  "unsupported_dependency_summary": {
+    "entry_count": 4,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  }
+}
