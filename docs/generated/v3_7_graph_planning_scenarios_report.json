@@ -1,0 +1,2175 @@
+{
+  "architectural_purpose": "deterministic graph planning scenario modeling",
+  "audit_result": {
+    "audit_status": "v3_7_graph_scenario_audit_stable",
+    "compatibility_continuity_preserved": true,
+    "deterministic_audit_hash": "1a72bf642cb560dee3fc80e9235603f2a18bbdc4b0bfe5da55848d4dcf1e99a3",
+    "error_count": 0,
+    "evaluation_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "fail_visible_finding_preservation": true,
+    "finding_count": 4,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_visible_blocked:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "blocked scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_visible_blocked",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_visible_prohibited:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "prohibited scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_visible_prohibited",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_visible_unknown:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "unknown scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_visible_unknown",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_visible_unsupported:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "unsupported scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_visible_unsupported",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "graph_snapshot_continuity_preserved": true,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "scenario_comparison_continuity_preserved": true,
+    "scenario_identity_stable": true,
+    "scenario_variation_continuity_preserved": true,
+    "valid": true,
+    "visibility_finding_count": 4
+  },
+  "autonomous_orchestration_enabled": false,
+  "blocked_unsupported_prohibited_unknown_visibility_counts": {
+    "blocked_visible_count": 1,
+    "prohibited_visible_count": 1,
+    "unknown_visible_count": 1,
+    "unsupported_visible_count": 1
+  },
+  "comparison_counts": {
+    "comparison_count": 1,
+    "comparison_selection_enabled": false,
+    "deterministic_comparison_stable": true,
+    "prohibited_delta_count": 1,
+    "unknown_delta_count": 1,
+    "unsupported_delta_count": 1
+  },
+  "comparison_records": [
+    {
+      "baseline_scenario_reference": "v3_7_graph_planning_scenario_baseline",
+      "compared_variation_ids": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "comparison_id": "v3_7_graph_scenario_comparison_default",
+      "comparison_implies_orchestration_selection": false,
+      "compatibility_delta_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "continuity_delta_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative:continuity",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative:continuity",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative:continuity",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative:continuity",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative:continuity",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative:continuity",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative:continuity"
+      ],
+      "deterministic_comparison_hash": "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+      "evaluation_delta_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "explainability_delta_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative:explainability",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative:explainability",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative:explainability",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative:explainability",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative:explainability",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative:explainability",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative:explainability"
+      ],
+      "governance_delta_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "prohibited_state_delta_references": [
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative"
+      ],
+      "provenance_delta_references": [
+        "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "scenario_id": "v3_7_graph_planning_scenario_default",
+      "unknown_state_delta_references": [
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "unsupported_state_delta_references": [
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative"
+      ]
+    }
+  ],
+  "comparisons_do_not_imply_orchestration_selection": true,
+  "coverage": {
+    "audit_coverage": true,
+    "comparison_coverage": true,
+    "explainability_coverage": true,
+    "non_execution_coverage": true,
+    "provenance_coverage": true,
+    "replay_continuity_coverage": true,
+    "rollback_continuity_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "audit_hash": "1a72bf642cb560dee3fc80e9235603f2a18bbdc4b0bfe5da55848d4dcf1e99a3",
+    "explainability_hash": "e940c13eacc6907cb58aacd9cafa38049bbb473a1427a5b4267f9761dbd4b5d2",
+    "hash_stable": true,
+    "provenance_hash": "caf39456e3d465da1ac098e417c894bfa295111868acd3f108ccce8d94c31398",
+    "scenario_hash": "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+    "serialization_stable": true,
+    "validation_hash": "43615b6a3860804b10d5fc57dedebb9df88e7c5f090f322bb0d2c26b4181598c"
+  },
+  "deterministic_report_hash": "007d41af16f8548dc66e4b708662629fb7093f709152774d41e60c671de69802",
+  "dispatch_enabled": false,
+  "execution_capable_scenarios_enabled": false,
+  "explainability_continuity_totals": {
+    "blocked_explanation_count": 3,
+    "changed_between_scenarios_explanation_count": 1,
+    "comparison_explanation_count": 1,
+    "explainability_status": "v3_7_graph_scenario_explainability_stable",
+    "explanation_count": 17,
+    "prohibited_explanation_count": 2,
+    "replay_explanation_count": 1,
+    "scenario_existence_explanation_count": 1,
+    "unknown_explanation_count": 2,
+    "unsupported_explanation_count": 2,
+    "variation_explanation_count": 7,
+    "visible_finding_explanation_count": 7
+  },
+  "explainability_result": {
+    "blocked_explanation_count": 3,
+    "changed_between_scenarios_explanation_count": 1,
+    "comparison_explanation_count": 1,
+    "continuity_supported_explanation_count": 17,
+    "deterministic_explainability_hash": "e940c13eacc6907cb58aacd9cafa38049bbb473a1427a5b4267f9761dbd4b5d2",
+    "explainability_status": "v3_7_graph_scenario_explainability_stable",
+    "explanation_count": 17,
+    "explanations": [
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0001_scenario_status",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "comparison_ready",
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_audit_0001_scenario_status",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "scenario_status",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0001_scenario_status"
+        ],
+        "why_present": "scenario comparison evidence is structurally ready"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0002_blocked_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "blocked",
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail"
+        ],
+        "replay_safe": true,
+        "scenario_status": "blocked",
+        "subject_id": "v3_7_graph_scenario_audit_0002_blocked_visibility",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "blocked_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0002_blocked_visibility"
+        ],
+        "why_present": "blocked scenario states remain fail-visible when present"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0003_unsupported_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail",
+          "unsupported"
+        ],
+        "replay_safe": true,
+        "scenario_status": "unsupported",
+        "subject_id": "v3_7_graph_scenario_audit_0003_unsupported_visibility",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "unsupported_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0003_unsupported_visibility"
+        ],
+        "why_present": "unsupported scenario states remain fail-visible"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0004_prohibited_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "fail_visible",
+          "not_runtime_history",
+          "prohibited",
+          "scenario_audit_trail"
+        ],
+        "replay_safe": true,
+        "scenario_status": "prohibited",
+        "subject_id": "v3_7_graph_scenario_audit_0004_prohibited_visibility",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "prohibited_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0004_prohibited_visibility"
+        ],
+        "why_present": "prohibited scenario states remain fail-visible"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0005_unknown_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail",
+          "unknown"
+        ],
+        "replay_safe": true,
+        "scenario_status": "unknown",
+        "subject_id": "v3_7_graph_scenario_audit_0005_unknown_visibility",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "unknown_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0005_unknown_visibility"
+        ],
+        "why_present": "unknown scenario states remain fail-visible"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0006_evaluation_visibility",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "evaluated",
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail"
+        ],
+        "replay_safe": true,
+        "scenario_status": "evaluated",
+        "subject_id": "v3_7_graph_scenario_audit_0006_evaluation_visibility",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "evaluation_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0006_evaluation_visibility"
+        ],
+        "why_present": "scenario evaluation evidence remains structural"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_audit_v3_7_graph_scenario_audit_0007_non_execution_boundary",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "comparison_ready",
+          "fail_visible",
+          "not_runtime_history",
+          "scenario_audit_trail"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_audit_0007_non_execution_boundary",
+        "subject_type": "scenario_audit_trail",
+        "variation_references": [
+          "non_execution_boundary",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0007_non_execution_boundary"
+        ],
+        "why_present": "scenario contains hypothetical planning evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative:continuity",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative:continuity",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative:continuity",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative:continuity",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative:continuity",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative:continuity",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative:continuity"
+        ],
+        "evaluation_evidence_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_comparison_v3_7_graph_scenario_comparison_default",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "reasoning_chain": [
+          "delta_visibility",
+          "not_orchestration_selection",
+          "scenario_comparison"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_comparison_default",
+        "subject_type": "scenario_comparison",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "why_present": "comparison records deterministic deltas between scenario hypotheses without selecting orchestration"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "062bb1b5a9c5e3283799f23332f79d3c895f0fab5cff571a986ce7c02aa8a266",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "128d611d07b74f7f04cbd983687f34f501b2bb867a72c4b4b8d3cbd09d897002",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "3b4e1e4de013d84052513ae37cda42b99a2222fbf064476adf23e5e4500f790e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "4aa273c10af80c178d944d4ad80474af76d5e4f64ec28d3a5805b33cf9c2582e",
+          "7e5ad10a0669d4007769f8a6b304ac5a5bb9fc8c0835330d604b5544f9dbaae7",
+          "88ba2b8dd160e6c3045bc448c43deb138bcc69219002eb9acb4bec12a1e0728f",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "ddcd5ac44c6312478d65730bd012326bb3dd65d7955b933270ff68d066895cbf"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_replay_v3_7_graph_scenario_replay_evidence_default",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "reasoning_chain": [
+          "continuity_hashes",
+          "non_executable_replay",
+          "scenario_replay_evidence"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_replay_evidence_default",
+        "subject_type": "scenario_replay_evidence",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "visible_finding_references": [],
+        "why_present": "scenario replay evidence preserves deterministic continuity and is not runtime replay state"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_scenario_v3_7_graph_planning_scenario_default",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "hypothetical_variations",
+          "non_executable_boundary",
+          "planning_session_scope",
+          "scenario_identity"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "visible_finding_references": [
+          "v3_7_graph_scenario_audit_0001_scenario_status",
+          "v3_7_graph_scenario_audit_0002_blocked_visibility",
+          "v3_7_graph_scenario_audit_0003_unsupported_visibility",
+          "v3_7_graph_scenario_audit_0004_prohibited_visibility",
+          "v3_7_graph_scenario_audit_0005_unknown_visibility",
+          "v3_7_graph_scenario_audit_0006_evaluation_visibility",
+          "v3_7_graph_scenario_audit_0007_non_execution_boundary"
+        ],
+        "why_present": "scenario groups deterministic hypothetical planning evidence without runtime branching"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "compatible"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative"
+        ],
+        "reasoning_chain": [
+          "compatible",
+          "compatible",
+          "hypothetical_variation",
+          "not_runtime_branch",
+          "supported"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative"
+        ],
+        "visible_finding_references": [
+          "compatible",
+          "compatible",
+          "hypothetical_structural_relationship",
+          "supported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models structural_relationship_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "governance_restricted"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative"
+        ],
+        "reasoning_chain": [
+          "governance_restricted",
+          "governance_restricted",
+          "governance_restricted",
+          "hypothetical_variation",
+          "not_runtime_branch"
+        ],
+        "replay_safe": true,
+        "scenario_status": "blocked",
+        "subject_id": "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative"
+        ],
+        "visible_finding_references": [
+          "governance_restricted",
+          "governance_restricted",
+          "governance_restricted",
+          "hypothetical_governance_boundary",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models governance_classification_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "compatibility_restricted"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative"
+        ],
+        "reasoning_chain": [
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "hypothetical_variation",
+          "not_runtime_branch"
+        ],
+        "replay_safe": true,
+        "scenario_status": "blocked",
+        "subject_id": "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative"
+        ],
+        "visible_finding_references": [
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "hypothetical_compatibility_boundary",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models compatibility_classification_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "experimental"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative"
+        ],
+        "reasoning_chain": [
+          "compatible",
+          "experimental",
+          "hypothetical_variation",
+          "not_runtime_branch",
+          "supported"
+        ],
+        "replay_safe": true,
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative"
+        ],
+        "visible_finding_references": [
+          "compatible",
+          "experimental",
+          "hypothetical_evaluation_chain",
+          "supported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models evaluation_chain_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "prohibited"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative"
+        ],
+        "reasoning_chain": [
+          "hypothetical_variation",
+          "not_runtime_branch",
+          "prohibited",
+          "prohibited",
+          "prohibited"
+        ],
+        "replay_safe": true,
+        "scenario_status": "prohibited",
+        "subject_id": "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative"
+        ],
+        "visible_finding_references": [
+          "hypothetical_prohibited_state",
+          "prohibited",
+          "prohibited",
+          "prohibited",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models prohibited_state_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "unsupported"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative"
+        ],
+        "reasoning_chain": [
+          "hypothetical_variation",
+          "not_runtime_branch",
+          "unsupported",
+          "unsupported",
+          "unsupported"
+        ],
+        "replay_safe": true,
+        "scenario_status": "unsupported",
+        "subject_id": "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative"
+        ],
+        "visible_finding_references": [
+          "hypothetical_unsupported_state",
+          "unsupported",
+          "unsupported",
+          "unsupported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models unsupported_state_alternative as structural hypothetical evidence only"
+      },
+      {
+        "comparison_references": [
+          "v3_7_graph_scenario_comparison_default"
+        ],
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evaluation_evidence_references": [
+          "unknown"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_variation_v3_7_graph_scenario_variation_0007_unknown_state_alternative",
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "planning_session_references": [
+          "v3_7_graph_planning_session_default"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "reasoning_chain": [
+          "hypothetical_variation",
+          "not_runtime_branch",
+          "unknown",
+          "unknown",
+          "unknown"
+        ],
+        "replay_safe": true,
+        "scenario_status": "unknown",
+        "subject_id": "v3_7_graph_scenario_variation_0007_unknown_state_alternative",
+        "subject_type": "scenario_variation",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "visible_finding_references": [
+          "hypothetical_unknown_state",
+          "unknown",
+          "unknown",
+          "unknown",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "why_present": "variation models unknown_state_alternative as structural hypothetical evidence only"
+      }
+    ],
+    "missing_explanation_subjects": [],
+    "prohibited_explanation_count": 2,
+    "provenance_supported_explanation_count": 17,
+    "replay_explanation_count": 1,
+    "replay_safe": true,
+    "scenario_existence_explanation_count": 1,
+    "unknown_explanation_count": 2,
+    "unsupported_explanation_count": 2,
+    "variation_explanation_count": 7,
+    "visible_finding_explanation_count": 7
+  },
+  "explicit_limitations": [
+    "scenarios are non-executable",
+    "scenarios are hypothetical planning evidence only",
+    "hypothetical variations are not runtime branches",
+    "scenario replay evidence is not runtime replay",
+    "comparisons do not imply orchestration selection",
+    "scenario status does not authorize execution",
+    "graph planning scenarios do not enable routing, scheduling, dispatch, or traversal"
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "graph_execution_enabled": false,
+  "graph_planning_scenarios_do_not_enable_routing_scheduling_dispatch_traversal": true,
+  "graph_traversal_execution_enabled": false,
+  "hypothetical_variations_are_not_runtime_branches": true,
+  "optimization_engine_enabled": false,
+  "orchestration_state_machine_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.7_graph_planning_scenarios",
+  "planning_scenario": {
+    "audit_trail": [
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0001_scenario_status",
+        "audit_order": 1,
+        "audit_type": "scenario_status",
+        "evidence_references": [
+          "scenario_status",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "scenario comparison evidence is structurally ready",
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0002_blocked_visibility",
+        "audit_order": 2,
+        "audit_type": "blocked_visibility",
+        "evidence_references": [
+          "blocked_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "blocked scenario states remain fail-visible when present",
+        "scenario_status": "blocked",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0003_unsupported_visibility",
+        "audit_order": 3,
+        "audit_type": "unsupported_visibility",
+        "evidence_references": [
+          "unsupported_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "unsupported scenario states remain fail-visible",
+        "scenario_status": "unsupported",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0004_prohibited_visibility",
+        "audit_order": 4,
+        "audit_type": "prohibited_visibility",
+        "evidence_references": [
+          "prohibited_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "prohibited scenario states remain fail-visible",
+        "scenario_status": "prohibited",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0005_unknown_visibility",
+        "audit_order": 5,
+        "audit_type": "unknown_visibility",
+        "evidence_references": [
+          "unknown_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "unknown scenario states remain fail-visible",
+        "scenario_status": "unknown",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0006_evaluation_visibility",
+        "audit_order": 6,
+        "audit_type": "evaluation_visibility",
+        "evidence_references": [
+          "evaluation_visibility",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "scenario evaluation evidence remains structural",
+        "scenario_status": "evaluated",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "audit_entry_id": "v3_7_graph_scenario_audit_0007_non_execution_boundary",
+        "audit_order": 7,
+        "audit_type": "non_execution_boundary",
+        "evidence_references": [
+          "non_execution_boundary",
+          "v3_7_graph_planning_scenario_default"
+        ],
+        "fail_visible": true,
+        "hidden": false,
+        "message": "scenario contains hypothetical planning evidence only",
+        "scenario_status": "comparison_ready",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      }
+    ],
+    "autonomous_orchestration_enabled": false,
+    "comparison_evidence": [
+      {
+        "baseline_scenario_reference": "v3_7_graph_planning_scenario_baseline",
+        "compared_variation_ids": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "comparison_id": "v3_7_graph_scenario_comparison_default",
+        "comparison_implies_orchestration_selection": false,
+        "compatibility_delta_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "continuity_delta_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative:continuity",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative:continuity",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative:continuity",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative:continuity",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative:continuity",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative:continuity",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative:continuity"
+        ],
+        "deterministic_comparison_hash": "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+        "evaluation_delta_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "explainability_delta_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative:explainability",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative:explainability",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative:explainability",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative:explainability",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative:explainability",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative:explainability",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative:explainability"
+        ],
+        "governance_delta_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "prohibited_state_delta_references": [
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative"
+        ],
+        "provenance_delta_references": [
+          "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "unknown_state_delta_references": [
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "unsupported_state_delta_references": [
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative"
+        ]
+      }
+    ],
+    "comparisons_do_not_imply_orchestration_selection": true,
+    "continuity_hash_references": [
+      "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+      "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+      "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+      "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+    ],
+    "dispatch_enabled": false,
+    "evaluation_evidence_references": [
+      "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+      "evaluation_finding_rule_compat_governance_to_structure",
+      "evaluation_finding_rule_compat_graph_execution_prohibited",
+      "evaluation_finding_rule_compat_legacy_incompatible",
+      "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+      "evaluation_finding_rule_compat_structure_to_experimental",
+      "evaluation_finding_rule_compat_structure_to_structure",
+      "evaluation_finding_rule_compat_unknown_external",
+      "evaluation_structural_continuity_warning",
+      "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+      "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+      "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+      "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+      "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+      "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+      "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+      "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+      "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+      "v3_7_graph_planning_session_evaluation_evidence"
+    ],
+    "execution_capable_scenarios_enabled": false,
+    "explainability_reference_ids": [
+      "v3_7_graph_scenario_explainability"
+    ],
+    "graph_execution_enabled": false,
+    "graph_planning_scenarios_do_not_enable_routing_scheduling_dispatch_traversal": true,
+    "graph_snapshot_references": [
+      "v3_7_graph_planning_session_snapshot_default"
+    ],
+    "graph_traversal_execution_enabled": false,
+    "hypothetical_planning_evidence_only": true,
+    "hypothetical_variations_are_not_runtime_branches": true,
+    "identity": {
+      "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+      "phase_id": "v3_7_graph_planning_scenarios",
+      "planning_session_id": "v3_7_graph_planning_session_default",
+      "scenario_id": "v3_7_graph_planning_scenario_default",
+      "scenario_version": "v3.7",
+      "stable_identity_key": "48ff821ee33146fa646008a165dbc48aba83e93a859ae5afaaee881ce6eec6af"
+    },
+    "metadata": [
+      {
+        "metadata_key": "comparison_semantics",
+        "metadata_value": "comparison_does_not_select_or_execute"
+      },
+      {
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      },
+      {
+        "metadata_key": "scenario_semantics",
+        "metadata_value": "deterministic_hypothetical_planning_artifact"
+      },
+      {
+        "metadata_key": "variation_semantics",
+        "metadata_value": "structural_hypothetical_evidence_only"
+      }
+    ],
+    "optimization_engine_enabled": false,
+    "orchestration_state_machine_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "planning_session_references": [
+      "v3_7_graph_planning_session_default"
+    ],
+    "provenance": {
+      "compatibility_references": [
+        "v3_6_to_v3_7_graph_foundation_compatibility"
+      ],
+      "explainability_references": [
+        "v3_7_graph_explainability_evidence"
+      ],
+      "governance_references": [
+        "v3_7_non_execution_governance_boundary"
+      ],
+      "lineage_references": [
+        "v3_6_closeout_and_v3_7_readiness",
+        "v3_7_graph_planning_scenario_default"
+      ],
+      "provenance_id": "v3-7-provenance-v3_7_graph_planning_scenario_default",
+      "replay_lineage_references": [
+        "v3_6_replay_continuity",
+        "v3_7_graph_replay_continuity"
+      ],
+      "rollback_lineage_references": [
+        "v3_6_rollback_continuity",
+        "v3_7_graph_rollback_continuity"
+      ],
+      "source_artifact_id": "v3_7_graph_planning_scenario_default",
+      "source_kind": "graph_planning_scenario",
+      "source_phase_id": "v3_7_graph_foundations"
+    },
+    "recommendation_enabled": false,
+    "replay_evidence": [
+      {
+        "continuity_hashes": [
+          "062bb1b5a9c5e3283799f23332f79d3c895f0fab5cff571a986ce7c02aa8a266",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "128d611d07b74f7f04cbd983687f34f501b2bb867a72c4b4b8d3cbd09d897002",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "3b4e1e4de013d84052513ae37cda42b99a2222fbf064476adf23e5e4500f790e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "4aa273c10af80c178d944d4ad80474af76d5e4f64ec28d3a5805b33cf9c2582e",
+          "7e5ad10a0669d4007769f8a6b304ac5a5bb9fc8c0835330d604b5544f9dbaae7",
+          "88ba2b8dd160e6c3045bc448c43deb138bcc69219002eb9acb4bec12a1e0728f",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "ddcd5ac44c6312478d65730bd012326bb3dd65d7955b933270ff68d066895cbf"
+        ],
+        "evaluation_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning",
+          "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+          "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+          "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+          "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+          "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+          "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+          "v3_7_graph_planning_session_evaluation_evidence"
+        ],
+        "execution_authorization": false,
+        "explainability_references": [
+          "v3_7_graph_scenario_explainability"
+        ],
+        "graph_snapshot_references": [
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "non_executable_replay_evidence": true,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ],
+        "replay_evidence_id": "v3_7_graph_scenario_replay_evidence_default",
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity",
+          "v3_7_graph_planning_session_rollback_evidence"
+        ],
+        "runtime_replay_state": false,
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "variation_references": [
+          "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+        ]
+      }
+    ],
+    "rollback_continuity_references": [
+      "v3_7_graph_evaluation_rollback_continuity"
+    ],
+    "routing_enabled": false,
+    "runtime_branching_behavior_enabled": false,
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_enabled": false,
+    "runtime_orchestration_history_enabled": false,
+    "scenario_execution_enabled": false,
+    "scenario_replay_evidence_is_not_runtime_replay": true,
+    "scenario_status_does_not_authorize_execution": true,
+    "scenarios_are_non_executable": true,
+    "scheduling_enabled": false,
+    "status": "comparison_ready",
+    "variations": [
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "compatible",
+        "evaluation_classification": "compatible",
+        "evidence_references": [
+          "compatible",
+          "compatible",
+          "hypothetical_structural_relationship",
+          "supported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "supported",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_structural_relationship",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0001_structural_relationship_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "variation_type": "structural_relationship_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "governance_restricted",
+        "evaluation_classification": "governance_restricted",
+        "evidence_references": [
+          "governance_restricted",
+          "governance_restricted",
+          "governance_restricted",
+          "hypothetical_governance_boundary",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "governance_restricted",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_governance_boundary",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0002_governance_classification_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "variation_type": "governance_classification_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "compatibility_restricted",
+        "evaluation_classification": "compatibility_restricted",
+        "evidence_references": [
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "compatibility_restricted",
+          "hypothetical_compatibility_boundary",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "compatibility_restricted",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_compatibility_boundary",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "variation_type": "compatibility_classification_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "compatible",
+        "evaluation_classification": "experimental",
+        "evidence_references": [
+          "compatible",
+          "experimental",
+          "hypothetical_evaluation_chain",
+          "supported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "supported",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_evaluation_chain",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "variation_type": "evaluation_chain_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "prohibited",
+        "evaluation_classification": "prohibited",
+        "evidence_references": [
+          "hypothetical_prohibited_state",
+          "prohibited",
+          "prohibited",
+          "prohibited",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "prohibited",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_prohibited_state",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0005_prohibited_state_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "variation_type": "prohibited_state_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "unsupported",
+        "evaluation_classification": "unsupported",
+        "evidence_references": [
+          "hypothetical_unsupported_state",
+          "unsupported",
+          "unsupported",
+          "unsupported",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "unsupported",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_unsupported_state",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0006_unsupported_state_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "variation_type": "unsupported_state_alternative"
+      },
+      {
+        "baseline_reference": "v3_7_graph_planning_scenario_baseline",
+        "compatibility_classification": "unknown",
+        "evaluation_classification": "unknown",
+        "evidence_references": [
+          "hypothetical_unknown_state",
+          "unknown",
+          "unknown",
+          "unknown",
+          "v3_7_graph_planning_session_default",
+          "v3_7_graph_planning_session_snapshot_default"
+        ],
+        "executable_orchestration_branch": false,
+        "governance_classification": "unknown",
+        "graph_snapshot_reference": "v3_7_graph_planning_session_snapshot_default",
+        "hypothetical_relationship": "hypothetical_unknown_state",
+        "planning_session_reference": "v3_7_graph_planning_session_default",
+        "provenance": {
+          "compatibility_references": [
+            "v3_6_to_v3_7_graph_foundation_compatibility"
+          ],
+          "explainability_references": [
+            "v3_7_graph_explainability_evidence"
+          ],
+          "governance_references": [
+            "v3_7_non_execution_governance_boundary"
+          ],
+          "lineage_references": [
+            "v3_6_closeout_and_v3_7_readiness",
+            "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+          ],
+          "provenance_id": "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative",
+          "replay_lineage_references": [
+            "v3_6_replay_continuity",
+            "v3_7_graph_replay_continuity"
+          ],
+          "rollback_lineage_references": [
+            "v3_6_rollback_continuity",
+            "v3_7_graph_rollback_continuity"
+          ],
+          "source_artifact_id": "v3_7_graph_scenario_variation_0007_unknown_state_alternative",
+          "source_kind": "graph_planning_scenario_variation",
+          "source_phase_id": "v3_7_graph_foundations"
+        },
+        "scenario_id": "v3_7_graph_planning_scenario_default",
+        "structural_hypothetical_evidence_only": true,
+        "variation_id": "v3_7_graph_scenario_variation_0007_unknown_state_alternative",
+        "variation_type": "unknown_state_alternative"
+      }
+    ]
+  },
+  "planning_scenario_intelligence": true,
+  "provenance_continuity_totals": {
+    "comparison_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "graph_snapshot_provenance_preserved": true,
+    "planning_session_provenance_preserved": true,
+    "provenance_record_count": 8,
+    "provenance_status": "v3_7_graph_scenario_provenance_preserved",
+    "replay_provenance_preserved": true,
+    "rollback_provenance_preserved": true,
+    "scenario_creation_provenance_preserved": true
+  },
+  "provenance_result": {
+    "comparison_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "deterministic_provenance_hash": "caf39456e3d465da1ac098e417c894bfa295111868acd3f108ccce8d94c31398",
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "graph_snapshot_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "planning_session_provenance_preserved": true,
+    "provenance_record_count": 8,
+    "provenance_status": "v3_7_graph_scenario_provenance_preserved",
+    "replay_continuity_preserved": true,
+    "replay_provenance_preserved": true,
+    "rollback_continuity_preserved": true,
+    "rollback_provenance_preserved": true,
+    "scenario_creation_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "replay_evidence_counts": {
+    "execution_authorization": false,
+    "non_executable_replay_evidence": true,
+    "replay_evidence_count": 1,
+    "rollback_reference_count": 2,
+    "runtime_replay_state": false
+  },
+  "replay_evidence_records": [
+    {
+      "continuity_hashes": [
+        "062bb1b5a9c5e3283799f23332f79d3c895f0fab5cff571a986ce7c02aa8a266",
+        "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "128d611d07b74f7f04cbd983687f34f501b2bb867a72c4b4b8d3cbd09d897002",
+        "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+        "3b4e1e4de013d84052513ae37cda42b99a2222fbf064476adf23e5e4500f790e",
+        "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+        "4aa273c10af80c178d944d4ad80474af76d5e4f64ec28d3a5805b33cf9c2582e",
+        "7e5ad10a0669d4007769f8a6b304ac5a5bb9fc8c0835330d604b5544f9dbaae7",
+        "88ba2b8dd160e6c3045bc448c43deb138bcc69219002eb9acb4bec12a1e0728f",
+        "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+        "ddcd5ac44c6312478d65730bd012326bb3dd65d7955b933270ff68d066895cbf"
+      ],
+      "evaluation_references": [
+        "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "evaluation_finding_rule_compat_governance_to_structure",
+        "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "evaluation_finding_rule_compat_legacy_incompatible",
+        "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "evaluation_finding_rule_compat_structure_to_experimental",
+        "evaluation_finding_rule_compat_structure_to_structure",
+        "evaluation_finding_rule_compat_unknown_external",
+        "evaluation_structural_continuity_warning",
+        "trace_evaluation_step_0001_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "trace_evaluation_step_0002_evaluation_finding_rule_compat_governance_to_structure",
+        "trace_evaluation_step_0003_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "trace_evaluation_step_0004_evaluation_finding_rule_compat_legacy_incompatible",
+        "trace_evaluation_step_0005_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "trace_evaluation_step_0006_evaluation_finding_rule_compat_structure_to_experimental",
+        "trace_evaluation_step_0007_evaluation_finding_rule_compat_structure_to_structure",
+        "trace_evaluation_step_0008_evaluation_finding_rule_compat_unknown_external",
+        "trace_evaluation_step_0009_evaluation_structural_continuity_warning",
+        "v3_7_graph_planning_session_evaluation_evidence"
+      ],
+      "execution_authorization": false,
+      "explainability_references": [
+        "v3_7_graph_scenario_explainability"
+      ],
+      "graph_snapshot_references": [
+        "v3_7_graph_planning_session_snapshot_default"
+      ],
+      "non_executable_replay_evidence": true,
+      "provenance_references": [
+        "v3-7-provenance-v3_7_graph_planning_session_default",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3-7-provenance-v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ],
+      "replay_evidence_id": "v3_7_graph_scenario_replay_evidence_default",
+      "rollback_references": [
+        "v3_7_graph_evaluation_rollback_continuity",
+        "v3_7_graph_planning_session_rollback_evidence"
+      ],
+      "runtime_replay_state": false,
+      "scenario_id": "v3_7_graph_planning_scenario_default",
+      "variation_references": [
+        "v3_7_graph_scenario_variation_0001_structural_relationship_alternative",
+        "v3_7_graph_scenario_variation_0002_governance_classification_alternative",
+        "v3_7_graph_scenario_variation_0003_compatibility_classification_alternative",
+        "v3_7_graph_scenario_variation_0004_evaluation_chain_alternative",
+        "v3_7_graph_scenario_variation_0005_prohibited_state_alternative",
+        "v3_7_graph_scenario_variation_0006_unsupported_state_alternative",
+        "v3_7_graph_scenario_variation_0007_unknown_state_alternative"
+      ]
+    }
+  ],
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_continuity_counts": {
+    "rollback_continuity_preserved": true,
+    "rollback_reference_count": 2
+  },
+  "routing_enabled": false,
+  "runtime_branching_behavior_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_branching": false,
+  "runtime_orchestration_enabled": false,
+  "runtime_orchestration_history_enabled": false,
+  "scenario_counts": {
+    "audit_trail_count": 7,
+    "comparison_count": 1,
+    "replay_evidence_count": 1,
+    "scenario_count": 1,
+    "variation_count": 7
+  },
+  "scenario_execution_enabled": false,
+  "scenario_replay_evidence_is_not_runtime_replay": true,
+  "scenario_status_counts": {
+    "audit_failed": 0,
+    "blocked": 0,
+    "closed": 0,
+    "comparison_ready": 1,
+    "evaluated": 0,
+    "initialized": 0,
+    "prohibited": 0,
+    "unknown": 0,
+    "unsupported": 0
+  },
+  "scenario_status_does_not_authorize_execution": true,
+  "scenarios_are_hypothetical_planning_evidence_only": true,
+  "scenarios_are_non_executable": true,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_planning_scenarios_report.1",
+  "summary": {
+    "compatibility_continuity_verified": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "evaluation_continuity_verified": true,
+    "explainability_continuity_verified": true,
+    "governance_continuity_verified": true,
+    "non_execution_guarantee_verified": true,
+    "planning_scenario_intelligence": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "runtime_orchestration_branching": false,
+    "scenario_status": "v3_7_graph_scenario_validation_stable"
+  },
+  "validation_result": {
+    "compatibility_continuity_preserved": true,
+    "deterministic_hash_stable": true,
+    "deterministic_scenario_hash": "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+    "deterministic_serialization_stable": true,
+    "deterministic_validation_hash": "43615b6a3860804b10d5fc57dedebb9df88e7c5f090f322bb0d2c26b4181598c",
+    "duplicate_scenario_identity_count": 0,
+    "error_count": 0,
+    "evaluation_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "finding_count": 3,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_validation_visible_prohibited:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "prohibited scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_validation_visible_prohibited",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_validation_visible_unknown:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "unknown scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_validation_visible_unknown",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_scenario_validation_visible_unsupported:graph_planning_scenario:v3_7_graph_planning_scenario_default",
+        "message": "unsupported scenario state remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_scenario_validation_visible_unsupported",
+        "subject_id": "v3_7_graph_planning_scenario_default",
+        "subject_type": "graph_planning_scenario"
+      }
+    ],
+    "governance_continuity_preserved": true,
+    "hidden_prohibited_state_count": 0,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0,
+    "invalid_comparison_reference_count": 0,
+    "invalid_replay_evidence_reference_count": 0,
+    "invalid_variation_reference_count": 0,
+    "missing_graph_snapshot_reference_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_scenario_validation_stable",
+    "visibility_finding_count": 3
+  },
+  "validation_totals": {
+    "duplicate_scenario_identity_count": 0,
+    "error_count": 0,
+    "finding_count": 3,
+    "hidden_prohibited_state_count": 0,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0,
+    "invalid_comparison_reference_count": 0,
+    "invalid_replay_evidence_reference_count": 0,
+    "invalid_variation_reference_count": 0,
+    "non_execution_guarantee_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_scenario_validation_stable",
+    "visibility_finding_count": 3
+  },
+  "variation_counts": {
+    "executable_orchestration_branch_count": 0,
+    "prohibited_variation_count": 1,
+    "structural_hypothetical_variation_count": 7,
+    "unknown_variation_count": 1,
+    "unsupported_variation_count": 1,
+    "variation_count": 7
+  }
+}
