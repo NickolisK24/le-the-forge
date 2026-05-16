@@ -1,0 +1,311 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+    "sample_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+    "timestamp_excluded_from_hash": true
+  },
+  "future_phase_foundation": [
+    "future replayability phases may consume deterministic diff audit evidence",
+    "future drift-detection phases must preserve explicit before and after runtime snapshots",
+    "future runtime work must keep hidden transitions and silent mutations blocked"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_audit_compatibility_distributions": {
+    "isolation_audit_compatible": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_diff_audit_contract_only": true,
+    "source": "v3_2_runtime_diff_auditing_contracts_report"
+  },
+  "phase": "v3.2_phase_5_runtime_diff_auditing_contracts",
+  "phase_2_isolation_audit_compatibility_summary": {
+    "isolation_contract_records": 1,
+    "production_routing_authorized": false,
+    "requires_runtime_isolation_satisfied": true,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "phase_3_session_audit_compatibility_summary": {
+    "production_routing_authorized": false,
+    "requires_session_boundary_satisfied": true,
+    "runtime_manifest_consumption_enabled": false,
+    "session_boundary_contract_records": 1
+  },
+  "phase_4_rollback_audit_compatibility_summary": {
+    "production_routing_authorized": false,
+    "requires_runtime_rollback_ready": true,
+    "requires_runtime_safety_satisfied": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_safety_rollback_contract_records": 1
+  },
+  "phase_5_boundaries": [
+    "runtime diff auditing contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "runtime state transitions must be explicitly audited",
+    "runtime mutations and drift remain visible",
+    "fallback diff auditing remains prohibited"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_DIFF_AUDIT_CONTRACT_READY_FOR_FUTURE_REPLAY_AND_DRIFT_DETECTION_DESIGN_ONLY",
+  "rollback_audit_compatibility_distributions": {
+    "rollback_audit_compatible": 1
+  },
+  "runtime_diff_auditing_contracts": {
+    "deterministic_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+    "isolation_audit_compatibility_distribution": {
+      "isolation_audit_compatible": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_diff_audit_contract_only": true,
+      "source": "v3_2_runtime_diff_auditing_contracts",
+      "stable_generation_token": "v3_2_phase_5_runtime_diff_auditing_contracts_token"
+    },
+    "phase_2_isolation_audit_compatibility": {
+      "isolation_contract_records": 1,
+      "production_routing_authorized": false,
+      "requires_runtime_isolation_satisfied": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_3_session_audit_compatibility": {
+      "production_routing_authorized": false,
+      "requires_session_boundary_satisfied": true,
+      "runtime_manifest_consumption_enabled": false,
+      "session_boundary_contract_records": 1
+    },
+    "phase_4_rollback_audit_compatibility": {
+      "production_routing_authorized": false,
+      "requires_runtime_rollback_ready": true,
+      "requires_runtime_safety_satisfied": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_safety_rollback_contract_records": 1
+    },
+    "rollback_audit_compatibility_distribution": {
+      "rollback_audit_compatible": 1
+    },
+    "run": {
+      "run_id": "v3_2_phase_5_runtime_diff_auditing_contracts",
+      "runtime_diff_request_count": 1,
+      "runtime_diff_requests_hash": "7287f59fdaf5f06827e9da34078678c6643392e243678420d1622a1409d668c2",
+      "runtime_isolation_contract_count": 1,
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_safety_rollback_contracts_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_session_boundary_contracts_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6"
+    },
+    "runtime_diff_audit_contracts": [
+      {
+        "drift_blockers": [],
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_diff_auditing_allowed": false,
+          "governance_only": true,
+          "hidden_runtime_transitions_allowed": false,
+          "implicit_runtime_transition_approval_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_diff_audit_contract_only": true,
+          "silent_runtime_mutations_allowed": false
+        },
+        "mutation_blockers": [],
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "runtime_audit_trace_classification": "runtime_diff_audit_trace_satisfied",
+        "runtime_auditability_state": "runtime_auditable",
+        "runtime_diff_audit_authorizes_production_routing": false,
+        "runtime_diff_audit_authorizes_runtime_consumption": false,
+        "runtime_diff_audit_contract_id": "v3_2_runtime_diff_audit_b2fcde872c949c06",
+        "runtime_diff_audit_status": "runtime_diff_audit_satisfied",
+        "runtime_diff_visibility_state": "runtime_diff_visible",
+        "runtime_drift_blocker_state": "unblocked_for_contract_only",
+        "runtime_drift_classification": "runtime_drift_absent",
+        "runtime_drift_status": "runtime_diff_audit_satisfied",
+        "runtime_isolation_audit_compatibility": "isolation_audit_compatible",
+        "runtime_isolation_status": "runtime_isolation_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_mutation_blocker_state": "unblocked_for_contract_only",
+        "runtime_mutation_classification": "runtime_mutation_absent",
+        "runtime_post_state_snapshot": {
+          "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+          "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+          "production_routing_authorized": false,
+          "runtime_manifest_consumption_enabled": false,
+          "runtime_state": "contract_audit_no_runtime_execution"
+        },
+        "runtime_post_state_snapshot_hash": "6da5689b2bde7b2c0c1c490c69e53cc96bf525793348e8fb8f813ae72dde905c",
+        "runtime_pre_state_snapshot": {
+          "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+          "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+          "production_routing_authorized": false,
+          "runtime_manifest_consumption_enabled": false,
+          "runtime_state": "contract_audit_no_runtime_execution"
+        },
+        "runtime_pre_state_snapshot_hash": "6da5689b2bde7b2c0c1c490c69e53cc96bf525793348e8fb8f813ae72dde905c",
+        "runtime_production_consumption_enabled": false,
+        "runtime_rollback_audit_compatibility": "rollback_audit_compatible",
+        "runtime_rollback_status": "runtime_rollback_ready",
+        "runtime_safety_status": "runtime_safety_satisfied",
+        "runtime_session_audit_compatibility": "session_audit_compatible",
+        "runtime_session_boundary_status": "runtime_session_boundary_satisfied",
+        "runtime_transition_trace": "runtime_transition_audited"
+      }
+    ],
+    "runtime_diff_audit_status_counts": {
+      "isolation_audit_compatibility_missing": 0,
+      "rollback_audit_compatibility_missing": 0,
+      "runtime_diff_audit_blocked": 0,
+      "runtime_diff_audit_satisfied": 1,
+      "runtime_mutation_detected": 0,
+      "runtime_mutation_prohibited": 0,
+      "runtime_snapshot_missing": 0,
+      "runtime_transition_unaudited": 0,
+      "session_audit_compatibility_missing": 0
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_diff_auditing_allowed": false,
+      "hidden_runtime_transitions_allowed": false,
+      "implicit_runtime_transition_approval_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_runtime_mutations_allowed": false
+    },
+    "runtime_drift_blocker_distribution": {},
+    "runtime_drift_distribution": {
+      "runtime_drift_absent": 1
+    },
+    "runtime_drift_status_counts": {
+      "runtime_diff_audit_satisfied": 1,
+      "runtime_drift_blocked": 0,
+      "runtime_drift_detected": 0,
+      "runtime_snapshot_missing": 0,
+      "runtime_transition_unaudited": 0
+    },
+    "runtime_mutation_blocker_distribution": {},
+    "runtime_mutation_distribution": {
+      "runtime_mutation_absent": 1
+    },
+    "runtime_snapshot_availability_distribution": {
+      "pre_and_post_available": 1
+    },
+    "runtime_transition_audit_distribution": {
+      "runtime_transition_audited": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_diff_audit_allows_hidden_runtime_mutations": false,
+      "runtime_diff_audit_allows_hidden_runtime_transitions": false,
+      "runtime_diff_audit_authorizes_production_routing": false,
+      "runtime_diff_audit_enables_runtime_manifest_consumption": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "schema_version": "v3_2.runtime_diff_auditing_contracts.1",
+    "session_audit_compatibility_distribution": {
+      "session_audit_compatible": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "isolation_audit_compatibility_missing_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "rollback_audit_compatibility_missing_count": 0,
+      "runtime_diff_audit_blocked_count": 0,
+      "runtime_diff_audit_satisfied_count": 1,
+      "runtime_drift_blocked_count": 0,
+      "runtime_drift_detected_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_mutation_detected_count": 0,
+      "runtime_mutation_prohibited_count": 0,
+      "runtime_production_consumption_enabled": false,
+      "runtime_snapshot_missing_count": 0,
+      "runtime_transition_unaudited_count": 0,
+      "session_audit_compatibility_missing_count": 0
+    }
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_diff_auditing_allowed": false,
+    "hidden_runtime_transitions_allowed": false,
+    "implicit_runtime_transition_approval_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_runtime_mutations_allowed": false
+  },
+  "runtime_drift_blocker_distributions": {},
+  "runtime_drift_distributions": {
+    "runtime_drift_absent": 1
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_mutation_blocker_distributions": {},
+  "runtime_mutation_distributions": {
+    "runtime_mutation_absent": 1
+  },
+  "runtime_production_consumption_enabled": false,
+  "runtime_snapshot_availability_distributions": {
+    "pre_and_post_available": 1
+  },
+  "runtime_transition_audit_distributions": {
+    "runtime_transition_audited": 1
+  },
+  "schema_version": "v3_2.runtime_diff_auditing_contracts_report.1",
+  "session_audit_compatibility_distributions": {
+    "session_audit_compatible": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "isolation_audit_compatibility_missing_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "rollback_audit_compatibility_missing_count": 0,
+    "runtime_diff_audit_blocked_count": 0,
+    "runtime_diff_audit_satisfied_count": 1,
+    "runtime_drift_blocked_count": 0,
+    "runtime_drift_detected_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_mutation_detected_count": 0,
+    "runtime_mutation_prohibited_count": 0,
+    "runtime_production_consumption_enabled": false,
+    "runtime_snapshot_missing_count": 0,
+    "runtime_transition_unaudited_count": 0,
+    "session_audit_compatibility_missing_count": 0
+  }
+}
