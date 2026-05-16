@@ -1,0 +1,1165 @@
+{
+  "active_runtime_reasoning_decisions_enabled": false,
+  "behavior_rule_validation": {
+    "behavior_rule_violations": {},
+    "passed": true
+  },
+  "compatibility_validation": {
+    "boundary": true,
+    "classification": true,
+    "confidence": true,
+    "evidence": true,
+    "explanation": true,
+    "provenance": true,
+    "reasoning": true,
+    "replay": true,
+    "synthesis": true
+  },
+  "contracts_with_explicit_limitations": {
+    "confidence_boundary_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "decision_boundary_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "evidence_shape_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "explanation_output_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "hash_manifest_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "patch_version_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "production_authorization_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "provenance_lineage_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "reasoning_sequence_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_sequence_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "synthesis_output_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "unsupported_state_drift": [
+      "live drift detection is not enabled",
+      "runtime drift audit contracts are planning-only",
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "contracts_with_explicit_risks": {
+    "confidence_boundary_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "decision_boundary_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "evidence_shape_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "explanation_output_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "hash_manifest_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "patch_version_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "production_authorization_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "provenance_lineage_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "reasoning_sequence_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "replay_sequence_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "synthesis_output_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ],
+    "unsupported_state_drift": [
+      "classification must not authorize production runtime routing",
+      "drift audit contracts must not fabricate drift certainty"
+    ]
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "patch_version_drift",
+      "evidence_shape_drift",
+      "provenance_lineage_drift",
+      "reasoning_sequence_drift",
+      "synthesis_output_drift",
+      "confidence_boundary_drift",
+      "decision_boundary_drift",
+      "replay_sequence_drift",
+      "explanation_output_drift",
+      "hash_manifest_drift",
+      "unsupported_state_drift",
+      "production_authorization_drift"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "drift_action_validation": {
+    "invalid_drift_actions": [],
+    "passed": true
+  },
+  "drift_audit_manifest": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "boundary_reference_count": 12,
+    "classification_reference_count": 12,
+    "confidence_reference_count": 12,
+    "deterministic_hash": "bd20f4c93774ede2727a7e334031abc012fe09aff71cd846963bd0390f70d781",
+    "drift_contracts": [
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_drift_detected_escalation_8c1ec1b9ac0c"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_drift_present_97df275b9cef"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_drift_signal_ea46fa921092"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_drift_summary_0b1b6f6c76f2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_drift_check_673a1752a5b4"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_audit_summary_1eb05c72f78e"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_drift_preserving_merge_f2693c48d54a"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "drift_action": "escalation",
+        "drift_category": "patch",
+        "drift_label": "patch_version_drift",
+        "drift_type_id": "runtime_drift_patch_version_drift_90205c62d302",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": false,
+        "requires_current_hash": false,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_confidence_ceiling_stop_ec518382c778"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_partially_validated_9a31daa63c03"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_observed_runtime_state_3f3265c53cf7",
+          "runtime_evidence_validated_static_record_05a1d97b5bd2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_evidence_summary_22622e08e084"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_validated_data_source_c4d746bdf583"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_evidence_collection_cdc85bd4b173"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_evidence_sequence_ab26048a9136"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_multi_source_alignment_d02649afb55f"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "drift_action": "escalation",
+        "drift_category": "evidence",
+        "drift_label": "evidence_shape_drift",
+        "drift_type_id": "runtime_drift_evidence_shape_drift_f99c272b3cf1",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_provenance_incomplete_escalation_24cf2c21f6a3"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_provenance_incomplete_71d9a0335ae8"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_provenance_incomplete_00f371a2724c"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_provenance_summary_bbe496bab320"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_provenance_validation_e8d9d32629cc"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_provenance_sequence_7020ace6e406"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_provenance_preserving_merge_c7a2f6877ab3"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "drift_action": "manual_review_required",
+        "drift_category": "provenance",
+        "drift_label": "provenance_lineage_drift",
+        "drift_type_id": "runtime_drift_provenance_lineage_drift_b3dc7def6ea4",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": true,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_manual_review_required_boundary_7557d4e85832"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_partially_validated_9a31daa63c03"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_reasoning_chain_summary_815485c9f880"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_reasoning_sequence_b635cf7f631b"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_explanation_ready_merge_c704879cd001"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "drift_action": "escalation",
+        "drift_category": "reasoning",
+        "drift_label": "reasoning_sequence_drift",
+        "drift_type_id": "runtime_drift_reasoning_sequence_drift_24213f0681ed",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_drift_detected_escalation_8c1ec1b9ac0c"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267",
+          "runtime_intelligence_drift_detected_c7fe791c1874"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_conflict_present_f7187d16258f",
+          "runtime_confidence_drift_present_97df275b9cef"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_conflict_signal_5027f88802d4",
+          "runtime_evidence_drift_signal_ea46fa921092"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_drift_summary_0b1b6f6c76f2"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_compatibility_check_4ebca54a4934"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_synthesis_sequence_7f8dc8cc99f9"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_conflict_preserving_merge_2cfbc0b68993",
+          "runtime_synthesis_drift_preserving_merge_f2693c48d54a"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "drift_action": "escalation",
+        "drift_category": "synthesis",
+        "drift_label": "synthesis_output_drift",
+        "drift_type_id": "runtime_drift_synthesis_output_drift_7a6715f703a2",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": true,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_confidence_ceiling_stop_ec518382c778"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_partially_verified_8f0f94d0785a",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_inferred_limited_4cb864b6b08d",
+          "runtime_confidence_partially_validated_9a31daa63c03"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_limitation_signal_cabffab5fae2"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_confidence_summary_544afff0e78d"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_manual_audit_source_985b84fc92bd"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_classification_assignment_d19208cb47cc"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_confidence_sequence_febe230135fd"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_confidence_bounded_merge_b8ac4ada382d"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "drift_action": "hard_stop",
+        "drift_category": "confidence",
+        "drift_label": "confidence_boundary_drift",
+        "drift_type_id": "runtime_drift_confidence_boundary_drift_11640c73f034",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_blocker_detected_stop_169d4a8bc417"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+          "runtime_intelligence_blocked_541cca575a7d"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_blocked_6776a7386682"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_boundary_sequence_65c122542d4e"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": true,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "drift_action": "hard_stop",
+        "drift_category": "boundary",
+        "drift_label": "decision_boundary_drift",
+        "drift_type_id": "runtime_drift_decision_boundary_drift_988dbe7a36c5",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_replay_mismatch_stop_52ace03e9c1f"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_conflicting_73cf2f5aa267",
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_conflict_present_f7187d16258f"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_replay_trace_event_96093dcb6d80"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_replay_summary_8ce39999bce8"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_replay_trace_source_31aa8d85b9f3"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_replay_check_a7afe7b94593"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_mismatch_detection_ea4513af3e8c"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_replay_verified_merge_dad83040ff8d"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "drift_action": "escalation",
+        "drift_category": "replay",
+        "drift_label": "replay_sequence_drift",
+        "drift_type_id": "runtime_drift_replay_sequence_drift_a8f92771a029",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": true,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": true,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": true,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_manual_review_required_boundary_7557d4e85832"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_drift_detected_c7fe791c1874",
+          "runtime_intelligence_partially_verified_8f0f94d0785a"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_partially_validated_9a31daa63c03"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_provenance_signal_f78a3b4cc144"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_reasoning_chain_summary_815485c9f880"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_explanation_preparation_a6d6168ac73f"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_explanation_sequence_4708d1eabbdd"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_explanation_ready_merge_c704879cd001"
+        ],
+        "blocks_confidence_upgrade": false,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "drift_action": "record_only",
+        "drift_category": "explanation",
+        "drift_label": "explanation_output_drift",
+        "drift_type_id": "runtime_drift_explanation_output_drift_ea1fefb30363",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_replay_mismatch_stop_52ace03e9c1f"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_unstable_02c01f5a9385"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_replay_verified_72845e570513"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_replay_trace_event_96093dcb6d80"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_replay_summary_8ce39999bce8"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_generated_report_source_cf137c7d5460"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_replay_check_a7afe7b94593"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_audit_summary_1eb05c72f78e"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_replay_verified_merge_dad83040ff8d"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "drift_action": "hard_stop",
+        "drift_category": "hash",
+        "drift_label": "hash_manifest_drift",
+        "drift_type_id": "runtime_drift_hash_manifest_drift_83e634da9c53",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": false,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": true,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": false,
+        "requires_manual_review": false,
+        "requires_replay_validation": true,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_unsupported_hard_stop_26124f194eae"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_unsupported_c4be85786b17"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_unsupported_d6c853a4bc95"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_unsupported_signal_823155381335"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_unsupported_summary_b505bd55fb56"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_unsupported_source_94cc358079cf"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_blocker_detection_547d937b2fff"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_confidence_sequence_febe230135fd"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_unsupported_preserving_merge_06283f53596d"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": false,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "drift_action": "hard_stop",
+        "drift_category": "unsupported",
+        "drift_label": "unsupported_state_drift",
+        "drift_type_id": "runtime_drift_unsupported_state_drift_914e07da8161",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": true,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": false,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      },
+      {
+        "active_runtime_reasoning_decisions_enabled": false,
+        "allowed_boundary_type_ids": [
+          "runtime_boundary_production_routing_hard_stop_de3df957a73e"
+        ],
+        "allowed_classification_ids": [
+          "runtime_intelligence_authorization_prohibited_a6d17b909d1f"
+        ],
+        "allowed_confidence_type_ids": [
+          "runtime_confidence_authorization_prohibited_1247516a6db6"
+        ],
+        "allowed_evidence_type_ids": [
+          "runtime_evidence_authorization_signal_61206e19f0b1"
+        ],
+        "allowed_explanation_type_ids": [
+          "runtime_explanation_decision_boundary_summary_1f9bc824827c"
+        ],
+        "allowed_provenance_type_ids": [
+          "runtime_provenance_authorization_gate_source_65433cd9c2d2"
+        ],
+        "allowed_reasoning_stage_ids": [
+          "runtime_reasoning_decision_boundary_check_bfb468a3c476"
+        ],
+        "allowed_replay_type_ids": [
+          "runtime_replay_replay_reproducibility_boundary_6c4f82882fa3"
+        ],
+        "allowed_synthesis_type_ids": [
+          "runtime_synthesis_decision_boundary_preserving_merge_d85a0362f25c"
+        ],
+        "blocks_confidence_upgrade": true,
+        "blocks_production_authorization": true,
+        "boundary_visible": true,
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "drift_action": "authorization_block",
+        "drift_category": "authorization",
+        "drift_label": "production_authorization_drift",
+        "drift_type_id": "runtime_drift_production_authorization_drift_48f1746d9a1e",
+        "explainability_required": true,
+        "explicit_limitations": [
+          "live drift detection is not enabled",
+          "runtime drift audit contracts are planning-only",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift audit contracts must not fabricate drift certainty"
+        ],
+        "live_decision_routing_enabled": false,
+        "live_drift_detection_enabled": false,
+        "live_replay_execution_enabled": false,
+        "live_synthesis_execution_enabled": false,
+        "preserves_blockers": true,
+        "preserves_conflicts": false,
+        "preserves_drift": true,
+        "preserves_unsupported": false,
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "recommendation_logic_enabled": false,
+        "replay_mismatch_visible": false,
+        "requires_baseline_hash": true,
+        "requires_current_hash": true,
+        "requires_diff_summary": true,
+        "requires_manual_review": true,
+        "requires_replay_validation": false,
+        "runtime_drift_audit_planning_only": true
+      }
+    ],
+    "evidence_reference_count": 12,
+    "explanation_reference_count": 12,
+    "live_decision_routing_enabled": false,
+    "live_drift_detection_enabled": false,
+    "live_replay_execution_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "drift_certainty_fabricated": false,
+      "drift_suppression_allowed": false,
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_drift_audit_contracts"
+    },
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "provenance_reference_count": 12,
+    "reasoning_stage_reference_count": 12,
+    "recommendation_logic_enabled": false,
+    "registry_validation": {
+      "behavior_rule_violation_count": 0,
+      "behavior_rule_violations": {},
+      "duplicate_detection": {
+        "duplicate_deterministic_ranks": [],
+        "duplicate_drift_labels": [],
+        "duplicate_drift_type_ids": []
+      },
+      "invalid_boundary_reference_count": 0,
+      "invalid_boundary_references": {},
+      "invalid_classification_reference_count": 0,
+      "invalid_classification_references": {},
+      "invalid_confidence_reference_count": 0,
+      "invalid_confidence_references": {},
+      "invalid_drift_action_count": 0,
+      "invalid_drift_actions": [],
+      "invalid_drift_categories": [],
+      "invalid_drift_category_count": 0,
+      "invalid_evidence_reference_count": 0,
+      "invalid_evidence_references": {},
+      "invalid_explanation_reference_count": 0,
+      "invalid_explanation_references": {},
+      "invalid_provenance_reference_count": 0,
+      "invalid_provenance_references": {},
+      "invalid_reasoning_stage_reference_count": 0,
+      "invalid_reasoning_stage_references": {},
+      "invalid_replay_reference_count": 0,
+      "invalid_replay_references": {},
+      "invalid_synthesis_reference_count": 0,
+      "invalid_synthesis_references": {},
+      "missing_required_fields": {},
+      "production_authorized_drift_audits": [],
+      "unknown_labels": [],
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_reference_count": 12,
+    "replay_validation": {
+      "first_hash": "6cc07c552a59e62b903b634c49d276ac3524c57142340c52378af236fa3be93b",
+      "replay_stable": true,
+      "second_hash": "6cc07c552a59e62b903b634c49d276ac3524c57142340c52378af236fa3be93b",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "drift_contract_count": 12,
+      "run_id": "v3_3_phase_10_runtime_drift_audit_contracts"
+    },
+    "runtime_drift_audit_planning_only": true,
+    "runtime_manifest_consumption_enabled": false,
+    "schema_version": "v3_3.runtime_drift_audit_contracts.1",
+    "synthesis_reference_count": 12
+  },
+  "drift_category_validation": {
+    "invalid_drift_categories": [],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_deterministic_ranks": [],
+    "duplicate_drift_labels": [],
+    "duplicate_drift_type_ids": []
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "live_decision_routing_enabled": false,
+  "live_drift_detection_enabled": false,
+  "live_replay_execution_enabled": false,
+  "live_synthesis_execution_enabled": false,
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_drift_audit_contracts_report"
+  },
+  "phase": "v3.3_phase_10_runtime_drift_audit_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_DRIFT_AUDIT_CONTRACT_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "recommendation_logic_enabled": false,
+  "replay_validation_results": {
+    "first_hash": "6cc07c552a59e62b903b634c49d276ac3524c57142340c52378af236fa3be93b",
+    "replay_stable": true,
+    "second_hash": "6cc07c552a59e62b903b634c49d276ac3524c57142340c52378af236fa3be93b",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "runtime_drift_audit_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "active_runtime_reasoning_decisions_enabled": false,
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "live_decision_routing_enabled": false,
+    "live_drift_detection_enabled": false,
+    "live_replay_execution_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "no_drift_audit_contract_is_production_authorized": true,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "recommendation_logic_enabled": false,
+    "runtime_drift_audit_remains_planning_only": true
+  },
+  "schema_version": "v3_3.runtime_drift_audit_contracts_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "bd20f4c93774ede2727a7e334031abc012fe09aff71cd846963bd0390f70d781",
+    "passed": true,
+    "repeated_hash": "bd20f4c93774ede2727a7e334031abc012fe09aff71cd846963bd0390f70d781",
+    "sample_hash": "bd20f4c93774ede2727a7e334031abc012fe09aff71cd846963bd0390f70d781"
+  },
+  "summary": {
+    "baseline_hash_required_drift_count": 11,
+    "behavior_rule_violation_count": 0,
+    "blocker_preserving_audit_count": 5,
+    "boundary_visible_audit_count": 12,
+    "confidence_upgrade_blocking_drift_count": 11,
+    "conflict_preserving_audit_count": 2,
+    "contracts_with_explicit_limitations_count": 12,
+    "contracts_with_explicit_risks_count": 12,
+    "current_hash_required_drift_count": 11,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "diff_summary_required_drift_count": 11,
+    "drift_preserving_audit_count": 12,
+    "duplicate_detection_passed": true,
+    "invalid_boundary_reference_count": 0,
+    "invalid_classification_reference_count": 0,
+    "invalid_confidence_reference_count": 0,
+    "invalid_drift_action_count": 0,
+    "invalid_drift_category_count": 0,
+    "invalid_evidence_reference_count": 0,
+    "invalid_explanation_reference_count": 0,
+    "invalid_provenance_reference_count": 0,
+    "invalid_reasoning_stage_reference_count": 0,
+    "invalid_replay_reference_count": 0,
+    "invalid_synthesis_reference_count": 0,
+    "manual_review_required_drift_count": 2,
+    "production_authorization_blocking_drift_count": 2,
+    "production_authorized_drift_audit_count": 0,
+    "production_behavior_changed": false,
+    "replay_mismatch_visible_audit_count": 2,
+    "replay_validation_passed": true,
+    "replay_validation_required_drift_count": 2,
+    "stable_hash_valid": true,
+    "total_drift_audit_contract_count": 12,
+    "unsupported_preserving_audit_count": 1
+  }
+}
