@@ -1,0 +1,350 @@
+{
+  "contract_compatibility_distributions": {
+    "v3_2_contracts_compatible": 1
+  },
+  "default_manifest_consumption_disabled_verification": {
+    "default_manifest_consumption_enabled": false,
+    "runtime_manifest_consumption_enabled": false
+  },
+  "determinism_readiness_summary": {
+    "runtime_determinism_satisfied": 1
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "b7dc3a5e471fb7579051905e694893e1eba62cc919e845c106bf7927a0766176",
+    "sample_hash": "b7dc3a5e471fb7579051905e694893e1eba62cc919e845c106bf7927a0766176",
+    "timestamp_excluded_from_hash": true
+  },
+  "diff_audit_readiness_summary": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "drift_detection_readiness_summary": {
+    "runtime_drift_not_detected": 1
+  },
+  "entrypoint_readiness_summary": {
+    "experimental_runtime_eligible": 1
+  },
+  "experimental_runtime_closeout_readiness_audit": {
+    "contract_compatibility_distribution": {
+      "v3_2_contracts_compatible": 1
+    },
+    "default_manifest_consumption_disabled_verification": {
+      "default_manifest_consumption_enabled": false,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "determinism_readiness_summary": {
+      "runtime_determinism_satisfied": 1
+    },
+    "deterministic_hash": "b7dc3a5e471fb7579051905e694893e1eba62cc919e845c106bf7927a0766176",
+    "diff_audit_readiness_summary": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "drift_detection_readiness_summary": {
+      "runtime_drift_not_detected": 1
+    },
+    "entrypoint_readiness_summary": {
+      "experimental_runtime_eligible": 1
+    },
+    "experimental_runtime_closeout_readiness_audits": [
+      {
+        "closeout_trace_classification": "planning_only_runtime_governance_closeout",
+        "contract_compatibility_state": "v3_2_contracts_compatible",
+        "default_manifest_consumption_disabled_state": "default_runtime_manifest_consumption_still_disabled",
+        "determinism_readiness_state": "runtime_determinism_satisfied",
+        "diff_audit_readiness_state": "runtime_diff_audit_satisfied",
+        "drift_detection_readiness_state": "runtime_drift_not_detected",
+        "entrypoint_readiness_state": "experimental_runtime_eligible",
+        "evidence_chain_statuses": {
+          "phase_10_limited_experiment": "limited_runtime_experiment_eligible",
+          "phase_11_kill_switch": "runtime_kill_switch_satisfied",
+          "phase_1_entrypoint": "experimental_runtime_eligible",
+          "phase_2_isolation": "runtime_isolation_satisfied",
+          "phase_3_session_boundary": "runtime_session_boundary_satisfied",
+          "phase_4_rollback": "runtime_rollback_ready",
+          "phase_4_safety": "runtime_safety_satisfied",
+          "phase_5_diff_audit": "runtime_diff_audit_satisfied",
+          "phase_6_determinism": "runtime_determinism_satisfied",
+          "phase_7_traceability": "runtime_traceability_satisfied",
+          "phase_8_replayability": "runtime_replayability_satisfied",
+          "phase_9_drift_detection": "runtime_drift_not_detected"
+        },
+        "experimental_runtime_closeout_audit_id": "v3_2_closeout_44e37fa3ee74ef21",
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "isolation_readiness_state": "runtime_isolation_satisfied",
+        "kill_switch_readiness_state": "runtime_kill_switch_satisfied",
+        "limited_experiment_readiness_state": "limited_runtime_experiment_eligible",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "closeout_readiness_audit_only": true,
+          "fallback_closeout_logic_allowed": false,
+          "governance_only": true,
+          "implicit_production_readiness_allowed": false,
+          "planner_remap_performed": false,
+          "production_authoritative_manifest_treatment_prohibited": true,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "silent_readiness_approval_allowed": false
+        },
+        "new_planner_behavior_added": false,
+        "new_runtime_behavior_added": false,
+        "new_runtime_consumption_behavior_added": false,
+        "phase_coverage_state": "v3_2_phase_coverage_complete",
+        "production_authoritative_manifest_prohibition_state": "production_authoritative_manifest_treatment_still_prohibited",
+        "production_authoritative_manifest_treatment": false,
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_routing_prohibition_state": "production_runtime_still_prohibited",
+        "production_runtime_classification": "production_runtime_prohibited",
+        "replayability_readiness_state": "runtime_replayability_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_manifest_consumption_enabled_by_default": false,
+        "runtime_production_consumption_enabled": false,
+        "safety_rollback_readiness_state": "runtime_rollback_ready",
+        "session_boundary_readiness_state": "runtime_session_boundary_satisfied",
+        "traceability_readiness_state": "runtime_traceability_satisfied",
+        "unresolved_blocker_state": "no_unresolved_blockers",
+        "unresolved_blockers": [],
+        "unresolved_limitation_state": "unresolved_limitations_present",
+        "unresolved_limitations": [
+          "default runtime manifest consumption remains disabled",
+          "production runtime routing remains out of scope",
+          "production-authoritative manifest treatment remains prohibited",
+          "v3.3 readiness is planning-only"
+        ],
+        "unresolved_risk_state": "no_unresolved_risks",
+        "unresolved_risks": [],
+        "v3_2_closeout_status": "v3_2_closeout_satisfied",
+        "v3_3_readiness_authorizes_production_enablement": false,
+        "v3_3_readiness_status": "v3_3_ready_for_planning"
+      }
+    ],
+    "isolation_readiness_summary": {
+      "runtime_isolation_satisfied": 1
+    },
+    "kill_switch_readiness_summary": {
+      "runtime_kill_switch_satisfied": 1
+    },
+    "limited_experiment_readiness_summary": {
+      "limited_runtime_experiment_eligible": 1
+    },
+    "metadata": {
+      "closeout_readiness_audit_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_authoritative_manifest_treatment_prohibited": true,
+      "production_behavior_changed": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "source": "v3_2_experimental_runtime_closeout_readiness_audit",
+      "stable_generation_token": "v3_2_phase_12_experimental_runtime_closeout_readiness_audit_token"
+    },
+    "phase_coverage_distribution": {
+      "v3_2_phase_coverage_complete": 1
+    },
+    "production_authoritative_manifest_prohibited_verification": {
+      "production_authoritative_manifest_treatment": false,
+      "production_authoritative_manifest_treatment_prohibited": true
+    },
+    "production_routing_prohibition_verification": {
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true
+    },
+    "replayability_readiness_summary": {
+      "runtime_replayability_satisfied": 1
+    },
+    "run": {
+      "phase_10_limited_experiment_count": 1,
+      "phase_11_kill_switch_count": 1,
+      "phase_1_entrypoint_count": 1,
+      "phase_2_isolation_count": 1,
+      "phase_3_session_boundary_count": 1,
+      "phase_4_safety_rollback_count": 1,
+      "phase_5_diff_audit_count": 1,
+      "phase_6_determinism_count": 1,
+      "phase_7_traceability_count": 1,
+      "phase_8_replayability_count": 1,
+      "phase_9_drift_detection_count": 1,
+      "run_id": "v3_2_phase_12_experimental_runtime_closeout_readiness_audit",
+      "source_hashes": {
+        "determinism_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+        "diff_audit_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+        "drift_detection_hash": "4d3b7997dd3cd39b04d2ad17ee0c207ca6e6cac101b9d0d1944170ff617bb0a6",
+        "entrypoint_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+        "isolation_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+        "kill_switch_hash": "19927ecea88447c43902f82227158e5ea752baf1f623642b3854edefb075f7a4",
+        "limited_experiment_hash": "8288bb42945565bcf82b0763cb3eadf9a19686701b11b3688a6e4fa93343a01f",
+        "replayability_hash": "754c6488aa306182cfb05d27224a871bd87e563c16504c89ed65627eef623fdb",
+        "safety_rollback_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+        "session_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6",
+        "traceability_hash": "2c96748c4a7e8a852e604cc6796135b775d9e5b9ad47e834a6a75a9597b73dd1"
+      }
+    },
+    "safety_confirmations": {
+      "closeout_audit_authorizes_production_routing": false,
+      "closeout_audit_enables_runtime_manifest_consumption": false,
+      "closeout_audit_treats_manifest_as_production_authoritative": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "v3_3_readiness_authorizes_production_enablement": false
+    },
+    "safety_rollback_readiness_summary": {
+      "runtime_rollback_ready": 1
+    },
+    "schema_version": "v3_2.experimental_runtime_closeout_readiness_audit.1",
+    "session_boundary_readiness_summary": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "summary": {
+      "deterministic": true,
+      "new_planner_behavior_added": false,
+      "new_runtime_behavior_added": false,
+      "new_runtime_consumption_behavior_added": false,
+      "production_authoritative_manifest_treatment": false,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "v3_2_closeout_blocked_count": 0,
+      "v3_2_closeout_satisfied_count": 1,
+      "v3_3_blocked_count": 0,
+      "v3_3_limited_experimental_continuation_only_count": 0,
+      "v3_3_ready_for_planning_count": 1
+    },
+    "traceability_readiness_summary": {
+      "runtime_traceability_satisfied": 1
+    },
+    "unresolved_blocker_summary": {},
+    "unresolved_limitation_summary": {
+      "default runtime manifest consumption remains disabled": 1,
+      "production runtime routing remains out of scope": 1,
+      "production-authoritative manifest treatment remains prohibited": 1,
+      "v3.3 readiness is planning-only": 1
+    },
+    "unresolved_risk_summary": {},
+    "v3_2_closeout_status_counts": {
+      "v3_2_closeout_blocked": 0,
+      "v3_2_closeout_satisfied": 1
+    },
+    "v3_3_readiness_status_counts": {
+      "v3_3_blocked": 0,
+      "v3_3_limited_experimental_continuation_only": 0,
+      "v3_3_ready_for_planning": 1
+    }
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_readiness_summary": {
+    "runtime_isolation_satisfied": 1
+  },
+  "kill_switch_readiness_summary": {
+    "runtime_kill_switch_satisfied": 1
+  },
+  "limited_experiment_readiness_summary": {
+    "limited_runtime_experiment_eligible": 1
+  },
+  "metadata": {
+    "closeout_readiness_audit_only": true,
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "source": "v3_2_experimental_runtime_closeout_readiness_audit_report"
+  },
+  "phase": "v3.2_phase_12_experimental_runtime_closeout_readiness_audit",
+  "phase_12_boundaries": [
+    "closeout is audit-only",
+    "v3.3 readiness is planning-only",
+    "production runtime routing remains prohibited",
+    "default runtime manifest consumption remains disabled",
+    "production-authoritative manifest treatment remains prohibited",
+    "no new runtime behavior, runtime consumption behavior, or planner behavior is added"
+  ],
+  "phase_coverage_distributions": {
+    "v3_2_phase_coverage_complete": 1
+  },
+  "production_authoritative_manifest_prohibited_verification": {
+    "production_authoritative_manifest_treatment": false,
+    "production_authoritative_manifest_treatment_prohibited": true
+  },
+  "production_authoritative_manifest_treatment": false,
+  "production_default_routing_authorized": false,
+  "production_routing_authorized": false,
+  "production_routing_prohibition_verification": {
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_runtime_prohibited": true,
+  "recommendation": "V3_2_CLOSEOUT_SATISFIED_V3_3_READY_FOR_PLANNING_ONLY",
+  "replayability_readiness_summary": {
+    "runtime_replayability_satisfied": 1
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "safety_rollback_readiness_summary": {
+    "runtime_rollback_ready": 1
+  },
+  "schema_version": "v3_2.experimental_runtime_closeout_readiness_audit_report.1",
+  "session_boundary_readiness_summary": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "summary": {
+    "deterministic": true,
+    "new_planner_behavior_added": false,
+    "new_runtime_behavior_added": false,
+    "new_runtime_consumption_behavior_added": false,
+    "production_authoritative_manifest_treatment": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "v3_2_closeout_blocked_count": 0,
+    "v3_2_closeout_satisfied_count": 1,
+    "v3_3_blocked_count": 0,
+    "v3_3_limited_experimental_continuation_only_count": 0,
+    "v3_3_ready_for_planning_count": 1
+  },
+  "traceability_readiness_summary": {
+    "runtime_traceability_satisfied": 1
+  },
+  "unresolved_blocker_summary": {},
+  "unresolved_limitation_summary": {
+    "default runtime manifest consumption remains disabled": 1,
+    "production runtime routing remains out of scope": 1,
+    "production-authoritative manifest treatment remains prohibited": 1,
+    "v3.3 readiness is planning-only": 1
+  },
+  "unresolved_risk_summary": {},
+  "v3_3_allowed_foundation": [
+    "v3.3 may build on deterministic Phase 1 through Phase 11 governance evidence",
+    "v3.3 may define future explicit non-production governance phases",
+    "v3.3 must preserve production routing prohibition unless future governance explicitly defines a separate non-production step"
+  ],
+  "v3_3_forbidden_without_future_governance": [
+    "production runtime routing",
+    "default runtime manifest consumption",
+    "production-authoritative manifest treatment",
+    "implicit runtime activation",
+    "new planner behavior without explicit governance"
+  ],
+  "v3_3_readiness_classification": {
+    "v3_3_blocked": 0,
+    "v3_3_limited_experimental_continuation_only": 0,
+    "v3_3_ready_for_planning": 1
+  }
+}
