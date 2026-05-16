@@ -48,6 +48,10 @@ from .dry_run_result_stability import (
     DRY_RUN_RESULT_STABILITY_STATUSES,
     audit_dry_run_result_stability,
 )
+from .experimental_runtime_readiness_closeout import (
+    EXPERIMENTAL_RUNTIME_READINESS_CLOSEOUT_STATUSES,
+    build_experimental_runtime_readiness_closeout,
+)
 from .review_policy_evaluation import (
     REVIEW_POLICY_OUTCOMES,
     V31ReviewPolicyEvaluation,
@@ -135,6 +139,7 @@ __all__ = [
     "LIMITED_EXPERIMENTAL_RUNTIME_GUARD_STATUSES",
     "LIMITED_EXPERIMENTAL_RUNTIME_DRY_RUN_STATUSES",
     "DRY_RUN_RESULT_STABILITY_STATUSES",
+    "EXPERIMENTAL_RUNTIME_READINESS_CLOSEOUT_STATUSES",
     "FIXTURE_WORKFLOW_STATES",
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
@@ -173,6 +178,7 @@ __all__ = [
     "build_limited_experimental_runtime_guards",
     "build_limited_experimental_runtime_dry_run",
     "audit_dry_run_result_stability",
+    "build_experimental_runtime_readiness_closeout",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "evaluate_fixture_source_admission_policy",
