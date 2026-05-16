@@ -149,6 +149,24 @@ from .reasoning_chain_registry import (
     export_reasoning_chain_registry,
     validate_reasoning_chain_registry,
 )
+from .replay_orchestration_contracts import (
+    REPLAY_LABELS,
+    build_replay_orchestration_contract,
+    build_runtime_replay_orchestration_manifest,
+    default_runtime_replay_orchestration_contracts,
+    order_replay_orchestration_contracts,
+    serialize_runtime_replay_orchestration_manifest,
+)
+from .replay_orchestration_hashing import (
+    hash_replay_orchestration_manifest,
+    serialize_replay_orchestration_manifest,
+    validate_replay_orchestration_replay_stability,
+)
+from .replay_orchestration_registry import (
+    detect_duplicate_replay_orchestration_contracts,
+    export_replay_orchestration_registry,
+    validate_replay_orchestration_registry,
+)
 
 __all__ = [
     "CLASSIFICATION_LABELS",
@@ -252,4 +270,16 @@ __all__ = [
     "detect_duplicate_reasoning_stage_contracts",
     "export_reasoning_chain_registry",
     "validate_reasoning_chain_registry",
+    "REPLAY_LABELS",
+    "build_replay_orchestration_contract",
+    "build_runtime_replay_orchestration_manifest",
+    "default_runtime_replay_orchestration_contracts",
+    "order_replay_orchestration_contracts",
+    "serialize_runtime_replay_orchestration_manifest",
+    "hash_replay_orchestration_manifest",
+    "serialize_replay_orchestration_manifest",
+    "validate_replay_orchestration_replay_stability",
+    "detect_duplicate_replay_orchestration_contracts",
+    "export_replay_orchestration_registry",
+    "validate_replay_orchestration_registry",
 ]
