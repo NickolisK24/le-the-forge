@@ -1,0 +1,769 @@
+{
+  "blocker_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  },
+  "compatibility_diff_summary": {
+    "diff_entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 1
+  },
+  "coordination_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  },
+  "dependency_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  },
+  "deterministic_diff_hash_examples": {
+    "changed_snapshot_without_drift": "9d24d24429d54fb33344354bb8c9394fb11f1ffbd56fbce464bc4edf42f296ad",
+    "compatibility_drift_detection": "63ef81f8f10a987e40c9ab6a0984198234abc282aaf6a29a1d8024250a7a5d9e",
+    "fully_stable_snapshot_comparison": "778b329afde021c4b896e1a38500526efe98f91f1bc3a77bae34f030dec42748",
+    "governance_drift_detection": "2d108e8a9c8bbc0cdf531b7ffca5bc22c66e6f7dd86f6182f66057477056ad40",
+    "hash_mismatch_detection": "d4363fd288e18e0c49f2d3c012ce0cc7aea8936bb042b42189845f90d9071b0f",
+    "lineage_change_blocker": "93ecd318f2a31f4cd17e8563545ee12d4dfc765bfa92a7045a37460b3e6a1cd0",
+    "multiple_simultaneous_drift_constraints": "9e8ca2f9a5a6669fbd1c5909646b0ab9e41c780f091b67387d4d5d65bcf49d5d",
+    "prohibited_diff_state": "644781b754d05c1daf99878bd2cd89549cf3092dbf971eb273d1b42531cd1758",
+    "replay_instability_detection": "84c042c9741e0e478ca3493d9b0fc40bcf94593bc8dbebe6c255480b462f23e6",
+    "replay_safety_compromise": "b45e906c572b32ad6c93af4e51bf72063f69b3b53c299fddfe88e840a3740308",
+    "unsupported_diff_state": "c934462a68a5300c5f55e0782e1dea052afa43ee585a9a8195cc1fb898dddac4"
+  },
+  "deterministic_report_hash": "cad50b397642a50b36cb53a7441a7b0136bbaefa6a50a512d12d18efd9fe29c0",
+  "diff_statuses_supported": [
+    "snapshot_diff_prohibited",
+    "snapshot_diff_unsupported",
+    "snapshot_diff_replay_safety_compromised",
+    "snapshot_diff_blocked_by_lineage_change",
+    "snapshot_diff_blocked_by_replay_instability",
+    "snapshot_diff_blocked_by_hash_mismatch",
+    "snapshot_diff_drift_detected",
+    "snapshot_diff_requires_manual_review",
+    "snapshot_diff_changed_without_drift",
+    "snapshot_diff_stable"
+  ],
+  "drift_classification_summary": {
+    "entry_count": 12,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 9
+  },
+  "environment_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_behavior_enabled": false,
+    "live_replay_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "production_consumption_enabled": false,
+    "production_state_reads_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_trace_capture_enabled": false,
+    "scheduling_behavior_enabled": false
+  },
+  "final_diff_status": "snapshot_diff_stable",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "limitation_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  },
+  "lineage_diff_summary": {
+    "diff_entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 2
+  },
+  "manual_review_summary": {
+    "entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 1
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_7_snapshot_diff_and_drift_analysis_contracts",
+  "planning_only": true,
+  "priority_order": [
+    "snapshot_diff_prohibited",
+    "snapshot_diff_unsupported",
+    "snapshot_diff_replay_safety_compromised",
+    "snapshot_diff_blocked_by_lineage_change",
+    "snapshot_diff_blocked_by_replay_instability",
+    "snapshot_diff_blocked_by_hash_mismatch",
+    "snapshot_diff_drift_detected",
+    "snapshot_diff_requires_manual_review",
+    "snapshot_diff_changed_without_drift",
+    "snapshot_diff_stable"
+  ],
+  "priority_order_documentation": [
+    "prohibited diff states dominate all other diff states",
+    "unsupported diff states dominate replay-safety blockers",
+    "replay safety compromise dominates lineage, replay instability, hash mismatch, and drift",
+    "lineage change blockers dominate replay instability and hash mismatch",
+    "replay instability dominates hash mismatch",
+    "hash mismatch dominates drift detection",
+    "drift detection dominates manual review",
+    "manual review dominates changed-without-drift",
+    "changed-without-drift dominates stable",
+    "stable is selected only when no higher-priority diff constraints exist"
+  ],
+  "readiness_diff_summary": {
+    "diff_entry_count": 1,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 1
+  },
+  "remaining_limitations": [
+    "snapshot diff analysis compares declarative planning snapshots only",
+    "snapshot diff analysis does not approve replay or orchestration planning states",
+    "snapshot diff analysis does not execute, route, mutate, write, schedule, or dispatch orchestration",
+    "snapshot diff analysis does not perform live replay, capture runtime traces, or read production state"
+  ],
+  "replay_safety_summary": {
+    "entry_count": 8,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 5
+  },
+  "scenario_coverage": [
+    "fully_stable_snapshot_comparison",
+    "changed_snapshot_without_drift",
+    "lineage_change_blocker",
+    "replay_instability_detection",
+    "hash_mismatch_detection",
+    "prohibited_diff_state",
+    "unsupported_diff_state",
+    "governance_drift_detection",
+    "compatibility_drift_detection",
+    "replay_safety_compromise",
+    "multiple_simultaneous_drift_constraints"
+  ],
+  "scenario_results": {
+    "changed_snapshot_without_drift": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "9d24d24429d54fb33344354bb8c9394fb11f1ffbd56fbce464bc4edf42f296ad",
+      "deterministic_drift_summary": [
+        "snapshot_hash_changed"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_changed_without_drift; drift entries: snapshot_hash_changed.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_changed_without_drift",
+      "drift_classifications": [],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [
+        "snapshot_hash_changed"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "changed-without-drift-hash",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "compatibility_drift_detection": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [
+        {
+          "added_values": [
+            "changed-compatibility-reference"
+          ],
+          "diff_type": "compatibility_references",
+          "removed_values": [
+            "compatibility-v3-5-phase-6"
+          ],
+          "source_values": [
+            "compatibility-v3-5-phase-6"
+          ],
+          "target_values": [
+            "changed-compatibility-reference"
+          ]
+        }
+      ],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "63ef81f8f10a987e40c9ab6a0984198234abc282aaf6a29a1d8024250a7a5d9e",
+      "deterministic_drift_summary": [
+        "compatibility_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_drift_detected; drift entries: compatibility_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_drift_detected",
+      "drift_classifications": [
+        "compatibility_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "fully_stable_snapshot_comparison": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "778b329afde021c4b896e1a38500526efe98f91f1bc3a77bae34f030dec42748",
+      "deterministic_drift_summary": [
+        "no_snapshot_drift_detected"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff is stable; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, live replay, runtime trace capture, or production state read is authorized.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_stable",
+      "drift_classifications": [],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "governance_drift_detection": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "2d108e8a9c8bbc0cdf531b7ffca5bc22c66e6f7dd86f6182f66057477056ad40",
+      "deterministic_drift_summary": [
+        "governance_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_drift_detected; drift entries: governance_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_drift_detected",
+      "drift_classifications": [
+        "governance_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [
+        {
+          "added_values": [
+            "blocked_by_governance_dependency"
+          ],
+          "diff_type": "readiness_state",
+          "removed_values": [
+            "ready_for_future_orchestration_planning"
+          ],
+          "source_values": [
+            "ready_for_future_orchestration_planning"
+          ],
+          "target_values": [
+            "blocked_by_governance_dependency"
+          ]
+        }
+      ],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "hash_mismatch_detection": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "d4363fd288e18e0c49f2d3c012ce0cc7aea8936bb042b42189845f90d9071b0f",
+      "deterministic_drift_summary": [
+        "hash_drift",
+        "target_snapshot_hash_mismatch"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_blocked_by_hash_mismatch; drift entries: hash_drift, target_snapshot_hash_mismatch.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_blocked_by_hash_mismatch",
+      "drift_classifications": [
+        "hash_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [
+        "target_snapshot_hash_mismatch"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "lineage_change_blocker": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "93ecd318f2a31f4cd17e8563545ee12d4dfc765bfa92a7045a37460b3e6a1cd0",
+      "deterministic_drift_summary": [
+        "lineage_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_blocked_by_lineage_change; drift entries: lineage_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_blocked_by_lineage_change",
+      "drift_classifications": [
+        "lineage_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [
+        {
+          "added_values": [
+            "changed-replay-lineage"
+          ],
+          "diff_type": "replay_lineage",
+          "removed_values": [
+            "replay-lineage-v3-5-phase-6"
+          ],
+          "source_values": [
+            "replay-lineage-v3-5-phase-6"
+          ],
+          "target_values": [
+            "changed-replay-lineage"
+          ]
+        }
+      ],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "multiple_simultaneous_drift_constraints": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "9e8ca2f9a5a6669fbd1c5909646b0ab9e41c780f091b67387d4d5d65bcf49d5d",
+      "deterministic_drift_summary": [
+        "deterministic_serialization_not_verified",
+        "hash_drift",
+        "lineage_drift",
+        "prohibited_state_drift",
+        "replay_drift",
+        "replay_stability_not_verified",
+        "snapshot_hash_changed",
+        "target_snapshot_hash_mismatch"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_prohibited; drift entries: deterministic_serialization_not_verified, hash_drift, lineage_drift, prohibited_state_drift, replay_drift, replay_stability_not_verified, snapshot_hash_changed, target_snapshot_hash_mismatch.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_prohibited",
+      "drift_classifications": [
+        "hash_drift",
+        "lineage_drift",
+        "prohibited_state_drift",
+        "replay_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [
+        {
+          "added_values": [
+            "changed-replay-lineage"
+          ],
+          "diff_type": "replay_lineage",
+          "removed_values": [
+            "replay-lineage-v3-5-phase-6"
+          ],
+          "source_values": [
+            "replay-lineage-v3-5-phase-6"
+          ],
+          "target_values": [
+            "changed-replay-lineage"
+          ]
+        }
+      ],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [
+        "manual_drift_review"
+      ],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [
+        "deterministic_serialization_not_verified",
+        "replay_stability_not_verified",
+        "snapshot_hash_changed",
+        "target_snapshot_hash_mismatch"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "multiple-drift-hash",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [
+        {
+          "added_values": [
+            "runtime_execution"
+          ],
+          "diff_type": "prohibited_states",
+          "removed_values": [],
+          "source_values": [],
+          "target_values": [
+            "runtime_execution"
+          ]
+        }
+      ],
+      "visibility_diffs": []
+    },
+    "prohibited_diff_state": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "644781b754d05c1daf99878bd2cd89549cf3092dbf971eb273d1b42531cd1758",
+      "deterministic_drift_summary": [
+        "prohibited_state_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_prohibited; drift entries: prohibited_state_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_prohibited",
+      "drift_classifications": [
+        "prohibited_state_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [
+        {
+          "added_values": [
+            "runtime_execution"
+          ],
+          "diff_type": "prohibited_states",
+          "removed_values": [],
+          "source_values": [],
+          "target_values": [
+            "runtime_execution"
+          ]
+        }
+      ],
+      "visibility_diffs": []
+    },
+    "replay_instability_detection": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "84c042c9741e0e478ca3493d9b0fc40bcf94593bc8dbebe6c255480b462f23e6",
+      "deterministic_drift_summary": [
+        "replay_drift",
+        "replay_stability_not_verified"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_blocked_by_replay_instability; drift entries: replay_drift, replay_stability_not_verified.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_blocked_by_replay_instability",
+      "drift_classifications": [
+        "replay_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [
+        "replay_stability_not_verified"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "replay_safety_compromise": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "b45e906c572b32ad6c93af4e51bf72063f69b3b53c299fddfe88e840a3740308",
+      "deterministic_drift_summary": [
+        "deterministic_serialization_not_verified",
+        "replay_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_replay_safety_compromised; drift entries: deterministic_serialization_not_verified, replay_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_replay_safety_compromised",
+      "drift_classifications": [
+        "replay_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [
+        "deterministic_serialization_not_verified"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [],
+      "visibility_diffs": []
+    },
+    "unsupported_diff_state": {
+      "audit_log_writing_enabled": false,
+      "blocker_diffs": [],
+      "compatibility_diffs": [],
+      "coordination_diffs": [],
+      "dependency_diffs": [],
+      "deterministic_diff_hash": "c934462a68a5300c5f55e0782e1dea052afa43ee585a9a8195cc1fb898dddac4",
+      "deterministic_drift_summary": [
+        "unsupported_state_drift"
+      ],
+      "deterministic_explanation_summary": "Snapshot diff classified as snapshot_diff_unsupported; drift entries: unsupported_state_drift.",
+      "diff_analysis_id": "snapshot-diff-v3-5-phase-7",
+      "diff_status": "snapshot_diff_unsupported",
+      "drift_classifications": [
+        "unsupported_state_drift"
+      ],
+      "environment_diffs": [],
+      "graph_execution_enabled": false,
+      "graph_traversal_behavior_enabled": false,
+      "limitation_diffs": [],
+      "lineage_diffs": [],
+      "live_replay_enabled": false,
+      "manual_review_diffs": [],
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "production_state_reads_enabled": false,
+      "readiness_diffs": [],
+      "replay_safety_diffs": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "runtime_trace_capture_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "source_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "source_snapshot_id": "snapshot-v3-5-phase-6",
+      "target_snapshot_hash": "6412d5967839a9099d0827013a5f905a3a0a396afba3edd6467f329db3afbc91",
+      "target_snapshot_id": "snapshot-v3-5-phase-6",
+      "unsupported_prohibited_diffs": [
+        {
+          "added_values": [
+            "unsupported_diff_state"
+          ],
+          "diff_type": "unsupported_states",
+          "removed_values": [],
+          "source_values": [],
+          "target_values": [
+            "unsupported_diff_state"
+          ]
+        }
+      ],
+      "visibility_diffs": []
+    }
+  },
+  "schema_version": "v3_5.snapshot_diff_and_drift_analysis_report.1",
+  "status_distribution": {
+    "snapshot_diff_blocked_by_hash_mismatch": 1,
+    "snapshot_diff_blocked_by_lineage_change": 1,
+    "snapshot_diff_blocked_by_replay_instability": 1,
+    "snapshot_diff_changed_without_drift": 1,
+    "snapshot_diff_drift_detected": 2,
+    "snapshot_diff_prohibited": 2,
+    "snapshot_diff_replay_safety_compromised": 1,
+    "snapshot_diff_requires_manual_review": 0,
+    "snapshot_diff_stable": 1,
+    "snapshot_diff_unsupported": 1
+  },
+  "summary": {
+    "changed_or_blocked_scenario_count": 10,
+    "deterministic_outputs": true,
+    "priority_order_status_selection": true,
+    "replay_safe_planning_evidence": true,
+    "rollback_safe_planning_evidence": true,
+    "scenario_count": 11,
+    "stable_diff_hashing": true,
+    "stable_scenario_count": 1,
+    "stable_serialization": true,
+    "supported_status_count": 10
+  },
+  "unsupported_prohibited_diff_summary": {
+    "diff_entry_count": 3,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 3
+  },
+  "visibility_diff_summary": {
+    "diff_entry_count": 0,
+    "scenario_count": 11,
+    "scenario_with_diffs_count": 0
+  }
+}
