@@ -1,0 +1,325 @@
+{
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+    "sample_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+    "timestamp_excluded_from_hash": true
+  },
+  "deterministic_hashing_distributions": {
+    "deterministic_hashing_satisfied": 1
+  },
+  "deterministic_ordering_distributions": {
+    "deterministic_ordering_satisfied": 1
+  },
+  "future_phase_foundation": [
+    "future replayability phases may consume deterministic validation evidence",
+    "future runtime intelligence phases must preserve stable hashes and ordering",
+    "future runtime work must keep nondeterministic drift and instability visible"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_behavior_enabled": false,
+    "runtime_determinism_validation_contract_only": true,
+    "source": "v3_2_runtime_determinism_validation_contracts_report"
+  },
+  "phase": "v3.2_phase_6_runtime_determinism_validation_contracts",
+  "phase_6_boundaries": [
+    "runtime determinism validation contracts are governance only",
+    "runtime manifest consumption remains disabled by default",
+    "production runtime routing remains prohibited",
+    "repeat-run consistency must be explicit",
+    "deterministic ordering and hashing must remain stable",
+    "runtime replay consistency cannot be implicitly approved"
+  ],
+  "production_default_routing_authorized": false,
+  "production_prohibited_verification": {
+    "production_default_routing_authorized": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true
+  },
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "recommendation": "RUNTIME_DETERMINISM_VALIDATION_READY_FOR_FUTURE_REPLAYABILITY_DESIGN_ONLY",
+  "repeat_run_consistency_distributions": {
+    "repeat_run_consistency_satisfied": 1
+  },
+  "replay_consistency_distributions": {
+    "runtime_replay_consistency_satisfied": 1
+  },
+  "runtime_audit_compatibility_distributions": {
+    "runtime_diff_audit_satisfied": 1
+  },
+  "runtime_determinism_validation_contracts": {
+    "deterministic_hash": "1b6c0dbdeabb3f9444ddf4eff16914db38f0a720af0b332b8ac3be3b75a58c85",
+    "deterministic_hashing_distribution": {
+      "deterministic_hashing_satisfied": 1
+    },
+    "deterministic_ordering_distribution": {
+      "deterministic_ordering_satisfied": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_behavior_enabled": false,
+      "runtime_determinism_validation_contract_only": true,
+      "source": "v3_2_runtime_determinism_validation_contracts",
+      "stable_generation_token": "v3_2_phase_6_runtime_determinism_validation_contracts_token"
+    },
+    "phase_1_entrypoint_compatibility": {
+      "entrypoint_contract_records": 1,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "requires_experimental_runtime_eligible": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_2_isolation_compatibility": {
+      "isolation_contract_records": 1,
+      "production_routing_authorized": false,
+      "requires_runtime_isolation_satisfied": true,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "phase_3_session_compatibility": {
+      "production_routing_authorized": false,
+      "requires_session_boundary_satisfied": true,
+      "runtime_manifest_consumption_enabled": false,
+      "session_boundary_contract_records": 1
+    },
+    "phase_4_rollback_compatibility": {
+      "production_routing_authorized": false,
+      "requires_runtime_rollback_ready": true,
+      "requires_runtime_safety_satisfied": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_safety_rollback_contract_records": 1
+    },
+    "phase_5_audit_compatibility": {
+      "production_routing_authorized": false,
+      "requires_runtime_diff_audit_satisfied": true,
+      "runtime_diff_audit_contract_records": 1,
+      "runtime_manifest_consumption_enabled": false
+    },
+    "repeat_run_consistency_distribution": {
+      "repeat_run_consistency_satisfied": 1
+    },
+    "replay_consistency_distribution": {
+      "runtime_replay_consistency_satisfied": 1
+    },
+    "run": {
+      "entrypoint_contract_count": 1,
+      "experimental_runtime_entrypoint_contracts_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+      "run_id": "v3_2_phase_6_runtime_determinism_validation_contracts",
+      "runtime_determinism_request_count": 1,
+      "runtime_determinism_requests_hash": "ae62b16fe8c1f1f76502ab703d8a1226e1cb8288f0319600cd383e58f5612050",
+      "runtime_diff_audit_contract_count": 1,
+      "runtime_diff_audit_contracts_hash": "6b4e02e8890190b1cc2b2535b2b3f848a4e16dcb446f3412c9df3c65fe580111",
+      "runtime_isolation_contract_count": 1,
+      "runtime_isolation_contracts_hash": "e1fbca6e37f791c227797d7d67b8676f12f6f63cfd4b2ab751bb6cf307d62df9",
+      "runtime_safety_rollback_contract_count": 1,
+      "runtime_safety_rollback_contracts_hash": "8a5495a9ae5cce09828ea3fd354570d5d52fae4f01737a1ff93850da59f153a2",
+      "runtime_session_boundary_contract_count": 1,
+      "runtime_session_boundary_contracts_hash": "603464d4993072d12a16b20af72a5a00aa2980bcfe05bd9493fec1975fe7a6f6"
+    },
+    "runtime_audit_compatibility_distribution": {
+      "runtime_diff_audit_satisfied": 1
+    },
+    "runtime_determinism_blocker_distribution": {},
+    "runtime_determinism_status_counts": {
+      "deterministic_hashing_failed": 0,
+      "deterministic_ordering_failed": 0,
+      "repeat_run_consistency_failed": 0,
+      "runtime_audit_compatibility_missing": 0,
+      "runtime_determinism_blocked": 0,
+      "runtime_determinism_satisfied": 1,
+      "runtime_entrypoint_compatibility_missing": 0,
+      "runtime_instability_detected": 0,
+      "runtime_isolation_compatibility_missing": 0,
+      "runtime_nondeterministic_drift_detected": 0,
+      "runtime_rollback_compatibility_missing": 0,
+      "runtime_session_compatibility_missing": 0,
+      "runtime_transition_instability_detected": 0
+    },
+    "runtime_determinism_validation_contracts": [
+      {
+        "determinism_blockers": [],
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "instability_blockers": [],
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_determinism_validation_allowed": false,
+          "governance_only": true,
+          "hidden_runtime_instability_allowed": false,
+          "implicit_replay_consistency_approval_allowed": false,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_behavior_enabled": false,
+          "runtime_determinism_validation_contract_only": true,
+          "silent_determinism_failures_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "repeat_run_hashes": [
+          "62f3299e4f592c45085fa975e3d767c17598361012562c5c3efa1ed1ca10f585",
+          "62f3299e4f592c45085fa975e3d767c17598361012562c5c3efa1ed1ca10f585"
+        ],
+        "replay_blockers": [],
+        "runtime_determinism_blocker_state": "unblocked_for_contract_only",
+        "runtime_determinism_status": "runtime_determinism_satisfied",
+        "runtime_determinism_validation_authorizes_production_routing": false,
+        "runtime_determinism_validation_authorizes_runtime_consumption": false,
+        "runtime_determinism_validation_contract_id": "v3_2_runtime_determinism_924dc2d5e30a89b4",
+        "runtime_deterministic_hashing_state": "deterministic_hashing_satisfied",
+        "runtime_deterministic_ordering_state": "deterministic_ordering_satisfied",
+        "runtime_diff_audit_status": "runtime_diff_audit_satisfied",
+        "runtime_drift_status": "runtime_diff_audit_satisfied",
+        "runtime_entrypoint_status": "experimental_runtime_eligible",
+        "runtime_hashing_status": "deterministic_hashing_satisfied",
+        "runtime_instability_blocker_state": "unblocked_for_contract_only",
+        "runtime_instability_classification": "runtime_instability_absent",
+        "runtime_isolation_status": "runtime_isolation_satisfied",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_nondeterministic_drift_state": "runtime_nondeterministic_drift_absent",
+        "runtime_ordering_status": "deterministic_ordering_satisfied",
+        "runtime_production_consumption_enabled": false,
+        "runtime_repeat_run_state": "repeat_run_consistency_satisfied",
+        "runtime_repeat_run_status": "repeat_run_consistency_satisfied",
+        "runtime_replay_blocker_state": "unblocked_for_contract_only",
+        "runtime_replay_consistency_state": "runtime_replay_consistency_satisfied",
+        "runtime_replay_status": "runtime_replay_consistency_satisfied",
+        "runtime_replay_trace_classification": "runtime_replay_trace_audited",
+        "runtime_rollback_status": "runtime_rollback_ready",
+        "runtime_safety_status": "runtime_safety_satisfied",
+        "runtime_session_boundary_status": "runtime_session_boundary_satisfied",
+        "runtime_transition_consistency_state": "runtime_transition_consistency_satisfied"
+      }
+    ],
+    "runtime_disabled_path_verification": {
+      "fallback_determinism_validation_allowed": false,
+      "implicit_replay_consistency_approval_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_determinism_failures_allowed": false
+    },
+    "runtime_instability_blocker_distribution": {},
+    "runtime_instability_distribution": {
+      "runtime_instability_absent": 1
+    },
+    "runtime_isolation_compatibility_distribution": {
+      "runtime_isolation_satisfied": 1
+    },
+    "runtime_nondeterministic_drift_distribution": {
+      "runtime_nondeterministic_drift_absent": 1
+    },
+    "runtime_replay_blocker_distribution": {},
+    "runtime_replay_status_counts": {
+      "runtime_audit_compatibility_missing": 0,
+      "runtime_replay_consistency_failed": 0,
+      "runtime_replay_consistency_satisfied": 1
+    },
+    "runtime_rollback_compatibility_distribution": {
+      "runtime_rollback_ready": 1
+    },
+    "runtime_session_compatibility_distribution": {
+      "runtime_session_boundary_satisfied": 1
+    },
+    "runtime_transition_instability_distribution": {
+      "runtime_transition_consistency_satisfied": 1
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_determinism_validation_allows_hidden_instability": false,
+      "runtime_determinism_validation_allows_silent_failures": false,
+      "runtime_determinism_validation_authorizes_production_routing": false,
+      "runtime_determinism_validation_enables_runtime_manifest_consumption": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "schema_version": "v3_2.runtime_determinism_validation_contracts.1",
+    "summary": {
+      "deterministic": true,
+      "deterministic_hashing_failed_count": 0,
+      "deterministic_ordering_failed_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "records_evaluated": 1,
+      "repeat_run_consistency_failed_count": 0,
+      "runtime_determinism_blocked_count": 0,
+      "runtime_determinism_satisfied_count": 1,
+      "runtime_instability_detected_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_nondeterministic_drift_detected_count": 0,
+      "runtime_production_consumption_enabled": false,
+      "runtime_replay_consistency_failed_count": 0,
+      "runtime_replay_consistency_satisfied_count": 1,
+      "runtime_transition_instability_detected_count": 0
+    }
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_determinism_validation_allowed": false,
+    "implicit_replay_consistency_approval_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_determinism_failures_allowed": false
+  },
+  "runtime_instability_distributions": {
+    "runtime_instability_absent": 1
+  },
+  "runtime_isolation_compatibility_distributions": {
+    "runtime_isolation_satisfied": 1
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_nondeterministic_drift_distributions": {
+    "runtime_nondeterministic_drift_absent": 1
+  },
+  "runtime_production_consumption_enabled": false,
+  "runtime_rollback_compatibility_distributions": {
+    "runtime_rollback_ready": 1
+  },
+  "runtime_session_compatibility_distributions": {
+    "runtime_session_boundary_satisfied": 1
+  },
+  "runtime_transition_instability_distributions": {
+    "runtime_transition_consistency_satisfied": 1
+  },
+  "schema_version": "v3_2.runtime_determinism_validation_contracts_report.1",
+  "summary": {
+    "deterministic": true,
+    "deterministic_hashing_failed_count": 0,
+    "deterministic_ordering_failed_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "records_evaluated": 1,
+    "repeat_run_consistency_failed_count": 0,
+    "runtime_determinism_blocked_count": 0,
+    "runtime_determinism_satisfied_count": 1,
+    "runtime_instability_detected_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_nondeterministic_drift_detected_count": 0,
+    "runtime_production_consumption_enabled": false,
+    "runtime_replay_consistency_failed_count": 0,
+    "runtime_replay_consistency_satisfied_count": 1,
+    "runtime_transition_instability_detected_count": 0
+  }
+}
