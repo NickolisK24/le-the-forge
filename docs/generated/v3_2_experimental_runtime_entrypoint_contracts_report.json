@@ -1,0 +1,195 @@
+{
+  "authorization_state_distributions": {
+    "non_production_authoritative": 1
+  },
+  "blocker_distributions": {},
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+    "sample_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+    "timestamp_excluded_from_hash": true
+  },
+  "experimental_runtime_entrypoint_contracts": {
+    "authorization_state_distribution": {
+      "non_production_authoritative": 1
+    },
+    "blocker_distribution": {},
+    "deterministic_hash": "fb9ed486aedd12c343b9a0acd443eabb4a067c969d865e4296a748e3bb330b0a",
+    "isolation_state_distribution": {
+      "runtime_isolated": 1
+    },
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "governance_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_runtime_prohibited": true,
+      "runtime_adjacent_boundary": true,
+      "runtime_behavior_enabled": false,
+      "source": "v3_2_experimental_runtime_entrypoint_contracts",
+      "stable_generation_token": "v3_2_phase_1_experimental_runtime_entrypoint_contracts_token"
+    },
+    "run": {
+      "closeout_record_count": 1,
+      "experimental_runtime_readiness_closeout_hash": "5446aed43fd538a0f54bd182c96f8d4428aeec7135d72881a17d6ac91f2f7cb7",
+      "run_id": "v3_2_phase_1_experimental_runtime_entrypoint_contracts",
+      "runtime_entry_request_count": 1,
+      "runtime_entry_requests_hash": "c1016d7e52cad3ff18ffe6d690f121e4bc5bc1cd8789b0b1e6a992f88175c16e"
+    },
+    "runtime_disabled_path_verification": {
+      "fallback_authorization_allowed": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "silent_runtime_activation_allowed": false
+    },
+    "runtime_entrypoint_contracts": [
+      {
+        "blockers": [],
+        "closeout_readiness_status": "ready_for_future_limited_experimental_runtime_phase",
+        "entrypoint_contract_authorizes_production_routing": false,
+        "entrypoint_contract_authorizes_runtime_consumption": false,
+        "explicit_experimental_runtime_opt_in": true,
+        "fixture_set_id": "v3_1_fixture_set_6d3b668a84cfbb69",
+        "manifest_id": "v3_1_admission_manifest_198a3e2110f9e5e4",
+        "metadata": {
+          "fallback_authorization_allowed": false,
+          "governance_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false,
+          "production_runtime_prohibited": true,
+          "runtime_adjacent_boundary": true,
+          "runtime_behavior_enabled": false,
+          "silent_runtime_activation_allowed": false
+        },
+        "production_output_affected": false,
+        "production_routing_authorized": false,
+        "production_runtime_classification": "production_runtime_prohibited",
+        "runtime_activation_intent": "contract_evaluation_only",
+        "runtime_authorization_state": "non_production_authoritative",
+        "runtime_blocker_state": "unblocked_for_contract_only",
+        "runtime_consumption_prohibition_state": "runtime_manifest_consumption_disabled",
+        "runtime_eligibility_state": "experimental_runtime_eligible",
+        "runtime_entrypoint_contract_id": "v3_2_runtime_entrypoint_contract_3efc7e30d99668c6",
+        "runtime_entrypoint_status": "experimental_runtime_eligible",
+        "runtime_isolation_state": "runtime_isolated",
+        "runtime_manifest_consumption_enabled": false,
+        "runtime_mode": "limited_experimental_runtime",
+        "runtime_production_consumption_enabled": false,
+        "runtime_rollback_eligibility": true,
+        "runtime_trace_classification": "runtime_entry_contract_trace_ready"
+      }
+    ],
+    "runtime_entrypoint_status_counts": {
+      "experimental_runtime_blocked": 0,
+      "experimental_runtime_eligible": 1,
+      "production_runtime_prohibited": 0,
+      "runtime_disabled_by_authorization": 0,
+      "runtime_disabled_by_isolation_failure": 0,
+      "runtime_disabled_by_policy": 0,
+      "runtime_rollback_required": 0
+    },
+    "safety_confirmations": {
+      "entrypoint_contract_authorizes_production_manifests": false,
+      "entrypoint_contract_authorizes_production_routing": false,
+      "entrypoint_contract_enables_runtime_manifest_consumption": false,
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "production_runtime_routing_prohibited": true,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_2.experimental_runtime_entrypoint_contracts.1",
+    "summary": {
+      "deterministic": true,
+      "experimental_runtime_blocked_count": 0,
+      "experimental_runtime_eligible_count": 1,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "production_routing_authorized": false,
+      "production_runtime_prohibited_count": 0,
+      "records_evaluated": 1,
+      "runtime_disabled_by_authorization_count": 0,
+      "runtime_disabled_by_isolation_failure_count": 0,
+      "runtime_disabled_by_policy_count": 0,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "runtime_rollback_required_count": 0
+    }
+  },
+  "future_phase_foundation": [
+    "future phases may evaluate limited experimental runtime initialization against this contract",
+    "future phases must preserve non-production authorization and isolation checks",
+    "future phases must continue to report blockers before any runtime-adjacent behavior is considered"
+  ],
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "isolation_state_distributions": {
+    "runtime_isolated": 1
+  },
+  "metadata": {
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_adjacent_boundary": true,
+    "runtime_behavior_enabled": false,
+    "source": "v3_2_experimental_runtime_entrypoint_contracts_report"
+  },
+  "phase": "v3.2_phase_1_experimental_runtime_entrypoint_contracts",
+  "phase_1_boundaries": [
+    "entrypoint contracts are governance and authorization only",
+    "runtime manifest consumption remains disabled",
+    "production runtime remains prohibited",
+    "production planner routing remains unchanged",
+    "explicit authorization and isolation states are required",
+    "rollback-safe gating is mandatory before future runtime work"
+  ],
+  "production_default_routing_authorized": false,
+  "production_routing_authorized": false,
+  "production_runtime_prohibited": true,
+  "prohibited_runtime_classifications": {
+    "production_runtime_always_prohibited": true,
+    "production_runtime_prohibited": 0
+  },
+  "recommendation": "ENTRYPOINT_CONTRACT_READY_FOR_FUTURE_EXPERIMENTAL_RUNTIME_DESIGN_ONLY",
+  "rollback_required_classifications": {
+    "rollback_safe_gating_required": true,
+    "runtime_rollback_required": 0
+  },
+  "runtime_disabled_path_verification": {
+    "fallback_authorization_allowed": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited": true,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "silent_runtime_activation_allowed": false
+  },
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_2.experimental_runtime_entrypoint_contracts_report.1",
+  "summary": {
+    "deterministic": true,
+    "experimental_runtime_blocked_count": 0,
+    "experimental_runtime_eligible_count": 1,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "production_routing_authorized": false,
+    "production_runtime_prohibited_count": 0,
+    "records_evaluated": 1,
+    "runtime_disabled_by_authorization_count": 0,
+    "runtime_disabled_by_isolation_failure_count": 0,
+    "runtime_disabled_by_policy_count": 0,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false,
+    "runtime_rollback_required_count": 0
+  }
+}
