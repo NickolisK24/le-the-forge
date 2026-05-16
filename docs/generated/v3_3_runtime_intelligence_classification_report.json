@@ -1,0 +1,520 @@
+{
+  "classification_manifest": {
+    "classifications": [
+      {
+        "classification_id": "runtime_intelligence_verified_12cc3657fd19",
+        "classification_label": "verified",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 10,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "verified_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_replay_verified_c386cacc38b4",
+        "classification_label": "replay_verified",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 20,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "replay_verified_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_partially_verified_8f0f94d0785a",
+        "classification_label": "partially_verified",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 30,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime intelligence classifications are planning-only",
+          "verification coverage is partial"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "remaining evidence gaps require review"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "partial_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_inferred_9b474e377107",
+        "classification_label": "inferred",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 40,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "inference is not runtime certainty",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "inferred classifications require review before use"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "inferred_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_unsupported_c4be85786b17",
+        "classification_label": "unsupported",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 50,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime intelligence classifications are planning-only",
+          "unsupported runtime evidence is visible but not usable"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "unsupported runtime conditions must block automation"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "unsupported_runtime_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_blocked_541cca575a7d",
+        "classification_label": "blocked",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 60,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "blocked classifications require governance action",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "blocked runtime evidence must not proceed silently",
+          "classification must not authorize production runtime routing"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "blocked_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_conflicting_73cf2f5aa267",
+        "classification_label": "conflicting",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 70,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "conflicting evidence requires reconciliation",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "conflict may indicate unsafe runtime reasoning"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "conflicting_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_unstable_02c01f5a9385",
+        "classification_label": "unstable",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 80,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "runtime intelligence classifications are planning-only",
+          "unstable evidence is not replay-trusted"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "unstable runtime classifications may drift"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "unstable_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_drift_detected_c7fe791c1874",
+        "classification_label": "drift_detected",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 90,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "drift requires explicit review",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "drift may invalidate replay assumptions"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "drift_visible_evidence"
+      },
+      {
+        "classification_id": "runtime_intelligence_provenance_incomplete_71d9a0335ae8",
+        "classification_label": "provenance_incomplete",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 100,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "provenance is incomplete",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "missing provenance blocks runtime certainty"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "provenance_incomplete"
+      },
+      {
+        "classification_id": "runtime_intelligence_authorization_prohibited_a6d17b909d1f",
+        "classification_label": "authorization_prohibited",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 110,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "authorization is explicitly prohibited",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "authorization-prohibited states must block runtime enablement",
+          "classification must not authorize production runtime routing"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": false,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "authorization_prohibited"
+      },
+      {
+        "classification_id": "runtime_intelligence_experimental_only_7d3bc626dd86",
+        "classification_label": "experimental_only",
+        "default_runtime_manifest_consumption_enabled": false,
+        "deterministic_rank": 120,
+        "drift_visible": true,
+        "explainability_required": true,
+        "explicit_limitations": [
+          "experimental-only does not imply production authorization",
+          "runtime intelligence classifications are planning-only"
+        ],
+        "explicit_risks": [
+          "classification must not authorize production runtime routing",
+          "experimental scope must remain isolated"
+        ],
+        "production_authoritative_manifest_treatment": false,
+        "production_authorized": false,
+        "production_runtime_routing_authorized": false,
+        "provenance_required": true,
+        "replay_safe": true,
+        "runtime_intelligence_planning_only": true,
+        "trust_state": "experimental_only"
+      }
+    ],
+    "deterministic_hash": "d60038f99904bf8bc55d00fb808c368aa270e650c382e2303b9b86645fcd8448",
+    "metadata": {
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "runtime_certainty_fabricated": false,
+      "silent_fallback_logic_allowed": false,
+      "source": "v3_3_runtime_intelligence_classification_contracts",
+      "unsupported_classifications_visible": true
+    },
+    "production_authoritative_manifest_treatment": false,
+    "production_runtime_routing_authorized": false,
+    "registry_validation": {
+      "authorization_prohibited_classification_visible": true,
+      "duplicate_detection": {
+        "duplicate_classification_ids": [],
+        "duplicate_classification_labels": [],
+        "duplicate_deterministic_ranks": []
+      },
+      "missing_required_fields": {},
+      "production_authorized_classifications": [],
+      "provenance_incomplete_classification_visible": true,
+      "unknown_labels": [],
+      "unsupported_classification_visible": true,
+      "valid": true,
+      "validation_errors": []
+    },
+    "replay_validation": {
+      "first_hash": "e832cc2637b9bf42d5be8e2fcb00fbd16fc913f5cc41de58ce7f264af3641473",
+      "replay_stable": true,
+      "second_hash": "e832cc2637b9bf42d5be8e2fcb00fbd16fc913f5cc41de58ce7f264af3641473",
+      "serializer": "json_sort_keys_sha256"
+    },
+    "run": {
+      "classification_count": 12,
+      "run_id": "v3_3_phase_1_runtime_intelligence_classification_contracts"
+    },
+    "runtime_intelligence_planning_only": true,
+    "runtime_manifest_consumption_enabled": false,
+    "schema_version": "v3_3.runtime_intelligence_classification_contracts.1"
+  },
+  "classifications_requiring_provenance": [
+    "verified",
+    "replay_verified",
+    "partially_verified",
+    "inferred",
+    "unsupported",
+    "blocked",
+    "conflicting",
+    "unstable",
+    "drift_detected",
+    "provenance_incomplete",
+    "authorization_prohibited",
+    "experimental_only"
+  ],
+  "classifications_with_explicit_limitations": {
+    "authorization_prohibited": [
+      "authorization is explicitly prohibited",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "blocked": [
+      "blocked classifications require governance action",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "conflicting": [
+      "conflicting evidence requires reconciliation",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "drift_detected": [
+      "drift requires explicit review",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "experimental_only": [
+      "experimental-only does not imply production authorization",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "inferred": [
+      "inference is not runtime certainty",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "partially_verified": [
+      "runtime intelligence classifications are planning-only",
+      "verification coverage is partial"
+    ],
+    "provenance_incomplete": [
+      "provenance is incomplete",
+      "runtime intelligence classifications are planning-only"
+    ],
+    "replay_verified": [
+      "runtime intelligence classifications are planning-only"
+    ],
+    "unstable": [
+      "runtime intelligence classifications are planning-only",
+      "unstable evidence is not replay-trusted"
+    ],
+    "unsupported": [
+      "runtime intelligence classifications are planning-only",
+      "unsupported runtime evidence is visible but not usable"
+    ],
+    "verified": [
+      "runtime intelligence classifications are planning-only"
+    ]
+  },
+  "classifications_with_explicit_risks": {
+    "authorization_prohibited": [
+      "authorization-prohibited states must block runtime enablement",
+      "classification must not authorize production runtime routing"
+    ],
+    "blocked": [
+      "blocked runtime evidence must not proceed silently",
+      "classification must not authorize production runtime routing"
+    ],
+    "conflicting": [
+      "classification must not authorize production runtime routing",
+      "conflict may indicate unsafe runtime reasoning"
+    ],
+    "drift_detected": [
+      "classification must not authorize production runtime routing",
+      "drift may invalidate replay assumptions"
+    ],
+    "experimental_only": [
+      "classification must not authorize production runtime routing",
+      "experimental scope must remain isolated"
+    ],
+    "inferred": [
+      "classification must not authorize production runtime routing",
+      "inferred classifications require review before use"
+    ],
+    "partially_verified": [
+      "classification must not authorize production runtime routing",
+      "remaining evidence gaps require review"
+    ],
+    "provenance_incomplete": [
+      "classification must not authorize production runtime routing",
+      "missing provenance blocks runtime certainty"
+    ],
+    "replay_verified": [
+      "classification must not authorize production runtime routing"
+    ],
+    "unstable": [
+      "classification must not authorize production runtime routing",
+      "unstable runtime classifications may drift"
+    ],
+    "unsupported": [
+      "classification must not authorize production runtime routing",
+      "unsupported runtime conditions must block automation"
+    ],
+    "verified": [
+      "classification must not authorize production runtime routing"
+    ]
+  },
+  "deterministic_ordering_validation": {
+    "ordered_labels": [
+      "verified",
+      "replay_verified",
+      "partially_verified",
+      "inferred",
+      "unsupported",
+      "blocked",
+      "conflicting",
+      "unstable",
+      "drift_detected",
+      "provenance_incomplete",
+      "authorization_prohibited",
+      "experimental_only"
+    ],
+    "ordered_ranks": [
+      10,
+      20,
+      30,
+      40,
+      50,
+      60,
+      70,
+      80,
+      90,
+      100,
+      110,
+      120
+    ],
+    "passed": true
+  },
+  "duplicate_detection_results": {
+    "duplicate_classification_ids": [],
+    "duplicate_classification_labels": [],
+    "duplicate_deterministic_ranks": []
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "deterministic_serializer": "json_sort_keys_sha256",
+    "governance_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "runtime_behavior_enabled": false,
+    "source": "v3_3_runtime_intelligence_classification_report"
+  },
+  "phase": "v3.3_phase_1_runtime_intelligence_classification_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_runtime_prohibited": true,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "RUNTIME_INTELLIGENCE_CLASSIFICATION_FOUNDATION_READY_FOR_PLANNING_ONLY",
+  "replay_validation_results": {
+    "first_hash": "e832cc2637b9bf42d5be8e2fcb00fbd16fc913f5cc41de58ce7f264af3641473",
+    "replay_stable": true,
+    "second_hash": "e832cc2637b9bf42d5be8e2fcb00fbd16fc913f5cc41de58ce7f264af3641473",
+    "serializer": "json_sort_keys_sha256"
+  },
+  "runtime_intelligence_planning_only": true,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "autonomous_planner_mutation_enabled": false,
+    "default_runtime_manifest_consumption_disabled": true,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_runtime_routing_prohibited": true,
+    "runtime_intelligence_remains_planning_only": true,
+    "unrestricted_runtime_execution_enabled": false
+  },
+  "schema_version": "v3_3.runtime_intelligence_classification_report.1",
+  "stable_hash_validation": {
+    "hash_without_report_timestamp": "d60038f99904bf8bc55d00fb808c368aa270e650c382e2303b9b86645fcd8448",
+    "passed": true,
+    "repeated_hash": "d60038f99904bf8bc55d00fb808c368aa270e650c382e2303b9b86645fcd8448",
+    "sample_hash": "d60038f99904bf8bc55d00fb808c368aa270e650c382e2303b9b86645fcd8448"
+  },
+  "summary": {
+    "classifications_requiring_provenance_count": 12,
+    "classifications_with_explicit_limitations_count": 12,
+    "classifications_with_explicit_risks_count": 12,
+    "deterministic": true,
+    "deterministic_ordering_valid": true,
+    "drift_visible_classification_count": 12,
+    "duplicate_detection_passed": true,
+    "production_authorized_classification_count": 0,
+    "production_behavior_changed": false,
+    "replay_safe_classification_count": 4,
+    "replay_validation_passed": true,
+    "stable_hash_valid": true,
+    "total_classification_count": 12,
+    "unsupported_classification_count": 1
+  },
+  "unsupported_runtime_visibility": {
+    "authorization_prohibited_classification_visible": true,
+    "provenance_incomplete_classification_visible": true,
+    "unsupported_classification_visible": true
+  }
+}
