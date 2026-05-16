@@ -1,0 +1,324 @@
+{
+  "baseline_semantic_expectations": {
+    "baseline_semantic_expectation_records": [
+      {
+        "baseline_id": "v3_1_snapshot_472bcd4c1169053b",
+        "baseline_semantic_expectation_id": "v3_1_baseline_semantic_expectation_14a1c0229a013775",
+        "blockers": [],
+        "expected_fixture_trace_fields": {},
+        "expected_identity_fields": {
+          "baseline_readiness": "baseline_candidate",
+          "comparison_id": "affix",
+          "drift_classification": "equivalent",
+          "legacy_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_472bcd4c1169053b",
+          "stable_key": "affix",
+          "trusted_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+          "trusted_shadow_status": "available"
+        },
+        "expected_manifest_trace_fields": {},
+        "fixture_set_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "semantic_expectation_status": "semantic_expectations_partial",
+        "semantic_expectations": {
+          "baseline_readiness": "baseline_candidate",
+          "comparison_id": "affix",
+          "drift_classification": "equivalent",
+          "legacy_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_472bcd4c1169053b",
+          "stable_key": "affix",
+          "trusted_hash": "640cf0924ea88a86b5d8eeff3f7d3b68aa94b66f91cee4739d150acb7c35570a",
+          "trusted_shadow_status": "available"
+        },
+        "semantic_expectations_authorize_production_routing": false,
+        "unavailable_semantic_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ]
+      },
+      {
+        "baseline_id": "v3_1_snapshot_42674d7f460ed71c",
+        "baseline_semantic_expectation_id": "v3_1_baseline_semantic_expectation_472de0e542c59be5",
+        "blockers": [],
+        "expected_fixture_trace_fields": {},
+        "expected_identity_fields": {
+          "baseline_readiness": "legacy_only",
+          "comparison_id": "idol",
+          "drift_classification": "legacy_only",
+          "legacy_hash": "dd6f78504144c7e111632e74d742da8c30376ed16c4b6dda8ccd29226bb2191b",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_42674d7f460ed71c",
+          "stable_key": "idol",
+          "trusted_shadow_status": "missing"
+        },
+        "expected_manifest_trace_fields": {},
+        "fixture_set_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "semantic_expectation_status": "semantic_expectations_partial",
+        "semantic_expectations": {
+          "baseline_readiness": "legacy_only",
+          "comparison_id": "idol",
+          "drift_classification": "legacy_only",
+          "legacy_hash": "dd6f78504144c7e111632e74d742da8c30376ed16c4b6dda8ccd29226bb2191b",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_42674d7f460ed71c",
+          "stable_key": "idol",
+          "trusted_shadow_status": "missing"
+        },
+        "semantic_expectations_authorize_production_routing": false,
+        "unavailable_semantic_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ]
+      },
+      {
+        "baseline_id": "v3_1_snapshot_372c946743469ec5",
+        "baseline_semantic_expectation_id": "v3_1_baseline_semantic_expectation_90cd585c36aa4b63",
+        "blockers": [],
+        "expected_fixture_trace_fields": {},
+        "expected_identity_fields": {
+          "baseline_readiness": "comparison_ready",
+          "comparison_id": "item_base",
+          "drift_classification": "divergent",
+          "legacy_hash": "b032e547417db66eacea1c5124714787ab2c3c6319f550f55317408fd7950d5c",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_372c946743469ec5",
+          "stable_key": "item_base",
+          "trusted_hash": "8750aa1eacbe174b9d0c257d37220cfdaaffcc8b2e32618541873851c3da6113",
+          "trusted_shadow_status": "available"
+        },
+        "expected_manifest_trace_fields": {},
+        "fixture_set_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "semantic_expectation_status": "semantic_expectations_partial",
+        "semantic_expectations": {
+          "baseline_readiness": "comparison_ready",
+          "comparison_id": "item_base",
+          "drift_classification": "divergent",
+          "legacy_hash": "b032e547417db66eacea1c5124714787ab2c3c6319f550f55317408fd7950d5c",
+          "legacy_status": "available",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_372c946743469ec5",
+          "stable_key": "item_base",
+          "trusted_hash": "8750aa1eacbe174b9d0c257d37220cfdaaffcc8b2e32618541873851c3da6113",
+          "trusted_shadow_status": "available"
+        },
+        "semantic_expectations_authorize_production_routing": false,
+        "unavailable_semantic_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ]
+      },
+      {
+        "baseline_id": "v3_1_snapshot_7fed448d66ec5b1b",
+        "baseline_semantic_expectation_id": "v3_1_baseline_semantic_expectation_0a0981c3a1ce33a4",
+        "blockers": [],
+        "expected_fixture_trace_fields": {},
+        "expected_identity_fields": {
+          "baseline_readiness": "unsupported",
+          "comparison_id": "monolith_echo",
+          "drift_classification": "unsupported",
+          "legacy_status": "missing",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_7fed448d66ec5b1b",
+          "stable_key": "monolith_echo",
+          "trusted_hash": "23d7b286bd429460b92a2a1c21b6afc34110446c5034c17363fda363aa0a7c5d",
+          "trusted_shadow_status": "unsupported"
+        },
+        "expected_manifest_trace_fields": {},
+        "fixture_set_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "semantic_expectation_status": "semantic_expectations_partial",
+        "semantic_expectations": {
+          "baseline_readiness": "unsupported",
+          "comparison_id": "monolith_echo",
+          "drift_classification": "unsupported",
+          "legacy_status": "missing",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_7fed448d66ec5b1b",
+          "stable_key": "monolith_echo",
+          "trusted_hash": "23d7b286bd429460b92a2a1c21b6afc34110446c5034c17363fda363aa0a7c5d",
+          "trusted_shadow_status": "unsupported"
+        },
+        "semantic_expectations_authorize_production_routing": false,
+        "unavailable_semantic_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ]
+      },
+      {
+        "baseline_id": "v3_1_snapshot_4d312622ce8de408",
+        "baseline_semantic_expectation_id": "v3_1_baseline_semantic_expectation_b7d18ec156adbee8",
+        "blockers": [],
+        "expected_fixture_trace_fields": {},
+        "expected_identity_fields": {
+          "baseline_readiness": "unsupported",
+          "comparison_id": "passive_skill",
+          "drift_classification": "unsupported",
+          "legacy_hash": "1c197daef20de3f47eec5e2f735ec6669869d3180cc29f35be4788511e0af0f8",
+          "legacy_status": "unsupported",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_4d312622ce8de408",
+          "stable_key": "passive_skill",
+          "trusted_hash": "36060134d807a85bd4de45d03754fc36d6f73b2349587345f0f71b5548caeaee",
+          "trusted_shadow_status": "available"
+        },
+        "expected_manifest_trace_fields": {},
+        "fixture_set_id": null,
+        "metadata": {
+          "controlled_test_only": true,
+          "observational_only": true,
+          "planner_remap_performed": false,
+          "production_consumer": false
+        },
+        "production_output_affected": false,
+        "semantic_expectation_status": "semantic_expectations_partial",
+        "semantic_expectations": {
+          "baseline_readiness": "unsupported",
+          "comparison_id": "passive_skill",
+          "drift_classification": "unsupported",
+          "legacy_hash": "1c197daef20de3f47eec5e2f735ec6669869d3180cc29f35be4788511e0af0f8",
+          "legacy_status": "unsupported",
+          "snapshot_category": "planner_adjacent_summary",
+          "snapshot_id": "v3_1_snapshot_4d312622ce8de408",
+          "stable_key": "passive_skill",
+          "trusted_hash": "36060134d807a85bd4de45d03754fc36d6f73b2349587345f0f71b5548caeaee",
+          "trusted_shadow_status": "available"
+        },
+        "semantic_expectations_authorize_production_routing": false,
+        "unavailable_semantic_fields": [
+          "manifest_trace_fields",
+          "fixture_trace_fields"
+        ]
+      }
+    ],
+    "blocker_reason_counts": {},
+    "deterministic_hash": "676a8712111518f9db713b3bf1d2f3ce6ab0fbf485bc1e7dc5127ac263bcb60d",
+    "metadata": {
+      "controlled_test_only": true,
+      "deterministic_serializer": "json_sort_keys_sha256",
+      "observational_only": true,
+      "planner_remap_performed": false,
+      "production_behavior_changed": false,
+      "production_consumer": false,
+      "production_default_routing_authorized": false,
+      "source": "v3_1_baseline_semantic_expectations",
+      "stable_generation_token": "v3_1_phase_21_baseline_semantic_expectations_token"
+    },
+    "run": {
+      "baseline_snapshot_count": 5,
+      "planner_snapshot_baselines_hash": "5b7a5ff8a33eb491d345ecf660fdd933e422e4aab475f835b6ab82d9c9097398",
+      "run_id": "v3_1_phase_21_baseline_semantic_expectations"
+    },
+    "safety_confirmations": {
+      "legacy_planner_ownership_preserved": true,
+      "production_behavior_changed": false,
+      "production_output_affected": false,
+      "production_planner_routing_changed": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false,
+      "semantic_expectations_are_production_approval": false,
+      "semantic_expectations_authorize_production_routing": false,
+      "trusted_data_default_truth": false
+    },
+    "schema_version": "v3_1.baseline_semantic_expectations.1",
+    "semantic_expectation_status_counts": {
+      "blocked_missing_baseline_snapshot": 0,
+      "blocked_missing_required_trace": 0,
+      "blocked_unstable_baseline_identity": 0,
+      "semantic_expectations_available": 0,
+      "semantic_expectations_partial": 5
+    },
+    "summary": {
+      "baseline_records_evaluated": 5,
+      "blocked_count": 0,
+      "deterministic": true,
+      "expectations_available_count": 0,
+      "partial_count": 5,
+      "production_affected_count": 0,
+      "production_behavior_changed": false,
+      "production_default_routing_authorized": false,
+      "production_output_affected": false,
+      "runtime_manifest_consumption_enabled": false,
+      "runtime_production_consumption_enabled": false
+    },
+    "unavailable_semantic_field_counts": {
+      "fixture_trace_fields": 5,
+      "manifest_trace_fields": 5
+    }
+  },
+  "deterministic_guarantees": {
+    "json_sort_keys": true,
+    "passed": true,
+    "repeated_hash": "676a8712111518f9db713b3bf1d2f3ce6ab0fbf485bc1e7dc5127ac263bcb60d",
+    "sample_hash": "676a8712111518f9db713b3bf1d2f3ce6ab0fbf485bc1e7dc5127ac263bcb60d",
+    "timestamp_excluded_from_hash": true
+  },
+  "generated_at": "2026-05-15T00:00:00+00:00",
+  "metadata": {
+    "controlled_test_only": true,
+    "observational_only": true,
+    "planner_remap_performed": false,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "source": "v3_1_baseline_semantic_expectations_report"
+  },
+  "phase": "v3.1_phase_21_baseline_semantic_expectation_enrichment",
+  "phase_21_boundaries": [
+    "semantic expectations are test-only governance metadata",
+    "semantic expectations are not production approval",
+    "semantic expectations do not authorize production routing",
+    "missing semantic fields remain visible",
+    "runtime manifest consumption remains disabled",
+    "legacy planner ownership remains intact"
+  ],
+  "production_default_routing_authorized": false,
+  "recommendation": "OBSERVATIONAL_ONLY_DO_NOT_ENABLE_PRODUCTION_DEFAULT_ROUTING",
+  "runtime_manifest_consumption_enabled": false,
+  "runtime_production_consumption_enabled": false,
+  "schema_version": "v3_1.baseline_semantic_expectations_report.1",
+  "summary": {
+    "baseline_records_evaluated": 5,
+    "blocked_count": 0,
+    "deterministic": true,
+    "expectations_available_count": 0,
+    "partial_count": 5,
+    "production_affected_count": 0,
+    "production_behavior_changed": false,
+    "production_default_routing_authorized": false,
+    "production_output_affected": false,
+    "runtime_manifest_consumption_enabled": false,
+    "runtime_production_consumption_enabled": false
+  }
+}

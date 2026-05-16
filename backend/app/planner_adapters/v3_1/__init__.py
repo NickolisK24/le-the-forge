@@ -20,6 +20,10 @@ from .planner_snapshot_baselines import (
     V31PlannerSnapshotBaselines,
     build_sample_planner_snapshot_baseline_inputs,
 )
+from .baseline_semantic_expectations import (
+    BASELINE_SEMANTIC_EXPECTATION_STATUSES,
+    build_baseline_semantic_expectations,
+)
 from .review_policy_evaluation import (
     REVIEW_POLICY_OUTCOMES,
     V31ReviewPolicyEvaluation,
@@ -100,6 +104,7 @@ from .trusted_shadow_consumption import (
 __all__ = [
     "DRIFT_CLASSIFICATIONS",
     "BASELINE_READINESS_CLASSIFICATIONS",
+    "BASELINE_SEMANTIC_EXPECTATION_STATUSES",
     "FIXTURE_WORKFLOW_STATES",
     "FIXTURE_SET_LIFECYCLE_STATES",
     "REVIEW_POLICY_OUTCOMES",
@@ -131,6 +136,7 @@ __all__ = [
     "build_sample_persisted_fixture_set_inputs",
     "build_sample_review_policy_inputs",
     "build_sample_dual_run_inputs",
+    "build_baseline_semantic_expectations",
     "build_default_trusted_repository_probes",
     "build_fixture_set_readiness_gate",
     "evaluate_fixture_source_admission_policy",
