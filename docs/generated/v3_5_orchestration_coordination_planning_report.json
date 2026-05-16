@@ -1,0 +1,2683 @@
+{
+  "blocker_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "compatibility_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "coordination_graph_summaries": {
+    "graph_count": 11,
+    "non_executable_graphs": true,
+    "scenario_count": 11
+  },
+  "coordination_statuses_supported": [
+    "coordination_prohibited",
+    "coordination_blocked_by_dependency",
+    "coordination_blocked_by_governance",
+    "coordination_blocked_by_lineage_gap",
+    "coordination_blocked_by_environment_mismatch",
+    "coordination_incompatible",
+    "coordination_unsupported",
+    "coordination_requires_manual_review",
+    "coordination_ready_for_planning"
+  ],
+  "dependency_chain_summaries": {
+    "entry_count": 22,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 11
+  },
+  "deterministic_hash": "d399ab39fa3d23ca761b4e74eeeba4c55f6cd8b815ea0556f395adf45638fc7e",
+  "environment_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "explicit_non_execution_guarantees": {
+    "audit_log_writing_enabled": false,
+    "coordination_auto_resolution_enabled": false,
+    "graph_execution_enabled": false,
+    "graph_traversal_execution_enabled": false,
+    "mutation_behavior_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "production_consumption_enabled": false,
+    "routing_behavior_enabled": false,
+    "runtime_execution_enabled": false,
+    "scheduling_behavior_enabled": false
+  },
+  "final_coordination_planning_status": "coordination_ready_for_planning",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "lineage_aggregation_summaries": {
+    "entry_count": 4,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "manual_review_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "non_production": true,
+  "phase_name": "v3.5_phase_4_orchestration_coordination_planning_contracts",
+  "planning_only": true,
+  "prohibited_state_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  },
+  "remaining_limitations": [
+    "coordination planning models declarative relationships only",
+    "coordination planning does not execute graph nodes",
+    "coordination planning does not traverse graphs automatically",
+    "coordination planning does not schedule or dispatch orchestration",
+    "coordination planning does not authorize orchestration"
+  ],
+  "scenario_coverage": [
+    "fully_coordinated_planning_graph",
+    "dependency_chain_blocker_propagation",
+    "unsupported_coordination_scope",
+    "prohibited_coordination_scope",
+    "lineage_aggregation_gap",
+    "compatibility_propagation_failure",
+    "environment_propagation_mismatch",
+    "manual_review_propagation",
+    "multi_scope_dependency_aggregation",
+    "cross_scope_lineage_aggregation",
+    "multiple_simultaneous_propagated_blockers"
+  ],
+  "scenario_results": {
+    "compatibility_propagation_failure": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "compatibility",
+          "blocker_id": "compatibility_failure:compatibility_lineage_missing",
+          "coordination_status": "coordination_incompatible",
+          "deterministic_rank": 60,
+          "explanation": "compatibility propagation failure must remain visible",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_incompatible",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_incompatible; fail-visible blockers: compatibility_failure:compatibility_lineage_missing.",
+      "deterministic_hash": "511560a16dfb00642b319da014f0d83cc53a529a50bbddb6b5cfefd8da7a8108",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [
+        "compatibility_lineage_missing"
+      ],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "cross_scope_lineage_aggregation": {
+      "audit_log_writing_enabled": false,
+      "blockers": [],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_ready_for_planning",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination graph is ready for planning-only relationship modeling; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, or production consumption is authorized.",
+      "deterministic_hash": "0865b0762df09f050af36f9e61339aaf3853ab10663d8d993fd76d740d20e434",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-phase-4-coordination"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_coordination_planning",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-phase-4-coordination"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_coordination_planning",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "dependency_chain_blocker_propagation": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "dependency",
+          "blocker_id": "dependency_blocker:dependency_chain_blocker",
+          "coordination_status": "coordination_blocked_by_dependency",
+          "deterministic_rank": 20,
+          "explanation": "coordination dependency blocker must remain fail-visible",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_blocked_by_dependency",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_blocked_by_dependency; fail-visible blockers: dependency_blocker:dependency_chain_blocker.",
+      "deterministic_hash": "0285b9f302d64847911c09d80504ee8f2ee7827697616cc0ee8d46eac8f3e823",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [
+              "dependency_chain_blocker"
+            ],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [
+        "dependency_chain_blocker"
+      ],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 1,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "environment_propagation_mismatch": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "environment",
+          "blocker_id": "environment_mismatch:environment_reference_missing",
+          "coordination_status": "coordination_blocked_by_environment_mismatch",
+          "deterministic_rank": 50,
+          "explanation": "environment propagation must preserve non-production isolation",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_blocked_by_environment_mismatch",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_blocked_by_environment_mismatch; fail-visible blockers: environment_mismatch:environment_reference_missing.",
+      "deterministic_hash": "a7b0160f53d258295975ed5a890c72002b18713a34b6e415d1b0f326407a8d99",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [
+        "environment_reference_missing"
+      ],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "fully_coordinated_planning_graph": {
+      "audit_log_writing_enabled": false,
+      "blockers": [],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_ready_for_planning",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination graph is ready for planning-only relationship modeling; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, or production consumption is authorized.",
+      "deterministic_hash": "803fe2d317964045b00be83ab226486701269901815b0d90c211053785b0a955",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "lineage_aggregation_gap": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage",
+          "blocker_id": "lineage_gap:replay_lineage_aggregation",
+          "coordination_status": "coordination_blocked_by_lineage_gap",
+          "deterministic_rank": 40,
+          "explanation": "coordination lineage gap must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage",
+          "blocker_id": "lineage_gap:rollback_lineage_aggregation",
+          "coordination_status": "coordination_blocked_by_lineage_gap",
+          "deterministic_rank": 40,
+          "explanation": "coordination lineage gap must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_blocked_by_lineage_gap",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_blocked_by_lineage_gap; fail-visible blockers: lineage_gap:replay_lineage_aggregation, lineage_gap:rollback_lineage_aggregation.",
+      "deterministic_hash": "00ee30f64535bfb62dc0a77c3ed3b69fca723acdcc549a534057a132d7bec1fe",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [],
+        "rollback_lineage_aggregation": [],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [],
+        "rollback_lineage_aggregation": [],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [
+        "replay_lineage_aggregation",
+        "rollback_lineage_aggregation"
+      ],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "manual_review_propagation": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "manual_review",
+          "blocker_id": "manual_review:coordination_owner_review_required",
+          "coordination_status": "coordination_requires_manual_review",
+          "deterministic_rank": 80,
+          "explanation": "manual review propagation must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_requires_manual_review",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_requires_manual_review; fail-visible blockers: manual_review:coordination_owner_review_required.",
+      "deterministic_hash": "a696bbc792962e125394968bb44620d8901ad746256421960b14f40d2cac3c4f",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [
+              "coordination_owner_review_required"
+            ],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [
+        "coordination_owner_review_required"
+      ],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 1,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "multi_scope_dependency_aggregation": {
+      "audit_log_writing_enabled": false,
+      "blockers": [],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_ready_for_planning",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination graph is ready for planning-only relationship modeling; no execution, dispatch, routing, mutation, audit writing, graph execution, scheduling, or production consumption is authorized.",
+      "deterministic_hash": "e87212e08779f5693cb590b2f85084a275b54ae25a73b320fb8487f15e504d30",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_4_closeout_and_v3_5_readiness",
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "multiple_simultaneous_propagated_blockers": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "prohibited",
+          "blocker_id": "prohibited:runtime_execution",
+          "coordination_status": "coordination_prohibited",
+          "deterministic_rank": 5,
+          "explanation": "prohibited coordination state must not be downgraded",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "dependency",
+          "blocker_id": "dependency_blocker:dependency_chain_blocker",
+          "coordination_status": "coordination_blocked_by_dependency",
+          "deterministic_rank": 20,
+          "explanation": "coordination dependency blocker must remain fail-visible",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage",
+          "blocker_id": "lineage_gap:replay_lineage_aggregation",
+          "coordination_status": "coordination_blocked_by_lineage_gap",
+          "deterministic_rank": 40,
+          "explanation": "coordination lineage gap must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "lineage",
+          "blocker_id": "lineage_gap:rollback_lineage_aggregation",
+          "coordination_status": "coordination_blocked_by_lineage_gap",
+          "deterministic_rank": 40,
+          "explanation": "coordination lineage gap must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "environment",
+          "blocker_id": "environment_mismatch:environment_reference_missing",
+          "coordination_status": "coordination_blocked_by_environment_mismatch",
+          "deterministic_rank": 50,
+          "explanation": "environment propagation must preserve non-production isolation",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "compatibility",
+          "blocker_id": "compatibility_failure:compatibility_lineage_missing",
+          "coordination_status": "coordination_incompatible",
+          "deterministic_rank": 60,
+          "explanation": "compatibility propagation failure must remain visible",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported",
+          "blocker_id": "unsupported:unsupported_coordination_scope",
+          "coordination_status": "coordination_unsupported",
+          "deterministic_rank": 70,
+          "explanation": "unsupported coordination state must remain explicit",
+          "fail_visible": true
+        },
+        {
+          "audit_safe": true,
+          "blocker_category": "manual_review",
+          "blocker_id": "manual_review:coordination_owner_review_required",
+          "coordination_status": "coordination_requires_manual_review",
+          "deterministic_rank": 80,
+          "explanation": "manual review propagation must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-readiness-evaluation",
+        "runtime_execution"
+      ],
+      "coordination_status": "coordination_prohibited",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_prohibited; fail-visible blockers: prohibited:runtime_execution, dependency_blocker:dependency_chain_blocker, lineage_gap:replay_lineage_aggregation, lineage_gap:rollback_lineage_aggregation, environment_mismatch:environment_reference_missing, compatibility_failure:compatibility_lineage_missing, unsupported:unsupported_coordination_scope, manual_review:coordination_owner_review_required.",
+      "deterministic_hash": "bc41d7a9b77b971c783b7af34a1c1693dff9e0c2742974978af1f8a552630257",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-readiness-evaluation",
+          "runtime_execution"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [
+              "dependency_chain_blocker"
+            ],
+            "compatibility_references": [],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [
+              "coordination_owner_review_required"
+            ],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": [
+              "unsupported_coordination_scope"
+            ]
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [],
+        "rollback_lineage_aggregation": [],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [],
+        "rollback_lineage_aggregation": [],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [
+        "dependency_chain_blocker"
+      ],
+      "propagated_compatibility_failures": [
+        "compatibility_lineage_missing"
+      ],
+      "propagated_environment_mismatches": [
+        "environment_reference_missing"
+      ],
+      "propagated_lineage_gaps": [
+        "replay_lineage_aggregation",
+        "rollback_lineage_aggregation"
+      ],
+      "propagated_manual_review_states": [
+        "coordination_owner_review_required"
+      ],
+      "propagated_prohibited_states": [
+        "runtime_execution"
+      ],
+      "propagated_unsupported_states": [
+        "unsupported_coordination_scope"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 1,
+        "fail_visible": true,
+        "manual_review_visibility_count": 1,
+        "prohibited_visibility_count": 1,
+        "unsupported_visibility_count": 1
+      }
+    },
+    "prohibited_coordination_scope": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "prohibited",
+          "blocker_id": "prohibited:runtime_execution",
+          "coordination_status": "coordination_prohibited",
+          "deterministic_rank": 5,
+          "explanation": "prohibited coordination state must not be downgraded",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-readiness-evaluation",
+        "runtime_execution"
+      ],
+      "coordination_status": "coordination_prohibited",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_prohibited; fail-visible blockers: prohibited:runtime_execution.",
+      "deterministic_hash": "0f54d1828432ecc5bc016e2abc7c148a067e97c923657e73a7d12474143b23f6",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-readiness-evaluation",
+          "runtime_execution"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [
+        "runtime_execution"
+      ],
+      "propagated_unsupported_states": [],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 1,
+        "unsupported_visibility_count": 0
+      }
+    },
+    "unsupported_coordination_scope": {
+      "audit_log_writing_enabled": false,
+      "blockers": [
+        {
+          "audit_safe": true,
+          "blocker_category": "unsupported",
+          "blocker_id": "unsupported:unsupported_coordination_scope",
+          "coordination_status": "coordination_unsupported",
+          "deterministic_rank": 70,
+          "explanation": "unsupported coordination state must remain explicit",
+          "fail_visible": true
+        }
+      ],
+      "coordination_edges": [
+        "edge-governance-consumption-to-readiness-evaluation",
+        "edge-readiness-evaluation-to-dependency-resolution"
+      ],
+      "coordination_graph_id": "coordination-graph-v3-5-phase-4",
+      "coordination_nodes": [
+        "coordination-node-dependency-resolution",
+        "coordination-node-governance-consumption",
+        "coordination-node-readiness-evaluation"
+      ],
+      "coordination_scopes": [
+        "coordination-scope-dependency-resolution",
+        "coordination-scope-governance-consumption",
+        "coordination-scope-readiness-evaluation"
+      ],
+      "coordination_status": "coordination_unsupported",
+      "dependency_chains": [
+        "coordination-node-governance-consumption->coordination-node-readiness-evaluation:v3_5_governance_consumption_contract:source_before_target",
+        "coordination-node-readiness-evaluation->coordination-node-dependency-resolution:v3_5_orchestration_readiness_evaluation:source_before_target"
+      ],
+      "deterministic_explanation_summary": "Coordination planning classified as coordination_unsupported; fail-visible blockers: unsupported:unsupported_coordination_scope.",
+      "deterministic_hash": "7528d18489d0f46a08f9a7f6d12af9c00719116e1b3078153c81ca07add9b412",
+      "graph": {
+        "audit_log_writing_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "coordination_planning_graph_id": "coordination-graph-v3-5-phase-4",
+        "coordination_scope_id": "coordination-scope-v3-5-phase-4",
+        "coordination_scope_ids": [
+          "coordination-scope-dependency-resolution",
+          "coordination-scope-governance-consumption",
+          "coordination-scope-readiness-evaluation"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "edges": [
+          {
+            "dependency_reference": "v3_5_governance_consumption_contract",
+            "edge_id": "edge-governance-consumption-to-readiness-evaluation",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-governance-consumption",
+            "target_node_id": "coordination-node-readiness-evaluation"
+          },
+          {
+            "dependency_reference": "v3_5_orchestration_readiness_evaluation",
+            "edge_id": "edge-readiness-evaluation-to-dependency-resolution",
+            "sequencing_rule": "source_before_target",
+            "source_node_id": "coordination-node-readiness-evaluation",
+            "target_node_id": "coordination-node-dependency-resolution"
+          }
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_execution_enabled": false,
+        "graph_traversal_execution_enabled": false,
+        "mutation_behavior_enabled": false,
+        "nodes": [
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-dependency-resolution",
+            "dependency_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_dependency_resolution"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-dependency-resolution",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-governance-consumption",
+            "dependency_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_governance_consumption_contract"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-governance-consumption",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": [
+              "unsupported_coordination_scope"
+            ]
+          },
+          {
+            "blocker_reasons": [],
+            "compatibility_references": [
+              "v3_4_governance_chain_compatible"
+            ],
+            "coordination_scope_id": "coordination-scope-readiness-evaluation",
+            "dependency_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "environment_references": [
+              "non_production_environment_isolated"
+            ],
+            "lineage_references": [
+              "v3_5_orchestration_readiness_evaluation"
+            ],
+            "manual_review_reasons": [],
+            "node_id": "coordination-node-readiness-evaluation",
+            "prohibited_reasons": [],
+            "replay_lineage_references": [
+              "replay-lineage-v3-5-governance-consumption"
+            ],
+            "rollback_lineage_references": [
+              "rollback-lineage-v3-5-governance-consumption"
+            ],
+            "unsupported_reasons": []
+          }
+        ],
+        "orchestration_dispatch_enabled": false,
+        "orchestration_execution_enabled": false,
+        "orchestration_scheduling_enabled": false,
+        "planning_only": true,
+        "production_consumption_enabled": false,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "routing_behavior_enabled": false,
+        "runtime_execution_enabled": false,
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "graph_execution_enabled": false,
+      "lineage_aggregation": {
+        "automatic_resolution_enabled": false,
+        "compatibility_lineage_aggregation": [
+          "v3_4_governance_chain_compatible"
+        ],
+        "downstream_coordination_scopes": [
+          "coordination-scope-dependency-resolution"
+        ],
+        "environment_lineage_aggregation": [
+          "non_production_environment_isolated"
+        ],
+        "governance_lineage_aggregation": [
+          "v3_5_governance_consumption_contract",
+          "v3_5_governance_dependency_resolution",
+          "v3_5_orchestration_readiness_evaluation"
+        ],
+        "graph_traversal_execution_enabled": false,
+        "non_executable": true,
+        "replay_lineage_aggregation": [
+          "replay-lineage-v3-5-governance-consumption"
+        ],
+        "rollback_lineage_aggregation": [
+          "rollback-lineage-v3-5-governance-consumption"
+        ],
+        "upstream_coordination_scopes": [
+          "coordination-scope-governance-consumption"
+        ]
+      },
+      "mutation_behavior_enabled": false,
+      "orchestration_dispatch_enabled": false,
+      "orchestration_execution_enabled": false,
+      "planning_only": true,
+      "production_consumption_enabled": false,
+      "propagated_blockers": [],
+      "propagated_compatibility_failures": [],
+      "propagated_environment_mismatches": [],
+      "propagated_lineage_gaps": [],
+      "propagated_manual_review_states": [],
+      "propagated_prohibited_states": [],
+      "propagated_unsupported_states": [
+        "unsupported_coordination_scope"
+      ],
+      "routing_behavior_enabled": false,
+      "runtime_execution_enabled": false,
+      "scheduling_behavior_enabled": false,
+      "visibility_aggregation": {
+        "audit_safe": true,
+        "blocker_visibility_count": 0,
+        "fail_visible": true,
+        "manual_review_visibility_count": 0,
+        "prohibited_visibility_count": 0,
+        "unsupported_visibility_count": 1
+      }
+    }
+  },
+  "schema_version": "v3_5.orchestration_coordination_planning_report.1",
+  "status_distribution": {
+    "coordination_blocked_by_dependency": 1,
+    "coordination_blocked_by_environment_mismatch": 1,
+    "coordination_blocked_by_governance": 0,
+    "coordination_blocked_by_lineage_gap": 1,
+    "coordination_incompatible": 1,
+    "coordination_prohibited": 2,
+    "coordination_ready_for_planning": 3,
+    "coordination_requires_manual_review": 1,
+    "coordination_unsupported": 1
+  },
+  "summary": {
+    "blocked_or_review_scenario_count": 8,
+    "coordination_graph_stability": true,
+    "deterministic_outputs": true,
+    "fail_visible_coordination_blockers": true,
+    "ready_scenario_count": 3,
+    "replay_safe_lineage_visibility": true,
+    "rollback_safe_lineage_visibility": true,
+    "scenario_count": 11,
+    "stable_serialization": true,
+    "supported_status_count": 9
+  },
+  "unsupported_state_propagation_summaries": {
+    "entry_count": 2,
+    "scenario_count": 11,
+    "scenario_with_entries_count": 2
+  }
+}
