@@ -1,0 +1,322 @@
+{
+  "autonomous_planner_mutation_enabled": false,
+  "deterministic_hash": "9d3384c531a4392cfa0fda634003ff52315671935043859b3c01efd7a17db8ba",
+  "execution_enabled": false,
+  "final_execution_gate_readiness_status": "eligible_for_controlled_execution_planning",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "live_decision_routing_enabled": false,
+  "live_replay_execution_enabled": false,
+  "live_runtime_execution_enabled": false,
+  "live_synthesis_execution_enabled": false,
+  "phase": "v3.4_phase_1_controlled_execution_gate_contracts",
+  "production_authoritative_manifest_treatment": false,
+  "production_execution_enabled": false,
+  "production_runtime_routing_authorized": false,
+  "recommendation": "CONTROLLED_EXECUTION_GATE_CONTRACTS_READY_FOR_PLANNING_ONLY",
+  "recommendation_logic_enabled": false,
+  "runtime_manifest_consumption_enabled": false,
+  "safety_confirmations": {
+    "autonomous_planner_mutation_enabled": false,
+    "controlled_execution_gates_are_contracts_only": true,
+    "default_runtime_manifest_consumption_disabled": true,
+    "execution_enabled": false,
+    "live_decision_routing_enabled": false,
+    "live_replay_execution_enabled": false,
+    "live_runtime_execution_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "production_authoritative_manifest_treatment_prohibited": true,
+    "production_execution_enabled": false,
+    "production_runtime_routing_prohibited": true,
+    "recommendation_logic_enabled": false,
+    "v3_4_phase_1_is_planning_only": true
+  },
+  "scenario_results": {
+    "decision_routing_request_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "runtime_decision_routing_prohibited",
+          "status": "blocked_runtime_decision_routing_prohibited"
+        }
+      ],
+      "deterministic_hash": "aa1257e758cb2e8c02b04754c4fdcfea9296674c53e42bf3775a41d1f5cc8d47",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_runtime_decision_routing_prohibited"
+    },
+    "eligible_controlled_non_production": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 0,
+      "blockers": [],
+      "deterministic_hash": "9a056e876d1655aae487277cec1b0e0212bcf747d2f221f9891dd7826f2bda8e",
+      "eligible": true,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "eligible_for_controlled_execution_planning"
+    },
+    "manual_review_required_for_drift_escalation": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 0,
+      "blockers": [],
+      "deterministic_hash": "8d7dbc7d39e36bd72aa1aa69bf9411bf72fef3d01f0c7d5a598b77a9ef291be2",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": true,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "manual_review_required"
+    },
+    "missing_authorization_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "explicit_non_production_authorization_required",
+          "status": "blocked_missing_authorization"
+        }
+      ],
+      "deterministic_hash": "f8e9ee80713598c9580d99f4fb7b724592404de20eeb3f868f292aa454d8bd33",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_missing_authorization"
+    },
+    "missing_replay_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "replay_requirement_missing",
+          "status": "blocked_missing_replay_requirement"
+        }
+      ],
+      "deterministic_hash": "4eef4f23f757d1b28acaa8dabf1c37e3691d5ab68503e2145275f7dd763dbe97",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_missing_replay_requirement"
+    },
+    "missing_rollback_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "rollback_requirement_missing",
+          "status": "blocked_missing_rollback_requirement"
+        }
+      ],
+      "deterministic_hash": "f0641f5fc9b086619f32eb57cf8c972f2cc830328112d26e3123e2e008917f00",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_missing_rollback_requirement"
+    },
+    "missing_session_isolation_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "session_isolation_missing",
+          "status": "blocked_missing_session_isolation"
+        }
+      ],
+      "deterministic_hash": "c019cd87f3ccb2e68c448ec7fe9fa6d2feaf9ab97c495659b231117072356eab",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_missing_session_isolation"
+    },
+    "production_authoritative_request_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "production_authoritative_manifest_treatment_prohibited",
+          "status": "blocked_production_execution_prohibited"
+        }
+      ],
+      "deterministic_hash": "76f654d4ea728911fa2100639c75cfbb4420c891c92e0b2aafca6ac64f7cf965",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": true,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_production_execution_prohibited"
+    },
+    "production_execution_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "production_execution_prohibited",
+          "status": "blocked_production_execution_prohibited"
+        }
+      ],
+      "deterministic_hash": "9b3ab726aa41dbf071654c4fbfe2889a9f9304644adf376e374cb1c6101645ad",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_production_execution_prohibited"
+    },
+    "recommendation_request_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "recommendation_logic_prohibited",
+          "status": "blocked_recommendation_logic_prohibited"
+        }
+      ],
+      "deterministic_hash": "8205ea25a377f4e93479786c5b4d22412a9c4b3d7cb0bc390a4b7d532245e59f",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": true,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_recommendation_logic_prohibited"
+    },
+    "unsupported_scope_blocked": {
+      "autonomous_planner_mutation_enabled": false,
+      "blocker_count": 1,
+      "blockers": [
+        {
+          "blocker_id": "unsupported_execution_scope",
+          "status": "blocked_unsupported_execution_scope"
+        }
+      ],
+      "deterministic_hash": "8ec5794bad47f1698c76277371ee9fc4f863c1724f04cbc9067fbd51340c63fe",
+      "eligible": false,
+      "live_decision_routing_enabled": false,
+      "live_replay_execution_enabled": false,
+      "live_runtime_execution_enabled": false,
+      "live_synthesis_execution_enabled": false,
+      "manual_review_required": false,
+      "planning_only": true,
+      "production_authoritative_manifest_treatment": false,
+      "production_execution_enabled": false,
+      "production_runtime_routing_authorized": false,
+      "recommendation_logic_enabled": false,
+      "runtime_manifest_consumption_enabled": false,
+      "status": "blocked_unsupported_execution_scope"
+    }
+  },
+  "schema_version": "v3_4.controlled_execution_gate_contracts_report.1",
+  "status_distribution": {
+    "blocked_missing_authorization": 1,
+    "blocked_missing_replay_requirement": 1,
+    "blocked_missing_rollback_requirement": 1,
+    "blocked_missing_session_isolation": 1,
+    "blocked_production_execution_prohibited": 2,
+    "blocked_recommendation_logic_prohibited": 1,
+    "blocked_runtime_decision_routing_prohibited": 1,
+    "blocked_unsupported_execution_scope": 1,
+    "eligible_for_controlled_execution_planning": 1,
+    "manual_review_required": 1
+  },
+  "summary": {
+    "allowed_status_count": 10,
+    "autonomous_planner_mutation_enabled": false,
+    "blocked_scenario_count": 9,
+    "deterministic": true,
+    "eligible_scenario_count": 1,
+    "live_decision_routing_enabled": false,
+    "live_replay_execution_enabled": false,
+    "live_runtime_execution_enabled": false,
+    "live_synthesis_execution_enabled": false,
+    "manual_review_required_scenario_count": 1,
+    "production_authoritative_manifest_treatment": false,
+    "production_behavior_changed": false,
+    "production_execution_enabled": false,
+    "production_runtime_routing_authorized": false,
+    "recommendation_logic_enabled": false,
+    "runtime_manifest_consumption_enabled": false,
+    "scenario_count": 11
+  },
+  "v3_4_phase_1_planning_only": true
+}
