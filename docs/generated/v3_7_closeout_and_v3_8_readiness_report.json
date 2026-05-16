@@ -1,0 +1,1099 @@
+{
+  "architectural_purpose": "closeout certification and readiness auditing for deterministic orchestration planning intelligence",
+  "autonomous_orchestration_enabled": false,
+  "callable_execution_flow_enabled": false,
+  "closeout_certifies_planning_intelligence_continuity_only": true,
+  "closeout_is_non_executable": true,
+  "closeout_record": {
+    "autonomous_orchestration_enabled": false,
+    "callable_execution_flow_enabled": false,
+    "closeout_certifies_planning_intelligence_continuity_only": true,
+    "closeout_is_non_executable": true,
+    "closeout_status": "v3_7_closed_out_ready_for_v3_8_planning",
+    "continuity_validation_totals": {
+      "aggregation_continuity": true,
+      "certification_continuity": true,
+      "compatibility_continuity": true,
+      "deterministic_hashing_continuity": true,
+      "deterministic_serialization_continuity": true,
+      "evaluation_continuity": true,
+      "execution_boundary_continuity": true,
+      "explainability_continuity": true,
+      "fail_visible_continuity": true,
+      "governance_continuity": true,
+      "integrity_continuity": true,
+      "planning_scenario_continuity": true,
+      "planning_session_continuity": true,
+      "provenance_continuity": true,
+      "replay_continuity": true,
+      "rollback_continuity": true
+    },
+    "deterministic_closeout_hash": "d6ed1346c6adab8e44b1bf9a303a57a3ecd1c5ec6ee032d557bcdc7860a7db65",
+    "deterministic_guarantees": {
+      "certification_audit_hash": "afc7e288304a192d9f66886e1af4c3d739863b68c7b1dcc994a2186fa6891dbe",
+      "certification_explainability_hash": "bdae8a3ee7f9f1f680de2fac55fef8abd8d136d9210a6824ca9b8102f2b88502",
+      "certification_hash": "be8ee33cf57e8ea66bf85458c0f11ea6e2cbf51b928cbcc5e68728fe0dd8e25f",
+      "certification_hash_stable": true,
+      "certification_provenance_hash": "0ee425b51b8ba79c350da8fac83093ba8ba0b1380dd3ae7da24241f34ed99e2f",
+      "certification_serialization_stable": true,
+      "certification_validation_hash": "1d0ce18d4f7117d9f7f0dcc3db6102b07c7b79fbb1ff8918157a03c2fa833b39",
+      "closeout_hash": "d6ed1346c6adab8e44b1bf9a303a57a3ecd1c5ec6ee032d557bcdc7860a7db65",
+      "closeout_hash_stable": true,
+      "closeout_serialization_stable": true
+    },
+    "dispatch_enabled": false,
+    "execution_authorization_enabled": false,
+    "execution_boundary_audit_totals": {
+      "callable_execution_flow_absent": true,
+      "execution_authorization_absent": true,
+      "execution_boundary_preserved": true,
+      "execution_boundary_violation_count": 0,
+      "execution_recommendation_absent": true,
+      "optimization_for_execution_absent": true,
+      "orchestration_dispatch_absent": true,
+      "orchestration_routing_absent": true,
+      "orchestration_scheduling_absent": true,
+      "runtime_orchestration_engine_absent": true,
+      "runtime_path_selection_absent": true,
+      "scenario_execution_selection_absent": true,
+      "traversal_authorization_absent": true
+    },
+    "execution_recommendation_enabled": false,
+    "explainability_references": [
+      "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+      "explain_evaluation_finding_rule_compat_governance_to_structure",
+      "explain_evaluation_finding_rule_compat_graph_execution_prohibited",
+      "explain_evaluation_finding_rule_compat_legacy_incompatible",
+      "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+      "explain_evaluation_finding_rule_compat_structure_to_experimental",
+      "explain_evaluation_finding_rule_compat_structure_to_structure",
+      "explain_evaluation_finding_rule_compat_unknown_external",
+      "explain_evaluation_structural_continuity_warning",
+      "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge",
+      "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes",
+      "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge",
+      "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes",
+      "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+      "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+      "v3_7_evidence_v3_7_node_explainability_continuity",
+      "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+      "v3_7_evidence_v3_7_node_provenance_continuity",
+      "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity",
+      "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity",
+      "v3_7_governance_explanation_v3_7_node_explainability_continuity",
+      "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility",
+      "v3_7_governance_explanation_v3_7_node_provenance_continuity",
+      "v3_7_graph_certification_explainability",
+      "v3_7_graph_integrity_explainability",
+      "v3_7_graph_intelligence_explainability",
+      "v3_7_graph_planning_session_explainability",
+      "v3_7_graph_scenario_explainability"
+    ],
+    "explanation_summary": [
+      "v3.7 closeout status is certified for future deterministic planning expansion only.",
+      "v3.7 explicitly prohibited graph execution, orchestration execution, routing, scheduling, dispatch, traversal, runtime path selection, scenario execution selection, optimization for execution, recommendation to execute, callable flows, and runtime control systems.",
+      "v3.7 implemented deterministic orchestration planning intelligence across graph foundations, governance, compatibility, evaluation, sessions, scenarios, aggregation, integrity, and certification.",
+      "v3.7 preserved deterministic serialization, deterministic hashing, governance continuity, compatibility continuity, evaluation continuity, provenance continuity, explainability continuity, replay continuity, and rollback continuity.",
+      "v3.8 may expand planning intelligence evidence but may not enable runtime orchestration execution."
+    ],
+    "findings": [
+      {
+        "active": false,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "closeout_blocked",
+        "finding_id": "v3_7_closeout_closeout_blocked",
+        "hidden": false,
+        "severity": "visibility",
+        "subject_id": "closeout_blocked",
+        "subject_type": "v3_7_closeout",
+        "summary": "closeout blockers remain fail-visible"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "closeout_ready",
+        "finding_id": "v3_7_closeout_closeout_ready",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "closeout_ready",
+        "subject_type": "v3_7_closeout",
+        "summary": "v3.7 closeout is ready for v3.8 deterministic planning expansion"
+      },
+      {
+        "active": false,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "continuity_broken",
+        "finding_id": "v3_7_closeout_continuity_broken",
+        "hidden": false,
+        "severity": "visibility",
+        "subject_id": "continuity_broken",
+        "subject_type": "v3_7_closeout",
+        "summary": "broken continuity blocks closeout"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "continuity_preserved",
+        "finding_id": "v3_7_closeout_continuity_preserved",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "continuity_preserved",
+        "subject_type": "v3_7_closeout",
+        "summary": "v3.7 phase continuity is preserved"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "deterministic",
+        "finding_id": "v3_7_closeout_deterministic",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "deterministic",
+        "subject_type": "v3_7_closeout",
+        "summary": "serialization and hashing remain deterministic"
+      },
+      {
+        "active": false,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "execution_boundary_broken",
+        "finding_id": "v3_7_closeout_execution_boundary_broken",
+        "hidden": false,
+        "severity": "visibility",
+        "subject_id": "execution_boundary_broken",
+        "subject_type": "v3_7_closeout",
+        "summary": "execution-boundary failures block closeout"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "execution_boundary_preserved",
+        "finding_id": "v3_7_closeout_execution_boundary_preserved",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "execution_boundary_preserved",
+        "subject_type": "v3_7_closeout",
+        "summary": "execution boundaries remain preserved"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "explainability_safe",
+        "finding_id": "v3_7_closeout_explainability_safe",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "explainability_safe",
+        "subject_type": "v3_7_closeout",
+        "summary": "explainability continuity is preserved"
+      },
+      {
+        "active": false,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "hidden_risk_detected",
+        "finding_id": "v3_7_closeout_hidden_risk_detected",
+        "hidden": false,
+        "severity": "visibility",
+        "subject_id": "hidden_risk_detected",
+        "subject_type": "v3_7_closeout",
+        "summary": "hidden risk states block closeout"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "non_executable",
+        "finding_id": "v3_7_closeout_non_executable",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "non_executable",
+        "subject_type": "v3_7_closeout",
+        "summary": "closeout evidence remains non-executable"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "provenance_safe",
+        "finding_id": "v3_7_closeout_provenance_safe",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "provenance_safe",
+        "subject_type": "v3_7_closeout",
+        "summary": "provenance continuity is preserved"
+      },
+      {
+        "active": false,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "readiness_blocked",
+        "finding_id": "v3_7_closeout_readiness_blocked",
+        "hidden": false,
+        "severity": "visibility",
+        "subject_id": "readiness_blocked",
+        "subject_type": "v3_7_closeout",
+        "summary": "v3.8 planning readiness blockers remain fail-visible"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "readiness_certified",
+        "finding_id": "v3_7_closeout_readiness_certified",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "readiness_certified",
+        "subject_type": "v3_7_closeout",
+        "summary": "v3.8 planning readiness is certified for planning expansion only"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "replay_safe",
+        "finding_id": "v3_7_closeout_replay_safe",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "replay_safe",
+        "subject_type": "v3_7_closeout",
+        "summary": "replay continuity is planning evidence only"
+      },
+      {
+        "active": true,
+        "active_violation": false,
+        "blocks_closeout": false,
+        "evidence_references": [
+          "v3_7_certification_scope_aggregation",
+          "v3_7_certification_scope_compatibility",
+          "v3_7_certification_scope_evaluation",
+          "v3_7_certification_scope_governance",
+          "v3_7_certification_scope_graph_foundations",
+          "v3_7_certification_scope_integrity",
+          "v3_7_certification_scope_scenario",
+          "v3_7_certification_scope_session",
+          "v3_7_graph_planning_continuity_certification_default"
+        ],
+        "fail_visible": true,
+        "finding_classification": "rollback_safe",
+        "finding_id": "v3_7_closeout_rollback_safe",
+        "hidden": false,
+        "severity": "info",
+        "subject_id": "rollback_safe",
+        "subject_type": "v3_7_closeout",
+        "summary": "rollback continuity is planning evidence only"
+      }
+    ],
+    "hidden_risk_totals": {
+      "hidden_prohibited_state_count": 0,
+      "hidden_risk_detected": false,
+      "hidden_unknown_state_count": 0,
+      "hidden_unsupported_state_count": 0
+    },
+    "optimization_for_execution_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "phase_evidence": [
+      {
+        "artifact_hash": "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+        "artifact_id": "v3-7-deterministic-orchestration-planning-graph",
+        "continuity_hashes": [
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "v3_7_graph_continuity_evidence"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_graph_foundations",
+        "explainability_references": [
+          "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_evidence_v3_7_node_explainability_continuity",
+          "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "v3_7_evidence_v3_7_node_provenance_continuity"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "graph_foundations",
+        "phase_name": "Graph Foundations",
+        "phase_order": 1,
+        "provenance_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph"
+        ],
+        "provenance_safe": true,
+        "reference_type": "graph_foundations",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+        "artifact_id": "v3-7-deterministic-orchestration-planning-graph",
+        "continuity_hashes": [
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_governance",
+        "explainability_references": [
+          "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility",
+          "v3_7_governance_explanation_v3_7_node_provenance_continuity"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "governance_boundaries",
+        "phase_name": "Governance Boundary Intelligence",
+        "phase_order": 2,
+        "provenance_references": [
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch"
+        ],
+        "provenance_safe": true,
+        "reference_type": "governance",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+        "artifact_id": "v3-7-deterministic-orchestration-planning-graph",
+        "continuity_hashes": [
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+          "v3_7_graph_compatibility_continuity_evidence"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_compatibility",
+        "explainability_references": [
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "compatibility_reasoning",
+        "phase_name": "Compatibility Reasoning",
+        "phase_order": 3,
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external"
+        ],
+        "provenance_safe": true,
+        "reference_type": "compatibility",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "artifact_id": "v3_7_graph_evaluation_reasoning_chain",
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_evaluation",
+        "explainability_references": [
+          "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "explain_evaluation_finding_rule_compat_governance_to_structure",
+          "explain_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "explain_evaluation_finding_rule_compat_legacy_incompatible",
+          "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "explain_evaluation_finding_rule_compat_structure_to_experimental",
+          "explain_evaluation_finding_rule_compat_structure_to_structure",
+          "explain_evaluation_finding_rule_compat_unknown_external",
+          "explain_evaluation_structural_continuity_warning"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "evaluation_reasoning",
+        "phase_name": "Evaluation Reasoning",
+        "phase_order": 4,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "provenance_safe": true,
+        "reference_type": "evaluation",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+        "artifact_id": "v3_7_graph_planning_session_default",
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_session",
+        "explainability_references": [
+          "v3_7_graph_planning_session_explainability"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "planning_sessions",
+        "phase_name": "Planning Sessions",
+        "phase_order": 5,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "provenance_safe": true,
+        "reference_type": "session",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+        "artifact_id": "v3_7_graph_planning_scenario_default",
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_scenario",
+        "explainability_references": [
+          "v3_7_graph_scenario_explainability"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "planning_scenarios",
+        "phase_name": "Planning Scenarios",
+        "phase_order": 6,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "provenance_safe": true,
+        "reference_type": "scenario",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+        "artifact_id": "v3_7_graph_planning_intelligence_aggregation_default",
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_aggregation",
+        "explainability_references": [
+          "v3_7_graph_intelligence_explainability"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "intelligence_aggregation",
+        "phase_name": "Intelligence Aggregation",
+        "phase_order": 7,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "provenance_safe": true,
+        "reference_type": "aggregation",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "39c2526ae964dce0717a80e432f8950e61d51d55b77feb8445ec0c43a9a2b8c7",
+        "artifact_id": "v3_7_graph_integrity_enforcement_default",
+        "continuity_hashes": [
+          "0797f2bdb22dacba6ea88c4d046550c2058a94a46466706cdc063edf42d9693c",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "39c2526ae964dce0717a80e432f8950e61d51d55b77feb8445ec0c43a9a2b8c7",
+          "3d8f67e8de504c767ff3a6923b696b0c0b41c6a35e79c7967ddf888301ad8412",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "4d75f9021078558dec7aec4e73a6b0d46e9924ddc12d5ed59f098b36c3a338eb",
+          "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+          "a154f02972eb862f83266f9cee67a635e423d78f79086e0e2898fced21dbf32b",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_certification_scope_integrity",
+        "explainability_references": [
+          "v3_7_graph_integrity_explainability"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "integrity_enforcement",
+        "phase_name": "Integrity Enforcement",
+        "phase_order": 8,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_integrity_enforcement_default",
+          "v3-7-provenance-v3_7_graph_integrity_policy_default"
+        ],
+        "provenance_safe": true,
+        "reference_type": "integrity",
+        "replay_references": [
+          "v3_7_graph_integrity_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      },
+      {
+        "artifact_hash": "be8ee33cf57e8ea66bf85458c0f11ea6e2cbf51b928cbcc5e68728fe0dd8e25f",
+        "artifact_id": "v3_7_graph_planning_continuity_certification_default",
+        "continuity_hashes": [
+          "07873830883750c0dd5648ea754d426abcb8fdd680c1f38f3c94cbcf38d87d7c",
+          "0797f2bdb22dacba6ea88c4d046550c2058a94a46466706cdc063edf42d9693c",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "39c2526ae964dce0717a80e432f8950e61d51d55b77feb8445ec0c43a9a2b8c7",
+          "3d8f67e8de504c767ff3a6923b696b0c0b41c6a35e79c7967ddf888301ad8412",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "4d75f9021078558dec7aec4e73a6b0d46e9924ddc12d5ed59f098b36c3a338eb",
+          "66eb73dca76eca1872e6189542d52cd4487fe0db06432b4909966f553c446c53",
+          "84de304ec2230b15c9caa7a73c985a17ce5b7cafbb0e4890b87c576bb677a270",
+          "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+          "99de56359c83669667b972f2c509f9313dd54902ad11c14f3cff87e1916abe8e",
+          "a154f02972eb862f83266f9cee67a635e423d78f79086e0e2898fced21dbf32b",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "continuity_preserved": true,
+        "deterministic_hash_present": true,
+        "evidence_reference_id": "v3_7_graph_planning_continuity_certification_default",
+        "explainability_references": [
+          "v3_7_graph_certification_explainability"
+        ],
+        "explainability_safe": true,
+        "non_executable_evidence": true,
+        "phase_id": "continuity_certification",
+        "phase_name": "Continuity Certification",
+        "phase_order": 9,
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_continuity_certification_default"
+        ],
+        "provenance_safe": true,
+        "reference_type": "certification",
+        "replay_references": [
+          "v3_7_graph_certification_replay_evidence_default"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_7_graph_evaluation_rollback_continuity"
+        ],
+        "rollback_safe": true
+      }
+    ],
+    "phase_id": "v3_7_closeout_and_v3_8_readiness",
+    "provenance_explainability_totals": {
+      "aggregation_provenance_preserved": true,
+      "certification_provenance_preserved": true,
+      "compatibility_provenance_preserved": true,
+      "evaluation_provenance_preserved": true,
+      "explainability_safe": true,
+      "explanation_count": 17,
+      "governance_provenance_preserved": true,
+      "graph_provenance_preserved": true,
+      "integrity_provenance_preserved": true,
+      "provenance_record_count": 77,
+      "provenance_safe": true,
+      "scenario_provenance_preserved": true,
+      "session_provenance_preserved": true
+    },
+    "provenance_references": [
+      "v3-7-provenance-compat_domain_compatibility_boundary",
+      "v3-7-provenance-compat_domain_experimental_governance",
+      "v3-7-provenance-compat_domain_governance_visibility",
+      "v3-7-provenance-compat_domain_graph_execution",
+      "v3-7-provenance-compat_domain_graph_structure",
+      "v3-7-provenance-compat_domain_legacy_structure",
+      "v3-7-provenance-compat_domain_runtime_dispatch",
+      "v3-7-provenance-compat_domain_unknown_external",
+      "v3-7-provenance-domain_compatibility_boundary_visibility",
+      "v3-7-provenance-domain_governance_visibility",
+      "v3-7-provenance-domain_graph_execution",
+      "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+      "v3-7-provenance-domain_graph_structure_modeling",
+      "v3-7-provenance-domain_optimization",
+      "v3-7-provenance-domain_routing_scheduling_dispatch",
+      "v3-7-provenance-domain_runtime_dispatch",
+      "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+      "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+      "v3-7-provenance-v3_7_graph_integrity_enforcement_default",
+      "v3-7-provenance-v3_7_graph_integrity_policy_default",
+      "v3-7-provenance-v3_7_graph_planning_continuity_certification_default",
+      "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default",
+      "v3-7-provenance-v3_7_graph_planning_scenario_default",
+      "v3-7-provenance-v3_7_graph_planning_session_default"
+    ],
+    "readiness_for_v3_8_planning": true,
+    "replay_references": [
+      "v3_7_graph_certification_replay_evidence_default",
+      "v3_7_graph_integrity_replay_evidence_default"
+    ],
+    "replay_rollback_totals": {
+      "replay_evidence_count": 1,
+      "replay_safe": true,
+      "rollback_reference_count": 1,
+      "rollback_safe": true,
+      "runtime_readiness_certification_detected": false,
+      "runtime_replay_detected": false
+    },
+    "rollback_references": [
+      "v3_7_graph_evaluation_rollback_continuity"
+    ],
+    "routing_enabled": false,
+    "runtime_execution_readiness_certified": false,
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_engine_enabled": false,
+    "runtime_path_selection_enabled": false,
+    "scenario_execution_selection_enabled": false,
+    "scheduling_enabled": false,
+    "total_phases_audited": 9,
+    "traversal_enabled": false,
+    "v3_8_allowed_expansion_summary": [
+      "v3.8 may add additional non-executable planning audit evidence",
+      "v3.8 may expand deterministic planning intelligence evidence",
+      "v3.8 may expand structural governance, compatibility, evaluation, and continuity reasoning"
+    ],
+    "v3_8_prohibited_expansion_summary": [
+      "v3.8 may not add optimization-for-execution or recommendation-to-execute behavior",
+      "v3.8 may not authorize execution readiness",
+      "v3.8 may not enable routing, scheduling, dispatch, or traversal",
+      "v3.8 may not enable runtime orchestration execution"
+    ],
+    "v3_8_readiness_classification": "v3_7_closed_out_ready_for_v3_8_planning",
+    "validation_totals": {
+      "error_count": 0,
+      "execution_boundary_violation_count": 0,
+      "finding_count": 15,
+      "hidden_prohibited_state_count": 0,
+      "hidden_unknown_state_count": 0,
+      "hidden_unsupported_state_count": 0,
+      "manual_blocker_count": 0,
+      "missing_phase_continuity_count": 0,
+      "missing_replay_evidence_count": 0,
+      "missing_rollback_evidence_count": 0,
+      "total_phases_audited": 9,
+      "valid": true,
+      "validation_status": "v3_7_closeout_validation_stable",
+      "visibility_finding_count": 15
+    }
+  },
+  "continuity_validation_totals": {
+    "aggregation_continuity": true,
+    "certification_continuity": true,
+    "compatibility_continuity": true,
+    "deterministic_hashing_continuity": true,
+    "deterministic_serialization_continuity": true,
+    "evaluation_continuity": true,
+    "execution_boundary_continuity": true,
+    "explainability_continuity": true,
+    "fail_visible_continuity": true,
+    "governance_continuity": true,
+    "integrity_continuity": true,
+    "planning_scenario_continuity": true,
+    "planning_session_continuity": true,
+    "provenance_continuity": true,
+    "replay_continuity": true,
+    "rollback_continuity": true
+  },
+  "deterministic_guarantees": {
+    "certification_audit_hash": "afc7e288304a192d9f66886e1af4c3d739863b68c7b1dcc994a2186fa6891dbe",
+    "certification_explainability_hash": "bdae8a3ee7f9f1f680de2fac55fef8abd8d136d9210a6824ca9b8102f2b88502",
+    "certification_hash": "be8ee33cf57e8ea66bf85458c0f11ea6e2cbf51b928cbcc5e68728fe0dd8e25f",
+    "certification_hash_stable": true,
+    "certification_provenance_hash": "0ee425b51b8ba79c350da8fac83093ba8ba0b1380dd3ae7da24241f34ed99e2f",
+    "certification_serialization_stable": true,
+    "certification_validation_hash": "1d0ce18d4f7117d9f7f0dcc3db6102b07c7b79fbb1ff8918157a03c2fa833b39",
+    "closeout_hash": "d6ed1346c6adab8e44b1bf9a303a57a3ecd1c5ec6ee032d557bcdc7860a7db65",
+    "closeout_hash_stable": true,
+    "closeout_serialization_stable": true
+  },
+  "deterministic_report_hash": "ad85116ea7611f389a0862e9b8ae7d4327d960c284da184fd2b62bce8dbe972a",
+  "dispatch_enabled": false,
+  "execution_authorization_enabled": false,
+  "execution_boundary_audit_totals": {
+    "callable_execution_flow_absent": true,
+    "execution_authorization_absent": true,
+    "execution_boundary_preserved": true,
+    "execution_boundary_violation_count": 0,
+    "execution_recommendation_absent": true,
+    "optimization_for_execution_absent": true,
+    "orchestration_dispatch_absent": true,
+    "orchestration_routing_absent": true,
+    "orchestration_scheduling_absent": true,
+    "runtime_orchestration_engine_absent": true,
+    "runtime_path_selection_absent": true,
+    "scenario_execution_selection_absent": true,
+    "traversal_authorization_absent": true
+  },
+  "execution_recommendation_enabled": false,
+  "explicit_limitations": [
+    "v3.7 is non-executable",
+    "v3.7 does not enable orchestration execution",
+    "v3.7 does not enable routing, scheduling, dispatch, or traversal",
+    "v3.7 does not enable orchestration optimization",
+    "v3.7 does not enable execution authorization",
+    "v3.7 established deterministic orchestration planning intelligence only",
+    "v3.8 may expand planning intelligence but may not enable runtime orchestration execution"
+  ],
+  "finding_totals": {
+    "blocking_finding_count": 0,
+    "fail_visible_finding_count": 15,
+    "finding_classification_counts": {
+      "closeout_blocked": 1,
+      "closeout_ready": 1,
+      "continuity_broken": 1,
+      "continuity_preserved": 1,
+      "deterministic": 1,
+      "execution_boundary_broken": 1,
+      "execution_boundary_preserved": 1,
+      "explainability_safe": 1,
+      "hidden_risk_detected": 1,
+      "non_executable": 1,
+      "provenance_safe": 1,
+      "readiness_blocked": 1,
+      "readiness_certified": 1,
+      "replay_safe": 1,
+      "rollback_safe": 1
+    },
+    "finding_count": 15
+  },
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "hidden_risk_totals": {
+    "hidden_prohibited_state_count": 0,
+    "hidden_risk_detected": false,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0
+  },
+  "integrity_certification_totals": {
+    "certification_continuity": true,
+    "integrity_continuity": true
+  },
+  "no_execution_authorization_confirmation": true,
+  "no_runtime_readiness_confirmation": true,
+  "non_executable_confirmation": true,
+  "optimization_for_execution_enabled": false,
+  "orchestration_execution_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.7_closeout_and_v3.8_readiness",
+  "provenance_explainability_totals": {
+    "aggregation_provenance_preserved": true,
+    "certification_provenance_preserved": true,
+    "compatibility_provenance_preserved": true,
+    "evaluation_provenance_preserved": true,
+    "explainability_safe": true,
+    "explanation_count": 17,
+    "governance_provenance_preserved": true,
+    "graph_provenance_preserved": true,
+    "integrity_provenance_preserved": true,
+    "provenance_record_count": 77,
+    "provenance_safe": true,
+    "scenario_provenance_preserved": true,
+    "session_provenance_preserved": true
+  },
+  "readiness_for_v3_8_planning_confirmation": true,
+  "ready_for_future_deterministic_planning_expansion": true,
+  "replay_rollback_totals": {
+    "replay_evidence_count": 1,
+    "replay_safe": true,
+    "rollback_reference_count": 1,
+    "rollback_safe": true,
+    "runtime_readiness_certification_detected": false,
+    "runtime_replay_detected": false
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "routing_enabled": false,
+  "routing_scheduling_dispatch_traversal_prohibited_confirmation": true,
+  "runtime_execution_readiness_certified": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_engine_enabled": false,
+  "runtime_path_selection_enabled": false,
+  "scenario_execution_selection_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.closeout_and_v3_8_readiness_report.1",
+  "summary": {
+    "closeout_status": "v3_7_closed_out_ready_for_v3_8_planning",
+    "continuity_verified": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "execution_boundary_verified": true,
+    "explainability_verified": true,
+    "no_execution_authorization_verified": true,
+    "no_runtime_readiness_verified": true,
+    "non_executable_verified": true,
+    "provenance_verified": true,
+    "replay_verified": true,
+    "rollback_verified": true,
+    "total_phases_audited": 9,
+    "v3_8_readiness_classification": "v3_7_closed_out_ready_for_v3_8_planning",
+    "validation_error_count": 0,
+    "validation_status": "v3_7_closeout_validation_stable"
+  },
+  "total_phases_audited": 9,
+  "traversal_enabled": false,
+  "validation_totals": {
+    "error_count": 0,
+    "execution_boundary_violation_count": 0,
+    "finding_count": 15,
+    "hidden_prohibited_state_count": 0,
+    "hidden_unknown_state_count": 0,
+    "hidden_unsupported_state_count": 0,
+    "manual_blocker_count": 0,
+    "missing_phase_continuity_count": 0,
+    "missing_replay_evidence_count": 0,
+    "missing_rollback_evidence_count": 0,
+    "total_phases_audited": 9,
+    "valid": true,
+    "validation_status": "v3_7_closeout_validation_stable",
+    "visibility_finding_count": 15
+  }
+}
