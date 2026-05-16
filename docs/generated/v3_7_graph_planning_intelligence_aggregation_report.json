@@ -1,0 +1,3704 @@
+{
+  "aggregated_insights_are_not_recommendations": true,
+  "aggregated_insights_do_not_authorize_execution": true,
+  "aggregation_counts": {
+    "aggregation_count": 1,
+    "evidence_source_count": 6,
+    "finding_count": 15,
+    "insight_count": 8,
+    "replay_evidence_count": 1,
+    "rollback_continuity_reference_count": 1
+  },
+  "aggregation_does_not_enable_routing_scheduling_dispatch_traversal_runtime_orchestration": true,
+  "aggregation_does_not_select_graph_paths": true,
+  "aggregation_does_not_select_scenarios_for_execution": true,
+  "aggregation_driven_execution_enabled": false,
+  "aggregation_is_non_executable": true,
+  "aggregation_is_planning_evidence_summarization_only": true,
+  "architectural_purpose": "deterministic graph planning intelligence aggregation",
+  "audit_result": {
+    "aggregation_identity_stable": true,
+    "audit_status": "v3_7_graph_intelligence_audit_stable",
+    "compatibility_aggregation_continuity_preserved": true,
+    "deterministic_audit_hash": "a154f02972eb862f83266f9cee67a635e423d78f79086e0e2898fced21dbf32b",
+    "deterministic_hash_stable": true,
+    "deterministic_serialization_stable": true,
+    "error_count": 0,
+    "evaluation_aggregation_continuity_preserved": true,
+    "evidence_source_continuity_preserved": true,
+    "explainability_continuity_preserved": true,
+    "fail_visible_finding_preservation": true,
+    "finding_count": 4,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_visible_blocked:intelligence_finding:v3_7_graph_intelligence_blocked_visible",
+        "message": "blocked_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_visible_blocked",
+        "subject_id": "v3_7_graph_intelligence_blocked_visible",
+        "subject_type": "intelligence_finding"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_visible_prohibited:intelligence_finding:v3_7_graph_intelligence_prohibited_visible",
+        "message": "prohibited_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_visible_prohibited",
+        "subject_id": "v3_7_graph_intelligence_prohibited_visible",
+        "subject_type": "intelligence_finding"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_visible_unknown:intelligence_finding:v3_7_graph_intelligence_unknown_visible",
+        "message": "unknown_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_visible_unknown",
+        "subject_id": "v3_7_graph_intelligence_unknown_visible",
+        "subject_type": "intelligence_finding"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_visible_unsupported:intelligence_finding:v3_7_graph_intelligence_unsupported_visible",
+        "message": "unsupported_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_visible_unsupported",
+        "subject_id": "v3_7_graph_intelligence_unsupported_visible",
+        "subject_type": "intelligence_finding"
+      }
+    ],
+    "governance_aggregation_continuity_preserved": true,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "scenario_aggregation_continuity_preserved": true,
+    "session_aggregation_continuity_preserved": true,
+    "valid": true,
+    "visibility_finding_count": 4
+  },
+  "autonomous_orchestration_enabled": false,
+  "blocked_unsupported_prohibited_unknown_visibility_counts": {
+    "blocked_visibility_total": 2,
+    "continuity_warning_total": 1,
+    "experimental_visibility_total": 4,
+    "prohibited_visibility_total": 9,
+    "unknown_visibility_total": 7,
+    "unsupported_visibility_total": 9
+  },
+  "compatibility_finding_totals": {
+    "compatibility_finding_total": 7
+  },
+  "coverage": {
+    "audit_coverage": true,
+    "explainability_coverage": true,
+    "no_execution_recommendation_coverage": true,
+    "no_runtime_path_selection_coverage": true,
+    "non_execution_coverage": true,
+    "provenance_coverage": true,
+    "replay_continuity_coverage": true,
+    "rollback_continuity_coverage": true,
+    "validation_coverage": true
+  },
+  "deterministic_guarantees": {
+    "aggregation_hash": "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+    "audit_hash": "a154f02972eb862f83266f9cee67a635e423d78f79086e0e2898fced21dbf32b",
+    "explainability_hash": "3d8f67e8de504c767ff3a6923b696b0c0b41c6a35e79c7967ddf888301ad8412",
+    "hash_stable": true,
+    "provenance_hash": "0797f2bdb22dacba6ea88c4d046550c2058a94a46466706cdc063edf42d9693c",
+    "serialization_stable": true,
+    "validation_hash": "4d75f9021078558dec7aec4e73a6b0d46e9924ddc12d5ed59f098b36c3a338eb"
+  },
+  "deterministic_report_hash": "ddbdbca5f9f5375171b00b5a455419b89b0c5382684d90992263ecae582e5451",
+  "dispatch_enabled": false,
+  "evaluation_finding_totals": {
+    "evaluation_finding_total": 9
+  },
+  "evidence_source_counts": {
+    "compatibility_source_count": 1,
+    "evaluation_source_count": 1,
+    "evidence_source_count": 6,
+    "governance_source_count": 1,
+    "graph_source_count": 1,
+    "scenario_source_count": 1,
+    "session_source_count": 1
+  },
+  "executable_planning_insights_enabled": false,
+  "explainability_continuity_totals": {
+    "aggregation_explanation_count": 1,
+    "does_not_authorize_explanation_count": 30,
+    "evidence_source_explanation_count": 6,
+    "explainability_status": "v3_7_graph_intelligence_explainability_stable",
+    "explanation_count": 31,
+    "finding_explanation_count": 15,
+    "insight_explanation_count": 8,
+    "replay_explanation_count": 1,
+    "risk_visibility_explanation_count": 4
+  },
+  "explainability_result": {
+    "aggregation_explanation_count": 1,
+    "compatibility_visible_explanation_count": 3,
+    "continuity_supported_explanation_count": 31,
+    "deterministic_explainability_hash": "3d8f67e8de504c767ff3a6923b696b0c0b41c6a35e79c7967ddf888301ad8412",
+    "does_not_authorize_explanation_count": 30,
+    "evaluation_visible_explanation_count": 3,
+    "evidence_source_explanation_count": 6,
+    "explainability_status": "v3_7_graph_intelligence_explainability_stable",
+    "explanation_count": 31,
+    "explanations": [
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_aggregation_v3_7_graph_planning_intelligence_aggregation_default",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "planning_evidence_summary"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_planning_intelligence_aggregation_default",
+        "subject_type": "planning_intelligence_aggregation",
+        "why_present": "aggregation summarizes non-executable planning evidence across v3.7 graph layers"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_blocked_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "blocked_visible",
+          "does_not_authorize_execution",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_blocked_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "blocked planning states remain visible; total=2"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_compatibility_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_compatibility_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "compatibility_visible",
+          "does_not_authorize_execution",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_compatibility_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "compatibility findings remain visible; total=7"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_continuity_warning_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_continuity_warning_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "continuity_warning_visible",
+          "does_not_authorize_execution",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_continuity_warning_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "continuity warnings remain visible; total=1"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_evaluation_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_evaluation_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evaluation_visible",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_evaluation_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "evaluation findings remain visible; total=9"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_experimental_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_experimental_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "experimental_visible",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_experimental_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "experimental planning states remain visible; total=4"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_explainability_continuity_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_explainability_continuity_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "explainability_continuity_visible",
+          "fail_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_explainability_continuity_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "explainability continuity evidence remains visible; total=20"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_governance_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_governance_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "governance_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_governance_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "governance findings remain visible; total=4"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_prohibited_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_prohibited_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "prohibited_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_prohibited_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "prohibited planning states remain visible; total=9"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_provenance_continuity_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_provenance_continuity_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "provenance_continuity_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_provenance_continuity_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "provenance continuity evidence remains visible; total=20"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_replay_continuity_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_replay_continuity_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "replay_continuity_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_replay_continuity_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "replay continuity evidence remains visible; total=3"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_rollback_continuity_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_rollback_continuity_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "rollback_continuity_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_rollback_continuity_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "rollback continuity evidence remains visible; total=2"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_scenario_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_scenario_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "scenario_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_scenario_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "scenario findings remain visible; total=14"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_session_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_session_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "session_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_session_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "session findings remain visible; total=6"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_unknown_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_unknown_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "unknown_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_unknown_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "unknown planning states remain visible; total=7"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_finding_v3_7_graph_intelligence_unsupported_visible",
+        "finding_references": [
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "fail_visible",
+          "unsupported_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_unsupported_visible",
+        "subject_type": "intelligence_finding",
+        "why_present": "unsupported planning states remain visible; total=9"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_compatibility_risk",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "compatibility_risk",
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_compatibility_risk",
+        "subject_type": "planning_insight",
+        "why_present": "compatibility restrictions, unsupported states, and unknown states remain visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_evaluation_uncertainty",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "evaluation_uncertainty",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+        "subject_type": "planning_insight",
+        "why_present": "evaluation evidence preserves uncertainty and continuity warnings without path selection"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_explainability_continuity",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_explainability_continuity"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "explainability_continuity",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_explainability_continuity",
+        "subject_type": "planning_insight",
+        "why_present": "explainability continuity is summarized across all evidence sources"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_governance_risk",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_governance_risk"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "governance_risk",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_governance_risk",
+        "subject_type": "planning_insight",
+        "why_present": "governance restrictions and prohibited governance evidence remain visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_provenance_continuity",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_provenance_continuity"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "provenance_continuity",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_provenance_continuity",
+        "subject_type": "planning_insight",
+        "why_present": "provenance continuity is summarized across all evidence sources"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_replay_rollback_continuity",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "replay_rollback_continuity",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+        "subject_type": "planning_insight",
+        "why_present": "replay and rollback continuity are summarized as non-executable evidence"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_scenario_delta",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_scenario_delta"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "scenario_delta",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_scenario_delta",
+        "subject_type": "planning_insight",
+        "why_present": "scenario differences summarize deterministic hypothetical deltas without selecting a scenario"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_insight_v3_7_graph_intelligence_insight_session_blocked_state",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "does_not_select_runtime_paths",
+          "session_blocked_state",
+          "summary_only"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_insight_session_blocked_state",
+        "subject_type": "planning_insight",
+        "why_present": "planning session blocked, unsupported, prohibited, and unknown states remain visible"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_replay_v3_7_graph_intelligence_replay_evidence_default",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "non_executable_replay",
+          "replay_continuity_visible",
+          "rollback_continuity_visible"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_graph_intelligence_replay_evidence_default",
+        "subject_type": "intelligence_replay_evidence",
+        "why_present": "aggregation replay evidence preserves deterministic source continuity and is not runtime replay"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_compatibility_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_compatibility",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external"
+        ],
+        "reasoning_chain": [
+          "compatibility",
+          "does_not_authorize_execution",
+          "evidence_source"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_compatibility",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "compatibility source is included in deterministic planning evidence aggregation"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_evaluation"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_evaluation",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evaluation",
+          "evidence_source"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_evaluation",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "evaluation source is included in deterministic planning evidence aggregation"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_governance"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_governance",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evidence_source",
+          "governance"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_governance",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "governance source is included in deterministic planning evidence aggregation"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_graph_foundations"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_graph_foundations",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evidence_source",
+          "graph_foundations"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_graph_foundations",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "graph_foundations source is included in deterministic planning evidence aggregation"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_scenario"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_scenario",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evidence_source",
+          "scenario"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_scenario",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "scenario source is included in deterministic planning evidence aggregation"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explanation_id": "explain_source_v3_7_intelligence_source_session",
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_references": [
+          "v3_7_graph_intelligence_insight_compatibility_risk",
+          "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+          "v3_7_graph_intelligence_insight_explainability_continuity",
+          "v3_7_graph_intelligence_insight_governance_risk",
+          "v3_7_graph_intelligence_insight_provenance_continuity",
+          "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+          "v3_7_graph_intelligence_insight_scenario_delta",
+          "v3_7_graph_intelligence_insight_session_blocked_state"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "reasoning_chain": [
+          "does_not_authorize_execution",
+          "evidence_source",
+          "session"
+        ],
+        "replay_safe": true,
+        "runtime_path_selection": false,
+        "subject_id": "v3_7_intelligence_source_session",
+        "subject_type": "intelligence_evidence_source",
+        "why_present": "session source is included in deterministic planning evidence aggregation"
+      }
+    ],
+    "finding_explanation_count": 15,
+    "governance_visible_explanation_count": 3,
+    "insight_explanation_count": 8,
+    "missing_explanation_subjects": [],
+    "provenance_supported_explanation_count": 31,
+    "replay_explanation_count": 1,
+    "replay_safe": true,
+    "risk_visibility_explanation_count": 4,
+    "scenario_visible_explanation_count": 3,
+    "session_visible_explanation_count": 3
+  },
+  "explicit_limitations": [
+    "aggregation is non-executable",
+    "aggregation is planning evidence summarization only",
+    "aggregated insights are not recommendations",
+    "aggregated insights do not authorize execution",
+    "aggregation does not select graph paths",
+    "aggregation does not select scenarios for execution",
+    "aggregation does not enable routing, scheduling, dispatch, traversal, or runtime orchestration"
+  ],
+  "finding_classification_counts": {
+    "blocked_visible": 1,
+    "compatibility_visible": 1,
+    "continuity_warning_visible": 1,
+    "evaluation_visible": 1,
+    "experimental_visible": 1,
+    "explainability_continuity_visible": 1,
+    "governance_visible": 1,
+    "prohibited_visible": 1,
+    "provenance_continuity_visible": 1,
+    "replay_continuity_visible": 1,
+    "rollback_continuity_visible": 1,
+    "scenario_visible": 1,
+    "session_visible": 1,
+    "unknown_visible": 1,
+    "unsupported_visible": 1
+  },
+  "finding_records": [
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "blocked_visible",
+      "finding_id": "v3_7_graph_intelligence_blocked_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "blocked_visible:2",
+      "summary": "blocked planning states remain visible; total=2",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "compatibility_visible",
+      "finding_id": "v3_7_graph_intelligence_compatibility_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "compatibility",
+      "subject_id": "compatibility_visible:7",
+      "summary": "compatibility findings remain visible; total=7",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "continuity_warning_visible",
+      "finding_id": "v3_7_graph_intelligence_continuity_warning_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "continuity_warning_visible:1",
+      "summary": "continuity warnings remain visible; total=1",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "evaluation_visible",
+      "finding_id": "v3_7_graph_intelligence_evaluation_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "evaluation",
+      "subject_id": "evaluation_visible:9",
+      "summary": "evaluation findings remain visible; total=9",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "experimental_visible",
+      "finding_id": "v3_7_graph_intelligence_experimental_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "experimental_visible:4",
+      "summary": "experimental planning states remain visible; total=4",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "explainability_continuity_visible",
+      "finding_id": "v3_7_graph_intelligence_explainability_continuity_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "explainability",
+      "subject_id": "explainability_continuity_visible:20",
+      "summary": "explainability continuity evidence remains visible; total=20",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "governance_visible",
+      "finding_id": "v3_7_graph_intelligence_governance_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "governance",
+      "subject_id": "governance_visible:4",
+      "summary": "governance findings remain visible; total=4",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "prohibited_visible",
+      "finding_id": "v3_7_graph_intelligence_prohibited_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "prohibited_visible:9",
+      "summary": "prohibited planning states remain visible; total=9",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "provenance_continuity_visible",
+      "finding_id": "v3_7_graph_intelligence_provenance_continuity_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "provenance",
+      "subject_id": "provenance_continuity_visible:20",
+      "summary": "provenance continuity evidence remains visible; total=20",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "replay_continuity_visible",
+      "finding_id": "v3_7_graph_intelligence_replay_continuity_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "replay",
+      "subject_id": "replay_continuity_visible:3",
+      "summary": "replay continuity evidence remains visible; total=3",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "rollback_continuity_visible",
+      "finding_id": "v3_7_graph_intelligence_rollback_continuity_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "rollback",
+      "subject_id": "rollback_continuity_visible:2",
+      "summary": "rollback continuity evidence remains visible; total=2",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "scenario_visible",
+      "finding_id": "v3_7_graph_intelligence_scenario_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "scenario",
+      "subject_id": "scenario_visible:14",
+      "summary": "scenario findings remain visible; total=14",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "session_visible",
+      "finding_id": "v3_7_graph_intelligence_session_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "session",
+      "subject_id": "session_visible:6",
+      "summary": "session findings remain visible; total=6",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "unknown_visible",
+      "finding_id": "v3_7_graph_intelligence_unknown_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "unknown_visible:7",
+      "summary": "unknown planning states remain visible; total=7",
+      "visibility_status": "fail_visible"
+    },
+    {
+      "evidence_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_recommendation": false,
+      "fail_visible": true,
+      "finding_classification": "unsupported_visible",
+      "finding_id": "v3_7_graph_intelligence_unsupported_visible",
+      "hidden": false,
+      "runtime_path_selection": false,
+      "source_type": "aggregate_visibility",
+      "subject_id": "unsupported_visible:9",
+      "summary": "unsupported planning states remain visible; total=9",
+      "visibility_status": "fail_visible"
+    }
+  ],
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "governance_finding_totals": {
+    "governance_finding_total": 4
+  },
+  "graph_execution_enabled": false,
+  "graph_traversal_execution_enabled": false,
+  "optimization_engine_enabled": false,
+  "orchestration_selection_enabled": false,
+  "orchestration_state_machine_enabled": false,
+  "path_ranking_for_execution_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.7_graph_planning_intelligence_aggregation",
+  "planning_intelligence_aggregation": true,
+  "planning_intelligence_aggregation_record": {
+    "aggregated_insights_are_not_recommendations": true,
+    "aggregated_insights_do_not_authorize_execution": true,
+    "aggregation_does_not_enable_routing_scheduling_dispatch_traversal_runtime_orchestration": true,
+    "aggregation_does_not_select_graph_paths": true,
+    "aggregation_does_not_select_scenarios_for_execution": true,
+    "aggregation_driven_execution_enabled": false,
+    "aggregation_is_non_executable": true,
+    "autonomous_orchestration_enabled": false,
+    "continuity_hash_references": [
+      "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+      "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+      "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+      "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+      "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+      "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+    ],
+    "dispatch_enabled": false,
+    "evidence_sources": [
+      {
+        "continuity_references": [
+          "v3_7_graph_compatibility_continuity_evidence"
+        ],
+        "explainability_references": [
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external"
+        ],
+        "source_hash": "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570",
+        "source_id": "v3_7_intelligence_source_compatibility",
+        "source_phase_id": "v3_7_graph_compatibility_reasoning",
+        "source_reference_id": "v3-7-deterministic-orchestration-planning-graph",
+        "source_type": "compatibility"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_evaluation_continuity_evidence"
+        ],
+        "explainability_references": [
+          "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "explain_evaluation_finding_rule_compat_governance_to_structure",
+          "explain_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "explain_evaluation_finding_rule_compat_legacy_incompatible",
+          "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "explain_evaluation_finding_rule_compat_structure_to_experimental",
+          "explain_evaluation_finding_rule_compat_structure_to_structure",
+          "explain_evaluation_finding_rule_compat_unknown_external",
+          "explain_evaluation_structural_continuity_warning"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain"
+        ],
+        "source_hash": "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "source_id": "v3_7_intelligence_source_evaluation",
+        "source_phase_id": "v3_7_graph_evaluation_reasoning",
+        "source_reference_id": "v3_7_graph_evaluation_reasoning_chain",
+        "source_type": "evaluation"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "explainability_references": [
+          "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility",
+          "v3_7_governance_explanation_v3_7_node_provenance_continuity"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch"
+        ],
+        "source_hash": "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+        "source_id": "v3_7_intelligence_source_governance",
+        "source_phase_id": "v3_7_graph_governance_boundary_intelligence",
+        "source_reference_id": "v3-7-deterministic-orchestration-planning-graph",
+        "source_type": "governance"
+      },
+      {
+        "continuity_references": [
+          "v3_7_graph_continuity_evidence"
+        ],
+        "explainability_references": [
+          "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_evidence_v3_7_node_explainability_continuity",
+          "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "v3_7_evidence_v3_7_node_provenance_continuity"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph"
+        ],
+        "source_hash": "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+        "source_id": "v3_7_intelligence_source_graph_foundations",
+        "source_phase_id": "v3_7_graph_foundations",
+        "source_reference_id": "v3-7-deterministic-orchestration-planning-graph",
+        "source_type": "graph_foundations"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "explainability_references": [
+          "v3_7_graph_scenario_explainability"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_scenario_default"
+        ],
+        "source_hash": "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+        "source_id": "v3_7_intelligence_source_scenario",
+        "source_phase_id": "v3_7_graph_planning_scenarios",
+        "source_reference_id": "v3_7_graph_planning_scenario_default",
+        "source_type": "scenario"
+      },
+      {
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48"
+        ],
+        "explainability_references": [
+          "v3_7_graph_planning_session_explainability"
+        ],
+        "provenance_references": [
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "source_hash": "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+        "source_id": "v3_7_intelligence_source_session",
+        "source_phase_id": "v3_7_graph_planning_sessions",
+        "source_reference_id": "v3_7_graph_planning_session_default",
+        "source_type": "session"
+      }
+    ],
+    "executable_planning_insights_enabled": false,
+    "explainability_reference_ids": [
+      "v3_7_graph_intelligence_explainability"
+    ],
+    "findings": [
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "blocked_visible",
+        "finding_id": "v3_7_graph_intelligence_blocked_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "blocked_visible:2",
+        "summary": "blocked planning states remain visible; total=2",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "compatibility_visible",
+        "finding_id": "v3_7_graph_intelligence_compatibility_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "compatibility",
+        "subject_id": "compatibility_visible:7",
+        "summary": "compatibility findings remain visible; total=7",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "continuity_warning_visible",
+        "finding_id": "v3_7_graph_intelligence_continuity_warning_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "continuity_warning_visible:1",
+        "summary": "continuity warnings remain visible; total=1",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "evaluation_visible",
+        "finding_id": "v3_7_graph_intelligence_evaluation_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "evaluation",
+        "subject_id": "evaluation_visible:9",
+        "summary": "evaluation findings remain visible; total=9",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "experimental_visible",
+        "finding_id": "v3_7_graph_intelligence_experimental_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "experimental_visible:4",
+        "summary": "experimental planning states remain visible; total=4",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "explainability_continuity_visible",
+        "finding_id": "v3_7_graph_intelligence_explainability_continuity_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "explainability",
+        "subject_id": "explainability_continuity_visible:20",
+        "summary": "explainability continuity evidence remains visible; total=20",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "governance_visible",
+        "finding_id": "v3_7_graph_intelligence_governance_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "governance",
+        "subject_id": "governance_visible:4",
+        "summary": "governance findings remain visible; total=4",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "prohibited_visible",
+        "finding_id": "v3_7_graph_intelligence_prohibited_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "prohibited_visible:9",
+        "summary": "prohibited planning states remain visible; total=9",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "provenance_continuity_visible",
+        "finding_id": "v3_7_graph_intelligence_provenance_continuity_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "provenance",
+        "subject_id": "provenance_continuity_visible:20",
+        "summary": "provenance continuity evidence remains visible; total=20",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "replay_continuity_visible",
+        "finding_id": "v3_7_graph_intelligence_replay_continuity_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "replay",
+        "subject_id": "replay_continuity_visible:3",
+        "summary": "replay continuity evidence remains visible; total=3",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "rollback_continuity_visible",
+        "finding_id": "v3_7_graph_intelligence_rollback_continuity_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "rollback",
+        "subject_id": "rollback_continuity_visible:2",
+        "summary": "rollback continuity evidence remains visible; total=2",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "scenario_visible",
+        "finding_id": "v3_7_graph_intelligence_scenario_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "scenario",
+        "subject_id": "scenario_visible:14",
+        "summary": "scenario findings remain visible; total=14",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "session_visible",
+        "finding_id": "v3_7_graph_intelligence_session_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "session",
+        "subject_id": "session_visible:6",
+        "summary": "session findings remain visible; total=6",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "unknown_visible",
+        "finding_id": "v3_7_graph_intelligence_unknown_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "unknown_visible:7",
+        "summary": "unknown planning states remain visible; total=7",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "evidence_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_recommendation": false,
+        "fail_visible": true,
+        "finding_classification": "unsupported_visible",
+        "finding_id": "v3_7_graph_intelligence_unsupported_visible",
+        "hidden": false,
+        "runtime_path_selection": false,
+        "source_type": "aggregate_visibility",
+        "subject_id": "unsupported_visible:9",
+        "summary": "unsupported planning states remain visible; total=9",
+        "visibility_status": "fail_visible"
+      }
+    ],
+    "graph_execution_enabled": false,
+    "graph_traversal_execution_enabled": false,
+    "identity": {
+      "aggregation_id": "v3_7_graph_planning_intelligence_aggregation_default",
+      "aggregation_version": "v3.7",
+      "graph_id": "v3-7-deterministic-orchestration-planning-graph",
+      "phase_id": "v3_7_graph_planning_intelligence_aggregation",
+      "stable_identity_key": "4ce47a604a5106df572219964b7375456d3d0916b79e341d4035fb63bce7c9f7"
+    },
+    "insights": [
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_compatibility_risk",
+        "insight_kind": "compatibility_risk",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "compatibility restrictions, unsupported states, and unknown states remain visible"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_evaluation_uncertainty",
+        "insight_kind": "evaluation_uncertainty",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "evaluation evidence preserves uncertainty and continuity warnings without path selection"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_explainability_continuity",
+        "insight_kind": "explainability_continuity",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "explainability continuity is summarized across all evidence sources"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_governance_risk",
+        "insight_kind": "governance_risk",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "governance restrictions and prohibited governance evidence remain visible"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_provenance_continuity",
+        "insight_kind": "provenance_continuity",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "provenance continuity is summarized across all evidence sources"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_replay_rollback_continuity",
+        "insight_kind": "replay_rollback_continuity",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "replay and rollback continuity are summarized as non-executable evidence"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_scenario_delta",
+        "insight_kind": "scenario_delta",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "scenario differences summarize deterministic hypothetical deltas without selecting a scenario"
+      },
+      {
+        "authorizes_orchestration": false,
+        "continuity_references": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "323aa30230c6622b7c26d8f70fe0867caf78821f748b274a946772b779e8dc21",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "c7ac7ce64e260e38f96c66dd371ce4484a859a3e9c5bea35eabe0cfe41b49b48",
+          "v3_7_graph_compatibility_continuity_evidence",
+          "v3_7_graph_continuity_evidence",
+          "v3_7_graph_evaluation_continuity_evidence",
+          "v3_7_graph_governance_continuity_evidence"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "finding_references": [
+          "v3_7_graph_intelligence_blocked_visible",
+          "v3_7_graph_intelligence_compatibility_visible",
+          "v3_7_graph_intelligence_continuity_warning_visible",
+          "v3_7_graph_intelligence_evaluation_visible",
+          "v3_7_graph_intelligence_experimental_visible",
+          "v3_7_graph_intelligence_explainability_continuity_visible",
+          "v3_7_graph_intelligence_governance_visible",
+          "v3_7_graph_intelligence_prohibited_visible",
+          "v3_7_graph_intelligence_provenance_continuity_visible",
+          "v3_7_graph_intelligence_replay_continuity_visible",
+          "v3_7_graph_intelligence_rollback_continuity_visible",
+          "v3_7_graph_intelligence_scenario_visible",
+          "v3_7_graph_intelligence_session_visible",
+          "v3_7_graph_intelligence_unknown_visible",
+          "v3_7_graph_intelligence_unsupported_visible"
+        ],
+        "insight_id": "v3_7_graph_intelligence_insight_session_blocked_state",
+        "insight_kind": "session_blocked_state",
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_compatibility_boundary",
+          "v3-7-provenance-compat_domain_experimental_governance",
+          "v3-7-provenance-compat_domain_governance_visibility",
+          "v3-7-provenance-compat_domain_graph_execution",
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-compat_domain_legacy_structure",
+          "v3-7-provenance-compat_domain_runtime_dispatch",
+          "v3-7-provenance-compat_domain_unknown_external",
+          "v3-7-provenance-domain_compatibility_boundary_visibility",
+          "v3-7-provenance-domain_governance_visibility",
+          "v3-7-provenance-domain_graph_execution",
+          "v3-7-provenance-domain_graph_governance_boundary_intelligence",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-domain_optimization",
+          "v3-7-provenance-domain_routing_scheduling_dispatch",
+          "v3-7-provenance-domain_runtime_dispatch",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "recommends_execution": false,
+        "selects_runtime_path": false,
+        "summary": "planning session blocked, unsupported, prohibited, and unknown states remain visible"
+      }
+    ],
+    "metadata": [
+      {
+        "metadata_key": "aggregation_semantics",
+        "metadata_value": "deterministic_planning_evidence_summary"
+      },
+      {
+        "metadata_key": "insight_boundary",
+        "metadata_value": "summaries_do_not_recommend_execution"
+      },
+      {
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      }
+    ],
+    "optimization_engine_enabled": false,
+    "orchestration_selection_enabled": false,
+    "orchestration_state_machine_enabled": false,
+    "path_ranking_for_execution_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "planning_evidence_summarization_only": true,
+    "provenance": {
+      "compatibility_references": [
+        "v3_6_to_v3_7_graph_foundation_compatibility"
+      ],
+      "explainability_references": [
+        "v3_7_graph_explainability_evidence"
+      ],
+      "governance_references": [
+        "v3_7_non_execution_governance_boundary"
+      ],
+      "lineage_references": [
+        "v3_6_closeout_and_v3_7_readiness",
+        "v3_7_graph_planning_intelligence_aggregation_default"
+      ],
+      "provenance_id": "v3-7-provenance-v3_7_graph_planning_intelligence_aggregation_default",
+      "replay_lineage_references": [
+        "v3_6_replay_continuity",
+        "v3_7_graph_replay_continuity"
+      ],
+      "rollback_lineage_references": [
+        "v3_6_rollback_continuity",
+        "v3_7_graph_rollback_continuity"
+      ],
+      "source_artifact_id": "v3_7_graph_planning_intelligence_aggregation_default",
+      "source_kind": "graph_planning_intelligence_aggregation",
+      "source_phase_id": "v3_7_graph_foundations"
+    },
+    "recommendation_enabled": false,
+    "replay_evidence": [
+      {
+        "aggregation_id": "v3_7_graph_planning_intelligence_aggregation_default",
+        "compatibility_evidence_references": [
+          "finding_rule_compat_governance_to_structure",
+          "finding_rule_compat_graph_execution_prohibited",
+          "finding_rule_compat_legacy_incompatible",
+          "finding_rule_compat_runtime_dispatch_unsupported",
+          "finding_rule_compat_structure_to_experimental",
+          "finding_rule_compat_structure_to_structure",
+          "finding_rule_compat_unknown_external"
+        ],
+        "continuity_hashes": [
+          "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+          "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+          "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+          "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+          "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+          "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+        ],
+        "evaluation_evidence_references": [
+          "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "evaluation_finding_rule_compat_governance_to_structure",
+          "evaluation_finding_rule_compat_graph_execution_prohibited",
+          "evaluation_finding_rule_compat_legacy_incompatible",
+          "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "evaluation_finding_rule_compat_structure_to_experimental",
+          "evaluation_finding_rule_compat_structure_to_structure",
+          "evaluation_finding_rule_compat_unknown_external",
+          "evaluation_structural_continuity_warning"
+        ],
+        "evidence_source_references": [
+          "v3_7_intelligence_source_compatibility",
+          "v3_7_intelligence_source_evaluation",
+          "v3_7_intelligence_source_governance",
+          "v3_7_intelligence_source_graph_foundations",
+          "v3_7_intelligence_source_scenario",
+          "v3_7_intelligence_source_session"
+        ],
+        "execution_authorization": false,
+        "explainability_references": [
+          "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "explain_evaluation_finding_rule_compat_governance_to_structure",
+          "explain_evaluation_finding_rule_compat_graph_execution_prohibited",
+          "explain_evaluation_finding_rule_compat_legacy_incompatible",
+          "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+          "explain_evaluation_finding_rule_compat_structure_to_experimental",
+          "explain_evaluation_finding_rule_compat_structure_to_structure",
+          "explain_evaluation_finding_rule_compat_unknown_external",
+          "explain_evaluation_structural_continuity_warning",
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge",
+          "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes",
+          "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_evidence_v3_7_node_explainability_continuity",
+          "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+          "v3_7_evidence_v3_7_node_provenance_continuity",
+          "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity",
+          "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_explainability_continuity",
+          "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility",
+          "v3_7_governance_explanation_v3_7_node_provenance_continuity",
+          "v3_7_graph_planning_session_explainability",
+          "v3_7_graph_scenario_explainability"
+        ],
+        "governance_evidence_references": [
+          "finding_rule_graph_execution_relationship_prohibited",
+          "finding_rule_optimization_relationship_unsupported",
+          "finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+          "finding_rule_runtime_dispatch_relationship_unsupported"
+        ],
+        "graph_evidence_references": [
+          "v3-7-deterministic-orchestration-planning-graph"
+        ],
+        "non_executable_replay_evidence": true,
+        "provenance_references": [
+          "v3-7-provenance-compat_domain_graph_structure",
+          "v3-7-provenance-domain_graph_structure_modeling",
+          "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+          "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+          "v3-7-provenance-v3_7_graph_planning_scenario_default",
+          "v3-7-provenance-v3_7_graph_planning_session_default"
+        ],
+        "replay_evidence_id": "v3_7_graph_intelligence_replay_evidence_default",
+        "runtime_replay": false,
+        "scenario_evidence_references": [
+          "v3_7_graph_scenario_audit_0001_scenario_status",
+          "v3_7_graph_scenario_audit_0002_blocked_visibility",
+          "v3_7_graph_scenario_audit_0003_unsupported_visibility",
+          "v3_7_graph_scenario_audit_0004_prohibited_visibility",
+          "v3_7_graph_scenario_audit_0005_unknown_visibility",
+          "v3_7_graph_scenario_audit_0006_evaluation_visibility",
+          "v3_7_graph_scenario_audit_0007_non_execution_boundary"
+        ],
+        "session_evidence_references": [
+          "v3_7_graph_planning_session_audit_0001_session_status",
+          "v3_7_graph_planning_session_audit_0002_blocked_visibility",
+          "v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+          "v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+          "v3_7_graph_planning_session_audit_0005_unknown_visibility",
+          "v3_7_graph_planning_session_audit_0006_non_execution_boundary"
+        ]
+      }
+    ],
+    "rollback_continuity_references": [
+      "v3_7_graph_evaluation_rollback_continuity"
+    ],
+    "routing_enabled": false,
+    "runtime_decision_making_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scenario_selection_for_execution_enabled": false,
+    "scheduling_enabled": false,
+    "totals": {
+      "blocked_visibility_total": 2,
+      "compatibility_finding_total": 7,
+      "continuity_warning_total": 1,
+      "evaluation_finding_total": 9,
+      "experimental_visibility_total": 4,
+      "explainability_evidence_total": 20,
+      "governance_finding_total": 4,
+      "prohibited_visibility_total": 9,
+      "provenance_evidence_total": 20,
+      "replay_evidence_total": 3,
+      "rollback_evidence_total": 2,
+      "scenario_finding_total": 14,
+      "session_finding_total": 6,
+      "unknown_visibility_total": 7,
+      "unsupported_visibility_total": 9
+    }
+  },
+  "provenance_continuity_totals": {
+    "aggregation_creation_provenance_preserved": true,
+    "compatibility_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "governance_provenance_preserved": true,
+    "graph_provenance_preserved": true,
+    "provenance_record_count": 1,
+    "provenance_status": "v3_7_graph_intelligence_provenance_preserved",
+    "replay_provenance_preserved": true,
+    "rollback_provenance_preserved": true,
+    "scenario_provenance_preserved": true,
+    "session_provenance_preserved": true
+  },
+  "provenance_result": {
+    "aggregation_creation_provenance_preserved": true,
+    "compatibility_provenance_preserved": true,
+    "continuity_provenance_preserved": true,
+    "deterministic_provenance_hash": "0797f2bdb22dacba6ea88c4d046550c2058a94a46466706cdc063edf42d9693c",
+    "evaluation_provenance_preserved": true,
+    "explainability_provenance_preserved": true,
+    "governance_provenance_preserved": true,
+    "graph_provenance_preserved": true,
+    "missing_provenance_subjects": [],
+    "provenance_record_count": 1,
+    "provenance_status": "v3_7_graph_intelligence_provenance_preserved",
+    "replay_provenance_preserved": true,
+    "rollback_provenance_preserved": true,
+    "scenario_provenance_preserved": true,
+    "session_provenance_preserved": true
+  },
+  "recommendation_enabled": false,
+  "replay_evidence_counts": {
+    "execution_authorization": false,
+    "non_executable_replay_evidence": true,
+    "replay_evidence_count": 1,
+    "runtime_replay": false
+  },
+  "replay_evidence_records": [
+    {
+      "aggregation_id": "v3_7_graph_planning_intelligence_aggregation_default",
+      "compatibility_evidence_references": [
+        "finding_rule_compat_governance_to_structure",
+        "finding_rule_compat_graph_execution_prohibited",
+        "finding_rule_compat_legacy_incompatible",
+        "finding_rule_compat_runtime_dispatch_unsupported",
+        "finding_rule_compat_structure_to_experimental",
+        "finding_rule_compat_structure_to_structure",
+        "finding_rule_compat_unknown_external"
+      ],
+      "continuity_hashes": [
+        "0b8fd6de75b5d58790cefb054b18ae762089028b906a932800c6b00ce7e1b95e",
+        "30197b5afd37fa5e21de13c74a595db9125ea49ed2b1e0fa769c4f81dbfb8588",
+        "40346f9d255caa644b54ccf0e40e3d9313087a10b6b45784d6763eae475023df",
+        "a200adcd417767f0a00b6fa7549afd8fda94a2f272b13ac1dcadb36f7a2defe0",
+        "c486ab009cd251714d50b8dd737f4cbfa477276c2b487bffac40874073f40ac2",
+        "e6a6b5bb4221d1933f57e98cf9aebb06b3b57954d41c2e53a6a086cad2dd5570"
+      ],
+      "evaluation_evidence_references": [
+        "evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "evaluation_finding_rule_compat_governance_to_structure",
+        "evaluation_finding_rule_compat_graph_execution_prohibited",
+        "evaluation_finding_rule_compat_legacy_incompatible",
+        "evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "evaluation_finding_rule_compat_structure_to_experimental",
+        "evaluation_finding_rule_compat_structure_to_structure",
+        "evaluation_finding_rule_compat_unknown_external",
+        "evaluation_structural_continuity_warning"
+      ],
+      "evidence_source_references": [
+        "v3_7_intelligence_source_compatibility",
+        "v3_7_intelligence_source_evaluation",
+        "v3_7_intelligence_source_governance",
+        "v3_7_intelligence_source_graph_foundations",
+        "v3_7_intelligence_source_scenario",
+        "v3_7_intelligence_source_session"
+      ],
+      "execution_authorization": false,
+      "explainability_references": [
+        "explain_evaluation_compatibility_restricted_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "explain_evaluation_finding_rule_compat_governance_to_structure",
+        "explain_evaluation_finding_rule_compat_graph_execution_prohibited",
+        "explain_evaluation_finding_rule_compat_legacy_incompatible",
+        "explain_evaluation_finding_rule_compat_runtime_dispatch_unsupported",
+        "explain_evaluation_finding_rule_compat_structure_to_experimental",
+        "explain_evaluation_finding_rule_compat_structure_to_structure",
+        "explain_evaluation_finding_rule_compat_unknown_external",
+        "explain_evaluation_structural_continuity_warning",
+        "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_edge",
+        "v3_7_compatibility_explanation_v3_7_edge_governance_visibility_to_provenance_continuity_nodes",
+        "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_edge",
+        "v3_7_compatibility_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity_nodes",
+        "v3_7_evidence_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "v3_7_evidence_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "v3_7_evidence_v3_7_node_explainability_continuity",
+        "v3_7_evidence_v3_7_node_governance_boundary_visibility",
+        "v3_7_evidence_v3_7_node_provenance_continuity",
+        "v3_7_governance_explanation_v3_7_edge_governance_visibility_to_provenance_continuity",
+        "v3_7_governance_explanation_v3_7_edge_provenance_continuity_to_explainability_continuity",
+        "v3_7_governance_explanation_v3_7_node_explainability_continuity",
+        "v3_7_governance_explanation_v3_7_node_governance_boundary_visibility",
+        "v3_7_governance_explanation_v3_7_node_provenance_continuity",
+        "v3_7_graph_planning_session_explainability",
+        "v3_7_graph_scenario_explainability"
+      ],
+      "governance_evidence_references": [
+        "finding_rule_graph_execution_relationship_prohibited",
+        "finding_rule_optimization_relationship_unsupported",
+        "finding_rule_routing_scheduling_dispatch_relationship_prohibited",
+        "finding_rule_runtime_dispatch_relationship_unsupported"
+      ],
+      "graph_evidence_references": [
+        "v3-7-deterministic-orchestration-planning-graph"
+      ],
+      "non_executable_replay_evidence": true,
+      "provenance_references": [
+        "v3-7-provenance-compat_domain_graph_structure",
+        "v3-7-provenance-domain_graph_structure_modeling",
+        "v3-7-provenance-v3-7-deterministic-orchestration-planning-graph",
+        "v3-7-provenance-v3_7_graph_evaluation_reasoning_chain",
+        "v3-7-provenance-v3_7_graph_planning_scenario_default",
+        "v3-7-provenance-v3_7_graph_planning_session_default"
+      ],
+      "replay_evidence_id": "v3_7_graph_intelligence_replay_evidence_default",
+      "runtime_replay": false,
+      "scenario_evidence_references": [
+        "v3_7_graph_scenario_audit_0001_scenario_status",
+        "v3_7_graph_scenario_audit_0002_blocked_visibility",
+        "v3_7_graph_scenario_audit_0003_unsupported_visibility",
+        "v3_7_graph_scenario_audit_0004_prohibited_visibility",
+        "v3_7_graph_scenario_audit_0005_unknown_visibility",
+        "v3_7_graph_scenario_audit_0006_evaluation_visibility",
+        "v3_7_graph_scenario_audit_0007_non_execution_boundary"
+      ],
+      "session_evidence_references": [
+        "v3_7_graph_planning_session_audit_0001_session_status",
+        "v3_7_graph_planning_session_audit_0002_blocked_visibility",
+        "v3_7_graph_planning_session_audit_0003_unsupported_visibility",
+        "v3_7_graph_planning_session_audit_0004_prohibited_visibility",
+        "v3_7_graph_planning_session_audit_0005_unknown_visibility",
+        "v3_7_graph_planning_session_audit_0006_non_execution_boundary"
+      ]
+    }
+  ],
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_continuity_counts": {
+    "rollback_continuity_preserved": true,
+    "rollback_reference_count": 1
+  },
+  "routing_enabled": false,
+  "runtime_decision_making_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_decision_making": false,
+  "scenario_finding_totals": {
+    "scenario_finding_total": 14
+  },
+  "scenario_selection_for_execution_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_7.graph_planning_intelligence_aggregation_report.1",
+  "session_finding_totals": {
+    "session_finding_total": 6
+  },
+  "summary": {
+    "aggregation_status": "v3_7_graph_intelligence_validation_stable",
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "explainability_continuity_verified": true,
+    "no_execution_recommendation_verified": true,
+    "no_runtime_path_selection_verified": true,
+    "non_execution_guarantee_verified": true,
+    "planning_intelligence_aggregation": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "runtime_orchestration_decision_making": false
+  },
+  "validation_result": {
+    "deterministic_aggregation_hash": "8c54298870f510627f69e00582e96f47c65f2a04f4da0b6ee08c2b663ef573cf",
+    "deterministic_hash_stable": true,
+    "deterministic_serialization_stable": true,
+    "deterministic_validation_hash": "4d75f9021078558dec7aec4e73a6b0d46e9924ddc12d5ed59f098b36c3a338eb",
+    "duplicate_aggregation_identity_count": 0,
+    "error_count": 0,
+    "explainability_continuity_preserved": true,
+    "finding_count": 3,
+    "findings": [
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_validation_visible_prohibited:intelligence_finding:v3_7_graph_intelligence_prohibited_visible",
+        "message": "prohibited_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_validation_visible_prohibited",
+        "subject_id": "v3_7_graph_intelligence_prohibited_visible",
+        "subject_type": "intelligence_finding"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_validation_visible_unknown:intelligence_finding:v3_7_graph_intelligence_unknown_visible",
+        "message": "unknown_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_validation_visible_unknown",
+        "subject_id": "v3_7_graph_intelligence_unknown_visible",
+        "subject_type": "intelligence_finding"
+      },
+      {
+        "fail_visible": true,
+        "finding_id": "v3_7_graph_intelligence_validation_visible_unsupported:intelligence_finding:v3_7_graph_intelligence_unsupported_visible",
+        "message": "unsupported_visible remains fail-visible",
+        "severity": "visibility",
+        "status": "v3_7_graph_intelligence_validation_visible_unsupported",
+        "subject_id": "v3_7_graph_intelligence_unsupported_visible",
+        "subject_type": "intelligence_finding"
+      }
+    ],
+    "hidden_prohibited_finding_count": 0,
+    "hidden_unknown_finding_count": 0,
+    "hidden_unsupported_finding_count": 0,
+    "invalid_compatibility_evidence_reference_count": 0,
+    "invalid_evaluation_evidence_reference_count": 0,
+    "invalid_governance_evidence_reference_count": 0,
+    "invalid_graph_evidence_reference_count": 0,
+    "invalid_scenario_evidence_reference_count": 0,
+    "invalid_session_evidence_reference_count": 0,
+    "missing_evidence_source_reference_count": 0,
+    "no_execution_recommendation_preserved": true,
+    "no_runtime_path_selection_preserved": true,
+    "non_execution_guarantee_preserved": true,
+    "provenance_continuity_preserved": true,
+    "replay_continuity_preserved": true,
+    "rollback_continuity_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_intelligence_validation_stable",
+    "visibility_finding_count": 3
+  },
+  "validation_totals": {
+    "duplicate_aggregation_identity_count": 0,
+    "error_count": 0,
+    "finding_count": 3,
+    "hidden_prohibited_finding_count": 0,
+    "hidden_unknown_finding_count": 0,
+    "hidden_unsupported_finding_count": 0,
+    "no_execution_recommendation_preserved": true,
+    "no_runtime_path_selection_preserved": true,
+    "non_execution_guarantee_preserved": true,
+    "valid": true,
+    "validation_status": "v3_7_graph_intelligence_validation_stable",
+    "visibility_finding_count": 3
+  }
+}
