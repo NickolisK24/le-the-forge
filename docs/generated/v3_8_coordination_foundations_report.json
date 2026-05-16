@@ -1,0 +1,1062 @@
+{
+  "architectural_purpose": "deterministic orchestration-planning coordination foundation intelligence",
+  "autonomous_orchestration_enabled": false,
+  "callable_execution_flow_enabled": false,
+  "continuity_guarantees": {
+    "continuity_preserved": true,
+    "continuity_reference_count": 4,
+    "continuity_status": "coordination_continuity_preserved",
+    "relationship_chain_count": 1,
+    "relationship_count": 6
+  },
+  "coordination_execution_enabled": false,
+  "coordination_foundation": {
+    "autonomous_orchestration_enabled": false,
+    "callable_execution_flow_enabled": false,
+    "continuity_state": {
+      "continuity_id": "v3_8_coordination_continuity_state",
+      "continuity_preserved": true,
+      "continuity_status": "coordination_continuity_preserved",
+      "deterministic_hash_references": [
+        "v3_8_coordination_foundation_hash"
+      ],
+      "explainability_reference_ids": [
+        "v3_8_coordination_explainability_state"
+      ],
+      "fail_visible_gap_ids": [],
+      "preserved_reference_ids": [
+        "v3_8_ref_graph_continuity_certification",
+        "v3_8_ref_graph_integrity_enforcement",
+        "v3_8_ref_graph_intelligence_aggregation",
+        "v3_8_ref_v3_7_closeout_readiness"
+      ],
+      "provenance_reference_ids": [
+        "v3_8_coordination_provenance_state"
+      ],
+      "relationship_chain_ids": [
+        "v3_8_coordination_identity_to_rollback_chain"
+      ],
+      "replay_evidence_ids": [
+        "v3_8_coordination_foundation_replay_evidence",
+        "v3_8_coordination_relationship_chain_replay_evidence"
+      ],
+      "rollback_evidence_ids": [
+        "v3_8_coordination_foundation_rollback_evidence",
+        "v3_8_coordination_relationship_chain_rollback_evidence"
+      ]
+    },
+    "coordination_boundaries": [
+      {
+        "boundary_id": "v3_8_fail_visible_uncertainty_boundary",
+        "boundary_status": "visible",
+        "boundary_type": "fail_visible_uncertainty",
+        "execution_capability_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "fail_visible": true,
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "restriction_summary": "unsupported, prohibited, and unknown states stay visible",
+        "unknown_state_ids": [
+          "v3_8_unknown_coordination_capability_fail_visible",
+          "v3_8_unknown_runtime_state_fail_visible"
+        ],
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "boundary_id": "v3_8_non_execution_coordination_boundary",
+        "boundary_status": "visible",
+        "boundary_type": "non_execution",
+        "execution_capability_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "fail_visible": true,
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "restriction_summary": "coordination foundations model planning evidence only",
+        "unknown_state_ids": [
+          "v3_8_unknown_coordination_capability_fail_visible",
+          "v3_8_unknown_runtime_state_fail_visible"
+        ],
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "boundary_id": "v3_8_non_routing_scheduling_dispatch_boundary",
+        "boundary_status": "visible",
+        "boundary_type": "routing_scheduling_dispatch_prohibited",
+        "execution_capability_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "fail_visible": true,
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "restriction_summary": "coordination relationships do not route, schedule, or dispatch work",
+        "unknown_state_ids": [
+          "v3_8_unknown_coordination_capability_fail_visible",
+          "v3_8_unknown_runtime_state_fail_visible"
+        ],
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      }
+    ],
+    "coordination_execution_enabled": false,
+    "coordination_references": [
+      {
+        "artifact_id": "docs/generated/v3_7_graph_planning_continuity_certification_report.json",
+        "continuity_reference_ids": [
+          "v3_7_graph_certification_continuity"
+        ],
+        "deterministic_hash_reference": "v3_7_graph_certification_hash",
+        "explainability_reference_ids": [
+          "v3_7_graph_certification_explainability"
+        ],
+        "provenance_reference_ids": [
+          "v3_7_graph_certification_provenance"
+        ],
+        "reference_id": "v3_8_ref_graph_continuity_certification",
+        "reference_scope": "planning_coordination_reference_only",
+        "reference_type": "continuity_certification",
+        "replay_reference_ids": [
+          "v3_7_graph_certification_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_7_graph_certification_rollback_evidence"
+        ],
+        "source_phase_id": "v3_7_graph_planning_continuity_certification",
+        "subject_id": "v3_7_graph_planning_continuity_certification"
+      },
+      {
+        "artifact_id": "docs/generated/v3_7_graph_planning_integrity_enforcement_report.json",
+        "continuity_reference_ids": [
+          "v3_7_graph_integrity_continuity"
+        ],
+        "deterministic_hash_reference": "v3_7_graph_integrity_hash",
+        "explainability_reference_ids": [
+          "v3_7_graph_integrity_explainability"
+        ],
+        "provenance_reference_ids": [
+          "v3_7_graph_integrity_provenance"
+        ],
+        "reference_id": "v3_8_ref_graph_integrity_enforcement",
+        "reference_scope": "planning_coordination_reference_only",
+        "reference_type": "integrity_evidence",
+        "replay_reference_ids": [
+          "v3_7_graph_integrity_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_7_graph_integrity_rollback_evidence"
+        ],
+        "source_phase_id": "v3_7_graph_integrity_enforcement",
+        "subject_id": "v3_7_graph_integrity_enforcement"
+      },
+      {
+        "artifact_id": "docs/generated/v3_7_graph_planning_intelligence_aggregation_report.json",
+        "continuity_reference_ids": [
+          "v3_7_graph_aggregation_continuity"
+        ],
+        "deterministic_hash_reference": "v3_7_graph_aggregation_hash",
+        "explainability_reference_ids": [
+          "v3_7_graph_aggregation_explainability"
+        ],
+        "provenance_reference_ids": [
+          "v3_7_graph_aggregation_provenance"
+        ],
+        "reference_id": "v3_8_ref_graph_intelligence_aggregation",
+        "reference_scope": "planning_coordination_reference_only",
+        "reference_type": "planning_intelligence_evidence",
+        "replay_reference_ids": [
+          "v3_7_graph_aggregation_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_7_graph_aggregation_rollback_evidence"
+        ],
+        "source_phase_id": "v3_7_graph_planning_intelligence_aggregation",
+        "subject_id": "v3_7_graph_planning_intelligence_aggregation"
+      },
+      {
+        "artifact_id": "docs/generated/v3_7_closeout_and_v3_8_readiness_report.json",
+        "continuity_reference_ids": [
+          "v3_7_to_v3_8_coordination_continuity"
+        ],
+        "deterministic_hash_reference": "v3_7_closeout_report_hash",
+        "explainability_reference_ids": [
+          "v3_7_closeout_explainability"
+        ],
+        "provenance_reference_ids": [
+          "v3_7_closeout_provenance"
+        ],
+        "reference_id": "v3_8_ref_v3_7_closeout_readiness",
+        "reference_scope": "planning_coordination_reference_only",
+        "reference_type": "prior_phase_closeout",
+        "replay_reference_ids": [
+          "v3_7_closeout_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_7_closeout_rollback_evidence"
+        ],
+        "source_phase_id": "v3_7_closeout_and_v3_8_readiness",
+        "subject_id": "v3_7_closeout_and_v3_8_readiness"
+      }
+    ],
+    "dispatch_enabled": false,
+    "execution_authorization_enabled": false,
+    "explainability_state": {
+      "explainability_id": "v3_8_coordination_explainability_state",
+      "explainability_status": "coordination_explainability_visible",
+      "explanation": "v3.8 coordination foundations preserve planning coordination identity, relationships, continuity, provenance, replay evidence, and rollback evidence without enabling execution behavior.",
+      "fail_visible": true,
+      "hidden_state": false,
+      "prohibited_state_ids": [
+        "v3_8_prohibited_execution_authorization",
+        "v3_8_prohibited_orchestration_execution",
+        "v3_8_prohibited_routing_scheduling_dispatch",
+        "v3_8_prohibited_traversal_execution"
+      ],
+      "provenance_reference_ids": [
+        "v3_8_coordination_provenance_state"
+      ],
+      "subject_id": "v3-8-deterministic-coordination-foundation",
+      "unknown_state_ids": [
+        "v3_8_unknown_coordination_capability_fail_visible",
+        "v3_8_unknown_runtime_state_fail_visible"
+      ],
+      "unsupported_state_ids": [
+        "v3_8_unsupported_autonomous_orchestration",
+        "v3_8_unsupported_coordination_optimization",
+        "v3_8_unsupported_runtime_coordination_execution"
+      ],
+      "visibility_chain_ids": [
+        "v3_8_coordination_identity_to_rollback_chain"
+      ]
+    },
+    "graph_traversal_execution_enabled": false,
+    "hidden_state_transition_enabled": false,
+    "identity": {
+      "coordination_id": "v3-8-deterministic-coordination-foundation",
+      "coordination_purpose": "deterministic_orchestration_planning_coordination_only",
+      "coordination_version": "v3.8",
+      "phase_id": "v3_8_coordination_foundations",
+      "schema_version": "v3_8.orchestration_planning_coordination_foundations.1"
+    },
+    "integrity_state": {
+      "execution_boundary_violation_ids": [],
+      "explainability_reference_ids": [
+        "v3_8_coordination_explainability_state"
+      ],
+      "hidden_transition_detected": false,
+      "integrity_id": "v3_8_coordination_integrity_state",
+      "integrity_preserved": true,
+      "integrity_status": "coordination_integrity_preserved",
+      "prohibited_state_ids": [
+        "v3_8_prohibited_execution_authorization",
+        "v3_8_prohibited_orchestration_execution",
+        "v3_8_prohibited_routing_scheduling_dispatch",
+        "v3_8_prohibited_traversal_execution"
+      ],
+      "provenance_reference_ids": [
+        "v3_8_coordination_provenance_state"
+      ],
+      "silent_fallback_detected": false,
+      "unknown_state_ids": [
+        "v3_8_unknown_coordination_capability_fail_visible",
+        "v3_8_unknown_runtime_state_fail_visible"
+      ],
+      "unsupported_state_ids": [
+        "v3_8_unsupported_autonomous_orchestration",
+        "v3_8_unsupported_coordination_optimization",
+        "v3_8_unsupported_runtime_coordination_execution"
+      ]
+    },
+    "metadata": [
+      {
+        "included_in_hash": true,
+        "metadata_key": "coordination_semantics",
+        "metadata_value": "declarative_planning_coordination_only"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "deterministic_serializer",
+        "metadata_value": "json_sort_keys_stable_tuples"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "execution_boundary",
+        "metadata_value": "strict_non_executable"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "mutation_capability",
+        "metadata_value": "none"
+      },
+      {
+        "included_in_hash": true,
+        "metadata_key": "runtime_capability",
+        "metadata_value": "none"
+      }
+    ],
+    "non_executable": true,
+    "optimization_enabled": false,
+    "orchestration_execution_enabled": false,
+    "persistent_runtime_mutation_enabled": false,
+    "persistent_runtime_writes_enabled": false,
+    "planning_coordination_only": true,
+    "prohibited_states": [
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "execution authorization is prohibited",
+        "state_id": "v3_8_prohibited_execution_authorization",
+        "state_type": "execution_authorization",
+        "visibility_status": "coordination_prohibited_state_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "orchestration execution is prohibited in v3.8 coordination foundations",
+        "state_id": "v3_8_prohibited_orchestration_execution",
+        "state_type": "orchestration_execution",
+        "visibility_status": "coordination_prohibited_state_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "routing, scheduling, and dispatch are prohibited",
+        "state_id": "v3_8_prohibited_routing_scheduling_dispatch",
+        "state_type": "routing_scheduling_dispatch",
+        "visibility_status": "coordination_prohibited_state_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "graph traversal execution is prohibited",
+        "state_id": "v3_8_prohibited_traversal_execution",
+        "state_type": "traversal_execution",
+        "visibility_status": "coordination_prohibited_state_visible"
+      }
+    ],
+    "provenance_state": {
+      "continuity_reference_ids": [
+        "v3_8_coordination_continuity_state"
+      ],
+      "deterministic_lineage_hash_reference": "v3_8_coordination_foundation_hash",
+      "explainability_reference_ids": [
+        "v3_8_coordination_explainability_state"
+      ],
+      "lineage_reference_ids": [
+        "v3_8_ref_graph_continuity_certification",
+        "v3_8_ref_graph_integrity_enforcement",
+        "v3_8_ref_graph_intelligence_aggregation",
+        "v3_8_ref_v3_7_closeout_readiness"
+      ],
+      "prior_phase_reference_ids": [
+        "v3_7_closeout_and_v3_8_readiness_report",
+        "v3_7_graph_planning_continuity_certification_report",
+        "v3_7_graph_planning_intelligence_aggregation_report"
+      ],
+      "provenance_id": "v3_8_coordination_provenance_state",
+      "provenance_preserved": true,
+      "provenance_status": "coordination_provenance_preserved",
+      "replay_reference_ids": [
+        "v3_8_coordination_foundation_replay_evidence",
+        "v3_8_coordination_relationship_chain_replay_evidence"
+      ],
+      "rollback_reference_ids": [
+        "v3_8_coordination_foundation_rollback_evidence",
+        "v3_8_coordination_relationship_chain_rollback_evidence"
+      ],
+      "source_artifact_id": "v3-8-deterministic-coordination-foundation",
+      "source_phase_id": "v3_8_coordination_foundations"
+    },
+    "recommendation_enabled": false,
+    "relationship_chains": [
+      {
+        "chain_executable": false,
+        "chain_id": "v3_8_coordination_identity_to_rollback_chain",
+        "chain_purpose": "coordination identity to relationship continuity to provenance to explainability to replay and rollback evidence",
+        "chain_scope": "structural_coordination_chain_only",
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "deterministic_order": 1,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "hidden_transition_enabled": false,
+        "provenance_lineage_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_ids": [
+          "v3_8_relationship_chain_to_continuity",
+          "v3_8_relationship_continuity_to_provenance",
+          "v3_8_relationship_explainability_to_replay_rollback",
+          "v3_8_relationship_identity_to_references",
+          "v3_8_relationship_provenance_to_explainability",
+          "v3_8_relationship_references_to_relationship_chain"
+        ],
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "traversal_execution_enabled": false
+      }
+    ],
+    "relationships": [
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 1,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_identity_to_references",
+        "relationship_purpose": "coordination identity anchors deterministic reference evidence",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_identity_preserves_references",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3-8-deterministic-coordination-foundation",
+        "target_coordination_id": "v3_8_coordination_reference_set",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 2,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_references_to_relationship_chain",
+        "relationship_purpose": "references feed deterministic relationship continuity",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_references_preserve_relationship_chain",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3_8_coordination_reference_set",
+        "target_coordination_id": "v3_8_coordination_relationship_chain",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 3,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_chain_to_continuity",
+        "relationship_purpose": "relationship chains preserve continuity evidence",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_relationship_chain_preserves_continuity",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3_8_coordination_relationship_chain",
+        "target_coordination_id": "v3_8_coordination_continuity_state",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 4,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_continuity_to_provenance",
+        "relationship_purpose": "continuity evidence preserves provenance lineage",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_continuity_preserves_provenance",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3_8_coordination_continuity_state",
+        "target_coordination_id": "v3_8_coordination_provenance_state",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 5,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_provenance_to_explainability",
+        "relationship_purpose": "provenance lineage keeps explainability deterministic",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_provenance_preserves_explainability",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3_8_coordination_provenance_state",
+        "target_coordination_id": "v3_8_coordination_explainability_state",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state",
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "deterministic_order": 6,
+        "dispatch_enabled": false,
+        "explainability_reference_ids": [
+          "v3_8_coordination_explainability_state"
+        ],
+        "prohibited_state_ids": [
+          "v3_8_prohibited_execution_authorization",
+          "v3_8_prohibited_orchestration_execution",
+          "v3_8_prohibited_routing_scheduling_dispatch",
+          "v3_8_prohibited_traversal_execution"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "relationship_executable": false,
+        "relationship_id": "v3_8_relationship_explainability_to_replay_rollback",
+        "relationship_purpose": "explainability remains tied to replay and rollback evidence",
+        "relationship_scope": "structural_coordination_relationship_only",
+        "relationship_type": "coordination_explainability_preserves_replay_and_rollback",
+        "replay_reference_ids": [
+          "v3_8_coordination_foundation_replay_evidence",
+          "v3_8_coordination_relationship_chain_replay_evidence"
+        ],
+        "rollback_reference_ids": [
+          "v3_8_coordination_foundation_rollback_evidence",
+          "v3_8_coordination_relationship_chain_rollback_evidence"
+        ],
+        "routing_enabled": false,
+        "scheduling_enabled": false,
+        "source_coordination_id": "v3_8_coordination_explainability_state",
+        "target_coordination_id": "v3_8_coordination_replay_rollback_evidence",
+        "traversal_enabled": false,
+        "unsupported_state_ids": [
+          "v3_8_unsupported_autonomous_orchestration",
+          "v3_8_unsupported_coordination_optimization",
+          "v3_8_unsupported_runtime_coordination_execution"
+        ]
+      }
+    ],
+    "replay_evidence": [
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "deterministic_hash_references": [
+          "v3_8_coordination_foundation_hash"
+        ],
+        "evidence_reference_ids": [
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_evidence_id": "v3_8_coordination_foundation_replay_evidence",
+        "replay_safe": true,
+        "replay_scope": "planning_coordination_replay_evidence_only",
+        "runtime_replay_enabled": false,
+        "subject_id": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "deterministic_hash_references": [
+          "v3_8_coordination_relationship_chain_hash"
+        ],
+        "evidence_reference_ids": [
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "replay_evidence_id": "v3_8_coordination_relationship_chain_replay_evidence",
+        "replay_safe": true,
+        "replay_scope": "relationship_chain_replay_evidence_only",
+        "runtime_replay_enabled": false,
+        "subject_id": "v3_8_coordination_relationship_chain"
+      }
+    ],
+    "rollback_evidence": [
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "deterministic_hash_references": [
+          "v3_8_coordination_foundation_hash"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "rollback_evidence_id": "v3_8_coordination_foundation_rollback_evidence",
+        "rollback_execution_enabled": false,
+        "rollback_reference_ids": [
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "rollback_safe": true,
+        "rollback_scope": "planning_coordination_rollback_evidence_only",
+        "subject_id": "v3-8-deterministic-coordination-foundation"
+      },
+      {
+        "continuity_reference_ids": [
+          "v3_8_coordination_continuity_state"
+        ],
+        "deterministic_hash_references": [
+          "v3_8_coordination_relationship_chain_hash"
+        ],
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "rollback_evidence_id": "v3_8_coordination_relationship_chain_rollback_evidence",
+        "rollback_execution_enabled": false,
+        "rollback_reference_ids": [
+          "v3_8_ref_graph_continuity_certification",
+          "v3_8_ref_graph_integrity_enforcement",
+          "v3_8_ref_graph_intelligence_aggregation",
+          "v3_8_ref_v3_7_closeout_readiness"
+        ],
+        "rollback_safe": true,
+        "rollback_scope": "relationship_chain_rollback_evidence_only",
+        "subject_id": "v3_8_coordination_relationship_chain"
+      }
+    ],
+    "routing_enabled": false,
+    "runtime_path_selection_enabled": false,
+    "scheduling_enabled": false,
+    "silent_fallback_enabled": false,
+    "traversal_execution_enabled": false,
+    "unknown_states": [
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "unknown coordination capabilities must remain fail-visible until explicitly modeled",
+        "state_id": "v3_8_unknown_coordination_capability_fail_visible",
+        "state_type": "unknown_coordination_capability",
+        "visibility_status": "coordination_unknown_state_fail_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "unknown runtime states cannot be inferred as supported coordination behavior",
+        "state_id": "v3_8_unknown_runtime_state_fail_visible",
+        "state_type": "unknown_runtime_state",
+        "visibility_status": "coordination_unknown_state_fail_visible"
+      }
+    ],
+    "unsupported_states": [
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "autonomous orchestration remains outside deterministic coordination foundations",
+        "state_id": "v3_8_unsupported_autonomous_orchestration",
+        "state_type": "autonomous_orchestration",
+        "visibility_status": "coordination_unsupported_state_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "coordination optimization is not modeled by v3.8 foundations",
+        "state_id": "v3_8_unsupported_coordination_optimization",
+        "state_type": "coordination_optimization",
+        "visibility_status": "coordination_unsupported_state_visible"
+      },
+      {
+        "fail_visible": true,
+        "hidden": false,
+        "provenance_reference_ids": [
+          "v3_8_coordination_provenance_state"
+        ],
+        "reason": "runtime coordination execution is outside the v3.8 foundation scope",
+        "state_id": "v3_8_unsupported_runtime_coordination_execution",
+        "state_type": "runtime_coordination_execution",
+        "visibility_status": "coordination_unsupported_state_visible"
+      }
+    ]
+  },
+  "deterministic_guarantees": {
+    "deterministic_foundation_hash": "2e5b253ebfa99216e5233b687f84459b17a9a78a30f6fc7257c574413ee5a213",
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "hash_algorithm": "sha256_stable_json_v3_8_coordination_foundations",
+    "serialization_first_length": 27293,
+    "serialization_second_length": 27293
+  },
+  "deterministic_report_hash": "5f4bfbab56d1355f3583d2d098b0773b4ee1af3d85209a6dde8bd508aa05e3bb",
+  "dispatch_enabled": false,
+  "execution_authorization_enabled": false,
+  "explainability_guarantees": {
+    "explainability_status": "coordination_explainability_visible",
+    "fail_visible": true,
+    "fail_visible_state_count": 9,
+    "hidden_state": false,
+    "prohibited_state_count": 4,
+    "unknown_state_count": 2,
+    "unsupported_state_count": 3
+  },
+  "explicit_limitations": [
+    "v3.8 coordination foundations are non-executable",
+    "v3.8 does not enable orchestration execution",
+    "v3.8 does not enable orchestration routing",
+    "v3.8 does not enable orchestration scheduling",
+    "v3.8 does not enable orchestration dispatch",
+    "v3.8 does not enable graph traversal execution",
+    "v3.8 does not enable orchestration optimization",
+    "v3.8 does not enable recommendation systems",
+    "v3.8 does not enable execution authorization",
+    "v3.8 does not introduce persistent runtime mutation"
+  ],
+  "foundation_is_non_executable": true,
+  "foundation_models_planning_coordination_only": true,
+  "foundation_status": "v3_8_coordination_foundation_stable",
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "graph_traversal_execution_enabled": false,
+  "hidden_state_transition_enabled": false,
+  "identity_guarantees": {
+    "deterministic_equality_preserved": true,
+    "phase_id": "v3_8_coordination_foundations",
+    "schema_version": "v3_8.orchestration_planning_coordination_foundations.1",
+    "stable_identity": "v3-8-deterministic-coordination-foundation"
+  },
+  "integrity_guarantees": {
+    "chain_execution_violation_count": 0,
+    "execution_boundary_violation_count": 0,
+    "hidden_transition_detected": false,
+    "integrity_preserved": true,
+    "integrity_status": "coordination_integrity_preserved",
+    "relationship_execution_violation_count": 0,
+    "silent_fallback_detected": false
+  },
+  "non_execution_guarantees": {
+    "autonomous_orchestration_absent": true,
+    "callable_execution_flow_absent": true,
+    "coordination_execution_absent": true,
+    "dispatch_absent": true,
+    "execution_authorization_absent": true,
+    "graph_traversal_execution_absent": true,
+    "hidden_state_transition_absent": true,
+    "optimization_absent": true,
+    "orchestration_execution_absent": true,
+    "persistent_runtime_mutation_absent": true,
+    "persistent_runtime_writes_absent": true,
+    "recommendation_absent": true,
+    "routing_absent": true,
+    "runtime_path_selection_absent": true,
+    "scheduling_absent": true,
+    "silent_fallback_absent": true,
+    "traversal_execution_absent": true
+  },
+  "optimization_enabled": false,
+  "orchestration_execution_enabled": false,
+  "persistent_runtime_mutation_enabled": false,
+  "persistent_runtime_writes_enabled": false,
+  "phase_name": "v3.8_coordination_foundations",
+  "provenance_guarantees": {
+    "lineage_reference_count": 4,
+    "prior_phase_reference_count": 3,
+    "provenance_preserved": true,
+    "provenance_status": "coordination_provenance_preserved"
+  },
+  "recommendation_enabled": false,
+  "replay_guarantees": {
+    "replay_evidence_count": 2,
+    "replay_safe": true,
+    "runtime_replay_enabled": false
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_guarantees": {
+    "rollback_evidence_count": 2,
+    "rollback_execution_enabled": false,
+    "rollback_safe": true
+  },
+  "routing_enabled": false,
+  "runtime_path_selection_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_8.coordination_foundations_report.1",
+  "silent_fallback_enabled": false,
+  "source_artifact_totals": {
+    "missing_source_artifact_count": 0,
+    "present_source_artifact_count": 4,
+    "source_artifact_continuity_preserved": true,
+    "source_artifact_count": 4
+  },
+  "source_artifacts": [
+    {
+      "artifact_hash": "2c8cfba2d0189e1b7a97f98435066ed35f1f5f1ec4da5d4b540c3dd5168d38be",
+      "path": "docs/generated/v3_7_closeout_and_v3_8_readiness_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "af95522e2ab9641d4b9e5fcf22b113cdd0b54b201e3732337bc438f06f1a3926",
+      "path": "docs/generated/v3_7_graph_planning_continuity_certification_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "117a100f350eac40235f71db885a24e20125fcbd4ccecb3e4d52f285ae21b6e1",
+      "path": "docs/generated/v3_7_graph_planning_integrity_enforcement_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "245de886e9a2063a4823aa2d4053691f2d0ebbc765b0ac470dd3235f747b8129",
+      "path": "docs/generated/v3_7_graph_planning_intelligence_aggregation_report.json",
+      "present": true
+    }
+  ],
+  "summary": {
+    "continuity_verified": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "explainability_verified": true,
+    "foundation_status": "v3_8_coordination_foundation_stable",
+    "integrity_verified": true,
+    "non_executable_verified": true,
+    "orchestration_boundaries_enforced": true,
+    "provenance_verified": true,
+    "replay_verified": true,
+    "rollback_verified": true,
+    "source_artifact_continuity_preserved": true,
+    "validation_error_count": 0
+  },
+  "traversal_execution_enabled": false,
+  "validation_totals": {
+    "chain_execution_violation_count": 0,
+    "continuity_preserved": true,
+    "coordination_boundary_count": 3,
+    "coordination_reference_count": 4,
+    "deterministic_foundation_hash": "2e5b253ebfa99216e5233b687f84459b17a9a78a30f6fc7257c574413ee5a213",
+    "deterministic_hash_stable": true,
+    "deterministic_serialization_stable": true,
+    "execution_boundary_violation_count": 0,
+    "explainability_fail_visible": true,
+    "fail_visible_state_count": 9,
+    "hidden_transition_detected": false,
+    "integrity_preserved": true,
+    "prohibited_state_count": 4,
+    "provenance_preserved": true,
+    "relationship_chain_count": 1,
+    "relationship_count": 6,
+    "relationship_execution_violation_count": 0,
+    "replay_evidence_count": 2,
+    "replay_safe": true,
+    "rollback_evidence_count": 2,
+    "rollback_safe": true,
+    "silent_fallback_detected": false,
+    "unknown_state_count": 2,
+    "unsupported_state_count": 3,
+    "valid": true,
+    "validation_error_count": 0,
+    "validation_status": "v3_8_coordination_foundation_stable"
+  }
+}
