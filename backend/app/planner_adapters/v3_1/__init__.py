@@ -61,6 +61,10 @@ from .manifest_consumption_eligibility import (
     MANIFEST_CONSUMPTION_ELIGIBILITY_STATUSES,
     evaluate_manifest_consumption_eligibility,
 )
+from .controlled_test_consumption import (
+    CONTROLLED_TEST_CONSUMPTION_STATUSES,
+    build_controlled_test_consumption,
+)
 from .approval_manifest_diff_audit import (
     APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS,
     audit_approval_manifest_diffs,
@@ -97,6 +101,7 @@ __all__ = [
     "ADMISSION_AWARE_MANIFEST_CANDIDATE_STATUSES",
     "ADMISSION_AWARE_SERIALIZED_MANIFEST_STATUSES",
     "MANIFEST_CONSUMPTION_ELIGIBILITY_STATUSES",
+    "CONTROLLED_TEST_CONSUMPTION_STATUSES",
     "APPROVAL_MANIFEST_DIFF_CLASSIFICATIONS",
     "SERIALIZED_APPROVAL_MANIFEST_STATUSES",
     "SUPPORTED_TRUSTED_SHADOW_DOMAINS",
@@ -121,6 +126,7 @@ __all__ = [
     "build_admission_aware_manifest_candidates",
     "serialize_admission_aware_manifest_candidates",
     "evaluate_manifest_consumption_eligibility",
+    "build_controlled_test_consumption",
     "audit_approval_manifest_diffs",
     "discover_default_reviewed_fixture_input_sources",
     "deterministic_hash",
