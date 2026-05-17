@@ -1,0 +1,23 @@
+{
+  "automatic_correction_enabled": false,
+  "cross_layer_continuity_diagnostics": {
+    "blocked_continuity_state_visible": true,
+    "certification_action_semantics_count": 0,
+    "continuity_failure_visibility_count": 10,
+    "cross_layer_continuity_conflict_visible": true,
+    "diagnostics_id": "v4_1_refresh_continuity_diagnostics_primary",
+    "diagnostics_mode": "fail_visible_descriptive_only",
+    "hidden_certification_count": 0,
+    "prohibited_continuity_state_visible": true,
+    "schema": "v4_1_cross_layer_continuity_diagnostics",
+    "stale_continuity_evidence_visible": true,
+    "unsupported_continuity_state_visible": true
+  },
+  "deterministic_report_hash": "5125a3b7d8a959a9d3b3950adce4a979a7ebc727281324d06cf6dcb1bab53f4a",
+  "diagnostics_are_descriptive_only": true,
+  "execution_enabled": false,
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "phase_id": "v4_1_refresh_continuity_certification",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.cross_layer_continuity_diagnostics_report.1"
+}
