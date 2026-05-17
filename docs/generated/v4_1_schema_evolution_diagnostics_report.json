@@ -1,0 +1,328 @@
+{
+  "architectural_purpose": "deterministic schema evolution diagnostics without correction or execution",
+  "deterministic_report_hash": "34bab41a5bad5b1b9b6e2e4270d5ce08b6d865f9e3f1221ea8919dda580be05a",
+  "diagnostics": {
+    "automatic_compatibility_correction_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_schema_migration_absent": true,
+    "automatic_schema_repair_absent": true,
+    "blocked_compatibility_states": [
+      "blocked_unknown_compatibility"
+    ],
+    "blocked_transition_ids": [
+      "v4_1_schema_transition_blocked_compatibility"
+    ],
+    "blocker_visibility": [
+      "v4_1_schema_transition_blocked_compatibility",
+      "v4_1_schema_transition_circular_ancestry",
+      "v4_1_schema_transition_version_discontinuity"
+    ],
+    "circular_schema_ancestry_visibility": [
+      "v4_1_schema_transition_circular_ancestry"
+    ],
+    "compatibility_classifications": [
+      "blocked_unknown_compatibility",
+      "circular_schema_ancestry",
+      "compatible_with_governance_warnings",
+      "descriptive_compatible",
+      "descriptive_compatible",
+      "descriptive_compatible",
+      "lineage_gap",
+      "prohibited_migration_execution",
+      "provenance_gap",
+      "replay_gap",
+      "rollback_gap",
+      "schema_version_gap",
+      "stale_source_schema",
+      "unsupported_provider"
+    ],
+    "continuity_certification": {
+      "compatibility_continuity": {
+        "automatic_compatibility_correction_enabled": false,
+        "blocked_transition_visibility_count": 1,
+        "circular_schema_ancestry_visibility_count": 1,
+        "compatibility_reference": "v4_1_schema_evolution_compatibility_visibility_primary",
+        "compatibility_reference_visible": true,
+        "compatibility_visibility_preserved": true,
+        "prohibited_transition_visibility_count": 1,
+        "schema_migration_execution_enabled": false,
+        "stale_transition_visibility_count": 1,
+        "unsupported_transition_visibility_count": 1,
+        "valid": true
+      },
+      "compatibility_continuity_valid": true,
+      "lineage_continuity": {
+        "circular_schema_ancestry_visibility_count": 1,
+        "lineage_continuity_preserved": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_reference": "v4_1_schema_evolution_governance_lineage_primary",
+        "lineage_reference_visible": true,
+        "lineage_visibility_visible": true,
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "hidden_provenance_resolution_enabled": false,
+        "inferred_provenance_allowed": false,
+        "provenance_continuity_preserved": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_reference": "v4_1_schema_evolution_governance_provenance_primary",
+        "provenance_reference_visible": true,
+        "provenance_visibility_visible": true,
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "live_replay_enabled": false,
+        "replay_continuity_preserved": true,
+        "replay_discontinuity_visibility_count": 1,
+        "replay_reference": "v4_1_schema_replay_visibility_primary",
+        "replay_reference_visible": true,
+        "replay_safe": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "automatic_recovery_enabled": false,
+        "automatic_rollback_enabled": false,
+        "rollback_continuity_preserved": true,
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_reference": "v4_1_schema_rollback_visibility_primary",
+        "rollback_reference_visible": true,
+        "rollback_safe": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "schema_continuity": {
+        "automatic_schema_migration_enabled": false,
+        "schema_continuity_preserved": true,
+        "schema_reference": "v4_1_schema_evolution_governance_schema_primary",
+        "schema_reference_visible": true,
+        "schema_version_discontinuity_visibility_count": 1,
+        "valid": true
+      },
+      "schema_continuity_valid": true,
+      "valid": true
+    },
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_hash": "33eda6985be3b6d1be8c2d76737599d1ea28ef9bbe0117c9247297e5d661f5f0",
+    "diagnostics_visible": true,
+    "drift_visibility": [
+      "v4_1_schema_transition_stale_manifest_version",
+      "v4_1_schema_transition_stale_manifest_version"
+    ],
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "fail_visible_warning_count": 32,
+    "failure_visibility": [
+      "blocked compatibility remains fail-visible",
+      "circular schema ancestry remains fail-visible",
+      "schema version discontinuity remains fail-visible",
+      "unsupported schema provider remains fail-visible"
+    ],
+    "integrity_visibility": [
+      "v4_1_schema_evolution_integrity_primary"
+    ],
+    "prohibited_schema_domains": [
+      "authorization_approval_systems",
+      "automatic_compatibility_correction",
+      "automatic_recovery",
+      "automatic_rollback",
+      "automatic_schema_migration",
+      "automatic_schema_repair",
+      "hidden_migration_behavior",
+      "implicit_execution_pathways",
+      "optimization_systems",
+      "orchestration_execution",
+      "planner_integration",
+      "production_bundle_consumption",
+      "recommendation_ranking_scoring_selection",
+      "refresh_execution",
+      "remediation_systems",
+      "runtime_mutation",
+      "schema_migration_execution"
+    ],
+    "prohibited_transition_ids": [
+      "v4_1_schema_transition_prohibited_migration"
+    ],
+    "remediation_absent": true,
+    "schema_governance_hash": "cb240ca800d9f80ddb97c1cc6bcad174fdb134c753432785bef320b32a95631a",
+    "schema_lineage_discontinuity_visibility": [
+      "v4_1_schema_transition_lineage_discontinuity"
+    ],
+    "schema_provenance_discontinuity_visibility": [
+      "v4_1_schema_transition_provenance_discontinuity"
+    ],
+    "schema_replay_discontinuity_visibility": [
+      "v4_1_schema_transition_replay_discontinuity"
+    ],
+    "schema_rollback_discontinuity_visibility": [
+      "v4_1_schema_transition_rollback_discontinuity"
+    ],
+    "schema_version_discontinuity_visibility": [
+      "v4_1_schema_transition_version_discontinuity"
+    ],
+    "silent_compatibility_fallback_absent": true,
+    "stale_transition_ids": [
+      "v4_1_schema_transition_stale_manifest_version"
+    ],
+    "unsupported_node_ids": [
+      "v4_1_schema_node_future_provider"
+    ],
+    "unsupported_schema_providers": [
+      "unsupported_future_schema_provider"
+    ],
+    "unsupported_transition_ids": [
+      "v4_1_schema_transition_future_provider_unsupported"
+    ],
+    "visibility_validation": {
+      "blocked_transition_visibility_count": 1,
+      "blocked_transitions_visible": true,
+      "circular_schema_ancestry_visibility_count": 1,
+      "circular_schema_ancestry_visible": true,
+      "compatibility_classification_visibility_count": 14,
+      "compatibility_classifications_visible": true,
+      "diagnostics_warning_visibility_count": 11,
+      "fail_visible_transition_count": 10,
+      "failure_visibility_count": 4,
+      "governance_limitation_count": 9,
+      "governance_prohibition_count": 11,
+      "hidden_node_count": 0,
+      "hidden_transition_count": 0,
+      "invalid_schema_node_state_count": 0,
+      "invalid_schema_transition_state_count": 0,
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular_schema_ancestry": 0,
+        "compatible": 4,
+        "compatible_with_warnings": 0,
+        "invalid": 0,
+        "prohibited": 1,
+        "schema_lineage_discontinuity": 0,
+        "schema_provenance_discontinuity": 0,
+        "schema_replay_discontinuity": 0,
+        "schema_rollback_discontinuity": 0,
+        "schema_version_discontinuity": 0,
+        "stale": 0,
+        "unsupported": 1
+      },
+      "prohibited_schema_domain_visibility_count": 17,
+      "prohibited_schema_domains_visible": true,
+      "prohibited_transition_visibility_count": 1,
+      "prohibited_transitions_visible": true,
+      "schema_lineage_discontinuity_visibility_count": 1,
+      "schema_lineage_discontinuity_visible": true,
+      "schema_provenance_discontinuity_visibility_count": 1,
+      "schema_provenance_discontinuity_visible": true,
+      "schema_replay_discontinuity_visibility_count": 1,
+      "schema_replay_discontinuity_visible": true,
+      "schema_rollback_discontinuity_visibility_count": 1,
+      "schema_rollback_discontinuity_visible": true,
+      "schema_version_discontinuity_visibility_count": 1,
+      "schema_version_discontinuity_visible": true,
+      "stale_transition_visibility_count": 1,
+      "stale_transitions_visible": true,
+      "transition_execution_semantics_count": 0,
+      "transition_state_counts": {
+        "blocked": 1,
+        "circular_schema_ancestry": 1,
+        "compatible": 3,
+        "compatible_with_warnings": 1,
+        "invalid": 0,
+        "prohibited": 1,
+        "schema_lineage_discontinuity": 1,
+        "schema_provenance_discontinuity": 1,
+        "schema_replay_discontinuity": 1,
+        "schema_rollback_discontinuity": 1,
+        "schema_version_discontinuity": 1,
+        "stale": 1,
+        "unsupported": 1
+      },
+      "unsupported_node_visibility_count": 1,
+      "unsupported_nodes_visible": true,
+      "unsupported_transition_visibility_count": 1,
+      "unsupported_transitions_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    },
+    "warning_visibility": [
+      "v4_1_schema_transition_future_provider_unsupported",
+      "v4_1_schema_transition_lineage_to_schema_governance",
+      "v4_1_schema_transition_stale_manifest_version"
+    ]
+  },
+  "diagnostics_mode": "fail_visible_descriptive_only",
+  "explicit_limitations": [
+    "v4.1 Phase 4 creates deterministic schema evolution governance metadata only.",
+    "v4.1 Phase 4 does not enable schema migration execution.",
+    "v4.1 Phase 4 does not enable automatic compatibility correction.",
+    "v4.1 Phase 4 does not enable refresh execution.",
+    "v4.1 Phase 4 does not enable orchestration.",
+    "v4.1 Phase 4 does not enable planner integration.",
+    "v4.1 Phase 4 does not enable production consumption.",
+    "v4.1 Phase 4 does not enable remediation.",
+    "v4.1 Phase 4 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No schema migration execution exists.",
+    "No automatic schema migration exists.",
+    "No automatic schema repair exists.",
+    "No automatic compatibility correction exists.",
+    "No refresh execution exists.",
+    "No orchestration exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No silent compatibility fallback behavior exists."
+  ],
+  "foundation_status": "v4_1_schema_evolution_governance_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "non_migration_and_non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_compatibility_correction_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_rollback_absent": true,
+    "automatic_schema_migration_absent": true,
+    "automatic_schema_repair_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "hidden_migration_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "runtime_mutation_absent": true,
+    "schema_migration_execution_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_compatibility_fallback_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_schema_evolution_governance",
+  "phase_name": "v4.1_phase_4_schema_evolution_diagnostics",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.schema_evolution_diagnostics_report.1",
+  "summary": {
+    "automatic_compatibility_correction_absent": true,
+    "automatic_schema_migration_absent": true,
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_schema_evolution_governance_stable",
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "remediation_absent": true,
+    "silent_compatibility_fallback_absent": true
+  }
+}
