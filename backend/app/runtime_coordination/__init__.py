@@ -217,6 +217,29 @@ from .coordination_certification_models import (
     validate_v3_8_certification_hash_stability,
     validate_v3_8_certification_serialization_stability,
 )
+from .v3_8_closeout_readiness_audit import (
+    audit_v3_8_closeout_and_v3_9_readiness,
+    export_v3_8_closeout_and_v3_9_readiness_result,
+)
+from .v3_8_closeout_readiness_models import (
+    V3_8_CLOSED_OUT_READY_FOR_V3_9_PLANNING,
+    V3_8_CLOSEOUT_BLOCKED,
+    V3_8_CLOSEOUT_ID,
+    V3_8_CLOSEOUT_INCOMPLETE,
+    V3_8_CLOSEOUT_PHASE_ID,
+    V3_8_CLOSEOUT_PROHIBITED,
+    V3_8_CLOSEOUT_UNKNOWN,
+    V3_8_CLOSEOUT_UNSUPPORTED,
+    V3_9_PLANNING_BLOCKED,
+    V3_9_PLANNING_READY,
+    V38CloseoutPhaseEvidence,
+    V38CloseoutReadinessInput,
+    V38CloseoutReadinessResult,
+    hash_v3_8_closeout_readiness_result,
+    serialize_v3_8_closeout_readiness_result,
+    validate_v3_8_closeout_hash_stability,
+    validate_v3_8_closeout_serialization_stability,
+)
 
 __all__ = [
     "V3_8_COORDINATION_FOUNDATION_PHASE_ID",
@@ -397,4 +420,23 @@ __all__ = [
     "serialize_v3_8_certification_audit",
     "validate_v3_8_certification_hash_stability",
     "validate_v3_8_certification_serialization_stability",
+    "audit_v3_8_closeout_and_v3_9_readiness",
+    "export_v3_8_closeout_and_v3_9_readiness_result",
+    "V3_8_CLOSEOUT_ID",
+    "V3_8_CLOSEOUT_PHASE_ID",
+    "V3_8_CLOSED_OUT_READY_FOR_V3_9_PLANNING",
+    "V3_8_CLOSEOUT_BLOCKED",
+    "V3_8_CLOSEOUT_INCOMPLETE",
+    "V3_8_CLOSEOUT_UNSUPPORTED",
+    "V3_8_CLOSEOUT_PROHIBITED",
+    "V3_8_CLOSEOUT_UNKNOWN",
+    "V3_9_PLANNING_READY",
+    "V3_9_PLANNING_BLOCKED",
+    "V38CloseoutPhaseEvidence",
+    "V38CloseoutReadinessInput",
+    "V38CloseoutReadinessResult",
+    "hash_v3_8_closeout_readiness_result",
+    "serialize_v3_8_closeout_readiness_result",
+    "validate_v3_8_closeout_hash_stability",
+    "validate_v3_8_closeout_serialization_stability",
 ]
