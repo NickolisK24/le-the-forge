@@ -74,6 +74,39 @@ from .transition_foundation_validation import (
     validate_v3_9_transition_hash_stability,
     validate_v3_9_transition_serialization_stability,
 )
+from .transition_boundary_classifier import (
+    classify_v3_9_transition_boundaries,
+    default_transition_boundary_inputs,
+)
+from .transition_boundary_models import (
+    BOUNDARY_CLASSIFICATION_BLOCKED,
+    BOUNDARY_CLASSIFICATION_INCOMPLETE,
+    BOUNDARY_CLASSIFICATION_PROHIBITED,
+    BOUNDARY_CLASSIFICATION_SAFE,
+    BOUNDARY_CLASSIFICATION_UNKNOWN,
+    BOUNDARY_CLASSIFICATION_UNSUPPORTED,
+    BOUNDARY_CLASSIFICATIONS,
+    TransitionBoundaryClassification,
+    TransitionBoundaryEvidence,
+    TransitionBoundaryFinding,
+    TransitionBoundaryInput,
+    TransitionBoundaryReport,
+    export_transition_boundary_report,
+    transition_boundary_finding_id,
+)
+from .transition_boundary_report import (
+    build_v3_9_transition_boundary_intelligence_report,
+)
+from .transition_boundary_serialization import (
+    hash_transition_boundary_report,
+    serialize_transition_boundary_report,
+    validate_transition_boundary_hash_stability,
+    validate_transition_boundary_serialization_stability,
+)
+from .transition_boundary_validation import (
+    count_transition_boundary_classifications,
+    validate_transition_boundary_report,
+)
 
 __all__ = [
     "CONTINUITY_TYPE_EVIDENCE",
@@ -132,4 +165,27 @@ __all__ = [
     "validate_v3_9_transition_foundation_guarantees",
     "validate_v3_9_transition_hash_stability",
     "validate_v3_9_transition_serialization_stability",
+    "classify_v3_9_transition_boundaries",
+    "default_transition_boundary_inputs",
+    "BOUNDARY_CLASSIFICATION_BLOCKED",
+    "BOUNDARY_CLASSIFICATION_INCOMPLETE",
+    "BOUNDARY_CLASSIFICATION_PROHIBITED",
+    "BOUNDARY_CLASSIFICATION_SAFE",
+    "BOUNDARY_CLASSIFICATION_UNKNOWN",
+    "BOUNDARY_CLASSIFICATION_UNSUPPORTED",
+    "BOUNDARY_CLASSIFICATIONS",
+    "TransitionBoundaryClassification",
+    "TransitionBoundaryEvidence",
+    "TransitionBoundaryFinding",
+    "TransitionBoundaryInput",
+    "TransitionBoundaryReport",
+    "export_transition_boundary_report",
+    "transition_boundary_finding_id",
+    "build_v3_9_transition_boundary_intelligence_report",
+    "hash_transition_boundary_report",
+    "serialize_transition_boundary_report",
+    "validate_transition_boundary_hash_stability",
+    "validate_transition_boundary_serialization_stability",
+    "count_transition_boundary_classifications",
+    "validate_transition_boundary_report",
 ]
