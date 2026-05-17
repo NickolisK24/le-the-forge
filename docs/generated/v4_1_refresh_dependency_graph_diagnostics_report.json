@@ -1,0 +1,270 @@
+{
+  "architectural_purpose": "deterministic refresh dependency diagnostics visibility without remediation or execution",
+  "deterministic_report_hash": "07dff09f409db3700f79a4b128d839619b681734f0224c068b2d51ac950714dd",
+  "diagnostics": {
+    "automatic_recovery_absent": true,
+    "blocked_dependency_edges": [
+      "v4_1_edge_manifest_to_blocked_dependency_gap"
+    ],
+    "blocker_visibility": [
+      "v4_1_edge_future_provider_to_manifest_circular_visibility",
+      "v4_1_future_provider_lineage_not_declared",
+      "v4_1_future_provider_provenance_not_declared"
+    ],
+    "circular_dependency_edges": [
+      "v4_1_edge_future_provider_to_manifest_circular_visibility"
+    ],
+    "continuity_validation": {
+      "lineage_continuity": {
+        "hidden_lineage_resolution_count": 0,
+        "lineage_chain_count": 1,
+        "lineage_chain_reference_visible": true,
+        "lineage_continuity_preserved": true,
+        "lineage_continuity_reference_visible": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_execution_semantics_count": 0,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "hidden_provenance_resolution_count": 0,
+        "no_inferred_provenance": true,
+        "provenance_chain_count": 1,
+        "provenance_chain_reference_visible": true,
+        "provenance_continuity_preserved": true,
+        "provenance_continuity_reference_visible": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_execution_semantics_count": 0,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "dependency_execution_enabled": false,
+        "live_replay_enabled": false,
+        "replay_continuity_preserved": true,
+        "replay_continuity_reference_visible": true,
+        "replay_discontinuity_visibility_count": 1,
+        "replay_reference": "v4_1_refresh_dependency_replay_primary",
+        "replay_safe": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "automatic_rollback_enabled": false,
+        "recovery_execution_enabled": false,
+        "rollback_continuity_preserved": true,
+        "rollback_continuity_reference_visible": true,
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_reference": "v4_1_refresh_dependency_rollback_primary",
+        "rollback_safe": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "valid": true
+    },
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_hash": "e4218372c149e184e9ff345e5e1de9ea7057bd3be7f2b8a2f91d0bc2a106a79a",
+    "diagnostics_visible": true,
+    "drift_visibility": [
+      "future_refresh_provider_contract_not_declared",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ],
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "fail_visible_warning_count": 26,
+    "graph_hash": "ad3f8e2593b36722d227c4fbe36f7688ab92664fb829ef2303be32dbc2a599ad",
+    "integrity_visibility": [
+      "dependency_execution_enabled",
+      "orchestration_enabled",
+      "planner_integration_enabled",
+      "remediation_enabled"
+    ],
+    "lineage_discontinuity_visibility": [
+      "v4_1_future_provider_lineage_not_declared"
+    ],
+    "prohibited_dependency_domains": [
+      "authorization_approval_systems",
+      "automatic_dependency_resolution",
+      "automatic_migration",
+      "automatic_recovery",
+      "automatic_refresh_sequencing",
+      "automatic_rollback",
+      "dependency_execution",
+      "hidden_orchestration_behavior",
+      "implicit_execution_pathways",
+      "optimization_systems",
+      "orchestration_execution",
+      "planner_integration",
+      "production_bundle_consumption",
+      "recommendation_ranking_scoring_selection",
+      "refresh_execution",
+      "remediation_systems",
+      "runtime_mutation"
+    ],
+    "prohibited_dependency_edges": [
+      "v4_1_edge_manifest_to_production_runtime_bundle"
+    ],
+    "provenance_discontinuity_visibility": [
+      "v4_1_future_provider_provenance_not_declared"
+    ],
+    "remediation_absent": true,
+    "replay_discontinuity_visibility": [
+      "future_refresh_dependency_replay_source_not_declared"
+    ],
+    "rollback_discontinuity_visibility": [
+      "future_refresh_dependency_rollback_target_not_declared"
+    ],
+    "silent_fallback_absent": true,
+    "stale_dependency_edges": [
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ],
+    "unsupported_dependency_edges": [
+      "v4_1_edge_manifest_to_future_provider"
+    ],
+    "unsupported_dependency_nodes": [
+      "v4_1_node_future_refresh_provider"
+    ],
+    "unsupported_dependency_providers": [
+      "future_refresh_provider_contract_not_declared"
+    ],
+    "visibility_validation": {
+      "blocked_dependency_edge_visibility_count": 1,
+      "blocked_edges_visible": true,
+      "circular_dependencies_visible": true,
+      "circular_dependency_visibility_count": 1,
+      "diagnostics_warning_visibility_count": 33,
+      "edge_execution_semantics_count": 0,
+      "edge_state_counts": {
+        "blocked": 1,
+        "circular": 1,
+        "invalid": 0,
+        "lineage_gap": 1,
+        "prohibited": 1,
+        "provenance_gap": 1,
+        "stale": 1,
+        "supported": 1,
+        "unsupported": 1
+      },
+      "fail_visible_dependency_edge_count": 7,
+      "governance_limitation_count": 10,
+      "governance_prohibition_count": 11,
+      "hidden_edge_count": 0,
+      "hidden_node_count": 0,
+      "invalid_dependency_edge_state_count": 0,
+      "invalid_dependency_node_state_count": 0,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_discontinuity_visible": true,
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular": 0,
+        "invalid": 0,
+        "lineage_gap": 0,
+        "prohibited": 1,
+        "provenance_gap": 0,
+        "stale": 0,
+        "supported": 2,
+        "unsupported": 1
+      },
+      "prohibited_dependency_domain_visibility_count": 17,
+      "prohibited_dependency_domains_visible": true,
+      "prohibited_dependency_edge_visibility_count": 1,
+      "prohibited_edges_visible": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_discontinuity_visible": true,
+      "replay_discontinuity_visibility_count": 1,
+      "replay_discontinuity_visible": true,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_discontinuity_visible": true,
+      "stale_dependency_edge_visibility_count": 1,
+      "stale_edges_visible": true,
+      "unsupported_dependency_edge_visibility_count": 1,
+      "unsupported_dependency_node_visibility_count": 1,
+      "unsupported_edges_visible": true,
+      "unsupported_nodes_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    },
+    "warning_visibility": [
+      "v4_1_edge_manifest_to_future_provider",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ]
+  },
+  "diagnostics_mode": "fail_visible_descriptive_only",
+  "explicit_limitations": [
+    "v4.1 Phase 2 creates deterministic refresh dependency governance metadata only.",
+    "v4.1 Phase 2 does not enable refresh execution.",
+    "v4.1 Phase 2 does not enable orchestration.",
+    "v4.1 Phase 2 does not enable dependency execution.",
+    "v4.1 Phase 2 does not enable automatic sequencing.",
+    "v4.1 Phase 2 does not enable automatic dependency resolution.",
+    "v4.1 Phase 2 does not enable planner integration.",
+    "v4.1 Phase 2 does not enable production consumption.",
+    "v4.1 Phase 2 does not enable remediation.",
+    "v4.1 Phase 2 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration exists.",
+    "No dependency execution exists.",
+    "No automatic sequencing exists.",
+    "No automatic dependency resolution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No recommendation, ranking, scoring, or selection behavior exists.",
+    "No approval or authorization behavior exists.",
+    "No silent dependency fallback behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_dependency_graph_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_dependency_resolution_absent": true,
+    "automatic_migration_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_refresh_sequencing_absent": true,
+    "automatic_rollback_absent": true,
+    "dependency_execution_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "graph_execution_absent": true,
+    "hidden_orchestration_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "runtime_mutation_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_dependency_fallback_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_dependency_graph_infrastructure",
+  "phase_name": "v4.1_phase_2_refresh_dependency_graph_diagnostics",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_dependency_graph_diagnostics_report.1",
+  "summary": {
+    "automatic_recovery_absent": true,
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_refresh_dependency_graph_stable",
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "remediation_absent": true,
+    "silent_fallback_absent": true
+  }
+}
