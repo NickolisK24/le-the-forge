@@ -1,0 +1,112 @@
+{
+  "architectural_purpose": "deterministic refresh lineage continuity certification without repair or execution",
+  "continuity_certification": {
+    "ancestry_continuity": {
+      "ancestry_continuity_preserved": true,
+      "ancestry_discontinuity_visibility_count": 1,
+      "ancestry_reference": "v4_1_refresh_lineage_certification_ancestry_primary",
+      "ancestry_reference_visible": true,
+      "circular_ancestry_visibility_count": 1,
+      "parent_child_lineage_visibility_count": 2,
+      "valid": true
+    },
+    "ancestry_continuity_valid": true,
+    "lineage_continuity": {
+      "lineage_continuity_preserved": true,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_link_reference_visible": true,
+      "lineage_reference": "v4_1_refresh_lineage_certification_lineage_primary",
+      "lineage_reference_visible": true,
+      "valid": true
+    },
+    "lineage_continuity_valid": true,
+    "provenance_continuity": {
+      "hidden_provenance_resolution_count": 0,
+      "no_inferred_provenance": true,
+      "provenance_continuity_preserved": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_inheritance_visible": true,
+      "provenance_reference": "v4_1_refresh_lineage_certification_provenance_primary",
+      "provenance_reference_visible": true,
+      "valid": true
+    },
+    "provenance_continuity_valid": true,
+    "replay_continuity": {
+      "live_replay_enabled": false,
+      "refresh_execution_enabled": false,
+      "replay_discontinuity_visibility_count": 1,
+      "replay_lineage_preserved": true,
+      "replay_reference": "v4_1_refresh_lineage_replay_primary",
+      "replay_reference_visible": true,
+      "replay_safe": true,
+      "valid": true
+    },
+    "replay_continuity_valid": true,
+    "rollback_continuity": {
+      "automatic_rollback_enabled": false,
+      "recovery_execution_enabled": false,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_lineage_preserved": true,
+      "rollback_reference": "v4_1_refresh_lineage_rollback_primary",
+      "rollback_reference_visible": true,
+      "rollback_safe": true,
+      "valid": true
+    },
+    "rollback_continuity_valid": true,
+    "schema_continuity": {
+      "automatic_schema_migration_enabled": false,
+      "migration_execution_enabled": false,
+      "schema_discontinuity_visibility_count": 1,
+      "schema_transition_continuity_preserved": true,
+      "schema_transition_reference": "v4_1_refresh_lineage_schema_transition_primary",
+      "schema_transition_reference_visible": true,
+      "schema_transition_visibility_count": 1,
+      "valid": true
+    },
+    "schema_continuity_valid": true,
+    "valid": true
+  },
+  "continuity_mode": "descriptive_certification_only",
+  "deterministic_report_hash": "ea448b31bc2053c3f43eda6f0ddb03aba2fb822da73ec2ede4a5043091599f66",
+  "explicit_limitations": [
+    "v4.1 Phase 3 creates deterministic refresh lineage certification metadata only.",
+    "v4.1 Phase 3 does not enable refresh execution.",
+    "v4.1 Phase 3 does not enable orchestration.",
+    "v4.1 Phase 3 does not enable migration execution.",
+    "v4.1 Phase 3 does not enable automatic repair.",
+    "v4.1 Phase 3 does not enable automatic continuity correction.",
+    "v4.1 Phase 3 does not enable planner integration.",
+    "v4.1 Phase 3 does not enable production consumption.",
+    "v4.1 Phase 3 does not enable remediation.",
+    "v4.1 Phase 3 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration exists.",
+    "No refresh execution exists.",
+    "No migration execution exists.",
+    "No automatic repair exists.",
+    "No automatic continuity correction exists.",
+    "No automatic schema migration exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No silent continuity correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_lineage_certification_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "phase_id": "v4_1_refresh_lineage_certification",
+  "phase_name": "v4.1_phase_3_refresh_lineage_continuity_certification",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_lineage_continuity_report.1",
+  "summary": {
+    "ancestry_continuity_verified": true,
+    "continuity_certification_verified": true,
+    "foundation_status": "v4_1_refresh_lineage_certification_stable",
+    "lineage_continuity_verified": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "schema_continuity_validated": true
+  }
+}
