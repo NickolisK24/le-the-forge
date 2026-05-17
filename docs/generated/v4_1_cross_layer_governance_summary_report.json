@@ -1,0 +1,31 @@
+{
+  "approval_enabled": false,
+  "authorization_enabled": false,
+  "cross_layer_governance_summary": {
+    "blocker_count": 0,
+    "closeout_status": "v4_1_closed_out_with_warnings",
+    "continuity_verified": true,
+    "governance_verified": true,
+    "integrity_verified": true,
+    "lineage_safe": true,
+    "non_execution_valid": true,
+    "phase_coverage_certified": true,
+    "provenance_safe": true,
+    "readiness_mode": "planning_ready_with_warnings_descriptive_only",
+    "replay_safe": true,
+    "report_coverage_certified": true,
+    "rollback_safe": true,
+    "schema": "v4_1_final_governance_summary",
+    "v4_2_readiness_status": "ready_for_v4_2_planning_with_warnings",
+    "warning_count": 6
+  },
+  "deterministic_report_hash": "7908a003d0f1d8461a1dccc763264c6f865efdd3d27e58deac3c62b0750294e9",
+  "execution_enabled": false,
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "governance_scope": "v4_1_refresh_governance_closeout_descriptive_only",
+  "phase_id": "v4_1_closeout_and_v4_2_readiness",
+  "planner_integration_enabled": false,
+  "production_consumption_enabled": false,
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.cross_layer_governance_summary_report.1"
+}
