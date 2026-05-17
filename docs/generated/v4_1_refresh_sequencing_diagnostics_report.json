@@ -1,0 +1,325 @@
+{
+  "architectural_purpose": "deterministic refresh sequencing diagnostics without remediation or execution",
+  "deterministic_report_hash": "f39708742593e341b807a18759d19dc052fa397f204c6e9bc578cf30b029c272",
+  "diagnostics": {
+    "automatic_dependency_resolution_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_sequencing_absent": true,
+    "blocked_ordering_states": [
+      "blocked_unknown_ordering"
+    ],
+    "blocked_relationship_ids": [
+      "v4_1_sequence_blocked_ordering_state"
+    ],
+    "blocker_visibility": [
+      "v4_1_sequence_blocked_ordering_state",
+      "v4_1_sequence_dependency_ordering_discontinuity",
+      "v4_1_sequence_sequencing_discontinuity"
+    ],
+    "circular_sequencing_visibility": [
+      "v4_1_sequence_circular_visibility"
+    ],
+    "continuity_certification": {
+      "dependency_ordering_continuity": {
+        "circular_sequencing_visibility_count": 1,
+        "dependency_ordering_continuity_preserved": true,
+        "dependency_ordering_discontinuity_visibility_count": 1,
+        "dependency_ordering_reference": "v4_1_dependency_aware_sequencing_visibility_primary",
+        "dependency_ordering_reference_visible": true,
+        "valid": true
+      },
+      "dependency_ordering_continuity_valid": true,
+      "lineage_continuity": {
+        "lineage_continuity_preserved": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_reference": "v4_1_refresh_sequencing_visibility_lineage_primary",
+        "lineage_reference_visible": true,
+        "lineage_visibility_visible": true,
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "inferred_provenance_allowed": false,
+        "provenance_continuity_preserved": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_reference": "v4_1_refresh_sequencing_visibility_provenance_primary",
+        "provenance_reference_visible": true,
+        "provenance_visibility_visible": true,
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "replay_discontinuity_visibility_count": 1,
+        "replay_reference": "v4_1_refresh_replay_sequencing_visibility_primary",
+        "replay_reference_visible": true,
+        "replay_safe": true,
+        "replay_sequencing_preserved": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_reference": "v4_1_refresh_rollback_sequencing_visibility_primary",
+        "rollback_reference_visible": true,
+        "rollback_safe": true,
+        "rollback_sequencing_preserved": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "sequencing_continuity": {
+        "automatic_sequencing_enabled": false,
+        "sequencing_continuity_preserved": true,
+        "sequencing_discontinuity_visibility_count": 1,
+        "sequencing_reference": "v4_1_refresh_sequencing_visibility_sequence_primary",
+        "sequencing_reference_visible": true,
+        "valid": true
+      },
+      "sequencing_continuity_valid": true,
+      "valid": true
+    },
+    "dependency_ordering_discontinuity_visibility": [
+      "v4_1_sequence_dependency_ordering_discontinuity"
+    ],
+    "dependency_ordering_references": [
+      "blocked_ordering_dependency_reference",
+      "circular_sequence_dependency_reference",
+      "dependency_ordering_gap_reference",
+      "lineage_gap_dependency_reference",
+      "prohibited_orchestration_dependency_reference",
+      "provenance_gap_dependency_reference",
+      "replay_gap_dependency_reference",
+      "rollback_gap_dependency_reference",
+      "sequencing_gap_dependency_reference",
+      "stale_schema_dependency_reference",
+      "unsupported_future_dependency",
+      "v4_1_dependency_graph_to_lineage",
+      "v4_1_dependency_lineage_to_schema",
+      "v4_1_dependency_manifest_to_graph"
+    ],
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_hash": "fa0096552c2d746b4418f4bc68ae4bf1445c43d5336be2fdea80c58a68cccbbb",
+    "diagnostics_visible": true,
+    "drift_visibility": [
+      "v4_1_sequence_stale_schema_chain",
+      "v4_1_sequence_stale_schema_chain"
+    ],
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "fail_visible_warning_count": 33,
+    "failure_visibility": [
+      "blocked ordering state remains fail-visible",
+      "circular sequencing remains fail-visible",
+      "dependency ordering discontinuity remains fail-visible",
+      "unsupported sequencing provider remains fail-visible"
+    ],
+    "integrity_visibility": [
+      "v4_1_refresh_sequencing_integrity_primary"
+    ],
+    "lineage_discontinuity_visibility": [
+      "v4_1_sequence_lineage_discontinuity"
+    ],
+    "prohibited_relationship_ids": [
+      "v4_1_sequence_prohibited_orchestration"
+    ],
+    "prohibited_sequencing_domains": [
+      "authorization_approval_systems",
+      "automatic_dependency_resolution",
+      "automatic_migration",
+      "automatic_recovery",
+      "automatic_rollback",
+      "automatic_sequencing",
+      "hidden_orchestration_behavior",
+      "implicit_execution_pathways",
+      "migration_execution",
+      "optimization_systems",
+      "orchestration_execution",
+      "planner_integration",
+      "production_bundle_consumption",
+      "recommendation_ranking_scoring_selection",
+      "refresh_execution",
+      "remediation_systems",
+      "runtime_mutation"
+    ],
+    "provenance_discontinuity_visibility": [
+      "v4_1_sequence_provenance_discontinuity"
+    ],
+    "remediation_absent": true,
+    "replay_discontinuity_visibility": [
+      "v4_1_sequence_replay_discontinuity"
+    ],
+    "rollback_discontinuity_visibility": [
+      "v4_1_sequence_rollback_discontinuity"
+    ],
+    "sequencing_discontinuity_visibility": [
+      "v4_1_sequence_sequencing_discontinuity"
+    ],
+    "sequencing_visibility_hash": "fbd2deb27a958087b936810f6e449a1e616bb95d67f0593b8f2c7daf40567237",
+    "silent_ordering_correction_absent": true,
+    "stale_relationship_ids": [
+      "v4_1_sequence_stale_schema_chain"
+    ],
+    "unsupported_node_ids": [
+      "v4_1_sequence_node_future_provider"
+    ],
+    "unsupported_relationship_ids": [
+      "v4_1_sequence_future_provider_unsupported"
+    ],
+    "unsupported_sequencing_providers": [
+      "unsupported_future_sequencing_provider"
+    ],
+    "visibility_validation": {
+      "blocked_relationship_visibility_count": 1,
+      "blocked_relationships_visible": true,
+      "circular_sequencing_visibility_count": 1,
+      "circular_sequencing_visible": true,
+      "dependency_ordering_discontinuity_visibility_count": 1,
+      "dependency_ordering_discontinuity_visible": true,
+      "dependency_ordering_reference_visibility_count": 14,
+      "dependency_references_visible": true,
+      "diagnostics_warning_visibility_count": 11,
+      "fail_visible_relationship_count": 11,
+      "failure_visibility_count": 4,
+      "governance_limitation_count": 9,
+      "governance_prohibition_count": 12,
+      "hidden_node_count": 0,
+      "hidden_relationship_count": 0,
+      "invalid_ordering_node_state_count": 0,
+      "invalid_ordering_relationship_state_count": 0,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_discontinuity_visible": true,
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular_sequencing": 0,
+        "dependency_ordering_discontinuity": 0,
+        "invalid": 0,
+        "lineage_discontinuity": 0,
+        "prohibited": 1,
+        "provenance_discontinuity": 0,
+        "ready": 4,
+        "ready_with_warnings": 0,
+        "replay_discontinuity": 0,
+        "rollback_discontinuity": 0,
+        "sequencing_discontinuity": 0,
+        "stale": 0,
+        "unsupported": 1
+      },
+      "prohibited_relationship_visibility_count": 1,
+      "prohibited_relationships_visible": true,
+      "prohibited_sequencing_domain_visibility_count": 17,
+      "prohibited_sequencing_domains_visible": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_discontinuity_visible": true,
+      "relationship_execution_semantics_count": 0,
+      "relationship_state_counts": {
+        "blocked": 1,
+        "circular_sequencing": 1,
+        "dependency_ordering_discontinuity": 1,
+        "invalid": 0,
+        "lineage_discontinuity": 1,
+        "prohibited": 1,
+        "provenance_discontinuity": 1,
+        "ready": 2,
+        "ready_with_warnings": 1,
+        "replay_discontinuity": 1,
+        "rollback_discontinuity": 1,
+        "sequencing_discontinuity": 1,
+        "stale": 1,
+        "unsupported": 1
+      },
+      "replay_discontinuity_visibility_count": 1,
+      "replay_discontinuity_visible": true,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_discontinuity_visible": true,
+      "sequencing_discontinuity_visibility_count": 1,
+      "sequencing_discontinuity_visible": true,
+      "stale_relationship_visibility_count": 1,
+      "stale_relationships_visible": true,
+      "unsupported_node_visibility_count": 1,
+      "unsupported_nodes_visible": true,
+      "unsupported_relationship_visibility_count": 1,
+      "unsupported_relationships_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    },
+    "warning_visibility": [
+      "v4_1_sequence_future_provider_unsupported",
+      "v4_1_sequence_lineage_before_schema",
+      "v4_1_sequence_stale_schema_chain"
+    ]
+  },
+  "diagnostics_mode": "fail_visible_descriptive_only",
+  "explicit_limitations": [
+    "v4.1 Phase 5 creates deterministic refresh sequencing visibility metadata only.",
+    "v4.1 Phase 5 does not enable orchestration execution.",
+    "v4.1 Phase 5 does not enable automatic sequencing.",
+    "v4.1 Phase 5 does not enable refresh execution.",
+    "v4.1 Phase 5 does not enable migration execution.",
+    "v4.1 Phase 5 does not enable planner integration.",
+    "v4.1 Phase 5 does not enable production consumption.",
+    "v4.1 Phase 5 does not enable remediation.",
+    "v4.1 Phase 5 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration execution exists.",
+    "No automatic sequencing exists.",
+    "No automatic dependency resolution exists.",
+    "No refresh execution exists.",
+    "No migration execution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No executable refresh scheduler exists.",
+    "No automatic sequencing planner exists.",
+    "No silent ordering correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_sequencing_visibility_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "non_orchestration_and_non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_dependency_resolution_absent": true,
+    "automatic_migration_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_rollback_absent": true,
+    "automatic_sequencing_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "hidden_orchestration_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "migration_execution_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "runtime_mutation_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_ordering_correction_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_sequencing_visibility",
+  "phase_name": "v4.1_phase_5_refresh_sequencing_diagnostics",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_sequencing_diagnostics_report.1",
+  "summary": {
+    "automatic_dependency_resolution_absent": true,
+    "automatic_sequencing_absent": true,
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_refresh_sequencing_visibility_stable",
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "remediation_absent": true,
+    "silent_ordering_correction_absent": true
+  }
+}
