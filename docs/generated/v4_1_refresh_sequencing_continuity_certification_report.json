@@ -1,0 +1,104 @@
+{
+  "architectural_purpose": "deterministic refresh sequencing continuity certification without sequencing or repair",
+  "continuity_certification": {
+    "dependency_ordering_continuity": {
+      "circular_sequencing_visibility_count": 1,
+      "dependency_ordering_continuity_preserved": true,
+      "dependency_ordering_discontinuity_visibility_count": 1,
+      "dependency_ordering_reference": "v4_1_dependency_aware_sequencing_visibility_primary",
+      "dependency_ordering_reference_visible": true,
+      "valid": true
+    },
+    "dependency_ordering_continuity_valid": true,
+    "lineage_continuity": {
+      "lineage_continuity_preserved": true,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_reference": "v4_1_refresh_sequencing_visibility_lineage_primary",
+      "lineage_reference_visible": true,
+      "lineage_visibility_visible": true,
+      "valid": true
+    },
+    "lineage_continuity_valid": true,
+    "provenance_continuity": {
+      "inferred_provenance_allowed": false,
+      "provenance_continuity_preserved": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_reference": "v4_1_refresh_sequencing_visibility_provenance_primary",
+      "provenance_reference_visible": true,
+      "provenance_visibility_visible": true,
+      "valid": true
+    },
+    "provenance_continuity_valid": true,
+    "replay_continuity": {
+      "replay_discontinuity_visibility_count": 1,
+      "replay_reference": "v4_1_refresh_replay_sequencing_visibility_primary",
+      "replay_reference_visible": true,
+      "replay_safe": true,
+      "replay_sequencing_preserved": true,
+      "valid": true
+    },
+    "replay_continuity_valid": true,
+    "rollback_continuity": {
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_reference": "v4_1_refresh_rollback_sequencing_visibility_primary",
+      "rollback_reference_visible": true,
+      "rollback_safe": true,
+      "rollback_sequencing_preserved": true,
+      "valid": true
+    },
+    "rollback_continuity_valid": true,
+    "sequencing_continuity": {
+      "automatic_sequencing_enabled": false,
+      "sequencing_continuity_preserved": true,
+      "sequencing_discontinuity_visibility_count": 1,
+      "sequencing_reference": "v4_1_refresh_sequencing_visibility_sequence_primary",
+      "sequencing_reference_visible": true,
+      "valid": true
+    },
+    "sequencing_continuity_valid": true,
+    "valid": true
+  },
+  "continuity_mode": "descriptive_certification_only",
+  "deterministic_report_hash": "1a14ce4ef60810b34bb2fb510f2f3f8958e70ae1a8e4aa5706c7124b0d912423",
+  "explicit_limitations": [
+    "v4.1 Phase 5 creates deterministic refresh sequencing visibility metadata only.",
+    "v4.1 Phase 5 does not enable orchestration execution.",
+    "v4.1 Phase 5 does not enable automatic sequencing.",
+    "v4.1 Phase 5 does not enable refresh execution.",
+    "v4.1 Phase 5 does not enable migration execution.",
+    "v4.1 Phase 5 does not enable planner integration.",
+    "v4.1 Phase 5 does not enable production consumption.",
+    "v4.1 Phase 5 does not enable remediation.",
+    "v4.1 Phase 5 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration execution exists.",
+    "No automatic sequencing exists.",
+    "No automatic dependency resolution exists.",
+    "No refresh execution exists.",
+    "No migration execution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No executable refresh scheduler exists.",
+    "No automatic sequencing planner exists.",
+    "No silent ordering correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_sequencing_visibility_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "phase_id": "v4_1_refresh_sequencing_visibility",
+  "phase_name": "v4.1_phase_5_refresh_sequencing_continuity_certification",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_sequencing_continuity_report.1",
+  "summary": {
+    "continuity_certification_verified": true,
+    "dependency_ordering_continuity_verified": true,
+    "foundation_status": "v4_1_refresh_sequencing_visibility_stable",
+    "lineage_continuity_verified": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "sequencing_continuity_verified": true
+  }
+}
