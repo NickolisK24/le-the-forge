@@ -1,0 +1,2160 @@
+{
+  "approval_enabled": false,
+  "architectural_purpose": "deterministic coordination transition evaluation reasoning without transition execution",
+  "authorization_enabled": false,
+  "autonomous_orchestration_behavior_enabled": false,
+  "callable_orchestration_flow_enabled": false,
+  "classification_semantics": {
+    "blocked": "governance, integrity, or execution-boundary policy blocks evaluation",
+    "incomplete": "required evaluation, continuity, provenance, compatibility, or explainability evidence is missing",
+    "partially_successful": "some evaluation guarantees pass while visible uncertainty remains",
+    "prohibited": "requested evaluation behavior violates hard non-execution boundaries",
+    "successful": "compatible transition relationship with all deterministic continuity present and no non-safe markers",
+    "unknown": "evaluation semantics cannot be deterministically interpreted",
+    "unsuccessful": "deterministic evaluation, compatibility, continuity, provenance, explainability, governance, or integrity findings fail",
+    "unsupported": "evaluation domain is outside supported deterministic scope"
+  },
+  "deterministic_guarantee_summary": {
+    "finding_order_is_stable": true,
+    "hashing_is_stable": true,
+    "outputs_are_deterministic": true,
+    "repeated_equivalent_evaluations_produce_equivalent_outputs": true,
+    "serialization_is_stable": true,
+    "visibility_order_is_stable": true
+  },
+  "deterministic_guarantees": {
+    "evaluation_hash": "f384c38e5c90235470c1aec95fe945195e9547cfacad8703bff5f1f556eb63a9",
+    "evaluation_hash_stable": true,
+    "evaluation_serialization_stable": true,
+    "evaluation_summary_hash": "e9e56259859d02f42c1af0bb014ce91fe815539736c9d521afd7b6faf31f90e9",
+    "hash_algorithm": "sha256_stable_json_v3_9_transition_evaluation_intelligence",
+    "serialization_first_length": 77844,
+    "serialization_second_length": 77844
+  },
+  "deterministic_report_hash": "88a0b1bd270da961b85a77884446cbe5ce1be65d5401c2b9b83ab0ff359a700e",
+  "dispatch_enabled": false,
+  "evaluation_classification_counts": {
+    "blocked": 1,
+    "incomplete": 1,
+    "partially_successful": 1,
+    "prohibited": 1,
+    "successful": 1,
+    "unknown": 1,
+    "unsuccessful": 1,
+    "unsupported": 1
+  },
+  "evaluation_finding_counts": {
+    "compatibility": 4,
+    "continuity": 2,
+    "explainability": 3,
+    "governance": 3,
+    "integrity": 2,
+    "missing_evidence": 6,
+    "prohibited": 4,
+    "provenance": 2,
+    "uncertainty": 3,
+    "unsupported": 2
+  },
+  "evaluation_report": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "autonomous_orchestration_behavior_enabled": false,
+    "callable_orchestration_flow_enabled": false,
+    "continuities": [
+      {
+        "continuity_id": "v3_9_evaluation_continuity_blocked_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "blocked_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "missing_evaluation_evidence_fail_visible"
+        ],
+        "explainability_continuity_ids": [
+          "missing_explainability_continuity_fail_visible"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "incomplete_transition_evaluation",
+        "provenance_continuity_ids": [
+          "missing_provenance_continuity_fail_visible"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "missing_replay_continuity_fail_visible"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "missing_rollback_continuity_fail_visible"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "partially_successful_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "prohibited_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "successful_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_unknown_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "unknown_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "unsuccessful_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      },
+      {
+        "continuity_id": "v3_9_evaluation_continuity_unsupported_transition_evaluation",
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evidence_continuity_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "explainability_continuity_preserved": true,
+        "immutable_continuity": true,
+        "input_id": "unsupported_transition_evaluation",
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_continuity_preserved": true,
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "replay_continuity_preserved": true,
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "rollback_continuity_preserved": true
+      }
+    ],
+    "deterministic_evaluation_hash": "f384c38e5c90235470c1aec95fe945195e9547cfacad8703bff5f1f556eb63a9",
+    "dispatch_enabled": false,
+    "evaluation_inputs": [
+      {
+        "blocked_markers": [
+          "blocked_by_execution_boundary_preservation"
+        ],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "governance and integrity policy block evaluation",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [
+          "governance_policy_blocks_evaluation"
+        ],
+        "incomplete_markers": [],
+        "input_id": "blocked_transition_evaluation",
+        "integrity_policy_ids": [
+          "integrity_policy_blocks_evaluation"
+        ],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [],
+        "explainability_context": "required evaluation evidence is missing",
+        "explainability_continuity_ids": [],
+        "governance_policy_ids": [],
+        "incomplete_markers": [
+          "missing_compatibility_evidence",
+          "missing_continuity_evidence",
+          "missing_evaluation_evidence",
+          "missing_explainability_evidence",
+          "missing_provenance_evidence"
+        ],
+        "input_id": "incomplete_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [],
+        "provenance_reference_ids": [],
+        "replay_continuity_ids": [],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [],
+        "source_transition_state_id": "",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "partially_compatible",
+        "compatibility_conflict_ids": [
+          "localized_boundary_warning",
+          "localized_explainability_scope_gap"
+        ],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [],
+        "incomplete_markers": [],
+        "input_id": "partially_successful_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [
+          "localized_evaluation_uncertainty",
+          "localized_explainability_gap"
+        ],
+        "partial_success_markers": [
+          "provenance_continuity_present",
+          "replay_continuity_present"
+        ],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "evaluation request attempts to introduce prohibited behavior",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [],
+        "incomplete_markers": [],
+        "input_id": "prohibited_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [
+          "prohibited_evaluation_execution_request"
+        ],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "orchestration_execution",
+          "routing",
+          "runtime_mutation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "compatible transition relationship has all required evaluation continuity",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [],
+        "incomplete_markers": [],
+        "input_id": "successful_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "evaluation semantics cannot be deterministically interpreted",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [],
+        "incomplete_markers": [],
+        "input_id": "unknown_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [
+          "ambiguous_evaluation_semantics"
+        ],
+        "unsuccessful_markers": [],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "incompatible",
+        "compatibility_conflict_ids": [
+          "rollback_chain_mismatch",
+          "source_lineage_mismatch"
+        ],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "deterministic evaluation findings fail and remain fail-visible",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [
+          "governance_requirement_failed"
+        ],
+        "incomplete_markers": [],
+        "input_id": "unsuccessful_transition_evaluation",
+        "integrity_policy_ids": [
+          "integrity_requirement_failed"
+        ],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "deterministic_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [
+          "compatibility_finding_failed",
+          "continuity_chain_failed",
+          "explainability_guarantee_failed",
+          "provenance_chain_failed"
+        ],
+        "unsupported_markers": []
+      },
+      {
+        "blocked_markers": [],
+        "compatibility_classification": "compatible",
+        "compatibility_conflict_ids": [],
+        "destination_transition_state_id": "v3_9_transition_evaluation_intelligence",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "explainability_context": "evaluation domain is outside supported deterministic scope",
+        "explainability_continuity_ids": [
+          "v3_9_transition_explainability_continuity"
+        ],
+        "governance_policy_ids": [],
+        "incomplete_markers": [],
+        "input_id": "unsupported_transition_evaluation",
+        "integrity_policy_ids": [],
+        "non_executable_evaluation": true,
+        "partial_failure_markers": [],
+        "partial_success_markers": [],
+        "prohibited_markers": [],
+        "provenance_continuity_ids": [
+          "v3_9_transition_provenance_continuity"
+        ],
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_continuity_ids": [
+          "v3_9_transition_replay_continuity"
+        ],
+        "requested_capabilities": [
+          "cross_domain_transition_evaluation"
+        ],
+        "rollback_continuity_ids": [
+          "v3_9_transition_rollback_continuity"
+        ],
+        "source_transition_state_id": "v3_8_coordination_closeout_ready_for_v3_9",
+        "unknown_markers": [],
+        "unsuccessful_markers": [],
+        "unsupported_markers": [
+          "unsupported_domain:cross_domain_transition_evaluation"
+        ]
+      }
+    ],
+    "evidence_records": [
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_blocked_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_blocked_transition_evaluation_governance_blocked_by_execution_boundary_preservation",
+          "v3_9_transition_evaluation_blocked_transition_evaluation_governance_governance_policy_blocks_evaluation",
+          "v3_9_transition_evaluation_blocked_transition_evaluation_integrity_integrity_policy_blocks_evaluation"
+        ],
+        "input_id": "blocked_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "missing_evaluation_evidence_fail_visible",
+          "missing_explainability_continuity_fail_visible",
+          "missing_provenance_continuity_fail_visible",
+          "missing_replay_continuity_fail_visible",
+          "missing_rollback_continuity_fail_visible"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "missing_evaluation_evidence_fail_visible"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_compatibility_evidence",
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_continuity_evidence",
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_evaluation_evidence",
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_explainability_evidence",
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_provenance_evidence",
+          "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_source_transition_state"
+        ],
+        "input_id": "incomplete_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "missing_provenance_reference_fail_visible"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "localized_boundary_warning",
+          "localized_explainability_scope_gap",
+          "partially_compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_partially_successful_transition_evaluation_compatibility_provenance_continuity_present",
+          "v3_9_transition_evaluation_partially_successful_transition_evaluation_compatibility_replay_continuity_present",
+          "v3_9_transition_evaluation_partially_successful_transition_evaluation_explainability_partial_success_requires_visible_explanation",
+          "v3_9_transition_evaluation_partially_successful_transition_evaluation_uncertainty_localized_evaluation_uncertainty",
+          "v3_9_transition_evaluation_partially_successful_transition_evaluation_uncertainty_localized_explainability_gap"
+        ],
+        "input_id": "partially_successful_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_orchestration_execution",
+          "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_prohibited_evaluation_execution_request",
+          "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_routing",
+          "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_runtime_mutation"
+        ],
+        "input_id": "prohibited_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_successful_transition_evaluation_compatibility_compatibility_verified",
+          "v3_9_transition_evaluation_successful_transition_evaluation_continuity_continuity_verified",
+          "v3_9_transition_evaluation_successful_transition_evaluation_explainability_explainability_verified",
+          "v3_9_transition_evaluation_successful_transition_evaluation_provenance_provenance_verified"
+        ],
+        "input_id": "successful_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_unknown_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_unknown_transition_evaluation_uncertainty_ambiguous_evaluation_semantics"
+        ],
+        "input_id": "unknown_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "incompatible",
+          "rollback_chain_mismatch",
+          "source_lineage_mismatch"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_compatibility_compatibility_finding_failed",
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_continuity_continuity_chain_failed",
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_explainability_explainability_guarantee_failed",
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_governance_governance_requirement_failed",
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_integrity_integrity_requirement_failed",
+          "v3_9_transition_evaluation_unsuccessful_transition_evaluation_provenance_provenance_chain_failed"
+        ],
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      },
+      {
+        "compatibility_reference_ids": [
+          "compatible"
+        ],
+        "continuity_reference_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_explainability_continuity",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_continuity",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_replay_continuity",
+          "v3_9_transition_rollback_continuity",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "deterministic_hash_reference": "v3_9_transition_evaluation_hash",
+        "evaluation_evidence_ids": [
+          "dacc61a20b47a52f58c65a8347d85987655b9a888b5b7ac80e03e7341e9074af",
+          "v3_9_transition_compatibility_intelligence_report",
+          "v3_9_transition_continuity_evidence",
+          "v3_9_transition_identity_evidence",
+          "v3_9_transition_provenance_evidence",
+          "v3_9_transition_state_classification_evidence"
+        ],
+        "evidence_id": "v3_9_evaluation_evidence_unsupported_transition_evaluation",
+        "evidence_scope": "transition_evaluation_reasoning_evidence_only",
+        "execution_behavior_enabled": false,
+        "explainability_safe": true,
+        "finding_ids": [
+          "v3_9_transition_evaluation_unsupported_transition_evaluation_unsupported_cross_domain_transition_evaluation",
+          "v3_9_transition_evaluation_unsupported_transition_evaluation_unsupported_unsupported_domain_cross_domain_transition_evaluation"
+        ],
+        "input_id": "unsupported_transition_evaluation",
+        "non_executable": true,
+        "provenance_preserved": true,
+        "provenance_reference_ids": [
+          "v3_9_transition_foundation_provenance"
+        ],
+        "replay_safe": true,
+        "rollback_safe": true,
+        "runtime_mutation_enabled": false
+      }
+    ],
+    "findings": [
+      {
+        "classification": "blocked",
+        "continuity_reference": "v3_9_evaluation_continuity_blocked_transition_evaluation",
+        "deterministic_order": 101,
+        "evidence_reference": "v3_9_evaluation_evidence_blocked_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "blocked transition evaluation finding for blocked_transition_evaluation: blocked evaluation finding; marker: blocked_by_execution_boundary_preservation; context: governance and integrity policy block evaluation",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "governance",
+        "finding_id": "v3_9_transition_evaluation_blocked_transition_evaluation_governance_blocked_by_execution_boundary_preservation",
+        "hidden": false,
+        "input_id": "blocked_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "blocked evaluation finding: blocked_by_execution_boundary_preservation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "blocked",
+        "continuity_reference": "v3_9_evaluation_continuity_blocked_transition_evaluation",
+        "deterministic_order": 102,
+        "evidence_reference": "v3_9_evaluation_evidence_blocked_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "blocked transition evaluation finding for blocked_transition_evaluation: governance evaluation finding; marker: governance_policy_blocks_evaluation; context: governance and integrity policy block evaluation",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "governance",
+        "finding_id": "v3_9_transition_evaluation_blocked_transition_evaluation_governance_governance_policy_blocks_evaluation",
+        "hidden": false,
+        "input_id": "blocked_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "governance evaluation finding: governance_policy_blocks_evaluation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "blocked",
+        "continuity_reference": "v3_9_evaluation_continuity_blocked_transition_evaluation",
+        "deterministic_order": 103,
+        "evidence_reference": "v3_9_evaluation_evidence_blocked_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "blocked transition evaluation finding for blocked_transition_evaluation: integrity evaluation finding; marker: integrity_policy_blocks_evaluation; context: governance and integrity policy block evaluation",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "integrity",
+        "finding_id": "v3_9_transition_evaluation_blocked_transition_evaluation_integrity_integrity_policy_blocks_evaluation",
+        "hidden": false,
+        "input_id": "blocked_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "integrity evaluation finding: integrity_policy_blocks_evaluation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 201,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_compatibility_evidence; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_compatibility_evidence",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_compatibility_evidence",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 202,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_continuity_evidence; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_continuity_evidence",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_continuity_evidence",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 203,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_evaluation_evidence; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_evaluation_evidence",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_evaluation_evidence",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 204,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_explainability_evidence; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_explainability_evidence",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_explainability_evidence",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 205,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_provenance_evidence; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_provenance_evidence",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_provenance_evidence",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_order": 206,
+        "evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "incomplete transition evaluation finding for incomplete_transition_evaluation: missing evaluation evidence finding; marker: missing_source_transition_state; context: required evaluation evidence is missing",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "missing_evidence",
+        "finding_id": "v3_9_transition_evaluation_incomplete_transition_evaluation_missing_evidence_missing_source_transition_state",
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "missing evaluation evidence finding: missing_source_transition_state",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_order": 301,
+        "evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "partially_successful transition evaluation finding for partially_successful_transition_evaluation: partial compatibility evaluation marker; marker: provenance_continuity_present; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "compatibility",
+        "finding_id": "v3_9_transition_evaluation_partially_successful_transition_evaluation_compatibility_provenance_continuity_present",
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "partial compatibility evaluation marker: provenance_continuity_present",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_order": 302,
+        "evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "partially_successful transition evaluation finding for partially_successful_transition_evaluation: partial compatibility evaluation marker; marker: replay_continuity_present; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "compatibility",
+        "finding_id": "v3_9_transition_evaluation_partially_successful_transition_evaluation_compatibility_replay_continuity_present",
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "partial compatibility evaluation marker: replay_continuity_present",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_order": 303,
+        "evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "partially_successful transition evaluation finding for partially_successful_transition_evaluation: partial evaluation remains explainability-bound; marker: partial_success_requires_visible_explanation; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "explainability",
+        "finding_id": "v3_9_transition_evaluation_partially_successful_transition_evaluation_explainability_partial_success_requires_visible_explanation",
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "partial evaluation remains explainability-bound: partial_success_requires_visible_explanation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": true
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_order": 304,
+        "evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "partially_successful transition evaluation finding for partially_successful_transition_evaluation: partial evaluation uncertainty remains visible; marker: localized_evaluation_uncertainty; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "uncertainty",
+        "finding_id": "v3_9_transition_evaluation_partially_successful_transition_evaluation_uncertainty_localized_evaluation_uncertainty",
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "partial evaluation uncertainty remains visible: localized_evaluation_uncertainty",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": true
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_order": 305,
+        "evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "partially_successful transition evaluation finding for partially_successful_transition_evaluation: partial evaluation uncertainty remains visible; marker: localized_explainability_gap; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "uncertainty",
+        "finding_id": "v3_9_transition_evaluation_partially_successful_transition_evaluation_uncertainty_localized_explainability_gap",
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "partial evaluation uncertainty remains visible: localized_explainability_gap",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": true
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_order": 401,
+        "evidence_reference": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "execution_boundary_violation_detected": true,
+        "explainability_message": "prohibited transition evaluation finding for prohibited_transition_evaluation: prohibited evaluation capability; marker: orchestration_execution; context: evaluation request attempts to introduce prohibited behavior",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "prohibited",
+        "finding_id": "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_orchestration_execution",
+        "hidden": false,
+        "input_id": "prohibited_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "prohibited evaluation capability: orchestration_execution",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_order": 402,
+        "evidence_reference": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "prohibited transition evaluation finding for prohibited_transition_evaluation: prohibited evaluation finding; marker: prohibited_evaluation_execution_request; context: evaluation request attempts to introduce prohibited behavior",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "prohibited",
+        "finding_id": "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_prohibited_evaluation_execution_request",
+        "hidden": false,
+        "input_id": "prohibited_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "prohibited evaluation finding: prohibited_evaluation_execution_request",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_order": 403,
+        "evidence_reference": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "execution_boundary_violation_detected": true,
+        "explainability_message": "prohibited transition evaluation finding for prohibited_transition_evaluation: prohibited evaluation capability; marker: routing; context: evaluation request attempts to introduce prohibited behavior",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "prohibited",
+        "finding_id": "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_routing",
+        "hidden": false,
+        "input_id": "prohibited_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "prohibited evaluation capability: routing",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_order": 404,
+        "evidence_reference": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "execution_boundary_violation_detected": true,
+        "explainability_message": "prohibited transition evaluation finding for prohibited_transition_evaluation: prohibited evaluation capability; marker: runtime_mutation; context: evaluation request attempts to introduce prohibited behavior",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "prohibited",
+        "finding_id": "v3_9_transition_evaluation_prohibited_transition_evaluation_prohibited_runtime_mutation",
+        "hidden": false,
+        "input_id": "prohibited_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "prohibited evaluation capability: runtime_mutation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "successful",
+        "continuity_reference": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_order": 501,
+        "evidence_reference": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "successful transition evaluation finding for successful_transition_evaluation: compatible relationship verified; marker: compatibility_verified; context: compatible transition relationship has all required evaluation continuity",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "compatibility",
+        "finding_id": "v3_9_transition_evaluation_successful_transition_evaluation_compatibility_compatibility_verified",
+        "hidden": false,
+        "input_id": "successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "compatible relationship verified: compatibility_verified",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "info",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "successful",
+        "continuity_reference": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_order": 502,
+        "evidence_reference": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "successful transition evaluation finding for successful_transition_evaluation: replay and rollback continuity verified; marker: continuity_verified; context: compatible transition relationship has all required evaluation continuity",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "continuity",
+        "finding_id": "v3_9_transition_evaluation_successful_transition_evaluation_continuity_continuity_verified",
+        "hidden": false,
+        "input_id": "successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "replay and rollback continuity verified: continuity_verified",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "info",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "successful",
+        "continuity_reference": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_order": 503,
+        "evidence_reference": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "successful transition evaluation finding for successful_transition_evaluation: provenance continuity verified; marker: provenance_verified; context: compatible transition relationship has all required evaluation continuity",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "provenance",
+        "finding_id": "v3_9_transition_evaluation_successful_transition_evaluation_provenance_provenance_verified",
+        "hidden": false,
+        "input_id": "successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "provenance continuity verified: provenance_verified",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "info",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "successful",
+        "continuity_reference": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_order": 504,
+        "evidence_reference": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "successful transition evaluation finding for successful_transition_evaluation: explainability continuity verified; marker: explainability_verified; context: compatible transition relationship has all required evaluation continuity",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "explainability",
+        "finding_id": "v3_9_transition_evaluation_successful_transition_evaluation_explainability_explainability_verified",
+        "hidden": false,
+        "input_id": "successful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "explainability continuity verified: explainability_verified",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "info",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unknown",
+        "continuity_reference": "v3_9_evaluation_continuity_unknown_transition_evaluation",
+        "deterministic_order": 601,
+        "evidence_reference": "v3_9_evaluation_evidence_unknown_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unknown transition evaluation finding for unknown_transition_evaluation: uncertain evaluation finding; marker: ambiguous_evaluation_semantics; context: evaluation semantics cannot be deterministically interpreted",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "uncertainty",
+        "finding_id": "v3_9_transition_evaluation_unknown_transition_evaluation_uncertainty_ambiguous_evaluation_semantics",
+        "hidden": false,
+        "input_id": "unknown_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "uncertain evaluation finding: ambiguous_evaluation_semantics",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": true
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 701,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: unsuccessful evaluation marker; marker: compatibility_finding_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "compatibility",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_compatibility_compatibility_finding_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsuccessful evaluation marker: compatibility_finding_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 702,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: unsuccessful evaluation marker; marker: continuity_chain_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "continuity",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_continuity_continuity_chain_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsuccessful evaluation marker: continuity_chain_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 703,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: unsuccessful evaluation marker; marker: provenance_chain_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "provenance",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_provenance_provenance_chain_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsuccessful evaluation marker: provenance_chain_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 704,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: unsuccessful evaluation marker; marker: explainability_guarantee_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "explainability",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_explainability_explainability_guarantee_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsuccessful evaluation marker: explainability_guarantee_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 705,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: governance evaluation finding; marker: governance_requirement_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "governance",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_governance_governance_requirement_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "governance evaluation finding: governance_requirement_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_order": 706,
+        "evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsuccessful transition evaluation finding for unsuccessful_transition_evaluation: integrity evaluation finding; marker: integrity_requirement_failed; context: deterministic evaluation findings fail and remain fail-visible",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "integrity",
+        "finding_id": "v3_9_transition_evaluation_unsuccessful_transition_evaluation_integrity_integrity_requirement_failed",
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "integrity evaluation finding: integrity_requirement_failed",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "blocked",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference": "v3_9_evaluation_continuity_unsupported_transition_evaluation",
+        "deterministic_order": 801,
+        "evidence_reference": "v3_9_evaluation_evidence_unsupported_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsupported transition evaluation finding for unsupported_transition_evaluation: unsupported evaluation capability; marker: cross_domain_transition_evaluation; context: evaluation domain is outside supported deterministic scope",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "unsupported",
+        "finding_id": "v3_9_transition_evaluation_unsupported_transition_evaluation_unsupported_cross_domain_transition_evaluation",
+        "hidden": false,
+        "input_id": "unsupported_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsupported evaluation capability: cross_domain_transition_evaluation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": false
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference": "v3_9_evaluation_continuity_unsupported_transition_evaluation",
+        "deterministic_order": 802,
+        "evidence_reference": "v3_9_evaluation_evidence_unsupported_transition_evaluation",
+        "execution_boundary_violation_detected": false,
+        "explainability_message": "unsupported transition evaluation finding for unsupported_transition_evaluation: unsupported evaluation finding; marker: unsupported_domain:cross_domain_transition_evaluation; context: evaluation domain is outside supported deterministic scope",
+        "explainability_safe": true,
+        "fail_visible": true,
+        "finding_category": "unsupported",
+        "finding_id": "v3_9_transition_evaluation_unsupported_transition_evaluation_unsupported_unsupported_domain_cross_domain_transition_evaluation",
+        "hidden": false,
+        "input_id": "unsupported_transition_evaluation",
+        "non_execution_confirmation": true,
+        "provenance_preserved": true,
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "unsupported evaluation finding: unsupported_domain:cross_domain_transition_evaluation",
+        "replay_safe": true,
+        "rollback_safe": true,
+        "severity": "warning",
+        "uncertainty_visible": false
+      }
+    ],
+    "hidden_fallback_enabled": false,
+    "implicit_approval_enabled": false,
+    "non_executable": true,
+    "optimization_enabled": false,
+    "orchestration_evaluator_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "production_execution_pathway_enabled": false,
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "report_id": "v3_9_transition_evaluation_intelligence_report",
+    "report_status": "v3_9_transition_evaluation_intelligence_stable",
+    "routing_enabled": false,
+    "runtime_mutation_enabled": false,
+    "runtime_orchestration_engine_enabled": false,
+    "runtime_state_machine_enabled": false,
+    "scheduling_enabled": false,
+    "scoring_enabled": false,
+    "selection_enabled": false,
+    "silent_correction_enabled": false,
+    "source_boundary_report_id": "v3_9_transition_boundary_intelligence_report",
+    "source_compatibility_report_id": "v3_9_transition_compatibility_intelligence_report",
+    "source_foundation_id": "v3-9-deterministic-coordination-transition-foundation",
+    "summary": {
+      "blocked_count": 1,
+      "classification_counts": {
+        "blocked": 1,
+        "incomplete": 1,
+        "partially_successful": 1,
+        "prohibited": 1,
+        "successful": 1,
+        "unknown": 1,
+        "unsuccessful": 1,
+        "unsupported": 1
+      },
+      "deterministic_summary_hash": "e9e56259859d02f42c1af0bb014ce91fe815539736c9d521afd7b6faf31f90e9",
+      "evaluation_finding_count": 31,
+      "execution_boundary_violation_count": 3,
+      "finding_category_counts": {
+        "compatibility": 4,
+        "continuity": 2,
+        "explainability": 3,
+        "governance": 3,
+        "integrity": 2,
+        "missing_evidence": 6,
+        "prohibited": 4,
+        "provenance": 2,
+        "uncertainty": 3,
+        "unsupported": 2
+      },
+      "governance_finding_count": 3,
+      "hidden_finding_count": 0,
+      "incomplete_count": 1,
+      "missing_evidence_finding_count": 6,
+      "partially_successful_count": 1,
+      "prohibited_count": 1,
+      "successful_count": 1,
+      "summary_id": "v3_9_transition_evaluation_summary",
+      "uncertainty_finding_count": 3,
+      "unknown_count": 1,
+      "unsuccessful_count": 1,
+      "unsupported_count": 1
+    },
+    "transition_execution_enabled": false,
+    "transition_handler_enabled": false,
+    "validation_totals": {
+      "blocked_count": 1,
+      "classification_counts": {
+        "blocked": 1,
+        "incomplete": 1,
+        "partially_successful": 1,
+        "prohibited": 1,
+        "successful": 1,
+        "unknown": 1,
+        "unsuccessful": 1,
+        "unsupported": 1
+      },
+      "continuity_integrity_violation_count": 0,
+      "continuity_record_count": 8,
+      "evaluation_finding_count": 31,
+      "evaluation_input_count": 8,
+      "evidence_integrity_violation_count": 0,
+      "evidence_record_count": 8,
+      "execution_boundary_violation_count": 3,
+      "explainability_continuity_preserved_count": 8,
+      "explainability_safe_evaluation_evidence_count": 31,
+      "finding_category_counts": {
+        "compatibility": 4,
+        "continuity": 2,
+        "explainability": 3,
+        "governance": 3,
+        "integrity": 2,
+        "missing_evidence": 6,
+        "prohibited": 4,
+        "provenance": 2,
+        "uncertainty": 3,
+        "unsupported": 2
+      },
+      "finding_count": 31,
+      "finding_not_fail_visible_count": 0,
+      "governance_finding_count": 3,
+      "hidden_finding_count": 0,
+      "hidden_visibility_count": 0,
+      "incomplete_count": 1,
+      "invalid_classification_count": 0,
+      "invalid_finding_category_count": 0,
+      "missing_evidence_finding_count": 6,
+      "non_execution_confirmation": true,
+      "non_execution_confirmation_count": 31,
+      "non_successful_not_visible_count": 0,
+      "partially_successful_count": 1,
+      "prohibited_count": 1,
+      "provenance_continuity_preserved_count": 8,
+      "provenance_safe_evaluation_evidence_count": 31,
+      "replay_continuity_preserved_count": 8,
+      "replay_safe_evaluation_evidence_count": 31,
+      "report_execution_capability_violation_count": 0,
+      "rollback_continuity_preserved_count": 8,
+      "rollback_safe_evaluation_evidence_count": 31,
+      "successful_count": 1,
+      "successful_with_failure_finding_count": 0,
+      "uncertainty_finding_count": 3,
+      "unknown_count": 1,
+      "unsuccessful_count": 1,
+      "unsupported_count": 1,
+      "valid": true,
+      "validation_error_count": 0,
+      "visibility_count": 8
+    },
+    "visibilities": [
+      {
+        "classification": "blocked",
+        "continuity_reference": "v3_9_evaluation_continuity_blocked_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_blocked_transition_evaluation",
+        "explainability_message": "blocked transition evaluation visibility for blocked_transition_evaluation: transition evaluation is blocked by governance or integrity policy: blocked_by_execution_boundary_preservation, governance_policy_blocks_evaluation, integrity_policy_blocks_evaluation; context: governance and integrity policy block evaluation",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "blocked_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation is blocked by governance or integrity policy: blocked_by_execution_boundary_preservation, governance_policy_blocks_evaluation, integrity_policy_blocks_evaluation",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_blocked_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "incomplete",
+        "continuity_reference": "v3_9_evaluation_continuity_incomplete_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_incomplete_transition_evaluation",
+        "explainability_message": "incomplete transition evaluation visibility for incomplete_transition_evaluation: required transition evaluation evidence is incomplete: missing_compatibility_evidence, missing_continuity_evidence, missing_evaluation_evidence, missing_explainability_evidence, missing_provenance_evidence, missing_source_transition_state; context: required evaluation evidence is missing",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "incomplete_transition_evaluation",
+        "provenance_reference": "missing_provenance_reference_fail_visible",
+        "reason": "required transition evaluation evidence is incomplete: missing_compatibility_evidence, missing_continuity_evidence, missing_evaluation_evidence, missing_explainability_evidence, missing_provenance_evidence, missing_source_transition_state",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_incomplete_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "partially_successful",
+        "continuity_reference": "v3_9_evaluation_continuity_partially_successful_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_partially_successful_transition_evaluation",
+        "explainability_message": "partially_successful transition evaluation visibility for partially_successful_transition_evaluation: transition evaluation is partially successful with explicit uncertainty: localized_evaluation_uncertainty, localized_explainability_gap, provenance_continuity_present, replay_continuity_present; context: some evaluation guarantees pass while uncertainty remains explicit",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "partially_successful_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation is partially successful with explicit uncertainty: localized_evaluation_uncertainty, localized_explainability_gap, provenance_continuity_present, replay_continuity_present",
+        "uncertainty_visible": true,
+        "visibility_id": "v3_9_evaluation_visibility_partially_successful_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "prohibited",
+        "continuity_reference": "v3_9_evaluation_continuity_prohibited_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_prohibited_transition_evaluation",
+        "explainability_message": "prohibited transition evaluation visibility for prohibited_transition_evaluation: prohibited transition evaluation behavior requested: orchestration_execution, prohibited_evaluation_execution_request, routing, runtime_mutation; context: evaluation request attempts to introduce prohibited behavior",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "prohibited_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "prohibited transition evaluation behavior requested: orchestration_execution, prohibited_evaluation_execution_request, routing, runtime_mutation",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_prohibited_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "successful",
+        "continuity_reference": "v3_9_evaluation_continuity_successful_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_successful_transition_evaluation",
+        "explainability_message": "successful transition evaluation visibility for successful_transition_evaluation: transition evaluation is successful for deterministic evidence reasoning only; context: compatible transition relationship has all required evaluation continuity",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "successful_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation is successful for deterministic evidence reasoning only",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_successful_transition_evaluation",
+        "visibility_status": "visible"
+      },
+      {
+        "classification": "unknown",
+        "continuity_reference": "v3_9_evaluation_continuity_unknown_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_unknown_transition_evaluation",
+        "explainability_message": "unknown transition evaluation visibility for unknown_transition_evaluation: transition evaluation cannot be deterministically interpreted: ambiguous_evaluation_semantics; context: evaluation semantics cannot be deterministically interpreted",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "unknown_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation cannot be deterministically interpreted: ambiguous_evaluation_semantics",
+        "uncertainty_visible": true,
+        "visibility_id": "v3_9_evaluation_visibility_unknown_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unsuccessful",
+        "continuity_reference": "v3_9_evaluation_continuity_unsuccessful_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_unsuccessful_transition_evaluation",
+        "explainability_message": "unsuccessful transition evaluation visibility for unsuccessful_transition_evaluation: transition evaluation is unsuccessful: compatibility_finding_failed, continuity_chain_failed, explainability_guarantee_failed, provenance_chain_failed, rollback_chain_mismatch, source_lineage_mismatch; context: deterministic evaluation findings fail and remain fail-visible",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "unsuccessful_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation is unsuccessful: compatibility_finding_failed, continuity_chain_failed, explainability_guarantee_failed, provenance_chain_failed, rollback_chain_mismatch, source_lineage_mismatch",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_unsuccessful_transition_evaluation",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "classification": "unsupported",
+        "continuity_reference": "v3_9_evaluation_continuity_unsupported_transition_evaluation",
+        "deterministic_evidence_reference": "v3_9_evaluation_evidence_unsupported_transition_evaluation",
+        "explainability_message": "unsupported transition evaluation visibility for unsupported_transition_evaluation: transition evaluation domain is unsupported: cross_domain_transition_evaluation, unsupported_domain:cross_domain_transition_evaluation; context: evaluation domain is outside supported deterministic scope",
+        "fail_visible": true,
+        "hidden": false,
+        "input_id": "unsupported_transition_evaluation",
+        "provenance_reference": "v3_9_transition_foundation_provenance",
+        "reason": "transition evaluation domain is unsupported: cross_domain_transition_evaluation, unsupported_domain:cross_domain_transition_evaluation",
+        "uncertainty_visible": false,
+        "visibility_id": "v3_9_evaluation_visibility_unsupported_transition_evaluation",
+        "visibility_status": "fail_visible"
+      }
+    ]
+  },
+  "evaluation_report_status": "v3_9_transition_evaluation_intelligence_stable",
+  "evaluation_totals": {
+    "blocked_count": 1,
+    "evaluation_finding_count": 31,
+    "evaluation_input_count": 8,
+    "execution_boundary_violation_count": 3,
+    "governance_finding_count": 3,
+    "hidden_finding_count": 0,
+    "incomplete_count": 1,
+    "missing_evidence_finding_count": 6,
+    "partially_successful_count": 1,
+    "prohibited_count": 1,
+    "successful_count": 1,
+    "uncertainty_finding_count": 3,
+    "unknown_count": 1,
+    "unsuccessful_count": 1,
+    "unsupported_count": 1,
+    "visibility_count": 8
+  },
+  "explainability_guarantees": {
+    "all_findings_have_explainability": true,
+    "explainability_continuity_preserved_count": 8,
+    "explainability_safe_evaluation_evidence_count": 31,
+    "hidden_finding_count": 0,
+    "uncertainty_finding_count": 3
+  },
+  "explicit_limitations": [
+    "v3.9 Phase 4 transition evaluation intelligence is non-executable",
+    "v3.9 Phase 4 does not enable orchestration execution",
+    "v3.9 Phase 4 does not enable transition execution",
+    "v3.9 Phase 4 does not enable orchestration traversal",
+    "v3.9 Phase 4 does not enable routing, scheduling, or dispatch",
+    "v3.9 Phase 4 does not enable runtime orchestration engines",
+    "v3.9 Phase 4 does not enable runtime mutation",
+    "v3.9 Phase 4 does not enable authorization or approval systems",
+    "v3.9 Phase 4 does not enable optimization or recommendations",
+    "v3.9 Phase 4 does not enable ranking, scoring, or selection",
+    "v3.9 Phase 4 does not enable autonomous orchestration behavior",
+    "v3.9 Phase 4 does not enable transition handlers or runtime state machines",
+    "v3.9 Phase 4 does not enable callable orchestration flows",
+    "v3.9 Phase 4 does not enable production execution pathways"
+  ],
+  "finding_semantics": {
+    "compatibility": "compatibility evidence finding",
+    "continuity": "replay or rollback continuity finding",
+    "explainability": "explainability continuity finding",
+    "governance": "governance policy finding",
+    "integrity": "integrity policy finding",
+    "missing_evidence": "missing evidence finding",
+    "prohibited": "prohibited behavior finding",
+    "provenance": "provenance chain finding",
+    "uncertainty": "explicit uncertainty finding",
+    "unsupported": "unsupported evaluation finding"
+  },
+  "generated_at": "2026-05-16T00:00:00+00:00",
+  "hidden_fallback_enabled": false,
+  "implicit_approval_enabled": false,
+  "non_executable": true,
+  "non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "autonomous_orchestration_behavior_absent": true,
+    "callable_orchestration_flow_absent": true,
+    "dispatch_absent": true,
+    "hidden_fallback_absent": true,
+    "implicit_approval_absent": true,
+    "optimization_absent": true,
+    "orchestration_evaluator_absent": true,
+    "orchestration_execution_absent": true,
+    "orchestration_traversal_absent": true,
+    "production_execution_pathway_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "report_execution_capability_violation_count": 0,
+    "routing_absent": true,
+    "runtime_mutation_absent": true,
+    "runtime_orchestration_engine_absent": true,
+    "runtime_state_machine_absent": true,
+    "scheduling_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_correction_absent": true,
+    "transition_execution_absent": true,
+    "transition_handler_absent": true
+  },
+  "optimization_enabled": false,
+  "orchestration_evaluator_enabled": false,
+  "orchestration_execution_enabled": false,
+  "orchestration_traversal_enabled": false,
+  "phase_name": "v3.9_transition_evaluation_intelligence",
+  "production_execution_pathway_enabled": false,
+  "provenance_guarantees": {
+    "all_findings_preserve_provenance": true,
+    "provenance_continuity_preserved_count": 8,
+    "provenance_safe_evaluation_evidence_count": 31
+  },
+  "ranking_enabled": false,
+  "recommendation_enabled": false,
+  "replay_guarantees": {
+    "all_findings_have_replay_evidence": true,
+    "replay_continuity_preserved_count": 8,
+    "replay_safe_evaluation_evidence_count": 31
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_guarantees": {
+    "all_findings_have_rollback_evidence": true,
+    "rollback_continuity_preserved_count": 8,
+    "rollback_safe_evaluation_evidence_count": 31
+  },
+  "routing_enabled": false,
+  "runtime_mutation_enabled": false,
+  "runtime_orchestration_engine_enabled": false,
+  "runtime_state_machine_enabled": false,
+  "scheduling_enabled": false,
+  "schema_version": "v3_9.transition_evaluation_intelligence_report.1",
+  "scoring_enabled": false,
+  "selection_enabled": false,
+  "silent_correction_enabled": false,
+  "source_artifact_totals": {
+    "missing_source_artifact_count": 0,
+    "present_source_artifact_count": 6,
+    "source_artifact_continuity_preserved": true,
+    "source_artifact_count": 6
+  },
+  "source_artifacts": [
+    {
+      "artifact_hash": "635841d13f9d847e36dbd8dcd23dd19787c8f0275a001a40bf7bf2678f271436",
+      "path": "docs/generated/v3_9_transition_foundations_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "dc165b08a9f745d66c2d5488a22d70afcbcac771a2893b82aa080076d24477ca",
+      "path": "docs/migration/V3_9_TRANSITION_FOUNDATIONS.md",
+      "present": true
+    },
+    {
+      "artifact_hash": "6036f3f4f094d1fda0205bc820e52b240b7907be56c35edb34beb4cebe5a51d9",
+      "path": "docs/generated/v3_9_transition_boundary_intelligence_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "d509594b82f925edd6ce607926351d49dc2b6eafa0d2896e950a805e3a88cc1b",
+      "path": "docs/migration/V3_9_TRANSITION_BOUNDARY_INTELLIGENCE.md",
+      "present": true
+    },
+    {
+      "artifact_hash": "8667a0f5572aa250027351bfb6e935303f66fdd56f3d2940c79708e706b650c4",
+      "path": "docs/generated/v3_9_transition_compatibility_intelligence_report.json",
+      "present": true
+    },
+    {
+      "artifact_hash": "9c483813bf9fd819dc923170eb0e81fba520f42dbe41118a60448d1835cd9cc7",
+      "path": "docs/migration/V3_9_TRANSITION_COMPATIBILITY_INTELLIGENCE.md",
+      "present": true
+    }
+  ],
+  "source_boundary_report_id": "v3_9_transition_boundary_intelligence_report",
+  "source_compatibility_report_id": "v3_9_transition_compatibility_intelligence_report",
+  "source_foundation_id": "v3-9-deterministic-coordination-transition-foundation",
+  "summary": {
+    "blocked_count": 1,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "evaluation_finding_count": 31,
+    "evaluation_report_status": "v3_9_transition_evaluation_intelligence_stable",
+    "execution_boundary_violation_count": 3,
+    "explainability_verified": true,
+    "governance_finding_count": 3,
+    "hidden_finding_count": 0,
+    "incomplete_count": 1,
+    "missing_evidence_finding_count": 6,
+    "non_executable_verified": true,
+    "orchestration_boundaries_enforced": true,
+    "partially_successful_count": 1,
+    "prohibited_count": 1,
+    "provenance_verified": true,
+    "replay_verified": true,
+    "report_execution_capability_violation_count": 0,
+    "rollback_verified": true,
+    "source_artifact_continuity_preserved": true,
+    "successful_count": 1,
+    "uncertainty_finding_count": 3,
+    "unknown_count": 1,
+    "unsuccessful_count": 1,
+    "unsupported_count": 1,
+    "validation_error_count": 0
+  },
+  "transition_execution_enabled": false,
+  "transition_handler_enabled": false
+}
