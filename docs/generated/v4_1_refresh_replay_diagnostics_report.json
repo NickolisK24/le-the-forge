@@ -1,0 +1,133 @@
+{
+  "architectural_purpose": "deterministic replay diagnostics without replay execution recovery or remediation",
+  "deterministic_report_hash": "4e2c339a21c499766786aacd2df6824617bcfeed6b3fde391575b0a67e557908",
+  "diagnostics": {
+    "automatic_correction_absent": true,
+    "blocked_replay_ids": [
+      "v4_1_replay_blocked_state"
+    ],
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "prohibited_replay_ids": [
+      "v4_1_replay_prohibited_execution"
+    ],
+    "recovery_execution_absent": true,
+    "remediation_absent": true,
+    "replay_discontinuity_visibility": [
+      "v4_1_replay_discontinuity"
+    ],
+    "replay_drift_conflict_visibility": [
+      "v4_1_replay_drift_conflict"
+    ],
+    "replay_evidence_ids": [
+      "v4_1_replay_blocked_state",
+      "v4_1_replay_dependency_visibility",
+      "v4_1_replay_discontinuity",
+      "v4_1_replay_drift_conflict",
+      "v4_1_replay_drift_visibility",
+      "v4_1_replay_lineage_discontinuity",
+      "v4_1_replay_lineage_visibility",
+      "v4_1_replay_manifest_visibility",
+      "v4_1_replay_prohibited_execution",
+      "v4_1_replay_provenance_discontinuity",
+      "v4_1_replay_schema_visibility",
+      "v4_1_replay_sequencing_visibility",
+      "v4_1_replay_stale_evidence",
+      "v4_1_replay_unsupported_provider"
+    ],
+    "replay_execution_absent": true,
+    "replay_lineage_discontinuity_visibility": [
+      "v4_1_replay_lineage_discontinuity"
+    ],
+    "replay_provenance_discontinuity_visibility": [
+      "v4_1_replay_provenance_discontinuity"
+    ],
+    "stale_replay_ids": [
+      "v4_1_replay_stale_evidence"
+    ],
+    "unsupported_replay_ids": [
+      "v4_1_replay_unsupported_provider"
+    ],
+    "visibility_type": "replay"
+  },
+  "diagnostics_mode": "fail_visible_descriptive_only",
+  "explicit_limitations": [
+    "v4.1 Phase 7 creates deterministic replay and rollback visibility metadata only.",
+    "v4.1 Phase 7 does not enable rollback execution.",
+    "v4.1 Phase 7 does not enable replay execution.",
+    "v4.1 Phase 7 does not enable recovery execution.",
+    "v4.1 Phase 7 does not enable remediation.",
+    "v4.1 Phase 7 does not enable automatic correction.",
+    "v4.1 Phase 7 does not enable orchestration execution.",
+    "v4.1 Phase 7 does not enable automatic sequencing.",
+    "v4.1 Phase 7 does not enable migration execution.",
+    "v4.1 Phase 7 does not enable planner integration.",
+    "v4.1 Phase 7 does not enable production consumption.",
+    "v4.1 Phase 7 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No rollback execution exists.",
+    "No replay execution exists.",
+    "No recovery execution exists.",
+    "No remediation exists.",
+    "No automatic correction exists.",
+    "No orchestration execution exists.",
+    "No automatic sequencing exists.",
+    "No migration execution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No mutation behavior exists.",
+    "No executable replay engine exists.",
+    "No executable rollback planner exists.",
+    "No automatic recovery behavior exists.",
+    "No remediation-capable replay diagnostics exist.",
+    "No silent replay or rollback correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_replay_rollback_visibility_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "non_recovery_remediation_and_execution_guarantees": {
+    "automatic_correction_absent": true,
+    "automatic_migration_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_rollback_absent": true,
+    "automatic_sequencing_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "hidden_orchestration_behavior_absent": true,
+    "hidden_recovery_behavior_absent": true,
+    "hidden_rollback_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "non_executable": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "recovery_execution_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "replay_execution_absent": true,
+    "rollback_execution_absent": true,
+    "runtime_mutation_absent": true,
+    "schema_migration_execution_absent": true,
+    "silent_replay_rollback_correction_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_replay_rollback_visibility",
+  "phase_name": "v4.1_phase_7_refresh_replay_diagnostics",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_replay_diagnostics_report.1",
+  "summary": {
+    "automatic_correction_absent": true,
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_refresh_replay_rollback_visibility_stable",
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "recovery_execution_absent": true,
+    "remediation_absent": true,
+    "replay_execution_absent": true
+  }
+}

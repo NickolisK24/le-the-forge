@@ -1,0 +1,80 @@
+{
+  "architectural_purpose": "deterministic rollback continuity certification without rollback execution or recovery",
+  "continuity_certification": {
+    "rollback_continuity_preserved": true,
+    "rollback_discontinuity_visibility_count": 1,
+    "rollback_drift_conflict_visibility_count": 1,
+    "rollback_lineage_visible": true,
+    "rollback_provenance_visible": true,
+    "rollback_reference": "v4_1_rollback_visibility_primary",
+    "rollback_reference_visible": true,
+    "rollback_safe": true,
+    "valid": true
+  },
+  "continuity_mode": "descriptive_certification_only",
+  "deterministic_report_hash": "d748892c08cb41681c63cf212016436778c84b2a0482e4c977e0fe0ec64ca9d2",
+  "explicit_limitations": [
+    "v4.1 Phase 7 creates deterministic replay and rollback visibility metadata only.",
+    "v4.1 Phase 7 does not enable rollback execution.",
+    "v4.1 Phase 7 does not enable replay execution.",
+    "v4.1 Phase 7 does not enable recovery execution.",
+    "v4.1 Phase 7 does not enable remediation.",
+    "v4.1 Phase 7 does not enable automatic correction.",
+    "v4.1 Phase 7 does not enable orchestration execution.",
+    "v4.1 Phase 7 does not enable automatic sequencing.",
+    "v4.1 Phase 7 does not enable migration execution.",
+    "v4.1 Phase 7 does not enable planner integration.",
+    "v4.1 Phase 7 does not enable production consumption.",
+    "v4.1 Phase 7 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No rollback execution exists.",
+    "No replay execution exists.",
+    "No recovery execution exists.",
+    "No remediation exists.",
+    "No automatic correction exists.",
+    "No orchestration execution exists.",
+    "No automatic sequencing exists.",
+    "No migration execution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No mutation behavior exists.",
+    "No executable replay engine exists.",
+    "No executable rollback planner exists.",
+    "No automatic recovery behavior exists.",
+    "No remediation-capable replay diagnostics exist.",
+    "No silent replay or rollback correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_replay_rollback_visibility_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "lineage_continuity": {
+    "lineage_reference": "v4_1_replay_rollback_lineage_primary",
+    "lineage_reference_visible": true,
+    "replay_lineage_discontinuity_visibility_count": 1,
+    "replay_lineage_visibility_count": 2,
+    "rollback_lineage_discontinuity_visibility_count": 1,
+    "rollback_lineage_visibility_count": 2,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_replay_rollback_visibility",
+  "phase_name": "v4.1_phase_7_refresh_rollback_continuity_certification",
+  "provenance_continuity": {
+    "inherited_from_count": 6,
+    "provenance_reference": "v4_1_replay_rollback_provenance_primary",
+    "provenance_reference_visible": true,
+    "replay_provenance_discontinuity_visibility_count": 1,
+    "replay_provenance_visibility_count": 2,
+    "rollback_provenance_discontinuity_visibility_count": 1,
+    "rollback_provenance_visibility_count": 2,
+    "valid": true
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_rollback_continuity_report.1",
+  "summary": {
+    "foundation_status": "v4_1_refresh_replay_rollback_visibility_stable",
+    "rollback_continuity_certification_verified": true,
+    "rollback_drift_validation_verified": true,
+    "rollback_lineage_continuity_verified": true,
+    "rollback_provenance_continuity_verified": true
+  }
+}
