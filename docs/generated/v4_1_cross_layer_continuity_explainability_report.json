@@ -1,0 +1,67 @@
+{
+  "cross_layer_continuity_explainability": {
+    "blocked_explanation_ids": [
+      "v4_1_continuity_blocked_state_explanation"
+    ],
+    "cross_layer_explanation_ids": [
+      "v4_1_cross_layer_continuity_conflict"
+    ],
+    "explainability_id": "v4_1_refresh_continuity_explainability_primary",
+    "explainability_mode": "descriptive_only_non_recommending_non_authorizing",
+    "explanation_texts": [
+      "Continuity certification describes evidence and does not approve operations.",
+      "Continuity failures remain fail-visible and are not corrected.",
+      "Unsupported, blocked, prohibited, and stale continuity states remain explicit."
+    ],
+    "failure_explanation_count": 10,
+    "limitation_explanation_ids": [
+      "v4_1_continuity_limitation_explanation"
+    ],
+    "prohibited_explanation_ids": [
+      "v4_1_continuity_prohibited_state_explanation"
+    ],
+    "schema": "v4_1_cross_layer_continuity_explainability",
+    "unsupported_explanation_ids": [
+      "v4_1_continuity_unsupported_state_explanation"
+    ]
+  },
+  "deterministic_report_hash": "74ff7b53fa7654d66e1be10bf444cbf1e72a0116db07cfb16ccb400a412f850c",
+  "explicit_limitations": [
+    "v4.1 Phase 9 creates deterministic refresh continuity certification metadata only.",
+    "v4.1 Phase 9 does not enable remediation.",
+    "v4.1 Phase 9 does not enable automatic correction.",
+    "v4.1 Phase 9 does not enable recommendation ranking scoring or selection.",
+    "v4.1 Phase 9 does not enable approval or authorization.",
+    "v4.1 Phase 9 does not enable orchestration execution.",
+    "v4.1 Phase 9 does not enable automatic sequencing.",
+    "v4.1 Phase 9 does not enable refresh execution.",
+    "v4.1 Phase 9 does not enable migration execution.",
+    "v4.1 Phase 9 does not enable recovery execution.",
+    "v4.1 Phase 9 does not enable rollback execution.",
+    "v4.1 Phase 9 does not enable planner integration.",
+    "v4.1 Phase 9 does not enable production consumption.",
+    "v4.1 Phase 9 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No remediation exists.",
+    "No automatic correction exists.",
+    "No recommendation ranking scoring or selection exists.",
+    "No approval or authorization exists.",
+    "No orchestration execution exists.",
+    "No automatic sequencing exists.",
+    "No refresh execution exists.",
+    "No migration execution exists.",
+    "No recovery execution exists.",
+    "No rollback execution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No mutation behavior exists.",
+    "No continuity certification becomes operational authorization.",
+    "No continuity certification implies approval capability.",
+    "No automatic continuity correction exists."
+  ],
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "phase_id": "v4_1_refresh_continuity_certification",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.cross_layer_continuity_explainability_report.1"
+}
