@@ -1,0 +1,554 @@
+{
+  "architectural_purpose": "deterministic operational lifecycle intelligence foundations without operational execution",
+  "deterministic_equality_verification": {
+    "dataclass_equality_stable": true,
+    "dataclass_hash_stable": true,
+    "reordered_serialized_equality_stable": true,
+    "serialized_equality_stable": true
+  },
+  "deterministic_hashing_verification": {
+    "foundation_hash": "0742c736f1efe071227f89a9dfe9c347363ef651812b23805bf7b22056beb4fa",
+    "hash_algorithm": "sha256_stable_json_v4_0_patch_lifecycle_foundations",
+    "lineage_hashes": [
+      "381ccd7f9e6ea65c65fe63924c17af1363d00fbc35a4f63241340f3317d403d1"
+    ],
+    "metadata_hash": "9d1b8efeaa8ee9abc39e1c54891b7e3d00daf35a50e6b07cb6767e2fd420a848",
+    "patch_identity_hash": "0c7c91e6c9a9c3b33338def8f2e26ac20d2dacb470e9f1d40b0e91a6e11740ba",
+    "provenance_hashes": [
+      "29e550da157fb5886c3e77cfff9bb6178273c69c09f7328919754b92f2f8e41e"
+    ],
+    "stable": true,
+    "visibility_hashes": [
+      "b56704be695ffc3ad41f9b4ec2d532e92e9676709f76a0e7c5671326e09be823"
+    ]
+  },
+  "deterministic_report_hash": "79b266543bbde287584772f68870d8d1ac082211a030b2f90dd517a15877eddd",
+  "deterministic_serialization_verification": {
+    "hidden_omission_enabled": false,
+    "integrity_warnings_preserved": true,
+    "payload_length": 11745,
+    "prohibited_states_preserved": true,
+    "serializer": "json_sort_keys_stable_v4_0_patch_lifecycle_foundations",
+    "stable": true,
+    "unknown_states_preserved": true,
+    "unsupported_states_preserved": true
+  },
+  "explicit_limitations": [
+    "v4.0 Phase 1 does not enable orchestration execution.",
+    "v4.0 Phase 1 does not enable patch execution or patch application.",
+    "v4.0 Phase 1 does not enable deployment execution.",
+    "v4.0 Phase 1 does not enable scheduling, routing, or dispatch.",
+    "v4.0 Phase 1 does not enable optimization, recommendation, ranking, scoring, or selection.",
+    "v4.0 Phase 1 does not enable authorization, approval, remediation, or repair.",
+    "v4.0 Phase 1 does not enable runtime mutation or autonomous behavior.",
+    "v4.0 Phase 1 remains descriptive-only operational lifecycle intelligence."
+  ],
+  "fail_visible_visibility": {
+    "fail_visible_lifecycle_state_count": 6,
+    "integrity_warning_visibility_count": 3,
+    "lifecycle_continuity_visibility_count": 4,
+    "lineage_gap_visibility_count": 1,
+    "prohibited_state_visibility_count": 1,
+    "prohibited_states_visible": true,
+    "unknown_state_visibility_count": 1,
+    "unknown_states_visible": true,
+    "unsupported_state_visibility_count": 1,
+    "unsupported_states_visible": true,
+    "visibility_is_descriptive_only": true
+  },
+  "foundation": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "automatic_patch_transition_logic_enabled": false,
+    "autonomous_behavior_enabled": false,
+    "callable_operational_flow_enabled": false,
+    "deployment_execution_enabled": false,
+    "descriptive_only": true,
+    "dispatch_enabled": false,
+    "foundation_scope": "deterministic_operational_lifecycle_intelligence_only",
+    "hidden_lifecycle_state_mutation_enabled": false,
+    "implicit_operational_state_transition_enabled": false,
+    "lifecycle_execution_enabled": false,
+    "lifecycle_states": [
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "executable": false,
+        "fail_visible": false,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "patch lifecycle identity can be modeled deterministically",
+        "severity": "info",
+        "silently_corrected": false,
+        "state": "supported",
+        "state_id": "v4_0_lifecycle_state_supported_identity",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "unsupported lifecycle state remains visible and descriptive",
+        "severity": "warning",
+        "silently_corrected": false,
+        "state": "unsupported",
+        "state_id": "v4_0_lifecycle_state_unsupported_source",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "continuity gaps remain blocked evidence until a future phase supplies them",
+        "severity": "blocked",
+        "silently_corrected": false,
+        "state": "blocked",
+        "state_id": "v4_0_lifecycle_state_blocked_continuity_gap",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "refresh chain evidence is descriptive and not production-consuming",
+        "severity": "warning",
+        "silently_corrected": false,
+        "state": "experimental",
+        "state_id": "v4_0_lifecycle_state_experimental_refresh_chain",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "future lifecycle successor state is explicitly unknown",
+        "severity": "warning",
+        "silently_corrected": false,
+        "state": "unknown",
+        "state_id": "v4_0_lifecycle_state_unknown_successor",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "legacy patch context is visible and not silently upgraded",
+        "severity": "warning",
+        "silently_corrected": false,
+        "state": "deprecated",
+        "state_id": "v4_0_lifecycle_state_deprecated_legacy_patch_context",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      },
+      {
+        "authorization_semantics_enabled": false,
+        "auto_transition_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "executable": false,
+        "fail_visible": true,
+        "fallback_applied": false,
+        "hidden": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+        "reason": "execution-capable lifecycle behavior is prohibited",
+        "severity": "prohibited",
+        "silently_corrected": false,
+        "state": "prohibited",
+        "state_id": "v4_0_lifecycle_state_prohibited_execution",
+        "state_scope": "patch_lifecycle_state_descriptive_only",
+        "transition_allowed": false,
+        "visibility_reference": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_status": "fail_visible"
+      }
+    ],
+    "lineage_records": [
+      {
+        "automatic_transition_enabled": false,
+        "continuity_references": [
+          "v4_0_patch_lifecycle_foundation_replay_reference",
+          "v4_0_patch_lifecycle_foundation_rollback_reference",
+          "v4_0_patch_lifecycle_provenance_continuity_reference"
+        ],
+        "descriptive_only": true,
+        "deterministic_hash_reference": "v4_0_patch_lifecycle_lineage_hash",
+        "deterministic_order": 1,
+        "execution_enabled": false,
+        "fail_visible_lineage_gap_ids": [
+          "v4_0_future_successor_lifecycle_not_declared"
+        ],
+        "hidden_lineage_gap_correction_enabled": false,
+        "lineage_preserved": true,
+        "lineage_reference_id": "v4_0_patch_lifecycle_lineage_primary",
+        "lineage_scope": "patch_lifecycle_lineage_descriptive_only",
+        "prior_bundle_references": [
+          "v3_9_transition_continuity_certification_bundle",
+          "v3_9_transition_integrity_enforcement_bundle",
+          "v3_9_transition_intelligence_aggregation_bundle"
+        ],
+        "provenance_continuity_references": [
+          "v4_0_patch_lifecycle_provenance_primary"
+        ],
+        "refresh_chain_references": [
+          "v4_0_patch_lifecycle_refresh_chain_primary"
+        ],
+        "replay_safe": true,
+        "rollback_references": [
+          "v3_9_closeout_and_v4_readiness_report"
+        ],
+        "rollback_safe": true,
+        "successor_references": [
+          "v4_0_patch_lifecycle_foundations"
+        ],
+        "trusted_bundle_references": [
+          "v3_9_transition_continuity_certification_bundle"
+        ]
+      }
+    ],
+    "non_executable": true,
+    "operational_metadata": {
+      "approval_enabled": false,
+      "authorization_enabled": false,
+      "automation_enabled": false,
+      "descriptive_only": true,
+      "deterministic_generated_at": "2026-05-17T00:00:00+00:00",
+      "dispatch_enabled": false,
+      "execution_enabled": false,
+      "lifecycle_state_references": [
+        "v4_0_lifecycle_state_blocked_continuity_gap",
+        "v4_0_lifecycle_state_deprecated_legacy_patch_context",
+        "v4_0_lifecycle_state_experimental_refresh_chain",
+        "v4_0_lifecycle_state_prohibited_execution",
+        "v4_0_lifecycle_state_supported_identity",
+        "v4_0_lifecycle_state_unknown_successor",
+        "v4_0_lifecycle_state_unsupported_source"
+      ],
+      "metadata_reference_id": "v4_0_patch_operational_metadata_primary",
+      "metadata_scope": "patch_operational_metadata_descriptive_only",
+      "mutation_enabled": false,
+      "operational_metadata_version": "v4_0_patch_operational_metadata.1",
+      "optimization_enabled": false,
+      "patch_identity_reference": "v4.0.0-foundation",
+      "ranking_enabled": false,
+      "recommendation_enabled": false,
+      "refresh_chain_reference": "v4_0_patch_lifecycle_refresh_chain_primary",
+      "remediation_enabled": false,
+      "repair_enabled": false,
+      "routing_enabled": false,
+      "scheduling_enabled": false,
+      "scoring_enabled": false,
+      "selection_enabled": false,
+      "visibility_references": [
+        "v4_0_patch_lifecycle_visibility_primary"
+      ]
+    },
+    "optimization_enabled": false,
+    "patch_application_enabled": false,
+    "patch_execution_enabled": false,
+    "patch_identity": {
+      "extraction_version": "v3.9-closeout",
+      "identity_scope": "patch_lifecycle_identity_descriptive_only",
+      "lifecycle_execution_enabled": false,
+      "lifecycle_generation": "v4_0_phase_1_patch_lifecycle_foundations",
+      "lifecycle_purpose": "deterministic_operational_lifecycle_intelligence_only",
+      "lifecycle_timestamp": "2026-05-17T00:00:00+00:00",
+      "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+      "non_executable": true,
+      "patch_version": "v4.0.0-foundation",
+      "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+      "refresh_chain_reference": "v4_0_patch_lifecycle_refresh_chain_primary",
+      "runtime_mutation_enabled": false,
+      "schema_version": "v4_0.patch_lifecycle_foundations.1",
+      "trusted_bundle_reference": "v3_9_transition_continuity_certification_bundle"
+    },
+    "production_automation_enabled": false,
+    "provenance_records": [
+      {
+        "continuity_references": [
+          "v3_9_closeout_and_v4_readiness_report",
+          "v3_9_transition_continuity_certification_report",
+          "v4_0_patch_lifecycle_foundation_replay_reference",
+          "v4_0_patch_lifecycle_foundation_rollback_reference"
+        ],
+        "descriptive_only": true,
+        "deterministic_hash_reference": "v4_0_patch_lifecycle_provenance_hash",
+        "execution_enabled": false,
+        "extraction_reference": "v3.9-closeout",
+        "fail_visible": true,
+        "hidden": false,
+        "inferred_provenance_allowed": false,
+        "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+        "no_inferred_provenance": true,
+        "provenance_preserved": true,
+        "provenance_reference_id": "v4_0_patch_lifecycle_provenance_primary",
+        "provenance_scope": "patch_lifecycle_provenance_descriptive_only",
+        "refresh_chain_reference": "v4_0_patch_lifecycle_refresh_chain_primary",
+        "schema_reference": "v4_0.patch_lifecycle_foundations.1",
+        "source_evidence_references": [
+          "docs/generated/v3_9_closeout_and_v4_readiness_report.json",
+          "docs/generated/v3_9_transition_continuity_certification_report.json",
+          "docs/migration/V3_9_CLOSEOUT_AND_V4_READINESS.md"
+        ],
+        "source_patch_reference": "v4.0.0-foundation",
+        "trusted_bundle_reference": "v3_9_transition_continuity_certification_bundle"
+      }
+    ],
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "remediation_enabled": false,
+    "repair_enabled": false,
+    "routing_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scheduling_enabled": false,
+    "scoring_enabled": false,
+    "selection_enabled": false,
+    "visibility_records": [
+      {
+        "automatic_resolution_enabled": false,
+        "corrective_behavior_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": true,
+        "fail_visible_findings": [
+          "v4_0_future_successor_lifecycle_not_declared",
+          "v4_0_lifecycle_state_blocked_continuity_gap",
+          "v4_0_lifecycle_state_deprecated_legacy_patch_context",
+          "v4_0_lifecycle_state_experimental_refresh_chain",
+          "v4_0_lifecycle_state_prohibited_execution",
+          "v4_0_lifecycle_state_unknown_successor",
+          "v4_0_lifecycle_state_unsupported_source"
+        ],
+        "hidden": false,
+        "integrity_warning_visibility": [
+          "v4_0_lifecycle_state_blocked_continuity_gap",
+          "v4_0_lifecycle_state_deprecated_legacy_patch_context",
+          "v4_0_lifecycle_state_experimental_refresh_chain"
+        ],
+        "lifecycle_continuity_visibility": [
+          "v4_0_future_successor_lifecycle_not_declared",
+          "v4_0_patch_lifecycle_foundation_replay_reference",
+          "v4_0_patch_lifecycle_foundation_rollback_reference",
+          "v4_0_patch_lifecycle_provenance_continuity_reference"
+        ],
+        "lifecycle_state": "v4_0_patch_lifecycle_visibility_descriptive_only",
+        "lineage_gap_visibility": [
+          "v4_0_future_successor_lifecycle_not_declared"
+        ],
+        "prohibited_state_visibility": [
+          "v4_0_lifecycle_state_prohibited_execution"
+        ],
+        "remediation_enabled": false,
+        "silent_omission_enabled": false,
+        "unknown_state_visibility": [
+          "v4_0_lifecycle_state_unknown_successor"
+        ],
+        "unsupported_state_visibility": [
+          "v4_0_lifecycle_state_unsupported_source"
+        ],
+        "visibility_reference_id": "v4_0_patch_lifecycle_visibility_primary",
+        "visibility_scope": "patch_lifecycle_visibility_descriptive_only"
+      }
+    ]
+  },
+  "foundation_status": "v4_0_patch_lifecycle_foundation_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "lifecycle_identity_normalization": {
+    "field_count": 14,
+    "hidden_fallback_enabled": false,
+    "identity_key": "v4_0.patch_lifecycle_foundations.1|v4_0_phase_1_patch_lifecycle_foundations|v4.0.0-foundation|v3.9-closeout|v4_0_patch_lifecycle_provenance_primary|v4_0_patch_lifecycle_lineage_primary",
+    "lifecycle_execution_enabled": false,
+    "normalization_scope": "deterministic_field_representation_only",
+    "normalized_identity": {
+      "extraction_version": "v3.9-closeout",
+      "identity_scope": "patch_lifecycle_identity_descriptive_only",
+      "lifecycle_execution_enabled": false,
+      "lifecycle_generation": "v4_0_phase_1_patch_lifecycle_foundations",
+      "lifecycle_purpose": "deterministic_operational_lifecycle_intelligence_only",
+      "lifecycle_timestamp": "2026-05-17T00:00:00+00:00",
+      "lineage_reference": "v4_0_patch_lifecycle_lineage_primary",
+      "non_executable": true,
+      "patch_version": "v4.0.0-foundation",
+      "provenance_reference": "v4_0_patch_lifecycle_provenance_primary",
+      "refresh_chain_reference": "v4_0_patch_lifecycle_refresh_chain_primary",
+      "runtime_mutation_enabled": false,
+      "schema_version": "v4_0.patch_lifecycle_foundations.1",
+      "trusted_bundle_reference": "v3_9_transition_continuity_certification_bundle"
+    },
+    "omitted_field_count": 0,
+    "runtime_mutation_enabled": false,
+    "silent_correction_enabled": false
+  },
+  "lifecycle_model_counts": {
+    "lifecycle_lineage_record_count": 1,
+    "lifecycle_provenance_record_count": 1,
+    "lifecycle_state_count": 7,
+    "lifecycle_state_counts": {
+      "blocked": 1,
+      "deprecated": 1,
+      "experimental": 1,
+      "invalid": 0,
+      "prohibited": 1,
+      "supported": 1,
+      "unknown": 1,
+      "unsupported": 1
+    },
+    "lifecycle_visibility_record_count": 1,
+    "patch_identity_count": 1,
+    "patch_operational_metadata_count": 1
+  },
+  "lineage_continuity_visibility": {
+    "lineage_continuity_reference_count": 3,
+    "lineage_gap_visibility_count": 1,
+    "lineage_record_count": 1,
+    "lineage_validations": [
+      {
+        "automatic_transition_enabled": false,
+        "continuity_reference_count": 3,
+        "descriptive_only": true,
+        "execution_enabled": false,
+        "fail_visible_lineage_gap_count": 1,
+        "hidden_lineage_gap_correction_enabled": false,
+        "lineage_key": "patch_lifecycle_lineage_descriptive_only|v4_0_patch_lifecycle_lineage_primary|1",
+        "lineage_preserved": true,
+        "lineage_reference_id": "v4_0_patch_lifecycle_lineage_primary",
+        "prior_bundle_reference_count": 3,
+        "provenance_continuity_reference_count": 1,
+        "refresh_chain_reference_count": 1,
+        "replay_safe": true,
+        "rollback_reference_count": 1,
+        "rollback_safe": true,
+        "successor_reference_count": 1,
+        "trusted_bundle_reference_count": 1,
+        "valid": true
+      }
+    ]
+  },
+  "non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_patch_transition_logic_absent": true,
+    "autonomous_behavior_absent": true,
+    "callable_operational_flow_absent": true,
+    "deployment_execution_absent": true,
+    "descriptive_only": true,
+    "dispatch_absent": true,
+    "hidden_lifecycle_state_mutation_absent": true,
+    "implicit_operational_state_transition_absent": true,
+    "lifecycle_execution_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "patch_application_absent": true,
+    "patch_execution_absent": true,
+    "production_automation_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "remediation_absent": true,
+    "repair_absent": true,
+    "routing_absent": true,
+    "runtime_mutation_absent": true,
+    "scheduling_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true
+  },
+  "operational_lifecycle_mode": "descriptive_only",
+  "phase_id": "v4_0_patch_lifecycle_foundations",
+  "phase_name": "v4.0_phase_1_patch_lifecycle_foundations",
+  "provenance_continuity_visibility": {
+    "provenance_continuity_reference_count": 4,
+    "provenance_record_count": 1,
+    "provenance_validations": [
+      {
+        "continuity_reference_count": 4,
+        "descriptive_only": true,
+        "execution_enabled": false,
+        "hidden": false,
+        "no_inferred_provenance": true,
+        "provenance_continuity_visible": true,
+        "provenance_key": "patch_lifecycle_provenance_descriptive_only|v4.0.0-foundation|v3.9-closeout|v4_0.patch_lifecycle_foundations.1|v4_0_patch_lifecycle_provenance_primary",
+        "provenance_preserved": true,
+        "provenance_reference_id": "v4_0_patch_lifecycle_provenance_primary",
+        "refresh_chain_reference_present": true,
+        "source_evidence_reference_count": 3,
+        "trusted_bundle_reference_present": true,
+        "valid": true
+      }
+    ]
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_0.patch_lifecycle_foundations_report.1",
+  "summary": {
+    "descriptive_only_verified": true,
+    "deterministic_equality_verified": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_serialization_verified": true,
+    "execution_boundary_enabled_count": 0,
+    "foundation_status": "v4_0_patch_lifecycle_foundation_stable",
+    "integrity_safe_visibility_preserved": true,
+    "integrity_warning_visibility_count": 3,
+    "lineage_continuity_verified": true,
+    "lineage_gap_visibility_count": 1,
+    "prohibited_state_visibility_count": 1,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "unknown_state_visibility_count": 1,
+    "unsupported_state_visibility_count": 1,
+    "validation_error_count": 0
+  }
+}
