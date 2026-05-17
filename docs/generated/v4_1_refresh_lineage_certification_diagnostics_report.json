@@ -1,0 +1,304 @@
+{
+  "architectural_purpose": "deterministic refresh lineage diagnostics visibility without remediation or execution",
+  "deterministic_report_hash": "5f65b9677db5e63b98ceeb67d474ed32360e9a870219cbc467334686d4b19610",
+  "diagnostics": {
+    "ancestry_discontinuity_visibility": [
+      "v4_1_future_generation_ancestry_not_declared"
+    ],
+    "automatic_recovery_absent": true,
+    "blocked_lineage_links": [
+      "v4_1_lineage_link_blocked_continuity_gap"
+    ],
+    "blocker_visibility": [
+      "v4_1_future_generation_ancestry_not_declared",
+      "v4_1_lineage_link_blocked_continuity_gap",
+      "v4_1_lineage_link_future_ancestry_gap",
+      "v4_1_lineage_link_future_generation_circular_visibility",
+      "v4_1_lineage_link_future_provenance_gap",
+      "v4_1_lineage_link_schema_discontinuity_visibility"
+    ],
+    "certification_hash": "80c7e7f2eed6337a8594d8f5d9d9e3e15c2610f0b40393c9d9e69c156951bca7",
+    "circular_ancestry_links": [
+      "v4_1_lineage_link_future_generation_circular_visibility"
+    ],
+    "continuity_certification": {
+      "ancestry_continuity": {
+        "ancestry_continuity_preserved": true,
+        "ancestry_discontinuity_visibility_count": 1,
+        "ancestry_reference": "v4_1_refresh_lineage_certification_ancestry_primary",
+        "ancestry_reference_visible": true,
+        "circular_ancestry_visibility_count": 1,
+        "parent_child_lineage_visibility_count": 2,
+        "valid": true
+      },
+      "ancestry_continuity_valid": true,
+      "lineage_continuity": {
+        "lineage_continuity_preserved": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_link_reference_visible": true,
+        "lineage_reference": "v4_1_refresh_lineage_certification_lineage_primary",
+        "lineage_reference_visible": true,
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "hidden_provenance_resolution_count": 0,
+        "no_inferred_provenance": true,
+        "provenance_continuity_preserved": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_inheritance_visible": true,
+        "provenance_reference": "v4_1_refresh_lineage_certification_provenance_primary",
+        "provenance_reference_visible": true,
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "live_replay_enabled": false,
+        "refresh_execution_enabled": false,
+        "replay_discontinuity_visibility_count": 1,
+        "replay_lineage_preserved": true,
+        "replay_reference": "v4_1_refresh_lineage_replay_primary",
+        "replay_reference_visible": true,
+        "replay_safe": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "automatic_rollback_enabled": false,
+        "recovery_execution_enabled": false,
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_lineage_preserved": true,
+        "rollback_reference": "v4_1_refresh_lineage_rollback_primary",
+        "rollback_reference_visible": true,
+        "rollback_safe": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "schema_continuity": {
+        "automatic_schema_migration_enabled": false,
+        "migration_execution_enabled": false,
+        "schema_discontinuity_visibility_count": 1,
+        "schema_transition_continuity_preserved": true,
+        "schema_transition_reference": "v4_1_refresh_lineage_schema_transition_primary",
+        "schema_transition_reference_visible": true,
+        "schema_transition_visibility_count": 1,
+        "valid": true
+      },
+      "schema_continuity_valid": true,
+      "valid": true
+    },
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_hash": "624ee2e2dc35f7e89d84406da4b83b5d8bfcacdf96365ff1846e0c1b2eeee75b",
+    "diagnostics_visible": true,
+    "drift_visibility": [
+      "future_refresh_generation_drift_not_declared",
+      "v4_1_lineage_link_stale_schema_transition"
+    ],
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "fail_visible_warning_count": 30,
+    "failure_visibility": [
+      "future_refresh_generation_continuity_target_not_declared"
+    ],
+    "integrity_visibility": [
+      "migration_execution_enabled",
+      "orchestration_enabled",
+      "planner_integration_enabled",
+      "refresh_execution_enabled",
+      "remediation_enabled"
+    ],
+    "lineage_discontinuity_visibility": [
+      "v4_1_lineage_link_future_ancestry_gap"
+    ],
+    "prohibited_lineage_domains": [
+      "authorization_approval_systems",
+      "automatic_continuity_correction",
+      "automatic_lineage_repair",
+      "automatic_recovery",
+      "automatic_rollback",
+      "automatic_schema_migration",
+      "hidden_orchestration_behavior",
+      "implicit_execution_pathways",
+      "migration_execution",
+      "optimization_systems",
+      "orchestration_execution",
+      "planner_integration",
+      "production_bundle_consumption",
+      "recommendation_ranking_scoring_selection",
+      "refresh_execution",
+      "remediation_systems",
+      "runtime_mutation"
+    ],
+    "prohibited_lineage_links": [
+      "v4_1_lineage_link_prohibited_migration"
+    ],
+    "provenance_discontinuity_visibility": [
+      "v4_1_lineage_link_future_provenance_gap"
+    ],
+    "remediation_absent": true,
+    "replay_discontinuity_visibility": [
+      "future_refresh_lineage_replay_source_not_declared"
+    ],
+    "rollback_discontinuity_visibility": [
+      "future_refresh_lineage_rollback_target_not_declared"
+    ],
+    "schema_discontinuity_visibility": [
+      "v4_1_lineage_link_schema_discontinuity_visibility"
+    ],
+    "silent_correction_absent": true,
+    "stale_lineage_links": [
+      "v4_1_lineage_link_stale_schema_transition"
+    ],
+    "unsupported_lineage_links": [
+      "v4_1_lineage_link_future_generation_unsupported"
+    ],
+    "unsupported_lineage_nodes": [
+      "v4_1_lineage_node_future_refresh_generation"
+    ],
+    "unsupported_lineage_providers": [
+      "future_refresh_generation_provider_not_declared"
+    ],
+    "visibility_validation": {
+      "ancestry_discontinuity_visibility_count": 1,
+      "blocked_lineage_link_visibility_count": 1,
+      "blocked_links_visible": true,
+      "circular_ancestry_visibility_count": 1,
+      "circular_ancestry_visible": true,
+      "diagnostics_warning_visibility_count": 37,
+      "fail_visible_ancestry_link_count": 8,
+      "failure_visibility_count": 1,
+      "governance_limitation_count": 10,
+      "governance_prohibition_count": 11,
+      "hidden_link_count": 0,
+      "hidden_node_count": 0,
+      "invalid_ancestry_link_state_count": 0,
+      "invalid_ancestry_node_state_count": 0,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_discontinuity_visible": true,
+      "link_execution_semantics_count": 0,
+      "link_state_counts": {
+        "blocked": 1,
+        "circular_ancestry": 1,
+        "invalid": 0,
+        "lineage_discontinuity": 1,
+        "prohibited": 1,
+        "provenance_discontinuity": 1,
+        "schema_discontinuity": 1,
+        "stale": 1,
+        "supported": 2,
+        "unsupported": 1
+      },
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular_ancestry": 0,
+        "invalid": 0,
+        "lineage_discontinuity": 0,
+        "prohibited": 1,
+        "provenance_discontinuity": 0,
+        "schema_discontinuity": 0,
+        "stale": 0,
+        "supported": 3,
+        "unsupported": 1
+      },
+      "prohibited_lineage_domain_visibility_count": 17,
+      "prohibited_lineage_domains_visible": true,
+      "prohibited_lineage_link_visibility_count": 1,
+      "prohibited_links_visible": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_discontinuity_visible": true,
+      "replay_discontinuity_visibility_count": 1,
+      "replay_discontinuity_visible": true,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_discontinuity_visible": true,
+      "schema_discontinuity_visibility_count": 1,
+      "schema_discontinuity_visible": true,
+      "stale_lineage_link_visibility_count": 1,
+      "stale_links_visible": true,
+      "unsupported_lineage_link_visibility_count": 1,
+      "unsupported_lineage_node_visibility_count": 1,
+      "unsupported_links_visible": true,
+      "unsupported_nodes_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    },
+    "warning_visibility": [
+      "v4_1_lineage_link_future_generation_unsupported",
+      "v4_1_lineage_link_stale_schema_transition",
+      "v4_1_lineage_link_stale_schema_transition"
+    ]
+  },
+  "diagnostics_mode": "fail_visible_descriptive_only",
+  "explicit_limitations": [
+    "v4.1 Phase 3 creates deterministic refresh lineage certification metadata only.",
+    "v4.1 Phase 3 does not enable refresh execution.",
+    "v4.1 Phase 3 does not enable orchestration.",
+    "v4.1 Phase 3 does not enable migration execution.",
+    "v4.1 Phase 3 does not enable automatic repair.",
+    "v4.1 Phase 3 does not enable automatic continuity correction.",
+    "v4.1 Phase 3 does not enable planner integration.",
+    "v4.1 Phase 3 does not enable production consumption.",
+    "v4.1 Phase 3 does not enable remediation.",
+    "v4.1 Phase 3 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration exists.",
+    "No refresh execution exists.",
+    "No migration execution exists.",
+    "No automatic repair exists.",
+    "No automatic continuity correction exists.",
+    "No automatic schema migration exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No silent continuity correction behavior exists."
+  ],
+  "foundation_status": "v4_1_refresh_lineage_certification_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_continuity_correction_absent": true,
+    "automatic_lineage_repair_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_rollback_absent": true,
+    "automatic_schema_migration_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "hidden_orchestration_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "migration_execution_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "runtime_mutation_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_continuity_correction_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_lineage_certification",
+  "phase_name": "v4.1_phase_3_refresh_lineage_certification_diagnostics",
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "schema_version": "v4_1.refresh_lineage_certification_diagnostics_report.1",
+  "summary": {
+    "automatic_recovery_absent": true,
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_visible": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_refresh_lineage_certification_stable",
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "remediation_absent": true,
+    "silent_correction_absent": true
+  }
+}
