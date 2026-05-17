@@ -1,0 +1,1324 @@
+{
+  "architectural_purpose": "deterministic refresh dependency governance intelligence without orchestration or execution",
+  "dependency_graph_identity_normalization": {
+    "field_count": 20,
+    "graph_execution_enabled": false,
+    "hidden_fallback_enabled": false,
+    "identity_key": "v4_1.refresh_dependency_graph_infrastructure.1|v4_1_phase_2_refresh_dependency_graph_infrastructure|v4_1_refresh_dependency_graph_primary|v4.1.0-phase-2|v4_1_refresh_manifest_primary|v4_1_refresh_dependency_graph_provenance_primary|v4_1_refresh_dependency_graph_lineage_primary",
+    "normalization_scope": "deterministic_field_representation_only",
+    "normalized_identity": {
+      "descriptive_only": true,
+      "diagnostics_reference": "v4_1_refresh_dependency_graph_diagnostics_primary",
+      "generated_at": "2026-05-17T00:00:00+00:00",
+      "governance_purpose": "deterministic_refresh_dependency_governance_intelligence_only",
+      "governance_reference": "v4_1_refresh_dependency_graph_governance_primary",
+      "graph_execution_enabled": false,
+      "graph_id": "v4_1_refresh_dependency_graph_primary",
+      "graph_scope": "refresh_dependency_graph_identity_descriptive_only",
+      "graph_version": "v4.1.0-phase-2",
+      "hidden_fallback_enabled": false,
+      "integrity_reference": "v4_1_refresh_dependency_graph_integrity_primary",
+      "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+      "non_executable": true,
+      "orchestration_enabled": false,
+      "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+      "refresh_cycle_id": "v4_1_phase_2_refresh_dependency_graph_infrastructure",
+      "runtime_mutation_enabled": false,
+      "schema_version": "v4_1.refresh_dependency_graph_infrastructure.1",
+      "source_manifest_hash_reference": "9f80efd07620a61c592f10c3042f04ce1a5e477dd8312fb241548ac518a5df5d",
+      "source_manifest_reference": "v4_1_refresh_manifest_primary"
+    },
+    "omitted_field_count": 0,
+    "orchestration_enabled": false,
+    "runtime_mutation_enabled": false,
+    "silent_correction_enabled": false
+  },
+  "dependency_graph_mode": "descriptive_only",
+  "deterministic_equality_verification": {
+    "dataclass_equality_stable": true,
+    "dataclass_hash_stable": true,
+    "reordered_serialized_equality_stable": true,
+    "serialized_equality_stable": true
+  },
+  "deterministic_hashing_verification": {
+    "continuity_hash": "86269abe004f0ec3247488ad54209474484a6c6054769739fdc500d2eea27cc5",
+    "diagnostics_hash": "e4218372c149e184e9ff345e5e1de9ea7057bd3be7f2b8a2f91d0bc2a106a79a",
+    "graph_hash": "ad3f8e2593b36722d227c4fbe36f7688ab92664fb829ef2303be32dbc2a599ad",
+    "hash_algorithm": "sha256_stable_json_v4_1_refresh_dependency_graph",
+    "identity_hash": "94995c734f21369498be1eef87b7743fdfa6c62757283caf98b5e8efe3df7411",
+    "stable": true
+  },
+  "deterministic_report_hash": "65d563f931287fb7c5531d6c5dc0aa3891f419249a1059926bf02013adea5334",
+  "deterministic_serialization_verification": {
+    "blocked_states_preserved": true,
+    "circular_dependencies_preserved": true,
+    "edge_order_preserved": true,
+    "hidden_omission_enabled": false,
+    "node_order_preserved": true,
+    "payload_length": 24156,
+    "prohibited_dependencies_preserved": true,
+    "serializer": "json_sort_keys_stable_v4_1_refresh_dependency_graph",
+    "stable": true,
+    "stale_dependencies_preserved": true,
+    "unsupported_states_preserved": true
+  },
+  "diagnostics_visibility": {
+    "automatic_recovery_absent": true,
+    "blocked_dependency_edges": [
+      "v4_1_edge_manifest_to_blocked_dependency_gap"
+    ],
+    "blocker_visibility": [
+      "v4_1_edge_future_provider_to_manifest_circular_visibility",
+      "v4_1_future_provider_lineage_not_declared",
+      "v4_1_future_provider_provenance_not_declared"
+    ],
+    "circular_dependency_edges": [
+      "v4_1_edge_future_provider_to_manifest_circular_visibility"
+    ],
+    "continuity_validation": {
+      "lineage_continuity": {
+        "hidden_lineage_resolution_count": 0,
+        "lineage_chain_count": 1,
+        "lineage_chain_reference_visible": true,
+        "lineage_continuity_preserved": true,
+        "lineage_continuity_reference_visible": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_execution_semantics_count": 0,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "hidden_provenance_resolution_count": 0,
+        "no_inferred_provenance": true,
+        "provenance_chain_count": 1,
+        "provenance_chain_reference_visible": true,
+        "provenance_continuity_preserved": true,
+        "provenance_continuity_reference_visible": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_execution_semantics_count": 0,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "dependency_execution_enabled": false,
+        "live_replay_enabled": false,
+        "replay_continuity_preserved": true,
+        "replay_continuity_reference_visible": true,
+        "replay_discontinuity_visibility_count": 1,
+        "replay_reference": "v4_1_refresh_dependency_replay_primary",
+        "replay_safe": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "automatic_rollback_enabled": false,
+        "recovery_execution_enabled": false,
+        "rollback_continuity_preserved": true,
+        "rollback_continuity_reference_visible": true,
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_reference": "v4_1_refresh_dependency_rollback_primary",
+        "rollback_safe": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "valid": true
+    },
+    "diagnostics_are_descriptive_only": true,
+    "diagnostics_hash": "e4218372c149e184e9ff345e5e1de9ea7057bd3be7f2b8a2f91d0bc2a106a79a",
+    "diagnostics_visible": true,
+    "drift_visibility": [
+      "future_refresh_provider_contract_not_declared",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ],
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "fail_visible_warning_count": 26,
+    "graph_hash": "ad3f8e2593b36722d227c4fbe36f7688ab92664fb829ef2303be32dbc2a599ad",
+    "integrity_visibility": [
+      "dependency_execution_enabled",
+      "orchestration_enabled",
+      "planner_integration_enabled",
+      "remediation_enabled"
+    ],
+    "lineage_discontinuity_visibility": [
+      "v4_1_future_provider_lineage_not_declared"
+    ],
+    "prohibited_dependency_domains": [
+      "authorization_approval_systems",
+      "automatic_dependency_resolution",
+      "automatic_migration",
+      "automatic_recovery",
+      "automatic_refresh_sequencing",
+      "automatic_rollback",
+      "dependency_execution",
+      "hidden_orchestration_behavior",
+      "implicit_execution_pathways",
+      "optimization_systems",
+      "orchestration_execution",
+      "planner_integration",
+      "production_bundle_consumption",
+      "recommendation_ranking_scoring_selection",
+      "refresh_execution",
+      "remediation_systems",
+      "runtime_mutation"
+    ],
+    "prohibited_dependency_edges": [
+      "v4_1_edge_manifest_to_production_runtime_bundle"
+    ],
+    "provenance_discontinuity_visibility": [
+      "v4_1_future_provider_provenance_not_declared"
+    ],
+    "remediation_absent": true,
+    "replay_discontinuity_visibility": [
+      "future_refresh_dependency_replay_source_not_declared"
+    ],
+    "rollback_discontinuity_visibility": [
+      "future_refresh_dependency_rollback_target_not_declared"
+    ],
+    "silent_fallback_absent": true,
+    "stale_dependency_edges": [
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ],
+    "unsupported_dependency_edges": [
+      "v4_1_edge_manifest_to_future_provider"
+    ],
+    "unsupported_dependency_nodes": [
+      "v4_1_node_future_refresh_provider"
+    ],
+    "unsupported_dependency_providers": [
+      "future_refresh_provider_contract_not_declared"
+    ],
+    "visibility_validation": {
+      "blocked_dependency_edge_visibility_count": 1,
+      "blocked_edges_visible": true,
+      "circular_dependencies_visible": true,
+      "circular_dependency_visibility_count": 1,
+      "diagnostics_warning_visibility_count": 33,
+      "edge_execution_semantics_count": 0,
+      "edge_state_counts": {
+        "blocked": 1,
+        "circular": 1,
+        "invalid": 0,
+        "lineage_gap": 1,
+        "prohibited": 1,
+        "provenance_gap": 1,
+        "stale": 1,
+        "supported": 1,
+        "unsupported": 1
+      },
+      "fail_visible_dependency_edge_count": 7,
+      "governance_limitation_count": 10,
+      "governance_prohibition_count": 11,
+      "hidden_edge_count": 0,
+      "hidden_node_count": 0,
+      "invalid_dependency_edge_state_count": 0,
+      "invalid_dependency_node_state_count": 0,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_discontinuity_visible": true,
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular": 0,
+        "invalid": 0,
+        "lineage_gap": 0,
+        "prohibited": 1,
+        "provenance_gap": 0,
+        "stale": 0,
+        "supported": 2,
+        "unsupported": 1
+      },
+      "prohibited_dependency_domain_visibility_count": 17,
+      "prohibited_dependency_domains_visible": true,
+      "prohibited_dependency_edge_visibility_count": 1,
+      "prohibited_edges_visible": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_discontinuity_visible": true,
+      "replay_discontinuity_visibility_count": 1,
+      "replay_discontinuity_visible": true,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_discontinuity_visible": true,
+      "stale_dependency_edge_visibility_count": 1,
+      "stale_edges_visible": true,
+      "unsupported_dependency_edge_visibility_count": 1,
+      "unsupported_dependency_node_visibility_count": 1,
+      "unsupported_edges_visible": true,
+      "unsupported_nodes_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    },
+    "warning_visibility": [
+      "v4_1_edge_manifest_to_future_provider",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency",
+      "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+    ]
+  },
+  "explicit_limitations": [
+    "v4.1 Phase 2 creates deterministic refresh dependency governance metadata only.",
+    "v4.1 Phase 2 does not enable refresh execution.",
+    "v4.1 Phase 2 does not enable orchestration.",
+    "v4.1 Phase 2 does not enable dependency execution.",
+    "v4.1 Phase 2 does not enable automatic sequencing.",
+    "v4.1 Phase 2 does not enable automatic dependency resolution.",
+    "v4.1 Phase 2 does not enable planner integration.",
+    "v4.1 Phase 2 does not enable production consumption.",
+    "v4.1 Phase 2 does not enable remediation.",
+    "v4.1 Phase 2 does not enable mutation behavior."
+  ],
+  "explicit_prohibitions": [
+    "No orchestration exists.",
+    "No dependency execution exists.",
+    "No automatic sequencing exists.",
+    "No automatic dependency resolution exists.",
+    "No planner integration exists.",
+    "No production consumption exists.",
+    "No remediation exists.",
+    "No mutation behavior exists.",
+    "No recommendation, ranking, scoring, or selection behavior exists.",
+    "No approval or authorization behavior exists.",
+    "No silent dependency fallback behavior exists."
+  ],
+  "fail_visible_visibility": {
+    "blocked_dependency_edge_visibility_count": 1,
+    "circular_dependencies_visible": true,
+    "circular_dependency_visibility_count": 1,
+    "diagnostics_warning_visibility_count": 33,
+    "fail_visible_dependency_edge_count": 7,
+    "lineage_discontinuity_visibility_count": 1,
+    "prohibited_dependency_domain_visibility_count": 17,
+    "prohibited_dependency_domains_visible": true,
+    "prohibited_dependency_edge_visibility_count": 1,
+    "prohibited_edges_visible": true,
+    "provenance_discontinuity_visibility_count": 1,
+    "replay_discontinuity_visibility_count": 1,
+    "rollback_discontinuity_visibility_count": 1,
+    "stale_dependency_edge_visibility_count": 1,
+    "stale_edges_visible": true,
+    "unsupported_dependency_edge_visibility_count": 1,
+    "unsupported_dependency_node_visibility_count": 1,
+    "unsupported_edges_visible": true,
+    "unsupported_nodes_visible": true,
+    "visibility_is_descriptive_only": true
+  },
+  "foundation_status": "v4_1_refresh_dependency_graph_stable",
+  "generated_at": "2026-05-17T00:00:00+00:00",
+  "graph_model_counts": {
+    "edge_count": 8,
+    "edge_state_counts": {
+      "blocked": 1,
+      "circular": 1,
+      "invalid": 0,
+      "lineage_gap": 1,
+      "prohibited": 1,
+      "provenance_gap": 1,
+      "stale": 1,
+      "supported": 1,
+      "unsupported": 1
+    },
+    "identity_count": 1,
+    "lineage_chain_count": 1,
+    "node_count": 4,
+    "node_state_counts": {
+      "blocked": 0,
+      "circular": 0,
+      "invalid": 0,
+      "lineage_gap": 0,
+      "prohibited": 1,
+      "provenance_gap": 0,
+      "stale": 0,
+      "supported": 2,
+      "unsupported": 1
+    },
+    "provenance_chain_count": 1
+  },
+  "integrity_validation": {
+    "continuity_valid": true,
+    "continuity_validation": {
+      "lineage_continuity": {
+        "hidden_lineage_resolution_count": 0,
+        "lineage_chain_count": 1,
+        "lineage_chain_reference_visible": true,
+        "lineage_continuity_preserved": true,
+        "lineage_continuity_reference_visible": true,
+        "lineage_discontinuity_visibility_count": 1,
+        "lineage_execution_semantics_count": 0,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "valid": true
+      },
+      "lineage_continuity_valid": true,
+      "provenance_continuity": {
+        "hidden_provenance_resolution_count": 0,
+        "no_inferred_provenance": true,
+        "provenance_chain_count": 1,
+        "provenance_chain_reference_visible": true,
+        "provenance_continuity_preserved": true,
+        "provenance_continuity_reference_visible": true,
+        "provenance_discontinuity_visibility_count": 1,
+        "provenance_execution_semantics_count": 0,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "valid": true
+      },
+      "provenance_continuity_valid": true,
+      "replay_continuity": {
+        "dependency_execution_enabled": false,
+        "live_replay_enabled": false,
+        "replay_continuity_preserved": true,
+        "replay_continuity_reference_visible": true,
+        "replay_discontinuity_visibility_count": 1,
+        "replay_reference": "v4_1_refresh_dependency_replay_primary",
+        "replay_safe": true,
+        "valid": true
+      },
+      "replay_continuity_valid": true,
+      "rollback_continuity": {
+        "automatic_rollback_enabled": false,
+        "recovery_execution_enabled": false,
+        "rollback_continuity_preserved": true,
+        "rollback_continuity_reference_visible": true,
+        "rollback_discontinuity_visibility_count": 1,
+        "rollback_reference": "v4_1_refresh_dependency_rollback_primary",
+        "rollback_safe": true,
+        "valid": true
+      },
+      "rollback_continuity_valid": true,
+      "valid": true
+    },
+    "exported_field_count": 39,
+    "identity_normalization": {
+      "field_count": 20,
+      "graph_execution_enabled": false,
+      "hidden_fallback_enabled": false,
+      "identity_key": "v4_1.refresh_dependency_graph_infrastructure.1|v4_1_phase_2_refresh_dependency_graph_infrastructure|v4_1_refresh_dependency_graph_primary|v4.1.0-phase-2|v4_1_refresh_manifest_primary|v4_1_refresh_dependency_graph_provenance_primary|v4_1_refresh_dependency_graph_lineage_primary",
+      "normalization_scope": "deterministic_field_representation_only",
+      "normalized_identity": {
+        "descriptive_only": true,
+        "diagnostics_reference": "v4_1_refresh_dependency_graph_diagnostics_primary",
+        "generated_at": "2026-05-17T00:00:00+00:00",
+        "governance_purpose": "deterministic_refresh_dependency_governance_intelligence_only",
+        "governance_reference": "v4_1_refresh_dependency_graph_governance_primary",
+        "graph_execution_enabled": false,
+        "graph_id": "v4_1_refresh_dependency_graph_primary",
+        "graph_scope": "refresh_dependency_graph_identity_descriptive_only",
+        "graph_version": "v4.1.0-phase-2",
+        "hidden_fallback_enabled": false,
+        "integrity_reference": "v4_1_refresh_dependency_graph_integrity_primary",
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "non_executable": true,
+        "orchestration_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "refresh_cycle_id": "v4_1_phase_2_refresh_dependency_graph_infrastructure",
+        "runtime_mutation_enabled": false,
+        "schema_version": "v4_1.refresh_dependency_graph_infrastructure.1",
+        "source_manifest_hash_reference": "9f80efd07620a61c592f10c3042f04ce1a5e477dd8312fb241548ac518a5df5d",
+        "source_manifest_reference": "v4_1_refresh_manifest_primary"
+      },
+      "omitted_field_count": 0,
+      "orchestration_enabled": false,
+      "runtime_mutation_enabled": false,
+      "silent_correction_enabled": false
+    },
+    "non_execution_valid": true,
+    "non_execution_validation": {
+      "approval_absent": true,
+      "authorization_absent": true,
+      "automatic_dependency_resolution_absent": true,
+      "automatic_migration_absent": true,
+      "automatic_recovery_absent": true,
+      "automatic_refresh_sequencing_absent": true,
+      "automatic_rollback_absent": true,
+      "dependency_execution_absent": true,
+      "descriptive_only": true,
+      "enabled_capability_count": 0,
+      "enabled_capability_flags": {},
+      "graph_execution_absent": true,
+      "hidden_orchestration_behavior_absent": true,
+      "implicit_execution_pathway_absent": true,
+      "non_executable": true,
+      "optimization_absent": true,
+      "orchestration_absent": true,
+      "planner_integration_absent": true,
+      "production_consumption_absent": true,
+      "ranking_absent": true,
+      "recommendation_absent": true,
+      "refresh_execution_absent": true,
+      "remediation_absent": true,
+      "runtime_mutation_absent": true,
+      "scoring_absent": true,
+      "selection_absent": true,
+      "silent_dependency_fallback_absent": true,
+      "valid": true
+    },
+    "prohibited_leakage_visible": true,
+    "valid": true,
+    "visibility_valid": true,
+    "visibility_validation": {
+      "blocked_dependency_edge_visibility_count": 1,
+      "blocked_edges_visible": true,
+      "circular_dependencies_visible": true,
+      "circular_dependency_visibility_count": 1,
+      "diagnostics_warning_visibility_count": 33,
+      "edge_execution_semantics_count": 0,
+      "edge_state_counts": {
+        "blocked": 1,
+        "circular": 1,
+        "invalid": 0,
+        "lineage_gap": 1,
+        "prohibited": 1,
+        "provenance_gap": 1,
+        "stale": 1,
+        "supported": 1,
+        "unsupported": 1
+      },
+      "fail_visible_dependency_edge_count": 7,
+      "governance_limitation_count": 10,
+      "governance_prohibition_count": 11,
+      "hidden_edge_count": 0,
+      "hidden_node_count": 0,
+      "invalid_dependency_edge_state_count": 0,
+      "invalid_dependency_node_state_count": 0,
+      "lineage_discontinuity_visibility_count": 1,
+      "lineage_discontinuity_visible": true,
+      "node_execution_semantics_count": 0,
+      "node_state_counts": {
+        "blocked": 0,
+        "circular": 0,
+        "invalid": 0,
+        "lineage_gap": 0,
+        "prohibited": 1,
+        "provenance_gap": 0,
+        "stale": 0,
+        "supported": 2,
+        "unsupported": 1
+      },
+      "prohibited_dependency_domain_visibility_count": 17,
+      "prohibited_dependency_domains_visible": true,
+      "prohibited_dependency_edge_visibility_count": 1,
+      "prohibited_edges_visible": true,
+      "provenance_discontinuity_visibility_count": 1,
+      "provenance_discontinuity_visible": true,
+      "replay_discontinuity_visibility_count": 1,
+      "replay_discontinuity_visible": true,
+      "rollback_discontinuity_visibility_count": 1,
+      "rollback_discontinuity_visible": true,
+      "stale_dependency_edge_visibility_count": 1,
+      "stale_edges_visible": true,
+      "unsupported_dependency_edge_visibility_count": 1,
+      "unsupported_dependency_node_visibility_count": 1,
+      "unsupported_edges_visible": true,
+      "unsupported_nodes_visible": true,
+      "valid": true,
+      "visibility_is_descriptive_only": true
+    }
+  },
+  "lineage_continuity_visibility": {
+    "hidden_lineage_resolution_count": 0,
+    "lineage_chain_count": 1,
+    "lineage_chain_reference_visible": true,
+    "lineage_continuity_preserved": true,
+    "lineage_continuity_reference_visible": true,
+    "lineage_discontinuity_visibility_count": 1,
+    "lineage_execution_semantics_count": 0,
+    "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+    "valid": true
+  },
+  "non_execution_guarantees": {
+    "approval_absent": true,
+    "authorization_absent": true,
+    "automatic_dependency_resolution_absent": true,
+    "automatic_migration_absent": true,
+    "automatic_recovery_absent": true,
+    "automatic_refresh_sequencing_absent": true,
+    "automatic_rollback_absent": true,
+    "dependency_execution_absent": true,
+    "descriptive_only": true,
+    "enabled_capability_count": 0,
+    "enabled_capability_flags": {},
+    "graph_execution_absent": true,
+    "hidden_orchestration_behavior_absent": true,
+    "implicit_execution_pathway_absent": true,
+    "non_executable": true,
+    "optimization_absent": true,
+    "orchestration_absent": true,
+    "planner_integration_absent": true,
+    "production_consumption_absent": true,
+    "ranking_absent": true,
+    "recommendation_absent": true,
+    "refresh_execution_absent": true,
+    "remediation_absent": true,
+    "runtime_mutation_absent": true,
+    "scoring_absent": true,
+    "selection_absent": true,
+    "silent_dependency_fallback_absent": true,
+    "valid": true
+  },
+  "phase_id": "v4_1_refresh_dependency_graph_infrastructure",
+  "phase_name": "v4.1_phase_2_refresh_dependency_graph_infrastructure",
+  "provenance_continuity_visibility": {
+    "hidden_provenance_resolution_count": 0,
+    "no_inferred_provenance": true,
+    "provenance_chain_count": 1,
+    "provenance_chain_reference_visible": true,
+    "provenance_continuity_preserved": true,
+    "provenance_continuity_reference_visible": true,
+    "provenance_discontinuity_visibility_count": 1,
+    "provenance_execution_semantics_count": 0,
+    "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+    "valid": true
+  },
+  "refresh_dependency_graph": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "automatic_dependency_resolution_enabled": false,
+    "automatic_migration_enabled": false,
+    "automatic_recovery_enabled": false,
+    "automatic_refresh_sequencing_enabled": false,
+    "automatic_rollback_enabled": false,
+    "blocked_state_visibility": {
+      "automatic_resolution_enabled": false,
+      "blocked_dependency_edges": [
+        "v4_1_edge_manifest_to_blocked_dependency_gap"
+      ],
+      "blocked_visibility_id": "v4_1_refresh_dependency_blocked_visibility_primary",
+      "circular_dependency_edges": [
+        "v4_1_edge_future_provider_to_manifest_circular_visibility"
+      ],
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "fail_visible": true,
+      "lineage_discontinuity_visibility": [
+        "v4_1_future_provider_lineage_not_declared"
+      ],
+      "prohibited_execution_leakage": [
+        "dependency_execution_enabled"
+      ],
+      "prohibited_orchestration_leakage": [
+        "orchestration_enabled"
+      ],
+      "prohibited_planner_integration_leakage": [
+        "planner_integration_enabled"
+      ],
+      "prohibited_remediation_leakage": [
+        "remediation_enabled"
+      ],
+      "provenance_discontinuity_visibility": [
+        "v4_1_future_provider_provenance_not_declared"
+      ],
+      "remediation_enabled": false,
+      "replay_discontinuity_visibility": [
+        "future_refresh_dependency_replay_source_not_declared"
+      ],
+      "rollback_discontinuity_visibility": [
+        "future_refresh_dependency_rollback_target_not_declared"
+      ],
+      "silent_fallback_enabled": false
+    },
+    "continuity_metadata": {
+      "automatic_recovery_enabled": false,
+      "automatic_rollback_enabled": false,
+      "continuity_id": "v4_1_refresh_dependency_continuity_primary",
+      "continuity_preserved": true,
+      "descriptive_only": true,
+      "deterministic_hash_reference": "v4_1_refresh_dependency_continuity_hash",
+      "deterministic_order": 1,
+      "drift_visibility_references": [
+        "v4_1_refresh_dependency_drift_visibility_primary"
+      ],
+      "execution_enabled": false,
+      "fail_visible": true,
+      "graph_continuity_preserved": true,
+      "graph_continuity_references": [
+        "v4_1_refresh_dependency_graph_primary",
+        "v4_1_refresh_manifest_foundations"
+      ],
+      "lineage_continuity_preserved": true,
+      "lineage_continuity_references": [
+        "v4_1_refresh_dependency_graph_lineage_primary",
+        "v4_1_refresh_dependency_lineage_chain_primary"
+      ],
+      "provenance_continuity_preserved": true,
+      "provenance_continuity_references": [
+        "v4_1_refresh_dependency_graph_provenance_primary",
+        "v4_1_refresh_dependency_provenance_chain_primary"
+      ],
+      "replay_continuity_preserved": true,
+      "replay_continuity_references": [
+        "v4_1_refresh_dependency_replay_primary"
+      ],
+      "replay_safe": true,
+      "rollback_continuity_preserved": true,
+      "rollback_continuity_references": [
+        "v4_1_refresh_dependency_rollback_primary"
+      ],
+      "rollback_safe": true
+    },
+    "dependency_execution_enabled": false,
+    "descriptive_only": true,
+    "diagnostics_visibility": {
+      "automatic_recovery_enabled": false,
+      "blocker_visibility": [
+        "v4_1_edge_future_provider_to_manifest_circular_visibility",
+        "v4_1_future_provider_lineage_not_declared",
+        "v4_1_future_provider_provenance_not_declared"
+      ],
+      "circular_dependency_visibility": [
+        "v4_1_edge_future_provider_to_manifest_circular_visibility"
+      ],
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "diagnostic_references": [
+        "v4_1_refresh_dependency_integrity_validation",
+        "v4_1_refresh_dependency_non_execution_validation",
+        "v4_1_refresh_dependency_visibility_validation"
+      ],
+      "diagnostics_id": "v4_1_refresh_dependency_graph_diagnostics_primary",
+      "diagnostics_visible": true,
+      "drift_visibility": [
+        "future_refresh_provider_contract_not_declared",
+        "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+      ],
+      "fail_visible": true,
+      "integrity_visibility": [
+        "dependency_execution_enabled",
+        "orchestration_enabled",
+        "planner_integration_enabled",
+        "remediation_enabled"
+      ],
+      "prohibited_dependency_visibility": [
+        "authorization_approval_systems",
+        "automatic_dependency_resolution",
+        "automatic_migration",
+        "automatic_recovery",
+        "automatic_refresh_sequencing",
+        "automatic_rollback",
+        "dependency_execution",
+        "hidden_orchestration_behavior",
+        "implicit_execution_pathways",
+        "optimization_systems",
+        "orchestration_execution",
+        "planner_integration",
+        "production_bundle_consumption",
+        "recommendation_ranking_scoring_selection",
+        "refresh_execution",
+        "remediation_systems",
+        "runtime_mutation",
+        "v4_1_edge_manifest_to_production_runtime_bundle"
+      ],
+      "remediation_enabled": false,
+      "silent_fallback_enabled": false,
+      "unsupported_dependency_visibility": [
+        "v4_1_edge_manifest_to_future_provider",
+        "v4_1_node_future_refresh_provider"
+      ],
+      "warning_visibility": [
+        "v4_1_edge_manifest_to_future_provider",
+        "v4_1_edge_manifest_to_stale_lifecycle_dependency",
+        "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+      ]
+    },
+    "drift_visibility": {
+      "automatic_dependency_resolution_enabled": false,
+      "automatic_migration_enabled": false,
+      "changed_manifest_references": [
+        "v4_0_lifecycle_dependency_snapshot_read_only"
+      ],
+      "dependency_drift_references": [
+        "future_refresh_provider_contract_not_declared"
+      ],
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "drift_visibility_id": "v4_1_refresh_dependency_drift_visibility_primary",
+      "drift_visible": true,
+      "fail_visible": true,
+      "hidden_drift_resolution_enabled": false,
+      "stale_relationships": [
+        "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+      ]
+    },
+    "edges": [
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_manifest_to_closeout_source",
+        "fail_visible": false,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "refresh manifest source evidence references v4.0 closeout governance",
+        "relationship_state": "supported",
+        "relationship_type": "manifest_source_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "info",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_v4_0_closeout_evidence"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_manifest_to_future_provider",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "future provider relationship remains unsupported and fail-visible",
+        "relationship_state": "unsupported",
+        "relationship_type": "provider_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "warning",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_future_refresh_provider"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_manifest_to_production_runtime_bundle",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "production runtime bundle dependency remains prohibited and not consumed",
+        "relationship_state": "prohibited",
+        "relationship_type": "runtime_prohibited_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "prohibited",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_production_runtime_bundle"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_manifest_to_blocked_dependency_gap",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "future refresh provider dependency schema is not declared",
+        "relationship_state": "blocked",
+        "relationship_type": "schema_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "blocked",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_future_refresh_provider"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": true,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_future_provider_to_manifest_circular_visibility",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_future_refresh_provider",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "potential future-provider cycle is visible and not traversed or resolved",
+        "relationship_state": "circular",
+        "relationship_type": "circular_dependency_visibility",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "blocked",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_refresh_manifest_primary"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "drift_visible": true,
+        "edge_id": "v4_1_edge_manifest_to_stale_lifecycle_dependency",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "v4.0 lifecycle dependency snapshot is read-only stale governance evidence",
+        "relationship_state": "stale",
+        "relationship_type": "lineage_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "warning",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_v4_0_closeout_evidence"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_future_lineage_gap_visibility",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "future provider lineage continuity is not declared and remains visible",
+        "relationship_state": "lineage_gap",
+        "relationship_type": "lineage_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "warning",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_future_refresh_provider"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "automatic_refresh_sequencing_enabled": false,
+        "circular_visibility": false,
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "drift_visible": false,
+        "edge_id": "v4_1_edge_future_provenance_gap_visibility",
+        "fail_visible": true,
+        "from_node_id": "v4_1_node_refresh_manifest_primary",
+        "hidden": false,
+        "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "orchestration_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "reason": "future provider provenance continuity is not declared and remains visible",
+        "relationship_state": "provenance_gap",
+        "relationship_type": "provenance_dependency",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "severity": "warning",
+        "silent_fallback_enabled": false,
+        "to_node_id": "v4_1_node_future_refresh_provider"
+      }
+    ],
+    "governance_visibility": {
+      "approval_enabled": false,
+      "authorization_enabled": false,
+      "automatic_dependency_resolution_enabled": false,
+      "automatic_refresh_sequencing_enabled": false,
+      "dependency_execution_enabled": false,
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "execution_authorized": false,
+      "explicit_limitations": [
+        "v4.1 Phase 2 creates deterministic refresh dependency governance metadata only.",
+        "v4.1 Phase 2 does not enable automatic dependency resolution.",
+        "v4.1 Phase 2 does not enable automatic sequencing.",
+        "v4.1 Phase 2 does not enable dependency execution.",
+        "v4.1 Phase 2 does not enable mutation behavior.",
+        "v4.1 Phase 2 does not enable orchestration.",
+        "v4.1 Phase 2 does not enable planner integration.",
+        "v4.1 Phase 2 does not enable production consumption.",
+        "v4.1 Phase 2 does not enable refresh execution.",
+        "v4.1 Phase 2 does not enable remediation."
+      ],
+      "explicit_prohibitions": [
+        "No approval or authorization behavior exists.",
+        "No automatic dependency resolution exists.",
+        "No automatic sequencing exists.",
+        "No dependency execution exists.",
+        "No mutation behavior exists.",
+        "No orchestration exists.",
+        "No planner integration exists.",
+        "No production consumption exists.",
+        "No recommendation, ranking, scoring, or selection behavior exists.",
+        "No remediation exists.",
+        "No silent dependency fallback behavior exists."
+      ],
+      "governance_id": "v4_1_refresh_dependency_graph_governance_primary",
+      "governance_references": [
+        "v4_1_refresh_dependency_graph_governance_boundary",
+        "v4_1_refresh_manifest_foundations"
+      ],
+      "governance_visible": true,
+      "mutation_enabled": false,
+      "orchestration_enabled": false,
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "ranking_enabled": false,
+      "recommendation_enabled": false,
+      "refresh_execution_enabled": false,
+      "remediation_enabled": false,
+      "scoring_enabled": false,
+      "selection_enabled": false
+    },
+    "graph_execution_enabled": false,
+    "graph_scope": "deterministic_refresh_dependency_governance_intelligence_only",
+    "hidden_orchestration_behavior_enabled": false,
+    "identity": {
+      "descriptive_only": true,
+      "diagnostics_reference": "v4_1_refresh_dependency_graph_diagnostics_primary",
+      "generated_at": "2026-05-17T00:00:00+00:00",
+      "governance_purpose": "deterministic_refresh_dependency_governance_intelligence_only",
+      "governance_reference": "v4_1_refresh_dependency_graph_governance_primary",
+      "graph_execution_enabled": false,
+      "graph_id": "v4_1_refresh_dependency_graph_primary",
+      "graph_scope": "refresh_dependency_graph_identity_descriptive_only",
+      "graph_version": "v4.1.0-phase-2",
+      "hidden_fallback_enabled": false,
+      "integrity_reference": "v4_1_refresh_dependency_graph_integrity_primary",
+      "lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+      "non_executable": true,
+      "orchestration_enabled": false,
+      "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+      "refresh_cycle_id": "v4_1_phase_2_refresh_dependency_graph_infrastructure",
+      "runtime_mutation_enabled": false,
+      "schema_version": "v4_1.refresh_dependency_graph_infrastructure.1",
+      "source_manifest_hash_reference": "9f80efd07620a61c592f10c3042f04ce1a5e477dd8312fb241548ac518a5df5d",
+      "source_manifest_reference": "v4_1_refresh_manifest_primary"
+    },
+    "implicit_execution_pathway_enabled": false,
+    "lineage_chains": [
+      {
+        "automatic_lineage_repair_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "edge_references": [
+          "v4_1_edge_future_lineage_gap_visibility",
+          "v4_1_edge_future_provenance_gap_visibility",
+          "v4_1_edge_future_provider_to_manifest_circular_visibility",
+          "v4_1_edge_manifest_to_blocked_dependency_gap",
+          "v4_1_edge_manifest_to_closeout_source",
+          "v4_1_edge_manifest_to_future_provider",
+          "v4_1_edge_manifest_to_production_runtime_bundle",
+          "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+        ],
+        "execution_enabled": false,
+        "fail_visible": true,
+        "graph_lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "hidden_lineage_resolution_enabled": false,
+        "lineage_chain_id": "v4_1_refresh_dependency_lineage_chain_primary",
+        "lineage_discontinuity_visibility": [
+          "v4_1_future_provider_lineage_not_declared"
+        ],
+        "lineage_preserved": true,
+        "node_references": [
+          "v4_1_node_future_refresh_provider",
+          "v4_1_node_production_runtime_bundle",
+          "v4_1_node_refresh_manifest_primary",
+          "v4_1_node_v4_0_closeout_evidence"
+        ],
+        "prior_graph_references": [
+          "v4_0_closeout_and_v4_1_readiness",
+          "v4_1_refresh_manifest_foundations"
+        ],
+        "successor_graph_references": [
+          "future_refresh_dependency_governance_phase_not_declared"
+        ]
+      }
+    ],
+    "nodes": [
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "dependency_domain": "manifest_identity",
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": false,
+        "hidden": false,
+        "manifest_reference": "v4_1_refresh_manifest_primary",
+        "node_id": "v4_1_node_refresh_manifest_primary",
+        "node_type": "refresh_manifest",
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "provider_reference": "v4_1_refresh_manifest_foundations",
+        "reason": "phase 1 refresh manifest foundation is available as deterministic governance evidence",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "schema_reference": "v4_1.refresh_manifest_foundations.1",
+        "severity": "info",
+        "silent_fallback_enabled": false,
+        "source_lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "state": "supported"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "dependency_domain": "source_lineage",
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "fail_visible": false,
+        "hidden": false,
+        "manifest_reference": "v4_0_closeout_and_v4_1_readiness_report",
+        "node_id": "v4_1_node_v4_0_closeout_evidence",
+        "node_type": "source_evidence",
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "provider_reference": "v4_0_closeout_governance",
+        "reason": "v4.0 closeout evidence anchors refresh manifest source lineage",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "schema_reference": "v4_0.closeout_and_v4_1_readiness_report.1",
+        "severity": "info",
+        "silent_fallback_enabled": false,
+        "source_lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "state": "supported"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "dependency_domain": "provider_contract",
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "fail_visible": true,
+        "hidden": false,
+        "manifest_reference": "future_refresh_provider_contract",
+        "node_id": "v4_1_node_future_refresh_provider",
+        "node_type": "future_provider",
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "provider_reference": "future_refresh_provider_contract_not_declared",
+        "reason": "future refresh provider contracts are not declared in phase 2",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "schema_reference": "future.refresh_provider_contract.unknown",
+        "severity": "warning",
+        "silent_fallback_enabled": false,
+        "source_lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "state": "unsupported"
+      },
+      {
+        "automatic_dependency_resolution_enabled": false,
+        "dependency_domain": "production_bundle_consumption",
+        "dependency_execution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "fail_visible": true,
+        "hidden": false,
+        "manifest_reference": "production_runtime_bundle",
+        "node_id": "v4_1_node_production_runtime_bundle",
+        "node_type": "prohibited_runtime_source",
+        "provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "provider_reference": "production_runtime_bundle_dependency",
+        "reason": "production bundle consumption is prohibited for refresh dependency governance",
+        "remediation_enabled": false,
+        "runtime_mutation_enabled": false,
+        "schema_reference": "production.runtime_bundle.prohibited",
+        "severity": "prohibited",
+        "silent_fallback_enabled": false,
+        "source_lineage_reference": "v4_1_refresh_dependency_graph_lineage_primary",
+        "state": "prohibited"
+      }
+    ],
+    "non_executable": true,
+    "optimization_enabled": false,
+    "orchestration_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_chains": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "edge_provenance_references": [
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary"
+        ],
+        "execution_enabled": false,
+        "fail_visible": true,
+        "graph_provenance_reference": "v4_1_refresh_dependency_graph_provenance_primary",
+        "hidden_provenance_resolution_enabled": false,
+        "inferred_provenance_allowed": false,
+        "node_provenance_references": [
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary",
+          "v4_1_refresh_dependency_graph_provenance_primary"
+        ],
+        "provenance_chain_id": "v4_1_refresh_dependency_provenance_chain_primary",
+        "provenance_discontinuity_visibility": [
+          "v4_1_future_provider_provenance_not_declared"
+        ],
+        "provenance_preserved": true,
+        "source_evidence_references": [
+          "docs/generated/v4_1_refresh_manifest_diagnostics_report.json",
+          "docs/generated/v4_1_refresh_manifest_foundations_report.json",
+          "docs/migration/V4_1_REFRESH_MANIFEST_FOUNDATIONS.md"
+        ],
+        "source_manifest_reference": "v4_1_refresh_manifest_primary"
+      }
+    ],
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "refresh_execution_enabled": false,
+    "remediation_enabled": false,
+    "replay_metadata": {
+      "dependency_execution_enabled": false,
+      "descriptive_only": true,
+      "deterministic_hash_reference": "v4_1_refresh_dependency_replay_hash",
+      "deterministic_order": 1,
+      "live_replay_enabled": false,
+      "replay_discontinuity_visibility": [
+        "future_refresh_dependency_replay_source_not_declared"
+      ],
+      "replay_evidence_references": [
+        "v4_1_refresh_dependency_graph_hash_snapshot",
+        "v4_1_refresh_dependency_graph_serialization_snapshot"
+      ],
+      "replay_id": "v4_1_refresh_dependency_replay_primary",
+      "replay_safe": true
+    },
+    "rollback_metadata": {
+      "automatic_rollback_enabled": false,
+      "descriptive_only": true,
+      "deterministic_hash_reference": "v4_1_refresh_dependency_rollback_hash",
+      "deterministic_order": 1,
+      "recovery_execution_enabled": false,
+      "rollback_discontinuity_visibility": [
+        "future_refresh_dependency_rollback_target_not_declared"
+      ],
+      "rollback_evidence_references": [
+        "docs/generated/v4_1_refresh_manifest_diagnostics_report.json",
+        "docs/generated/v4_1_refresh_manifest_foundations_report.json"
+      ],
+      "rollback_id": "v4_1_refresh_dependency_rollback_primary",
+      "rollback_safe": true
+    },
+    "runtime_mutation_enabled": false,
+    "scoring_enabled": false,
+    "selection_enabled": false,
+    "silent_dependency_fallback_enabled": false,
+    "unsupported_state_visibility": {
+      "automatic_dependency_resolution_enabled": false,
+      "descriptive_only": true,
+      "deterministic_order": 1,
+      "fail_visible": true,
+      "hidden_unsupported_resolution_enabled": false,
+      "prohibited_dependency_domains": [
+        "authorization_approval_systems",
+        "automatic_dependency_resolution",
+        "automatic_migration",
+        "automatic_recovery",
+        "automatic_refresh_sequencing",
+        "automatic_rollback",
+        "dependency_execution",
+        "hidden_orchestration_behavior",
+        "implicit_execution_pathways",
+        "optimization_systems",
+        "orchestration_execution",
+        "planner_integration",
+        "production_bundle_consumption",
+        "recommendation_ranking_scoring_selection",
+        "refresh_execution",
+        "remediation_systems",
+        "runtime_mutation"
+      ],
+      "prohibited_dependency_edges": [
+        "v4_1_edge_manifest_to_production_runtime_bundle"
+      ],
+      "remediation_enabled": false,
+      "stale_dependency_edges": [
+        "v4_1_edge_manifest_to_stale_lifecycle_dependency"
+      ],
+      "unsupported_dependency_edges": [
+        "v4_1_edge_manifest_to_future_provider"
+      ],
+      "unsupported_dependency_nodes": [
+        "v4_1_node_future_refresh_provider"
+      ],
+      "unsupported_dependency_providers": [
+        "future_refresh_provider_contract_not_declared"
+      ],
+      "unsupported_visibility_id": "v4_1_refresh_dependency_unsupported_visibility_primary"
+    }
+  },
+  "replay_continuity_visibility": {
+    "dependency_execution_enabled": false,
+    "live_replay_enabled": false,
+    "replay_continuity_preserved": true,
+    "replay_continuity_reference_visible": true,
+    "replay_discontinuity_visibility_count": 1,
+    "replay_reference": "v4_1_refresh_dependency_replay_primary",
+    "replay_safe": true,
+    "valid": true
+  },
+  "repo_root": "D:\\Forge\\le-the-forge",
+  "rollback_continuity_visibility": {
+    "automatic_rollback_enabled": false,
+    "recovery_execution_enabled": false,
+    "rollback_continuity_preserved": true,
+    "rollback_continuity_reference_visible": true,
+    "rollback_discontinuity_visibility_count": 1,
+    "rollback_reference": "v4_1_refresh_dependency_rollback_primary",
+    "rollback_safe": true,
+    "valid": true
+  },
+  "schema_version": "v4_1.refresh_dependency_graph_report.1",
+  "summary": {
+    "blocked_state_visibility_validated": true,
+    "circular_dependency_visibility_validated": true,
+    "descriptive_only_verified": true,
+    "deterministic_dependency_equality_verified": true,
+    "deterministic_dependency_visibility_verified": true,
+    "deterministic_graph_hashing_verified": true,
+    "deterministic_graph_serialization_verified": true,
+    "enabled_capability_count": 0,
+    "foundation_status": "v4_1_refresh_dependency_graph_stable",
+    "integrity_validation_verified": true,
+    "lineage_continuity_verified": true,
+    "non_execution_enforcement_validated": true,
+    "planner_integration_disabled_validated": true,
+    "production_consumption_disabled_validated": true,
+    "provenance_continuity_verified": true,
+    "replay_continuity_verified": true,
+    "rollback_continuity_verified": true,
+    "unsupported_state_visibility_validated": true,
+    "validation_error_count": 0
+  }
+}
