@@ -1,0 +1,167 @@
+{
+  "backend_reflection_contract_result": "backend_reflection_contract_defined",
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "753cdd94383e560c4f9ab9f961cc6eee22ffc9cf24111ef03f487213f299844b",
+  "enabled_semantics": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "confidence_scoring_enabled": false,
+    "evidence_scoring_enabled": false,
+    "frontend_live_fetch_integration_enabled": false,
+    "mutable_trust_state_enabled": false,
+    "operational_behavior_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_enablement_enabled": false,
+    "ranking_system_enabled": false,
+    "recommendation_system_enabled": false,
+    "runtime_mutation_enabled": false,
+    "triage_system_enabled": false,
+    "trust_scoring_enabled": false
+  },
+  "endpoint_contract": {
+    "backend_reflection_status": "backend_reflection_contract_defined",
+    "descriptive_only": true,
+    "endpoint_contract_id": "v4_5d_1_backend_trust_visibility_endpoint_contract",
+    "endpoint_route": "/api/trust/visibility",
+    "frontend_alignment_status": "backend_contract_ready_frontend_fetch_deferred",
+    "health_endpoint": "/api/health",
+    "methods": [
+      "GET"
+    ],
+    "non_mutating": true,
+    "read_only": true,
+    "schema_version": "v4.5d.1",
+    "source_type": "backend_report_backed_visibility"
+  },
+  "fail_visible_fallback_states": [
+    "report_missing",
+    "report_unreadable",
+    "report_malformed",
+    "endpoint_contract_unavailable",
+    "unknown_backend_trust_state"
+  ],
+  "file_coverage": {
+    "created_files_present": {
+      "backend/app/routes/trust.py": true,
+      "backend/scripts/report_v4_5d_1_backend_trust_visibility_endpoint_contract.py": true,
+      "backend/tests/test_v4_5d_1_backend_trust_visibility_endpoint_contract.py": true,
+      "docs/generated/v4_5d_1_backend_trust_visibility_endpoint_contract_report.json": true,
+      "docs/migration/V4_5D_1_BACKEND_TRUST_VISIBILITY_ENDPOINT_CONTRACT.md": true
+    },
+    "modified_files_expected": [
+      "backend/app/__init__.py"
+    ]
+  },
+  "frontend_alignment_result": "backend_contract_ready_frontend_fetch_deferred",
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "intentionally_preserved_limitations": [
+    "Frontend live fetch integration remains deferred.",
+    "The endpoint contract reads generated report metadata only and does not mutate trust state.",
+    "Docker runtime may return a fail-visible degraded report reference if docs/generated is not present in the backend image.",
+    "Backend contract readiness does not certify frontend/backend live data alignment yet."
+  ],
+  "non_authority_statement": "Backend trust visibility endpoint contract does NOT imply frontend live fetch integration, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, scoring quality, triage priority, authorization, approval, or mutable trust state.",
+  "phase_id": "v4_5d_1_backend_trust_visibility_endpoint_contract",
+  "preserved_prohibitions": [
+    "planner_execution",
+    "planner_recommendations",
+    "planner_ranking",
+    "trust_scoring",
+    "evidence_scoring",
+    "confidence_scoring",
+    "recommendation_systems",
+    "ranking_systems",
+    "triage_systems",
+    "authorization_semantics",
+    "approval_semantics",
+    "orchestration_execution",
+    "orchestration_routing",
+    "orchestration_traversal",
+    "production_enablement",
+    "runtime_mutation",
+    "operational_behavior",
+    "mutable_trust_state",
+    "frontend_live_fetch_integration"
+  ],
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "GET-only",
+    "NON-mutating",
+    "NON-operational",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-triaging"
+  ],
+  "required_followup_actions": [
+    "Integrate frontend read-only fetch behavior in v4.5D.2 after preserving fallback diagnostics.",
+    "Add frontend/backend alignment tests for the fetched trust visibility payload.",
+    "Keep frontend static/report-backed fallback visible when the endpoint is unavailable.",
+    "Do not promote backend contract readiness into planner authority or production enablement."
+  ],
+  "schema_version": "v4.5d.1",
+  "source_report_metadata": {
+    "source_c5_backend_reflection_status": "backend_reflection_missing",
+    "source_c5_report_available": true,
+    "source_c5_report_hash": "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a"
+  },
+  "summary": {
+    "backend_reflection_contract_result": "backend_reflection_contract_defined",
+    "created_file_count": 5,
+    "created_files_present": true,
+    "endpoint_route": "/api/trust/visibility",
+    "fail_visible_fallback_state_count": 5,
+    "frontend_alignment_result": "backend_contract_ready_frontend_fetch_deferred",
+    "generated_at": "2026-05-18T00:00:00+00:00",
+    "health_endpoint": "/api/health",
+    "intentionally_preserved_limitation_count": 4,
+    "modified_file_count": 1,
+    "non_authority_statement": "Backend trust visibility endpoint contract does NOT imply frontend live fetch integration, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, scoring quality, triage priority, authorization, approval, or mutable trust state.",
+    "phase_id": "v4_5d_1_backend_trust_visibility_endpoint_contract",
+    "preserved_prohibition_count": 19,
+    "repository_remains": [
+      "READ-ONLY",
+      "DESCRIPTIVE-ONLY",
+      "GET-only",
+      "NON-mutating",
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-recommending",
+      "NON-ranking",
+      "NON-scoring",
+      "NON-triaging"
+    ],
+    "required_followup_action_count": 4,
+    "schema_version": "v4.5d.1",
+    "source_c5_backend_reflection_status": "backend_reflection_missing",
+    "source_c5_report_available": true,
+    "source_c5_report_hash": "4528555397312e45f82f4a9fac7d748b35b44e9724a92d2b2c2fec92827b466a",
+    "validation_error_count": 0
+  },
+  "validation": {
+    "backend_health_trust_distinction_preserved": true,
+    "backend_reflection_contract_result_defined": true,
+    "descriptive_only_contract_verified": true,
+    "endpoint_contract_defined": true,
+    "endpoint_route_registered": true,
+    "fail_visible_fallback_payloads_defined": true,
+    "frontend_alignment_fetch_deferred": true,
+    "get_only_contract_verified": true,
+    "no_authorization_approval_semantics_introduced": true,
+    "no_frontend_live_fetch_integration_introduced": true,
+    "no_operational_behavior_introduced": true,
+    "no_recommendation_ranking_scoring_triage_semantics_introduced": true,
+    "non_mutating_contract_verified": true,
+    "read_only_contract_verified": true,
+    "report_backed_payload_metadata_defined": true
+  }
+}
