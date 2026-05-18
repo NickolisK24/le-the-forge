@@ -1,0 +1,4247 @@
+{
+  "deterministic_hash_evidence": {
+    "evidence_freshness_hashes": {
+      "evidence_freshness_current_evidence": "64d1f5c8fa3232cec0536687323148a78e325d6ae9f81d0f27cf73802dd4eb1a",
+      "evidence_freshness_incomplete_freshness_evidence": "2ff66f4f17f49a6ef7ffda68442c5b80fe78d310415744de9a9bec180da32719",
+      "evidence_freshness_stale_evidence": "879b370330f056eaa91a1ab82b591e56ba94baa1dcd564a3cda4554401a810fc",
+      "evidence_freshness_unknown_freshness_evidence": "88116b4e68e048c87e08f7dd0181b1cc3489d5dff8e7243b8906cb4c229d313b",
+      "evidence_freshness_unsupported_freshness_evidence": "9cc9ad696425f6eb390acee2f15f67203f5ee0a582dbcfa1781c24f499ac8dc4"
+    },
+    "evidence_group_hashes": {
+      "evidence_group_diagnostics_evidence": "55da98fcd0f9996ce5492a9654a8132bbfb53b854deb75b3896cc602a3308c83",
+      "evidence_group_explainability_evidence": "4a94c0572f508503e884f03b76d42a7cdc5fc5c20aeba9eaf051b7cfd11c23fb",
+      "evidence_group_limitation_evidence": "a85664110adb3f6aa1a6bc9a8e07050d1c624208316972fbd25ecc04be3ba929",
+      "evidence_group_lineage_evidence": "f1a1f133bceaa34a82b7b8d5fa1faf92447b1a8256434823704426ee18da485e",
+      "evidence_group_provenance_evidence": "0118495e2b42bd484c626d971c623266ab77a41f122b6b0adc03a66b012cf93f",
+      "evidence_group_support_status_evidence": "0388a018dc85a54c6496567838fa2562f34f7b812cb457597518fa83e97253d8",
+      "evidence_group_trust_summary_evidence": "b0f9068b49667cd58a333ed214481eea025335dccb03dfd47f1d2fa1a3c8f384",
+      "evidence_group_unsupported_state_evidence": "942955d34e1db01485b6f02c8ea1f107aa52cd1d556bc1b6ec7bceda006363de"
+    },
+    "evidence_item_hashes": {
+      "evidence_item_diagnostics_evidence": "a3dddceac5f66a8d23189adc6df1b587a43ba3bc593af8be122c1f8a6ce5417c",
+      "evidence_item_explainability_evidence": "d00f21f47ce5185e64922546f906b2317b3c003ecba2f2eb59d744d7c1200e11",
+      "evidence_item_limitation_evidence": "8fdcf8b26cf432d843497511c67ff23a9df92dd8338b2c91a7bcc5c29c7e192e",
+      "evidence_item_lineage_evidence": "95f39d21108c65290a63b54940fa8da0fdad8cd8f4a8568a9bc5f072f23a8b2b",
+      "evidence_item_provenance_evidence": "565ffc1d151df1d316cfbdc34b2b942190c96f98c2e2715abab8f6fb5172e22a",
+      "evidence_item_support_status_evidence": "d669b55a1e41103d0072d0760c1eebf83d4717b4fc08c07ae5f923f87e3397f2",
+      "evidence_item_trust_summary_evidence": "eeeb2df4f84dcb701b1f3b422c7c613b65d25df1ecb30e4d1850829912eb0780",
+      "evidence_item_unsupported_state_evidence": "e13d2030400a59fdceed1ed25532f3dbd0400df894de0b747e907ee57d87bc6b"
+    },
+    "evidence_panel_diagnostic_hashes": {
+      "evidence_panel_diagnostic_incomplete_evidence_grouping": "e2b7ff443dc891cb97d009b9c597e4eb63bab68b08ef2090728b03af5b083b1a",
+      "evidence_panel_diagnostic_inherited_evidence_limitation_gaps": "528121a09923750272b74f5cf4513c03be08233baeaad3dd0e3a02c26db3c1ef",
+      "evidence_panel_diagnostic_inherited_evidence_prohibition_gaps": "67c368519c2a57eea709f5ab04b34618368f8c48a173e3cd20b07ab244af3b7f",
+      "evidence_panel_diagnostic_missing_evidence_panel_references": "3a4e50a70486ed01203bc8956867088ef4199f7db43599b59946d90914e2e190",
+      "evidence_panel_diagnostic_missing_evidence_source_visibility": "fd5c45fb9574a53c5f22f99bad627a5c78bd7f1cf47cc96f70869a21940ab652",
+      "evidence_panel_diagnostic_source_to_panel_continuity_gaps": "9a3c38f16ab5774c8c5aa3cf8891c8935314839f530a74e918651acef5d29e24",
+      "evidence_panel_diagnostic_stale_evidence_visibility": "16e5a115a2d6b4a8f9d1fe99555e6a975f4e259fdeac06bcc0ec16699085ca75",
+      "evidence_panel_diagnostic_unknown_freshness_visibility": "9100badcc5418fd56791be2d09f5006914579edea2c291663e1d0b8d337ded9b",
+      "evidence_panel_diagnostic_unsupported_evidence_panel_states": "6edd53382ca336a95acbc6ed4b1c62c0538bcdbcea435831f00d5d93c3fe077a"
+    },
+    "evidence_panel_identity_hash": "bcbfd7ca8d08d6fbe8f9ca08f474345b0330c67d73c275b3f3ccbe149f081d49",
+    "evidence_panel_record_hashes": {
+      "public_evidence_panel_foundation": "03def5294c698bd8f1172815a78aca4102c53beeff26e5745b5aa23e8400e45e"
+    },
+    "evidence_panel_summary_hashes": {
+      "evidence_panel_summary_diagnostics_evidence_summary": "45365a330f7a548254b612ca0dc0e8e5be684bda799c17663bfe2f53012f71a5",
+      "evidence_panel_summary_evidence_freshness_summary": "4b0645054e981323b482146718b196f23e6bdceafe6b80d85952044d8d087440",
+      "evidence_panel_summary_evidence_grouping_summary": "d7d5b47faaaf503169bdc0e96e6feff514afe28f478675f2de65d084b96bc2f2",
+      "evidence_panel_summary_evidence_panel_summary": "4a5eb495243d7dbf37ddd7f4bed369c7f0bb33343c768d0aa0996081f7ed42c8",
+      "evidence_panel_summary_evidence_source_summary": "94a5af5594a589b53396c78bef8503c348bd46ec5449dfcd6cf4c8417c3fb736",
+      "evidence_panel_summary_explainability_evidence_summary": "13dd625ccf410a6211310e5cc18f760a5ab90a7867b86a810c9e874add466b20",
+      "evidence_panel_summary_provenance_lineage_evidence_summary": "c14a67f98af2464690af4f080e229ef1a65f66fde1344cee3281a6de4093e6c1",
+      "evidence_panel_summary_support_status_evidence_summary": "903e535d3c3c8e89409d58b12f9305b8358c469c9615f116dfed8292eb1f7622",
+      "evidence_panel_summary_unsupported_missing_evidence_summary": "d0c676049e4337df78c434ef10689bfb8f6d8d645d46f276976e74ebba34ed32"
+    },
+    "evidence_panel_visibility_hash": "eb4f0c672d1f5b209506a486cb2ba392f2d38da882d75ffc87e70ba03c054702",
+    "evidence_source_hashes": {
+      "evidence_source_evidence_continuity_references": "318d446294a8c262e116c1c25e343ca0fbfa50438672d2ac56f488ae47b99635",
+      "evidence_source_evidence_diagnostics_references": "3c0f08d107c8fb54d2b0464f841233c494b3adad154a5fcb96df2382b16f1572",
+      "evidence_source_evidence_lineage_references": "7a76d10c8e8c454a063249dd2c2f64782734429abde15df48855dd03a1a1153f",
+      "evidence_source_evidence_origin_references": "74284c5b63f6dcce20e71bb2142240c21a3eba127338ba11906f419d9c5b757d",
+      "evidence_source_evidence_provenance_references": "874d03e5e1dbce7806e1bc4cafe498991215e68aa236c0cc79b97554c917eb3f",
+      "evidence_source_source_references": "b7abefb37f03a093cd34ea242d92166070654403ed64860426d9073c525875f3"
+    },
+    "explainability_evidence_panel_hashes": {
+      "explainability_evidence_panel_continuity_explanation_evidence": "5ecc7af72d2a1a16100a4ed5d2c31445cda8b35001ea3bf2e467199953fa84ae",
+      "explainability_evidence_panel_diagnostic_explanation_evidence": "cbb99ec7ee48d4a7543c411e26d13c6d8373eb7ae19c91610794334f1b81ffe1",
+      "explainability_evidence_panel_limitation_explanation_evidence": "2f4ce8b7139f2c180995a863f33e02a6dfa965c1d368e888595e7c690ccf4a5c",
+      "explainability_evidence_panel_support_explanation_evidence": "1d4a10d29f7e1e74dfecfbda814a970a4252eea025edca37c3946770ab2a27d0",
+      "explainability_evidence_panel_trust_explanation_evidence": "02939b9107104cf2ddfc769c2503d27272723939a2e1c282c0ca66a337e80fb8",
+      "explainability_evidence_panel_unsupported_state_explanation_evidence": "ae076daf4575e1952d9f6d978ec38a0d9faa4ae26052a99dad991dce9f614f12"
+    },
+    "provenance_lineage_evidence_panel_hashes": {
+      "provenance_lineage_evidence_panel_evidence_origin_panels": "f3c9f2b829e2d8b87853669c60def8b720290b21526461926155e2ee5f96f343",
+      "provenance_lineage_evidence_panel_incomplete_lineage_evidence": "e12ff5f9d8046ca4f8b020a20ba55c4cef87001374dc270f755e65fbe82c29f9",
+      "provenance_lineage_evidence_panel_lineage_evidence": "89b406aa9b2d3f0960c5313d730aad98dbe0ba293071fbfe74911ff861da1065",
+      "provenance_lineage_evidence_panel_provenance_evidence": "f6fa7d2a48d47793aab77e5978feb9fd33ddb3de08bdd2a1ad84351f6d4222f4",
+      "provenance_lineage_evidence_panel_source_to_surface_evidence": "73f04cbedc029028bde12b11722d7eb065982d4c42d21fe8aa7331f40c35e2ed",
+      "provenance_lineage_evidence_panel_stale_unknown_provenance_evidence": "7bd256520aac501166419b22b9994da05378b8260a9728857146d545e1fb7b01"
+    },
+    "support_status_evidence_panel_hashes": {
+      "support_status_evidence_panel_blocked_status_evidence": "604fb4c66fca48b61ab6d6370fce82fdece4ae0f5637323f6373a19b4336b0e5",
+      "support_status_evidence_panel_deprecated_status_evidence": "b48a908b4e0448406c853e74260448531ad6c5be299ca40256e75a9e9d3d41c7",
+      "support_status_evidence_panel_experimental_status_evidence": "cb72103bf3b9f8c2bf061ed10e9b98f64d76fc07bdebc7b39cf385fef3756964",
+      "support_status_evidence_panel_partially_supported_status_evidence": "bbf73d9ee5a1d3e54cbe47fe4f0df9c8b1226fe6b46b84d2418102c5062f07f7",
+      "support_status_evidence_panel_supported_status_evidence": "43d0a3f237877838017e05c7f0481e0e468d5c9705b199f13ee8c552a306c989",
+      "support_status_evidence_panel_unknown_status_evidence": "cec4b16059a4fb1fc2dd6f94788babb2d4d704a4a4ba3cf7e5edbe2b7cda151c",
+      "support_status_evidence_panel_unsupported_status_evidence": "48e219cfd4b626bbcd0cde116c34445cc0f968ccde4c3c71db2328dbd19a43e4"
+    },
+    "unsupported_missing_evidence_hashes": {
+      "unsupported_missing_evidence_blocked_evidence_states": "4abc1b95f346ff8bd8088057f7ad4e1dfe1d0d4e51e5853838ff04ce6824c815",
+      "unsupported_missing_evidence_incomplete_evidence_states": "847a5c4dbe7daa2047fab2efe1284b84056e94cbae8923d6481c7421d96c85d0",
+      "unsupported_missing_evidence_missing_explanation_evidence": "965201c387917a6c3630c05ba6a2d780209625602281aff730bec0aae6aae912",
+      "unsupported_missing_evidence_missing_lineage_evidence": "86fc93c392a339590ff3b28229793a23b8ecbfb34df9d70c645d2e0ad793fbf6",
+      "unsupported_missing_evidence_missing_provenance_evidence": "9b6419e5fd58faf7a4392bfdb706b945760d51ec3df81b9f36e590807cdee5e6",
+      "unsupported_missing_evidence_missing_support_evidence": "777ad894edaa97efcef9900cbbcf2522a7c1b536c37c400ed0f6381131892128",
+      "unsupported_missing_evidence_unknown_evidence_states": "4cb891e651358d079d835da5e67796f95bc659a43c414a99e42ddf23087f67aa",
+      "unsupported_missing_evidence_unsupported_evidence_states": "051e7cf7c3cb9505c0969015623174c4547fde51f6c66ce02b947f733eb1c7b1"
+    },
+    "unsupported_operational_hashes": {
+      "unsupported_evidence_panel_operational_state_automated_correction": "ea51adfb8b42d88f558178bd1e48a5e1e62b39abb311d3279aad62d68befee07",
+      "unsupported_evidence_panel_operational_state_automated_mitigation": "c3b6db3345db6ca8f4a1ea208d0a4e7b149167241144c9ec8c4925b373db10a5",
+      "unsupported_evidence_panel_operational_state_automated_remediation": "b4457048b3d247924dca827174696b7fed30e1e74997cbac8aa4c1352b59888c",
+      "unsupported_evidence_panel_operational_state_automated_repair": "e7f7fd8843139406e8d946852c07a422bcd02e8a9578cef13c55a6cb1f465630",
+      "unsupported_evidence_panel_operational_state_evidence_based_approval": "3bacb6147e0dad97b8fcda1b1798d5c78489385b7e83881bfd65f76d809a43d9",
+      "unsupported_evidence_panel_operational_state_evidence_based_authorization": "359117a053f3f6e752009850be9052569e11b2a2a519fac0f45398173be5173b",
+      "unsupported_evidence_panel_operational_state_evidence_based_ranking": "74a701c7ae9de65f78ad3e8907c26917f0c19e088e8248e4da1a7e1af6a68941",
+      "unsupported_evidence_panel_operational_state_evidence_based_recommendation": "cf81e98edec9b749ab46c7e8f8f682b5386fafbe9ae20628ae96374bc66859a9",
+      "unsupported_evidence_panel_operational_state_evidence_scoring": "853466429f4fcbdd820227acde7ba50bd184e4f115b045287465a7b53789e34e",
+      "unsupported_evidence_panel_operational_state_implicit_operational_behavior": "eefceb4036fa803ec504f4dc82cae646b4545f52384f97093a1d07055c3ca9c7",
+      "unsupported_evidence_panel_operational_state_operational_mutation": "4db9aa3056f543a13e5371b2f39066144984da902452d6b3e02426578cc26ccf",
+      "unsupported_evidence_panel_operational_state_orchestration_approval": "ee868974ca1c0e1c0bb0545231db9f3f91ec12212c8fd4ce3b92004619978d2a",
+      "unsupported_evidence_panel_operational_state_orchestration_authorization": "0d75ce3c923f3163b0a171b10cbdee58a16c59c83f76e30797f2422e602464a7",
+      "unsupported_evidence_panel_operational_state_orchestration_decisions": "d0c5c22d709a368cc7add23547c1a42dbcdf5219edab98be29e5f74b04b30dee",
+      "unsupported_evidence_panel_operational_state_orchestration_dispatch": "b7f6ce775368e301275c7dda49ce14e6cff909524aa0702eca03a4176f6ab6e8",
+      "unsupported_evidence_panel_operational_state_orchestration_execution": "e4f132ee029529f33e78b66603d543c09b2b93a417bd02523f123ad3ef331c86",
+      "unsupported_evidence_panel_operational_state_orchestration_recommendations": "de538df6467f5331e971c871ca17c25e7c4eaa2b437745d0da54c2bdadfa7f42",
+      "unsupported_evidence_panel_operational_state_orchestration_routing": "cb456a8415f037888db6e5ba95e3b3413a7621480e412ba5d9fb2edce49532d2",
+      "unsupported_evidence_panel_operational_state_orchestration_scheduling": "6b84ff8815c9fa1fc5e08b94307d9e71fd1d191278f27e003e2facd00f191d24",
+      "unsupported_evidence_panel_operational_state_orchestration_sequencing": "893b4ff6237a7a547fb7bdc47a29709896abc6ca405cb1650c3da52632ed3ec0",
+      "unsupported_evidence_panel_operational_state_orchestration_traversal": "dd6d367d66aa5465a61bfb7ffc9f426814f0733d5951f2047b08c5be8b512ba6",
+      "unsupported_evidence_panel_operational_state_planner_integration": "f08c86726d7878c6b96df5f7fe18e28256628e3a08a9816d6d8ec77e0d197510",
+      "unsupported_evidence_panel_operational_state_production_consumption": "4c211a55922c93176c42c201ba773c8accaad929494a12b896fdb164f13aa996",
+      "unsupported_evidence_panel_operational_state_runtime_mutation": "07115b328af9592c2a0a5484367c9e421a7794ea5d76eca93bcb91ec319cb5a2",
+      "unsupported_evidence_panel_operational_state_trust_scoring": "3a5845e6617d38d39adc194b1992a1368cbe83c3dcbcdbdc10d88b2c114b5546"
+    }
+  },
+  "deterministic_report_hash": "aab4d383c5174c29c851867ad7f79aabfe662cbad138031451608b397a99fb3c",
+  "exported_intelligence": {
+    "auto_correction_enabled": false,
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "deterministic_evidence_freshness_visibility",
+      "deterministic_evidence_grouping_visibility",
+      "deterministic_evidence_panel_identity",
+      "deterministic_evidence_source_visibility",
+      "deterministic_explainability_evidence_panels",
+      "deterministic_provenance_lineage_evidence_panels",
+      "deterministic_support_status_evidence_panels",
+      "deterministic_unsupported_missing_evidence_visibility",
+      "lineage_continuity_preserved",
+      "provenance_continuity_preserved",
+      "publicly_transparent_descriptive_only_evidence_panels",
+      "stable_replay_safe_hashing",
+      "stable_replay_safe_serialization"
+    ],
+    "evidence_approval_enabled": false,
+    "evidence_authorization_enabled": false,
+    "evidence_freshness_visibility": [
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_current_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "current_evidence",
+        "freshness_visibility_id": "evidence_freshness_current_evidence",
+        "scoring_enabled": false,
+        "visibility_state": "evidence_freshness_fail_visible"
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_stale_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "stale_evidence",
+        "freshness_visibility_id": "evidence_freshness_stale_evidence",
+        "scoring_enabled": false,
+        "visibility_state": "evidence_freshness_fail_visible"
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unknown_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "unknown_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_unknown_freshness_evidence",
+        "scoring_enabled": false,
+        "visibility_state": "evidence_freshness_fail_visible"
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_incomplete_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "incomplete_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_incomplete_freshness_evidence",
+        "scoring_enabled": false,
+        "visibility_state": "evidence_freshness_fail_visible"
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_unsupported_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "unsupported_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_unsupported_freshness_evidence",
+        "scoring_enabled": false,
+        "visibility_state": "evidence_freshness_fail_visible"
+      }
+    ],
+    "evidence_group_records": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_trust_summary_evidence"
+        ],
+        "group_record_id": "evidence_group_trust_summary_evidence",
+        "grouping_type": "trust_summary_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_support_status_evidence"
+        ],
+        "group_record_id": "evidence_group_support_status_evidence",
+        "grouping_type": "support_status_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_explainability_evidence"
+        ],
+        "group_record_id": "evidence_group_explainability_evidence",
+        "grouping_type": "explainability_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_provenance_evidence"
+        ],
+        "group_record_id": "evidence_group_provenance_evidence",
+        "grouping_type": "provenance_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_lineage_evidence"
+        ],
+        "group_record_id": "evidence_group_lineage_evidence",
+        "grouping_type": "lineage_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_limitation_evidence"
+        ],
+        "group_record_id": "evidence_group_limitation_evidence",
+        "grouping_type": "limitation_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_evidence"
+        ],
+        "group_record_id": "evidence_group_unsupported_state_evidence",
+        "grouping_type": "unsupported_state_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      },
+      {
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_evidence"
+        ],
+        "group_record_id": "evidence_group_diagnostics_evidence",
+        "grouping_type": "diagnostics_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "evidence_grouping_descriptive_only"
+      }
+    ],
+    "evidence_identity": {
+      "classification": "governance_safe_public_evidence_panel_visibility_descriptive_only",
+      "continuity_reference_id": "continuity::v4_5b_5.evidence_panels",
+      "diagnostics_reference_id": "diagnostics::v4_5b_5.evidence_panels",
+      "evidence_group_id": "v4_5b_5_evidence_group",
+      "evidence_item_id": "v4_5b_5_evidence_item",
+      "evidence_panel_id": "v4_5b_5_evidence_panels",
+      "explainability_surface_reference_id": "explainability::v4_5b_3.public_surfaces",
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "lineage_reference_id": "lineage::v4_5b_5.evidence_panels",
+      "lineage_visibility_reference_id": "lineage::v4_5b_4.public_trust",
+      "phase_id": "v4_5b_5_evidence_panels",
+      "provenance_reference_id": "provenance::v4_5b_5.evidence_panels",
+      "provenance_visibility_reference_id": "provenance::v4_5b_4.public_trust",
+      "schema_version": "v4_5b_5.evidence_panels.1",
+      "source_provenance_lineage_hash_reference": "54f92af249e375100b491234aee93f6f557042f4ee9cae9af81a05be9de4065e",
+      "source_provenance_lineage_report_reference": "docs/generated/v4_5b_4_provenance_lineage_visibility_report.json",
+      "support_status_reference_id": "support::v4_5b_2.public_support",
+      "trust_summary_reference_id": "trust::v4_5b_5.evidence_panels"
+    },
+    "evidence_item_records": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_item_type": "trust_summary_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_trust_summary_evidence"
+        ],
+        "item_record_id": "evidence_item_trust_summary_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_trust_summary_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_item_type": "support_status_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_support_status_evidence"
+        ],
+        "item_record_id": "evidence_item_support_status_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_support_status_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_item_type": "explainability_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_explainability_evidence"
+        ],
+        "item_record_id": "evidence_item_explainability_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_explainability_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_item_type": "provenance_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_provenance_evidence"
+        ],
+        "item_record_id": "evidence_item_provenance_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_provenance_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_item_type": "lineage_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_lineage_evidence"
+        ],
+        "item_record_id": "evidence_item_lineage_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_lineage_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_item_type": "limitation_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_limitation_evidence"
+        ],
+        "item_record_id": "evidence_item_limitation_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_limitation_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_item_type": "unsupported_state_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_unsupported_state_evidence"
+        ],
+        "item_record_id": "evidence_item_unsupported_state_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_unsupported_state_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_item_type": "diagnostics_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_diagnostics_evidence"
+        ],
+        "item_record_id": "evidence_item_diagnostics_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_diagnostics_evidence",
+        "visibility_state": "evidence_item_replay_safe"
+      }
+    ],
+    "evidence_panel_diagnostics": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "evidence_panel_diagnostic_missing_evidence_panel_references",
+        "diagnostic_type": "missing_evidence_panel_references",
+        "evidence_reference_ids": [
+          "evidence_missing_evidence_panel_references"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_evidence_panel_references remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "evidence_panel_diagnostic_incomplete_evidence_grouping",
+        "diagnostic_type": "incomplete_evidence_grouping",
+        "evidence_reference_ids": [
+          "evidence_incomplete_evidence_grouping"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_evidence_grouping remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "evidence_panel_diagnostic_missing_evidence_source_visibility",
+        "diagnostic_type": "missing_evidence_source_visibility",
+        "evidence_reference_ids": [
+          "evidence_missing_evidence_source_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_evidence_source_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "evidence_panel_diagnostic_stale_evidence_visibility",
+        "diagnostic_type": "stale_evidence_visibility",
+        "evidence_reference_ids": [
+          "evidence_stale_evidence_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "stale_evidence_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "evidence_panel_diagnostic_unknown_freshness_visibility",
+        "diagnostic_type": "unknown_freshness_visibility",
+        "evidence_reference_ids": [
+          "evidence_unknown_freshness_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unknown_freshness_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "evidence_panel_diagnostic_unsupported_evidence_panel_states",
+        "diagnostic_type": "unsupported_evidence_panel_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_evidence_panel_states remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "evidence_panel_diagnostic_source_to_panel_continuity_gaps",
+        "diagnostic_type": "source_to_panel_continuity_gaps",
+        "evidence_reference_ids": [
+          "evidence_source_to_panel_continuity_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "source_to_panel_continuity_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "evidence_panel_diagnostic_inherited_evidence_limitation_gaps",
+        "diagnostic_type": "inherited_evidence_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_evidence_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_evidence_limitation_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "evidence_panel_diagnostic_inherited_evidence_prohibition_gaps",
+        "diagnostic_type": "inherited_evidence_prohibition_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_evidence_prohibition_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_evidence_prohibition_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_evidence_panel_diagnostic_visible"
+      }
+    ],
+    "evidence_panel_records": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_approval_enabled": false,
+        "evidence_authority_enabled": false,
+        "evidence_authorization_enabled": false,
+        "evidence_group_id": "v4_5b_5_evidence_group",
+        "evidence_item_id": "v4_5b_5_evidence_item",
+        "evidence_panel_id": "v4_5b_5_evidence_panels",
+        "evidence_ranking_enabled": false,
+        "evidence_recommendation_enabled": false,
+        "evidence_scoring_enabled": false,
+        "fail_visible": true,
+        "panel_record_id": "public_evidence_panel_foundation",
+        "publicly_transparent": true,
+        "trust_scoring_enabled": false,
+        "visibility_state": "public_evidence_panel_visible"
+      }
+    ],
+    "evidence_panel_statement": "Evidence panels are descriptive-only.",
+    "evidence_panel_summaries": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_evidence_panel_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_panel_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_panel_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_evidence_grouping_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_grouping_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_grouping_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_evidence_source_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_source_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_source_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_evidence_freshness_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_freshness_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_freshness_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_support_status_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_support_status_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "support_status_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_explainability_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_explainability_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "explainability_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_provenance_lineage_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_provenance_lineage_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "provenance_lineage_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_unsupported_missing_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_unsupported_missing_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "unsupported_missing_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_diagnostics_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "diagnostics_evidence_summary"
+      }
+    ],
+    "evidence_ranking_enabled": false,
+    "evidence_recommendation_enabled": false,
+    "evidence_scoring_enabled": false,
+    "evidence_source_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_source_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_references",
+        "source_visibility_id": "evidence_source_source_references",
+        "source_visibility_type": "source_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_origin_references",
+        "source_visibility_id": "evidence_source_evidence_origin_references",
+        "source_visibility_type": "evidence_origin_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_evidence_provenance_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_provenance_references",
+        "source_visibility_id": "evidence_source_evidence_provenance_references",
+        "source_visibility_type": "evidence_provenance_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_evidence_lineage_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_lineage_references",
+        "source_visibility_id": "evidence_source_evidence_lineage_references",
+        "source_visibility_type": "evidence_lineage_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_evidence_continuity_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_continuity_references",
+        "source_visibility_id": "evidence_source_evidence_continuity_references",
+        "source_visibility_type": "evidence_continuity_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_evidence_diagnostics_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_diagnostics_references",
+        "source_visibility_id": "evidence_source_evidence_diagnostics_references",
+        "source_visibility_type": "evidence_diagnostics_references",
+        "visibility_state": "evidence_source_visibility_descriptive_only"
+      }
+    ],
+    "evidence_visibility_non_authority_statement": "Evidence visibility does NOT imply authorization, approval, correctness guarantee, trust score, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+    "explainability_evidence_panels": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_support_explanation_evidence"
+        ],
+        "explainability_evidence_type": "support_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_support_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_support_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_limitation_explanation_evidence"
+        ],
+        "explainability_evidence_type": "limitation_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_limitation_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_limitation_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_explanation_evidence"
+        ],
+        "explainability_evidence_type": "unsupported_state_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_unsupported_state_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_unsupported_state_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_continuity_explanation_evidence"
+        ],
+        "explainability_evidence_type": "continuity_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_continuity_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_continuity_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_trust_explanation_evidence"
+        ],
+        "explainability_evidence_type": "trust_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_trust_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_trust_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_diagnostic_explanation_evidence"
+        ],
+        "explainability_evidence_type": "diagnostic_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_diagnostic_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_diagnostic_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_evidence_panel_visible"
+      }
+    ],
+    "explicit_limitations": [
+      "evidence_panels_do_not_approve",
+      "evidence_panels_do_not_authorize",
+      "evidence_panels_do_not_enable_production",
+      "evidence_panels_do_not_execute",
+      "evidence_panels_do_not_imply_correctness_guarantees",
+      "evidence_panels_do_not_imply_execution_safety",
+      "evidence_panels_do_not_integrate_planners",
+      "evidence_panels_do_not_mitigate_or_correct",
+      "evidence_panels_do_not_mutate_runtime_state",
+      "evidence_panels_do_not_rank",
+      "evidence_panels_do_not_recommend",
+      "evidence_panels_do_not_remediate_or_repair",
+      "evidence_panels_do_not_score"
+    ],
+    "inherited_constraints": [
+      "NON-approving",
+      "NON-authorizing",
+      "NON-executing",
+      "NON-operational",
+      "NON-ranking",
+      "NON-recommending",
+      "NON-remediating",
+      "NON-runtime-mutating",
+      "NON-scoring",
+      "descriptive-only",
+      "deterministic",
+      "explainability-first",
+      "fail-visible",
+      "governance-safe",
+      "integrity-safe",
+      "lineage-safe",
+      "provenance-safe",
+      "publicly transparent",
+      "replay-safe",
+      "rollback-safe"
+    ],
+    "inherited_prohibitions": [
+      "automated_correction_prohibited",
+      "automated_mitigation_prohibited",
+      "automated_remediation_prohibited",
+      "automated_repair_prohibited",
+      "evidence_based_approval_prohibited",
+      "evidence_based_authorization_prohibited",
+      "evidence_based_ranking_prohibited",
+      "evidence_based_recommendation_prohibited",
+      "evidence_scoring_prohibited",
+      "implicit_operational_behavior_prohibited",
+      "operational_mutation_prohibited",
+      "orchestration_approval_prohibited",
+      "orchestration_authorization_prohibited",
+      "orchestration_decisions_prohibited",
+      "orchestration_dispatch_prohibited",
+      "orchestration_execution_prohibited",
+      "orchestration_recommendations_prohibited",
+      "orchestration_routing_prohibited",
+      "orchestration_scheduling_prohibited",
+      "orchestration_sequencing_prohibited",
+      "orchestration_traversal_prohibited",
+      "planner_integration_prohibited",
+      "production_consumption_prohibited",
+      "runtime_mutation_prohibited",
+      "trust_scoring_prohibited"
+    ],
+    "mitigation_enabled": false,
+    "non_approving": true,
+    "non_authorizing": true,
+    "non_executing": true,
+    "non_operational": true,
+    "non_ranking": true,
+    "non_recommending": true,
+    "non_remediating": true,
+    "non_runtime_mutating": true,
+    "non_scoring": true,
+    "operational_mutation_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_scheduling_enabled": false,
+    "orchestration_sequencing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_lineage_evidence_panels": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_provenance_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_provenance_evidence",
+        "provenance_lineage_evidence_type": "provenance_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_provenance_evidence",
+        "provenance_reference_id": "provenance_reference_provenance_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_lineage_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_lineage_evidence",
+        "provenance_lineage_evidence_type": "lineage_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_lineage_evidence",
+        "provenance_reference_id": "provenance_reference_lineage_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_source_to_surface_evidence",
+        "provenance_lineage_evidence_type": "source_to_surface_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_source_to_surface_evidence",
+        "provenance_reference_id": "provenance_reference_source_to_surface_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_panels"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_origin_panels",
+        "provenance_lineage_evidence_type": "evidence_origin_panels",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_evidence_origin_panels",
+        "provenance_reference_id": "provenance_reference_evidence_origin_panels",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_stale_unknown_provenance_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_stale_unknown_provenance_evidence",
+        "provenance_lineage_evidence_type": "stale_unknown_provenance_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_stale_unknown_provenance_evidence",
+        "provenance_reference_id": "provenance_reference_stale_unknown_provenance_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_incomplete_lineage_evidence",
+        "provenance_lineage_evidence_type": "incomplete_lineage_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_incomplete_lineage_evidence",
+        "provenance_reference_id": "provenance_reference_incomplete_lineage_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false,
+        "visibility_state": "provenance_lineage_evidence_panel_visible"
+      }
+    ],
+    "publicly_transparent": true,
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "remediation_enabled": false,
+    "repair_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scoring_enabled": false,
+    "support_status_evidence_panels": [
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_supported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "supported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_supported_status_evidence",
+        "support_status_reference_id": "support_status_reference_supported_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_partially_supported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "partially_supported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_partially_supported_status_evidence",
+        "support_status_reference_id": "support_status_reference_partially_supported_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "unsupported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_unsupported_status_evidence",
+        "support_status_reference_id": "support_status_reference_unsupported_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_experimental_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "experimental_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_experimental_status_evidence",
+        "support_status_reference_id": "support_status_reference_experimental_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_deprecated_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "deprecated_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_deprecated_status_evidence",
+        "support_status_reference_id": "support_status_reference_deprecated_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_blocked_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "blocked_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_blocked_status_evidence",
+        "support_status_reference_id": "support_status_reference_blocked_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_unknown_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "unknown_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_unknown_status_evidence",
+        "support_status_reference_id": "support_status_reference_unknown_status_evidence",
+        "visibility_state": "support_status_evidence_panel_visible"
+      }
+    ],
+    "trust_scoring_enabled": false,
+    "unsupported_missing_evidence_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_missing_support_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_support_evidence",
+        "unsupported_missing_type": "missing_support_evidence",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_missing_explanation_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_explanation_evidence",
+        "unsupported_missing_type": "missing_explanation_evidence",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_missing_provenance_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_provenance_evidence",
+        "unsupported_missing_type": "missing_provenance_evidence",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_missing_lineage_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_lineage_evidence",
+        "unsupported_missing_type": "missing_lineage_evidence",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_unsupported_evidence_states",
+        "unsupported_missing_type": "unsupported_evidence_states",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_incomplete_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_incomplete_evidence_states",
+        "unsupported_missing_type": "incomplete_evidence_states",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_blocked_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_blocked_evidence_states",
+        "unsupported_missing_type": "blocked_evidence_states",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_unknown_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_unknown_evidence_states",
+        "unsupported_missing_type": "unknown_evidence_states",
+        "visibility_state": "unsupported_missing_evidence_fail_visible"
+      }
+    ],
+    "unsupported_operational_state_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_execution remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_execution",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_execution",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_authorization remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_authorization",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_approval remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_approval",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_dispatch remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_dispatch",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_dispatch",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_routing remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_routing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_routing",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_traversal remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_traversal",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_traversal",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_scheduling remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_scheduling",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_scheduling",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_sequencing remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_sequencing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_sequencing",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_decisions remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_decisions",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_decisions",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_recommendations remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_recommendations",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_recommendations",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_authorization remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_authorization",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_approval remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_approval",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_ranking remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_ranking",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_ranking",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_recommendation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_recommendation",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_recommendation",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_scoring remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_scoring",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_scoring",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "trust_scoring remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_trust_scoring",
+        "suppression_enabled": false,
+        "unsupported_state": "trust_scoring",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 17,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_remediation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_remediation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_remediation",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 18,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_repair remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_repair",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_repair",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 19,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_mitigation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_mitigation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_mitigation",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 20,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_correction remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_correction",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_correction",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 21,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "planner_integration remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_planner_integration",
+        "suppression_enabled": false,
+        "unsupported_state": "planner_integration",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 22,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "production_consumption remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_production_consumption",
+        "suppression_enabled": false,
+        "unsupported_state": "production_consumption",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 23,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "runtime_mutation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_runtime_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "runtime_mutation",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 24,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "operational_mutation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_operational_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "operational_mutation",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 25,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "implicit_operational_behavior remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_implicit_operational_behavior",
+        "suppression_enabled": false,
+        "unsupported_state": "implicit_operational_behavior",
+        "visibility_state": "unsupported_evidence_panel_operational_state_fail_visible"
+      }
+    ]
+  },
+  "foundation_status": "v4_5b_5_evidence_panels_stable",
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "phase_id": "v4_5b_5_evidence_panels",
+  "purpose": "deterministic_governance_safe_public_evidence_panels_descriptive_only",
+  "schema_version": "v4_5b_5.evidence_panels_report.1",
+  "summary": {
+    "descriptive_only_guarantees_verified": true,
+    "deterministic_evidence_panel_hashing_verified": true,
+    "deterministic_evidence_panel_serialization_verified": true,
+    "diagnostic_counts": {
+      "incomplete_evidence_grouping": 1,
+      "inherited_evidence_limitation_gaps": 1,
+      "inherited_evidence_prohibition_gaps": 1,
+      "missing_evidence_panel_references": 1,
+      "missing_evidence_source_visibility": 1,
+      "source_to_panel_continuity_gaps": 1,
+      "stale_evidence_visibility": 1,
+      "unknown_freshness_visibility": 1,
+      "unsupported_evidence_panel_states": 1
+    },
+    "enabled_auto_correction_count": 0,
+    "enabled_evidence_approval_count": 0,
+    "enabled_evidence_authorization_count": 0,
+    "enabled_evidence_ranking_count": 0,
+    "enabled_evidence_recommendation_count": 0,
+    "enabled_mitigation_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_orchestration_decision_count": 0,
+    "enabled_orchestration_dispatch_count": 0,
+    "enabled_orchestration_recommendation_count": 0,
+    "enabled_orchestration_routing_count": 0,
+    "enabled_orchestration_scheduling_count": 0,
+    "enabled_orchestration_sequencing_count": 0,
+    "enabled_orchestration_traversal_count": 0,
+    "enabled_planner_integration_count": 0,
+    "enabled_production_consumption_count": 0,
+    "enabled_remediation_count": 0,
+    "enabled_repair_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "enabled_runtime_mutation_count": 0,
+    "enabled_scoring_count": 0,
+    "evidence_continuity_preserved": true,
+    "evidence_freshness_visibility_count": 5,
+    "evidence_freshness_visibility_preserved": true,
+    "evidence_group_count": 8,
+    "evidence_grouping_stable": true,
+    "evidence_item_count": 8,
+    "evidence_panel_diagnostic_count": 9,
+    "evidence_panel_record_count": 1,
+    "evidence_panel_statement": "Evidence panels are descriptive-only.",
+    "evidence_panel_summary_count": 9,
+    "evidence_source_visibility_count": 6,
+    "evidence_source_visibility_stable": true,
+    "evidence_visibility_non_authority_statement": "Evidence visibility does NOT imply authorization, approval, correctness guarantee, trust score, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+    "explainability_counts": {
+      "continuity_explanation_evidence": 1,
+      "diagnostic_explanation_evidence": 1,
+      "limitation_explanation_evidence": 1,
+      "support_explanation_evidence": 1,
+      "trust_explanation_evidence": 1,
+      "unsupported_state_explanation_evidence": 1
+    },
+    "explainability_evidence_panel_count": 6,
+    "explainability_evidence_panel_stable": true,
+    "explicit_limitation_count": 13,
+    "fail_visible_evidence_panel_diagnostics_verified": true,
+    "freshness_counts": {
+      "current_evidence": 1,
+      "incomplete_freshness_evidence": 1,
+      "stale_evidence": 1,
+      "unknown_freshness_evidence": 1,
+      "unsupported_freshness_evidence": 1
+    },
+    "grouping_counts": {
+      "diagnostics_evidence": 1,
+      "explainability_evidence": 1,
+      "limitation_evidence": 1,
+      "lineage_evidence": 1,
+      "provenance_evidence": 1,
+      "support_status_evidence": 1,
+      "trust_summary_evidence": 1,
+      "unsupported_state_evidence": 1
+    },
+    "inherited_constraint_count": 20,
+    "inherited_prohibition_count": 25,
+    "lineage_continuity_preserved": true,
+    "provenance_continuity_preserved": true,
+    "provenance_lineage_counts": {
+      "evidence_origin_panels": 1,
+      "incomplete_lineage_evidence": 1,
+      "lineage_evidence": 1,
+      "provenance_evidence": 1,
+      "source_to_surface_evidence": 1,
+      "stale_unknown_provenance_evidence": 1
+    },
+    "provenance_lineage_evidence_panel_count": 6,
+    "provenance_lineage_evidence_panel_stable": true,
+    "publicly_transparent": true,
+    "repository_remains": [
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-executing",
+      "NON-remediating",
+      "NON-runtime-mutating",
+      "NON-ranking",
+      "NON-recommending",
+      "NON-scoring"
+    ],
+    "source_counts": {
+      "evidence_continuity_references": 1,
+      "evidence_diagnostics_references": 1,
+      "evidence_lineage_references": 1,
+      "evidence_origin_references": 1,
+      "evidence_provenance_references": 1,
+      "source_references": 1
+    },
+    "source_visibility_preserved": true,
+    "summary_counts": {
+      "diagnostics_evidence_summary": 1,
+      "evidence_freshness_summary": 1,
+      "evidence_grouping_summary": 1,
+      "evidence_panel_summary": 1,
+      "evidence_source_summary": 1,
+      "explainability_evidence_summary": 1,
+      "provenance_lineage_evidence_summary": 1,
+      "support_status_evidence_summary": 1,
+      "unsupported_missing_evidence_summary": 1
+    },
+    "support_counts": {
+      "blocked_status_evidence": 1,
+      "deprecated_status_evidence": 1,
+      "experimental_status_evidence": 1,
+      "partially_supported_status_evidence": 1,
+      "supported_status_evidence": 1,
+      "unknown_status_evidence": 1,
+      "unsupported_status_evidence": 1
+    },
+    "support_status_evidence_panel_count": 7,
+    "support_status_evidence_panel_stable": true,
+    "unsupported_counts": {
+      "blocked_evidence_states": 1,
+      "incomplete_evidence_states": 1,
+      "missing_explanation_evidence": 1,
+      "missing_lineage_evidence": 1,
+      "missing_provenance_evidence": 1,
+      "missing_support_evidence": 1,
+      "unknown_evidence_states": 1,
+      "unsupported_evidence_states": 1
+    },
+    "unsupported_missing_evidence_count": 8,
+    "unsupported_missing_evidence_visibility_preserved": true,
+    "unsupported_operational_counts": {
+      "automated_correction": 1,
+      "automated_mitigation": 1,
+      "automated_remediation": 1,
+      "automated_repair": 1,
+      "evidence_based_approval": 1,
+      "evidence_based_authorization": 1,
+      "evidence_based_ranking": 1,
+      "evidence_based_recommendation": 1,
+      "evidence_scoring": 1,
+      "implicit_operational_behavior": 1,
+      "operational_mutation": 1,
+      "orchestration_approval": 1,
+      "orchestration_authorization": 1,
+      "orchestration_decisions": 1,
+      "orchestration_dispatch": 1,
+      "orchestration_execution": 1,
+      "orchestration_recommendations": 1,
+      "orchestration_routing": 1,
+      "orchestration_scheduling": 1,
+      "orchestration_sequencing": 1,
+      "orchestration_traversal": 1,
+      "planner_integration": 1,
+      "production_consumption": 1,
+      "runtime_mutation": 1,
+      "trust_scoring": 1
+    },
+    "unsupported_operational_state_count": 25,
+    "validation_error_count": 0
+  },
+  "validation": {
+    "foundation_status": "v4_5b_5_evidence_panels_stable",
+    "valid": true,
+    "validation_error_count": 0,
+    "validation_errors": [],
+    "validations": {
+      "descriptive_only_guarantees": {
+        "counters": {
+          "enabled_auto_correction_count": 0,
+          "enabled_evidence_approval_count": 0,
+          "enabled_evidence_authorization_count": 0,
+          "enabled_evidence_ranking_count": 0,
+          "enabled_evidence_recommendation_count": 0,
+          "enabled_mitigation_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_orchestration_decision_count": 0,
+          "enabled_orchestration_dispatch_count": 0,
+          "enabled_orchestration_recommendation_count": 0,
+          "enabled_orchestration_routing_count": 0,
+          "enabled_orchestration_scheduling_count": 0,
+          "enabled_orchestration_sequencing_count": 0,
+          "enabled_orchestration_traversal_count": 0,
+          "enabled_planner_integration_count": 0,
+          "enabled_production_consumption_count": 0,
+          "enabled_remediation_count": 0,
+          "enabled_repair_count": 0,
+          "enabled_runtime_execution_count": 0,
+          "enabled_runtime_mutation_count": 0,
+          "enabled_scoring_count": 0
+        },
+        "enabled_flags": {},
+        "evidence_panel_statement": "Evidence panels are descriptive-only.",
+        "evidence_visibility_non_authority_statement": "Evidence visibility does NOT imply authorization, approval, correctness guarantee, trust score, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+        "explicit_limitation_count": 13,
+        "inherited_constraint_count": 20,
+        "inherited_prohibition_count": 25,
+        "publicly_transparent": true,
+        "required_boundary_booleans": {
+          "descriptive_only": true,
+          "non_approving": true,
+          "non_authorizing": true,
+          "non_executing": true,
+          "non_operational": true,
+          "non_ranking": true,
+          "non_recommending": true,
+          "non_remediating": true,
+          "non_runtime_mutating": true,
+          "non_scoring": true,
+          "publicly_transparent": true
+        },
+        "statements_valid": true,
+        "valid": true
+      },
+      "evidence_freshness_visibility": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "evidence_grouping": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "evidence_items": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "evidence_panel_summaries": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "evidence_source_visibility": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "explainability_evidence_panels": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "fail_visible_evidence_panel": {
+        "diagnostic_visibility": {
+          "missing_evidence_records": [],
+          "missing_lineage_records": [],
+          "missing_provenance_records": [],
+          "missing_source_records": [],
+          "missing_types": [],
+          "non_descriptive_records": [],
+          "non_fail_visible_records": [],
+          "prohibited_enabled_records": {},
+          "valid": true
+        },
+        "missing_explicit_reasons": [],
+        "unsupported_operational_visibility": {
+          "missing_evidence_records": [],
+          "missing_lineage_records": [],
+          "missing_provenance_records": [],
+          "missing_source_records": [],
+          "missing_types": [],
+          "non_descriptive_records": [],
+          "non_fail_visible_records": [],
+          "prohibited_enabled_records": {},
+          "valid": true
+        },
+        "valid": true
+      },
+      "identity_integrity": {
+        "generated_at_valid": true,
+        "missing_fields": [],
+        "phase_valid": true,
+        "schema_valid": true,
+        "source_hash_matches": true,
+        "source_report_exists": true,
+        "valid": true
+      },
+      "lineage_and_provenance": {
+        "evidence_continuity_preserved": true,
+        "lineage_continuity_preserved": true,
+        "missing_identity_lineage": false,
+        "missing_identity_provenance": false,
+        "missing_item_sources": [],
+        "missing_panel_lineage": [],
+        "missing_panel_provenance": [],
+        "missing_record_evidence": [],
+        "missing_source_references": [],
+        "provenance_continuity_preserved": true,
+        "source_visibility_preserved": true,
+        "valid": true
+      },
+      "provenance_lineage_evidence_panels": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "required_visibility": {
+        "diagnostic_counts": {
+          "incomplete_evidence_grouping": 1,
+          "inherited_evidence_limitation_gaps": 1,
+          "inherited_evidence_prohibition_gaps": 1,
+          "missing_evidence_panel_references": 1,
+          "missing_evidence_source_visibility": 1,
+          "source_to_panel_continuity_gaps": 1,
+          "stale_evidence_visibility": 1,
+          "unknown_freshness_visibility": 1,
+          "unsupported_evidence_panel_states": 1
+        },
+        "explainability_counts": {
+          "continuity_explanation_evidence": 1,
+          "diagnostic_explanation_evidence": 1,
+          "limitation_explanation_evidence": 1,
+          "support_explanation_evidence": 1,
+          "trust_explanation_evidence": 1,
+          "unsupported_state_explanation_evidence": 1
+        },
+        "freshness_counts": {
+          "current_evidence": 1,
+          "incomplete_freshness_evidence": 1,
+          "stale_evidence": 1,
+          "unknown_freshness_evidence": 1,
+          "unsupported_freshness_evidence": 1
+        },
+        "grouping_counts": {
+          "diagnostics_evidence": 1,
+          "explainability_evidence": 1,
+          "limitation_evidence": 1,
+          "lineage_evidence": 1,
+          "provenance_evidence": 1,
+          "support_status_evidence": 1,
+          "trust_summary_evidence": 1,
+          "unsupported_state_evidence": 1
+        },
+        "missing_diagnostics": [],
+        "missing_explainability_panels": [],
+        "missing_freshness": [],
+        "missing_groupings": [],
+        "missing_provenance_lineage_panels": [],
+        "missing_sources": [],
+        "missing_summaries": [],
+        "missing_support_panels": [],
+        "missing_unsupported_missing_evidence": [],
+        "missing_unsupported_operational_states": [],
+        "provenance_lineage_counts": {
+          "evidence_origin_panels": 1,
+          "incomplete_lineage_evidence": 1,
+          "lineage_evidence": 1,
+          "provenance_evidence": 1,
+          "source_to_surface_evidence": 1,
+          "stale_unknown_provenance_evidence": 1
+        },
+        "source_counts": {
+          "evidence_continuity_references": 1,
+          "evidence_diagnostics_references": 1,
+          "evidence_lineage_references": 1,
+          "evidence_origin_references": 1,
+          "evidence_provenance_references": 1,
+          "source_references": 1
+        },
+        "summary_counts": {
+          "diagnostics_evidence_summary": 1,
+          "evidence_freshness_summary": 1,
+          "evidence_grouping_summary": 1,
+          "evidence_panel_summary": 1,
+          "evidence_source_summary": 1,
+          "explainability_evidence_summary": 1,
+          "provenance_lineage_evidence_summary": 1,
+          "support_status_evidence_summary": 1,
+          "unsupported_missing_evidence_summary": 1
+        },
+        "support_counts": {
+          "blocked_status_evidence": 1,
+          "deprecated_status_evidence": 1,
+          "experimental_status_evidence": 1,
+          "partially_supported_status_evidence": 1,
+          "supported_status_evidence": 1,
+          "unknown_status_evidence": 1,
+          "unsupported_status_evidence": 1
+        },
+        "unsupported_counts": {
+          "blocked_evidence_states": 1,
+          "incomplete_evidence_states": 1,
+          "missing_explanation_evidence": 1,
+          "missing_lineage_evidence": 1,
+          "missing_provenance_evidence": 1,
+          "missing_support_evidence": 1,
+          "unknown_evidence_states": 1,
+          "unsupported_evidence_states": 1
+        },
+        "unsupported_operational_counts": {
+          "automated_correction": 1,
+          "automated_mitigation": 1,
+          "automated_remediation": 1,
+          "automated_repair": 1,
+          "evidence_based_approval": 1,
+          "evidence_based_authorization": 1,
+          "evidence_based_ranking": 1,
+          "evidence_based_recommendation": 1,
+          "evidence_scoring": 1,
+          "implicit_operational_behavior": 1,
+          "operational_mutation": 1,
+          "orchestration_approval": 1,
+          "orchestration_authorization": 1,
+          "orchestration_decisions": 1,
+          "orchestration_dispatch": 1,
+          "orchestration_execution": 1,
+          "orchestration_recommendations": 1,
+          "orchestration_routing": 1,
+          "orchestration_scheduling": 1,
+          "orchestration_sequencing": 1,
+          "orchestration_traversal": 1,
+          "planner_integration": 1,
+          "production_consumption": 1,
+          "runtime_mutation": 1,
+          "trust_scoring": 1
+        },
+        "valid": true
+      },
+      "serialization_and_hashing": {
+        "deterministic_hash": "eb4f0c672d1f5b209506a486cb2ba392f2d38da882d75ffc87e70ba03c054702",
+        "hashing_stable": true,
+        "ordering_stable": true,
+        "serialization_stable": true,
+        "serialized_length": 63071,
+        "valid": true
+      },
+      "support_status_evidence_panels": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      },
+      "unsupported_missing_evidence": {
+        "missing_evidence_records": [],
+        "missing_lineage_records": [],
+        "missing_provenance_records": [],
+        "missing_source_records": [],
+        "missing_types": [],
+        "non_descriptive_records": [],
+        "non_fail_visible_records": [],
+        "prohibited_enabled_records": {},
+        "valid": true
+      }
+    }
+  },
+  "visibility": {
+    "descriptive_only": {
+      "descriptive_only": true,
+      "evidence_approval_enabled": false,
+      "evidence_authorization_enabled": false,
+      "evidence_panel_statement": "Evidence panels are descriptive-only.",
+      "evidence_ranking_enabled": false,
+      "evidence_recommendation_enabled": false,
+      "evidence_scoring_enabled": false,
+      "evidence_visibility_non_authority_statement": "Evidence visibility does NOT imply authorization, approval, correctness guarantee, trust score, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+      "non_approving": true,
+      "non_authorizing": true,
+      "non_executing": true,
+      "non_operational": true,
+      "non_ranking": true,
+      "non_recommending": true,
+      "non_remediating": true,
+      "non_runtime_mutating": true,
+      "non_scoring": true,
+      "operational_mutation_enabled": false,
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "publicly_transparent": true,
+      "runtime_mutation_enabled": false,
+      "trust_scoring_enabled": false
+    },
+    "evidence_freshness": [
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_current_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "current_evidence",
+        "freshness_visibility_id": "evidence_freshness_current_evidence",
+        "scoring_enabled": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_stale_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "stale_evidence",
+        "freshness_visibility_id": "evidence_freshness_stale_evidence",
+        "scoring_enabled": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unknown_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "unknown_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_unknown_freshness_evidence",
+        "scoring_enabled": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_incomplete_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "incomplete_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_incomplete_freshness_evidence",
+        "scoring_enabled": false
+      },
+      {
+        "authorization_enabled": false,
+        "automatic_refresh_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_freshness_evidence"
+        ],
+        "fail_visible": true,
+        "fallback_substitution_enabled": false,
+        "freshness_type": "unsupported_freshness_evidence",
+        "freshness_visibility_id": "evidence_freshness_unsupported_freshness_evidence",
+        "scoring_enabled": false
+      }
+    ],
+    "evidence_grouping": [
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_trust_summary_evidence"
+        ],
+        "group_record_id": "evidence_group_trust_summary_evidence",
+        "grouping_type": "trust_summary_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_support_status_evidence"
+        ],
+        "group_record_id": "evidence_group_support_status_evidence",
+        "grouping_type": "support_status_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_explainability_evidence"
+        ],
+        "group_record_id": "evidence_group_explainability_evidence",
+        "grouping_type": "explainability_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_provenance_evidence"
+        ],
+        "group_record_id": "evidence_group_provenance_evidence",
+        "grouping_type": "provenance_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_lineage_evidence"
+        ],
+        "group_record_id": "evidence_group_lineage_evidence",
+        "grouping_type": "lineage_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_limitation_evidence"
+        ],
+        "group_record_id": "evidence_group_limitation_evidence",
+        "grouping_type": "limitation_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_evidence"
+        ],
+        "group_record_id": "evidence_group_unsupported_state_evidence",
+        "grouping_type": "unsupported_state_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_evidence"
+        ],
+        "group_record_id": "evidence_group_diagnostics_evidence",
+        "grouping_type": "diagnostics_evidence",
+        "prioritization_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      }
+    ],
+    "evidence_items": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "trust_summary_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_trust_summary_evidence"
+        ],
+        "item_record_id": "evidence_item_trust_summary_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_trust_summary_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "support_status_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_support_status_evidence"
+        ],
+        "item_record_id": "evidence_item_support_status_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_support_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "explainability_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_explainability_evidence"
+        ],
+        "item_record_id": "evidence_item_explainability_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_explainability_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "provenance_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_provenance_evidence"
+        ],
+        "item_record_id": "evidence_item_provenance_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_provenance_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "lineage_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_lineage_evidence"
+        ],
+        "item_record_id": "evidence_item_lineage_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_lineage_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "limitation_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_limitation_evidence"
+        ],
+        "item_record_id": "evidence_item_limitation_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_limitation_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "unsupported_state_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_unsupported_state_evidence"
+        ],
+        "item_record_id": "evidence_item_unsupported_state_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_unsupported_state_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_item_type": "diagnostics_evidence",
+        "evidence_reference_ids": [
+          "evidence_item_reference_diagnostics_evidence"
+        ],
+        "item_record_id": "evidence_item_diagnostics_evidence",
+        "provenance_safe": true,
+        "replay_safe": true,
+        "scoring_enabled": false,
+        "source_reference_id": "source_reference_diagnostics_evidence"
+      }
+    ],
+    "evidence_panel_diagnostics": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_missing_evidence_panel_references",
+        "diagnostic_type": "missing_evidence_panel_references",
+        "evidence_reference_ids": [
+          "evidence_missing_evidence_panel_references"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_evidence_panel_references remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_incomplete_evidence_grouping",
+        "diagnostic_type": "incomplete_evidence_grouping",
+        "evidence_reference_ids": [
+          "evidence_incomplete_evidence_grouping"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_evidence_grouping remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_missing_evidence_source_visibility",
+        "diagnostic_type": "missing_evidence_source_visibility",
+        "evidence_reference_ids": [
+          "evidence_missing_evidence_source_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_evidence_source_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_stale_evidence_visibility",
+        "diagnostic_type": "stale_evidence_visibility",
+        "evidence_reference_ids": [
+          "evidence_stale_evidence_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "stale_evidence_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_unknown_freshness_visibility",
+        "diagnostic_type": "unknown_freshness_visibility",
+        "evidence_reference_ids": [
+          "evidence_unknown_freshness_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unknown_freshness_visibility remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_unsupported_evidence_panel_states",
+        "diagnostic_type": "unsupported_evidence_panel_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_evidence_panel_states remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_source_to_panel_continuity_gaps",
+        "diagnostic_type": "source_to_panel_continuity_gaps",
+        "evidence_reference_ids": [
+          "evidence_source_to_panel_continuity_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "source_to_panel_continuity_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_inherited_evidence_limitation_gaps",
+        "diagnostic_type": "inherited_evidence_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_evidence_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_evidence_limitation_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "evidence_panel_diagnostic_inherited_evidence_prohibition_gaps",
+        "diagnostic_type": "inherited_evidence_prohibition_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_evidence_prohibition_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_evidence_prohibition_gaps remains explicit, fail-visible, and descriptive-only for deterministic public evidence panels.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "silent_fallback_enabled": false
+      }
+    ],
+    "evidence_panel_summaries": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_panel_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_panel_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_panel_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_grouping_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_grouping_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_grouping_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_source_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_source_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_source_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_freshness_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_evidence_freshness_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "evidence_freshness_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_support_status_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_support_status_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "support_status_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_explainability_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_explainability_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "explainability_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_provenance_lineage_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_provenance_lineage_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "provenance_lineage_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_missing_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_unsupported_missing_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "unsupported_missing_evidence_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_evidence_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "scoring_enabled": false,
+        "summary_record_id": "evidence_panel_summary_diagnostics_evidence_summary",
+        "summary_state": "evidence_panel_summary_descriptive_only",
+        "summary_type": "diagnostics_evidence_summary"
+      }
+    ],
+    "evidence_panels": [
+      {
+        "descriptive_only": true,
+        "evidence_approval_enabled": false,
+        "evidence_authority_enabled": false,
+        "evidence_authorization_enabled": false,
+        "evidence_group_id": "v4_5b_5_evidence_group",
+        "evidence_item_id": "v4_5b_5_evidence_item",
+        "evidence_panel_id": "v4_5b_5_evidence_panels",
+        "evidence_ranking_enabled": false,
+        "evidence_recommendation_enabled": false,
+        "evidence_scoring_enabled": false,
+        "fail_visible": true,
+        "panel_record_id": "public_evidence_panel_foundation",
+        "publicly_transparent": true,
+        "trust_scoring_enabled": false
+      }
+    ],
+    "evidence_sources": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_references",
+        "source_visibility_id": "evidence_source_source_references",
+        "source_visibility_type": "source_references"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_origin_references",
+        "source_visibility_id": "evidence_source_evidence_origin_references",
+        "source_visibility_type": "evidence_origin_references"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_provenance_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_provenance_references",
+        "source_visibility_id": "evidence_source_evidence_provenance_references",
+        "source_visibility_type": "evidence_provenance_references"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_lineage_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_lineage_references",
+        "source_visibility_id": "evidence_source_evidence_lineage_references",
+        "source_visibility_type": "evidence_lineage_references"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_continuity_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_continuity_references",
+        "source_visibility_id": "evidence_source_evidence_continuity_references",
+        "source_visibility_type": "evidence_continuity_references"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_diagnostics_references"
+        ],
+        "scoring_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_evidence_diagnostics_references",
+        "source_visibility_id": "evidence_source_evidence_diagnostics_references",
+        "source_visibility_type": "evidence_diagnostics_references"
+      }
+    ],
+    "explainability_evidence": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_support_explanation_evidence"
+        ],
+        "explainability_evidence_type": "support_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_support_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_support_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_limitation_explanation_evidence"
+        ],
+        "explainability_evidence_type": "limitation_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_limitation_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_limitation_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_explanation_evidence"
+        ],
+        "explainability_evidence_type": "unsupported_state_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_unsupported_state_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_unsupported_state_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_continuity_explanation_evidence"
+        ],
+        "explainability_evidence_type": "continuity_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_continuity_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_continuity_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_trust_explanation_evidence"
+        ],
+        "explainability_evidence_type": "trust_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_trust_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_trust_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_diagnostic_explanation_evidence"
+        ],
+        "explainability_evidence_type": "diagnostic_explanation_evidence",
+        "explainability_panel_id": "explainability_evidence_panel_diagnostic_explanation_evidence",
+        "explainability_surface_reference_id": "explainability_reference_diagnostic_explanation_evidence",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false
+      }
+    ],
+    "provenance_lineage_evidence": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_provenance_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_provenance_evidence",
+        "provenance_lineage_evidence_type": "provenance_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_provenance_evidence",
+        "provenance_reference_id": "provenance_reference_provenance_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_lineage_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_lineage_evidence",
+        "provenance_lineage_evidence_type": "lineage_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_lineage_evidence",
+        "provenance_reference_id": "provenance_reference_lineage_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_source_to_surface_evidence",
+        "provenance_lineage_evidence_type": "source_to_surface_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_source_to_surface_evidence",
+        "provenance_reference_id": "provenance_reference_source_to_surface_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_panels"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_origin_panels",
+        "provenance_lineage_evidence_type": "evidence_origin_panels",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_evidence_origin_panels",
+        "provenance_reference_id": "provenance_reference_evidence_origin_panels",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_stale_unknown_provenance_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_stale_unknown_provenance_evidence",
+        "provenance_lineage_evidence_type": "stale_unknown_provenance_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_stale_unknown_provenance_evidence",
+        "provenance_reference_id": "provenance_reference_stale_unknown_provenance_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_evidence"
+        ],
+        "lineage_reference_id": "lineage_reference_incomplete_lineage_evidence",
+        "provenance_lineage_evidence_type": "incomplete_lineage_evidence",
+        "provenance_lineage_panel_id": "provenance_lineage_evidence_panel_incomplete_lineage_evidence",
+        "provenance_reference_id": "provenance_reference_incomplete_lineage_evidence",
+        "ranking_enabled": false,
+        "source_scoring_enabled": false,
+        "trust_scoring_enabled": false
+      }
+    ],
+    "support_status_evidence": [
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_supported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "supported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_supported_status_evidence",
+        "support_status_reference_id": "support_status_reference_supported_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_partially_supported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "partially_supported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_partially_supported_status_evidence",
+        "support_status_reference_id": "support_status_reference_partially_supported_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "unsupported_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_unsupported_status_evidence",
+        "support_status_reference_id": "support_status_reference_unsupported_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_experimental_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "experimental_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_experimental_status_evidence",
+        "support_status_reference_id": "support_status_reference_experimental_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_deprecated_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "deprecated_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_deprecated_status_evidence",
+        "support_status_reference_id": "support_status_reference_deprecated_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_blocked_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "blocked_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_blocked_status_evidence",
+        "support_status_reference_id": "support_status_reference_blocked_status_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unknown_status_evidence"
+        ],
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "support_evidence_type": "unknown_status_evidence",
+        "support_panel_id": "support_status_evidence_panel_unknown_status_evidence",
+        "support_status_reference_id": "support_status_reference_unknown_status_evidence"
+      }
+    ],
+    "unsupported_missing_evidence": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_missing_support_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_support_evidence",
+        "unsupported_missing_type": "missing_support_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_missing_explanation_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_explanation_evidence",
+        "unsupported_missing_type": "missing_explanation_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_missing_provenance_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_provenance_evidence",
+        "unsupported_missing_type": "missing_provenance_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_missing_lineage_evidence"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_missing_lineage_evidence",
+        "unsupported_missing_type": "missing_lineage_evidence"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_unsupported_evidence_states",
+        "unsupported_missing_type": "unsupported_evidence_states"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_incomplete_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_incomplete_evidence_states",
+        "unsupported_missing_type": "incomplete_evidence_states"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_blocked_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_blocked_evidence_states",
+        "unsupported_missing_type": "blocked_evidence_states"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unknown_evidence_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "remediation_enabled": false,
+        "suppression_enabled": false,
+        "unsupported_missing_id": "unsupported_missing_evidence_unknown_evidence_states",
+        "unsupported_missing_type": "unknown_evidence_states"
+      }
+    ],
+    "unsupported_operational_states": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_execution remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_execution",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_execution"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_authorization remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_authorization"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_approval remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_approval"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_dispatch remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_dispatch",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_dispatch"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_routing remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_routing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_routing"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_traversal remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_traversal",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_traversal"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_scheduling remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_scheduling",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_scheduling"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_sequencing remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_sequencing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_sequencing"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_decisions remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_decisions",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_decisions"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "orchestration_recommendations remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_orchestration_recommendations",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_recommendations"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_authorization remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_authorization"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_approval remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_approval"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_ranking remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_ranking",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_ranking"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_based_recommendation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_based_recommendation",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_based_recommendation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "evidence_scoring remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_evidence_scoring",
+        "suppression_enabled": false,
+        "unsupported_state": "evidence_scoring"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "trust_scoring remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_trust_scoring",
+        "suppression_enabled": false,
+        "unsupported_state": "trust_scoring"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_remediation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_remediation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_remediation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_repair remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_repair",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_repair"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_mitigation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_mitigation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_mitigation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "automated_correction remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_automated_correction",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_correction"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "planner_integration remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_planner_integration",
+        "suppression_enabled": false,
+        "unsupported_state": "planner_integration"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "production_consumption remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_production_consumption",
+        "suppression_enabled": false,
+        "unsupported_state": "production_consumption"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "runtime_mutation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_runtime_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "runtime_mutation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "operational_mutation remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_operational_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "operational_mutation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_evidence_panel_states"
+        ],
+        "explicit_reason": "implicit_operational_behavior remains unsupported for v4.5B.5 deterministic public evidence panels.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "scoring_enabled": false,
+        "state_id": "unsupported_evidence_panel_operational_state_implicit_operational_behavior",
+        "suppression_enabled": false,
+        "unsupported_state": "implicit_operational_behavior"
+      }
+    ]
+  }
+}
