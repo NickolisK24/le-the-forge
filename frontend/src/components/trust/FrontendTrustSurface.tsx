@@ -43,8 +43,20 @@ const reportDiagnosticToneClasses: Record<TrustReportDiagnostic["state"], string
   unsupported: "border-violet-400/30 bg-violet-500/10 text-violet-100",
 };
 
+const freshnessToneClasses: Record<TrustEvidencePanelData["items"][number]["freshness"], string> = {
+  current: "border-emerald-400/30 bg-emerald-500/10 text-emerald-100",
+  stale: "border-amber-400/30 bg-amber-500/10 text-amber-100",
+  unknown: "border-gray-400/30 bg-gray-500/10 text-gray-100",
+  missing: "border-rose-400/30 bg-rose-500/10 text-rose-100",
+  unsupported: "border-violet-400/30 bg-violet-500/10 text-violet-100",
+};
+
 function ordered<T extends { deterministicOrder: number }>(items: readonly T[]): readonly T[] {
   return [...items].sort((left, right) => left.deterministicOrder - right.deterministicOrder);
+}
+
+function formatToken(value: string): string {
+  return value.replace(/_/g, " ");
 }
 
 export function SupportStatusBadge({
@@ -67,12 +79,73 @@ export function SupportStatusBadge({
   );
 }
 
-function SectionHeading({ eyebrow, title }: { eyebrow: string; title: string }) {
+function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: {
+  eyebrow: string;
+  title: string;
+  description?: string;
+}) {
   return (
-    <div>
+    <div className="max-w-3xl">
       <p className="font-mono text-xs uppercase tracking-wide text-[#22d3ee]">{eyebrow}</p>
       <h2 className="mt-2 text-xl font-semibold text-gray-100">{title}</h2>
+      {description ? (
+        <p className="mt-2 text-sm leading-6 text-gray-300">{description}</p>
+      ) : null}
     </div>
+  );
+}
+
+function TrustSurfaceOverview({
+  data,
+  integration,
+}: {
+  data: FrontendTrustSurfaceData;
+  integration: FrontendTrustReportIntegrationData;
+}) {
+  const items = [
+    {
+      label: "Report source",
+      value: formatToken(integration.sourceStatus),
+      note: "Report metadata and fallback state are shown together.",
+    },
+    {
+      label: "Visible states",
+      value: `${data.trustStatusCards.length} support states`,
+      note: "Supported, unsupported, blocked, and unknown states remain visible.",
+    },
+    {
+      label: "Evidence groups",
+      value: `${data.evidencePanels.length} groups`,
+      note: "Evidence is grouped by source, freshness, provenance, and lineage.",
+    },
+    {
+      label: "Diagnostics",
+      value: `${data.diagnosticsSummaries.length + integration.diagnostics.length} visible`,
+      note: "Warnings, blockers, gaps, and fallback diagnostics stay fail-visible.",
+    },
+  ];
+
+  return (
+    <section className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4" aria-label="Trust surface scan summary">
+      {items.map((item) => (
+        <article
+          key={item.label}
+          className="rounded border border-[#24304f] bg-[#0c1124] p-4"
+          data-read-only="true"
+          data-descriptive-only="true"
+        >
+          <p className="font-mono text-[11px] uppercase tracking-wide text-gray-400">
+            {item.label}
+          </p>
+          <p className="mt-2 text-base font-semibold text-gray-100">{item.value}</p>
+          <p className="mt-2 text-xs leading-5 text-gray-300">{item.note}</p>
+        </article>
+      ))}
+    </section>
   );
 }
 
@@ -84,13 +157,21 @@ export function TrustStatusCard({ card }: { card: TrustStatusCardData }) {
       data-descriptive-only={card.descriptiveOnly}
     >
       <div className="flex flex-wrap items-start justify-between gap-2">
-        <h3 className="text-sm font-semibold text-gray-100">{card.title}</h3>
+        <div>
+          <h3 className="text-sm font-semibold text-gray-100">{card.title}</h3>
+          <p className="mt-1 font-mono text-[11px] uppercase text-gray-400">
+            read-only state
+          </p>
+        </div>
         <SupportStatusBadge status={card.status} />
       </div>
       <p className="mt-3 text-sm leading-6 text-gray-300">{card.summary}</p>
-      <p className="mt-3 rounded border border-amber-400/20 bg-amber-500/5 p-3 text-xs leading-5 text-amber-100">
-        {card.limitation}
-      </p>
+      <div className="mt-3 rounded border border-amber-400/20 bg-amber-500/5 p-3">
+        <p className="font-mono text-[11px] uppercase tracking-wide text-amber-100">
+          limitation remains visible
+        </p>
+        <p className="mt-1 text-xs leading-5 text-amber-100">{card.limitation}</p>
+      </div>
     </article>
   );
 }
@@ -102,11 +183,14 @@ export function ExplainabilityPanel({ panel }: { panel: TrustExplanationPanelDat
       data-read-only={panel.readOnly}
       data-descriptive-only={panel.descriptiveOnly}
     >
-      <summary className="cursor-pointer text-sm font-semibold text-gray-100">
-        {panel.title}
+      <summary className="cursor-pointer text-sm font-semibold text-gray-100 marker:text-[#22d3ee]">
+        <span>{panel.title}</span>
+        <span className="ml-2 rounded border border-[#33415f] px-2 py-0.5 font-mono text-[10px] uppercase text-gray-300">
+          {formatToken(panel.explanationType)}
+        </span>
       </summary>
       <p className="mt-3 text-sm leading-6 text-gray-300">{panel.summary}</p>
-      <ul className="mt-3 space-y-2 text-sm leading-6 text-gray-300">
+      <ul className="mt-3 list-disc space-y-2 pl-5 text-sm leading-6 text-gray-300">
         {panel.details.map((detail) => (
           <li key={detail}>{detail}</li>
         ))}
@@ -125,9 +209,12 @@ export function EvidencePanel({ panel }: { panel: TrustEvidencePanelData }) {
       <div className="flex flex-wrap items-center justify-between gap-2">
         <h3 className="text-sm font-semibold text-gray-100">{panel.title}</h3>
         <span className="rounded border border-[#33415f] px-2 py-1 font-mono text-[11px] uppercase text-gray-300">
-          {panel.group.replace("_", " ")}
+          {formatToken(panel.group)}
         </span>
       </div>
+      <p className="mt-2 text-xs leading-5 text-gray-400">
+        {panel.items.length} evidence item{panel.items.length === 1 ? "" : "s"} shown without scoring or ranking.
+      </p>
       <div className="mt-4 space-y-3">
         {panel.items.map((item) => (
           <div
@@ -138,11 +225,11 @@ export function EvidencePanel({ panel }: { panel: TrustEvidencePanelData }) {
           >
             <div className="flex flex-wrap items-center justify-between gap-2">
               <p className="text-sm font-medium text-gray-100">{item.label}</p>
-              <span className="rounded border border-[#33415f] px-2 py-1 font-mono text-[11px] uppercase text-gray-300">
+              <span className={`rounded border px-2 py-1 font-mono text-[11px] uppercase ${freshnessToneClasses[item.freshness]}`}>
                 {item.freshness}
               </span>
             </div>
-            <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+            <dl className="mt-3 grid gap-3 text-xs leading-5 text-gray-300 sm:grid-cols-3">
               <div>
                 <dt className="font-semibold text-gray-100">Source</dt>
                 <dd>{item.source}</dd>
@@ -170,7 +257,17 @@ export function ProvenanceLineagePanel({ panel }: { panel: TrustProvenanceLineag
       data-read-only={panel.readOnly}
       data-descriptive-only={panel.descriptiveOnly}
     >
-      <h3 className="text-sm font-semibold text-gray-100">{panel.title}</h3>
+      <div className="flex flex-wrap items-start justify-between gap-2">
+        <h3 className="text-sm font-semibold text-gray-100">{panel.title}</h3>
+        <div className="flex flex-wrap gap-2">
+          <span className="rounded border border-[#33415f] px-2 py-1 font-mono text-[11px] uppercase text-gray-300">
+            provenance: {panel.provenanceState}
+          </span>
+          <span className="rounded border border-[#33415f] px-2 py-1 font-mono text-[11px] uppercase text-gray-300">
+            lineage: {panel.lineageState}
+          </span>
+        </div>
+      </div>
       <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
         <div>
           <dt className="font-semibold text-gray-100">Source reference</dt>
@@ -209,6 +306,9 @@ export function CoverageConfidenceSummary({ summary }: { summary: TrustMetricSum
       <h3 className="text-sm font-semibold text-gray-100">{summary.label}</h3>
       <p className="mt-2 font-mono text-xs uppercase text-[#22d3ee]">{summary.state}</p>
       <p className="mt-3 text-sm leading-6 text-gray-300">{summary.visibilityNote}</p>
+      <p className="mt-3 rounded border border-[#33415f] px-2 py-1 font-mono text-[11px] uppercase text-gray-300">
+        context only
+      </p>
     </article>
   );
 }
@@ -248,7 +348,7 @@ export function TrustReportIntegrationPanel({
           </h2>
         </div>
         <span className="rounded border border-[#33415f] px-2.5 py-1 font-mono text-[11px] uppercase text-gray-200">
-          {integration.sourceStatus.replace("_", " ")}
+          {formatToken(integration.sourceStatus)}
         </span>
       </div>
 
@@ -306,20 +406,37 @@ export function TrustReportIntegrationPanel({
         </article>
       </div>
 
-      <article className="mt-4 rounded border border-amber-400/20 bg-amber-500/5 p-4">
-        <h3 className="text-sm font-semibold text-amber-100">
-          {integration.fallbackState.fallbackLabel}
-        </h3>
-        <p className="mt-2 text-sm leading-6 text-amber-100/90">
-          {integration.fallbackState.fallbackReason}
-        </p>
-        <p className="mt-2 text-sm leading-6 text-amber-100/90">
-          {integration.fallbackState.fallbackVisibilityNote}
-        </p>
-        <p className="mt-2 font-mono text-xs uppercase text-amber-100">
-          fallback_active={String(integration.fallbackState.fallbackActive)}
-        </p>
-      </article>
+      <div className="mt-4 grid gap-4 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)]">
+        <article className="rounded border border-amber-400/20 bg-amber-500/5 p-4">
+          <p className="font-mono text-[11px] uppercase tracking-wide text-amber-100">
+            fallback state
+          </p>
+          <h3 className="mt-2 text-sm font-semibold text-amber-100">
+            {integration.fallbackState.fallbackLabel}
+          </h3>
+          <p className="mt-2 text-sm leading-6 text-amber-100/90">
+            {integration.fallbackState.fallbackReason}
+          </p>
+          <p className="mt-2 text-sm leading-6 text-amber-100/90">
+            {integration.fallbackState.fallbackVisibilityNote}
+          </p>
+          <p className="mt-2 font-mono text-xs uppercase text-amber-100">
+            fallback_active={String(integration.fallbackState.fallbackActive)}
+          </p>
+        </article>
+
+        <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+          <p className="font-mono text-[11px] uppercase tracking-wide text-gray-400">
+            report diagnostics
+          </p>
+          <h3 className="mt-2 text-sm font-semibold text-gray-100">
+            {integration.diagnostics.length} fail-visible report diagnostic{integration.diagnostics.length === 1 ? "" : "s"}
+          </h3>
+          <p className="mt-2 text-sm leading-6 text-gray-300">
+            Report-backed and fallback states stay visible together; missing metadata does not trigger recovery behavior.
+          </p>
+        </article>
+      </div>
 
       <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
         {integration.certificationSummaries.map((summary) => (
@@ -330,7 +447,7 @@ export function TrustReportIntegrationPanel({
             data-descriptive-only={summary.descriptiveOnly}
           >
             <h3 className="text-sm font-semibold text-gray-100">{summary.label}</h3>
-            <ul className="mt-3 space-y-2 text-xs leading-5 text-gray-300">
+            <ul className="mt-3 list-disc space-y-2 pl-5 text-xs leading-5 text-gray-300">
               {summary.values.map((value) => (
                 <li key={value}>{value}</li>
               ))}
@@ -393,10 +510,16 @@ export function FrontendTrustSurface({
         </div>
       </section>
 
+      <TrustSurfaceOverview data={data} integration={reportIntegration} />
+
       <TrustReportIntegrationPanel integration={reportIntegration} />
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Trust status cards" title="State visibility" />
+        <SectionHeading
+          eyebrow="Trust status cards"
+          title="State visibility"
+          description="Each state is labeled for inspection only, with limitations kept next to the status."
+        />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {ordered(data.trustStatusCards).map((card) => (
             <TrustStatusCard key={card.id} card={card} />
@@ -405,7 +528,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Support status badges" title="Deterministic labels" />
+        <SectionHeading
+          eyebrow="Support status badges"
+          title="Deterministic labels"
+          description="Badge labels are descriptive public trust states, not approvals or operational signals."
+        />
         <div className="rounded border border-[#2a3050] bg-[#10152a] p-4">
           <div className="flex flex-wrap gap-2">
             {data.supportBadges.map((badge) => (
@@ -416,7 +543,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Explainability panels" title="Read-only explanations" />
+        <SectionHeading
+          eyebrow="Explainability panels"
+          title="Read-only explanations"
+          description="Panels open in place so support, limitation, continuity, trust, and diagnostic explanations stay close to their context."
+        />
         <div className="grid gap-4 md:grid-cols-2">
           {ordered(data.explainabilityPanels).map((panel) => (
             <ExplainabilityPanel key={panel.id} panel={panel} />
@@ -425,7 +556,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Evidence panels" title="Grouped public evidence" />
+        <SectionHeading
+          eyebrow="Evidence panels"
+          title="Grouped public evidence"
+          description="Evidence is grouped by visible surface and freshness without scoring source quality."
+        />
         <div className="grid gap-4 lg:grid-cols-2">
           {ordered(data.evidencePanels).map((panel) => (
             <EvidencePanel key={panel.id} panel={panel} />
@@ -434,7 +569,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Provenance and lineage" title="Source continuity" />
+        <SectionHeading
+          eyebrow="Provenance and lineage"
+          title="Source continuity"
+          description="Source, provenance, and lineage states are shown as continuity context without source authority."
+        />
         <div className="grid gap-4 md:grid-cols-2">
           {ordered(data.provenanceLineagePanels).map((panel) => (
             <ProvenanceLineagePanel key={panel.id} panel={panel} />
@@ -443,7 +582,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Coverage and confidence" title="Non-scoring summaries" />
+        <SectionHeading
+          eyebrow="Coverage and confidence"
+          title="Non-scoring summaries"
+          description="Coverage and confidence are displayed as context only; incomplete and unknown states remain explicit."
+        />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-4">
           {[...ordered(data.coverageSummaries), ...ordered(data.confidenceSummaries)].map(
             (summary) => (
@@ -454,7 +597,11 @@ export function FrontendTrustSurface({
       </section>
 
       <section className="space-y-4">
-        <SectionHeading eyebrow="Diagnostics summaries" title="Fail-visible diagnostics" />
+        <SectionHeading
+          eyebrow="Diagnostics summaries"
+          title="Fail-visible diagnostics"
+          description="Warnings, blockers, unsupported states, and gaps remain visible as descriptive diagnostics."
+        />
         <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
           {ordered(data.diagnosticsSummaries).map((summary) => (
             <DiagnosticsSummary key={summary.id} summary={summary} />

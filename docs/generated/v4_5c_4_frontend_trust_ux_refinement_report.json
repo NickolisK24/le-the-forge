@@ -1,0 +1,189 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "db098d64aee534f978c84e49c3b06f840124d9a9b108ae4fb8cc8b962dded634",
+  "enabled_semantics": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "confidence_scoring_enabled": false,
+    "evidence_scoring_enabled": false,
+    "frontend_launch_authorization_language_enabled": false,
+    "hidden_automation_behavior_enabled": false,
+    "live_mutable_trust_state_enabled": false,
+    "operational_mutation_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_enablement_enabled": false,
+    "ranking_system_enabled": false,
+    "recommendation_system_enabled": false,
+    "report_driven_planner_behavior_enabled": false,
+    "runtime_mutation_enabled": false,
+    "triage_system_enabled": false,
+    "trust_scoring_enabled": false
+  },
+  "file_coverage": {
+    "created_files_present": {
+      "backend/scripts/report_v4_5c_4_frontend_trust_ux_refinement.py": true,
+      "docs/generated/v4_5c_4_frontend_trust_ux_refinement_report.json": true,
+      "docs/migration/V4_5C_4_FRONTEND_TRUST_UX_REFINEMENT.md": true
+    },
+    "modified_files_expected": [
+      "frontend/src/__tests__/components/frontend-trust-surface-foundations.test.tsx",
+      "frontend/src/components/trust/FrontendTrustSurface.tsx",
+      "frontend/src/components/trust/TrustSurfaceEntryCallout.tsx",
+      "frontend/src/pages/FrontendTrustSurfaceFoundationsPage.tsx"
+    ]
+  },
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "intentionally_preserved_limitations": [
+    "UX refinement changes only static read-only rendering and copy.",
+    "Report-backed and fallback data remain deterministic frontend context.",
+    "Diagnostics remain visible and do not become triage or remediation controls.",
+    "Coverage and confidence remain non-scoring summaries.",
+    "Evidence and provenance grouping does not grant source authority."
+  ],
+  "non_authority_statement": "Frontend trust UX refinement does NOT imply frontend launch authorization, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, scoring quality, triage priority, authorization, or approval.",
+  "phase_id": "v4_5c_4_frontend_trust_ux_refinement",
+  "preserved_prohibitions": [
+    "planner execution",
+    "planner recommendations",
+    "planner ranking",
+    "trust scoring",
+    "evidence scoring",
+    "confidence scoring",
+    "recommendation systems",
+    "ranking systems",
+    "triage systems",
+    "authorization semantics",
+    "approval semantics",
+    "orchestration execution",
+    "orchestration routing",
+    "orchestration traversal",
+    "production enablement",
+    "runtime mutation",
+    "operational mutation",
+    "hidden automation behavior",
+    "live mutable trust state",
+    "report-driven planner behavior",
+    "frontend launch authorization language"
+  ],
+  "prohibited_ux_language": [
+    "Approved",
+    "Safe to use",
+    "Recommended",
+    "Best build",
+    "Fully trusted",
+    "Production ready",
+    "Guaranteed correct"
+  ],
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "NON-operational",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-triaging"
+  ],
+  "source_report_metadata": {
+    "source_c3_report_available": true,
+    "source_c3_report_hash": "543f43dd9e5128a1032f13b68863d497be9338f65f55b047445a6392ca1f90c7",
+    "source_c3_report_phase_id": "v4_5c_3_frontend_trust_navigation_entrypoints"
+  },
+  "summary": {
+    "created_file_count": 3,
+    "created_files_present": true,
+    "generated_at": "2026-05-18T00:00:00+00:00",
+    "intentionally_preserved_limitation_count": 5,
+    "modified_file_count": 4,
+    "non_authority_statement": "Frontend trust UX refinement does NOT imply frontend launch authorization, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, scoring quality, triage priority, authorization, or approval.",
+    "phase_id": "v4_5c_4_frontend_trust_ux_refinement",
+    "preserved_prohibition_count": 21,
+    "prohibited_ux_language_count": 7,
+    "repository_remains": [
+      "READ-ONLY",
+      "DESCRIPTIVE-ONLY",
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-recommending",
+      "NON-ranking",
+      "NON-scoring",
+      "NON-triaging"
+    ],
+    "source_c3_report_available": true,
+    "source_c3_report_hash": "543f43dd9e5128a1032f13b68863d497be9338f65f55b047445a6392ca1f90c7",
+    "source_c3_report_phase_id": "v4_5c_3_frontend_trust_navigation_entrypoints",
+    "trust_surface_route": "/trusted-data/frontend-trust",
+    "trusted_data_route": "/trusted-data",
+    "ux_refinement_count": 7,
+    "validation_error_count": 0
+  },
+  "ux_refinements": [
+    {
+      "area": "trust_surface_layout",
+      "description": "Added a compact scan summary for report source, visible states, evidence groups, and diagnostics.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "trust_status_cards",
+      "description": "Grouped state labels with visible limitation summaries for easier scanning.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "explainability_panels",
+      "description": "Added explanation type labels and list formatting while preserving collapsible read-only panels.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "evidence_and_provenance_grouping",
+      "description": "Improved evidence freshness labels and provenance/lineage state grouping without source authority semantics.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "coverage_confidence_summaries",
+      "description": "Added context-only labels to keep coverage and confidence non-scoring.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "fallback_diagnostics_visibility",
+      "description": "Grouped fallback state and report diagnostics so unavailable report states remain fail-visible.",
+      "descriptive_only": true,
+      "read_only": true
+    },
+    {
+      "area": "route_navigation_continuity",
+      "description": "Kept the existing trust surface route and navigation entry points intact with clearer read-only copy.",
+      "descriptive_only": true,
+      "read_only": true
+    }
+  ],
+  "validation": {
+    "coverage_confidence_readability_refined": true,
+    "descriptive_only_ux_refinement_verified": true,
+    "diagnostics_summary_visibility_preserved": true,
+    "evidence_provenance_grouping_refined": true,
+    "fallback_diagnostics_visibility_preserved": true,
+    "layout_scanability_refined": true,
+    "no_authorization_approval_semantics_introduced": true,
+    "no_operational_behavior_introduced": true,
+    "no_recommendation_ranking_scoring_triage_semantics_introduced": true,
+    "prohibited_ux_language_absent": true,
+    "read_only_ux_refinement_verified": true,
+    "report_metadata_visibility_preserved": true,
+    "sidebar_entrypoint_preserved": true,
+    "trust_surface_route_preserved": true,
+    "trusted_data_entrypoint_preserved": true,
+    "unsupported_state_visibility_preserved": true
+  }
+}

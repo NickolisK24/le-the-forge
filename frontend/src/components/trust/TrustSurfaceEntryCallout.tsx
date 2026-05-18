@@ -19,9 +19,9 @@ export function TrustSurfaceEntryCallout() {
             View trust visibility
           </h2>
           <p className="mt-2 text-sm leading-6 text-gray-300">
-            See support status, evidence, provenance, lineage, report-backed
-            metadata, fallback visibility, and fail-visible diagnostics in one
-            descriptive surface. This does not enable planner authority or
+            See support status, evidence, provenance, lineage, report metadata,
+            fallback visibility, and fail-visible diagnostics in one descriptive
+            surface. It stays read-only and does not enable planner authority or
             operational behavior.
           </p>
           <div className="mt-3 flex flex-wrap gap-2">

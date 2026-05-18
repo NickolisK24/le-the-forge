@@ -74,7 +74,7 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(
       screen.getByText("read_only_descriptive_frontend_trust_surface_certified"),
     ).toBeInTheDocument();
-    expect(screen.getByText("report_backed")).toBeInTheDocument();
+    expect(screen.getAllByText("report backed").length).toBeGreaterThan(0);
     expect(screen.getByText("Report metadata present")).toBeInTheDocument();
     expect(screen.getByText("Report hash visible")).toBeInTheDocument();
   });
@@ -110,6 +110,17 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getByText("Public warning")).toBeInTheDocument();
     expect(screen.getByText("Evidence gap")).toBeInTheDocument();
     expect(screen.getByText("Explainability gap")).toBeInTheDocument();
+  });
+
+  it("renders refined scan groups, limitation labels, and context-only summaries", () => {
+    render(<FrontendTrustSurface />);
+
+    expect(screen.getByLabelText("Trust surface scan summary")).toBeInTheDocument();
+    expect(screen.getByText("Report source")).toBeInTheDocument();
+    expect(screen.getByText("Evidence groups")).toBeInTheDocument();
+    expect(screen.getAllByText(/limitation remains visible/i).length).toBeGreaterThan(0);
+    expect(screen.getAllByText("context only").length).toBeGreaterThan(0);
+    expect(screen.getByText(/fail-visible report diagnostics/i)).toBeInTheDocument();
   });
 
   it("preserves explicit read-only and descriptive-only guarantees", () => {
@@ -161,10 +172,10 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     const callout = screen.getByTestId("trust-surface-entry-callout");
     expect(within(callout).getByText("Read-only trust surface")).toBeInTheDocument();
     expect(
-      within(callout).getByText(/report-backed metadata, fallback visibility/i),
+      within(callout).getByText(/report metadata, fallback visibility/i),
     ).toBeInTheDocument();
     expect(
-      within(callout).getByText(/does not enable planner authority or operational behavior/i),
+      within(callout).getByText(/stays read-only and does not enable planner authority/i),
     ).toBeInTheDocument();
     expect(within(callout).getByRole("link", { name: "View trust visibility" }))
       .toHaveAttribute("href", TRUST_SURFACE_ROUTE);
