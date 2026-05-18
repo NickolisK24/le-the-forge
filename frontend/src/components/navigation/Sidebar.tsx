@@ -143,6 +143,16 @@ function MetaIcon() {
   );
 }
 
+function TrustVisibilityIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+      <path d="M10 3 L17 7 L17 13 L10 17 L3 13 L3 7 Z" />
+      <path d="M6 10 C7.2 8.2 8.6 7.3 10 7.3 C11.4 7.3 12.8 8.2 14 10 C12.8 11.8 11.4 12.7 10 12.7 C8.6 12.7 7.2 11.8 6 10 Z" />
+      <circle cx="10" cy="10" r="1.3" />
+    </svg>
+  );
+}
+
 function ChevronRightIcon() {
   return (
     <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -171,6 +181,7 @@ const NAV_ITEMS: NavItem[] = [
   { to: "/bis-search",  label: "BIS Search",    icon: <BisSearchIcon /> },
   { to: "/encounter",   label: "Simulation",    icon: <SimulationIcon /> },
   { to: "/meta",        label: "Meta",          icon: <MetaIcon /> },
+  { to: "/trusted-data/frontend-trust", label: "Trust Visibility", icon: <TrustVisibilityIcon /> },
   { to: "/profile",     label: "Profile",       icon: <SettingsIcon /> },
 ];
 

@@ -1,0 +1,175 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "543f43dd9e5128a1032f13b68863d497be9338f65f55b047445a6392ca1f90c7",
+  "enabled_semantics": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "confidence_scoring_enabled": false,
+    "evidence_scoring_enabled": false,
+    "frontend_launch_authorization_language_enabled": false,
+    "hidden_automation_behavior_enabled": false,
+    "live_mutable_trust_state_enabled": false,
+    "operational_mutation_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_enablement_enabled": false,
+    "ranking_system_enabled": false,
+    "recommendation_system_enabled": false,
+    "report_driven_planner_behavior_enabled": false,
+    "runtime_mutation_enabled": false,
+    "trust_scoring_enabled": false
+  },
+  "file_coverage": {
+    "created_files_present": {
+      "backend/scripts/report_v4_5c_3_frontend_trust_navigation_entrypoints.py": true,
+      "docs/generated/v4_5c_3_frontend_trust_navigation_entrypoints_report.json": true,
+      "docs/migration/V4_5C_3_FRONTEND_TRUST_NAVIGATION_ENTRYPOINTS.md": true,
+      "frontend/src/components/trust/TrustSurfaceEntryCallout.tsx": true
+    },
+    "modified_files_expected": [
+      "frontend/src/__tests__/components/frontend-trust-surface-foundations.test.tsx",
+      "frontend/src/components/navigation/Sidebar.tsx",
+      "frontend/src/pages/TrustedDataExplanationPage.tsx"
+    ]
+  },
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "intentionally_preserved_limitations": [
+    "Navigation entry points are read-only links to the existing trust surface.",
+    "Trust navigation does not fetch, mutate, repair, or backfill report data.",
+    "Sidebar discoverability remains a link, not a planner or production enablement control.",
+    "Report-aware messaging keeps fallback and diagnostic limitations visible."
+  ],
+  "navigation_entrypoints": [
+    {
+      "copy": "Read-only trust surface",
+      "descriptive_only": true,
+      "entrypoint": "trusted_data_explanation_callout",
+      "non_authoritative": true,
+      "read_only": true,
+      "source_route": "/trusted-data",
+      "target_route": "/trusted-data/frontend-trust"
+    },
+    {
+      "copy": "View trust visibility",
+      "descriptive_only": true,
+      "entrypoint": "trusted_data_explanation_link",
+      "non_authoritative": true,
+      "read_only": true,
+      "source_route": "/trusted-data",
+      "target_route": "/trusted-data/frontend-trust"
+    },
+    {
+      "copy": "Trust Visibility",
+      "descriptive_only": true,
+      "entrypoint": "sidebar_navigation_link",
+      "non_authoritative": true,
+      "read_only": true,
+      "source_route": "app_sidebar",
+      "target_route": "/trusted-data/frontend-trust"
+    }
+  ],
+  "non_authority_statement": "Frontend trust navigation does NOT imply frontend launch authorization, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, authorization, or approval.",
+  "phase_id": "v4_5c_3_frontend_trust_navigation_entrypoints",
+  "preserved_prohibitions": [
+    "planner execution",
+    "planner recommendations",
+    "planner ranking",
+    "trust scoring",
+    "evidence scoring",
+    "confidence scoring",
+    "recommendation systems",
+    "ranking systems",
+    "authorization semantics",
+    "approval semantics",
+    "orchestration execution",
+    "orchestration routing",
+    "orchestration traversal",
+    "production enablement",
+    "runtime mutation",
+    "operational mutation",
+    "hidden automation behavior",
+    "live mutable trust state",
+    "report-driven planner behavior",
+    "frontend launch authorization language"
+  ],
+  "prohibited_navigation_language": [
+    "Approved",
+    "Safe to use",
+    "Recommended",
+    "Best build",
+    "Fully trusted",
+    "Production ready",
+    "Guaranteed correct"
+  ],
+  "report_aware_messaging": [
+    "deterministic report-backed visibility",
+    "fallback data visibility",
+    "report hash and certification visibility",
+    "fail-visible diagnostics"
+  ],
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "NON-operational",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-triaging"
+  ],
+  "source_report_metadata": {
+    "source_c2_report_available": true,
+    "source_c2_report_hash": "7888991e3c9fa65baa73c272c54ffe46cba565463a52aa9eab82f0f6777fd146",
+    "source_c2_report_phase_id": "v4_5c_2_frontend_trust_report_integration"
+  },
+  "summary": {
+    "created_file_count": 4,
+    "created_files_present": true,
+    "generated_at": "2026-05-18T00:00:00+00:00",
+    "intentionally_preserved_limitation_count": 4,
+    "modified_file_count": 3,
+    "navigation_entrypoint_count": 3,
+    "non_authority_statement": "Frontend trust navigation does NOT imply frontend launch authorization, planner authority, execution safety, correctness guarantees, operational readiness, production enablement, recommendation quality, ranking quality, authorization, or approval.",
+    "phase_id": "v4_5c_3_frontend_trust_navigation_entrypoints",
+    "preserved_prohibition_count": 20,
+    "prohibited_navigation_language_count": 7,
+    "report_aware_message_count": 4,
+    "repository_remains": [
+      "READ-ONLY",
+      "DESCRIPTIVE-ONLY",
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-recommending",
+      "NON-ranking",
+      "NON-scoring",
+      "NON-triaging"
+    ],
+    "source_c2_report_available": true,
+    "source_c2_report_hash": "7888991e3c9fa65baa73c272c54ffe46cba565463a52aa9eab82f0f6777fd146",
+    "source_c2_report_phase_id": "v4_5c_2_frontend_trust_report_integration",
+    "trust_surface_route": "/trusted-data/frontend-trust",
+    "trusted_data_route": "/trusted-data",
+    "validation_error_count": 0
+  },
+  "validation": {
+    "descriptive_only_trust_copy_verified": true,
+    "entrypoint_links_verified": true,
+    "fallback_behavior_preserved": true,
+    "no_authorization_approval_semantics_introduced": true,
+    "no_operational_behavior_introduced": true,
+    "no_recommendation_ranking_scoring_triage_semantics_introduced": true,
+    "non_authoritative_navigation_verified": true,
+    "prohibited_navigation_language_absent": true,
+    "read_only_navigation_verified": true,
+    "report_aware_messaging_verified": true,
+    "sidebar_entrypoint_rendering_verified": true,
+    "stable_trust_surface_route_preserved": true,
+    "trusted_data_entrypoint_rendering_verified": true
+  }
+}
