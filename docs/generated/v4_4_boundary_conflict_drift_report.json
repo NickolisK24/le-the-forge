@@ -1,0 +1,2708 @@
+{
+  "boundary_conflict_drift_intelligence": {
+    "automatic_remediation_enabled": false,
+    "automatic_repair_enabled": false,
+    "classifications": [
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_governance_scope_baseline",
+        "classification_reason": "supported conflict/drift classification remains descriptive-only",
+        "classification_type": "supported_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_governance_scope_baseline",
+        "visibility_state": "supported"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_inheritance_chain_variance",
+        "classification_reason": "drifted conflict/drift classification remains descriptive-only",
+        "classification_type": "drifted_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_inheritance_chain_variance",
+        "visibility_state": "drifted"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_refinement_lineage_degradation",
+        "classification_reason": "degraded conflict/drift classification remains descriptive-only",
+        "classification_type": "degraded_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_refinement_lineage_degradation",
+        "visibility_state": "degraded"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_stale_source_visibility",
+        "classification_reason": "stale conflict/drift classification remains descriptive-only",
+        "classification_type": "stale_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_stale_source_visibility",
+        "visibility_state": "stale"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_conflicting_scope_visibility",
+        "classification_reason": "conflicting conflict/drift classification remains descriptive-only",
+        "classification_type": "conflicting_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_conflicting_scope_visibility",
+        "visibility_state": "conflicting"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_ambiguous_provider_identity",
+        "classification_reason": "ambiguous conflict/drift classification remains descriptive-only",
+        "classification_type": "ambiguous_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_ambiguous_provider_identity",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_incompatible_runtime_semantics",
+        "classification_reason": "incompatible conflict/drift classification remains descriptive-only",
+        "classification_type": "incompatible_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_incompatible_runtime_semantics",
+        "visibility_state": "incompatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_drift_prohibited_runtime_authority",
+        "classification_reason": "prohibited conflict/drift classification remains descriptive-only",
+        "classification_type": "prohibited_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "drift_prohibited_runtime_authority",
+        "visibility_state": "prohibited"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_refinement_chain",
+        "classification_reason": "divergent conflict/drift classification remains descriptive-only",
+        "classification_type": "divergent_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_refinement_chain",
+        "visibility_state": "divergent"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_compatible_lineage",
+        "classification_reason": "compatible conflict/drift classification remains descriptive-only",
+        "classification_type": "compatible_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_compatible_lineage",
+        "visibility_state": "compatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_unsupported_runtime_semantics",
+        "classification_reason": "unsupported conflict/drift classification remains descriptive-only",
+        "classification_type": "unsupported_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_unsupported_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_blocked_lineage_evidence",
+        "classification_reason": "blocked conflict/drift classification remains descriptive-only",
+        "classification_type": "blocked_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_blocked_lineage_evidence",
+        "visibility_state": "blocked"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_incompatible_planner_production",
+        "classification_reason": "incompatible conflict/drift classification remains descriptive-only",
+        "classification_type": "incompatible_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_incompatible_planner_production",
+        "visibility_state": "incompatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_divergence_conflicting_scope",
+        "classification_reason": "conflicting conflict/drift classification remains descriptive-only",
+        "classification_type": "conflicting_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "divergence_conflicting_scope",
+        "visibility_state": "conflicting"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_compatibility_scope_segmentation",
+        "classification_reason": "compatible conflict/drift classification remains descriptive-only",
+        "classification_type": "compatible_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "compatibility_scope_segmentation",
+        "visibility_state": "compatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_compatibility_runtime_semantics",
+        "classification_reason": "incompatible conflict/drift classification remains descriptive-only",
+        "classification_type": "incompatible_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "compatibility_runtime_semantics",
+        "visibility_state": "incompatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_compatibility_ambiguous_provider",
+        "classification_reason": "ambiguous conflict/drift classification remains descriptive-only",
+        "classification_type": "ambiguous_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 17,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "compatibility_ambiguous_provider",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "auto_correction_enabled": false,
+        "classification_id": "classification_compatibility_degraded_lineage",
+        "classification_reason": "degraded conflict/drift classification remains descriptive-only",
+        "classification_type": "degraded_conflict_drift_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 18,
+        "non_authoritative": true,
+        "operational_authority": false,
+        "subject_id": "compatibility_degraded_lineage",
+        "visibility_state": "degraded"
+      }
+    ],
+    "compatibility_evidence": [
+      {
+        "compatibility_id": "compatibility_scope_segmentation",
+        "compatibility_reason": "compatible compatibility evidence is visible and non-authorizing",
+        "compatibility_state": "compatible",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_id": "boundary_governance_scope_visibility",
+        "target_id": "boundary_deterministic_segmentation"
+      },
+      {
+        "compatibility_id": "compatibility_runtime_semantics",
+        "compatibility_reason": "incompatible compatibility evidence is visible and non-authorizing",
+        "compatibility_state": "incompatible",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "refined_external_runtime_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_id": "boundary_external_runtime_semantics",
+        "target_id": "refined_external_runtime_visibility"
+      },
+      {
+        "compatibility_id": "compatibility_ambiguous_provider",
+        "compatibility_reason": "ambiguous compatibility evidence is visible and non-authorizing",
+        "compatibility_state": "ambiguous",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_id": "boundary_implicit_provider_identity",
+        "target_id": "refined_ambiguous_provider_visibility"
+      },
+      {
+        "compatibility_id": "compatibility_degraded_lineage",
+        "compatibility_reason": "degraded compatibility evidence is visible and non-authorizing",
+        "compatibility_state": "degraded",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "boundary_missing_lineage_evidence",
+          "refined_ambiguous_provider_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_id": "boundary_missing_lineage_evidence",
+        "target_id": "refined_ambiguous_provider_visibility"
+      }
+    ],
+    "conflict_ancestry_visibility": [
+      {
+        "ancestry_reference_ids": [
+          "divergence_refinement_chain",
+          "refinement_conflicting_scope_signal",
+          "refinement_scope_to_ancestry"
+        ],
+        "ancestry_state": "divergent",
+        "ancestry_visibility_id": "ancestry_divergence_refinement_chain",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "operational_authority": false,
+        "subject_id": "divergence_refinement_chain"
+      },
+      {
+        "ancestry_reference_ids": [
+          "divergence_compatible_lineage",
+          "refinement_diagnostics_continuity",
+          "refinement_segmentation_to_lineage"
+        ],
+        "ancestry_state": "compatible",
+        "ancestry_visibility_id": "ancestry_divergence_compatible_lineage",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "operational_authority": false,
+        "subject_id": "divergence_compatible_lineage"
+      },
+      {
+        "ancestry_reference_ids": [
+          "divergence_unsupported_runtime_semantics",
+          "refinement_external_runtime_semantics",
+          "refinement_implicit_provider_identity"
+        ],
+        "ancestry_state": "unsupported",
+        "ancestry_visibility_id": "ancestry_divergence_unsupported_runtime_semantics",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "operational_authority": false,
+        "subject_id": "divergence_unsupported_runtime_semantics"
+      },
+      {
+        "ancestry_reference_ids": [
+          "divergence_blocked_lineage_evidence",
+          "inheritance_missing_lineage",
+          "refinement_implicit_provider_identity"
+        ],
+        "ancestry_state": "blocked",
+        "ancestry_visibility_id": "ancestry_divergence_blocked_lineage_evidence",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "operational_authority": false,
+        "subject_id": "divergence_blocked_lineage_evidence"
+      },
+      {
+        "ancestry_reference_ids": [
+          "boundary_planner_production",
+          "divergence_incompatible_planner_production",
+          "refinement_planner_production"
+        ],
+        "ancestry_state": "incompatible",
+        "ancestry_visibility_id": "ancestry_divergence_incompatible_planner_production",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "operational_authority": false,
+        "subject_id": "divergence_incompatible_planner_production"
+      },
+      {
+        "ancestry_reference_ids": [
+          "divergence_conflicting_scope",
+          "inheritance_conflicting_scope_signal",
+          "refinement_conflicting_scope_signal"
+        ],
+        "ancestry_state": "conflicting",
+        "ancestry_visibility_id": "ancestry_divergence_conflicting_scope",
+        "conflict_visible": true,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "operational_authority": false,
+        "subject_id": "divergence_conflicting_scope"
+      }
+    ],
+    "conflict_auto_resolution_enabled": false,
+    "conflict_diagnostics": [
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_governance_scope_baseline",
+        "conflict_type": "inheritance_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_message": "supported conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "drift_governance_scope_baseline",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "info",
+        "subject_id": "drift_governance_scope_baseline",
+        "visibility_state": "supported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_inheritance_chain_variance",
+        "conflict_type": "refinement_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_message": "drifted conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "drift_inheritance_chain_variance",
+          "inheritance_conflicting_scope_signal",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_inheritance_chain_variance",
+        "visibility_state": "drifted"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_refinement_lineage_degradation",
+        "conflict_type": "incompatible_governance_ancestry",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_message": "degraded conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "drift_refinement_lineage_degradation",
+          "refinement_stale_source_evidence",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_refinement_lineage_degradation",
+        "visibility_state": "degraded"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_stale_source_visibility",
+        "conflict_type": "continuity_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_message": "stale conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_stale_source_evidence",
+          "drift_stale_source_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_stale_source_visibility",
+        "visibility_state": "stale"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_conflicting_scope_visibility",
+        "conflict_type": "explainability_inconsistency",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_message": "conflicting conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "drift_conflicting_scope_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_conflicting_scope_visibility",
+        "visibility_state": "conflicting"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_ambiguous_provider_identity",
+        "conflict_type": "provenance_inconsistency",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_message": "ambiguous conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "drift_ambiguous_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_ambiguous_provider_identity",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_incompatible_runtime_semantics",
+        "conflict_type": "lineage_inconsistency",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_message": "incompatible conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "drift_incompatible_runtime_semantics",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "drift_incompatible_runtime_semantics",
+        "visibility_state": "incompatible"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_drift_prohibited_runtime_authority",
+        "conflict_type": "governance_safe_segmentation_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_message": "prohibited conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_runtime_execution",
+          "drift_prohibited_runtime_authority",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "prohibited",
+        "subject_id": "drift_prohibited_runtime_authority",
+        "visibility_state": "prohibited"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_refinement_chain",
+        "conflict_type": "deterministic_ambiguity_propagation",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_message": "divergent conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "refinement_conflicting_scope_signal",
+          "refinement_scope_to_ancestry",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "divergence_refinement_chain",
+        "visibility_state": "divergent"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_compatible_lineage",
+        "conflict_type": "inheritance_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_message": "compatible conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "refinement_diagnostics_continuity",
+          "refinement_segmentation_to_lineage",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "info",
+        "subject_id": "divergence_compatible_lineage",
+        "visibility_state": "compatible"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_unsupported_runtime_semantics",
+        "conflict_type": "refinement_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_message": "unsupported conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "refinement_external_runtime_semantics",
+          "refinement_implicit_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "divergence_unsupported_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_blocked_lineage_evidence",
+        "conflict_type": "incompatible_governance_ancestry",
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "diagnostic_message": "blocked conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "inheritance_missing_lineage",
+          "refinement_implicit_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "blocker",
+        "subject_id": "divergence_blocked_lineage_evidence",
+        "visibility_state": "blocked"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_incompatible_planner_production",
+        "conflict_type": "continuity_conflict",
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "diagnostic_message": "incompatible conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "boundary_planner_production",
+          "refinement_planner_production",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "divergence_incompatible_planner_production",
+        "visibility_state": "incompatible"
+      },
+      {
+        "automatic_remediation_enabled": false,
+        "automatic_repair_enabled": false,
+        "conflict_auto_resolution_enabled": false,
+        "conflict_id": "conflict_divergence_conflicting_scope",
+        "conflict_type": "explainability_inconsistency",
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "diagnostic_message": "conflicting conflict/drift diagnostic remains visible without auto-resolution",
+        "evidence_reference_ids": [
+          "inheritance_conflicting_scope_signal",
+          "refinement_conflicting_scope_signal",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "severity": "warning",
+        "subject_id": "divergence_conflicting_scope",
+        "visibility_state": "conflicting"
+      }
+    ],
+    "conflict_lineage_visibility": [
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "drift_governance_scope_baseline",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "supported",
+        "lineage_visibility_id": "lineage_drift_governance_scope_baseline",
+        "subject_id": "drift_governance_scope_baseline"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "drift_inheritance_chain_variance",
+          "inheritance_conflicting_scope_signal",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "drifted",
+        "lineage_visibility_id": "lineage_drift_inheritance_chain_variance",
+        "subject_id": "drift_inheritance_chain_variance"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "drift_refinement_lineage_degradation",
+          "refinement_stale_source_evidence",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "degraded",
+        "lineage_visibility_id": "lineage_drift_refinement_lineage_degradation",
+        "subject_id": "drift_refinement_lineage_degradation"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_stale_source_evidence",
+          "drift_stale_source_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "stale",
+        "lineage_visibility_id": "lineage_drift_stale_source_visibility",
+        "subject_id": "drift_stale_source_visibility"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "drift_conflicting_scope_visibility",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "conflicting",
+        "lineage_visibility_id": "lineage_drift_conflicting_scope_visibility",
+        "subject_id": "drift_conflicting_scope_visibility"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "drift_ambiguous_provider_identity",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "ambiguous",
+        "lineage_visibility_id": "lineage_drift_ambiguous_provider_identity",
+        "subject_id": "drift_ambiguous_provider_identity"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "drift_incompatible_runtime_semantics",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "incompatible",
+        "lineage_visibility_id": "lineage_drift_incompatible_runtime_semantics",
+        "subject_id": "drift_incompatible_runtime_semantics"
+      },
+      {
+        "ambiguous_lineage_inferred": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "lineage_continuity_visible": true,
+        "lineage_reference_ids": [
+          "boundary_runtime_execution",
+          "drift_prohibited_runtime_authority",
+          "v4_4_boundary_inheritance_refinement"
+        ],
+        "lineage_state": "prohibited",
+        "lineage_visibility_id": "lineage_drift_prohibited_runtime_authority",
+        "subject_id": "drift_prohibited_runtime_authority"
+      }
+    ],
+    "degradation_summaries": [
+      {
+        "affected_relationship_ids": [
+          "refinement_implicit_provider_identity",
+          "refinement_stale_source_evidence"
+        ],
+        "degradation_id": "degradation_lineage_visibility",
+        "degradation_reason": "degraded continuity degradation is visible and not repaired",
+        "degradation_state": "degraded",
+        "degradation_type": "degraded_continuity_degradation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "drift_refinement_lineage_degradation"
+      },
+      {
+        "affected_relationship_ids": [
+          "boundary_stale_source_evidence"
+        ],
+        "degradation_id": "degradation_stale_provenance",
+        "degradation_reason": "stale continuity degradation is visible and not repaired",
+        "degradation_state": "stale",
+        "degradation_type": "stale_continuity_degradation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "drift_stale_source_visibility"
+      },
+      {
+        "affected_relationship_ids": [
+          "inheritance_conflicting_scope_signal",
+          "refinement_conflicting_scope_signal"
+        ],
+        "degradation_id": "degradation_conflicting_continuity",
+        "degradation_reason": "conflicting continuity degradation is visible and not repaired",
+        "degradation_state": "conflicting",
+        "degradation_type": "conflicting_continuity_degradation_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "fail_visible": true,
+        "mutation_enabled": false,
+        "subject_id": "divergence_conflicting_scope"
+      }
+    ],
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "compatibility_visibility_stability",
+      "conflict_hashing_stability",
+      "conflict_ordering_stability",
+      "continuity_degradation_visibility",
+      "drift_ordering_stability",
+      "drift_serialization_stability",
+      "fail_visible_ambiguity_preservation",
+      "governance_safe_descriptive_only_enforcement",
+      "incompatibility_visibility_stability",
+      "lineage_continuity_visibility",
+      "non_operational_certification",
+      "provenance_continuity_visibility",
+      "replay_safe_drift_evidence",
+      "rollback_safe_drift_evidence"
+    ],
+    "dispatch_execution_enabled": false,
+    "divergence_records": [
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "divergence_refinement_chain",
+          "refinement_conflicting_scope_signal",
+          "refinement_scope_to_ancestry"
+        ],
+        "divergence_id": "divergence_refinement_chain",
+        "divergence_reason": "divergent divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "refinement_conflicting_scope_signal",
+        "evidence_reference_ids": [
+          "refinement_conflicting_scope_signal",
+          "refinement_scope_to_ancestry",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "refinement_scope_to_ancestry",
+        "visibility_state": "divergent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "divergence_compatible_lineage",
+          "refinement_diagnostics_continuity",
+          "refinement_segmentation_to_lineage"
+        ],
+        "divergence_id": "divergence_compatible_lineage",
+        "divergence_reason": "compatible divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "refinement_diagnostics_continuity",
+        "evidence_reference_ids": [
+          "refinement_diagnostics_continuity",
+          "refinement_segmentation_to_lineage",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": false,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "refinement_segmentation_to_lineage",
+        "visibility_state": "compatible"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "divergence_unsupported_runtime_semantics",
+          "refinement_external_runtime_semantics",
+          "refinement_implicit_provider_identity"
+        ],
+        "divergence_id": "divergence_unsupported_runtime_semantics",
+        "divergence_reason": "unsupported divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "refinement_implicit_provider_identity",
+        "evidence_reference_ids": [
+          "refinement_external_runtime_semantics",
+          "refinement_implicit_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "refinement_external_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "divergence_blocked_lineage_evidence",
+          "inheritance_missing_lineage",
+          "refinement_implicit_provider_identity"
+        ],
+        "divergence_id": "divergence_blocked_lineage_evidence",
+        "divergence_reason": "blocked divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "refinement_implicit_provider_identity",
+        "evidence_reference_ids": [
+          "inheritance_missing_lineage",
+          "refinement_implicit_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "inheritance_missing_lineage",
+        "visibility_state": "blocked"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "boundary_planner_production",
+          "divergence_incompatible_planner_production",
+          "refinement_planner_production"
+        ],
+        "divergence_id": "divergence_incompatible_planner_production",
+        "divergence_reason": "incompatible divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "boundary_planner_production",
+        "evidence_reference_ids": [
+          "boundary_planner_production",
+          "refinement_planner_production",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "refinement_planner_production",
+        "visibility_state": "incompatible"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_execution_enabled": false,
+        "divergence_chain_ids": [
+          "divergence_conflicting_scope",
+          "inheritance_conflicting_scope_signal",
+          "refinement_conflicting_scope_signal"
+        ],
+        "divergence_id": "divergence_conflicting_scope",
+        "divergence_reason": "conflicting divergence remains visible without orchestration decisioning",
+        "divergent_refinement_id": "refinement_conflicting_scope_signal",
+        "evidence_reference_ids": [
+          "inheritance_conflicting_scope_signal",
+          "refinement_conflicting_scope_signal",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_operational": true,
+        "operational_mutation_enabled": false,
+        "optimization_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "recommendation_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "source_refinement_id": "inheritance_conflicting_scope_signal",
+        "visibility_state": "conflicting"
+      }
+    ],
+    "drift_evidence_metadata": {
+      "compatibility_record_ids": [
+        "compatibility_ambiguous_provider",
+        "compatibility_degraded_lineage",
+        "compatibility_runtime_semantics",
+        "compatibility_scope_segmentation"
+      ],
+      "deterministic_order": 1,
+      "divergence_record_ids": [
+        "divergence_blocked_lineage_evidence",
+        "divergence_compatible_lineage",
+        "divergence_conflicting_scope",
+        "divergence_incompatible_planner_production",
+        "divergence_refinement_chain",
+        "divergence_unsupported_runtime_semantics"
+      ],
+      "drift_record_ids": [
+        "drift_ambiguous_provider_identity",
+        "drift_conflicting_scope_visibility",
+        "drift_governance_scope_baseline",
+        "drift_incompatible_runtime_semantics",
+        "drift_inheritance_chain_variance",
+        "drift_prohibited_runtime_authority",
+        "drift_refinement_lineage_degradation",
+        "drift_stale_source_visibility"
+      ],
+      "evidence_id": "v4_4_boundary_conflict_drift_replay_rollback_evidence",
+      "operational_mutation_enabled": false,
+      "replay_evidence_ids": [
+        "compatibility_ambiguous_provider",
+        "compatibility_degraded_lineage",
+        "compatibility_runtime_semantics",
+        "compatibility_scope_segmentation",
+        "divergence_blocked_lineage_evidence",
+        "divergence_compatible_lineage",
+        "divergence_conflicting_scope",
+        "divergence_incompatible_planner_production",
+        "divergence_refinement_chain",
+        "divergence_unsupported_runtime_semantics",
+        "drift_ambiguous_provider_identity",
+        "drift_conflicting_scope_visibility",
+        "drift_governance_scope_baseline",
+        "drift_incompatible_runtime_semantics",
+        "drift_inheritance_chain_variance",
+        "drift_prohibited_runtime_authority",
+        "drift_refinement_lineage_degradation",
+        "drift_stale_source_visibility"
+      ],
+      "replay_safe": true,
+      "rollback_evidence_ids": [
+        "compatibility_ambiguous_provider",
+        "compatibility_degraded_lineage",
+        "compatibility_runtime_semantics",
+        "compatibility_scope_segmentation",
+        "divergence_blocked_lineage_evidence",
+        "divergence_compatible_lineage",
+        "divergence_conflicting_scope",
+        "divergence_incompatible_planner_production",
+        "divergence_refinement_chain",
+        "divergence_unsupported_runtime_semantics",
+        "drift_ambiguous_provider_identity",
+        "drift_conflicting_scope_visibility",
+        "drift_governance_scope_baseline",
+        "drift_incompatible_runtime_semantics",
+        "drift_inheritance_chain_variance",
+        "drift_prohibited_runtime_authority",
+        "drift_refinement_lineage_degradation",
+        "drift_stale_source_visibility"
+      ],
+      "rollback_safe": true,
+      "runtime_mutation_enabled": false
+    },
+    "drift_records": [
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_governance_scope_visibility",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_governance_scope_visibility",
+          "drift_governance_scope_baseline",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_governance_scope_baseline",
+        "drift_reason": "supported drift remains visible and is not auto-corrected",
+        "drift_type": "governance_boundary_drift",
+        "evidence_reference_ids": [
+          "boundary_governance_scope_visibility",
+          "drift_governance_scope_baseline",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": false,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "supported"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "inheritance_conflicting_scope_signal",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "drift_inheritance_chain_variance",
+          "inheritance_conflicting_scope_signal",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_inheritance_chain_variance",
+        "drift_reason": "drifted drift remains visible and is not auto-corrected",
+        "drift_type": "inheritance_inconsistency",
+        "evidence_reference_ids": [
+          "drift_inheritance_chain_variance",
+          "inheritance_conflicting_scope_signal",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "drifted"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "refinement_stale_source_evidence",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "drift_refinement_lineage_degradation",
+          "refinement_stale_source_evidence",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_refinement_lineage_degradation",
+        "drift_reason": "degraded drift remains visible and is not auto-corrected",
+        "drift_type": "lineage_degradation",
+        "evidence_reference_ids": [
+          "drift_refinement_lineage_degradation",
+          "refinement_stale_source_evidence",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "degraded"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_stale_source_evidence",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_stale_source_evidence",
+          "drift_stale_source_visibility",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_stale_source_visibility",
+        "drift_reason": "stale drift remains visible and is not auto-corrected",
+        "drift_type": "provenance_degradation",
+        "evidence_reference_ids": [
+          "boundary_stale_source_evidence",
+          "drift_stale_source_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "stale"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_conflicting_scope_signal",
+          "drift_conflicting_scope_visibility",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_conflicting_scope_visibility",
+        "drift_reason": "conflicting drift remains visible and is not auto-corrected",
+        "drift_type": "governance_boundary_drift",
+        "evidence_reference_ids": [
+          "boundary_conflicting_scope_signal",
+          "drift_conflicting_scope_visibility",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "conflicting"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_implicit_provider_identity",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_implicit_provider_identity",
+          "drift_ambiguous_provider_identity",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_ambiguous_provider_identity",
+        "drift_reason": "ambiguous drift remains visible and is not auto-corrected",
+        "drift_type": "provenance_degradation",
+        "evidence_reference_ids": [
+          "boundary_implicit_provider_identity",
+          "drift_ambiguous_provider_identity",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "ambiguous"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_external_runtime_semantics",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_external_runtime_semantics",
+          "drift_incompatible_runtime_semantics",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_incompatible_runtime_semantics",
+        "drift_reason": "incompatible drift remains visible and is not auto-corrected",
+        "drift_type": "refinement_divergence",
+        "evidence_reference_ids": [
+          "boundary_external_runtime_semantics",
+          "drift_incompatible_runtime_semantics",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "incompatible"
+      },
+      {
+        "auto_correction_enabled": false,
+        "boundary_id": "boundary_runtime_execution",
+        "conflict_auto_resolution_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "dispatch_execution_enabled": false,
+        "drift_chain_ids": [
+          "boundary_runtime_execution",
+          "drift_prohibited_runtime_authority",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "drift_id": "drift_prohibited_runtime_authority",
+        "drift_reason": "prohibited drift remains visible and is not auto-corrected",
+        "drift_type": "continuity_degradation",
+        "evidence_reference_ids": [
+          "boundary_runtime_execution",
+          "drift_prohibited_runtime_authority",
+          "v4_4_boundary_inheritance_refinement_report"
+        ],
+        "fail_visible": true,
+        "non_authoritative": true,
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "visibility_state": "prohibited"
+      }
+    ],
+    "explainability": [
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_governance_scope_baseline",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_governance_scope_baseline",
+          "drift_governance_scope_baseline",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "supported_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_governance_scope_baseline",
+        "visibility_state": "supported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_inheritance_chain_variance",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_inheritance_chain_variance",
+          "drift_inheritance_chain_variance",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "drifted_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_inheritance_chain_variance",
+        "visibility_state": "drifted"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_refinement_lineage_degradation",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_refinement_lineage_degradation",
+          "drift_refinement_lineage_degradation",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "degraded_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_refinement_lineage_degradation",
+        "visibility_state": "degraded"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_stale_source_visibility",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_stale_source_visibility",
+          "drift_stale_source_visibility",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "stale_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_stale_source_visibility",
+        "visibility_state": "stale"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_conflicting_scope_visibility",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_conflicting_scope_visibility",
+          "drift_conflicting_scope_visibility",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "conflicting_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_conflicting_scope_visibility",
+        "visibility_state": "conflicting"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_ambiguous_provider_identity",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_ambiguous_provider_identity",
+          "drift_ambiguous_provider_identity",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "ambiguous_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_ambiguous_provider_identity",
+        "visibility_state": "ambiguous"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_incompatible_runtime_semantics",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_incompatible_runtime_semantics",
+          "drift_incompatible_runtime_semantics",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "incompatible_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_incompatible_runtime_semantics",
+        "visibility_state": "incompatible"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_drift_prohibited_runtime_authority",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_drift_prohibited_runtime_authority",
+          "drift_prohibited_runtime_authority",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "prohibited_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "drift_prohibited_runtime_authority",
+        "visibility_state": "prohibited"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_refinement_chain",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_refinement_chain",
+          "divergence_refinement_chain",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "divergent_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_refinement_chain",
+        "visibility_state": "divergent"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_compatible_lineage",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_compatible_lineage",
+          "divergence_compatible_lineage",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "compatible_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_compatible_lineage",
+        "visibility_state": "compatible"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_unsupported_runtime_semantics",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_unsupported_runtime_semantics",
+          "divergence_unsupported_runtime_semantics",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "unsupported_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_unsupported_runtime_semantics",
+        "visibility_state": "unsupported"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_blocked_lineage_evidence",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_blocked_lineage_evidence",
+          "divergence_blocked_lineage_evidence",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "blocked_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_blocked_lineage_evidence",
+        "visibility_state": "blocked"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_incompatible_planner_production",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_incompatible_planner_production",
+          "divergence_incompatible_planner_production",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "incompatible_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_incompatible_planner_production",
+        "visibility_state": "incompatible"
+      },
+      {
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "explainability_first": true,
+        "explainability_id": "explainability_conflict_divergence_conflicting_scope",
+        "explanation": "Conflict evidence explains uncertainty without orchestration behavior",
+        "explanation_chain_ids": [
+          "conflict_divergence_conflicting_scope",
+          "divergence_conflicting_scope",
+          "v4_4_boundary_conflict_drift"
+        ],
+        "explanation_type": "conflicting_conflict_explainability",
+        "recommendation_enabled": false,
+        "subject_id": "divergence_conflicting_scope",
+        "visibility_state": "conflicting"
+      }
+    ],
+    "explicit_limitations": [
+      "v4.4 Phase 3 compatibility evidence does not authorize orchestration behavior.",
+      "v4.4 Phase 3 conflict visibility does not perform operational remediation.",
+      "v4.4 Phase 3 does not authorize or approve orchestration.",
+      "v4.4 Phase 3 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 3 does not execute orchestration.",
+      "v4.4 Phase 3 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 3 does not recommend, rank, score, select, optimize, or decide orchestration.",
+      "v4.4 Phase 3 does not repair, remediate, auto-resolve conflicts, or mutate runtime or operational state.",
+      "v4.4 Phase 3 drift visibility does not auto-correct governance state.",
+      "v4.4 Phase 3 models boundary conflict and drift intelligence only."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation exists.",
+      "No automatic repair exists.",
+      "No compatibility system authorizes orchestration behavior.",
+      "No conflict auto-resolution exists.",
+      "No conflict system performs operational remediation.",
+      "No drift system grants runtime authority.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution exists.",
+      "No orchestration ranking, scoring, selection, or optimization exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No runtime mutation exists."
+    ],
+    "identity": {
+      "classification": "governance_safe_descriptive_boundary_conflict_drift_intelligence",
+      "compatibility_reference": "v4_4_refinement_compatibility_visibility",
+      "conflict_diagnostics_reference": "v4_4_boundary_conflict_diagnostics_visibility",
+      "conflict_drift_id": "v4_4_boundary_conflict_drift_intelligence",
+      "descriptive_only": true,
+      "deterministic": true,
+      "dispatch_execution_enabled": false,
+      "divergence_reference": "v4_4_refinement_divergence_visibility",
+      "drift_reference": "v4_4_governance_boundary_drift_visibility",
+      "fail_visible": true,
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "governance_safe": true,
+      "lineage_degradation_reference": "v4_4_boundary_lineage_degradation_visibility",
+      "non_operational": true,
+      "non_operational_reference": "v4_4_boundary_conflict_drift_non_operational_certification",
+      "operational_mutation_enabled": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "phase_id": "v4_4_boundary_conflict_drift",
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_degradation_reference": "v4_4_boundary_provenance_degradation_visibility",
+      "purpose": "deterministic_governance_safe_boundary_conflict_and_drift_intelligence_descriptive_only",
+      "replay_safe": true,
+      "rollback_safe": true,
+      "routing_execution_enabled": false,
+      "runtime_execution_enabled": false,
+      "schema_version": "v4_4.boundary_conflict_drift.1",
+      "source_inheritance_hash_reference": "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+      "source_inheritance_reference": "v4_4_boundary_inheritance_refinement"
+    },
+    "lineage_degradation_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "degradation_reference_ids": [
+        "degradation_conflicting_continuity",
+        "degradation_lineage_visibility",
+        "degradation_stale_provenance"
+      ],
+      "deterministic_order": 1,
+      "lineage_continuity_visible": true,
+      "lineage_hash_references": [
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_inheritance_hash_reference",
+        "v4_4_boundary_intelligence_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_conflict_drift_lineage_degradation",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_state": "lineage_degradation_visible",
+      "operational_mutation_enabled": false
+    },
+    "non_authoritative": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_remediating": true,
+    "non_resolving": true,
+    "operational_mutation_enabled": false,
+    "optimization_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_runtime_behavior_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_degradation_metadata": {
+      "degradation_reference_ids": [
+        "degradation_conflicting_continuity",
+        "degradation_lineage_visibility",
+        "degradation_stale_provenance"
+      ],
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_continuity_visible": true,
+      "provenance_id": "v4_4_boundary_conflict_drift_provenance_degradation",
+      "provenance_state": "provenance_degradation_visible",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    },
+    "ranking_enabled": false,
+    "routing_execution_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scheduling_execution_enabled": false,
+    "scoring_enabled": false,
+    "selection_enabled": false,
+    "sequencing_execution_enabled": false,
+    "traversal_execution_enabled": false
+  },
+  "compatibility_visibility": {
+    "approval_enabled_count": 0,
+    "authorization_enabled_count": 0,
+    "compatibility_evidence_count": 4,
+    "compatibility_ids": [
+      "compatibility_ambiguous_provider",
+      "compatibility_degraded_lineage",
+      "compatibility_runtime_semantics",
+      "compatibility_scope_segmentation"
+    ],
+    "compatible_count": 1,
+    "descriptive_only": true,
+    "incompatible_count": 1,
+    "non_authoritative": true,
+    "runtime_execution_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 0,
+      "compatible": 1,
+      "conflicting": 0,
+      "degraded": 1,
+      "divergent": 0,
+      "drifted": 0,
+      "incompatible": 1,
+      "prohibited": 0,
+      "stale": 0,
+      "supported": 0,
+      "unsupported": 0
+    }
+  },
+  "conflict_diagnostics_visibility": {
+    "automatic_remediation_enabled_count": 0,
+    "automatic_repair_enabled_count": 0,
+    "conflict_auto_resolution_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_count": 14,
+    "diagnostic_ids": [
+      "conflict_divergence_blocked_lineage_evidence",
+      "conflict_divergence_compatible_lineage",
+      "conflict_divergence_conflicting_scope",
+      "conflict_divergence_incompatible_planner_production",
+      "conflict_divergence_refinement_chain",
+      "conflict_divergence_unsupported_runtime_semantics",
+      "conflict_drift_ambiguous_provider_identity",
+      "conflict_drift_conflicting_scope_visibility",
+      "conflict_drift_governance_scope_baseline",
+      "conflict_drift_incompatible_runtime_semantics",
+      "conflict_drift_inheritance_chain_variance",
+      "conflict_drift_prohibited_runtime_authority",
+      "conflict_drift_refinement_lineage_degradation",
+      "conflict_drift_stale_source_visibility"
+    ],
+    "fail_visible": true,
+    "severity_counts": {
+      "blocker": 1,
+      "info": 2,
+      "prohibited": 1,
+      "warning": 10
+    },
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 1,
+      "compatible": 1,
+      "conflicting": 2,
+      "degraded": 1,
+      "divergent": 1,
+      "drifted": 1,
+      "incompatible": 2,
+      "prohibited": 1,
+      "stale": 1,
+      "supported": 1,
+      "unsupported": 1
+    }
+  },
+  "conflict_explainability_visibility": {
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_count": 14,
+    "explainability_first": true,
+    "explainability_ids": [
+      "explainability_conflict_divergence_blocked_lineage_evidence",
+      "explainability_conflict_divergence_compatible_lineage",
+      "explainability_conflict_divergence_conflicting_scope",
+      "explainability_conflict_divergence_incompatible_planner_production",
+      "explainability_conflict_divergence_refinement_chain",
+      "explainability_conflict_divergence_unsupported_runtime_semantics",
+      "explainability_conflict_drift_ambiguous_provider_identity",
+      "explainability_conflict_drift_conflicting_scope_visibility",
+      "explainability_conflict_drift_governance_scope_baseline",
+      "explainability_conflict_drift_incompatible_runtime_semantics",
+      "explainability_conflict_drift_inheritance_chain_variance",
+      "explainability_conflict_drift_prohibited_runtime_authority",
+      "explainability_conflict_drift_refinement_lineage_degradation",
+      "explainability_conflict_drift_stale_source_visibility"
+    ],
+    "recommendation_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 1,
+      "blocked": 1,
+      "compatible": 1,
+      "conflicting": 2,
+      "degraded": 1,
+      "divergent": 1,
+      "drifted": 1,
+      "incompatible": 2,
+      "prohibited": 1,
+      "stale": 1,
+      "supported": 1,
+      "unsupported": 1
+    }
+  },
+  "continuity_degradation_visibility": {
+    "degradation_count": 3,
+    "degradation_ids": [
+      "degradation_conflicting_continuity",
+      "degradation_lineage_visibility",
+      "degradation_stale_provenance"
+    ],
+    "degraded_count": 1,
+    "descriptive_only": true,
+    "fail_visible": true,
+    "mutation_enabled_count": 0,
+    "state_counts": {
+      "ambiguous": 0,
+      "blocked": 0,
+      "compatible": 0,
+      "conflicting": 1,
+      "degraded": 1,
+      "divergent": 0,
+      "drifted": 0,
+      "incompatible": 0,
+      "prohibited": 0,
+      "stale": 1,
+      "supported": 0,
+      "unsupported": 0
+    }
+  },
+  "deterministic_hash_evidence": {
+    "compatibility_evidence_hashes": {
+      "compatibility_ambiguous_provider": "1731b7609c9f3a68a04e4ecf157a7bcea4744283faca50b0f6d75b6d21426d01",
+      "compatibility_degraded_lineage": "ab76499b75fe4b9971f16413e5b62a1036db346b2757930fd00777ab267adf12",
+      "compatibility_runtime_semantics": "8d5d35ddf3c10bbd54c1a22c83ad992f3094f73b94b8d99afdfeeff8fde211dd",
+      "compatibility_scope_segmentation": "2d0e9d112d463eb22282b0c0da7d7b63bdfadbec2fb65b0399d7f0a906c4371c"
+    },
+    "conflict_diagnostic_hashes": {
+      "conflict_divergence_blocked_lineage_evidence": "1509fe461c9e6f43264e4cb01be095caed65cb156102c270917bcad43c94be39",
+      "conflict_divergence_compatible_lineage": "f9dc0e5b4e0e69cddfc8d3cc3a16968ca5eea389e61d7d61e9496f2a3f5c8d9b",
+      "conflict_divergence_conflicting_scope": "215ebd3365806a3b106a67c64fa8107d6e61f315983a484434822c43cc0807fa",
+      "conflict_divergence_incompatible_planner_production": "c4f75931beab8449a554cd077176dd0b28584220267b88a3e6db220ae122183d",
+      "conflict_divergence_refinement_chain": "5ea5e0d8663a6a9232f00e57458d15fb47d5d074811362bb25142593596f394b",
+      "conflict_divergence_unsupported_runtime_semantics": "fff995490781a2b02eb4769dc28122e0b7c9d64ddb850f0d12e14f046cddbe3f",
+      "conflict_drift_ambiguous_provider_identity": "6b6a0440f7a21d3efa325aee9d32e2268450089d3b0e4211ddee40e5b6918c5b",
+      "conflict_drift_conflicting_scope_visibility": "4450fb5798fdabf9a8c71296bac259a30a4beda8313f173e8e84fdb758f6713f",
+      "conflict_drift_governance_scope_baseline": "92f4dfaba24c1ac5db39af91371ea27bd15f1abe290e4361a61bcc0e16ae2f4e",
+      "conflict_drift_incompatible_runtime_semantics": "f1409343afcf68942a919feee372a3fcef473e0c426491de057bb43a9839eba8",
+      "conflict_drift_inheritance_chain_variance": "d29c1bc44733ed35917547af568116726c8cc942a0dbaa681cb38a4ed30ee7a1",
+      "conflict_drift_prohibited_runtime_authority": "7ecdfba05f4214ed8914bf4660361590790610e27e02132b7cd77c426a50d320",
+      "conflict_drift_refinement_lineage_degradation": "ac409e7421969fd9dd8d3e829814dd5589a9fb41d7638d76689d69ad789f4734",
+      "conflict_drift_stale_source_visibility": "7b948bef0592a455fdbad8f48bcb2c6d73641899f49e0361435ebbaa0660c187"
+    },
+    "degradation_summary_hashes": {
+      "degradation_conflicting_continuity": "b30d7c416b4f328ce64fce613511345ddef48ba48127288d6c87d9d74c1f0fc7",
+      "degradation_lineage_visibility": "639a2380d0799e84f31ef7b93cd6393a12af13b560075499f0aea5cb7c400508",
+      "degradation_stale_provenance": "5fea2873b71a10b6d22ceb93731c27e84eab2c08ea29f29093cc687aef8d8f5a"
+    },
+    "divergence_record_hashes": {
+      "divergence_blocked_lineage_evidence": "a7e0ca3c491e0de08eda1faa9810489ad2a0b910b70c928fcc228b9b037d4867",
+      "divergence_compatible_lineage": "cd22db7566dfe6cc49e9d70e18041f98c1eaa61c49ac1311361c8e4312181769",
+      "divergence_conflicting_scope": "ed16ea22c20840a27a4c3b572eb6c54b3b61adb76de25ebc22e21e290d35da55",
+      "divergence_incompatible_planner_production": "cbffc657e5476951f2e16b6f043eafb156e08d62aa1b30a9dd1ee1cfd158a0a5",
+      "divergence_refinement_chain": "18fc2e08e7b893eec0ec5286c355a195c044b501842c2411480cab88350d3dec",
+      "divergence_unsupported_runtime_semantics": "d2b9b0f92291506f9e0c94f765d18130f64ef91c2e400c34d62773286623ee7a"
+    },
+    "drift_evidence_hash": "a53a908a3b6617661585f5880ba1610e93a5853c831c9a4c41b2477458d3c0fd",
+    "drift_record_hashes": {
+      "drift_ambiguous_provider_identity": "a02019d10a6c832a6b0a69042e570906e3a326297b8b91fecc170d82b6064b8c",
+      "drift_conflicting_scope_visibility": "42e39ea7e215f2d418906501a270647b63de6dd3817eeb19a7667dfa9fdcd3b0",
+      "drift_governance_scope_baseline": "09e84da71803c69ea69cbf20083af8e7af4035ab912ad354970c90b2a6ccf32d",
+      "drift_incompatible_runtime_semantics": "906b0117692e91899faedd65f4ffff81f8b692c44d37f49aab744375456295dc",
+      "drift_inheritance_chain_variance": "2c9a370d8b2be3eddd1e362b5c5488aa323ed17536b8b902044e2828ee77f174",
+      "drift_prohibited_runtime_authority": "b33e79270c23ab4bd71494a28e08bfd77aff29860912c20d582e8cfad9b8f547",
+      "drift_refinement_lineage_degradation": "0c226f90086726b046cbbea0180a71f86f3786fcaeacb797a211860be8e78b61",
+      "drift_stale_source_visibility": "becad35c1d0099d43951863a4e67ccb637e66d66891916d5a3ef56252d5cf643"
+    },
+    "explainability_hashes": {
+      "explainability_conflict_divergence_blocked_lineage_evidence": "2eed3fdf64013ed0fcb0bc91d05ec3ff08f7f715d4e9c7f1d42604ad00654264",
+      "explainability_conflict_divergence_compatible_lineage": "607eb38068cb1305af5713580eddef63ecc4bfaa353e89da0c4ce49b8731196f",
+      "explainability_conflict_divergence_conflicting_scope": "e3d028e3fe0fe4811e6ed92982e2e9245dd65151c5cf05a38559ab12c04ef029",
+      "explainability_conflict_divergence_incompatible_planner_production": "7949783ec63721beff7704fecd96e80f55f3e478330bd9473cb7f98a63f5d8df",
+      "explainability_conflict_divergence_refinement_chain": "6be65c844585ebc232d9cc9efefadef12db2e4610b0204323cd01b2726bb2898",
+      "explainability_conflict_divergence_unsupported_runtime_semantics": "2e9bbb952ca770c1ea32a684d752f1b79abe9a300022961c2eccfff6b56b84ab",
+      "explainability_conflict_drift_ambiguous_provider_identity": "3ec5dbbd1562659b2f95f3d6fbe382bf87688f14dc1bc3ca680bba5c8f678fee",
+      "explainability_conflict_drift_conflicting_scope_visibility": "272e31c0d0734e0821a99c62c0e9be31e47804872aec2e0c06d1bc6d02cb58d0",
+      "explainability_conflict_drift_governance_scope_baseline": "6c52c2e9351c3a7f17b42b7ca8737e250ee0dc50201cb12d5782e2abd5d31fa3",
+      "explainability_conflict_drift_incompatible_runtime_semantics": "984464d4926873e753c570cc842d84b592b6d357e84a9004098b30c61e42d985",
+      "explainability_conflict_drift_inheritance_chain_variance": "cdb78e57f3e50f2f7eac59376503cdcc6b1608931d2a6603350baae140f634ec",
+      "explainability_conflict_drift_prohibited_runtime_authority": "8055845b9249810108953472e1d894ea69244550c71be17f5e2f686791df3405",
+      "explainability_conflict_drift_refinement_lineage_degradation": "4c39878b8ecec2ea2a3a5c9da3a29a3aef30fb071b3864389f119083981d7bb6",
+      "explainability_conflict_drift_stale_source_visibility": "58cd9a5bb188466c30e1dd7c8bf1cf566f2c6b984c02d26bd69495a2c256cb69"
+    },
+    "identity_hash": "a159b180da252c37412309f5981b6a90990b26916e8b19f0c6ddb6cc4f8395d9",
+    "intelligence_hash": "ab9122c611f57b1c386ad19eb7fb0ca56149d24b4eef756831d54313fd2e8a81",
+    "lineage_degradation_hash": "019f549c54e3476cc76252eebf8df889be56fbbe65d99872de58de9d7a12e04d",
+    "provenance_degradation_hash": "17070a468c5b627f34d688354f4e67f4e6ca79d0bfbe969283dad53a231e38fa"
+  },
+  "deterministic_report_hash": "971361ca7c2848ba2209fea6ee854f545cc43e0dab4479167095a6c8e4236e98",
+  "deterministic_serialization_evidence": {
+    "hashing_stable": true,
+    "intelligence_hash": "ab9122c611f57b1c386ad19eb7fb0ca56149d24b4eef756831d54313fd2e8a81",
+    "serialization_length": 56082,
+    "serialization_stable": true
+  },
+  "fail_visible_ambiguity_visibility": [
+    {
+      "chain_ids": [
+        "boundary_implicit_provider_identity",
+        "drift_ambiguous_provider_identity",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "drift_ambiguous_provider_identity",
+      "visibility_state": "ambiguous"
+    },
+    {
+      "chain_ids": [
+        "boundary_implicit_provider_identity",
+        "refined_ambiguous_provider_visibility"
+      ],
+      "descriptive_only": true,
+      "fail_visible": true,
+      "record_id": "compatibility_ambiguous_provider",
+      "visibility_state": "ambiguous"
+    }
+  ],
+  "foundation_status": "v4_4_boundary_conflict_drift_stable",
+  "governance_drift_visibility": [
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_governance_scope_visibility",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_governance_scope_visibility",
+        "drift_governance_scope_baseline",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_governance_scope_baseline",
+      "drift_type": "governance_boundary_drift",
+      "fail_visible": false,
+      "visibility_state": "supported"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "inheritance_conflicting_scope_signal",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "drift_inheritance_chain_variance",
+        "inheritance_conflicting_scope_signal",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_inheritance_chain_variance",
+      "drift_type": "inheritance_inconsistency",
+      "fail_visible": true,
+      "visibility_state": "drifted"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "refinement_stale_source_evidence",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "drift_refinement_lineage_degradation",
+        "refinement_stale_source_evidence",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_refinement_lineage_degradation",
+      "drift_type": "lineage_degradation",
+      "fail_visible": true,
+      "visibility_state": "degraded"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_stale_source_evidence",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_stale_source_evidence",
+        "drift_stale_source_visibility",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_stale_source_visibility",
+      "drift_type": "provenance_degradation",
+      "fail_visible": true,
+      "visibility_state": "stale"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_conflicting_scope_signal",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_conflicting_scope_signal",
+        "drift_conflicting_scope_visibility",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_conflicting_scope_visibility",
+      "drift_type": "governance_boundary_drift",
+      "fail_visible": true,
+      "visibility_state": "conflicting"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_implicit_provider_identity",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_implicit_provider_identity",
+        "drift_ambiguous_provider_identity",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_ambiguous_provider_identity",
+      "drift_type": "provenance_degradation",
+      "fail_visible": true,
+      "visibility_state": "ambiguous"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_external_runtime_semantics",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_external_runtime_semantics",
+        "drift_incompatible_runtime_semantics",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_incompatible_runtime_semantics",
+      "drift_type": "refinement_divergence",
+      "fail_visible": true,
+      "visibility_state": "incompatible"
+    },
+    {
+      "auto_correction_enabled": false,
+      "boundary_id": "boundary_runtime_execution",
+      "conflict_auto_resolution_enabled": false,
+      "descriptive_only": true,
+      "drift_chain_ids": [
+        "boundary_runtime_execution",
+        "drift_prohibited_runtime_authority",
+        "v4_4_boundary_conflict_drift"
+      ],
+      "drift_id": "drift_prohibited_runtime_authority",
+      "drift_type": "continuity_degradation",
+      "fail_visible": true,
+      "visibility_state": "prohibited"
+    }
+  ],
+  "incompatibility_visibility": [
+    {
+      "compatibility_id": "compatibility_runtime_semantics",
+      "compatibility_reason": "incompatible compatibility evidence is visible and non-authorizing",
+      "compatibility_state": "incompatible",
+      "fail_visible": true,
+      "source_id": "boundary_external_runtime_semantics",
+      "target_id": "refined_external_runtime_visibility"
+    }
+  ],
+  "lineage_continuity_evidence": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_continuity_visible": true,
+    "lineage_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "degradation_reference_ids": [
+        "degradation_conflicting_continuity",
+        "degradation_lineage_visibility",
+        "degradation_stale_provenance"
+      ],
+      "deterministic_order": 1,
+      "lineage_continuity_visible": true,
+      "lineage_hash_references": [
+        "v4_3_continuity_integrity_hash_reference",
+        "v4_4_boundary_inheritance_hash_reference",
+        "v4_4_boundary_intelligence_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_conflict_drift_lineage_degradation",
+      "lineage_reference_ids": [
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_state": "lineage_degradation_visible",
+      "operational_mutation_enabled": false
+    }
+  },
+  "lineage_degradation_visibility": {
+    "ambiguous_lineage_inferred": false,
+    "degradation_reference_ids": [
+      "degradation_conflicting_continuity",
+      "degradation_lineage_visibility",
+      "degradation_stale_provenance"
+    ],
+    "lineage_continuity_visible": true,
+    "lineage_hash_references": [
+      "v4_3_continuity_integrity_hash_reference",
+      "v4_4_boundary_inheritance_hash_reference",
+      "v4_4_boundary_intelligence_hash_reference"
+    ],
+    "lineage_id": "v4_4_boundary_conflict_drift_lineage_degradation",
+    "lineage_reference_ids": [
+      "v4_3_orchestration_continuity_and_integrity_certification",
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations"
+    ],
+    "operational_mutation_enabled": false
+  },
+  "non_operational_certification_evidence": {
+    "automatic_remediation_disabled": true,
+    "automatic_repair_disabled": true,
+    "conflict_auto_resolution_disabled": true,
+    "counters": {
+      "enabled_dispatch_execution_count": 0,
+      "enabled_operational_mutation_count": 0,
+      "enabled_orchestration_approval_count": 0,
+      "enabled_orchestration_authorization_count": 0,
+      "enabled_routing_execution_count": 0,
+      "enabled_runtime_execution_count": 0
+    },
+    "descriptive_only": true,
+    "enabled_flags": {},
+    "non_authoritative": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_remediating": true,
+    "non_resolving": true,
+    "operational_mutation_disabled": true,
+    "planner_integration_disabled": true,
+    "production_consumption_disabled": true,
+    "runtime_mutation_disabled": true,
+    "valid": true
+  },
+  "phase_id": "v4_4_boundary_conflict_drift",
+  "provenance_continuity_evidence": {
+    "hidden_source_inference_used": false,
+    "provenance_continuity_visible": true,
+    "provenance_metadata": {
+      "degradation_reference_ids": [
+        "degradation_conflicting_continuity",
+        "degradation_lineage_visibility",
+        "degradation_stale_provenance"
+      ],
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_continuity_visible": true,
+      "provenance_id": "v4_4_boundary_conflict_drift_provenance_degradation",
+      "provenance_state": "provenance_degradation_visible",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+        "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_4_boundary_conflict_drift",
+        "v4_4_boundary_inheritance_refinement",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    }
+  },
+  "provenance_degradation_visibility": {
+    "degradation_reference_ids": [
+      "degradation_conflicting_continuity",
+      "degradation_lineage_visibility",
+      "degradation_stale_provenance"
+    ],
+    "hidden_source_inference_used": false,
+    "production_consumption_enabled": false,
+    "provenance_continuity_visible": true,
+    "provenance_id": "v4_4_boundary_conflict_drift_provenance_degradation",
+    "source_hash_references": [
+      "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+      "v4_4_boundary_inheritance_refinement.deterministic_report_hash",
+      "v4_4_boundary_intelligence_foundations.deterministic_report_hash"
+    ],
+    "source_reference_ids": [
+      "v4_3_closeout_and_v4_4_readiness",
+      "v4_4_boundary_conflict_drift",
+      "v4_4_boundary_inheritance_refinement",
+      "v4_4_boundary_intelligence_foundations"
+    ]
+  },
+  "refinement_divergence_visibility": [
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "divergence_refinement_chain",
+        "refinement_conflicting_scope_signal",
+        "refinement_scope_to_ancestry"
+      ],
+      "divergence_id": "divergence_refinement_chain",
+      "divergent_refinement_id": "refinement_conflicting_scope_signal",
+      "fail_visible": true,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "refinement_scope_to_ancestry",
+      "visibility_state": "divergent"
+    },
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "divergence_compatible_lineage",
+        "refinement_diagnostics_continuity",
+        "refinement_segmentation_to_lineage"
+      ],
+      "divergence_id": "divergence_compatible_lineage",
+      "divergent_refinement_id": "refinement_diagnostics_continuity",
+      "fail_visible": false,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "refinement_segmentation_to_lineage",
+      "visibility_state": "compatible"
+    },
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "divergence_unsupported_runtime_semantics",
+        "refinement_external_runtime_semantics",
+        "refinement_implicit_provider_identity"
+      ],
+      "divergence_id": "divergence_unsupported_runtime_semantics",
+      "divergent_refinement_id": "refinement_implicit_provider_identity",
+      "fail_visible": true,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "refinement_external_runtime_semantics",
+      "visibility_state": "unsupported"
+    },
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "divergence_blocked_lineage_evidence",
+        "inheritance_missing_lineage",
+        "refinement_implicit_provider_identity"
+      ],
+      "divergence_id": "divergence_blocked_lineage_evidence",
+      "divergent_refinement_id": "refinement_implicit_provider_identity",
+      "fail_visible": true,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "inheritance_missing_lineage",
+      "visibility_state": "blocked"
+    },
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "boundary_planner_production",
+        "divergence_incompatible_planner_production",
+        "refinement_planner_production"
+      ],
+      "divergence_id": "divergence_incompatible_planner_production",
+      "divergent_refinement_id": "boundary_planner_production",
+      "fail_visible": true,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "refinement_planner_production",
+      "visibility_state": "incompatible"
+    },
+    {
+      "decision_enabled": false,
+      "descriptive_only": true,
+      "divergence_chain_ids": [
+        "divergence_conflicting_scope",
+        "inheritance_conflicting_scope_signal",
+        "refinement_conflicting_scope_signal"
+      ],
+      "divergence_id": "divergence_conflicting_scope",
+      "divergent_refinement_id": "refinement_conflicting_scope_signal",
+      "fail_visible": true,
+      "optimization_enabled": false,
+      "recommendation_enabled": false,
+      "source_refinement_id": "inheritance_conflicting_scope_signal",
+      "visibility_state": "conflicting"
+    }
+  ],
+  "remaining_blockers": [],
+  "remaining_warnings": [],
+  "replay_safe_evidence": {
+    "expected_evidence_count": 18,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 18,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 18,
+    "valid": true
+  },
+  "report_schema_version": "v4_4.boundary_conflict_drift_report.1",
+  "rollback_safe_evidence": {
+    "expected_evidence_count": 18,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 18,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 18,
+    "valid": true
+  },
+  "summary": {
+    "ambiguity_propagation_count": 2,
+    "compatibility_count": 1,
+    "compatibility_evidence_count": 4,
+    "compatibility_visibility_verified": true,
+    "compatible_visibility_count": 2,
+    "continuity_degradation_count": 3,
+    "degraded_visibility_count": 2,
+    "deterministic_conflict_visibility_verified": true,
+    "deterministic_drift_visibility_verified": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_ordering_verified": true,
+    "deterministic_serialization_verified": true,
+    "divergence_record_count": 6,
+    "divergent_visibility_count": 1,
+    "drift_record_count": 8,
+    "drifted_visibility_count": 1,
+    "enabled_dispatch_execution_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_routing_execution_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "explainability_visibility_verified": true,
+    "fail_visible_conflict_count": 14,
+    "governance_safe_certification_verified": true,
+    "incompatibility_count": 1,
+    "incompatible_visibility_count": 3,
+    "lineage_continuity_verified": true,
+    "non_operational_certification_verified": true,
+    "operational_mutation_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_continuity_verified": true,
+    "remaining_blocker_count": 0,
+    "remaining_warning_count": 0,
+    "replay_safe_evidence_verified": true,
+    "rollback_safe_evidence_verified": true,
+    "runtime_mutation_enabled": false,
+    "stale_visibility_count": 1,
+    "validation_error_count": 0
+  },
+  "validation": {
+    "invalid_validation_names": [],
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "explainability": {
+        "explainability": {
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_count": 14,
+          "explainability_first": true,
+          "explainability_ids": [
+            "explainability_conflict_divergence_blocked_lineage_evidence",
+            "explainability_conflict_divergence_compatible_lineage",
+            "explainability_conflict_divergence_conflicting_scope",
+            "explainability_conflict_divergence_incompatible_planner_production",
+            "explainability_conflict_divergence_refinement_chain",
+            "explainability_conflict_divergence_unsupported_runtime_semantics",
+            "explainability_conflict_drift_ambiguous_provider_identity",
+            "explainability_conflict_drift_conflicting_scope_visibility",
+            "explainability_conflict_drift_governance_scope_baseline",
+            "explainability_conflict_drift_incompatible_runtime_semantics",
+            "explainability_conflict_drift_inheritance_chain_variance",
+            "explainability_conflict_drift_prohibited_runtime_authority",
+            "explainability_conflict_drift_refinement_lineage_degradation",
+            "explainability_conflict_drift_stale_source_visibility"
+          ],
+          "recommendation_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 1,
+            "compatible": 1,
+            "conflicting": 2,
+            "degraded": 1,
+            "divergent": 1,
+            "drifted": 1,
+            "incompatible": 2,
+            "prohibited": 1,
+            "stale": 1,
+            "supported": 1,
+            "unsupported": 1
+          }
+        },
+        "valid": true
+      },
+      "non_operational": {
+        "automatic_remediation_disabled": true,
+        "automatic_repair_disabled": true,
+        "conflict_auto_resolution_disabled": true,
+        "counters": {
+          "enabled_dispatch_execution_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_routing_execution_count": 0,
+          "enabled_runtime_execution_count": 0
+        },
+        "descriptive_only": true,
+        "enabled_flags": {},
+        "non_authoritative": true,
+        "non_mutating": true,
+        "non_operational": true,
+        "non_remediating": true,
+        "non_resolving": true,
+        "operational_mutation_disabled": true,
+        "planner_integration_disabled": true,
+        "production_consumption_disabled": true,
+        "runtime_mutation_disabled": true,
+        "valid": true
+      },
+      "ordering": {
+        "duplicate_order_groups": [],
+        "order_groups": {
+          "classifications": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18
+          ],
+          "compatibility_evidence": [
+            1,
+            2,
+            3,
+            4
+          ],
+          "conflict_ancestry_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "conflict_diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ],
+          "conflict_lineage_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "degradation_summaries": [
+            1,
+            2,
+            3
+          ],
+          "divergence_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "drift_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ],
+          "explainability": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "provenance_lineage": {
+        "ambiguous_lineage_inferred": false,
+        "hidden_source_inference_used": false,
+        "lineage_continuity_visible": true,
+        "provenance_continuity_visible": true,
+        "valid": true
+      },
+      "replay_rollback": {
+        "expected_evidence_count": 18,
+        "missing_replay_evidence_ids": [],
+        "missing_rollback_evidence_ids": [],
+        "replay_safe": true,
+        "replay_safe_evidence_count": 18,
+        "rollback_safe": true,
+        "rollback_safe_evidence_count": 18,
+        "valid": true
+      },
+      "serialization_hashing": {
+        "hashing_stable": true,
+        "intelligence_hash": "ab9122c611f57b1c386ad19eb7fb0ca56149d24b4eef756831d54313fd2e8a81",
+        "rebuilt_intelligence_hash": "ab9122c611f57b1c386ad19eb7fb0ca56149d24b4eef756831d54313fd2e8a81",
+        "serialization_length": 56082,
+        "serialization_stable": true,
+        "valid": true
+      },
+      "visibility": {
+        "ambiguity_count": 2,
+        "combined_counts": {
+          "ambiguous": 2,
+          "blocked": 1,
+          "compatible": 2,
+          "conflicting": 2,
+          "degraded": 2,
+          "divergent": 1,
+          "drifted": 1,
+          "incompatible": 3,
+          "prohibited": 1,
+          "stale": 1,
+          "supported": 1,
+          "unsupported": 1
+        },
+        "compatibility": {
+          "approval_enabled_count": 0,
+          "authorization_enabled_count": 0,
+          "compatibility_evidence_count": 4,
+          "compatibility_ids": [
+            "compatibility_ambiguous_provider",
+            "compatibility_degraded_lineage",
+            "compatibility_runtime_semantics",
+            "compatibility_scope_segmentation"
+          ],
+          "compatible_count": 1,
+          "descriptive_only": true,
+          "incompatible_count": 1,
+          "non_authoritative": true,
+          "runtime_execution_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 0,
+            "compatible": 1,
+            "conflicting": 0,
+            "degraded": 1,
+            "divergent": 0,
+            "drifted": 0,
+            "incompatible": 1,
+            "prohibited": 0,
+            "stale": 0,
+            "supported": 0,
+            "unsupported": 0
+          }
+        },
+        "degradation": {
+          "degradation_count": 3,
+          "degradation_ids": [
+            "degradation_conflicting_continuity",
+            "degradation_lineage_visibility",
+            "degradation_stale_provenance"
+          ],
+          "degraded_count": 1,
+          "descriptive_only": true,
+          "fail_visible": true,
+          "mutation_enabled_count": 0,
+          "state_counts": {
+            "ambiguous": 0,
+            "blocked": 0,
+            "compatible": 0,
+            "conflicting": 1,
+            "degraded": 1,
+            "divergent": 0,
+            "drifted": 0,
+            "incompatible": 0,
+            "prohibited": 0,
+            "stale": 1,
+            "supported": 0,
+            "unsupported": 0
+          }
+        },
+        "diagnostics": {
+          "automatic_remediation_enabled_count": 0,
+          "automatic_repair_enabled_count": 0,
+          "conflict_auto_resolution_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_count": 14,
+          "diagnostic_ids": [
+            "conflict_divergence_blocked_lineage_evidence",
+            "conflict_divergence_compatible_lineage",
+            "conflict_divergence_conflicting_scope",
+            "conflict_divergence_incompatible_planner_production",
+            "conflict_divergence_refinement_chain",
+            "conflict_divergence_unsupported_runtime_semantics",
+            "conflict_drift_ambiguous_provider_identity",
+            "conflict_drift_conflicting_scope_visibility",
+            "conflict_drift_governance_scope_baseline",
+            "conflict_drift_incompatible_runtime_semantics",
+            "conflict_drift_inheritance_chain_variance",
+            "conflict_drift_prohibited_runtime_authority",
+            "conflict_drift_refinement_lineage_degradation",
+            "conflict_drift_stale_source_visibility"
+          ],
+          "fail_visible": true,
+          "severity_counts": {
+            "blocker": 1,
+            "info": 2,
+            "prohibited": 1,
+            "warning": 10
+          },
+          "state_counts": {
+            "ambiguous": 1,
+            "blocked": 1,
+            "compatible": 1,
+            "conflicting": 2,
+            "degraded": 1,
+            "divergent": 1,
+            "drifted": 1,
+            "incompatible": 2,
+            "prohibited": 1,
+            "stale": 1,
+            "supported": 1,
+            "unsupported": 1
+          }
+        },
+        "divergence_counts": {
+          "ambiguous": 0,
+          "blocked": 1,
+          "compatible": 1,
+          "conflicting": 1,
+          "degraded": 0,
+          "divergent": 1,
+          "drifted": 0,
+          "incompatible": 1,
+          "prohibited": 0,
+          "stale": 0,
+          "supported": 0,
+          "unsupported": 1
+        },
+        "drift_counts": {
+          "ambiguous": 1,
+          "blocked": 0,
+          "compatible": 0,
+          "conflicting": 1,
+          "degraded": 1,
+          "divergent": 0,
+          "drifted": 1,
+          "incompatible": 1,
+          "prohibited": 1,
+          "stale": 1,
+          "supported": 1,
+          "unsupported": 0
+        },
+        "missing_fail_visible_states": [],
+        "missing_states": [],
+        "valid": true
+      }
+    }
+  }
+}
