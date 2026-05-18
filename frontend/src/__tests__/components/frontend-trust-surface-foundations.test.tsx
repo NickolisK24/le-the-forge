@@ -1,7 +1,10 @@
 import { render, screen, within } from "@testing-library/react";
+import { MemoryRouter } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
+import Sidebar from "@/components/navigation/Sidebar";
 import { FrontendTrustSurface } from "@/components/trust/FrontendTrustSurface";
+import { TRUST_SURFACE_ROUTE } from "@/components/trust/TrustSurfaceEntryCallout";
 import {
   FRONTEND_TRUST_SURFACE_DATA,
   FRONTEND_TRUST_SURFACE_NON_AUTHORITY_STATEMENT,
@@ -14,6 +17,8 @@ import {
   buildFallbackTrustReportIntegration,
   isFrontendTrustReportIntegrationReadOnly,
 } from "@/lib/frontendTrustReportIntegration";
+import FrontendTrustSurfaceFoundationsPage from "@/pages/FrontendTrustSurfaceFoundationsPage";
+import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
 
 describe("v4.5C.1 frontend trust surface foundations", () => {
   it("renders deterministic support badges for every public support state", () => {
@@ -132,5 +137,50 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
 
     expect(screen.queryByRole("button", { name: prohibitedActionPattern })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: prohibitedActionPattern })).not.toBeInTheDocument();
+  });
+
+  it("renders the stable trust surface route content", () => {
+    render(
+      <MemoryRouter initialEntries={[TRUST_SURFACE_ROUTE]}>
+        <FrontendTrustSurfaceFoundationsPage />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByText("Frontend trust surface foundations")).toBeInTheDocument();
+    expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
+    expect(screen.getByText("Fail-visible diagnostics")).toBeInTheDocument();
+  });
+
+  it("renders a trusted data explanation entry point to the trust surface", () => {
+    render(
+      <MemoryRouter initialEntries={["/trusted-data"]}>
+        <TrustedDataExplanationPage />
+      </MemoryRouter>,
+    );
+
+    const callout = screen.getByTestId("trust-surface-entry-callout");
+    expect(within(callout).getByText("Read-only trust surface")).toBeInTheDocument();
+    expect(
+      within(callout).getByText(/report-backed metadata, fallback visibility/i),
+    ).toBeInTheDocument();
+    expect(
+      within(callout).getByText(/does not enable planner authority or operational behavior/i),
+    ).toBeInTheDocument();
+    expect(within(callout).getByRole("link", { name: "View trust visibility" }))
+      .toHaveAttribute("href", TRUST_SURFACE_ROUTE);
+    expect(callout).not.toHaveTextContent(
+      /approved|safe to use|recommended|best build|fully trusted|production ready|guaranteed correct/i,
+    );
+  });
+
+  it("renders a sidebar navigation entry point to trust visibility", () => {
+    render(
+      <MemoryRouter initialEntries={["/"]}>
+        <Sidebar />
+      </MemoryRouter>,
+    );
+
+    expect(screen.getByRole("link", { name: "Trust Visibility" }))
+      .toHaveAttribute("href", TRUST_SURFACE_ROUTE);
   });
 });

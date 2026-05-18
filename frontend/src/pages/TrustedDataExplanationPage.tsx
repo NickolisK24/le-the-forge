@@ -1,6 +1,7 @@
 import { Link } from "react-router-dom";
 
 import PageMeta from "@/components/PageMeta";
+import { TrustSurfaceEntryCallout } from "@/components/trust/TrustSurfaceEntryCallout";
 import { V2LimitationNotice } from "@/components/v2/V2LimitationNotice";
 import { V2SupportBadge, V2TrustBadge } from "@/components/v2/V2TrustBadge";
 
@@ -129,6 +130,8 @@ export default function TrustedDataExplanationPage() {
         </ul>
       </section>
 
+      <TrustSurfaceEntryCallout />
+
       <section className="rounded border border-[#2a3050] bg-[#10152a] p-5">
         <h2 className="text-base font-semibold text-gray-100">Where to inspect the data</h2>
         <p className="mt-2 text-sm leading-6 text-gray-300">
@@ -151,7 +154,7 @@ export default function TrustedDataExplanationPage() {
             to="/trusted-data/frontend-trust"
             className="rounded border border-[#2a3050] px-4 py-2 text-sm text-gray-200 no-underline hover:border-[#f5a623]"
           >
-            Open frontend trust surfaces
+            View trust visibility
           </Link>
           <Link
             to="/debug/v2"
