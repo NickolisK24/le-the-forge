@@ -1,5 +1,5 @@
 import { render, screen, within } from "@testing-library/react";
-import { MemoryRouter } from "react-router-dom";
+import { MemoryRouter, Route, Routes } from "react-router-dom";
 import { describe, expect, it } from "vitest";
 
 import Sidebar from "@/components/navigation/Sidebar";
@@ -77,6 +77,12 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getAllByText("report backed").length).toBeGreaterThan(0);
     expect(screen.getByText("Report metadata present")).toBeInTheDocument();
     expect(screen.getByText("Report hash visible")).toBeInTheDocument();
+    expect(screen.getByText("Backend reflection not integrated")).toBeInTheDocument();
+    expect(
+      screen.getByText(
+        "This surface currently shows deterministic frontend/report-backed visibility, not live backend trust state.",
+      ),
+    ).toBeInTheDocument();
   });
 
   it("keeps deterministic fallback data fail-visible when report metadata is unavailable", () => {
@@ -148,12 +154,17 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
 
     expect(screen.queryByRole("button", { name: prohibitedActionPattern })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: prohibitedActionPattern })).not.toBeInTheDocument();
+    expect(document.body).not.toHaveTextContent(
+      /approved|safe to use|recommended|best build|fully trusted|production ready|guaranteed correct/i,
+    );
   });
 
   it("renders the stable trust surface route content", () => {
     render(
       <MemoryRouter initialEntries={[TRUST_SURFACE_ROUTE]}>
-        <FrontendTrustSurfaceFoundationsPage />
+        <Routes>
+          <Route path={TRUST_SURFACE_ROUTE} element={<FrontendTrustSurfaceFoundationsPage />} />
+        </Routes>
       </MemoryRouter>,
     );
 
@@ -165,7 +176,9 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
   it("renders a trusted data explanation entry point to the trust surface", () => {
     render(
       <MemoryRouter initialEntries={["/trusted-data"]}>
-        <TrustedDataExplanationPage />
+        <Routes>
+          <Route path="/trusted-data" element={<TrustedDataExplanationPage />} />
+        </Routes>
       </MemoryRouter>,
     );
 

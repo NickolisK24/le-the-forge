@@ -90,6 +90,15 @@ const REPORT_BACKED_DIAGNOSTICS: readonly TrustReportDiagnostic[] = [
     readOnly: true,
     descriptiveOnly: true,
   },
+  {
+    id: "backend-reflection-not-integrated",
+    label: "Backend reflection not integrated",
+    state: "warning",
+    message:
+      "This surface currently shows deterministic frontend/report-backed visibility, not live backend trust state.",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
 ];
 
 export const FRONTEND_TRUST_REPORT_INTEGRATION_DATA: FrontendTrustReportIntegrationData = {
@@ -114,7 +123,7 @@ export const FRONTEND_TRUST_REPORT_INTEGRATION_DATA: FrontendTrustReportIntegrat
     reportBackedSourceStatus: "report_backed",
     unavailableReportSourceStatus: "report_unavailable",
     sourceVisibilityNote:
-      "Report-backed metadata is visible while deterministic fallback data remains explicit.",
+      "Report-backed metadata is visible while deterministic fallback data remains explicit; this is not live backend trust state.",
     readOnly: true,
     descriptiveOnly: true,
   },
