@@ -7,6 +7,13 @@ import {
   FRONTEND_TRUST_SURFACE_NON_AUTHORITY_STATEMENT,
   isFrontendTrustSurfaceReadOnly,
 } from "@/lib/frontendTrustSurfaceData";
+import {
+  FRONTEND_TRUST_REPORT_HASH,
+  FRONTEND_TRUST_REPORT_INTEGRATION_DATA,
+  FRONTEND_TRUST_REPORT_PATH,
+  buildFallbackTrustReportIntegration,
+  isFrontendTrustReportIntegrationReadOnly,
+} from "@/lib/frontendTrustReportIntegration";
 
 describe("v4.5C.1 frontend trust surface foundations", () => {
   it("renders deterministic support badges for every public support state", () => {
@@ -52,6 +59,37 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     expect(screen.getByText("Diagnostics explanations")).toBeInTheDocument();
   });
 
+  it("renders report-backed metadata, source visibility, hash, and certification status", () => {
+    render(<FrontendTrustSurface />);
+
+    expect(screen.getByText("Generated trust report visibility")).toBeInTheDocument();
+    expect(screen.getByText("v4.5C.1 frontend trust surface foundations report")).toBeInTheDocument();
+    expect(screen.getAllByText(FRONTEND_TRUST_REPORT_PATH).length).toBeGreaterThan(0);
+    expect(screen.getByText(FRONTEND_TRUST_REPORT_HASH)).toBeInTheDocument();
+    expect(
+      screen.getByText("read_only_descriptive_frontend_trust_surface_certified"),
+    ).toBeInTheDocument();
+    expect(screen.getByText("report_backed")).toBeInTheDocument();
+    expect(screen.getByText("Report metadata present")).toBeInTheDocument();
+    expect(screen.getByText("Report hash visible")).toBeInTheDocument();
+  });
+
+  it("keeps deterministic fallback data fail-visible when report metadata is unavailable", () => {
+    render(
+      <FrontendTrustSurface
+        reportIntegration={buildFallbackTrustReportIntegration("report_unavailable")}
+      />,
+    );
+
+    expect(screen.getByText("Fallback deterministic trust data active")).toBeInTheDocument();
+    expect(screen.getByText("fallback_active=true")).toBeInTheDocument();
+    expect(screen.getByText("Report unavailable")).toBeInTheDocument();
+    expect(screen.getByText("Report metadata missing")).toBeInTheDocument();
+    expect(screen.getByText("Unsupported states preserved")).toBeInTheDocument();
+    expect(screen.getByText("Unsupported states")).toBeInTheDocument();
+    expect(screen.getByText("Fail-visible diagnostics")).toBeInTheDocument();
+  });
+
   it("renders evidence, provenance, lineage, coverage, confidence, and diagnostics surfaces", () => {
     render(<FrontendTrustSurface />);
 
@@ -73,15 +111,17 @@ describe("v4.5C.1 frontend trust surface foundations", () => {
     render(<FrontendTrustSurface />);
 
     expect(isFrontendTrustSurfaceReadOnly(FRONTEND_TRUST_SURFACE_DATA)).toBe(true);
-    expect(screen.getByText("READ-ONLY")).toBeInTheDocument();
-    expect(screen.getByText("DESCRIPTIVE-ONLY")).toBeInTheDocument();
-    expect(screen.getByText("NON-operational")).toBeInTheDocument();
-    expect(screen.getByText("NON-authorizing")).toBeInTheDocument();
-    expect(screen.getByText("NON-approving")).toBeInTheDocument();
-    expect(screen.getByText("NON-recommending")).toBeInTheDocument();
-    expect(screen.getByText("NON-ranking")).toBeInTheDocument();
-    expect(screen.getByText("NON-scoring")).toBeInTheDocument();
+    expect(screen.getAllByText("READ-ONLY").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("DESCRIPTIVE-ONLY").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-operational").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-authorizing").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-approving").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-recommending").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-ranking").length).toBeGreaterThan(0);
+    expect(screen.getAllByText("NON-scoring").length).toBeGreaterThan(0);
+    expect(screen.getByText("NON-triaging")).toBeInTheDocument();
     expect(screen.getByText(FRONTEND_TRUST_SURFACE_NON_AUTHORITY_STATEMENT)).toBeInTheDocument();
+    expect(isFrontendTrustReportIntegrationReadOnly(FRONTEND_TRUST_REPORT_INTEGRATION_DATA)).toBe(true);
   });
 
   it("does not render action controls for authorization, approval, ranking, recommendation, scoring, or execution", () => {

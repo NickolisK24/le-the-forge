@@ -9,10 +9,15 @@ import type {
   TrustSurfaceBadgeDefinition,
   TrustSurfaceSupportStatus,
 } from "@/types/frontendTrustSurface";
+import type {
+  FrontendTrustReportIntegrationData,
+  TrustReportDiagnostic,
+} from "@/types/frontendTrustReportIntegration";
 import {
   getFrontendTrustSurfaceData,
   getSupportBadgeDefinition,
 } from "@/lib/frontendTrustSurfaceData";
+import { getFrontendTrustReportIntegrationData } from "@/lib/frontendTrustReportIntegration";
 
 const badgeToneClasses: Record<TrustSurfaceBadgeDefinition["tone"], string> = {
   green: "border-emerald-400/40 bg-emerald-500/10 text-emerald-100",
@@ -29,6 +34,13 @@ const diagnosticToneClasses: Record<TrustDiagnosticsSummaryData["state"], string
   blocker: "border-rose-400/30 bg-rose-500/10 text-rose-100",
   unsupported: "border-violet-400/30 bg-violet-500/10 text-violet-100",
   gap: "border-sky-400/30 bg-sky-500/10 text-sky-100",
+};
+
+const reportDiagnosticToneClasses: Record<TrustReportDiagnostic["state"], string> = {
+  ok: "border-emerald-400/30 bg-emerald-500/10 text-emerald-100",
+  warning: "border-amber-400/30 bg-amber-500/10 text-amber-100",
+  blocker: "border-rose-400/30 bg-rose-500/10 text-rose-100",
+  unsupported: "border-violet-400/30 bg-violet-500/10 text-violet-100",
 };
 
 function ordered<T extends { deterministicOrder: number }>(items: readonly T[]): readonly T[] {
@@ -215,10 +227,142 @@ export function DiagnosticsSummary({ summary }: { summary: TrustDiagnosticsSumma
   );
 }
 
+export function TrustReportIntegrationPanel({
+  integration,
+}: {
+  integration: FrontendTrustReportIntegrationData;
+}) {
+  return (
+    <section
+      className="rounded border border-[#2a3050] bg-[#10152a] p-5"
+      data-read-only={integration.readOnly}
+      data-descriptive-only={integration.descriptiveOnly}
+    >
+      <div className="flex flex-wrap items-start justify-between gap-3">
+        <div>
+          <p className="font-mono text-xs uppercase tracking-wide text-[#22d3ee]">
+            Report integration
+          </p>
+          <h2 className="mt-2 text-xl font-semibold text-gray-100">
+            Generated trust report visibility
+          </h2>
+        </div>
+        <span className="rounded border border-[#33415f] px-2.5 py-1 font-mono text-[11px] uppercase text-gray-200">
+          {integration.sourceStatus.replace("_", " ")}
+        </span>
+      </div>
+
+      <div className="mt-5 grid gap-4 lg:grid-cols-[1fr_1fr]">
+        <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+          <h3 className="text-sm font-semibold text-gray-100">Report metadata</h3>
+          <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+            <div>
+              <dt className="font-semibold text-gray-100">Report name</dt>
+              <dd>{integration.metadata.reportName}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report path</dt>
+              <dd>{integration.metadata.reportPath}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report hash</dt>
+              <dd className="break-all font-mono">{integration.metadata.reportHash}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Certification status</dt>
+              <dd>{integration.metadata.certificationStatus}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Generated timestamp</dt>
+              <dd>{integration.metadata.generatedAt}</dd>
+            </div>
+          </dl>
+        </article>
+
+        <article className="rounded border border-[#24304f] bg-[#0c1124] p-4">
+          <h3 className="text-sm font-semibold text-gray-100">Report source visibility</h3>
+          <dl className="mt-3 grid gap-2 text-xs leading-5 text-gray-300">
+            <div>
+              <dt className="font-semibold text-gray-100">Generated report path</dt>
+              <dd>{integration.sourceVisibility.generatedReportPath}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Static fallback source</dt>
+              <dd>{integration.sourceVisibility.staticFallbackSource}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Report-backed source status</dt>
+              <dd>{integration.sourceVisibility.reportBackedSourceStatus}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Unavailable report source status</dt>
+              <dd>{integration.sourceVisibility.unavailableReportSourceStatus}</dd>
+            </div>
+            <div>
+              <dt className="font-semibold text-gray-100">Source visibility note</dt>
+              <dd>{integration.sourceVisibility.sourceVisibilityNote}</dd>
+            </div>
+          </dl>
+        </article>
+      </div>
+
+      <article className="mt-4 rounded border border-amber-400/20 bg-amber-500/5 p-4">
+        <h3 className="text-sm font-semibold text-amber-100">
+          {integration.fallbackState.fallbackLabel}
+        </h3>
+        <p className="mt-2 text-sm leading-6 text-amber-100/90">
+          {integration.fallbackState.fallbackReason}
+        </p>
+        <p className="mt-2 text-sm leading-6 text-amber-100/90">
+          {integration.fallbackState.fallbackVisibilityNote}
+        </p>
+        <p className="mt-2 font-mono text-xs uppercase text-amber-100">
+          fallback_active={String(integration.fallbackState.fallbackActive)}
+        </p>
+      </article>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {integration.certificationSummaries.map((summary) => (
+          <article
+            key={summary.id}
+            className="rounded border border-[#24304f] bg-[#0c1124] p-4"
+            data-read-only={summary.readOnly}
+            data-descriptive-only={summary.descriptiveOnly}
+          >
+            <h3 className="text-sm font-semibold text-gray-100">{summary.label}</h3>
+            <ul className="mt-3 space-y-2 text-xs leading-5 text-gray-300">
+              {summary.values.map((value) => (
+                <li key={value}>{value}</li>
+              ))}
+            </ul>
+          </article>
+        ))}
+      </div>
+
+      <div className="mt-5 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
+        {integration.diagnostics.map((diagnostic) => (
+          <article
+            key={diagnostic.id}
+            className={`rounded border p-4 ${reportDiagnosticToneClasses[diagnostic.state]}`}
+            data-read-only={diagnostic.readOnly}
+            data-descriptive-only={diagnostic.descriptiveOnly}
+          >
+            <p className="font-mono text-xs uppercase">{diagnostic.state}</p>
+            <h3 className="mt-2 text-sm font-semibold">{diagnostic.label}</h3>
+            <p className="mt-2 text-sm leading-6">{diagnostic.message}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function FrontendTrustSurface({
   data = getFrontendTrustSurfaceData(),
+  reportIntegration = getFrontendTrustReportIntegrationData(),
 }: {
   data?: FrontendTrustSurfaceData;
+  reportIntegration?: FrontendTrustReportIntegrationData;
 }) {
   return (
     <div className="space-y-8">
@@ -248,6 +392,8 @@ export function FrontendTrustSurface({
           ))}
         </div>
       </section>
+
+      <TrustReportIntegrationPanel integration={reportIntegration} />
 
       <section className="space-y-4">
         <SectionHeading eyebrow="Trust status cards" title="State visibility" />

@@ -1,0 +1,175 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "7888991e3c9fa65baa73c272c54ffe46cba565463a52aa9eab82f0f6777fd146",
+  "enabled_semantics": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "confidence_scoring_enabled": false,
+    "evidence_scoring_enabled": false,
+    "hidden_automation_behavior_enabled": false,
+    "live_mutable_trust_state_enabled": false,
+    "operational_mutation_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_enablement_enabled": false,
+    "ranking_system_enabled": false,
+    "recommendation_system_enabled": false,
+    "report_driven_planner_behavior_enabled": false,
+    "runtime_mutation_enabled": false,
+    "trust_scoring_enabled": false
+  },
+  "fail_visible_diagnostics": [
+    "report unavailable",
+    "report malformed",
+    "report metadata missing",
+    "report hash missing",
+    "certification status missing",
+    "unsupported-state metadata missing",
+    "fallback data active",
+    "stale or unknown report state"
+  ],
+  "file_coverage": {
+    "created_files_present": {
+      "backend/scripts/report_v4_5c_2_frontend_trust_report_integration.py": true,
+      "docs/generated/v4_5c_2_frontend_trust_report_integration_report.json": true,
+      "docs/migration/V4_5C_2_FRONTEND_TRUST_REPORT_INTEGRATION.md": true,
+      "frontend/src/lib/frontendTrustReportIntegration.ts": true,
+      "frontend/src/types/frontendTrustReportIntegration.ts": true
+    },
+    "modified_files_expected": [
+      "frontend/src/__tests__/components/frontend-trust-surface-foundations.test.tsx",
+      "frontend/src/components/trust/FrontendTrustSurface.tsx"
+    ]
+  },
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "intentionally_preserved_limitations": [
+    "Report-backed metadata is bundled as deterministic read-only frontend visibility.",
+    "The frontend does not fetch, mutate, repair, or backfill trust report state at runtime.",
+    "Fallback data remains deterministic and explicitly labeled when active.",
+    "Report metadata does not authorize planner behavior, recommendations, rankings, scores, triage, approval, or production enablement."
+  ],
+  "non_authority_statement": "Frontend trust report integration does NOT imply planner authority, execution safety, correctness guarantees, operational readiness, recommendation quality, ranking quality, scoring quality, triage priority, or production enablement.",
+  "phase_id": "v4_5c_2_frontend_trust_report_integration",
+  "preserved_prohibitions": [
+    "planner execution",
+    "planner recommendations",
+    "planner ranking",
+    "trust scoring",
+    "evidence scoring",
+    "confidence scoring",
+    "recommendation systems",
+    "ranking systems",
+    "authorization semantics",
+    "approval semantics",
+    "orchestration execution",
+    "orchestration routing",
+    "orchestration traversal",
+    "production enablement",
+    "runtime mutation",
+    "operational mutation",
+    "hidden automation behavior",
+    "live mutable trust state",
+    "report-driven planner behavior"
+  ],
+  "report_integration_surfaces": [
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "report_metadata_visibility",
+      "visibility": "report name, path, hash, certification status, generated timestamp, readiness classification"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "read_only": true,
+      "surface": "report_source_visibility",
+      "visibility": "generated report path, static fallback source, report-backed status, unavailable report status"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "silent_fallback": false,
+      "surface": "deterministic_fallback_visibility",
+      "visibility": "fallback active state, fallback source, fallback reason, fallback diagnostics"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "report_backed_certification_summary",
+      "visibility": "repository remains, preserved prohibitions, descriptive guarantees, unsupported operational states"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "read_only": true,
+      "surface": "fail_visible_report_diagnostics",
+      "visibility": "report unavailable, malformed, metadata missing, hash missing, certification missing, fallback active"
+    }
+  ],
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "NON-operational",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring",
+    "NON-triaging"
+  ],
+  "source_report_metadata": {
+    "source_report_available": true,
+    "source_report_certification_status": "read_only_descriptive_frontend_trust_surface_certified",
+    "source_report_generated_at": "2026-05-18T00:00:00+00:00",
+    "source_report_hash_matches": true
+  },
+  "summary": {
+    "created_file_count": 5,
+    "created_files_present": true,
+    "fail_visible_diagnostic_count": 8,
+    "generated_at": "2026-05-18T00:00:00+00:00",
+    "intentionally_preserved_limitation_count": 4,
+    "modified_file_count": 2,
+    "non_authority_statement": "Frontend trust report integration does NOT imply planner authority, execution safety, correctness guarantees, operational readiness, recommendation quality, ranking quality, scoring quality, triage priority, or production enablement.",
+    "phase_id": "v4_5c_2_frontend_trust_report_integration",
+    "preserved_prohibition_count": 19,
+    "report_integration_surface_count": 5,
+    "repository_remains": [
+      "READ-ONLY",
+      "DESCRIPTIVE-ONLY",
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-recommending",
+      "NON-ranking",
+      "NON-scoring",
+      "NON-triaging"
+    ],
+    "source_report_available": true,
+    "source_report_certification_status": "read_only_descriptive_frontend_trust_surface_certified",
+    "source_report_generated_at": "2026-05-18T00:00:00+00:00",
+    "source_report_hash_matches": true,
+    "source_trust_report_hash": "fe46403f3bc8d50346f3b154e737aff7c8b5171e820c176411cfa7635f8433cb",
+    "source_trust_report_path": "docs\\generated\\v4_5c_1_frontend_trust_surface_foundations_report.json",
+    "validation_error_count": 0
+  },
+  "validation": {
+    "certification_rendering_verified": true,
+    "descriptive_only_integration_verified": true,
+    "existing_trust_surface_rendering_preserved": true,
+    "fallback_visibility_verified": true,
+    "no_authorization_approval_semantics_introduced": true,
+    "no_operational_behavior_introduced": true,
+    "no_recommendation_ranking_scoring_triage_semantics_introduced": true,
+    "read_only_integration_verified": true,
+    "report_hash_visibility_verified": true,
+    "report_metadata_visibility_verified": true,
+    "report_source_visibility_verified": true,
+    "report_unavailable_diagnostics_verified": true,
+    "unsupported_state_visibility_preserved": true
+  }
+}
