@@ -1,0 +1,2536 @@
+{
+  "boundary_intelligence_foundations": {
+    "boundary_records": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "boundary_name": "governance scope visibility",
+        "classification_id": "classification_governance_scope",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "diagnostic_boundary_governance_scope_visibility",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_governance_scope_visibility",
+        "fail_visible": false,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_governance_scope_visibility",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_governance_scope_visibility",
+        "segment_id": "segment_boundary_governance_scope_visibility",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "boundary_name": "deterministic segmentation",
+        "classification_id": "classification_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "diagnostic_boundary_deterministic_segmentation",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_deterministic_segmentation",
+        "fail_visible": false,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_deterministic_segmentation",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_deterministic_segmentation",
+        "segment_id": "segment_boundary_deterministic_segmentation",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "boundary_name": "runtime execution",
+        "classification_id": "classification_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "diagnostic_boundary_runtime_execution",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_runtime_execution",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_runtime_execution",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_runtime_execution",
+        "segment_id": "segment_boundary_runtime_execution",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "boundary_name": "authorization approval",
+        "classification_id": "classification_authorization_approval",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "diagnostic_boundary_authorization_approval",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_authorization_approval",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_authorization_approval",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_authorization_approval",
+        "segment_id": "segment_boundary_authorization_approval",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "boundary_name": "dispatch routing",
+        "classification_id": "classification_dispatch_routing",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "diagnostic_boundary_dispatch_routing",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_dispatch_routing",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_dispatch_routing",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_dispatch_routing",
+        "segment_id": "segment_boundary_dispatch_routing",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "boundary_name": "planner production",
+        "classification_id": "classification_planner_production",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "diagnostic_boundary_planner_production",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_planner_production",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_planner_production",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_planner_production",
+        "segment_id": "segment_boundary_planner_production",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "boundary_name": "external runtime semantics",
+        "classification_id": "classification_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "diagnostic_boundary_external_runtime_semantics",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_external_runtime_semantics",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_external_runtime_semantics",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_external_runtime_semantics",
+        "segment_id": "segment_boundary_external_runtime_semantics",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "boundary_name": "implicit provider identity",
+        "classification_id": "classification_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "diagnostic_boundary_implicit_provider_identity",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_implicit_provider_identity",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_implicit_provider_identity",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_implicit_provider_identity",
+        "segment_id": "segment_boundary_implicit_provider_identity",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "boundary_name": "stale source evidence",
+        "classification_id": "classification_stale_source_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "diagnostic_boundary_stale_source_evidence",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_stale_source_evidence",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_stale_source_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_stale_source_evidence",
+        "segment_id": "segment_boundary_stale_source_evidence",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "stale"
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "boundary_name": "conflicting scope signal",
+        "classification_id": "classification_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_id": "diagnostic_boundary_conflicting_scope_signal",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_conflicting_scope_signal",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_conflicting_scope_signal",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_conflicting_scope_signal",
+        "segment_id": "segment_boundary_conflicting_scope_signal",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "conflicting"
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "boundary_name": "missing lineage evidence",
+        "classification_id": "classification_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_id": "diagnostic_boundary_missing_lineage_evidence",
+        "dispatch_execution_enabled": false,
+        "explainability_id": "explainability_boundary_missing_lineage_evidence",
+        "fail_visible": true,
+        "governance_safe": true,
+        "integrity_id": "integrity_boundary_missing_lineage_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "operational_mutation_enabled": false,
+        "orchestration_approval_enabled": false,
+        "orchestration_authorization_enabled": false,
+        "orchestration_decision_enabled": false,
+        "orchestration_recommendation_enabled": false,
+        "planner_integration_enabled": false,
+        "production_consumption_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "routing_execution_enabled": false,
+        "runtime_execution_enabled": false,
+        "runtime_mutation_enabled": false,
+        "scheduling_execution_enabled": false,
+        "scope_id": "scope_boundary_missing_lineage_evidence",
+        "segment_id": "segment_boundary_missing_lineage_evidence",
+        "sequencing_execution_enabled": false,
+        "traversal_execution_enabled": false,
+        "unknown_state_inferred": false,
+        "visibility_state": "blocked"
+      }
+    ],
+    "classifications": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "classification_id": "classification_governance_scope",
+        "classification_reason": "supported boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "governance_scope_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "classification_id": "classification_segmentation",
+        "classification_reason": "supported boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "deterministic_boundary_segmentation_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "classification_id": "classification_runtime_execution",
+        "classification_reason": "prohibited boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_prohibited_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "classification_id": "classification_authorization_approval",
+        "classification_reason": "prohibited boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_prohibited_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "classification_id": "classification_dispatch_routing",
+        "classification_reason": "prohibited boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_prohibited_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "classification_id": "classification_planner_production",
+        "classification_reason": "prohibited boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_prohibited_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "classification_id": "classification_external_runtime_semantics",
+        "classification_reason": "unsupported boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_unsupported_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "classification_id": "classification_implicit_provider_identity",
+        "classification_reason": "unsupported boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "fail_visible_unsupported_state_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "classification_id": "classification_stale_source_evidence",
+        "classification_reason": "stale boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "provenance_continuity_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "stale"
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "classification_id": "classification_conflicting_scope_signal",
+        "classification_reason": "conflicting boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "governance_scope_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "conflicting"
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "classification_id": "classification_missing_lineage_evidence",
+        "classification_reason": "blocked boundary intelligence classification remains visible and descriptive-only",
+        "classification_type": "lineage_continuity_visibility",
+        "decision_authority": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "operational_authority": false,
+        "orchestration_activation_authority": false,
+        "recommendation_authority": false,
+        "runtime_capability": false,
+        "visibility_state": "blocked"
+      }
+    ],
+    "continuity_metadata": {
+      "continuity_guarantees": [
+        "lineage_continuity_preserved",
+        "provenance_continuity_preserved",
+        "replay_safe_evidence_preserved",
+        "rollback_safe_evidence_preserved"
+      ],
+      "continuity_id": "v4_4_boundary_intelligence_continuity",
+      "deterministic_evidence_ids": [
+        "boundary_authorization_approval",
+        "boundary_conflicting_scope_signal",
+        "boundary_deterministic_segmentation",
+        "boundary_dispatch_routing",
+        "boundary_external_runtime_semantics",
+        "boundary_governance_scope_visibility",
+        "boundary_implicit_provider_identity",
+        "boundary_missing_lineage_evidence",
+        "boundary_planner_production",
+        "boundary_runtime_execution",
+        "boundary_stale_source_evidence"
+      ],
+      "deterministic_order": 1,
+      "lineage_continuity_preserved": true,
+      "operational_mutation_enabled": false,
+      "provenance_continuity_preserved": true,
+      "replay_evidence_ids": [
+        "boundary_authorization_approval",
+        "boundary_conflicting_scope_signal",
+        "boundary_deterministic_segmentation",
+        "boundary_dispatch_routing",
+        "boundary_external_runtime_semantics",
+        "boundary_governance_scope_visibility",
+        "boundary_implicit_provider_identity",
+        "boundary_missing_lineage_evidence",
+        "boundary_planner_production",
+        "boundary_runtime_execution",
+        "boundary_stale_source_evidence"
+      ],
+      "replay_safe": true,
+      "rollback_evidence_ids": [
+        "boundary_authorization_approval",
+        "boundary_conflicting_scope_signal",
+        "boundary_deterministic_segmentation",
+        "boundary_dispatch_routing",
+        "boundary_external_runtime_semantics",
+        "boundary_governance_scope_visibility",
+        "boundary_implicit_provider_identity",
+        "boundary_missing_lineage_evidence",
+        "boundary_planner_production",
+        "boundary_runtime_execution",
+        "boundary_stale_source_evidence"
+      ],
+      "rollback_safe": true,
+      "runtime_mutation_enabled": false,
+      "source_phase_id": "v4_3_closeout_and_v4_4_readiness",
+      "source_report_hash_reference": "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+      "source_report_reference": "docs/generated/v4_3_closeout_and_v4_4_readiness_report.json"
+    },
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "deterministic_diagnostics_visibility",
+      "deterministic_explainability_visibility",
+      "deterministic_hashing_stability",
+      "deterministic_integrity_safe_evidence",
+      "deterministic_lineage_continuity",
+      "deterministic_ordering_stability",
+      "deterministic_provenance_continuity",
+      "deterministic_replay_stability",
+      "deterministic_rollback_stability",
+      "deterministic_serialization_stability",
+      "fail_visible_prohibited_state_preservation",
+      "fail_visible_unsupported_state_preservation",
+      "governance_safe_descriptive_only_enforcement",
+      "non_operational_certification"
+    ],
+    "diagnostics": [
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_governance_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "diagnostic_boundary_governance_scope_visibility",
+        "diagnostic_type": "supported_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "supported boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "info",
+        "visibility_state": "supported"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_deterministic_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "diagnostic_boundary_deterministic_segmentation",
+        "diagnostic_type": "supported_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "supported boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "info",
+        "visibility_state": "supported"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "diagnostic_boundary_runtime_execution",
+        "diagnostic_type": "prohibited_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "prohibited boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_authorization_approval",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "diagnostic_boundary_authorization_approval",
+        "diagnostic_type": "prohibited_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "prohibited boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_dispatch_routing",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "diagnostic_boundary_dispatch_routing",
+        "diagnostic_type": "prohibited_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "prohibited boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_planner_production",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "diagnostic_boundary_planner_production",
+        "diagnostic_type": "prohibited_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "prohibited boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "prohibited",
+        "visibility_state": "prohibited"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "diagnostic_boundary_external_runtime_semantics",
+        "diagnostic_type": "unsupported_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "unsupported boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "warning",
+        "visibility_state": "unsupported"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "diagnostic_boundary_implicit_provider_identity",
+        "diagnostic_type": "unsupported_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "unsupported boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "warning",
+        "visibility_state": "unsupported"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_stale_source_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "diagnostic_boundary_stale_source_evidence",
+        "diagnostic_type": "stale_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "stale boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "warning",
+        "visibility_state": "stale"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_id": "diagnostic_boundary_conflicting_scope_signal",
+        "diagnostic_type": "conflicting_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "conflicting boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "warning",
+        "visibility_state": "conflicting"
+      },
+      {
+        "auto_remediation_enabled": false,
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "diagnostic_id": "diagnostic_boundary_missing_lineage_evidence",
+        "diagnostic_type": "blocked_boundary_visibility",
+        "evidence_reference_ids": [
+          "v4_3_closeout_and_v4_4_readiness_report",
+          "v4_4_boundary_intelligence_lineage"
+        ],
+        "fail_visible": true,
+        "message": "blocked boundary state remains explicit and non-operational",
+        "repair_enabled": false,
+        "severity": "blocker",
+        "visibility_state": "blocked"
+      }
+    ],
+    "dispatch_execution_enabled": false,
+    "explainability": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_governance_scope_visibility",
+        "explanation": "governance scope visibility is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "supported_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "supported",
+        "visible_reason_ids": [
+          "classification_governance_scope",
+          "diagnostic_boundary_governance_scope_visibility"
+        ]
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_deterministic_segmentation",
+        "explanation": "deterministic segmentation is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "supported_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "supported",
+        "visible_reason_ids": [
+          "classification_segmentation",
+          "diagnostic_boundary_deterministic_segmentation"
+        ]
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_runtime_execution",
+        "explanation": "runtime execution is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "prohibited_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "prohibited",
+        "visible_reason_ids": [
+          "classification_runtime_execution",
+          "diagnostic_boundary_runtime_execution"
+        ]
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_authorization_approval",
+        "explanation": "authorization approval is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "prohibited_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "prohibited",
+        "visible_reason_ids": [
+          "classification_authorization_approval",
+          "diagnostic_boundary_authorization_approval"
+        ]
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_dispatch_routing",
+        "explanation": "dispatch routing is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "prohibited_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "prohibited",
+        "visible_reason_ids": [
+          "classification_dispatch_routing",
+          "diagnostic_boundary_dispatch_routing"
+        ]
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_planner_production",
+        "explanation": "planner production is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "prohibited_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "prohibited",
+        "visible_reason_ids": [
+          "classification_planner_production",
+          "diagnostic_boundary_planner_production"
+        ]
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_external_runtime_semantics",
+        "explanation": "external runtime semantics is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "unsupported_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "unsupported",
+        "visible_reason_ids": [
+          "classification_external_runtime_semantics",
+          "diagnostic_boundary_external_runtime_semantics"
+        ]
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_implicit_provider_identity",
+        "explanation": "implicit provider identity is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "unsupported_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "unsupported",
+        "visible_reason_ids": [
+          "classification_implicit_provider_identity",
+          "diagnostic_boundary_implicit_provider_identity"
+        ]
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_stale_source_evidence",
+        "explanation": "stale source evidence is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "stale_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "stale",
+        "visible_reason_ids": [
+          "classification_stale_source_evidence",
+          "diagnostic_boundary_stale_source_evidence"
+        ]
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_conflicting_scope_signal",
+        "explanation": "conflicting scope signal is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "conflicting_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "conflicting",
+        "visible_reason_ids": [
+          "classification_conflicting_scope_signal",
+          "diagnostic_boundary_conflicting_scope_signal"
+        ]
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "decision_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "explainability_first": true,
+        "explainability_id": "explainability_boundary_missing_lineage_evidence",
+        "explanation": "missing lineage evidence is visible for governance analysis only; no orchestration action is enabled",
+        "explanation_type": "blocked_boundary_explainability",
+        "recommendation_enabled": false,
+        "visibility_state": "blocked",
+        "visible_reason_ids": [
+          "classification_missing_lineage_evidence",
+          "diagnostic_boundary_missing_lineage_evidence"
+        ]
+      }
+    ],
+    "explicit_limitations": [
+      "v4.4 Phase 1 does not authorize or approve orchestration.",
+      "v4.4 Phase 1 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 1 does not execute orchestration.",
+      "v4.4 Phase 1 does not infer hidden operational semantics.",
+      "v4.4 Phase 1 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 1 does not mutate runtime state or operational state.",
+      "v4.4 Phase 1 does not recommend, decide, rank, score, select, or optimize orchestration.",
+      "v4.4 Phase 1 is descriptive-only and non-operational.",
+      "v4.4 Phase 1 models governance-safe boundary intelligence foundations only."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation or repair exists.",
+      "No hidden inference exists.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration decision exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution behavior exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No runtime mutation exists.",
+      "No runtime orchestration behavior exists."
+    ],
+    "fail_visible_findings": [
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_runtime_execution",
+          "explainability_boundary_runtime_execution"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_runtime_execution",
+        "finding_message": "prohibited state is visible and cannot be inferred into operational authority",
+        "finding_type": "prohibited_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_authorization_approval",
+          "explainability_boundary_authorization_approval"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_authorization_approval",
+        "finding_message": "prohibited state is visible and cannot be inferred into operational authority",
+        "finding_type": "prohibited_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_dispatch_routing",
+          "explainability_boundary_dispatch_routing"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_dispatch_routing",
+        "finding_message": "prohibited state is visible and cannot be inferred into operational authority",
+        "finding_type": "prohibited_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_planner_production",
+          "explainability_boundary_planner_production"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_planner_production",
+        "finding_message": "prohibited state is visible and cannot be inferred into operational authority",
+        "finding_type": "prohibited_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_external_runtime_semantics",
+          "explainability_boundary_external_runtime_semantics"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_external_runtime_semantics",
+        "finding_message": "unsupported state is visible and cannot be inferred into operational authority",
+        "finding_type": "unsupported_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_implicit_provider_identity",
+          "explainability_boundary_implicit_provider_identity"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_implicit_provider_identity",
+        "finding_message": "unsupported state is visible and cannot be inferred into operational authority",
+        "finding_type": "unsupported_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_stale_source_evidence",
+          "explainability_boundary_stale_source_evidence"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_stale_source_evidence",
+        "finding_message": "stale state is visible and cannot be inferred into operational authority",
+        "finding_type": "stale_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "stale"
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_conflicting_scope_signal",
+          "explainability_boundary_conflicting_scope_signal"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_conflicting_scope_signal",
+        "finding_message": "conflicting state is visible and cannot be inferred into operational authority",
+        "finding_type": "conflicting_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "conflicting"
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "evidence_reference_ids": [
+          "diagnostic_boundary_missing_lineage_evidence",
+          "explainability_boundary_missing_lineage_evidence"
+        ],
+        "fail_visible": true,
+        "finding_id": "finding_boundary_missing_lineage_evidence",
+        "finding_message": "blocked state is visible and cannot be inferred into operational authority",
+        "finding_type": "blocked_boundary_state",
+        "hidden_inference_used": false,
+        "remediation_enabled": false,
+        "visibility_state": "blocked"
+      }
+    ],
+    "governance_visibility_summaries": [
+      {
+        "boundary_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility"
+        ],
+        "classification_ids": [
+          "classification_governance_scope",
+          "classification_segmentation"
+        ],
+        "count": 2,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": false,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "supported",
+        "summary_id": "summary_supported_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_implicit_provider_identity"
+        ],
+        "classification_ids": [
+          "classification_external_runtime_semantics",
+          "classification_implicit_provider_identity"
+        ],
+        "count": 2,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "unsupported",
+        "summary_id": "summary_unsupported_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_authorization_approval",
+          "boundary_dispatch_routing",
+          "boundary_planner_production",
+          "boundary_runtime_execution"
+        ],
+        "classification_ids": [
+          "classification_authorization_approval",
+          "classification_dispatch_routing",
+          "classification_planner_production",
+          "classification_runtime_execution"
+        ],
+        "count": 4,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "prohibited",
+        "summary_id": "summary_prohibited_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_missing_lineage_evidence"
+        ],
+        "classification_ids": [
+          "classification_missing_lineage_evidence"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "blocked",
+        "summary_id": "summary_blocked_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_stale_source_evidence"
+        ],
+        "classification_ids": [
+          "classification_stale_source_evidence"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "stale",
+        "summary_id": "summary_stale_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_conflicting_scope_signal"
+        ],
+        "classification_ids": [
+          "classification_conflicting_scope_signal"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "conflicting",
+        "summary_id": "summary_conflicting_boundary_visibility"
+      }
+    ],
+    "identity": {
+      "boundary_intelligence_id": "v4_4_governance_safe_boundary_intelligence_foundations",
+      "boundary_scope_reference": "v4_4_boundary_scope_visibility",
+      "classification": "governance_safe_descriptive_orchestration_boundary_intelligence_foundation",
+      "descriptive_only": true,
+      "deterministic": true,
+      "diagnostics_reference": "v4_4_boundary_diagnostics_visibility",
+      "dispatch_execution_enabled": false,
+      "explainability_reference": "v4_4_boundary_explainability_visibility",
+      "fail_visible": true,
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "governance_reference": "v4_3_closeout_and_v4_4_readiness",
+      "governance_safe": true,
+      "integrity_reference": "v4_4_boundary_integrity_safe_evidence",
+      "lineage_reference": "v4_4_boundary_lineage_continuity",
+      "non_operational": true,
+      "non_operational_reference": "v4_4_boundary_non_operational_certification",
+      "operational_mutation_enabled": false,
+      "orchestration_approval_enabled": false,
+      "orchestration_authorization_enabled": false,
+      "phase_id": "v4_4_boundary_intelligence_foundations",
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_reference": "v4_4_boundary_provenance_continuity",
+      "purpose": "deterministic_governance_safe_orchestration_boundary_intelligence_refinement_descriptive_only",
+      "replay_safe": true,
+      "rollback_safe": true,
+      "routing_execution_enabled": false,
+      "runtime_execution_enabled": false,
+      "schema_version": "v4_4.boundary_intelligence_foundations.1"
+    },
+    "integrity_visibility": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "deterministic_order": 1,
+        "integrity_id": "integrity_boundary_governance_scope_visibility",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "deterministic_order": 2,
+        "integrity_id": "integrity_boundary_deterministic_segmentation",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "supported"
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "deterministic_order": 3,
+        "integrity_id": "integrity_boundary_runtime_execution",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "deterministic_order": 4,
+        "integrity_id": "integrity_boundary_authorization_approval",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "deterministic_order": 5,
+        "integrity_id": "integrity_boundary_dispatch_routing",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "deterministic_order": 6,
+        "integrity_id": "integrity_boundary_planner_production",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "prohibited"
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "deterministic_order": 7,
+        "integrity_id": "integrity_boundary_external_runtime_semantics",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "deterministic_order": 8,
+        "integrity_id": "integrity_boundary_implicit_provider_identity",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "unsupported"
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "deterministic_order": 9,
+        "integrity_id": "integrity_boundary_stale_source_evidence",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "stale"
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "deterministic_order": 10,
+        "integrity_id": "integrity_boundary_conflicting_scope_signal",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "conflicting"
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "deterministic_order": 11,
+        "integrity_id": "integrity_boundary_missing_lineage_evidence",
+        "integrity_safe_evidence": true,
+        "integrity_status": "integrity_safe_visible_evidence",
+        "lineage_reference_id": "v4_4_boundary_intelligence_lineage",
+        "mutation_enabled": false,
+        "provenance_reference_id": "v4_3_closeout_and_v4_4_readiness_report",
+        "replay_safe_evidence": true,
+        "rollback_safe_evidence": true,
+        "visibility_state": "blocked"
+      }
+    ],
+    "lineage_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_continuity_preserved": true,
+      "lineage_hash_references": [
+        "boundary_capability_visibility_hash_reference",
+        "closeout_readiness_hash_reference",
+        "continuity_integrity_certification_hash_reference",
+        "manifest_foundations_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_intelligence_lineage",
+      "lineage_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_3_orchestration_boundary_and_capability_visibility",
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_3_orchestration_manifest_foundations",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_status": "lineage_continuity_visible",
+      "operational_mutation_enabled": false
+    },
+    "non_approving": true,
+    "non_authorizing": true,
+    "non_dispatching": true,
+    "non_executing": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_routing": true,
+    "operational_mutation_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_runtime_behavior_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_metadata": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_chain_status": "provenance_continuity_visible",
+      "provenance_continuity_preserved": true,
+      "provenance_id": "v4_4_boundary_intelligence_provenance",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_3_orchestration_readiness_certification.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_3_orchestration_readiness_certification",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    },
+    "routing_execution_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "scheduling_execution_enabled": false,
+    "scope_visibility": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_governance_scope_visibility",
+        "scope_name": "governance scope visibility scope",
+        "visibility_state": "supported",
+        "visible_scope_reason": "supported boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_deterministic_segmentation",
+        "scope_name": "deterministic segmentation scope",
+        "visibility_state": "supported",
+        "visible_scope_reason": "supported boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_runtime_execution",
+        "scope_name": "runtime execution scope",
+        "visibility_state": "prohibited",
+        "visible_scope_reason": "prohibited boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_authorization_approval",
+        "scope_name": "authorization approval scope",
+        "visibility_state": "prohibited",
+        "visible_scope_reason": "prohibited boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_dispatch_routing",
+        "scope_name": "dispatch routing scope",
+        "visibility_state": "prohibited",
+        "visible_scope_reason": "prohibited boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_planner_production",
+        "scope_name": "planner production scope",
+        "visibility_state": "prohibited",
+        "visible_scope_reason": "prohibited boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_external_runtime_semantics",
+        "scope_name": "external runtime semantics scope",
+        "visibility_state": "unsupported",
+        "visible_scope_reason": "unsupported boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_implicit_provider_identity",
+        "scope_name": "implicit provider identity scope",
+        "visibility_state": "unsupported",
+        "visible_scope_reason": "unsupported boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_stale_source_evidence",
+        "scope_name": "stale source evidence scope",
+        "visibility_state": "stale",
+        "visible_scope_reason": "stale boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_conflicting_scope_signal",
+        "scope_name": "conflicting scope signal scope",
+        "visibility_state": "conflicting",
+        "visible_scope_reason": "conflicting boundary scope is preserved without operational authority"
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "governance_safe": true,
+        "operational_authority": false,
+        "scope_id": "scope_boundary_missing_lineage_evidence",
+        "scope_name": "missing lineage evidence scope",
+        "visibility_state": "blocked",
+        "visible_scope_reason": "blocked boundary scope is preserved without operational authority"
+      }
+    ],
+    "segmentation_visibility": [
+      {
+        "boundary_id": "boundary_governance_scope_visibility",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_governance_scope_visibility",
+        "segment_name": "governance scope visibility segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "supported",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_deterministic_segmentation",
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_deterministic_segmentation",
+        "segment_name": "deterministic segmentation segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "supported",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_runtime_execution",
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_runtime_execution",
+        "segment_name": "runtime execution segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "prohibited",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_authorization_approval",
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_authorization_approval",
+        "segment_name": "authorization approval segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "prohibited",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_dispatch_routing",
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_dispatch_routing",
+        "segment_name": "dispatch routing segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "prohibited",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_planner_production",
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_planner_production",
+        "segment_name": "planner production segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "prohibited",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_external_runtime_semantics",
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_external_runtime_semantics",
+        "segment_name": "external runtime semantics segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "unsupported",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_implicit_provider_identity",
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_implicit_provider_identity",
+        "segment_name": "implicit provider identity segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "unsupported",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_stale_source_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_stale_source_evidence",
+        "segment_name": "stale source evidence segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "stale",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_conflicting_scope_signal",
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_conflicting_scope_signal",
+        "segment_name": "conflicting scope signal segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "conflicting",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      },
+      {
+        "boundary_id": "boundary_missing_lineage_evidence",
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "routing_enabled": false,
+        "segment_id": "segment_boundary_missing_lineage_evidence",
+        "segment_name": "missing lineage evidence segment",
+        "segment_reason": "Segment visibility is deterministic and does not enable traversal or routing",
+        "segment_state": "blocked",
+        "segmentation_executable": false,
+        "traversal_enabled": false
+      }
+    ],
+    "sequencing_execution_enabled": false,
+    "traversal_execution_enabled": false
+  },
+  "deterministic_hash_evidence": {
+    "continuity_metadata_hash": "6c7109332dae3bb45626949af1fbadac0c504a62b015cfaab888b6548abcbb8b",
+    "diagnostic_hashes": {
+      "diagnostic_boundary_authorization_approval": "86bae5352647bd3477abf1d1d526a54aa0ce29a850c36fc8997d7709ac679235",
+      "diagnostic_boundary_conflicting_scope_signal": "f92e9a9156e2576c7ba69aa6dca7da20496120582782dd06f8fbefcc24d518d0",
+      "diagnostic_boundary_deterministic_segmentation": "659b5b3de1ed3aa5948731d09c44336a17066aae8a35c82a47537a2ca10ef483",
+      "diagnostic_boundary_dispatch_routing": "92962cecfaceba774737b0fae831f721edd7d99805e476722ace51564357ee67",
+      "diagnostic_boundary_external_runtime_semantics": "b06e6a2b4a899347493b96666a0d9bfb1d2a473bb0af6a64891edcf446608928",
+      "diagnostic_boundary_governance_scope_visibility": "e8ba48c605200ea5fb364c5f8225be4b50b631e83333d57baa50da4ffb580916",
+      "diagnostic_boundary_implicit_provider_identity": "ad6d897f41e1eb022a51f73143ed23ac2bd28a4c48096d8e4c2134ed10c41f10",
+      "diagnostic_boundary_missing_lineage_evidence": "f36a3196047256df337d71fa4c4ed9cfb55f7fc08e19f0e7a64a0e188dce21c0",
+      "diagnostic_boundary_planner_production": "2a8dacf6cf0b7414a3d32e38f1f038b324b41e83ed120848063f3792d33448f4",
+      "diagnostic_boundary_runtime_execution": "25490cb809c7bdead240a88242124f655c71bd1ef98e2d819076798c79fe9959",
+      "diagnostic_boundary_stale_source_evidence": "aec79b0e3b9aca8a7a4f31e47125e7f3f0ab1ffefa96e7b51151f574ae3ca28f"
+    },
+    "explainability_hashes": {
+      "explainability_boundary_authorization_approval": "ba3a2f7bc5dd306535d0eaaa43a11b47e09f4858ba2d9a835ba9db893ff88669",
+      "explainability_boundary_conflicting_scope_signal": "94e7638d2850b4267c56abe316e092a5b4b6de5b8b6c32ba89138fb650de5a1c",
+      "explainability_boundary_deterministic_segmentation": "b48b36a964eedbc1ee1c0725b1e5361d723a521ed25aa842005e3431089d5256",
+      "explainability_boundary_dispatch_routing": "0c32c89e375a29eaf578bc89c409ea2ce9055e3985a78f0253a231b7a3029707",
+      "explainability_boundary_external_runtime_semantics": "37d3f822ca6fdaf1d2ad420a05ccda8b82c7a5b0510f8eb5f92603861cc73665",
+      "explainability_boundary_governance_scope_visibility": "4607b18f1b8ee6e363f6b3abcab9857fb77f8f01ba255c8298e165d2d5fdb6df",
+      "explainability_boundary_implicit_provider_identity": "243074d82b324f168c5c686ada20287de68328fc9403b4dac6602c6dd5729afb",
+      "explainability_boundary_missing_lineage_evidence": "9bbaa3be72a02bebcac6aa9a5a67b621013b301594abc778268777bce815098b",
+      "explainability_boundary_planner_production": "da45c38531fbee79b9ac84ae6e3f724235562e4b9af44171cda538ec00ef2679",
+      "explainability_boundary_runtime_execution": "8cf0f714ef8eb9f1706c8ca17accc735b85f706ad6e26161942112f28558600c",
+      "explainability_boundary_stale_source_evidence": "7f86f07fe165cbc190b2f0a97d3a3646cc242214b0c809bf08c41566b01b4f05"
+    },
+    "foundation_hash": "8f65b4dc68ecfc950ecbd18ee0c9ecc0538a553404c3d14413d596e5a34fbcf4",
+    "governance_visibility_summary_hashes": {
+      "summary_blocked_boundary_visibility": "a53ea22e701d426b557711bee462301ee641161643cca9182d2e867878d74e4e",
+      "summary_conflicting_boundary_visibility": "9604fc90fe2b7af04720b347391b8fbb170b549957774781529746b62a8cade7",
+      "summary_prohibited_boundary_visibility": "9903cd0b45ea53e0c8cf812d9e4e12462582ea0504323940ba7e2c76d33a7b25",
+      "summary_stale_boundary_visibility": "f17e4f5e09a7b608f09a27a27121139d75d2b81148b52867a1850fa2dfbee0a8",
+      "summary_supported_boundary_visibility": "b4cd9fff11f43039d61713a7f8740282d2b6577ca9d6a089604f53411a349793",
+      "summary_unsupported_boundary_visibility": "4d9c4a09ac7f4fb58f496182a53ab552a3a6daad9789263e0f3240f45d0b902c"
+    },
+    "identity_hash": "25f61e9d8a04524e92410d9e56246822239cfcb18f3296c44558310354d8311c",
+    "lineage_metadata_hash": "ba43fedb1dc46c8acf0b72e852b34d03dd9e342a4f6424e40845d8b0493a6f6f",
+    "provenance_metadata_hash": "147f9b96088fa6b7a378d90cb1f4f80a5f7170d0a56b3d3c572567fb3f9a269d",
+    "record_hashes": {
+      "boundary_authorization_approval": "680ba5b13a048c51a81e4d13c99356cdee5c087157267100e211518abe006e79",
+      "boundary_conflicting_scope_signal": "a482af713f199ffefa5a79d0443f683d9162e44506b25385ca6ca6ebf333b4f3",
+      "boundary_deterministic_segmentation": "3e505b68bade79f6aa4e85562f5872bf59d69d88ed97155afd08c25d5b57814b",
+      "boundary_dispatch_routing": "4c4ff29d8c1a78b4460e740dbccb30c5c9c55986079c80c24a39e181981c5b70",
+      "boundary_external_runtime_semantics": "95186fc1f3a731d501052faa711d3d8d76f5714920df8e47f16c9968ecb3d8fb",
+      "boundary_governance_scope_visibility": "66d2031b8cf566eeb8f527d454c7b92057b06ec087f7fa1a62bfaf368d52e3dc",
+      "boundary_implicit_provider_identity": "5e0a2b629b3187e05152f337eb03dd606a79643994e34f3301422146d8f0989f",
+      "boundary_missing_lineage_evidence": "f76ca3d2e1bd4e4f7dd1b42d558aec4a7917c5e1aa630679ee82e97bc8e47ee3",
+      "boundary_planner_production": "a5888d51ee2570936472ae7910e95d80507e5ff24196c2c1586e71dc12a841dd",
+      "boundary_runtime_execution": "a040056cc40b141e1c4f4b3a52edcf37b4b6097df68351a08d85f6108552db49",
+      "boundary_stale_source_evidence": "2b9d8dd30e50aa603d13f3dcd2f6f2519d515764529c8003d09d14dcd7a1a11c"
+    }
+  },
+  "deterministic_report_hash": "bd3373e41afcd52fcc3becad602bfe4de4337a3e65f1b9e4a7bfe1e6313f5844",
+  "deterministic_serialization_evidence": {
+    "foundation_hash": "8f65b4dc68ecfc950ecbd18ee0c9ecc0538a553404c3d14413d596e5a34fbcf4",
+    "hashing_stable": true,
+    "serialization_length": 59495,
+    "serialization_stable": true
+  },
+  "diagnostics_visibility": {
+    "auto_remediation_enabled_count": 0,
+    "descriptive_only": true,
+    "diagnostic_count": 11,
+    "diagnostic_ids": [
+      "diagnostic_boundary_authorization_approval",
+      "diagnostic_boundary_conflicting_scope_signal",
+      "diagnostic_boundary_deterministic_segmentation",
+      "diagnostic_boundary_dispatch_routing",
+      "diagnostic_boundary_external_runtime_semantics",
+      "diagnostic_boundary_governance_scope_visibility",
+      "diagnostic_boundary_implicit_provider_identity",
+      "diagnostic_boundary_missing_lineage_evidence",
+      "diagnostic_boundary_planner_production",
+      "diagnostic_boundary_runtime_execution",
+      "diagnostic_boundary_stale_source_evidence"
+    ],
+    "fail_visible": true,
+    "repair_enabled_count": 0,
+    "severity_counts": {
+      "blocker": 1,
+      "info": 2,
+      "prohibited": 4,
+      "warning": 4
+    },
+    "state_counts": {
+      "blocked": 1,
+      "conflicting": 1,
+      "prohibited": 4,
+      "stale": 1,
+      "supported": 2,
+      "unsupported": 2
+    }
+  },
+  "explainability_visibility": {
+    "decision_enabled_count": 0,
+    "descriptive_only": true,
+    "explainability_count": 11,
+    "explainability_first": true,
+    "explainability_ids": [
+      "explainability_boundary_authorization_approval",
+      "explainability_boundary_conflicting_scope_signal",
+      "explainability_boundary_deterministic_segmentation",
+      "explainability_boundary_dispatch_routing",
+      "explainability_boundary_external_runtime_semantics",
+      "explainability_boundary_governance_scope_visibility",
+      "explainability_boundary_implicit_provider_identity",
+      "explainability_boundary_missing_lineage_evidence",
+      "explainability_boundary_planner_production",
+      "explainability_boundary_runtime_execution",
+      "explainability_boundary_stale_source_evidence"
+    ],
+    "recommendation_enabled_count": 0,
+    "state_counts": {
+      "blocked": 1,
+      "conflicting": 1,
+      "prohibited": 4,
+      "stale": 1,
+      "supported": 2,
+      "unsupported": 2
+    }
+  },
+  "fail_visible_visibility": {
+    "blocked_visibility_count": 1,
+    "conflicting_visibility_count": 1,
+    "descriptive_only": true,
+    "fail_visible": true,
+    "fail_visible_finding_count": 9,
+    "hidden_inference_used_count": 0,
+    "prohibited_visibility_count": 4,
+    "remediation_enabled_count": 0,
+    "stale_visibility_count": 1,
+    "unsupported_visibility_count": 2
+  },
+  "foundation_status": "v4_4_boundary_intelligence_foundations_stable",
+  "governance_safe_certification_evidence": {
+    "descriptive_only": true,
+    "explicit_limitations": [
+      "v4.4 Phase 1 does not authorize or approve orchestration.",
+      "v4.4 Phase 1 does not dispatch, route, traverse, schedule, or sequence orchestration.",
+      "v4.4 Phase 1 does not execute orchestration.",
+      "v4.4 Phase 1 does not infer hidden operational semantics.",
+      "v4.4 Phase 1 does not integrate planners or consume production bundles.",
+      "v4.4 Phase 1 does not mutate runtime state or operational state.",
+      "v4.4 Phase 1 does not recommend, decide, rank, score, select, or optimize orchestration.",
+      "v4.4 Phase 1 is descriptive-only and non-operational.",
+      "v4.4 Phase 1 models governance-safe boundary intelligence foundations only."
+    ],
+    "explicit_prohibitions": [
+      "No automatic remediation or repair exists.",
+      "No hidden inference exists.",
+      "No operational mutation exists.",
+      "No orchestration approval exists.",
+      "No orchestration authorization exists.",
+      "No orchestration decision exists.",
+      "No orchestration dispatch exists.",
+      "No orchestration execution behavior exists.",
+      "No orchestration recommendation exists.",
+      "No orchestration routing exists.",
+      "No orchestration scheduling exists.",
+      "No orchestration sequencing exists.",
+      "No orchestration traversal exists.",
+      "No planner integration exists.",
+      "No production consumption exists.",
+      "No runtime mutation exists.",
+      "No runtime orchestration behavior exists."
+    ],
+    "non_operational": true,
+    "valid": true
+  },
+  "governance_visibility": {
+    "state_visibility_validation": {
+      "blocked_visibility_count": 1,
+      "classification_counts": {
+        "blocked": 1,
+        "conflicting": 1,
+        "prohibited": 4,
+        "stale": 1,
+        "supported": 2,
+        "unsupported": 2
+      },
+      "conflicting_visibility_count": 1,
+      "fail_visible_findings": {
+        "descriptive_only": true,
+        "fail_visible": true,
+        "finding_count": 9,
+        "finding_ids": [
+          "finding_boundary_authorization_approval",
+          "finding_boundary_conflicting_scope_signal",
+          "finding_boundary_dispatch_routing",
+          "finding_boundary_external_runtime_semantics",
+          "finding_boundary_implicit_provider_identity",
+          "finding_boundary_missing_lineage_evidence",
+          "finding_boundary_planner_production",
+          "finding_boundary_runtime_execution",
+          "finding_boundary_stale_source_evidence"
+        ],
+        "hidden_inference_used_count": 0,
+        "remediation_enabled_count": 0,
+        "state_counts": {
+          "blocked": 1,
+          "conflicting": 1,
+          "prohibited": 4,
+          "stale": 1,
+          "supported": 0,
+          "unsupported": 2
+        }
+      },
+      "fail_visible_state_gaps": [],
+      "governance_validation": {
+        "descriptive_only": true,
+        "governance_safe": true,
+        "missing_or_mismatched_states": [],
+        "operational_authority_count": 0,
+        "record_counts": {
+          "blocked": 1,
+          "conflicting": 1,
+          "prohibited": 4,
+          "stale": 1,
+          "supported": 2,
+          "unsupported": 2
+        },
+        "summary_counts": {
+          "blocked": 1,
+          "conflicting": 1,
+          "prohibited": 4,
+          "stale": 1,
+          "supported": 2,
+          "unsupported": 2
+        },
+        "valid": true
+      },
+      "prohibited_visibility_count": 4,
+      "record_counts": {
+        "blocked": 1,
+        "conflicting": 1,
+        "prohibited": 4,
+        "stale": 1,
+        "supported": 2,
+        "unsupported": 2
+      },
+      "required_state_gaps": [],
+      "stale_visibility_count": 1,
+      "unsupported_visibility_count": 2,
+      "valid": true
+    },
+    "summaries": [
+      {
+        "boundary_ids": [
+          "boundary_deterministic_segmentation",
+          "boundary_governance_scope_visibility"
+        ],
+        "classification_ids": [
+          "classification_governance_scope",
+          "classification_segmentation"
+        ],
+        "count": 2,
+        "descriptive_only": true,
+        "fail_visible": false,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "supported",
+        "summary_id": "summary_supported_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_external_runtime_semantics",
+          "boundary_implicit_provider_identity"
+        ],
+        "classification_ids": [
+          "classification_external_runtime_semantics",
+          "classification_implicit_provider_identity"
+        ],
+        "count": 2,
+        "descriptive_only": true,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "unsupported",
+        "summary_id": "summary_unsupported_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_authorization_approval",
+          "boundary_dispatch_routing",
+          "boundary_planner_production",
+          "boundary_runtime_execution"
+        ],
+        "classification_ids": [
+          "classification_authorization_approval",
+          "classification_dispatch_routing",
+          "classification_planner_production",
+          "classification_runtime_execution"
+        ],
+        "count": 4,
+        "descriptive_only": true,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "prohibited",
+        "summary_id": "summary_prohibited_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_missing_lineage_evidence"
+        ],
+        "classification_ids": [
+          "classification_missing_lineage_evidence"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "blocked",
+        "summary_id": "summary_blocked_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_stale_source_evidence"
+        ],
+        "classification_ids": [
+          "classification_stale_source_evidence"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "stale",
+        "summary_id": "summary_stale_boundary_visibility"
+      },
+      {
+        "boundary_ids": [
+          "boundary_conflicting_scope_signal"
+        ],
+        "classification_ids": [
+          "classification_conflicting_scope_signal"
+        ],
+        "count": 1,
+        "descriptive_only": true,
+        "fail_visible": true,
+        "governance_safe": true,
+        "operational_authority": false,
+        "state_type": "conflicting",
+        "summary_id": "summary_conflicting_boundary_visibility"
+      }
+    ]
+  },
+  "lineage_continuity_evidence": {
+    "ambiguous_lineage_inferred": false,
+    "lineage_continuity_verified": true,
+    "lineage_metadata": {
+      "ambiguous_lineage_inferred": false,
+      "deterministic_order": 1,
+      "lineage_continuity_preserved": true,
+      "lineage_hash_references": [
+        "boundary_capability_visibility_hash_reference",
+        "closeout_readiness_hash_reference",
+        "continuity_integrity_certification_hash_reference",
+        "manifest_foundations_hash_reference"
+      ],
+      "lineage_id": "v4_4_boundary_intelligence_lineage",
+      "lineage_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_3_orchestration_boundary_and_capability_visibility",
+        "v4_3_orchestration_continuity_and_integrity_certification",
+        "v4_3_orchestration_manifest_foundations",
+        "v4_4_boundary_intelligence_foundations"
+      ],
+      "lineage_status": "lineage_continuity_visible",
+      "operational_mutation_enabled": false
+    }
+  },
+  "non_operational_certification_evidence": {
+    "counters": {
+      "enabled_dispatch_execution_count": 0,
+      "enabled_operational_mutation_count": 0,
+      "enabled_orchestration_approval_count": 0,
+      "enabled_orchestration_authorization_count": 0,
+      "enabled_routing_execution_count": 0,
+      "enabled_runtime_execution_count": 0
+    },
+    "descriptive_only": true,
+    "enabled_flags": {},
+    "non_approving": true,
+    "non_authorizing": true,
+    "non_dispatching": true,
+    "non_executing": true,
+    "non_mutating": true,
+    "non_operational": true,
+    "non_routing": true,
+    "operational_mutation_disabled": true,
+    "planner_integration_disabled": true,
+    "production_consumption_disabled": true,
+    "runtime_mutation_disabled": true,
+    "valid": true
+  },
+  "phase_id": "v4_4_boundary_intelligence_foundations",
+  "provenance_continuity_evidence": {
+    "hidden_source_inference_used": false,
+    "provenance_continuity_verified": true,
+    "provenance_metadata": {
+      "deterministic_order": 1,
+      "hidden_source_inference_used": false,
+      "production_consumption_enabled": false,
+      "provenance_chain_status": "provenance_continuity_visible",
+      "provenance_continuity_preserved": true,
+      "provenance_id": "v4_4_boundary_intelligence_provenance",
+      "source_hash_references": [
+        "v4_3_closeout_and_v4_4_readiness.deterministic_report_hash",
+        "v4_3_orchestration_readiness_certification.deterministic_report_hash"
+      ],
+      "source_reference_ids": [
+        "v4_3_closeout_and_v4_4_readiness",
+        "v4_3_orchestration_readiness_certification",
+        "v4_4_boundary_intelligence_foundations"
+      ]
+    }
+  },
+  "remaining_blockers": [],
+  "remaining_warnings": [],
+  "replay_safe_evidence": {
+    "deterministic_evidence_count": 11,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 11,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 11,
+    "valid": true
+  },
+  "report_schema_version": "v4_4.boundary_intelligence_foundations_report.1",
+  "rollback_safe_evidence": {
+    "deterministic_evidence_count": 11,
+    "missing_replay_evidence_ids": [],
+    "missing_rollback_evidence_ids": [],
+    "replay_safe": true,
+    "replay_safe_evidence_count": 11,
+    "rollback_safe": true,
+    "rollback_safe_evidence_count": 11,
+    "valid": true
+  },
+  "summary": {
+    "blocked_visibility_count": 1,
+    "boundary_intelligence_classification_count": 11,
+    "boundary_intelligence_record_count": 11,
+    "conflicting_visibility_count": 1,
+    "descriptive_only_enforced": true,
+    "deterministic_hashing_verified": true,
+    "deterministic_ordering_verified": true,
+    "deterministic_serialization_verified": true,
+    "diagnostics_visibility_verified": true,
+    "enabled_dispatch_execution_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_routing_execution_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "explainability_visibility_verified": true,
+    "fail_visible_finding_count": 9,
+    "governance_safe_certification_verified": true,
+    "lineage_continuity_verified": true,
+    "non_operational_certification_verified": true,
+    "operational_mutation_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "prohibited_visibility_count": 4,
+    "provenance_continuity_verified": true,
+    "remaining_blocker_count": 0,
+    "remaining_warning_count": 0,
+    "replay_safe_evidence_verified": true,
+    "rollback_safe_evidence_verified": true,
+    "runtime_mutation_enabled": false,
+    "stale_visibility_count": 1,
+    "supported_visibility_count": 2,
+    "unsupported_visibility_count": 2,
+    "validation_error_count": 0,
+    "visibility_classification_counts": {
+      "blocked": 1,
+      "conflicting": 1,
+      "prohibited": 4,
+      "stale": 1,
+      "supported": 2,
+      "unsupported": 2
+    }
+  },
+  "validation": {
+    "invalid_validation_names": [],
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "continuity": {
+        "ambiguous_lineage_inferred": false,
+        "continuity_lineage_preserved": true,
+        "continuity_provenance_preserved": true,
+        "hidden_source_inference_used": false,
+        "lineage_continuity_preserved": true,
+        "provenance_continuity_preserved": true,
+        "valid": true
+      },
+      "diagnostics_explainability": {
+        "diagnostics": {
+          "auto_remediation_enabled_count": 0,
+          "descriptive_only": true,
+          "diagnostic_count": 11,
+          "diagnostic_ids": [
+            "diagnostic_boundary_authorization_approval",
+            "diagnostic_boundary_conflicting_scope_signal",
+            "diagnostic_boundary_deterministic_segmentation",
+            "diagnostic_boundary_dispatch_routing",
+            "diagnostic_boundary_external_runtime_semantics",
+            "diagnostic_boundary_governance_scope_visibility",
+            "diagnostic_boundary_implicit_provider_identity",
+            "diagnostic_boundary_missing_lineage_evidence",
+            "diagnostic_boundary_planner_production",
+            "diagnostic_boundary_runtime_execution",
+            "diagnostic_boundary_stale_source_evidence"
+          ],
+          "fail_visible": true,
+          "repair_enabled_count": 0,
+          "severity_counts": {
+            "blocker": 1,
+            "info": 2,
+            "prohibited": 4,
+            "warning": 4
+          },
+          "state_counts": {
+            "blocked": 1,
+            "conflicting": 1,
+            "prohibited": 4,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          }
+        },
+        "explainability": {
+          "decision_enabled_count": 0,
+          "descriptive_only": true,
+          "explainability_count": 11,
+          "explainability_first": true,
+          "explainability_ids": [
+            "explainability_boundary_authorization_approval",
+            "explainability_boundary_conflicting_scope_signal",
+            "explainability_boundary_deterministic_segmentation",
+            "explainability_boundary_dispatch_routing",
+            "explainability_boundary_external_runtime_semantics",
+            "explainability_boundary_governance_scope_visibility",
+            "explainability_boundary_implicit_provider_identity",
+            "explainability_boundary_missing_lineage_evidence",
+            "explainability_boundary_planner_production",
+            "explainability_boundary_runtime_execution",
+            "explainability_boundary_stale_source_evidence"
+          ],
+          "recommendation_enabled_count": 0,
+          "state_counts": {
+            "blocked": 1,
+            "conflicting": 1,
+            "prohibited": 4,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          }
+        },
+        "valid": true
+      },
+      "non_operational": {
+        "counters": {
+          "enabled_dispatch_execution_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_routing_execution_count": 0,
+          "enabled_runtime_execution_count": 0
+        },
+        "descriptive_only": true,
+        "enabled_flags": {},
+        "non_approving": true,
+        "non_authorizing": true,
+        "non_dispatching": true,
+        "non_executing": true,
+        "non_mutating": true,
+        "non_operational": true,
+        "non_routing": true,
+        "operational_mutation_disabled": true,
+        "planner_integration_disabled": true,
+        "production_consumption_disabled": true,
+        "runtime_mutation_disabled": true,
+        "valid": true
+      },
+      "ordering": {
+        "duplicate_order_groups": [],
+        "order_groups": {
+          "boundary_records": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "classifications": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "explainability": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "fail_visible_findings": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "governance_visibility_summaries": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "integrity_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "scope_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ],
+          "segmentation_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "replay_rollback": {
+        "deterministic_evidence_count": 11,
+        "missing_replay_evidence_ids": [],
+        "missing_rollback_evidence_ids": [],
+        "replay_safe": true,
+        "replay_safe_evidence_count": 11,
+        "rollback_safe": true,
+        "rollback_safe_evidence_count": 11,
+        "valid": true
+      },
+      "serialization_hashing": {
+        "foundation_hash": "8f65b4dc68ecfc950ecbd18ee0c9ecc0538a553404c3d14413d596e5a34fbcf4",
+        "hashing_stable": true,
+        "rebuilt_foundation_hash": "8f65b4dc68ecfc950ecbd18ee0c9ecc0538a553404c3d14413d596e5a34fbcf4",
+        "serialization_length": 59495,
+        "serialization_stable": true,
+        "valid": true
+      },
+      "state_visibility": {
+        "blocked_visibility_count": 1,
+        "classification_counts": {
+          "blocked": 1,
+          "conflicting": 1,
+          "prohibited": 4,
+          "stale": 1,
+          "supported": 2,
+          "unsupported": 2
+        },
+        "conflicting_visibility_count": 1,
+        "fail_visible_findings": {
+          "descriptive_only": true,
+          "fail_visible": true,
+          "finding_count": 9,
+          "finding_ids": [
+            "finding_boundary_authorization_approval",
+            "finding_boundary_conflicting_scope_signal",
+            "finding_boundary_dispatch_routing",
+            "finding_boundary_external_runtime_semantics",
+            "finding_boundary_implicit_provider_identity",
+            "finding_boundary_missing_lineage_evidence",
+            "finding_boundary_planner_production",
+            "finding_boundary_runtime_execution",
+            "finding_boundary_stale_source_evidence"
+          ],
+          "hidden_inference_used_count": 0,
+          "remediation_enabled_count": 0,
+          "state_counts": {
+            "blocked": 1,
+            "conflicting": 1,
+            "prohibited": 4,
+            "stale": 1,
+            "supported": 0,
+            "unsupported": 2
+          }
+        },
+        "fail_visible_state_gaps": [],
+        "governance_validation": {
+          "descriptive_only": true,
+          "governance_safe": true,
+          "missing_or_mismatched_states": [],
+          "operational_authority_count": 0,
+          "record_counts": {
+            "blocked": 1,
+            "conflicting": 1,
+            "prohibited": 4,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          },
+          "summary_counts": {
+            "blocked": 1,
+            "conflicting": 1,
+            "prohibited": 4,
+            "stale": 1,
+            "supported": 2,
+            "unsupported": 2
+          },
+          "valid": true
+        },
+        "prohibited_visibility_count": 4,
+        "record_counts": {
+          "blocked": 1,
+          "conflicting": 1,
+          "prohibited": 4,
+          "stale": 1,
+          "supported": 2,
+          "unsupported": 2
+        },
+        "required_state_gaps": [],
+        "stale_visibility_count": 1,
+        "unsupported_visibility_count": 2,
+        "valid": true
+      }
+    }
+  }
+}
