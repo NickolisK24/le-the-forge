@@ -1,0 +1,3837 @@
+{
+  "deterministic_hash_evidence": {
+    "evidence_origin_hashes": {
+      "evidence_origin_evidence_continuity_references": "476ad9302f75b95ebceaefdecbc6034fbea0457f223cbd9fcc798c2d7b8aad10",
+      "evidence_origin_evidence_diagnostic_references": "65cce5773060177c531d71414a30716ed3e051ce8b36ccb727922060e7073192",
+      "evidence_origin_evidence_freshness_references": "2cc08c4ade42d4400bb586ca9eb052c350e54078b291c45c98e5e31214fb850b",
+      "evidence_origin_evidence_lineage_references": "b1bfb535512f78a583859d24e628773fec7be1354ad4660df8c0cc701def4683",
+      "evidence_origin_evidence_origin_references": "d511f838b376ecb2a04d1b147f8e37e6857429bc1fe8b3b12683f2b70c3a38a8",
+      "evidence_origin_evidence_provenance_references": "29a06f19c82bee59b959d4d33a4df425395a3b57ca9c853a783a04ea2b88e321",
+      "evidence_origin_evidence_source_references": "9405a8352d96bc805532ff7bb7e485863cbdce4c2320e44fcd3fd97e8ad61084"
+    },
+    "explainability_lineage_hashes": {
+      "explainability_lineage_continuity_explanation_lineage": "54898fde164bf00d8e0216460c6dd44947bbd32f222c15502ab9480919b70e27",
+      "explainability_lineage_diagnostic_explanation_lineage": "a17aae4d8dbfea960b3c41394e85e71b7ecbc7db3ad987586449867c2c202222",
+      "explainability_lineage_limitation_explanation_lineage": "87b79dade34620f7d1d24a88f959ada80116ff27309467f9e12d21c903d959ac",
+      "explainability_lineage_support_explanation_lineage": "0fce624f8e96b23f6601a6aa5d3adf889310b34374e27eef3aa868433e243012",
+      "explainability_lineage_trust_explanation_lineage": "56b4c3d4ff611c51d199d40c4e8eaf8d53aba61cd4d5508638755e61b6af3848",
+      "explainability_lineage_unsupported_state_explanation_lineage": "426e931324c87a724ffab07585e0cd8994c10b7eb1818b428f1c6319f39983ce"
+    },
+    "lineage_visibility_hashes": {
+      "public_lineage_visibility_foundation": "67b936c574a8faf9cf60ec38568c6615f3a3feeaf09f7a0803d318ae37873c71"
+    },
+    "provenance_lineage_diagnostic_hashes": {
+      "provenance_lineage_diagnostic_incomplete_lineage_visibility": "813cf78b5fefb301016c42ac5ce8ddd7c777542c4207e0296436f9eb29d836bf",
+      "provenance_lineage_diagnostic_incomplete_provenance_visibility": "a914b53fbcbde56a0c0aa15aa425d43cdd2d33302a4d0cabc9f2c870e81fc293",
+      "provenance_lineage_diagnostic_inherited_lineage_limitation_gaps": "76b0938a4282dd808aafeb59d02c0bd2f90bbc6bc5c72827629c331b57d9d054",
+      "provenance_lineage_diagnostic_inherited_provenance_limitation_gaps": "0965a2fd4035775e4c40ba23a395864877cb4ce9e8b81e2c9ab4d7dc9be33979",
+      "provenance_lineage_diagnostic_missing_source_references": "87c34ee444edfb7d8c3ae4bd7e0d5b2ae41950dcaa8936d5a82809bf5addd81c",
+      "provenance_lineage_diagnostic_source_to_surface_continuity_gaps": "2f88ef88f5afcd8efba73f13918ca2d4298f72fac0b051f7ff3c46845d16d794",
+      "provenance_lineage_diagnostic_stale_provenance_visibility": "1a403d5ca259e8630975cfa8bbc90c0e132247fe69cf2b42cc1e8dd27432be7a",
+      "provenance_lineage_diagnostic_unknown_provenance_visibility": "ee7c99e28db8ade04c5b2b679eed092aa20d8647d3371961f60494c4280f7f57",
+      "provenance_lineage_diagnostic_unsupported_lineage_states": "50d331ee3d95a6404b3033aa39c0a5a9958a96cfbe3203f0924abd531c1381b7",
+      "provenance_lineage_diagnostic_unsupported_provenance_states": "2997de62ed1bbb0a3304023e242006cc69e2c41b98e1a54c3458b44dcfa258a8"
+    },
+    "provenance_lineage_identity_hash": "dfc6c7c7f3769fb818f6fe64c2273da7056d98a027a16974c365de3ca5f24d05",
+    "provenance_lineage_summary_hashes": {
+      "provenance_lineage_summary_diagnostics_provenance_lineage_summary": "4be02e555024ca8099656d4561200617d3bb30f91febe2a875c8c8072e94d364",
+      "provenance_lineage_summary_evidence_origin_summary": "e0021e8acdffdaafd7ca5e8d5160b01e97d0a6207b4abd5dcbb2156c4506c1ec",
+      "provenance_lineage_summary_explainability_lineage_summary": "40589f841e5addca653587ba66795474f9f43745025b443fc532e3dc410061b5",
+      "provenance_lineage_summary_lineage_visibility_summary": "d221495181040abacf03334c8db68a1fe145c86a890fde6a3a3f16b6b7ba3966",
+      "provenance_lineage_summary_provenance_visibility_summary": "2903fc824e5d54144eb8784a58394871680f33ae9486dbe4260b79b8b440f080",
+      "provenance_lineage_summary_source_to_surface_summary": "da4b762d9bb76a81ac1670303e12cb66daee4c1d42f6830345f01712e9353261",
+      "provenance_lineage_summary_stale_unknown_provenance_summary": "118995344415d132621d73bf218514821bf979275285a3dfce7196a34bf907df",
+      "provenance_lineage_summary_support_status_lineage_summary": "fabec9b628ec2a23945251edcac22416736dbca51f1e3cb6cb45af40377c2f97",
+      "provenance_lineage_summary_trust_summary_lineage_summary": "b79acfc3e576fcec3804d80716cb5d05fce3a774f148e458dbc6f682fc339c91"
+    },
+    "provenance_lineage_visibility_hash": "0ed11dbf2f4e0e2f960ee7c67081106398ad39fe098927391cc79182f2cb8b4c",
+    "provenance_visibility_hashes": {
+      "public_provenance_visibility_foundation": "56f7f1820d35c9649594492d24ea532567de0e6855aa82e9edc6a4a4e8b900ab"
+    },
+    "source_to_surface_hashes": {
+      "source_surface_source_to_continuity_surface": "a5e47bf1db6ff139c755975a3f54164fd13e91800516ce118e97c1578cb4b084",
+      "source_surface_source_to_diagnostics_surface": "c71299da09e8ab495d227bdc8e700d2e48b3844d8321db10a637b521502e2403",
+      "source_surface_source_to_explainability_surface": "18b9617567fcbe9f4b10492fca5a0c360014663d3e17e995eed18041bd1063d7",
+      "source_surface_source_to_limitation_surface": "3aef29da9dbd8bd7488aab1eb9b4c14ae5653ad9aa279256682c184fd9c2d530",
+      "source_surface_source_to_support_status": "acd77a2dc7ed663a2107d44e6dba16e09485c22ea8d5a030fd2e26b823644812",
+      "source_surface_source_to_trust_summary": "69f329d1b6d505c4230fc9492ff6fc910f4987a8c35c18fafc1b16505ed55363",
+      "source_surface_source_to_unsupported_state_surface": "b520253e01140337b44885d9c0ce536d7617c0287fb8418b26117d68581f4218"
+    },
+    "stale_unknown_provenance_hashes": {
+      "stale_unknown_provenance_incomplete_lineage_states": "2fefe5d859708407782f5c77cc8d71bcf021adc18615c9c6815a064cb22488fc",
+      "stale_unknown_provenance_incomplete_provenance_states": "00491e77405c9ee90617f6ca82e4734ddb5d650c4bb2d3abb878b94b03d97c6b",
+      "stale_unknown_provenance_stale_provenance_states": "2f1b5479c4b2a4d2836ebd286dd9cf8d2c16dcea5299daef7e66909a097fab1a",
+      "stale_unknown_provenance_unknown_provenance_states": "5adb208fc9cb235e5250f9948d5c0379fb413ff7ec1d5fe4728bc23ea056ef28",
+      "stale_unknown_provenance_unsupported_lineage_states": "afcfe7ca957dddbb606061e5cd4860b27ee4a71c5e167f8dce3bae9c89c70be3",
+      "stale_unknown_provenance_unsupported_provenance_states": "52f96e0713474c2091c8fe1a3fa229b0868731a96a07ee61a8c50bf2a3ab22a0"
+    },
+    "support_status_lineage_hashes": {
+      "support_status_lineage_blocked_status_lineage": "962bd0b382c5cd3ef9937bfc2d4e41dc7e4eb92bef0f9ad7dd011357ea2397ce",
+      "support_status_lineage_deprecated_status_lineage": "3070114f714bb129c44e2a8a6d6e0d05e24375ceece21223967160467f80fad7",
+      "support_status_lineage_experimental_status_lineage": "ebff12d63fc082063f79c83e4db649a451c6caa13b092e2b3c002db4800e29d2",
+      "support_status_lineage_partially_supported_status_lineage": "72a2fc36635e99d81ca6dbb2762652e547d4a575f01b980ec889a78712b37c13",
+      "support_status_lineage_supported_status_lineage": "a93bc338c93e2a43c2868e48bfc800cbfa10ba35c31237e32bbb695d54017c65",
+      "support_status_lineage_unknown_status_lineage": "9a5326c32458d8d3f94082257bff4f7b3ac17bb7215501261db8ab03abed480a",
+      "support_status_lineage_unsupported_status_lineage": "d7be46d860981630a07e1a4b0f3026d23f776472ced9a19397e1360bcb70a950"
+    },
+    "trust_summary_lineage_hashes": {
+      "trust_summary_lineage_continuity_visibility_lineage": "200dd3c8a581147e2c98bb54e51ae582671a6bcee29a973b25b21b7e2645f4e3",
+      "trust_summary_lineage_deterministic_guarantee_lineage": "d6e19a6458fc343d366a1c3c4f3d41b5d2b0418412dd5e03959eb54a652909b2",
+      "trust_summary_lineage_explainability_visibility_lineage": "3afffa26b200dc68641c756a9a0eeea17d5847a94923bc8fe5d555d27b838a39",
+      "trust_summary_lineage_governance_transparency_lineage": "b4f194e3622e1aae3cd4a3ebc2692e9aae038cca45b703b1e68236df23fb8675",
+      "trust_summary_lineage_integrity_visibility_lineage": "e11fc18f0ad98b1533924d9aa6ec5d61dbac011387dabfac08a77e272670bb19",
+      "trust_summary_lineage_public_trust_summary_lineage": "5de3a637d5e7dc51cae5e340bf907a75740f5a40ed7c9deb7481212dfd1f03cb"
+    },
+    "unsupported_operational_hashes": {
+      "unsupported_provenance_lineage_operational_state_automated_correction": "d9c8b5af17609e8cb4f2eac6a5278797396b8a99bdb83a75ec13ac76ce76ef9e",
+      "unsupported_provenance_lineage_operational_state_automated_mitigation": "c5321c5de0b16501c9511b0c647435813028744f2284fabc589db45c781f327d",
+      "unsupported_provenance_lineage_operational_state_automated_remediation": "740bff2949c2ebf0efd46ce93aafd43802390699be939b71c5d00f22b69723f7",
+      "unsupported_provenance_lineage_operational_state_automated_repair": "c21213bb7e2fc41e7d31b3b99b379425fe0b610c4c05dd00d98f1c514e4ccea7",
+      "unsupported_provenance_lineage_operational_state_implicit_operational_behavior": "4ba286bca79d9c68abd1b79cccf1f2762a8d22072631c9f426196d3ff6b744fd",
+      "unsupported_provenance_lineage_operational_state_lineage_based_recommendation": "9cd1b39858887cbac8f1fc13d24a0fe5b1c276f59ff66a910ccf216ca2f3e1f3",
+      "unsupported_provenance_lineage_operational_state_operational_mutation": "6cb2de1c8a0a3190a6fc737b41a749ccc76d5349652c6b2e8019c81e782d9b2e",
+      "unsupported_provenance_lineage_operational_state_orchestration_approval": "d30841435095903e89e9c07aa999e99eab33d5f9938dbc96cfbcb193a9c4faca",
+      "unsupported_provenance_lineage_operational_state_orchestration_authorization": "8b398b5017e2df903b7cea58b758dd5e89d0fae778aa95c3f0ebe46e0b721cbe",
+      "unsupported_provenance_lineage_operational_state_orchestration_decisions": "3bf9011d6d626b90d986da56626710ef04c03b73c84da553599b5542b3dc478b",
+      "unsupported_provenance_lineage_operational_state_orchestration_dispatch": "a0e0ff3ee09b34e396df747a2f6df54084fff12ff2e6f30217ce3f4c30fb2d2c",
+      "unsupported_provenance_lineage_operational_state_orchestration_execution": "936f69be46922f2dc0d84518dc384e32b81446bfa71dcab835e393d551ab41a2",
+      "unsupported_provenance_lineage_operational_state_orchestration_recommendations": "f9c10b3f5cc91a6e0eb173627ca07795002810c42246d9d1a2925985f284eb92",
+      "unsupported_provenance_lineage_operational_state_orchestration_routing": "78dd05f8b6c89bd52901c5f942faff69e119aebbbecb01de9757c18fd0dbdc24",
+      "unsupported_provenance_lineage_operational_state_orchestration_scheduling": "49eaea09716e7e3c4f9f012151889cb539ce6d0d6377a6c79e73863ec0bf5317",
+      "unsupported_provenance_lineage_operational_state_orchestration_sequencing": "67d00f53ff72e6bae1a8db19ba6cc188cd0e89f9fa4d3369ef361be102dc5b22",
+      "unsupported_provenance_lineage_operational_state_orchestration_traversal": "0495c7e7dc2afc9fb0b9b1cba6e8d760423a26b9a85c8001e3fca32994456011",
+      "unsupported_provenance_lineage_operational_state_planner_integration": "6c8cb86f21261a84dfa834a149db0fcbfef31c65fce68eb695f7f0591aa926b9",
+      "unsupported_provenance_lineage_operational_state_production_consumption": "af88e62ed7dbc8e33dfce5681fa1718570ac9104451264a20e060aadb8c26c5e",
+      "unsupported_provenance_lineage_operational_state_provenance_based_ranking": "931b4f22d33d8a489dc07f923c89f096049238c94f0ac2e7276d354684d8b82b",
+      "unsupported_provenance_lineage_operational_state_runtime_mutation": "f9397d5293847e3e7d5b7373cb8f3f28294200c575bd53b32a3b1569258423bd",
+      "unsupported_provenance_lineage_operational_state_source_based_approval": "cc36bf576ae80a43b560e576fb787b15b0a9e2b9baecf9b58a79227869320ced",
+      "unsupported_provenance_lineage_operational_state_source_based_authorization": "00cdfceb8da52449c12e3641bcb8285dafe2e2629605f05f5aa3e4e1c551bf85"
+    }
+  },
+  "deterministic_report_hash": "54f92af249e375100b491234aee93f6f557042f4ee9cae9af81a05be9de4065e",
+  "exported_intelligence": {
+    "auto_correction_enabled": false,
+    "descriptive_only": true,
+    "deterministic_guarantees": [
+      "deterministic_evidence_origin_visibility",
+      "deterministic_explainability_lineage_visibility",
+      "deterministic_lineage_visibility_identity",
+      "deterministic_provenance_visibility_identity",
+      "deterministic_source_to_surface_visibility",
+      "deterministic_stale_unknown_provenance_visibility",
+      "deterministic_support_status_lineage_visibility",
+      "deterministic_trust_summary_lineage_visibility",
+      "lineage_continuity_preserved",
+      "provenance_continuity_preserved",
+      "publicly_transparent_descriptive_only_provenance_lineage_visibility",
+      "stable_replay_safe_hashing",
+      "stable_replay_safe_serialization"
+    ],
+    "evidence_origin_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_origin_id": "evidence_origin_evidence_origin_references",
+        "evidence_origin_type": "evidence_origin_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_origin_references",
+        "provenance_reference_id": "provenance_reference_evidence_origin_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_origin_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_origin_id": "evidence_origin_evidence_source_references",
+        "evidence_origin_type": "evidence_source_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_source_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_source_references",
+        "provenance_reference_id": "provenance_reference_evidence_source_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_source_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_origin_id": "evidence_origin_evidence_continuity_references",
+        "evidence_origin_type": "evidence_continuity_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_continuity_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_continuity_references",
+        "provenance_reference_id": "provenance_reference_evidence_continuity_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_continuity_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_origin_id": "evidence_origin_evidence_provenance_references",
+        "evidence_origin_type": "evidence_provenance_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_provenance_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_provenance_references",
+        "provenance_reference_id": "provenance_reference_evidence_provenance_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_provenance_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_origin_id": "evidence_origin_evidence_lineage_references",
+        "evidence_origin_type": "evidence_lineage_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_lineage_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_lineage_references",
+        "provenance_reference_id": "provenance_reference_evidence_lineage_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_lineage_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_origin_id": "evidence_origin_evidence_freshness_references",
+        "evidence_origin_type": "evidence_freshness_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_freshness_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_freshness_references",
+        "provenance_reference_id": "provenance_reference_evidence_freshness_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_freshness_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_origin_id": "evidence_origin_evidence_diagnostic_references",
+        "evidence_origin_type": "evidence_diagnostic_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_diagnostic_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_diagnostic_references",
+        "provenance_reference_id": "provenance_reference_evidence_diagnostic_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_diagnostic_references",
+        "trust_scoring_enabled": false,
+        "visibility_state": "evidence_origin_visibility_visible"
+      }
+    ],
+    "explainability_lineage_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_support_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_support_explanation_lineage",
+        "explainability_lineage_type": "support_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_support_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_support_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_limitation_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_limitation_explanation_lineage",
+        "explainability_lineage_type": "limitation_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_limitation_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_limitation_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_unsupported_state_explanation_lineage",
+        "explainability_lineage_type": "unsupported_state_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_unsupported_state_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_unsupported_state_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_continuity_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_continuity_explanation_lineage",
+        "explainability_lineage_type": "continuity_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_continuity_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_continuity_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_trust_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_trust_explanation_lineage",
+        "explainability_lineage_type": "trust_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_trust_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_trust_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_diagnostic_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_diagnostic_explanation_lineage",
+        "explainability_lineage_type": "diagnostic_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_diagnostic_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_diagnostic_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "visibility_state": "explainability_lineage_visibility_visible"
+      }
+    ],
+    "explicit_limitations": [
+      "lineage_visibility_does_not_recommend",
+      "provenance_visibility_does_not_approve",
+      "provenance_visibility_does_not_authorize",
+      "provenance_visibility_does_not_rank",
+      "source_visibility_does_not_enable_production",
+      "source_visibility_does_not_execute",
+      "source_visibility_does_not_imply_correctness_guarantees",
+      "source_visibility_does_not_imply_execution_safety",
+      "source_visibility_does_not_integrate_planners",
+      "source_visibility_does_not_mitigate_or_correct",
+      "source_visibility_does_not_mutate_runtime_state",
+      "source_visibility_does_not_remediate_or_repair"
+    ],
+    "inherited_constraints": [
+      "NON-approving",
+      "NON-authorizing",
+      "NON-executing",
+      "NON-operational",
+      "NON-ranking",
+      "NON-recommending",
+      "NON-remediating",
+      "NON-runtime-mutating",
+      "descriptive-only",
+      "deterministic",
+      "explainability-first",
+      "fail-visible",
+      "governance-safe",
+      "integrity-safe",
+      "lineage-safe",
+      "provenance-safe",
+      "publicly transparent",
+      "replay-safe",
+      "rollback-safe"
+    ],
+    "inherited_prohibitions": [
+      "automated_correction_prohibited",
+      "automated_mitigation_prohibited",
+      "automated_remediation_prohibited",
+      "automated_repair_prohibited",
+      "implicit_operational_behavior_prohibited",
+      "lineage_based_recommendation_prohibited",
+      "operational_mutation_prohibited",
+      "orchestration_approval_prohibited",
+      "orchestration_authorization_prohibited",
+      "orchestration_decisions_prohibited",
+      "orchestration_dispatch_prohibited",
+      "orchestration_execution_prohibited",
+      "orchestration_recommendations_prohibited",
+      "orchestration_routing_prohibited",
+      "orchestration_scheduling_prohibited",
+      "orchestration_sequencing_prohibited",
+      "orchestration_traversal_prohibited",
+      "planner_integration_prohibited",
+      "production_consumption_prohibited",
+      "provenance_based_ranking_prohibited",
+      "runtime_mutation_prohibited",
+      "source_based_approval_prohibited",
+      "source_based_authorization_prohibited"
+    ],
+    "lineage_recommendation_enabled": false,
+    "lineage_visibility_records": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "continuity_reference_id": "continuity::v4_5b_4.public_trust",
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "fail_visible": true,
+        "lineage_recommendation_enabled": false,
+        "lineage_record_id": "public_lineage_visibility_foundation",
+        "lineage_reference_id": "lineage::v4_5b_4.public_trust",
+        "lineage_visibility_id": "v4_5b_4_lineage_visibility",
+        "operational_enabled": false,
+        "publicly_transparent": true,
+        "source_reference_id": "source::v4_5b_4.public_trust",
+        "visibility_state": "public_lineage_visibility_visible"
+      }
+    ],
+    "mitigation_enabled": false,
+    "non_approving": true,
+    "non_authorizing": true,
+    "non_executing": true,
+    "non_operational": true,
+    "non_ranking": true,
+    "non_recommending": true,
+    "non_remediating": true,
+    "non_runtime_mutating": true,
+    "operational_mutation_enabled": false,
+    "orchestration_approval_enabled": false,
+    "orchestration_authorization_enabled": false,
+    "orchestration_decision_enabled": false,
+    "orchestration_dispatch_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_recommendation_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_scheduling_enabled": false,
+    "orchestration_sequencing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_integration_enabled": false,
+    "production_consumption_enabled": false,
+    "provenance_lineage_diagnostics": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "diagnostic_id": "provenance_lineage_diagnostic_missing_source_references",
+        "diagnostic_type": "missing_source_references",
+        "evidence_reference_ids": [
+          "evidence_missing_source_references"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_source_references remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "diagnostic_id": "provenance_lineage_diagnostic_incomplete_provenance_visibility",
+        "diagnostic_type": "incomplete_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_incomplete_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "diagnostic_id": "provenance_lineage_diagnostic_incomplete_lineage_visibility",
+        "diagnostic_type": "incomplete_lineage_visibility",
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_lineage_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "diagnostic_id": "provenance_lineage_diagnostic_stale_provenance_visibility",
+        "diagnostic_type": "stale_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_stale_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "stale_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "diagnostic_id": "provenance_lineage_diagnostic_unknown_provenance_visibility",
+        "diagnostic_type": "unknown_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_unknown_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unknown_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "diagnostic_id": "provenance_lineage_diagnostic_unsupported_provenance_states",
+        "diagnostic_type": "unsupported_provenance_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_provenance_states remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "diagnostic_id": "provenance_lineage_diagnostic_unsupported_lineage_states",
+        "diagnostic_type": "unsupported_lineage_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_lineage_states remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "diagnostic_id": "provenance_lineage_diagnostic_source_to_surface_continuity_gaps",
+        "diagnostic_type": "source_to_surface_continuity_gaps",
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_continuity_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "source_to_surface_continuity_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "diagnostic_id": "provenance_lineage_diagnostic_inherited_provenance_limitation_gaps",
+        "diagnostic_type": "inherited_provenance_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_provenance_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_provenance_limitation_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "diagnostic_id": "provenance_lineage_diagnostic_inherited_lineage_limitation_gaps",
+        "diagnostic_type": "inherited_lineage_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_lineage_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_lineage_limitation_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false,
+        "visibility_state": "fail_visible_provenance_lineage_diagnostic_visible"
+      }
+    ],
+    "provenance_lineage_summaries": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_provenance_visibility_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_provenance_visibility_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "provenance_visibility_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_lineage_visibility_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_lineage_visibility_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "lineage_visibility_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_source_to_surface_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "source_to_surface_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_evidence_origin_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "evidence_origin_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_support_status_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_support_status_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "support_status_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_explainability_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_explainability_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "explainability_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_trust_summary_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_trust_summary_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "trust_summary_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_stale_unknown_provenance_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_stale_unknown_provenance_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "stale_unknown_provenance_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_provenance_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_diagnostics_provenance_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "diagnostics_provenance_lineage_summary"
+      }
+    ],
+    "provenance_lineage_visibility_statement": "Provenance and lineage visibility is descriptive-only.",
+    "provenance_ranking_enabled": false,
+    "provenance_visibility_records": [
+      {
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_id": "evidence::v4_5b_4.public_trust",
+        "fail_visible": true,
+        "provenance_ranking_enabled": false,
+        "provenance_record_id": "public_provenance_visibility_foundation",
+        "provenance_reference_id": "provenance::v4_5b_4.public_trust",
+        "provenance_visibility_id": "v4_5b_4_provenance_visibility",
+        "publicly_transparent": true,
+        "source_approval_enabled": false,
+        "source_authority_enabled": false,
+        "source_authorization_enabled": false,
+        "source_reference_id": "source::v4_5b_4.public_trust",
+        "trust_scoring_enabled": false,
+        "visibility_state": "public_provenance_visibility_visible"
+      }
+    ],
+    "publicly_transparent": true,
+    "ranking_enabled": false,
+    "recommendation_enabled": false,
+    "remediation_enabled": false,
+    "repair_enabled": false,
+    "runtime_execution_enabled": false,
+    "runtime_mutation_enabled": false,
+    "source_approval_enabled": false,
+    "source_authorization_enabled": false,
+    "source_to_surface_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_source_to_trust_summary"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_trust_summary",
+        "source_surface_id": "source_surface_source_to_trust_summary",
+        "surface_reference_id": "surface_reference_source_to_trust_summary",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_trust_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_source_to_support_status"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_support_status",
+        "source_surface_id": "source_surface_source_to_support_status",
+        "surface_reference_id": "surface_reference_source_to_support_status",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_support_status"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_source_to_explainability_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_explainability_surface",
+        "source_surface_id": "source_surface_source_to_explainability_surface",
+        "surface_reference_id": "surface_reference_source_to_explainability_surface",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_explainability_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_source_to_unsupported_state_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_unsupported_state_surface",
+        "source_surface_id": "source_surface_source_to_unsupported_state_surface",
+        "surface_reference_id": "surface_reference_source_to_unsupported_state_surface",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_unsupported_state_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_source_to_diagnostics_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_diagnostics_surface",
+        "source_surface_id": "source_surface_source_to_diagnostics_surface",
+        "surface_reference_id": "surface_reference_source_to_diagnostics_surface",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_diagnostics_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_source_to_continuity_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_continuity_surface",
+        "source_surface_id": "source_surface_source_to_continuity_surface",
+        "surface_reference_id": "surface_reference_source_to_continuity_surface",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_continuity_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_source_to_limitation_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_limitation_surface",
+        "source_surface_id": "source_surface_source_to_limitation_surface",
+        "surface_reference_id": "surface_reference_source_to_limitation_surface",
+        "visibility_state": "source_to_surface_visibility_descriptive_only",
+        "visibility_type": "source_to_limitation_surface"
+      }
+    ],
+    "source_visibility_non_authority_statement": "Source visibility does NOT imply authorization, approval, correctness guarantee, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+    "stale_unknown_provenance_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_stale_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "stale_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_stale_provenance_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_unknown_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unknown_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unknown_provenance_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_incomplete_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "incomplete_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_incomplete_provenance_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "incomplete_lineage_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_incomplete_lineage_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unsupported_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unsupported_provenance_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_unsupported_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unsupported_lineage_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unsupported_lineage_states",
+        "suppression_enabled": false,
+        "visibility_state": "stale_unknown_provenance_fail_visible"
+      }
+    ],
+    "support_status_lineage_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_supported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_supported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_supported_status_lineage",
+        "support_lineage_type": "supported_status_lineage",
+        "support_status_reference_id": "support_status_reference_supported_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_partially_supported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_partially_supported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_partially_supported_status_lineage",
+        "support_lineage_type": "partially_supported_status_lineage",
+        "support_status_reference_id": "support_status_reference_partially_supported_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_unsupported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_unsupported_status_lineage",
+        "support_lineage_type": "unsupported_status_lineage",
+        "support_status_reference_id": "support_status_reference_unsupported_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_experimental_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_experimental_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_experimental_status_lineage",
+        "support_lineage_type": "experimental_status_lineage",
+        "support_status_reference_id": "support_status_reference_experimental_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_deprecated_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_deprecated_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_deprecated_status_lineage",
+        "support_lineage_type": "deprecated_status_lineage",
+        "support_status_reference_id": "support_status_reference_deprecated_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_blocked_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_blocked_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_blocked_status_lineage",
+        "support_lineage_type": "blocked_status_lineage",
+        "support_status_reference_id": "support_status_reference_blocked_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_unknown_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_unknown_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_unknown_status_lineage",
+        "support_lineage_type": "unknown_status_lineage",
+        "support_status_reference_id": "support_status_reference_unknown_status_lineage",
+        "visibility_state": "support_status_lineage_visibility_visible"
+      }
+    ],
+    "trust_summary_lineage_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_public_trust_summary_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_public_trust_summary_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_public_trust_summary_lineage",
+        "trust_lineage_type": "public_trust_summary_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_public_trust_summary_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_governance_transparency_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_governance_transparency_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_governance_transparency_lineage",
+        "trust_lineage_type": "governance_transparency_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_governance_transparency_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_deterministic_guarantee_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_deterministic_guarantee_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_deterministic_guarantee_lineage",
+        "trust_lineage_type": "deterministic_guarantee_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_deterministic_guarantee_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_integrity_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_integrity_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_integrity_visibility_lineage",
+        "trust_lineage_type": "integrity_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_integrity_visibility_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_continuity_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_continuity_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_continuity_visibility_lineage",
+        "trust_lineage_type": "continuity_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_continuity_visibility_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_explainability_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_explainability_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_explainability_visibility_lineage",
+        "trust_lineage_type": "explainability_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_explainability_visibility_lineage",
+        "visibility_state": "trust_summary_lineage_visibility_visible"
+      }
+    ],
+    "unsupported_operational_state_visibility": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 1,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_execution remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_execution",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_execution",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 2,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_authorization remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_authorization",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 3,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_approval remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_approval",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 4,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_dispatch remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_dispatch",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_dispatch",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 5,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_routing remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_routing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_routing",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 6,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_traversal remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_traversal",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_traversal",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 7,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_scheduling remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_scheduling",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_scheduling",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 8,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_sequencing remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_sequencing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_sequencing",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 9,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_decisions remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_decisions",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_decisions",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 10,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_recommendations remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_recommendations",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_recommendations",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 11,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "source_based_authorization remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_source_based_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "source_based_authorization",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 12,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "source_based_approval remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_source_based_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "source_based_approval",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 13,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "provenance_based_ranking remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_provenance_based_ranking",
+        "suppression_enabled": false,
+        "unsupported_state": "provenance_based_ranking",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 14,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "lineage_based_recommendation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_lineage_based_recommendation",
+        "suppression_enabled": false,
+        "unsupported_state": "lineage_based_recommendation",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 15,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_remediation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_remediation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_remediation",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 16,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_repair remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_repair",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_repair",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 17,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_mitigation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_mitigation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_mitigation",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 18,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_correction remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_correction",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_correction",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 19,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "planner_integration remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_planner_integration",
+        "suppression_enabled": false,
+        "unsupported_state": "planner_integration",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 20,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "production_consumption remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_production_consumption",
+        "suppression_enabled": false,
+        "unsupported_state": "production_consumption",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 21,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "runtime_mutation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_runtime_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "runtime_mutation",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 22,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "operational_mutation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_operational_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "operational_mutation",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "deterministic_order": 23,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "implicit_operational_behavior remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_implicit_operational_behavior",
+        "suppression_enabled": false,
+        "unsupported_state": "implicit_operational_behavior",
+        "visibility_state": "unsupported_provenance_lineage_operational_state_fail_visible"
+      }
+    ],
+    "visibility_identity": {
+      "classification": "governance_safe_public_provenance_lineage_visibility_descriptive_only",
+      "continuity_reference_id": "continuity::v4_5b_4.public_trust",
+      "diagnostics_reference_id": "diagnostics::v4_5b_4.public_trust",
+      "evidence_reference_id": "evidence::v4_5b_4.public_trust",
+      "explainability_surface_reference_id": "explainability::v4_5b_3.public_surfaces",
+      "generated_at": "2026-05-18T00:00:00+00:00",
+      "lineage_reference_id": "lineage::v4_5b_4.public_trust",
+      "lineage_visibility_id": "v4_5b_4_lineage_visibility",
+      "phase_id": "v4_5b_4_provenance_lineage_visibility",
+      "provenance_reference_id": "provenance::v4_5b_4.public_trust",
+      "provenance_visibility_id": "v4_5b_4_provenance_visibility",
+      "schema_version": "v4_5b_4.provenance_lineage_visibility.1",
+      "source_explainability_hash_reference": "199de43c3e94cfb64397acc5fc10b77fb209476e2a66b57d771e5132462ef382",
+      "source_explainability_report_reference": "docs/generated/v4_5b_3_explainability_surfaces_report.json",
+      "source_reference_id": "source::v4_5b_4.public_trust",
+      "support_status_reference_id": "support::v4_5b_2.public_support",
+      "trust_summary_reference_id": "trust::v4_5b_4.public_trust"
+    }
+  },
+  "foundation_status": "v4_5b_4_provenance_lineage_visibility_stable",
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "phase_id": "v4_5b_4_provenance_lineage_visibility",
+  "purpose": "deterministic_governance_safe_public_provenance_lineage_visibility_descriptive_only",
+  "schema_version": "v4_5b_4.provenance_lineage_visibility_report.1",
+  "summary": {
+    "descriptive_only_guarantees_verified": true,
+    "deterministic_lineage_hashing_verified": true,
+    "deterministic_lineage_serialization_verified": true,
+    "deterministic_provenance_hashing_verified": true,
+    "deterministic_provenance_serialization_verified": true,
+    "diagnostic_counts": {
+      "incomplete_lineage_visibility": 1,
+      "incomplete_provenance_visibility": 1,
+      "inherited_lineage_limitation_gaps": 1,
+      "inherited_provenance_limitation_gaps": 1,
+      "missing_source_references": 1,
+      "source_to_surface_continuity_gaps": 1,
+      "stale_provenance_visibility": 1,
+      "unknown_provenance_visibility": 1,
+      "unsupported_lineage_states": 1,
+      "unsupported_provenance_states": 1
+    },
+    "enabled_auto_correction_count": 0,
+    "enabled_lineage_recommendation_count": 0,
+    "enabled_mitigation_count": 0,
+    "enabled_operational_mutation_count": 0,
+    "enabled_orchestration_approval_count": 0,
+    "enabled_orchestration_authorization_count": 0,
+    "enabled_orchestration_decision_count": 0,
+    "enabled_orchestration_dispatch_count": 0,
+    "enabled_orchestration_recommendation_count": 0,
+    "enabled_orchestration_routing_count": 0,
+    "enabled_orchestration_scheduling_count": 0,
+    "enabled_orchestration_sequencing_count": 0,
+    "enabled_orchestration_traversal_count": 0,
+    "enabled_planner_integration_count": 0,
+    "enabled_production_consumption_count": 0,
+    "enabled_provenance_ranking_count": 0,
+    "enabled_remediation_count": 0,
+    "enabled_repair_count": 0,
+    "enabled_runtime_execution_count": 0,
+    "enabled_runtime_mutation_count": 0,
+    "enabled_source_approval_count": 0,
+    "enabled_source_authorization_count": 0,
+    "evidence_continuity_preserved": true,
+    "evidence_counts": {
+      "evidence_continuity_references": 1,
+      "evidence_diagnostic_references": 1,
+      "evidence_freshness_references": 1,
+      "evidence_lineage_references": 1,
+      "evidence_origin_references": 1,
+      "evidence_provenance_references": 1,
+      "evidence_source_references": 1
+    },
+    "evidence_origin_count": 7,
+    "evidence_origin_visibility_preserved": true,
+    "explainability_counts": {
+      "continuity_explanation_lineage": 1,
+      "diagnostic_explanation_lineage": 1,
+      "limitation_explanation_lineage": 1,
+      "support_explanation_lineage": 1,
+      "trust_explanation_lineage": 1,
+      "unsupported_state_explanation_lineage": 1
+    },
+    "explainability_lineage_count": 6,
+    "explainability_lineage_preserved": true,
+    "explicit_limitation_count": 12,
+    "fail_visible_provenance_diagnostics_verified": true,
+    "inherited_constraint_count": 19,
+    "inherited_prohibition_count": 23,
+    "lineage_continuity_preserved": true,
+    "lineage_visibility_record_count": 1,
+    "provenance_continuity_preserved": true,
+    "provenance_lineage_diagnostic_count": 10,
+    "provenance_lineage_summary_count": 9,
+    "provenance_lineage_visibility_statement": "Provenance and lineage visibility is descriptive-only.",
+    "provenance_visibility_record_count": 1,
+    "publicly_transparent": true,
+    "repository_remains": [
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-executing",
+      "NON-remediating",
+      "NON-runtime-mutating",
+      "NON-ranking",
+      "NON-recommending"
+    ],
+    "source_counts": {
+      "source_to_continuity_surface": 1,
+      "source_to_diagnostics_surface": 1,
+      "source_to_explainability_surface": 1,
+      "source_to_limitation_surface": 1,
+      "source_to_support_status": 1,
+      "source_to_trust_summary": 1,
+      "source_to_unsupported_state_surface": 1
+    },
+    "source_to_surface_count": 7,
+    "source_to_surface_visibility_stable": true,
+    "source_visibility_non_authority_statement": "Source visibility does NOT imply authorization, approval, correctness guarantee, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+    "stale_unknown_counts": {
+      "incomplete_lineage_states": 1,
+      "incomplete_provenance_states": 1,
+      "stale_provenance_states": 1,
+      "unknown_provenance_states": 1,
+      "unsupported_lineage_states": 1,
+      "unsupported_provenance_states": 1
+    },
+    "stale_unknown_provenance_count": 6,
+    "stale_unknown_provenance_visibility_preserved": true,
+    "summary_counts": {
+      "diagnostics_provenance_lineage_summary": 1,
+      "evidence_origin_summary": 1,
+      "explainability_lineage_summary": 1,
+      "lineage_visibility_summary": 1,
+      "provenance_visibility_summary": 1,
+      "source_to_surface_summary": 1,
+      "stale_unknown_provenance_summary": 1,
+      "support_status_lineage_summary": 1,
+      "trust_summary_lineage_summary": 1
+    },
+    "support_counts": {
+      "blocked_status_lineage": 1,
+      "deprecated_status_lineage": 1,
+      "experimental_status_lineage": 1,
+      "partially_supported_status_lineage": 1,
+      "supported_status_lineage": 1,
+      "unknown_status_lineage": 1,
+      "unsupported_status_lineage": 1
+    },
+    "support_status_lineage_count": 7,
+    "support_status_lineage_preserved": true,
+    "trust_counts": {
+      "continuity_visibility_lineage": 1,
+      "deterministic_guarantee_lineage": 1,
+      "explainability_visibility_lineage": 1,
+      "governance_transparency_lineage": 1,
+      "integrity_visibility_lineage": 1,
+      "public_trust_summary_lineage": 1
+    },
+    "trust_summary_lineage_count": 6,
+    "trust_summary_lineage_preserved": true,
+    "unsupported_operational_counts": {
+      "automated_correction": 1,
+      "automated_mitigation": 1,
+      "automated_remediation": 1,
+      "automated_repair": 1,
+      "implicit_operational_behavior": 1,
+      "lineage_based_recommendation": 1,
+      "operational_mutation": 1,
+      "orchestration_approval": 1,
+      "orchestration_authorization": 1,
+      "orchestration_decisions": 1,
+      "orchestration_dispatch": 1,
+      "orchestration_execution": 1,
+      "orchestration_recommendations": 1,
+      "orchestration_routing": 1,
+      "orchestration_scheduling": 1,
+      "orchestration_sequencing": 1,
+      "orchestration_traversal": 1,
+      "planner_integration": 1,
+      "production_consumption": 1,
+      "provenance_based_ranking": 1,
+      "runtime_mutation": 1,
+      "source_based_approval": 1,
+      "source_based_authorization": 1
+    },
+    "unsupported_operational_state_count": 23,
+    "validation_error_count": 0
+  },
+  "validation": {
+    "failed_validations": [],
+    "foundation_status": "v4_5b_4_provenance_lineage_visibility_stable",
+    "valid": true,
+    "validation_error_count": 0,
+    "validations": {
+      "descriptive_only_guarantees": {
+        "counters": {
+          "enabled_auto_correction_count": 0,
+          "enabled_lineage_recommendation_count": 0,
+          "enabled_mitigation_count": 0,
+          "enabled_operational_mutation_count": 0,
+          "enabled_orchestration_approval_count": 0,
+          "enabled_orchestration_authorization_count": 0,
+          "enabled_orchestration_decision_count": 0,
+          "enabled_orchestration_dispatch_count": 0,
+          "enabled_orchestration_recommendation_count": 0,
+          "enabled_orchestration_routing_count": 0,
+          "enabled_orchestration_scheduling_count": 0,
+          "enabled_orchestration_sequencing_count": 0,
+          "enabled_orchestration_traversal_count": 0,
+          "enabled_planner_integration_count": 0,
+          "enabled_production_consumption_count": 0,
+          "enabled_provenance_ranking_count": 0,
+          "enabled_remediation_count": 0,
+          "enabled_repair_count": 0,
+          "enabled_runtime_execution_count": 0,
+          "enabled_runtime_mutation_count": 0,
+          "enabled_source_approval_count": 0,
+          "enabled_source_authorization_count": 0
+        },
+        "descriptive_failures": [],
+        "enabled_flags": {},
+        "explicit_limitation_count": 12,
+        "inherited_constraint_count": 19,
+        "inherited_prohibition_count": 23,
+        "missing_disabled_counters": [],
+        "provenance_lineage_visibility_statement": "Provenance and lineage visibility is descriptive-only.",
+        "publicly_transparent": true,
+        "repository_remains": {
+          "NON-approving": true,
+          "NON-authorizing": true,
+          "NON-executing": true,
+          "NON-operational": true,
+          "NON-ranking": true,
+          "NON-recommending": true,
+          "NON-remediating": true,
+          "NON-runtime-mutating": true
+        },
+        "source_visibility_non_authority_statement": "Source visibility does NOT imply authorization, approval, correctness guarantee, ranking, recommendation, operational readiness, execution safety, or production enablement.",
+        "statement_valid": true,
+        "valid": true
+      },
+      "evidence_origin": {
+        "evidence_origin_count": 7,
+        "missing_evidence_origin_types": [],
+        "unsafe_evidence_origin_ids": [],
+        "valid": true
+      },
+      "explainability_lineage": {
+        "explainability_lineage_count": 6,
+        "missing_explainability_lineage_types": [],
+        "unsafe_explainability_lineage_ids": [],
+        "valid": true
+      },
+      "fail_visible_provenance_lineage": {
+        "approval_enabled_count": 0,
+        "authorization_enabled_count": 0,
+        "fail_visible": true,
+        "hidden_fallback_enabled_count": 0,
+        "missing_diagnostic_types": [],
+        "missing_unsupported_states": [],
+        "provenance_lineage_diagnostic_count": 10,
+        "ranking_enabled_count": 0,
+        "recommendation_enabled_count": 0,
+        "silent_fallback_enabled_count": 0,
+        "unsafe_diagnostic_ids": [],
+        "unsafe_unsupported_ids": [],
+        "unsupported_operational_state_count": 23,
+        "valid": true
+      },
+      "lineage_and_provenance": {
+        "evidence_continuity_preserved": true,
+        "lineage_continuity_preserved": true,
+        "provenance_continuity_preserved": true,
+        "records_missing_evidence": [],
+        "records_missing_lineage": [],
+        "records_missing_provenance": [],
+        "valid": true
+      },
+      "lineage_identity_integrity": {
+        "missing_identity_fields": [],
+        "phase_id": "v4_5b_4_provenance_lineage_visibility",
+        "schema_version": "v4_5b_4.provenance_lineage_visibility.1",
+        "valid": true
+      },
+      "ordering_stability": {
+        "order_groups": {
+          "evidence_origin_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "explainability_lineage_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "lineage_visibility_records": [
+            1
+          ],
+          "provenance_lineage_diagnostics": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10
+          ],
+          "provenance_lineage_summaries": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ],
+          "provenance_visibility_records": [
+            1
+          ],
+          "source_to_surface_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "stale_unknown_provenance_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "support_status_lineage_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7
+          ],
+          "trust_summary_lineage_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "unsupported_operational_state_visibility": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23
+          ]
+        },
+        "unordered_groups": [],
+        "valid": true
+      },
+      "provenance_identity_integrity": {
+        "missing_identity_fields": [],
+        "phase_id": "v4_5b_4_provenance_lineage_visibility",
+        "schema_version": "v4_5b_4.provenance_lineage_visibility.1",
+        "source_report_hash_matches": true,
+        "source_report_present": true,
+        "valid": true
+      },
+      "provenance_lineage_summary": {
+        "missing_summary_types": [],
+        "provenance_lineage_summary_count": 9,
+        "unsafe_summary_ids": [],
+        "valid": true
+      },
+      "required_visibility": {
+        "diagnostic_counts": {
+          "incomplete_lineage_visibility": 1,
+          "incomplete_provenance_visibility": 1,
+          "inherited_lineage_limitation_gaps": 1,
+          "inherited_provenance_limitation_gaps": 1,
+          "missing_source_references": 1,
+          "source_to_surface_continuity_gaps": 1,
+          "stale_provenance_visibility": 1,
+          "unknown_provenance_visibility": 1,
+          "unsupported_lineage_states": 1,
+          "unsupported_provenance_states": 1
+        },
+        "evidence_counts": {
+          "evidence_continuity_references": 1,
+          "evidence_diagnostic_references": 1,
+          "evidence_freshness_references": 1,
+          "evidence_lineage_references": 1,
+          "evidence_origin_references": 1,
+          "evidence_provenance_references": 1,
+          "evidence_source_references": 1
+        },
+        "explainability_counts": {
+          "continuity_explanation_lineage": 1,
+          "diagnostic_explanation_lineage": 1,
+          "limitation_explanation_lineage": 1,
+          "support_explanation_lineage": 1,
+          "trust_explanation_lineage": 1,
+          "unsupported_state_explanation_lineage": 1
+        },
+        "missing_diagnostics": [],
+        "missing_evidence_origin": [],
+        "missing_explainability_lineage": [],
+        "missing_source_to_surface": [],
+        "missing_stale_unknown_provenance": [],
+        "missing_summaries": [],
+        "missing_support_status_lineage": [],
+        "missing_trust_summary_lineage": [],
+        "missing_unsupported_operational_states": [],
+        "source_counts": {
+          "source_to_continuity_surface": 1,
+          "source_to_diagnostics_surface": 1,
+          "source_to_explainability_surface": 1,
+          "source_to_limitation_surface": 1,
+          "source_to_support_status": 1,
+          "source_to_trust_summary": 1,
+          "source_to_unsupported_state_surface": 1
+        },
+        "stale_unknown_counts": {
+          "incomplete_lineage_states": 1,
+          "incomplete_provenance_states": 1,
+          "stale_provenance_states": 1,
+          "unknown_provenance_states": 1,
+          "unsupported_lineage_states": 1,
+          "unsupported_provenance_states": 1
+        },
+        "summary_counts": {
+          "diagnostics_provenance_lineage_summary": 1,
+          "evidence_origin_summary": 1,
+          "explainability_lineage_summary": 1,
+          "lineage_visibility_summary": 1,
+          "provenance_visibility_summary": 1,
+          "source_to_surface_summary": 1,
+          "stale_unknown_provenance_summary": 1,
+          "support_status_lineage_summary": 1,
+          "trust_summary_lineage_summary": 1
+        },
+        "support_counts": {
+          "blocked_status_lineage": 1,
+          "deprecated_status_lineage": 1,
+          "experimental_status_lineage": 1,
+          "partially_supported_status_lineage": 1,
+          "supported_status_lineage": 1,
+          "unknown_status_lineage": 1,
+          "unsupported_status_lineage": 1
+        },
+        "trust_counts": {
+          "continuity_visibility_lineage": 1,
+          "deterministic_guarantee_lineage": 1,
+          "explainability_visibility_lineage": 1,
+          "governance_transparency_lineage": 1,
+          "integrity_visibility_lineage": 1,
+          "public_trust_summary_lineage": 1
+        },
+        "unsupported_operational_counts": {
+          "automated_correction": 1,
+          "automated_mitigation": 1,
+          "automated_remediation": 1,
+          "automated_repair": 1,
+          "implicit_operational_behavior": 1,
+          "lineage_based_recommendation": 1,
+          "operational_mutation": 1,
+          "orchestration_approval": 1,
+          "orchestration_authorization": 1,
+          "orchestration_decisions": 1,
+          "orchestration_dispatch": 1,
+          "orchestration_execution": 1,
+          "orchestration_recommendations": 1,
+          "orchestration_routing": 1,
+          "orchestration_scheduling": 1,
+          "orchestration_sequencing": 1,
+          "orchestration_traversal": 1,
+          "planner_integration": 1,
+          "production_consumption": 1,
+          "provenance_based_ranking": 1,
+          "runtime_mutation": 1,
+          "source_based_approval": 1,
+          "source_based_authorization": 1
+        },
+        "valid": true
+      },
+      "serialization_hashing": {
+        "lineage_hashing_stable": true,
+        "lineage_serialization_stable": true,
+        "provenance_hashing_stable": true,
+        "provenance_lineage_identity_hash": "dfc6c7c7f3769fb818f6fe64c2273da7056d98a027a16974c365de3ca5f24d05",
+        "provenance_lineage_visibility_hash": "0ed11dbf2f4e0e2f960ee7c67081106398ad39fe098927391cc79182f2cb8b4c",
+        "provenance_serialization_stable": true,
+        "valid": true
+      },
+      "source_to_surface": {
+        "missing_source_to_surface_types": [],
+        "source_to_surface_count": 7,
+        "unsafe_source_to_surface_ids": [],
+        "valid": true
+      },
+      "stale_unknown_provenance": {
+        "missing_stale_unknown_provenance_types": [],
+        "stale_unknown_provenance_count": 6,
+        "unsafe_stale_unknown_provenance_ids": [],
+        "valid": true
+      },
+      "support_status_lineage": {
+        "missing_support_status_lineage_types": [],
+        "support_status_lineage_count": 7,
+        "unsafe_support_status_lineage_ids": [],
+        "valid": true
+      },
+      "trust_summary_lineage": {
+        "missing_trust_summary_lineage_types": [],
+        "trust_summary_lineage_count": 6,
+        "unsafe_trust_summary_lineage_ids": [],
+        "valid": true
+      }
+    }
+  },
+  "visibility": {
+    "descriptive_only": {
+      "descriptive_only": true,
+      "lineage_recommendation_enabled": false,
+      "non_approving": true,
+      "non_authorizing": true,
+      "non_executing": true,
+      "non_operational": true,
+      "non_ranking": true,
+      "non_recommending": true,
+      "non_remediating": true,
+      "non_runtime_mutating": true,
+      "operational_mutation_enabled": false,
+      "planner_integration_enabled": false,
+      "production_consumption_enabled": false,
+      "provenance_lineage_visibility_statement": "Provenance and lineage visibility is descriptive-only.",
+      "provenance_ranking_enabled": false,
+      "publicly_transparent": true,
+      "runtime_mutation_enabled": false,
+      "source_approval_enabled": false,
+      "source_authorization_enabled": false,
+      "source_visibility_non_authority_statement": "Source visibility does NOT imply authorization, approval, correctness guarantee, ranking, recommendation, operational readiness, execution safety, or production enablement."
+    },
+    "evidence_origin": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_origin_references",
+        "evidence_origin_type": "evidence_origin_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_origin_references",
+        "provenance_reference_id": "provenance_reference_evidence_origin_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_origin_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_source_references",
+        "evidence_origin_type": "evidence_source_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_source_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_source_references",
+        "provenance_reference_id": "provenance_reference_evidence_source_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_source_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_continuity_references",
+        "evidence_origin_type": "evidence_continuity_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_continuity_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_continuity_references",
+        "provenance_reference_id": "provenance_reference_evidence_continuity_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_continuity_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_provenance_references",
+        "evidence_origin_type": "evidence_provenance_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_provenance_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_provenance_references",
+        "provenance_reference_id": "provenance_reference_evidence_provenance_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_provenance_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_lineage_references",
+        "evidence_origin_type": "evidence_lineage_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_lineage_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_lineage_references",
+        "provenance_reference_id": "provenance_reference_evidence_lineage_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_lineage_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_freshness_references",
+        "evidence_origin_type": "evidence_freshness_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_freshness_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_freshness_references",
+        "provenance_reference_id": "provenance_reference_evidence_freshness_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_freshness_references",
+        "trust_scoring_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_origin_id": "evidence_origin_evidence_diagnostic_references",
+        "evidence_origin_type": "evidence_diagnostic_references",
+        "evidence_reference_ids": [
+          "evidence_evidence_diagnostic_references"
+        ],
+        "lineage_reference_id": "lineage_reference_evidence_diagnostic_references",
+        "provenance_reference_id": "provenance_reference_evidence_diagnostic_references",
+        "provenance_safe": true,
+        "ranking_enabled": false,
+        "replay_safe": true,
+        "source_reference_id": "source_reference_evidence_diagnostic_references",
+        "trust_scoring_enabled": false
+      }
+    ],
+    "explainability_lineage": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_support_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_support_explanation_lineage",
+        "explainability_lineage_type": "support_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_support_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_support_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_limitation_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_limitation_explanation_lineage",
+        "explainability_lineage_type": "limitation_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_limitation_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_limitation_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_state_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_unsupported_state_explanation_lineage",
+        "explainability_lineage_type": "unsupported_state_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_unsupported_state_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_unsupported_state_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_continuity_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_continuity_explanation_lineage",
+        "explainability_lineage_type": "continuity_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_continuity_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_continuity_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_trust_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_trust_explanation_lineage",
+        "explainability_lineage_type": "trust_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_trust_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_trust_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_diagnostic_explanation_lineage"
+        ],
+        "explainability_lineage_id": "explainability_lineage_diagnostic_explanation_lineage",
+        "explainability_lineage_type": "diagnostic_explanation_lineage",
+        "explainability_surface_reference_id": "explainability_reference_diagnostic_explanation_lineage",
+        "explanation_approval_enabled": false,
+        "lineage_reference_id": "lineage_reference_diagnostic_explanation_lineage",
+        "ranking_enabled": false,
+        "recommendation_enabled": false
+      }
+    ],
+    "lineage": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "continuity_reference_id": "continuity::v4_5b_4.public_trust",
+        "descriptive_only": true,
+        "fail_visible": true,
+        "lineage_recommendation_enabled": false,
+        "lineage_record_id": "public_lineage_visibility_foundation",
+        "lineage_reference_id": "lineage::v4_5b_4.public_trust",
+        "lineage_visibility_id": "v4_5b_4_lineage_visibility",
+        "operational_enabled": false,
+        "publicly_transparent": true,
+        "source_reference_id": "source::v4_5b_4.public_trust"
+      }
+    ],
+    "provenance": [
+      {
+        "descriptive_only": true,
+        "evidence_reference_id": "evidence::v4_5b_4.public_trust",
+        "fail_visible": true,
+        "provenance_ranking_enabled": false,
+        "provenance_record_id": "public_provenance_visibility_foundation",
+        "provenance_reference_id": "provenance::v4_5b_4.public_trust",
+        "provenance_visibility_id": "v4_5b_4_provenance_visibility",
+        "publicly_transparent": true,
+        "source_approval_enabled": false,
+        "source_authority_enabled": false,
+        "source_authorization_enabled": false,
+        "source_reference_id": "source::v4_5b_4.public_trust",
+        "trust_scoring_enabled": false
+      }
+    ],
+    "provenance_lineage_diagnostics": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_missing_source_references",
+        "diagnostic_type": "missing_source_references",
+        "evidence_reference_ids": [
+          "evidence_missing_source_references"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "missing_source_references remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_incomplete_provenance_visibility",
+        "diagnostic_type": "incomplete_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_incomplete_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_incomplete_lineage_visibility",
+        "diagnostic_type": "incomplete_lineage_visibility",
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "incomplete_lineage_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_stale_provenance_visibility",
+        "diagnostic_type": "stale_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_stale_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "stale_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_unknown_provenance_visibility",
+        "diagnostic_type": "unknown_provenance_visibility",
+        "evidence_reference_ids": [
+          "evidence_unknown_provenance_visibility"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unknown_provenance_visibility remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_unsupported_provenance_states",
+        "diagnostic_type": "unsupported_provenance_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_provenance_states remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_unsupported_lineage_states",
+        "diagnostic_type": "unsupported_lineage_states",
+        "evidence_reference_ids": [
+          "evidence_unsupported_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "unsupported_lineage_states remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_source_to_surface_continuity_gaps",
+        "diagnostic_type": "source_to_surface_continuity_gaps",
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_continuity_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "source_to_surface_continuity_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_inherited_provenance_limitation_gaps",
+        "diagnostic_type": "inherited_provenance_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_provenance_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_provenance_limitation_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "auto_correction_enabled": false,
+        "descriptive_only": true,
+        "diagnostic_id": "provenance_lineage_diagnostic_inherited_lineage_limitation_gaps",
+        "diagnostic_type": "inherited_lineage_limitation_gaps",
+        "evidence_reference_ids": [
+          "evidence_inherited_lineage_limitation_gaps"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "message": "inherited_lineage_limitation_gaps remains explicit, fail-visible, and descriptive-only for public provenance and lineage visibility.",
+        "mitigation_enabled": false,
+        "orchestration_response_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "silent_fallback_enabled": false
+      }
+    ],
+    "provenance_lineage_summaries": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_provenance_visibility_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_provenance_visibility_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "provenance_visibility_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_lineage_visibility_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_lineage_visibility_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "lineage_visibility_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_surface_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_source_to_surface_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "source_to_surface_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_evidence_origin_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_evidence_origin_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "evidence_origin_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_support_status_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_support_status_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "support_status_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_explainability_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_explainability_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "explainability_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_trust_summary_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_trust_summary_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "trust_summary_lineage_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_stale_unknown_provenance_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_stale_unknown_provenance_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "stale_unknown_provenance_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_diagnostics_provenance_lineage_summary"
+        ],
+        "execution_enablement_enabled": false,
+        "production_enablement_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "summary_record_id": "provenance_lineage_summary_diagnostics_provenance_lineage_summary",
+        "summary_state": "provenance_lineage_summary_descriptive_only",
+        "summary_type": "diagnostics_provenance_lineage_summary"
+      }
+    ],
+    "source_to_surface": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_trust_summary"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_trust_summary",
+        "source_surface_id": "source_surface_source_to_trust_summary",
+        "surface_reference_id": "surface_reference_source_to_trust_summary",
+        "visibility_type": "source_to_trust_summary"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_support_status"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_support_status",
+        "source_surface_id": "source_surface_source_to_support_status",
+        "surface_reference_id": "surface_reference_source_to_support_status",
+        "visibility_type": "source_to_support_status"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_explainability_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_explainability_surface",
+        "source_surface_id": "source_surface_source_to_explainability_surface",
+        "surface_reference_id": "surface_reference_source_to_explainability_surface",
+        "visibility_type": "source_to_explainability_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_unsupported_state_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_unsupported_state_surface",
+        "source_surface_id": "source_surface_source_to_unsupported_state_surface",
+        "surface_reference_id": "surface_reference_source_to_unsupported_state_surface",
+        "visibility_type": "source_to_unsupported_state_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_diagnostics_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_diagnostics_surface",
+        "source_surface_id": "source_surface_source_to_diagnostics_surface",
+        "surface_reference_id": "surface_reference_source_to_diagnostics_surface",
+        "visibility_type": "source_to_diagnostics_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_continuity_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_continuity_surface",
+        "source_surface_id": "source_surface_source_to_continuity_surface",
+        "surface_reference_id": "surface_reference_source_to_continuity_surface",
+        "visibility_type": "source_to_continuity_surface"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_source_to_limitation_surface"
+        ],
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "source_authority_enabled": false,
+        "source_reference_id": "source_reference_source_to_limitation_surface",
+        "source_surface_id": "source_surface_source_to_limitation_surface",
+        "surface_reference_id": "surface_reference_source_to_limitation_surface",
+        "visibility_type": "source_to_limitation_surface"
+      }
+    ],
+    "stale_unknown_provenance": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_stale_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "stale_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_stale_provenance_states",
+        "suppression_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unknown_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unknown_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unknown_provenance_states",
+        "suppression_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_incomplete_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "incomplete_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_incomplete_provenance_states",
+        "suppression_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_incomplete_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "incomplete_lineage_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_incomplete_lineage_states",
+        "suppression_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unsupported_provenance_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unsupported_provenance_states",
+        "suppression_enabled": false
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_lineage_states"
+        ],
+        "fail_visible": true,
+        "hidden_fallback_enabled": false,
+        "provenance_state_type": "unsupported_lineage_states",
+        "remediation_enabled": false,
+        "stale_unknown_id": "stale_unknown_provenance_unsupported_lineage_states",
+        "suppression_enabled": false
+      }
+    ],
+    "support_status_lineage": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_supported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_supported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_supported_status_lineage",
+        "support_lineage_type": "supported_status_lineage",
+        "support_status_reference_id": "support_status_reference_supported_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_partially_supported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_partially_supported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_partially_supported_status_lineage",
+        "support_lineage_type": "partially_supported_status_lineage",
+        "support_status_reference_id": "support_status_reference_partially_supported_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_unsupported_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_unsupported_status_lineage",
+        "support_lineage_type": "unsupported_status_lineage",
+        "support_status_reference_id": "support_status_reference_unsupported_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_experimental_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_experimental_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_experimental_status_lineage",
+        "support_lineage_type": "experimental_status_lineage",
+        "support_status_reference_id": "support_status_reference_experimental_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_deprecated_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_deprecated_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_deprecated_status_lineage",
+        "support_lineage_type": "deprecated_status_lineage",
+        "support_status_reference_id": "support_status_reference_deprecated_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_blocked_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_blocked_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_blocked_status_lineage",
+        "support_lineage_type": "blocked_status_lineage",
+        "support_status_reference_id": "support_status_reference_blocked_status_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unknown_status_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_unknown_status_lineage",
+        "operational_semantics_enabled": false,
+        "recommendation_enabled": false,
+        "support_lineage_id": "support_status_lineage_unknown_status_lineage",
+        "support_lineage_type": "unknown_status_lineage",
+        "support_status_reference_id": "support_status_reference_unknown_status_lineage"
+      }
+    ],
+    "trust_summary_lineage": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_public_trust_summary_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_public_trust_summary_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_public_trust_summary_lineage",
+        "trust_lineage_type": "public_trust_summary_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_public_trust_summary_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_governance_transparency_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_governance_transparency_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_governance_transparency_lineage",
+        "trust_lineage_type": "governance_transparency_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_governance_transparency_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_deterministic_guarantee_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_deterministic_guarantee_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_deterministic_guarantee_lineage",
+        "trust_lineage_type": "deterministic_guarantee_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_deterministic_guarantee_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_integrity_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_integrity_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_integrity_visibility_lineage",
+        "trust_lineage_type": "integrity_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_integrity_visibility_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_continuity_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_continuity_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_continuity_visibility_lineage",
+        "trust_lineage_type": "continuity_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_continuity_visibility_lineage"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_explainability_visibility_lineage"
+        ],
+        "lineage_reference_id": "lineage_reference_explainability_visibility_lineage",
+        "operational_readiness_enabled": false,
+        "trust_lineage_id": "trust_summary_lineage_explainability_visibility_lineage",
+        "trust_lineage_type": "explainability_visibility_lineage",
+        "trust_scoring_enabled": false,
+        "trust_summary_reference_id": "trust_summary_reference_explainability_visibility_lineage"
+      }
+    ],
+    "unsupported_operational_states": [
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_execution remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_execution",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_execution"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_authorization remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_authorization"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_approval remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_approval"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_dispatch remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_dispatch",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_dispatch"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_routing remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_routing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_routing"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_traversal remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_traversal",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_traversal"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_scheduling remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_scheduling",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_scheduling"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_sequencing remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_sequencing",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_sequencing"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_decisions remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_decisions",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_decisions"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "orchestration_recommendations remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_orchestration_recommendations",
+        "suppression_enabled": false,
+        "unsupported_state": "orchestration_recommendations"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "source_based_authorization remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_source_based_authorization",
+        "suppression_enabled": false,
+        "unsupported_state": "source_based_authorization"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "source_based_approval remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_source_based_approval",
+        "suppression_enabled": false,
+        "unsupported_state": "source_based_approval"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "provenance_based_ranking remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_provenance_based_ranking",
+        "suppression_enabled": false,
+        "unsupported_state": "provenance_based_ranking"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "lineage_based_recommendation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_lineage_based_recommendation",
+        "suppression_enabled": false,
+        "unsupported_state": "lineage_based_recommendation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_remediation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_remediation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_remediation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_repair remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_repair",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_repair"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_mitigation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_mitigation",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_mitigation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "automated_correction remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_automated_correction",
+        "suppression_enabled": false,
+        "unsupported_state": "automated_correction"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "planner_integration remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_planner_integration",
+        "suppression_enabled": false,
+        "unsupported_state": "planner_integration"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "production_consumption remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_production_consumption",
+        "suppression_enabled": false,
+        "unsupported_state": "production_consumption"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "runtime_mutation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_runtime_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "runtime_mutation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "operational_mutation remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_operational_mutation",
+        "suppression_enabled": false,
+        "unsupported_state": "operational_mutation"
+      },
+      {
+        "approval_enabled": false,
+        "authorization_enabled": false,
+        "automated_correction_enabled": false,
+        "descriptive_only": true,
+        "evidence_reference_ids": [
+          "evidence_unsupported_provenance_lineage_operational_states"
+        ],
+        "explicit_reason": "implicit_operational_behavior remains unsupported for v4.5B.4 public provenance and lineage visibility.",
+        "fail_visible": true,
+        "mitigation_enabled": false,
+        "operational_enabled": false,
+        "ranking_enabled": false,
+        "recommendation_enabled": false,
+        "remediation_enabled": false,
+        "repair_enabled": false,
+        "state_id": "unsupported_provenance_lineage_operational_state_implicit_operational_behavior",
+        "suppression_enabled": false,
+        "unsupported_state": "implicit_operational_behavior"
+      }
+    ]
+  }
+}
