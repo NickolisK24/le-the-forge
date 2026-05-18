@@ -31,6 +31,7 @@ import RotationBuilderPage from "@/pages/RotationBuilderPage";
 import TrustedDataExplanationPage from "@/pages/TrustedDataExplanationPage";
 import TrustedDataSupportMatrixPage from "@/pages/TrustedDataSupportMatrixPage";
 import PreV3MechanicalReadinessPage from "@/pages/PreV3MechanicalReadinessPage";
+import FrontendTrustSurfaceFoundationsPage from "@/pages/FrontendTrustSurfaceFoundationsPage";
 import ConditionalBuilderPage from "@/pages/ConditionalBuilderPage";
 import MultiTargetSimulatorPage from "@/pages/MultiTargetSimulatorPage";
 import DataManagerPage from "@/pages/DataManagerPage";
@@ -251,6 +252,7 @@ export default function App() {
                 <Route path="/trusted-data" element={<TrustedDataExplanationPage />} />
                 <Route path="/trusted-data/support" element={<TrustedDataSupportMatrixPage />} />
                 <Route path="/trusted-data/pre-v3-readiness" element={<PreV3MechanicalReadinessPage />} />
+                <Route path="/trusted-data/frontend-trust" element={<FrontendTrustSurfaceFoundationsPage />} />
 
                 {/* Route aliases — redirect legacy/external URL patterns to their
                     canonical paths. `replace` ensures the alias doesn't pollute

@@ -1,0 +1,602 @@
+import type {
+  FrontendTrustSurfaceData,
+  TrustSurfaceBadgeDefinition,
+  TrustSurfaceSupportStatus,
+} from "@/types/frontendTrustSurface";
+
+export const FRONTEND_TRUST_SURFACE_PHASE_ID =
+  "v4_5c_1_frontend_trust_surface_foundations";
+
+export const FRONTEND_TRUST_SURFACE_GENERATED_AT = "2026-05-18T00:00:00+00:00";
+
+export const FRONTEND_TRUST_SURFACE_NON_AUTHORITY_STATEMENT =
+  "Frontend trust surfaces do NOT imply planner authority, execution safety, correctness guarantees, operational readiness, recommendation quality, ranking quality, or production enablement.";
+
+export const FRONTEND_TRUST_SURFACE_REPOSITORY_REMAINS = [
+  "READ-ONLY",
+  "DESCRIPTIVE-ONLY",
+  "NON-operational",
+  "NON-authorizing",
+  "NON-approving",
+  "NON-recommending",
+  "NON-ranking",
+  "NON-scoring",
+] as const;
+
+export const SUPPORT_BADGES: readonly TrustSurfaceBadgeDefinition[] = [
+  {
+    status: "supported",
+    label: "Supported",
+    description: "Visible as currently supported trust information.",
+    tone: "green",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "partially_supported",
+    label: "Partially Supported",
+    description: "Visible with limitations that remain explicit.",
+    tone: "amber",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "unsupported",
+    label: "Unsupported",
+    description: "Visible for inspection without operational behavior.",
+    tone: "red",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "experimental",
+    label: "Experimental",
+    description: "Visible as controlled read-only infrastructure.",
+    tone: "purple",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "deprecated",
+    label: "Deprecated",
+    description: "Visible as legacy or superseded trust information.",
+    tone: "slate",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "blocked",
+    label: "Blocked",
+    description: "Visible as blocked with fail-visible diagnostics.",
+    tone: "red",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+  {
+    status: "unknown",
+    label: "Unknown",
+    description: "Visible as unknown instead of inferred.",
+    tone: "gray",
+    readOnly: true,
+    descriptiveOnly: true,
+  },
+] as const;
+
+export const FRONTEND_TRUST_SURFACE_DATA: FrontendTrustSurfaceData = {
+  phaseId: FRONTEND_TRUST_SURFACE_PHASE_ID,
+  generatedAt: FRONTEND_TRUST_SURFACE_GENERATED_AT,
+  trustStatusCards: [
+    {
+      id: "support-status",
+      title: "Support status",
+      status: "supported",
+      summary: "Support visibility is available for public trust surfaces.",
+      limitation: "Support status is descriptive and does not authorize planner use.",
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "partial-support-status",
+      title: "Partial support status",
+      status: "partially_supported",
+      summary: "Partially supported states stay visible with their remaining gaps.",
+      limitation: "Partial support does not imply execution safety or completeness.",
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unsupported-states",
+      title: "Unsupported states",
+      status: "unsupported",
+      summary: "Unsupported states remain visible instead of being hidden.",
+      limitation: "Unsupported visibility does not create a fallback behavior.",
+      deterministicOrder: 3,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "experimental-states",
+      title: "Experimental states",
+      status: "experimental",
+      summary: "Experimental surfaces remain clearly labeled and read-only.",
+      limitation: "Experimental visibility does not imply production readiness.",
+      deterministicOrder: 4,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "deprecated-states",
+      title: "Deprecated states",
+      status: "deprecated",
+      summary: "Deprecated states remain visible for provenance and lineage review.",
+      limitation: "Deprecated visibility does not migrate or repair records.",
+      deterministicOrder: 5,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "blocked-states",
+      title: "Blocked states",
+      status: "blocked",
+      summary: "Blocked states are surfaced with fail-visible diagnostics.",
+      limitation: "Blocked visibility does not triage or prioritize action.",
+      deterministicOrder: 6,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unknown-states",
+      title: "Unknown states",
+      status: "unknown",
+      summary: "Unknown states are displayed explicitly.",
+      limitation: "Unknown visibility does not infer trust or correctness.",
+      deterministicOrder: 7,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  supportBadges: SUPPORT_BADGES,
+  explainabilityPanels: [
+    {
+      id: "support-explanations",
+      title: "Support explanations",
+      explanationType: "support",
+      summary: "Explains what is currently visible and why it remains read-only.",
+      details: [
+        "Support explanations describe state only.",
+        "Support explanations do not create approval, execution, or planner authority.",
+      ],
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "limitation-explanations",
+      title: "Limitation explanations",
+      explanationType: "limitation",
+      summary: "Keeps limitation reasons visible near trust surfaces.",
+      details: [
+        "Limitations remain explicit and fail-visible.",
+        "Limitations are not suppressed when trust information is displayed.",
+      ],
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unsupported-state-explanations",
+      title: "Unsupported-state explanations",
+      explanationType: "unsupported_state",
+      summary: "Explains unsupported public trust states without hiding them.",
+      details: [
+        "Unsupported states are exposed as unsupported instead of bridged.",
+        "Unsupported-state explanations do not create fallback behavior.",
+      ],
+      deterministicOrder: 3,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "continuity-explanations",
+      title: "Continuity explanations",
+      explanationType: "continuity",
+      summary: "Shows whether evidence, lineage, and provenance continuity are visible.",
+      details: [
+        "Continuity explanations are display-only.",
+        "Continuity gaps remain fail-visible and are not repaired by the frontend.",
+      ],
+      deterministicOrder: 4,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "trust-explanations",
+      title: "Trust explanations",
+      explanationType: "trust",
+      summary: "Describes governance-safe trust visibility without trust scoring.",
+      details: [
+        "Trust explanations do not imply correctness guarantees.",
+        "Trust visibility does not become recommendation quality or planner authority.",
+      ],
+      deterministicOrder: 5,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "diagnostics-explanations",
+      title: "Diagnostics explanations",
+      explanationType: "diagnostics",
+      summary: "Shows public diagnostics as explanatory context.",
+      details: [
+        "Diagnostics visibility does not create triage priority.",
+        "Diagnostics are read-only public trust context.",
+      ],
+      deterministicOrder: 6,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  evidencePanels: [
+    {
+      id: "report-evidence",
+      title: "Generated report evidence",
+      group: "trust_summary",
+      items: [
+        {
+          id: "b8-closeout-report",
+          label: "v4.5B.8 trusted UX closeout report",
+          source: "docs/generated/v4_5b_8_trusted_ux_closeout_report.json",
+          freshness: "current",
+          provenance: "Generated from deterministic public trust closeout certification.",
+          lineage: "B1-B7 public trust visibility chain.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "support-status-evidence",
+      title: "Support status evidence",
+      group: "support_status",
+      items: [
+        {
+          id: "support-badge-evidence",
+          label: "Support badge evidence",
+          source: "frontend trust support badge definitions",
+          freshness: "current",
+          provenance: "Deterministic support status visibility definitions.",
+          lineage: "B2 support status visibility to C1 frontend badge surface.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "explainability-evidence",
+      title: "Explainability evidence",
+      group: "explainability",
+      items: [
+        {
+          id: "explanation-panel-evidence",
+          label: "Explanation panel evidence",
+          source: "frontend explainability panel definitions",
+          freshness: "current",
+          provenance: "Mapped from public explainability visibility surfaces.",
+          lineage: "B3 explainability surfaces to C1 frontend panels.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 3,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "provenance-evidence",
+      title: "Provenance evidence",
+      group: "provenance",
+      items: [
+        {
+          id: "source-provenance-evidence",
+          label: "Source provenance evidence",
+          source: "docs/generated/v4_5b_8_trusted_ux_closeout_report.json",
+          freshness: "current",
+          provenance: "Closeout report source is visible.",
+          lineage: "B4 provenance visibility to C1 provenance panel.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 4,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "lineage-evidence",
+      title: "Lineage evidence",
+      group: "lineage",
+      items: [
+        {
+          id: "lineage-continuity-evidence",
+          label: "Lineage continuity evidence",
+          source: "B1-B8 trusted UX closeout chain",
+          freshness: "current",
+          provenance: "Lineage continuity remains descriptive.",
+          lineage: "Public trust visibility chain remains visible.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 5,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "missing-evidence",
+      title: "Missing evidence visibility",
+      group: "limitations",
+      items: [
+        {
+          id: "missing-evidence-visible",
+          label: "Missing evidence visibility",
+          source: "No inferred fallback source",
+          freshness: "missing",
+          provenance: "Missing evidence remains explicit.",
+          lineage: "No lineage is inferred for missing evidence.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 6,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unsupported-evidence",
+      title: "Unsupported evidence",
+      group: "unsupported_state",
+      items: [
+        {
+          id: "unsupported-trust-evidence",
+          label: "Unsupported state evidence",
+          source: "Unsupported operational states",
+          freshness: "unsupported",
+          provenance: "Unsupported states are surfaced directly.",
+          lineage: "Unsupported evidence does not bridge to planner behavior.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 7,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "diagnostics-evidence",
+      title: "Diagnostics evidence",
+      group: "diagnostics",
+      items: [
+        {
+          id: "diagnostics-visibility-evidence",
+          label: "Public diagnostics evidence",
+          source: "public diagnostics summary definitions",
+          freshness: "current",
+          provenance: "Diagnostics are surfaced for visibility.",
+          lineage: "B7 public diagnostics to C1 diagnostics summary.",
+          readOnly: true,
+          descriptiveOnly: true,
+        },
+      ],
+      deterministicOrder: 8,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  provenanceLineagePanels: [
+    {
+      id: "source-references",
+      title: "Source references",
+      sourceReference: "docs/generated/v4_5b_8_trusted_ux_closeout_report.json",
+      evidenceOrigin: "deterministic trusted UX closeout",
+      provenanceState: "available",
+      lineageState: "continuous",
+      visibilityNote: "Source visibility is descriptive and does not grant authority.",
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unknown-provenance",
+      title: "Unknown provenance",
+      sourceReference: "unknown source remains visible",
+      evidenceOrigin: "not inferred",
+      provenanceState: "unknown",
+      lineageState: "unknown",
+      visibilityNote: "Unknown provenance is shown instead of hidden or guessed.",
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "stale-provenance",
+      title: "Stale provenance",
+      sourceReference: "stale source remains visible",
+      evidenceOrigin: "stale evidence reference",
+      provenanceState: "stale",
+      lineageState: "incomplete",
+      visibilityNote: "Stale provenance is visible and non-authoritative.",
+      deterministicOrder: 3,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "lineage-continuity",
+      title: "Lineage continuity",
+      sourceReference: "public trust visibility chain",
+      evidenceOrigin: "B1-B8 public trust infrastructure",
+      provenanceState: "available",
+      lineageState: "continuous",
+      visibilityNote: "Lineage continuity is visible and read-only.",
+      deterministicOrder: 4,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  coverageSummaries: [
+    {
+      id: "coverage-visible",
+      label: "Coverage visibility",
+      state: "deterministic descriptive coverage",
+      visibilityNote: "Coverage is visible without scoring, ranking, or recommendations.",
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "incomplete-coverage",
+      label: "Incomplete coverage",
+      state: "fail-visible incomplete coverage",
+      visibilityNote: "Incomplete coverage remains visible and is not filled automatically.",
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  confidenceSummaries: [
+    {
+      id: "confidence-visible",
+      label: "Confidence visibility",
+      state: "descriptive confidence visibility",
+      visibilityNote: "Confidence is shown as context only, not a score.",
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unknown-confidence",
+      label: "Unknown confidence",
+      state: "unknown confidence visible",
+      visibilityNote: "Unknown confidence remains explicit and non-authoritative.",
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  diagnosticsSummaries: [
+    {
+      id: "public-warning",
+      label: "Public warning",
+      state: "warning",
+      message: "Warnings remain visible and do not become triage priority.",
+      deterministicOrder: 1,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "public-blocker",
+      label: "Public blocker",
+      state: "blocker",
+      message: "Blockers remain visible and do not trigger remediation.",
+      deterministicOrder: 2,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "continuity-gap",
+      label: "Continuity gap",
+      state: "gap",
+      message: "Continuity gaps remain fail-visible and descriptive.",
+      deterministicOrder: 3,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "evidence-gap",
+      label: "Evidence gap",
+      state: "gap",
+      message: "Evidence gaps stay visible and are not backfilled by the frontend.",
+      deterministicOrder: 4,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "explainability-gap",
+      label: "Explainability gap",
+      state: "gap",
+      message: "Explainability gaps remain visible and do not produce recommendations.",
+      deterministicOrder: 5,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+    {
+      id: "unsupported-state-diagnostic",
+      label: "Unsupported state",
+      state: "unsupported",
+      message: "Unsupported states remain fail-visible in diagnostics.",
+      deterministicOrder: 6,
+      readOnly: true,
+      descriptiveOnly: true,
+    },
+  ],
+  guarantees: [
+    "deterministic",
+    "governance-safe",
+    "fail-visible",
+    "read-only",
+    "descriptive-only",
+    "explainability-first",
+    "publicly transparent",
+  ],
+  prohibitions: [
+    "planner execution",
+    "planner recommendations",
+    "planner ranking",
+    "trust scoring",
+    "evidence scoring",
+    "authorization semantics",
+    "approval semantics",
+    "production enablement",
+    "runtime mutation",
+    "operational mutation",
+  ],
+  nonAuthorityStatement: FRONTEND_TRUST_SURFACE_NON_AUTHORITY_STATEMENT,
+  repositoryRemains: FRONTEND_TRUST_SURFACE_REPOSITORY_REMAINS,
+} as const;
+
+export function getSupportBadgeDefinition(
+  status: TrustSurfaceSupportStatus,
+): TrustSurfaceBadgeDefinition {
+  return SUPPORT_BADGES.find((badge) => badge.status === status) ?? SUPPORT_BADGES[6];
+}
+
+export function getFrontendTrustSurfaceData(): FrontendTrustSurfaceData {
+  return FRONTEND_TRUST_SURFACE_DATA;
+}
+
+export function isFrontendTrustSurfaceReadOnly(
+  data: FrontendTrustSurfaceData = FRONTEND_TRUST_SURFACE_DATA,
+): boolean {
+  return (
+    data.trustStatusCards.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.supportBadges.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.explainabilityPanels.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.evidencePanels.every(
+      (panel) =>
+        panel.readOnly &&
+        panel.descriptiveOnly &&
+        panel.items.every((item) => item.readOnly && item.descriptiveOnly),
+    ) &&
+    data.provenanceLineagePanels.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.coverageSummaries.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.confidenceSummaries.every((item) => item.readOnly && item.descriptiveOnly) &&
+    data.diagnosticsSummaries.every((item) => item.readOnly && item.descriptiveOnly)
+  );
+}

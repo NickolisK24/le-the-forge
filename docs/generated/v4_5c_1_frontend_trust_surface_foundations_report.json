@@ -1,0 +1,184 @@
+{
+  "deterministic_hash_replay_verified": true,
+  "deterministic_report_hash": "fe46403f3bc8d50346f3b154e737aff7c8b5171e820c176411cfa7635f8433cb",
+  "enabled_semantics": {
+    "approval_enabled": false,
+    "authorization_enabled": false,
+    "evidence_scoring_enabled": false,
+    "hidden_automation_behavior_enabled": false,
+    "operational_mutation_enabled": false,
+    "orchestration_execution_enabled": false,
+    "orchestration_routing_enabled": false,
+    "orchestration_traversal_enabled": false,
+    "planner_execution_enabled": false,
+    "planner_ranking_enabled": false,
+    "planner_recommendations_enabled": false,
+    "production_enablement_enabled": false,
+    "runtime_mutation_enabled": false,
+    "trust_scoring_enabled": false
+  },
+  "file_coverage": {
+    "created_files_present": {
+      "backend/scripts/report_v4_5c_1_frontend_trust_surface_foundations.py": true,
+      "docs/generated/v4_5c_1_frontend_trust_surface_foundations_report.json": true,
+      "docs/migration/V4_5C_1_FRONTEND_TRUST_SURFACE_FOUNDATIONS.md": true,
+      "frontend/src/__tests__/components/frontend-trust-surface-foundations.test.tsx": true,
+      "frontend/src/components/trust/FrontendTrustSurface.tsx": true,
+      "frontend/src/lib/frontendTrustSurfaceData.ts": true,
+      "frontend/src/pages/FrontendTrustSurfaceFoundationsPage.tsx": true,
+      "frontend/src/types/frontendTrustSurface.ts": true
+    },
+    "modified_files_expected": [
+      "frontend/src/App.tsx",
+      "frontend/src/pages/TrustedDataExplanationPage.tsx"
+    ]
+  },
+  "frontend_surface_coverage": [
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "trust_status_cards",
+      "visibility": "support, unsupported, experimental, deprecated, blocked, and unknown states"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "support_status_badges",
+      "visibility": "supported, partially_supported, unsupported, experimental, deprecated, blocked, unknown"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "explainability_panels",
+      "visibility": "support, limitation, unsupported-state, continuity, trust, and diagnostics explanations"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "evidence_panels",
+      "visibility": "grouped evidence, freshness, provenance, lineage, missing evidence, unsupported evidence"
+    },
+    {
+      "descriptive_only": true,
+      "read_only": true,
+      "surface": "provenance_lineage_panels",
+      "visibility": "source references, evidence origin, stale provenance, unknown provenance, lineage continuity"
+    },
+    {
+      "descriptive_only": true,
+      "non_ranking": true,
+      "non_recommending": true,
+      "non_scoring": true,
+      "read_only": true,
+      "surface": "coverage_confidence_summaries",
+      "visibility": "coverage, confidence, incomplete coverage, and unknown confidence"
+    },
+    {
+      "descriptive_only": true,
+      "fail_visible": true,
+      "read_only": true,
+      "surface": "diagnostics_summaries",
+      "visibility": "warnings, blockers, unsupported states, continuity gaps, evidence gaps, and explainability gaps"
+    }
+  ],
+  "generated_at": "2026-05-18T00:00:00+00:00",
+  "intentionally_preserved_limitations": [
+    "Frontend trust surfaces consume deterministic read-only visibility structures only.",
+    "No mutable trust state or planner execution path is introduced.",
+    "No scoring, ranking, recommendation, approval, authorization, or production enablement semantics are introduced.",
+    "Missing evidence, stale provenance, unknown confidence, incomplete coverage, blockers, and unsupported states remain visible."
+  ],
+  "non_authority_statement": "Frontend trust surfaces do NOT imply planner authority, execution safety, correctness guarantees, operational readiness, recommendation quality, ranking quality, or production enablement.",
+  "phase_id": "v4_5c_1_frontend_trust_surface_foundations",
+  "preserved_prohibitions": [
+    "planner execution",
+    "planner recommendations",
+    "planner ranking",
+    "trust scoring",
+    "evidence scoring",
+    "recommendation systems",
+    "ranking systems",
+    "authorization semantics",
+    "approval semantics",
+    "orchestration execution",
+    "orchestration routing",
+    "orchestration traversal",
+    "production enablement",
+    "runtime mutation",
+    "operational mutation",
+    "hidden automation behavior"
+  ],
+  "repository_remains": [
+    "READ-ONLY",
+    "DESCRIPTIVE-ONLY",
+    "NON-operational",
+    "NON-authorizing",
+    "NON-approving",
+    "NON-recommending",
+    "NON-ranking",
+    "NON-scoring"
+  ],
+  "summary": {
+    "confidence_summary_count": 2,
+    "coverage_summary_count": 2,
+    "created_file_count": 8,
+    "created_files_present": true,
+    "diagnostics_summary_count": 6,
+    "evidence_panel_count": 8,
+    "explainability_panel_count": 6,
+    "frontend_surface_coverage_count": 7,
+    "generated_at": "2026-05-18T00:00:00+00:00",
+    "guarantees": [
+      "deterministic",
+      "governance-safe",
+      "fail-visible",
+      "read-only",
+      "descriptive-only",
+      "explainability-first",
+      "publicly transparent"
+    ],
+    "intentionally_preserved_limitation_count": 4,
+    "modified_file_count": 2,
+    "non_authority_statement": "Frontend trust surfaces do NOT imply planner authority, execution safety, correctness guarantees, operational readiness, recommendation quality, ranking quality, or production enablement.",
+    "phase_id": "v4_5c_1_frontend_trust_surface_foundations",
+    "preserved_prohibition_count": 16,
+    "provenance_lineage_panel_count": 4,
+    "repository_remains": [
+      "READ-ONLY",
+      "DESCRIPTIVE-ONLY",
+      "NON-operational",
+      "NON-authorizing",
+      "NON-approving",
+      "NON-recommending",
+      "NON-ranking",
+      "NON-scoring"
+    ],
+    "support_status_badge_count": 7,
+    "support_statuses": [
+      "supported",
+      "partially_supported",
+      "unsupported",
+      "experimental",
+      "deprecated",
+      "blocked",
+      "unknown"
+    ],
+    "trust_status_card_count": 7,
+    "validation_error_count": 0
+  },
+  "validation": {
+    "confidence_visibility_preserved": true,
+    "coverage_visibility_preserved": true,
+    "descriptive_only_surfaces_verified": true,
+    "deterministic_rendering_contract_verified": true,
+    "evidence_visibility_preserved": true,
+    "fail_visible_diagnostics_preserved": true,
+    "lineage_visibility_preserved": true,
+    "no_operational_behavior_introduced": true,
+    "no_planner_authority_introduced": true,
+    "no_recommendation_ranking_scoring_semantics_introduced": true,
+    "provenance_visibility_preserved": true,
+    "read_only_surfaces_verified": true,
+    "unsupported_state_visibility_preserved": true
+  }
+}
